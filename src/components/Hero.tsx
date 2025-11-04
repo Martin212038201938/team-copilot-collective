@@ -22,14 +22,20 @@ const Hero = () => {
             </div>
             
             <h1 className="text-5xl lg:text-6xl font-bold leading-tight">
-              Microsoft Copilot
-              <span className="block text-accent mt-2">Trainings mit echtem Mehrwert</span>
+              Microsoft Copilot Schulungen
+              <span className="block text-accent mt-2">Praxistraining für messbare Produktivität</span>
             </h1>
             
-            <p className="text-xl text-muted-foreground leading-relaxed">
-              Spezialisiert auf Microsoft 365 Copilot, GitHub Copilot & Co. – keine externen Tools, 
-              die in Ihrem Unternehmen nicht zugelassen sind. Stattdessen: Hands-on Training mit 
-              realen Use Cases aus Ihrem Arbeitsalltag. Sofort anwendbar, messbar effektiv.
+            <p className="text-xl text-muted-foreground leading-relaxed mb-4">
+              Professionelle Microsoft 365 Copilot und GitHub Copilot Schulungen für Unternehmen: Wir trainieren 
+              ausschließlich Microsoft-eigene KI-Tools – keine externen Anwendungen, die in Ihrem Unternehmen 
+              nicht zugelassen sind. Stattdessen erhalten Sie praxisorientierte Hands-on Trainings mit realen 
+              Use Cases aus Ihrem Arbeitsalltag.
+            </p>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              Von KI-Agenten Entwicklung über Low-Code mit Copilot Studio bis zu fortgeschrittener Automatisierung: 
+              Jedes Training ist sofort anwendbar, DSGVO-konform und steigert messbar Ihre Team-Effizienz. 
+              Verfügbar als Inhouse-Schulung, Remote-Training oder in unseren Räumen in Köln.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
