@@ -128,7 +128,8 @@ const TrainingLocations = () => {
             <h3 className="text-3xl font-bold mb-4">Unsere Trainingsräume in Köln</h3>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               Moderne, lichtdurchflutete Räume mit viel Grün für eine inspirierende Lernatmosphäre. 
-              Zentral gelegen und perfekt ausgestattet für produktive Workshop-Sessions.
+              Zentral gelegen direkt am S-Bahnhof Nippes und perfekt ausgestattet für produktive Workshop-Sessions. 
+              Parkplätze begrenzt vorhanden. Erfahrene und methodisch geschulte Trainer.
             </p>
           </div>
 
