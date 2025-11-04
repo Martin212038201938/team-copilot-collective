@@ -3,34 +3,34 @@ import { Target, Lightbulb, Users, Zap, Shield, Award } from "lucide-react";
 
 const benefits = [
   {
-    icon: Target,
-    title: "Praxisorientiert",
-    description: "Keine theoretischen Vorträge – wir arbeiten mit realen Anwendungsfällen aus Ihrem Unternehmensalltag."
+    icon: Shield,
+    title: "Nur Microsoft Copilot",
+    description: "Keine externen Tools, die in Ihrem Unternehmen nicht erlaubt sind. Wir fokussieren uns auf Microsoft 365 Copilot, GitHub Copilot und weitere MS-eigene KI-Tools – compliant und sicher."
   },
   {
-    icon: Users,
-    title: "Team-fokussiert",
-    description: "Trainings für Ihr gesamtes Team oder spezifische Abteilungen – individuell angepasst an Ihre Bedürfnisse."
+    icon: Target,
+    title: "80% Praxis, 20% Theorie",
+    description: "Keine PowerPoint-Schlacht. Wir arbeiten direkt in den Tools mit echten Szenarien aus Ihrem Arbeitsalltag: E-Mails, Dokumente, Code, Meetings."
   },
   {
     icon: Lightbulb,
-    title: "Sofort umsetzbar",
-    description: "Sie lernen Techniken, die Sie direkt am nächsten Tag in Ihrer täglichen Arbeit einsetzen können."
+    title: "Reale Use Cases",
+    description: "Sie üben mit konkreten Aufgaben: Reports erstellen, Code generieren, Meetings zusammenfassen, Daten analysieren – alles, was Sie morgen brauchen."
   },
   {
     icon: Zap,
-    title: "Effizienzsteigerung",
-    description: "Messbare Produktivitätssteigerung durch intelligenten Einsatz von KI-Tools im Arbeitsalltag."
+    title: "Hands-on Training",
+    description: "Jeder Teilnehmer arbeitet aktiv mit. Learning by doing statt passivem Zuhören. Sie verlassen das Training mit fertigen Prompts und Workflows."
   },
   {
-    icon: Shield,
-    title: "Rechtssicher",
-    description: "Alle Trainings berücksichtigen Datenschutz, EU AI Act und rechtliche Rahmenbedingungen."
+    icon: Users,
+    title: "Teamorientiert",
+    description: "Maßgeschneidert auf Ihre Teams und Abteilungen. Wir holen jeden dort ab, wo er steht – vom Einsteiger bis zum Power User."
   },
   {
     icon: Award,
-    title: "Erfahrene Trainer",
-    description: "Über 15 Jahre Expertise in IT, Cloud, Agile und Change-Management vereint in einem Team."
+    title: "Praxiserprobte Expertise",
+    description: "15+ Jahre Erfahrung in Microsoft-Umgebungen, Cloud, Entwicklung und Change. Wir kennen Ihre Herausforderungen aus der Praxis."
   }
 ];
 
@@ -39,15 +39,15 @@ const Benefits = () => {
     <section id="benefits" className="py-24 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium">
-            Warum CopilotSchule?
+          <span className="px-4 py-2 bg-accent/90 text-accent-foreground rounded-full text-sm font-medium">
+            Unser USP
           </span>
           <h2 className="text-4xl font-bold mt-6 mb-4">
-            Praxis statt Theorie
+            Microsoft-fokussiert. Praxisnah. Messbar.
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Wir vermitteln greifbares Wissen, das Ihre Teams sofort anwenden können.
-            Nachhaltige Kompetenzentwicklung für langfristigen Erfolg.
+            Kein Tool-Wirrwarr mit unsicheren Drittanbietern. Wir trainieren ausschließlich 
+            Microsoft Copilot-Lösungen – mit viel Übung, echten Use Cases und sofort umsetzbaren Ergebnissen.
           </p>
         </div>
 

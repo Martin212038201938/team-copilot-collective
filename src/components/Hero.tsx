@@ -16,19 +16,20 @@ const Hero = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8">
             <div className="inline-block">
-              <span className="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium">
-                Ihr Team. Ihre Ziele. Mit KI an der Seite.
+              <span className="px-4 py-2 bg-accent/90 text-accent-foreground rounded-full text-sm font-medium">
+                100% Microsoft Copilot. 100% Praxis. 0% Blabla.
               </span>
             </div>
             
             <h1 className="text-5xl lg:text-6xl font-bold leading-tight">
               Microsoft Copilot
-              <span className="block text-primary mt-2">Inhouse-Trainings</span>
+              <span className="block text-accent mt-2">Trainings mit echtem Mehrwert</span>
             </h1>
             
             <p className="text-xl text-muted-foreground leading-relaxed">
-              Maßgeschneiderte Schulungen für Ihr Unternehmen. Unser erfahrenes Trainerteam 
-              bringt KI-Kompetenz direkt zu Ihnen – praxisnah, effizient und nachhaltig.
+              Spezialisiert auf Microsoft 365 Copilot, GitHub Copilot & Co. – keine externen Tools, 
+              die in Ihrem Unternehmen nicht zugelassen sind. Stattdessen: Hands-on Training mit 
+              realen Use Cases aus Ihrem Arbeitsalltag. Sofort anwendbar, messbar effektiv.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">

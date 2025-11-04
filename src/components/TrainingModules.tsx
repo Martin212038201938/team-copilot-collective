@@ -5,74 +5,74 @@ import { Brain, Users, TrendingUp, Shield, Clock, Laptop } from "lucide-react";
 const modules = [
   {
     icon: Brain,
-    title: "KI Basistraining",
+    title: "Microsoft 365 Copilot Basics",
     duration: "1 Tag",
-    description: "Grundlagen der KI und praktischer Einstieg in Microsoft 365 Copilot und ChatGPT für Ihr gesamtes Team.",
+    description: "Hands-on Training für Word, Excel, PowerPoint, Outlook & Teams Copilot. Sie arbeiten sofort mit echten Dokumenten, E-Mails und Präsentationen.",
     features: [
-      "Grundlagen der KI verstehen",
-      "Erste Schritte mit Copilot",
-      "Praktische Übungen für den Alltag",
-      "Effizienzsteigerung im Büro"
-    ]
-  },
-  {
-    icon: TrendingUp,
-    title: "Strategie Workshop",
-    duration: "2 Tage",
-    description: "Entwickeln Sie eine klare KI-Vision für Ihr Unternehmen und gestalten Sie Ihre digitale Zukunft aktiv.",
-    features: [
-      "Möglichkeiten der KI kennenlernen",
-      "Zieldefinition für Ihr Unternehmen",
-      "Prozessanalyse und Optimierung",
-      "Konkreter Umsetzungsfahrplan"
-    ]
-  },
-  {
-    icon: Shield,
-    title: "EU AI Act Compliance",
-    duration: "4-8 Stunden",
-    description: "Rechtssichere Nutzung von KI-Tools. Ab Februar 2025 verpflichtend für alle Unternehmen in der EU.",
-    features: [
-      "Überblick EU KI-Verordnung",
-      "Rechtliche Anforderungen",
-      "Risikominderung und Compliance",
-      "Praktische Umsetzung"
+      "Live-Übungen in Word, Excel, PowerPoint",
+      "E-Mail-Management mit Outlook Copilot",
+      "Teams-Meetings zusammenfassen & protokollieren",
+      "Eigene Use Cases aus Ihrem Alltag umsetzen"
     ]
   },
   {
     icon: Users,
-    title: "Team-Training Advanced",
+    title: "Microsoft 365 Copilot Advanced",
     duration: "2 Tage",
-    description: "Vertiefte Schulung für Power-User und Teams, die das Maximum aus Microsoft Copilot herausholen wollen.",
+    description: "Power-User Training: Komplexe Workflows, Datenanalyse mit Copilot in Excel, automatisierte Reports und fortgeschrittenes Prompting.",
     features: [
-      "Fortgeschrittene Prompting-Techniken",
-      "Integration in Workflows",
-      "Automation und Effizienz",
-      "Best Practices aus der Praxis"
+      "Komplexe Excel-Analysen & Pivot-Tabellen generieren",
+      "PowerBI-Integration und Datenvisualisierung",
+      "Automatisierte Workflows zwischen M365-Apps",
+      "Custom Prompts für wiederkehrende Aufgaben"
     ]
   },
   {
     icon: Laptop,
-    title: "Remote-Führung mit KI",
+    title: "GitHub Copilot für Developer",
     duration: "1 Tag",
-    description: "Workshops für Führungskräfte in hybriden und remote Teams mit KI-Unterstützung.",
+    description: "Praktisches Training für Entwickler: Code generieren, debuggen, dokumentieren. Übungen mit echten Projekten und Code-Reviews.",
     features: [
-      "Digitale Führungskompetenz",
-      "KI-Tools für Team-Management",
-      "Produktivität im Home-Office",
-      "Change-Management"
+      "Code-Generierung in VS Code live üben",
+      "Debugging & Refactoring mit KI-Unterstützung",
+      "Automatische Dokumentation erstellen",
+      "Best Practices für effiziente Prompts"
+    ]
+  },
+  {
+    icon: Shield,
+    title: "Copilot & Compliance",
+    duration: "4 Stunden",
+    description: "Rechtssichere Nutzung von Microsoft Copilot: DSGVO, EU AI Act, Datenschutz. Mit praktischen Checklisten für Ihr Unternehmen.",
+    features: [
+      "DSGVO-konforme Nutzung in der Praxis",
+      "EU AI Act Anforderungen verstehen",
+      "Datenschutz-Checks durchführen",
+      "Compliance-Checkliste für Ihr Team"
+    ]
+  },
+  {
+    icon: TrendingUp,
+    title: "Copilot Strategie Workshop",
+    duration: "1 Tag",
+    description: "Entwickeln Sie eine Copilot-Strategie für Ihr Unternehmen: Prozesse identifizieren, Potenziale heben, Change begleiten.",
+    features: [
+      "Prozessanalyse: Wo bringt Copilot Mehrwert?",
+      "ROI-Berechnung und Quick Wins identifizieren",
+      "Rollout-Plan für Ihr Unternehmen erstellen",
+      "Change Management & Adoption sicherstellen"
     ]
   },
   {
     icon: Clock,
-    title: "Agile & Scrum mit KI",
-    duration: "2-3 Tage",
-    description: "Agile Methoden und KI optimal kombinieren für maximale Team-Effizienz.",
+    title: "Custom Training",
+    duration: "Individuell",
+    description: "Maßgeschneiderte Trainings für Ihre spezifischen Anforderungen: Sales, Marketing, HR, Finance – mit Ihren realen Szenarien.",
     features: [
-      "Scrum Master Training",
-      "Product Owner Ausbildung",
-      "KI in agilen Prozessen",
-      "Praxisnahe Umsetzung"
+      "Abteilungsspezifische Use Cases",
+      "Training mit Ihren echten Daten & Prozessen",
+      "Individuelle Prompt-Bibliothek erstellen",
+      "Follow-up Sessions nach Bedarf"
     ]
   }
 ];
@@ -91,11 +91,11 @@ const TrainingModules = () => {
             Unser Angebot
           </span>
           <h2 className="text-4xl font-bold mt-6 mb-4">
-            Inhouse-Trainings für Ihr Unternehmen
+            Microsoft Copilot Trainings
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Alle Trainings werden individuell auf Ihre Bedürfnisse zugeschnitten und 
-            bei Ihnen vor Ort oder remote durchgeführt.
+            Spezialisiert auf Microsoft 365 & GitHub Copilot. Jedes Training: 80% praktische Übungen 
+            mit Ihren realen Use Cases. Vor Ort oder remote. Sofort anwendbar.
           </p>
         </div>
 
@@ -133,12 +133,24 @@ const TrainingModules = () => {
           })}
         </div>
 
-        <div className="mt-12 text-center">
-          <p className="text-muted-foreground mb-4">
-            Individuelle Trainings-Kombinationen und maßgeschneiderte Programme möglich
-          </p>
+        <div className="mt-12 bg-accent/10 rounded-2xl p-8 text-center">
+          <h3 className="text-2xl font-bold mb-4">Alle Trainings: Hands-on & praxisnah</h3>
+          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-6">
+            <div className="flex flex-col items-center">
+              <span className="text-4xl font-bold text-accent mb-2">80%</span>
+              <span className="text-muted-foreground">Praktische Übungen</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <span className="text-4xl font-bold text-accent mb-2">100%</span>
+              <span className="text-muted-foreground">Microsoft Tools</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <span className="text-4xl font-bold text-accent mb-2">0%</span>
+              <span className="text-muted-foreground">PowerPoint-Theorie</span>
+            </div>
+          </div>
           <Button size="lg" onClick={scrollToContact}>
-            Individuelle Anfrage stellen
+            Jetzt unverbindlich anfragen
           </Button>
         </div>
       </div>
