@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Footer = () => {
   return (
     <footer className="bg-muted/30 border-t border-border py-12">
@@ -49,8 +51,8 @@ const Footer = () => {
             © 2025 copilotenschule.de. Alle Rechte vorbehalten.
           </p>
           <div className="flex gap-6 text-sm text-muted-foreground">
-            <a href="#" className="hover:text-primary transition-colors">Impressum</a>
-            <a href="#" className="hover:text-primary transition-colors">Datenschutz</a>
+            <Link to="/impressum" className="hover:text-primary transition-colors">Impressum</Link>
+            <Link to="/impressum" className="hover:text-primary transition-colors">Datenschutz</Link>
             <a href="#" className="hover:text-primary transition-colors">AGB</a>
           </div>
         </div>
