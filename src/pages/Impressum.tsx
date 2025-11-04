@@ -14,6 +14,14 @@ const Impressum = () => {
               <p className="text-lg text-muted-foreground mb-6">
                 <strong>copilotenschule.de</strong> ist eine Marke der Yellow-Boat Consulting.
               </p>
+              <div className="bg-primary/10 border-l-4 border-primary p-6 rounded-r-lg mb-8">
+                <h3 className="text-xl font-bold mb-3">Modernste Technologie im Einsatz</h3>
+                <p className="text-base">
+                  Diverse Inhalte dieser Seite wurden selbstverständlich mit KI-Tools erstellt. 
+                  Darauf sind wir stolz, denn wir versuchen stets mit modernster Technik effizient zu arbeiten 
+                  und diese Arbeitsweise auch in unseren Trainings zu vermitteln.
+                </p>
+              </div>
             </section>
 
             <section>
@@ -66,9 +74,6 @@ const Impressum = () => {
               <h2 className="text-2xl font-bold mb-4">Informationen gemäß § 5 Telemediengesetz und § 55 Abs. 1 Rundfunkstaatsvertrag</h2>
               <p>
                 Inhaltlich verantwortlich im Sinne des § 55 Abs. 2 Rundfunkstaatsvertrag: Martin Lang
-              </p>
-              <p className="mt-4">
-                Diverse Inhalte wie Texte und Bilder wurden mit Unterstützung KI-basierter Tools erstellt.
               </p>
             </section>
 
