@@ -125,11 +125,12 @@ const TrainingLocations = () => {
 
         <div className="bg-background rounded-2xl p-8 md:p-12">
           <div className="text-center mb-8">
-            <h3 className="text-3xl font-bold mb-4">Unsere Trainingsräume in Köln</h3>
+            <h3 className="text-3xl font-bold mb-4">Trainieren Sie ohne Zusatzkosten direkt bei uns in Köln</h3>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Moderne, lichtdurchflutete Räume mit viel Grün für eine inspirierende Lernatmosphäre. 
-              Zentral gelegen direkt am S-Bahnhof Nippes und perfekt ausgestattet für produktive Workshop-Sessions. 
-              Parkplätze begrenzt vorhanden. Erfahrene und methodisch geschulte Trainer.
+              Bis zu 8 Teilnehmer in unserem modernen, lichtdurchfluteten Trainingsraum mit angefügtem 
+              Pausenbereich und üppigem Grün für eine inspirierende Lernatmosphäre. Zentral gelegen direkt 
+              am S-Bahnhof Nippes und perfekt ausgestattet für produktive Workshop-Sessions. Parkplätze begrenzt 
+              vorhanden. Erfahrene und methodisch geschulte Trainer.
             </p>
           </div>
 
@@ -161,10 +162,13 @@ const TrainingLocations = () => {
             <CarouselNext />
           </Carousel>
 
-          <div className="text-center mt-8">
+          <div className="text-center mt-8 space-y-2">
             <div className="flex items-center justify-center gap-2 text-muted-foreground">
               <MapPin className="w-5 h-5 text-accent" />
-              <span>Köln Innenstadt • Zentrale Lage • Gute Verkehrsanbindung</span>
+              <span>Osterather Straße 7, 50739 Köln</span>
+            </div>
+            <div className="flex items-center justify-center gap-2 text-muted-foreground text-sm">
+              <span>S-Bahnhof Nippes • Zentrale Lage • Parkplätze begrenzt vorhanden</span>
             </div>
           </div>
         </div>
