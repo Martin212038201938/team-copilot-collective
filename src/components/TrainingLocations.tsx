@@ -5,8 +5,10 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  type CarouselApi,
 } from "@/components/ui/carousel";
 import { Monitor, Building2, MapPin } from "lucide-react";
+import { useEffect, useState } from "react";
 import raumZentral from "@/assets/raum-zentral.jpg";
 import raumMeeting from "@/assets/raum-meeting.jpg";
 import raumOffice from "@/assets/raum-office.jpg";
@@ -63,6 +65,18 @@ const roomImages = [
 ];
 
 const TrainingLocations = () => {
+  const [api, setApi] = useState<CarouselApi>();
+
+  useEffect(() => {
+    if (!api) return;
+
+    const interval = setInterval(() => {
+      api.scrollNext();
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, [api]);
+
   return (
     <section className="py-24 bg-muted/30">
       <div className="container mx-auto px-4">
@@ -113,7 +127,13 @@ const TrainingLocations = () => {
             </p>
           </div>
 
-          <Carousel className="w-full max-w-4xl mx-auto">
+          <Carousel 
+            className="w-full max-w-4xl mx-auto"
+            setApi={setApi}
+            opts={{
+              loop: true,
+            }}
+          >
             <CarouselContent>
               {roomImages.map((image, index) => (
                 <CarouselItem key={index}>
@@ -123,7 +143,7 @@ const TrainingLocations = () => {
                         <img
                           src={image.src}
                           alt={image.alt}
-                          className="w-full h-[400px] md:h-[500px] object-cover rounded-lg"
+                          className="w-full h-[400px] md:h-[500px] object-contain rounded-lg bg-muted/50"
                         />
                       </CardContent>
                     </Card>
