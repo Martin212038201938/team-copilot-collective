@@ -16,10 +16,14 @@ const Impressum = () => {
               </p>
               <div className="bg-primary/10 border-l-4 border-primary p-6 rounded-r-lg mb-8">
                 <h3 className="text-xl font-bold mb-3">Modernste Technologie im Einsatz</h3>
-                <p className="text-base">
+                <p className="text-base mb-3">
                   Diverse Inhalte dieser Seite wurden selbstverständlich mit KI-Tools erstellt. 
                   Darauf sind wir stolz, denn wir versuchen stets mit modernster Technik effizient zu arbeiten 
                   und diese Arbeitsweise auch in unseren Trainings zu vermitteln.
+                </p>
+                <p className="text-base">
+                  Wir glauben an das Human-in-the-Loop Prinzip und lieben KI als Werkzeug in den Händen 
+                  verantwortungsbewusster und qualifizierter Menschen.
                 </p>
               </div>
             </section>
