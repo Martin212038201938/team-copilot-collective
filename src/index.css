@@ -9,37 +9,37 @@ All colors MUST be HSL.
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 210 20% 15%;
+    --foreground: 200 1% 40%;
 
     --card: 0 0% 100%;
-    --card-foreground: 210 20% 15%;
+    --card-foreground: 200 1% 40%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 210 20% 15%;
+    --popover-foreground: 200 1% 40%;
 
-    --primary: 217 91% 60%;
+    --primary: 209 57% 54%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 210 20% 15%;
+    --secondary: 204 16% 92%;
+    --secondary-foreground: 200 1% 40%;
 
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 204 16% 92%;
+    --muted-foreground: 200 1% 58%;
 
-    --accent: 0 72% 51%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 47 97% 65%;
+    --accent-foreground: 200 1% 40%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 217 91% 60%;
+    --border: 204 16% 88%;
+    --input: 204 16% 88%;
+    --ring: 209 57% 54%;
 
     --radius: 0.75rem;
     
-    --hero-gradient: linear-gradient(135deg, hsl(217 91% 60%) 0%, hsl(195 91% 55%) 100%);
-    --section-gradient: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(210 40% 98%) 100%);
+    --hero-gradient: linear-gradient(135deg, hsl(209 57% 54%) 0%, hsl(209 57% 64%) 100%);
+    --section-gradient: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(204 16% 96%) 100%);
 
     --sidebar-background: 0 0% 98%;
 
@@ -59,33 +59,33 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 210 30% 8%;
-    --foreground: 210 40% 98%;
+    --background: 204 20% 12%;
+    --foreground: 204 16% 92%;
 
-    --card: 210 30% 12%;
-    --card-foreground: 210 40% 98%;
+    --card: 204 20% 16%;
+    --card-foreground: 204 16% 92%;
 
-    --popover: 210 30% 12%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 204 20% 16%;
+    --popover-foreground: 204 16% 92%;
 
-    --primary: 217 91% 60%;
+    --primary: 209 57% 54%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 217 33% 18%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 204 20% 22%;
+    --secondary-foreground: 204 16% 92%;
 
-    --muted: 217 33% 18%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 204 20% 22%;
+    --muted-foreground: 204 16% 69%;
 
-    --accent: 0 72% 51%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 47 97% 65%;
+    --accent-foreground: 204 20% 12%;
 
     --destructive: 0 63% 31%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 204 16% 92%;
 
-    --border: 217 33% 18%;
-    --input: 217 33% 18%;
-    --ring: 217 91% 60%;
+    --border: 204 20% 22%;
+    --input: 204 20% 22%;
+    --ring: 209 57% 54%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;

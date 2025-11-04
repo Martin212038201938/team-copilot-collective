@@ -8,7 +8,7 @@ const Footer = () => {
               <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
                 <span className="text-primary-foreground font-bold text-xl">CS</span>
               </div>
-              <span className="text-xl font-bold">CopilotSchule</span>
+              <span className="text-xl font-bold">copilotenschule.de</span>
             </div>
             <p className="text-muted-foreground text-sm">
               Professionelle Microsoft Copilot Inhouse-Trainings für Ihr Unternehmen.
@@ -46,7 +46,7 @@ const Footer = () => {
 
         <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-muted-foreground">
-            © 2025 CopilotSchule. Alle Rechte vorbehalten.
+            © 2025 copilotenschule.de. Alle Rechte vorbehalten.
           </p>
           <div className="flex gap-6 text-sm text-muted-foreground">
             <a href="#" className="hover:text-primary transition-colors">Impressum</a>

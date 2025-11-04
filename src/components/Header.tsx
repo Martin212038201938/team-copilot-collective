@@ -14,7 +14,7 @@ const Header = () => {
             <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
               <span className="text-primary-foreground font-bold text-xl">CS</span>
             </div>
-            <span className="text-xl font-bold text-foreground">CopilotSchule</span>
+            <span className="text-xl font-bold text-foreground">copilotenschule.de</span>
           </div>
 
           <div className="hidden md:flex items-center space-x-8">
