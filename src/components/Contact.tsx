@@ -1,0 +1,192 @@
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Card } from "@/components/ui/card";
+import { Mail, Phone, MapPin } from "lucide-react";
+import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
+
+const Contact = () => {
+  const { toast } = useToast();
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    company: "",
+    phone: "",
+    message: ""
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast({
+      title: "Anfrage gesendet!",
+      description: "Wir melden uns innerhalb von 24 Stunden bei Ihnen.",
+    });
+    setFormData({ name: "", email: "", company: "", phone: "", message: "" });
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData(prev => ({
+      ...prev,
+      [e.target.name]: e.target.value
+    }));
+  };
+
+  return (
+    <section id="contact" className="py-24 bg-background">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-16">
+          <span className="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium">
+            Kontakt
+          </span>
+          <h2 className="text-4xl font-bold mt-6 mb-4">
+            Starten Sie Ihre KI-Reise
+          </h2>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            Lassen Sie uns gemeinsam das passende Training für Ihr Team entwickeln. 
+            Wir beraten Sie gerne unverbindlich.
+          </p>
+        </div>
+
+        <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="lg:col-span-2">
+            <Card className="p-8">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium mb-2">
+                      Name *
+                    </label>
+                    <Input
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      placeholder="Ihr Name"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-2">
+                      E-Mail *
+                    </label>
+                    <Input
+                      name="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      placeholder="ihre.email@unternehmen.de"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium mb-2">
+                      Unternehmen
+                    </label>
+                    <Input
+                      name="company"
+                      value={formData.company}
+                      onChange={handleChange}
+                      placeholder="Ihr Unternehmen"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-2">
+                      Telefon
+                    </label>
+                    <Input
+                      name="phone"
+                      type="tel"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      placeholder="+49 ..."
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium mb-2">
+                    Ihre Nachricht *
+                  </label>
+                  <Textarea
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    placeholder="Beschreiben Sie kurz Ihre Anforderungen: Anzahl der Teilnehmer, gewünschtes Training, bevorzugte Termine..."
+                    rows={6}
+                    required
+                  />
+                </div>
+
+                <Button type="submit" size="lg" className="w-full">
+                  Anfrage absenden
+                </Button>
+
+                <p className="text-sm text-muted-foreground text-center">
+                  * Pflichtfelder | Wir behandeln Ihre Daten vertraulich gemäß DSGVO
+                </p>
+              </form>
+            </Card>
+          </div>
+
+          <div className="space-y-6">
+            <Card className="p-6">
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <Mail className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-semibold mb-1">E-Mail</h3>
+                  <a href="mailto:info@copilotenschule.de" className="text-muted-foreground hover:text-primary transition-colors">
+                    info@copilotenschule.de
+                  </a>
+                </div>
+              </div>
+            </Card>
+
+            <Card className="p-6">
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <Phone className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-semibold mb-1">Telefon</h3>
+                  <a href="tel:+49" className="text-muted-foreground hover:text-primary transition-colors">
+                    +49 (0) 123 456789
+                  </a>
+                </div>
+              </div>
+            </Card>
+
+            <Card className="p-6">
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <MapPin className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-semibold mb-1">Standort</h3>
+                  <p className="text-muted-foreground">
+                    Deutschlandweit<br />
+                    Vor Ort oder Remote
+                  </p>
+                </div>
+              </div>
+            </Card>
+
+            <Card className="p-6 bg-primary/5 border-primary/20">
+              <h3 className="font-semibold mb-3">Schnelle Antwort garantiert</h3>
+              <p className="text-sm text-muted-foreground">
+                Wir melden uns innerhalb von 24 Stunden bei Ihnen und besprechen 
+                Ihre individuellen Anforderungen für ein maßgeschneidertes Training.
+              </p>
+            </Card>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Contact;
