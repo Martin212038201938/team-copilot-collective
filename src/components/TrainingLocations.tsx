@@ -9,7 +9,8 @@ import {
 } from "@/components/ui/carousel";
 import { Monitor, Building2, MapPin } from "lucide-react";
 import { useEffect, useState } from "react";
-import raumZentral from "@/assets/raum-zentral.jpg";
+import raumChill from "@/assets/raum-chill.jpg";
+import raumVibes from "@/assets/raum-vibes.jpg";
 import raumMeeting from "@/assets/raum-meeting.jpg";
 import raumOffice from "@/assets/raum-office.jpg";
 
@@ -51,8 +52,12 @@ const locations = [
 
 const roomImages = [
   {
-    src: raumZentral,
-    alt: "Haupttrainingsraum in Köln mit modernem Arbeitsplatz und grünen Pflanzen"
+    src: raumChill,
+    alt: "Gemütlicher Lounge-Bereich mit Schallplattenspieler und Ledersofas"
+  },
+  {
+    src: raumVibes,
+    alt: "Trainingsraum mit Esstisch und künstlerischem Köln-Wandbild"
   },
   {
     src: raumMeeting,
