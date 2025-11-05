@@ -135,7 +135,6 @@ const BecomeTrainer = () => {
                       <Button
                         onClick={path.id === "festanstellung" ? () => setShowJobDescription(!showJobDescription) : scrollToForm}
                         className="w-full"
-                        variant={path.id === "festanstellung" ? "outline" : "default"}
                       >
                         {path.id === "festanstellung" ? "Stellenbeschreibung lesen" : "Kontakt aufnehmen"}
                       </Button>
