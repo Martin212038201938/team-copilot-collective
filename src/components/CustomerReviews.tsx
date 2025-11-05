@@ -7,6 +7,8 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Star } from "lucide-react";
+import Autoplay from "embla-carousel-autoplay";
+import { useRef } from "react";
 
 const reviews = [
   {
@@ -19,6 +21,9 @@ const reviews = [
 ];
 
 const CustomerReviews = () => {
+  const plugin = useRef(
+    Autoplay({ delay: 5000, stopOnInteraction: true })
+  );
   return (
     <section className="py-20 px-4 bg-muted/30">
       <div className="container mx-auto max-w-6xl">
@@ -41,14 +46,17 @@ const CustomerReviews = () => {
 
         <Carousel
           opts={{
-            align: "start",
+            align: "center",
             loop: true,
           }}
-          className="w-full"
+          plugins={[plugin.current]}
+          className="w-full max-w-4xl mx-auto"
+          onMouseEnter={() => plugin.current.stop()}
+          onMouseLeave={() => plugin.current.play()}
         >
           <CarouselContent>
             {reviews.map((review, index) => (
-              <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/1">
+              <CarouselItem key={index} className="basis-full">
                 <Card className="h-full border-2 hover:border-primary/50 transition-colors">
                   <CardContent className="p-8">
                     <div className="flex items-start gap-4 mb-4">
