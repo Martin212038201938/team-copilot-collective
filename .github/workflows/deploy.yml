@@ -21,3 +21,5 @@ jobs:
           local-dir: ./
           server-dir: /www/copilotenschule.de/
           dangerous-clean-slate: false
+          timeout: 300000
+          log-level: verbose
