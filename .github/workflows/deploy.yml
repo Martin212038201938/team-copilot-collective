@@ -14,8 +14,11 @@ jobs:
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: copilotenschule.de
+          server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps
-          server-dir: /
+          port: 21
+          local-dir: ./
+          server-dir: /www/copilotenschule.de/
+          dangerous-clean-slate: false
