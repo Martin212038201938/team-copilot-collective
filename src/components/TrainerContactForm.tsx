@@ -25,7 +25,7 @@ const TrainerContactForm = () => {
     e.preventDefault();
     toast({
       title: "Bewerbung gesendet!",
-      description: "Vielen Dank für Ihr Interesse. Wir melden uns innerhalb von 48 Stunden bei Ihnen.",
+      description: "Vielen Dank für dein Interesse. Wir melden uns innerhalb von 48 Stunden bei dir.",
     });
     setFormData({
       name: "",
@@ -95,7 +95,7 @@ const TrainerContactForm = () => {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                placeholder="Ihr vollständiger Name"
+                placeholder="Dein vollständiger Name"
                 required
               />
             </div>
@@ -109,7 +109,7 @@ const TrainerContactForm = () => {
                 type="email"
                 value={formData.email}
                 onChange={handleChange}
-                placeholder="ihre.email@example.com"
+                placeholder="deine.email@example.com"
                 required
               />
             </div>
@@ -203,25 +203,25 @@ const TrainerContactForm = () => {
           {/* Message */}
           <div>
             <Label htmlFor="message" className="block text-sm font-medium mb-2">
-              Ihre Nachricht / Motivation *
+              Deine Nachricht / Motivation *
             </Label>
             <Textarea
               id="message"
               name="message"
               value={formData.message}
               onChange={handleChange}
-              placeholder="Erzählen Sie uns kurz über Ihre Erfahrung mit KI-Tools im Microsoft-Umfeld, Ihre Motivation als Trainer zu arbeiten und was Sie besonders macht..."
+              placeholder="Erzähl uns kurz über deine Erfahrung mit KI-Tools im Microsoft-Umfeld, deine Motivation als Trainer zu arbeiten und was dich besonders macht..."
               rows={6}
               required
             />
           </div>
 
           <Button type="submit" size="lg" className="w-full">
-            Bewerbung absenden
+            Lasst uns sprechen
           </Button>
 
           <p className="text-sm text-muted-foreground text-center">
-            * Pflichtfelder | Wir behandeln Ihre Daten vertraulich gemäß DSGVO
+            * Pflichtfelder | Wir behandeln deine Daten vertraulich gemäß DSGVO
           </p>
         </form>
       </Card>
@@ -231,7 +231,7 @@ const TrainerContactForm = () => {
         <Card className="p-6 bg-primary/5 border-primary/20">
           <h3 className="font-semibold mb-3">Schnelle Rückmeldung</h3>
           <p className="text-sm text-muted-foreground">
-            Wir melden uns innerhalb von 48 Stunden bei Ihnen und besprechen die nächsten
+            Wir melden uns innerhalb von 48 Stunden bei dir und besprechen die nächsten
             Schritte – ob Kennenlerngespräch, Train-the-Trainer Session oder Vertragsdetails.
           </p>
         </Card>
@@ -239,7 +239,7 @@ const TrainerContactForm = () => {
         <Card className="p-6 bg-primary/5 border-primary/20">
           <h3 className="font-semibold mb-3">Unverbindliches Erstgespräch</h3>
           <p className="text-sm text-muted-foreground">
-            Lernen wir uns kennen! In einem 30-minütigen Video-Call besprechen wir Ihre
+            Lernen wir uns kennen! In einem 30-minütigen Video-Call besprechen wir deine
             Erfahrungen, unsere Erwartungen und wie eine Zusammenarbeit aussehen könnte.
           </p>
         </Card>
