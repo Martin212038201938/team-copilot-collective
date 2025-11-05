@@ -12,74 +12,64 @@ import { useRef } from "react";
 
 const reviews = [
   {
-    name: "KI-Kursteilnehmer",
+    name: "Google-Nutzer",
     rating: 5,
     date: "vor 4 Monaten",
     text: "Ich hatte das Vergnügen, am KI-Einsteigerkurs bei Yellow-Boat Consulting teilzunehmen, und ich kann mit voller Überzeugung sagen, dass es eine außergewöhnliche Erfahrung war. Martin, unser Trainer, hat den Kurs mit seiner Expertise und seiner Leidenschaft für das Thema zu einem echten Highlight gemacht. Der Kurs bot eine hervorragende Mischung aus Theorie und praktischer Anwendung. Martin verstand es, die theoretischen Grundlagen der Künstlichen Intelligenz mit praxisnahen Beispielen zu verknüpfen, was das Lernen sehr effektiv und spannend machte. Er ermöglichte es uns, Fragen aus unserem Alltag einzubringen und zu klären, was den Kurs sehr relevant und persönlich gemacht hat.",
-    avatar: "KT",
   },
   {
-    name: "Seminarteilnehmer",
+    name: "Google-Nutzer",
     rating: 5,
     date: "vor 5 Monaten",
     text: "Ich habe an einer KI-Session für Einsteiger teilgenommen und bin absolut begeistert! Martin hat den Kurs mit hoher Professionalität und gleichzeitig großer Leichtigkeit geleitet. Besonders gefallen haben mir seine Flexibilität, auf Fragen und Interessen der Teilnehmenden einzugehen, sowie die vielen praxisnahen Beispiele, die das Thema greifbar und verständlich gemacht haben. Trotz der Komplexität des Themas war das Seminar durchweg kurzweilig und hat richtig Spaß gemacht. Martin schafft es, nicht nur Wissen zu vermitteln, sondern auch echte Neugierde und Lust auf mehr zu wecken. Ich fühle mich nun motiviert, KI aktiv in meinen Alltag zu integrieren, und freue mich schon auf weiterführende Kurse!",
-    avatar: "ST",
   },
   {
-    name: "Workshop-Teilnehmer",
+    name: "Google-Nutzer",
     rating: 5,
     date: "vor 5 Monaten",
     text: "Hervorragendes KI-Einsteiger-Training! Martin ist inhaltlich unglaublich versiert und verfügt über beeindruckende Kenntnisse zum gesamten Themenkomplex. Er schafft es durchweg, dieses umfangreiche Wissen für KI-Newbies in gut strukturierten Einheiten verständlich und anschaulich zu vermitteln. Mit vielen Praxisbeispielen und auf erfrischende Art erklärt, ist das Training trotz der umfassenden Inhalte sehr kurzweilig und Martins eigene Begeisterung fürs Thema zudem sehr ansteckend. Ich habe bei dem Training ganz viel mitgenommen und komme jederzeit gern zu einem Fortsetzungskurs. Alles in allem einfach top!",
-    avatar: "WT",
   },
   {
     name: "Verena Gietler",
     rating: 5,
     date: "vor 4 Monaten",
     text: "Tolles KI-Training bei Yellow-Boat Consulting! Mit viel Expertise und toller didaktischer Aufbereitung führt Martin das Training. Durch seine sympathische, offene Art gelingt es ihm, in angenehmer Atmosphäre nicht nur fundiertes Wissen zu vermitteln, sondern seine Leidenschaft für das Thema auch weiterzugeben. Ich freu mich auf weitere Kurse, vielen Dank!",
-    avatar: "VG",
   },
   {
     name: "Simon Korn",
     rating: 5,
     date: "vor 5 Monaten",
     text: "Ich habe an einem ausgezeichneten KI-Training bei Martin teilgenommen und kann ihn sowohl fachlich als auch menschlich wärmstens empfehlen. Mit seiner sympathischen und zugleich sehr kompetenten Art gelang es ihm, eine angenehme Lernatmosphäre zu schaffen, in der sich alle Teilnehmenden abgeholt und motiviert fühlten. Das Training war inhaltlich fundiert und praxisnah sowie didaktisch hervorragend aufgebaut. Im Vorfeld wurden die individuellen Bedürfnisse und Vorkenntnisse abgefragt, darauf aufbauend setzte Martin sein Training mit anschaulichen Beispielen und praxisrelevanten Übungen um. Eine rundum gelungene Schulung!",
-    avatar: "SK",
   },
   {
     name: "Julian",
     rating: 5,
     date: "vor 5 Monaten",
     text: "Sehr starkes Training! Hatte selbst schon lange geplant mich im Bereich KI weiter zu bilden aber hatte nicht erwartet, dass es so gut wird. Martin nimmt sich Zeit für jeden einzelnen und schafft es mit seiner offenen und sympathischen Art, auch Menschen, die nur wenig Vorkenntnissen haben, auf ein hohes Level zu bringen! Bin absolut begeistert und werde bald wiederkommen!",
-    avatar: "JU",
   },
   {
     name: "Julia Schulz",
     rating: 5,
     date: "vor 4 Monaten",
     text: "Ich habe an einem mehrtägigen Workshop teilgenommen. Wir waren eine kleine Gruppe und konnten nicht nur von der Erfahrung des sympathischen und engagierten Trainers profitieren, sondern uns auch untereinander zu konkreten Praxisbeispielen austauschen. Die gemeinsame Zeit war lehrreich, kurzweilig und hat erfolgreich auf die Prüfung zum 'Agile Coach' vorbereitet. Das Unterrichtsmaterial war super aufbereitet und stand uns auch später noch zu Übungszecken zur Verfügung. Ich kann die Trainings empfehlen!",
-    avatar: "JS",
   },
   {
     name: "Nils De Rop",
     rating: 5,
     date: "vor 5 Monaten",
     text: "Martin ist ein fantastischer Trainer, der in einer einzigartigen Mischung aus inhaltlicher Tiefe, Witz und didaktischer Frische Themen rund um Künstliche Intelligenz und Agilität trainiert. Ich arbeite seit mehreren Jahren mit YellowBoat und Martin zusammen und habe hierbei sowohl Zertifikatsschulungen im Bereich ProductOwner, SCRUM-Master und Agile Coach als auch Nutzung von KI im organisationalen Kontext verprobt und implementiert. Er schafft es immer wieder, die Teilnehmer für die Themen zu faszinieren und mit innovativen Ansätzen zu überraschen, weshalb ich ihn sehr empfehlen kann.",
-    avatar: "ND",
   },
   {
     name: "Jana Graetschel",
     rating: 5,
     date: "vor 5 Monaten",
     text: "Habe das KI Training als super hilfreich und gleichzeitig kurzweilig wahrgenommen. Es wurde auf individuelle Anliegen und Probleme eingegangen und alle Tools sehr anschaulich besprochen.",
-    avatar: "JG",
   },
   {
     name: "Elfi Heesch",
     rating: 5,
     date: "vor 3 Monaten",
     text: "Der Trainer ist super: viel Fachwissen. Auf Wünsche der Teilnehmenden geht er flexibel ein und passt bei entsprechenden Wünschen das Programm/ den Ablauf darauf an. 👍",
-    avatar: "EH",
   },
 ];
 
@@ -122,25 +112,20 @@ const CustomerReviews = () => {
               <CarouselItem key={index} className="md:basis-1/2 basis-full">
                 <Card className="h-full border-2 hover:border-primary/50 transition-colors">
                   <CardContent className="p-8">
-                    <div className="flex items-start gap-4 mb-4">
-                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary font-semibold flex-shrink-0">
-                        {review.avatar}
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="font-semibold text-lg">{review.name}</h3>
-                        <div className="flex items-center gap-2 mt-1">
-                          <div className="flex gap-1">
-                            {[1, 2, 3, 4, 5].map((star) => (
-                              <Star
-                                key={star}
-                                className="w-4 h-4 fill-yellow-400 text-yellow-400"
-                              />
-                            ))}
-                          </div>
-                          <span className="text-sm text-muted-foreground">
-                            {review.date}
-                          </span>
+                    <div className="mb-4">
+                      <h3 className="font-semibold text-lg mb-2">{review.name}</h3>
+                      <div className="flex items-center gap-2">
+                        <div className="flex gap-1">
+                          {[1, 2, 3, 4, 5].map((star) => (
+                            <Star
+                              key={star}
+                              className="w-4 h-4 fill-yellow-400 text-yellow-400"
+                            />
+                          ))}
                         </div>
+                        <span className="text-sm text-muted-foreground">
+                          {review.date}
+                        </span>
                       </div>
                     </div>
                     <p className="text-muted-foreground leading-relaxed">
