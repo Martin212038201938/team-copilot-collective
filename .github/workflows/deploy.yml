@@ -15,6 +15,14 @@ jobs:
         with:
           node-version: '18'
       
+      - name: Clean build artifacts
+        run: |
+          echo "Cleaning all build artifacts..."
+          rm -rf dist
+          rm -rf node_modules/.vite
+          rm -rf node_modules/.cache
+          echo "Build artifacts cleaned successfully"
+      
       - name: Install dependencies
         run: npm install
       
