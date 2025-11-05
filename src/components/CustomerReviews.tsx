@@ -12,19 +12,19 @@ import { useRef } from "react";
 
 const reviews = [
   {
-    name: "Google-Nutzer",
+    name: "Andi W.",
     rating: 5,
     date: "vor 4 Monaten",
     text: "Ich hatte das Vergnügen, am KI-Einsteigerkurs bei Yellow-Boat Consulting teilzunehmen, und ich kann mit voller Überzeugung sagen, dass es eine außergewöhnliche Erfahrung war. Martin, unser Trainer, hat den Kurs mit seiner Expertise und seiner Leidenschaft für das Thema zu einem echten Highlight gemacht. Der Kurs bot eine hervorragende Mischung aus Theorie und praktischer Anwendung. Martin verstand es, die theoretischen Grundlagen der Künstlichen Intelligenz mit praxisnahen Beispielen zu verknüpfen, was das Lernen sehr effektiv und spannend machte. Er ermöglichte es uns, Fragen aus unserem Alltag einzubringen und zu klären, was den Kurs sehr relevant und persönlich gemacht hat.",
   },
   {
-    name: "Google-Nutzer",
+    name: "Ela B.",
     rating: 5,
     date: "vor 5 Monaten",
     text: "Ich habe an einer KI-Session für Einsteiger teilgenommen und bin absolut begeistert! Martin hat den Kurs mit hoher Professionalität und gleichzeitig großer Leichtigkeit geleitet. Besonders gefallen haben mir seine Flexibilität, auf Fragen und Interessen der Teilnehmenden einzugehen, sowie die vielen praxisnahen Beispiele, die das Thema greifbar und verständlich gemacht haben. Trotz der Komplexität des Themas war das Seminar durchweg kurzweilig und hat richtig Spaß gemacht. Martin schafft es, nicht nur Wissen zu vermitteln, sondern auch echte Neugierde und Lust auf mehr zu wecken. Ich fühle mich nun motiviert, KI aktiv in meinen Alltag zu integrieren, und freue mich schon auf weiterführende Kurse!",
   },
   {
-    name: "Google-Nutzer",
+    name: "Kerstin",
     rating: 5,
     date: "vor 5 Monaten",
     text: "Hervorragendes KI-Einsteiger-Training! Martin ist inhaltlich unglaublich versiert und verfügt über beeindruckende Kenntnisse zum gesamten Themenkomplex. Er schafft es durchweg, dieses umfangreiche Wissen für KI-Newbies in gut strukturierten Einheiten verständlich und anschaulich zu vermitteln. Mit vielen Praxisbeispielen und auf erfrischende Art erklärt, ist das Training trotz der umfassenden Inhalte sehr kurzweilig und Martins eigene Begeisterung fürs Thema zudem sehr ansteckend. Ich habe bei dem Training ganz viel mitgenommen und komme jederzeit gern zu einem Fortsetzungskurs. Alles in allem einfach top!",
@@ -46,12 +46,6 @@ const reviews = [
     rating: 5,
     date: "vor 5 Monaten",
     text: "Sehr starkes Training! Hatte selbst schon lange geplant mich im Bereich KI weiter zu bilden aber hatte nicht erwartet, dass es so gut wird. Martin nimmt sich Zeit für jeden einzelnen und schafft es mit seiner offenen und sympathischen Art, auch Menschen, die nur wenig Vorkenntnissen haben, auf ein hohes Level zu bringen! Bin absolut begeistert und werde bald wiederkommen!",
-  },
-  {
-    name: "Julia Schulz",
-    rating: 5,
-    date: "vor 4 Monaten",
-    text: "Ich habe an einem mehrtägigen Workshop teilgenommen. Wir waren eine kleine Gruppe und konnten nicht nur von der Erfahrung des sympathischen und engagierten Trainers profitieren, sondern uns auch untereinander zu konkreten Praxisbeispielen austauschen. Die gemeinsame Zeit war lehrreich, kurzweilig und hat erfolgreich auf die Prüfung zum 'Agile Coach' vorbereitet. Das Unterrichtsmaterial war super aufbereitet und stand uns auch später noch zu Übungszecken zur Verfügung. Ich kann die Trainings empfehlen!",
   },
   {
     name: "Nils De Rop",
