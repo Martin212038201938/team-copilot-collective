@@ -1,6 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Brain, Users, TrendingUp, Shield, Clock, Laptop, Zap } from "lucide-react";
+import { Brain, Users, TrendingUp, Shield, Clock, Laptop, Zap, ChevronDown, ChevronUp } from "lucide-react";
+import { useState } from "react";
 
 const modules = [
   {
@@ -141,28 +142,40 @@ const modules = [
 ];
 
 const TrainingModules = () => {
+  const [expandedCards, setExpandedCards] = useState<{ [key: number]: boolean }>({});
+
   const scrollToContact = () => {
     const element = document.getElementById("contact");
     element?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const toggleCard = (index: number) => {
+    setExpandedCards(prev => ({
+      ...prev,
+      [index]: !prev[index]
+    }));
+  };
+
   return (
-    <section id="trainings" className="py-24 bg-muted/30">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <span className="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium">
+    <section id="trainings" className="py-24 bg-gradient-to-b from-muted/30 to-background relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
+
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="text-center mb-16 animate-fade-in">
+          <span className="px-4 py-2 bg-gradient-to-r from-primary/90 to-accent/80 text-white rounded-full text-sm font-medium shadow-lg hover:scale-105 transition-transform duration-300 inline-block">
             Unser Angebot
           </span>
-          <h2 className="text-4xl font-bold mt-6 mb-4">
+          <h2 className="text-4xl font-bold mt-6 mb-4 animate-slide-up">
             Microsoft Copilot Schulungen & Trainings für Unternehmen
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-4">
-            Professionelle Microsoft 365 Copilot, GitHub Copilot und KI-Agenten Schulungen für Teams und Unternehmen. 
-            Jedes Training ist zu 80% praxisorientiert: Sie arbeiten mit realen Use Cases aus Ihrem Arbeitsalltag, 
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-4 animate-fade-in-delayed">
+            Professionelle Microsoft 365 Copilot, GitHub Copilot und KI-Agenten Schulungen für Teams und Unternehmen.
+            Jedes Training ist zu 80% praxisorientiert: Sie arbeiten mit realen Use Cases aus Ihrem Arbeitsalltag,
             entwickeln sofort einsetzbare Workflows und steigern messbar Ihre Produktivität mit KI-Tools.
           </p>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Alle Trainings sind verfügbar als Präsenzschulung vor Ort in Köln oder bundesweit, 
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto animate-fade-in-delayed-2">
+            Alle Trainings sind verfügbar als Präsenzschulung vor Ort in Köln oder bundesweit,
             als Live-Online-Training oder in hybrider Form – individuell angepasst an Ihre Anforderungen.
           </p>
         </div>
@@ -170,29 +183,66 @@ const TrainingModules = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {modules.map((module, index) => {
             const Icon = module.icon;
+            const isExpanded = expandedCards[index];
+            const visibleFeatures = isExpanded ? module.features : module.features.slice(0, 3);
+            const hasMoreFeatures = module.features.length > 3;
+
             return (
-              <Card key={index} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                <CardHeader>
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                    <Icon className="w-6 h-6 text-primary" />
+              <Card
+                key={index}
+                className="group hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-2 hover:border-primary/50 animate-fade-in relative overflow-hidden bg-card/50 backdrop-blur-sm"
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                {/* Shimmer effect */}
+                <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+                <CardHeader className="relative z-10">
+                  <div className="w-14 h-14 bg-gradient-to-br from-primary/20 to-accent/20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-lg">
+                    <Icon className="w-7 h-7 text-primary group-hover:text-accent transition-colors duration-300" />
                   </div>
-                  <CardTitle className="text-xl">{module.title}</CardTitle>
+                  <CardTitle className="text-xl group-hover:text-primary transition-colors duration-300">{module.title}</CardTitle>
                   <CardDescription className="flex items-center gap-2">
                     <Clock className="w-4 h-4" />
                     {module.duration}
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-4">
-                  <p className="text-muted-foreground">{module.description}</p>
+                <CardContent className="space-y-4 relative z-10">
+                  <p className="text-muted-foreground leading-relaxed">{module.description}</p>
                   <ul className="space-y-2">
-                    {module.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-sm">
-                        <span className="text-primary mt-0.5">✓</span>
+                    {visibleFeatures.map((feature, idx) => (
+                      <li key={idx} className="flex items-start gap-2 text-sm group/item">
+                        <span className="text-primary mt-0.5 group-hover/item:scale-125 transition-transform">✓</span>
                         <span>{feature}</span>
                       </li>
                     ))}
                   </ul>
-                  <Button variant="outline" className="w-full mt-4" onClick={scrollToContact}>
+
+                  {hasMoreFeatures && (
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => toggleCard(index)}
+                      className="w-full text-primary hover:text-primary hover:bg-primary/10 transition-all duration-300"
+                    >
+                      {isExpanded ? (
+                        <>
+                          Weniger anzeigen
+                          <ChevronUp className="ml-2 h-4 w-4" />
+                        </>
+                      ) : (
+                        <>
+                          {module.features.length - 3} weitere Details anzeigen
+                          <ChevronDown className="ml-2 h-4 w-4" />
+                        </>
+                      )}
+                    </Button>
+                  )}
+
+                  <Button
+                    variant="outline"
+                    className="w-full mt-4 hover:bg-accent/10 hover:border-accent transition-all duration-300 hover:scale-105"
+                    onClick={scrollToContact}
+                  >
                     Training anfragen
                   </Button>
                 </CardContent>
@@ -201,25 +251,37 @@ const TrainingModules = () => {
           })}
         </div>
 
-        <div className="mt-12 bg-accent/10 rounded-2xl p-8 text-center">
-          <h3 className="text-2xl font-bold mb-4">Alle Trainings: Hands-on & praxisnah</h3>
-          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-6">
-            <div className="flex flex-col items-center">
-              <span className="text-4xl font-bold text-accent mb-2">80%</span>
-              <span className="text-muted-foreground">Praktische Übungen</span>
+        <div className="mt-16 relative animate-fade-in-delayed-3">
+          <div className="absolute inset-0 bg-gradient-to-r from-accent/10 via-primary/10 to-accent/10 rounded-2xl blur-xl" />
+          <div className="relative bg-gradient-to-br from-card/80 to-card/60 backdrop-blur-xl rounded-2xl p-8 md:p-12 text-center border border-border/50 shadow-xl">
+            <h3 className="text-2xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70">
+              Alle Trainings: Hands-on & praxisnah
+            </h3>
+            <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-8">
+              {[
+                { value: "80%", label: "Praktische Übungen" },
+                { value: "100%", label: "Microsoft Tools" },
+                { value: "0%", label: "PowerPoint-Theorie" }
+              ].map((stat, idx) => (
+                <div key={idx} className="group flex flex-col items-center hover:scale-110 transition-transform duration-300 cursor-default">
+                  <span className="text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-accent to-primary mb-2 group-hover:scale-110 transition-transform">
+                    {stat.value}
+                  </span>
+                  <span className="text-muted-foreground font-medium group-hover:text-foreground transition-colors">
+                    {stat.label}
+                  </span>
+                </div>
+              ))}
             </div>
-            <div className="flex flex-col items-center">
-              <span className="text-4xl font-bold text-accent mb-2">100%</span>
-              <span className="text-muted-foreground">Microsoft Tools</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <span className="text-4xl font-bold text-accent mb-2">0%</span>
-              <span className="text-muted-foreground">PowerPoint-Theorie</span>
-            </div>
+            <Button
+              size="lg"
+              onClick={scrollToContact}
+              className="group relative overflow-hidden bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+            >
+              <span className="relative z-10">Jetzt unverbindlich anfragen</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+            </Button>
           </div>
-          <Button size="lg" onClick={scrollToContact}>
-            Jetzt unverbindlich anfragen
-          </Button>
         </div>
       </div>
     </section>
