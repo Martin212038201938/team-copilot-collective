@@ -73,16 +73,19 @@ const BecomeTrainer = () => {
       <Header />
       <main className="pt-16">
         {/* Hero Section */}
-        <section className="py-20 bg-gradient-to-b from-primary/5 to-background">
-          <div className="container mx-auto px-4">
+        <section className="py-20 bg-gradient-to-b from-primary/5 via-accent/5 to-background relative overflow-hidden">
+          <div className="absolute top-10 right-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl animate-float" />
+          <div className="absolute bottom-10 left-10 w-80 h-80 bg-accent/10 rounded-full blur-3xl animate-float-delayed" />
+
+          <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
-              <span className="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium">
+              <span className="px-4 py-2 bg-gradient-to-r from-primary/90 to-accent/80 text-white rounded-full text-sm font-medium shadow-lg hover:scale-105 transition-transform duration-300 inline-block animate-fade-in">
                 Join Our Team
               </span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mt-6 mb-6">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mt-6 mb-6 animate-slide-up bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70">
                 Trainer werden bei copilotenschule.de
               </h1>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto animate-fade-in-delayed">
                 Werde Teil unseres Teams und bringe deine KI-Expertise in die
                 Unternehmen. Wir suchen praxiserfahrene KI-Umsetzer, die ihr Wissen
                 weitergeben möchten – mit und ohne Trainer-Erfahrung.
@@ -92,9 +95,11 @@ const BecomeTrainer = () => {
         </section>
 
         {/* Three Paths Section */}
-        <section className="py-20 bg-background">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-16">
+        <section className="py-20 bg-gradient-to-b from-background to-secondary/10 relative overflow-hidden">
+          <div className="absolute top-0 left-1/2 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-x-1/2" />
+
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="text-center mb-16 animate-fade-in">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
                 Drei Wege zu uns
               </h2>
@@ -107,37 +112,53 @@ const BecomeTrainer = () => {
               {trainerPaths.map((path, index) => {
                 const Icon = path.icon;
                 return (
-                  <Card key={index} className="overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col">
-                    <div className={`bg-gradient-to-br ${path.color} p-8 text-center border-b`}>
-                      <div className="w-16 h-16 bg-background rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                        <Icon className="w-8 h-8 text-primary" />
+                  <Card
+                    key={index}
+                    className="group overflow-hidden hover:shadow-2xl transition-all duration-500 flex flex-col hover:-translate-y-2 border-2 hover:border-primary/50 animate-fade-in relative"
+                    style={{ animationDelay: `${index * 150}ms` }}
+                  >
+                    {/* Shimmer effect */}
+                    <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/10 to-transparent z-10" />
+
+                    <div className={`bg-gradient-to-br ${path.color} p-8 text-center border-b relative overflow-hidden`}>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent" />
+                      <div className="relative z-10">
+                        <div className="w-16 h-16 bg-background rounded-full flex items-center justify-center mx-auto mb-4 shadow-xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                          <Icon className="w-8 h-8 text-primary group-hover:text-accent transition-colors duration-300" />
+                        </div>
+                        <h3 className="text-xl font-bold mb-2">{path.title}</h3>
+                        <p className="text-sm font-semibold text-primary">{path.subtitle}</p>
                       </div>
-                      <h3 className="text-xl font-bold mb-2">{path.title}</h3>
-                      <p className="text-sm font-semibold text-primary">{path.subtitle}</p>
                     </div>
-                    <CardContent className="p-6 flex flex-col flex-grow">
+
+                    <CardContent className="p-6 flex flex-col flex-grow relative">
                       <p className="text-muted-foreground mb-6">
                         {path.description}
                       </p>
                       <div className="space-y-3 mb-6 flex-grow">
                         {path.benefits.map((benefit, idx) => (
-                          <div key={idx} className="flex items-start gap-2">
-                            <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                          <div key={idx} className="flex items-start gap-2 group/item">
+                            <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5 group-hover/item:scale-125 transition-transform" />
                             <span className="text-sm">{benefit}</span>
                           </div>
                         ))}
                       </div>
-                      <div className="bg-gradient-to-r from-primary to-primary/80 rounded-lg p-4 text-center mb-4 shadow-md">
-                        <p className="text-sm font-bold text-primary-foreground">
-                          {path.highlight}
-                        </p>
+                      <div className="relative mb-4">
+                        <div className="absolute inset-0 bg-gradient-to-r from-primary via-accent to-primary rounded-lg blur opacity-75" />
+                        <div className="relative bg-gradient-to-r from-primary to-primary/90 rounded-lg p-4 text-center shadow-lg">
+                          <p className="text-sm font-bold text-primary-foreground">
+                            {path.highlight}
+                          </p>
+                        </div>
                       </div>
                       <Button
                         onClick={path.id === "festanstellung" ? () => setShowJobDescription(!showJobDescription) : scrollToForm}
-                        className="w-full"
-                        variant={path.id === "festanstellung" ? "outline" : "default"}
+                        className="w-full group/btn relative overflow-hidden bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
                       >
-                        {path.id === "festanstellung" ? "Stellenbeschreibung lesen" : "Kontakt aufnehmen"}
+                        <span className="relative z-10">
+                          {path.id === "festanstellung" ? "Stellenbeschreibung lesen" : "Kontakt aufnehmen"}
+                        </span>
+                        <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover/btn:opacity-100 transition-opacity" />
                       </Button>
                     </CardContent>
                   </Card>
