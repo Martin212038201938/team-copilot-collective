@@ -46,7 +46,7 @@ const Header = () => {
               </Link>
             )}
             <Link
-              to="/microsoft-copilot-lizenzen"
+              to="/wissen"
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
               Wissen
