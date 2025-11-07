@@ -13,6 +13,7 @@ import PromptEngineering from "./pages/PromptEngineering";
 import KIAgenten from "./pages/KIAgenten";
 import CopilotFehler from "./pages/CopilotFehler";
 import Impressum from "./pages/Impressum";
+import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -34,6 +35,7 @@ const App = () => (
           <Route path="/ki-agenten" element={<KIAgenten />} />
           <Route path="/copilot-fehler-vermeiden" element={<CopilotFehler />} />
           <Route path="/impressum" element={<Impressum />} />
+          <Route path="/admin" element={<Admin />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
