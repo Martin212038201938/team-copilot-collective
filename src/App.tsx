@@ -13,7 +13,9 @@ import PromptEngineering from "./pages/PromptEngineering";
 import KIAgenten from "./pages/KIAgenten";
 import CopilotFehler from "./pages/CopilotFehler";
 import Impressum from "./pages/Impressum";
+import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
+import CopilotRoiBerechnen from "./pages/CopilotRoiBerechnen";
 
 const queryClient = new QueryClient();
 
@@ -33,7 +35,9 @@ const App = () => (
           <Route path="/prompt-engineering" element={<PromptEngineering />} />
           <Route path="/ki-agenten" element={<KIAgenten />} />
           <Route path="/copilot-fehler-vermeiden" element={<CopilotFehler />} />
+          <Route path="/wissen/copilot-roi-berechnen" element={<CopilotRoiBerechnen />} />
           <Route path="/impressum" element={<Impressum />} />
+          <Route path="/admin" element={<Admin />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

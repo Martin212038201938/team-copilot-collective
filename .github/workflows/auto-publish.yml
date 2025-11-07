@@ -1,0 +1,53 @@
+name: Auto-Publish Articles
+
+on:
+  schedule:
+    # Jeden Dienstag um 9:00 Uhr UTC+1 (8:00 UTC)
+    - cron: '0 8 * * 2'
+  workflow_dispatch: # Manuelle Ausführung ermöglichen
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run publishing script
+        run: node scripts/publish-articles.cjs
+
+      - name: Check for changes
+        id: check_changes
+        run: |
+          if [[ -n $(git status --porcelain) ]]; then
+            echo "changes=true" >> $GITHUB_OUTPUT
+          else
+            echo "changes=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit and push changes
+        if: steps.check_changes.outputs.changes == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "chore: Auto-publish scheduled articles $(date +'%Y-%m-%d %H:%M')"
+          git push
+
+      - name: Trigger deployment
+        if: steps.check_changes.outputs.changes == 'true'
+        run: |
+          echo "✓ Articles published successfully!"
+          echo "Deployment workflows will be triggered automatically."
