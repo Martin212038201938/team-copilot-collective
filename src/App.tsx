@@ -11,6 +11,7 @@ import GitHubCopilot from "./pages/GitHubCopilot";
 import CopilotStudio from "./pages/CopilotStudio";
 import PromptEngineering from "./pages/PromptEngineering";
 import KIAgenten from "./pages/KIAgenten";
+import CopilotFehler from "./pages/CopilotFehler";
 import Impressum from "./pages/Impressum";
 import NotFound from "./pages/NotFound";
 
@@ -31,6 +32,7 @@ const App = () => (
           <Route path="/copilot-studio" element={<CopilotStudio />} />
           <Route path="/prompt-engineering" element={<PromptEngineering />} />
           <Route path="/ki-agenten" element={<KIAgenten />} />
+          <Route path="/copilot-fehler-vermeiden" element={<CopilotFehler />} />
           <Route path="/impressum" element={<Impressum />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

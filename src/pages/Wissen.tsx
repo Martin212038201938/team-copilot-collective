@@ -55,6 +55,15 @@ const Wissen = () => {
       icon: "🔄",
       readTime: "14 Minuten",
       lastUpdated: "07. November 2025"
+    },
+    {
+      title: "Die 7 größten Fehler bei der Copilot-Einführung",
+      description: "Die 7 kritischsten Fehler vermeiden: Oversharing, Halluzinationen, Compliance-Verstöße. Konkrete Praxisbeispiele und Gegenmaßnahmen für deutsche Unternehmen.",
+      link: "/copilot-fehler-vermeiden",
+      badge: "Risikomanagement",
+      icon: "⚠️",
+      readTime: "18 Minuten",
+      lastUpdated: "07. November 2025"
     }
   ];
 
