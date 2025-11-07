@@ -123,37 +123,36 @@ const BecomeTrainer = () => {
                     <div className={`bg-gradient-to-br ${path.color} p-8 text-center border-b relative overflow-hidden`}>
                       <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent" />
                       <div className="relative z-10">
-                        <div className="w-16 h-16 bg-background rounded-full flex items-center justify-center mx-auto mb-4 shadow-xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
-                          <Icon className="w-8 h-8 text-primary group-hover:text-accent transition-colors duration-300" />
-                        </div>
                         <h3 className="text-xl font-bold mb-2">{path.title}</h3>
                         <p className="text-sm font-semibold text-primary">{path.subtitle}</p>
                       </div>
                     </div>
 
-                    <CardContent className="p-6 flex flex-col flex-grow relative">
-                      <p className="text-muted-foreground mb-6">
-                        {path.description}
-                      </p>
-                      <div className="space-y-3 mb-6 flex-grow">
-                        {path.benefits.map((benefit, idx) => (
-                          <div key={idx} className="flex items-start gap-2 group/item">
-                            <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5 group-hover/item:scale-125 transition-transform" />
-                            <span className="text-sm">{benefit}</span>
+                    <CardContent className="p-6 flex flex-col relative h-full">
+                      <div className="flex-grow">
+                        <p className="text-muted-foreground mb-6">
+                          {path.description}
+                        </p>
+                        <div className="space-y-3 mb-6">
+                          {path.benefits.map((benefit, idx) => (
+                            <div key={idx} className="flex items-start gap-2 group/item">
+                              <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5 group-hover/item:scale-125 transition-transform" />
+                              <span className="text-sm">{benefit}</span>
+                            </div>
+                          ))}
+                        </div>
+                        <div className="relative mb-4">
+                          <div className="absolute inset-0 bg-gradient-to-r from-primary via-accent to-primary rounded-lg blur opacity-75" />
+                          <div className="relative bg-gradient-to-r from-primary to-primary/90 rounded-lg p-4 text-center shadow-lg">
+                            <p className="text-sm font-bold text-primary-foreground">
+                              {path.highlight}
+                            </p>
                           </div>
-                        ))}
-                      </div>
-                      <div className="relative mb-4">
-                        <div className="absolute inset-0 bg-gradient-to-r from-primary via-accent to-primary rounded-lg blur opacity-75" />
-                        <div className="relative bg-gradient-to-r from-primary to-primary/90 rounded-lg p-4 text-center shadow-lg">
-                          <p className="text-sm font-bold text-primary-foreground">
-                            {path.highlight}
-                          </p>
                         </div>
                       </div>
                       <Button
                         onClick={path.id === "festanstellung" ? () => setShowJobDescription(!showJobDescription) : scrollToForm}
-                        className="w-full group/btn relative overflow-hidden bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
+                        className="w-full group/btn relative overflow-hidden bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105 mt-auto"
                       >
                         <span className="relative z-10">
                           {path.id === "festanstellung" ? "Stellenbeschreibung lesen" : "Kontakt aufnehmen"}
