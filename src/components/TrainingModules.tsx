@@ -171,7 +171,7 @@ const TrainingModules = () => {
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-4 animate-fade-in-delayed">
             Professionelle Microsoft 365 Copilot, GitHub Copilot und KI-Agenten Schulungen für Teams und Unternehmen.
-            Jedes Training ist zu 80% praxisorientiert: Sie arbeiten mit realen Use Cases aus Ihrem Arbeitsalltag,
+            Jedes Training kombiniert 50% Theorie und 50% Praxis: Sie arbeiten mit realen Use Cases aus Ihrem Arbeitsalltag,
             entwickeln sofort einsetzbare Workflows und steigern messbar Ihre Produktivität mit KI-Tools.
           </p>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto animate-fade-in-delayed-2">
@@ -197,9 +197,6 @@ const TrainingModules = () => {
                 <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
                 <CardHeader className="relative z-10">
-                  <div className="w-14 h-14 bg-gradient-to-br from-primary/20 to-accent/20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-lg">
-                    <Icon className="w-7 h-7 text-primary group-hover:text-accent transition-colors duration-300" />
-                  </div>
                   <CardTitle className="text-xl group-hover:text-primary transition-colors duration-300">{module.title}</CardTitle>
                   <CardDescription className="flex items-center gap-2">
                     <Clock className="w-4 h-4" />
@@ -259,9 +256,9 @@ const TrainingModules = () => {
             </h3>
             <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-8">
               {[
-                { value: "80%", label: "Praktische Übungen" },
+                { value: "50%", label: "Praktische Übungen" },
                 { value: "100%", label: "Microsoft Tools" },
-                { value: "0%", label: "PowerPoint-Theorie" }
+                { value: "50%", label: "Fundierte Theorie" }
               ].map((stat, idx) => (
                 <div key={idx} className="group flex flex-col items-center hover:scale-110 transition-transform duration-300 cursor-default">
                   <span className="text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-accent to-primary mb-2 group-hover:scale-110 transition-transform">
