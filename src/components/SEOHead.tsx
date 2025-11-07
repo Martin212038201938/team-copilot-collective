@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Author } from "@/data/authors";
 
 interface SEOHeadProps {
   title: string;
@@ -7,7 +8,7 @@ interface SEOHeadProps {
   canonicalUrl?: string;
   ogImage?: string;
   schema?: Record<string, any>;
-  author?: string;
+  author?: string | Author;
   publishedTime?: string;
   modifiedTime?: string;
 }
@@ -24,6 +25,10 @@ const SEOHead = ({
   modifiedTime
 }: SEOHeadProps) => {
   useEffect(() => {
+    // Extract author name if it's an Author object
+    const authorName = typeof author === 'string' ? author : author.name;
+    const authorUrl = typeof author === 'string' ? undefined : author.linkedin;
+
     // Set document title
     document.title = `${title} | copilotenschule.de`;
 
@@ -43,8 +48,8 @@ const SEOHead = ({
     if (keywords.length > 0) {
       setMetaTag("keywords", keywords.join(", "));
     }
-    if (author) {
-      setMetaTag("author", author);
+    if (authorName) {
+      setMetaTag("author", authorName);
     }
 
     // Open Graph tags
@@ -70,7 +75,9 @@ const SEOHead = ({
     if (modifiedTime) {
       setMetaTag("article:modified_time", modifiedTime, "property");
     }
-    setMetaTag("article:author", author, "property");
+    if (authorName) {
+      setMetaTag("article:author", authorUrl || authorName, "property");
+    }
 
     // Canonical URL
     if (canonicalUrl) {
