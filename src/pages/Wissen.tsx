@@ -65,7 +65,17 @@ const Wissen = () => {
       readTime: "18 Minuten",
       lastUpdated: "07. November 2025"
     }
-  ];
+  ,
+  {
+    title: "Copilot ROI berechnen: Lohnt sich die Investition?",
+    description: "Konkrete Methoden zur ROI-Berechnung von Microsoft Copilot. Mit Excel-Vorlage, Praxisbeispielen und messbaren KPIs für Ihr Business Case.",
+    link: "/wissen/copilot-roi-berechnen",
+    badge: "Business",
+    icon: "💰",
+    readTime: "12 Minuten",
+    lastUpdated: "07. Nov. 2025"
+  }
+];
 
   return (
     <div className="min-h-screen">
