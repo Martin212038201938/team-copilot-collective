@@ -7,6 +7,10 @@ import Index from "./pages/Index";
 import BecomeTrainer from "./pages/BecomeTrainer";
 import Wissen from "./pages/Wissen";
 import CopilotLicenses from "./pages/CopilotLicenses";
+import GitHubCopilot from "./pages/GitHubCopilot";
+import CopilotStudio from "./pages/CopilotStudio";
+import PromptEngineering from "./pages/PromptEngineering";
+import KIAgenten from "./pages/KIAgenten";
 import Impressum from "./pages/Impressum";
 import NotFound from "./pages/NotFound";
 
@@ -23,6 +27,10 @@ const App = () => (
           <Route path="/trainer-werden" element={<BecomeTrainer />} />
           <Route path="/wissen" element={<Wissen />} />
           <Route path="/microsoft-copilot-lizenzen" element={<CopilotLicenses />} />
+          <Route path="/github-copilot" element={<GitHubCopilot />} />
+          <Route path="/copilot-studio" element={<CopilotStudio />} />
+          <Route path="/prompt-engineering" element={<PromptEngineering />} />
+          <Route path="/ki-agenten" element={<KIAgenten />} />
           <Route path="/impressum" element={<Impressum />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
