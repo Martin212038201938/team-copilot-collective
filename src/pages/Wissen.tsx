@@ -19,6 +19,42 @@ const Wissen = () => {
       icon: "📋",
       readTime: "8 Minuten",
       lastUpdated: "07. November 2025"
+    },
+    {
+      title: "GitHub Copilot für Entwickler",
+      description: "Der ultimative Leitfaden für Entwickler: Setup, Best Practices und Advanced Features für produktiveres Coding mit KI-Unterstützung.",
+      link: "/github-copilot",
+      badge: "Entwicklung",
+      icon: "💻",
+      readTime: "12 Minuten",
+      lastUpdated: "07. November 2025"
+    },
+    {
+      title: "Microsoft Copilot Studio",
+      description: "Low-Code-Plattform für eigene KI-Agenten: Custom Copilots, Chatbots und Automatisierungen ohne Programmierkenntnisse erstellen.",
+      link: "/copilot-studio",
+      badge: "Entwicklung",
+      icon: "🤖",
+      readTime: "10 Minuten",
+      lastUpdated: "07. November 2025"
+    },
+    {
+      title: "Prompt Engineering Best Practices",
+      description: "Meistern Sie die Kunst effektiver KI-Kommunikation: Techniken, Beispiele und bewährte Prompt-Muster für bessere Copilot-Ergebnisse.",
+      link: "/prompt-engineering",
+      badge: "Best Practices",
+      icon: "✨",
+      readTime: "15 Minuten",
+      lastUpdated: "07. November 2025"
+    },
+    {
+      title: "KI-Agenten entwickeln",
+      description: "Autonome KI-Assistenten für Ihr Unternehmen: Von einfachen Workflows bis zu komplexen Multi-Agent-Systemen mit Microsoft-Technologien.",
+      link: "/ki-agenten",
+      badge: "Automation",
+      icon: "🔄",
+      readTime: "14 Minuten",
+      lastUpdated: "07. November 2025"
     }
   ];
 
