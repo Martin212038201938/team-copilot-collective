@@ -1,4 +1,4 @@
-import { Shield, Award, CheckCircle, Users, Lock, Star } from "lucide-react";
+import { Shield, Award, CheckCircle, Lock, Star } from "lucide-react";
 
 const trustBadges = [
   {
@@ -15,16 +15,6 @@ const trustBadges = [
     icon: Award,
     title: "15+ Jahre Erfahrung",
     description: "Fundierte Expertise in Microsoft-Technologien seit 2009"
-  },
-  {
-    icon: CheckCircle,
-    title: "Zufriedenheitsgarantie",
-    description: "Höchste Qualitätsstandards für nachhaltige Lernerfolge"
-  },
-  {
-    icon: Users,
-    title: "500+ geschulte Teams",
-    description: "Erfolgreiche Trainings in führenden Unternehmen"
   },
   {
     icon: Star,
@@ -55,7 +45,7 @@ const TrustBadges = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 max-w-6xl mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
           {trustBadges.map((badge, index) => {
             const Icon = badge.icon;
             return (
