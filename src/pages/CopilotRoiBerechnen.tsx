@@ -414,7 +414,8 @@ const CopilotRoiBerechnen = () => {
         <section id="zusammenfassung" className="mb-8">
           <h2 className="text-2xl font-bold mb-4">Zusammenfassung</h2>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Copilot lohnt sich fast immer, wenn:</strong></p>
-      <p className="mb-4 text-gray-700 leading-relaxed">✅ Knowledge-intensive Arbeit (&gt; 50% der Zeit)</p>          <p className="mb-4 text-gray-700 leading-relaxed">✅ Repetitive Tasks existieren</p>
+          <p className="mb-4 text-gray-700 leading-relaxed">✅ Knowledge-intensive Arbeit (&gt; 50% der Zeit)</p>
+          <p className="mb-4 text-gray-700 leading-relaxed">✅ Repetitive Tasks existieren</p>
           <p className="mb-4 text-gray-700 leading-relaxed">✅ Dokumentation & Kommunikation wichtig ist</p>
           <p className="mb-4 text-gray-700 leading-relaxed">✅ Change Management sichergestellt ist</p>
           <p className="mb-4 text-gray-700 leading-relaxed">✅ Realistische Erwartungen gesetzt werden</p>

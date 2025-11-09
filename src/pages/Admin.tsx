@@ -6,8 +6,17 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Calendar, Edit, Eye, Trash2, Plus, Clock, CheckCircle } from "lucide-react";
 import { Draft } from "@/types/draft";
 import DraftEditor from "@/components/DraftEditor";
+import AdminAuth from "@/components/AdminAuth";
 
 const Admin = () => {
+  return (
+    <AdminAuth>
+      <AdminContent />
+    </AdminAuth>
+  );
+};
+
+const AdminContent = () => {
   const [drafts, setDrafts] = useState<Draft[]>([]);
   const [selectedDraft, setSelectedDraft] = useState<Draft | null>(null);
   const [isEditing, setIsEditing] = useState(false);
@@ -21,7 +30,7 @@ const Admin = () => {
     try {
       // In production, this would be an API call
       // For now, we'll load from the JSON files
-      const draftFiles = ['copilot-sicherheit', 'copilot-tipps-tricks'];
+      const draftFiles = ['copilot-sicherheit', 'copilot-tipps-tricks', 'copilot-roi-berechnen'];
       const loadedDrafts: Draft[] = [];
 
       for (const file of draftFiles) {
