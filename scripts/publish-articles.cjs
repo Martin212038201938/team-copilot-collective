@@ -181,10 +181,80 @@ function getComponentName(slug) {
 // Generate .tsx page from draft
 function generatePage(draft) {
   const componentName = getComponentName(draft.slug);
-  const toc = generateTableOfContents(draft.content);
-  const content = markdownToJSX(draft.content);
+  const contentType = draft.contentType || 'markdown'; // Default to markdown for backwards compatibility
 
-  return `import ContentLayout from "@/components/ContentLayout";
+  // For code uploads, check if the code is a complete component
+  if (contentType === 'code') {
+    // If uploaded code is already a complete component, use it directly
+    // Otherwise, wrap it in a basic layout
+    const hasImports = draft.content.includes('import');
+    const hasExport = draft.content.includes('export default');
+
+    if (hasImports && hasExport) {
+      // Code is a complete component, use it as-is
+      console.log(`  ℹ Using uploaded code as complete component (${draft.codeFileName || 'uploaded code'})`);
+      return draft.content;
+    } else {
+      // Code is just JSX content, wrap it in a component structure
+      console.log(`  ℹ Wrapping uploaded JSX code in component structure`);
+      return `import ContentLayout from "@/components/ContentLayout";
+import SEOHead from "@/components/SEOHead";
+import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
+
+const ${componentName} = () => {
+  const author = getAuthor("${draft.author}");
+
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "${draft.title}",
+    "description": "${draft.description}",
+    "author": getAuthorSchemaMarkup(author),
+    "datePublished": "${new Date(draft.publishDate).toISOString().split('T')[0]}",
+    "dateModified": "${new Date(draft.updatedAt).toISOString().split('T')[0]}",
+    "keywords": ${JSON.stringify(draft.keywords)},
+    "articleSection": "${draft.category}"
+  };
+
+  return (
+    <>
+      <SEOHead
+        title="${draft.title} | Copilotenschule"
+        description="${draft.description}"
+        keywords={${JSON.stringify(draft.keywords)}}
+        canonicalUrl="https://copilotenschule.de/wissen/${draft.slug}"
+        schema={articleSchema}
+        publishedTime="${new Date(draft.publishDate).toISOString().split('T')[0]}"
+        modifiedTime="${new Date(draft.updatedAt).toISOString().split('T')[0]}"
+      />
+      <ContentLayout
+        breadcrumbs={[
+          { label: "Wissen", href: "/wissen" },
+          { label: "${draft.title}", href: "/wissen/${draft.slug}" }
+        ]}
+        title="${draft.title}"
+        description="${draft.description}"
+        tableOfContents={[]}
+        author={author}
+        publishDate="${new Date(draft.publishDate).toISOString().split('T')[0]}"
+        readTime="${draft.readTime}"
+      >
+        {/* Uploaded custom code */}
+${draft.content}
+      </ContentLayout>
+    </>
+  );
+};
+
+export default ${componentName};
+`;
+    }
+  } else {
+    // Standard markdown processing
+    const toc = generateTableOfContents(draft.content);
+    const content = markdownToJSX(draft.content);
+
+    return `import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 
@@ -238,6 +308,7 @@ ${content}
 
 export default ${componentName};
 `;
+  }
 }
 
 // Update App.tsx with new route

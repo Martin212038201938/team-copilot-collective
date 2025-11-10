@@ -1,4 +1,46 @@
-# Welcome to your Lovable project
+# Copilotenschule.de - Team Copilot Collective
+
+Website und Knowledge Base für Microsoft 365 Copilot Training und Beratung.
+
+## 🚀 Key Features
+
+- **📚 Wissensseiten**: Umfangreiche Guides und Tutorials zu Microsoft 365 Copilot
+- **🤖 AI Content Generator**: Automatische Generierung von Wissensseiten aus Transkripten (OpenAI GPT-4)
+- **📝 Editorial System**: Automatisches Publishing jeden Dienstag um 9:00 Uhr
+- **🎨 Modern Design**: React + TypeScript + Tailwind CSS + shadcn/ui
+- **⚡ Performance**: < 2.5s Ladezeit, optimiert für AI Answer Engines
+- **🔍 SEO**: Schema.org Markup, Meta-Tags, E-E-A-T optimiert
+
+## 🤖 AI Content Generator
+
+**NEU**: Automatische Generierung von hochwertigen Wissensseiten aus YouTube-Transkripten!
+
+### Quick Start
+
+```bash
+# 1. Setup (einmalig)
+cp .env.example .env.local
+# Füge deinen OpenAI API Key in .env.local ein
+
+# 2. Interaktiver Modus
+npm run generate:interactive
+
+# 3. Oder: Direkt mit Datei
+npm run generate transcripts/mein-video.txt
+
+# 4. Kosten-Statistiken anzeigen
+npm run cost:stats
+```
+
+**Features:**
+- 🎯 Nicht-generische, authentische Texte
+- 📊 Dual Schema.org (Article + FAQPage)
+- ⚡ 30-60 Sekunden pro Seite
+- 💰 ~$0.06 pro Seite
+- 🔒 **Kill-Switch bei 3 EUR/Tag** (Schutz vor Schleifen)
+- ✅ Publishing-ready
+
+[**Vollständige Dokumentation →**](scripts/CONTENT_GENERATOR_README.md) | [**Security →**](SECURITY.md)
 
 ## Project info
 
