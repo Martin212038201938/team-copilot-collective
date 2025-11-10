@@ -10,7 +10,9 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "generate": "node scripts/generate-content.js",
-    "generate:interactive": "node scripts/generate-content.js --interactive"
+    "generate:interactive": "node scripts/generate-content.js --interactive",
+    "cost:stats": "node scripts/cost-tracker.js stats",
+    "cost:reset": "node scripts/cost-tracker.js reset --confirm"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

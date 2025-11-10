@@ -24,6 +24,7 @@ import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
 import OpenAI from 'openai';
 import readline from 'readline';
+import { checkBeforeRequest, trackUsage, showStatistics } from './cost-tracker.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -233,9 +234,19 @@ async function generateContent(transcript, userInstructions = '') {
   console.log(`📝 Prompt-Länge: ${prompt.length} Zeichen`);
   console.log('⏳ Bitte warten, dies kann 30-60 Sekunden dauern...\n');
 
+  // 🔒 SECURITY: Check cost limits before API call
+  try {
+    checkBeforeRequest();
+  } catch (error) {
+    console.error('\n' + error.message + '\n');
+    throw error;
+  }
+
+  const model = process.env.OPENAI_MODEL || 'gpt-4o';
+
   try {
     const completion = await openai.chat.completions.create({
-      model: process.env.OPENAI_MODEL || 'gpt-4o',
+      model,
       messages: [
         {
           role: 'system',
@@ -257,6 +268,18 @@ async function generateContent(transcript, userInstructions = '') {
     console.log(`💰 Tokens verwendet: ${completion.usage.total_tokens}`);
     console.log(`   - Prompt: ${completion.usage.prompt_tokens}`);
     console.log(`   - Completion: ${completion.usage.completion_tokens}`);
+
+    // 🔒 SECURITY: Track usage after successful API call
+    trackUsage(
+      model,
+      completion.usage.prompt_tokens,
+      completion.usage.completion_tokens,
+      {
+        transcriptLength: transcript.length,
+        promptLength: prompt.length,
+        generatedLength: generatedCode.length,
+      }
+    );
 
     return generatedCode;
   } catch (error) {
@@ -360,6 +383,10 @@ async function interactiveMode() {
   const paths = saveContent(component, metadata);
 
   console.log('\n🎉 Content erfolgreich generiert und gespeichert!');
+
+  // Show cost statistics
+  showStatistics();
+
   console.log('\nNächste Schritte:');
   console.log('1. Überprüfe die generierte Komponente');
   console.log('2. Teste die Vorschau im Admin-Dashboard');
@@ -392,6 +419,9 @@ async function cliMode(transcriptPath, instructions = '') {
   const paths = saveContent(component, metadata);
 
   console.log('\n🎉 Content erfolgreich generiert und gespeichert!');
+
+  // Show cost statistics
+  showStatistics();
 }
 
 /**

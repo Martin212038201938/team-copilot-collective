@@ -27,6 +27,9 @@ npm run generate:interactive
 
 # 3. Oder: Direkt mit Datei
 npm run generate transcripts/mein-video.txt
+
+# 4. Kosten-Statistiken anzeigen
+npm run cost:stats
 ```
 
 **Features:**
@@ -34,9 +37,10 @@ npm run generate transcripts/mein-video.txt
 - 📊 Dual Schema.org (Article + FAQPage)
 - ⚡ 30-60 Sekunden pro Seite
 - 💰 ~$0.06 pro Seite
+- 🔒 **Kill-Switch bei 3 EUR/Tag** (Schutz vor Schleifen)
 - ✅ Publishing-ready
 
-[**Vollständige Dokumentation →**](scripts/CONTENT_GENERATOR_README.md)
+[**Vollständige Dokumentation →**](scripts/CONTENT_GENERATOR_README.md) | [**Security →**](SECURITY.md)
 
 ## Project info
 

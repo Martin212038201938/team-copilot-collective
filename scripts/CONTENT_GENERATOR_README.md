@@ -28,6 +28,26 @@ OPENAI_TEMPERATURE=0.7
 
 **WICHTIG**: `.env.local` ist in `.gitignore` und wird NICHT ins Repository committed.
 
+### 🔒 Automatischer Kill-Switch
+
+**Zum Schutz vor übermäßigen Kosten durch Fehler oder Endlosschleifen:**
+
+- **Tägliches Limit**: 3,00 EUR
+- **Max. Requests/Minute**: 10 (Schutz vor Schleifen)
+- **Max. Requests/Stunde**: 50 (Schutz vor Massenverarbeitung)
+
+Bei Überschreitung: **Sofortiger Stop aller API-Anfragen**
+
+```bash
+# Kosten-Statistiken anzeigen
+npm run cost:stats
+
+# Tracking wird automatisch durchgeführt
+# Automatischer Reset um Mitternacht
+```
+
+**Siehe [SECURITY.md](../SECURITY.md) für Details.**
+
 ### 2. Dependencies
 
 Dependencies sind bereits installiert via `npm install`:

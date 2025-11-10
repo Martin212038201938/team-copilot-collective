@@ -12,6 +12,10 @@ dist
 dist-ssr
 *.local
 
+# API & Security
+.usage.json
+.openai-usage.json
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
