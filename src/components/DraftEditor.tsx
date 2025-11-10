@@ -12,8 +12,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { ArrowLeft, Save, Eye, Upload, Code, Sparkles, CheckCircle, Play, Edit2 } from "lucide-react";
-import { Draft, ExtractedTopic, GeneratorState } from "@/types/draft";
+import { ArrowLeft, Save, Eye, Upload, Code, Sparkles, CheckCircle } from "lucide-react";
+import { Draft } from "@/types/draft";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 interface DraftEditorProps {
@@ -23,7 +23,15 @@ interface DraftEditorProps {
   initialTab?: string;
 }
 
-type GeneratorStep = 'transcript' | 'topics' | 'focus' | 'metadata' | 'content-generation' | 'content-review' | 'page-design' | 'completed';
+// Content Generator Step Types
+type GeneratorStep = 'transcript' | 'topics' | 'focus' | 'metadata' | 'preview';
+
+interface ExtractedTopic {
+  title: string;
+  description: string;
+  keywords: string[];
+  relevance: number;
+}
 
 interface GeneratedMetadata {
   title: string;
@@ -43,33 +51,12 @@ const DraftEditor = ({ draft, onSave, onCancel, initialTab }: DraftEditorProps) 
   const [transcript, setTranscript] = useState<string>(draft.generatorState?.transcript || "");
   const transcriptTextareaRef = useRef<HTMLTextAreaElement>(null);
 
-  // Content Generator State (load from draft or start fresh)
-  const [generatorStep, setGeneratorStep] = useState<GeneratorStep>(
-    draft.generatorState?.step || 'transcript'
-  );
-  const [extractedTopics, setExtractedTopics] = useState<ExtractedTopic[]>(
-    draft.generatorState?.extractedTopics || []
-  );
-  const [selectedTopic, setSelectedTopic] = useState<ExtractedTopic | null>(
-    draft.generatorState?.selectedTopic || null
-  );
+  // Content Generator State
+  const [generatorStep, setGeneratorStep] = useState<GeneratorStep>('transcript');
+  const [extractedTopics, setExtractedTopics] = useState<ExtractedTopic[]>([]);
+  const [selectedTopic, setSelectedTopic] = useState<ExtractedTopic | null>(null);
   const [generatedMetadata, setGeneratedMetadata] = useState<GeneratedMetadata | null>(null);
-  const [generatedContent, setGeneratedContent] = useState<string>(
-    draft.generatorState?.generatedContent || ""
-  );
-  const [reviewedContent, setReviewedContent] = useState<string>(
-    draft.generatorState?.reviewedContent || ""
-  );
   const [isGenerating, setIsGenerating] = useState(false);
-  const [openAIKey, setOpenAIKey] = useState<string>(import.meta.env.VITE_OPENAI_API_KEY || "");
-  const [showResumePrompt, setShowResumePrompt] = useState(false);
-
-  // Check if there's a saved generator state to resume
-  useEffect(() => {
-    if (draft.generatorState && draft.generatorState.step !== 'transcript' && !showResumePrompt) {
-      setShowResumePrompt(true);
-    }
-  }, [draft.generatorState, showResumePrompt]);
 
   // Auto-focus transcript textarea when on content-generator tab
   useEffect(() => {
@@ -354,14 +341,6 @@ const DraftEditor = ({ draft, onSave, onCancel, initialTab }: DraftEditorProps) 
       const topics = extractTopicsFromTranscript(transcript);
       setExtractedTopics(topics);
       setGeneratorStep('topics');
-
-      // Save state
-      saveGeneratorState({
-        step: 'topics',
-        transcript,
-        extractedTopics: topics
-      });
-
       setIsGenerating(false);
     }, 800);
   };
@@ -371,26 +350,15 @@ const DraftEditor = ({ draft, onSave, onCancel, initialTab }: DraftEditorProps) 
     setSelectedTopic(topic);
     setGeneratorStep('focus');
 
-    // Save state
-    saveGeneratorState({
-      step: 'focus',
-      selectedTopic: topic
-    });
-
     // Auto-generate metadata
     setTimeout(() => {
       const metadata = generateMetadataFromTopic(topic, transcript);
       setGeneratedMetadata(metadata);
       setGeneratorStep('metadata');
-
-      saveGeneratorState({
-        step: 'metadata',
-        selectedTopic: topic
-      });
     }, 500);
   };
 
-  // Step 3: Apply generated metadata and move to content generation
+  // Step 3: Apply generated metadata to draft
   const handleApplyMetadata = () => {
     if (!generatedMetadata) return;
 
@@ -406,375 +374,16 @@ const DraftEditor = ({ draft, onSave, onCancel, initialTab }: DraftEditorProps) 
       updatedAt: new Date().toISOString(),
     });
 
-    setGeneratorStep('content-generation');
-
-    saveGeneratorState({
-      step: 'content-generation'
-    });
-  };
-
-  // Step 4: Generate content with OpenAI
-  const handleGenerateContent = async () => {
-    if (!openAIKey) {
-      alert('Kein OpenAI API Key gefunden. Bitte in der .env.local Datei hinzufügen.');
-      return;
-    }
-
-    if (!selectedTopic || !transcript) {
-      alert('Transkript und Thema erforderlich');
-      return;
-    }
-
-    setIsGenerating(true);
-
-    try {
-      const response = await fetch('https://api.openai.com/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${openAIKey}`
-        },
-        body: JSON.stringify({
-          model: 'gpt-4o',
-          messages: [
-            {
-              role: 'system',
-              content: `Du bist Martin Lang, ein Experte für Microsoft Copilot, KI-unterstützte Büroarbeit und Agile Methoden. Du schreibst SEO-optimierte Wissensartikel für copilotenschule.de.
-
-Schreibe einen ausführlichen, praxisorientierten Artikel im Markdown-Format mit folgender Struktur:
-
-## STRUKTUR:
-
-### 1. Einleitung (2-3 Absätze)
-- Hook: Stelle eine relevante Frage oder ein Problem vor
-- Kontext: Warum ist dieses Thema wichtig?
-- Überblick: Was lernt der Leser in diesem Artikel?
-
-### 2. Quick Answer (Kasten am Anfang)
-Beginne mit: "## 🎯 Quick Answer"
-- Eine prägnante, direkte Antwort auf die Hauptfrage (2-3 Sätze)
-- 3 Key Facts als Bullet Points
-
-### 3. Hauptinhalt (strukturiert in H2/H3)
-- 4-6 Hauptabschnitte mit klaren H2 Überschriften
-- Jeder Abschnitt mit konkreten Beispielen und Handlungsempfehlungen
-- Verwende Bullet Points und nummerierte Listen wo sinnvoll
-- Füge praktische Tipps und Best Practices ein
-- Verwende **Fettdruck** für wichtige Begriffe
-
-### 4. Praxisbeispiel (eigener Abschnitt)
-"## 💡 Praxisbeispiel aus dem Trainingsalltag"
-- Ein konkretes, realitätsnahes Beispiel
-- Mit Vorher-Nachher-Vergleich wenn möglich
-
-### 5. FAQ Sektion am Ende
-"## ❓ Häufig gestellte Fragen (FAQ)"
-- 6-8 relevante Fragen mit prägnanten Antworten
-- Format: ### Frage? gefolgt von der Antwort
-
-### 6. Fazit (2-3 Absätze)
-- Zusammenfassung der wichtigsten Punkte
-- Call-to-Action: Was sollte der Leser jetzt tun?
-
-## STIL:
-- Direkte Ansprache (Du-Form)
-- Praxisnah und verständlich
-- Keine Marketing-Sprache, sondern ehrliche Expertise
-- Konkrete Zahlen, Beispiele und Empfehlungen
-- 1800-2500 Wörter
-
-## E-E-A-T OPTIMIERUNG:
-- Zeige praktische Erfahrung (Experience)
-- Demonstriere Fachwissen (Expertise)
-- Baue Autorität auf (Authority)
-- Schaffe Vertrauen (Trust)
-
-Erstelle JETZT den kompletten Artikel.`
-            },
-            {
-              role: 'user',
-              content: `Thema: ${selectedTopic.title}
-
-Beschreibung: ${selectedTopic.description}
-
-Kontext aus dem Transkript:
-${transcript}
-
-Schreibe einen vollständigen, praxisorientierten Artikel für copilotenschule.de.`
-            }
-          ],
-          temperature: 0.7,
-          max_tokens: 4500
-        })
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => null);
-        throw new Error(`OpenAI API Fehler: ${response.status} - ${errorData?.error?.message || 'Unbekannter Fehler'}`);
-      }
-
-      const data = await response.json();
-      const content = data.choices[0].message.content;
-
-      setGeneratedContent(content);
-      setReviewedContent(content);
-      setGeneratorStep('content-review');
-
-      saveGeneratorState({
-        step: 'content-review',
-        generatedContent: content,
-        reviewedContent: content
-      });
-
-      setIsGenerating(false);
-    } catch (error) {
-      console.error('Content generation error:', error);
-      alert(`Fehler bei der Content-Generierung:\n${error instanceof Error ? error.message : 'Unbekannter Fehler'}\n\nBitte überprüfe deinen API Key in der .env.local Datei.`);
-      setIsGenerating(false);
-    }
-  };
-
-  // Step 5: Save reviewed content
-  const handleSaveReviewedContent = () => {
-    if (!reviewedContent.trim()) {
-      alert('Bitte überarbeite den Content');
-      return;
-    }
-
-    saveGeneratorState({
-      step: 'page-design',
-      reviewedContent
-    });
-
-    setGeneratorStep('page-design');
-  };
-
-  // Step 6: Generate final page code
-  const handleGenerateFinalPage = async () => {
-    if (!openAIKey) {
-      alert('Kein OpenAI API Key gefunden. Bitte in der .env.local Datei hinzufügen.');
-      return;
-    }
-
-    setIsGenerating(true);
-
-    try {
-      const response = await fetch('https://api.openai.com/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${openAIKey}`
-        },
-        body: JSON.stringify({
-          model: 'gpt-4o',
-          messages: [
-            {
-              role: 'system',
-              content: `Du bist ein Experte für React/TypeScript und erstellst perfekte TSX-Komponenten für Wissensseiten.
-
-Erstelle eine VOLLSTÄNDIGE, lauffähige TSX-Datei mit folgender Struktur:
-
-\`\`\`tsx
-import KnowledgePageTemplate, { FAQItem } from "@/components/KnowledgePageTemplate";
-
-const PageName = () => {
-  // 1. FAQs extrahieren (aus der FAQ-Sektion im Markdown)
-  const faqItems: FAQItem[] = [
-    {
-      question: "Frage aus dem Content",
-      answer: "Antwort aus dem Content"
-    }
-    // ... alle FAQs
-  ];
-
-  // 2. Quick Answer Highlights (wenn vorhanden)
-  const quickAnswerHighlights = [
-    {
-      label: "Label",
-      description: "Beschreibung",
-      value: "Wert"
-    }
-  ];
-
-  // 3. Table of Contents aus allen H2 Überschriften
-  const tableOfContents = [
-    { id: "quick-answer", title: "Quick Answer", level: 2 },
-    { id: "hauptthema-1", title: "Hauptthema 1", level: 2 },
-    // ... alle H2/H3 Überschriften
-  ];
-
-  return (
-    <KnowledgePageTemplate
-      // SEO & Metadata
-      title="EXAKTER TITEL"
-      description="EXAKTE BESCHREIBUNG"
-      canonicalUrl="https://copilotenschule.de/wissen/SLUG"
-      keywords={["keyword1", "keyword2"]}
-
-      // Author & Dates
-      authorId="martin-lang"
-      publishedDate="2024-01-15T09:00:00Z"
-      modifiedDate={new Date().toISOString()}
-
-      // Quick Answer
-      quickAnswer={{
-        title: "Quick Answer",
-        content: "Hauptantwort aus dem Content (2-3 Sätze)",
-        highlights: quickAnswerHighlights  // Optional
-      }}
-
-      // FAQ
-      faqItems={faqItems}
-
-      // Table of Contents
-      tableOfContents={tableOfContents}
-
-      // Layout
-      breadcrumbs={[
-        { label: "Home", href: "/" },
-        { label: "Wissen", href: "/wissen" },
-        { label: "TITEL", href: "#" }
-      ]}
-      readTime="X Min. Lesezeit"
-    >
-      {/* HAUPTCONTENT ALS JSX */}
-
-      <section id="einleitung" className="mb-8">
-        <p className="text-lg leading-relaxed mb-4">
-          Einleitungstext aus dem Markdown...
-        </p>
-      </section>
-
-      <section id="hauptthema-1" className="mb-12">
-        <h2>Hauptthema 1</h2>
-        <p>Content...</p>
-
-        <h3>Unterüberschrift</h3>
-        <ul className="list-disc list-inside space-y-2 mb-6">
-          <li>Bullet Point 1</li>
-          <li>Bullet Point 2</li>
-        </ul>
-      </section>
-
-      {/* Weitere Sections... */}
-
-      <section id="praxisbeispiel" className="mb-12">
-        <h2>💡 Praxisbeispiel</h2>
-        <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-lg border border-blue-200 dark:border-blue-800 mb-6">
-          <p>Praxisbeispiel aus dem Content...</p>
-        </div>
-      </section>
-
-      <section id="fazit" className="mb-12">
-        <h2>Fazit</h2>
-        <p>Fazit aus dem Content...</p>
-      </section>
-    </KnowledgePageTemplate>
-  );
-};
-
-export default PageName;
-\`\`\`
-
-WICHTIG:
-- Extrahiere FAQs aus der "## ❓ FAQ" Sektion im Markdown
-- Extrahiere Quick Answer aus "## 🎯 Quick Answer"
-- Erstelle Table of Contents mit allen H2 Überschriften
-- Verwende semantische HTML-Elemente (section, h2, h3, p, ul, etc.)
-- IDs für sections sollten kebab-case sein
-- Verwende Tailwind CSS Klassen für Styling
-- Der Code muss KOMPLETT und lauffähig sein
-- KEINE Platzhalter oder Kommentare wie "// Rest des Contents"
-- Gib NUR den TSX-Code aus, keine zusätzlichen Erklärungen`
-            },
-            {
-              role: 'user',
-              content: `Erstelle eine vollständige TSX-Datei für folgende Wissensseite:
-
-**Metadaten:**
-Titel: ${editedDraft.title}
-Beschreibung: ${editedDraft.description}
-Slug: ${editedDraft.slug}
-Kategorie: ${editedDraft.category}
-Keywords: ${editedDraft.keywords.join(', ')}
-Autor: ${editedDraft.author}
-Lesezeit: ${editedDraft.readTime}
-
-**Vollständiger Content (Markdown):**
-${reviewedContent}
-
-Erstelle jetzt die komplette TSX-Komponente. Der komplette Markdown-Content muss in strukturiertes JSX umgewandelt werden.`
-            }
-          ],
-          temperature: 0.2,
-          max_tokens: 8000
-        })
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => null);
-        throw new Error(`OpenAI API Fehler: ${response.status} - ${errorData?.error?.message || 'Unbekannter Fehler'}`);
-      }
-
-      const data = await response.json();
-      let finalCode = data.choices[0].message.content;
-
-      // Remove code fence markers if present
-      finalCode = finalCode.replace(/^```tsx?\n?/gm, '').replace(/^```\n?/gm, '').replace(/```$/g, '').trim();
-
-      setEditedDraft({
-        ...editedDraft,
-        content: finalCode,
-        contentType: 'code',
-        codeFileName: `${editedDraft.slug}.tsx`,
-        updatedAt: new Date().toISOString(),
-      });
-
-      saveGeneratorState({
-        step: 'completed',
-        finalCode
-      });
-
-      setGeneratorStep('completed');
-      setIsGenerating(false);
-
-      alert('✅ Wissensseite erfolgreich erstellt!\n\nDu kannst sie jetzt im Tab "Code Upload" oder "Vorschau" sehen und bei Bedarf anpassen.');
-    } catch (error) {
-      console.error('Page generation error:', error);
-      alert(`Fehler bei der Seiten-Generierung:\n${error instanceof Error ? error.message : 'Unbekannter Fehler'}\n\nBitte überprüfe deinen API Key in der .env.local Datei.`);
-      setIsGenerating(false);
-    }
+    setGeneratorStep('preview');
+    alert('✅ Metadaten wurden automatisch ausgefüllt!\n\nWechsle zum Tab "Metadaten" um sie zu überprüfen oder anzupassen.');
   };
 
   // Reset generator
   const handleResetGenerator = () => {
-    if (confirm('Möchtest du den Generator wirklich zurücksetzen? Alle Fortschritte gehen verloren.')) {
-      setGeneratorStep('transcript');
-      setExtractedTopics([]);
-      setSelectedTopic(null);
-      setGeneratedMetadata(null);
-      setGeneratedContent('');
-      setReviewedContent('');
-
-      setEditedDraft({
-        ...editedDraft,
-        generatorState: undefined,
-        updatedAt: new Date().toISOString(),
-      });
-    }
-  };
-
-  // Resume from saved state
-  const handleResumeGenerator = () => {
-    setShowResumePrompt(false);
-    setActiveTab('content-generator');
-  };
-
-  // Start fresh (discard saved state)
-  const handleStartFresh = () => {
-    setShowResumePrompt(false);
-    handleResetGenerator();
-    setActiveTab('content-generator');
+    setGeneratorStep('transcript');
+    setExtractedTopics([]);
+    setSelectedTopic(null);
+    setGeneratedMetadata(null);
   };
 
   const renderMarkdownPreview = () => {
@@ -972,36 +581,41 @@ Erstelle jetzt die komplette TSX-Komponente. Der komplette Markdown-Content muss
               </CardHeader>
               <CardContent className="space-y-6">
                 {/* Progress Indicator */}
-                <div className="bg-gray-50 border rounded-lg p-4 mb-6">
-                  <div className="flex items-center justify-between text-xs mb-2">
-                    <span className="font-semibold text-gray-600">Fortschritt:</span>
-                    <span className="text-gray-500">
-                      {generatorStep === 'transcript' && '1/7 - Transkript eingeben'}
-                      {generatorStep === 'topics' && '2/7 - Kernthemen extrahieren'}
-                      {generatorStep === 'focus' && '3/7 - Fokus wählen'}
-                      {generatorStep === 'metadata' && '4/7 - Metadaten'}
-                      {generatorStep === 'content-generation' && '5/7 - Content generieren'}
-                      {generatorStep === 'content-review' && '6/7 - Content überarbeiten'}
-                      {generatorStep === 'page-design' && '7/7 - Seite erstellen'}
-                      {generatorStep === 'completed' && '✅ Abgeschlossen'}
-                    </span>
+                <div className="flex items-center justify-between mb-6">
+                  <div className={`flex items-center gap-2 ${generatorStep === 'transcript' ? 'text-blue-600 font-semibold' : generatorStep !== 'transcript' ? 'text-green-600' : 'text-gray-400'}`}>
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center ${generatorStep === 'transcript' ? 'bg-blue-600 text-white' : generatorStep !== 'transcript' ? 'bg-green-600 text-white' : 'bg-gray-200'}`}>
+                      1
+                    </div>
+                    <span className="text-sm">Transkript</span>
                   </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2">
-                    <div
-                      className="bg-gradient-to-r from-blue-600 to-purple-600 h-2 rounded-full transition-all duration-500"
-                      style={{
-                        width:
-                          generatorStep === 'transcript' ? '14%' :
-                          generatorStep === 'topics' || generatorStep === 'focus' ? '28%' :
-                          generatorStep === 'metadata' ? '57%' :
-                          generatorStep === 'content-generation' ? '71%' :
-                          generatorStep === 'content-review' ? '85%' :
-                          generatorStep === 'page-design' ? '95%' :
-                          '100%'
-                      }}
-                    />
+                  <div className="flex-1 h-1 bg-gray-200 mx-2">
+                    <div className={`h-full ${generatorStep !== 'transcript' ? 'bg-green-600' : 'bg-gray-200'}`} style={{ width: generatorStep === 'transcript' ? '0%' : '100%' }} />
                   </div>
-                </div>
+                  <div className={`flex items-center gap-2 ${generatorStep === 'topics' ? 'text-blue-600 font-semibold' : ['focus', 'metadata', 'preview'].includes(generatorStep) ? 'text-green-600' : 'text-gray-400'}`}>
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center ${generatorStep === 'topics' ? 'bg-blue-600 text-white' : ['focus', 'metadata', 'preview'].includes(generatorStep) ? 'bg-green-600 text-white' : 'bg-gray-200'}`}>
+                      2
+                    </div>
+                    <span className="text-sm">Kernthemen</span>
+                  </div>
+                  <div className="flex-1 h-1 bg-gray-200 mx-2">
+                    <div className={`h-full ${['focus', 'metadata', 'preview'].includes(generatorStep) ? 'bg-green-600' : 'bg-gray-200'}`} />
+                  </div>
+                  <div className={`flex items-center gap-2 ${generatorStep === 'focus' ? 'text-blue-600 font-semibold' : ['metadata', 'preview'].includes(generatorStep) ? 'text-green-600' : 'text-gray-400'}`}>
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center ${generatorStep === 'focus' ? 'bg-blue-600 text-white' : ['metadata', 'preview'].includes(generatorStep) ? 'bg-green-600 text-white' : 'bg-gray-200'}`}>
+                      3
+                    </div>
+                    <span className="text-sm">Fokus</span>
+                  </div>
+                  <div className="flex-1 h-1 bg-gray-200 mx-2">
+                    <div className={`h-full ${['metadata', 'preview'].includes(generatorStep) ? 'bg-green-600' : 'bg-gray-200'}`} />
+                  </div>
+                  <div className={`flex items-center gap-2 ${generatorStep === 'metadata' ? 'text-blue-600 font-semibold' : generatorStep === 'preview' ? 'text-green-600' : 'text-gray-400'}`}>
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center ${generatorStep === 'metadata' ? 'bg-blue-600 text-white' : generatorStep === 'preview' ? 'bg-green-600 text-white' : 'bg-gray-200'}`}>
+                      4
+                    </div>
+                    <span className="text-sm">Metadaten</span>
+                  </div>
+                )}
 
                 {/* Step 1: Transcript Input */}
                 {generatorStep === 'transcript' && (
@@ -1211,232 +825,29 @@ Das System analysiert automatisch die Kernthemen und erstellt passende Metadaten
                         size="lg"
                         className="bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700"
                       >
-                        <Sparkles className="w-5 h-5 mr-2" />
-                        Weiter zur Content-Generierung →
+                        <CheckCircle className="w-5 h-5 mr-2" />
+                        Metadaten übernehmen
                       </Button>
                     </div>
                   </>
                 )}
 
-                {/* Step 5: Content Generation with OpenAI */}
-                {generatorStep === 'content-generation' && (
-                  <>
-                    <div className="bg-gradient-to-r from-purple-50 to-blue-50 border border-purple-200 p-6 rounded-lg">
-                      <h5 className="font-semibold text-purple-900 mb-3 text-lg flex items-center gap-2">
-                        <Sparkles className="w-6 h-6" />
-                        Artikel-Content mit KI generieren
-                      </h5>
-                      <p className="text-sm text-purple-800 mb-4">
-                        Jetzt wird der eigentliche Artikel-Content basierend auf deinem Transkript und den Metadaten generiert.
-                        Der KI-generierte Content wird dann von dir überarbeitet.
-                      </p>
-                    </div>
-
-                    <Card className="border-2 border-purple-300">
-                      <CardContent className="pt-6 space-y-4">
-                        {!import.meta.env.VITE_OPENAI_API_KEY && (
-                          <div className="bg-amber-50 border border-amber-200 p-4 rounded-lg">
-                            <h6 className="font-semibold text-amber-900 mb-2 text-sm">⚠️ API Key nicht konfiguriert</h6>
-                            <p className="text-xs text-amber-800 mb-3">
-                              Kein OpenAI API Key in der .env.local Datei gefunden.
-                            </p>
-                            <details className="text-xs text-amber-800">
-                              <summary className="cursor-pointer font-semibold mb-2">So richtest du es ein:</summary>
-                              <ol className="list-decimal list-inside space-y-1 ml-2">
-                                <li>Erstelle/öffne die Datei <code className="bg-amber-100 px-1 rounded">.env.local</code> im Projekt-Root</li>
-                                <li>Füge hinzu: <code className="bg-amber-100 px-1 rounded">VITE_OPENAI_API_KEY=dein-api-key</code></li>
-                                <li>Speichern und Dev-Server neu starten</li>
-                              </ol>
-                            </details>
-                          </div>
-                        )}
-
-                        {import.meta.env.VITE_OPENAI_API_KEY && (
-                          <div className="bg-green-50 border border-green-200 p-3 rounded-lg">
-                            <p className="text-xs text-green-800">
-                              ✅ OpenAI API Key konfiguriert. Bereit zur Content-Generierung!
-                            </p>
-                          </div>
-                        )}
-
-                        <div className="bg-blue-50 border border-blue-200 p-4 rounded-lg">
-                          <h6 className="font-semibold text-blue-900 mb-2 text-sm">🎨 Was wird generiert?</h6>
-                          <ul className="text-xs text-blue-800 space-y-1 list-disc list-inside">
-                            <li><strong>Vollständiger Artikel</strong> (1800-2500 Wörter)</li>
-                            <li><strong>Quick Answer Sektion</strong> am Anfang mit Key Facts</li>
-                            <li><strong>Strukturierter Hauptinhalt</strong> mit H2/H3 Überschriften</li>
-                            <li><strong>Praxisbeispiel</strong> aus dem Trainingsalltag</li>
-                            <li><strong>6-8 FAQ-Einträge</strong> am Ende</li>
-                            <li><strong>E-E-A-T optimiert</strong> (Experience, Expertise, Authority, Trust)</li>
-                            <li><strong>Praxisnah</strong> mit konkreten Handlungsempfehlungen</li>
-                          </ul>
-                        </div>
-
-                        <div className="flex justify-between items-center pt-2">
-                          <Button onClick={() => setGeneratorStep('metadata')} variant="outline">
-                            ← Zurück zu Metadaten
-                          </Button>
-                          <Button
-                            onClick={handleGenerateContent}
-                            size="lg"
-                            disabled={isGenerating || !openAIKey}
-                            className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700"
-                          >
-                            <Sparkles className="w-5 h-5 mr-2" />
-                            {isGenerating ? 'Generiere Content... (30-60s)' : 'Content generieren →'}
-                          </Button>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </>
-                )}
-
-                {/* Step 6: Content Review */}
-                {generatorStep === 'content-review' && (
-                  <>
-                    <div className="bg-gradient-to-r from-green-50 to-blue-50 border border-green-300 p-6 rounded-lg">
-                      <h5 className="font-semibold text-green-900 mb-3 text-lg flex items-center gap-2">
-                        <Edit2 className="w-6 h-6" />
-                        Content überarbeiten
-                      </h5>
-                      <p className="text-sm text-green-800 mb-4">
-                        Der KI-generierte Content wurde erfolgreich erstellt! Überarbeite ihn jetzt nach deinen Wünschen.
-                        Wenn du fertig bist, geht es weiter zur finalen Seiten-Gestaltung.
-                      </p>
-                    </div>
-
-                    <Card className="border-2 border-green-300">
-                      <CardContent className="pt-6 space-y-4">
-                        <div>
-                          <Label htmlFor="reviewed-content">Artikel-Content (Markdown)</Label>
-                          <Textarea
-                            id="reviewed-content"
-                            value={reviewedContent}
-                            onChange={(e) => {
-                              setReviewedContent(e.target.value);
-                              saveGeneratorState({ reviewedContent: e.target.value });
-                            }}
-                            rows={25}
-                            className="font-mono text-sm"
-                          />
-                          <p className="text-xs text-gray-500 mt-1">
-                            {reviewedContent.length} Zeichen | ~{Math.ceil(reviewedContent.split(/\s+/).length / 200)} Min. Lesezeit
-                          </p>
-                        </div>
-
-                        <div className="bg-amber-50 border border-amber-200 p-4 rounded-lg">
-                          <h6 className="font-semibold text-amber-900 mb-2 text-sm">💡 Tipps für die Überarbeitung</h6>
-                          <ul className="text-xs text-amber-800 space-y-1 list-disc list-inside">
-                            <li>Prüfe Fakten und Zahlen auf Korrektheit</li>
-                            <li>Füge persönliche Erfahrungen und Beispiele hinzu</li>
-                            <li>Stelle sicher, dass die FAQs relevant sind</li>
-                            <li>Optimiere die Sprache für deine Zielgruppe</li>
-                          </ul>
-                        </div>
-
-                        <div className="flex justify-between items-center pt-2">
-                          <Button onClick={() => setGeneratorStep('content-generation')} variant="outline">
-                            ← Content neu generieren
-                          </Button>
-                          <Button
-                            onClick={handleSaveReviewedContent}
-                            size="lg"
-                            className="bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700"
-                          >
-                            <CheckCircle className="w-5 h-5 mr-2" />
-                            Content freigeben →
-                          </Button>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </>
-                )}
-
-                {/* Step 7: Page Design / Code Generation */}
-                {generatorStep === 'page-design' && (
-                  <>
-                    <div className="bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-300 p-6 rounded-lg">
-                      <h5 className="font-semibold text-blue-900 mb-3 text-lg flex items-center gap-2">
-                        <Code className="w-6 h-6" />
-                        Finale Wissensseite erstellen
-                      </h5>
-                      <p className="text-sm text-blue-800 mb-4">
-                        Im letzten Schritt wird aus deinem überarbeiteten Content eine vollständige TSX-Komponente
-                        mit dem KnowledgePageTemplate generiert.
-                      </p>
-                    </div>
-
-                    <Card className="border-2 border-blue-300">
-                      <CardContent className="pt-6 space-y-4">
-                        <div className="bg-green-50 border border-green-200 p-4 rounded-lg">
-                          <h6 className="font-semibold text-green-900 mb-2 text-sm">✅ Bereit zur Finalisierung</h6>
-                          <div className="grid grid-cols-2 gap-2 text-xs text-green-800 mt-2">
-                            <div><strong>Titel:</strong> {editedDraft.title}</div>
-                            <div><strong>Slug:</strong> {editedDraft.slug}</div>
-                            <div><strong>Kategorie:</strong> {editedDraft.category}</div>
-                            <div><strong>Keywords:</strong> {editedDraft.keywords.length}</div>
-                            <div><strong>Content:</strong> {Math.ceil(reviewedContent.split(/\s+/).length)} Wörter</div>
-                            <div><strong>Autor:</strong> Martin Lang</div>
-                          </div>
-                        </div>
-
-                        <div className="bg-blue-50 border border-blue-200 p-4 rounded-lg">
-                          <h6 className="font-semibold text-blue-900 mb-2 text-sm">Was wird erstellt?</h6>
-                          <ul className="text-xs text-blue-800 space-y-1 list-disc list-inside">
-                            <li>Vollständige TSX-Komponente mit KnowledgePageTemplate</li>
-                            <li>Strukturierter JSX-Content aus deinem Markdown</li>
-                            <li>FAQ-Sektion mit Schema.org Markup</li>
-                            <li>Automatisches Table of Contents</li>
-                            <li>SEO-Metadaten und Author Bio</li>
-                            <li>Sofort einsatzbereit</li>
-                          </ul>
-                        </div>
-
-                        <div className="flex justify-between items-center pt-2">
-                          <Button onClick={() => setGeneratorStep('content-review')} variant="outline">
-                            ← Content überarbeiten
-                          </Button>
-                          <Button
-                            onClick={handleGenerateFinalPage}
-                            size="lg"
-                            disabled={isGenerating || !openAIKey}
-                            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
-                          >
-                            <Code className="w-5 h-5 mr-2" />
-                            {isGenerating ? 'Erstelle Seite...' : 'Finale Seite erstellen →'}
-                          </Button>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </>
-                )}
-
-                {/* Step 8: Completed */}
-                {generatorStep === 'completed' && (
+                {/* Step 5: Success / Preview */}
+                {generatorStep === 'preview' && (
                   <div className="bg-gradient-to-r from-green-50 to-blue-50 border border-green-300 p-8 rounded-lg text-center">
-                    <CheckCircle className="w-20 h-20 text-green-600 mx-auto mb-4" />
-                    <h5 className="font-semibold text-green-900 mb-3 text-3xl">
-                      🎉 Wissensseite erfolgreich erstellt!
+                    <CheckCircle className="w-16 h-16 text-green-600 mx-auto mb-4" />
+                    <h5 className="font-semibold text-green-900 mb-3 text-2xl">
+                      ✅ Metadaten erfolgreich angewendet!
                     </h5>
-                    <p className="text-gray-700 mb-6 text-lg">
-                      Deine KI-optimierte Wissensseite ist fertig. Du kannst sie jetzt überprüfen,
-                      bei Bedarf anpassen und veröffentlichen.
+                    <p className="text-gray-700 mb-6">
+                      Alle Metadaten wurden automatisch ausgefüllt. Du kannst sie im Tab <strong>"Metadaten"</strong> überprüfen und anpassen.
                     </p>
-                    <div className="flex gap-3 justify-center flex-wrap">
-                      <Button onClick={() => setActiveTab('preview')} variant="default" size="lg">
-                        <Eye className="w-5 h-5 mr-2" />
-                        Vorschau ansehen
+                    <div className="flex gap-3 justify-center">
+                      <Button onClick={() => setActiveTab('metadata')} variant="default" size="lg">
+                        Zu Metadaten →
                       </Button>
-                      <Button onClick={() => setActiveTab('code-upload')} variant="outline" size="lg">
-                        <Code className="w-5 h-5 mr-2" />
-                        Code bearbeiten
-                      </Button>
-                      <Button onClick={() => setActiveTab('metadata')} variant="outline" size="lg">
-                        Metadaten anpassen
-                      </Button>
-                      <Button onClick={() => setGeneratorStep('content-review')} variant="outline">
-                        <Edit2 className="w-4 h-4 mr-2" />
-                        Content überarbeiten
+                      <Button onClick={() => setActiveTab('content')} variant="outline" size="lg">
+                        Zum Inhalt →
                       </Button>
                       <Button onClick={handleResetGenerator} variant="ghost">
                         Neu starten
