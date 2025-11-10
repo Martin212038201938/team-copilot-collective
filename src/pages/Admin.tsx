@@ -21,6 +21,7 @@ const AdminContent = () => {
   const [selectedDraft, setSelectedDraft] = useState<Draft | null>(null);
   const [isEditing, setIsEditing] = useState(false);
   const [activeTab, setActiveTab] = useState("all");
+  const [editorInitialTab, setEditorInitialTab] = useState<string | undefined>(undefined);
 
   useEffect(() => {
     loadDrafts();
@@ -53,14 +54,46 @@ const AdminContent = () => {
 
   const handleEdit = (draft: Draft) => {
     setSelectedDraft(draft);
+    setEditorInitialTab(undefined);
+    setIsEditing(true);
+  };
+
+  const handleCreateNew = () => {
+    const newDraft: Draft = {
+      id: `draft-${Date.now()}`,
+      title: "",
+      description: "",
+      content: "",
+      contentType: 'markdown',
+      publishDate: new Date().toISOString(),
+      author: "Martin Hense",
+      category: "",
+      slug: "",
+      keywords: [],
+      readTime: "",
+      icon: "📝",
+      status: 'draft',
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    };
+    setSelectedDraft(newDraft);
+    setEditorInitialTab("content-generator");
     setIsEditing(true);
   };
 
   const handleSave = (updatedDraft: Draft) => {
     // In production, this would save to the backend/Git
-    setDrafts(drafts.map(d => d.id === updatedDraft.id ? updatedDraft : d));
+    const existingDraftIndex = drafts.findIndex(d => d.id === updatedDraft.id);
+    if (existingDraftIndex >= 0) {
+      // Update existing draft
+      setDrafts(drafts.map(d => d.id === updatedDraft.id ? updatedDraft : d));
+    } else {
+      // Add new draft
+      setDrafts([...drafts, updatedDraft]);
+    }
     setIsEditing(false);
     setSelectedDraft(null);
+    setEditorInitialTab(undefined);
     console.log("Draft saved:", updatedDraft);
   };
 
@@ -106,7 +139,9 @@ const AdminContent = () => {
         onCancel={() => {
           setIsEditing(false);
           setSelectedDraft(null);
+          setEditorInitialTab(undefined);
         }}
+        initialTab={editorInitialTab}
       />
     );
   }
@@ -115,13 +150,23 @@ const AdminContent = () => {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-12 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">
-            Redaktionssystem
-          </h1>
-          <p className="text-lg text-gray-600">
-            Verwalten Sie Ihre geplanten Wissen-Artikel
-          </p>
+        <div className="mb-8 flex items-start justify-between">
+          <div>
+            <h1 className="text-4xl font-bold text-gray-900 mb-2">
+              Redaktionssystem
+            </h1>
+            <p className="text-lg text-gray-600">
+              Verwalten Sie Ihre geplanten Wissen-Artikel
+            </p>
+          </div>
+          <Button
+            onClick={handleCreateNew}
+            size="lg"
+            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+          >
+            <Plus className="w-5 h-5 mr-2" />
+            Neue Wissensseite erstellen
+          </Button>
         </div>
 
         {/* Stats Cards */}
