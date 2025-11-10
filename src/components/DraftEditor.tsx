@@ -61,7 +61,7 @@ const DraftEditor = ({ draft, onSave, onCancel, initialTab }: DraftEditorProps) 
     draft.generatorState?.reviewedContent || ""
   );
   const [isGenerating, setIsGenerating] = useState(false);
-  const [openAIKey, setOpenAIKey] = useState<string>("");
+  const [openAIKey, setOpenAIKey] = useState<string>(import.meta.env.VITE_OPENAI_API_KEY || "");
   const [showResumePrompt, setShowResumePrompt] = useState(false);
 
   // Check if there's a saved generator state to resume
@@ -416,7 +416,7 @@ const DraftEditor = ({ draft, onSave, onCancel, initialTab }: DraftEditorProps) 
   // Step 4: Generate content with OpenAI
   const handleGenerateContent = async () => {
     if (!openAIKey) {
-      alert('Bitte OpenAI API Key eingeben');
+      alert('Kein OpenAI API Key gefunden. Bitte in der .env.local Datei hinzufügen.');
       return;
     }
 
@@ -439,16 +439,57 @@ const DraftEditor = ({ draft, onSave, onCancel, initialTab }: DraftEditorProps) 
           messages: [
             {
               role: 'system',
-              content: `Du bist ein Experte für SEO-optimierte Wissensartikel. Erstelle einen ausführlichen, strukturierten Artikel basierend auf dem gegebenen Transkript.
+              content: `Du bist Martin Lang, ein Experte für Microsoft Copilot, KI-unterstützte Büroarbeit und Agile Methoden. Du schreibst SEO-optimierte Wissensartikel für copilotenschule.de.
 
-Der Artikel soll:
-- Eine klare H1-H3 Überschriftenstruktur haben
-- Für E-E-A-T optimiert sein (Experience, Expertise, Authority, Trust)
-- Einen "Quick Answer" Abschnitt am Anfang haben
-- 5-7 FAQ-Einträge am Ende enthalten
-- Markdown-formatiert sein
-- Zwischen 1500-2500 Wörter lang sein
-- Praxisbeispiele und konkrete Handlungsempfehlungen enthalten`
+Schreibe einen ausführlichen, praxisorientierten Artikel im Markdown-Format mit folgender Struktur:
+
+## STRUKTUR:
+
+### 1. Einleitung (2-3 Absätze)
+- Hook: Stelle eine relevante Frage oder ein Problem vor
+- Kontext: Warum ist dieses Thema wichtig?
+- Überblick: Was lernt der Leser in diesem Artikel?
+
+### 2. Quick Answer (Kasten am Anfang)
+Beginne mit: "## 🎯 Quick Answer"
+- Eine prägnante, direkte Antwort auf die Hauptfrage (2-3 Sätze)
+- 3 Key Facts als Bullet Points
+
+### 3. Hauptinhalt (strukturiert in H2/H3)
+- 4-6 Hauptabschnitte mit klaren H2 Überschriften
+- Jeder Abschnitt mit konkreten Beispielen und Handlungsempfehlungen
+- Verwende Bullet Points und nummerierte Listen wo sinnvoll
+- Füge praktische Tipps und Best Practices ein
+- Verwende **Fettdruck** für wichtige Begriffe
+
+### 4. Praxisbeispiel (eigener Abschnitt)
+"## 💡 Praxisbeispiel aus dem Trainingsalltag"
+- Ein konkretes, realitätsnahes Beispiel
+- Mit Vorher-Nachher-Vergleich wenn möglich
+
+### 5. FAQ Sektion am Ende
+"## ❓ Häufig gestellte Fragen (FAQ)"
+- 6-8 relevante Fragen mit prägnanten Antworten
+- Format: ### Frage? gefolgt von der Antwort
+
+### 6. Fazit (2-3 Absätze)
+- Zusammenfassung der wichtigsten Punkte
+- Call-to-Action: Was sollte der Leser jetzt tun?
+
+## STIL:
+- Direkte Ansprache (Du-Form)
+- Praxisnah und verständlich
+- Keine Marketing-Sprache, sondern ehrliche Expertise
+- Konkrete Zahlen, Beispiele und Empfehlungen
+- 1800-2500 Wörter
+
+## E-E-A-T OPTIMIERUNG:
+- Zeige praktische Erfahrung (Experience)
+- Demonstriere Fachwissen (Expertise)
+- Baue Autorität auf (Authority)
+- Schaffe Vertrauen (Trust)
+
+Erstelle JETZT den kompletten Artikel.`
             },
             {
               role: 'user',
@@ -456,19 +497,20 @@ Der Artikel soll:
 
 Beschreibung: ${selectedTopic.description}
 
-Transkript:
+Kontext aus dem Transkript:
 ${transcript}
 
-Erstelle einen vollständigen, SEO-optimierten Wissensartikel im Markdown-Format.`
+Schreibe einen vollständigen, praxisorientierten Artikel für copilotenschule.de.`
             }
           ],
           temperature: 0.7,
-          max_tokens: 4000
+          max_tokens: 4500
         })
       });
 
       if (!response.ok) {
-        throw new Error(`OpenAI API Fehler: ${response.status}`);
+        const errorData = await response.json().catch(() => null);
+        throw new Error(`OpenAI API Fehler: ${response.status} - ${errorData?.error?.message || 'Unbekannter Fehler'}`);
       }
 
       const data = await response.json();
@@ -487,7 +529,7 @@ Erstelle einen vollständigen, SEO-optimierten Wissensartikel im Markdown-Format
       setIsGenerating(false);
     } catch (error) {
       console.error('Content generation error:', error);
-      alert('Fehler bei der Content-Generierung. Bitte überprüfe deinen API Key.');
+      alert(`Fehler bei der Content-Generierung:\n${error instanceof Error ? error.message : 'Unbekannter Fehler'}\n\nBitte überprüfe deinen API Key in der .env.local Datei.`);
       setIsGenerating(false);
     }
   };
@@ -510,7 +552,7 @@ Erstelle einen vollständigen, SEO-optimierten Wissensartikel im Markdown-Format
   // Step 6: Generate final page code
   const handleGenerateFinalPage = async () => {
     if (!openAIKey) {
-      alert('Bitte OpenAI API Key eingeben');
+      alert('Kein OpenAI API Key gefunden. Bitte in der .env.local Datei hinzufügen.');
       return;
     }
 
@@ -528,20 +570,126 @@ Erstelle einen vollständigen, SEO-optimierten Wissensartikel im Markdown-Format
           messages: [
             {
               role: 'system',
-              content: `Du bist ein Experte für React/TypeScript. Erstelle eine vollständige TSX-Datei für eine Wissensseite mit dem KnowledgePageTemplate.
+              content: `Du bist ein Experte für React/TypeScript und erstellst perfekte TSX-Komponenten für Wissensseiten.
 
-Die Datei soll:
-- Das KnowledgePageTemplate verwenden
-- Alle Props korrekt setzen (title, description, keywords, etc.)
-- Den Content als JSX strukturieren
-- FAQs als faqItems-Array übergeben
-- Ein tableOfContents aus den Überschriften erstellen
-- Breadcrumbs einbauen
-- Vollständig lauffähig sein`
+Erstelle eine VOLLSTÄNDIGE, lauffähige TSX-Datei mit folgender Struktur:
+
+\`\`\`tsx
+import KnowledgePageTemplate, { FAQItem } from "@/components/KnowledgePageTemplate";
+
+const PageName = () => {
+  // 1. FAQs extrahieren (aus der FAQ-Sektion im Markdown)
+  const faqItems: FAQItem[] = [
+    {
+      question: "Frage aus dem Content",
+      answer: "Antwort aus dem Content"
+    }
+    // ... alle FAQs
+  ];
+
+  // 2. Quick Answer Highlights (wenn vorhanden)
+  const quickAnswerHighlights = [
+    {
+      label: "Label",
+      description: "Beschreibung",
+      value: "Wert"
+    }
+  ];
+
+  // 3. Table of Contents aus allen H2 Überschriften
+  const tableOfContents = [
+    { id: "quick-answer", title: "Quick Answer", level: 2 },
+    { id: "hauptthema-1", title: "Hauptthema 1", level: 2 },
+    // ... alle H2/H3 Überschriften
+  ];
+
+  return (
+    <KnowledgePageTemplate
+      // SEO & Metadata
+      title="EXAKTER TITEL"
+      description="EXAKTE BESCHREIBUNG"
+      canonicalUrl="https://copilotenschule.de/wissen/SLUG"
+      keywords={["keyword1", "keyword2"]}
+
+      // Author & Dates
+      authorId="martin-lang"
+      publishedDate="2024-01-15T09:00:00Z"
+      modifiedDate={new Date().toISOString()}
+
+      // Quick Answer
+      quickAnswer={{
+        title: "Quick Answer",
+        content: "Hauptantwort aus dem Content (2-3 Sätze)",
+        highlights: quickAnswerHighlights  // Optional
+      }}
+
+      // FAQ
+      faqItems={faqItems}
+
+      // Table of Contents
+      tableOfContents={tableOfContents}
+
+      // Layout
+      breadcrumbs={[
+        { label: "Home", href: "/" },
+        { label: "Wissen", href: "/wissen" },
+        { label: "TITEL", href: "#" }
+      ]}
+      readTime="X Min. Lesezeit"
+    >
+      {/* HAUPTCONTENT ALS JSX */}
+
+      <section id="einleitung" className="mb-8">
+        <p className="text-lg leading-relaxed mb-4">
+          Einleitungstext aus dem Markdown...
+        </p>
+      </section>
+
+      <section id="hauptthema-1" className="mb-12">
+        <h2>Hauptthema 1</h2>
+        <p>Content...</p>
+
+        <h3>Unterüberschrift</h3>
+        <ul className="list-disc list-inside space-y-2 mb-6">
+          <li>Bullet Point 1</li>
+          <li>Bullet Point 2</li>
+        </ul>
+      </section>
+
+      {/* Weitere Sections... */}
+
+      <section id="praxisbeispiel" className="mb-12">
+        <h2>💡 Praxisbeispiel</h2>
+        <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-lg border border-blue-200 dark:border-blue-800 mb-6">
+          <p>Praxisbeispiel aus dem Content...</p>
+        </div>
+      </section>
+
+      <section id="fazit" className="mb-12">
+        <h2>Fazit</h2>
+        <p>Fazit aus dem Content...</p>
+      </section>
+    </KnowledgePageTemplate>
+  );
+};
+
+export default PageName;
+\`\`\`
+
+WICHTIG:
+- Extrahiere FAQs aus der "## ❓ FAQ" Sektion im Markdown
+- Extrahiere Quick Answer aus "## 🎯 Quick Answer"
+- Erstelle Table of Contents mit allen H2 Überschriften
+- Verwende semantische HTML-Elemente (section, h2, h3, p, ul, etc.)
+- IDs für sections sollten kebab-case sein
+- Verwende Tailwind CSS Klassen für Styling
+- Der Code muss KOMPLETT und lauffähig sein
+- KEINE Platzhalter oder Kommentare wie "// Rest des Contents"
+- Gib NUR den TSX-Code aus, keine zusätzlichen Erklärungen`
             },
             {
               role: 'user',
-              content: `Erstelle eine TSX-Datei für folgende Wissensseite:
+              content: `Erstelle eine vollständige TSX-Datei für folgende Wissensseite:
 
 **Metadaten:**
 Titel: ${editedDraft.title}
@@ -550,27 +698,29 @@ Slug: ${editedDraft.slug}
 Kategorie: ${editedDraft.category}
 Keywords: ${editedDraft.keywords.join(', ')}
 Autor: ${editedDraft.author}
+Lesezeit: ${editedDraft.readTime}
 
-**Content (Markdown):**
+**Vollständiger Content (Markdown):**
 ${reviewedContent}
 
-Erstelle eine vollständige TSX-Komponente mit dem KnowledgePageTemplate.`
+Erstelle jetzt die komplette TSX-Komponente. Der komplette Markdown-Content muss in strukturiertes JSX umgewandelt werden.`
             }
           ],
-          temperature: 0.3,
-          max_tokens: 6000
+          temperature: 0.2,
+          max_tokens: 8000
         })
       });
 
       if (!response.ok) {
-        throw new Error(`OpenAI API Fehler: ${response.status}`);
+        const errorData = await response.json().catch(() => null);
+        throw new Error(`OpenAI API Fehler: ${response.status} - ${errorData?.error?.message || 'Unbekannter Fehler'}`);
       }
 
       const data = await response.json();
       let finalCode = data.choices[0].message.content;
 
       // Remove code fence markers if present
-      finalCode = finalCode.replace(/^```tsx?\n?/gm, '').replace(/```$/g, '').trim();
+      finalCode = finalCode.replace(/^```tsx?\n?/gm, '').replace(/^```\n?/gm, '').replace(/```$/g, '').trim();
 
       setEditedDraft({
         ...editedDraft,
@@ -591,7 +741,7 @@ Erstelle eine vollständige TSX-Komponente mit dem KnowledgePageTemplate.`
       alert('✅ Wissensseite erfolgreich erstellt!\n\nDu kannst sie jetzt im Tab "Code Upload" oder "Vorschau" sehen und bei Bedarf anpassen.');
     } catch (error) {
       console.error('Page generation error:', error);
-      alert('Fehler bei der Seiten-Generierung. Bitte überprüfe deinen API Key.');
+      alert(`Fehler bei der Seiten-Generierung:\n${error instanceof Error ? error.message : 'Unbekannter Fehler'}\n\nBitte überprüfe deinen API Key in der .env.local Datei.`);
       setIsGenerating(false);
     }
   };
@@ -1084,30 +1234,41 @@ Das System analysiert automatisch die Kernthemen und erstellt passende Metadaten
 
                     <Card className="border-2 border-purple-300">
                       <CardContent className="pt-6 space-y-4">
-                        <div>
-                          <Label htmlFor="openai-key">OpenAI API Key *</Label>
-                          <Input
-                            id="openai-key"
-                            type="password"
-                            value={openAIKey}
-                            onChange={(e) => setOpenAIKey(e.target.value)}
-                            placeholder="sk-..."
-                            className="font-mono text-sm"
-                          />
-                          <p className="text-xs text-gray-500 mt-1">
-                            Dein API Key wird nur für diese Anfrage verwendet und nicht gespeichert.
-                          </p>
-                        </div>
+                        {!import.meta.env.VITE_OPENAI_API_KEY && (
+                          <div className="bg-amber-50 border border-amber-200 p-4 rounded-lg">
+                            <h6 className="font-semibold text-amber-900 mb-2 text-sm">⚠️ API Key nicht konfiguriert</h6>
+                            <p className="text-xs text-amber-800 mb-3">
+                              Kein OpenAI API Key in der .env.local Datei gefunden.
+                            </p>
+                            <details className="text-xs text-amber-800">
+                              <summary className="cursor-pointer font-semibold mb-2">So richtest du es ein:</summary>
+                              <ol className="list-decimal list-inside space-y-1 ml-2">
+                                <li>Erstelle/öffne die Datei <code className="bg-amber-100 px-1 rounded">.env.local</code> im Projekt-Root</li>
+                                <li>Füge hinzu: <code className="bg-amber-100 px-1 rounded">VITE_OPENAI_API_KEY=dein-api-key</code></li>
+                                <li>Speichern und Dev-Server neu starten</li>
+                              </ol>
+                            </details>
+                          </div>
+                        )}
+
+                        {import.meta.env.VITE_OPENAI_API_KEY && (
+                          <div className="bg-green-50 border border-green-200 p-3 rounded-lg">
+                            <p className="text-xs text-green-800">
+                              ✅ OpenAI API Key konfiguriert. Bereit zur Content-Generierung!
+                            </p>
+                          </div>
+                        )}
 
                         <div className="bg-blue-50 border border-blue-200 p-4 rounded-lg">
-                          <h6 className="font-semibold text-blue-900 mb-2 text-sm">Was wird generiert?</h6>
+                          <h6 className="font-semibold text-blue-900 mb-2 text-sm">🎨 Was wird generiert?</h6>
                           <ul className="text-xs text-blue-800 space-y-1 list-disc list-inside">
-                            <li>Vollständiger Artikel (1500-2500 Wörter)</li>
-                            <li>Strukturierte H1-H3 Überschriften</li>
-                            <li>Quick Answer Sektion am Anfang</li>
-                            <li>5-7 FAQ-Einträge am Ende</li>
-                            <li>E-E-A-T optimiert</li>
-                            <li>Praxisbeispiele und Handlungsempfehlungen</li>
+                            <li><strong>Vollständiger Artikel</strong> (1800-2500 Wörter)</li>
+                            <li><strong>Quick Answer Sektion</strong> am Anfang mit Key Facts</li>
+                            <li><strong>Strukturierter Hauptinhalt</strong> mit H2/H3 Überschriften</li>
+                            <li><strong>Praxisbeispiel</strong> aus dem Trainingsalltag</li>
+                            <li><strong>6-8 FAQ-Einträge</strong> am Ende</li>
+                            <li><strong>E-E-A-T optimiert</strong> (Experience, Expertise, Authority, Trust)</li>
+                            <li><strong>Praxisnah</strong> mit konkreten Handlungsempfehlungen</li>
                           </ul>
                         </div>
 
@@ -1122,7 +1283,7 @@ Das System analysiert automatisch die Kernthemen und erstellt passende Metadaten
                             className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700"
                           >
                             <Sparkles className="w-5 h-5 mr-2" />
-                            {isGenerating ? 'Generiere Content...' : 'Content generieren →'}
+                            {isGenerating ? 'Generiere Content... (30-60s)' : 'Content generieren →'}
                           </Button>
                         </div>
                       </CardContent>
