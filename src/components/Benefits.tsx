@@ -9,8 +9,8 @@ const benefits = [
   },
   {
     icon: Target,
-    title: "80% praktische Übungen, 20% Theorie",
-    description: "Keine endlosen PowerPoint-Präsentationen. Wir arbeiten direkt hands-on in den Microsoft-Tools mit realen Business-Szenarien aus Ihrem Arbeitsalltag: E-Mails verfassen, Excel-Analysen erstellen, Code entwickeln, Meetings protokollieren, Workflows automatisieren. Jeder Teilnehmer übt aktiv und entwickelt sofort einsetzbare Lösungen."
+    title: "50% praktische Übungen, 50% fundierte Theorie",
+    description: "Ausgewogene Balance zwischen theoretischem Fundament und praktischer Anwendung. Wir arbeiten hands-on in den Microsoft-Tools mit realen Business-Szenarien aus Ihrem Arbeitsalltag: E-Mails verfassen, Excel-Analysen erstellen, Code entwickeln, Meetings protokollieren, Workflows automatisieren. Jeder Teilnehmer übt aktiv und entwickelt sofort einsetzbare Lösungen auf Basis fundierter Kenntnisse."
   },
   {
     icon: Lightbulb,
