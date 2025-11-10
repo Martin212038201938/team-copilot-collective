@@ -1,0 +1,25 @@
+{
+  "id": "microsoft-copilot-agents-guide",
+  "title": "Microsoft Copilot Agents - Der komplette Guide für Entwickler",
+  "description": "Lernen Sie, wie Sie benutzerdefinierte Copilot Agents erstellen, mit Copilot Studio entwickeln und Agents in Ihrem Unternehmen einsetzen.",
+  "content": "IMPORTED FROM TSX FILE",
+  "contentType": "code",
+  "codeFileName": "MicrosoftCopilotAgentsGuide.tsx",
+  "publishDate": "2025-11-21T09:00:00.000Z",
+  "author": "martin-lang",
+  "category": "Microsoft 365",
+  "slug": "microsoft-copilot-agents-guide",
+  "keywords": [
+    "Copilot Agent erstellen",
+    "Microsoft Copilot Studio",
+    "Copilot Automatisierung",
+    "Custom Copilot Agent",
+    "Copilot für Unternehmen",
+    "Copilot Studio Tutorial"
+  ],
+  "readTime": "10 Minuten",
+  "icon": "🤖",
+  "status": "scheduled",
+  "createdAt": "2025-11-10T14:00:00.000Z",
+  "updatedAt": "2025-11-10T14:00:00.000Z"
+}
