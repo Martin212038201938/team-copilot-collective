@@ -66,7 +66,7 @@ const AdminContent = () => {
       content: "",
       contentType: 'markdown',
       publishDate: new Date().toISOString(),
-      author: "Martin Hense",
+      author: "martin-lang",
       category: "",
       slug: "",
       keywords: [],
