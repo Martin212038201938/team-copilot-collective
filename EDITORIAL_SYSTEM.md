@@ -9,6 +9,7 @@ Dieses System ermöglicht die automatische Veröffentlichung von vorbereiteten W
 ✅ **Admin-Dashboard** - Verwalten und Bearbeiten von Draft-Artikeln unter `/admin`
 ✅ **Automatische Veröffentlichung** - Jeden Dienstag um 9:00 Uhr via GitHub Actions
 ✅ **Markdown-Support** - Artikel können in Markdown verfasst werden
+✅ **Code-Upload** - Fertige TSX/JSX-Komponenten direkt hochladen
 ✅ **SEO-Optimierung** - Automatische Generierung von Meta-Tags und Schema.org Markup
 ✅ **Vorschau-Funktion** - Live-Preview der Artikel vor Veröffentlichung
 ✅ **Git-basiert** - Alle Drafts werden versioniert und sind nachvollziehbar
@@ -124,6 +125,81 @@ Unterstützte Markdown-Syntax:
 const beispiel = "Code";
 \`\`\`
 ```
+
+### 6. Code-Upload für fertige Komponenten
+
+Wenn Sie Ihre Wissensseite mit einem anderen Tool (z.B. AI-Generator, Code-Editor) erstellt haben, können Sie den fertigen Code direkt hochladen:
+
+**Im Admin-Dashboard:**
+
+1. Öffnen Sie `/admin` und wählen Sie einen Draft oder erstellen Sie einen neuen
+2. Navigieren Sie zum Tab **"Code Upload"**
+3. Klicken Sie auf **"Datei wählen"** oder nutzen Sie das File-Input
+4. Wählen Sie Ihre TSX/JSX-Datei aus (`.tsx`, `.jsx`, `.ts`, `.js`)
+5. Der Code wird automatisch hochgeladen und eine Vorschau angezeigt
+6. Speichern Sie den Draft
+
+**Unterstützte Code-Formate:**
+
+- **Vollständige Komponenten**: Wenn Ihr Code bereits `import` und `export default` enthält, wird er 1:1 verwendet
+- **JSX-Snippets**: Reines JSX ohne Imports wird automatisch in eine ContentLayout-Struktur eingebettet
+
+**Beispiel - Vollständige Komponente:**
+
+```tsx
+import ContentLayout from "@/components/ContentLayout";
+import SEOHead from "@/components/SEOHead";
+import { getAuthor } from "@/data/authors";
+
+const MeinArtikel = () => {
+  const author = getAuthor("martin-lang");
+
+  return (
+    <>
+      <SEOHead title="Mein Artikel" />
+      <ContentLayout
+        breadcrumbs={[...]}
+        title="Mein Artikel"
+        author={author}
+      >
+        {/* Ihr Content */}
+      </ContentLayout>
+    </>
+  );
+};
+
+export default MeinArtikel;
+```
+
+**Beispiel - JSX-Snippet:**
+
+```tsx
+<section className="mb-8">
+  <h2 className="text-2xl font-bold mb-4">Meine Überschrift</h2>
+  <p className="mb-4">Mein Text...</p>
+</section>
+```
+
+**JSON-Draft mit Code:**
+
+```json
+{
+  "id": "artikel-slug",
+  "title": "Ihr Artikeltitel",
+  "description": "Kurzbeschreibung",
+  "content": "/* Ihr TSX/JSX Code hier */",
+  "contentType": "code",
+  "codeFileName": "MeinArtikel.tsx",
+  "publishDate": "2025-11-11T09:00:00.000Z",
+  "status": "scheduled",
+  ...
+}
+```
+
+**Wichtig:**
+- Der Code wird beim Veröffentlichen direkt als `.tsx` Datei verwendet
+- ContentLayout, SEOHead und andere Komponenten werden automatisch verfügbar gemacht
+- Bei Bedarf können Sie zwischen Markdown und Code im Admin wechseln
 
 ## Workflow für redaktionelle Planung
 
@@ -297,6 +373,7 @@ git checkout COMMIT_HASH -- content/drafts/artikel.json
 
 ## Roadmap / Mögliche Erweiterungen
 
+- [x] Code-Upload für fertige TSX/JSX-Komponenten
 - [ ] Backend-API für echtes Speichern aus dem Admin
 - [ ] Bildupload für Artikel
 - [ ] Draft-Review-Workflow (Entwurf → Review → Freigabe → Geplant)
