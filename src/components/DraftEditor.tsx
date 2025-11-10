@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -20,12 +20,23 @@ interface DraftEditorProps {
   draft: Draft;
   onSave: (draft: Draft) => void;
   onCancel: () => void;
+  initialTab?: string;
 }
 
-const DraftEditor = ({ draft, onSave, onCancel }: DraftEditorProps) => {
+const DraftEditor = ({ draft, onSave, onCancel, initialTab }: DraftEditorProps) => {
   const [editedDraft, setEditedDraft] = useState<Draft>(draft);
-  const [activeTab, setActiveTab] = useState("content");
+  const [activeTab, setActiveTab] = useState(initialTab || "content");
   const [transcript, setTranscript] = useState<string>("");
+  const transcriptTextareaRef = useRef<HTMLTextAreaElement>(null);
+
+  // Auto-focus transcript textarea when on content-generator tab
+  useEffect(() => {
+    if (activeTab === "content-generator" && transcriptTextareaRef.current) {
+      setTimeout(() => {
+        transcriptTextareaRef.current?.focus();
+      }, 100);
+    }
+  }, [activeTab]);
 
   const handleChange = (field: keyof Draft, value: any) => {
     setEditedDraft({
@@ -352,6 +363,7 @@ const DraftEditor = ({ draft, onSave, onCancel }: DraftEditorProps) => {
                 <div>
                   <Label htmlFor="transcript-text">Oder Transkript direkt eingeben/bearbeiten</Label>
                   <Textarea
+                    ref={transcriptTextareaRef}
                     id="transcript-text"
                     value={transcript}
                     onChange={(e) => setTranscript(e.target.value)}
