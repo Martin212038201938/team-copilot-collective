@@ -26,8 +26,9 @@ export const authors: Record<string, Author> = {
       'Microsoft 365 & Teams Kollaboration'
     ],
     bio: 'Martin Lang ist Agile Trainer seit 2016, Mitgründer von bNear.io (einer App für Kollaboration in Microsoft 365 und Microsoft Teams) sowie Autor und Keynote Speaker zu den Themen KI in der Arbeitswelt, KI-unterstützte Büroarbeit und Future Work. Er hat mehrere Startups im Trainingsbereich gegründet und unterstützt Unternehmen bei der erfolgreichen Einführung von Microsoft Copilot und KI-Tools.',
-    image: '/images/authors/martin-lang.jpg',
-    linkedin: 'https://www.linkedin.com/in/martin-lang-a95b1010/',    email: 'martin@yellow-boat.com'
+    image: '/images/authors/martin-lang.svg',
+    linkedin: 'https://www.linkedin.com/in/martin-lang',
+    email: 'martin@yellow-boat.com'
   }
 };
 

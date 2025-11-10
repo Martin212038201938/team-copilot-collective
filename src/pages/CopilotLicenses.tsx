@@ -1,10 +1,14 @@
 import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Check, X, Info } from "lucide-react";
+import { Check, X, Info, Linkedin, Mail } from "lucide-react";
+import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 
 const CopilotLicenses = () => {
+  const martinLang = getAuthor('martin-lang')!;
+
   const tableOfContents = [
+    { id: "quick-answer", title: "Schnellantwort", level: 2 },
     { id: "overview", title: "Überblick Microsoft Copilot Lizenzen", level: 2 },
     { id: "microsoft-365-copilot", title: "Microsoft 365 Copilot", level: 2 },
     { id: "github-copilot", title: "GitHub Copilot", level: 2 },
@@ -19,10 +23,7 @@ const CopilotLicenses = () => {
     "@type": "Article",
     "headline": "Microsoft Copilot Lizenzen: Kompletter Überblick und Vergleich 2025",
     "description": "Detaillierter Vergleich aller Microsoft Copilot Lizenzen inkl. Microsoft 365 Copilot, GitHub Copilot und Copilot Studio. Erfahren Sie, welche Lizenz Sie für Ihre Anforderungen benötigen.",
-    "author": {
-      "@type": "Organization",
-      "name": "copilotenschule.de"
-    },
+    "author": getAuthorSchemaMarkup(martinLang),
     "publisher": {
       "@type": "Organization",
       "name": "copilotenschule.de",
@@ -32,7 +33,7 @@ const CopilotLicenses = () => {
       }
     },
     "datePublished": "2025-01-06",
-    "dateModified": "2025-01-06",
+    "dateModified": "2025-11-07T11:00:00+01:00",
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https://copilotenschule.de/microsoft-copilot-lizenzen"
@@ -87,8 +88,9 @@ const CopilotLicenses = () => {
         ]}
         canonicalUrl="https://copilotenschule.de/microsoft-copilot-lizenzen"
         schema={[schema, faqSchema]}
-        publishedTime="2025-01-06"
-        modifiedTime="2025-01-06"
+        author={martinLang}
+        publishedTime="2025-01-06T09:00:00+01:00"
+        modifiedTime="2025-11-07T11:00:00+01:00"
       />
 
       <ContentLayout
@@ -98,10 +100,48 @@ const CopilotLicenses = () => {
         ]}
         title="Microsoft Copilot Lizenzen: Kompletter Überblick und Vergleich 2025"
         description="Welche Microsoft Copilot Lizenz benötigen Sie? Umfassender Vergleich aller Lizenzmodelle für Microsoft 365 Copilot, GitHub Copilot und Copilot Studio."
-        lastUpdated="06. Januar 2025"
+        lastUpdated="07. November 2025"
         readTime="8 Minuten"
         tableOfContents={tableOfContents}
       >
+        {/* Quick Answer Section für AIO-Optimierung */}
+        <section id="quick-answer" className="mb-8">
+          <Card className="border-2 border-primary/30 bg-gradient-to-br from-primary/5 to-accent/5">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-xl">
+                <span className="text-2xl">⚡</span>
+                Schnellantwort: Welche Microsoft Copilot Lizenz brauche ich?
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <p className="text-base leading-relaxed">
+                <strong>Microsoft bietet drei Hauptlizenzmodelle:</strong> Microsoft 365 Copilot (30 USD/Monat für Office-Produktivität),
+                GitHub Copilot (10-39 USD/Monat für Entwickler) und Copilot Studio (ab 200 USD/Monat für eigene KI-Agenten).
+                Die richtige Wahl hängt von Ihrem Anwendungsfall ab: Business User benötigen Microsoft 365 Copilot,
+                Entwicklerteams GitHub Copilot Business, und für Custom AI-Lösungen ist Copilot Studio die beste Option.
+                Alle Lizenzen sind DSGVO-konform und nutzen Unternehmensdaten nicht für öffentliches KI-Training.
+              </p>
+              <div className="grid md:grid-cols-3 gap-4 mt-4">
+                <div className="p-3 bg-white dark:bg-gray-900 rounded-lg border">
+                  <div className="font-bold text-primary mb-1">M365 Copilot</div>
+                  <div className="text-sm text-muted-foreground">Office-Produktivität</div>
+                  <div className="text-lg font-semibold mt-2">30 USD/Monat</div>
+                </div>
+                <div className="p-3 bg-white dark:bg-gray-900 rounded-lg border">
+                  <div className="font-bold text-primary mb-1">GitHub Copilot</div>
+                  <div className="text-sm text-muted-foreground">Code-Entwicklung</div>
+                  <div className="text-lg font-semibold mt-2">10-39 USD/Monat</div>
+                </div>
+                <div className="p-3 bg-white dark:bg-gray-900 rounded-lg border">
+                  <div className="font-bold text-primary mb-1">Copilot Studio</div>
+                  <div className="text-sm text-muted-foreground">Custom AI-Agents</div>
+                  <div className="text-lg font-semibold mt-2">ab 200 USD/Monat</div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </section>
+
         <section id="overview">
           <h2>Überblick Microsoft Copilot Lizenzen</h2>
           <p>
@@ -536,6 +576,64 @@ const CopilotLicenses = () => {
               </Card>
             ))}
           </div>
+        </section>
+
+        {/* Author Bio für E-E-A-T */}
+        <section className="my-12">
+          <Card className="border-l-4 border-l-primary">
+            <CardContent className="pt-6">
+              <div className="flex flex-col md:flex-row gap-6">
+                <div className="flex-shrink-0">
+                  <img
+                    src={martinLang.image}
+                    alt={martinLang.name}
+                    className="w-32 h-32 rounded-full object-cover border-4 border-primary/20"
+                  />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-bold mb-2">Über den Autor</h3>
+                  <div className="text-lg font-semibold text-primary mb-1">{martinLang.name}</div>
+                  <div className="text-sm text-muted-foreground mb-3">{martinLang.role}</div>
+                  <p className="text-sm leading-relaxed mb-4">{martinLang.bio}</p>
+                  <div className="mb-3">
+                    <div className="text-sm font-semibold mb-2">Expertise:</div>
+                    <div className="flex flex-wrap gap-2">
+                      {martinLang.expertise.map((exp, idx) => (
+                        <span
+                          key={idx}
+                          className="px-3 py-1 bg-primary/10 text-primary rounded-full text-xs font-medium"
+                        >
+                          {exp}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="flex gap-3">
+                    {martinLang.linkedin && (
+                      <a
+                        href={martinLang.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-sm text-primary hover:underline"
+                      >
+                        <Linkedin className="w-4 h-4" />
+                        LinkedIn
+                      </a>
+                    )}
+                    {martinLang.email && (
+                      <a
+                        href={`mailto:${martinLang.email}`}
+                        className="inline-flex items-center gap-2 text-sm text-primary hover:underline"
+                      >
+                        <Mail className="w-4 h-4" />
+                        Kontakt
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </section>
 
         <div className="bg-gradient-to-r from-primary/10 to-accent/10 rounded-xl p-8 text-center my-12">
