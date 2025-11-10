@@ -46,7 +46,9 @@ interface GeneratedMetadata {
 const DraftEditor = ({ draft, onSave, onCancel, initialTab }: DraftEditorProps) => {
   const [editedDraft, setEditedDraft] = useState<Draft>(draft);
   const [activeTab, setActiveTab] = useState(initialTab || "content");
-  const [transcript, setTranscript] = useState<string>("");
+
+  // Load generator state from draft if exists
+  const [transcript, setTranscript] = useState<string>(draft.generatorState?.transcript || "");
   const transcriptTextareaRef = useRef<HTMLTextAreaElement>(null);
 
   // Content Generator State
@@ -64,6 +66,26 @@ const DraftEditor = ({ draft, onSave, onCancel, initialTab }: DraftEditorProps) 
       }, 100);
     }
   }, [activeTab]);
+
+  // Save generator state to draft
+  const saveGeneratorState = (updatedState: Partial<GeneratorState>) => {
+    const newState: GeneratorState = {
+      step: generatorStep,
+      transcript,
+      extractedTopics,
+      selectedTopic,
+      generatedContent,
+      reviewedContent,
+      finalCode: editedDraft.generatorState?.finalCode || '',
+      ...updatedState
+    };
+
+    setEditedDraft({
+      ...editedDraft,
+      generatorState: newState,
+      updatedAt: new Date().toISOString(),
+    });
+  };
 
   const handleChange = (field: keyof Draft, value: any) => {
     setEditedDraft({
@@ -388,6 +410,35 @@ const DraftEditor = ({ draft, onSave, onCancel, initialTab }: DraftEditorProps) 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-8 px-4">
       <div className="max-w-6xl mx-auto">
+        {/* Resume Prompt */}
+        {showResumePrompt && draft.generatorState && (
+          <Card className="mb-6 border-2 border-blue-400 bg-blue-50">
+            <CardContent className="pt-6">
+              <div className="flex items-start gap-4">
+                <Play className="w-8 h-8 text-blue-600 mt-1" />
+                <div className="flex-1">
+                  <h3 className="font-bold text-blue-900 mb-2 text-lg">
+                    Generator-Prozess fortsetzen?
+                  </h3>
+                  <p className="text-sm text-blue-800 mb-4">
+                    Es wurde ein unvollständiger Generator-Prozess gefunden (Schritt: {draft.generatorState.step}).
+                    Möchtest du dort weitermachen oder neu starten?
+                  </p>
+                  <div className="flex gap-3">
+                    <Button onClick={handleResumeGenerator} variant="default">
+                      <Play className="w-4 h-4 mr-2" />
+                      Fortsetzen
+                    </Button>
+                    <Button onClick={handleStartFresh} variant="outline">
+                      Neu starten
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
         {/* Header */}
         <div className="mb-6 flex items-center justify-between">
           <div className="flex items-center gap-4">
@@ -564,7 +615,7 @@ const DraftEditor = ({ draft, onSave, onCancel, initialTab }: DraftEditorProps) 
                     </div>
                     <span className="text-sm">Metadaten</span>
                   </div>
-                </div>
+                )}
 
                 {/* Step 1: Transcript Input */}
                 {generatorStep === 'transcript' && (

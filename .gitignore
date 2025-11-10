@@ -13,6 +13,9 @@ dist-ssr
 *.local
 
 # API & Security
+.env
+.env.local
+.env*.local
 .usage.json
 .openai-usage.json
 
