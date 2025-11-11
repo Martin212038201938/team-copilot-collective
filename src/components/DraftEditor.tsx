@@ -905,7 +905,7 @@ Erstelle jetzt die komplette TSX-Komponente. Der komplette Markdown-Content muss
                       }}
                     />
                   </div>
-                )}
+                </div>
 
                 {/* Step 1: Transcript Input */}
                 {generatorStep === 'transcript' && (
