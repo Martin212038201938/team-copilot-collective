@@ -73,6 +73,10 @@ const DraftEditor = ({ draft, onSave, onCancel, initialTab }: DraftEditorProps) 
   const [openAIKey, setOpenAIKey] = useState<string>(import.meta.env.VITE_OPENAI_API_KEY || "");
   const [showResumePrompt, setShowResumePrompt] = useState(false);
 
+  // Edit modes for manual control
+  const [isEditingFacts, setIsEditingFacts] = useState(false);
+  const [isEditingRefined, setIsEditingRefined] = useState(false);
+
   // Check if there's a saved generator state to resume
   useEffect(() => {
     if (draft.generatorState && draft.generatorState.step !== 'transcript' && !showResumePrompt) {
@@ -1395,17 +1399,30 @@ Das System analysiert automatisch die Kernthemen und erstellt passende Metadaten
                 {generatorStep === 'fact-extraction' && extractedFacts && (
                   <>
                     <div className="bg-gradient-to-r from-purple-50 to-blue-50 border border-purple-300 p-6 rounded-lg">
-                      <h5 className="font-semibold text-purple-900 mb-3 text-lg flex items-center gap-2">
-                        <CheckCircle className="w-6 h-6" />
-                        Facts erfolgreich extrahiert
-                      </h5>
-                      <p className="text-sm text-purple-800 mb-4">
-                        Diese konkreten Facts werden als Constraints für die Content-Generierung verwendet -
-                        kein generisches Blabla mehr!
-                      </p>
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <h5 className="font-semibold text-purple-900 mb-3 text-lg flex items-center gap-2">
+                            <CheckCircle className="w-6 h-6" />
+                            Facts erfolgreich extrahiert
+                          </h5>
+                          <p className="text-sm text-purple-800">
+                            Diese konkreten Facts werden als Constraints für die Content-Generierung verwendet -
+                            kein generisches Blabla mehr!
+                          </p>
+                        </div>
+                        <Button
+                          onClick={() => setIsEditingFacts(!isEditingFacts)}
+                          variant="outline"
+                          size="sm"
+                        >
+                          <Edit2 className="w-4 h-4 mr-2" />
+                          {isEditingFacts ? 'Ansicht' : 'Bearbeiten'}
+                        </Button>
+                      </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {!isEditingFacts ? (
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {/* Numbers */}
                       {extractedFacts.numbers.length > 0 && (
                         <Card>
@@ -1494,6 +1511,79 @@ Das System analysiert automatisch die Kernthemen und erstellt passende Metadaten
                         </Card>
                       )}
                     </div>
+                    ) : (
+                      /* Edit Mode */
+                      <Card>
+                        <CardHeader>
+                          <CardTitle>Facts bearbeiten</CardTitle>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                          <div>
+                            <Label className="text-sm font-semibold mb-2 block">📊 Zahlen & Statistiken</Label>
+                            <Textarea
+                              value={extractedFacts.numbers.join('\n')}
+                              onChange={(e) => {
+                                const updated = { ...extractedFacts, numbers: e.target.value.split('\n').filter(s => s.trim()) };
+                                setExtractedFacts(updated);
+                                saveGeneratorState({ extractedFacts: updated });
+                              }}
+                              rows={3}
+                              placeholder="Eine Zahl/Statistik pro Zeile"
+                              className="text-sm"
+                            />
+                          </div>
+
+                          <div>
+                            <Label className="text-sm font-semibold mb-2 block">🔧 Tools & Features</Label>
+                            <Textarea
+                              value={extractedFacts.tools.join('\n')}
+                              onChange={(e) => {
+                                const updated = { ...extractedFacts, tools: e.target.value.split('\n').filter(s => s.trim()) };
+                                setExtractedFacts(updated);
+                                saveGeneratorState({ extractedFacts: updated });
+                              }}
+                              rows={3}
+                              placeholder="Ein Tool/Feature pro Zeile"
+                              className="text-sm"
+                            />
+                          </div>
+
+                          <div>
+                            <Label className="text-sm font-semibold mb-2 block">💡 Praxisbeispiele</Label>
+                            <Textarea
+                              value={extractedFacts.examples.join('\n')}
+                              onChange={(e) => {
+                                const updated = { ...extractedFacts, examples: e.target.value.split('\n').filter(s => s.trim()) };
+                                setExtractedFacts(updated);
+                                saveGeneratorState({ extractedFacts: updated });
+                              }}
+                              rows={3}
+                              placeholder="Ein Beispiel pro Zeile"
+                              className="text-sm"
+                            />
+                          </div>
+
+                          <div>
+                            <Label className="text-sm font-semibold mb-2 block">💬 Wichtige Aussagen</Label>
+                            <Textarea
+                              value={extractedFacts.quotes.join('\n')}
+                              onChange={(e) => {
+                                const updated = { ...extractedFacts, quotes: e.target.value.split('\n').filter(s => s.trim()) };
+                                setExtractedFacts(updated);
+                                saveGeneratorState({ extractedFacts: updated });
+                              }}
+                              rows={3}
+                              placeholder="Ein Zitat pro Zeile"
+                              className="text-sm"
+                            />
+                          </div>
+
+                          <div className="bg-blue-50 border border-blue-200 p-3 rounded text-xs text-blue-800">
+                            💡 Tipp: Änderungen werden automatisch gespeichert. Diese Facts werden als Constraints für die Content-Generierung verwendet.
+                          </div>
+                        </CardContent>
+                      </Card>
+                    )}
 
                     <div className="flex justify-end pt-4">
                       <Button
@@ -1518,7 +1608,7 @@ Das System analysiert automatisch die Kernthemen und erstellt passende Metadaten
                         Automatisch generierte Metadaten
                       </h5>
                       <p className="text-sm text-green-800 mb-4">
-                        Überprüfe die automatisch generierten Metadaten. Du kannst sie später im Tab "Metadaten" anpassen.
+                        Überprüfe und bearbeite die automatisch generierten Metadaten direkt hier.
                       </p>
                     </div>
 
@@ -1526,45 +1616,85 @@ Das System analysiert automatisch die Kernthemen und erstellt passende Metadaten
                       <CardContent className="pt-6 space-y-4">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           <div>
-                            <Label className="text-xs text-gray-500">Titel</Label>
-                            <div className="font-semibold text-lg">{generatedMetadata.title}</div>
+                            <Label className="text-sm font-semibold mb-2 block">Titel</Label>
+                            <Input
+                              value={generatedMetadata.title}
+                              onChange={(e) => setGeneratedMetadata({ ...generatedMetadata, title: e.target.value })}
+                              className="text-sm"
+                            />
                           </div>
                           <div>
-                            <Label className="text-xs text-gray-500">Slug (URL)</Label>
-                            <div className="font-mono text-sm text-blue-600">/wissen/{generatedMetadata.slug}</div>
+                            <Label className="text-sm font-semibold mb-2 block">Slug (URL)</Label>
+                            <div className="flex items-center gap-2">
+                              <span className="text-xs text-gray-500">/wissen/</span>
+                              <Input
+                                value={generatedMetadata.slug}
+                                onChange={(e) => setGeneratedMetadata({ ...generatedMetadata, slug: e.target.value })}
+                                className="text-sm flex-1"
+                              />
+                            </div>
                           </div>
                           <div>
-                            <Label className="text-xs text-gray-500">Kategorie</Label>
-                            <Badge variant="outline">{generatedMetadata.category}</Badge>
+                            <Label className="text-sm font-semibold mb-2 block">Kategorie</Label>
+                            <Input
+                              value={generatedMetadata.category}
+                              onChange={(e) => setGeneratedMetadata({ ...generatedMetadata, category: e.target.value })}
+                              className="text-sm"
+                            />
                           </div>
                           <div>
-                            <Label className="text-xs text-gray-500">Icon</Label>
-                            <div className="text-2xl">{generatedMetadata.icon}</div>
+                            <Label className="text-sm font-semibold mb-2 block">Icon</Label>
+                            <Input
+                              value={generatedMetadata.icon}
+                              onChange={(e) => setGeneratedMetadata({ ...generatedMetadata, icon: e.target.value })}
+                              className="text-2xl"
+                              maxLength={2}
+                            />
                           </div>
                           <div>
-                            <Label className="text-xs text-gray-500">Lesezeit</Label>
-                            <div className="text-sm">{generatedMetadata.readTime}</div>
+                            <Label className="text-sm font-semibold mb-2 block">Lesezeit</Label>
+                            <Input
+                              value={generatedMetadata.readTime}
+                              onChange={(e) => setGeneratedMetadata({ ...generatedMetadata, readTime: e.target.value })}
+                              className="text-sm"
+                            />
                           </div>
                           <div>
-                            <Label className="text-xs text-gray-500">Autor</Label>
-                            <div className="text-sm">Martin Lang</div>
+                            <Label className="text-sm font-semibold mb-2 block">Autor</Label>
+                            <Input
+                              value="Martin Lang"
+                              disabled
+                              className="text-sm bg-gray-50"
+                            />
                           </div>
                         </div>
 
                         <div>
-                          <Label className="text-xs text-gray-500">Beschreibung</Label>
-                          <p className="text-sm mt-1">{generatedMetadata.description}</p>
+                          <Label className="text-sm font-semibold mb-2 block">Beschreibung</Label>
+                          <Textarea
+                            value={generatedMetadata.description}
+                            onChange={(e) => setGeneratedMetadata({ ...generatedMetadata, description: e.target.value })}
+                            rows={3}
+                            className="text-sm"
+                          />
                         </div>
 
                         <div>
-                          <Label className="text-xs text-gray-500 mb-2 block">SEO Keywords ({generatedMetadata.keywords.length})</Label>
-                          <div className="flex flex-wrap gap-2">
-                            {generatedMetadata.keywords.map((keyword, idx) => (
-                              <Badge key={idx} variant="secondary" className="text-xs">
-                                {keyword}
-                              </Badge>
-                            ))}
-                          </div>
+                          <Label className="text-sm font-semibold mb-2 block">SEO Keywords (kommagetrennt)</Label>
+                          <Textarea
+                            value={generatedMetadata.keywords.join(', ')}
+                            onChange={(e) => setGeneratedMetadata({
+                              ...generatedMetadata,
+                              keywords: e.target.value.split(',').map(k => k.trim()).filter(k => k)
+                            })}
+                            rows={2}
+                            className="text-sm"
+                            placeholder="Keyword 1, Keyword 2, Keyword 3"
+                          />
+                        </div>
+
+                        <div className="bg-blue-50 border border-blue-200 p-3 rounded text-xs text-blue-800">
+                          💡 Tipp: Änderungen werden beim Fortfahren übernommen. Du kannst alles anpassen!
                         </div>
                       </CardContent>
                     </Card>
@@ -1762,12 +1892,43 @@ Das System analysiert automatisch die Kernthemen und erstellt passende Metadaten
                         </div>
 
                         {refinedContent && (
-                          <div className="bg-blue-50 border border-blue-200 p-4 rounded-lg">
-                            <h6 className="font-semibold text-blue-900 mb-2 text-sm">✅ Verfeinerung abgeschlossen!</h6>
-                            <p className="text-xs text-blue-800">
-                              Content wurde erfolgreich verfeinert. Weiter zur AI-Visibility Analyse.
-                            </p>
-                          </div>
+                          <>
+                            <div className="bg-blue-50 border border-blue-200 p-4 rounded-lg">
+                              <div className="flex items-center justify-between mb-2">
+                                <h6 className="font-semibold text-blue-900 text-sm">✅ Verfeinerung abgeschlossen!</h6>
+                                <Button
+                                  onClick={() => setIsEditingRefined(!isEditingRefined)}
+                                  variant="outline"
+                                  size="sm"
+                                >
+                                  <Edit2 className="w-4 h-4 mr-2" />
+                                  {isEditingRefined ? 'Speichern' : 'Bearbeiten'}
+                                </Button>
+                              </div>
+                              <p className="text-xs text-blue-800">
+                                Content wurde erfolgreich verfeinert. Du kannst ihn noch anpassen oder zur AI-Visibility Analyse weitergehen.
+                              </p>
+                            </div>
+
+                            {isEditingRefined && (
+                              <div>
+                                <Label className="text-sm font-semibold mb-2 block">Verfeinerter Content (Markdown)</Label>
+                                <Textarea
+                                  value={refinedContent}
+                                  onChange={(e) => {
+                                    setRefinedContent(e.target.value);
+                                    saveGeneratorState({ refinedContent: e.target.value });
+                                  }}
+                                  rows={15}
+                                  className="text-sm font-mono"
+                                  placeholder="Verfeinerter Content..."
+                                />
+                                <p className="text-xs text-gray-600 mt-1">
+                                  Änderungen werden automatisch gespeichert.
+                                </p>
+                              </div>
+                            )}
+                          </>
                         )}
 
                         <div className="flex justify-between items-center pt-2">
