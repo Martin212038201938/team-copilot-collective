@@ -33,128 +33,174 @@ const KnowledgePagePreview = ({
   const author = getAuthor(authorId);
 
   if (!author) {
-    return <div>Author not found</div>;
+    return (
+      <div className="p-8 text-center">
+        <p className="text-red-600">Autor nicht gefunden: {authorId}</p>
+      </div>
+    );
   }
 
   // Parse markdown and extract sections
   const { quickAnswer, tableOfContents, faqItems, contentHtml } = useMemo(() => {
-    // Configure marked
-    marked.setOptions({
-      breaks: true,
-      gfm: true,
-      headerIds: true,
-    });
-
-    // Split content by sections
-    const lines = markdownContent.split('\n');
-    let quickAnswerContent = '';
-    let faqSection = '';
-    let mainContent = '';
-    let inQuickAnswer = false;
-    let inFaq = false;
-
-    for (let i = 0; i < lines.length; i++) {
-      const line = lines[i];
-
-      // Detect Quick Answer section
-      if (line.match(/^##\s*🎯\s*Quick Answer/i)) {
-        inQuickAnswer = true;
-        inFaq = false;
-        continue;
+    try {
+      // Safety check
+      if (!markdownContent || typeof markdownContent !== 'string') {
+        return {
+          quickAnswer: '',
+          tableOfContents: [],
+          faqItems: [],
+          contentHtml: '<p>Kein Inhalt vorhanden</p>'
+        };
       }
 
-      // Detect FAQ section
-      if (line.match(/^##\s*❓\s*(Häufig gestellte Fragen|FAQ)/i)) {
-        inFaq = true;
-        inQuickAnswer = false;
-        continue;
-      }
+      // Configure marked
+      marked.setOptions({
+        breaks: true,
+        gfm: true,
+        headerIds: true,
+      });
 
-      // Detect new H2 section (end of Quick Answer or FAQ)
-      if (line.match(/^##\s+[^🎯❓]/)) {
-        inQuickAnswer = false;
-        if (!line.match(/^##\s*❓/)) {
+      // Split content by sections
+      const lines = markdownContent.split('\n');
+      let quickAnswerContent = '';
+      let faqSection = '';
+      let mainContent = '';
+      let inQuickAnswer = false;
+      let inFaq = false;
+
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+
+        // Detect Quick Answer section
+        if (line.match(/^##\s*🎯\s*Quick Answer/i)) {
+          inQuickAnswer = true;
           inFaq = false;
+          continue;
+        }
+
+        // Detect FAQ section
+        if (line.match(/^##\s*❓\s*(Häufig gestellte Fragen|FAQ)/i)) {
+          inFaq = true;
+          inQuickAnswer = false;
+          continue;
+        }
+
+        // Detect new H2 section (end of Quick Answer or FAQ)
+        if (line.match(/^##\s+[^🎯❓]/)) {
+          inQuickAnswer = false;
+          if (!line.match(/^##\s*❓/)) {
+            inFaq = false;
+          }
+        }
+
+        if (inQuickAnswer) {
+          quickAnswerContent += line + '\n';
+        } else if (inFaq) {
+          faqSection += line + '\n';
+        } else {
+          mainContent += line + '\n';
         }
       }
 
-      if (inQuickAnswer) {
-        quickAnswerContent += line + '\n';
-      } else if (inFaq) {
-        faqSection += line + '\n';
-      } else {
-        mainContent += line + '\n';
+      // Extract FAQ items
+      const faqItems: Array<{ question: string; answer: string }> = [];
+      if (faqSection) {
+        const faqMatches = faqSection.match(/###\s*(.+?)\n([\s\S]*?)(?=###|$)/g);
+        if (faqMatches) {
+          faqMatches.forEach(match => {
+            const questionMatch = match.match(/###\s*(.+?)$/m);
+            const answerMatch = match.replace(/###\s*.+?\n/, '').trim();
+            if (questionMatch && answerMatch) {
+              faqItems.push({
+                question: questionMatch[1].trim(),
+                answer: answerMatch
+              });
+            }
+          });
+        }
       }
-    }
 
-    // Extract FAQ items
-    const faqItems: Array<{ question: string; answer: string }> = [];
-    if (faqSection) {
-      const faqMatches = faqSection.match(/###\s*(.+?)\n([\s\S]*?)(?=###|$)/g);
-      if (faqMatches) {
-        faqMatches.forEach(match => {
-          const questionMatch = match.match(/###\s*(.+?)$/m);
-          const answerMatch = match.replace(/###\s*.+?\n/, '').trim();
-          if (questionMatch && answerMatch) {
-            faqItems.push({
-              question: questionMatch[1].trim(),
-              answer: answerMatch
-            });
-          }
+      // Extract table of contents from H2 headers
+      const tocItems: Array<{ id: string; title: string; level: number }> = [];
+      const h2Regex = /^##\s+(.+?)$/gm;
+      let match;
+
+      while ((match = h2Regex.exec(mainContent)) !== null) {
+        const headerText = match[1].replace(/[🎯❓💡]/g, '').trim();
+        const id = headerText
+          .toLowerCase()
+          .replace(/ä/g, 'ae')
+          .replace(/ö/g, 'oe')
+          .replace(/ü/g, 'ue')
+          .replace(/ß/g, 'ss')
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/(^-|-$)/g, '');
+
+        tocItems.push({
+          id,
+          title: headerText,
+          level: 2
         });
       }
+
+      // Convert markdown to HTML with error handling
+      let mainContentHtml = '';
+      let quickAnswerHtml = '';
+
+      try {
+        mainContentHtml = DOMPurify.sanitize(marked(mainContent) as string);
+      } catch (err) {
+        console.error('Error parsing main content:', err);
+        mainContentHtml = '<p>Fehler beim Parsen des Inhalts</p>';
+      }
+
+      try {
+        quickAnswerHtml = quickAnswerContent ? DOMPurify.sanitize(marked(quickAnswerContent) as string) : '';
+      } catch (err) {
+        console.error('Error parsing quick answer:', err);
+        quickAnswerHtml = '';
+      }
+
+      return {
+        quickAnswer: quickAnswerHtml,
+        tableOfContents: tocItems,
+        faqItems,
+        contentHtml: mainContentHtml
+      };
+    } catch (error) {
+      console.error('Error in markdown parsing:', error);
+      return {
+        quickAnswer: '',
+        tableOfContents: [],
+        faqItems: [],
+        contentHtml: '<p>Fehler beim Verarbeiten des Inhalts</p>'
+      };
     }
-
-    // Extract table of contents from H2 headers
-    const tocItems: Array<{ id: string; title: string; level: number }> = [];
-    const h2Regex = /^##\s+(.+?)$/gm;
-    let match;
-
-    while ((match = h2Regex.exec(mainContent)) !== null) {
-      const headerText = match[1].replace(/[🎯❓💡]/g, '').trim();
-      const id = headerText
-        .toLowerCase()
-        .replace(/ä/g, 'ae')
-        .replace(/ö/g, 'oe')
-        .replace(/ü/g, 'ue')
-        .replace(/ß/g, 'ss')
-        .replace(/[^a-z0-9]+/g, '-')
-        .replace(/(^-|-$)/g, '');
-
-      tocItems.push({
-        id,
-        title: headerText,
-        level: 2
-      });
-    }
-
-    // Convert markdown to HTML
-    const mainContentHtml = DOMPurify.sanitize(marked(mainContent) as string);
-    const quickAnswerHtml = quickAnswerContent ? DOMPurify.sanitize(marked(quickAnswerContent) as string) : '';
-
-    return {
-      quickAnswer: quickAnswerHtml,
-      tableOfContents: tocItems,
-      faqItems,
-      contentHtml: mainContentHtml
-    };
   }, [markdownContent]);
 
-  // Format date
+  // Format date with error handling
   const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return new Intl.DateTimeFormat('de-DE', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    }).format(date);
+    try {
+      const date = new Date(dateString);
+      if (isNaN(date.getTime())) {
+        return 'Ungültiges Datum';
+      }
+      return new Intl.DateTimeFormat('de-DE', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      }).format(date);
+    } catch (err) {
+      console.error('Error formatting date:', err);
+      return 'Datum nicht verfügbar';
+    }
   };
 
-  const canonicalUrl = `https://copilotenschule.de/wissen/${slug}`;
+  const canonicalUrl = `https://copilotenschule.de/wissen/${slug || 'article'}`;
   const breadcrumbs = [
     { label: 'Home', href: '/' },
     { label: 'Wissen', href: '/wissen' },
-    { label: title, href: `/wissen/${slug}` }
+    { label: title || 'Artikel', href: `/wissen/${slug || 'article'}` }
   ];
 
   return (

@@ -1692,17 +1692,38 @@ Das System analysiert automatisch die Kernthemen und erstellt passende Metadaten
                 <Card>
                   <CardContent className="p-0">
                     <div className="border rounded-lg overflow-hidden">
-                      <KnowledgePagePreview
-                        title={editedDraft.title}
-                        description={editedDraft.description}
-                        slug={editedDraft.slug}
-                        keywords={editedDraft.keywords}
-                        category={editedDraft.category}
-                        readTime={editedDraft.readTime}
-                        publishDate={editedDraft.publishDate}
-                        authorId={editedDraft.author}
-                        markdownContent={editedDraft.generatorState?.reviewedContent || editedDraft.content}
-                      />
+                      {(() => {
+                        try {
+                          const content = editedDraft.generatorState?.reviewedContent || editedDraft.content || '';
+
+                          return (
+                            <KnowledgePagePreview
+                              title={editedDraft.title || 'Artikel'}
+                              description={editedDraft.description || ''}
+                              slug={editedDraft.slug || 'artikel'}
+                              keywords={editedDraft.keywords || []}
+                              category={editedDraft.category || ''}
+                              readTime={editedDraft.readTime || '5 Min.'}
+                              publishDate={editedDraft.publishDate || new Date().toISOString()}
+                              authorId={editedDraft.author || 'martin-lang'}
+                              markdownContent={content}
+                            />
+                          );
+                        } catch (error) {
+                          console.error('Error rendering preview:', error);
+                          return (
+                            <div className="p-8 text-center">
+                              <p className="text-red-600 font-semibold mb-2">Fehler beim Laden der Vorschau</p>
+                              <p className="text-sm text-gray-600">
+                                Bitte versuche die Seite neu zu laden oder kontaktiere den Support.
+                              </p>
+                              <pre className="mt-4 text-xs text-left bg-gray-100 p-4 rounded overflow-auto max-h-40">
+                                {error instanceof Error ? error.message : 'Unbekannter Fehler'}
+                              </pre>
+                            </div>
+                          );
+                        }
+                      })()}
                     </div>
                   </CardContent>
                 </Card>
