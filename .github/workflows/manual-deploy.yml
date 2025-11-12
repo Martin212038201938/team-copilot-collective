@@ -38,8 +38,8 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps
-          local-dir: dist/
-          server-dir: ./
+          local-dir: ./dist/
+          server-dir: /home/y-b/www/copilotenschule.de/
           dangerous-clean-slate: true
 
       - name: Deployment Summary
