@@ -10,10 +10,16 @@ interface AdminAuthProps {
   children: React.ReactNode;
 }
 
-const ADMIN_CREDENTIALS = {
-  username: "Martin",
-  password: "Hoschi88!"
-};
+const ADMIN_USERS = [
+  {
+    username: "Martin",
+    password: "Hoschi88!"
+  },
+  {
+    username: "dams.telefon@gmail.com",
+    password: "hoschi88"
+  }
+];
 
 const AdminAuth = ({ children }: AdminAuthProps) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -34,7 +40,11 @@ const AdminAuth = ({ children }: AdminAuthProps) => {
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (username === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
+    const user = ADMIN_USERS.find(
+      (u) => u.username === username && u.password === password
+    );
+
+    if (user) {
       localStorage.setItem("admin_auth", "authenticated");
       setIsAuthenticated(true);
       toast({
