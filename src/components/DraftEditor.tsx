@@ -1149,13 +1149,16 @@ Erstelle jetzt die komplette TSX-Komponente mit internen Links. Der komplette Ma
                   <div className="flex items-center justify-between text-xs mb-2">
                     <span className="font-semibold text-gray-600">Fortschritt:</span>
                     <span className="text-gray-500">
-                      {generatorStep === 'transcript' && '1/7 - Transkript eingeben'}
-                      {generatorStep === 'topics' && '2/7 - Kernthemen extrahieren'}
-                      {generatorStep === 'focus' && '3/7 - Fokus wählen'}
-                      {generatorStep === 'metadata' && '4/7 - Metadaten'}
-                      {generatorStep === 'content-generation' && '5/7 - Content generieren'}
-                      {generatorStep === 'content-review' && '6/7 - Content überarbeiten'}
-                      {generatorStep === 'page-design' && '7/7 - Seite erstellen'}
+                      {generatorStep === 'transcript' && '1/10 - Transkript eingeben'}
+                      {generatorStep === 'topics' && '2/10 - Kernthemen extrahieren'}
+                      {generatorStep === 'focus' && '3/10 - Fokus wählen'}
+                      {generatorStep === 'fact-extraction' && '4/10 - Facts extrahieren'}
+                      {generatorStep === 'metadata' && '5/10 - Metadaten'}
+                      {generatorStep === 'content-generation' && '6/10 - Content generieren'}
+                      {generatorStep === 'content-review' && '7/10 - Content überarbeiten'}
+                      {generatorStep === 'content-refinement' && '8/10 - Content verfeinern'}
+                      {generatorStep === 'visibility-score' && '9/10 - AI-Visibility prüfen'}
+                      {generatorStep === 'page-design' && '10/10 - Seite erstellen'}
                       {generatorStep === 'completed' && '✅ Abgeschlossen'}
                     </span>
                   </div>
@@ -1164,12 +1167,15 @@ Erstelle jetzt die komplette TSX-Komponente mit internen Links. Der komplette Ma
                       className="bg-gradient-to-r from-blue-600 to-purple-600 h-2 rounded-full transition-all duration-500"
                       style={{
                         width:
-                          generatorStep === 'transcript' ? '14%' :
-                          generatorStep === 'topics' ? '28%' :
-                          generatorStep === 'focus' ? '42%' :
-                          generatorStep === 'metadata' ? '57%' :
-                          generatorStep === 'content-generation' ? '71%' :
-                          generatorStep === 'content-review' ? '85%' :
+                          generatorStep === 'transcript' ? '10%' :
+                          generatorStep === 'topics' ? '20%' :
+                          generatorStep === 'focus' ? '30%' :
+                          generatorStep === 'fact-extraction' ? '40%' :
+                          generatorStep === 'metadata' ? '50%' :
+                          generatorStep === 'content-generation' ? '60%' :
+                          generatorStep === 'content-review' ? '70%' :
+                          generatorStep === 'content-refinement' ? '80%' :
+                          generatorStep === 'visibility-score' ? '90%' :
                           generatorStep === 'page-design' ? '95%' :
                           '100%'
                       }}
@@ -1312,8 +1318,8 @@ Das System analysiert automatisch die Kernthemen und erstellt passende Metadaten
                         Fokus-Thema ausgewählt
                       </h5>
                       <p className="text-sm text-green-800 mb-4">
-                        Du hast dein Haupt-Thema gewählt. Im nächsten Schritt generieren wir automatisch
-                        alle relevanten Metadaten, SEO-Keywords und strukturieren die Seite.
+                        Du hast dein Haupt-Thema gewählt. Im nächsten Schritt extrahieren wir konkrete Facts
+                        aus dem Transkript, damit dein Content authentisch und faktisch bleibt.
                       </p>
                     </div>
 
@@ -1357,15 +1363,12 @@ Das System analysiert automatisch die Kernthemen und erstellt passende Metadaten
                         </div>
 
                         <div className="bg-blue-50 border border-blue-200 p-4 rounded-lg">
-                          <h6 className="font-semibold text-blue-900 mb-2 text-sm">🎯 Was wird generiert?</h6>
+                          <h6 className="font-semibold text-blue-900 mb-2 text-sm">🎯 Was wird extrahiert?</h6>
                           <ul className="text-xs text-blue-800 space-y-1 list-disc list-inside">
-                            <li>SEO-optimierter Titel</li>
-                            <li>Meta-Beschreibung</li>
-                            <li>URL-Slug (sprechende URL)</li>
-                            <li>Kategorie-Zuordnung</li>
-                            <li>Erweiterte Keyword-Liste</li>
-                            <li>Passendes Icon/Emoji</li>
-                            <li>Geschätzte Lesezeit</li>
+                            <li>Konkrete Zahlen (ROI, Kosten, Zeiten)</li>
+                            <li>Spezifische Tools & Features</li>
+                            <li>Praxisbeispiele & Use Cases</li>
+                            <li>Wichtige Zitate für Authority</li>
                           </ul>
                         </div>
 
@@ -1374,13 +1377,13 @@ Das System analysiert automatisch die Kernthemen und erstellt passende Metadaten
                             ← Anderes Thema wählen
                           </Button>
                           <Button
-                            onClick={handleGenerateMetadata}
+                            onClick={handleExtractFacts}
                             size="lg"
                             disabled={isGenerating}
                             className="bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700"
                           >
-                            <Sparkles className="w-5 h-5 mr-2" />
-                            {isGenerating ? 'Generiere Metadaten...' : 'Metadaten generieren →'}
+                            <Target className="w-5 h-5 mr-2" />
+                            {isGenerating ? 'Extrahiere Facts...' : 'Facts extrahieren →'}
                           </Button>
                         </div>
                       </CardContent>
