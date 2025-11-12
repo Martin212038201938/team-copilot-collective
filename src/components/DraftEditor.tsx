@@ -1672,8 +1672,43 @@ Das System analysiert automatisch die Kernthemen und erstellt passende Metadaten
 
           {/* Preview Tab */}
           <TabsContent value="preview">
-            <div className="space-y-4">
-              {/* Preview Notice */}
+            {/* Show full page preview if we have content */}
+            {(editedDraft.generatorState?.reviewedContent || editedDraft.content) && editedDraft.title ? (
+              <div className="space-y-4">
+                <Card className="bg-blue-50 border-blue-200">
+                  <CardContent className="pt-4">
+                    <div className="flex items-start gap-3">
+                      <Eye className="w-5 h-5 text-blue-600 mt-0.5" />
+                      <div>
+                        <p className="text-sm text-blue-900 font-semibold mb-1">Live-Vorschau der finalen Seite</p>
+                        <p className="text-xs text-blue-800">
+                          So wird die Seite später für Besucher aussehen - mit Header, Navigation, Table of Contents und allen Styles.
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardContent className="p-0">
+                    <div className="border rounded-lg overflow-hidden">
+                      <KnowledgePagePreview
+                        title={editedDraft.title}
+                        description={editedDraft.description}
+                        slug={editedDraft.slug}
+                        keywords={editedDraft.keywords}
+                        category={editedDraft.category}
+                        readTime={editedDraft.readTime}
+                        publishDate={editedDraft.publishDate}
+                        authorId={editedDraft.author}
+                        markdownContent={editedDraft.generatorState?.reviewedContent || editedDraft.content}
+                      />
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            ) : (
+              <div className="space-y-4">
               <Card className="bg-blue-50 border-blue-200">
                 <CardContent className="pt-4">
                   <div className="flex items-start gap-3">
@@ -1791,21 +1826,8 @@ Das System analysiert automatisch die Kernthemen und erstellt passende Metadaten
                   )}
                 </CardContent>
               </Card>
-
-              {/* URL Preview */}
-              {editedDraft.slug && (
-                <Card className="bg-green-50 border-green-200">
-                  <CardContent className="pt-4">
-                    <div className="flex items-center gap-2">
-                      <span className="text-sm font-semibold text-green-900">Veröffentlicht unter:</span>
-                      <code className="text-sm text-green-700 bg-green-100 px-2 py-1 rounded">
-                        /wissen/{editedDraft.slug}
-                      </code>
-                    </div>
-                  </CardContent>
-                </Card>
-              )}
             </div>
+            )}
           </TabsContent>
         </Tabs>
       </div>
