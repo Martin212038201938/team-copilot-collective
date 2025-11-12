@@ -36,6 +36,7 @@ jobs:
         with:
           server: ftp-y-b.alwaysdata.net
           username: y-b_copilotenschule
+                    protocol: ftps
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./dist/
           server-dir: /home/y-b/www/copilotenschule.de/
