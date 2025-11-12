@@ -31,21 +31,16 @@ jobs:
       - name: Build production bundle
         run: npm run build
 
-      - name: Deploy to Alwaysdata via SSH/rsync
-        uses: easingthemes/ssh-deploy@main
+      - name: Deploy to Alwaysdata via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          REMOTE_HOST: ${{ secrets.SSH_HOST }}
-          REMOTE_USER: ${{ secrets.SSH_USERNAME }}
-          SOURCE: "dist/"
-          TARGET: "/home/y-b/www/copilotenschule.de/"
-          EXCLUDE: "/dist/, **/.git*, /**/node_modules/***"
-          SCRIPT_BEFORE: |
-            whoami
-            ls -la
-          SCRIPT_AFTER: |
-            echo "Deployment completed successfully"
-            ls -la /home/y-b/www/copilotenschule.de/
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          local-dir: dist/
+          server-dir: ./
+          dangerous-clean-slate: true
 
       - name: Deployment Summary
         run: |
