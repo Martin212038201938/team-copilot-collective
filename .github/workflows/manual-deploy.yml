@@ -29,9 +29,10 @@ jobs:
         run: npm ci
 
       - name: Build production bundle
-        run: npm run build
-      env:
-        VITE_OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+                run: npm run build
+                env:
+                  VITE_OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+
 
       - name: Deploy to Alwaysdata via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
