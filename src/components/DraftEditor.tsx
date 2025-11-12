@@ -15,8 +15,7 @@ import {
 import { ArrowLeft, Save, Eye, Upload, Code, Sparkles, CheckCircle, Play, Edit2 } from "lucide-react";
 import { Draft, ExtractedTopic, GeneratorState } from "@/types/draft";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { marked } from 'marked';
-import DOMPurify from 'dompurify';
+import KnowledgePagePreview from "@/components/KnowledgePagePreview";
 
 interface DraftEditorProps {
   draft: Draft;
@@ -730,25 +729,6 @@ Erstelle jetzt die komplette TSX-Komponente. Der komplette Markdown-Content muss
     setActiveTab('content-generator');
   };
 
-  const renderMarkdownPreview = (markdownContent: string) => {
-    // Configure marked for better rendering
-    marked.setOptions({
-      breaks: true,
-      gfm: true,
-    });
-
-    // Convert markdown to HTML
-    const rawHtml = marked(markdownContent) as string;
-
-    // Sanitize HTML to prevent XSS
-    const cleanHtml = DOMPurify.sanitize(rawHtml);
-
-    return (
-      <div className="prose prose-lg max-w-none dark:prose-invert">
-        <div dangerouslySetInnerHTML={{ __html: cleanHtml }} />
-      </div>
-    );
-  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-8 px-4">
@@ -1672,8 +1652,43 @@ Das System analysiert automatisch die Kernthemen und erstellt passende Metadaten
 
           {/* Preview Tab */}
           <TabsContent value="preview">
-            <div className="space-y-4">
-              {/* Preview Notice */}
+            {/* Show full page preview if we have content */}
+            {(editedDraft.generatorState?.reviewedContent || editedDraft.content) && editedDraft.title ? (
+              <div className="space-y-4">
+                <Card className="bg-blue-50 border-blue-200">
+                  <CardContent className="pt-4">
+                    <div className="flex items-start gap-3">
+                      <Eye className="w-5 h-5 text-blue-600 mt-0.5" />
+                      <div>
+                        <p className="text-sm text-blue-900 font-semibold mb-1">Live-Vorschau der finalen Seite</p>
+                        <p className="text-xs text-blue-800">
+                          So wird die Seite später für Besucher aussehen - mit Header, Navigation, Table of Contents und allen Styles.
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardContent className="p-0">
+                    <div className="border rounded-lg overflow-hidden">
+                      <KnowledgePagePreview
+                        title={editedDraft.title}
+                        description={editedDraft.description}
+                        slug={editedDraft.slug}
+                        keywords={editedDraft.keywords}
+                        category={editedDraft.category}
+                        readTime={editedDraft.readTime}
+                        publishDate={editedDraft.publishDate}
+                        authorId={editedDraft.author}
+                        markdownContent={editedDraft.generatorState?.reviewedContent || editedDraft.content}
+                      />
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            ) : (
+              <div className="space-y-4">
               <Card className="bg-blue-50 border-blue-200">
                 <CardContent className="pt-4">
                   <div className="flex items-start gap-3">
@@ -1681,131 +1696,23 @@ Das System analysiert automatisch die Kernthemen und erstellt passende Metadaten
                     <div>
                       <p className="text-sm text-blue-900 font-semibold mb-1">Vorschau-Modus</p>
                       <p className="text-xs text-blue-800">
-                        {editedDraft.generatorState?.reviewedContent
-                          ? 'Dies ist eine Vorschau deines bearbeiteten Markdown-Inhalts. Die finale Seite verwendet das KnowledgePageTemplate mit zusätzlichen Funktionen.'
-                          : editedDraft.contentType === 'code'
-                          ? 'Dies ist eine Code-Vorschau. Die tatsächliche Darstellung kann je nach verwendeten Komponenten variieren.'
-                          : 'Dies ist eine Vorschau deines Markdown-Inhalts. Die tatsächliche Darstellung verwendet das KnowledgePageTemplate.'
-                        }
+                        Erstelle zuerst Inhalt im Content Generator oder füge Markdown-Inhalt hinzu, um eine Vorschau zu sehen.
                       </p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              {/* Metadata Preview */}
-              <Card className="border-l-4 border-l-blue-500">
-                <CardHeader>
-                  <div className="flex items-start justify-between">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-2">
-                        <span className="text-3xl">{editedDraft.icon || '📝'}</span>
-                        <CardTitle className="text-3xl">{editedDraft.title || 'Titel fehlt'}</CardTitle>
-                      </div>
-                      <p className="text-lg text-gray-600">{editedDraft.description || 'Beschreibung fehlt'}</p>
-                      <div className="flex flex-wrap gap-3 mt-3 text-sm text-gray-500">
-                        <span>📅 {new Date(editedDraft.publishDate).toLocaleDateString('de-DE')}</span>
-                        <span>⏱️ {editedDraft.readTime || 'Keine Angabe'}</span>
-                        {editedDraft.category && <Badge variant="outline">{editedDraft.category}</Badge>}
-                        <Badge variant="secondary">{editedDraft.status}</Badge>
-                      </div>
-                      {editedDraft.keywords.length > 0 && (
-                        <div className="mt-3">
-                          <div className="text-xs text-gray-500 mb-2">SEO Keywords:</div>
-                          <div className="flex flex-wrap gap-2">
-                            {editedDraft.keywords.slice(0, 8).map((keyword, idx) => (
-                              <Badge key={idx} variant="outline" className="text-xs">
-                                {keyword}
-                              </Badge>
-                            ))}
-                            {editedDraft.keywords.length > 8 && (
-                              <Badge variant="outline" className="text-xs">
-                                +{editedDraft.keywords.length - 8} weitere
-                              </Badge>
-                            )}
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </CardHeader>
-              </Card>
-
-              {/* Content Preview */}
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    {editedDraft.generatorState?.reviewedContent ? (
-                      <>
-                        <Eye className="w-5 h-5" />
-                        Artikel-Vorschau (Markdown)
-                      </>
-                    ) : editedDraft.contentType === 'code' ? (
-                      <>
-                        <Code className="w-5 h-5" />
-                        Code-Vorschau
-                      </>
-                    ) : (
-                      <>
-                        📄 Inhalt-Vorschau
-                      </>
-                    )}
-                  </CardTitle>
-                </CardHeader>
+              <Card className="text-center py-12">
                 <CardContent>
-                  {editedDraft.generatorState?.reviewedContent ? (
-                    // Show the reviewed markdown content from generator
-                    <div className="space-y-4">
-                      <div className="bg-green-50 border border-green-200 p-3 rounded-lg">
-                        <p className="text-xs text-green-800">
-                          <strong>✨ Content Generator:</strong> Dies ist dein bearbeiteter Artikel-Content. Die finale TSX-Komponente wurde bereits generiert und ist einsatzbereit.
-                        </p>
-                      </div>
-                      {renderMarkdownPreview(editedDraft.generatorState.reviewedContent)}
-                    </div>
-                  ) : editedDraft.content ? (
-                    <>
-                      {editedDraft.contentType === 'code' ? (
-                        <div className="space-y-4">
-                          <div className="bg-amber-50 border border-amber-200 p-3 rounded-lg">
-                            <p className="text-xs text-amber-800">
-                              <strong>Hinweis:</strong> Der hochgeladene Code wird beim Veröffentlichen direkt als React-Komponente verwendet.
-                              {editedDraft.codeFileName && <span className="ml-2">Datei: <code className="font-mono">{editedDraft.codeFileName}</code></span>}
-                            </p>
-                          </div>
-                          <div className="border rounded-lg bg-gray-50 p-4 max-h-96 overflow-auto">
-                            <pre className="text-xs font-mono whitespace-pre-wrap">
-                              <code>{editedDraft.content}</code>
-                            </pre>
-                          </div>
-                        </div>
-                      ) : (
-                        renderMarkdownPreview(editedDraft.content)
-                      )}
-                    </>
-                  ) : (
-                    <div className="text-center py-12 text-gray-500">
-                      <p>Noch kein Inhalt vorhanden.</p>
-                      <p className="text-sm mt-2">Wechsle zum Tab "Inhalt" oder "Content Generator" um Inhalt zu erstellen.</p>
-                    </div>
-                  )}
+                  <p className="text-gray-600 mb-4">Noch kein Inhalt für Vorschau vorhanden.</p>
+                  <p className="text-sm text-gray-500">
+                    Erstelle Inhalt im <strong>Content Generator</strong> oder füge im Tab <strong>Inhalt</strong> Markdown-Content hinzu.
+                  </p>
                 </CardContent>
               </Card>
-
-              {/* URL Preview */}
-              {editedDraft.slug && (
-                <Card className="bg-green-50 border-green-200">
-                  <CardContent className="pt-4">
-                    <div className="flex items-center gap-2">
-                      <span className="text-sm font-semibold text-green-900">Veröffentlicht unter:</span>
-                      <code className="text-sm text-green-700 bg-green-100 px-2 py-1 rounded">
-                        /wissen/{editedDraft.slug}
-                      </code>
-                    </div>
-                  </CardContent>
-                </Card>
-              )}
             </div>
+            )}
           </TabsContent>
         </Tabs>
       </div>
