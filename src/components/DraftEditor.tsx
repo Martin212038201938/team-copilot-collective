@@ -405,6 +405,17 @@ const DraftEditor = ({ draft, onSave, onCancel, initialTab }: DraftEditorProps) 
   const handleApplyMetadata = () => {
     if (!generatedMetadata) return;
 
+    // Update state in ONE go: metadata AND generatorState together
+    const newGeneratorState: GeneratorState = {
+      step: 'content-generation',
+      transcript,
+      extractedTopics,
+      selectedTopic,
+      generatedContent,
+      reviewedContent,
+      finalCode: ''
+    };
+
     setEditedDraft({
       ...editedDraft,
       title: generatedMetadata.title,
@@ -414,14 +425,11 @@ const DraftEditor = ({ draft, onSave, onCancel, initialTab }: DraftEditorProps) 
       slug: generatedMetadata.slug,
       icon: generatedMetadata.icon,
       readTime: generatedMetadata.readTime,
+      generatorState: newGeneratorState,
       updatedAt: new Date().toISOString(),
     });
 
     setGeneratorStep('content-generation');
-
-    saveGeneratorState({
-      step: 'content-generation'
-    });
   };
 
   // Step 4: Generate content with OpenAI
@@ -531,10 +539,21 @@ Schreibe einen vollständigen, praxisorientierten Artikel für copilotenschule.d
       setReviewedContent(content);
       setGeneratorStep('content-review');
 
-      saveGeneratorState({
+      // Update state in ONE go to avoid race conditions
+      const newGeneratorState: GeneratorState = {
         step: 'content-review',
+        transcript,
+        extractedTopics,
+        selectedTopic,
         generatedContent: content,
-        reviewedContent: content
+        reviewedContent: content,
+        finalCode: ''
+      };
+
+      setEditedDraft({
+        ...editedDraft,
+        generatorState: newGeneratorState,
+        updatedAt: new Date().toISOString(),
       });
 
       setIsGenerating(false);
@@ -552,9 +571,21 @@ Schreibe einen vollständigen, praxisorientierten Artikel für copilotenschule.d
       return;
     }
 
-    saveGeneratorState({
+    // Update state in ONE go to avoid race conditions
+    const newGeneratorState: GeneratorState = {
       step: 'page-design',
-      reviewedContent
+      transcript,
+      extractedTopics,
+      selectedTopic,
+      generatedContent,
+      reviewedContent,
+      finalCode: editedDraft.generatorState?.finalCode || ''
+    };
+
+    setEditedDraft({
+      ...editedDraft,
+      generatorState: newGeneratorState,
+      updatedAt: new Date().toISOString(),
     });
 
     setGeneratorStep('page-design');
@@ -637,17 +668,24 @@ Erstelle jetzt die komplette TSX-Komponente. Der komplette Markdown-Content muss
       // Remove code fence markers if present
       finalCode = finalCode.replace(/^```tsx?\n?/gm, '').replace(/^```\n?/gm, '').replace(/```$/g, '').trim();
 
+      // CRITICAL: Update everything in ONE state update to avoid race conditions
+      const newGeneratorState: GeneratorState = {
+        step: 'completed',
+        transcript,
+        extractedTopics,
+        selectedTopic,
+        generatedContent,
+        reviewedContent, // KEEP the reviewed content!
+        finalCode
+      };
+
       setEditedDraft({
         ...editedDraft,
         content: finalCode,
         contentType: 'code',
         codeFileName: `${editedDraft.slug}.tsx`,
+        generatorState: newGeneratorState,
         updatedAt: new Date().toISOString(),
-      });
-
-      saveGeneratorState({
-        step: 'completed',
-        finalCode
       });
 
       setGeneratorStep('completed');
@@ -1138,7 +1176,7 @@ Das System analysiert automatisch die Kernthemen und erstellt passende Metadaten
                         Automatisch generierte Metadaten
                       </h5>
                       <p className="text-sm text-green-800 mb-4">
-                        Überprüfe die automatisch generierten Metadaten. Du kannst sie später im Tab "Metadaten" anpassen.
+                        Überprüfe die automatisch generierten Metadaten. <strong>Du kannst alle Felder jederzeit im Tab "Metadaten" bearbeiten</strong> - auch während und nach dem Generator-Prozess.
                       </p>
                     </div>
 
@@ -1300,8 +1338,18 @@ Das System analysiert automatisch die Kernthemen und erstellt passende Metadaten
                             id="reviewed-content"
                             value={reviewedContent}
                             onChange={(e) => {
-                              setReviewedContent(e.target.value);
-                              saveGeneratorState({ reviewedContent: e.target.value });
+                              const newReviewedContent = e.target.value;
+                              setReviewedContent(newReviewedContent);
+
+                              // Update generatorState directly to avoid race conditions
+                              setEditedDraft({
+                                ...editedDraft,
+                                generatorState: {
+                                  ...editedDraft.generatorState!,
+                                  reviewedContent: newReviewedContent
+                                },
+                                updatedAt: new Date().toISOString(),
+                              });
                             }}
                             rows={25}
                             className="font-mono text-sm"
