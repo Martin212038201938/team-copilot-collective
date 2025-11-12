@@ -12,8 +12,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { ArrowLeft, Save, Eye, Upload, Code, Sparkles, CheckCircle, Play, Edit2 } from "lucide-react";
-import { Draft, ExtractedTopic, GeneratorState } from "@/types/draft";
+import { ArrowLeft, Save, Eye, Upload, Code, Sparkles, CheckCircle, Play, Edit2, Target, TrendingUp } from "lucide-react";
+import { Draft, ExtractedTopic, GeneratorState, ExtractedFacts, AIVisibilityScore } from "@/types/draft";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 interface DraftEditorProps {
@@ -23,7 +23,7 @@ interface DraftEditorProps {
   initialTab?: string;
 }
 
-type GeneratorStep = 'transcript' | 'topics' | 'focus' | 'metadata' | 'content-generation' | 'content-review' | 'page-design' | 'completed';
+type GeneratorStep = 'transcript' | 'topics' | 'focus' | 'fact-extraction' | 'metadata' | 'content-generation' | 'content-review' | 'content-refinement' | 'visibility-score' | 'page-design' | 'completed';
 
 interface GeneratedMetadata {
   title: string;
@@ -60,6 +60,15 @@ const DraftEditor = ({ draft, onSave, onCancel, initialTab }: DraftEditorProps) 
   const [reviewedContent, setReviewedContent] = useState<string>(
     draft.generatorState?.reviewedContent || ""
   );
+  const [extractedFacts, setExtractedFacts] = useState<ExtractedFacts | null>(
+    draft.generatorState?.extractedFacts || null
+  );
+  const [refinedContent, setRefinedContent] = useState<string>(
+    draft.generatorState?.refinedContent || ""
+  );
+  const [visibilityScore, setVisibilityScore] = useState<AIVisibilityScore | null>(
+    draft.generatorState?.visibilityScore || null
+  );
   const [isGenerating, setIsGenerating] = useState(false);
   const [openAIKey, setOpenAIKey] = useState<string>(import.meta.env.VITE_OPENAI_API_KEY || "");
   const [showResumePrompt, setShowResumePrompt] = useState(false);
@@ -87,8 +96,11 @@ const DraftEditor = ({ draft, onSave, onCancel, initialTab }: DraftEditorProps) 
       transcript,
       extractedTopics,
       selectedTopic,
+      extractedFacts: extractedFacts || undefined,
       generatedContent,
       reviewedContent,
+      refinedContent,
+      visibilityScore: visibilityScore || undefined,
       finalCode: editedDraft.generatorState?.finalCode || '',
       ...updatedState
     };
@@ -378,7 +390,88 @@ const DraftEditor = ({ draft, onSave, onCancel, initialTab }: DraftEditorProps) 
     });
   };
 
-  // Step 3: Generate metadata from selected topic
+  // Step 3.5: Extract Facts & Entities with OpenAI
+  const handleExtractFacts = async () => {
+    if (!openAIKey) {
+      alert('Kein OpenAI API Key gefunden. Bitte in der .env.local Datei hinzufügen.');
+      return;
+    }
+
+    if (!selectedTopic || !transcript) {
+      alert('Transkript und Thema erforderlich');
+      return;
+    }
+
+    setIsGenerating(true);
+
+    try {
+      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${openAIKey}`
+        },
+        body: JSON.stringify({
+          model: 'gpt-4o',
+          messages: [
+            {
+              role: 'system',
+              content: `Du bist ein Experte für strukturierte Datenextraktion. Extrahiere aus dem Transkript:
+
+1. **numbers**: Konkrete Zahlen (ROI, Kosten, Zeiten, Prozentzahlen, Statistiken)
+2. **tools**: Spezifische Tool-Namen, Features, Produktnamen, Versionen
+3. **examples**: Use Cases, Szenarien, Praxisbeispiele, konkrete Anwendungsfälle
+4. **quotes**: Wichtige Aussagen, Zitate für Authority-Signale
+
+Gib die Antwort als JSON zurück:
+{
+  "numbers": ["30 USD pro Nutzer", "300 Nutzer Minimum", "40% Produktivitätssteigerung"],
+  "tools": ["Microsoft Copilot for M365", "SharePoint", "Teams Premium"],
+  "examples": ["E-Mail-Zusammenfassungen in Outlook", "Meeting-Protokolle in Teams"],
+  "quotes": ["Copilot ist kein Standalone-Produkt"]
+}`
+            },
+            {
+              role: 'user',
+              content: `Extrahiere Facts und Entities für das Thema "${selectedTopic.title}":
+
+${transcript}
+
+Fokussiere auf konkrete, faktische Informationen die im generierten Artikel verwendet werden MÜSSEN.`
+            }
+          ],
+          temperature: 0.3,
+          max_tokens: 2000,
+          response_format: { type: "json_object" }
+        })
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => null);
+        throw new Error(`OpenAI API Fehler: ${response.status} - ${errorData?.error?.message || 'Unbekannter Fehler'}`);
+      }
+
+      const data = await response.json();
+      const factsText = data.choices[0].message.content;
+      const facts: ExtractedFacts = JSON.parse(factsText);
+
+      setExtractedFacts(facts);
+      setGeneratorStep('fact-extraction');
+
+      saveGeneratorState({
+        step: 'fact-extraction',
+        extractedFacts: facts
+      });
+
+      setIsGenerating(false);
+    } catch (error) {
+      console.error('Fact extraction error:', error);
+      alert(`Fehler bei der Fact-Extraktion:\n${error instanceof Error ? error.message : 'Unbekannter Fehler'}`);
+      setIsGenerating(false);
+    }
+  };
+
+  // Step 4: Generate metadata from selected topic and facts
   const handleGenerateMetadata = () => {
     if (!selectedTopic) return;
 
@@ -509,7 +602,25 @@ Beschreibung: ${selectedTopic.description}
 Kontext aus dem Transkript:
 ${transcript}
 
-Schreibe einen vollständigen, praxisorientierten Artikel für copilotenschule.de.`
+${extractedFacts ? `
+**WICHTIG: Du MUSST diese extrahierten Facts im Artikel verwenden:**
+
+Zahlen & Statistiken:
+${extractedFacts.numbers.map(n => `- ${n}`).join('\n')}
+
+Tools & Features:
+${extractedFacts.tools.map(t => `- ${t}`).join('\n')}
+
+Praxisbeispiele:
+${extractedFacts.examples.map(e => `- ${e}`).join('\n')}
+
+Wichtige Aussagen:
+${extractedFacts.quotes.map(q => `- "${q}"`).join('\n')}
+
+VERWENDE diese konkreten Facts statt generischer Aussagen!
+` : ''}
+
+Schreibe einen vollständigen, praxisorientierten Artikel für copilotenschule.de mit ECHTEN Search Queries als FAQs (z.B. "Wie viel kostet...", "Was ist der Unterschied...", "Kann ich...").`
             }
           ],
           temperature: 0.7,
@@ -543,7 +654,7 @@ Schreibe einen vollständigen, praxisorientierten Artikel für copilotenschule.d
     }
   };
 
-  // Step 5: Save reviewed content
+  // Step 6: Save reviewed content and move to refinement
   const handleSaveReviewedContent = () => {
     if (!reviewedContent.trim()) {
       alert('Bitte überarbeite den Content');
@@ -551,11 +662,153 @@ Schreibe einen vollständigen, praxisorientierten Artikel für copilotenschule.d
     }
 
     saveGeneratorState({
-      step: 'page-design',
+      step: 'content-refinement',
       reviewedContent
     });
 
-    setGeneratorStep('page-design');
+    setGeneratorStep('content-refinement');
+  };
+
+  // Step 6.5: Multi-Pass Content Refinement (Anti-Fluff)
+  const handleRefineContent = async () => {
+    if (!openAIKey) {
+      alert('Kein OpenAI API Key gefunden. Bitte in der .env.local Datei hinzufügen.');
+      return;
+    }
+
+    if (!reviewedContent.trim()) {
+      alert('Kein Content zum Verfeinern vorhanden');
+      return;
+    }
+
+    setIsGenerating(true);
+
+    try {
+      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${openAIKey}`
+        },
+        body: JSON.stringify({
+          model: 'gpt-4o',
+          messages: [
+            {
+              role: 'system',
+              content: `Du bist ein Content-Editor für hochwertige, nicht-generische Wissensartikel. Deine Aufgabe ist ANTI-FLUFF Refinement:
+
+**ENTFERNE/ERSETZE:**
+❌ Generische Phrasen: "im heutigen digitalen Zeitalter", "in der modernen Welt", "zunehmend wichtig"
+❌ Vage Aussagen: "das Tool", "die Funktion", "viele Nutzer berichten"
+❌ Füllwörter: "grundsätzlich", "im Prinzip", "sozusagen"
+❌ Marketing-Floskeln: "revolutionär", "game-changing", "must-have"
+❌ Schwammige Vergleiche: "deutlich besser", "wesentlich einfacher" (ohne Zahlen)
+
+**VERBESSERE:**
+✅ Konkrete Namen statt Pronomen: "Microsoft Copilot" statt "es"
+✅ Spezifische Zahlen: "40% Zeitersparnis" statt "erhebliche Zeitersparnis"
+✅ Präzise Begriffe: "GPT-4 Sprachmodell" statt "KI-Technologie"
+✅ Echte Beispiele: "E-Mail-Zusammenfassungen in Outlook" statt "verschiedene Funktionen"
+
+Behalte die Struktur, verbessere nur die Formulierungen. Gib den KOMPLETTEN verfeinerten Artikel zurück.`
+            },
+            {
+              role: 'user',
+              content: `Verfeinere diesen Artikel und entferne alle generischen Phrasen:
+
+${reviewedContent}`
+            }
+          ],
+          temperature: 0.3,
+          max_tokens: 5000
+        })
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => null);
+        throw new Error(`OpenAI API Fehler: ${response.status} - ${errorData?.error?.message || 'Unbekannter Fehler'}`);
+      }
+
+      const data = await response.json();
+      const refined = data.choices[0].message.content;
+
+      setRefinedContent(refined);
+      setGeneratorStep('visibility-score');
+
+      saveGeneratorState({
+        step: 'visibility-score',
+        refinedContent: refined
+      });
+
+      setIsGenerating(false);
+    } catch (error) {
+      console.error('Content refinement error:', error);
+      alert(`Fehler bei der Content-Verfeinerung:\n${error instanceof Error ? error.message : 'Unbekannter Fehler'}`);
+      setIsGenerating(false);
+    }
+  };
+
+  // Step 6.7: Calculate AI-Visibility Score
+  const calculateVisibilityScore = (content: string): AIVisibilityScore => {
+    const words = content.split(/\s+/);
+    const totalWords = words.length;
+
+    // 1. Entity Density (konkrete Namen vs. Pronomen)
+    const pronouns = (content.match(/\b(es|sie|er|das|dies|jenes)\b/gi) || []).length;
+    const entities = (content.match(/[A-Z][a-z]+(?:\s+[A-Z][a-z]+)*/g) || []).length;
+    const entityDensity = Math.min(100, Math.round((entities / (pronouns + entities + 1)) * 100));
+
+    // 2. Extractability (Listen, Tabellen, Callouts)
+    const lists = (content.match(/^[-*]\s/gm) || []).length;
+    const numberedLists = (content.match(/^\d+\.\s/gm) || []).length;
+    const headings = (content.match(/^#{2,3}\s/gm) || []).length;
+    const extractability = Math.min(100, Math.round(((lists + numberedLists + headings) / totalWords) * 1000));
+
+    // 3. Answer Quality (erste 100 Wörter)
+    const first100Words = words.slice(0, 100).join(' ');
+    const hasDirectAnswer = first100Words.includes('ist') || first100Words.includes('sind') || first100Words.includes('bedeutet');
+    const answerQuality = hasDirectAnswer ? 80 : 40;
+
+    // 4. FAQ Quality
+    const faqSection = content.match(/##\s*❓.*FAQ.*\n([\s\S]*?)(?=\n##|$)/i);
+    const faqCount = faqSection ? (faqSection[1].match(/###\s/g) || []).length : 0;
+    const faqQuality = Math.min(100, faqCount * 12);
+
+    // 5. Schema Completeness (check for required elements)
+    const hasTitle = content.includes('# ');
+    const hasFAQ = content.includes('FAQ');
+    const hasExample = content.includes('Beispiel') || content.includes('Praxis');
+    const schemaCompleteness = ((hasTitle ? 33 : 0) + (hasFAQ ? 33 : 0) + (hasExample ? 34 : 0));
+
+    // Generate suggestions
+    const suggestions: string[] = [];
+    if (entityDensity < 60) suggestions.push('Mehr konkrete Namen statt Pronomen verwenden');
+    if (extractability < 40) suggestions.push('Mehr Listen und Strukturelemente hinzufügen');
+    if (answerQuality < 60) suggestions.push('Direkte Antwort in ersten 100 Wörtern verbessern');
+    if (faqQuality < 60) suggestions.push(`Mehr FAQs hinzufügen (aktuell: ${faqCount}, Ziel: 8-10)`);
+    if (!hasExample) suggestions.push('Praxisbeispiel-Sektion hinzufügen');
+
+    const total = Math.round((entityDensity + extractability + answerQuality + faqQuality + schemaCompleteness) / 5);
+
+    return {
+      total,
+      entityDensity,
+      extractability,
+      answerQuality,
+      faqQuality,
+      schemaCompleteness,
+      suggestions
+    };
+  };
+
+  const handleCalculateVisibilityScore = () => {
+    const contentToScore = refinedContent || reviewedContent;
+    const score = calculateVisibilityScore(contentToScore);
+    setVisibilityScore(score);
+
+    saveGeneratorState({
+      visibilityScore: score
+    });
   };
 
   // Step 6: Generate final page code
@@ -587,7 +840,14 @@ Schreibe einen vollständigen, praxisorientierten Artikel für copilotenschule.d
                 '- Erstelle Table of Contents mit allen H2 Überschriften\n' +
                 '- Verwende semantische HTML-Elemente (section, h2, h3, p, ul, etc.)\n' +
                 '- IDs für sections sollten kebab-case sein\n' +
-                '- Verwende Tailwind CSS Klassen für Styling\n\n' +
+                '- Verwende Tailwind CSS Klassen für Styling\n' +
+                '- INTERNE LINKS: Füge 3-5 interne Links zu relevanten Seiten ein:\n' +
+                '  * /wissen/github-copilot für GitHub Copilot Themen\n' +
+                '  * /wissen/copilot-studio für Copilot Studio\n' +
+                '  * /wissen/prompt-engineering für Prompts\n' +
+                '  * /wissen/ki-agenten für KI-Agenten\n' +
+                '  * /copilot-lizenzen für Lizenz-Infos\n' +
+                '  Verwende <a href="/wissen/..." className="text-blue-600 hover:underline">Link-Text</a>\n\n' +
                 'WICHTIG:\n' +
                 '- Der Code muss KOMPLETT und lauffähig sein\n' +
                 '- KEINE Platzhalter oder Kommentare wie "// Rest des Contents"\n' +
@@ -614,9 +874,9 @@ Autor: ${editedDraft.author}
 Lesezeit: ${editedDraft.readTime}
 
 **Vollständiger Content (Markdown):**
-${reviewedContent}
+${refinedContent || reviewedContent}
 
-Erstelle jetzt die komplette TSX-Komponente. Der komplette Markdown-Content muss in strukturiertes JSX umgewandelt werden.`
+Erstelle jetzt die komplette TSX-Komponente mit internen Links. Der komplette Markdown-Content muss in strukturiertes JSX umgewandelt werden.`
             }
           ],
           temperature: 0.2,
