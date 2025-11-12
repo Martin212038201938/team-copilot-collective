@@ -376,18 +376,27 @@ const DraftEditor = ({ draft, onSave, onCancel, initialTab }: DraftEditorProps) 
       step: 'focus',
       selectedTopic: topic
     });
+  };
 
-    // Auto-generate metadata
+  // Step 3: Generate metadata from selected topic
+  const handleGenerateMetadata = () => {
+    if (!selectedTopic) return;
+
+    setIsGenerating(true);
+
+    // Simulate processing for better UX
     setTimeout(() => {
-      const metadata = generateMetadataFromTopic(topic, transcript);
+      const metadata = generateMetadataFromTopic(selectedTopic, transcript);
       setGeneratedMetadata(metadata);
       setGeneratorStep('metadata');
 
       saveGeneratorState({
         step: 'metadata',
-        selectedTopic: topic
+        selectedTopic: selectedTopic
       });
-    }, 500);
+
+      setIsGenerating(false);
+    }, 1200);
   };
 
   // Step 3: Apply generated metadata and move to content generation
@@ -896,7 +905,8 @@ Erstelle jetzt die komplette TSX-Komponente. Der komplette Markdown-Content muss
                       style={{
                         width:
                           generatorStep === 'transcript' ? '14%' :
-                          generatorStep === 'topics' || generatorStep === 'focus' ? '28%' :
+                          generatorStep === 'topics' ? '28%' :
+                          generatorStep === 'focus' ? '42%' :
                           generatorStep === 'metadata' ? '57%' :
                           generatorStep === 'content-generation' ? '71%' :
                           generatorStep === 'content-review' ? '85%' :
@@ -1033,17 +1043,89 @@ Das System analysiert automatisch die Kernthemen und erstellt passende Metadaten
                   </>
                 )}
 
-                {/* Step 3: Focus Selected (auto-transitions to metadata) */}
+                {/* Step 3: Focus Topic Selected - Generate Metadata */}
                 {generatorStep === 'focus' && selectedTopic && (
-                  <div className="bg-blue-50 border border-blue-200 p-6 rounded-lg text-center">
-                    <Sparkles className="w-12 h-12 text-blue-600 mx-auto mb-4 animate-pulse" />
-                    <h5 className="font-semibold text-blue-900 mb-2 text-lg">
-                      Generiere Metadaten für: {selectedTopic.title}
-                    </h5>
-                    <p className="text-sm text-blue-800">
-                      Bitte warten, während SEO-Keywords und Metadaten automatisch erstellt werden...
-                    </p>
-                  </div>
+                  <>
+                    <div className="bg-gradient-to-r from-green-50 to-blue-50 border border-green-300 p-6 rounded-lg">
+                      <h5 className="font-semibold text-green-900 mb-3 text-lg flex items-center gap-2">
+                        <CheckCircle className="w-6 h-6" />
+                        Fokus-Thema ausgewählt
+                      </h5>
+                      <p className="text-sm text-green-800 mb-4">
+                        Du hast dein Haupt-Thema gewählt. Im nächsten Schritt generieren wir automatisch
+                        alle relevanten Metadaten, SEO-Keywords und strukturieren die Seite.
+                      </p>
+                    </div>
+
+                    <Card className="border-2 border-green-300">
+                      <CardHeader>
+                        <CardTitle className="flex items-center gap-3">
+                          <span className="text-3xl">
+                            {selectedTopic.title.includes('Sicherheit') ? '🔒' :
+                             selectedTopic.title.includes('Produktivität') ? '⚡' :
+                             selectedTopic.title.includes('ROI') ? '💰' :
+                             selectedTopic.title.includes('Tipps') ? '💡' :
+                             selectedTopic.title.includes('Teams') ? '👥' :
+                             selectedTopic.title.includes('Excel') ? '📊' :
+                             selectedTopic.title.includes('Word') ? '📝' : '📘'}
+                          </span>
+                          {selectedTopic.title}
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent className="space-y-4">
+                        <div>
+                          <Label className="text-sm text-gray-600 font-semibold">Beschreibung:</Label>
+                          <p className="text-sm text-gray-700 mt-1">{selectedTopic.description}</p>
+                        </div>
+
+                        <div>
+                          <Label className="text-sm text-gray-600 font-semibold mb-2 block">
+                            Erkannte Keywords ({selectedTopic.keywords.length}):
+                          </Label>
+                          <div className="flex flex-wrap gap-2">
+                            {selectedTopic.keywords.slice(0, 10).map((keyword, idx) => (
+                              <Badge key={idx} variant="outline" className="text-xs">
+                                {keyword}
+                              </Badge>
+                            ))}
+                            {selectedTopic.keywords.length > 10 && (
+                              <Badge variant="secondary" className="text-xs">
+                                +{selectedTopic.keywords.length - 10} weitere
+                              </Badge>
+                            )}
+                          </div>
+                        </div>
+
+                        <div className="bg-blue-50 border border-blue-200 p-4 rounded-lg">
+                          <h6 className="font-semibold text-blue-900 mb-2 text-sm">🎯 Was wird generiert?</h6>
+                          <ul className="text-xs text-blue-800 space-y-1 list-disc list-inside">
+                            <li>SEO-optimierter Titel</li>
+                            <li>Meta-Beschreibung</li>
+                            <li>URL-Slug (sprechende URL)</li>
+                            <li>Kategorie-Zuordnung</li>
+                            <li>Erweiterte Keyword-Liste</li>
+                            <li>Passendes Icon/Emoji</li>
+                            <li>Geschätzte Lesezeit</li>
+                          </ul>
+                        </div>
+
+                        <div className="flex justify-between items-center pt-2">
+                          <Button onClick={() => setGeneratorStep('topics')} variant="outline">
+                            ← Anderes Thema wählen
+                          </Button>
+                          <Button
+                            onClick={handleGenerateMetadata}
+                            size="lg"
+                            disabled={isGenerating}
+                            className="bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700"
+                          >
+                            <Sparkles className="w-5 h-5 mr-2" />
+                            {isGenerating ? 'Generiere Metadaten...' : 'Metadaten generieren →'}
+                          </Button>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </>
                 )}
 
                 {/* Step 4: Generated Metadata Preview */}
