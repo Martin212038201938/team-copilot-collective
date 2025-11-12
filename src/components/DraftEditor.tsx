@@ -17,6 +17,7 @@ import { Draft, ExtractedTopic, GeneratorState } from "@/types/draft";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { marked } from 'marked';
 import DOMPurify from 'dompurify';
+import KnowledgePagePreview from "@/components/KnowledgePagePreview";
 
 interface DraftEditorProps {
   draft: Draft;
