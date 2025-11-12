@@ -6,7 +6,7 @@ on:
       branch:
         description: 'Branch to deploy'
         required: true
-        default: 'claude/knowledge-page-generator-improvements-011CUz4cZPee8q8s8gK6Z1L8'
+        default: 'claude/deploy-with-fixes-011CV4GXsveHHudiooexnvMC'
         type: string
 
 jobs:
