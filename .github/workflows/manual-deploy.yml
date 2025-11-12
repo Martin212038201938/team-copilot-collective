@@ -11,43 +11,41 @@ on:
 
 jobs:
   build-and-deploy:
+    name: 🚀 Build and Deploy
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: 🚚 Checkout code
         uses: actions/checkout@v4
         with:
           ref: ${{ inputs.branch }}
 
-      - name: Setup Node.js
+      - name: 🔧 Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
 
-      - name: Install dependencies
+      - name: 📦 Install dependencies
         run: npm ci
 
-      - name: Build production bundle
+      - name: 🏗️ Build production bundle
         run: npm run build
+        env:
+          VITE_OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
-      - name: Deploy to Alwaysdata via SSH/rsync
-        uses: easingthemes/ssh-deploy@main
+      - name: 📂 Deploy to Alwaysdata via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          REMOTE_HOST: ${{ secrets.SSH_HOST }}
-          REMOTE_USER: ${{ secrets.SSH_USERNAME }}
-          SOURCE: "dist/"
-          TARGET: "/home/y-b/www/copilotenschule.de/"
-          EXCLUDE: "/dist/, **/.git*, /**/node_modules/***"
-          SCRIPT_BEFORE: |
-            whoami
-            ls -la
-          SCRIPT_AFTER: |
-            echo "Deployment completed successfully"
-            ls -la /home/y-b/www/copilotenschule.de/
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          local-dir: ./dist/
+          server-dir: /home/y-b/www/copilotenschule.de/
+          dangerous-clean-slate: true
 
-      - name: Deployment Summary
+      - name: ✅ Deployment Summary
         run: |
           echo "✅ Deployment completed successfully!"
           echo "📦 Branch: ${{ inputs.branch }}"

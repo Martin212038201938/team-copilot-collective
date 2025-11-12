@@ -15,6 +15,8 @@ import {
 import { ArrowLeft, Save, Eye, Upload, Code, Sparkles, CheckCircle, Play, Edit2 } from "lucide-react";
 import { Draft, ExtractedTopic, GeneratorState } from "@/types/draft";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { marked } from 'marked';
+import DOMPurify from 'dompurify';
 
 interface DraftEditorProps {
   draft: Draft;
@@ -403,6 +405,17 @@ const DraftEditor = ({ draft, onSave, onCancel, initialTab }: DraftEditorProps) 
   const handleApplyMetadata = () => {
     if (!generatedMetadata) return;
 
+    // Update state in ONE go: metadata AND generatorState together
+    const newGeneratorState: GeneratorState = {
+      step: 'content-generation',
+      transcript,
+      extractedTopics,
+      selectedTopic,
+      generatedContent,
+      reviewedContent,
+      finalCode: ''
+    };
+
     setEditedDraft({
       ...editedDraft,
       title: generatedMetadata.title,
@@ -412,14 +425,11 @@ const DraftEditor = ({ draft, onSave, onCancel, initialTab }: DraftEditorProps) 
       slug: generatedMetadata.slug,
       icon: generatedMetadata.icon,
       readTime: generatedMetadata.readTime,
+      generatorState: newGeneratorState,
       updatedAt: new Date().toISOString(),
     });
 
     setGeneratorStep('content-generation');
-
-    saveGeneratorState({
-      step: 'content-generation'
-    });
   };
 
   // Step 4: Generate content with OpenAI
@@ -529,10 +539,21 @@ Schreibe einen vollständigen, praxisorientierten Artikel für copilotenschule.d
       setReviewedContent(content);
       setGeneratorStep('content-review');
 
-      saveGeneratorState({
+      // Update state in ONE go to avoid race conditions
+      const newGeneratorState: GeneratorState = {
         step: 'content-review',
+        transcript,
+        extractedTopics,
+        selectedTopic,
         generatedContent: content,
-        reviewedContent: content
+        reviewedContent: content,
+        finalCode: ''
+      };
+
+      setEditedDraft({
+        ...editedDraft,
+        generatorState: newGeneratorState,
+        updatedAt: new Date().toISOString(),
       });
 
       setIsGenerating(false);
@@ -550,9 +571,21 @@ Schreibe einen vollständigen, praxisorientierten Artikel für copilotenschule.d
       return;
     }
 
-    saveGeneratorState({
+    // Update state in ONE go to avoid race conditions
+    const newGeneratorState: GeneratorState = {
       step: 'page-design',
-      reviewedContent
+      transcript,
+      extractedTopics,
+      selectedTopic,
+      generatedContent,
+      reviewedContent,
+      finalCode: editedDraft.generatorState?.finalCode || ''
+    };
+
+    setEditedDraft({
+      ...editedDraft,
+      generatorState: newGeneratorState,
+      updatedAt: new Date().toISOString(),
     });
 
     setGeneratorStep('page-design');
@@ -635,17 +668,24 @@ Erstelle jetzt die komplette TSX-Komponente. Der komplette Markdown-Content muss
       // Remove code fence markers if present
       finalCode = finalCode.replace(/^```tsx?\n?/gm, '').replace(/^```\n?/gm, '').replace(/```$/g, '').trim();
 
+      // CRITICAL: Update everything in ONE state update to avoid race conditions
+      const newGeneratorState: GeneratorState = {
+        step: 'completed',
+        transcript,
+        extractedTopics,
+        selectedTopic,
+        generatedContent,
+        reviewedContent, // KEEP the reviewed content!
+        finalCode
+      };
+
       setEditedDraft({
         ...editedDraft,
         content: finalCode,
         contentType: 'code',
         codeFileName: `${editedDraft.slug}.tsx`,
+        generatorState: newGeneratorState,
         updatedAt: new Date().toISOString(),
-      });
-
-      saveGeneratorState({
-        step: 'completed',
-        finalCode
       });
 
       setGeneratorStep('completed');
@@ -690,23 +730,22 @@ Erstelle jetzt die komplette TSX-Komponente. Der komplette Markdown-Content muss
     setActiveTab('content-generator');
   };
 
-  const renderMarkdownPreview = () => {
-    // Simple markdown preview (in production, use a proper markdown renderer)
+  const renderMarkdownPreview = (markdownContent: string) => {
+    // Configure marked for better rendering
+    marked.setOptions({
+      breaks: true,
+      gfm: true,
+    });
+
+    // Convert markdown to HTML
+    const rawHtml = marked(markdownContent) as string;
+
+    // Sanitize HTML to prevent XSS
+    const cleanHtml = DOMPurify.sanitize(rawHtml);
+
     return (
-      <div className="prose prose-lg max-w-none">
-        <div
-          dangerouslySetInnerHTML={{
-            __html: editedDraft.content
-              .replace(/^# (.+)$/gm, '<h1 class="text-3xl font-bold mt-6 mb-4">$1</h1>')
-              .replace(/^## (.+)$/gm, '<h2 class="text-2xl font-bold mt-5 mb-3">$1</h2>')
-              .replace(/^### (.+)$/gm, '<h3 class="text-xl font-semibold mt-4 mb-2">$1</h3>')
-              .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-              .replace(/\*(.+?)\*/g, '<em>$1</em>')
-              .replace(/^- (.+)$/gm, '<li>$1</li>')
-              .replace(/\n\n/g, '</p><p class="mb-4">')
-              .replace(/^(?!<[h|l])/gm, '<p class="mb-4">'),
-          }}
-        />
+      <div className="prose prose-lg max-w-none dark:prose-invert">
+        <div dangerouslySetInnerHTML={{ __html: cleanHtml }} />
       </div>
     );
   };
@@ -1137,7 +1176,7 @@ Das System analysiert automatisch die Kernthemen und erstellt passende Metadaten
                         Automatisch generierte Metadaten
                       </h5>
                       <p className="text-sm text-green-800 mb-4">
-                        Überprüfe die automatisch generierten Metadaten. Du kannst sie später im Tab "Metadaten" anpassen.
+                        Überprüfe die automatisch generierten Metadaten. <strong>Du kannst alle Felder jederzeit im Tab "Metadaten" bearbeiten</strong> - auch während und nach dem Generator-Prozess.
                       </p>
                     </div>
 
@@ -1299,8 +1338,18 @@ Das System analysiert automatisch die Kernthemen und erstellt passende Metadaten
                             id="reviewed-content"
                             value={reviewedContent}
                             onChange={(e) => {
-                              setReviewedContent(e.target.value);
-                              saveGeneratorState({ reviewedContent: e.target.value });
+                              const newReviewedContent = e.target.value;
+                              setReviewedContent(newReviewedContent);
+
+                              // Update generatorState directly to avoid race conditions
+                              setEditedDraft({
+                                ...editedDraft,
+                                generatorState: {
+                                  ...editedDraft.generatorState!,
+                                  reviewedContent: newReviewedContent
+                                },
+                                updatedAt: new Date().toISOString(),
+                              });
                             }}
                             rows={25}
                             className="font-mono text-sm"
@@ -1632,8 +1681,10 @@ Das System analysiert automatisch die Kernthemen und erstellt passende Metadaten
                     <div>
                       <p className="text-sm text-blue-900 font-semibold mb-1">Vorschau-Modus</p>
                       <p className="text-xs text-blue-800">
-                        {editedDraft.contentType === 'code'
-                          ? 'Dies ist eine Vorschau deiner hochgeladenen Code-Datei. Die tatsächliche Darstellung kann je nach verwendeten Komponenten variieren.'
+                        {editedDraft.generatorState?.reviewedContent
+                          ? 'Dies ist eine Vorschau deines bearbeiteten Markdown-Inhalts. Die finale Seite verwendet das KnowledgePageTemplate mit zusätzlichen Funktionen.'
+                          : editedDraft.contentType === 'code'
+                          ? 'Dies ist eine Code-Vorschau. Die tatsächliche Darstellung kann je nach verwendeten Komponenten variieren.'
                           : 'Dies ist eine Vorschau deines Markdown-Inhalts. Die tatsächliche Darstellung verwendet das KnowledgePageTemplate.'
                         }
                       </p>
@@ -1684,7 +1735,12 @@ Das System analysiert automatisch die Kernthemen und erstellt passende Metadaten
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
-                    {editedDraft.contentType === 'code' ? (
+                    {editedDraft.generatorState?.reviewedContent ? (
+                      <>
+                        <Eye className="w-5 h-5" />
+                        Artikel-Vorschau (Markdown)
+                      </>
+                    ) : editedDraft.contentType === 'code' ? (
                       <>
                         <Code className="w-5 h-5" />
                         Code-Vorschau
@@ -1697,7 +1753,17 @@ Das System analysiert automatisch die Kernthemen und erstellt passende Metadaten
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  {editedDraft.content ? (
+                  {editedDraft.generatorState?.reviewedContent ? (
+                    // Show the reviewed markdown content from generator
+                    <div className="space-y-4">
+                      <div className="bg-green-50 border border-green-200 p-3 rounded-lg">
+                        <p className="text-xs text-green-800">
+                          <strong>✨ Content Generator:</strong> Dies ist dein bearbeiteter Artikel-Content. Die finale TSX-Komponente wurde bereits generiert und ist einsatzbereit.
+                        </p>
+                      </div>
+                      {renderMarkdownPreview(editedDraft.generatorState.reviewedContent)}
+                    </div>
+                  ) : editedDraft.content ? (
                     <>
                       {editedDraft.contentType === 'code' ? (
                         <div className="space-y-4">
@@ -1714,9 +1780,7 @@ Das System analysiert automatisch die Kernthemen und erstellt passende Metadaten
                           </div>
                         </div>
                       ) : (
-                        <div className="prose prose-lg max-w-none">
-                          {renderMarkdownPreview()}
-                        </div>
+                        renderMarkdownPreview(editedDraft.content)
                       )}
                     </>
                   ) : (
