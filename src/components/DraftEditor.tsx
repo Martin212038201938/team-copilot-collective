@@ -1391,7 +1391,125 @@ Das System analysiert automatisch die Kernthemen und erstellt passende Metadaten
                   </>
                 )}
 
-                {/* Step 4: Generated Metadata Preview */}
+                {/* Step 4: Fact Extraction Result */}
+                {generatorStep === 'fact-extraction' && extractedFacts && (
+                  <>
+                    <div className="bg-gradient-to-r from-purple-50 to-blue-50 border border-purple-300 p-6 rounded-lg">
+                      <h5 className="font-semibold text-purple-900 mb-3 text-lg flex items-center gap-2">
+                        <CheckCircle className="w-6 h-6" />
+                        Facts erfolgreich extrahiert
+                      </h5>
+                      <p className="text-sm text-purple-800 mb-4">
+                        Diese konkreten Facts werden als Constraints für die Content-Generierung verwendet -
+                        kein generisches Blabla mehr!
+                      </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {/* Numbers */}
+                      {extractedFacts.numbers.length > 0 && (
+                        <Card>
+                          <CardHeader>
+                            <CardTitle className="text-lg flex items-center gap-2">
+                              <span className="text-2xl">📊</span>
+                              Zahlen & Statistiken
+                            </CardTitle>
+                          </CardHeader>
+                          <CardContent>
+                            <ul className="space-y-2">
+                              {extractedFacts.numbers.map((num, idx) => (
+                                <li key={idx} className="text-sm flex items-start gap-2">
+                                  <span className="text-green-600 mt-1">•</span>
+                                  <span>{num}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </CardContent>
+                        </Card>
+                      )}
+
+                      {/* Tools */}
+                      {extractedFacts.tools.length > 0 && (
+                        <Card>
+                          <CardHeader>
+                            <CardTitle className="text-lg flex items-center gap-2">
+                              <span className="text-2xl">🔧</span>
+                              Tools & Features
+                            </CardTitle>
+                          </CardHeader>
+                          <CardContent>
+                            <ul className="space-y-2">
+                              {extractedFacts.tools.map((tool, idx) => (
+                                <li key={idx} className="text-sm flex items-start gap-2">
+                                  <span className="text-blue-600 mt-1">•</span>
+                                  <span>{tool}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </CardContent>
+                        </Card>
+                      )}
+
+                      {/* Examples */}
+                      {extractedFacts.examples.length > 0 && (
+                        <Card>
+                          <CardHeader>
+                            <CardTitle className="text-lg flex items-center gap-2">
+                              <span className="text-2xl">💡</span>
+                              Praxisbeispiele
+                            </CardTitle>
+                          </CardHeader>
+                          <CardContent>
+                            <ul className="space-y-2">
+                              {extractedFacts.examples.map((example, idx) => (
+                                <li key={idx} className="text-sm flex items-start gap-2">
+                                  <span className="text-purple-600 mt-1">•</span>
+                                  <span>{example}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </CardContent>
+                        </Card>
+                      )}
+
+                      {/* Quotes */}
+                      {extractedFacts.quotes.length > 0 && (
+                        <Card>
+                          <CardHeader>
+                            <CardTitle className="text-lg flex items-center gap-2">
+                              <span className="text-2xl">💬</span>
+                              Wichtige Aussagen
+                            </CardTitle>
+                          </CardHeader>
+                          <CardContent>
+                            <ul className="space-y-2">
+                              {extractedFacts.quotes.map((quote, idx) => (
+                                <li key={idx} className="text-sm flex items-start gap-2">
+                                  <span className="text-orange-600 mt-1">•</span>
+                                  <span className="italic">"{quote}"</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </CardContent>
+                        </Card>
+                      )}
+                    </div>
+
+                    <div className="flex justify-end pt-4">
+                      <Button
+                        onClick={handleGenerateMetadata}
+                        size="lg"
+                        disabled={isGenerating}
+                        className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700"
+                      >
+                        <Sparkles className="w-5 h-5 mr-2" />
+                        {isGenerating ? 'Generiere Metadaten...' : 'Weiter zu Metadaten →'}
+                      </Button>
+                    </div>
+                  </>
+                )}
+
+                {/* Step 5: Generated Metadata Preview */}
                 {generatorStep === 'metadata' && generatedMetadata && (
                   <>
                     <div className="bg-gradient-to-r from-green-50 to-blue-50 border border-green-300 p-6 rounded-lg">
@@ -1601,7 +1719,226 @@ Das System analysiert automatisch die Kernthemen und erstellt passende Metadaten
                   </>
                 )}
 
-                {/* Step 7: Page Design / Code Generation */}
+                {/* Step 8: Content Refinement (Anti-Fluff) */}
+                {generatorStep === 'content-refinement' && (
+                  <>
+                    <div className="bg-gradient-to-r from-yellow-50 to-orange-50 border border-yellow-300 p-6 rounded-lg">
+                      <h5 className="font-semibold text-yellow-900 mb-3 text-lg flex items-center gap-2">
+                        <Edit2 className="w-6 h-6" />
+                        Anti-Fluff Refinement
+                      </h5>
+                      <p className="text-sm text-yellow-800 mb-4">
+                        Jetzt wird dein Content von KI verfeinert: Entfernung von generischen Phrasen,
+                        Füllwörtern und vagen Aussagen. Für authentischen, präzisen Content!
+                      </p>
+                    </div>
+
+                    <Card>
+                      <CardHeader>
+                        <CardTitle className="flex items-center gap-2">
+                          <span className="text-2xl">✨</span>
+                          Content-Verfeinerung
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent className="space-y-4">
+                        <div className="bg-red-50 border-l-4 border-red-500 p-4">
+                          <h6 className="font-semibold text-red-900 mb-2 text-sm">❌ Wird entfernt:</h6>
+                          <ul className="text-xs text-red-800 space-y-1">
+                            <li>• Generische Phrasen ("im heutigen digitalen Zeitalter")</li>
+                            <li>• Vage Aussagen ("das Tool", "die Funktion")</li>
+                            <li>• Füllwörter ("grundsätzlich", "sozusagen")</li>
+                            <li>• Marketing-Floskeln ("revolutionär", "game-changing")</li>
+                          </ul>
+                        </div>
+
+                        <div className="bg-green-50 border-l-4 border-green-500 p-4">
+                          <h6 className="font-semibold text-green-900 mb-2 text-sm">✅ Wird verbessert:</h6>
+                          <ul className="text-xs text-green-800 space-y-1">
+                            <li>• Konkrete Namen statt Pronomen</li>
+                            <li>• Spezifische Zahlen statt Schwammigkeit</li>
+                            <li>• Präzise Begriffe statt Allgemeinplätze</li>
+                            <li>• Echte Beispiele statt "verschiedene Funktionen"</li>
+                          </ul>
+                        </div>
+
+                        {refinedContent && (
+                          <div className="bg-blue-50 border border-blue-200 p-4 rounded-lg">
+                            <h6 className="font-semibold text-blue-900 mb-2 text-sm">✅ Verfeinerung abgeschlossen!</h6>
+                            <p className="text-xs text-blue-800">
+                              Content wurde erfolgreich verfeinert. Weiter zur AI-Visibility Analyse.
+                            </p>
+                          </div>
+                        )}
+
+                        <div className="flex justify-between items-center pt-2">
+                          {!refinedContent && (
+                            <Button
+                              onClick={handleRefineContent}
+                              size="lg"
+                              disabled={isGenerating}
+                              className="bg-gradient-to-r from-yellow-600 to-orange-600 hover:from-yellow-700 hover:to-orange-700"
+                            >
+                              <Sparkles className="w-5 h-5 mr-2" />
+                              {isGenerating ? 'Verfeinere Content...' : 'Content verfeinern'}
+                            </Button>
+                          )}
+                          {refinedContent && (
+                            <Button
+                              onClick={() => {
+                                handleCalculateVisibilityScore();
+                                setGeneratorStep('visibility-score');
+                              }}
+                              size="lg"
+                              className="bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700"
+                            >
+                              <TrendingUp className="w-5 h-5 mr-2" />
+                              Weiter zur AI-Visibility Analyse →
+                            </Button>
+                          )}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </>
+                )}
+
+                {/* Step 9: AI-Visibility Score */}
+                {generatorStep === 'visibility-score' && visibilityScore && (
+                  <>
+                    <div className="bg-gradient-to-r from-indigo-50 to-purple-50 border border-indigo-300 p-6 rounded-lg">
+                      <h5 className="font-semibold text-indigo-900 mb-3 text-lg flex items-center gap-2">
+                        <TrendingUp className="w-6 h-6" />
+                        AI-Visibility Score
+                      </h5>
+                      <p className="text-sm text-indigo-800 mb-4">
+                        Dein Content wurde analysiert. Hier sind die Ergebnisse für optimale AI-Sichtbarkeit.
+                      </p>
+                    </div>
+
+                    <Card>
+                      <CardHeader>
+                        <CardTitle className="flex items-center gap-3">
+                          <span className="text-4xl">{visibilityScore.total >= 80 ? '🏆' : visibilityScore.total >= 60 ? '👍' : '⚠️'}</span>
+                          <div>
+                            <div className="text-2xl">Score: {visibilityScore.total}/100</div>
+                            <div className="text-sm text-gray-600 font-normal">
+                              {visibilityScore.total >= 80 ? 'Exzellent - bereit für AI-Engines!' :
+                               visibilityScore.total >= 60 ? 'Gut - kleine Verbesserungen möglich' :
+                               'Verbesserungsbedarf - siehe Vorschläge unten'}
+                            </div>
+                          </div>
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent className="space-y-6">
+                        {/* Score Breakdown */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div className="bg-gray-50 p-4 rounded-lg">
+                            <div className="flex justify-between items-center mb-2">
+                              <span className="text-sm font-semibold">Entity Density</span>
+                              <span className="text-lg font-bold">{visibilityScore.entityDensity}/100</span>
+                            </div>
+                            <div className="w-full bg-gray-200 rounded-full h-2">
+                              <div
+                                className="bg-blue-600 h-2 rounded-full"
+                                style={{ width: `${visibilityScore.entityDensity}%` }}
+                              />
+                            </div>
+                            <p className="text-xs text-gray-600 mt-1">Konkrete Namen vs. Pronomen</p>
+                          </div>
+
+                          <div className="bg-gray-50 p-4 rounded-lg">
+                            <div className="flex justify-between items-center mb-2">
+                              <span className="text-sm font-semibold">Extractability</span>
+                              <span className="text-lg font-bold">{visibilityScore.extractability}/100</span>
+                            </div>
+                            <div className="w-full bg-gray-200 rounded-full h-2">
+                              <div
+                                className="bg-green-600 h-2 rounded-full"
+                                style={{ width: `${visibilityScore.extractability}%` }}
+                              />
+                            </div>
+                            <p className="text-xs text-gray-600 mt-1">Listen, Tabellen, Struktur</p>
+                          </div>
+
+                          <div className="bg-gray-50 p-4 rounded-lg">
+                            <div className="flex justify-between items-center mb-2">
+                              <span className="text-sm font-semibold">Answer Quality</span>
+                              <span className="text-lg font-bold">{visibilityScore.answerQuality}/100</span>
+                            </div>
+                            <div className="w-full bg-gray-200 rounded-full h-2">
+                              <div
+                                className="bg-purple-600 h-2 rounded-full"
+                                style={{ width: `${visibilityScore.answerQuality}%` }}
+                              />
+                            </div>
+                            <p className="text-xs text-gray-600 mt-1">Direkte Antwort am Anfang</p>
+                          </div>
+
+                          <div className="bg-gray-50 p-4 rounded-lg">
+                            <div className="flex justify-between items-center mb-2">
+                              <span className="text-sm font-semibold">FAQ Quality</span>
+                              <span className="text-lg font-bold">{visibilityScore.faqQuality}/100</span>
+                            </div>
+                            <div className="w-full bg-gray-200 rounded-full h-2">
+                              <div
+                                className="bg-orange-600 h-2 rounded-full"
+                                style={{ width: `${visibilityScore.faqQuality}%` }}
+                              />
+                            </div>
+                            <p className="text-xs text-gray-600 mt-1">Real Search Queries</p>
+                          </div>
+
+                          <div className="bg-gray-50 p-4 rounded-lg">
+                            <div className="flex justify-between items-center mb-2">
+                              <span className="text-sm font-semibold">Schema Completeness</span>
+                              <span className="text-lg font-bold">{visibilityScore.schemaCompleteness}/100</span>
+                            </div>
+                            <div className="w-full bg-gray-200 rounded-full h-2">
+                              <div
+                                className="bg-indigo-600 h-2 rounded-full"
+                                style={{ width: `${visibilityScore.schemaCompleteness}%` }}
+                              />
+                            </div>
+                            <p className="text-xs text-gray-600 mt-1">Alle Elemente vorhanden</p>
+                          </div>
+                        </div>
+
+                        {/* Suggestions */}
+                        {visibilityScore.suggestions.length > 0 && (
+                          <div className="bg-yellow-50 border-l-4 border-yellow-500 p-4">
+                            <h6 className="font-semibold text-yellow-900 mb-2">💡 Verbesserungsvorschläge:</h6>
+                            <ul className="space-y-2">
+                              {visibilityScore.suggestions.map((suggestion, idx) => (
+                                <li key={idx} className="text-sm text-yellow-800 flex items-start gap-2">
+                                  <span className="mt-1">•</span>
+                                  <span>{suggestion}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+
+                        <div className="flex justify-between items-center pt-4">
+                          <Button
+                            onClick={() => setGeneratorStep('content-refinement')}
+                            variant="outline"
+                          >
+                            ← Zurück zum Refinement
+                          </Button>
+                          <Button
+                            onClick={() => setGeneratorStep('page-design')}
+                            size="lg"
+                            className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700"
+                          >
+                            <Code className="w-5 h-5 mr-2" />
+                            Weiter zur Seiten-Generierung →
+                          </Button>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </>
+                )}
+
+                {/* Step 10: Page Design / Code Generation */}
                 {generatorStep === 'page-design' && (
                   <>
                     <div className="bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-300 p-6 rounded-lg">
