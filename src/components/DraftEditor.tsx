@@ -17,6 +17,8 @@ import { Draft, ExtractedTopic, GeneratorState } from "@/types/draft";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { marked } from 'marked';
 import DOMPurify from 'dompurify';
+import KnowledgePagePreview from "@/components/KnowledgePagePreview";
+import ErrorBoundary from "@/components/ErrorBoundary";
 
 interface DraftEditorProps {
   draft: Draft;
@@ -1006,23 +1008,67 @@ Erstelle jetzt die komplette TSX-Komponente. Der komplette Markdown-Content muss
   };
 
   const renderMarkdownPreview = (markdownContent: string) => {
-    // Configure marked for better rendering
-    marked.setOptions({
-      breaks: true,
-      gfm: true,
-    });
+    try {
+      // Safety check for invalid content
+      if (!markdownContent || typeof markdownContent !== 'string') {
+        return (
+          <div className="prose prose-lg max-w-none dark:prose-invert">
+            <p className="text-muted-foreground">Kein Inhalt vorhanden</p>
+          </div>
+        );
+      }
 
-    // Convert markdown to HTML
-    const rawHtml = marked(markdownContent) as string;
+      // Configure marked for better rendering
+      marked.setOptions({
+        breaks: true,
+        gfm: true,
+      });
 
-    // Sanitize HTML to prevent XSS
-    const cleanHtml = DOMPurify.sanitize(rawHtml);
+      // Convert markdown to HTML with error handling
+      let rawHtml: string;
+      try {
+        rawHtml = marked(markdownContent) as string;
+      } catch (parseError) {
+        console.error('Error parsing markdown:', parseError);
+        return (
+          <div className="prose prose-lg max-w-none dark:prose-invert">
+            <p className="text-red-600">Fehler beim Parsen des Markdown-Inhalts</p>
+            <pre className="text-xs bg-gray-100 p-2 rounded mt-2 overflow-auto">
+              {parseError instanceof Error ? parseError.message : 'Unbekannter Fehler'}
+            </pre>
+          </div>
+        );
+      }
 
-    return (
-      <div className="prose prose-lg max-w-none dark:prose-invert">
-        <div dangerouslySetInnerHTML={{ __html: cleanHtml }} />
-      </div>
-    );
+      // Sanitize HTML to prevent XSS
+      let cleanHtml: string;
+      try {
+        cleanHtml = DOMPurify.sanitize(rawHtml);
+      } catch (sanitizeError) {
+        console.error('Error sanitizing HTML:', sanitizeError);
+        return (
+          <div className="prose prose-lg max-w-none dark:prose-invert">
+            <p className="text-red-600">Fehler beim Bereinigen des HTML-Inhalts</p>
+          </div>
+        );
+      }
+
+      return (
+        <div className="prose prose-lg max-w-none dark:prose-invert">
+          <div dangerouslySetInnerHTML={{ __html: cleanHtml }} />
+        </div>
+      );
+    } catch (error) {
+      console.error('Error in renderMarkdownPreview:', error);
+      return (
+        <div className="prose prose-lg max-w-none dark:prose-invert">
+          <p className="text-red-600 font-semibold mb-2">Fehler beim Rendern der Vorschau</p>
+          <pre className="text-xs bg-gray-100 p-2 rounded overflow-auto">
+            {error instanceof Error ? error.message : 'Unbekannter Fehler'}
+          </pre>
+        </div>
+      );
+    }
   };
 
   return (
