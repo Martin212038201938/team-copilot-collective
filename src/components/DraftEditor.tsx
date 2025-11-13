@@ -39,6 +39,17 @@ interface GeneratedMetadata {
   readTime: string;
 }
 
+interface ContentAnalysisResult {
+  mainTheses: string[];
+  keyConcepts: Array<{concept: string; explanation: string}>;
+  insights: string[];
+  practicalTips: string[];
+  seoKeywords: string[];
+  potentialFAQs: Array<{question: string; answerHints: string}>;
+  targetAudience: string;
+  contentStructure: string[];
+}
+
 const DraftEditor = ({ draft, onSave, onCancel, initialTab }: DraftEditorProps) => {
   const [editedDraft, setEditedDraft] = useState<Draft>(draft);
   const [activeTab, setActiveTab] = useState(initialTab || "content");
@@ -67,6 +78,8 @@ const DraftEditor = ({ draft, onSave, onCancel, initialTab }: DraftEditorProps) 
   const [isGenerating, setIsGenerating] = useState(false);
   const [openAIKey, setOpenAIKey] = useState<string>(import.meta.env.VITE_OPENAI_API_KEY || "");
   const [showResumePrompt, setShowResumePrompt] = useState(false);
+  const [contentAnalysis, setContentAnalysis] = useState<ContentAnalysisResult | null>(null);
+  const [analysisStep, setAnalysisStep] = useState<'pending' | 'analyzing' | 'analyzed' | 'generating'>('pending');
 
   // Check if there's a saved generator state to resume
   useEffect(() => {
@@ -563,6 +576,268 @@ Schreibe einen vollständigen, praxisorientierten Artikel für copilotenschule.d
       console.error('Content generation error:', error);
       alert(`Fehler bei der Content-Generierung:\n${error instanceof Error ? error.message : 'Unbekannter Fehler'}\n\nBitte überprüfe deinen API Key in der .env.local Datei.`);
       setIsGenerating(false);
+    }
+  };
+
+  // PHASE 1: Analyze Transcript - Extract structured data
+  const handleAnalyzeTranscript = async () => {
+    if (!openAIKey) {
+      alert('Kein OpenAI API Key gefunden. Bitte in der .env.local Datei hinzufügen.');
+      return;
+    }
+
+    if (!selectedTopic || !transcript) {
+      alert('Transkript und Thema erforderlich');
+      return;
+    }
+
+    setIsGenerating(true);
+    setAnalysisStep('analyzing');
+
+    try {
+      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${openAIKey}`
+        },
+        body: JSON.stringify({
+          model: 'gpt-4o',
+          messages: [
+            {
+              role: 'system',
+              content: `Du bist ein Experte für Microsoft Copilot und Content-Analyse. Deine Aufgabe ist es, aus einem Transkript strukturierte Daten zu extrahieren, die als Grundlage für einen hochwertigen Wissensartikel dienen.
+
+**WICHTIG**: Deine Antwort MUSS valides JSON sein, OHNE zusätzliche Erklärungen oder Markdown-Formatierung.
+
+Extrahiere folgende Informationen aus dem Transkript:
+
+1. **mainTheses** (Array von 3-5 Strings): Die Hauptaussagen und Kernbotschaften des Transkripts
+2. **keyConcepts** (Array von 5-8 Objekten mit {concept, explanation}): Wichtige Begriffe mit prägnanter Erklärung
+3. **insights** (Array von 4-6 Strings): Konkrete Erkenntnisse und Aha-Momente aus dem Transkript
+4. **practicalTips** (Array von 5-10 Strings): Umsetzbare, praktische Tipps und Handlungsempfehlungen
+5. **seoKeywords** (Array von 15-25 Strings): Relevante Keywords auf Deutsch und Englisch
+6. **potentialFAQs** (Array von 8-12 Objekten mit {question, answerHints}): Häufig gestellte Fragen mit Hinweisen zur Antwort
+7. **targetAudience** (String): Beschreibung der Zielgruppe für diesen Artikel
+8. **contentStructure** (Array von 4-6 Strings): Vorgeschlagene H2-Überschriften für den Artikel
+
+**QUALITÄTSKRITERIEN**:
+- Extrahiere NUR echte Inhalte aus dem Transkript - KEINE Erfindungen
+- Fokus auf praktischen Mehrwert und konkrete Umsetzbarkeit
+- Keywords sollten eine Mischung aus Deutsch und Englisch sein
+- FAQs sollten realistische Fragen sein, die Leser haben könnten
+- Content-Struktur sollte logisch aufgebaut sein (vom Problem zur Lösung)
+
+Gib NUR das JSON-Objekt zurück, keine zusätzlichen Texte.`
+            },
+            {
+              role: 'user',
+              content: `Thema: ${selectedTopic.title}
+
+Beschreibung: ${selectedTopic.description}
+
+Transkript:
+${transcript}
+
+Analysiere dieses Transkript und extrahiere alle strukturierten Daten im JSON-Format.`
+            }
+          ],
+          temperature: 0.3,
+          max_tokens: 3000
+        })
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => null);
+        throw new Error(`OpenAI API Fehler: ${response.status} - ${errorData?.error?.message || 'Unbekannter Fehler'}`);
+      }
+
+      const data = await response.json();
+      let content = data.choices[0].message.content;
+
+      // Remove markdown code blocks if present
+      content = content.replace(/^```json\s*/gm, '').replace(/^```\s*/gm, '').replace(/```$/g, '').trim();
+
+      // Parse JSON
+      let analysisData: ContentAnalysisResult;
+      try {
+        analysisData = JSON.parse(content);
+      } catch (parseError) {
+        console.error('JSON Parse Error:', parseError);
+        console.error('Content:', content);
+        throw new Error('Die API-Antwort konnte nicht als JSON geparst werden. Bitte versuche es erneut.');
+      }
+
+      // Validate that we have the required structure
+      if (!analysisData.mainTheses || !Array.isArray(analysisData.mainTheses)) {
+        throw new Error('Ungültige Analyse-Daten: mainTheses fehlt oder ist kein Array');
+      }
+
+      setContentAnalysis(analysisData);
+      setAnalysisStep('analyzed');
+      setIsGenerating(false);
+
+    } catch (error) {
+      console.error('Analysis error:', error);
+      alert(`Fehler bei der Transkript-Analyse:\n${error instanceof Error ? error.message : 'Unbekannter Fehler'}\n\nBitte überprüfe deinen API Key und versuche es erneut.`);
+      setIsGenerating(false);
+      setAnalysisStep('pending');
+    }
+  };
+
+  // PHASE 2: Generate Content from Analysis - Create high-quality article
+  const handleGenerateFromAnalysis = async () => {
+    if (!contentAnalysis) {
+      alert('Bitte zuerst das Transkript analysieren');
+      return;
+    }
+
+    if (!openAIKey) {
+      alert('Kein OpenAI API Key gefunden. Bitte in der .env.local Datei hinzufügen.');
+      return;
+    }
+
+    setIsGenerating(true);
+    setAnalysisStep('generating');
+
+    try {
+      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${openAIKey}`
+        },
+        body: JSON.stringify({
+          model: 'gpt-4o',
+          messages: [
+            {
+              role: 'system',
+              content: `Du bist Martin Lang, ein Experte für Microsoft Copilot, KI-unterstützte Büroarbeit und Agile Methoden. Du schreibst hochwertige, praxisorientierte Wissensartikel für copilotenschule.de.
+
+**ARTIKEL-STRUKTUR**:
+
+### 1. Einleitung (2-3 Absätze)
+- Hook: Stelle eine relevante Frage oder ein Problem vor
+- Kontext: Warum ist dieses Thema wichtig?
+- Überblick: Was lernt der Leser in diesem Artikel?
+
+### 2. Quick Answer (Kasten am Anfang)
+Beginne mit: "## 🎯 Quick Answer"
+- Eine prägnante, direkte Antwort auf die Hauptfrage (2-3 Sätze)
+- 3 Key Facts als Bullet Points
+
+### 3. Hauptinhalt (strukturiert in H2/H3)
+Nutze die vorgeschlagene Content-Struktur aus der Analyse:
+- Jeder Abschnitt mit klaren H2 Überschriften
+- Integriere die Hauptthesen und Konzepte natürlich in den Text
+- Verwende die Insights als konkrete Beispiele
+- Baue die praktischen Tipps in die jeweiligen Abschnitte ein
+- Verwende **Fettdruck** für wichtige Begriffe
+- Nutze Bullet Points und nummerierte Listen wo sinnvoll
+
+### 4. Praxisbeispiel (eigener Abschnitt)
+"## 💡 Praxisbeispiel aus dem Trainingsalltag"
+- Ein konkretes, realitätsnahes Beispiel basierend auf den Insights
+- Mit Vorher-Nachher-Vergleich wenn möglich
+
+### 5. FAQ Sektion am Ende
+"## ❓ Häufig gestellte Fragen (FAQ)"
+- Nutze die vorgeschlagenen FAQs aus der Analyse
+- Format: ### Frage? gefolgt von der prägnanten Antwort
+
+### 6. Fazit (2-3 Absätze)
+- Zusammenfassung der wichtigsten Punkte
+- Call-to-Action: Was sollte der Leser jetzt tun?
+
+**STIL**:
+- Direkte Ansprache (Du-Form)
+- Praxisnah und verständlich
+- KEINE Marketing-Floskeln oder Füllwörter
+- Jeder Satz muss echten Mehrwert liefern
+- Konkrete Zahlen, Beispiele und Empfehlungen
+- 1800-2500 Wörter
+
+**E-E-A-T OPTIMIERUNG**:
+- Zeige praktische Erfahrung (Experience)
+- Demonstriere Fachwissen (Expertise)
+- Baue Autorität auf (Authority)
+- Schaffe Vertrauen (Trust)
+
+**KRITISCH**: Jeder Satz muss echten Mehrwert bieten. Keine generischen Aussagen, keine Wiederholungen, keine Füllwörter.
+
+Erstelle JETZT den kompletten Artikel im Markdown-Format.`
+            },
+            {
+              role: 'user',
+              content: `Erstelle einen hochwertigen Artikel basierend auf folgender Analyse:
+
+**HAUPTTHESEN**:
+${contentAnalysis.mainTheses.map((thesis, i) => `${i + 1}. ${thesis}`).join('\n')}
+
+**KERNKONZEPTE**:
+${contentAnalysis.keyConcepts.map(kc => `- **${kc.concept}**: ${kc.explanation}`).join('\n')}
+
+**ERKENNTNISSE**:
+${contentAnalysis.insights.map((insight, i) => `${i + 1}. ${insight}`).join('\n')}
+
+**PRAKTISCHE TIPPS**:
+${contentAnalysis.practicalTips.map((tip, i) => `${i + 1}. ${tip}`).join('\n')}
+
+**VORGESCHLAGENE STRUKTUR**:
+${contentAnalysis.contentStructure.map((heading, i) => `${i + 1}. ${heading}`).join('\n')}
+
+**FAQ-VORSCHLÄGE**:
+${contentAnalysis.potentialFAQs.map(faq => `- **${faq.question}** (Hinweise: ${faq.answerHints})`).join('\n')}
+
+**ZIELGRUPPE**: ${contentAnalysis.targetAudience}
+
+**SEO-KEYWORDS**: ${contentAnalysis.seoKeywords.join(', ')}
+
+Schreibe jetzt den vollständigen, praxisorientierten Artikel für copilotenschule.de. Nutze ALLE oben genannten Informationen und integriere sie natürlich in einen wertvollen, lesenswerten Artikel.`
+            }
+          ],
+          temperature: 0.7,
+          max_tokens: 4500
+        })
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => null);
+        throw new Error(`OpenAI API Fehler: ${response.status} - ${errorData?.error?.message || 'Unbekannter Fehler'}`);
+      }
+
+      const data = await response.json();
+      const content = data.choices[0].message.content;
+
+      setGeneratedContent(content);
+      setReviewedContent(content);
+      setGeneratorStep('content-review');
+
+      // Update state in ONE go to avoid race conditions
+      const newGeneratorState: GeneratorState = {
+        step: 'content-review',
+        transcript,
+        extractedTopics,
+        selectedTopic,
+        generatedContent: content,
+        reviewedContent: content,
+        finalCode: ''
+      };
+
+      setEditedDraft({
+        ...editedDraft,
+        generatorState: newGeneratorState,
+        updatedAt: new Date().toISOString(),
+      });
+
+      setIsGenerating(false);
+      setAnalysisStep('pending'); // Reset for next time
+
+    } catch (error) {
+      console.error('Content generation error:', error);
+      alert(`Fehler bei der Content-Generierung:\n${error instanceof Error ? error.message : 'Unbekannter Fehler'}\n\nBitte überprüfe deinen API Key in der .env.local Datei.`);
+      setIsGenerating(false);
+      setAnalysisStep('analyzed'); // Stay on analyzed state so user can retry
     }
   };
 
@@ -1289,76 +1564,362 @@ Das System analysiert automatisch die Kernthemen und erstellt passende Metadaten
                   </>
                 )}
 
-                {/* Step 5: Content Generation with OpenAI */}
+                {/* Step 5: Content Generation with OpenAI - TWO PHASE WORKFLOW */}
                 {generatorStep === 'content-generation' && (
                   <>
                     <div className="bg-gradient-to-r from-purple-50 to-blue-50 border border-purple-200 p-6 rounded-lg">
                       <h5 className="font-semibold text-purple-900 mb-3 text-lg flex items-center gap-2">
                         <Sparkles className="w-6 h-6" />
-                        Artikel-Content mit KI generieren
+                        Zweistufiger Content-Generator - Maximale Qualität
                       </h5>
-                      <p className="text-sm text-purple-800 mb-4">
-                        Jetzt wird der eigentliche Artikel-Content basierend auf deinem Transkript und den Metadaten generiert.
-                        Der KI-generierte Content wird dann von dir überarbeitet.
+                      <p className="text-sm text-purple-800 mb-3">
+                        Der neue zweistufige Workflow analysiert zunächst dein Transkript und extrahiert strukturierte Daten.
+                        Daraus wird dann ein hochwertiger, praxisorientierter Artikel generiert.
                       </p>
+                      <div className="grid grid-cols-2 gap-3 mt-3">
+                        <div className="bg-white bg-opacity-60 p-3 rounded border border-purple-300">
+                          <div className="font-semibold text-purple-900 text-sm mb-1">Phase 1: Analyse</div>
+                          <div className="text-xs text-purple-700">Thesen, Konzepte, Insights, FAQs extrahieren</div>
+                        </div>
+                        <div className="bg-white bg-opacity-60 p-3 rounded border border-purple-300">
+                          <div className="font-semibold text-purple-900 text-sm mb-1">Phase 2: Content</div>
+                          <div className="text-xs text-purple-700">Hochwertigen Artikel aus Analyse-Daten generieren</div>
+                        </div>
+                      </div>
                     </div>
 
-                    <Card className="border-2 border-purple-300">
-                      <CardContent className="pt-6 space-y-4">
-                        {!import.meta.env.VITE_OPENAI_API_KEY && (
-                          <div className="bg-amber-50 border border-amber-200 p-4 rounded-lg">
-                            <h6 className="font-semibold text-amber-900 mb-2 text-sm">⚠️ API Key nicht konfiguriert</h6>
-                            <p className="text-xs text-amber-800 mb-3">
-                              Kein OpenAI API Key in der .env.local Datei gefunden.
-                            </p>
-                            <details className="text-xs text-amber-800">
-                              <summary className="cursor-pointer font-semibold mb-2">So richtest du es ein:</summary>
-                              <ol className="list-decimal list-inside space-y-1 ml-2">
-                                <li>Erstelle/öffne die Datei <code className="bg-amber-100 px-1 rounded">.env.local</code> im Projekt-Root</li>
-                                <li>Füge hinzu: <code className="bg-amber-100 px-1 rounded">VITE_OPENAI_API_KEY=dein-api-key</code></li>
-                                <li>Speichern und Dev-Server neu starten</li>
-                              </ol>
-                            </details>
-                          </div>
-                        )}
+                    {/* API Key Check */}
+                    {!import.meta.env.VITE_OPENAI_API_KEY && (
+                      <div className="bg-amber-50 border border-amber-200 p-4 rounded-lg">
+                        <h6 className="font-semibold text-amber-900 mb-2 text-sm">⚠️ API Key nicht konfiguriert</h6>
+                        <p className="text-xs text-amber-800 mb-3">
+                          Kein OpenAI API Key in der .env.local Datei gefunden.
+                        </p>
+                        <details className="text-xs text-amber-800">
+                          <summary className="cursor-pointer font-semibold mb-2">So richtest du es ein:</summary>
+                          <ol className="list-decimal list-inside space-y-1 ml-2">
+                            <li>Erstelle/öffne die Datei <code className="bg-amber-100 px-1 rounded">.env.local</code> im Projekt-Root</li>
+                            <li>Füge hinzu: <code className="bg-amber-100 px-1 rounded">VITE_OPENAI_API_KEY=dein-api-key</code></li>
+                            <li>Speichern und Dev-Server neu starten</li>
+                          </ol>
+                        </details>
+                      </div>
+                    )}
 
-                        {import.meta.env.VITE_OPENAI_API_KEY && (
-                          <div className="bg-green-50 border border-green-200 p-3 rounded-lg">
+                    {/* PHASE 1: PENDING - Show button to start analysis */}
+                    {analysisStep === 'pending' && (
+                      <Card className="border-2 border-purple-300">
+                        <CardContent className="pt-6 space-y-4">
+                          <div className="bg-purple-50 border border-purple-200 p-4 rounded-lg">
+                            <h6 className="font-semibold text-purple-900 mb-2 text-sm flex items-center gap-2">
+                              <span className="text-xl">🔍</span>
+                              Phase 1: Transkript analysieren
+                            </h6>
+                            <p className="text-xs text-purple-800 mb-3">
+                              Die KI analysiert dein Transkript und extrahiert strukturierte Daten:
+                            </p>
+                            <ul className="text-xs text-purple-800 space-y-1 list-disc list-inside ml-2">
+                              <li>3-5 Hauptthesen und Kernbotschaften</li>
+                              <li>5-8 wichtige Konzepte mit Erklärungen</li>
+                              <li>4-6 konkrete Erkenntnisse und Insights</li>
+                              <li>5-10 praktische, umsetzbare Tipps</li>
+                              <li>15-25 SEO-Keywords (deutsch + englisch)</li>
+                              <li>8-12 potenzielle FAQ-Fragen mit Antwort-Hints</li>
+                              <li>Zielgruppenbeschreibung</li>
+                              <li>Empfohlene Content-Struktur (H2-Überschriften)</li>
+                            </ul>
+                          </div>
+
+                          <div className="flex justify-between items-center pt-2">
+                            <Button onClick={() => setGeneratorStep('metadata')} variant="outline">
+                              ← Zurück zu Metadaten
+                            </Button>
+                            <Button
+                              onClick={handleAnalyzeTranscript}
+                              size="lg"
+                              disabled={isGenerating || !openAIKey}
+                              className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700"
+                            >
+                              <Sparkles className="w-5 h-5 mr-2" />
+                              Transkript analysieren →
+                            </Button>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    )}
+
+                    {/* PHASE 1: ANALYZING - Show loading state */}
+                    {analysisStep === 'analyzing' && (
+                      <Card className="border-2 border-purple-300">
+                        <CardContent className="pt-6 space-y-4">
+                          <div className="bg-purple-50 border border-purple-200 p-6 rounded-lg text-center">
+                            <div className="animate-spin w-12 h-12 border-4 border-purple-600 border-t-transparent rounded-full mx-auto mb-4"></div>
+                            <h6 className="font-semibold text-purple-900 mb-2 text-lg">
+                              Analysiere Transkript...
+                            </h6>
+                            <p className="text-sm text-purple-800">
+                              Die KI extrahiert gerade strukturierte Daten aus deinem Transkript. Dies kann 20-40 Sekunden dauern.
+                            </p>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    )}
+
+                    {/* PHASE 1: ANALYZED - Show analysis results */}
+                    {analysisStep === 'analyzed' && contentAnalysis && (
+                      <Card className="border-2 border-green-300">
+                        <CardContent className="pt-6 space-y-4">
+                          <div className="bg-green-50 border border-green-200 p-4 rounded-lg">
+                            <h6 className="font-semibold text-green-900 mb-2 text-sm flex items-center gap-2">
+                              <CheckCircle className="w-5 h-5" />
+                              ✅ Analyse abgeschlossen!
+                            </h6>
                             <p className="text-xs text-green-800">
-                              ✅ OpenAI API Key konfiguriert. Bereit zur Content-Generierung!
+                              Die strukturierten Daten wurden erfolgreich extrahiert. Überprüfe die Ergebnisse und starte dann die Content-Generierung.
                             </p>
                           </div>
-                        )}
 
-                        <div className="bg-blue-50 border border-blue-200 p-4 rounded-lg">
-                          <h6 className="font-semibold text-blue-900 mb-2 text-sm">🎨 Was wird generiert?</h6>
-                          <ul className="text-xs text-blue-800 space-y-1 list-disc list-inside">
-                            <li><strong>Vollständiger Artikel</strong> (1800-2500 Wörter)</li>
-                            <li><strong>Quick Answer Sektion</strong> am Anfang mit Key Facts</li>
-                            <li><strong>Strukturierter Hauptinhalt</strong> mit H2/H3 Überschriften</li>
-                            <li><strong>Praxisbeispiel</strong> aus dem Trainingsalltag</li>
-                            <li><strong>6-8 FAQ-Einträge</strong> am Ende</li>
-                            <li><strong>E-E-A-T optimiert</strong> (Experience, Expertise, Authority, Trust)</li>
-                            <li><strong>Praxisnah</strong> mit konkreten Handlungsempfehlungen</li>
-                          </ul>
-                        </div>
+                          {/* Analysis Results Display */}
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            {/* Main Theses */}
+                            <Card className="bg-blue-50 border-blue-200">
+                              <CardHeader className="pb-3">
+                                <CardTitle className="text-sm font-semibold text-blue-900">
+                                  💡 Hauptthesen ({contentAnalysis.mainTheses.length})
+                                </CardTitle>
+                              </CardHeader>
+                              <CardContent>
+                                <ul className="text-xs space-y-1 list-disc list-inside text-blue-800">
+                                  {contentAnalysis.mainTheses.slice(0, 3).map((thesis, i) => (
+                                    <li key={i}>{thesis}</li>
+                                  ))}
+                                  {contentAnalysis.mainTheses.length > 3 && (
+                                    <li className="text-blue-600 italic">+{contentAnalysis.mainTheses.length - 3} weitere</li>
+                                  )}
+                                </ul>
+                              </CardContent>
+                            </Card>
 
-                        <div className="flex justify-between items-center pt-2">
-                          <Button onClick={() => setGeneratorStep('metadata')} variant="outline">
-                            ← Zurück zu Metadaten
-                          </Button>
-                          <Button
-                            onClick={handleGenerateContent}
-                            size="lg"
-                            disabled={isGenerating || !openAIKey}
-                            className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700"
-                          >
-                            <Sparkles className="w-5 h-5 mr-2" />
-                            {isGenerating ? 'Generiere Content... (30-60s)' : 'Content generieren →'}
-                          </Button>
-                        </div>
-                      </CardContent>
-                    </Card>
+                            {/* Key Concepts */}
+                            <Card className="bg-purple-50 border-purple-200">
+                              <CardHeader className="pb-3">
+                                <CardTitle className="text-sm font-semibold text-purple-900">
+                                  📚 Kernkonzepte ({contentAnalysis.keyConcepts.length})
+                                </CardTitle>
+                              </CardHeader>
+                              <CardContent>
+                                <ul className="text-xs space-y-1.5">
+                                  {contentAnalysis.keyConcepts.slice(0, 3).map((kc, i) => (
+                                    <li key={i} className="text-purple-800">
+                                      <strong>{kc.concept}:</strong> {kc.explanation.slice(0, 50)}...
+                                    </li>
+                                  ))}
+                                  {contentAnalysis.keyConcepts.length > 3 && (
+                                    <li className="text-purple-600 italic">+{contentAnalysis.keyConcepts.length - 3} weitere</li>
+                                  )}
+                                </ul>
+                              </CardContent>
+                            </Card>
+
+                            {/* Insights */}
+                            <Card className="bg-green-50 border-green-200">
+                              <CardHeader className="pb-3">
+                                <CardTitle className="text-sm font-semibold text-green-900">
+                                  ⚡ Erkenntnisse ({contentAnalysis.insights.length})
+                                </CardTitle>
+                              </CardHeader>
+                              <CardContent>
+                                <ul className="text-xs space-y-1 list-disc list-inside text-green-800">
+                                  {contentAnalysis.insights.slice(0, 3).map((insight, i) => (
+                                    <li key={i}>{insight.slice(0, 60)}...</li>
+                                  ))}
+                                  {contentAnalysis.insights.length > 3 && (
+                                    <li className="text-green-600 italic">+{contentAnalysis.insights.length - 3} weitere</li>
+                                  )}
+                                </ul>
+                              </CardContent>
+                            </Card>
+
+                            {/* Practical Tips */}
+                            <Card className="bg-amber-50 border-amber-200">
+                              <CardHeader className="pb-3">
+                                <CardTitle className="text-sm font-semibold text-amber-900">
+                                  🎯 Praktische Tipps ({contentAnalysis.practicalTips.length})
+                                </CardTitle>
+                              </CardHeader>
+                              <CardContent>
+                                <ul className="text-xs space-y-1 list-disc list-inside text-amber-800">
+                                  {contentAnalysis.practicalTips.slice(0, 3).map((tip, i) => (
+                                    <li key={i}>{tip.slice(0, 60)}...</li>
+                                  ))}
+                                  {contentAnalysis.practicalTips.length > 3 && (
+                                    <li className="text-amber-600 italic">+{contentAnalysis.practicalTips.length - 3} weitere</li>
+                                  )}
+                                </ul>
+                              </CardContent>
+                            </Card>
+                          </div>
+
+                          {/* SEO Keywords */}
+                          <Card className="bg-indigo-50 border-indigo-200">
+                            <CardHeader className="pb-3">
+                              <CardTitle className="text-sm font-semibold text-indigo-900">
+                                🔍 SEO-Keywords ({contentAnalysis.seoKeywords.length})
+                              </CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                              <div className="flex flex-wrap gap-1.5">
+                                {contentAnalysis.seoKeywords.slice(0, 12).map((keyword, i) => (
+                                  <Badge key={i} variant="outline" className="text-xs bg-white">
+                                    {keyword}
+                                  </Badge>
+                                ))}
+                                {contentAnalysis.seoKeywords.length > 12 && (
+                                  <Badge variant="secondary" className="text-xs">
+                                    +{contentAnalysis.seoKeywords.length - 12} weitere
+                                  </Badge>
+                                )}
+                              </div>
+                            </CardContent>
+                          </Card>
+
+                          {/* Content Structure */}
+                          <Card className="bg-cyan-50 border-cyan-200">
+                            <CardHeader className="pb-3">
+                              <CardTitle className="text-sm font-semibold text-cyan-900">
+                                📋 Empfohlene Artikel-Struktur
+                              </CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                              <ol className="text-xs space-y-1 list-decimal list-inside text-cyan-800">
+                                {contentAnalysis.contentStructure.map((heading, i) => (
+                                  <li key={i} className="font-medium">{heading}</li>
+                                ))}
+                              </ol>
+                            </CardContent>
+                          </Card>
+
+                          {/* FAQ Preview */}
+                          <Card className="bg-pink-50 border-pink-200">
+                            <CardHeader className="pb-3">
+                              <CardTitle className="text-sm font-semibold text-pink-900">
+                                ❓ FAQ-Vorschläge ({contentAnalysis.potentialFAQs.length})
+                              </CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                              <ul className="text-xs space-y-1.5">
+                                {contentAnalysis.potentialFAQs.slice(0, 4).map((faq, i) => (
+                                  <li key={i} className="text-pink-800">
+                                    <strong>Q:</strong> {faq.question}
+                                  </li>
+                                ))}
+                                {contentAnalysis.potentialFAQs.length > 4 && (
+                                  <li className="text-pink-600 italic">+{contentAnalysis.potentialFAQs.length - 4} weitere Fragen</li>
+                                )}
+                              </ul>
+                            </CardContent>
+                          </Card>
+
+                          {/* Target Audience */}
+                          <Card className="bg-teal-50 border-teal-200">
+                            <CardHeader className="pb-3">
+                              <CardTitle className="text-sm font-semibold text-teal-900">
+                                👥 Zielgruppe
+                              </CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                              <p className="text-xs text-teal-800">{contentAnalysis.targetAudience}</p>
+                            </CardContent>
+                          </Card>
+
+                          <div className="bg-blue-50 border border-blue-200 p-4 rounded-lg mt-4">
+                            <h6 className="font-semibold text-blue-900 mb-2 text-sm flex items-center gap-2">
+                              <span className="text-xl">✍️</span>
+                              Phase 2: Hochwertigen Artikel generieren
+                            </h6>
+                            <p className="text-xs text-blue-800">
+                              Basierend auf dieser Analyse wird jetzt ein hochwertiger, praxisorientierter Artikel erstellt.
+                              Alle oben genannten Daten werden intelligent in den Artikel integriert.
+                            </p>
+                          </div>
+
+                          <div className="flex justify-between items-center pt-2">
+                            <Button
+                              onClick={() => {
+                                setAnalysisStep('pending');
+                                setContentAnalysis(null);
+                              }}
+                              variant="outline"
+                            >
+                              ← Analyse wiederholen
+                            </Button>
+                            <Button
+                              onClick={handleGenerateFromAnalysis}
+                              size="lg"
+                              disabled={isGenerating || !openAIKey}
+                              className="bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700"
+                            >
+                              <Sparkles className="w-5 h-5 mr-2" />
+                              Hochwertigen Artikel generieren →
+                            </Button>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    )}
+
+                    {/* PHASE 2: GENERATING - Show loading state */}
+                    {analysisStep === 'generating' && (
+                      <Card className="border-2 border-blue-300">
+                        <CardContent className="pt-6 space-y-4">
+                          <div className="bg-blue-50 border border-blue-200 p-6 rounded-lg text-center">
+                            <div className="animate-spin w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full mx-auto mb-4"></div>
+                            <h6 className="font-semibold text-blue-900 mb-2 text-lg">
+                              Generiere hochwertigen Artikel...
+                            </h6>
+                            <p className="text-sm text-blue-800 mb-3">
+                              Die KI erstellt jetzt einen praxisorientierten Artikel basierend auf den Analyse-Daten.
+                            </p>
+                            <p className="text-xs text-blue-700">
+                              Dies kann 40-60 Sekunden dauern. Der Artikel wird alle Thesen, Konzepte, Insights und Tipps enthalten.
+                            </p>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    )}
+
+                    {/* Legacy: Old single-phase button (hidden when using two-phase) */}
+                    {import.meta.env.VITE_OPENAI_API_KEY && analysisStep === 'pending' && (
+                      <details className="mt-4">
+                        <summary className="text-xs text-gray-500 cursor-pointer hover:text-gray-700">
+                          Alte Methode (Einstufiger Generator) anzeigen
+                        </summary>
+                        <Card className="border-2 border-gray-300 mt-2">
+                          <CardContent className="pt-6 space-y-4">
+                            <div className="bg-gray-50 border border-gray-200 p-4 rounded-lg">
+                              <h6 className="font-semibold text-gray-900 mb-2 text-sm">⚠️ Alte Methode (nicht empfohlen)</h6>
+                              <p className="text-xs text-gray-700 mb-2">
+                                Die alte einstufige Methode generiert Content direkt aus dem Transkript ohne vorherige Analyse.
+                                Dies führt oft zu weniger strukturierten Artikeln.
+                              </p>
+                              <p className="text-xs text-gray-600">
+                                Nutze stattdessen den neuen zweistufigen Workflow für bessere Ergebnisse!
+                              </p>
+                            </div>
+
+                            <Button
+                              onClick={handleGenerateContent}
+                              size="lg"
+                              disabled={isGenerating}
+                              variant="outline"
+                              className="w-full"
+                            >
+                              <Sparkles className="w-5 h-5 mr-2" />
+                              {isGenerating ? 'Generiere Content... (30-60s)' : 'Content generieren (alte Methode)'}
+                            </Button>
+                          </CardContent>
+                        </Card>
+                      </details>
+                    )}
                   </>
                 )}
 
@@ -1718,7 +2279,6 @@ Das System analysiert automatisch die Kernthemen und erstellt passende Metadaten
 
           {/* Preview Tab */}
           <TabsContent value="preview">
-            <ErrorBoundary fallbackTitle="Fehler beim Laden der Vorschau">
             {/* Show full page preview if we have content */}
             {(editedDraft.generatorState?.reviewedContent || editedDraft.content) && editedDraft.title ? (
               <div className="space-y-4">
@@ -1739,38 +2299,17 @@ Das System analysiert automatisch die Kernthemen und erstellt passende Metadaten
                 <Card>
                   <CardContent className="p-0">
                     <div className="border rounded-lg overflow-hidden">
-                      {(() => {
-                        try {
-                          const content = editedDraft.generatorState?.reviewedContent || editedDraft.content || '';
-
-                          return (
-                            <KnowledgePagePreview
-                              title={editedDraft.title || 'Artikel'}
-                              description={editedDraft.description || ''}
-                              slug={editedDraft.slug || 'artikel'}
-                              keywords={editedDraft.keywords || []}
-                              category={editedDraft.category || ''}
-                              readTime={editedDraft.readTime || '5 Min.'}
-                              publishDate={editedDraft.publishDate || new Date().toISOString()}
-                              authorId={editedDraft.author || 'martin-lang'}
-                              markdownContent={content}
-                            />
-                          );
-                        } catch (error) {
-                          console.error('Error rendering preview:', error);
-                          return (
-                            <div className="p-8 text-center">
-                              <p className="text-red-600 font-semibold mb-2">Fehler beim Laden der Vorschau</p>
-                              <p className="text-sm text-gray-600">
-                                Bitte versuche die Seite neu zu laden oder kontaktiere den Support.
-                              </p>
-                              <pre className="mt-4 text-xs text-left bg-gray-100 p-4 rounded overflow-auto max-h-40">
-                                {error instanceof Error ? error.message : 'Unbekannter Fehler'}
-                              </pre>
-                            </div>
-                          );
-                        }
-                      })()}
+                      <KnowledgePagePreview
+                        title={editedDraft.title}
+                        description={editedDraft.description}
+                        slug={editedDraft.slug}
+                        keywords={editedDraft.keywords}
+                        category={editedDraft.category}
+                        readTime={editedDraft.readTime}
+                        publishDate={editedDraft.publishDate}
+                        authorId={editedDraft.author}
+                        markdownContent={editedDraft.generatorState?.reviewedContent || editedDraft.content}
+                      />
                     </div>
                   </CardContent>
                 </Card>
@@ -1896,7 +2435,6 @@ Das System analysiert automatisch die Kernthemen und erstellt passende Metadaten
               </Card>
             </div>
             )}
-            </ErrorBoundary>
           </TabsContent>
         </Tabs>
       </div>
