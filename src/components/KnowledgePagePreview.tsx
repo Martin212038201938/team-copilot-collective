@@ -198,8 +198,8 @@ const KnowledgePagePreview = ({
         )}
 
         {/* Main Content */}
-        <div
-          className="prose prose-lg max-w-none dark:prose-invert"
+        <article
+          className="prose max-w-none dark:prose-invert prose-headings:scroll-mt-20"
           dangerouslySetInnerHTML={{ __html: contentHtml }}
         />
 
