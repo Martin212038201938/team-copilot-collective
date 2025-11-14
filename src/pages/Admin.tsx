@@ -27,10 +27,25 @@ const AdminContent = () => {
     loadDrafts();
   }, []);
 
+  // Persist drafts to localStorage whenever they change
+  useEffect(() => {
+    if (drafts.length > 0) {
+      localStorage.setItem('copilot-drafts', JSON.stringify(drafts));
+    }
+  }, [drafts]);
+
   const loadDrafts = async () => {
     try {
-      // In production, this would be an API call
-      // For now, we'll load from the JSON files
+      // First, try to load from localStorage
+      const savedDrafts = localStorage.getItem('copilot-drafts');
+      if (savedDrafts) {
+        const parsed = JSON.parse(savedDrafts);
+        setDrafts(parsed);
+        console.log('Loaded drafts from localStorage:', parsed.length);
+        return;
+      }
+
+      // Fallback: load from JSON files
       const draftFiles = ['copilot-sicherheit', 'copilot-tipps-tricks', 'copilot-roi-berechnen'];
       const loadedDrafts: Draft[] = [];
 
@@ -46,7 +61,10 @@ const AdminContent = () => {
         }
       }
 
-      setDrafts(loadedDrafts);
+      if (loadedDrafts.length > 0) {
+        setDrafts(loadedDrafts);
+        localStorage.setItem('copilot-drafts', JSON.stringify(loadedDrafts));
+      }
     } catch (error) {
       console.error("Error loading drafts:", error);
     }

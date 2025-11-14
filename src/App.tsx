@@ -16,6 +16,7 @@ import Impressum from "./pages/Impressum";
 import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
 import CopilotRoiBerechnen from "./pages/CopilotRoiBerechnen";
+import DynamicKnowledgePage from "./pages/DynamicKnowledgePage";
 
 const queryClient = new QueryClient();
 
@@ -38,6 +39,8 @@ const App = () => (
           <Route path="/wissen/copilot-roi-berechnen" element={<CopilotRoiBerechnen />} />
           <Route path="/impressum" element={<Impressum />} />
           <Route path="/admin" element={<Admin />} />
+          {/* Dynamic route for all published knowledge articles */}
+          <Route path="/wissen/:slug" element={<DynamicKnowledgePage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
