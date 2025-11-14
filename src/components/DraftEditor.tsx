@@ -78,10 +78,24 @@ const DraftEditor = ({ draft, onSave, onCancel, initialTab }: DraftEditorProps) 
     draft.generatorState?.reviewedContent || ""
   );
   const [isGenerating, setIsGenerating] = useState(false);
-  const [openAIKey, setOpenAIKey] = useState<string>(import.meta.env.VITE_OPENAI_API_KEY || "");
+  const [openAIKey, setOpenAIKey] = useState<string>(() => {
+    // Try to get key from: 1) env variable, 2) localStorage, 3) empty string
+    return import.meta.env.VITE_OPENAI_API_KEY ||
+           localStorage.getItem('openai_api_key') ||
+           "";
+  });
   const [showResumePrompt, setShowResumePrompt] = useState(false);
   const [contentAnalysis, setContentAnalysis] = useState<ContentAnalysisResult | null>(null);
   const [analysisStep, setAnalysisStep] = useState<'pending' | 'analyzing' | 'analyzed' | 'generating'>('pending');
+
+  // Save API key to localStorage when it changes
+  useEffect(() => {
+    if (openAIKey) {
+      localStorage.setItem('openai_api_key', openAIKey);
+    } else {
+      localStorage.removeItem('openai_api_key');
+    }
+  }, [openAIKey]);
 
   // Check if there's a saved generator state to resume
   useEffect(() => {
@@ -1609,21 +1623,60 @@ Das System analysiert automatisch die Kernthemen und erstellt passende Metadaten
                       </div>
                     </div>
 
-                    {/* API Key Check */}
-                    {!import.meta.env.VITE_OPENAI_API_KEY && (
+                    {/* API Key Check & Input */}
+                    {!openAIKey && (
                       <div className="bg-amber-50 border border-amber-200 p-4 rounded-lg">
-                        <h6 className="font-semibold text-amber-900 mb-2 text-sm">⚠️ API Key nicht konfiguriert</h6>
+                        <h6 className="font-semibold text-amber-900 mb-2 text-sm">⚠️ API Key erforderlich</h6>
                         <p className="text-xs text-amber-800 mb-3">
-                          Kein OpenAI API Key in der .env.local Datei gefunden.
+                          Bitte gib deinen OpenAI API Key ein, um die KI-Features zu nutzen.
                         </p>
-                        <details className="text-xs text-amber-800">
-                          <summary className="cursor-pointer font-semibold mb-2">So richtest du es ein:</summary>
+                        <div className="flex gap-2 items-start">
+                          <div className="flex-1">
+                            <input
+                              type="password"
+                              value={openAIKey}
+                              onChange={(e) => setOpenAIKey(e.target.value)}
+                              placeholder="sk-proj-..."
+                              className="w-full px-3 py-2 text-sm border border-amber-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500"
+                            />
+                            <p className="text-xs text-amber-700 mt-1">
+                              Der Key wird nur in dieser Sitzung gespeichert und nicht übertragen.
+                            </p>
+                          </div>
+                        </div>
+                        <details className="text-xs text-amber-800 mt-3">
+                          <summary className="cursor-pointer font-semibold mb-2">Wo finde ich meinen API Key?</summary>
+                          <ol className="list-decimal list-inside space-y-1 ml-2">
+                            <li>Gehe zu <a href="https://platform.openai.com/api-keys" target="_blank" rel="noopener noreferrer" className="underline">platform.openai.com/api-keys</a></li>
+                            <li>Erstelle einen neuen Secret Key oder kopiere einen bestehenden</li>
+                            <li>Füge den Key oben ein</li>
+                          </ol>
+                          <p className="mt-2 font-semibold">Für permanente Konfiguration (optional):</p>
                           <ol className="list-decimal list-inside space-y-1 ml-2">
                             <li>Erstelle/öffne die Datei <code className="bg-amber-100 px-1 rounded">.env.local</code> im Projekt-Root</li>
                             <li>Füge hinzu: <code className="bg-amber-100 px-1 rounded">VITE_OPENAI_API_KEY=dein-api-key</code></li>
                             <li>Speichern und Dev-Server neu starten</li>
                           </ol>
                         </details>
+                      </div>
+                    )}
+
+                    {/* API Key Success */}
+                    {openAIKey && (
+                      <div className="bg-green-50 border border-green-200 p-3 rounded-lg">
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-2">
+                            <span className="text-green-600 text-sm">✓ API Key konfiguriert</span>
+                          </div>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => setOpenAIKey("")}
+                            className="text-xs text-green-700 hover:text-green-900"
+                          >
+                            Key ändern
+                          </Button>
+                        </div>
                       </div>
                     )}
 
