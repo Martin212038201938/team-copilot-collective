@@ -6,11 +6,20 @@ import { Button } from "@/components/ui/button";
 import { getAuthor } from "@/data/authors";
 import { Link } from "react-router-dom";
 import { Linkedin, Mail, BookOpen, Clock } from "lucide-react";
+import { getPublishedAsKnowledgeTopics } from "@/utils/publishedArticles";
+import { useState, useEffect } from "react";
 
 const Wissen = () => {
   const martinLang = getAuthor('martin-lang')!;
+  const [dynamicTopics, setDynamicTopics] = useState<any[]>([]);
 
-  const knowledgeTopics = [
+  // Load published articles from localStorage
+  useEffect(() => {
+    const published = getPublishedAsKnowledgeTopics();
+    setDynamicTopics(published);
+  }, []);
+
+  const staticKnowledgeTopics = [
     {
       title: "Microsoft Copilot Lizenzen: Kompletter Überblick",
       description: "Welche Microsoft Copilot Lizenz benötigen Sie? Umfassender Vergleich aller Lizenzmodelle für Microsoft 365 Copilot, GitHub Copilot und Copilot Studio.",
@@ -76,6 +85,9 @@ const Wissen = () => {
     lastUpdated: "07. Nov. 2025"
   }
 ];
+
+  // Combine static and dynamic topics
+  const knowledgeTopics = [...dynamicTopics, ...staticKnowledgeTopics];
 
   return (
     <div className="min-h-screen">

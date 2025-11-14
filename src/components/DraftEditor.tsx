@@ -87,6 +87,7 @@ const DraftEditor = ({ draft, onSave, onCancel, initialTab }: DraftEditorProps) 
   const [showResumePrompt, setShowResumePrompt] = useState(false);
   const [contentAnalysis, setContentAnalysis] = useState<ContentAnalysisResult | null>(null);
   const [analysisStep, setAnalysisStep] = useState<'pending' | 'analyzing' | 'analyzed' | 'generating'>('pending');
+  const [isEditingAnalysis, setIsEditingAnalysis] = useState(false);
 
   // Save API key to localStorage when it changes
   useEffect(() => {
@@ -1927,14 +1928,165 @@ Das System analysiert automatisch die Kernthemen und erstellt passende Metadaten
                             >
                               ← Analyse wiederholen
                             </Button>
+                            <div className="flex gap-2">
+                              <Button
+                                onClick={() => setIsEditingAnalysis(true)}
+                                variant="secondary"
+                                size="lg"
+                              >
+                                <Edit2 className="w-4 h-4 mr-2" />
+                                Analyse bearbeiten
+                              </Button>
+                              <Button
+                                onClick={handleGenerateFromAnalysis}
+                                size="lg"
+                                disabled={isGenerating || !openAIKey}
+                                className="bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700"
+                              >
+                                <Sparkles className="w-5 h-5 mr-2" />
+                                Hochwertigen Artikel generieren →
+                              </Button>
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    )}
+
+                    {/* Analysis Edit Modal/Form */}
+                    {isEditingAnalysis && contentAnalysis && (
+                      <Card className="border-2 border-blue-400">
+                        <CardHeader className="bg-gradient-to-r from-blue-50 to-purple-50">
+                          <CardTitle className="flex items-center justify-between">
+                            <span className="flex items-center gap-2">
+                              <Edit2 className="w-5 h-5" />
+                              Analyse bearbeiten
+                            </span>
                             <Button
-                              onClick={handleGenerateFromAnalysis}
-                              size="lg"
-                              disabled={isGenerating || !openAIKey}
-                              className="bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700"
+                              onClick={() => setIsEditingAnalysis(false)}
+                              variant="ghost"
+                              size="sm"
                             >
-                              <Sparkles className="w-5 h-5 mr-2" />
-                              Hochwertigen Artikel generieren →
+                              Abbrechen
+                            </Button>
+                          </CardTitle>
+                          <p className="text-sm text-muted-foreground">
+                            Passe die automatisch extrahierten Daten an deine Bedürfnisse an
+                          </p>
+                        </CardHeader>
+                        <CardContent className="pt-6 space-y-4">
+                          {/* Expertise Level */}
+                          <div>
+                            <Label htmlFor="edit-expertise">Expertise-Niveau</Label>
+                            <Select
+                              value={contentAnalysis.expertiseLevel || 'intermediate'}
+                              onValueChange={(value: 'beginner' | 'intermediate' | 'advanced') =>
+                                setContentAnalysis({ ...contentAnalysis, expertiseLevel: value })
+                              }
+                            >
+                              <SelectTrigger id="edit-expertise">
+                                <SelectValue />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="beginner">Beginner - Grundlagen</SelectItem>
+                                <SelectItem value="intermediate">Intermediate - Fortgeschritten</SelectItem>
+                                <SelectItem value="advanced">Advanced - Expert</SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </div>
+
+                          {/* Target Audience */}
+                          <div>
+                            <Label htmlFor="edit-audience">Zielgruppe</Label>
+                            <Textarea
+                              id="edit-audience"
+                              value={contentAnalysis.targetAudience}
+                              onChange={(e) =>
+                                setContentAnalysis({ ...contentAnalysis, targetAudience: e.target.value })
+                              }
+                              rows={2}
+                            />
+                          </div>
+
+                          {/* Main Theses */}
+                          <div>
+                            <Label>Hauptthesen (eine pro Zeile)</Label>
+                            <Textarea
+                              value={contentAnalysis.mainTheses.join('\n')}
+                              onChange={(e) =>
+                                setContentAnalysis({
+                                  ...contentAnalysis,
+                                  mainTheses: e.target.value.split('\n').filter(t => t.trim())
+                                })
+                              }
+                              rows={5}
+                              placeholder="These 1&#10;These 2&#10;These 3"
+                            />
+                          </div>
+
+                          {/* Practical Tips */}
+                          <div>
+                            <Label>Praktische Tipps (einer pro Zeile)</Label>
+                            <Textarea
+                              value={contentAnalysis.practicalTips.join('\n')}
+                              onChange={(e) =>
+                                setContentAnalysis({
+                                  ...contentAnalysis,
+                                  practicalTips: e.target.value.split('\n').filter(t => t.trim())
+                                })
+                              }
+                              rows={8}
+                              placeholder="Tipp 1&#10;Tipp 2&#10;Tipp 3"
+                            />
+                          </div>
+
+                          {/* SEO Keywords */}
+                          <div>
+                            <Label>SEO-Keywords (kommagetrennt)</Label>
+                            <Textarea
+                              value={contentAnalysis.seoKeywords.join(', ')}
+                              onChange={(e) =>
+                                setContentAnalysis({
+                                  ...contentAnalysis,
+                                  seoKeywords: e.target.value.split(',').map(k => k.trim()).filter(k => k)
+                                })
+                              }
+                              rows={3}
+                              placeholder="keyword1, keyword2, keyword3"
+                            />
+                          </div>
+
+                          {/* Content Structure */}
+                          <div>
+                            <Label>Artikel-Struktur (H2-Überschriften, eine pro Zeile)</Label>
+                            <Textarea
+                              value={contentAnalysis.contentStructure.join('\n')}
+                              onChange={(e) =>
+                                setContentAnalysis({
+                                  ...contentAnalysis,
+                                  contentStructure: e.target.value.split('\n').filter(h => h.trim())
+                                })
+                              }
+                              rows={6}
+                              placeholder="Überschrift 1&#10;Überschrift 2&#10;Überschrift 3"
+                            />
+                          </div>
+
+                          <div className="flex justify-end gap-2 pt-4">
+                            <Button
+                              onClick={() => setIsEditingAnalysis(false)}
+                              variant="outline"
+                            >
+                              Abbrechen
+                            </Button>
+                            <Button
+                              onClick={() => {
+                                setIsEditingAnalysis(false);
+                                // Analysis is already updated via setContentAnalysis
+                              }}
+                              className="bg-gradient-to-r from-green-600 to-blue-600"
+                            >
+                              <CheckCircle className="w-4 h-4 mr-2" />
+                              Änderungen übernehmen
                             </Button>
                           </div>
                         </CardContent>
