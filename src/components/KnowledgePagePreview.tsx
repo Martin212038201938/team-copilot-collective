@@ -180,16 +180,16 @@ const KnowledgePagePreview = ({
         {/* Quick Answer Section */}
         {quickAnswer && (
           <section id="quick-answer" className="mb-8">
-            <Card className="border-2 border-primary/30 bg-gradient-to-br from-primary/5 to-accent/5">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-xl">
+            <Card className="border-2 border-primary/30 bg-white shadow-lg">
+              <CardHeader className="bg-gradient-to-r from-primary/5 to-transparent border-b">
+                <CardTitle className="flex items-center gap-2 text-xl text-gray-900">
                   <span className="text-2xl">⚡</span>
                   Schnellantwort
                 </CardTitle>
               </CardHeader>
-              <CardContent>
+              <CardContent className="pt-6">
                 <div
-                  className="prose prose-sm max-w-none dark:prose-invert"
+                  className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-p:text-gray-900 prose-li:text-gray-900 prose-strong:text-gray-900"
                   dangerouslySetInnerHTML={{ __html: quickAnswer }}
                 />
               </CardContent>
@@ -198,24 +198,26 @@ const KnowledgePagePreview = ({
         )}
 
         {/* Main Content */}
-        <article
-          className="prose max-w-none dark:prose-invert prose-headings:scroll-mt-20"
-          dangerouslySetInnerHTML={{ __html: contentHtml }}
-        />
+        <article className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 md:p-12 mb-8">
+          <div
+            className="prose prose-lg max-w-none prose-headings:scroll-mt-20 prose-headings:text-gray-900 prose-p:text-gray-900 prose-p:leading-relaxed prose-li:text-gray-900 prose-strong:text-gray-900"
+            dangerouslySetInnerHTML={{ __html: contentHtml }}
+          />
+        </article>
 
         {/* FAQ Section */}
         {faqItems.length > 0 && (
           <section id="faq" className="mt-12 mb-12">
-            <h2 className="text-3xl font-bold mb-6">Häufig gestellte Fragen (FAQ)</h2>
+            <h2 className="text-3xl font-bold mb-6 text-gray-900">Häufig gestellte Fragen (FAQ)</h2>
             <div className="space-y-4">
               {faqItems.map((faq, idx) => (
-                <Card key={idx} className="hover:shadow-lg transition-shadow">
-                  <CardHeader>
-                    <CardTitle className="text-lg font-semibold">{faq.question}</CardTitle>
+                <Card key={idx} className="bg-white hover:shadow-lg transition-shadow border border-gray-100">
+                  <CardHeader className="border-b bg-gray-50/50">
+                    <CardTitle className="text-lg font-semibold text-gray-900">{faq.question}</CardTitle>
                   </CardHeader>
-                  <CardContent>
+                  <CardContent className="pt-6">
                     <div
-                      className="prose prose-sm max-w-none dark:prose-invert text-muted-foreground"
+                      className="prose prose-base max-w-none prose-p:text-gray-800 prose-li:text-gray-800"
                       dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(marked(faq.answer) as string) }}
                     />
                   </CardContent>
@@ -227,7 +229,7 @@ const KnowledgePagePreview = ({
 
         {/* Author Bio */}
         <section className="my-12">
-          <Card className="border-l-4 border-l-primary">
+          <Card className="border-l-4 border-l-primary bg-white shadow-sm">
             <CardContent className="pt-6">
               <div className="flex flex-col md:flex-row gap-6">
                 <div className="flex-shrink-0">
@@ -240,12 +242,12 @@ const KnowledgePagePreview = ({
                   )}
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-xl font-bold mb-2">Über den Autor</h3>
+                  <h3 className="text-xl font-bold mb-2 text-gray-900">Über den Autor</h3>
                   <div className="text-lg font-semibold text-primary mb-1">{author.name}</div>
-                  <div className="text-sm text-muted-foreground mb-3">{author.role}</div>
-                  <p className="text-sm leading-relaxed mb-4">{author.bio}</p>
+                  <div className="text-sm text-gray-600 mb-3">{author.role}</div>
+                  <p className="text-sm leading-relaxed mb-4 text-gray-800">{author.bio}</p>
                   <div className="mb-3">
-                    <div className="text-sm font-semibold mb-2">Expertise:</div>
+                    <div className="text-sm font-semibold mb-2 text-gray-900">Expertise:</div>
                     <div className="flex flex-wrap gap-2">
                       {author.expertise.map((exp, idx) => (
                         <span
