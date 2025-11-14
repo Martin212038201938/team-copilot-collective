@@ -12,7 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { ArrowLeft, Save, Eye, Upload, Code, Sparkles, CheckCircle, Play, Edit2 } from "lucide-react";
+import { ArrowLeft, Save, Eye, Upload, Code, Sparkles, CheckCircle, Play, Edit2, Calendar, Clock } from "lucide-react";
 import { Draft, ExtractedTopic, GeneratorState } from "@/types/draft";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { marked } from 'marked';
