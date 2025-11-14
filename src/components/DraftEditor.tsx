@@ -48,6 +48,8 @@ interface ContentAnalysisResult {
   potentialFAQs: Array<{question: string; answerHints: string}>;
   targetAudience: string;
   contentStructure: string[];
+  expertiseLevel?: 'beginner' | 'intermediate' | 'advanced';
+  requiredKnowledge?: string[];
 }
 
 const DraftEditor = ({ draft, onSave, onCancel, initialTab }: DraftEditorProps) => {
@@ -620,6 +622,8 @@ Extrahiere folgende Informationen aus dem Transkript:
 6. **potentialFAQs** (Array von 8-12 Objekten mit {question, answerHints}): Häufig gestellte Fragen mit Hinweisen zur Antwort
 7. **targetAudience** (String): Beschreibung der Zielgruppe für diesen Artikel
 8. **contentStructure** (Array von 4-6 Strings): Vorgeschlagene H2-Überschriften für den Artikel
+9. **expertiseLevel** (String): Das Niveau des Transkripts - "beginner" (Grundlagen, Einführung), "intermediate" (Fortgeschritten, Praxiserfahrung), oder "advanced" (Expert, tiefes Fachwissen)
+10. **requiredKnowledge** (Array von 3-5 Strings): Welches Vorwissen wird beim Zuschauer/Leser vorausgesetzt?
 
 **QUALITÄTSKRITERIEN**:
 - Extrahiere NUR echte Inhalte aus dem Transkript - KEINE Erfindungen
@@ -627,6 +631,7 @@ Extrahiere folgende Informationen aus dem Transkript:
 - Keywords sollten eine Mischung aus Deutsch und Englisch sein
 - FAQs sollten realistische Fragen sein, die Leser haben könnten
 - Content-Struktur sollte logisch aufgebaut sein (vom Problem zur Lösung)
+- **KRITISCH**: Analysiere genau das Niveau des Transkripts. Wenn es advanced/professional ist, markiere es entsprechend!
 
 Gib NUR das JSON-Objekt zurück, keine zusätzlichen Texte.`
             },
@@ -763,13 +768,29 @@ Nutze die vorgeschlagene Content-Struktur aus der Analyse:
 - Baue Autorität auf (Authority)
 - Schaffe Vertrauen (Trust)
 
-**KRITISCH**: Jeder Satz muss echten Mehrwert bieten. Keine generischen Aussagen, keine Wiederholungen, keine Füllwörter.
+**KRITISCH - NIVEAU BEIBEHALTEN**:
+- **WICHTIG**: Passe das Niveau des Artikels EXAKT an das Original-Transkript an
+- Wenn das Transkript "advanced" ist: KEINE Basic-Einführungen oder Anfänger-Erklärungen hinzufügen
+- Wenn das Transkript "intermediate" ist: Setze entsprechendes Vorwissen voraus
+- Wenn das Transkript "beginner" ist: Dann darfst du Grundlagen erklären
+- **NIEMALS** professionelle Inhalte mit grundlegenden Erklärungen verwässern
+- Das vorausgesetzte Wissen aus der Analyse muss beim Leser vorausgesetzt werden
+- Jeder Satz muss echten Mehrwert bieten. Keine generischen Aussagen, keine Wiederholungen, keine Füllwörter.
 
 Erstelle JETZT den kompletten Artikel im Markdown-Format.`
             },
             {
               role: 'user',
               content: `Erstelle einen hochwertigen Artikel basierend auf folgender Analyse:
+
+**EXPERTISE-NIVEAU**: ${contentAnalysis.expertiseLevel || 'intermediate'}
+**VORAUSGESETZTES WISSEN**:
+${(contentAnalysis.requiredKnowledge || []).map((knowledge, i) => `${i + 1}. ${knowledge}`).join('\n')}
+
+⚠️ **WICHTIG**: Der Artikel muss auf dem Niveau "${contentAnalysis.expertiseLevel || 'intermediate'}" geschrieben werden.
+${contentAnalysis.expertiseLevel === 'advanced' ? '→ KEINE Basic-Erklärungen! Setze Fachwissen voraus.' : ''}
+${contentAnalysis.expertiseLevel === 'intermediate' ? '→ Setze Grundkenntnisse voraus, keine Anfänger-Einführungen.' : ''}
+${contentAnalysis.expertiseLevel === 'beginner' ? '→ Erkläre Grundlagen, aber bleibe präzise.' : ''}
 
 **HAUPTTHESEN**:
 ${contentAnalysis.mainTheses.map((thesis, i) => `${i + 1}. ${thesis}`).join('\n')}
@@ -793,7 +814,7 @@ ${contentAnalysis.potentialFAQs.map(faq => `- **${faq.question}** (Hinweise: ${f
 
 **SEO-KEYWORDS**: ${contentAnalysis.seoKeywords.join(', ')}
 
-Schreibe jetzt den vollständigen, praxisorientierten Artikel für copilotenschule.de. Nutze ALLE oben genannten Informationen und integriere sie natürlich in einen wertvollen, lesenswerten Artikel.`
+Schreibe jetzt den vollständigen, praxisorientierten Artikel für copilotenschule.de. Nutze ALLE oben genannten Informationen und integriere sie natürlich in einen wertvollen, lesenswerten Artikel. BEHALTE DAS NIVEAU DES ORIGINALS BEI!`
             }
           ],
           temperature: 0.7,
@@ -2055,36 +2076,180 @@ Das System analysiert automatisch die Kernthemen und erstellt passende Metadaten
 
                 {/* Step 8: Completed */}
                 {generatorStep === 'completed' && (
-                  <div className="bg-gradient-to-r from-green-50 to-blue-50 border border-green-300 p-8 rounded-lg text-center">
-                    <CheckCircle className="w-20 h-20 text-green-600 mx-auto mb-4" />
-                    <h5 className="font-semibold text-green-900 mb-3 text-3xl">
-                      🎉 Wissensseite erfolgreich erstellt!
-                    </h5>
-                    <p className="text-gray-700 mb-6 text-lg">
-                      Deine KI-optimierte Wissensseite ist fertig. Du kannst sie jetzt überprüfen,
-                      bei Bedarf anpassen und veröffentlichen.
-                    </p>
-                    <div className="flex gap-3 justify-center flex-wrap">
-                      <Button onClick={() => setActiveTab('preview')} variant="default" size="lg">
-                        <Eye className="w-5 h-5 mr-2" />
-                        Vorschau ansehen
-                      </Button>
-                      <Button onClick={() => setActiveTab('code-upload')} variant="outline" size="lg">
-                        <Code className="w-5 h-5 mr-2" />
-                        Code bearbeiten
-                      </Button>
-                      <Button onClick={() => setActiveTab('metadata')} variant="outline" size="lg">
-                        Metadaten anpassen
-                      </Button>
-                      <Button onClick={() => setGeneratorStep('content-review')} variant="outline">
-                        <Edit2 className="w-4 h-4 mr-2" />
-                        Content überarbeiten
-                      </Button>
-                      <Button onClick={handleResetGenerator} variant="ghost">
-                        Neu starten
-                      </Button>
+                  <>
+                    <div className="bg-gradient-to-r from-green-50 to-blue-50 border border-green-300 p-8 rounded-lg text-center mb-6">
+                      <CheckCircle className="w-20 h-20 text-green-600 mx-auto mb-4" />
+                      <h5 className="font-semibold text-green-900 mb-3 text-3xl">
+                        🎉 Wissensseite erfolgreich erstellt!
+                      </h5>
+                      <p className="text-gray-700 mb-6 text-lg">
+                        Deine KI-optimierte Wissensseite ist fertig. Du kannst sie jetzt überprüfen,
+                        bei Bedarf anpassen und veröffentlichen.
+                      </p>
+                      <div className="flex gap-3 justify-center flex-wrap">
+                        <Button onClick={() => setActiveTab('preview')} variant="default" size="lg">
+                          <Eye className="w-5 h-5 mr-2" />
+                          Vorschau ansehen
+                        </Button>
+                        <Button onClick={() => setActiveTab('code-upload')} variant="outline" size="lg">
+                          <Code className="w-5 h-5 mr-2" />
+                          Code bearbeiten
+                        </Button>
+                        <Button onClick={() => setActiveTab('metadata')} variant="outline" size="lg">
+                          Metadaten anpassen
+                        </Button>
+                        <Button onClick={() => setGeneratorStep('content-review')} variant="outline">
+                          <Edit2 className="w-4 h-4 mr-2" />
+                          Content überarbeiten
+                        </Button>
+                      </div>
                     </div>
-                  </div>
+
+                    {/* Publishing Options */}
+                    <Card className="border-2 border-blue-300">
+                      <CardHeader className="bg-gradient-to-r from-blue-50 to-purple-50">
+                        <CardTitle className="text-2xl flex items-center gap-2">
+                          <Calendar className="w-6 h-6" />
+                          Veröffentlichung planen
+                        </CardTitle>
+                        <p className="text-sm text-muted-foreground mt-2">
+                          Wähle, wie du mit diesem Artikel fortfahren möchtest
+                        </p>
+                      </CardHeader>
+                      <CardContent className="pt-6 space-y-6">
+                        {/* Current Status */}
+                        <div className="bg-gray-50 border border-gray-200 p-4 rounded-lg">
+                          <div className="flex items-center justify-between mb-3">
+                            <span className="font-semibold text-gray-700">Aktueller Status:</span>
+                            <Badge variant={
+                              editedDraft.status === 'published' ? 'default' :
+                              editedDraft.status === 'scheduled' ? 'secondary' :
+                              'outline'
+                            }>
+                              {editedDraft.status === 'draft' && '📝 Entwurf'}
+                              {editedDraft.status === 'scheduled' && '⏰ Geplant'}
+                              {editedDraft.status === 'published' && '✅ Veröffentlicht'}
+                            </Badge>
+                          </div>
+                          <div className="text-sm text-gray-600">
+                            <strong>Veröffentlichungsdatum:</strong>{' '}
+                            {new Date(editedDraft.publishDate).toLocaleDateString('de-DE', {
+                              day: '2-digit',
+                              month: 'long',
+                              year: 'numeric',
+                              hour: '2-digit',
+                              minute: '2-digit'
+                            })}
+                          </div>
+                        </div>
+
+                        {/* Publishing Date Picker */}
+                        <div>
+                          <Label htmlFor="publish-date" className="text-base font-semibold">
+                            Veröffentlichungsdatum festlegen
+                          </Label>
+                          <p className="text-sm text-muted-foreground mb-3">
+                            Wähle wann dieser Artikel veröffentlicht werden soll
+                          </p>
+                          <Input
+                            id="publish-date"
+                            type="datetime-local"
+                            value={editedDraft.publishDate.slice(0, 16)}
+                            onChange={(e) => {
+                              const newDate = new Date(e.target.value).toISOString();
+                              setEditedDraft({
+                                ...editedDraft,
+                                publishDate: newDate,
+                                updatedAt: new Date().toISOString()
+                              });
+                            }}
+                            className="max-w-md"
+                          />
+                        </div>
+
+                        {/* Action Buttons */}
+                        <div className="space-y-3 pt-4">
+                          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            {/* Save as Draft */}
+                            <Card className="border-2 border-gray-300 hover:border-gray-400 transition-colors cursor-pointer"
+                              onClick={() => {
+                                setEditedDraft({
+                                  ...editedDraft,
+                                  status: 'draft',
+                                  updatedAt: new Date().toISOString()
+                                });
+                                handleSave();
+                              }}
+                            >
+                              <CardContent className="pt-6 text-center">
+                                <Save className="w-10 h-10 text-gray-600 mx-auto mb-3" />
+                                <h4 className="font-semibold text-gray-900 mb-2">Als Entwurf speichern</h4>
+                                <p className="text-xs text-gray-600">
+                                  Speichert die Seite ohne zu veröffentlichen. Nur für dich sichtbar.
+                                </p>
+                              </CardContent>
+                            </Card>
+
+                            {/* Schedule Publication */}
+                            <Card className="border-2 border-blue-300 hover:border-blue-400 transition-colors cursor-pointer"
+                              onClick={() => {
+                                const selectedDate = new Date(editedDraft.publishDate);
+                                const now = new Date();
+
+                                if (selectedDate <= now) {
+                                  alert('Bitte wähle ein zukünftiges Datum für die geplante Veröffentlichung.');
+                                  return;
+                                }
+
+                                setEditedDraft({
+                                  ...editedDraft,
+                                  status: 'scheduled',
+                                  updatedAt: new Date().toISOString()
+                                });
+                                handleSave();
+                              }}
+                            >
+                              <CardContent className="pt-6 text-center">
+                                <Clock className="w-10 h-10 text-blue-600 mx-auto mb-3" />
+                                <h4 className="font-semibold text-blue-900 mb-2">Veröffentlichung planen</h4>
+                                <p className="text-xs text-blue-700">
+                                  Wird am gewählten Datum automatisch veröffentlicht.
+                                </p>
+                              </CardContent>
+                            </Card>
+
+                            {/* Publish Now */}
+                            <Card className="border-2 border-green-300 hover:border-green-400 transition-colors cursor-pointer"
+                              onClick={() => {
+                                setEditedDraft({
+                                  ...editedDraft,
+                                  status: 'published',
+                                  publishDate: new Date().toISOString(),
+                                  updatedAt: new Date().toISOString()
+                                });
+                                handleSave();
+                                alert('✅ Artikel wurde erfolgreich veröffentlicht!');
+                              }}
+                            >
+                              <CardContent className="pt-6 text-center">
+                                <CheckCircle className="w-10 h-10 text-green-600 mx-auto mb-3" />
+                                <h4 className="font-semibold text-green-900 mb-2">Jetzt veröffentlichen</h4>
+                                <p className="text-xs text-green-700">
+                                  Veröffentlicht die Seite sofort. Für alle sichtbar.
+                                </p>
+                              </CardContent>
+                            </Card>
+                          </div>
+
+                          <div className="flex justify-center pt-4">
+                            <Button onClick={handleResetGenerator} variant="ghost" size="sm">
+                              Komplett neu starten
+                            </Button>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </>
                 )}
               </CardContent>
             </Card>
