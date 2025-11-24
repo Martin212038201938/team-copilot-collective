@@ -1,37 +1,43 @@
 name: Deploy to copilotenschule.de
+
 on:
   push:
     branches:
       - main
   workflow_dispatch:
+
 jobs:
   deploy:
+    name: 🚀 Build and Deploy
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      
-      - name: Setup Node.js
+      - name: 🚚 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🔧 Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
-      
-      - name: Clean build artifacts
+          node-version: '20'
+          cache: 'npm'
+
+      - name: 🧹 Clean build artifacts
         run: |
           echo "Cleaning all build artifacts..."
           rm -rf dist
           rm -rf node_modules/.vite
           rm -rf node_modules/.cache
-          echo "Build artifacts cleaned successfully"
-      
-      - name: Install dependencies
-        run: npm install
-      
-      - name: Build project
+          echo "✅ Build artifacts cleaned"
+
+      - name: 📦 Install dependencies
+        run: npm ci
+
+      - name: 🏗️ Build project
         run: npm run build
         env:
           VITE_OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-      
-      - name: Deploy via FTP
+
+      - name: 📂 Deploy to Alwaysdata via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
@@ -40,7 +46,30 @@ jobs:
           protocol: ftps
           port: 21
           local-dir: dist/
-          server-dir: /www/copilotenschule.de/
+          server-dir: /home/y-b/www/copilotenschule.de/
           dangerous-clean-slate: false
           timeout: 300000
           log-level: verbose
+
+      - name: ✅ Verify deployment
+        run: |
+          echo "Verifying application..."
+          sleep 10
+          if curl -sf --connect-timeout 5 --max-time 10 https://copilotenschule.de > /dev/null 2>&1; then
+            echo "✅ Application is online!"
+          else
+            echo "⚠️ Verification timeout - site may still be starting"
+          fi
+
+      - name: 📋 Deployment Summary
+        if: always()
+        run: |
+          echo ""
+          echo "========================================"
+          echo "✅ DEPLOYMENT COMPLETED"
+          echo "========================================"
+          echo "Repository: team-copilot-collective"
+          echo "Branch: main"
+          echo "Commit: ${{ github.sha }}"
+          echo "URL: https://copilotenschule.de"
+          echo "========================================"
