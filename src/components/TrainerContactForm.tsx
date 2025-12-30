@@ -10,6 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 const TrainerContactForm = () => {
   const { toast } = useToast();
   const [fileName, setFileName] = useState<string>("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -21,23 +22,58 @@ const TrainerContactForm = () => {
     cv: null as File | null,
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Bewerbung gesendet!",
-      description: "Vielen Dank für dein Interesse. Wir melden uns innerhalb von 48 Stunden bei dir.",
-    });
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      path: "",
-      linkedinUrl: "",
-      websiteUrl: "",
-      message: "",
-      cv: null,
-    });
-    setFileName("");
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch('/.netlify/functions/send-trainer-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          path: formData.path,
+          linkedinUrl: formData.linkedinUrl,
+          websiteUrl: formData.websiteUrl,
+          message: formData.message,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Fehler beim Versenden der Bewerbung');
+      }
+
+      toast({
+        title: "Bewerbung gesendet!",
+        description: "Vielen Dank für dein Interesse. Wir melden uns innerhalb von 48 Stunden bei dir.",
+      });
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        path: "",
+        linkedinUrl: "",
+        websiteUrl: "",
+        message: "",
+        cv: null,
+      });
+      setFileName("");
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      toast({
+        title: "Fehler",
+        description: error instanceof Error ? error.message : "Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut oder kontaktieren Sie uns direkt unter info@copilotenschule.de",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (
@@ -216,8 +252,8 @@ const TrainerContactForm = () => {
             />
           </div>
 
-          <Button type="submit" size="lg" className="w-full">
-            Lasst uns sprechen
+          <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
+            {isSubmitting ? "Wird gesendet..." : "Lasst uns sprechen"}
           </Button>
 
           <p className="text-sm text-muted-foreground text-center">
