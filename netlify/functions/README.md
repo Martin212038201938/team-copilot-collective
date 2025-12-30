@@ -1,42 +1,51 @@
 # Netlify Functions für E-Mail-Versand
 
-Diese Netlify Functions verarbeiten die Kontaktformulare und versenden E-Mails über Resend.
+Diese Netlify Functions verarbeiten die Kontaktformulare und versenden E-Mails über den AlwaysData SMTP-Server.
 
 ## Setup-Anleitung
 
-### 1. Resend Account einrichten
+### 1. AlwaysData SMTP-Zugangsdaten ermitteln
 
-1. Gehen Sie zu [resend.com](https://resend.com) und erstellen Sie einen Account
-2. Verifizieren Sie Ihre Domain `copilotenschule.de` in Resend:
-   - Gehen Sie zu "Domains" im Resend Dashboard
-   - Fügen Sie `copilotenschule.de` hinzu
-   - Folgen Sie den Anweisungen zum Hinzufügen der DNS-Records (SPF, DKIM, etc.)
-   - Warten Sie auf die Verifizierung (kann einige Minuten dauern)
+Die SMTP-Konfiguration für AlwaysData ist normalerweise:
 
-### 2. API Key erstellen
+- **SMTP Host:** `smtp-[ihr-username].alwaysdata.net`
+- **SMTP Port:** `587` (TLS, empfohlen) oder `465` (SSL)
+- **SMTP User:** Ihr AlwaysData-Account (E-Mail oder Username)
+- **SMTP Password:** Ihr AlwaysData-Passwort
 
-1. Gehen Sie zu [resend.com/api-keys](https://resend.com/api-keys)
-2. Erstellen Sie einen neuen API Key
-3. Kopieren Sie den API Key (er wird nur einmal angezeigt!)
+**So finden Sie Ihre Daten:**
 
-### 3. Environment Variable in Netlify setzen
+1. Loggen Sie sich in Ihr [AlwaysData-Dashboard](https://admin.alwaysdata.com) ein
+2. Gehen Sie zu **"E-Mails"** → **"Einstellungen"** oder **"Konfiguration"**
+3. Dort finden Sie die SMTP-Server-Details und Zugangsdaten
 
-1. Gehen Sie zu Ihrem Netlify Dashboard
+**Tipp:** AlwaysData erlaubt es oft, E-Mails direkt über Ihren Haupt-Account zu versenden. Alternativ können Sie auch ein spezifisches E-Mail-Konto (z.B. `noreply@copilotenschule.de`) erstellen und dessen Zugangsdaten verwenden.
+
+### 2. Environment Variables in Netlify setzen
+
+1. Gehen Sie zu Ihrem [Netlify Dashboard](https://app.netlify.com)
 2. Wählen Sie Ihr Projekt aus
-3. Gehen Sie zu "Site configuration" → "Environment variables"
-4. Fügen Sie eine neue Variable hinzu:
-   - **Key:** `RESEND_API_KEY`
-   - **Value:** Ihr Resend API Key (beginnt mit `re_`)
-   - **Scopes:** Production, Deploy Previews, Branch deploys
+3. Gehen Sie zu **"Site configuration"** → **"Environment variables"**
+4. Fügen Sie folgende Variablen hinzu:
 
-### 4. Deploy
+   | Key | Value | Beispiel |
+   |-----|-------|----------|
+   | `SMTP_HOST` | Ihr AlwaysData SMTP-Server | `smtp-username.alwaysdata.net` |
+   | `SMTP_PORT` | SMTP Port | `587` |
+   | `SMTP_USER` | Ihr AlwaysData-Username | `username@alwaysdata.net` |
+   | `SMTP_PASS` | Ihr AlwaysData-Passwort | `IhrPasswort123!` |
+   | `SMTP_FROM` | Absender-Adresse (optional) | `noreply@copilotenschule.de` |
 
-Nachdem die Environment Variable gesetzt wurde, deployen Sie Ihre Seite neu:
+   **Wichtig:** Setzen Sie die **Scopes** auf: Production, Deploy Previews, Branch deploys
+
+### 3. Deploy
+
+Nachdem die Environment Variables gesetzt wurden, deployen Sie Ihre Seite neu:
 ```bash
 git push origin main
 ```
 
-Oder triggern Sie ein Re-Deploy im Netlify Dashboard.
+Oder triggern Sie ein Re-Deploy im Netlify Dashboard unter **"Deploys"** → **"Trigger deploy"** → **"Deploy site"**.
 
 ## Verfügbare Functions
 
@@ -74,7 +83,7 @@ Verarbeitet Bewerbungen von Trainern.
 }
 ```
 
-## Testen
+## Lokales Testen
 
 Sie können die Functions lokal testen mit:
 ```bash
@@ -82,21 +91,74 @@ npm install -g netlify-cli
 netlify dev
 ```
 
-Stellen Sie sicher, dass Sie eine `.env` Datei mit Ihrem `RESEND_API_KEY` haben.
+Erstellen Sie eine `.env` Datei im Projekt-Root mit Ihren SMTP-Zugangsdaten:
+```bash
+SMTP_HOST=smtp-username.alwaysdata.net
+SMTP_PORT=587
+SMTP_USER=username@alwaysdata.net
+SMTP_PASS=IhrPasswort
+SMTP_FROM=noreply@copilotenschule.de
+```
+
+## E-Mail-Weiterleitung
+
+Da Sie bereits eine Weiterleitung von `info@copilotenschule.de` zu `martin@yellow-boat.com` in AlwaysData eingerichtet haben, werden alle E-Mails, die an `info@copilotenschule.de` gesendet werden, automatisch an Ihre Hauptadresse weitergeleitet.
+
+**Vorteile:**
+- Keine externe Abhängigkeit von Drittanbieter-Services
+- Nutzt Ihre bereits vorhandene E-Mail-Infrastruktur
+- Kostenlos (im AlwaysData-Paket enthalten)
+- Bewährte SMTP-Technologie
 
 ## Troubleshooting
 
 ### E-Mails werden nicht versendet
-1. Überprüfen Sie, ob die `RESEND_API_KEY` Environment Variable in Netlify gesetzt ist
-2. Überprüfen Sie, ob Ihre Domain in Resend verifiziert ist
-3. Prüfen Sie die Function Logs in Netlify (Site → Functions → Function Name → Logs)
 
-### Domain nicht verifiziert
-Wenn Ihre Domain noch nicht verifiziert ist, können Sie temporär von einer Resend Test-Domain senden:
-- Ändern Sie in den Functions `from: 'Copilotenschule Kontaktformular <noreply@copilotenschule.de>'` zu `from: 'onboarding@resend.dev'`
-- **WICHTIG:** Dies ist nur für Tests! In Production muss die echte Domain verwendet werden.
+1. **Environment Variables überprüfen:**
+   - Gehen Sie zu Netlify → Site configuration → Environment variables
+   - Stellen Sie sicher, dass alle SMTP-Variablen gesetzt sind
+   - Überprüfen Sie die Scopes (Production, Deploy Previews, Branch deploys)
+
+2. **SMTP-Zugangsdaten testen:**
+   - Loggen Sie sich in AlwaysData ein
+   - Testen Sie die Zugangsdaten mit einem E-Mail-Client (z.B. Thunderbird)
+   - Überprüfen Sie, ob SMTP aktiviert ist
+
+3. **Function Logs prüfen:**
+   - Gehen Sie zu Netlify → Functions → Function Name → Logs
+   - Suchen Sie nach Fehlermeldungen (z.B. Authentication failed, Connection timeout)
+
+### SMTP Authentication Fehler
+
+- Überprüfen Sie Username und Passwort
+- AlwaysData erlaubt manchmal nur bestimmte Authentifizierungsmethoden
+- Versuchen Sie, ein app-spezifisches Passwort zu erstellen (falls unterstützt)
+
+### Connection Timeout
+
+- Überprüfen Sie den SMTP Port (587 oder 465)
+- Stellen Sie sicher, dass AlwaysData SMTP-Verbindungen von externen IPs erlaubt
+- Netlify Functions laufen auf AWS Lambda - manche Provider blockieren diese IPs
+
+### E-Mails landen im Spam
+
+Um zu verhindern, dass E-Mails im Spam landen:
+1. Konfigurieren Sie SPF-Records für Ihre Domain
+2. Aktivieren Sie DKIM in AlwaysData (falls verfügbar)
+3. Verwenden Sie eine verifizierte Absender-Adresse
+4. AlwaysData sollte bereits gute Reputation haben
 
 ### CORS Fehler
+
 Die Functions sind bereits mit CORS-Headern konfiguriert. Falls Sie dennoch CORS-Fehler sehen:
-1. Überprüfen Sie, ob die Request-Header korrekt sind
+1. Überprüfen Sie, ob die Request-Header korrekt sind (`Content-Type: application/json`)
 2. Stellen Sie sicher, dass die Function deployed wurde
+3. Überprüfen Sie im Browser DevTools → Network die Response Headers
+
+## Sicherheit
+
+**Wichtig:**
+- Committen Sie **NIEMALS** Ihre `.env` Datei mit echten Zugangsdaten!
+- Die `.env.example` Datei enthält nur Platzhalter
+- Environment Variables werden nur in Netlify gespeichert, nicht im Code
+- SMTP-Passwörter sollten stark und einzigartig sein

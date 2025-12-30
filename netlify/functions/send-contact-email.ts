@@ -1,7 +1,18 @@
 import { Handler } from '@netlify/functions';
-import { Resend } from 'resend';
+import * as nodemailer from 'nodemailer';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Create reusable transporter
+const createTransporter = () => {
+  return nodemailer.createTransport({
+    host: process.env.SMTP_HOST,
+    port: parseInt(process.env.SMTP_PORT || '587'),
+    secure: process.env.SMTP_PORT === '465', // true for 465, false for other ports
+    auth: {
+      user: process.env.SMTP_USER,
+      pass: process.env.SMTP_PASS,
+    },
+  });
+};
 
 export const handler: Handler = async (event) => {
   // Enable CORS
@@ -43,9 +54,12 @@ export const handler: Handler = async (event) => {
       };
     }
 
-    // Send email using Resend
-    const data = await resend.emails.send({
-      from: 'Copilotenschule Kontaktformular <noreply@copilotenschule.de>',
+    // Create transporter
+    const transporter = createTransporter();
+
+    // Send email using SMTP
+    const info = await transporter.sendMail({
+      from: `"Copilotenschule Kontaktformular" <${process.env.SMTP_FROM || 'noreply@copilotenschule.de'}>`,
       to: 'info@copilotenschule.de',
       replyTo: email,
       subject: `Neue Kontaktanfrage von ${name}`,
@@ -58,12 +72,21 @@ export const handler: Handler = async (event) => {
         <p><strong>Nachricht:</strong></p>
         <p>${message.replace(/\n/g, '<br>')}</p>
       `,
+      text: `
+Neue Kontaktanfrage
+
+Name: ${name}
+E-Mail: ${email}
+${company ? `Unternehmen: ${company}\n` : ''}${phone ? `Telefon: ${phone}\n` : ''}
+Nachricht:
+${message}
+      `.trim(),
     });
 
     return {
       statusCode: 200,
       headers,
-      body: JSON.stringify({ success: true, data }),
+      body: JSON.stringify({ success: true, messageId: info.messageId }),
     };
   } catch (error) {
     console.error('Error sending email:', error);
