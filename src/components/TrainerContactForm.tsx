@@ -27,7 +27,7 @@ const TrainerContactForm = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('/.netlify/functions/send-trainer-email', {
+      const response = await fetch('/api/send-trainer-email.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
