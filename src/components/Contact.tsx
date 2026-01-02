@@ -8,6 +8,7 @@ import { useToast } from "@/hooks/use-toast";
 
 const Contact = () => {
   const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -16,13 +17,40 @@ const Contact = () => {
     message: ""
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Anfrage gesendet!",
-      description: "Wir melden uns innerhalb von 24 Stunden bei Ihnen.",
-    });
-    setFormData({ name: "", email: "", company: "", phone: "", message: "" });
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch('/api/send-contact-email.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Fehler beim Versenden der Anfrage');
+      }
+
+      toast({
+        title: "Anfrage gesendet!",
+        description: "Wir melden uns innerhalb von 24 Stunden bei Ihnen.",
+      });
+      setFormData({ name: "", email: "", company: "", phone: "", message: "" });
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      toast({
+        title: "Fehler",
+        description: error instanceof Error ? error.message : "Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut oder kontaktieren Sie uns direkt unter info@copilotenschule.de",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -120,8 +148,8 @@ const Contact = () => {
                   />
                 </div>
 
-                <Button type="submit" size="lg" className="w-full">
-                  Anfrage absenden
+                <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
+                  {isSubmitting ? "Wird gesendet..." : "Anfrage absenden"}
                 </Button>
 
                 <p className="text-sm text-muted-foreground text-center">
