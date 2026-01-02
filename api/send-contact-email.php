@@ -42,7 +42,7 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 }
 
 // Email configuration
-$to = 'info@copilotenschule.de';
+$to = 'martin@yellow-boat.com';
 $subject = 'Neue Kontaktanfrage von ' . $name;
 
 // HTML email body

@@ -52,7 +52,7 @@ $pathLabels = array(
 $pathLabel = isset($pathLabels[$path]) ? $pathLabels[$path] : $path;
 
 // Email configuration
-$to = 'info@copilotenschule.de';
+$to = 'martin@yellow-boat.com';
 $subject = 'Neue Trainer-Bewerbung von ' . $name . ' - ' . $pathLabel;
 
 // HTML email body
