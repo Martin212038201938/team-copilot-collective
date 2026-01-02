@@ -91,16 +91,32 @@ Nachricht/Motivation:
 {$message}
 ";
 
+// Create multipart email (HTML + Plain text)
+$boundary = md5(time());
+
 // Email headers
 $headers = array();
 $headers[] = 'MIME-Version: 1.0';
-$headers[] = 'Content-Type: text/html; charset=UTF-8';
-$headers[] = 'From: Copilotenschule Trainer-Bewerbung <noreply@copilotenschule.de>';
-$headers[] = 'Reply-To: ' . $email;
+$headers[] = 'Content-Type: multipart/alternative; boundary="' . $boundary . '"';
+$headers[] = 'From: Copilotenschule Trainer-Bewerbung <y-b@alwaysdata.net>';
+$headers[] = 'Reply-To: ' . $name . ' <' . $email . '>';
 $headers[] = 'X-Mailer: PHP/' . phpversion();
+$headers[] = 'X-Originating-IP: ' . $_SERVER['REMOTE_ADDR'];
+$headers[] = 'X-Contact-Form: copilotenschule.de';
+
+// Multipart message body
+$body = "--{$boundary}\r\n";
+$body .= "Content-Type: text/plain; charset=UTF-8\r\n";
+$body .= "Content-Transfer-Encoding: 7bit\r\n\r\n";
+$body .= $textBody . "\r\n\r\n";
+$body .= "--{$boundary}\r\n";
+$body .= "Content-Type: text/html; charset=UTF-8\r\n";
+$body .= "Content-Transfer-Encoding: 7bit\r\n\r\n";
+$body .= $htmlBody . "\r\n\r\n";
+$body .= "--{$boundary}--";
 
 // Send email
-$success = mail($to, $subject, $htmlBody, implode("\r\n", $headers));
+$success = mail($to, $subject, $body, implode("\r\n", $headers));
 
 if ($success) {
     http_response_code(200);
