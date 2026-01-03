@@ -256,6 +256,10 @@ const TrainerContactForm = () => {
             {isSubmitting ? "Wird gesendet..." : "Lasst uns sprechen"}
           </Button>
 
+          <p className="text-sm text-gray-600 text-center leading-relaxed">
+            Nach dem Absenden erhalten Sie eine E-Mail, in der Sie bestätigen, dass wir Sie künftig per E-Mail kontaktieren dürfen. Ihre Einwilligung können Sie jederzeit widerrufen.
+          </p>
+
           <p className="text-sm text-muted-foreground text-center">
             * Pflichtfelder | Wir behandeln deine Daten vertraulich gemäß DSGVO
           </p>

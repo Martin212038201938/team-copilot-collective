@@ -152,6 +152,10 @@ const Contact = () => {
                   {isSubmitting ? "Wird gesendet..." : "Anfrage absenden"}
                 </Button>
 
+                <p className="text-sm text-gray-600 text-center leading-relaxed">
+                  Nach dem Absenden erhalten Sie eine E-Mail, in der Sie bestätigen, dass wir Sie künftig per E-Mail kontaktieren dürfen. Ihre Einwilligung können Sie jederzeit widerrufen.
+                </p>
+
                 <p className="text-sm text-muted-foreground text-center">
                   * Pflichtfelder | Wir behandeln Ihre Daten vertraulich gemäß DSGVO
                 </p>

@@ -47,7 +47,7 @@ function generateToken() {
 /**
  * Save newsletter subscription to database
  */
-function saveNewsletterSubscription($email, $name, $source, $token, $ipAddress = null, $userAgent = null) {
+function saveNewsletterSubscription($email, $name, $source, $token, $ipAddress = null, $userAgent = null, $consentText = null) {
     $db = getDbConnection();
     if (!$db) {
         return false;
@@ -56,16 +56,18 @@ function saveNewsletterSubscription($email, $name, $source, $token, $ipAddress =
     try {
         $stmt = $db->prepare("
             INSERT INTO newsletter_subscriptions
-            (email, name, source, confirmation_token, ip_address, user_agent, opt_in_status)
-            VALUES (?, ?, ?, ?, ?, ?, 'pending')
+            (email, name, source, confirmation_token, ip_address, user_agent, consent_text, form_submitted_at, opt_in_status)
+            VALUES (?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, 'pending')
             ON DUPLICATE KEY UPDATE
                 name = VALUES(name),
                 confirmation_token = VALUES(confirmation_token),
+                consent_text = VALUES(consent_text),
+                form_submitted_at = CURRENT_TIMESTAMP,
                 opt_in_status = 'pending',
                 created_at = CURRENT_TIMESTAMP
         ");
 
-        return $stmt->execute([$email, $name, $source, $token, $ipAddress, $userAgent]);
+        return $stmt->execute([$email, $name, $source, $token, $ipAddress, $userAgent, $consentText]);
     } catch (PDOException $e) {
         error_log("Failed to save subscription: " . $e->getMessage());
         return false;
