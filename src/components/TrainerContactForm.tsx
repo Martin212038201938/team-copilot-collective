@@ -9,7 +9,7 @@ import { useToast } from "@/hooks/use-toast";
 
 const TrainerContactForm = () => {
   const { toast } = useToast();
-  const [fileName, setFileName] = useState<string>("");
+  const [fileNames, setFileNames] = useState<string[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -19,7 +19,7 @@ const TrainerContactForm = () => {
     linkedinUrl: "",
     websiteUrl: "",
     message: "",
-    cv: null as File | null,
+    cv: [] as File[],
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -37,9 +37,11 @@ const TrainerContactForm = () => {
       submitData.append('websiteUrl', formData.websiteUrl);
       submitData.append('message', formData.message);
 
-      // Add CV file if present
-      if (formData.cv) {
-        submitData.append('cv', formData.cv);
+      // Add CV files if present (up to 4 files)
+      if (formData.cv.length > 0) {
+        formData.cv.forEach((file, index) => {
+          submitData.append(`cv[]`, file);
+        });
       }
 
       const response = await fetch('/api/send-trainer-email.php', {
@@ -65,9 +67,9 @@ const TrainerContactForm = () => {
         linkedinUrl: "",
         websiteUrl: "",
         message: "",
-        cv: null,
+        cv: [],
       });
-      setFileName("");
+      setFileNames([]);
     } catch (error) {
       console.error('Error submitting form:', error);
       toast({
@@ -90,13 +92,24 @@ const TrainerContactForm = () => {
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
+    const files = Array.from(e.target.files || []);
+
+    // Limit to 4 files
+    if (files.length > 4) {
+      toast({
+        title: "Zu viele Dateien",
+        description: "Sie können maximal 4 Dateien hochladen.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (files.length > 0) {
       setFormData((prev) => ({
         ...prev,
-        cv: file,
+        cv: files,
       }));
-      setFileName(file.name);
+      setFileNames(files.map(f => f.name));
     }
   };
 
@@ -210,7 +223,7 @@ const TrainerContactForm = () => {
             <Label htmlFor="cv" className="block text-sm font-medium mb-2">
               <div className="flex items-center gap-2">
                 <FileText className="w-4 h-4" />
-                Lebenslauf / CV (optional)
+                Lebenslauf / CV (optional, bis zu 4 Dateien)
               </div>
             </Label>
             <div className="relative">
@@ -220,6 +233,7 @@ const TrainerContactForm = () => {
                 type="file"
                 onChange={handleFileChange}
                 accept=".pdf,.doc,.docx"
+                multiple
                 className="hidden"
               />
               <label
@@ -228,15 +242,19 @@ const TrainerContactForm = () => {
               >
                 <Upload className="w-5 h-5 text-muted-foreground" />
                 <span className="text-sm text-muted-foreground">
-                  {fileName || "PDF, DOC oder DOCX hochladen (max. 5MB)"}
+                  {fileNames.length > 0 ? `${fileNames.length} Datei(en) ausgewählt` : "PDF, DOC oder DOCX hochladen (max. 4 Dateien, je 5MB)"}
                 </span>
               </label>
             </div>
-            {fileName && (
-              <p className="text-sm text-primary mt-2 flex items-center gap-2">
-                <FileText className="w-4 h-4" />
-                {fileName}
-              </p>
+            {fileNames.length > 0 && (
+              <div className="mt-2 space-y-1">
+                {fileNames.map((name, index) => (
+                  <p key={index} className="text-sm text-primary flex items-center gap-2">
+                    <FileText className="w-4 h-4" />
+                    {name}
+                  </p>
+                ))}
+              </div>
             )}
           </div>
 
