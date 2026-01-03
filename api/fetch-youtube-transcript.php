@@ -73,60 +73,71 @@ if ($videoPage === false) {
 }
 
 // Extract caption tracks from the page
-// Look for "captionTracks" in the page source with better regex
-preg_match('/"captionTracks":\s*(\[(?:[^\[\]]|(?1))*\])/', $videoPage, $captionMatches);
-
-// Alternative: try to find it in a larger context
-if (empty($captionMatches[1])) {
-    // Try alternative pattern
-    preg_match('/"captionTracks":\[(.*?)\],"/', $videoPage, $altMatches);
-    if (!empty($altMatches[0])) {
-        preg_match('/\[(.*)\]/', $altMatches[0], $innerMatch);
-        $captionMatches[1] = '[' . $innerMatch[1] . ']';
-    }
-}
-
-if (empty($captionMatches[1])) {
-    http_response_code(404);
-    echo json_encode([
-        'error' => 'Keine Untertitel für dieses Video verfügbar',
-        'debug' => 'captionTracks nicht gefunden in Seitenquelle'
-    ]);
-    exit;
-}
-
-$captionTracks = json_decode($captionMatches[1], true);
-
-if (empty($captionTracks)) {
-    http_response_code(404);
-    echo json_encode([
-        'error' => 'Keine Untertitel für dieses Video verfügbar',
-        'debug' => 'JSON decode fehlgeschlagen oder leeres Array'
-    ]);
-    exit;
-}
-
-// Prefer German subtitles, fallback to English or first available
+// Method 1: Try to extract from ytInitialPlayerResponse
+$captionTracks = null;
 $captionUrl = null;
-$languagePreference = ['de', 'en'];
 
-foreach ($languagePreference as $lang) {
-    foreach ($captionTracks as $track) {
-        if (isset($track['languageCode']) && $track['languageCode'] === $lang) {
-            $captionUrl = $track['baseUrl'];
-            break 2;
+// Find ytInitialPlayerResponse object - use a more careful regex
+if (preg_match('/var ytInitialPlayerResponse\s*=\s*(\{.+?\});var /s', $videoPage, $playerResponseMatch)) {
+    $jsonString = $playerResponseMatch[1];
+    $playerResponse = json_decode($jsonString, true);
+
+    if (json_last_error() === JSON_ERROR_NONE) {
+        if (isset($playerResponse['captions']['playerCaptionsTracklistRenderer']['captionTracks'])) {
+            $captionTracks = $playerResponse['captions']['playerCaptionsTracklistRenderer']['captionTracks'];
         }
     }
 }
 
-// If no preferred language found, use first available
-if (!$captionUrl && !empty($captionTracks[0]['baseUrl'])) {
-    $captionUrl = $captionTracks[0]['baseUrl'];
+// Method 2: Try to extract captionTracks directly with improved regex
+if (empty($captionTracks)) {
+    // Match array with nested objects more carefully
+    if (preg_match('/"captionTracks":\s*(\[[^\]]+\{[^\}]+\}[^\]]*\])/', $videoPage, $match)) {
+        $captionTracks = json_decode($match[1], true);
+    }
+}
+
+// Method 3: Extract baseUrl directly from captions section
+if (empty($captionTracks)) {
+    // Try to find baseUrl directly in the captions section
+    if (preg_match('/"captions"[^}]*"baseUrl":"([^"]+)"/', $videoPage, $urlMatch)) {
+        $captionUrl = $urlMatch[1];
+        // Decode unicode escapes
+        $captionUrl = json_decode('"' . $captionUrl . '"');
+    }
+}
+
+// If we found captionTracks, extract the URL
+if (!empty($captionTracks) && is_array($captionTracks)) {
+    // Prefer German subtitles, fallback to English or first available
+    $languagePreference = ['de', 'en'];
+
+    foreach ($languagePreference as $lang) {
+        foreach ($captionTracks as $track) {
+            if (isset($track['languageCode']) && $track['languageCode'] === $lang && !empty($track['baseUrl'])) {
+                $captionUrl = $track['baseUrl'];
+                break 2;
+            }
+        }
+    }
+
+    // If no preferred language found, use first available
+    if (!$captionUrl && !empty($captionTracks[0]['baseUrl'])) {
+        $captionUrl = $captionTracks[0]['baseUrl'];
+    }
+}
+
+// Decode URL if it's escaped (common in YouTube responses)
+if ($captionUrl && strpos($captionUrl, '\\u') !== false) {
+    $captionUrl = json_decode('"' . $captionUrl . '"');
 }
 
 if (!$captionUrl) {
     http_response_code(404);
-    echo json_encode(['error' => 'Konnte Untertitel-URL nicht extrahieren']);
+    echo json_encode([
+        'error' => 'Keine Untertitel für dieses Video verfügbar',
+        'debug' => 'captionTracks nicht gefunden oder keine baseUrl extrahiert'
+    ]);
     exit;
 }
 
