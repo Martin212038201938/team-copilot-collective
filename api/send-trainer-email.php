@@ -157,7 +157,7 @@ $customerHtmlBody = "
             <p>wir haben deine Bewerbung als Trainer erhalten und werden uns in Kürze bei dir melden.</p>
             <p><strong>Bitte bestätige deine E-Mail-Adresse,</strong> damit wir dich kontaktieren dürfen und du künftig Newsletter und Updates von uns erhalten kannst.</p>
             <p style='text-align: center;'>
-                <a href='{$confirmationUrl}' class='button'>E-Mail-Adresse bestätigen</a>
+                <a href='{$confirmationUrl}' class='button' style='color: white !important; background-color: #0066cc; padding: 12px 24px; display: inline-block; text-decoration: none; border-radius: 4px;'>E-Mail-Adresse bestätigen</a>
             </p>
             <p style='font-size: 12px; color: #666;'>
                 Falls der Button nicht funktioniert, kopiere bitte diesen Link in deinen Browser:<br>
