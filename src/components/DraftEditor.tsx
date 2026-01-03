@@ -19,6 +19,7 @@ import { marked } from 'marked';
 import DOMPurify from 'dompurify';
 import KnowledgePagePreview from "@/components/KnowledgePagePreview";
 import ErrorBoundary from "@/components/ErrorBoundary";
+import { fetchYouTubeTranscript, isValidYouTubeUrl } from "@/utils/youtubeTranscript";
 
 interface DraftEditorProps {
   draft: Draft;
@@ -59,6 +60,8 @@ const DraftEditor = ({ draft, onSave, onCancel, initialTab }: DraftEditorProps) 
   // Load generator state from draft if exists
   const [transcript, setTranscript] = useState<string>(draft.generatorState?.transcript || "");
   const transcriptTextareaRef = useRef<HTMLTextAreaElement>(null);
+  const [youtubeUrl, setYoutubeUrl] = useState<string>("");
+  const [isLoadingYouTube, setIsLoadingYouTube] = useState(false);
 
   // Content Generator State (load from draft or start fresh)
   const [generatorStep, setGeneratorStep] = useState<GeneratorStep>(
@@ -372,6 +375,42 @@ const DraftEditor = ({ draft, onSave, onCancel, initialTab }: DraftEditorProps) 
       icon,
       readTime
     };
+  };
+
+  // Load YouTube transcript
+  const handleLoadYouTubeTranscript = async () => {
+    if (!youtubeUrl.trim()) {
+      alert('Bitte eine YouTube URL eingeben');
+      return;
+    }
+
+    if (!isValidYouTubeUrl(youtubeUrl)) {
+      alert('Bitte eine gültige YouTube URL eingeben');
+      return;
+    }
+
+    setIsLoadingYouTube(true);
+
+    try {
+      const result = await fetchYouTubeTranscript(youtubeUrl);
+
+      if (result.success && result.transcript) {
+        setTranscript(result.transcript);
+        setYoutubeUrl(""); // Clear URL input
+
+        // Automatically proceed to next step
+        setTimeout(() => {
+          handleExtractTopics();
+        }, 500);
+      } else {
+        alert(result.error || 'Fehler beim Laden des Transkripts');
+      }
+    } catch (error) {
+      console.error('Error loading YouTube transcript:', error);
+      alert('Fehler beim Laden des Transkripts');
+    } finally {
+      setIsLoadingYouTube(false);
+    }
   };
 
   // Step 1: Extract topics from transcript
@@ -1324,7 +1363,7 @@ Erstelle jetzt die komplette TSX-Komponente. Der komplette Markdown-Content muss
                             🎯 Aus Transkripten werden KI-optimierte Wissensseiten
                           </h4>
                           <p className="text-sm text-purple-800 mb-3">
-                            Lade YouTube-Transkripte oder Texte hoch. Das System analysiert automatisch Kernthemen,
+                            Gib eine YouTube-URL ein oder lade Transkripte/Texte hoch. Das System analysiert automatisch Kernthemen,
                             generiert SEO-Keywords und befüllt alle Metadaten intelligent vor.
                           </p>
                         </div>
@@ -1332,6 +1371,41 @@ Erstelle jetzt die komplette TSX-Komponente. Der komplette Markdown-Content muss
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="youtube-url">YouTube URL</Label>
+                        <div className="mt-2 flex items-center gap-2">
+                          <Input
+                            id="youtube-url"
+                            type="url"
+                            value={youtubeUrl}
+                            onChange={(e) => setYoutubeUrl(e.target.value)}
+                            placeholder="https://www.youtube.com/watch?v=..."
+                            className="flex-1"
+                            onKeyDown={(e) => {
+                              if (e.key === 'Enter') {
+                                handleLoadYouTubeTranscript();
+                              }
+                            }}
+                          />
+                          <Button
+                            type="button"
+                            variant="outline"
+                            size="sm"
+                            onClick={handleLoadYouTubeTranscript}
+                            disabled={isLoadingYouTube || !youtubeUrl.trim()}
+                          >
+                            {isLoadingYouTube ? (
+                              <span className="animate-spin">⏳</span>
+                            ) : (
+                              <Play className="w-4 h-4" />
+                            )}
+                          </Button>
+                        </div>
+                        <p className="text-xs text-gray-500 mt-1">
+                          Transkript automatisch von YouTube laden
+                        </p>
+                      </div>
+
                       <div>
                         <Label htmlFor="transcript-upload">Transkript hochladen</Label>
                         <div className="mt-2 flex items-center gap-2">
