@@ -35,11 +35,11 @@ Der OpenAI API-Key wird jetzt **dauerhaft und sicher** gespeichert. Sie müssen 
 
 ## 🎯 Verwendetes OpenAI-Modell
 
-### **gpt-4o-2024-11-20** - Das beste Modell für professionelle Content-Generierung
+### **gpt-4.1-2025-04-14** - Das beste Modell für professionelle Content-Generierung
 
-Dieses Projekt nutzt **`gpt-4o-2024-11-20`**, die neueste Version von OpenAI's GPT-4o Modell mit speziell verbesserter Schreibqualität.
+Dieses Projekt nutzt **`gpt-4.1-2025-04-14`**, die neueste Version von OpenAI's GPT-4o Modell mit speziell verbesserter Schreibqualität.
 
-#### Warum gpt-4o-2024-11-20?
+#### Warum gpt-4.1-2025-04-14?
 
 1. **Verbesserte kreative Schreibfähigkeit**
    - OpenAI: "Creative writing ability has leveled up – more natural, engaging, and tailored writing"
@@ -62,7 +62,7 @@ Dieses Projekt nutzt **`gpt-4o-2024-11-20`**, die neueste Version von OpenAI's G
 - Output: $10.00 pro 1M Tokens
 - Gleicher Preis wie generisches `gpt-4o`, aber bessere Qualität
 
-**Konfiguriert in:** `.env.local` → `OPENAI_MODEL=gpt-4o-2024-11-20`
+**Konfiguriert in:** `.env.local` → `OPENAI_MODEL=gpt-4.1-2025-04-14`
 
 ---
 
@@ -267,7 +267,7 @@ AlwaysData → Sites → Environment variables → Bearbeiten
 | Lokales CLI-Tool | ✅ Aktiv | `.env.local` |
 | Git-Sicherheit | ✅ Geschützt | `.gitignore` |
 | Backend-API | ✅ Bereit | Server ENV / `.env.local` |
-| OpenAI-Modell | ✅ **gpt-4o-2024-11-20** | Beste Schreibqualität |
+| OpenAI-Modell | ✅ **gpt-4.1-2025-04-14** | Beste Schreibqualität |
 | Rate-Limiting | ✅ Aktiv | 10 Requests/h |
 | CORS-Schutz | ✅ Aktiv | Nur autorisierte Domains |
 

@@ -32,8 +32,16 @@ const USAGE_FILE = path.join(__dirname, '../.openai-usage.json');
 const MAX_REQUESTS_PER_MINUTE = 10; // Schutz vor Endlosschleifen
 const MAX_REQUESTS_PER_HOUR = 50;
 
-// OpenAI Pricing (Stand November 2024)
+// OpenAI Pricing (Stand Januar 2025)
 const PRICING = {
+  'gpt-4.1-2025-04-14': {
+    input: 2.00 / 1_000_000,  // $2.00 per 1M tokens
+    output: 8.00 / 1_000_000, // $8.00 per 1M tokens
+  },
+  'gpt-4.1': {
+    input: 2.00 / 1_000_000,  // $2.00 per 1M tokens (alias)
+    output: 8.00 / 1_000_000, // $8.00 per 1M tokens
+  },
   'gpt-4o': {
     input: 2.50 / 1_000_000,  // $2.50 per 1M tokens
     output: 10.00 / 1_000_000, // $10.00 per 1M tokens

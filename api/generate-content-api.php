@@ -68,7 +68,7 @@ $enableResearch = $input['enableResearch'] ?? false;
 /**
  * OpenAI API Call
  */
-function callOpenAI($apiKey, $prompt, $model = 'gpt-4o-2024-11-20', $maxTokens = 24000, $temperature = 0.6) {
+function callOpenAI($apiKey, $prompt, $model = 'gpt-4.1-2025-04-14', $maxTokens = 24000, $temperature = 0.6) {
     $ch = curl_init('https://api.openai.com/v1/chat/completions');
 
     $data = [
