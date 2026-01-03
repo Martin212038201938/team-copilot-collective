@@ -546,7 +546,7 @@ const DraftEditor = ({ draft, onSave, onCancel, initialTab }: DraftEditorProps) 
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          model: 'gpt-4o',
+          model: 'gpt-4o-2024-11-20',
           messages: [
             {
               role: 'system',
@@ -628,7 +628,7 @@ Schreibe einen vollständigen, praxisorientierten Artikel für copilotenschule.d
 
       // Track API usage and costs
       if (data.usage) {
-        const usage = trackAPICall('gpt-4o', data.usage.prompt_tokens, data.usage.completion_tokens);
+        const usage = trackAPICall('gpt-4o-2024-11-20', data.usage.prompt_tokens, data.usage.completion_tokens);
 
         // Send warning email if limit exceeded (only once per day)
         if (usage.limitExceeded && !usage.warningEmailSent) {
@@ -699,7 +699,7 @@ Schreibe einen vollständigen, praxisorientierten Artikel für copilotenschule.d
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          model: 'gpt-4o',
+          model: 'gpt-4o-2024-11-20',
           messages: [
             {
               role: 'system',
@@ -756,7 +756,7 @@ Analysiere dieses Transkript und extrahiere alle strukturierten Daten im JSON-Fo
 
       // Track API usage and costs
       if (data.usage) {
-        const usage = trackAPICall('gpt-4o', data.usage.prompt_tokens, data.usage.completion_tokens);
+        const usage = trackAPICall('gpt-4o-2024-11-20', data.usage.prompt_tokens, data.usage.completion_tokens);
 
         // Send warning email if limit exceeded (only once per day)
         if (usage.limitExceeded && !usage.warningEmailSent) {
@@ -828,7 +828,7 @@ Analysiere dieses Transkript und extrahiere alle strukturierten Daten im JSON-Fo
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          model: 'gpt-4o',
+          model: 'gpt-4o-2024-11-20',
           messages: [
             {
               role: 'system',
@@ -946,7 +946,7 @@ Schreibe jetzt den vollständigen, praxisorientierten Artikel für copilotenschu
 
       // Track API usage and costs
       if (data.usage) {
-        const usage = trackAPICall('gpt-4o', data.usage.prompt_tokens, data.usage.completion_tokens);
+        const usage = trackAPICall('gpt-4o-2024-11-20', data.usage.prompt_tokens, data.usage.completion_tokens);
 
         // Send warning email if limit exceeded (only once per day)
         if (usage.limitExceeded && !usage.warningEmailSent) {
@@ -1041,7 +1041,7 @@ Schreibe jetzt den vollständigen, praxisorientierten Artikel für copilotenschu
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          model: 'gpt-4o',
+          model: 'gpt-4o-2024-11-20',
           messages: [
             {
               role: 'system',
@@ -1099,7 +1099,7 @@ Erstelle jetzt die komplette TSX-Komponente. Der komplette Markdown-Content muss
 
       // Track API usage and costs
       if (data.usage) {
-        const usage = trackAPICall('gpt-4o', data.usage.prompt_tokens, data.usage.completion_tokens);
+        const usage = trackAPICall('gpt-4o-2024-11-20', data.usage.prompt_tokens, data.usage.completion_tokens);
 
         // Send warning email if limit exceeded (only once per day)
         if (usage.limitExceeded && !usage.warningEmailSent) {
