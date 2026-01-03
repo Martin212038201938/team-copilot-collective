@@ -40,6 +40,7 @@ Artikel müssen sich von der Flut generischer AI-Inhalte abheben durch:
 ## ✨ Features
 
 - **🚀 Vollautomatisch**: Aus Transkript wird komplette TSX-Komponente
+- **✏️ AI-gestützte Bearbeitung**: Bestehende Artikel per Prompt überarbeiten (Schwerpunkt ändern, Fakten ergänzen, etc.)
 - **🎯 Professionelle Tiefe**: KEIN generischer Content - fachlich tiefgehende Artikel mit 3.000-5.000 Wörtern
 - **🔍 Intelligente Recherche**: Automatische Integration aktueller Informationen (Stand 2025)
 - **💼 Praxisrelevanz**: Minimum 3-5 Use Cases pro Sektion für den beruflichen Alltag
@@ -48,6 +49,7 @@ Artikel müssen sich von der Flut generischer AI-Inhalte abheben durch:
 - **🔒 Sicher**: API Key in .env.local, automatischer Kill-Switch
 - **📝 E-E-A-T Excellence**: Experience, Expertise, Authoritativeness, Trustworthiness auf professionellem Niveau
 - **✅ Qualitätssicherung**: Automatische Checks für Länge, Struktur und generische Phrasen
+- **⏱️ Realistische Lesezeit**: Präzise Berechnung basierend auf tatsächlichem Textinhalt (260 Wörter/Min)
 - **🎨 Design**: Tailwind CSS, responsive, visuelle Hierarchie
 - **📅 Publishing-Ready**: Automatisch scheduled für nächsten Dienstag
 
@@ -101,19 +103,45 @@ Dependencies sind bereits installiert via `npm install`:
 npm run generate:interactive
 ```
 
-Das Script führt Sie Schritt-für-Schritt durch:
+Das Script bietet jetzt **zwei Modi**:
+
+#### 1️⃣ NEUEN ARTIKEL ERSTELLEN
+
+Wählen Sie Option [1] im interaktiven Modus:
 
 1. Transkript-Quelle wählen (Datei oder direktes Einfügen)
 2. Optional: Zusätzliche Anweisungen eingeben
-3. Automatische Generierung mit OpenAI GPT-4
-4. Automatisches Speichern als TSX + Draft JSON
+3. Optional: Aktuelle Informationen recherchieren (j/N)
+4. Automatische Generierung mit OpenAI GPT-4
+5. Automatische Qualitätsprüfung
+6. Automatisches Speichern als TSX + Draft JSON
 
-**Beispiel-Session:**
+#### 2️⃣ BESTEHENDEN ARTIKEL BEARBEITEN ✨ NEU!
+
+Wählen Sie Option [2] im interaktiven Modus:
+
+1. Artikel aus Liste auswählen oder Pfad angeben
+2. Aktuelle Statistiken werden angezeigt (Länge, Wortzahl)
+3. Bearbeitungs-Anweisungen eingeben
+4. AI überarbeitet den Artikel gemäß Ihren Vorgaben
+5. Qualitätsprüfung und Bestätigung
+6. Optional: Änderungen speichern
+
+**Beispiel-Anweisungen für Bearbeitung:**
+- "Füge mehr Use Cases für die Healthcare-Branche hinzu"
+- "Verschiebe den Schwerpunkt auf Enterprise-Features"
+- "Ergänze technische Details zur API-Integration"
+- "Füge Vergleiche mit Microsoft Teams hinzu"
+- "Erweitere die FAQ-Sektion um Datenschutz-Fragen"
+
+**Beispiel-Session (NEUER ARTIKEL):**
 
 ```bash
 $ npm run generate:interactive
 
 🎨 AI Content Generator - Interactive Mode
+
+Möchten Sie [1] Neuen Artikel erstellen oder [2] Bestehenden Artikel bearbeiten? (1/2): 1
 
 Transkript-Datei (oder "paste" für direktes Einfügen): transcripts/teams-tutorial.txt
 
@@ -158,6 +186,73 @@ Nächste Schritte:
 2. Teste die Vorschau im Admin-Dashboard
 3. Passe bei Bedarf Details an
 4. Commit und Push zum Repository
+```
+
+**Beispiel-Session (ARTIKEL BEARBEITEN):** ✨ NEU!
+
+```bash
+$ npm run generate:interactive
+
+🎨 AI Content Generator - Interactive Mode
+
+Möchten Sie [1] Neuen Artikel erstellen oder [2] Bestehenden Artikel bearbeiten? (1/2): 2
+
+✏️  ARTIKEL-BEARBEITUNGS-MODUS
+
+Verfügbare Artikel:
+  [1] MicrosoftCopilotEinsteigerGuide.tsx
+  [2] MicrosoftCopilotMemoryGuide.tsx
+  [3] GitHubCopilot.tsx
+  ...
+
+Datei-Nummer oder vollständiger Pfad: 1
+
+📄 Geladener Artikel: MicrosoftCopilotEinsteigerGuide.tsx
+📊 Aktuelle Länge: 45234 Zeichen
+📖 Aktuelle Wortzahl: 2847 Wörter
+
+💡 Beispiel-Anweisungen:
+  - "Füge mehr Use Cases für die Healthcare-Branche hinzu"
+  - "Verschiebe den Schwerpunkt auf Enterprise-Features"
+  - "Ergänze technische Details zur API-Integration"
+  - "Füge Vergleiche mit Microsoft Teams hinzu"
+  - "Erweitere die FAQ-Sektion um Datenschutz-Fragen"
+
+Bearbeitungs-Anweisungen: Füge 5 konkrete Use Cases für Finance-Unternehmen hinzu und erweitere die FAQ um Compliance-Fragen
+
+✏️  Bearbeite Artikel mit AI-Unterstützung...
+📊 Artikel-Länge: 45234 Zeichen
+📝 Anweisungen: Füge 5 konkrete Use Cases...
+📝 Prompt-Länge: 52143 Zeichen
+⏳ Bitte warten, dies kann 60-90 Sekunden dauern...
+
+✅ Artikel erfolgreich überarbeitet!
+📊 Neue Code-Länge: 58432 Zeichen
+💰 Tokens verwendet: 19234
+   - Prompt: 11234
+   - Completion: 8000
+
+📊 QUALITÄTSPRÜFUNG:
+✅ Länge: 3542 Wörter (ausgezeichnet!)
+✅ Alle Qualitätschecks bestanden!
+
+📋 Aktualisierte Metadaten:
+   Titel: Microsoft 365 Copilot - Der komplette Einsteiger-Guide 2025
+   Slug: microsoft-365-copilot-der-komplette-einsteiger-guide-2025
+   Lesezeit: 14 Min. Lesezeit
+
+Änderungen speichern? (j/N): j
+
+✅ Artikel gespeichert: src/pages/MicrosoftCopilotEinsteigerGuide.tsx
+✅ Draft JSON aktualisiert: content/drafts/microsoft-365-copilot-der-komplette-einsteiger-guide-2025.json
+✅ Public Draft aktualisiert: public/content/drafts/microsoft-365-copilot-der-komplette-einsteiger-guide-2025.json
+
+🎉 Artikel erfolgreich bearbeitet und gespeichert!
+
+Nächste Schritte:
+1. Überprüfe die überarbeitete Komponente
+2. Teste die Vorschau im Admin-Dashboard
+3. Commit und Push zum Repository
 ```
 
 ### Option 2: CLI-Modus mit Datei
@@ -302,13 +397,28 @@ Das verbesserte Script erstellt Artikel, die sich fundamental von generischem AI
 - ✅ Validierung von Schema.org Markup
 - ✅ Prüfung von FAQ-Sektion und Table of Contents
 
-### 9. E-E-A-T EXCELLENCE
+### 9. AI-GESTÜTZTE ARTIKEL-BEARBEITUNG ✨ NEU!
+- ✅ Bestehende Artikel per Prompt überarbeiten
+- ✅ Schwerpunkt verschieben (z.B. von Basics zu Enterprise)
+- ✅ Zusätzliche Fakten oder Use Cases ergänzen
+- ✅ Branchenspezifische Inhalte hinzufügen
+- ✅ FAQ-Sektion erweitern
+- ✅ Vergleiche mit Alternativen hinzufügen
+- ✅ Strukturelle Integrität bleibt erhalten (TSX, Schema.org, etc.)
+
+### 10. REALISTISCHE LESEZEIT-BERECHNUNG ✨ NEU!
+- ✅ Basiert auf tatsächlichem Textinhalt (nicht Code-Länge)
+- ✅ 260 Wörter/Minute für deutsche Texte
+- ✅ Entfernt automatisch TSX-Markup für präzise Zählung
+- ✅ Zeigt realistische Lesezeit für Benutzer an
+
+### 11. E-E-A-T EXCELLENCE
 - **Experience**: "In Projekten mit Enterprise-Kunden...", spezifische Zahlen
 - **Expertise**: Technische Tiefe, API-Details, Performance-Metriken
 - **Authoritativeness**: Microsoft Docs, Whitepapers, Case Studies
 - **Trustworthiness**: Transparente Limitationen, bekannte Issues
 
-### 10. VISUELLE HIERARCHIE
+### 12. VISUELLE HIERARCHIE
 - Gradient-Boxen für wichtige Konzepte
 - Border-left Highlights für Callouts
 - Cards für Use Cases und Vergleiche
@@ -337,11 +447,18 @@ Das verbesserte Script erstellt Artikel, die sich fundamental von generischem AI
 
 **Bei 10 Seiten/Monat: ~$1.25/Monat (mit Recherche)**
 
+**Typische Kosten für Artikel-Bearbeitung:**
+
+- Prompt: ~12.000 tokens = ~$0.03
+- Completion: ~8.000 tokens = ~$0.08
+- **Total: ~$0.11 pro Bearbeitung**
+
 **Hinweis**: Die höheren Kosten reflektieren die deutlich verbesserte Qualität:
 - 2-3x längerer Content (3.000-5.000 Wörter statt 2.000)
 - Professionelle Tiefe statt generischer Content
 - Recherchierte aktuelle Informationen
 - Substantielle Use Cases und Praxisbeispiele
+- AI-gestützte Bearbeitung für kontinuierliche Verbesserung
 
 ## 🔧 Anpassungen
 
@@ -405,10 +522,11 @@ OPENAI_TEMPERATURE=0.8   # Etwas kreativer (aber nicht zu hoch für professionel
 2. **Content generieren**
    ```bash
    npm run generate:interactive
+   # Wähle [1] Neuen Artikel erstellen
    # Folge den Anweisungen
    ```
 
-3. **Review & Anpassungen**
+3. **Review & ggf. AI-gestützte Nachbearbeitung** ✨ NEU!
    ```bash
    # Öffne die generierte Datei in deinem Editor
    code src/pages/GenerierteKomponente.tsx
@@ -418,6 +536,11 @@ OPENAI_TEMPERATURE=0.8   # Etwas kreativer (aber nicht zu hoch für professionel
    # - Klingen die Texte authentisch?
    # - Sind die FAQs relevant?
    # - Funktionieren alle Links?
+
+   # Falls Verbesserungen nötig sind:
+   npm run generate:interactive
+   # Wähle [2] Bestehenden Artikel bearbeiten
+   # Gib konkrete Anweisungen (z.B. "Füge Use Cases für Healthcare hinzu")
    ```
 
 4. **Vorschau im Admin**

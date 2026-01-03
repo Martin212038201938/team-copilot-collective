@@ -322,6 +322,44 @@ Beginne jetzt:`;
 }
 
 /**
+ * Extract readable text content from TSX component
+ * Removes imports, JSX tags, attributes, and code to get actual readable text
+ */
+function extractReadableText(component) {
+  // Remove imports
+  let text = component.replace(/^import\s+.*?;\s*$/gm, '');
+
+  // Remove JSX/HTML tags and attributes
+  text = text.replace(/<[^>]+>/g, ' ');
+
+  // Remove curly braces content (JavaScript expressions)
+  text = text.replace(/\{[^}]*\}/g, ' ');
+
+  // Remove extra whitespace and count actual words
+  text = text.replace(/\s+/g, ' ').trim();
+
+  return text;
+}
+
+/**
+ * Calculate realistic reading time based on actual text content
+ */
+function calculateReadingTime(component) {
+  const readableText = extractReadableText(component);
+  const words = readableText.split(/\s+/).filter(word => word.length > 0);
+  const wordCount = words.length;
+
+  // Realistic reading speed for German text: 250-280 words/minute
+  // We use 260 as average
+  const readTimeMinutes = Math.ceil(wordCount / 260);
+
+  return {
+    readTime: `${readTimeMinutes} Min. Lesezeit`,
+    wordCount: wordCount,
+  };
+}
+
+/**
  * Generate metadata for the draft JSON
  */
 function generateMetadata(component, transcript) {
@@ -354,10 +392,9 @@ function generateMetadata(component, transcript) {
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '');
 
-  // Estimate read time (assuming ~200 words/minute, 5 chars/word)
-  const wordCount = component.length / 5;
-  const readTimeMinutes = Math.ceil(wordCount / 200);
-  const readTime = `${readTimeMinutes} Minuten`;
+  // Calculate realistic reading time based on actual text content
+  const { readTime, wordCount } = calculateReadingTime(component);
+  console.log(`📖 Geschätzte Wortzahl: ${wordCount} Wörter`);
 
   // Generate component name from slug
   const componentName = slug
@@ -465,6 +502,119 @@ async function generateContent(transcript, userInstructions = '', enableResearch
     );
 
     return generatedCode;
+  } catch (error) {
+    console.error('❌ Fehler bei OpenAI API Call:', error.message);
+    if (error.response) {
+      console.error('Response:', error.response.data);
+    }
+    throw error;
+  }
+}
+
+/**
+ * Edit existing content using AI with specific instructions
+ */
+async function editContent(existingComponent, editInstructions) {
+  console.log('\n✏️  Bearbeite Artikel mit AI-Unterstützung...');
+  console.log(`📊 Artikel-Länge: ${existingComponent.length} Zeichen`);
+  console.log(`📝 Anweisungen: ${editInstructions}`);
+
+  // 🔒 SECURITY: Check cost limits before API call
+  try {
+    checkBeforeRequest();
+  } catch (error) {
+    console.error('\n' + error.message + '\n');
+    throw error;
+  }
+
+  const editPrompt = `Du bist ein SENIOR CONSULTANT und Content-Experte. Du hast einen bestehenden Fachartikel vor dir und sollst ihn gemäß den Anweisungen überarbeiten.
+
+# WICHTIGE REGELN FÜR DIE BEARBEITUNG
+
+1. **STRUKTURELLE INTEGRITÄT BEWAHREN**:
+   - Behalte die TSX-Struktur EXAKT bei
+   - Alle Imports müssen gleich bleiben
+   - Schema.org Markup muss vollständig erhalten bleiben
+   - Table of Contents struktur beibehalten
+
+2. **QUALITÄTSSTANDARDS EINHALTEN**:
+   - Professionelle Tiefe und fachliche Exzellenz
+   - MINIMUM 3-5 konkrete Use Cases pro Sektion
+   - Keine generischen AI-Phrasen
+   - Technische Präzision
+
+3. **ÄNDERUNGEN FOKUSSIERT DURCHFÜHREN**:
+   - Nur die angeforderten Änderungen vornehmen
+   - Keine unnötigen Umformulierungen
+   - Bestehende gute Inhalte beibehalten
+
+---
+
+# BESTEHENDER ARTIKEL
+
+\`\`\`tsx
+${existingComponent}
+\`\`\`
+
+---
+
+# ANWEISUNGEN FÜR DIE BEARBEITUNG
+
+${editInstructions}
+
+---
+
+# DEINE AUFGABE
+
+Überarbeite den Artikel gemäß den Anweisungen. Behalte die vollständige TSX-Struktur bei und gib den kompletten, überarbeiteten Code zurück.
+
+**WICHTIG**: Antworte NUR mit dem vollständigen TSX-Code. Keine Erklärungen, keine Markdown-Wrapper. Starte direkt mit "import" und ende mit "export default".
+
+Beginne jetzt:`;
+
+  console.log(`📝 Prompt-Länge: ${editPrompt.length} Zeichen`);
+  console.log('⏳ Bitte warten, dies kann 60-90 Sekunden dauern...\n');
+
+  const model = process.env.OPENAI_MODEL || 'gpt-4o';
+
+  try {
+    const completion = await openai.chat.completions.create({
+      model,
+      messages: [
+        {
+          role: 'system',
+          content: 'Du bist ein SENIOR CONSULTANT und Content-Experte, der bestehende Fachartikel professionell überarbeitet. Du behältst die technische Struktur bei und verbesserst gezielt die angeforderten Aspekte.',
+        },
+        {
+          role: 'user',
+          content: editPrompt,
+        },
+      ],
+      temperature: parseFloat(process.env.OPENAI_TEMPERATURE || '0.6'),
+      max_tokens: parseInt(process.env.OPENAI_MAX_TOKENS || '24000'),
+    });
+
+    const editedCode = completion.choices[0].message.content;
+
+    console.log('✅ Artikel erfolgreich überarbeitet!');
+    console.log(`📊 Neue Code-Länge: ${editedCode.length} Zeichen`);
+    console.log(`💰 Tokens verwendet: ${completion.usage.total_tokens}`);
+    console.log(`   - Prompt: ${completion.usage.prompt_tokens}`);
+    console.log(`   - Completion: ${completion.usage.completion_tokens}`);
+
+    // 🔒 SECURITY: Track usage after successful API call
+    trackUsage(
+      model,
+      completion.usage.prompt_tokens,
+      completion.usage.completion_tokens,
+      {
+        type: 'edit',
+        originalLength: existingComponent.length,
+        editedLength: editedCode.length,
+      }
+    );
+
+    return editedCode;
   } catch (error) {
     console.error('❌ Fehler bei OpenAI API Call:', error.message);
     if (error.response) {
@@ -599,6 +749,22 @@ async function interactiveMode() {
 
   console.log('\n🎨 AI Content Generator - Interactive Mode\n');
 
+  // Ask if user wants to create new or edit existing
+  const mode = await question('Möchten Sie [1] Neuen Artikel erstellen oder [2] Bestehenden Artikel bearbeiten? (1/2): ');
+
+  if (mode === '2') {
+    // EDIT MODE
+    await editMode(rl, question);
+  } else {
+    // CREATE MODE (existing logic)
+    await createMode(rl, question);
+  }
+}
+
+/**
+ * Create new article mode
+ */
+async function createMode(rl, question) {
   const transcriptPath = await question('Transkript-Datei (oder "paste" für direktes Einfügen): ');
 
   let transcript = '';
@@ -655,6 +821,126 @@ async function interactiveMode() {
   console.log('2. Teste die Vorschau im Admin-Dashboard');
   console.log('3. Passe bei Bedarf Details an');
   console.log('4. Commit und Push zum Repository');
+}
+
+/**
+ * Edit existing article mode
+ */
+async function editMode(rl, question) {
+  console.log('\n✏️  ARTIKEL-BEARBEITUNGS-MODUS\n');
+
+  // Show available files
+  const pagesDir = path.join(__dirname, '../src/pages');
+  const files = fs.readdirSync(pagesDir).filter(f => f.endsWith('.tsx'));
+
+  console.log('Verfügbare Artikel:');
+  files.forEach((file, idx) => {
+    console.log(`  [${idx + 1}] ${file}`);
+  });
+
+  const fileChoice = await question('\nDatei-Nummer oder vollständiger Pfad: ');
+
+  let filePath;
+  if (fileChoice.match(/^\d+$/)) {
+    const idx = parseInt(fileChoice) - 1;
+    if (idx < 0 || idx >= files.length) {
+      console.error('❌ Ungültige Auswahl');
+      process.exit(1);
+    }
+    filePath = path.join(pagesDir, files[idx]);
+  } else {
+    filePath = fileChoice;
+  }
+
+  if (!fs.existsSync(filePath)) {
+    console.error(`❌ Datei nicht gefunden: ${filePath}`);
+    process.exit(1);
+  }
+
+  const existingComponent = fs.readFileSync(filePath, 'utf-8');
+
+  console.log(`\n📄 Geladener Artikel: ${path.basename(filePath)}`);
+  console.log(`📊 Aktuelle Länge: ${existingComponent.length} Zeichen`);
+
+  const { wordCount } = calculateReadingTime(existingComponent);
+  console.log(`📖 Aktuelle Wortzahl: ${wordCount} Wörter`);
+
+  console.log('\n💡 Beispiel-Anweisungen:');
+  console.log('  - "Füge mehr Use Cases für die Healthcare-Branche hinzu"');
+  console.log('  - "Verschiebe den Schwerpunkt auf Enterprise-Features"');
+  console.log('  - "Ergänze technische Details zur API-Integration"');
+  console.log('  - "Füge Vergleiche mit Microsoft Teams hinzu"');
+  console.log('  - "Erweitere die FAQ-Sektion um Datenschutz-Fragen"\n');
+
+  const editInstructions = await question('Bearbeitungs-Anweisungen: ');
+
+  if (!editInstructions.trim()) {
+    console.error('❌ Keine Anweisungen angegeben');
+    process.exit(1);
+  }
+
+  rl.close();
+
+  // Edit article
+  const editedComponent = await editContent(existingComponent, editInstructions);
+
+  // Validate quality
+  const validation = validateContentQuality(editedComponent);
+
+  // Update metadata
+  const metadata = generateMetadata(editedComponent, '');
+
+  console.log('\n📋 Aktualisierte Metadaten:');
+  console.log(`   Titel: ${metadata.title}`);
+  console.log(`   Slug: ${metadata.slug}`);
+  console.log(`   Lesezeit: ${metadata.readTime}`);
+
+  // Ask if user wants to save
+  const rl2 = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
+
+  const saveChoice = await new Promise((resolve) =>
+    rl2.question('\nÄnderungen speichern? (j/N): ', resolve)
+  );
+
+  rl2.close();
+
+  if (saveChoice.toLowerCase() === 'j' || saveChoice.toLowerCase() === 'ja') {
+    // Save edited component
+    fs.writeFileSync(filePath, editedComponent, 'utf-8');
+    console.log(`✅ Artikel gespeichert: ${filePath}`);
+
+    // Update draft JSON if exists
+    const draftPath = path.join(__dirname, '../content/drafts', `${metadata.slug}.json`);
+    if (fs.existsSync(draftPath)) {
+      const draft = JSON.parse(fs.readFileSync(draftPath, 'utf-8'));
+      draft.readTime = metadata.readTime;
+      draft.updatedAt = new Date().toISOString();
+      fs.writeFileSync(draftPath, JSON.stringify(draft, null, 2), 'utf-8');
+      console.log(`✅ Draft JSON aktualisiert: ${draftPath}`);
+
+      // Update public draft
+      const publicDraftPath = path.join(__dirname, '../public/content/drafts', `${metadata.slug}.json`);
+      if (fs.existsSync(publicDraftPath)) {
+        fs.writeFileSync(publicDraftPath, JSON.stringify(draft, null, 2), 'utf-8');
+        console.log(`✅ Public Draft aktualisiert: ${publicDraftPath}`);
+      }
+    }
+
+    console.log('\n🎉 Artikel erfolgreich bearbeitet und gespeichert!');
+  } else {
+    console.log('\n❌ Änderungen wurden NICHT gespeichert');
+  }
+
+  // Show cost statistics
+  showStatistics();
+
+  console.log('\nNächste Schritte:');
+  console.log('1. Überprüfe die überarbeitete Komponente');
+  console.log('2. Teste die Vorschau im Admin-Dashboard');
+  console.log('3. Commit und Push zum Repository');
 }
 
 /**
