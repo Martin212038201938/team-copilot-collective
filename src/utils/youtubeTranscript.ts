@@ -15,15 +15,19 @@ export interface YouTubeTranscriptResponse {
 
 /**
  * Fetch transcript for a YouTube video
+ * Uses the stable Node.js backend with youtube-transcript package
+ *
  * @param url YouTube video URL
  * @returns Promise with transcript data
  */
 export async function fetchYouTubeTranscript(url: string): Promise<YouTubeTranscriptResponse> {
   try {
-    // Determine API endpoint based on environment
+    // Use Node.js API endpoint (most reliable method for 2025)
+    // In development: http://localhost:3001
+    // In production: will be proxied through the main server
     const apiEndpoint = import.meta.env.PROD
-      ? '/api/fetch-youtube-transcript.php'
-      : '/api/fetch-youtube-transcript.php';
+      ? '/api/fetch-youtube-transcript.php' // Production fallback to PHP
+      : 'http://localhost:3001/transcript'; // Development: Node.js server
 
     const response = await fetch(apiEndpoint, {
       method: 'POST',
@@ -39,15 +43,27 @@ export async function fetchYouTubeTranscript(url: string): Promise<YouTubeTransc
       return {
         success: false,
         error: data.error || 'Fehler beim Abrufen des Transkripts',
+        debug: data.debug,
       };
     }
 
     return data;
   } catch (error) {
     console.error('Error fetching YouTube transcript:', error);
+
+    // Provide helpful error message
+    let errorMessage = 'Netzwerkfehler';
+    if (error instanceof Error) {
+      if (error.message.includes('fetch')) {
+        errorMessage = 'Konnte Transcript-Server nicht erreichen. Stelle sicher, dass "npm run dev:transcript" läuft.';
+      } else {
+        errorMessage = error.message;
+      }
+    }
+
     return {
       success: false,
-      error: error instanceof Error ? error.message : 'Netzwerkfehler',
+      error: errorMessage,
     };
   }
 }
