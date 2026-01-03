@@ -73,12 +73,25 @@ if ($videoPage === false) {
 }
 
 // Extract caption tracks from the page
-// Look for "captionTracks" in the page source
-preg_match('/"captionTracks":\s*(\[.*?\])/', $videoPage, $captionMatches);
+// Look for "captionTracks" in the page source with better regex
+preg_match('/"captionTracks":\s*(\[(?:[^\[\]]|(?1))*\])/', $videoPage, $captionMatches);
+
+// Alternative: try to find it in a larger context
+if (empty($captionMatches[1])) {
+    // Try alternative pattern
+    preg_match('/"captionTracks":\[(.*?)\],"/', $videoPage, $altMatches);
+    if (!empty($altMatches[0])) {
+        preg_match('/\[(.*)\]/', $altMatches[0], $innerMatch);
+        $captionMatches[1] = '[' . $innerMatch[1] . ']';
+    }
+}
 
 if (empty($captionMatches[1])) {
     http_response_code(404);
-    echo json_encode(['error' => 'Keine Untertitel für dieses Video verfügbar']);
+    echo json_encode([
+        'error' => 'Keine Untertitel für dieses Video verfügbar',
+        'debug' => 'captionTracks nicht gefunden in Seitenquelle'
+    ]);
     exit;
 }
 
@@ -86,7 +99,10 @@ $captionTracks = json_decode($captionMatches[1], true);
 
 if (empty($captionTracks)) {
     http_response_code(404);
-    echo json_encode(['error' => 'Keine Untertitel für dieses Video verfügbar']);
+    echo json_encode([
+        'error' => 'Keine Untertitel für dieses Video verfügbar',
+        'debug' => 'JSON decode fehlgeschlagen oder leeres Array'
+    ]);
     exit;
 }
 
@@ -124,11 +140,34 @@ if ($captionXml === false) {
 }
 
 // Parse XML and extract text
-$xml = @simplexml_load_string($captionXml);
+// Disable XML errors and use internal error handling
+libxml_use_internal_errors(true);
+
+// Try to clean the XML first
+$captionXml = trim($captionXml);
+
+// Try SimpleXML first
+$xml = simplexml_load_string($captionXml, 'SimpleXMLElement', LIBXML_NOCDATA);
+
+// If SimpleXML fails, try DOMDocument
+if ($xml === false) {
+    $dom = new DOMDocument();
+    $dom->loadXML($captionXml, LIBXML_NOCDATA);
+    $xml = simplexml_import_dom($dom);
+}
 
 if ($xml === false) {
+    $xmlErrors = libxml_get_errors();
+    libxml_clear_errors();
+
     http_response_code(500);
-    echo json_encode(['error' => 'Konnte Untertitel nicht parsen']);
+    echo json_encode([
+        'error' => 'Konnte Untertitel nicht parsen',
+        'debug' => 'XML parsing fehlgeschlagen',
+        'xmlErrors' => array_map(function($err) {
+            return $err->message;
+        }, $xmlErrors)
+    ]);
     exit;
 }
 
@@ -136,9 +175,17 @@ if ($xml === false) {
 $transcript = "";
 $transcriptPlain = "";
 
-foreach ($xml->text as $caption) {
+// Try to iterate through text elements
+$textElements = $xml->xpath('//text') ?: $xml->text ?: [];
+
+foreach ($textElements as $caption) {
     $start = isset($caption['start']) ? floatval($caption['start']) : 0;
     $text = html_entity_decode(strip_tags((string)$caption), ENT_QUOTES | ENT_HTML5, 'UTF-8');
+
+    // Skip empty text
+    if (empty(trim($text))) {
+        continue;
+    }
 
     // Format timestamp as [MM:SS]
     $minutes = floor($start / 60);
@@ -147,6 +194,16 @@ foreach ($xml->text as $caption) {
 
     $transcript .= $timestamp . " " . $text . "\n";
     $transcriptPlain .= $text . " ";
+}
+
+// If no transcript extracted, return error
+if (empty($transcript)) {
+    http_response_code(500);
+    echo json_encode([
+        'error' => 'Konnte Untertitel nicht parsen',
+        'debug' => 'Keine Text-Elemente gefunden'
+    ]);
+    exit;
 }
 
 // Return both formatted and plain versions

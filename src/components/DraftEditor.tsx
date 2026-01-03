@@ -403,11 +403,19 @@ const DraftEditor = ({ draft, onSave, onCancel, initialTab }: DraftEditorProps) 
           handleExtractTopics();
         }, 500);
       } else {
-        alert(result.error || 'Fehler beim Laden des Transkripts');
+        // Show detailed error message if available
+        let errorMsg = result.error || 'Fehler beim Laden des Transkripts';
+        if (result.debug) {
+          errorMsg += '\n\nDebug: ' + result.debug;
+        }
+        if (result.xmlErrors && result.xmlErrors.length > 0) {
+          errorMsg += '\n\nXML Fehler: ' + result.xmlErrors.join(', ');
+        }
+        alert(errorMsg);
       }
     } catch (error) {
       console.error('Error loading YouTube transcript:', error);
-      alert('Fehler beim Laden des Transkripts');
+      alert('Fehler beim Laden des Transkripts: ' + (error instanceof Error ? error.message : 'Unbekannter Fehler'));
     } finally {
       setIsLoadingYouTube(false);
     }

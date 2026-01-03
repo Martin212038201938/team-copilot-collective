@@ -9,6 +9,8 @@ export interface YouTubeTranscriptResponse {
   transcriptPlain?: string;
   language?: string;
   error?: string;
+  debug?: string;
+  xmlErrors?: string[];
 }
 
 /**
