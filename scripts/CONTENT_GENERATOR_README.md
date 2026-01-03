@@ -18,16 +18,18 @@ Der Content Generator wurde grundlegend überarbeitet, um Artikel zu erstellen, 
 - ❌ Oberflächliche technische Details
 - ❌ 7-9 FAQs mit kurzen Antworten
 
-**NACHHER (Neue Version):**
-- ✅ 3.000-5.000 Wörter mit substantiellem Inhalt
-- ✅ Professionelle Sprache, technische Präzision
+**NACHHER (Neue Version - Januar 2026):**
+- ✅ **5.000-8.000 Wörter** mit maximal substantiellem Inhalt (deutlich ausführlicher!)
+- ✅ **Theme-aware Styling**: Funktioniert perfekt in Light- UND Dark-Mode
+- ✅ **Automatische Lesezeit**: Wird dynamisch aus echtem Textinhalt berechnet (260 WPM)
+- ✅ Professionelle Sprache, maximale technische Präzision
 - ✅ Laser-Fokus auf das identifizierte Hauptthema
 - ✅ MINIMUM 3-5 konkrete Use Cases pro Sektion
-- ✅ Technische Tiefe: APIs, Architekturen, Konfigurationen
-- ✅ 10-15 umfassende FAQs (80-150 Wörter pro Antwort)
-- ✅ **NEU**: Automatische Recherche aktueller Informationen (2025)
-- ✅ **NEU**: Automatische Qualitätsprüfung (Länge, Struktur, generische Phrasen)
-- ✅ **NEU**: Optimiert für Zitierbarkeit durch ChatGPT, Gemini, Claude
+- ✅ Maximale technische Tiefe: APIs, Architekturen, Konfigurationen, mehr Details
+- ✅ 10-15 umfassende FAQs (100-200 Wörter pro Antwort)
+- ✅ Automatische Recherche aktueller Informationen (2025)
+- ✅ Automatische Qualitätsprüfung (Länge, Struktur, generische Phrasen)
+- ✅ Optimiert für Zitierbarkeit durch ChatGPT, Gemini, Claude
 
 ### Warum diese Änderungen?
 
@@ -41,7 +43,7 @@ Artikel müssen sich von der Flut generischer AI-Inhalte abheben durch:
 
 - **🚀 Vollautomatisch**: Aus Transkript wird komplette TSX-Komponente
 - **✏️ AI-gestützte Bearbeitung**: Bestehende Artikel per Prompt überarbeiten (Schwerpunkt ändern, Fakten ergänzen, etc.)
-- **🎯 Professionelle Tiefe**: KEIN generischer Content - fachlich tiefgehende Artikel mit 3.000-5.000 Wörtern
+- **🎯 Professionelle Tiefe**: KEIN generischer Content - **SEHR** fachlich tiefgehende Artikel mit **5.000-8.000 Wörtern**
 - **🔍 Intelligente Recherche**: Automatische Integration aktueller Informationen (Stand 2025)
 - **💼 Praxisrelevanz**: Minimum 3-5 Use Cases pro Sektion für den beruflichen Alltag
 - **📊 LLM-optimiert**: Dual Schema.org (Article + FAQPage), optimal für Zitierbarkeit durch ChatGPT, Gemini, etc.
@@ -49,8 +51,8 @@ Artikel müssen sich von der Flut generischer AI-Inhalte abheben durch:
 - **🔒 Sicher**: API Key in .env.local, automatischer Kill-Switch
 - **📝 E-E-A-T Excellence**: Experience, Expertise, Authoritativeness, Trustworthiness auf professionellem Niveau
 - **✅ Qualitätssicherung**: Automatische Checks für Länge, Struktur und generische Phrasen
-- **⏱️ Realistische Lesezeit**: Präzise Berechnung basierend auf tatsächlichem Textinhalt (260 Wörter/Min)
-- **🎨 Design**: Tailwind CSS, responsive, visuelle Hierarchie
+- **⏱️ Automatische Lesezeit**: Wird dynamisch aus echtem Textinhalt berechnet (260 Wörter/Min) - KEINE hardcodierten Werte mehr!
+- **🎨 Theme-aware Design**: Tailwind CSS mit semantischen Klassen - funktioniert perfekt in Light UND Dark Mode
 - **📅 Publishing-Ready**: Automatisch scheduled für nächsten Dienstag
 
 ## 🛠️ Setup
@@ -367,8 +369,9 @@ Das verbesserte Script erstellt Artikel, die sich fundamental von generischem AI
 - ✅ Echte Prompt-Beispiele, Code-Snippets, Konfigurationen
 - ✅ Messbare Ergebnisse (ROI, Zeitersparnis, Effizienz)
 
-### 4. SUBSTANTIELLE LÄNGE
-- ✅ Ziel: 3.000-5.000 Wörter (10-15 Minuten Lesezeit)
+### 4. SUBSTANTIELLE LÄNGE - SEHR AUSFÜHRLICH!
+- ✅ **Ziel: 5.000-8.000 Wörter (18-30 Minuten Lesezeit)**
+- ✅ Die Lesezeit wird automatisch aus dem echten Textinhalt berechnet (260 WPM für Deutsch)
 - ✅ Qualität und Tiefe über Kürze
 - ✅ FAQ-Sektion: 10-15 Fragen mit jeweils 80-150 Wörtern
 - ❌ KEINE Verkürzungen, die Artikel generisch machen
@@ -418,11 +421,14 @@ Das verbesserte Script erstellt Artikel, die sich fundamental von generischem AI
 - **Authoritativeness**: Microsoft Docs, Whitepapers, Case Studies
 - **Trustworthiness**: Transparente Limitationen, bekannte Issues
 
-### 12. VISUELLE HIERARCHIE
-- Gradient-Boxen für wichtige Konzepte
-- Border-left Highlights für Callouts
-- Cards für Use Cases und Vergleiche
-- Code-Blöcke mit Syntax-Highlighting
+### 12. VISUELLE HIERARCHIE - THEME-AWARE!
+- **Theme-aware Tailwind-Klassen**: Funktioniert perfekt in Light UND Dark Mode
+- **KEINE hardcodierten Farben** wie `bg-white`, `bg-blue-50`, `bg-gray-50`
+- **STATTDESSEN**: `bg-card`, `bg-muted`, `bg-primary/10`, `bg-accent/10`, etc.
+- Gradient-Boxen für wichtige Konzepte: `bg-gradient-to-br from-primary/10 to-accent/10`
+- Border-left Highlights für Callouts: `border-l-4 border-primary`
+- Cards für Use Cases und Vergleiche: `bg-card border border-border`
+- Code-Blöcke mit Syntax-Highlighting: `bg-muted/50`
 - Responsive Design mit Tailwind CSS
 
 ## 💰 Kosten
