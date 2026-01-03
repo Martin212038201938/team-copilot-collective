@@ -38,54 +38,67 @@ $linkedinUrl = !empty($data['linkedinUrl']) ? htmlspecialchars($data['linkedinUr
 $websiteUrl = !empty($data['websiteUrl']) ? htmlspecialchars($data['websiteUrl']) : '';
 $message = htmlspecialchars($data['message']);
 
-// Validate and process CV file upload
-$cvFile = null;
-$cvFileName = '';
-$cvFileContent = '';
-$cvMimeType = '';
+// Validate and process CV file uploads (up to 4 files)
+$cvFiles = [];
+$allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+$allowedExtensions = ['pdf', 'doc', 'docx'];
+$maxFileSize = 5 * 1024 * 1024; // 5MB
+$maxFiles = 4;
 
-if (isset($_FILES['cv']) && $_FILES['cv']['error'] === UPLOAD_ERR_OK) {
-    $allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
-    $allowedExtensions = ['pdf', 'doc', 'docx'];
-    $maxFileSize = 5 * 1024 * 1024; // 5MB
+if (isset($_FILES['cv']) && is_array($_FILES['cv']['name'])) {
+    $fileCount = count($_FILES['cv']['name']);
 
-    $uploadedFile = $_FILES['cv'];
-    $fileSize = $uploadedFile['size'];
-    $fileTmpPath = $uploadedFile['tmp_name'];
-    $fileName = $uploadedFile['name'];
-    $fileType = $uploadedFile['type'];
-    $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
-
-    // Validate file size
-    if ($fileSize > $maxFileSize) {
+    // Limit to 4 files
+    if ($fileCount > $maxFiles) {
         http_response_code(400);
-        echo json_encode(['error' => 'CV-Datei ist zu groß. Maximale Größe: 5MB']);
+        echo json_encode(['error' => 'Maximal 4 Dateien erlaubt.']);
         exit;
     }
 
-    // Validate file extension
-    if (!in_array($fileExtension, $allowedExtensions)) {
-        http_response_code(400);
-        echo json_encode(['error' => 'Ungültiger Dateityp. Nur PDF, DOC und DOCX sind erlaubt.']);
-        exit;
-    }
+    // Process each uploaded file
+    for ($i = 0; $i < $fileCount; $i++) {
+        // Skip if there's an error with this file
+        if ($_FILES['cv']['error'][$i] !== UPLOAD_ERR_OK) {
+            continue;
+        }
 
-    // Validate MIME type
-    if (!in_array($fileType, $allowedTypes)) {
-        http_response_code(400);
-        echo json_encode(['error' => 'Ungültiger Dateityp. Nur PDF, DOC und DOCX sind erlaubt.']);
-        exit;
-    }
+        $fileSize = $_FILES['cv']['size'][$i];
+        $fileTmpPath = $_FILES['cv']['tmp_name'][$i];
+        $fileName = $_FILES['cv']['name'][$i];
+        $fileType = $_FILES['cv']['type'][$i];
+        $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
 
-    // Read file content for email attachment
-    $cvFileContent = file_get_contents($fileTmpPath);
-    $cvFileName = basename($fileName);
-    $cvMimeType = $fileType;
-    $cvFile = [
-        'content' => $cvFileContent,
-        'name' => $cvFileName,
-        'type' => $cvMimeType
-    ];
+        // Validate file size
+        if ($fileSize > $maxFileSize) {
+            http_response_code(400);
+            echo json_encode(['error' => "Datei '{$fileName}' ist zu groß. Maximale Größe: 5MB"]);
+            exit;
+        }
+
+        // Validate file extension
+        if (!in_array($fileExtension, $allowedExtensions)) {
+            http_response_code(400);
+            echo json_encode(['error' => "Ungültiger Dateityp für '{$fileName}'. Nur PDF, DOC und DOCX sind erlaubt."]);
+            exit;
+        }
+
+        // Validate MIME type
+        if (!in_array($fileType, $allowedTypes)) {
+            http_response_code(400);
+            echo json_encode(['error' => "Ungültiger Dateityp für '{$fileName}'. Nur PDF, DOC und DOCX sind erlaubt."]);
+            exit;
+        }
+
+        // Read file content for email attachment
+        $cvFileContent = file_get_contents($fileTmpPath);
+        $cvFileName = basename($fileName);
+
+        $cvFiles[] = [
+            'content' => $cvFileContent,
+            'name' => $cvFileName,
+            'type' => $fileType
+        ];
+    }
 }
 
 // Validate email
@@ -120,6 +133,22 @@ $saved = saveNewsletterSubscription($email, $name, 'trainer', $confirmationToken
 $to = 'martin@yellow-boat.com';
 $subject = 'Neue Trainer-Bewerbung von ' . $name . ' - ' . $pathLabel;
 
+// Build CV file list for email
+$cvFileListHtml = '';
+$cvFileListText = '';
+if (count($cvFiles) > 0) {
+    $cvFileListHtml = "<p><strong>CV/Lebenslauf:</strong></p><ul>";
+    $cvFileListText = "CV/Lebenslauf:\n";
+    foreach ($cvFiles as $cvFile) {
+        $cvFileListHtml .= "<li>{$cvFile['name']}</li>";
+        $cvFileListText .= "  - {$cvFile['name']}\n";
+    }
+    $cvFileListHtml .= "</ul>";
+} else {
+    $cvFileListHtml = "<p><strong>CV/Lebenslauf:</strong> Nicht hochgeladen</p>";
+    $cvFileListText = "CV/Lebenslauf: Nicht hochgeladen\n";
+}
+
 $htmlBody = "
 <html>
 <head>
@@ -133,7 +162,7 @@ $htmlBody = "
     <p><strong>Interessiert an:</strong> {$pathLabel}</p>
     " . ($linkedinUrl ? "<p><strong>LinkedIn:</strong> <a href='{$linkedinUrl}'>{$linkedinUrl}</a></p>" : "") . "
     " . ($websiteUrl ? "<p><strong>Webseite:</strong> <a href='{$websiteUrl}'>{$websiteUrl}</a></p>" : "") . "
-    " . ($cvFile ? "<p><strong>CV/Lebenslauf:</strong> {$cvFileName} (siehe Anhang)</p>" : "<p><strong>CV/Lebenslauf:</strong> Nicht hochgeladen</p>") . "
+    {$cvFileListHtml}
     <p><strong>Nachricht/Motivation:</strong></p>
     <p>" . nl2br($message) . "</p>
     <hr>
@@ -153,20 +182,20 @@ E-Mail: {$email}
 Interessiert an: {$pathLabel}
 " . ($linkedinUrl ? "LinkedIn: {$linkedinUrl}\n" : "") . "
 " . ($websiteUrl ? "Webseite: {$websiteUrl}\n" : "") . "
-" . ($cvFile ? "CV/Lebenslauf: {$cvFileName} (siehe Anhang)\n" : "CV/Lebenslauf: Nicht hochgeladen\n") . "
+{$cvFileListText}
 Nachricht/Motivation:
 {$message}
 ";
 
-// Build email with optional CV attachment
+// Build email with optional CV attachments
 $boundary = md5(time() . 'notification');
 $boundaryAlt = md5(time() . 'alternative');
 
 $headers = array();
 $headers[] = 'MIME-Version: 1.0';
 
-// Use multipart/mixed if CV is attached, otherwise multipart/alternative
-if ($cvFile) {
+// Use multipart/mixed if CV files are attached, otherwise multipart/alternative
+if (count($cvFiles) > 0) {
     $headers[] = 'Content-Type: multipart/mixed; boundary="' . $boundary . '"';
 } else {
     $headers[] = 'Content-Type: multipart/alternative; boundary="' . $boundary . '"';
@@ -179,8 +208,8 @@ $headers[] = 'X-Originating-IP: ' . $ipAddress;
 $headers[] = 'X-Contact-Form: copilotenschule.de';
 
 // Build email body
-if ($cvFile) {
-    // With attachment: use multipart/mixed with nested multipart/alternative
+if (count($cvFiles) > 0) {
+    // With attachments: use multipart/mixed with nested multipart/alternative
     $body = "--{$boundary}\r\n";
     $body .= "Content-Type: multipart/alternative; boundary=\"{$boundaryAlt}\"\r\n\r\n";
 
@@ -195,15 +224,17 @@ if ($cvFile) {
     $body .= $htmlBody . "\r\n\r\n";
     $body .= "--{$boundaryAlt}--\r\n\r\n";
 
-    // Add CV attachment
-    $body .= "--{$boundary}\r\n";
-    $body .= "Content-Type: {$cvFile['type']}; name=\"{$cvFile['name']}\"\r\n";
-    $body .= "Content-Transfer-Encoding: base64\r\n";
-    $body .= "Content-Disposition: attachment; filename=\"{$cvFile['name']}\"\r\n\r\n";
-    $body .= chunk_split(base64_encode($cvFile['content'])) . "\r\n";
+    // Add all CV attachments
+    foreach ($cvFiles as $cvFile) {
+        $body .= "--{$boundary}\r\n";
+        $body .= "Content-Type: {$cvFile['type']}; name=\"{$cvFile['name']}\"\r\n";
+        $body .= "Content-Transfer-Encoding: base64\r\n";
+        $body .= "Content-Disposition: attachment; filename=\"{$cvFile['name']}\"\r\n\r\n";
+        $body .= chunk_split(base64_encode($cvFile['content'])) . "\r\n";
+    }
     $body .= "--{$boundary}--";
 } else {
-    // Without attachment: simple multipart/alternative
+    // Without attachments: simple multipart/alternative
     $body = "--{$boundary}\r\n";
     $body .= "Content-Type: text/plain; charset=UTF-8\r\n";
     $body .= "Content-Transfer-Encoding: 7bit\r\n\r\n";
