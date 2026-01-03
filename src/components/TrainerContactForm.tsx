@@ -27,20 +27,24 @@ const TrainerContactForm = () => {
     setIsSubmitting(true);
 
     try {
+      // Use FormData to support file upload
+      const submitData = new FormData();
+      submitData.append('name', formData.name);
+      submitData.append('email', formData.email);
+      submitData.append('phone', formData.phone);
+      submitData.append('path', formData.path);
+      submitData.append('linkedinUrl', formData.linkedinUrl);
+      submitData.append('websiteUrl', formData.websiteUrl);
+      submitData.append('message', formData.message);
+
+      // Add CV file if present
+      if (formData.cv) {
+        submitData.append('cv', formData.cv);
+      }
+
       const response = await fetch('/api/send-trainer-email.php', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          path: formData.path,
-          linkedinUrl: formData.linkedinUrl,
-          websiteUrl: formData.websiteUrl,
-          message: formData.message,
-        }),
+        body: submitData, // FormData sets Content-Type automatically
       });
 
       const data = await response.json();
