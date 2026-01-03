@@ -20,9 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-// Get JSON input
-$input = file_get_contents('php://input');
-$data = json_decode($input, true);
+// Get FormData input (supports file uploads)
+$data = $_POST;
 
 // Validate required fields
 if (empty($data['name']) || empty($data['email']) || empty($data['path']) || empty($data['message'])) {
@@ -38,6 +37,56 @@ $path = htmlspecialchars($data['path']);
 $linkedinUrl = !empty($data['linkedinUrl']) ? htmlspecialchars($data['linkedinUrl']) : '';
 $websiteUrl = !empty($data['websiteUrl']) ? htmlspecialchars($data['websiteUrl']) : '';
 $message = htmlspecialchars($data['message']);
+
+// Validate and process CV file upload
+$cvFile = null;
+$cvFileName = '';
+$cvFileContent = '';
+$cvMimeType = '';
+
+if (isset($_FILES['cv']) && $_FILES['cv']['error'] === UPLOAD_ERR_OK) {
+    $allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+    $allowedExtensions = ['pdf', 'doc', 'docx'];
+    $maxFileSize = 5 * 1024 * 1024; // 5MB
+
+    $uploadedFile = $_FILES['cv'];
+    $fileSize = $uploadedFile['size'];
+    $fileTmpPath = $uploadedFile['tmp_name'];
+    $fileName = $uploadedFile['name'];
+    $fileType = $uploadedFile['type'];
+    $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+
+    // Validate file size
+    if ($fileSize > $maxFileSize) {
+        http_response_code(400);
+        echo json_encode(['error' => 'CV-Datei ist zu groß. Maximale Größe: 5MB']);
+        exit;
+    }
+
+    // Validate file extension
+    if (!in_array($fileExtension, $allowedExtensions)) {
+        http_response_code(400);
+        echo json_encode(['error' => 'Ungültiger Dateityp. Nur PDF, DOC und DOCX sind erlaubt.']);
+        exit;
+    }
+
+    // Validate MIME type
+    if (!in_array($fileType, $allowedTypes)) {
+        http_response_code(400);
+        echo json_encode(['error' => 'Ungültiger Dateityp. Nur PDF, DOC und DOCX sind erlaubt.']);
+        exit;
+    }
+
+    // Read file content for email attachment
+    $cvFileContent = file_get_contents($fileTmpPath);
+    $cvFileName = basename($fileName);
+    $cvMimeType = $fileType;
+    $cvFile = [
+        'content' => $cvFileContent,
+        'name' => $cvFileName,
+        'type' => $cvMimeType
+    ];
+}
 
 // Validate email
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -84,6 +133,7 @@ $htmlBody = "
     <p><strong>Interessiert an:</strong> {$pathLabel}</p>
     " . ($linkedinUrl ? "<p><strong>LinkedIn:</strong> <a href='{$linkedinUrl}'>{$linkedinUrl}</a></p>" : "") . "
     " . ($websiteUrl ? "<p><strong>Webseite:</strong> <a href='{$websiteUrl}'>{$websiteUrl}</a></p>" : "") . "
+    " . ($cvFile ? "<p><strong>CV/Lebenslauf:</strong> {$cvFileName} (siehe Anhang)</p>" : "<p><strong>CV/Lebenslauf:</strong> Nicht hochgeladen</p>") . "
     <p><strong>Nachricht/Motivation:</strong></p>
     <p>" . nl2br($message) . "</p>
     <hr>
@@ -103,29 +153,67 @@ E-Mail: {$email}
 Interessiert an: {$pathLabel}
 " . ($linkedinUrl ? "LinkedIn: {$linkedinUrl}\n" : "") . "
 " . ($websiteUrl ? "Webseite: {$websiteUrl}\n" : "") . "
+" . ($cvFile ? "CV/Lebenslauf: {$cvFileName} (siehe Anhang)\n" : "CV/Lebenslauf: Nicht hochgeladen\n") . "
 Nachricht/Motivation:
 {$message}
 ";
 
+// Build email with optional CV attachment
 $boundary = md5(time() . 'notification');
+$boundaryAlt = md5(time() . 'alternative');
+
 $headers = array();
 $headers[] = 'MIME-Version: 1.0';
-$headers[] = 'Content-Type: multipart/alternative; boundary="' . $boundary . '"';
+
+// Use multipart/mixed if CV is attached, otherwise multipart/alternative
+if ($cvFile) {
+    $headers[] = 'Content-Type: multipart/mixed; boundary="' . $boundary . '"';
+} else {
+    $headers[] = 'Content-Type: multipart/alternative; boundary="' . $boundary . '"';
+}
+
 $headers[] = 'From: Copilotenschule Trainer-Bewerbung <y-b@alwaysdata.net>';
 $headers[] = 'Reply-To: ' . $name . ' <' . $email . '>';
 $headers[] = 'X-Mailer: PHP/' . phpversion();
 $headers[] = 'X-Originating-IP: ' . $ipAddress;
 $headers[] = 'X-Contact-Form: copilotenschule.de';
 
-$body = "--{$boundary}\r\n";
-$body .= "Content-Type: text/plain; charset=UTF-8\r\n";
-$body .= "Content-Transfer-Encoding: 7bit\r\n\r\n";
-$body .= $textBody . "\r\n\r\n";
-$body .= "--{$boundary}\r\n";
-$body .= "Content-Type: text/html; charset=UTF-8\r\n";
-$body .= "Content-Transfer-Encoding: 7bit\r\n\r\n";
-$body .= $htmlBody . "\r\n\r\n";
-$body .= "--{$boundary}--";
+// Build email body
+if ($cvFile) {
+    // With attachment: use multipart/mixed with nested multipart/alternative
+    $body = "--{$boundary}\r\n";
+    $body .= "Content-Type: multipart/alternative; boundary=\"{$boundaryAlt}\"\r\n\r\n";
+
+    $body .= "--{$boundaryAlt}\r\n";
+    $body .= "Content-Type: text/plain; charset=UTF-8\r\n";
+    $body .= "Content-Transfer-Encoding: 7bit\r\n\r\n";
+    $body .= $textBody . "\r\n\r\n";
+
+    $body .= "--{$boundaryAlt}\r\n";
+    $body .= "Content-Type: text/html; charset=UTF-8\r\n";
+    $body .= "Content-Transfer-Encoding: 7bit\r\n\r\n";
+    $body .= $htmlBody . "\r\n\r\n";
+    $body .= "--{$boundaryAlt}--\r\n\r\n";
+
+    // Add CV attachment
+    $body .= "--{$boundary}\r\n";
+    $body .= "Content-Type: {$cvFile['type']}; name=\"{$cvFile['name']}\"\r\n";
+    $body .= "Content-Transfer-Encoding: base64\r\n";
+    $body .= "Content-Disposition: attachment; filename=\"{$cvFile['name']}\"\r\n\r\n";
+    $body .= chunk_split(base64_encode($cvFile['content'])) . "\r\n";
+    $body .= "--{$boundary}--";
+} else {
+    // Without attachment: simple multipart/alternative
+    $body = "--{$boundary}\r\n";
+    $body .= "Content-Type: text/plain; charset=UTF-8\r\n";
+    $body .= "Content-Transfer-Encoding: 7bit\r\n\r\n";
+    $body .= $textBody . "\r\n\r\n";
+    $body .= "--{$boundary}\r\n";
+    $body .= "Content-Type: text/html; charset=UTF-8\r\n";
+    $body .= "Content-Transfer-Encoding: 7bit\r\n\r\n";
+    $body .= $htmlBody . "\r\n\r\n";
+    $body .= "--{$boundary}--";
+}
 
 $notificationSent = mail($to, $subject, $body, implode("\r\n", $headers));
 
