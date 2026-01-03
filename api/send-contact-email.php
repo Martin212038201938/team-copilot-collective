@@ -143,7 +143,7 @@ $customerHtmlBody = "
             <p>wir haben Ihre Nachricht erhalten und werden uns in Kürze bei Ihnen melden.</p>
             <p><strong>Bitte bestätigen Sie Ihre E-Mail-Adresse,</strong> damit wir Sie kontaktieren dürfen und Sie künftig Newsletter und Updates von uns erhalten können.</p>
             <p style='text-align: center;'>
-                <a href='{$confirmationUrl}' class='button'>E-Mail-Adresse bestätigen</a>
+                <a href='{$confirmationUrl}' class='button' style='color: white !important; background-color: #0066cc; padding: 12px 24px; display: inline-block; text-decoration: none; border-radius: 4px;'>E-Mail-Adresse bestätigen</a>
             </p>
             <p style='font-size: 12px; color: #666;'>
                 Falls der Button nicht funktioniert, kopieren Sie bitte diesen Link in Ihren Browser:<br>

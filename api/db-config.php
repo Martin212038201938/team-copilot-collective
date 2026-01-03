@@ -1,12 +1,18 @@
 <?php
 // Database configuration for AlwaysData MySQL
-// IMPORTANT: Add these values to your AlwaysData environment
+// IMPORTANT: Use environment variables or db-config-local.php for credentials
 
-// Database credentials - get these from AlwaysData dashboard
-define('DB_HOST', getenv('DB_HOST') ?: 'mysql-y-b.alwaysdata.net');
-define('DB_NAME', getenv('DB_NAME') ?: 'y-b_copilotenschule');
-define('DB_USER', getenv('DB_USER') ?: 'y-b');
-define('DB_PASS', getenv('DB_PASS') ?: ''); // Set this in AlwaysData environment or here
+// Try to load local configuration (not in Git) first
+$localConfig = __DIR__ . '/db-config-local.php';
+if (file_exists($localConfig)) {
+    require_once $localConfig;
+} else {
+    // Fallback to environment variables
+    define('DB_HOST', getenv('DB_HOST') ?: 'mysql-y-b.alwaysdata.net');
+    define('DB_NAME', getenv('DB_NAME') ?: 'y-b_copilotenschule');
+    define('DB_USER', getenv('DB_USER') ?: 'y-b');
+    define('DB_PASS', getenv('DB_PASS') ?: ''); // Set in AlwaysData environment
+}
 
 // Website URL for confirmation links
 define('SITE_URL', 'https://copilotenschule.de');
