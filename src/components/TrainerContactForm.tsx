@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
-import { Upload, FileText, Linkedin, Globe } from "lucide-react";
+import { Upload, FileText, Linkedin, Globe, X } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -92,25 +92,40 @@ const TrainerContactForm = () => {
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(e.target.files || []);
+    const newFiles = Array.from(e.target.files || []);
+
+    if (newFiles.length === 0) return;
+
+    // Add new files to existing files
+    const combinedFiles = [...formData.cv, ...newFiles];
 
     // Limit to 4 files
-    if (files.length > 4) {
+    if (combinedFiles.length > 4) {
       toast({
         title: "Zu viele Dateien",
-        description: "Sie können maximal 4 Dateien hochladen.",
+        description: `Sie können maximal 4 Dateien hochladen. Sie haben ${combinedFiles.length} Dateien ausgewählt.`,
         variant: "destructive",
       });
       return;
     }
 
-    if (files.length > 0) {
-      setFormData((prev) => ({
-        ...prev,
-        cv: files,
-      }));
-      setFileNames(files.map(f => f.name));
-    }
+    setFormData((prev) => ({
+      ...prev,
+      cv: combinedFiles,
+    }));
+    setFileNames(combinedFiles.map(f => f.name));
+
+    // Reset input so the same file can be selected again
+    e.target.value = '';
+  };
+
+  const handleRemoveFile = (indexToRemove: number) => {
+    const updatedFiles = formData.cv.filter((_, index) => index !== indexToRemove);
+    setFormData((prev) => ({
+      ...prev,
+      cv: updatedFiles,
+    }));
+    setFileNames(updatedFiles.map(f => f.name));
   };
 
   return (
@@ -249,10 +264,20 @@ const TrainerContactForm = () => {
             {fileNames.length > 0 && (
               <div className="mt-2 space-y-1">
                 {fileNames.map((name, index) => (
-                  <p key={index} className="text-sm text-primary flex items-center gap-2">
-                    <FileText className="w-4 h-4" />
-                    {name}
-                  </p>
+                  <div key={index} className="flex items-center justify-between gap-2 bg-primary/5 px-3 py-2 rounded-md group">
+                    <div className="flex items-center gap-2 flex-1 min-w-0">
+                      <FileText className="w-4 h-4 text-primary flex-shrink-0" />
+                      <span className="text-sm text-primary truncate">{name}</span>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => handleRemoveFile(index)}
+                      className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full hover:bg-destructive/10 text-muted-foreground hover:text-destructive transition-colors"
+                      aria-label="Datei entfernen"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                  </div>
                 ))}
               </div>
             )}
