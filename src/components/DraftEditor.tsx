@@ -539,11 +539,11 @@ const DraftEditor = ({ draft, onSave, onCancel, initialTab }: DraftEditorProps) 
     setIsGenerating(true);
 
     try {
-      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+      // Use secure backend proxy instead of direct OpenAI access
+      const response = await fetch('/api/openai-proxy.php', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${openAIKey}`
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           model: 'gpt-4o',
@@ -692,11 +692,11 @@ Schreibe einen vollständigen, praxisorientierten Artikel für copilotenschule.d
     setAnalysisStep('analyzing');
 
     try {
-      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+      // Use secure backend proxy instead of direct OpenAI access
+      const response = await fetch('/api/openai-proxy.php', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${openAIKey}`
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           model: 'gpt-4o',
@@ -821,11 +821,11 @@ Analysiere dieses Transkript und extrahiere alle strukturierten Daten im JSON-Fo
     setAnalysisStep('generating');
 
     try {
-      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+      // Use secure backend proxy instead of direct OpenAI access
+      const response = await fetch('/api/openai-proxy.php', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${openAIKey}`
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           model: 'gpt-4o',
@@ -1034,11 +1034,11 @@ Schreibe jetzt den vollständigen, praxisorientierten Artikel für copilotenschu
     setIsGenerating(true);
 
     try {
-      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+      // Use secure backend proxy instead of direct OpenAI access
+      const response = await fetch('/api/openai-proxy.php', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${openAIKey}`
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           model: 'gpt-4o',
