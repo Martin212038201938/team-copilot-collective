@@ -38,6 +38,10 @@ const PRICING = {
     input: 2.50 / 1_000_000,  // $2.50 per 1M tokens
     output: 10.00 / 1_000_000, // $10.00 per 1M tokens
   },
+  'gpt-4o-2024-11-20': {
+    input: 2.50 / 1_000_000,  // $2.50 per 1M tokens (same as gpt-4o)
+    output: 10.00 / 1_000_000, // $10.00 per 1M tokens
+  },
   'gpt-4-turbo': {
     input: 10.00 / 1_000_000,
     output: 30.00 / 1_000_000,

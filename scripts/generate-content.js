@@ -80,7 +80,7 @@ Liefere eine strukturierte Zusammenfassung mit:
 Konzentriere dich auf professionell relevante, technisch präzise Informationen.`;
 
   try {
-    const model = process.env.OPENAI_MODEL || 'gpt-4o';
+    const model = process.env.OPENAI_MODEL || 'gpt-4o-2024-11-20';
     const response = await openai.chat.completions.create({
       model,
       messages: [
