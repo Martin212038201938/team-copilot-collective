@@ -3,14 +3,12 @@ import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { getAuthor } from "@/data/authors";
 import { Link } from "react-router-dom";
-import { Linkedin, Mail, BookOpen, Clock } from "lucide-react";
+import { BookOpen, Clock } from "lucide-react";
 import { getPublishedAsKnowledgeTopics } from "@/utils/publishedArticles";
 import { useState, useEffect } from "react";
 
 const Wissen = () => {
-  const martinLang = getAuthor('martin-lang')!;
   const [dynamicTopics, setDynamicTopics] = useState<any[]>([]);
 
   // Load published articles from localStorage
@@ -174,90 +172,6 @@ const Wissen = () => {
                   </Link>
                 ))}
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Author Section */}
-        <section className="py-16 bg-gradient-to-b from-background to-primary/5">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold mb-3">Ihr Experte für Microsoft Copilot</h2>
-                <p className="text-muted-foreground">
-                  Profitieren Sie von jahrelanger Erfahrung in KI-Training und agiler Transformation
-                </p>
-              </div>
-
-              <Card className="border-2 border-primary/20 shadow-xl">
-                <CardContent className="pt-8">
-                  <div className="flex flex-col md:flex-row gap-8 items-center md:items-start">
-                    {/* Author Image */}
-                    <div className="flex-shrink-0">
-                      {martinLang.image && (
-                        <img
-                          src={martinLang.image}
-                          alt={martinLang.name}
-                          className="w-40 h-40 rounded-full object-cover border-4 border-primary/20 shadow-lg"
-                        />
-                      )}
-                    </div>
-
-                    {/* Author Info */}
-                    <div className="flex-1 text-center md:text-left">
-                      <h3 className="text-2xl font-bold text-primary mb-2">{martinLang.name}</h3>
-                      <div className="text-lg text-muted-foreground mb-4">{martinLang.role}</div>
-
-                      <p className="text-sm leading-relaxed mb-6">
-                        {martinLang.bio}
-                      </p>
-
-                      {/* Expertise Tags */}
-                      <div className="mb-6">
-                        <div className="text-sm font-semibold mb-3">Expertise:</div>
-                        <div className="flex flex-wrap gap-2 justify-center md:justify-start">
-                          {martinLang.expertise.map((exp, idx) => (
-                            <span
-                              key={idx}
-                              className="px-3 py-1 bg-primary/10 text-primary rounded-full text-xs font-medium"
-                            >
-                              {exp}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Contact Links */}
-                      <div className="flex gap-3 justify-center md:justify-start">
-                        {martinLang.linkedin && (
-                          <Button asChild variant="default">
-                            <a
-                              href={martinLang.linkedin}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center gap-2"
-                            >
-                              <Linkedin className="w-4 h-4" />
-                              LinkedIn-Profil
-                            </a>
-                          </Button>
-                        )}
-                        {martinLang.email && (
-                          <Button asChild variant="outline">
-                            <a
-                              href={`mailto:${martinLang.email}`}
-                              className="inline-flex items-center gap-2"
-                            >
-                              <Mail className="w-4 h-4" />
-                              Kontakt
-                            </a>
-                          </Button>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
             </div>
           </div>
         </section>
