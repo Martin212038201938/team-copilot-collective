@@ -20,6 +20,12 @@ import DOMPurify from 'dompurify';
 import KnowledgePagePreview from "@/components/KnowledgePagePreview";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import { fetchYouTubeTranscript, isValidYouTubeUrl } from "@/utils/youtubeTranscript";
+import {
+  isAPIUsageAllowed,
+  trackAPICall,
+  sendWarningEmail,
+  getUsageStats,
+} from "@/utils/costTracker";
 
 interface DraftEditorProps {
   draft: Draft;
@@ -518,6 +524,13 @@ const DraftEditor = ({ draft, onSave, onCancel, initialTab }: DraftEditorProps) 
       return;
     }
 
+    // KILLSWITCH: Check daily cost limit
+    const usageCheck = isAPIUsageAllowed();
+    if (!usageCheck.allowed) {
+      alert(`🚨 KOSTENLIMIT ERREICHT\n\n${usageCheck.reason}\n\nDie API-Nutzung wurde automatisch gesperrt.`);
+      return;
+    }
+
     if (!selectedTopic || !transcript) {
       alert('Transkript und Thema erforderlich');
       return;
@@ -612,6 +625,19 @@ Schreibe einen vollständigen, praxisorientierten Artikel für copilotenschule.d
       }
 
       const data = await response.json();
+
+      // Track API usage and costs
+      if (data.usage) {
+        const usage = trackAPICall('gpt-4o', data.usage.prompt_tokens, data.usage.completion_tokens);
+
+        // Send warning email if limit exceeded (only once per day)
+        if (usage.limitExceeded && !usage.warningEmailSent) {
+          sendWarningEmail(usage).catch(err =>
+            console.error('Failed to send warning email:', err)
+          );
+        }
+      }
+
       const content = data.choices[0].message.content;
 
       setGeneratedContent(content);
@@ -647,6 +673,13 @@ Schreibe einen vollständigen, praxisorientierten Artikel für copilotenschule.d
   const handleAnalyzeTranscript = async () => {
     if (!openAIKey) {
       alert('Kein OpenAI API Key gefunden. Bitte in der .env.local Datei hinzufügen.');
+      return;
+    }
+
+    // KILLSWITCH: Check daily cost limit
+    const usageCheck = isAPIUsageAllowed();
+    if (!usageCheck.allowed) {
+      alert(`🚨 KOSTENLIMIT ERREICHT\n\n${usageCheck.reason}\n\nDie API-Nutzung wurde automatisch gesperrt.`);
       return;
     }
 
@@ -720,6 +753,19 @@ Analysiere dieses Transkript und extrahiere alle strukturierten Daten im JSON-Fo
       }
 
       const data = await response.json();
+
+      // Track API usage and costs
+      if (data.usage) {
+        const usage = trackAPICall('gpt-4o', data.usage.prompt_tokens, data.usage.completion_tokens);
+
+        // Send warning email if limit exceeded (only once per day)
+        if (usage.limitExceeded && !usage.warningEmailSent) {
+          sendWarningEmail(usage).catch(err =>
+            console.error('Failed to send warning email:', err)
+          );
+        }
+      }
+
       let content = data.choices[0].message.content;
 
       // Remove markdown code blocks if present
@@ -761,6 +807,13 @@ Analysiere dieses Transkript und extrahiere alle strukturierten Daten im JSON-Fo
 
     if (!openAIKey) {
       alert('Kein OpenAI API Key gefunden. Bitte in der .env.local Datei hinzufügen.');
+      return;
+    }
+
+    // KILLSWITCH: Check daily cost limit
+    const usageCheck = isAPIUsageAllowed();
+    if (!usageCheck.allowed) {
+      alert(`🚨 KOSTENLIMIT ERREICHT\n\n${usageCheck.reason}\n\nDie API-Nutzung wurde automatisch gesperrt.`);
       return;
     }
 
@@ -890,6 +943,19 @@ Schreibe jetzt den vollständigen, praxisorientierten Artikel für copilotenschu
       }
 
       const data = await response.json();
+
+      // Track API usage and costs
+      if (data.usage) {
+        const usage = trackAPICall('gpt-4o', data.usage.prompt_tokens, data.usage.completion_tokens);
+
+        // Send warning email if limit exceeded (only once per day)
+        if (usage.limitExceeded && !usage.warningEmailSent) {
+          sendWarningEmail(usage).catch(err =>
+            console.error('Failed to send warning email:', err)
+          );
+        }
+      }
+
       const content = data.choices[0].message.content;
 
       setGeneratedContent(content);
@@ -958,6 +1024,13 @@ Schreibe jetzt den vollständigen, praxisorientierten Artikel für copilotenschu
       return;
     }
 
+    // KILLSWITCH: Check daily cost limit
+    const usageCheck = isAPIUsageAllowed();
+    if (!usageCheck.allowed) {
+      alert(`🚨 KOSTENLIMIT ERREICHT\n\n${usageCheck.reason}\n\nDie API-Nutzung wurde automatisch gesperrt.`);
+      return;
+    }
+
     setIsGenerating(true);
 
     try {
@@ -1023,6 +1096,19 @@ Erstelle jetzt die komplette TSX-Komponente. Der komplette Markdown-Content muss
       }
 
       const data = await response.json();
+
+      // Track API usage and costs
+      if (data.usage) {
+        const usage = trackAPICall('gpt-4o', data.usage.prompt_tokens, data.usage.completion_tokens);
+
+        // Send warning email if limit exceeded (only once per day)
+        if (usage.limitExceeded && !usage.warningEmailSent) {
+          sendWarningEmail(usage).catch(err =>
+            console.error('Failed to send warning email:', err)
+          );
+        }
+      }
+
       let finalCode = data.choices[0].message.content;
 
       // Remove code fence markers if present

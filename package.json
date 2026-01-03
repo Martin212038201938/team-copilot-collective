@@ -7,7 +7,7 @@
     "dev": "vite",
     "dev:transcript": "node api/youtube-transcript.js --server",
     "build": "vite build && npm run copy-api",
-    "copy-api": "mkdir -p dist/api && cp -r api/*.php api/*.md dist/api/ 2>/dev/null || true",
+    "copy-api": "mkdir -p dist/api && cp -r api/*.php api/*.js api/*.md dist/api/ 2>/dev/null || true",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
