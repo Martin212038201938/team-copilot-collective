@@ -49,60 +49,183 @@ const examplePage1 = fs.readFileSync(EXAMPLE_PAGE_1, 'utf-8');
 const examplePage2 = fs.readFileSync(EXAMPLE_PAGE_2, 'utf-8');
 
 /**
+ * Research current information about a topic using OpenAI
+ * This helps ensure articles include up-to-date information
+ */
+async function researchTopic(topic, transcript) {
+  console.log('\n🔍 Recherchiere aktuelle Informationen zum Thema...');
+  console.log(`📌 Thema: ${topic}`);
+
+  // 🔒 SECURITY: Check cost limits before API call
+  try {
+    checkBeforeRequest();
+  } catch (error) {
+    console.log('⚠️  Überspringe Recherche wegen Cost-Limit');
+    return null;
+  }
+
+  const researchPrompt = `Analysiere das folgende Transkript und identifiziere das Hauptthema. Dann erstelle eine strukturierte Zusammenfassung aktueller, wichtiger Informationen (Stand 2025) für dieses Thema, die in einem professionellen Fachartikel verwendet werden sollten.
+
+TRANSKRIPT:
+${transcript.substring(0, 3000)}
+
+Liefere eine strukturierte Zusammenfassung mit:
+1. **Hauptthema**: [Präzise Beschreibung]
+2. **Aktuelle Features & Updates (2025)**: [Neueste Entwicklungen, Beta-Features]
+3. **Technische Details**: [APIs, Versionen, Architekturen]
+4. **Use Cases & Best Practices**: [Branchenspezifische Anwendungen]
+5. **Vergleiche & Alternativen**: [Konkurrenzprodukte, Unterschiede]
+6. **Häufige Herausforderungen**: [Bekannte Issues, Limitationen]
+
+Konzentriere dich auf professionell relevante, technisch präzise Informationen.`;
+
+  try {
+    const model = process.env.OPENAI_MODEL || 'gpt-4o';
+    const response = await openai.chat.completions.create({
+      model,
+      messages: [
+        {
+          role: 'system',
+          content: 'Du bist ein technischer Researcher, der aktuelle, präzise Informationen zu Microsoft 365 und KI-Themen zusammenstellt.',
+        },
+        {
+          role: 'user',
+          content: researchPrompt,
+        },
+      ],
+      temperature: 0.3, // Lower temperature for factual research
+      max_tokens: 2000,
+    });
+
+    const research = response.choices[0].message.content;
+
+    console.log('✅ Recherche abgeschlossen');
+    console.log(`📊 Tokens verwendet: ${response.usage.total_tokens}`);
+
+    // 🔒 SECURITY: Track usage
+    trackUsage(
+      model,
+      response.usage.prompt_tokens,
+      response.usage.completion_tokens,
+      {
+        type: 'research',
+        topicLength: topic.length,
+      }
+    );
+
+    return research;
+  } catch (error) {
+    console.error('⚠️  Fehler bei Recherche:', error.message);
+    console.log('📝 Fahre ohne zusätzliche Recherche fort...');
+    return null;
+  }
+}
+
+/**
  * Main prompt template for content generation
  */
-function buildPrompt(transcript, userInstructions = '') {
-  return `Du bist ein Experte für Content-Erstellung, spezialisiert auf Microsoft 365 und KI-Themen. Deine Aufgabe ist es, aus dem folgenden Transkript eine hochwertige, AI-optimierte Wissensseite zu erstellen.
+function buildPrompt(transcript, userInstructions = '', researchData = null) {
+  return `Du bist ein SENIOR CONSULTANT und Content-Experte mit 10+ Jahren Erfahrung in Microsoft 365 und KI-Themen. Deine Aufgabe ist es, aus dem folgenden Transkript eine hochwertige, PROFESSIONELL TIEFGEHENDE Wissensseite zu erstellen, die sich durch FACHLICHE EXZELLENZ von generischen Masseninhalten abhebt.
 
-# WICHTIGE ANFORDERUNGEN
+# KRITISCHE QUALITÄTSANFORDERUNGEN
 
-## 1. NICHT-GENERISCH
-- **KRITISCH**: Der Text darf NICHT wie AI-generiert klingen
-- Nutze konkrete Beispiele, echte Zahlen, spezifische Details
-- Schreibe persönlich und authentisch, als würde ein erfahrener Consultant sprechen
-- Vermeide Floskeln wie "im heutigen digitalen Zeitalter", "revolutionär", "game-changer"
-- Nutze präzise Fachbegriffe statt vager Beschreibungen
+## 1. THEMATISCHER FOKUS & RELEVANZ
+- **HAUPTTHEMA IDENTIFIZIEREN**: Analysiere das Transkript und identifiziere das KERN-THEMA
+- **FOKUSSIERT BLEIBEN**: Der gesamte Artikel muss sich auf dieses Hauptthema konzentrieren
+- **KEINE ABSCHWEIFUNGEN**: Vermeide tangentiale Themen, die vom Hauptfokus ablenken
+- **ROTER FADEN**: Jede Sektion muss das Hauptthema aus einem anderen Blickwinkel beleuchten
+- **TITEL MUSS THEMA WIDERSPIEGELN**: Der Artikeltitel muss das exakte Hauptthema präzise beschreiben
 
-## 2. STRUKTUR & FORMAT
+## 2. PROFESSIONELLE TIEFE & FACHLICHE EXZELLENZ
+- **NICHT-GENERISCH**: Der Text darf NIEMALS wie AI-generierter Masseninhalt klingen
+- **FACHLICHE TIEFE**: Gehe in technische Details, erkläre das "Warum" und "Wie"
+- **MINIMUM-TIEFE PRO SEKTION**: Jede Hauptsektion benötigt mindestens 400-600 Wörter mit substantiellem Inhalt
+- **TECHNISCHE PRÄZISION**: Nutze korrekte Fachbegriffe, API-Namen, exakte Versionsangaben, spezifische Produktnamen
+- **ARCHITEKTUR-VERSTÄNDNIS**: Erkläre technische Zusammenhänge, Systemarchitekturen, Datenflüsse
+- **VERMEIDE ABSOLUT**:
+  - Floskeln wie "im heutigen digitalen Zeitalter", "revolutionär", "game-changer", "nahtlos"
+  - Vage Aussagen wie "das Tool", "die Funktion", "viele Möglichkeiten"
+  - Oberflächliche Beschreibungen ohne konkrete Details
+  - Marketing-Sprache statt technischer Fakten
+
+## 3. PRAXISRELEVANZ FÜR BERUFLICHEN ALLTAG
+- **USE CASES SIND PFLICHT**: JEDE Hauptsektion muss MINDESTENS 3-5 konkrete, realistische Use Cases aus dem beruflichen Alltag enthalten
+- **BRANCHENSPEZIFISCH**: Zeige Anwendungsbeispiele aus verschiedenen Branchen (Finance, Healthcare, Manufacturing, etc.)
+- **ROLLEN-BASIERT**: Adressiere verschiedene Rollen (IT-Admin, Developer, Business User, Manager)
+- **SCHRITT-FÜR-SCHRITT**: Biete detaillierte Anleitungen mit konkreten Schritten, nicht nur "Sie können X machen"
+- **KONKRETE BEISPIELE**:
+  - Echte Prompt-Beispiele mit Input/Output
+  - Code-Snippets mit Erklärungen
+  - Konfigurationsbeispiele mit tatsächlichen Werten
+  - Screenshot-Beschreibungen von UI-Elementen
+- **MESSBARE ERGEBNISSE**: Zeige ROI, Zeitersparnis, Effizienzgewinne mit konkreten Zahlen wo möglich
+- **PROBLEMLÖSUNGEN**: Adressiere häufige Herausforderungen und biete Lösungsstrategien
+
+## 4. PROFESSIONELLE VERGLEICHE & KONTEXT
+- **ALTERNATIVEN DISKUTIEREN**: Vergleiche mit Konkurrenzprodukten oder alternativen Ansätzen
+- **PROS & CONS**: Ehrliche Bewertung von Stärken UND Schwächen
+- **WANN NUTZEN, WANN NICHT**: Klare Guidance, für welche Szenarien das Thema geeignet ist
+- **MIGRATION/INTEGRATION**: Wie integriert sich das Thema in bestehende Systeme/Workflows?
+
+## 5. LÄNGE & SUBSTANTIELLER INHALT
+- **KEINE VERKÜRZUNGEN**: Artikel müssen SUBSTANTIELL sein, nicht kompakt
+- **ZIEL-LÄNGE**: 3.000-5.000 Wörter für umfassende Artikel (10-15 Minuten Lesezeit)
+- **QUALITÄT ÜBER KÜRZE**: Lieber ausführlich und wertvoll als kurz und generisch
+- **JEDE SEKTION SUBSTANZ**: Minimum 400-600 Wörter pro Hauptsektion
+- **FAQ-TIEFE**: Jede FAQ-Antwort sollte 80-150 Wörter haben mit echtem Mehrwert
+
+## 6. STRUKTUR & FORMAT
 - Erstelle eine vollständige React/TypeScript (TSX) Komponente
 - Folge EXAKT dem Format der Beispiel-Komponenten unten
 - Nutze ContentLayout, SEOHead, getAuthor aus den Beispielen
 - Dual Schema.org Markup: Article + FAQPage
-- Table of Contents mit mindestens 7-9 Sektionen
-- FAQ-Sektion mit mindestens 8-10 Fragen
+- Table of Contents mit 8-12 Sektionen (mehr Tiefe!)
+- FAQ-Sektion mit mindestens 10-15 Fragen (umfassender!)
 
-## 3. E-E-A-T SIGNALE
-- **Experience**: "In unseren Projekten...", "Wir haben gelernt...", konkrete Projekterfahrungen
-- **Expertise**: Korrekte Fachbegriffe, technisch präzise, zeige Tiefenwissen
-- **Authoritativeness**: Verweise auf offizielle Quellen (Microsoft Docs), Studien
-- **Trustworthiness**: Transparente Informationen, keine Übertreibungen, ehrliche Pros/Cons
+## 7. E-E-A-T SIGNALE FÜR PROFESSIONELLE AUTORITÄT
+- **Experience**: "In Projekten mit Enterprise-Kunden haben wir festgestellt...", spezifische Projekterfahrungen mit Zahlen
+- **Expertise**: Technische Tiefe, Architektur-Diagramm-Beschreibungen, API-Details, Performance-Metriken
+- **Authoritativeness**: Verweise auf offizielle Microsoft Docs, technische Whitepapers, Case Studies
+- **Trustworthiness**: Transparente Limitationen, bekannte Bugs/Issues, ehrliche Kostenanalyse
 
-## 4. SEO & AI-OPTIMIERUNG
-- Erste 100 Wörter: Direkte Antwort auf die Hauptfrage (Inversed Pyramid)
-- Semantic Chunking: Ein Absatz = eine Idee (2-3 Sätze)
-- Entity-reich: Konkrete Namen statt "das Tool", "die Funktion"
-- Extractable Formate: Listen, Tabellen, Callout-Boxen, Cards
+## 8. LLM-OPTIMIERUNG FÜR ZITIERBARKEIT
+- **EXTRACTABLE FACTS**: Jede Information muss als eigenständiger Fakt extrahierbar sein
+- **DEFINITIVE ANTWORTEN**: Beantworte Fragen direkt und vollständig
+- **STRUKTURIERTE DATEN**: Nutze Listen, Tabellen, Vergleichsmatrizen
+- **ZITIERBARE AUSSAGEN**: Formuliere Kerninformationen so, dass LLMs sie direkt zitieren können
+- **SEMANTIC CHUNKS**: Ein Absatz = eine vollständige Idee (3-5 Sätze, nicht 2-3)
+- **ENTITY-REICH**: Vollständige Namen statt Pronomen (z.B. "Microsoft Graph API" statt "die API")
+
+## 9. SEO & AI-OPTIMIERUNG
+- Erste 150-200 Wörter: Umfassende Antwort auf die Hauptfrage (Inversed Pyramid)
+- Semantic Chunking: Ein Absatz = eine vollständige, substantielle Idee
+- Entity-reich: Konkrete Namen, Produktversionen, spezifische Features
+- Extractable Formate: Ausführliche Listen, Vergleichstabellen, Feature-Matrizen, Callout-Boxen
 - Keywords natürlich einbinden (keine Keyword-Stuffing)
+- Long-tail Keywords für Nischen-Szenarien
 
-## 5. VISUELLE HIERARCHIE
+## 10. VISUELLE HIERARCHIE & LESBARKEIT
 - Nutze die Tailwind-Klassen wie in den Beispielen
-- Gradient-Boxen für wichtige Informationen
-- Border-left Highlights für Sektionen
-- Cards für strukturierte Inhalte
+- Gradient-Boxen für wichtige Informationen und Kernkonzepte
+- Border-left Highlights für Sektionen und Callouts
+- Cards für strukturierte Inhalte, Use Cases, Vergleiche
 - Icons/Emojis sparsam für visuelle Anker
+- Code-Blöcke mit Syntax-Highlighting für technische Beispiele
 
-## 6. PRAKTISCHER NUTZEN
-- Schritt-für-Schritt Anleitungen wo sinnvoll
-- Konkrete Code-Beispiele oder Prompt-Beispiele
-- Best Practices & Do's/Don'ts
-- Praxis-Tipps in Callout-Boxen
-- ROI/Business-Value wo relevant
+## 11. AKTUALITÄT & RECHERCHE
+- Nutze Informationen aus dem Transkript als Basis
+- Ergänze mit bekanntem Wissen über aktuelle Features (Stand 2025)
+- Erwähne neueste Updates, Beta-Features, kommende Funktionen
+- Verweise auf offizielle Roadmaps und Ankündigungen
+${researchData ? '\n- **WICHTIG**: Nutze die RECHERCHIERTEN INFORMATIONEN unten für aktuelle Details, Updates und Best Practices' : ''}
 
 ---
 
 # TRANSKRIPT
 
 ${transcript}
+
+${researchData ? `\n---\n\n# RECHERCHIERTE AKTUELLE INFORMATIONEN\n\n${researchData}\n\n**WICHTIG**: Integriere diese recherchierten Informationen in deinen Artikel, um Aktualität und fachliche Tiefe zu gewährleisten.` : ''}
 
 ---
 
@@ -136,17 +259,64 @@ ${userInstructions || 'Keine zusätzlichen Anweisungen.'}
 
 # DEINE AUFGABE
 
-Erstelle JETZT eine vollständige TSX-Komponente basierend auf dem Transkript. Die Komponente sollte:
+Erstelle JETZT eine vollständige, PROFESSIONELL TIEFGEHENDE TSX-Komponente basierend auf dem Transkript. Die Komponente MUSS erfüllen:
 
-1. **Filename-würdig sein**: Wähle einen klaren Komponentennamen (z.B. MicrosoftCopilotTeamsGuide)
-2. **Vollständig sein**: Alle Imports, komplette Komponente, export default
-3. **Den Beispielen folgen**: Gleiche Struktur, ähnlicher Stil, aber mit eigenem Inhalt
-4. **Nicht-generisch klingen**: Persönlich, konkret, authentisch
-5. **Schema.org enthalten**: Article Schema + FAQPage Schema mit mind. 8 Fragen
-6. **SEO-optimiert sein**: Meta-Tags, Keywords, Canonical URL
-7. **8-12 Minuten Lesezeit haben**: ~2.000-3.500 Wörter
+## KERN-ANFORDERUNGEN:
 
-**WICHTIG**: Antworte NUR mit dem TSX-Code. Keine Erklärungen, keine Markdown-Wrapper. Starte direkt mit "import" und ende mit "export default".
+1. **THEMA-FOKUS**:
+   - Identifiziere das exakte Hauptthema aus dem Transkript
+   - Der gesamte Artikel fokussiert sich ausschließlich auf dieses Hauptthema
+   - Titel beschreibt präzise das Hauptthema
+
+2. **PROFESSIONELLE TIEFE**:
+   - JEDE Hauptsektion: 400-600 Wörter mit substantiellem Fachinhalt
+   - Technische Details, APIs, Architektur, Konfigurationen
+   - Erklärung von "Warum" und "Wie", nicht nur "Was"
+
+3. **PRAXIS-USE-CASES**:
+   - MINIMUM 3-5 konkrete Use Cases pro Hauptsektion
+   - Branchenspezifische Beispiele (Finance, Healthcare, etc.)
+   - Rollenspezifische Szenarien (IT-Admin, Developer, Business User)
+   - Schritt-für-Schritt Anleitungen mit konkreten Schritten
+   - Echte Prompt-Beispiele, Code-Snippets, Konfigurationen
+
+4. **SUBSTANTIELLE LÄNGE**:
+   - Ziel: 3.000-5.000 Wörter (10-15 Minuten Lesezeit)
+   - KEINE Verkürzungen, die Artikel generisch machen
+   - Qualität und Tiefe über Kürze
+   - FAQs mit 10-15 Fragen, jede Antwort 80-150 Wörter
+
+5. **LLM-ZITIERBARKEIT**:
+   - Extractable Facts: Jede Information als eigenständiger Fakt
+   - Definitive Antworten auf spezifische Fragen
+   - Strukturierte Daten: Listen, Tabellen, Vergleiche
+   - Entity-reich: Vollständige Namen, keine Pronomen
+
+6. **PROFESSIONELLE VERGLEICHE**:
+   - Alternativen und Konkurrenzprodukte diskutieren
+   - Ehrliche Pros & Cons
+   - Wann nutzen, wann nicht nutzen
+   - Integrations- und Migrations-Überlegungen
+
+7. **TECHNISCHE STRUKTUR**:
+   - Filename-würdig: Klarer Komponentenname (z.B. MicrosoftCopilotTeamsGuide)
+   - Vollständig: Alle Imports, komplette Komponente, export default
+   - Den Beispielen folgen: Gleiche Struktur, aber mit eigenem tiefem Inhalt
+   - Schema.org: Article Schema + FAQPage Schema mit 10-15 Fragen
+   - SEO-optimiert: Meta-Tags, Keywords, Canonical URL
+   - Table of Contents: 8-12 Sektionen
+
+8. **QUALITÄTS-CHECKS**:
+   - ✓ Klingt NICHT wie AI-generierter Masseninhalt
+   - ✓ Enthält technische Tiefe und Fachexpertise
+   - ✓ Bietet echten Mehrwert für professionelle Praxis
+   - ✓ Unterscheidet sich klar von generischen Artikeln
+   - ✓ LLMs können präzise Informationen zitieren
+   - ✓ Minimum 3.000 Wörter mit Substanz
+
+**WICHTIG**: Antworte NUR mit dem vollständigen TSX-Code. Keine Erklärungen, keine Markdown-Wrapper, keine Zusammenfassungen. Starte direkt mit "import" und ende mit "export default".
+
+**DENKE DARAN**: Dies ist ein PROFESSIONELLER FACHARTIKEL für Experten und Praktiker, KEIN oberflächlicher Blog-Post. Tiefe, Use Cases und Praxisrelevanz sind KRITISCH.
 
 Beginne jetzt:`;
 }
@@ -225,14 +395,27 @@ function generateMetadata(component, transcript) {
 /**
  * Generate content using OpenAI
  */
-async function generateContent(transcript, userInstructions = '') {
-  console.log('\n🤖 Generiere Wissensseite mit OpenAI GPT-4...');
+async function generateContent(transcript, userInstructions = '', enableResearch = true) {
+  console.log('\n🤖 Generiere professionell tiefgehende Wissensseite mit OpenAI GPT-4...');
   console.log(`📊 Transkript-Länge: ${transcript.length} Zeichen`);
 
-  const prompt = buildPrompt(transcript, userInstructions);
+  // Optional: Research current information about the topic
+  let researchData = null;
+  if (enableResearch) {
+    try {
+      researchData = await researchTopic('', transcript);
+      if (researchData) {
+        console.log('✅ Recherchierte Informationen werden in Artikel integriert');
+      }
+    } catch (error) {
+      console.log('⚠️  Recherche fehlgeschlagen, fahre ohne zusätzliche Informationen fort');
+    }
+  }
+
+  const prompt = buildPrompt(transcript, userInstructions, researchData);
 
   console.log(`📝 Prompt-Länge: ${prompt.length} Zeichen`);
-  console.log('⏳ Bitte warten, dies kann 30-60 Sekunden dauern...\n');
+  console.log('⏳ Bitte warten, dies kann 60-120 Sekunden dauern (umfangreicher Artikel)...\n');
 
   // 🔒 SECURITY: Check cost limits before API call
   try {
@@ -250,15 +433,15 @@ async function generateContent(transcript, userInstructions = '') {
       messages: [
         {
           role: 'system',
-          content: 'Du bist ein Experte für Content-Erstellung und React/TypeScript Entwicklung. Du erstellst hochwertige, AI-optimierte Wissensseiten die authentisch und nicht-generisch klingen.',
+          content: 'Du bist ein SENIOR CONSULTANT mit 10+ Jahren Erfahrung in Microsoft 365 und KI-Themen. Du erstellst professionell tiefgehende, fachlich exzellente Wissensseiten für Experten und Praktiker. Deine Inhalte zeichnen sich durch technische Präzision, konkrete Use Cases und substantielle Tiefe aus - sie unterscheiden sich fundamental von generischen AI-generierten Masseninhalten.',
         },
         {
           role: 'user',
           content: prompt,
         },
       ],
-      temperature: parseFloat(process.env.OPENAI_TEMPERATURE || '0.7'),
-      max_tokens: parseInt(process.env.OPENAI_MAX_TOKENS || '16000'),
+      temperature: parseFloat(process.env.OPENAI_TEMPERATURE || '0.6'),
+      max_tokens: parseInt(process.env.OPENAI_MAX_TOKENS || '24000'),
     });
 
     const generatedCode = completion.choices[0].message.content;
@@ -289,6 +472,79 @@ async function generateContent(transcript, userInstructions = '') {
     }
     throw error;
   }
+}
+
+/**
+ * Validate quality of generated content
+ */
+function validateContentQuality(component) {
+  const issues = [];
+  const warnings = [];
+
+  // Check minimum word count (approximately)
+  const wordCount = component.split(/\s+/).length;
+  if (wordCount < 2500) {
+    issues.push(`⚠️  KRITISCH: Artikel zu kurz (${wordCount} Wörter, Minimum: 2500)`);
+  } else if (wordCount < 3000) {
+    warnings.push(`⚠️  Artikel könnte länger sein (${wordCount} Wörter, Ziel: 3000-5000)`);
+  } else {
+    console.log(`✅ Länge: ${wordCount} Wörter (ausgezeichnet!)`);
+  }
+
+  // Check for generic AI phrases (should be minimal)
+  const genericPhrases = [
+    'im heutigen digitalen Zeitalter',
+    'revolutionär',
+    'game-changer',
+    'nahtlos integriert',
+    'spielend einfach',
+  ];
+  const foundGeneric = genericPhrases.filter(phrase =>
+    component.toLowerCase().includes(phrase.toLowerCase())
+  );
+  if (foundGeneric.length > 0) {
+    warnings.push(`⚠️  Generische Phrasen gefunden: ${foundGeneric.join(', ')}`);
+  }
+
+  // Check for FAQ section
+  if (!component.includes('FAQPage') && !component.includes('faq')) {
+    issues.push('⚠️  KRITISCH: Keine FAQ-Sektion gefunden');
+  }
+
+  // Check for table of contents
+  if (!component.includes('tableOfContents')) {
+    issues.push('⚠️  KRITISCH: Kein Table of Contents gefunden');
+  }
+
+  // Check for schema markup
+  if (!component.includes('@type": "Article"')) {
+    issues.push('⚠️  KRITISCH: Article Schema fehlt');
+  }
+
+  // Display results
+  console.log('\n📊 QUALITÄTSPRÜFUNG:');
+
+  if (issues.length === 0 && warnings.length === 0) {
+    console.log('✅ Alle Qualitätschecks bestanden!');
+  }
+
+  if (warnings.length > 0) {
+    console.log('\n⚠️  Warnungen:');
+    warnings.forEach(w => console.log(`  ${w}`));
+  }
+
+  if (issues.length > 0) {
+    console.log('\n❌ KRITISCHE PROBLEME:');
+    issues.forEach(i => console.log(`  ${i}`));
+    console.log('\n⚠️  Der Artikel sollte überarbeitet werden, bevor er veröffentlicht wird.');
+  }
+
+  return {
+    passed: issues.length === 0,
+    issues,
+    warnings,
+    wordCount,
+  };
 }
 
 /**
@@ -367,10 +623,17 @@ async function interactiveMode() {
 
   const instructions = await question('\nZusätzliche Anweisungen (optional, Enter überspringen): ');
 
+  const researchInput = await question('\nAktuelle Informationen recherchieren? (j/N): ');
+  const enableResearch = researchInput.toLowerCase() === 'j' || researchInput.toLowerCase() === 'ja';
+
   rl.close();
 
   // Generate
-  const component = await generateContent(transcript, instructions);
+  const component = await generateContent(transcript, instructions, enableResearch);
+
+  // Validate quality
+  const validation = validateContentQuality(component);
+
   const metadata = generateMetadata(component, transcript);
 
   console.log('\n📋 Generierte Metadaten:');
@@ -405,8 +668,12 @@ async function cliMode(transcriptPath, instructions = '') {
 
   const transcript = fs.readFileSync(transcriptPath, 'utf-8');
 
-  // Generate
-  const component = await generateContent(transcript, instructions);
+  // Generate (research enabled by default in CLI mode)
+  const component = await generateContent(transcript, instructions, true);
+
+  // Validate quality
+  const validation = validateContentQuality(component);
+
   const metadata = generateMetadata(component, transcript);
 
   console.log('\n📋 Generierte Metadaten:');
