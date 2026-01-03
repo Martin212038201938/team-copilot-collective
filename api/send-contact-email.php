@@ -47,10 +47,13 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 // Generate confirmation token
 $confirmationToken = generateToken();
 
+// DSGVO consent text (must match what's shown in the form)
+$consentText = 'Nach dem Absenden erhalten Sie eine E-Mail, in der Sie bestätigen, dass wir Sie künftig per E-Mail kontaktieren dürfen. Ihre Einwilligung können Sie jederzeit widerrufen.';
+
 // Save to database
 $ipAddress = $_SERVER['REMOTE_ADDR'] ?? null;
 $userAgent = $_SERVER['HTTP_USER_AGENT'] ?? null;
-$saved = saveNewsletterSubscription($email, $name, 'contact', $confirmationToken, $ipAddress, $userAgent);
+$saved = saveNewsletterSubscription($email, $name, 'contact', $confirmationToken, $ipAddress, $userAgent, $consentText);
 
 // ============================================
 // 1. Send notification email to Martin
