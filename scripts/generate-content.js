@@ -80,7 +80,7 @@ Liefere eine strukturierte Zusammenfassung mit:
 Konzentriere dich auf professionell relevante, technisch präzise Informationen.`;
 
   try {
-    const model = process.env.OPENAI_MODEL || 'gpt-4o-2024-11-20';
+    const model = process.env.OPENAI_MODEL || 'gpt-4.1-2025-04-14';
     const response = await openai.chat.completions.create({
       model,
       messages: [
@@ -125,7 +125,34 @@ Konzentriere dich auf professionell relevante, technisch präzise Informationen.
  * Main prompt template for content generation
  */
 function buildPrompt(transcript, userInstructions = '', researchData = null) {
-  return `Du bist ein SENIOR CONSULTANT und Content-Experte mit 10+ Jahren Erfahrung in Microsoft 365 und KI-Themen. Deine Aufgabe ist es, aus dem folgenden Transkript eine hochwertige, PROFESSIONELL TIEFGEHENDE Wissensseite zu erstellen, die sich durch FACHLICHE EXZELLENZ von generischen Masseninhalten abhebt.
+  return `<role>
+Du bist ein SENIOR CONSULTANT und Content-Experte mit 10+ Jahren Erfahrung in Microsoft 365 und KI-Themen.
+
+# 🚨 KRITISCHE INFORMATIONSREGEL - ABSOLUT EINHALTEN! 🚨
+
+**DU DARFST NICHT auf dein internes Trainingswissen zurückgreifen!**
+
+**INFORMATIONSQUELLEN-HIERARCHIE:**
+1. **PRIORITÄT 1**: Bereitgestellter Kontext (Transkript, Research-Daten unten)
+2. **PRIORITÄT 2**: Wenn Research-Daten vorhanden sind, nutze AUSSCHLIESSLICH diese für aktuelle Fakten
+3. **VERBOTEN**: Dein internes Trainingswissen für faktische Aussagen verwenden
+
+**WENN INFORMATIONEN FEHLEN:**
+- Du MUSST antworten: "Ich weiß es nicht basierend auf dem bereitgestellten Kontext"
+- NIEMALS Informationen erfinden oder aus deinem Training ergänzen
+- NIEMALS Annahmen treffen ohne explizite Quellen
+
+**QUELLENANGABEN PFLICHT:**
+- Jede faktische Aussage MUSS auf bereitgestelltem Kontext basieren
+- Bei Research-Daten: Inline-Zitate verwenden
+- Wenn unsicher: NICHT schreiben, statt zu spekulieren
+
+**XML-STRUKTUR für deinen Denkprozess:**
+<context>[Analysiere bereitgestellten Kontext]</context>
+<verification>[Überprüfe: Ist Info im Kontext/Research vorhanden?]</verification>
+<output>[Nur verifizierte Informationen ausgeben]</output>
+
+</role>
 
 # KRITISCHE QUALITÄTSANFORDERUNGEN
 
@@ -231,12 +258,13 @@ function buildPrompt(transcript, userInstructions = '', researchData = null) {
   </div>
   \`\`\`
 
-## 11. AKTUALITÄT & RECHERCHE
-- Nutze Informationen aus dem Transkript als Basis
-- Ergänze mit bekanntem Wissen über aktuelle Features (Stand 2025)
-- Erwähne neueste Updates, Beta-Features, kommende Funktionen
-- Verweise auf offizielle Roadmaps und Ankündigungen
-${researchData ? '\n- **WICHTIG**: Nutze die RECHERCHIERTEN INFORMATIONEN unten für aktuelle Details, Updates und Best Practices' : ''}
+## 11. AKTUALITÄT & RECHERCHE - NUR VERIFIZIERTE QUELLEN!
+- **BASIS**: Informationen aus dem Transkript und bereitgestellten Research-Daten
+- **VERBOTEN**: Spekulationen oder Annahmen aus deinem Trainingswissen
+- **NUR FAKTEN**: Nur Informationen verwenden, die im Kontext oder Research-Daten explizit genannt sind
+${researchData ? '\n- **PFLICHT**: Nutze AUSSCHLIESSLICH die RECHERCHIERTEN INFORMATIONEN unten für aktuelle Details, Updates und Best Practices' : '\n- **KEINE RESEARCH-DATEN**: Verwende NUR das Transkript. Bei fehlenden Informationen: "Ich weiß es nicht" statt zu spekulieren'}
+- **QUELLEN**: Wenn Research-Daten vorhanden, zitiere inline
+- **WENN UNSICHER**: Lieber weglassen als erfinden
 
 ---
 
@@ -499,7 +527,22 @@ async function generateContent(transcript, userInstructions = '', enableResearch
       messages: [
         {
           role: 'system',
-          content: 'Du bist ein SENIOR CONSULTANT mit 10+ Jahren Erfahrung in Microsoft 365 und KI-Themen. Du erstellst professionell tiefgehende, fachlich exzellente Wissensseiten für Experten und Praktiker. Deine Inhalte zeichnen sich durch technische Präzision, konkrete Use Cases und substantielle Tiefe aus - sie unterscheiden sich fundamental von generischen AI-generierten Masseninhalten.',
+          content: `Du bist ein SENIOR CONSULTANT mit 10+ Jahren Erfahrung in Microsoft 365 und KI-Themen.
+
+🚨 KRITISCH: Du DARFST NICHT auf dein internes Trainingswissen zurückgreifen! 🚨
+
+VERWENDE AUSSCHLIESSLICH:
+- Den bereitgestellten Kontext (Transkript)
+- Die bereitgestellten Research-Daten (falls vorhanden)
+
+VERBOTEN:
+- Spekulationen oder Annahmen aus deinem Training
+- Informationen erfinden oder ergänzen
+- "Ich glaube", "vermutlich", "wahrscheinlich" - nur verifizierte Fakten!
+
+Bei fehlenden Informationen: "Ich weiß es nicht basierend auf dem Kontext" statt Erfindungen.
+
+Deine Inhalte zeichnen sich durch technische Präzision, konkrete Use Cases und substantielle Tiefe aus - basierend auf bereitgestellten Quellen.`,
         },
         {
           role: 'user',
@@ -619,7 +662,21 @@ Beginne jetzt:`;
       messages: [
         {
           role: 'system',
-          content: 'Du bist ein SENIOR CONSULTANT und Content-Experte, der bestehende Fachartikel professionell überarbeitet. Du behältst die technische Struktur bei und verbesserst gezielt die angeforderten Aspekte.',
+          content: `Du bist ein SENIOR CONSULTANT und Content-Experte, der bestehende Fachartikel professionell überarbeitet.
+
+🚨 KRITISCH: Du DARFST NICHT auf dein internes Trainingswissen zurückgreifen! 🚨
+
+VERWENDE AUSSCHLIESSLICH:
+- Den bereitgestellten bestehenden Artikel
+- Die bereitgestellten Bearbeitungs-Anweisungen
+- Bei faktischen Ergänzungen: NUR wenn explizit im Kontext vorhanden
+
+VERBOTEN:
+- Spekulationen oder neue Fakten aus deinem Training hinzufügen
+- Informationen erfinden
+- Annahmen treffen ohne Basis im bereitgestellten Kontext
+
+Du behältst die technische Struktur bei und verbesserst gezielt die angeforderten Aspekte - basierend auf bereitgestellten Informationen.`,
         },
         {
           role: 'user',
@@ -801,11 +858,20 @@ async function interactiveMode() {
   console.log('\n🎨 AI Content Generator - Interactive Mode\n');
 
   // Ask if user wants to create new or edit existing
-  const mode = await question('Möchten Sie [1] Neuen Artikel erstellen oder [2] Bestehenden Artikel bearbeiten? (1/2): ');
+  console.log('Was möchten Sie tun?');
+  console.log('  [1] Neuen Artikel erstellen');
+  console.log('  [2] Bestehenden Artikel einmalig bearbeiten');
+  console.log('  [3] 💬 Chat-basierte iterative Bearbeitung (NEU!)');
+
+  const mode = await question('\nWählen Sie (1/2/3): ');
 
   if (mode === '2') {
     // EDIT MODE
     await editMode(rl, question);
+  } else if (mode === '3') {
+    // CHAT EDIT MODE
+    rl.close();
+    await chatEditMode();
   } else {
     // CREATE MODE (existing logic)
     await createMode(rl, question);
@@ -981,6 +1047,178 @@ async function editMode(rl, question) {
     }
 
     console.log('\n🎉 Artikel erfolgreich bearbeitet und gespeichert!');
+  } else {
+    console.log('\n❌ Änderungen wurden NICHT gespeichert');
+  }
+
+  // Show cost statistics
+  showStatistics();
+
+  console.log('\nNächste Schritte:');
+  console.log('1. Überprüfe die überarbeitete Komponente');
+  console.log('2. Teste die Vorschau im Admin-Dashboard');
+  console.log('3. Commit und Push zum Repository');
+}
+
+/**
+ * Chat-based edit mode - iterative editing with multiple rounds
+ */
+async function chatEditMode() {
+  console.log('\n💬 CHAT-BASIERTER BEARBEITUNGS-MODUS\n');
+
+  // Get list of available articles
+  const pagesDir = path.join(__dirname, '../src/pages');
+  const files = fs.readdirSync(pagesDir)
+    .filter(f => f.endsWith('.tsx') && f.startsWith('Microsoft'))
+    .sort();
+
+  if (files.length === 0) {
+    console.error('❌ Keine Artikel gefunden in src/pages/');
+    process.exit(1);
+  }
+
+  console.log('Verfügbare Artikel:');
+  files.forEach((file, index) => {
+    console.log(`  [${index + 1}] ${file}`);
+  });
+
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
+
+  const fileChoice = await question('\nDatei-Nummer oder vollständiger Pfad: ');
+
+  const filePath = fileChoice.match(/^\d+$/)
+    ? path.join(pagesDir, files[parseInt(fileChoice) - 1])
+    : fileChoice;
+
+  rl.close();
+
+  if (!fs.existsSync(filePath)) {
+    console.error(`❌ Datei nicht gefunden: ${filePath}`);
+    process.exit(1);
+  }
+
+  let currentComponent = fs.readFileSync(filePath, 'utf-8');
+
+  console.log(`\n📄 Geladener Artikel: ${path.basename(filePath)}`);
+  console.log(`📊 Aktuelle Länge: ${currentComponent.length} Zeichen`);
+
+  const { wordCount: initialWordCount } = calculateReadingTime(currentComponent);
+  console.log(`📖 Aktuelle Wortzahl: ${initialWordCount} Wörter`);
+
+  let iterationCount = 0;
+  let continueEditing = true;
+
+  // Chat loop
+  while (continueEditing) {
+    iterationCount++;
+    console.log(`\n${'='.repeat(70)}`);
+    console.log(`💬 BEARBEITUNGS-RUNDE ${iterationCount}`);
+    console.log(`${'='.repeat(70)}\n`);
+
+    console.log('💡 Beispiel-Anweisungen:');
+    console.log('  - "Füge mehr Use Cases für die Healthcare-Branche hinzu"');
+    console.log('  - "Verschiebe den Schwerpunkt auf Enterprise-Features"');
+    console.log('  - "Ergänze technische Details zur API-Integration"');
+    console.log('  - "Füge einen Vergleich mit Konkurrenzprodukten hinzu"');
+    console.log('  - "Erweitere die FAQ-Sektion um 5 weitere Fragen"\n');
+
+    const rl2 = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout,
+    });
+
+    const editInstructions = await new Promise((resolve) =>
+      rl2.question('Bearbeitungs-Anweisung (oder "fertig" zum Beenden): ', resolve)
+    );
+
+    rl2.close();
+
+    if (editInstructions.trim().toLowerCase() === 'fertig' || !editInstructions.trim()) {
+      continueEditing = false;
+      console.log('\n✅ Bearbeitung abgeschlossen');
+      break;
+    }
+
+    console.log(`\n✏️  Bearbeite Artikel (Runde ${iterationCount})...`);
+
+    // Edit article
+    currentComponent = await editContent(currentComponent, editInstructions);
+
+    // Show updated stats
+    const { wordCount, readTime } = calculateReadingTime(currentComponent);
+    console.log(`\n📊 Aktualisierte Statistik:`);
+    console.log(`   Länge: ${currentComponent.length} Zeichen`);
+    console.log(`   Wortzahl: ${wordCount} Wörter (+${wordCount - initialWordCount} seit Start)`);
+    console.log(`   Lesezeit: ${readTime}`);
+
+    // Ask if user wants to continue editing
+    const rl3 = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout,
+    });
+
+    const continueChoice = await new Promise((resolve) =>
+      rl3.question('\nWeitere Änderungen vornehmen? (j/N): ', resolve)
+    );
+
+    rl3.close();
+
+    if (continueChoice.toLowerCase() !== 'j' && continueChoice.toLowerCase() !== 'ja') {
+      continueEditing = false;
+    }
+  }
+
+  // Final validation
+  console.log('\n📋 FINALE QUALITÄTSPRÜFUNG...');
+  const validation = validateContentQuality(currentComponent);
+
+  // Update metadata
+  const metadata = generateMetadata(currentComponent, '');
+
+  console.log('\n📋 Finale Metadaten:');
+  console.log(`   Titel: ${metadata.title}`);
+  console.log(`   Slug: ${metadata.slug}`);
+  console.log(`   Lesezeit: ${metadata.readTime}`);
+  console.log(`   Gesamt-Iterationen: ${iterationCount}`);
+
+  // Ask if user wants to save
+  const rl4 = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
+
+  const saveChoice = await new Promise((resolve) =>
+    rl4.question('\nÄnderungen speichern? (j/N): ', resolve)
+  );
+
+  rl4.close();
+
+  if (saveChoice.toLowerCase() === 'j' || saveChoice.toLowerCase() === 'ja') {
+    // Save edited component
+    fs.writeFileSync(filePath, currentComponent, 'utf-8');
+    console.log(`✅ Artikel gespeichert: ${filePath}`);
+
+    // Update draft JSON if exists
+    const draftPath = path.join(__dirname, '../content/drafts', `${metadata.slug}.json`);
+    if (fs.existsSync(draftPath)) {
+      const draft = JSON.parse(fs.readFileSync(draftPath, 'utf-8'));
+      draft.readTime = metadata.readTime;
+      draft.updatedAt = new Date().toISOString();
+      fs.writeFileSync(draftPath, JSON.stringify(draft, null, 2), 'utf-8');
+      console.log(`✅ Draft JSON aktualisiert: ${draftPath}`);
+
+      // Update public draft
+      const publicDraftPath = path.join(__dirname, '../public/content/drafts', `${metadata.slug}.json`);
+      if (fs.existsSync(publicDraftPath)) {
+        fs.writeFileSync(publicDraftPath, JSON.stringify(draft, null, 2), 'utf-8');
+        console.log(`✅ Public Draft aktualisiert: ${publicDraftPath}`);
+      }
+    }
+
+    console.log(`\n🎉 Artikel erfolgreich in ${iterationCount} Runde(n) bearbeitet und gespeichert!`);
   } else {
     console.log('\n❌ Änderungen wurden NICHT gespeichert');
   }
