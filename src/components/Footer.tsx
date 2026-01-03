@@ -54,6 +54,7 @@ const Footer = () => {
             <Link to="/impressum" className="hover:text-primary transition-colors">Impressum</Link>
             <Link to="/impressum" className="hover:text-primary transition-colors">Datenschutz</Link>
             <a href="#" className="hover:text-primary transition-colors">AGB</a>
+            <a href="https://yellow-boat.org/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Mitarbeiter Login</a>
           </div>
         </div>
       </div>
