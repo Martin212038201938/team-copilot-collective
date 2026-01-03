@@ -167,12 +167,15 @@ function buildPrompt(transcript, userInstructions = '', researchData = null) {
 - **WANN NUTZEN, WANN NICHT**: Klare Guidance, für welche Szenarien das Thema geeignet ist
 - **MIGRATION/INTEGRATION**: Wie integriert sich das Thema in bestehende Systeme/Workflows?
 
-## 5. LÄNGE & SUBSTANTIELLER INHALT
-- **KEINE VERKÜRZUNGEN**: Artikel müssen SUBSTANTIELL sein, nicht kompakt
-- **ZIEL-LÄNGE**: 3.000-5.000 Wörter für umfassende Artikel (10-15 Minuten Lesezeit)
-- **QUALITÄT ÜBER KÜRZE**: Lieber ausführlich und wertvoll als kurz und generisch
-- **JEDE SEKTION SUBSTANZ**: Minimum 400-600 Wörter pro Hauptsektion
-- **FAQ-TIEFE**: Jede FAQ-Antwort sollte 80-150 Wörter haben mit echtem Mehrwert
+## 5. LÄNGE & SUBSTANTIELLER INHALT - DEUTLICH AUSFÜHRLICHER!
+- **KEINE VERKÜRZUNGEN**: Artikel müssen SUBSTANTIELL und UMFASSEND sein
+- **ZIEL-LÄNGE**: 5.000-8.000 Wörter für wirklich tiefgehende Artikel (18-30 Minuten Lesezeit)
+  - Falls das Thema zu komplex für einen einzelnen Artikel ist, erstelle EINEN sehr detaillierten Artikel mit mehreren Haupt-Sektionen
+  - Jede Haupt-Sektion sollte 600-1000 Wörter haben, nicht nur 400-600
+- **QUALITÄT ÜBER KÜRZE**: Lieber sehr ausführlich und umfassend wertvoll als nur "gut"
+- **JEDE SEKTION SUBSTANZ**: Minimum 600-1000 Wörter pro Hauptsektion mit MAXIMALER Tiefe
+- **FAQ-TIEFE**: Jede FAQ-Antwort sollte 100-200 Wörter haben mit echtem, substantiellem Mehrwert
+- **MEHR DETAILS**: Füge mehr technische Details, mehr Beispiele, mehr Use Cases, mehr Erklärungen hinzu
 
 ## 6. STRUKTUR & FORMAT
 - Erstelle eine vollständige React/TypeScript (TSX) Komponente
@@ -204,13 +207,29 @@ function buildPrompt(transcript, userInstructions = '', researchData = null) {
 - Keywords natürlich einbinden (keine Keyword-Stuffing)
 - Long-tail Keywords für Nischen-Szenarien
 
-## 10. VISUELLE HIERARCHIE & LESBARKEIT
-- Nutze die Tailwind-Klassen wie in den Beispielen
-- Gradient-Boxen für wichtige Informationen und Kernkonzepte
-- Border-left Highlights für Sektionen und Callouts
-- Cards für strukturierte Inhalte, Use Cases, Vergleiche
-- Icons/Emojis sparsam für visuelle Anker
-- Code-Blöcke mit Syntax-Highlighting für technische Beispiele
+## 10. VISUELLE HIERARCHIE & LESBARKEIT - THEME-AWARE STYLING!
+- **KRITISCH**: Verwende IMMER theme-aware Tailwind-Klassen, die sowohl im Light- als auch Dark-Mode funktionieren
+- **NIEMALS hardcodierte Farben** wie `bg-white`, `bg-blue-50`, `bg-gray-50`, `bg-amber-50` verwenden!
+- **STATTDESSEN verwende**:
+  - `bg-card` statt `bg-white` (für Karten/Boxen)
+  - `bg-muted` oder `bg-muted/50` statt `bg-gray-50` (für sanfte Hintergründe)
+  - `bg-primary/10` oder `bg-primary/5` statt `bg-blue-50` (für primäre Akzente)
+  - `bg-accent/10` oder `bg-accent/5` statt `bg-amber-50` (für Warnungen/Highlights)
+  - `bg-background` für Haupt-Hintergründe
+  - `text-foreground` für Haupttext, `text-muted-foreground` für sekundären Text
+  - `border-border` für Rahmen, `border-primary` für Akzente
+- **Gradient-Boxen**: `bg-gradient-to-br from-primary/10 to-accent/10` für wichtige Informationen
+- **Border-left Highlights**: `border-l-4 border-primary` für Sektionen und Callouts
+- **Cards**: `bg-card border border-border rounded-lg p-6` für strukturierte Inhalte
+- **Icons/Emojis**: sparsam für visuelle Anker
+- **Code-Blöcke**: `bg-muted/50` mit Syntax-Highlighting für technische Beispiele
+- **BEISPIEL einer korrekten Callout-Box**:
+  \`\`\`tsx
+  <div className="bg-primary/10 border-l-4 border-primary p-6 mb-6 rounded-r-lg">
+    <h3 className="text-lg font-semibold mb-2 text-foreground">Titel</h3>
+    <p className="text-muted-foreground">Inhalt...</p>
+  </div>
+  \`\`\`
 
 ## 11. AKTUALITÄT & RECHERCHE
 - Nutze Informationen aus dem Transkript als Basis
@@ -268,23 +287,26 @@ Erstelle JETZT eine vollständige, PROFESSIONELL TIEFGEHENDE TSX-Komponente basi
    - Der gesamte Artikel fokussiert sich ausschließlich auf dieses Hauptthema
    - Titel beschreibt präzise das Hauptthema
 
-2. **PROFESSIONELLE TIEFE**:
-   - JEDE Hauptsektion: 400-600 Wörter mit substantiellem Fachinhalt
+2. **PROFESSIONELLE TIEFE - DEUTLICH AUSFÜHRLICHER**:
+   - JEDE Hauptsektion: 600-1000 Wörter mit maximalem, substantiellem Fachinhalt
    - Technische Details, APIs, Architektur, Konfigurationen
    - Erklärung von "Warum" und "Wie", nicht nur "Was"
+   - Mehr Details, mehr Beispiele, mehr Tiefe als üblich
 
 3. **PRAXIS-USE-CASES**:
    - MINIMUM 3-5 konkrete Use Cases pro Hauptsektion
-   - Branchenspezifische Beispiele (Finance, Healthcare, etc.)
-   - Rollenspezifische Szenarien (IT-Admin, Developer, Business User)
-   - Schritt-für-Schritt Anleitungen mit konkreten Schritten
-   - Echte Prompt-Beispiele, Code-Snippets, Konfigurationen
+   - Branchenspezifische Beispiele (Finance, Healthcare, Manufacturing, Education, etc.)
+   - Rollenspezifische Szenarien (IT-Admin, Developer, Business User, Manager)
+   - Sehr detaillierte Schritt-für-Schritt Anleitungen mit konkreten Schritten
+   - Echte Prompt-Beispiele mit Input/Output, Code-Snippets, Konfigurationen
 
-4. **SUBSTANTIELLE LÄNGE**:
-   - Ziel: 3.000-5.000 Wörter (10-15 Minuten Lesezeit)
+4. **SUBSTANTIELLE LÄNGE - SEHR AUSFÜHRLICH**:
+   - **WICHTIG**: Ziel: 5.000-8.000 Wörter (18-30 Minuten Lesezeit)
+   - Die Lesezeit wird automatisch berechnet - schreibe ausführlich und umfassend!
    - KEINE Verkürzungen, die Artikel generisch machen
-   - Qualität und Tiefe über Kürze
-   - FAQs mit 10-15 Fragen, jede Antwort 80-150 Wörter
+   - Qualität, Tiefe UND Ausführlichkeit über Kürze
+   - FAQs mit 10-15 Fragen, jede Antwort 100-200 Wörter mit echtem Mehrwert
+   - Jede Haupt-Sektion sollte wirklich umfassend sein (600-1000 Wörter)
 
 5. **LLM-ZITIERBARKEIT**:
    - Extractable Facts: Jede Information als eigenständiger Fakt
@@ -298,13 +320,18 @@ Erstelle JETZT eine vollständige, PROFESSIONELL TIEFGEHENDE TSX-Komponente basi
    - Wann nutzen, wann nicht nutzen
    - Integrations- und Migrations-Überlegungen
 
-7. **TECHNISCHE STRUKTUR**:
+7. **TECHNISCHE STRUKTUR & THEME-AWARE STYLING**:
    - Filename-würdig: Klarer Komponentenname (z.B. MicrosoftCopilotTeamsGuide)
    - Vollständig: Alle Imports, komplette Komponente, export default
    - Den Beispielen folgen: Gleiche Struktur, aber mit eigenem tiefem Inhalt
    - Schema.org: Article Schema + FAQPage Schema mit 10-15 Fragen
    - SEO-optimiert: Meta-Tags, Keywords, Canonical URL
-   - Table of Contents: 8-12 Sektionen
+   - Table of Contents: 10-15 Sektionen (mehr wegen längeren Artikeln)
+   - **KRITISCH - Lesezeit**: Setze `readTime="{{AUTO_CALCULATE}}"` - dies wird automatisch berechnet!
+   - **KRITISCH - Theme-aware Farben**:
+     - NIEMALS `bg-white`, `bg-blue-50`, `bg-gray-50`, `bg-amber-50` verwenden!
+     - STATTDESSEN: `bg-card`, `bg-muted`, `bg-primary/10`, `bg-accent/10`
+     - Siehe Sektion 10 oben für alle korrekten Klassen
 
 8. **QUALITÄTS-CHECKS**:
    - ✓ Klingt NICHT wie AI-generierter Masseninhalt
@@ -312,7 +339,9 @@ Erstelle JETZT eine vollständige, PROFESSIONELL TIEFGEHENDE TSX-Komponente basi
    - ✓ Bietet echten Mehrwert für professionelle Praxis
    - ✓ Unterscheidet sich klar von generischen Artikeln
    - ✓ LLMs können präzise Informationen zitieren
-   - ✓ Minimum 3.000 Wörter mit Substanz
+   - ✓ **Minimum 5.000 Wörter** mit Substanz (Ziel: 5.000-8.000)
+   - ✓ Verwendet AUSSCHLIESSLICH theme-aware Tailwind-Klassen
+   - ✓ readTime="{{AUTO_CALCULATE}}" gesetzt (nicht hardcoded!)
 
 **WICHTIG**: Antworte NUR mit dem vollständigen TSX-Code. Keine Erklärungen, keine Markdown-Wrapper, keine Zusammenfassungen. Starte direkt mit "import" und ende mit "export default".
 
@@ -481,13 +510,20 @@ async function generateContent(transcript, userInstructions = '', enableResearch
       max_tokens: parseInt(process.env.OPENAI_MAX_TOKENS || '24000'),
     });
 
-    const generatedCode = completion.choices[0].message.content;
+    let generatedCode = completion.choices[0].message.content;
 
     console.log('✅ Content erfolgreich generiert!');
     console.log(`📊 Generierte Code-Länge: ${generatedCode.length} Zeichen`);
     console.log(`💰 Tokens verwendet: ${completion.usage.total_tokens}`);
     console.log(`   - Prompt: ${completion.usage.prompt_tokens}`);
     console.log(`   - Completion: ${completion.usage.completion_tokens}`);
+
+    // Post-processing: Calculate and replace reading time
+    if (generatedCode.includes('{{AUTO_CALCULATE}}')) {
+      const { readTime } = calculateReadingTime(generatedCode);
+      generatedCode = generatedCode.replace(/{{AUTO_CALCULATE}}/g, readTime);
+      console.log(`📖 Lesezeit automatisch berechnet: ${readTime}`);
+    }
 
     // 🔒 SECURITY: Track usage after successful API call
     trackUsage(
@@ -594,13 +630,28 @@ Beginne jetzt:`;
       max_tokens: parseInt(process.env.OPENAI_MAX_TOKENS || '24000'),
     });
 
-    const editedCode = completion.choices[0].message.content;
+    let editedCode = completion.choices[0].message.content;
 
     console.log('✅ Artikel erfolgreich überarbeitet!');
     console.log(`📊 Neue Code-Länge: ${editedCode.length} Zeichen`);
     console.log(`💰 Tokens verwendet: ${completion.usage.total_tokens}`);
     console.log(`   - Prompt: ${completion.usage.prompt_tokens}`);
     console.log(`   - Completion: ${completion.usage.completion_tokens}`);
+
+    // Post-processing: Calculate and replace reading time
+    if (editedCode.includes('{{AUTO_CALCULATE}}')) {
+      const { readTime } = calculateReadingTime(editedCode);
+      editedCode = editedCode.replace(/{{AUTO_CALCULATE}}/g, readTime);
+      console.log(`📖 Lesezeit automatisch berechnet: ${readTime}`);
+    } else {
+      // If readTime exists but is hardcoded, recalculate it
+      const { readTime } = calculateReadingTime(editedCode);
+      const readTimeMatch = editedCode.match(/readTime="([^"]+)"/);
+      if (readTimeMatch && readTimeMatch[1] !== readTime) {
+        editedCode = editedCode.replace(/readTime="[^"]+"/g, `readTime="${readTime}"`);
+        console.log(`📖 Lesezeit aktualisiert: ${readTimeMatch[1]} → ${readTime}`);
+      }
+    }
 
     // 🔒 SECURITY: Track usage after successful API call
     trackUsage(
