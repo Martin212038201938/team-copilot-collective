@@ -434,24 +434,79 @@ function calculateReadingTime(component) {
 }
 
 /**
+ * Extract metadata from Markdown content
+ */
+function extractMarkdownMetadata(markdown) {
+  // Extract title from first # heading
+  const titleMatch = markdown.match(/^#\s+(.+)$/m);
+  const title = titleMatch ? titleMatch[1].trim() : 'Generierte Wissensseite';
+
+  // Extract description from first paragraph after title
+  const lines = markdown.split('\n');
+  let description = '';
+  let foundTitle = false;
+  for (const line of lines) {
+    if (line.match(/^#\s+/)) {
+      foundTitle = true;
+      continue;
+    }
+    if (foundTitle && line.trim() && !line.match(/^#+\s+/)) {
+      description = line.trim();
+      break;
+    }
+  }
+  if (description.length > 160) {
+    description = description.substring(0, 157) + '...';
+  }
+
+  // Extract keywords from ## headings and bold terms
+  const keywords = new Set(['Microsoft 365', 'Copilot']);
+  const headings = markdown.match(/^##\s+(.+)$/gm) || [];
+  headings.slice(0, 3).forEach(h => {
+    const words = h.replace(/^##\s+/, '').split(/\s+/);
+    words.forEach(w => {
+      if (w.length > 3) keywords.add(w);
+    });
+  });
+
+  return {
+    title,
+    description,
+    keywords: Array.from(keywords).slice(0, 10),
+  };
+}
+
+/**
  * Generate metadata for the draft JSON
  */
 function generateMetadata(component, transcript) {
-  // Extract title from component
-  const titleMatch = component.match(/title="([^"]+)"/);
-  const title = titleMatch ? titleMatch[1] : 'Generierte Wissensseite';
+  // Check if content is Markdown or TSX
+  const isMarkdown = !component.trim().startsWith('import');
 
-  // Extract description
-  const descMatch = component.match(/description="([^"]+)"/);
-  const description = descMatch ? descMatch[1] : '';
+  let title, description, keywords;
 
-  // Extract keywords
-  const keywordsMatch = component.match(/keywords=\{(\[[\s\S]*?\])\}/);
-  let keywords = [];
-  if (keywordsMatch) {
-    try {
-      keywords = eval(keywordsMatch[1]);
-    } catch (e) {
+  if (isMarkdown) {
+    // Extract metadata from Markdown
+    const extracted = extractMarkdownMetadata(component);
+    title = extracted.title;
+    description = extracted.description;
+    keywords = extracted.keywords;
+  } else {
+    // Extract metadata from TSX (legacy support)
+    const titleMatch = component.match(/title="([^"]+)"/);
+    title = titleMatch ? titleMatch[1] : 'Generierte Wissensseite';
+
+    const descMatch = component.match(/description="([^"]+)"/);
+    description = descMatch ? descMatch[1] : '';
+
+    const keywordsMatch = component.match(/keywords=\{(\[[\s\S]*?\])\}/);
+    if (keywordsMatch) {
+      try {
+        keywords = eval(keywordsMatch[1]);
+      } catch (e) {
+        keywords = ['Microsoft 365', 'Copilot', 'Produktivität'];
+      }
+    } else {
       keywords = ['Microsoft 365', 'Copilot', 'Produktivität'];
     }
   }
@@ -470,7 +525,7 @@ function generateMetadata(component, transcript) {
   const { readTime, wordCount } = calculateReadingTime(component);
   console.log(`📖 Geschätzte Wortzahl: ${wordCount} Wörter`);
 
-  // Generate component name from slug
+  // Generate component name from slug (for TSX files)
   const componentName = slug
     .split('-')
     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
@@ -487,9 +542,9 @@ function generateMetadata(component, transcript) {
     id: slug,
     title: title.replace(' | Copilotenschule', ''),
     description,
-    content: 'IMPORTED FROM TSX FILE',
-    contentType: 'code',
-    codeFileName: `${componentName}.tsx`,
+    content: isMarkdown ? component : 'IMPORTED FROM TSX FILE',
+    contentType: isMarkdown ? 'markdown' : 'code',
+    ...(isMarkdown ? {} : { codeFileName: `${componentName}.tsx` }),
     publishDate: publishDate.toISOString(),
     author: 'martin-lang',
     category: 'Microsoft 365',
@@ -832,16 +887,25 @@ function saveContent(component, metadata, outputDir = null) {
   const publicDraftsDir = path.join(baseDir, 'public/content/drafts');
 
   // Ensure directories exist
-  [pagesDir, draftsDir, publicDraftsDir].forEach(dir => {
+  [draftsDir, publicDraftsDir].forEach(dir => {
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir, { recursive: true });
     }
   });
 
-  // Save TSX component
-  const componentPath = path.join(pagesDir, metadata.codeFileName);
-  fs.writeFileSync(componentPath, component, 'utf-8');
-  console.log(`✅ TSX gespeichert: ${componentPath}`);
+  let componentPath = null;
+
+  // Save TSX component only if contentType is 'code'
+  if (metadata.contentType === 'code' && metadata.codeFileName) {
+    if (!fs.existsSync(pagesDir)) {
+      fs.mkdirSync(pagesDir, { recursive: true });
+    }
+    componentPath = path.join(pagesDir, metadata.codeFileName);
+    fs.writeFileSync(componentPath, component, 'utf-8');
+    console.log(`✅ TSX gespeichert: ${componentPath}`);
+  } else {
+    console.log(`ℹ️  Markdown-Content wird direkt im Draft JSON gespeichert (kein TSX)`);
+  }
 
   // Save draft JSON
   const draftPath = path.join(draftsDir, `${metadata.slug}.json`);
