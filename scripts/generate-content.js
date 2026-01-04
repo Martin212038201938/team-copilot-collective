@@ -156,12 +156,18 @@ Du bist ein SENIOR CONSULTANT und Content-Experte mit 10+ Jahren Erfahrung in Mi
 
 # KRITISCHE QUALITÄTSANFORDERUNGEN
 
-## 1. THEMATISCHER FOKUS & RELEVANZ
+## 1. THEMATISCHER FOKUS & RELEVANZ - ALLE TRANSKRIPT-DETAILS!
 - **HAUPTTHEMA IDENTIFIZIEREN**: Analysiere das Transkript und identifiziere das KERN-THEMA
 - **FOKUSSIERT BLEIBEN**: Der gesamte Artikel muss sich auf dieses Hauptthema konzentrieren
 - **KEINE ABSCHWEIFUNGEN**: Vermeide tangentiale Themen, die vom Hauptfokus ablenken
 - **ROTER FADEN**: Jede Sektion muss das Hauptthema aus einem anderen Blickwinkel beleuchten
 - **TITEL MUSS THEMA WIDERSPIEGELN**: Der Artikeltitel muss das exakte Hauptthema präzise beschreiben
+- **🔍 ALLE TRANSKRIPT-DETAILS BEWAHREN**:
+  - JEDER Tipp, Trick, Hack aus dem Transkript MUSS im Artikel sein
+  - KEINE Details zusammenfassen oder weglassen
+  - Artikel muss MINDESTENS so detailliert sein wie Transkript
+  - Alle spezifischen Beispiele, Zahlen, Namen 1:1 übernehmen
+  - Bei 10 Punkten im Transkript → 10 Punkte im Artikel
 
 ## 2. PROFESSIONELLE TIEFE & FACHLICHE EXZELLENZ
 - **NICHT-GENERISCH**: Der Text darf NIEMALS wie AI-generierter Masseninhalt klingen
@@ -204,13 +210,20 @@ Du bist ein SENIOR CONSULTANT und Content-Experte mit 10+ Jahren Erfahrung in Mi
 - **FAQ-TIEFE**: Jede FAQ-Antwort sollte 100-200 Wörter haben mit echtem, substantiellem Mehrwert
 - **MEHR DETAILS**: Füge mehr technische Details, mehr Beispiele, mehr Use Cases, mehr Erklärungen hinzu
 
-## 6. STRUKTUR & FORMAT
+## 6. STRUKTUR & FORMAT - AUSSCHLIESSLICH JSX!
 - Erstelle eine vollständige React/TypeScript (TSX) Komponente
 - Folge EXAKT dem Format der Beispiel-Komponenten unten
+- **🚨 KRITISCH**: ALLE Inhalte in JSX-Syntax, NIEMALS Markdown!
+  - RICHTIG: `<h2 className="text-2xl font-bold mb-4">Titel</h2>`
+  - FALSCH: `## Titel` (Markdown)
+  - RICHTIG: `<p className="mb-4 leading-relaxed">Text mit <strong>fett</strong></p>`
+  - FALSCH: `Text mit **fett**` (Markdown)
+  - RICHTIG: `<ul className="list-disc list-inside space-y-2"><li>Punkt</li></ul>`
+  - FALSCH: `- Punkt` (Markdown)
 - Nutze ContentLayout, SEOHead, getAuthor aus den Beispielen
 - Dual Schema.org Markup: Article + FAQPage
-- Table of Contents mit 8-12 Sektionen (mehr Tiefe!)
-- FAQ-Sektion mit mindestens 10-15 Fragen (umfassender!)
+- Table of Contents mit 8-12 Sektionen
+- FAQ-Sektion mit mindestens 10-15 Fragen
 
 ## 7. E-E-A-T SIGNALE FÜR PROFESSIONELLE AUTORITÄT
 - **Experience**: "In Projekten mit Enterprise-Kunden haben wir festgestellt...", spezifische Projekterfahrungen mit Zahlen
@@ -373,7 +386,21 @@ Erstelle JETZT eine vollständige, PROFESSIONELL TIEFGEHENDE TSX-Komponente basi
 
 **WICHTIG**: Antworte NUR mit dem vollständigen TSX-Code. Keine Erklärungen, keine Markdown-Wrapper, keine Zusammenfassungen. Starte direkt mit "import" und ende mit "export default".
 
+🚨 KRITISCH - JSX SYNTAX, KEIN MARKDOWN! 🚨
+- VERWENDE: <h2>, <h3>, <p>, <div>, <ul>, <li>, <strong>, <code>
+- NIEMALS: ##, ###, **, -, *, ` (Markdown-Syntax)
+- ALLE Inhalte müssen in JSX-Tags sein!
+- Beispiel RICHTIG: <h2 className="text-2xl font-bold mb-4">Titel</h2>
+- Beispiel FALSCH: ## Titel
+
 **DENKE DARAN**: Dies ist ein PROFESSIONELLER FACHARTIKEL für Experten und Praktiker, KEIN oberflächlicher Blog-Post. Tiefe, Use Cases und Praxisrelevanz sind KRITISCH.
+
+🔍 TRANSKRIPT-DETAILS BEWAHREN:
+- ALLE Tipps, Tricks, Hacks und Erkenntnisse aus dem Transkript MÜSSEN erhalten bleiben
+- Der Artikel muss MINDESTENS so detailliert sein wie das Transkript
+- KEINE Details weglassen oder zusammenfassen
+- ALLE spezifischen Beispiele, Zahlen, Namen übernehmen
+- Wenn im Transkript 10 Punkte sind, MÜSSEN alle 10 im Artikel sein
 
 Beginne jetzt:`;
 }
