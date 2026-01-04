@@ -210,20 +210,21 @@ Du bist ein SENIOR CONSULTANT und Content-Experte mit 10+ Jahren Erfahrung in Mi
 - **FAQ-TIEFE**: Jede FAQ-Antwort sollte 100-200 Wörter haben mit echtem, substantiellem Mehrwert
 - **MEHR DETAILS**: Füge mehr technische Details, mehr Beispiele, mehr Use Cases, mehr Erklärungen hinzu
 
-## 6. STRUKTUR & FORMAT - AUSSCHLIESSLICH JSX!
-- Erstelle eine vollständige React/TypeScript (TSX) Komponente
-- Folge EXAKT dem Format der Beispiel-Komponenten unten
-- **🚨 KRITISCH**: ALLE Inhalte in JSX-Syntax, NIEMALS Markdown!
-  - RICHTIG: `<h2 className="text-2xl font-bold mb-4">Titel</h2>`
-  - FALSCH: `## Titel` (Markdown)
-  - RICHTIG: `<p className="mb-4 leading-relaxed">Text mit <strong>fett</strong></p>`
-  - FALSCH: `Text mit **fett**` (Markdown)
-  - RICHTIG: `<ul className="list-disc list-inside space-y-2"><li>Punkt</li></ul>`
-  - FALSCH: `- Punkt` (Markdown)
-- Nutze ContentLayout, SEOHead, getAuthor aus den Beispielen
-- Dual Schema.org Markup: Article + FAQPage
-- Table of Contents mit 8-12 Sektionen
-- FAQ-Sektion mit mindestens 10-15 Fragen
+## 6. STRUKTUR & FORMAT - MARKDOWN (nicht TSX/JSX!)
+- **🚨 KRITISCH**: Erstelle MARKDOWN-Content, NICHT TSX/JSX-Code!
+- Das System rendert Markdown automatisch mit dem `marked` Parser
+- **VERWENDE NUR MARKDOWN-SYNTAX**:
+  - RICHTIG: `## Überschrift` (Markdown)
+  - FALSCH: `<h2>Überschrift</h2>` (JSX)
+  - RICHTIG: `**fett**` und `*kursiv*` (Markdown)
+  - FALSCH: `<strong>fett</strong>` (JSX)
+  - RICHTIG: `- Listenpunkt` (Markdown)
+  - FALSCH: `<ul><li>Listenpunkt</li></ul>` (JSX)
+  - RICHTIG: ` ```code``` ` (Markdown Code-Blöcke)
+  - FALSCH: `<code>code</code>` (JSX)
+- Strukturiere mit: ##, ###, -, *, **, \`\`\`, ---, > (Blockquotes)
+- FAQ-Sektion mit `## FAQ` Überschrift und mindestens 10-15 Fragen
+- Table of Contents wird automatisch aus Überschriften generiert
 
 ## 7. E-E-A-T SIGNALE FÜR PROFESSIONELLE AUTORITÄT
 - **Experience**: "In Projekten mit Enterprise-Kunden haben wir festgestellt...", spezifische Projekterfahrungen mit Zahlen
@@ -247,29 +248,21 @@ Du bist ein SENIOR CONSULTANT und Content-Experte mit 10+ Jahren Erfahrung in Mi
 - Keywords natürlich einbinden (keine Keyword-Stuffing)
 - Long-tail Keywords für Nischen-Szenarien
 
-## 10. VISUELLE HIERARCHIE & LESBARKEIT - THEME-AWARE STYLING!
-- **KRITISCH**: Verwende IMMER theme-aware Tailwind-Klassen, die sowohl im Light- als auch Dark-Mode funktionieren
-- **NIEMALS hardcodierte Farben** wie `bg-white`, `bg-blue-50`, `bg-gray-50`, `bg-amber-50` verwenden!
-- **STATTDESSEN verwende**:
-  - `bg-card` statt `bg-white` (für Karten/Boxen)
-  - `bg-muted` oder `bg-muted/50` statt `bg-gray-50` (für sanfte Hintergründe)
-  - `bg-primary/10` oder `bg-primary/5` statt `bg-blue-50` (für primäre Akzente)
-  - `bg-accent/10` oder `bg-accent/5` statt `bg-amber-50` (für Warnungen/Highlights)
-  - `bg-background` für Haupt-Hintergründe
-  - `text-foreground` für Haupttext, `text-muted-foreground` für sekundären Text
-  - `border-border` für Rahmen, `border-primary` für Akzente
-- **Gradient-Boxen**: `bg-gradient-to-br from-primary/10 to-accent/10` für wichtige Informationen
-- **Border-left Highlights**: `border-l-4 border-primary` für Sektionen und Callouts
-- **Cards**: `bg-card border border-border rounded-lg p-6` für strukturierte Inhalte
-- **Icons/Emojis**: sparsam für visuelle Anker
-- **Code-Blöcke**: `bg-muted/50` mit Syntax-Highlighting für technische Beispiele
-- **BEISPIEL einer korrekten Callout-Box**:
-  \`\`\`tsx
-  <div className="bg-primary/10 border-l-4 border-primary p-6 mb-6 rounded-r-lg">
-    <h3 className="text-lg font-semibold mb-2 text-foreground">Titel</h3>
-    <p className="text-muted-foreground">Inhalt...</p>
-  </div>
-  \`\`\`
+## 10. MARKDOWN FORMATIERUNG & LESBARKEIT
+- **Überschriften**: Verwende ## für Hauptsektionen (H2), ### für Untersektionen (H3)
+- **Listen**: Verwende - für ungeordnete Listen, 1. 2. 3. für geordnete Listen
+- **Hervorhebungen**:
+  - **Fett** für wichtige Begriffe und Schlüsselwörter
+  - *Kursiv* für Betonung
+  - `Code` für technische Begriffe, Befehle, API-Namen
+- **Code-Blöcke**: Verwende ``` mit Sprach-Angabe für längere Code-Beispiele
+  - ```powershell für PowerShell-Befehle
+  - ```python für Python-Code
+  - ```json für JSON-Strukturen
+- **Blockquotes**: Verwende > für wichtige Hinweise, Zusammenfassungen, Zitate
+- **Horizontale Linien**: Verwende --- um große Sektionen zu trennen
+- **Links**: [Linktext](URL) für externe Referenzen
+- **Tabellen**: Verwende Markdown-Tabellen für Vergleiche und strukturierte Daten
 
 ## 11. AKTUALITÄT & RECHERCHE - NUR VERIFIZIERTE QUELLEN!
 - **BASIS**: Informationen aus dem Transkript und bereitgestellten Research-Daten
@@ -319,7 +312,7 @@ ${userInstructions || 'Keine zusätzlichen Anweisungen.'}
 
 # DEINE AUFGABE
 
-Erstelle JETZT eine vollständige, PROFESSIONELL TIEFGEHENDE TSX-Komponente basierend auf dem Transkript. Die Komponente MUSS erfüllen:
+Erstelle JETZT einen vollständigen, PROFESSIONELL TIEFGEHENDEN Markdown-Artikel basierend auf dem Transkript. Der Artikel MUSS erfüllen:
 
 ## KERN-ANFORDERUNGEN:
 
@@ -361,18 +354,15 @@ Erstelle JETZT eine vollständige, PROFESSIONELL TIEFGEHENDE TSX-Komponente basi
    - Wann nutzen, wann nicht nutzen
    - Integrations- und Migrations-Überlegungen
 
-7. **TECHNISCHE STRUKTUR & THEME-AWARE STYLING**:
-   - Filename-würdig: Klarer Komponentenname (z.B. MicrosoftCopilotTeamsGuide)
-   - Vollständig: Alle Imports, komplette Komponente, export default
-   - Den Beispielen folgen: Gleiche Struktur, aber mit eigenem tiefem Inhalt
-   - Schema.org: Article Schema + FAQPage Schema mit 10-15 Fragen
-   - SEO-optimiert: Meta-Tags, Keywords, Canonical URL
-   - Table of Contents: 10-15 Sektionen (mehr wegen längeren Artikeln)
-   - **KRITISCH - Lesezeit**: Setze `readTime="{{AUTO_CALCULATE}}"` - dies wird automatisch berechnet!
-   - **KRITISCH - Theme-aware Farben**:
-     - NIEMALS `bg-white`, `bg-blue-50`, `bg-gray-50`, `bg-amber-50` verwenden!
-     - STATTDESSEN: `bg-card`, `bg-muted`, `bg-primary/10`, `bg-accent/10`
-     - Siehe Sektion 10 oben für alle korrekten Klassen
+7. **MARKDOWN STRUKTUR**:
+   - Klare Hierarchie mit ## für Hauptsektionen, ### für Untersektionen
+   - 10-15 Hauptsektionen mit substanziellem Inhalt
+   - Verwende Listen (-), Fett (**), Code-Blöcke (```), Blockquotes (>)
+   - FAQ-Sektion am Ende mit ## FAQ
+   - Strukturiere jede FAQ als ### Frage mit ausführlicher Antwort darunter
+   - Verwende --- für horizontale Trennlinien zwischen Sektionen wo sinnvoll
+   - Code-Beispiele in ```: PowerShell, Python, JSON, etc.
+   - Nutze > Blockquotes für wichtige Hinweise oder Zusammenfassungen
 
 8. **QUALITÄTS-CHECKS**:
    - ✓ Klingt NICHT wie AI-generierter Masseninhalt
@@ -381,17 +371,17 @@ Erstelle JETZT eine vollständige, PROFESSIONELL TIEFGEHENDE TSX-Komponente basi
    - ✓ Unterscheidet sich klar von generischen Artikeln
    - ✓ LLMs können präzise Informationen zitieren
    - ✓ **Minimum 5.000 Wörter** mit Substanz (Ziel: 5.000-8.000)
-   - ✓ Verwendet AUSSCHLIESSLICH theme-aware Tailwind-Klassen
-   - ✓ readTime="{{AUTO_CALCULATE}}" gesetzt (nicht hardcoded!)
+   - ✓ Korrekte Markdown-Syntax durchgehend verwendet
+   - ✓ Klare Struktur mit Überschriften-Hierarchie
 
-**WICHTIG**: Antworte NUR mit dem vollständigen TSX-Code. Keine Erklärungen, keine Markdown-Wrapper, keine Zusammenfassungen. Starte direkt mit "import" und ende mit "export default".
+**WICHTIG**: Antworte NUR mit dem reinen Markdown-Content. Keine Erklärungen, keine Code-Wrapper, keine Zusammenfassungen. Starte direkt mit dem Artikel-Inhalt in Markdown-Format.
 
-🚨 KRITISCH - JSX SYNTAX, KEIN MARKDOWN! 🚨
-- VERWENDE: <h2>, <h3>, <p>, <div>, <ul>, <li>, <strong>, <code>
-- NIEMALS: ##, ###, **, -, *, ` (Markdown-Syntax)
-- ALLE Inhalte müssen in JSX-Tags sein!
-- Beispiel RICHTIG: <h2 className="text-2xl font-bold mb-4">Titel</h2>
-- Beispiel FALSCH: ## Titel
+🚨 KRITISCH - MARKDOWN SYNTAX, KEIN JSX/HTML! 🚨
+- VERWENDE: ##, ###, **, -, *, ` (Markdown-Syntax)
+- NIEMALS: <h2>, <h3>, <p>, <div>, <ul>, <li>, <strong>, <code> (JSX/HTML-Tags)
+- ALLE Inhalte müssen in Markdown sein!
+- Beispiel RICHTIG: ## Titel
+- Beispiel FALSCH: <h2 className="text-2xl font-bold mb-4">Titel</h2>
 
 **DENKE DARAN**: Dies ist ein PROFESSIONELLER FACHARTIKEL für Experten und Praktiker, KEIN oberflächlicher Blog-Post. Tiefe, Use Cases und Praxisrelevanz sind KRITISCH.
 
