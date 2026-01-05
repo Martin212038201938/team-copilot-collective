@@ -68,7 +68,7 @@ $enableResearch = $input['enableResearch'] ?? false;
 /**
  * OpenAI API Call
  */
-function callOpenAI($apiKey, $prompt, $model = 'gpt-4.1-2025-04-14', $maxTokens = 24000, $temperature = 0.6) {
+function callOpenAI($apiKey, $prompt, $model = 'gpt-4o', $maxTokens = 16000, $temperature = 0.7) {
     $ch = curl_init('https://api.openai.com/v1/chat/completions');
 
     $data = [
@@ -100,13 +100,29 @@ function callOpenAI($apiKey, $prompt, $model = 'gpt-4.1-2025-04-14', $maxTokens 
 
     $response = curl_exec($ch);
     $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $curlError = curl_error($ch);
     curl_close($ch);
 
+    if ($curlError) {
+        throw new Exception('cURL Error: ' . $curlError);
+    }
+
+    if ($response === false) {
+        throw new Exception('OpenAI API Request fehlgeschlagen: Keine Antwort erhalten');
+    }
+
     if ($httpCode !== 200) {
-        throw new Exception('OpenAI API Error: ' . $response);
+        $errorData = json_decode($response, true);
+        $errorMsg = $errorData['error']['message'] ?? $response;
+        throw new Exception('OpenAI API Error (HTTP ' . $httpCode . '): ' . $errorMsg);
     }
 
     $result = json_decode($response, true);
+
+    if (!$result || !isset($result['choices'][0]['message']['content'])) {
+        throw new Exception('Ungültige OpenAI API Antwort: ' . substr($response, 0, 200));
+    }
+
     return $result;
 }
 
