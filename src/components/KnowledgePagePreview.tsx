@@ -3,8 +3,9 @@ import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getAuthor } from "@/data/authors";
 import { Linkedin, Mail } from "lucide-react";
-import { marked } from 'marked';
-import DOMPurify from 'dompurify';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
 import { useMemo } from "react";
 
 export interface KnowledgePagePreviewProps {
@@ -37,14 +38,7 @@ const KnowledgePagePreview = ({
   }
 
   // Parse markdown and extract sections
-  const { quickAnswer, tableOfContents, faqItems, contentHtml } = useMemo(() => {
-    // Configure marked
-    marked.setOptions({
-      breaks: true,
-      gfm: true,
-      headerIds: true,
-    });
-
+  const { quickAnswer, tableOfContents, faqItems, mainContent } = useMemo(() => {
     // Split content by sections
     const lines = markdownContent.split('\n');
     let quickAnswerContent = '';
@@ -128,15 +122,11 @@ const KnowledgePagePreview = ({
       });
     }
 
-    // Convert markdown to HTML
-    const mainContentHtml = DOMPurify.sanitize(marked(mainContent) as string);
-    const quickAnswerHtml = quickAnswerContent ? DOMPurify.sanitize(marked(quickAnswerContent) as string) : '';
-
     return {
-      quickAnswer: quickAnswerHtml,
+      quickAnswer: quickAnswerContent,
       tableOfContents: tocItems,
       faqItems,
-      contentHtml: mainContentHtml
+      mainContent: mainContent
     };
   }, [markdownContent]);
 
@@ -188,10 +178,13 @@ const KnowledgePagePreview = ({
                 </CardTitle>
               </CardHeader>
               <CardContent className="pt-6">
-                <div
+                <ReactMarkdown
                   className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-p:text-gray-900 prose-li:text-gray-900 prose-strong:text-gray-900"
-                  dangerouslySetInnerHTML={{ __html: quickAnswer }}
-                />
+                  remarkPlugins={[remarkGfm]}
+                  rehypePlugins={[rehypeRaw]}
+                >
+                  {quickAnswer}
+                </ReactMarkdown>
               </CardContent>
             </Card>
           </section>
@@ -199,10 +192,13 @@ const KnowledgePagePreview = ({
 
         {/* Main Content */}
         <article className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 md:p-12 mb-8">
-          <div
+          <ReactMarkdown
             className="prose prose-lg max-w-none prose-headings:scroll-mt-20 prose-headings:text-gray-900 prose-p:text-gray-900 prose-p:leading-relaxed prose-li:text-gray-900 prose-strong:text-gray-900"
-            dangerouslySetInnerHTML={{ __html: contentHtml }}
-          />
+            remarkPlugins={[remarkGfm]}
+            rehypePlugins={[rehypeRaw]}
+          >
+            {mainContent}
+          </ReactMarkdown>
         </article>
 
         {/* FAQ Section */}
@@ -216,10 +212,13 @@ const KnowledgePagePreview = ({
                     <CardTitle className="text-lg font-semibold text-gray-900">{faq.question}</CardTitle>
                   </CardHeader>
                   <CardContent className="pt-6">
-                    <div
+                    <ReactMarkdown
                       className="prose prose-base max-w-none prose-p:text-gray-800 prose-li:text-gray-800"
-                      dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(marked(faq.answer) as string) }}
-                    />
+                      remarkPlugins={[remarkGfm]}
+                      rehypePlugins={[rehypeRaw]}
+                    >
+                      {faq.answer}
+                    </ReactMarkdown>
                   </CardContent>
                 </Card>
               ))}
