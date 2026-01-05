@@ -62,7 +62,7 @@ class SecureConfig {
     private function loadFromEnvironment() {
         // Versuche aus Umgebungsvariablen zu laden
         $this->config['openai_api_key'] = getenv('OPENAI_API_KEY') ?: null;
-        $this->config['openai_model'] = getenv('OPENAI_MODEL') ?: 'gpt-4.1-2025-04-14';
+        $this->config['openai_model'] = getenv('OPENAI_MODEL') ?: 'gpt-4o';
         $this->config['openai_max_tokens'] = getenv('OPENAI_MAX_TOKENS') ?: '24000';
         $this->config['openai_temperature'] = getenv('OPENAI_TEMPERATURE') ?: '0.6';
 
