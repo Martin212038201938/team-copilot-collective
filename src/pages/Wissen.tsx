@@ -85,7 +85,67 @@ const Wissen = () => {
 ];
 
   // Combine static and dynamic topics
-  const knowledgeTopics = [...dynamicTopics, ...staticKnowledgeTopics];
+  const knowledgeTopics = [...dynamicTopics, ...staticKnowledgeTopics,
+  {
+    title: "Microsoft Copilot für Word: Der ultimative Guide",
+    description: "Entdecken Sie, wie Microsoft Copilot in Word Ihre Dokumentenerstellung revolutioniert. Mit praktischen Beispielen, Prompts und Tipps für maximale Produktivität.",
+    link: "/wissen/copilot-fuer-word",
+    badge: "Microsoft 365",
+    icon: "📝",
+    readTime: "15 Minuten",
+    lastUpdated: "05. Jan. 2025"
+  }
+,
+  {
+    title: "Sicherheit und Datenschutz bei Microsoft Copilot",
+    description: "Ein umfassender Leitfaden zu Sicherheitsaspekten, Datenschutz und Compliance-Anforderungen bei der Nutzung von Microsoft Copilot im Unternehmen.",
+    link: "/wissen/copilot-sicherheit-datenschutz",
+    badge: "Sicherheit",
+    icon: "🔒",
+    readTime: "8 Minuten",
+    lastUpdated: "11. Nov. 2025"
+  }
+,
+  {
+    title: "20 Copilot Tipps & Tricks für produktiveres Arbeiten",
+    description: "Praxiserprobte Tipps, versteckte Features und Power-User-Tricks, um das Maximum aus GitHub Copilot und Microsoft 365 Copilot herauszuholen.",
+    link: "/wissen/copilot-tipps-tricks-produktivitaet",
+    badge: "Best Practices",
+    icon: "💡",
+    readTime: "10 Minuten",
+    lastUpdated: "18. Nov. 2025"
+  }
+,
+  {
+    title: "Microsoft Copilot Agents - Der komplette Guide für Entwickler",
+    description: "Lernen Sie, wie Sie benutzerdefinierte Copilot Agents erstellen, mit Copilot Studio entwickeln und Agents in Ihrem Unternehmen einsetzen.",
+    link: "/wissen/microsoft-copilot-agents-guide",
+    badge: "Microsoft 365",
+    icon: "🤖",
+    readTime: "10 Minuten",
+    lastUpdated: "21. Nov. 2025"
+  }
+,
+  {
+    title: "Microsoft 365 Copilot - Der komplette Einsteiger-Guide 2025",
+    description: "Lernen Sie Microsoft 365 Copilot von Grund auf kennen. Praktischer Guide mit Schritt-für-Schritt Anleitungen, Prompting-Tipps und Best Practices für produktives Arbeiten.",
+    link: "/wissen/microsoft-copilot-einsteiger-guide",
+    badge: "Microsoft 365",
+    icon: "🤖",
+    readTime: "12 Minuten",
+    lastUpdated: "19. Nov. 2025"
+  }
+,
+  {
+    title: "Microsoft Copilot Memory & Personalisierung - Der komplette Guide",
+    description: "Alles über Microsoft Copilot Memory: Wie Sie Copilot personalisieren, Custom Instructions nutzen und Memory-Features optimal für Ihr Team einsetzen.",
+    link: "/wissen/microsoft-copilot-memory-guide",
+    badge: "Microsoft 365",
+    icon: "🧠",
+    readTime: "8 Minuten",
+    lastUpdated: "20. Nov. 2025"
+  }
+];
 
   return (
     <div className="min-h-screen">
