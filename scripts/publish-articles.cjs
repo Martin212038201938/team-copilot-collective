@@ -157,11 +157,11 @@ function generateTableOfContents(markdown) {
 
   for (const line of lines) {
     if (line.startsWith('## ')) {
-      const title = line.substring(3);
+      const title = line.substring(3).replace(/"/g, '\\"');
       const id = title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
       toc.push(`    { id: "${id}", title: "${title}", level: 2 }`);
     } else if (line.startsWith('### ')) {
-      const title = line.substring(4);
+      const title = line.substring(4).replace(/"/g, '\\"');
       const id = title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
       toc.push(`    { id: "${id}", title: "${title}", level: 3 }`);
     }

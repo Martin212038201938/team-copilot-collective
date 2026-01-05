@@ -121,6 +121,41 @@ const AdminContent = () => {
     }
   };
 
+  const validateDraft = (draft: Draft): { valid: boolean; errors: string[] } => {
+    const errors: string[] = [];
+
+    if (!draft.title?.trim()) errors.push('Titel fehlt');
+    if (!draft.description?.trim()) errors.push('Beschreibung fehlt');
+    if (!draft.slug?.trim()) errors.push('Slug fehlt');
+    if (!draft.content?.trim()) errors.push('Inhalt fehlt');
+    if (!draft.category?.trim()) errors.push('Kategorie fehlt');
+    if (!draft.readTime?.trim()) errors.push('Lesezeit fehlt');
+    if (!draft.keywords || draft.keywords.length === 0) errors.push('Keywords fehlen');
+
+    return { valid: errors.length === 0, errors };
+  };
+
+  const handlePublishNow = (draft: Draft) => {
+    const validation = validateDraft(draft);
+
+    if (!validation.valid) {
+      alert(`❌ Veröffentlichung nicht möglich!\n\nFolgende Pflichtfelder fehlen:\n\n${validation.errors.map(e => `• ${e}`).join('\n')}\n\nBitte bearbeite den Artikel und fülle alle Felder aus.`);
+      return;
+    }
+
+    if (confirm(`Artikel "${draft.title}" jetzt veröffentlichen?\n\nDer Artikel wird sofort auf der Website unter /wissen/${draft.slug} verfügbar sein.`)) {
+      const publishedDraft: Draft = {
+        ...draft,
+        status: 'published',
+        publishDate: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+      };
+
+      handleSave(publishedDraft);
+      alert(`✅ Artikel wurde erfolgreich veröffentlicht!\n\nDer Artikel ist jetzt unter /wissen/${draft.slug} verfügbar.`);
+    }
+  };
+
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('de-DE', {
       day: '2-digit',
@@ -293,7 +328,7 @@ const AdminContent = () => {
                   </div>
                 </div>
 
-                <div className="flex gap-2">
+                <div className="flex gap-2 flex-wrap">
                   <Button
                     onClick={() => handleEdit(draft)}
                     variant="default"
@@ -310,6 +345,17 @@ const AdminContent = () => {
                     <Eye className="w-4 h-4 mr-2" />
                     Vorschau
                   </Button>
+                  {draft.status !== 'published' && (
+                    <Button
+                      onClick={() => handlePublishNow(draft)}
+                      variant="default"
+                      size="sm"
+                      className="bg-green-600 hover:bg-green-700"
+                    >
+                      <CheckCircle className="w-4 h-4 mr-2" />
+                      Jetzt veröffentlichen
+                    </Button>
+                  )}
                   <Button
                     onClick={() => handleDelete(draft.id)}
                     variant="destructive"

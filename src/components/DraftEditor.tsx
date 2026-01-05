@@ -15,8 +15,9 @@ import {
 import { ArrowLeft, Save, Eye, Upload, Code, Sparkles, CheckCircle, Play, Edit2, Calendar, Clock } from "lucide-react";
 import { Draft, ExtractedTopic, GeneratorState } from "@/types/draft";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { marked } from 'marked';
-import DOMPurify from 'dompurify';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
 import KnowledgePagePreview from "@/components/KnowledgePagePreview";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import { fetchYouTubeTranscript, isValidYouTubeUrl } from "@/utils/youtubeTranscript";
@@ -151,8 +152,71 @@ const DraftEditor = ({ draft, onSave, onCancel, initialTab }: DraftEditorProps) 
     });
   };
 
+  const validateDraft = (draft: Draft): { valid: boolean; errors: string[] } => {
+    const errors: string[] = [];
+
+    if (!draft.title?.trim()) errors.push('Titel fehlt');
+    if (!draft.description?.trim()) errors.push('Beschreibung fehlt');
+    if (!draft.slug?.trim()) errors.push('Slug fehlt');
+    if (!draft.content?.trim()) errors.push('Inhalt fehlt');
+    if (!draft.category?.trim()) errors.push('Kategorie fehlt');
+    if (!draft.readTime?.trim()) errors.push('Lesezeit fehlt');
+    if (!draft.keywords || draft.keywords.length === 0) errors.push('Keywords fehlen');
+
+    return { valid: errors.length === 0, errors };
+  };
+
   const handleSave = () => {
     onSave(editedDraft);
+  };
+
+  const handlePublish = () => {
+    const validation = validateDraft(editedDraft);
+
+    if (!validation.valid) {
+      alert(`❌ Veröffentlichung nicht möglich!\n\nFolgende Pflichtfelder fehlen:\n\n${validation.errors.map(e => `• ${e}`).join('\n')}\n\nBitte fülle alle Felder aus und versuche es erneut.`);
+      return false;
+    }
+
+    const publishedDraft = {
+      ...editedDraft,
+      status: 'published' as const,
+      publishDate: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
+
+    setEditedDraft(publishedDraft);
+    onSave(publishedDraft);
+    alert('✅ Artikel wurde erfolgreich veröffentlicht!\n\nDer Artikel ist jetzt unter /wissen/' + editedDraft.slug + ' verfügbar.');
+    return true;
+  };
+
+  const handleSchedule = () => {
+    const validation = validateDraft(editedDraft);
+
+    if (!validation.valid) {
+      alert(`❌ Planung nicht möglich!\n\nFolgende Pflichtfelder fehlen:\n\n${validation.errors.map(e => `• ${e}`).join('\n')}\n\nBitte fülle alle Felder aus und versuche es erneut.`);
+      return false;
+    }
+
+    const selectedDate = new Date(editedDraft.publishDate);
+    const now = new Date();
+
+    if (selectedDate <= now) {
+      alert('Bitte wähle ein zukünftiges Datum für die geplante Veröffentlichung.');
+      return false;
+    }
+
+    const scheduledDraft = {
+      ...editedDraft,
+      status: 'scheduled' as const,
+      updatedAt: new Date().toISOString()
+    };
+
+    setEditedDraft(scheduledDraft);
+    onSave(scheduledDraft);
+    alert('✅ Veröffentlichung geplant!\n\nDer Artikel wird am ' + selectedDate.toLocaleString('de-DE') + ' automatisch veröffentlicht.');
+    return true;
   };
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -1187,44 +1251,14 @@ Erstelle jetzt die komplette TSX-Komponente. Der komplette Markdown-Content muss
         );
       }
 
-      // Configure marked for better rendering
-      marked.setOptions({
-        breaks: true,
-        gfm: true,
-      });
-
-      // Convert markdown to HTML with error handling
-      let rawHtml: string;
-      try {
-        rawHtml = marked(markdownContent) as string;
-      } catch (parseError) {
-        console.error('Error parsing markdown:', parseError);
-        return (
-          <div className="prose prose-lg max-w-none dark:prose-invert">
-            <p className="text-red-600">Fehler beim Parsen des Markdown-Inhalts</p>
-            <pre className="text-xs bg-gray-100 p-2 rounded mt-2 overflow-auto">
-              {parseError instanceof Error ? parseError.message : 'Unbekannter Fehler'}
-            </pre>
-          </div>
-        );
-      }
-
-      // Sanitize HTML to prevent XSS
-      let cleanHtml: string;
-      try {
-        cleanHtml = DOMPurify.sanitize(rawHtml);
-      } catch (sanitizeError) {
-        console.error('Error sanitizing HTML:', sanitizeError);
-        return (
-          <div className="prose prose-lg max-w-none dark:prose-invert">
-            <p className="text-red-600">Fehler beim Bereinigen des HTML-Inhalts</p>
-          </div>
-        );
-      }
-
       return (
         <div className="prose prose-lg max-w-none dark:prose-invert">
-          <div dangerouslySetInnerHTML={{ __html: cleanHtml }} />
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
+            rehypePlugins={[rehypeRaw]}
+          >
+            {markdownContent}
+          </ReactMarkdown>
         </div>
       );
     } catch (error) {
@@ -2565,22 +2599,7 @@ Das System analysiert automatisch die Kernthemen und erstellt passende Metadaten
 
                             {/* Schedule Publication */}
                             <Card className="border-2 border-blue-300 hover:border-blue-400 transition-colors cursor-pointer"
-                              onClick={() => {
-                                const selectedDate = new Date(editedDraft.publishDate);
-                                const now = new Date();
-
-                                if (selectedDate <= now) {
-                                  alert('Bitte wähle ein zukünftiges Datum für die geplante Veröffentlichung.');
-                                  return;
-                                }
-
-                                setEditedDraft({
-                                  ...editedDraft,
-                                  status: 'scheduled',
-                                  updatedAt: new Date().toISOString()
-                                });
-                                handleSave();
-                              }}
+                              onClick={handleSchedule}
                             >
                               <CardContent className="pt-6 text-center">
                                 <Clock className="w-10 h-10 text-blue-600 mx-auto mb-3" />
@@ -2593,16 +2612,7 @@ Das System analysiert automatisch die Kernthemen und erstellt passende Metadaten
 
                             {/* Publish Now */}
                             <Card className="border-2 border-green-300 hover:border-green-400 transition-colors cursor-pointer"
-                              onClick={() => {
-                                setEditedDraft({
-                                  ...editedDraft,
-                                  status: 'published',
-                                  publishDate: new Date().toISOString(),
-                                  updatedAt: new Date().toISOString()
-                                });
-                                handleSave();
-                                alert('✅ Artikel wurde erfolgreich veröffentlicht!');
-                              }}
+                              onClick={handlePublish}
                             >
                               <CardContent className="pt-6 text-center">
                                 <CheckCircle className="w-10 h-10 text-green-600 mx-auto mb-3" />
