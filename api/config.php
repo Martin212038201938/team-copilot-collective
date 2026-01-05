@@ -22,20 +22,23 @@ $allowed_origins = [
     'https://y-b.alwaysdata.net'
 ];
 
-$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
-if (in_array($origin, $allowed_origins)) {
-    header("Access-Control-Allow-Origin: $origin");
-    header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
-    header("Access-Control-Allow-Headers: Content-Type");
-    header("Access-Control-Allow-Credentials: true");
-}
+// Nur Headers setzen, wenn als HTTP-Endpoint aufgerufen (nicht als Library)
+if (php_sapi_name() !== 'cli') {
+    $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+    if (in_array($origin, $allowed_origins)) {
+        header("Access-Control-Allow-Origin: $origin");
+        header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+        header("Access-Control-Allow-Headers: Content-Type");
+        header("Access-Control-Allow-Credentials: true");
+    }
 
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    http_response_code(200);
-    exit;
-}
+    if (($_SERVER['REQUEST_METHOD'] ?? '') === 'OPTIONS') {
+        http_response_code(200);
+        exit;
+    }
 
-header('Content-Type: application/json');
+    header('Content-Type: application/json');
+}
 
 /**
  * Sichere Server-Konfiguration
@@ -128,15 +131,17 @@ class SecureConfig {
     }
 }
 
-// Endpoint-Handling
-$config = SecureConfig::getInstance();
+// Endpoint-Handling (nur wenn direkt als HTTP-Endpoint aufgerufen)
+if (php_sapi_name() !== 'cli' && basename($_SERVER['PHP_SELF'] ?? '') === 'config.php') {
+    $config = SecureConfig::getInstance();
 
-// Nur Status zurückgeben, NIEMALS den Key selbst!
-echo json_encode([
-    'success' => true,
-    'configured' => $config->hasOpenAIKey(),
-    'config' => $config->getPublicConfig(),
-    'message' => $config->hasOpenAIKey()
-        ? 'OpenAI API Key ist konfiguriert'
-        : 'OpenAI API Key fehlt - bitte in .env.local oder als Umgebungsvariable setzen'
-]);
+    // Nur Status zurückgeben, NIEMALS den Key selbst!
+    echo json_encode([
+        'success' => true,
+        'configured' => $config->hasOpenAIKey(),
+        'config' => $config->getPublicConfig(),
+        'message' => $config->hasOpenAIKey()
+            ? 'OpenAI API Key ist konfiguriert'
+            : 'OpenAI API Key fehlt - bitte in .env.local oder als Umgebungsvariable setzen'
+    ]);
+}
