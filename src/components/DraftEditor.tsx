@@ -152,8 +152,71 @@ const DraftEditor = ({ draft, onSave, onCancel, initialTab }: DraftEditorProps) 
     });
   };
 
+  const validateDraft = (draft: Draft): { valid: boolean; errors: string[] } => {
+    const errors: string[] = [];
+
+    if (!draft.title?.trim()) errors.push('Titel fehlt');
+    if (!draft.description?.trim()) errors.push('Beschreibung fehlt');
+    if (!draft.slug?.trim()) errors.push('Slug fehlt');
+    if (!draft.content?.trim()) errors.push('Inhalt fehlt');
+    if (!draft.category?.trim()) errors.push('Kategorie fehlt');
+    if (!draft.readTime?.trim()) errors.push('Lesezeit fehlt');
+    if (!draft.keywords || draft.keywords.length === 0) errors.push('Keywords fehlen');
+
+    return { valid: errors.length === 0, errors };
+  };
+
   const handleSave = () => {
     onSave(editedDraft);
+  };
+
+  const handlePublish = () => {
+    const validation = validateDraft(editedDraft);
+
+    if (!validation.valid) {
+      alert(`❌ Veröffentlichung nicht möglich!\n\nFolgende Pflichtfelder fehlen:\n\n${validation.errors.map(e => `• ${e}`).join('\n')}\n\nBitte fülle alle Felder aus und versuche es erneut.`);
+      return false;
+    }
+
+    const publishedDraft = {
+      ...editedDraft,
+      status: 'published' as const,
+      publishDate: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
+
+    setEditedDraft(publishedDraft);
+    onSave(publishedDraft);
+    alert('✅ Artikel wurde erfolgreich veröffentlicht!\n\nDer Artikel ist jetzt unter /wissen/' + editedDraft.slug + ' verfügbar.');
+    return true;
+  };
+
+  const handleSchedule = () => {
+    const validation = validateDraft(editedDraft);
+
+    if (!validation.valid) {
+      alert(`❌ Planung nicht möglich!\n\nFolgende Pflichtfelder fehlen:\n\n${validation.errors.map(e => `• ${e}`).join('\n')}\n\nBitte fülle alle Felder aus und versuche es erneut.`);
+      return false;
+    }
+
+    const selectedDate = new Date(editedDraft.publishDate);
+    const now = new Date();
+
+    if (selectedDate <= now) {
+      alert('Bitte wähle ein zukünftiges Datum für die geplante Veröffentlichung.');
+      return false;
+    }
+
+    const scheduledDraft = {
+      ...editedDraft,
+      status: 'scheduled' as const,
+      updatedAt: new Date().toISOString()
+    };
+
+    setEditedDraft(scheduledDraft);
+    onSave(scheduledDraft);
+    alert('✅ Veröffentlichung geplant!\n\nDer Artikel wird am ' + selectedDate.toLocaleString('de-DE') + ' automatisch veröffentlicht.');
+    return true;
   };
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -2536,22 +2599,7 @@ Das System analysiert automatisch die Kernthemen und erstellt passende Metadaten
 
                             {/* Schedule Publication */}
                             <Card className="border-2 border-blue-300 hover:border-blue-400 transition-colors cursor-pointer"
-                              onClick={() => {
-                                const selectedDate = new Date(editedDraft.publishDate);
-                                const now = new Date();
-
-                                if (selectedDate <= now) {
-                                  alert('Bitte wähle ein zukünftiges Datum für die geplante Veröffentlichung.');
-                                  return;
-                                }
-
-                                setEditedDraft({
-                                  ...editedDraft,
-                                  status: 'scheduled',
-                                  updatedAt: new Date().toISOString()
-                                });
-                                handleSave();
-                              }}
+                              onClick={handleSchedule}
                             >
                               <CardContent className="pt-6 text-center">
                                 <Clock className="w-10 h-10 text-blue-600 mx-auto mb-3" />
@@ -2564,16 +2612,7 @@ Das System analysiert automatisch die Kernthemen und erstellt passende Metadaten
 
                             {/* Publish Now */}
                             <Card className="border-2 border-green-300 hover:border-green-400 transition-colors cursor-pointer"
-                              onClick={() => {
-                                setEditedDraft({
-                                  ...editedDraft,
-                                  status: 'published',
-                                  publishDate: new Date().toISOString(),
-                                  updatedAt: new Date().toISOString()
-                                });
-                                handleSave();
-                                alert('✅ Artikel wurde erfolgreich veröffentlicht!');
-                              }}
+                              onClick={handlePublish}
                             >
                               <CardContent className="pt-6 text-center">
                                 <CheckCircle className="w-10 h-10 text-green-600 mx-auto mb-3" />
