@@ -15,8 +15,9 @@ import {
 import { ArrowLeft, Save, Eye, Upload, Code, Sparkles, CheckCircle, Play, Edit2, Calendar, Clock } from "lucide-react";
 import { Draft, ExtractedTopic, GeneratorState } from "@/types/draft";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { marked } from 'marked';
-import DOMPurify from 'dompurify';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
 import KnowledgePagePreview from "@/components/KnowledgePagePreview";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import { fetchYouTubeTranscript, isValidYouTubeUrl } from "@/utils/youtubeTranscript";
@@ -1187,44 +1188,14 @@ Erstelle jetzt die komplette TSX-Komponente. Der komplette Markdown-Content muss
         );
       }
 
-      // Configure marked for better rendering
-      marked.setOptions({
-        breaks: true,
-        gfm: true,
-      });
-
-      // Convert markdown to HTML with error handling
-      let rawHtml: string;
-      try {
-        rawHtml = marked(markdownContent) as string;
-      } catch (parseError) {
-        console.error('Error parsing markdown:', parseError);
-        return (
-          <div className="prose prose-lg max-w-none dark:prose-invert">
-            <p className="text-red-600">Fehler beim Parsen des Markdown-Inhalts</p>
-            <pre className="text-xs bg-gray-100 p-2 rounded mt-2 overflow-auto">
-              {parseError instanceof Error ? parseError.message : 'Unbekannter Fehler'}
-            </pre>
-          </div>
-        );
-      }
-
-      // Sanitize HTML to prevent XSS
-      let cleanHtml: string;
-      try {
-        cleanHtml = DOMPurify.sanitize(rawHtml);
-      } catch (sanitizeError) {
-        console.error('Error sanitizing HTML:', sanitizeError);
-        return (
-          <div className="prose prose-lg max-w-none dark:prose-invert">
-            <p className="text-red-600">Fehler beim Bereinigen des HTML-Inhalts</p>
-          </div>
-        );
-      }
-
       return (
         <div className="prose prose-lg max-w-none dark:prose-invert">
-          <div dangerouslySetInnerHTML={{ __html: cleanHtml }} />
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
+            rehypePlugins={[rehypeRaw]}
+          >
+            {markdownContent}
+          </ReactMarkdown>
         </div>
       );
     } catch (error) {
