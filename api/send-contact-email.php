@@ -36,6 +36,7 @@ $email = filter_var($data['email'], FILTER_SANITIZE_EMAIL);
 $company = !empty($data['company']) ? htmlspecialchars($data['company']) : '';
 $phone = !empty($data['phone']) ? htmlspecialchars($data['phone']) : '';
 $message = htmlspecialchars($data['message']);
+$trainingSource = !empty($data['trainingSource']) ? htmlspecialchars($data['trainingSource']) : null;
 
 // Validate email
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -61,6 +62,19 @@ $saved = saveNewsletterSubscription($email, $name, 'contact', $confirmationToken
 $to = 'martin@yellow-boat.com';
 $subject = 'Neue Kontaktanfrage von ' . $name;
 
+// Erstelle Trainings-Quellen-Info für die interne E-Mail
+$trainingSourceHtml = '';
+$trainingSourceText = '';
+if ($trainingSource) {
+    $fullUrl = 'https://copilotenschule.de' . $trainingSource;
+    $trainingSourceHtml = "
+    <div style='background-color: #e8f4f8; padding: 12px; border-left: 4px solid #0066cc; margin-bottom: 16px;'>
+        <p style='margin: 0;'><strong>📍 Anfrage von Trainings-Seite:</strong></p>
+        <p style='margin: 4px 0 0 0;'><a href='{$fullUrl}' style='color: #0066cc;'>{$fullUrl}</a></p>
+    </div>";
+    $trainingSourceText = "Anfrage von Trainings-Seite: {$fullUrl}\n\n";
+}
+
 $htmlBody = "
 <html>
 <head>
@@ -68,6 +82,7 @@ $htmlBody = "
 </head>
 <body>
     <h2>Neue Kontaktanfrage</h2>
+    {$trainingSourceHtml}
     <p><strong>Name:</strong> {$name}</p>
     <p><strong>E-Mail:</strong> {$email}</p>
     " . ($company ? "<p><strong>Unternehmen:</strong> {$company}</p>" : "") . "
@@ -85,7 +100,7 @@ $htmlBody = "
 $textBody = "
 Neue Kontaktanfrage
 
-Name: {$name}
+{$trainingSourceText}Name: {$name}
 E-Mail: {$email}
 " . ($company ? "Unternehmen: {$company}\n" : "") . "
 " . ($phone ? "Telefon: {$phone}\n" : "") . "
