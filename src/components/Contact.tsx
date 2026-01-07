@@ -3,12 +3,13 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
 import { Mail, Phone, MapPin } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 
 const Contact = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [trainingSource, setTrainingSource] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -16,6 +17,27 @@ const Contact = () => {
     phone: "",
     message: ""
   });
+
+  // Erfasse die Herkunftsseite beim Laden der Komponente
+  useEffect(() => {
+    const referrer = document.referrer;
+    if (referrer) {
+      try {
+        const url = new URL(referrer);
+        // Nur interne Seiten erfassen (copilotenschule.de oder localhost)
+        if (url.hostname.includes('copilotenschule.de') ||
+            url.hostname === 'localhost' ||
+            url.hostname === '127.0.0.1') {
+          // Speichere den Pfad (z.B. /copilot-studio oder /wissen/copilot-fuer-word)
+          if (url.pathname && url.pathname !== '/') {
+            setTrainingSource(url.pathname);
+          }
+        }
+      } catch (e) {
+        // Ungültige URL - ignorieren
+      }
+    }
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,7 +49,10 @@ const Contact = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          trainingSource: trainingSource
+        }),
       });
 
       const data = await response.json();
