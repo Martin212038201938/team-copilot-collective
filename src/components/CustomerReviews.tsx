@@ -12,6 +12,24 @@ import { useRef } from "react";
 
 const reviews = [
   {
+    name: "Lydia Möcklinghoff",
+    rating: 5,
+    date: "vor einem Monat",
+    text: "Das KI Training war super. Angenehmer Trainer. Sehr hands-on und genau zugeschnitten auf die jeweiligen Bedürfnisse der Teilnehmenden! Ich wende bereits vieles an und merke einen deutlichen Effizienzgewinn. Vielen Dank nochmal!",
+  },
+  {
+    name: "Judi Ju",
+    rating: 5,
+    date: "vor einem Monat",
+    text: "Super Training. Der Trainer war absolut kompetent und hat es geschafft, auch komplexe Inhalte locker und gut verständlich zu vermitteln. Klare Empfehlung!",
+  },
+  {
+    name: "Hannes Wenner",
+    rating: 5,
+    date: "vor einem Monat",
+    text: "Super Training! Sehr angenehme Atmosphäre und spannende Inhalte. Top aktuell, aber mit Blick auf die unterschiedlichen Wissensstände von Teilnehmenden.",
+  },
+  {
     name: "Andi W.",
     rating: 5,
     date: "vor 4 Monaten",
