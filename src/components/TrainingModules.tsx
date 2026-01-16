@@ -247,39 +247,6 @@ const TrainingModules = () => {
             );
           })}
         </div>
-
-        <div className="mt-16 relative animate-fade-in-delayed-3">
-          <div className="absolute inset-0 bg-gradient-to-r from-accent/10 via-primary/10 to-accent/10 rounded-2xl blur-xl" />
-          <div className="relative bg-gradient-to-br from-card/80 to-card/60 backdrop-blur-xl rounded-2xl p-8 md:p-12 text-center border border-border/50 shadow-xl">
-            <h3 className="text-2xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70">
-              Alle Trainings: Hands-on & praxisnah
-            </h3>
-            <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-8">
-              {[
-                { value: "50%", label: "Praktische Übungen" },
-                { value: "100%", label: "Microsoft Tools" },
-                { value: "50%", label: "Fundierte Theorie" }
-              ].map((stat, idx) => (
-                <div key={idx} className="group flex flex-col items-center hover:scale-110 transition-transform duration-300 cursor-default">
-                  <span className="text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-accent to-primary mb-2 group-hover:scale-110 transition-transform">
-                    {stat.value}
-                  </span>
-                  <span className="text-muted-foreground font-medium group-hover:text-foreground transition-colors">
-                    {stat.label}
-                  </span>
-                </div>
-              ))}
-            </div>
-            <Button
-              size="lg"
-              onClick={scrollToContact}
-              className="group relative overflow-hidden bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
-            >
-              <span className="relative z-10">Jetzt unverbindlich anfragen</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-            </Button>
-          </div>
-        </div>
       </div>
     </section>
   );

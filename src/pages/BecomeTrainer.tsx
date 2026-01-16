@@ -11,8 +11,8 @@ const trainerPaths = [
     id: "praktiker",
     icon: GraduationCap,
     title: "KI-Praktiker ohne Trainer-Erfahrung",
-    subtitle: "Wir machen dich zum Trainer",
-    description: "Du bist erfahren in der praktischen Anwendung von KI im Microsoft-Umfeld, hast aber noch keine Trainer-Erfahrung?",
+    subtitle: "Wir bilden Sie zum Trainer aus",
+    description: "Sie sind erfahren in der praktischen Anwendung von KI im Microsoft-Umfeld, haben aber noch keine Trainer-Erfahrung?",
     benefits: [
       "Kostenfreie Ausbildung zum KI-Trainer",
       "Bereitstellung aller Kursmaterialien",
@@ -29,14 +29,14 @@ const trainerPaths = [
     icon: Briefcase,
     title: "Erfahrener KI-Trainer",
     subtitle: "Attraktives Freelancer-Modell",
-    description: "Du bist bereits ein erfahrener KI-Trainer und möchtest dich auf das Training konzentrieren?",
+    description: "Sie sind bereits ein erfahrener KI-Trainer und möchten sich auf das Training konzentrieren?",
     benefits: [
       "Wir übernehmen die Kundenakquise",
       "Organisation und Eventmanagement",
       "Location- und Verpflegungsorganisation",
       "Kommunikation mit Teilnehmern",
       "Komplette Abrechnung und Administration",
-      "Du fokussierst auf exzellente Trainings"
+      "Sie fokussieren sich auf exzellente Trainings"
     ],
     highlight: "Attraktive Konditionen - volle Unterstützung",
     color: "from-green-500/10 to-green-600/10"
@@ -46,7 +46,7 @@ const trainerPaths = [
     icon: Building2,
     title: "Festanstellung als KI-Trainer",
     subtitle: "Vollzeit / Teilzeit",
-    description: "Du suchst eine langfristige Perspektive als festangestellter KI-Trainer?",
+    description: "Sie suchen eine langfristige Perspektive als festangestellter KI-Trainer?",
     benefits: [
       "Unbefristeter Arbeitsvertrag",
       "Attraktives Gehaltspaket",
@@ -86,7 +86,7 @@ const BecomeTrainer = () => {
                 Trainer werden bei copilotenschule.de
               </h1>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto animate-fade-in-delayed">
-                Werde Teil unseres Teams und bringe deine KI-Expertise in die
+                Werden Sie Teil unseres Teams und bringen Sie Ihre KI-Expertise in die
                 Unternehmen. Wir suchen praxiserfahrene KI-Umsetzer, die ihr Wissen
                 weitergeben möchten – mit und ohne Trainer-Erfahrung.
               </p>
@@ -104,7 +104,7 @@ const BecomeTrainer = () => {
                 Drei Wege zu uns
               </h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                Wähle den Weg, der zu deiner aktuellen Situation und deinen Zielen passt
+                Wählen Sie den Weg, der zu Ihrer aktuellen Situation und Ihren Zielen passt
               </p>
             </div>
 
@@ -203,7 +203,7 @@ const BecomeTrainer = () => {
                     </div>
 
                     <div>
-                      <h3 className="text-xl font-bold mb-3">Deine Aufgaben</h3>
+                      <h3 className="text-xl font-bold mb-3">Ihre Aufgaben</h3>
                       <ul className="space-y-2">
                         {[
                           "Durchführung von praxisorientierten KI-Trainings für Microsoft 365 Copilot, GitHub Copilot und Copilot Studio",
@@ -222,7 +222,7 @@ const BecomeTrainer = () => {
                     </div>
 
                     <div>
-                      <h3 className="text-xl font-bold mb-3">Dein Profil</h3>
+                      <h3 className="text-xl font-bold mb-3">Ihr Profil</h3>
                       <ul className="space-y-2">
                         {[
                           "Fundierte Praxiserfahrung mit KI-Tools, insbesondere im Microsoft-Ökosystem",
@@ -280,8 +280,8 @@ const BecomeTrainer = () => {
                 Jetzt Kontakt aufnehmen
               </h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                Egal für welchen Weg du dich entscheidest – wir freuen uns auf deine Bewerbung
-                und den Austausch mit dir!
+                Egal für welchen Weg Sie sich entscheiden – wir freuen uns auf Ihre Bewerbung
+                und den Austausch mit Ihnen!
               </p>
             </div>
             <TrainerContactForm />
