@@ -19,6 +19,7 @@ const UeberUns = () => {
         "logo": "https://copilotenschule.de/og-image.jpg",
         "description": "copilotenschule.de ist eine spezialisierte Weiterbildungs- und Enablement-Plattform für den professionellen Einsatz von Microsoft Copilot in der täglichen Büroarbeit.",
         "foundingDate": "2024",
+        "foundingDate": "2025",
         "founder": {
           "@type": "Person",
           "name": "Martin Lang"
@@ -83,6 +84,7 @@ const UeberUns = () => {
         "url": "https://copilotenschule.de",
         "description": "Spezialisierte Akademie für Microsoft Copilot Trainings und Enablement",
         "foundingDate": "2024",
+        "foundingDate": "2025",
         "parentOrganization": {
           "@id": "https://yellow-boat.com/#organization"
         },
@@ -323,12 +325,17 @@ const UeberUns = () => {
                 <p className="text-muted-foreground">
                   Seit 2023 liegt ein starker Fokus auf praxisnahen Trainings und Einführungsprojekten
                   rund um LLM, agentische Prozessautomatisierung und Veränderungen der Workflows durch KI.
+                <h3 className="text-xl font-semibold mb-2">Fokus auf Copilot-Trainings</h3>
+                <p className="text-muted-foreground">
+                  Seit 2023 liegt ein starker Fokus auf praxisnahen Copilot-Anwendertrainings
+                  für Microsoft 365 Copilot und GitHub Copilot.
                 </p>
               </div>
 
               <div className="relative">
                 <div className="absolute -left-10 w-4 h-4 bg-accent rounded-full"></div>
                 <div className="font-bold text-lg text-accent mb-1">2024</div>
+                <div className="font-bold text-lg text-accent mb-1">2025</div>
                 <h3 className="text-xl font-semibold mb-2">Gründung copilotenschule.de</h3>
                 <p className="text-muted-foreground">
                   Gründung der copilotenschule.de als spezialisierte Akademie mit klarem Fokus
@@ -391,6 +398,16 @@ const UeberUns = () => {
               <div className="text-center p-6 bg-card rounded-xl border border-border/50">
                 <div className="text-3xl font-bold text-primary mb-2">DACH</div>
                 <div className="text-sm text-muted-foreground">Trainer verteilt</div>
+                <div className="text-3xl font-bold text-primary mb-2">2025</div>
+                <div className="text-sm text-muted-foreground">Gründung copilotenschule.de</div>
+              </div>
+              <div className="text-center p-6 bg-card rounded-xl border border-border/50">
+                <div className="text-3xl font-bold text-primary mb-2">DACH</div>
+                <div className="text-sm text-muted-foreground">Region</div>
+              </div>
+              <div className="text-center p-6 bg-card rounded-xl border border-border/50">
+                <div className="text-3xl font-bold text-primary mb-2">Köln</div>
+                <div className="text-sm text-muted-foreground">Standort</div>
               </div>
             </div>
           </div>
@@ -408,6 +425,17 @@ const UeberUns = () => {
                   Kontakt aufnehmen
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
+              </Button>
+              <Button asChild variant="outline" size="lg">
+                <a
+                  href="https://yellow-boat.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2"
+                >
+                  Yellow-Boat Consulting
+                  <ExternalLink className="w-4 h-4" />
+                </a>
               </Button>
             </div>
           </div>

@@ -149,6 +149,7 @@ export const generateTrainingSchemas = (modules: TrainingModule[]) => {
         "logo": "https://copilotenschule.de/og-image.jpg",
         "description": "copilotenschule.de ist eine spezialisierte Weiterbildungs- und Enablement-Plattform für den professionellen Einsatz von Microsoft Copilot in der täglichen Büroarbeit. Wir befähigen Wissensarbeiter, Teams und Organisationen, Microsoft Copilot produktiv, sicher und wertschöpfend im Arbeitsalltag einzusetzen.",
         "foundingDate": "2024",
+        "foundingDate": "2025",
         "slogan": "Büroarbeit durch Microsoft Copilot messbar produktiver, wirksamer und menschlicher machen",
         "knowsAbout": [
           "Microsoft Copilot",
