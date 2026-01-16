@@ -26,6 +26,7 @@ export const authors: Record<string, Author> = {
       'Agile Transformation seit 2011',
       'Change Management'
     ],
+    bio: 'Martin Lang ist Gründer der Yellow-Boat Consulting (2011) und der copilotenschule.de (2024). Seit über einem Jahrzehnt realisiert er Agile Trainings und Digitalisierungsprojekte in Konzernen und im Mittelstand. Als Microsoft Copilot Experte befähigt er Wissensarbeiter, Teams und Organisationen, Microsoft Copilot produktiv, sicher und wertschöpfend im Arbeitsalltag einzusetzen. Sein praxisorientierter Trainingsansatz verbindet reale Arbeitsprozesse mit direkt anwendbaren Workflows.',
     bio: 'Martin Lang ist Gründer der Yellow-Boat Consulting (2011) und der copilotenschule.de (2025). Seit über einem Jahrzehnt realisiert er Agile Trainings und Digitalisierungsprojekte in Konzernen und im Mittelstand. Als Microsoft Copilot Experte befähigt er Wissensarbeiter, Teams und Organisationen, Microsoft Copilot produktiv, sicher und wertschöpfend im Arbeitsalltag einzusetzen. Sein praxisorientierter Trainingsansatz verbindet reale Arbeitsprozesse mit direkt anwendbaren Workflows.',
     image: '/images/authors/martin-lang.svg',
     linkedin: 'https://www.linkedin.com/in/martin-lang',

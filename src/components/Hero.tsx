@@ -44,6 +44,7 @@ const Hero = () => {
             </p>
             <p className="text-lg text-muted-foreground leading-relaxed animate-fade-in-delayed-2">
               Unser praxisorientierter Trainingsansatz verbindet reale Arbeitsprozesse mit direkt anwendbaren
+              Workflows. Finden Sie relevante Use Cases für sich und setzen Sie diese sicher und einfach mit Copilot um –
               Workflows. Finde relevante Use Cases für dich und setze sie sicher und einfach mit Copilot um –
               als Inhouse-Schulung, Remote-Training oder in unseren Räumen in Köln.
             </p>
