@@ -409,17 +409,6 @@ const UeberUns = () => {
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
-              <Button asChild variant="outline" size="lg">
-                <a
-                  href="https://yellow-boat.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2"
-                >
-                  Yellow-Boat Consulting
-                  <ExternalLink className="w-4 h-4" />
-                </a>
-              </Button>
             </div>
           </div>
         </div>
