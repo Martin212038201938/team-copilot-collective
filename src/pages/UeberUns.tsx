@@ -320,8 +320,7 @@ const UeberUns = () => {
                 <div className="font-bold text-lg text-primary mb-1">2023</div>
                 <h3 className="text-xl font-semibold mb-2">Fokus auf Copilot-Trainings</h3>
                 <p className="text-muted-foreground">
-                  Seit 2023 liegt ein starker Fokus auf praxisnahen Copilot-Anwendertrainings
-                  für Microsoft 365 Copilot und GitHub Copilot.
+                  Seit 2023 liegt ein starker Fokus auf praxisnahen Copilot-Anwendertrainings für Microsoft 365 Copilot und GitHub Copilot.
                 </p>
               </div>
 
