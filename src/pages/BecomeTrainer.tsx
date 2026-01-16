@@ -196,9 +196,10 @@ const BecomeTrainer = () => {
                     <div>
                       <h3 className="text-xl font-bold mb-3">Über uns</h3>
                       <p className="text-muted-foreground">
-                        copilotenschule.de ist spezialisiert auf praxisorientierte Microsoft Copilot Trainings
-                        für Unternehmen. Wir helfen Teams dabei, KI-Tools erfolgreich in ihren Arbeitsalltag zu
-                        integrieren – mit 80% praktischen Übungen und echten Use Cases.
+                        copilotenschule.de ist eine spezialisierte Weiterbildungsplattform für den professionellen
+                        Einsatz von Microsoft Copilot im Arbeitsalltag. Wir helfen Teams dabei, Copilot produktiv
+                        und sicher in ihre Arbeitsprozesse zu integrieren – mit praxisorientierten Trainings und
+                        echten Use Cases.
                       </p>
                     </div>
 
