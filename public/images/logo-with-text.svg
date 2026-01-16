@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 120" width="100" height="120">
+  <!-- Blue background square -->
+  <rect x="0" y="0" width="100" height="100" rx="8" ry="8" fill="#488BCB"/>
+
+  <!-- Orange airplane icon (rotated 45 degrees, pointing upper-right) -->
+  <g transform="translate(50, 45) rotate(-45)">
+    <!-- Main body -->
+    <ellipse cx="0" cy="0" rx="7" ry="24" fill="#F5B97E"/>
+    <!-- Right wing -->
+    <ellipse cx="16" cy="4" rx="19" ry="6" fill="#F5B97E"/>
+    <!-- Left wing -->
+    <ellipse cx="-16" cy="4" rx="19" ry="6" fill="#F5B97E"/>
+    <!-- Tail fin -->
+    <ellipse cx="0" cy="19" rx="10" ry="4" fill="#F5B97E"/>
+  </g>
+
+  <!-- Text "Copilotenschule" -->
+  <text x="50" y="115" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="500" fill="#F5B97E">Copilotenschule</text>
+</svg>
