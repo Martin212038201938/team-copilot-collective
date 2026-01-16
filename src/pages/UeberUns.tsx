@@ -319,10 +319,10 @@ const UeberUns = () => {
               <div className="relative">
                 <div className="absolute -left-10 w-4 h-4 bg-primary/80 rounded-full"></div>
                 <div className="font-bold text-lg text-primary mb-1">2023</div>
-                <h3 className="text-xl font-semibold mb-2">Schrittweise Umstellung auf "AI-First"</h3>
+                <h3 className="text-xl font-semibold mb-2">Fokus auf KI-unterstützte Büroarbeit</h3>
                 <p className="text-muted-foreground">
-                  Seit 2023 liegt ein starker Fokus auf praxisnahen Copilot-Anwendertrainings
-                  für Microsoft 365 Copilot und GitHub Copilot.
+                  Seit 2023 liegt ein starker Fokus auf praxisnahen Trainings und Einführungsprojekten
+                  rund um LLM, agentische Prozessautomatisierung und Veränderungen der Workflows durch KI.
                 </p>
               </div>
 

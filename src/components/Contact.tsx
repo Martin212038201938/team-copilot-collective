@@ -93,7 +93,7 @@ const Contact = () => {
             Kontakt
           </span>
           <h2 className="text-4xl font-bold mt-6 mb-4">
-            Starten Sie Ihre KI-Reise
+            Copilot nutzen und nicht nur damit spielen
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Lassen Sie uns gemeinsam das passende Training für Ihr Team entwickeln. 
