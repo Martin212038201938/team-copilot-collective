@@ -18,7 +18,6 @@ const UeberUns = () => {
         "url": "https://copilotenschule.de",
         "logo": "https://copilotenschule.de/og-image.jpg",
         "description": "copilotenschule.de ist eine spezialisierte Weiterbildungs- und Enablement-Plattform für den professionellen Einsatz von Microsoft Copilot in der täglichen Büroarbeit.",
-        "foundingDate": "2024",
         "foundingDate": "2025",
         "founder": {
           "@type": "Person",
@@ -83,7 +82,6 @@ const UeberUns = () => {
         "name": "copilotenschule.de",
         "url": "https://copilotenschule.de",
         "description": "Spezialisierte Akademie für Microsoft Copilot Trainings und Enablement",
-        "foundingDate": "2024",
         "foundingDate": "2025",
         "parentOrganization": {
           "@id": "https://yellow-boat.com/#organization"
@@ -259,7 +257,6 @@ const UeberUns = () => {
                   <li>• CIOs / Head of IT</li>
                   <li>• Head of HR</li>
                   <li>• Head of Learning & Development</li>
-                  <li>• KI-affine Teamleitung</li>
                   <li>• Agile Coaches & Transformation Leads</li>
                 </ul>
               </div>
@@ -321,10 +318,6 @@ const UeberUns = () => {
               <div className="relative">
                 <div className="absolute -left-10 w-4 h-4 bg-primary/80 rounded-full"></div>
                 <div className="font-bold text-lg text-primary mb-1">2023</div>
-                <h3 className="text-xl font-semibold mb-2">Fokus auf KI-unterstützte Büroarbeit</h3>
-                <p className="text-muted-foreground">
-                  Seit 2023 liegt ein starker Fokus auf praxisnahen Trainings und Einführungsprojekten
-                  rund um LLM, agentische Prozessautomatisierung und Veränderungen der Workflows durch KI.
                 <h3 className="text-xl font-semibold mb-2">Fokus auf Copilot-Trainings</h3>
                 <p className="text-muted-foreground">
                   Seit 2023 liegt ein starker Fokus auf praxisnahen Copilot-Anwendertrainings
@@ -334,7 +327,6 @@ const UeberUns = () => {
 
               <div className="relative">
                 <div className="absolute -left-10 w-4 h-4 bg-accent rounded-full"></div>
-                <div className="font-bold text-lg text-accent mb-1">2024</div>
                 <div className="font-bold text-lg text-accent mb-1">2025</div>
                 <h3 className="text-xl font-semibold mb-2">Gründung copilotenschule.de</h3>
                 <p className="text-muted-foreground">
@@ -388,16 +380,6 @@ const UeberUns = () => {
                 <div className="text-sm text-muted-foreground">Gründung Yellow-Boat</div>
               </div>
               <div className="text-center p-6 bg-card rounded-xl border border-border/50">
-                <div className="text-3xl font-bold text-primary mb-2">2024</div>
-                <div className="text-sm text-muted-foreground">Gründung copilotenschule.de</div>
-              </div>
-              <div className="text-center p-6 bg-card rounded-xl border border-border/50">
-                <div className="text-3xl font-bold text-primary mb-2">Köln</div>
-                <div className="text-sm text-muted-foreground">Firmensitz</div>
-              </div>
-              <div className="text-center p-6 bg-card rounded-xl border border-border/50">
-                <div className="text-3xl font-bold text-primary mb-2">DACH</div>
-                <div className="text-sm text-muted-foreground">Trainer verteilt</div>
                 <div className="text-3xl font-bold text-primary mb-2">2025</div>
                 <div className="text-sm text-muted-foreground">Gründung copilotenschule.de</div>
               </div>
