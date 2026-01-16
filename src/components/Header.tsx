@@ -14,9 +14,8 @@ const Header = () => {
     <header className="fixed top-0 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border z-50">
       <div className="container mx-auto px-4">
         <nav className="flex items-center justify-between h-16">
-          <Link to="/" className="flex items-center space-x-2">
-            <img src="/images/logo.svg" alt="Copilotenschule Logo" className="w-10 h-10" />
-            <span className="text-xl font-bold text-foreground">copilotenschule.de</span>
+          <Link to="/" className="flex items-center">
+            <img src="/images/logo.png" alt="Copilotenschule Logo" className="h-12 w-auto object-contain" />
           </Link>
 
           <div className="hidden md:flex items-center space-x-8">
