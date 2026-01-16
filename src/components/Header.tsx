@@ -52,6 +52,12 @@ const Header = () => {
               Wissen
             </Link>
             <Link
+              to="/ueber-uns"
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Über uns
+            </Link>
+            <Link
               to="/trainer-werden"
               className="text-muted-foreground hover:text-foreground transition-colors"
             >

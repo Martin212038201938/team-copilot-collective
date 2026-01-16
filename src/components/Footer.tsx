@@ -12,8 +12,16 @@ const Footer = () => {
               </div>
               <span className="text-xl font-bold">copilotenschule.de</span>
             </div>
-            <p className="text-muted-foreground text-sm">
-              Professionelle Microsoft Copilot Inhouse-Trainings für Ihr Unternehmen.
+            <p className="text-muted-foreground text-sm mb-3">
+              Spezialisierte Weiterbildungs- und Enablement-Plattform für Microsoft Copilot.
+              Praxisorientierte Trainings für Wissensarbeiter, Teams und Organisationen.
+            </p>
+            <p className="text-muted-foreground text-xs">
+              Eine Marke der{" "}
+              <a href="https://yellow-boat.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+                Yellow-Boat Consulting
+              </a>{" "}
+              (gegr. 2011)
             </p>
           </div>
 
@@ -30,9 +38,10 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4">Unternehmen</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><a href="#team" className="hover:text-primary transition-colors">Unser Team</a></li>
+              <li><Link to="/ueber-uns" className="hover:text-primary transition-colors">Über uns</Link></li>
               <li><a href="#benefits" className="hover:text-primary transition-colors">Vorteile</a></li>
               <li><a href="#contact" className="hover:text-primary transition-colors">Kontakt</a></li>
+              <li><a href="https://yellow-boat.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Yellow-Boat Consulting</a></li>
             </ul>
           </div>
 
@@ -48,14 +57,15 @@ const Footer = () => {
 
         <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-muted-foreground">
-            © 2025 copilotenschule.de. Alle Rechte vorbehalten.
+            © 2025 copilotenschule.de – Eine Marke der{" "}
+            <a href="https://yellow-boat.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Yellow-Boat Consulting</a>.
+            Alle Rechte vorbehalten.
           </p>
           <div className="flex gap-6 text-sm text-muted-foreground">
+            <Link to="/ueber-uns" className="hover:text-primary transition-colors">Über uns</Link>
             <Link to="/impressum" className="hover:text-primary transition-colors">Impressum</Link>
             <Link to="/impressum" className="hover:text-primary transition-colors">Datenschutz</Link>
-            <a href="#" className="hover:text-primary transition-colors">AGB</a>
             <Link to="/admin" className="hover:text-primary transition-colors">Admin Login</Link>
-            <a href="https://yellow-boat.org/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Mitarbeiter Login</a>
           </div>
         </div>
       </div>

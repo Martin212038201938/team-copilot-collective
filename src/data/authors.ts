@@ -17,15 +17,16 @@ export const authors: Record<string, Author> = {
   'martin-lang': {
     id: 'martin-lang',
     name: 'Martin Lang',
-    role: 'Agile Trainer & KI-Experte',
+    role: 'Gründer & Microsoft Copilot Experte',
     expertise: [
-      'Microsoft Copilot Training',
-      'KI-unterstützte Büroarbeit',
-      'Agile Methoden seit 2016',
-      'New Work & Future Work',
-      'Microsoft 365 & Teams Kollaboration'
+      'Microsoft Copilot Enablement',
+      'Microsoft 365 Copilot Training',
+      'Copilot Rollout & Adoption',
+      'KI-gestützte Büroarbeit',
+      'Agile Transformation seit 2011',
+      'Change Management'
     ],
-    bio: 'Martin Lang ist Agile Trainer seit 2016, Mitgründer von bNear.io (einer App für Kollaboration in Microsoft 365 und Microsoft Teams) sowie Autor und Keynote Speaker zu den Themen KI in der Arbeitswelt, KI-unterstützte Büroarbeit und Future Work. Er hat mehrere Startups im Trainingsbereich gegründet und unterstützt Unternehmen bei der erfolgreichen Einführung von Microsoft Copilot und KI-Tools.',
+    bio: 'Martin Lang ist Gründer der Yellow-Boat Consulting (2011) und der copilotenschule.de (2025). Seit über einem Jahrzehnt realisiert er Agile Trainings und Digitalisierungsprojekte in Konzernen und im Mittelstand. Als Microsoft Copilot Experte befähigt er Wissensarbeiter, Teams und Organisationen, Microsoft Copilot produktiv, sicher und wertschöpfend im Arbeitsalltag einzusetzen. Sein praxisorientierter Trainingsansatz verbindet reale Arbeitsprozesse mit direkt anwendbaren Workflows.',
     image: '/images/authors/martin-lang.svg',
     linkedin: 'https://www.linkedin.com/in/martin-lang',
     email: 'martin@yellow-boat.com'
