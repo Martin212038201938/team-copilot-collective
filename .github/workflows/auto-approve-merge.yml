@@ -1,5 +1,4 @@
-name: Auto Approve and Merge Claude PRs
-on:
+name: Auto Merge Claude PRs (manual approval required)n:
   pull_request:
     types: [opened, synchronize, reopened]
   pull_request_review:
@@ -13,7 +12,7 @@ permissions:
   checks: read
   statuses: read
 jobs:
-  auto-approve-merge:
+  auto-auto-merge-merge:
     runs-on: ubuntu-latest
     if: |
       github.event.pull_request.head.ref != null &&
@@ -27,10 +26,6 @@ jobs:
         run: |
           echo "PR branch: ${{ github.event.pull_request.head.ref }}"
           echo "Branch is from Claude, proceeding with auto-approve and merge"
-      - name: Approve PR
-        uses: hmarr/auto-approve-action@v4
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Wait for checks
         uses: lewagon/wait-on-check-action@v1.3.4
         with:
