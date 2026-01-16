@@ -3,34 +3,34 @@ import { Target, Lightbulb, Users, Zap, Shield, Award } from "lucide-react";
 
 const benefits = [
   {
-    icon: Shield,
-    title: "100% Microsoft Ökosystem - DSGVO-konform",
-    description: "Wir trainieren ausschließlich Microsoft-eigene KI-Tools: Microsoft 365 Copilot, GitHub Copilot, Copilot Studio und Power Platform. Keine unsicheren Drittanbieter-Tools, die in Ihrem Unternehmen nicht zugelassen sind. Alle Lösungen sind DSGVO-konform und entsprechen höchsten Sicherheitsstandards für den Unternehmenseinsatz."
+    icon: Target,
+    title: "Fokus auf reale Büro-Workflows",
+    description: "Der sichere und leistungsstarke Copilot, mit dem Sie Dinge tun können, die bisher nicht möglich waren – und der Ihnen Arbeit abnimmt, auf die Sie keine Lust haben. Keine Tool-Demos von Anwendungen, die in Ihrem Unternehmen gar nicht freigegeben sind, sondern konsequenter Fokus auf Ihre realen Arbeitsprozesse."
   },
   {
-    icon: Target,
-    title: "50% praktische Übungen, 50% fundierte Theorie",
-    description: "Ausgewogene Balance zwischen theoretischem Fundament und praktischer Anwendung. Wir arbeiten hands-on in den Microsoft-Tools mit realen Business-Szenarien aus Ihrem Arbeitsalltag: E-Mails verfassen, Excel-Analysen erstellen, Code entwickeln, Meetings protokollieren, Workflows automatisieren. Jeder Teilnehmer übt aktiv und entwickelt sofort einsetzbare Lösungen auf Basis fundierter Kenntnisse."
+    icon: Shield,
+    title: "Tiefe Microsoft Copilot Expertise",
+    description: "Herstellernahe Expertise zu Microsoft Copilot mit klarem Fokus auf Adoption und Nutzungsreife. Wir befähigen Ihre Mitarbeiter, Microsoft Copilot compliant, sicher und hoch effizient in der täglichen Arbeit zu nutzen. Alle Lösungen sind DSGVO-konform und entsprechen höchsten Sicherheitsstandards."
   },
   {
     icon: Lightbulb,
-    title: "Reale Use Cases aus Ihrem Unternehmenskontext",
-    description: "Sie trainieren mit konkreten Aufgaben aus Ihrer täglichen Praxis: Management-Reports erstellen, Produktcode generieren, Customer-Service automatisieren, Datenanalysen durchführen, Projektdokumentation erstellen. Keine generischen Beispiele – Sie arbeiten mit Ihren echten Prozessen und entwickeln individuelle Prompt-Bibliotheken für Ihr Team."
+    title: "Training, Coaching & Organisationsperspektive",
+    description: "Kombination aus Training, Coaching und ganzheitlicher Organisationsperspektive. Wir begleiten Copilot-Rollouts inklusive Governance, Use-Case-Definition und Adoption. Individuelle Begleitung von Führungskräften, Produkt- und Transformationsteams zur Etablierung nachhaltiger, Copilot-gestützter Arbeitsweisen."
   },
   {
     icon: Zap,
-    title: "Learning by Doing - sofort anwendbar",
-    description: "Jeder Teilnehmer arbeitet aktiv an eigenen Use Cases und verlässt das Training mit fertigen, getesteten Workflows, Prompts und Automatisierungen. Kein passives Zuhören, sondern intensive Praxisphasen mit direktem Feedback. Sie können die erlernten Techniken ab dem nächsten Arbeitstag produktiv einsetzen und messbare Zeitersparnis realisieren."
+    title: "Praxisorientierter Trainingsansatz",
+    description: "Unser praxisorientierter Trainingsansatz verbindet reale Arbeitsprozesse mit direkt anwendbaren Workflows. Jeder Teilnehmer verlässt das Training mit fertigen, getesteten Workflows und Prompts. Die erlernten Techniken können ab dem nächsten Arbeitstag produktiv eingesetzt werden."
   },
   {
     icon: Users,
-    title: "Maßgeschneidert auf Ihre Teams und Rollen",
-    description: "Individuelle Trainingskonzepte für verschiedene Zielgruppen: Entwickler erhalten GitHub Copilot Deep-Dives, Business User lernen M365 Copilot für Produktivität, IT-Teams schulen wir in Copilot Studio und Governance. Wir holen jeden Teilnehmer auf seinem Kenntnisstand ab – vom Einsteiger bis zum Power User – und bringen Ihr gesamtes Team auf das nächste Level."
+    title: "Für Wissensarbeiter, Teams & Organisationen",
+    description: "Maßgeschneiderte Trainingskonzepte für Büroangestellte, Wissensarbeiter, Teams und Führungskräfte. Wir holen jeden Teilnehmer auf seinem Kenntnisstand ab und führen strukturiert zum gewünschten Zielniveau. Zielgruppe sind wissensintensive Organisationen mit 50–10.000 Mitarbeitenden im DACH-Raum."
   },
   {
     icon: Award,
-    title: "15+ Jahre Microsoft-Expertise und Change-Erfahrung",
-    description: "Unsere Trainer verfügen über langjährige Praxiserfahrung in Microsoft-Technologien, Cloud-Architektur, Softwareentwicklung und Change Management. Wir haben hunderte Teams erfolgreich geschult und kennen die typischen Herausforderungen bei der KI-Einführung. Sie profitieren von Best Practices, Lessons Learned und praxiserprobten Strategien für nachhaltige Adoption."
+    title: "Über ein Jahrzehnt Erfahrung",
+    description: "Die copilotenschule.de ist eine Marke der 2011 gegründeten Yellow-Boat Consulting. Seit über einem Jahrzehnt realisieren wir Agile Trainings und Digitalisierungsprojekte in Konzernen und im Mittelstand. Seit 2023 liegt ein starker Fokus auf praxisnahen Copilot-Anwendertrainings."
   }
 ];
 
@@ -44,19 +44,20 @@ const Benefits = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16 animate-fade-in">
           <span className="px-4 py-2 bg-gradient-to-r from-accent/90 to-primary/80 text-white rounded-full text-sm font-medium shadow-lg hover:scale-105 transition-transform duration-300 inline-block">
-            Unser USP
+            Unsere Alleinstellungsmerkmale
           </span>
           <h2 className="text-4xl font-bold mt-6 mb-4 animate-slide-up">
-            Warum Microsoft Copilot Trainings von copilotenschule.de?
+            Warum copilotenschule.de der richtige Partner für Ihr Unternehmen ist
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-4 animate-fade-in-delayed">
-            Wir sind spezialisiert auf Microsoft-Technologien und trainieren ausschließlich Microsoft-eigene KI-Lösungen.
-            Keine Tool-Vielfalt mit unsicheren Drittanbietern, sondern fokussierte Expertise in Microsoft 365 Copilot,
-            GitHub Copilot, Copilot Studio und der Power Platform.
+            Wir positionieren uns als praxisfokussierter Qualitätsanbieter mit tiefem Verständnis für reale Büroarbeit
+            und Organisationskontexte. Gegenüber generischen Kursanbietern differenzieren wir uns durch konsequente
+            Praxisorientierung und konkrete Workflow-Integration.
           </p>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto animate-fade-in-delayed-2">
-            Jedes Training kombiniert fundiertes technisches Know-how mit praktischen Übungen und echten Business-Szenarien.
-            Das Ergebnis: Ihre Teams setzen KI produktiv ein – sicher, DSGVO-konform und messbar effektiv.
+            Unsere Mission: Büroarbeit durch den gezielten Einsatz von Microsoft Copilot messbar produktiver,
+            wirksamer und menschlicher zu machen. Das Ergebnis: Ihre Teams setzen KI produktiv ein – sicher,
+            DSGVO-konform und mit direktem Mehrwert.
           </p>
         </div>
 
@@ -95,18 +96,17 @@ const Benefits = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-accent/10 to-primary/10 rounded-2xl blur-xl" />
           <div className="relative bg-gradient-to-br from-card/80 to-card/60 backdrop-blur-xl rounded-2xl p-8 md:p-12 text-center border border-border/50 shadow-xl">
             <h3 className="text-2xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70">
-              Individuell angepasste Trainings für nachhaltigen Erfolg
+              Unsere Vision: Copilot als selbstverständliches Teammitglied
             </h3>
             <p className="text-muted-foreground max-w-2xl mx-auto mb-6 leading-relaxed">
-              Jedes Training wird präzise auf Ihre Unternehmenssituation, Branche, spezifischen Ziele und
-              den individuellen Kenntnisstand Ihrer Mitarbeiter zugeschnitten. Wir analysieren vorab Ihre
-              Anforderungen, identifizieren relevante Use Cases und entwickeln ein maßgeschneidertes Schulungskonzept.
-              So holen wir Ihr Team genau dort ab, wo es steht, und führen es strukturiert zum gewünschten Zielniveau.
+              Unsere Vision ist eine Arbeitswelt, in der Microsoft Copilot als selbstverständliches Teammitglied
+              genutzt wird und Menschen sich auf wertschöpfende, kreative und strategische Arbeit konzentrieren können.
+              Jedes Training wird präzise auf Ihre Unternehmenssituation, Branche und spezifischen Ziele zugeschnitten.
             </p>
             <p className="text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed">
-              Nach dem Training bieten wir Follow-up Sessions, Coaching und kontinuierlichen Support,
-              um sicherzustellen, dass das Gelernte nachhaltig in der Praxis angewendet wird und Ihr Team
-              den maximalen ROI aus Microsoft Copilot herausholt.
+              Wir begleiten Copilot-Rollouts inklusive Governance, Use-Case-Definition und Adoption.
+              Nach dem Training bieten wir Coaching und kontinuierlichen Support für Führungskräfte,
+              Produkt- und Transformationsteams zur Etablierung nachhaltiger, Copilot-gestützter Arbeitsweisen.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
               {[

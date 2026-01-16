@@ -23,29 +23,29 @@ const Hero = () => {
             <div className="inline-block animate-fade-in">
               <span className="group px-4 py-2 bg-gradient-to-r from-accent/90 to-primary/80 text-white rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-default flex items-center gap-2 w-fit">
                 <Sparkles className="w-4 h-4 animate-pulse" />
-                100% Microsoft Copilot. 100% Praxis. 0% Blabla.
+                Praxisnähe. Wirksamkeit. Transparenz.
               </span>
             </div>
 
             <h1 className="text-5xl lg:text-6xl font-bold leading-tight animate-slide-up">
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70">
-                Microsoft Copilot Schulungen
+                Microsoft Copilot Trainings
               </span>
               <span className="block text-accent mt-2 animate-slide-up-delayed">
-                Praxistraining für messbare Produktivität
+                Für messbar produktivere Büroarbeit
               </span>
             </h1>
 
             <p className="text-xl text-muted-foreground leading-relaxed mb-4 animate-fade-in-delayed">
-              Professionelle Microsoft 365 Copilot und GitHub Copilot Schulungen für Unternehmen: Wir trainieren
-              ausschließlich Microsoft-eigene KI-Tools – keine externen Anwendungen, die in Ihrem Unternehmen
-              nicht zugelassen sind. Stattdessen erhalten Sie praxisorientierte Hands-on Trainings mit realen
-              Use Cases aus Ihrem Arbeitsalltag.
+              Die copilotenschule.de ist die spezialisierte Weiterbildungs- und Enablement-Plattform für den
+              professionellen Einsatz von Microsoft Copilot in der täglichen Büroarbeit. Wir befähigen
+              Wissensarbeiter, Teams und Organisationen, Microsoft Copilot produktiv, sicher und
+              wertschöpfend im Arbeitsalltag einzusetzen.
             </p>
             <p className="text-lg text-muted-foreground leading-relaxed animate-fade-in-delayed-2">
-              Von KI-Agenten Entwicklung über Low-Code mit Copilot Studio bis zu fortgeschrittener Automatisierung:
-              Jedes Training ist sofort anwendbar, DSGVO-konform und steigert messbar Ihre Team-Effizienz.
-              Verfügbar als Inhouse-Schulung, Remote-Training oder in unseren Räumen in Köln.
+              Unser praxisorientierter Trainingsansatz verbindet reale Arbeitsprozesse mit direkt anwendbaren
+              Workflows. Finde relevante Use Cases für dich und setze sie sicher und einfach mit Copilot um –
+              als Inhouse-Schulung, Remote-Training oder in unseren Räumen in Köln.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-delayed-3">
@@ -75,8 +75,8 @@ const Hero = () => {
 
             <div className="grid grid-cols-3 gap-8 pt-8 border-t border-border/50">
               {[
-                { value: "15+", label: "Jahre Erfahrung", delay: "delay-100" },
-                { value: "1000+", label: "geschulte Teams", delay: "delay-200" },
+                { value: "Seit 2011", label: "Yellow-Boat Consulting", delay: "delay-100" },
+                { value: "DACH", label: "Region", delay: "delay-200" },
                 { value: "100%", label: "Praxisorientiert", delay: "delay-300" }
               ].map((stat, idx) => (
                 <div

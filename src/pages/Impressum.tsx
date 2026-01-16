@@ -12,17 +12,40 @@ const Impressum = () => {
           <div className="prose prose-slate max-w-none space-y-8">
             <section>
               <p className="text-lg text-muted-foreground mb-6">
-                <strong>copilotenschule.de</strong> ist eine Marke der Yellow-Boat Consulting.
+                <strong>copilotenschule.de</strong> ist eine Marke der{" "}
+                <a href="https://yellow-boat.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+                  Yellow-Boat Consulting
+                </a>{" "}
+                (gegründet 2011).
               </p>
+
               <div className="bg-primary/10 border-l-4 border-primary p-6 rounded-r-lg mb-8">
+                <h3 className="text-xl font-bold mb-3">Über copilotenschule.de</h3>
+                <p className="text-base mb-3">
+                  copilotenschule.de ist eine spezialisierte Weiterbildungs- und Enablement-Plattform für den
+                  professionellen Einsatz von Microsoft Copilot in der täglichen Büroarbeit. Wir befähigen
+                  Wissensarbeiter, Teams und Organisationen, Microsoft Copilot produktiv, sicher und
+                  wertschöpfend im Arbeitsalltag einzusetzen.
+                </p>
+                <p className="text-base mb-3">
+                  <strong>Unsere Mission:</strong> Büroarbeit durch den gezielten Einsatz von Microsoft Copilot
+                  messbar produktiver, wirksamer und menschlicher zu machen.
+                </p>
+                <p className="text-base">
+                  <strong>Unsere Werte:</strong> Praxisnähe, Wirksamkeit, Transparenz – diese Werte leiten alle
+                  unsere Entscheidungen.
+                </p>
+              </div>
+
+              <div className="bg-secondary/30 border-l-4 border-secondary p-6 rounded-r-lg mb-8">
                 <h3 className="text-xl font-bold mb-3">Modernste Technologie im Einsatz</h3>
                 <p className="text-base mb-3">
-                  Diverse Inhalte dieser Seite wurden selbstverständlich mit KI-Tools erstellt. 
-                  Darauf sind wir stolz, denn wir versuchen stets mit modernster Technik effizient zu arbeiten 
+                  Diverse Inhalte dieser Seite wurden selbstverständlich mit KI-Tools erstellt.
+                  Darauf sind wir stolz, denn wir versuchen stets mit modernster Technik effizient zu arbeiten
                   und diese Arbeitsweise auch in unseren Trainings zu vermitteln.
                 </p>
                 <p className="text-base">
-                  Wir glauben an das Human-in-the-Loop Prinzip und lieben KI als Werkzeug in den Händen 
+                  Wir glauben an das Human-in-the-Loop Prinzip und lieben KI als Werkzeug in den Händen
                   verantwortungsbewusster und qualifizierter Menschen.
                 </p>
               </div>

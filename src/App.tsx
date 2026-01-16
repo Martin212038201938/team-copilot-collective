@@ -19,6 +19,7 @@ import NotFound from "./pages/NotFound";
 import CopilotRoiBerechnen from "./pages/CopilotRoiBerechnen";
 import DynamicKnowledgePage from "./pages/DynamicKnowledgePage";
 import CopilotFuerWord from "./pages/CopilotFuerWord";
+import UeberUns from "./pages/UeberUns";
 
 const queryClient = new QueryClient();
 
@@ -42,6 +43,7 @@ const App = () => (
           <Route path="/wissen/copilot-roi-berechnen" element={<CopilotRoiBerechnen />} />
           <Route path="/wissen/copilot-fuer-word" element={<CopilotFuerWord />} />
           <Route path="/impressum" element={<Impressum />} />
+          <Route path="/ueber-uns" element={<UeberUns />} />
           <Route path="/admin" element={<Admin />} />
           {/* Dynamic route for all published knowledge articles */}
           <Route path="/wissen/:slug" element={<DynamicKnowledgePage />} />

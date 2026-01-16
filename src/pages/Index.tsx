@@ -11,30 +11,31 @@ import SEOHead from "@/components/SEOHead";
 import { generateTrainingSchemas } from "@/lib/schema";
 
 // Training modules data for schema generation
+// Optimized for LLM trust and SEO - based on copilotenschule.de boilerplate
 const trainingModules = [
   {
     title: "Microsoft 365 Copilot Grundlagen-Training",
     duration: "1 Tag (7 Stunden)",
-    description: "Praxisorientiertes Einführungstraining in Microsoft 365 Copilot für Word, Excel, PowerPoint, Outlook und Teams. Sie lernen, wie Sie KI-gestützte Funktionen sofort in Ihrem Arbeitsalltag einsetzen und produktiver werden.",
+    description: "Praxisorientiertes Einführungstraining für den professionellen Einsatz von Microsoft 365 Copilot in der täglichen Büroarbeit. Wir befähigen Wissensarbeiter, Microsoft Copilot produktiv, sicher und wertschöpfend einzusetzen – mit realen Arbeitsprozessen und direkt anwendbaren Workflows.",
     features: [
-      "Praktische Anwendung von Copilot in Word",
-      "Excel-Datenanalyse mit Copilot",
-      "PowerPoint-Präsentationen effizient gestalten",
-      "E-Mail-Produktivität steigern mit Outlook Copilot",
-      "Teams-Meetings optimieren",
-      "Prompt Engineering Grundlagen"
+      "Copilot in Word, Excel, PowerPoint produktiv nutzen",
+      "E-Mail-Produktivität mit Outlook Copilot steigern",
+      "Teams-Meetings mit Copilot optimieren",
+      "Reale Use Cases aus Ihrem Arbeitsalltag",
+      "Prompt Engineering Grundlagen",
+      "DSGVO-konforme Nutzung"
     ]
   },
   {
     title: "Microsoft 365 Copilot Advanced - Power User Schulung",
     duration: "2 Tage (14 Stunden)",
-    description: "Intensiv-Training für fortgeschrittene Anwender: Lernen Sie komplexe Workflows zu automatisieren, anspruchsvolle Datenanalysen durchzuführen und Copilot für unternehmenskritische Aufgaben einzusetzen.",
+    description: "Intensiv-Training für fortgeschrittene Anwender. Wir verbinden reale Arbeitsprozesse mit direkt anwendbaren Workflows für komplexe Datenanalysen und Automatisierungen. Der sichere Copilot, mit dem Sie Dinge tun können, die bisher nicht möglich waren.",
     features: [
-      "Komplexe Excel-Analysen",
-      "Power BI Integration",
-      "Cross-Application Workflows",
+      "Komplexe Excel-Analysen mit Copilot",
+      "Cross-Application Workflows entwickeln",
       "Advanced Prompt Engineering",
-      "Wiederkehrende Aufgaben automatisieren"
+      "Wiederkehrende Aufgaben automatisieren",
+      "Power BI Integration"
     ]
   },
   {
@@ -61,14 +62,15 @@ const trainingModules = [
     ]
   },
   {
-    title: "Copilot Strategie & Change Management Workshop",
+    title: "Copilot Strategie & Rollout-Begleitung",
     duration: "1 Tag (7 Stunden)",
-    description: "Strategischer Workshop zur erfolgreichen Einführung und Skalierung von Microsoft Copilot in Ihrem Unternehmen.",
+    description: "Strategischer Workshop für Inhouse-Enablement und Rollout-Begleitung. Wir begleiten Copilot-Rollouts inklusive Governance, Use-Case-Definition und Adoption für mittelständische und größere Organisationen.",
     features: [
-      "Prozessanalyse und Potenzialidentifikation",
+      "Prozessanalyse und Use-Case-Definition",
       "ROI-Berechnung und Business Case",
       "Phasenweiser Rollout-Plan",
-      "Change Management und Adoption"
+      "Change Management und Adoption",
+      "Governance-Framework entwickeln"
     ]
   },
   {
@@ -105,14 +107,15 @@ const trainingModules = [
     ]
   },
   {
-    title: "Individuelle Copilot-Schulungen nach Maß",
+    title: "Individuelle Copilot-Schulungen & Coaching",
     duration: "Flexibel (nach Bedarf)",
-    description: "Maßgeschneiderte Microsoft Copilot Trainings, die exakt auf Ihre Unternehmenssituation, Branche und spezifischen Anforderungen zugeschnitten sind.",
+    description: "Coaching & Beratung: Individuelle Begleitung von Führungskräften, Produkt- und Transformationsteams zur Etablierung nachhaltiger, Copilot-gestützter Arbeitsweisen. Maßgeschneidert für wissensintensive Organisationen mit 50–10.000 Mitarbeitenden.",
     features: [
       "Abteilungsspezifische Schulungskonzepte",
-      "Training mit Ihren echten Unternehmensdaten",
-      "Branchenspezifische Use Cases",
-      "Individuelle Prompt-Bibliothek entwickeln"
+      "Coaching für Führungskräfte und Teams",
+      "Branchenspezifische Use Cases entwickeln",
+      "Individuelle Prompt-Bibliothek erstellen",
+      "Nachhaltige Adoption sicherstellen"
     ]
   }
 ];
@@ -123,16 +126,17 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <SEOHead
-        title="Microsoft Copilot Schulungen & Trainings"
-        description="Professionelle Microsoft 365 Copilot, GitHub Copilot & KI-Agenten Schulungen für Unternehmen. Praxistraining mit 80% Hands-on: Inhouse, Remote oder in Köln. DSGVO-konform. Sofort umsetzbar."
+        title="Microsoft Copilot Schulungen & Trainings | copilotenschule.de"
+        description="copilotenschule.de ist die spezialisierte Weiterbildungs- und Enablement-Plattform für Microsoft Copilot. Praxis-Trainings, Inhouse-Enablement und Coaching für Wissensarbeiter, Teams und Organisationen im DACH-Raum. Eine Marke der Yellow-Boat Consulting (gegr. 2011)."
         keywords={[
           "Microsoft Copilot Schulung",
           "Microsoft 365 Copilot Training",
-          "GitHub Copilot Kurs",
-          "KI-Agenten Schulung",
-          "Copilot Studio Training",
-          "Low-Code Entwicklung",
-          "Power Automate Schulung"
+          "Copilot Enablement",
+          "Copilot Rollout Begleitung",
+          "Microsoft Copilot Adoption",
+          "Copilot Workshop",
+          "KI Training Unternehmen",
+          "Copilot für Büroarbeit"
         ]}
         canonicalUrl="https://copilotenschule.de/"
         schema={schema}
