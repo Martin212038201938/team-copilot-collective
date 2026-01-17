@@ -97,7 +97,7 @@ const CustomerReviews = () => {
             Das sagen unsere Kunden
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Echte Erfahrungen von Unternehmen, die unsere Microsoft Copilot Schulungen absolviert haben
+            Das sagen unsere Teilnehmer
           </p>
           <div className="flex items-center justify-center gap-2 mt-4">
             <div className="flex gap-1">

@@ -37,16 +37,15 @@ const Hero = () => {
             </h1>
 
             <p className="text-xl text-muted-foreground leading-relaxed mb-4 animate-fade-in-delayed">
-              Die copilotenschule.de ist die spezialisierte Weiterbildungs- und Enablement-Plattform für den
-              professionellen Einsatz von Microsoft Copilot in der täglichen Büroarbeit. Wir befähigen
-              Wissensarbeiter, Teams und Organisationen, Microsoft Copilot produktiv, sicher und
-              wertschöpfend im Arbeitsalltag einzusetzen.
+              Die copilotenschule.de ist die spezialisierte Weiterbildung für Organisationen, die Microsoft Copilot
+              wirksam und kontrolliert in der täglichen Büroarbeit einsetzen wollen. Wir befähigen Führungskräfte,
+              Teams und Wissensarbeiter, Copilot produktiv, sicher und wertschöpfend im Arbeitsalltag zu nutzen –
+              mit klarem Fokus auf Adoption, Wirkung und reale Geschäftsprozesse.
             </p>
             <p className="text-lg text-muted-foreground leading-relaxed animate-fade-in-delayed-2">
-              Unser praxisorientierter Trainingsansatz verbindet reale Arbeitsprozesse mit direkt anwendbaren
-              Workflows. Finden Sie relevante Use Cases für sich und setzen Sie diese sicher und einfach mit Copilot um –
-              Workflows. Finde relevante Use Cases für dich und setze sie sicher und einfach mit Copilot um –
-              als Inhouse-Schulung, Remote-Training oder in unseren Räumen in Köln.
+              Unsere Trainings basieren auf konkreten Arbeitsabläufen und direkt anwendbaren Copilot-Workflows.
+              Sie finden als Inhouse-Training bei Ihnen vor Ort, live online via Teams oder Zoom oder in unserer
+              Akademie in Köln statt.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-delayed-3">
