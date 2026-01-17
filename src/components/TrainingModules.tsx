@@ -170,13 +170,16 @@ const TrainingModules = () => {
             Microsoft Copilot Schulungen & Trainings für Unternehmen
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-4 animate-fade-in-delayed">
-            Professionelle Microsoft 365 Copilot, GitHub Copilot und KI-Agenten Schulungen für Teams und Unternehmen.
-            Jedes Training kombiniert 50% Theorie und 50% Praxis: Sie arbeiten mit realen Use Cases aus Ihrem Arbeitsalltag,
-            entwickeln sofort einsetzbare Workflows und steigern messbar Ihre Produktivität mit KI-Tools.
+            Unsere Trainings sind konsequent auf die konkreten Bedarfe Ihrer Organisation zugeschnitten.
+            Statt standardisierter Inhalte arbeiten wir mit Ihren realen Arbeitsprozessen, typischen Aufgaben
+            und relevanten Use Cases. So stellen wir sicher, dass Microsoft Copilot dort ansetzt, wo er im
+            Alltag tatsächlich Wirkung entfaltet.
           </p>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto animate-fade-in-delayed-2">
-            Alle Trainings sind verfügbar als Präsenzschulung vor Ort in Köln oder bundesweit,
-            als Live-Online-Training oder in hybrider Form – individuell angepasst an Ihre Anforderungen.
+            Ein zentraler Bestandteil unserer Trainings ist die gemeinsame praktische Arbeit in der Gruppe.
+            Wir nehmen uns bewusst Zeit für Übungen, Anwendungsszenarien und Reflexion, um die Hürde zwischen
+            Lernen und produktivem Einsatz zu überwinden. Die Teilnehmenden verlassen das Training nicht mit
+            Theorie, sondern mit erprobten Workflows, die sie direkt weiter nutzen können.
           </p>
         </div>
 
