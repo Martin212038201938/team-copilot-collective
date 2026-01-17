@@ -18,24 +18,27 @@ const Hero = () => {
       <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-float-delayed" />
 
       <div className="container mx-auto px-4 relative z-10">
+        {/* Centered headline section */}
+        <div className="text-center mb-12">
+          <div className="inline-block animate-fade-in mb-6">
+            <span className="group px-4 py-2 bg-gradient-to-r from-accent/90 to-primary/80 text-white rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-default inline-flex items-center gap-2">
+              <Sparkles className="w-4 h-4 animate-pulse" />
+              Praxisnähe. Wirksamkeit. Transparenz.
+            </span>
+          </div>
+
+          <h1 className="text-5xl lg:text-7xl font-bold leading-tight animate-slide-up">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70">
+              Microsoft Copilot Trainings
+            </span>
+            <span className="block text-accent mt-2 animate-slide-up-delayed">
+              Für messbar produktivere Büroarbeit
+            </span>
+          </h1>
+        </div>
+
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8">
-            <div className="inline-block animate-fade-in">
-              <span className="group px-4 py-2 bg-gradient-to-r from-accent/90 to-primary/80 text-white rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-default flex items-center gap-2 w-fit">
-                <Sparkles className="w-4 h-4 animate-pulse" />
-                Praxisnähe. Wirksamkeit. Transparenz.
-              </span>
-            </div>
-
-            <h1 className="text-5xl lg:text-6xl font-bold leading-tight animate-slide-up">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70">
-                Microsoft Copilot Trainings
-              </span>
-              <span className="block text-accent mt-2 animate-slide-up-delayed">
-                Für messbar produktivere Büroarbeit
-              </span>
-            </h1>
-
             <p className="text-xl text-muted-foreground leading-relaxed mb-4 animate-fade-in-delayed">
               Die copilotenschule.de ist die spezialisierte Weiterbildung für Organisationen, die Microsoft Copilot
               wirksam und kontrolliert in der täglichen Büroarbeit einsetzen wollen. Wir befähigen Führungskräfte,
