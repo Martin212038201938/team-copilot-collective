@@ -80,7 +80,7 @@ const ContentLayout = ({
         <div className="container mx-auto px-4 py-12 relative z-10">
           <div className="grid lg:grid-cols-[1fr_280px] gap-12 max-w-7xl mx-auto">
             {/* Main Content */}
-            <article className="prose prose-lg max-w-none">
+            <article className="max-w-none">
               {/* Article Header */}
               <header className="mb-12 not-prose relative">
                 {/* Decorative corner accent */}
