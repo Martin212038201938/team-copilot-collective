@@ -76,6 +76,12 @@ const AdminContent = () => {
     setIsEditing(true);
   };
 
+  const handlePreview = (draft: Draft) => {
+    setSelectedDraft(draft);
+    setEditorInitialTab("preview");
+    setIsEditing(true);
+  };
+
   const handleCreateNew = () => {
     const newDraft: Draft = {
       id: `draft-${Date.now()}`,
@@ -338,7 +344,7 @@ const AdminContent = () => {
                     Bearbeiten
                   </Button>
                   <Button
-                    onClick={() => console.log("Preview:", draft.id)}
+                    onClick={() => handlePreview(draft)}
                     variant="outline"
                     size="sm"
                   >
