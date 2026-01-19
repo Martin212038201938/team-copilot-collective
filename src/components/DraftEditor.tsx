@@ -2361,14 +2361,21 @@ Das System analysiert automatisch die Kernthemen und erstellt passende Metadaten
                       </h5>
                       <p className="text-sm text-green-800 mb-4">
                         Der KI-generierte Content wurde erfolgreich erstellt! Überarbeite ihn jetzt nach deinen Wünschen.
-                        Wenn du fertig bist, geht es weiter zur finalen Seiten-Gestaltung.
+                        Die Live-Vorschau rechts zeigt dir, wie der formatierte Artikel aussieht.
                       </p>
                     </div>
 
-                    <Card className="border-2 border-green-300">
-                      <CardContent className="pt-6 space-y-4">
-                        <div>
-                          <Label htmlFor="reviewed-content">Artikel-Content (Markdown)</Label>
+                    {/* Side-by-Side Editor and Preview */}
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                      {/* Editor Panel */}
+                      <Card className="border-2 border-green-300">
+                        <CardHeader className="pb-3 bg-gradient-to-r from-green-50 to-transparent">
+                          <CardTitle className="text-base flex items-center gap-2">
+                            <Edit2 className="w-4 h-4" />
+                            Markdown-Editor
+                          </CardTitle>
+                        </CardHeader>
+                        <CardContent className="space-y-3">
                           <Textarea
                             id="reviewed-content"
                             value={reviewedContent}
@@ -2386,14 +2393,34 @@ Das System analysiert automatisch die Kernthemen und erstellt passende Metadaten
                                 updatedAt: new Date().toISOString(),
                               });
                             }}
-                            rows={25}
+                            rows={30}
                             className="font-mono text-sm"
                           />
-                          <p className="text-xs text-gray-500 mt-1">
+                          <p className="text-xs text-gray-500">
                             {reviewedContent.length} Zeichen | ~{Math.ceil(reviewedContent.split(/\s+/).length / 200)} Min. Lesezeit
                           </p>
-                        </div>
+                        </CardContent>
+                      </Card>
 
+                      {/* Preview Panel */}
+                      <Card className="border-2 border-blue-300">
+                        <CardHeader className="pb-3 bg-gradient-to-r from-blue-50 to-transparent">
+                          <CardTitle className="text-base flex items-center gap-2">
+                            <Eye className="w-4 h-4" />
+                            Live-Vorschau (formatiert)
+                          </CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          <div className="max-h-[600px] overflow-y-auto border border-gray-200 rounded-lg p-4 bg-white">
+                            {renderMarkdownPreview(reviewedContent)}
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </div>
+
+                    {/* Tips and Actions */}
+                    <Card className="border border-gray-200">
+                      <CardContent className="pt-6 space-y-4">
                         <div className="bg-amber-50 border border-amber-200 p-4 rounded-lg">
                           <h6 className="font-semibold text-amber-900 mb-2 text-sm">💡 Tipps für die Überarbeitung</h6>
                           <ul className="text-xs text-amber-800 space-y-1 list-disc list-inside">
