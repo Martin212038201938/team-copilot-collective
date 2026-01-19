@@ -1245,27 +1245,26 @@ Erstelle jetzt die komplette TSX-Komponente. Der komplette Markdown-Content muss
       // Safety check for invalid content
       if (!markdownContent || typeof markdownContent !== 'string') {
         return (
-          <div className="prose prose-lg max-w-none dark:prose-invert">
-            <p className="text-muted-foreground">Kein Inhalt vorhanden</p>
+          <div className="text-muted-foreground">
+            <p>Kein Inhalt vorhanden</p>
           </div>
         );
       }
 
       return (
-        <div className="prose prose-lg max-w-none dark:prose-invert">
-          <ReactMarkdown
-            remarkPlugins={[remarkGfm]}
-            rehypePlugins={[rehypeRaw]}
-          >
-            {markdownContent}
-          </ReactMarkdown>
-        </div>
+        <ReactMarkdown
+          className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-headings:font-bold prose-h2:text-2xl prose-h2:mt-8 prose-h2:mb-4 prose-h3:text-xl prose-h3:mt-6 prose-h3:mb-3 prose-p:text-gray-800 prose-p:leading-relaxed prose-p:my-4 prose-li:text-gray-800 prose-li:my-1 prose-strong:text-gray-900 prose-strong:font-semibold prose-a:text-blue-600 prose-a:underline prose-blockquote:border-l-4 prose-blockquote:border-blue-500 prose-blockquote:pl-4 prose-blockquote:italic prose-blockquote:text-gray-700 prose-code:bg-gray-100 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-ul:list-disc prose-ul:pl-6 prose-ol:list-decimal prose-ol:pl-6"
+          remarkPlugins={[remarkGfm]}
+          rehypePlugins={[rehypeRaw]}
+        >
+          {markdownContent}
+        </ReactMarkdown>
       );
     } catch (error) {
       console.error('Error in renderMarkdownPreview:', error);
       return (
-        <div className="prose prose-lg max-w-none dark:prose-invert">
-          <p className="text-red-600 font-semibold mb-2">Fehler beim Rendern der Vorschau</p>
+        <div className="text-red-600">
+          <p className="font-semibold mb-2">Fehler beim Rendern der Vorschau</p>
           <pre className="text-xs bg-gray-100 p-2 rounded overflow-auto">
             {error instanceof Error ? error.message : 'Unbekannter Fehler'}
           </pre>
