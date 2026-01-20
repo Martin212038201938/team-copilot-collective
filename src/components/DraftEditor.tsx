@@ -12,7 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { ArrowLeft, Save, Eye, Upload, Code, Sparkles, CheckCircle, Play, Edit2, Calendar, Clock } from "lucide-react";
+import { ArrowLeft, Save, Eye, Upload, Code, Sparkles, CheckCircle, Play, Edit2, Calendar, Clock, Plus, X } from "lucide-react";
 import { Draft, ExtractedTopic, GeneratorState } from "@/types/draft";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ReactMarkdown from 'react-markdown';
@@ -98,6 +98,12 @@ const DraftEditor = ({ draft, onSave, onCancel, initialTab }: DraftEditorProps) 
   const [contentAnalysis, setContentAnalysis] = useState<ContentAnalysisResult | null>(null);
   const [analysisStep, setAnalysisStep] = useState<'pending' | 'analyzing' | 'analyzed' | 'generating'>('pending');
   const [isEditingAnalysis, setIsEditingAnalysis] = useState(false);
+
+  // Custom topic state
+  const [showCustomTopicForm, setShowCustomTopicForm] = useState(false);
+  const [customTopicTitle, setCustomTopicTitle] = useState('');
+  const [customTopicDescription, setCustomTopicDescription] = useState('');
+  const [customTopicKeywords, setCustomTopicKeywords] = useState('');
 
   // Save API key to localStorage when it changes
   useEffect(() => {
@@ -527,6 +533,36 @@ const DraftEditor = ({ draft, onSave, onCancel, initialTab }: DraftEditorProps) 
       step: 'focus',
       selectedTopic: topic
     });
+  };
+
+  // Step 2b: Add custom topic
+  const handleAddCustomTopic = () => {
+    if (!customTopicTitle.trim()) return;
+
+    const customTopic: ExtractedTopic = {
+      title: customTopicTitle.trim(),
+      description: customTopicDescription.trim() || `Benutzerdefiniertes Thema: ${customTopicTitle.trim()}`,
+      keywords: customTopicKeywords
+        .split(',')
+        .map(k => k.trim())
+        .filter(k => k.length > 0),
+      relevance: 100 // Custom topics get highest relevance
+    };
+
+    // Add to extracted topics list
+    const updatedTopics = [customTopic, ...extractedTopics];
+    setExtractedTopics(updatedTopics);
+
+    // Save state
+    saveGeneratorState({
+      extractedTopics: updatedTopics
+    });
+
+    // Reset form
+    setCustomTopicTitle('');
+    setCustomTopicDescription('');
+    setCustomTopicKeywords('');
+    setShowCustomTopicForm(false);
   };
 
   // Step 3: Generate metadata from selected topic
@@ -1637,6 +1673,92 @@ Das System analysiert automatisch die Kernthemen und erstellt passende Metadaten
                         </Card>
                       ))}
                     </div>
+
+                    {/* Custom Topic Form */}
+                    <div className="mt-6">
+                      {!showCustomTopicForm ? (
+                        <Button
+                          onClick={() => setShowCustomTopicForm(true)}
+                          variant="outline"
+                          className="w-full border-dashed border-2 hover:border-blue-400 hover:bg-blue-50"
+                        >
+                          <Plus className="w-5 h-5 mr-2" />
+                          Eigenen Schwerpunkt hinzufügen
+                        </Button>
+                      ) : (
+                        <Card className="border-2 border-blue-300 bg-blue-50/50">
+                          <CardHeader className="pb-3">
+                            <CardTitle className="flex items-center justify-between text-lg">
+                              <span className="flex items-center gap-2">
+                                <Plus className="w-5 h-5" />
+                                Eigenen Schwerpunkt erstellen
+                              </span>
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                onClick={() => {
+                                  setShowCustomTopicForm(false);
+                                  setCustomTopicTitle('');
+                                  setCustomTopicDescription('');
+                                  setCustomTopicKeywords('');
+                                }}
+                              >
+                                <X className="w-4 h-4" />
+                              </Button>
+                            </CardTitle>
+                          </CardHeader>
+                          <CardContent className="space-y-4">
+                            <div>
+                              <Label htmlFor="custom-topic-title" className="text-sm font-semibold">
+                                Titel des Schwerpunkts *
+                              </Label>
+                              <Input
+                                id="custom-topic-title"
+                                value={customTopicTitle}
+                                onChange={(e) => setCustomTopicTitle(e.target.value)}
+                                placeholder="z.B. Microsoft Copilot für Einsteiger"
+                                className="mt-1"
+                              />
+                            </div>
+                            <div>
+                              <Label htmlFor="custom-topic-description" className="text-sm font-semibold">
+                                Beschreibung (optional)
+                              </Label>
+                              <Textarea
+                                id="custom-topic-description"
+                                value={customTopicDescription}
+                                onChange={(e) => setCustomTopicDescription(e.target.value)}
+                                placeholder="Kurze Beschreibung des Themas..."
+                                className="mt-1"
+                                rows={2}
+                              />
+                            </div>
+                            <div>
+                              <Label htmlFor="custom-topic-keywords" className="text-sm font-semibold">
+                                Keywords (optional, kommagetrennt)
+                              </Label>
+                              <Input
+                                id="custom-topic-keywords"
+                                value={customTopicKeywords}
+                                onChange={(e) => setCustomTopicKeywords(e.target.value)}
+                                placeholder="z.B. Copilot, Einführung, Grundlagen, Microsoft 365"
+                                className="mt-1"
+                              />
+                            </div>
+                            <div className="flex gap-2 pt-2">
+                              <Button
+                                onClick={handleAddCustomTopic}
+                                disabled={!customTopicTitle.trim()}
+                                className="flex-1"
+                              >
+                                <Plus className="w-4 h-4 mr-2" />
+                                Schwerpunkt hinzufügen
+                              </Button>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      )}
+                    </div>
                   </>
                 )}
 
@@ -2550,6 +2672,24 @@ Das System analysiert automatisch die Kernthemen und erstellt passende Metadaten
                         </p>
                       </CardHeader>
                       <CardContent className="pt-6 space-y-6">
+                        {/* Editable Title */}
+                        <div className="space-y-2">
+                          <Label htmlFor="article-title" className="text-base font-semibold flex items-center gap-2">
+                            <Edit2 className="w-4 h-4" />
+                            Artikel-Überschrift
+                          </Label>
+                          <Input
+                            id="article-title"
+                            value={editedDraft.title}
+                            onChange={(e) => setEditedDraft({ ...editedDraft, title: e.target.value })}
+                            className="text-lg font-semibold"
+                            placeholder="Titel des Artikels"
+                          />
+                          <p className="text-xs text-muted-foreground">
+                            Du kannst die Überschrift hier direkt bearbeiten.
+                          </p>
+                        </div>
+
                         {/* Current Status */}
                         <div className="bg-gray-50 border border-gray-200 p-4 rounded-lg">
                           <div className="flex items-center justify-between mb-3">
