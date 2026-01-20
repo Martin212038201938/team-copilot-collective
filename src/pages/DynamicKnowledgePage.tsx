@@ -44,7 +44,7 @@ const DynamicKnowledgePage = () => {
           readTime={article.readTime}
           publishDate={article.publishDate}
           authorId={article.author}
-          markdownContent={article.content}
+          markdownContent={article.generatorState?.reviewedContent || article.content}
         />
       </main>
       <Footer />
