@@ -3013,6 +3013,12 @@ Das System analysiert automatisch die Kernthemen und erstellt passende Metadaten
                 <Card>
                   <CardContent className="p-0">
                     <div className="border rounded-lg overflow-hidden">
+                      {/* Debug: Log what's being passed to KnowledgePagePreview */}
+                      {console.log('Preview Tab - Using:', editedDraft.generatorState?.reviewedContent ? 'reviewedContent' : 'content')}
+                      {console.log('Preview Tab - reviewedContent exists:', !!editedDraft.generatorState?.reviewedContent)}
+                      {console.log('Preview Tab - reviewedContent length:', editedDraft.generatorState?.reviewedContent?.length)}
+                      {console.log('Preview Tab - content length:', editedDraft.content?.length)}
+                      {console.log('Preview Tab - contentType:', editedDraft.contentType)}
                       <KnowledgePagePreview
                         title={editedDraft.title}
                         description={editedDraft.description}

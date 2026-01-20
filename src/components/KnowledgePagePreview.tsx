@@ -39,6 +39,10 @@ const KnowledgePagePreview = ({
 
   // Parse markdown and extract sections
   const { quickAnswer, tableOfContents, faqItems, mainContent } = useMemo(() => {
+    // Debug: Log the incoming content
+    console.log('KnowledgePagePreview - markdownContent length:', markdownContent?.length);
+    console.log('KnowledgePagePreview - markdownContent preview:', markdownContent?.substring(0, 500));
+
     // Split content by sections
     const lines = markdownContent.split('\n');
     let quickAnswerContent = '';
@@ -122,6 +126,13 @@ const KnowledgePagePreview = ({
       });
     }
 
+    // Debug: Log parsed sections
+    console.log('KnowledgePagePreview - Parsed sections:');
+    console.log('  quickAnswer length:', quickAnswerContent.length);
+    console.log('  mainContent length:', mainContent.length);
+    console.log('  mainContent preview:', mainContent.substring(0, 300));
+    console.log('  faqItems count:', faqItems.length);
+
     return {
       quickAnswer: quickAnswerContent,
       tableOfContents: tocItems,
@@ -197,7 +208,7 @@ const KnowledgePagePreview = ({
             remarkPlugins={[remarkGfm]}
             rehypePlugins={[rehypeRaw]}
           >
-            {mainContent}
+            {mainContent.trim() || markdownContent}
           </ReactMarkdown>
         </article>
 
