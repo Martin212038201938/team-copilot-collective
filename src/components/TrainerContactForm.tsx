@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
-import { Upload, FileText, Linkedin, Globe, X } from "lucide-react";
+import { Upload, FileText, Linkedin, Globe, X, Calendar } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -314,7 +314,33 @@ const TrainerContactForm = () => {
       </Card>
 
       {/* Info Cards */}
-      <div className="grid md:grid-cols-2 gap-6 mt-8">
+      <div className="grid md:grid-cols-3 gap-6 mt-8">
+        {/* Microsoft Bookings - Prominente CTA Card */}
+        <Card className="p-6 bg-primary text-primary-foreground border-primary shadow-lg">
+          <div className="flex items-start gap-3">
+            <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
+              <Calendar className="w-5 h-5" />
+            </div>
+            <div className="flex-1">
+              <h3 className="font-semibold mb-2">Direkt Termin buchen</h3>
+              <p className="text-sm text-primary-foreground/80 mb-4">
+                Vereinbaren Sie direkt ein unverbindliches Kennenlerngespräch.
+              </p>
+              <a
+                href="https://outlook.office.com/book/CopilotErstgesprch@yellow-boat.com/?ismsaljsauthenabled"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block"
+              >
+                <Button variant="secondary" className="w-full font-semibold">
+                  <Calendar className="w-4 h-4 mr-2" />
+                  Jetzt Termin buchen →
+                </Button>
+              </a>
+            </div>
+          </div>
+        </Card>
+
         <Card className="p-6 bg-primary/5 border-primary/20">
           <h3 className="font-semibold mb-3">Schnelle Rückmeldung</h3>
           <p className="text-sm text-muted-foreground">
