@@ -43,10 +43,7 @@ const Benefits = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16 animate-fade-in">
-          <span className="px-4 py-2 bg-gradient-to-r from-accent/90 to-primary/80 text-white rounded-full text-sm font-medium shadow-lg hover:scale-105 transition-transform duration-300 inline-block">
-            Unsere Alleinstellungsmerkmale
-          </span>
-          <h2 className="text-4xl font-bold mt-6 mb-4 animate-slide-up">
+          <h2 className="text-4xl font-bold mb-4 animate-slide-up">
             Warum copilotenschule.de der richtige Partner für Ihr Unternehmen ist
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-4 animate-fade-in-delayed">

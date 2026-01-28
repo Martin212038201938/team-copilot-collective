@@ -127,7 +127,7 @@ const Index = () => {
     <div className="min-h-screen">
       <SEOHead
         title="Microsoft Copilot Schulungen & Trainings | copilotenschule.de"
-        description="copilotenschule.de ist die spezialisierte Weiterbildungs- und Enablement-Plattform für Microsoft Copilot. Praxis-Trainings, Inhouse-Enablement und Coaching für Wissensarbeiter, Teams und Organisationen im DACH-Raum. Eine Marke der Yellow-Boat Consulting (gegr. 2011)."
+        description="copilotenschule.de bietet spezialisierte Weiterbildungen für Microsoft Copilot. Praxis-Trainings, Inhouse-Enablement und Coaching für Wissensarbeiter, Teams und Organisationen im DACH-Raum. Eine Marke der Yellow-Boat Consulting (gegr. 2011)."
         keywords={[
           "Microsoft Copilot Schulung",
           "Microsoft 365 Copilot Training",
@@ -144,10 +144,10 @@ const Index = () => {
       <Header />
       <main>
         <Hero />
-        <TrustBadges />
         <TrainingModules />
         <TrainingLocations />
         <Benefits />
+        <TrustBadges />
         <CustomerReviews />
         <Contact />
       </main>
