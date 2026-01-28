@@ -196,10 +196,10 @@ const BecomeTrainer = () => {
                     <div>
                       <h3 className="text-xl font-bold mb-3">Über uns</h3>
                       <p className="text-muted-foreground">
-                        copilotenschule.de ist eine spezialisierte Weiterbildungsplattform für den professionellen
-                        Einsatz von Microsoft Copilot im Arbeitsalltag. Wir helfen Teams dabei, Copilot produktiv
-                        und sicher in ihre Arbeitsprozesse zu integrieren – mit praxisorientierten Trainings und
-                        echten Use Cases.
+                        Die Copilotenschule ist spezialisiert auf die Einführung und Weiterqualifizierungen
+                        im Umfeld der Microsoft Copiloten. Im Gegensatz zu anderen Anbietern bieten wir den
+                        Teilnehmern keinen Bauchladen an Tools an, die in ihrem Umfeld nicht compliant oder
+                        wertschöpfend sind.
                       </p>
                     </div>
 
