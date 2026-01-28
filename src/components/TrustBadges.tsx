@@ -1,4 +1,4 @@
-import { Shield, Award, CheckCircle, Users, Lock } from "lucide-react";
+import { Shield, Award, Users, Lock } from "lucide-react";
 
 const trustBadges = [
   {
@@ -63,26 +63,6 @@ const TrustBadges = () => {
               </div>
             );
           })}
-        </div>
-
-        {/* Additional trust elements */}
-        <div className="mt-12 flex flex-wrap justify-center gap-8 items-center opacity-60">
-          <div className="flex items-center gap-2">
-            <CheckCircle className="w-5 h-5 text-primary" />
-            <span className="text-sm font-medium">Geprüfte Trainer</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <CheckCircle className="w-5 h-5 text-primary" />
-            <span className="text-sm font-medium">Zertifizierte Methodik</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <CheckCircle className="w-5 h-5 text-primary" />
-            <span className="text-sm font-medium">Transparente Abrechnung</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <CheckCircle className="w-5 h-5 text-primary" />
-            <span className="text-sm font-medium">Flexible Vertragsgestaltung</span>
-          </div>
         </div>
       </div>
     </section>

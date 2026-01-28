@@ -332,9 +332,9 @@ const TrainerContactForm = () => {
                 rel="noopener noreferrer"
                 className="block"
               >
-                <Button variant="secondary" className="w-full font-semibold">
+                <Button variant="secondary" className="font-semibold text-sm">
                   <Calendar className="w-4 h-4 mr-2" />
-                  Jetzt Termin buchen →
+                  Termin buchen →
                 </Button>
               </a>
             </div>
@@ -352,8 +352,8 @@ const TrainerContactForm = () => {
         <Card className="p-6 bg-primary/5 border-primary/20">
           <h3 className="font-semibold mb-3">Unverbindliches Erstgespräch</h3>
           <p className="text-sm text-muted-foreground">
-            Lernen wir uns kennen! In einem 30-minütigen Video-Call besprechen wir Ihre
-            Erfahrungen, unsere Erwartungen und wie eine Zusammenarbeit aussehen könnte.
+            Lernen wir uns kennen! In einem 15-minütigen Video-Call besprechen wir Ihre
+            Erfahrungen und wie eine Zusammenarbeit aussehen könnte.
           </p>
         </Card>
       </div>
