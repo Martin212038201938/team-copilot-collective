@@ -1,9 +1,21 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { Brain, Users, TrendingUp, Shield, Clock, Laptop, Zap, ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 
-const modules = [
+export type CopilotTier = "free" | "paid";
+
+interface TrainingModule {
+  icon: typeof Brain;
+  title: string;
+  duration: string;
+  description: string;
+  features: string[];
+  tiers: CopilotTier[];
+}
+
+const modules: TrainingModule[] = [
   {
     icon: Brain,
     title: "Microsoft 365 Copilot Grundlagen-Training",
@@ -17,7 +29,8 @@ const modules = [
       "Teams-Meetings optimieren: Besprechungen zusammenfassen, Aktionspunkte extrahieren, automatische Protokolle erstellen",
       "Prompt Engineering Grundlagen: Effektive Anfragen formulieren für bessere Ergebnisse",
       "Eigene Use Cases aus Ihrem Arbeitsalltag praktisch umsetzen und direkt anwendbare Workflows entwickeln"
-    ]
+    ],
+    tiers: ["paid"]
   },
   {
     icon: Users,
@@ -32,7 +45,8 @@ const modules = [
       "Wiederkehrende Aufgaben automatisieren: Individuelle Prompt-Bibliothek aufbauen, Templates erstellen, Best Practices für Ihr Team",
       "Copilot für Projektmanagement: Projektpläne erstellen, Status-Reports automatisieren, Ressourcenplanung optimieren",
       "Praktische Übungen mit realen Business-Szenarien aus Ihrem Unternehmenskontext"
-    ]
+    ],
+    tiers: ["paid"]
   },
   {
     icon: Laptop,
@@ -48,7 +62,8 @@ const modules = [
       "Best Practices für Prompt Engineering in der Softwareentwicklung: Präzise Anfragen formulieren, Kontext bereitstellen",
       "Security und Code Quality: Sicherheitslücken identifizieren, Code-Standards einhalten, Review-Prozesse optimieren",
       "Integration in CI/CD Pipelines und Team-Workflows"
-    ]
+    ],
+    tiers: ["paid"]
   },
   {
     icon: Shield,
@@ -63,7 +78,8 @@ const modules = [
       "Compliance-Checkliste für Ihr Unternehmen: Praktische Templates, Prozesse etablieren, Team schulen",
       "Umgang mit sensiblen Daten: Klassifizierung, Information Protection, DLP-Richtlinien",
       "Rechtliche Fallstricke vermeiden: Urheberrecht, Haftungsfragen, Vertragsgestaltung mit Microsoft"
-    ]
+    ],
+    tiers: ["free", "paid"]
   },
   {
     icon: TrendingUp,
@@ -78,7 +94,8 @@ const modules = [
       "Governance Framework aufbauen: Policies definieren, Verantwortlichkeiten klären, Eskalationsprozesse etablieren",
       "Success Metrics und KPIs definieren: Nutzung messen, Produktivität tracken, Anwenderfeedback systematisch einholen",
       "Best Practices aus erfolgreichen Copilot-Rollouts: Lessons learned, typische Stolpersteine, Erfolgsfaktoren"
-    ]
+    ],
+    tiers: ["paid"]
   },
   {
     icon: Brain,
@@ -93,7 +110,8 @@ const modules = [
       "Prompt Engineering für Agenten: Systemanweisungen optimieren, Kontext-Management, Guardrails implementieren",
       "Testing und Deployment: Agenten testen, Performance optimieren, Rollout planen, Monitoring einrichten",
       "Use Cases aus der Praxis: HR-Assistent, IT-Helpdesk-Agent, Sales-Support-Bot, Onboarding-Assistent"
-    ]
+    ],
+    tiers: ["paid"]
   },
   {
     icon: Users,
@@ -107,7 +125,8 @@ const modules = [
       "Teams-Integration in der Praxis: Chatbot deployen, Berechtigungen konfigurieren, Benutzer onboarden",
       "Testing und Optimierung: Testszenarien durchspielen, Fehlerbehandlung, Antwortqualität verbessern",
       "Use Cases: HR-Anfragen automatisieren, IT-Support-Tickets reduzieren, Onboarding-Prozesse digitalisieren"
-    ]
+    ],
+    tiers: ["free", "paid"]
   },
   {
     icon: Zap,
@@ -122,7 +141,8 @@ const modules = [
       "Integration mit Microsoft 365: SharePoint, Teams, Outlook, Excel nahtlos verbinden",
       "Best Practices für Citizen Development: Governance beachten, Wartbarkeit sicherstellen, Sicherheitsaspekte berücksichtigen",
       "Praktische Projekte: Von der Idee zur fertigen App – Teilnehmer entwickeln eigene Anwendungen"
-    ]
+    ],
+    tiers: ["paid"]
   },
   {
     icon: Clock,
@@ -137,24 +157,38 @@ const modules = [
       "Follow-up Sessions und kontinuierliche Begleitung: Refresher-Trainings, Coaching, Support nach dem Training",
       "Schulungsformate nach Wunsch: Workshops, Webinare, Train-the-Trainer, Einzelcoaching, Team-Sessions",
       "Flexible Durchführung: Vor Ort, Remote oder Hybrid – passend zu Ihren Rahmenbedingungen"
-    ]
+    ],
+    tiers: ["free", "paid"]
   }
 ];
 
+type TierFilter = "all" | "free" | "paid";
+
+const tierFilterOptions: { value: TierFilter; label: string }[] = [
+  { value: "all", label: "Alle Trainings" },
+  { value: "free", label: "Copilot Free" },
+  { value: "paid", label: "Copilot Paid" },
+];
+
 const TrainingModules = () => {
-  const [expandedCards, setExpandedCards] = useState<{ [key: number]: boolean }>({});
+  const [expandedCards, setExpandedCards] = useState<{ [key: string]: boolean }>({});
+  const [tierFilter, setTierFilter] = useState<TierFilter>("all");
 
   const scrollToContact = () => {
     const element = document.getElementById("contact");
     element?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const toggleCard = (index: number) => {
+  const toggleCard = (title: string) => {
     setExpandedCards(prev => ({
       ...prev,
-      [index]: !prev[index]
+      [title]: !prev[title]
     }));
   };
+
+  const filteredModules = tierFilter === "all"
+    ? modules
+    : modules.filter(m => m.tiers.includes(tierFilter));
 
   return (
     <section id="trainings" className="py-24 bg-gradient-to-b from-muted/30 to-background relative overflow-hidden">
@@ -183,16 +217,35 @@ const TrainingModules = () => {
           </p>
         </div>
 
+        {/* Tier Filter */}
+        <div className="flex justify-center mb-10">
+          <div className="inline-flex items-center gap-1 p-1 bg-muted/60 rounded-lg border">
+            {tierFilterOptions.map((option) => (
+              <button
+                key={option.value}
+                onClick={() => setTierFilter(option.value)}
+                className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
+                  tierFilter === option.value
+                    ? "bg-primary text-primary-foreground shadow-sm"
+                    : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                }`}
+              >
+                {option.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {modules.map((module, index) => {
+          {filteredModules.map((module, index) => {
             const Icon = module.icon;
-            const isExpanded = expandedCards[index];
+            const isExpanded = expandedCards[module.title];
             const visibleFeatures = isExpanded ? module.features : module.features.slice(0, 3);
             const hasMoreFeatures = module.features.length > 3;
 
             return (
               <Card
-                key={index}
+                key={module.title}
                 className="group hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-2 hover:border-primary/50 animate-fade-in relative overflow-hidden bg-card/50 backdrop-blur-sm"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
@@ -200,6 +253,18 @@ const TrainingModules = () => {
                 <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
                 <CardHeader className="relative z-10">
+                  <div className="flex flex-wrap gap-1.5 mb-2">
+                    {module.tiers.includes("free") && (
+                      <Badge className="bg-emerald-100 text-emerald-700 border-emerald-200 hover:bg-emerald-100 text-[11px] px-2 py-0.5">
+                        Copilot Free
+                      </Badge>
+                    )}
+                    {module.tiers.includes("paid") && (
+                      <Badge className="bg-blue-100 text-blue-700 border-blue-200 hover:bg-blue-100 text-[11px] px-2 py-0.5">
+                        Copilot Paid
+                      </Badge>
+                    )}
+                  </div>
                   <CardTitle className="text-xl group-hover:text-primary transition-colors duration-300">{module.title}</CardTitle>
                   <CardDescription className="flex items-center gap-2">
                     <Clock className="w-4 h-4" />
@@ -221,7 +286,7 @@ const TrainingModules = () => {
                     <Button
                       variant="ghost"
                       size="sm"
-                      onClick={() => toggleCard(index)}
+                      onClick={() => toggleCard(module.title)}
                       className="w-full text-primary hover:text-primary hover:bg-primary/10 transition-all duration-300"
                     >
                       {isExpanded ? (
