@@ -30,7 +30,7 @@ const modules: TrainingModule[] = [
       "Prompt Engineering Grundlagen: Effektive Anfragen formulieren für bessere Ergebnisse",
       "Eigene Use Cases aus Ihrem Arbeitsalltag praktisch umsetzen und direkt anwendbare Workflows entwickeln"
     ],
-    tiers: ["paid"]
+    tiers: ["free", "paid"]
   },
   {
     icon: Users,
@@ -63,7 +63,7 @@ const modules: TrainingModule[] = [
       "Security und Code Quality: Sicherheitslücken identifizieren, Code-Standards einhalten, Review-Prozesse optimieren",
       "Integration in CI/CD Pipelines und Team-Workflows"
     ],
-    tiers: ["paid"]
+    tiers: ["free", "paid"]
   },
   {
     icon: Shield,
@@ -95,7 +95,7 @@ const modules: TrainingModule[] = [
       "Success Metrics und KPIs definieren: Nutzung messen, Produktivität tracken, Anwenderfeedback systematisch einholen",
       "Best Practices aus erfolgreichen Copilot-Rollouts: Lessons learned, typische Stolpersteine, Erfolgsfaktoren"
     ],
-    tiers: ["paid"]
+    tiers: ["free", "paid"]
   },
   {
     icon: Brain,
@@ -126,7 +126,7 @@ const modules: TrainingModule[] = [
       "Testing und Optimierung: Testszenarien durchspielen, Fehlerbehandlung, Antwortqualität verbessern",
       "Use Cases: HR-Anfragen automatisieren, IT-Support-Tickets reduzieren, Onboarding-Prozesse digitalisieren"
     ],
-    tiers: ["free", "paid"]
+    tiers: ["paid"]
   },
   {
     icon: Zap,
@@ -214,6 +214,23 @@ const TrainingModules = () => {
             Wir nehmen uns bewusst Zeit für Übungen, Anwendungsszenarien und Reflexion, um die Hürde zwischen
             Lernen und produktivem Einsatz zu überwinden. Die Teilnehmenden verlassen das Training nicht mit
             Theorie, sondern mit erprobten Workflows, die sie direkt weiter nutzen können.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-6 max-w-3xl mx-auto">
+            <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-50 border border-emerald-200">
+              <Badge className="bg-emerald-100 text-emerald-700 border-emerald-200 hover:bg-emerald-100 text-[11px] px-2 py-0.5">
+                Copilot Free
+              </Badge>
+              <span className="text-sm text-muted-foreground">Microsoft 365 Copilot Chat (Websuche, kostenlos)</span>
+            </div>
+            <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-50 border border-blue-200">
+              <Badge className="bg-blue-100 text-blue-700 border-blue-200 hover:bg-blue-100 text-[11px] px-2 py-0.5">
+                Copilot Paid
+              </Badge>
+              <span className="text-sm text-muted-foreground">Microsoft 365 Copilot mit Lizenz (Grounding, M365-Integration)</span>
+            </div>
+          </div>
+          <p className="text-sm text-muted-foreground max-w-2xl mx-auto mt-4">
+            Wir bieten Trainings gezielt für beide Tiers an, damit Ihre Mitarbeitenden genau auf die Tools geschult werden, die sie im Unternehmen tatsächlich zur Verfügung haben.
           </p>
         </div>
 
