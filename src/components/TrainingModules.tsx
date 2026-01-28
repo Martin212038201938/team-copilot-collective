@@ -1,7 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Brain, Users, TrendingUp, Shield, Clock, Laptop, Zap, ChevronDown, ChevronUp } from "lucide-react";
+import { Brain, Users, TrendingUp, Shield, Clock, Laptop, Zap, ChevronDown, ChevronUp, HelpCircle, X } from "lucide-react";
 import { useState } from "react";
 
 export type CopilotTier = "free" | "paid";
@@ -173,6 +173,7 @@ const tierFilterOptions: { value: TierFilter; label: string }[] = [
 const TrainingModules = () => {
   const [expandedCards, setExpandedCards] = useState<{ [key: string]: boolean }>({});
   const [tierFilter, setTierFilter] = useState<TierFilter>("all");
+  const [showTierHelp, setShowTierHelp] = useState(false);
 
   const scrollToContact = () => {
     const element = document.getElementById("contact");
@@ -212,18 +213,62 @@ const TrainingModules = () => {
             Lernen und produktivem Einsatz zu überwinden. Die Teilnehmenden verlassen das Training nicht mit
             Theorie, sondern mit erprobten Workflows, die sie direkt weiter nutzen können.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-6 max-w-3xl mx-auto">
-            <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-50 border border-emerald-200">
-              <Badge className="bg-emerald-100 text-emerald-700 border-emerald-200 hover:bg-emerald-100 text-[11px] px-2 py-0.5">
-                Copilot Free
-              </Badge>
-              <span className="text-sm text-muted-foreground">Microsoft 365 Copilot Chat (Websuche, kostenlos)</span>
+          <div className="flex flex-col lg:flex-row items-center lg:items-start justify-center gap-6 mt-6 max-w-5xl mx-auto">
+            {/* Tier badges - centered */}
+            <div className="flex flex-col sm:flex-row items-center gap-3">
+              <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-50 border border-emerald-200">
+                <Badge className="bg-emerald-100 text-emerald-700 border-emerald-200 hover:bg-emerald-100 text-[11px] px-2 py-0.5">
+                  Copilot Free
+                </Badge>
+                <span className="text-sm text-muted-foreground">Microsoft 365 Copilot Chat (Websuche, kostenlos)</span>
+              </div>
+              <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-50 border border-blue-200">
+                <Badge className="bg-blue-100 text-blue-700 border-blue-200 hover:bg-blue-100 text-[11px] px-2 py-0.5">
+                  Copilot Paid
+                </Badge>
+                <span className="text-sm text-muted-foreground">Microsoft 365 Copilot mit Lizenz (Grounding, M365-Integration)</span>
+              </div>
             </div>
-            <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-50 border border-blue-200">
-              <Badge className="bg-blue-100 text-blue-700 border-blue-200 hover:bg-blue-100 text-[11px] px-2 py-0.5">
-                Copilot Paid
-              </Badge>
-              <span className="text-sm text-muted-foreground">Microsoft 365 Copilot mit Lizenz (Grounding, M365-Integration)</span>
+
+            {/* Collapsible tier check helper */}
+            <div className="flex-shrink-0">
+              {!showTierHelp ? (
+                <button
+                  onClick={() => setShowTierHelp(true)}
+                  className="flex items-center gap-2 px-4 py-2 rounded-lg border border-primary/30 bg-primary/5 hover:bg-primary/10 text-sm font-medium text-primary transition-all duration-200 hover:scale-105"
+                >
+                  <HelpCircle className="w-4 h-4" />
+                  Welchen Copilot habe ich?
+                </button>
+              ) : (
+                <div className="w-80 p-4 rounded-lg border border-primary/30 bg-card shadow-lg text-left animate-fade-in">
+                  <div className="flex items-center justify-between mb-3">
+                    <h4 className="font-semibold text-sm flex items-center gap-2">
+                      <HelpCircle className="w-4 h-4 text-primary" />
+                      So finden Sie Ihr Copilot-Tier heraus
+                    </h4>
+                    <button
+                      onClick={() => setShowTierHelp(false)}
+                      className="text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                  </div>
+                  <ol className="space-y-2 text-sm text-muted-foreground list-decimal list-inside">
+                    <li>Öffnen Sie <strong>Microsoft Copilot</strong> in Teams, Word oder im Browser (copilot.microsoft.com)</li>
+                    <li>Achten Sie auf den <strong>Toggle „Work / Web"</strong> oben im Chat. Sehen Sie diesen Schalter, haben Sie <strong>Copilot Paid</strong></li>
+                    <li>Stellen Sie die Frage: <em>„Welche Termine habe ich heute?"</em></li>
+                    <li>Erhalten Sie Ihre <strong>echten Kalender-Termine</strong> als Antwort → <Badge className="bg-blue-100 text-blue-700 border-blue-200 hover:bg-blue-100 text-[11px] px-2 py-0.5">Copilot Paid</Badge></li>
+                    <li>Kommt <strong>keine Kalender-Antwort</strong> oder nur eine Web-Suche → <Badge className="bg-emerald-100 text-emerald-700 border-emerald-200 hover:bg-emerald-100 text-[11px] px-2 py-0.5">Copilot Free</Badge></li>
+                  </ol>
+                  <button
+                    onClick={() => setShowTierHelp(false)}
+                    className="mt-3 text-xs text-primary hover:underline"
+                  >
+                    Schließen
+                  </button>
+                </div>
+              )}
             </div>
           </div>
           <p className="text-sm text-muted-foreground max-w-2xl mx-auto mt-4">
