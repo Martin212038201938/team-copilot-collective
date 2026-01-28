@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, Calendar } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -189,6 +189,32 @@ const Contact = () => {
           </div>
 
           <div className="space-y-6">
+            {/* Microsoft Bookings - Prominente CTA Card */}
+            <Card className="p-6 bg-primary text-primary-foreground border-primary shadow-lg">
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <Calendar className="w-5 h-5" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-semibold mb-1">Erstgespräch vereinbaren</h3>
+                  <p className="text-sm text-primary-foreground/80 mb-4">
+                    Buchen Sie direkt einen passenden Termin für ein kostenloses Beratungsgespräch.
+                  </p>
+                  <a
+                    href="https://outlook.office.com/book/CopilotErstgesprch@yellow-boat.com/?ismsaljsauthenabled"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block"
+                  >
+                    <Button variant="secondary" className="w-full font-semibold">
+                      <Calendar className="w-4 h-4 mr-2" />
+                      Jetzt Termin buchen →
+                    </Button>
+                  </a>
+                </div>
+              </div>
+            </Card>
+
             <Card className="p-6">
               <div className="flex items-start gap-4">
                 <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
