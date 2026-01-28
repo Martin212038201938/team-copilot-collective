@@ -253,6 +253,25 @@ const TrainingModules = () => {
           </div>
         </div>
 
+        {/* Tier Filter */}
+        <div className="flex justify-center mb-10">
+          <div className="inline-flex items-center gap-1 p-1 bg-muted/60 rounded-lg border">
+            {tierFilterOptions.map((option) => (
+              <button
+                key={option.value}
+                onClick={() => setTierFilter(option.value)}
+                className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
+                  tierFilter === option.value
+                    ? "bg-primary text-primary-foreground shadow-sm"
+                    : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                }`}
+              >
+                {option.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredModules.map((module, index) => {
             const Icon = module.icon;
