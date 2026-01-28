@@ -10,7 +10,7 @@ const Footer = () => {
               <img src="/images/copilotenschule_flugzeug.png" alt="Copilotenschule Logo" className="h-16 w-auto object-contain" />
             </div>
             <p className="text-muted-foreground text-sm mb-3">
-              Spezialisierte Weiterbildungs- und Enablement-Plattform für Microsoft Copilot.
+              Spezialisierte Weiterbildungen für Microsoft Copilot.
               Praxisorientierte Trainings für Wissensarbeiter, Teams und Organisationen.
             </p>
             <p className="text-muted-foreground text-xs">

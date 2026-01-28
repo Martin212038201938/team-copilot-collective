@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import heroImage from "@/assets/hero-training.jpg";
 
 const Hero = () => {
@@ -20,13 +20,6 @@ const Hero = () => {
       <div className="container mx-auto px-4 relative z-10">
         {/* Centered headline section */}
         <div className="text-center mb-12">
-          <div className="inline-block animate-fade-in mb-6">
-            <span className="group px-4 py-2 bg-gradient-to-r from-accent/90 to-primary/80 text-white rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-default inline-flex items-center gap-2">
-              <Sparkles className="w-4 h-4 animate-pulse" />
-              Praxisnähe. Wirksamkeit. Transparenz.
-            </span>
-          </div>
-
           <h1 className="text-5xl lg:text-7xl font-bold leading-tight animate-slide-up">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70">
               Microsoft Copilot Trainings

@@ -147,7 +147,7 @@ export const generateTrainingSchemas = (modules: TrainingModule[]) => {
         "alternateName": ["Copilotenschule", "Copiloten Schule"],
         "url": "https://copilotenschule.de",
         "logo": "https://copilotenschule.de/og-image.jpg",
-        "description": "copilotenschule.de ist eine spezialisierte Weiterbildungs- und Enablement-Plattform für den professionellen Einsatz von Microsoft Copilot in der täglichen Büroarbeit. Wir befähigen Wissensarbeiter, Teams und Organisationen, Microsoft Copilot produktiv, sicher und wertschöpfend im Arbeitsalltag einzusetzen.",
+        "description": "copilotenschule.de bietet spezialisierte Weiterbildungen für den professionellen Einsatz von Microsoft Copilot in der täglichen Büroarbeit. Wir befähigen Wissensarbeiter, Teams und Organisationen, Microsoft Copilot produktiv, sicher und wertschöpfend im Arbeitsalltag einzusetzen.",
         "foundingDate": "2025",
         "slogan": "Büroarbeit durch Microsoft Copilot messbar produktiver, wirksamer und menschlicher machen",
         "knowsAbout": [
@@ -209,7 +209,7 @@ export const generateTrainingSchemas = (modules: TrainingModule[]) => {
         "@id": "https://copilotenschule.de/#website",
         "name": "copilotenschule.de",
         "url": "https://copilotenschule.de",
-        "description": "Spezialisierte Weiterbildungs- und Enablement-Plattform für Microsoft Copilot. Praxis-Trainings, Workshops, Inhouse-Enablement und Coaching für Wissensarbeiter, Teams und Organisationen.",
+        "description": "Spezialisierte Weiterbildungen für Microsoft Copilot. Praxis-Trainings, Workshops, Inhouse-Enablement und Coaching für Wissensarbeiter, Teams und Organisationen.",
         "inLanguage": "de-DE",
         "publisher": {
           "@id": "https://copilotenschule.de/#organization"

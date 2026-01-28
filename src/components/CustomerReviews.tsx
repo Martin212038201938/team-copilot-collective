@@ -94,11 +94,8 @@ const CustomerReviews = () => {
       <div className="container mx-auto max-w-6xl">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Das sagen unsere Kunden
+            Das sagen Teilnehmer unserer Trainings
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Das sagen unsere Teilnehmer
-          </p>
           <div className="flex items-center justify-center gap-2 mt-4">
             <div className="flex gap-1">
               {[1, 2, 3, 4, 5].map((star) => (
@@ -107,6 +104,28 @@ const CustomerReviews = () => {
             </div>
             <span className="text-sm text-muted-foreground">5.0 auf Google</span>
           </div>
+          <a
+            href="https://maps.app.goo.gl/JWTPeDLVeuDu9WiJ8"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary hover:underline font-medium inline-flex items-center gap-2 mt-2 text-sm"
+          >
+            Alle Bewertungen auf Google ansehen
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-4 w-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+              />
+            </svg>
+          </a>
         </div>
 
         <Carousel
@@ -152,30 +171,6 @@ const CustomerReviews = () => {
           <CarouselNext className="hidden md:flex" />
         </Carousel>
 
-        <div className="text-center mt-8">
-          <a
-            href="https://maps.app.goo.gl/JWTPeDLVeuDu9WiJ8"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-primary hover:underline font-medium inline-flex items-center gap-2"
-          >
-            Alle Bewertungen auf Google ansehen
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-4 w-4"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-              />
-            </svg>
-          </a>
-        </div>
       </div>
     </section>
   );

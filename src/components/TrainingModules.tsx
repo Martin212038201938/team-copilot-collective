@@ -197,10 +197,7 @@ const TrainingModules = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16 animate-fade-in">
-          <span className="px-4 py-2 bg-gradient-to-r from-primary/90 to-accent/80 text-white rounded-full text-sm font-medium shadow-lg hover:scale-105 transition-transform duration-300 inline-block">
-            Unser Angebot
-          </span>
-          <h2 className="text-4xl font-bold mt-6 mb-4 animate-slide-up">
+          <h2 className="text-4xl font-bold mb-4 animate-slide-up">
             Microsoft Copilot Schulungen & Trainings für Unternehmen
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-4 animate-fade-in-delayed">
@@ -232,25 +229,6 @@ const TrainingModules = () => {
           <p className="text-sm text-muted-foreground max-w-2xl mx-auto mt-4">
             Wir bieten Trainings gezielt für beide Tiers an, damit Ihre Mitarbeitenden genau auf die Tools geschult werden, die sie im Unternehmen tatsächlich zur Verfügung haben.
           </p>
-        </div>
-
-        {/* Tier Filter */}
-        <div className="flex justify-center mb-10">
-          <div className="inline-flex items-center gap-1 p-1 bg-muted/60 rounded-lg border">
-            {tierFilterOptions.map((option) => (
-              <button
-                key={option.value}
-                onClick={() => setTierFilter(option.value)}
-                className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
-                  tierFilter === option.value
-                    ? "bg-primary text-primary-foreground shadow-sm"
-                    : "text-muted-foreground hover:text-foreground hover:bg-muted"
-                }`}
-              >
-                {option.label}
-              </button>
-            ))}
-          </div>
         </div>
 
         {/* Tier Filter */}

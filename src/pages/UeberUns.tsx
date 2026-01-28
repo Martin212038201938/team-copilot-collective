@@ -17,7 +17,7 @@ const UeberUns = () => {
         "alternateName": "Copilotenschule",
         "url": "https://copilotenschule.de",
         "logo": "https://copilotenschule.de/og-image.jpg",
-        "description": "copilotenschule.de ist eine spezialisierte Weiterbildungs- und Enablement-Plattform für den professionellen Einsatz von Microsoft Copilot in der täglichen Büroarbeit.",
+        "description": "copilotenschule.de ist eine spezialisierte Weiterbildungen für den professionellen Einsatz von Microsoft Copilot in der täglichen Büroarbeit.",
         "foundingDate": "2025",
         "founder": {
           "@type": "Person",
@@ -120,7 +120,7 @@ const UeberUns = () => {
     <div className="min-h-screen">
       <SEOHead
         title="Über uns - copilotenschule.de | Microsoft Copilot Trainings"
-        description="copilotenschule.de ist die spezialisierte Weiterbildungs- und Enablement-Plattform für Microsoft Copilot. Eine Marke der Yellow-Boat Consulting (gegr. 2011). Erfahren Sie mehr über unsere Mission, Vision und Werte."
+        description="copilotenschule.de ist die spezialisierte Weiterbildungen für Microsoft Copilot. Eine Marke der Yellow-Boat Consulting (gegr. 2011). Erfahren Sie mehr über unsere Mission, Vision und Werte."
         keywords={[
           "copilotenschule",
           "Microsoft Copilot Training Anbieter",
@@ -145,7 +145,7 @@ const UeberUns = () => {
               <span className="text-accent">Microsoft Copilot</span>
             </h1>
             <p className="text-xl text-muted-foreground leading-relaxed mb-4">
-              <strong>copilotenschule.de</strong> ist eine spezialisierte Weiterbildungs- und Enablement-Plattform
+              <strong>copilotenschule.de</strong> ist eine spezialisierte Weiterbildungen
               für den professionellen Einsatz von Microsoft Copilot in der täglichen Büroarbeit.
             </p>
             <p className="text-lg text-muted-foreground leading-relaxed">

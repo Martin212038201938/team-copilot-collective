@@ -22,7 +22,7 @@ const Impressum = () => {
               <div className="bg-primary/10 border-l-4 border-primary p-6 rounded-r-lg mb-8">
                 <h3 className="text-xl font-bold mb-3">Über copilotenschule.de</h3>
                 <p className="text-base mb-3">
-                  copilotenschule.de ist eine spezialisierte Weiterbildungs- und Enablement-Plattform für den
+                  copilotenschule.de ist eine spezialisierte Weiterbildungen für den
                   professionellen Einsatz von Microsoft Copilot in der täglichen Büroarbeit. Wir befähigen
                   Wissensarbeiter, Teams und Organisationen, Microsoft Copilot produktiv, sicher und
                   wertschöpfend im Arbeitsalltag einzusetzen.
