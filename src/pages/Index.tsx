@@ -161,10 +161,10 @@ const Index = () => {
       <Header />
       <main>
         <Hero />
-        <TrainingModules />
-        <Benefits />
         <TrustBadges />
         <CustomerReviews />
+        <TrainingModules />
+        <Benefits />
         <Contact />
         <FAQ faqs={homepageFAQs} />
       </main>

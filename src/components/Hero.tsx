@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import heroImage from "@/assets/raum-meeting.jpg";
+import heroImage from "@/assets/training-nippes.png";
 
 const Hero = () => {
   const scrollToContact = () => {
@@ -21,19 +21,22 @@ const Hero = () => {
       <div className="container mx-auto px-4 relative z-10">
         {/* Centered headline section */}
         <div className="text-center mb-12">
-          <div className="inline-block bg-gradient-to-r from-card/90 via-card/95 to-card/90 backdrop-blur-sm rounded-2xl px-8 py-6 shadow-xl border border-border/30">
-            <h1 className="text-5xl lg:text-7xl font-bold leading-tight animate-slide-up">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70">
-                Trainings für
-              </span>
-              <br />
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
-                Microsoft Copilot
-              </span>
-              <span className="block text-accent mt-2 animate-slide-up-delayed">
-                Für messbar produktivere Büroarbeit
-              </span>
-            </h1>
+          <div className="relative inline-block max-w-4xl">
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-accent/20 to-primary/20 rounded-xl blur-xl" />
+            <div className="relative bg-gradient-to-r from-primary/10 via-accent/10 to-primary/10 border-2 border-primary/30 rounded-xl px-8 py-6">
+              <h1 className="text-5xl lg:text-7xl font-bold leading-tight animate-slide-up">
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70">
+                  Trainings für
+                </span>
+                <br />
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
+                  Microsoft Copilot
+                </span>
+                <span className="block text-accent mt-2 animate-slide-up-delayed text-2xl lg:text-3xl">
+                  Für messbar produktivere Büroarbeit
+                </span>
+              </h1>
+            </div>
           </div>
         </div>
 
