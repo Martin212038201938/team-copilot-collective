@@ -31,6 +31,8 @@ if (empty($data['name']) || empty($data['email']) || empty($data['path']) || emp
 }
 
 $name = htmlspecialchars($data['name']);
+$firstName = !empty($data['firstName']) ? htmlspecialchars($data['firstName']) : '';
+$lastName = !empty($data['lastName']) ? htmlspecialchars($data['lastName']) : '';
 $email = filter_var($data['email'], FILTER_SANITIZE_EMAIL);
 $phone = !empty($data['phone']) ? htmlspecialchars($data['phone']) : '';
 $path = htmlspecialchars($data['path']);
@@ -149,6 +151,11 @@ if (count($cvFiles) > 0) {
     $cvFileListText = "CV/Lebenslauf: Nicht hochgeladen\n";
 }
 
+// Bestimme Name-Anzeige (Vorname/Nachname wenn verfügbar, sonst kombinierter Name)
+$nameDisplayHtml = ($firstName && $lastName)
+    ? "<p><strong>Vorname:</strong> {$firstName}</p><p><strong>Nachname:</strong> {$lastName}</p>"
+    : "<p><strong>Name:</strong> {$name}</p>";
+
 $htmlBody = "
 <html>
 <head>
@@ -156,7 +163,7 @@ $htmlBody = "
 </head>
 <body>
     <h2>Neue Trainer-Bewerbung</h2>
-    <p><strong>Name:</strong> {$name}</p>
+    {$nameDisplayHtml}
     <p><strong>E-Mail:</strong> {$email}</p>
     " . ($phone ? "<p><strong>Telefon:</strong> {$phone}</p>" : "") . "
     <p><strong>Interessiert an:</strong> {$pathLabel}</p>
@@ -173,10 +180,15 @@ $htmlBody = "
 </html>
 ";
 
+// Bestimme Name-Anzeige für Text-Version
+$nameDisplayText = ($firstName && $lastName)
+    ? "Vorname: {$firstName}\nNachname: {$lastName}"
+    : "Name: {$name}";
+
 $textBody = "
 Neue Trainer-Bewerbung
 
-Name: {$name}
+{$nameDisplayText}
 E-Mail: {$email}
 " . ($phone ? "Telefon: {$phone}\n" : "") . "
 Interessiert an: {$pathLabel}

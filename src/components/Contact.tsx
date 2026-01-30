@@ -11,7 +11,8 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [trainingSource, setTrainingSource] = useState<string | null>(null);
   const [formData, setFormData] = useState({
-    name: "",
+    firstName: "",
+    lastName: "",
     email: "",
     company: "",
     phone: "",
@@ -20,9 +21,9 @@ const Contact = () => {
 
   // Erfasse die Herkunftsseite beim Laden der Komponente
   useEffect(() => {
-    const referrer = document.referrer;
-    if (referrer) {
-      try {
+    try {
+      const referrer = document.referrer;
+      if (referrer && referrer.length > 0) {
         const url = new URL(referrer);
         // Nur interne Seiten erfassen (copilotenschule.de oder localhost)
         if (url.hostname.includes('copilotenschule.de') ||
@@ -33,9 +34,9 @@ const Contact = () => {
             setTrainingSource(url.pathname);
           }
         }
-      } catch (e) {
-        // Ungültige URL - ignorieren
       }
+    } catch {
+      // Ungültige URL - ignorieren
     }
   }, []);
 
@@ -50,12 +51,29 @@ const Contact = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          ...formData,
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          name: `${formData.firstName} ${formData.lastName}`,
+          email: formData.email,
+          company: formData.company,
+          phone: formData.phone,
+          message: formData.message,
           trainingSource: trainingSource
         }),
       });
 
-      const data = await response.json();
+      // Zuerst den Response-Text holen
+      const responseText = await response.text();
+
+      // Versuche JSON zu parsen
+      let data;
+      try {
+        data = JSON.parse(responseText);
+      } catch (parseError) {
+        console.error('JSON Parse Error:', parseError);
+        console.error('Server Response:', responseText);
+        throw new Error('Server-Antwort konnte nicht verarbeitet werden. Bitte versuchen Sie es erneut.');
+      }
 
       if (!response.ok) {
         throw new Error(data.error || 'Fehler beim Versenden der Anfrage');
@@ -65,7 +83,7 @@ const Contact = () => {
         title: "Anfrage gesendet!",
         description: "Wir melden uns innerhalb von 24 Stunden bei Ihnen.",
       });
-      setFormData({ name: "", email: "", company: "", phone: "", message: "" });
+      setFormData({ firstName: "", lastName: "", email: "", company: "", phone: "", message: "" });
     } catch (error) {
       console.error('Error submitting form:', error);
       toast({
@@ -96,8 +114,7 @@ const Contact = () => {
             Copilot nutzen und nicht nur damit spielen
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Lassen Sie uns gemeinsam das passende Training für Ihr Team entwickeln. 
-            Wir beraten Sie gerne unverbindlich.
+            Lassen Sie uns gemeinsam das passende Training für Ihr Team entwickeln.
           </p>
         </div>
 
@@ -108,16 +125,31 @@ const Contact = () => {
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium mb-2">
-                      Name *
+                      Vorname *
                     </label>
                     <Input
-                      name="name"
-                      value={formData.name}
+                      name="firstName"
+                      value={formData.firstName}
                       onChange={handleChange}
-                      placeholder="Ihr Name"
+                      placeholder="Ihr Vorname"
                       required
                     />
                   </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-2">
+                      Nachname *
+                    </label>
+                    <Input
+                      name="lastName"
+                      value={formData.lastName}
+                      onChange={handleChange}
+                      placeholder="Ihr Nachname"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium mb-2">
                       E-Mail *
@@ -131,9 +163,6 @@ const Contact = () => {
                       required
                     />
                   </div>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium mb-2">
                       Unternehmen
@@ -145,18 +174,19 @@ const Contact = () => {
                       placeholder="Ihr Unternehmen"
                     />
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium mb-2">
-                      Telefon
-                    </label>
-                    <Input
-                      name="phone"
-                      type="tel"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      placeholder="+49 ..."
-                    />
-                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium mb-2">
+                    Telefon
+                  </label>
+                  <Input
+                    name="phone"
+                    type="text"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    placeholder="+49 ..."
+                  />
                 </div>
 
                 <div>
@@ -198,7 +228,7 @@ const Contact = () => {
                 <div className="flex-1">
                   <h3 className="font-semibold mb-1">Erstgespräch vereinbaren</h3>
                   <p className="text-sm text-primary-foreground/80 mb-4">
-                    Buchen Sie direkt einen passenden Termin für ein kostenloses Beratungsgespräch.
+                    Buchen Sie direkt einen 15-minütigen Termin.
                   </p>
                   <a
                     href="https://outlook.office.com/book/CopilotErstgesprch@yellow-boat.com/?ismsaljsauthenabled"
@@ -251,8 +281,8 @@ const Contact = () => {
                 <div>
                   <h3 className="font-semibold mb-1">Standort</h3>
                   <p className="text-muted-foreground">
-                    Deutschlandweit<br />
-                    Vor Ort oder Remote
+                    Köln, Deutschland,<br />
+                    Österreich, Schweiz oder Remote
                   </p>
                 </div>
               </div>

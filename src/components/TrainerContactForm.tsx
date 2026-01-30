@@ -12,7 +12,8 @@ const TrainerContactForm = () => {
   const [fileNames, setFileNames] = useState<string[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
-    name: "",
+    firstName: "",
+    lastName: "",
     email: "",
     phone: "",
     path: "",
@@ -29,7 +30,9 @@ const TrainerContactForm = () => {
     try {
       // Use FormData to support file upload
       const submitData = new FormData();
-      submitData.append('name', formData.name);
+      submitData.append('firstName', formData.firstName);
+      submitData.append('lastName', formData.lastName);
+      submitData.append('name', `${formData.firstName} ${formData.lastName}`);
       submitData.append('email', formData.email);
       submitData.append('phone', formData.phone);
       submitData.append('path', formData.path);
@@ -60,7 +63,8 @@ const TrainerContactForm = () => {
         description: "Vielen Dank für Ihr Interesse. Wir melden uns innerhalb von 48 Stunden bei Ihnen.",
       });
       setFormData({
-        name: "",
+        firstName: "",
+        lastName: "",
         email: "",
         phone: "",
         path: "",
@@ -155,18 +159,34 @@ const TrainerContactForm = () => {
           {/* Personal Information */}
           <div className="grid md:grid-cols-2 gap-4">
             <div>
-              <Label htmlFor="name" className="block text-sm font-medium mb-2">
-                Name *
+              <Label htmlFor="firstName" className="block text-sm font-medium mb-2">
+                Vorname *
               </Label>
               <Input
-                id="name"
-                name="name"
-                value={formData.name}
+                id="firstName"
+                name="firstName"
+                value={formData.firstName}
                 onChange={handleChange}
-                placeholder="Ihr vollständiger Name"
+                placeholder="Ihr Vorname"
                 required
               />
             </div>
+            <div>
+              <Label htmlFor="lastName" className="block text-sm font-medium mb-2">
+                Nachname *
+              </Label>
+              <Input
+                id="lastName"
+                name="lastName"
+                value={formData.lastName}
+                onChange={handleChange}
+                placeholder="Ihr Nachname"
+                required
+              />
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-4">
             <div>
               <Label htmlFor="email" className="block text-sm font-medium mb-2">
                 E-Mail *
@@ -181,20 +201,19 @@ const TrainerContactForm = () => {
                 required
               />
             </div>
-          </div>
-
-          <div>
-            <Label htmlFor="phone" className="block text-sm font-medium mb-2">
-              Telefon
-            </Label>
-            <Input
-              id="phone"
-              name="phone"
-              type="tel"
-              value={formData.phone}
-              onChange={handleChange}
-              placeholder="+49 ..."
-            />
+            <div>
+              <Label htmlFor="phone" className="block text-sm font-medium mb-2">
+                Telefon
+              </Label>
+              <Input
+                id="phone"
+                name="phone"
+                type="text"
+                value={formData.phone}
+                onChange={handleChange}
+                placeholder="+49 ..."
+              />
+            </div>
           </div>
 
           {/* LinkedIn and Website */}

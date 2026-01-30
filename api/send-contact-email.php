@@ -32,11 +32,14 @@ if (empty($data['name']) || empty($data['email']) || empty($data['message'])) {
 }
 
 $name = htmlspecialchars($data['name']);
+$firstName = !empty($data['firstName']) ? htmlspecialchars($data['firstName']) : '';
+$lastName = !empty($data['lastName']) ? htmlspecialchars($data['lastName']) : '';
 $email = filter_var($data['email'], FILTER_SANITIZE_EMAIL);
 $company = !empty($data['company']) ? htmlspecialchars($data['company']) : '';
 $phone = !empty($data['phone']) ? htmlspecialchars($data['phone']) : '';
 $message = htmlspecialchars($data['message']);
 $trainingSource = !empty($data['trainingSource']) ? htmlspecialchars($data['trainingSource']) : null;
+$customSubject = !empty($data['subject']) ? htmlspecialchars($data['subject']) : null;
 
 // Validate email
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -60,7 +63,7 @@ $saved = saveNewsletterSubscription($email, $name, 'contact', $confirmationToken
 // 1. Send notification email to Martin
 // ============================================
 $to = 'martin@yellow-boat.com';
-$subject = 'Neue Kontaktanfrage von ' . $name;
+$subject = $customSubject ? $customSubject : 'Neue Kontaktanfrage von ' . $name;
 
 // Erstelle Trainings-Quellen-Info für die interne E-Mail
 $trainingSourceHtml = '';
@@ -75,6 +78,11 @@ if ($trainingSource) {
     $trainingSourceText = "Anfrage von Trainings-Seite: {$fullUrl}\n\n";
 }
 
+// Bestimme Name-Anzeige (Vorname/Nachname wenn verfügbar, sonst kombinierter Name)
+$nameDisplay = ($firstName && $lastName)
+    ? "<p><strong>Vorname:</strong> {$firstName}</p><p><strong>Nachname:</strong> {$lastName}</p>"
+    : "<p><strong>Name:</strong> {$name}</p>";
+
 $htmlBody = "
 <html>
 <head>
@@ -83,7 +91,7 @@ $htmlBody = "
 <body>
     <h2>Neue Kontaktanfrage</h2>
     {$trainingSourceHtml}
-    <p><strong>Name:</strong> {$name}</p>
+    {$nameDisplay}
     <p><strong>E-Mail:</strong> {$email}</p>
     " . ($company ? "<p><strong>Unternehmen:</strong> {$company}</p>" : "") . "
     " . ($phone ? "<p><strong>Telefon:</strong> {$phone}</p>" : "") . "
@@ -97,10 +105,15 @@ $htmlBody = "
 </html>
 ";
 
+// Bestimme Name-Anzeige für Text-Version
+$nameTextDisplay = ($firstName && $lastName)
+    ? "Vorname: {$firstName}\nNachname: {$lastName}"
+    : "Name: {$name}";
+
 $textBody = "
 Neue Kontaktanfrage
 
-{$trainingSourceText}Name: {$name}
+{$trainingSourceText}{$nameTextDisplay}
 E-Mail: {$email}
 " . ($company ? "Unternehmen: {$company}\n" : "") . "
 " . ($phone ? "Telefon: {$phone}\n" : "") . "
