@@ -6,6 +6,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Target, Eye, Heart, Users, Building, Award, ArrowRight, ExternalLink } from "lucide-react";
+import gruppeNippes from "@/assets/gruppe-nippes.png";
 
 const UeberUns = () => {
   const organizationSchema = {
@@ -195,6 +196,18 @@ const UeberUns = () => {
             </Card>
           </div>
 
+          {/* Team Bild */}
+          <div className="max-w-4xl mx-auto mb-16">
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+              <img
+                src={gruppeNippes}
+                alt="Das Team der Copilotenschule"
+                className="w-full h-auto"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/20 via-transparent to-transparent" />
+            </div>
+          </div>
+
           {/* Vision Detail Block */}
           <div className="max-w-4xl mx-auto mb-16">
             <div className="relative">
@@ -329,7 +342,7 @@ const UeberUns = () => {
                 <div className="font-bold text-lg text-primary mb-1">2011</div>
                 <h3 className="text-xl font-semibold mb-2">Gründung Yellow-Boat Consulting</h3>
                 <p className="text-muted-foreground">
-                  Die copilotenschule.de ist eine Marke der 2011 gegründeten{" "}
+                  Die copilotenschule.de ist eine Marke der im Jahr 2011 gegründeten{" "}
                   <a
                     href="https://yellow-boat.com"
                     target="_blank"
@@ -347,11 +360,11 @@ const UeberUns = () => {
                 <div className="font-bold text-lg text-primary mb-1">2011–2023</div>
                 <h3 className="text-xl font-semibold mb-2">Agile Trainings & Digitalisierung</h3>
                 <p className="text-muted-foreground">
-                  Yellow-Boat Consulting realisiert seit über einem Jahrzehnt Einführungsprojekte,
-                  Agile Trainings und Ausbildungen für hunderte Scrum Master, Product Owner und
-                  Agile Coaches sowie Projekte zur Gestaltung von agiler, digitaler, hybrider und
-                  remoter Teamarbeit in Konzernen und Mittelstand. Das starke Freelancer-Netzwerk
-                  „Die Yellow-Boat Flotte" besteht aus erfahrenen und zertifizierten Praktikern.
+                  Seit über einem Jahrzehnt realisiert Yellow-Boat Consulting Einführungsprojekte sowie
+                  Agile Trainings und Ausbildungen für hunderte Scrum Master, Product Owner und Agile Coaches.
+                  Darüber hinaus begleitet das Unternehmen Projekte zur Gestaltung agiler, digitaler, hybrider
+                  und remoter Teamarbeit in Konzernen und im Mittelstand. Das etablierte Freelancer-Netzwerk
+                  „Yellow-Fleet" besteht aus erfahrenen und zertifizierten Praktikern.
                 </p>
               </div>
 
@@ -360,25 +373,36 @@ const UeberUns = () => {
                 <div className="font-bold text-lg text-primary mb-1">2023</div>
                 <h3 className="text-xl font-semibold mb-2">Fokus auf KI-unterstützte Wissensarbeit</h3>
                 <p className="text-muted-foreground">
-                  Seit 2023 liegt ein starker Fokus auf praxisnahe Umsetzungen und Trainings für die
-                  Revolution durch KI in der Arbeitswelt. Yellow-Boat Consulting führt im Dezember 2023
-                  das erste Copilot Anwendertraining durch. Seitdem wurden zahllose Weiterbildungen und
-                  Veranstaltungen zur KI-Nutzung in der realen Arbeitswelt besucht, für einen möglichst
-                  schnellen Wissensaufbau in dieser neuen Arbeitswelt. Ab Ende 2024 werden Prozesse und
-                  Workflows bei Yellow-Boat Consulting radikal auf AI-First umgestellt. Ende 2024 wurde
-                  das erste reine Copilot Training entwickelt und durchgeführt.
+                  Konsequente Ausrichtung auf praxisnahe Trainings zur Transformation der Arbeitswelt durch
+                  Künstliche Intelligenz. Im Dezember 2023 wird das erste Copilot-Anwendertraining durchgeführt.
+                  Parallel erfolgt ein intensiver Wissensaufbau durch zahlreiche Weiterbildungen und
+                  Veranstaltungen zur KI-Nutzung in der realen Arbeitswelt.
                 </p>
               </div>
 
               <div className="relative">
-                <div className="absolute -left-10 w-4 h-4 bg-accent rounded-full"></div>
-                <div className="font-bold text-lg text-accent mb-1">2025</div>
-                <h3 className="text-xl font-semibold mb-2">Gründung der Copilotenschule</h3>
+                <div className="absolute -left-10 w-4 h-4 bg-primary/90 rounded-full"></div>
+                <div className="font-bold text-lg text-primary mb-1">2024</div>
+                <h3 className="text-xl font-semibold mb-2">AI-First & Copilot-Trainings</h3>
                 <p className="text-muted-foreground">
-                  Launch von copilotenschule.de und Aufstellung eines starken Experten-Teams für eine
-                  spezialisierte Akademie mit klarem Fokus auf die Nutzung von Microsoft Copilot im
-                  beruflichen Kontext. Ausbau des Trainings-Portfolios und Erweiterung um weitere
-                  Angebote wie Launch Days und Lernreisen.
+                  Ab Ende 2024 werden Prozesse und Workflows bei Yellow-Boat Consulting konsequent auf einen
+                  AI-First-Ansatz umgestellt. In diesem Zuge wird das erste reine Copilot-Training entwickelt
+                  und erfolgreich durchgeführt. Zahlreiche IT Development Projekte werden per No-Code oder
+                  Vibe-Code umgesetzt und von erfahrenen Software Entwicklern begleitet und überwacht.
+                </p>
+              </div>
+
+              <div className="relative mt-12">
+                <div className="absolute -left-10 w-4 h-4 bg-primary rounded-full"></div>
+                <div className="font-bold text-xl text-primary mb-1">2025</div>
+                <h3 className="text-2xl font-semibold mb-2">Gründung der Copilotenschule</h3>
+                <p className="text-muted-foreground text-lg">
+                  Launch von copilotenschule.de sowie Aufbau eines starken Experten-Teams für eine spezialisierte
+                  Akademie mit klarem Fokus auf die Nutzung von Microsoft Copilot im beruflichen Kontext.
+                  Gleichzeitig erfolgt der gezielte Ausbau des Trainings-Portfolios sowie die Erweiterung um
+                  zusätzliche Angebote wie Launch Days und Lernreisen. Das Netzwerk umfasst jetzt auch klassische
+                  Entwickler-Boutiken zur Umsetzung und Begleitung von Coding Projekten. Software Entwickler
+                  werden nun von erfahrenen KI-Developern in die neuen Workflows und KI-Coding Toolsets eingeführt.
                 </p>
               </div>
             </div>
