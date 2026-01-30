@@ -1,7 +1,14 @@
 /**
  * Utility functions for generating Schema.org structured data
  * Helps search engines and AI models better understand training courses
+ *
+ * LLM Optimization Notes:
+ * - FAQPage schema enables direct citation in AI responses
+ * - Organization schema establishes E-E-A-T trust signals
+ * - Course schema helps LLMs understand training offerings
  */
+
+import { FAQ } from "@/data/faqs";
 
 export interface TrainingModule {
   title: string;
@@ -9,6 +16,25 @@ export interface TrainingModule {
   description: string;
   features: string[];
 }
+
+/**
+ * Generates FAQPage Schema.org markup
+ * Critical for LLM citation - enables AI assistants to quote answers directly
+ */
+export const generateFAQPageSchema = (faqs: FAQ[]) => {
+  return {
+    "@type": "FAQPage",
+    "@id": "https://copilotenschule.de/#faq",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  };
+};
 
 /**
  * Generates Schema.org Course markup for a training module
@@ -129,12 +155,13 @@ export const generateEducationEventSchema = (module: TrainingModule) => {
 
 /**
  * Generates complete Schema.org structured data for all training modules
- * Combines organization, website, and course/event data
+ * Combines organization, website, course/event data, and FAQs
  * Optimized for LLM trust signals and SEO
  */
-export const generateTrainingSchemas = (modules: TrainingModule[]) => {
+export const generateTrainingSchemas = (modules: TrainingModule[], faqs?: FAQ[]) => {
   const courses = modules.map((module, index) => generateCourseSchema(module, index));
   const events = modules.map(module => generateEducationEventSchema(module));
+  const faqSchema = faqs ? generateFAQPageSchema(faqs) : null;
 
   return {
     "@context": "https://schema.org",
@@ -250,7 +277,9 @@ export const generateTrainingSchemas = (modules: TrainingModule[]) => {
       // All Courses
       ...courses,
       // All Education Events
-      ...events
+      ...events,
+      // FAQ Page (if provided) - Critical for LLM citation
+      ...(faqSchema ? [faqSchema] : [])
     ]
   };
 };

@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-training.jpg";
 
 const Hero = () => {
@@ -47,14 +48,16 @@ const Hero = () => {
             <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-delayed-3">
               <Button
                 size="lg"
-                onClick={scrollToContact}
+                asChild
                 className="group relative overflow-hidden bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
               >
-                <span className="relative z-10 flex items-center">
-                  Jetzt Training anfragen
-                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <Link to="/training-konfigurator">
+                  <span className="relative z-10 flex items-center">
+                    Training konfigurieren
+                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                </Link>
               </Button>
               <Button
                 size="lg"

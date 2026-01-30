@@ -25,7 +25,7 @@ const benefits = [
   {
     icon: Users,
     title: "Für Wissensarbeiter, Teams & Organisationen",
-    description: "Maßgeschneiderte Trainingskonzepte für Büroangestellte, Wissensarbeiter, Teams und Führungskräfte. Wir holen jeden Teilnehmer auf seinem Kenntnisstand ab und führen strukturiert zum gewünschten Zielniveau. Zielgruppe sind wissensintensive Organisationen mit 50–10.000 Mitarbeitenden im DACH-Raum."
+    description: "Maßgeschneiderte Trainingskonzepte für Büroangestellte, Wissensarbeiter, Teams und Führungskräfte. Wir holen jeden Teilnehmer auf seinem Kenntnisstand ab und führen strukturiert zum gewünschten Zielniveau. Zielgruppe sind wissensintensive Organisationen mit 20–5.000 Mitarbeitenden im DACH-Raum."
   },
   {
     icon: Award,

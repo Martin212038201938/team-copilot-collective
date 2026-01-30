@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
+import KoelnTraining from "@/components/KoelnTraining";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -248,7 +249,7 @@ const UeberUns = () => {
             </div>
             <p className="text-lg text-muted-foreground leading-relaxed mb-6">
               Unser ideales Kundenprofil sind <strong>wissensintensive Organisationen und Unternehmen
-              mit 50–10.000 Mitarbeitenden</strong> im deutschsprachigen Raum (DACH).
+              mit 20–5.000 Mitarbeitenden</strong> im deutschsprachigen Raum (DACH).
             </p>
             <div className="grid md:grid-cols-2 gap-4">
               <div>
@@ -393,6 +394,9 @@ const UeberUns = () => {
               </div>
             </div>
           </div>
+
+          {/* Köln Training Location */}
+          <KoelnTraining />
 
           {/* CTA */}
           <div className="max-w-2xl mx-auto text-center">

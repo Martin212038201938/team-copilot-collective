@@ -6,9 +6,11 @@ import TrainingLocations from "@/components/TrainingLocations";
 import Benefits from "@/components/Benefits";
 import CustomerReviews from "@/components/CustomerReviews";
 import Contact from "@/components/Contact";
+import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import { generateTrainingSchemas } from "@/lib/schema";
+import { homepageFAQs } from "@/data/faqs";
 
 // Training modules data for schema generation
 // Optimized for LLM trust and SEO - based on copilotenschule.de boilerplate
@@ -109,7 +111,7 @@ const trainingModules = [
   {
     title: "Individuelle Copilot-Schulungen & Coaching",
     duration: "Flexibel (nach Bedarf)",
-    description: "Coaching & Beratung: Individuelle Begleitung von Führungskräften, Produkt- und Transformationsteams zur Etablierung nachhaltiger, Copilot-gestützter Arbeitsweisen. Maßgeschneidert für wissensintensive Organisationen mit 50–10.000 Mitarbeitenden.",
+    description: "Coaching & Beratung: Individuelle Begleitung von Führungskräften, Produkt- und Transformationsteams zur Etablierung nachhaltiger, Copilot-gestützter Arbeitsweisen. Maßgeschneidert für wissensintensive Organisationen mit 20–5.000 Mitarbeitenden.",
     features: [
       "Abteilungsspezifische Schulungskonzepte",
       "Coaching für Führungskräfte und Teams",
@@ -121,7 +123,8 @@ const trainingModules = [
 ];
 
 const Index = () => {
-  const schema = generateTrainingSchemas(trainingModules);
+  // Generate schema with FAQs for LLM optimization
+  const schema = generateTrainingSchemas(trainingModules, homepageFAQs);
 
   return (
     <div className="min-h-screen">
@@ -150,6 +153,7 @@ const Index = () => {
         <TrustBadges />
         <CustomerReviews />
         <Contact />
+        <FAQ faqs={homepageFAQs} />
       </main>
       <Footer />
     </div>
