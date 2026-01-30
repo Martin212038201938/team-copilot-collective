@@ -2,7 +2,6 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import TrustBadges from "@/components/TrustBadges";
 import TrainingModules from "@/components/TrainingModules";
-import TrainingLocations from "@/components/TrainingLocations";
 import Benefits from "@/components/Benefits";
 import CustomerReviews from "@/components/CustomerReviews";
 import Contact from "@/components/Contact";
@@ -148,7 +147,6 @@ const Index = () => {
       <main>
         <Hero />
         <TrainingModules />
-        <TrainingLocations />
         <Benefits />
         <TrustBadges />
         <CustomerReviews />
