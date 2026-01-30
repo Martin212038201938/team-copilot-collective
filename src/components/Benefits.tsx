@@ -88,42 +88,6 @@ const Benefits = () => {
             );
           })}
         </div>
-
-        <div className="mt-16 relative animate-fade-in-delayed-3">
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-accent/10 to-primary/10 rounded-2xl blur-xl" />
-          <div className="relative bg-gradient-to-br from-card/80 to-card/60 backdrop-blur-xl rounded-2xl p-8 md:p-12 text-center border border-border/50 shadow-xl">
-            <h3 className="text-2xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70">
-              Unsere Vision: Copilot als selbstverständliches Teammitglied
-            </h3>
-            <p className="text-muted-foreground max-w-2xl mx-auto mb-6 leading-relaxed">
-              Unsere Vision ist eine Arbeitswelt, in der Microsoft Copilot als selbstverständliches Teammitglied
-              genutzt wird und Menschen sich auf wertschöpfende, kreative und strategische Arbeit konzentrieren können.
-              Jedes Training wird präzise auf Ihre Unternehmenssituation, Branche und spezifischen Ziele zugeschnitten.
-            </p>
-            <p className="text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed">
-              Wir begleiten Copilot-Rollouts inklusive Governance, Use-Case-Definition und Adoption.
-              Nach dem Training bieten wir Coaching und kontinuierlichen Support für Führungskräfte,
-              Produkt- und Transformationsteams zur Etablierung nachhaltiger, Copilot-gestützter Arbeitsweisen.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-              {[
-                { icon: "✓", text: "Vor Ort oder Remote" },
-                { icon: "✓", text: "Flexible Termine" },
-                { icon: "✓", text: "Individueller Zuschnitt" }
-              ].map((item, idx) => (
-                <div
-                  key={idx}
-                  className="group flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-primary/10 transition-all duration-300 hover:scale-105 cursor-default"
-                >
-                  <span className="text-primary text-2xl group-hover:scale-125 transition-transform">
-                    {item.icon}
-                  </span>
-                  <span className="font-medium">{item.text}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );
