@@ -349,10 +349,15 @@ const UnsereAngebote = () => {
           <div className="container mx-auto px-4 relative z-10">
             {/* Page Header */}
             <div className="text-center mb-12 animate-fade-in">
-              <h1 className="text-4xl font-bold mb-4 animate-slide-up">
-                Unsere Angebote
-              </h1>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-6">
+              <div className="relative inline-block mb-6">
+                <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-accent/20 to-primary/20 rounded-xl blur-xl" />
+                <div className="relative bg-gradient-to-r from-primary/10 via-accent/10 to-primary/10 border-2 border-primary/30 rounded-xl px-8 py-6">
+                  <h1 className="text-4xl font-bold animate-slide-up">
+                    Unsere Angebote
+                  </h1>
+                </div>
+              </div>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
                 Microsoft Copilot Schulungen & Trainings für Unternehmen –
                 konsequent auf die konkreten Bedarfe Ihrer Organisation zugeschnitten.
               </p>
