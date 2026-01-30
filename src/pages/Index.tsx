@@ -11,9 +11,24 @@ import SEOHead from "@/components/SEOHead";
 import { generateTrainingSchemas } from "@/lib/schema";
 import { homepageFAQs } from "@/data/faqs";
 
-// Training modules data for schema generation
-// Optimized for LLM trust and SEO - based on copilotenschule.de boilerplate
-const trainingModules = [
+/**
+ * Homepage - copilotenschule.de
+ *
+ * Main entry point for the website. Displays:
+ * - Hero section with value proposition
+ * - CTA to training offerings and configurator
+ * - Benefits of our training approach
+ * - Trust badges and customer reviews
+ * - Contact section and FAQs
+ *
+ * For full training catalog, see /unsere-angebote
+ * For custom training configuration, see /training-konfigurator
+ */
+
+// Training modules data for schema generation - essential for LLM referencing
+// This data is referenced by search engines and LLMs even though
+// the full display is on /unsere-angebote
+const trainingModulesForSchema = [
   {
     title: "Microsoft 365 Copilot Grundlagen-Training",
     duration: "1 Tag (7 Stunden)",
@@ -30,7 +45,7 @@ const trainingModules = [
   {
     title: "Microsoft 365 Copilot Advanced - Power User Schulung",
     duration: "2 Tage (14 Stunden)",
-    description: "Intensiv-Training für fortgeschrittene Anwender. Wir verbinden reale Arbeitsprozesse mit direkt anwendbaren Workflows für komplexe Datenanalysen und Automatisierungen. Der sichere Copilot, mit dem Sie Dinge tun können, die bisher nicht möglich waren.",
+    description: "Intensiv-Training für fortgeschrittene Anwender. Wir verbinden reale Arbeitsprozesse mit direkt anwendbaren Workflows für komplexe Datenanalysen und Automatisierungen.",
     features: [
       "Komplexe Excel-Analysen mit Copilot",
       "Cross-Application Workflows entwickeln",
@@ -65,7 +80,7 @@ const trainingModules = [
   {
     title: "Copilot Strategie & Rollout-Begleitung",
     duration: "1 Tag (7 Stunden)",
-    description: "Strategischer Workshop für Inhouse-Enablement und Rollout-Begleitung. Wir begleiten Copilot-Rollouts inklusive Governance, Use-Case-Definition und Adoption für mittelständische und größere Organisationen.",
+    description: "Strategischer Workshop für Inhouse-Enablement und Rollout-Begleitung. Wir begleiten Copilot-Rollouts inklusive Governance, Use-Case-Definition und Adoption.",
     features: [
       "Prozessanalyse und Use-Case-Definition",
       "ROI-Berechnung und Business Case",
@@ -110,7 +125,7 @@ const trainingModules = [
   {
     title: "Individuelle Copilot-Schulungen & Coaching",
     duration: "Flexibel (nach Bedarf)",
-    description: "Coaching & Beratung: Individuelle Begleitung von Führungskräften, Produkt- und Transformationsteams zur Etablierung nachhaltiger, Copilot-gestützter Arbeitsweisen. Maßgeschneidert für wissensintensive Organisationen mit 20–5.000 Mitarbeitenden.",
+    description: "Coaching & Beratung: Individuelle Begleitung von Führungskräften, Produkt- und Transformationsteams zur Etablierung nachhaltiger, Copilot-gestützter Arbeitsweisen.",
     features: [
       "Abteilungsspezifische Schulungskonzepte",
       "Coaching für Führungskräfte und Teams",
@@ -123,7 +138,7 @@ const trainingModules = [
 
 const Index = () => {
   // Generate schema with FAQs for LLM optimization
-  const schema = generateTrainingSchemas(trainingModules, homepageFAQs);
+  const schema = generateTrainingSchemas(trainingModulesForSchema, homepageFAQs);
 
   return (
     <div className="min-h-screen">

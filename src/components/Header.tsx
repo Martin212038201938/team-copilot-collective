@@ -1,15 +1,7 @@
 import { Button } from "@/components/ui/button";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Header = () => {
-  const location = useLocation();
-  const isHomePage = location.pathname === "/";
-
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    element?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <header className="fixed top-0 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border z-50">
       <div className="container mx-auto px-4">
@@ -20,40 +12,29 @@ const Header = () => {
           </Link>
 
           <div className="hidden md:flex items-center space-x-8">
-            {isHomePage ? (
-              <>
-                <button
-                  onClick={() => scrollToSection("trainings")}
-                  className="text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  Trainings
-                </button>
-                <button
-                  onClick={() => scrollToSection("benefits")}
-                  className="text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  Vorteile
-                </button>
-              </>
-            ) : (
-              <Link
-                to="/"
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Home
-              </Link>
-            )}
             <Link
-              to="/wissen"
+              to="/"
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
-              Wissen
+              Home
             </Link>
             <Link
               to="/ueber-uns"
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
               Über uns
+            </Link>
+            <Link
+              to="/wissen"
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Copilot Wissen
+            </Link>
+            <Link
+              to="/unsere-angebote"
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Unsere Angebote
             </Link>
             <Link
               to="/trainer-werden"

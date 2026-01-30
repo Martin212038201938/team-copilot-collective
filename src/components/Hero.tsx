@@ -39,38 +39,11 @@ const Hero = () => {
               Teams und Wissensarbeiter, Copilot produktiv, sicher und wertschöpfend im Arbeitsalltag zu nutzen –
               mit klarem Fokus auf Adoption, Wirkung und reale Geschäftsprozesse.
             </p>
-            <p className="text-lg text-muted-foreground leading-relaxed animate-fade-in-delayed-2">
+            <p className="text-xl text-muted-foreground leading-relaxed animate-fade-in-delayed-2">
               Unsere Trainings basieren auf konkreten Arbeitsabläufen und direkt anwendbaren Copilot-Workflows.
               Sie finden als Inhouse-Training bei Ihnen vor Ort, live online via Teams oder Zoom oder in unserer
               Akademie in Köln statt.
             </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-delayed-3">
-              <Button
-                size="lg"
-                asChild
-                className="group relative overflow-hidden bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
-              >
-                <Link to="/training-konfigurator">
-                  <span className="relative z-10 flex items-center">
-                    Training konfigurieren
-                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                  </span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                </Link>
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                onClick={() => {
-                  const element = document.getElementById("trainings");
-                  element?.scrollIntoView({ behavior: "smooth" });
-                }}
-                className="group hover:bg-accent/10 hover:border-accent transition-all duration-300 hover:scale-105"
-              >
-                Trainingsangebot ansehen
-              </Button>
-            </div>
 
             <div className="grid grid-cols-3 gap-8 pt-8 border-t border-border/50">
               {[

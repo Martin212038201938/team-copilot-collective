@@ -36,6 +36,14 @@
 - **Tech Stack:** Vite + React + TypeScript + Tailwind CSS + shadcn/ui
 - **Deployment:** Push zu `main` → GitHub Actions → FTP zu alwaysdata.com
 
+### Lokale Entwicklung
+```bash
+cd ~/Documents/Cowork\ Bereich/team-copilot-collective
+npm install
+npm run dev
+```
+→ Server läuft auf **http://localhost:8080/**
+
 ### Projektstruktur
 - `/src/pages/` - Seiten (Index, UeberUns, Wissen, etc.)
 - `/src/components/` - React Komponenten

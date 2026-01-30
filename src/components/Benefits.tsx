@@ -44,18 +44,8 @@ const Benefits = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-4xl font-bold mb-4 animate-slide-up">
-            Warum copilotenschule.de der richtige Partner für Ihr Unternehmen ist
+            Warum die Copilotenschule die beste Partnerin zur Einführung des Copiloten ist
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-4 animate-fade-in-delayed">
-            Wir positionieren uns als praxisfokussierter Qualitätsanbieter mit tiefem Verständnis für reale Büroarbeit
-            und Organisationskontexte. Gegenüber generischen Kursanbietern differenzieren wir uns durch konsequente
-            Praxisorientierung und konkrete Workflow-Integration.
-          </p>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto animate-fade-in-delayed-2">
-            Unsere Mission: Büroarbeit durch den gezielten Einsatz von Microsoft Copilot messbar produktiver,
-            wirksamer und menschlicher zu machen. Das Ergebnis: Ihre Teams setzen KI produktiv ein – sicher,
-            DSGVO-konform und mit direktem Mehrwert.
-          </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
