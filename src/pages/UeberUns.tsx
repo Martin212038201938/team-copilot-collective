@@ -347,28 +347,38 @@ const UeberUns = () => {
                 <div className="font-bold text-lg text-primary mb-1">2011–2023</div>
                 <h3 className="text-xl font-semibold mb-2">Agile Trainings & Digitalisierung</h3>
                 <p className="text-muted-foreground">
-                  Yellow-Boat Consulting realisiert seit über einem Jahrzehnt Agile Trainings und
-                  Ausbildungen für hunderte Scrum Master, Product Owner und Agile Coaches sowie
-                  Digitalisierungsprojekte in Konzernen und im Mittelstand.
+                  Yellow-Boat Consulting realisiert seit über einem Jahrzehnt Einführungsprojekte,
+                  Agile Trainings und Ausbildungen für hunderte Scrum Master, Product Owner und
+                  Agile Coaches sowie Projekte zur Gestaltung von agiler, digitaler, hybrider und
+                  remoter Teamarbeit in Konzernen und Mittelstand. Das starke Freelancer-Netzwerk
+                  „Die Yellow-Boat Flotte" besteht aus erfahrenen und zertifizierten Praktikern.
                 </p>
               </div>
 
               <div className="relative">
                 <div className="absolute -left-10 w-4 h-4 bg-primary/80 rounded-full"></div>
                 <div className="font-bold text-lg text-primary mb-1">2023</div>
-                <h3 className="text-xl font-semibold mb-2">Fokus auf Copilot-Trainings</h3>
+                <h3 className="text-xl font-semibold mb-2">Fokus auf KI-unterstützte Wissensarbeit</h3>
                 <p className="text-muted-foreground">
-                  Seit 2023 liegt ein starker Fokus auf praxisnahen Copilot-Anwendertrainings für Microsoft 365 Copilot und GitHub Copilot.
+                  Seit 2023 liegt ein starker Fokus auf praxisnahe Umsetzungen und Trainings für die
+                  Revolution durch KI in der Arbeitswelt. Yellow-Boat Consulting führt im Dezember 2023
+                  das erste Copilot Anwendertraining durch. Seitdem wurden zahllose Weiterbildungen und
+                  Veranstaltungen zur KI-Nutzung in der realen Arbeitswelt besucht, für einen möglichst
+                  schnellen Wissensaufbau in dieser neuen Arbeitswelt. Ab Ende 2024 werden Prozesse und
+                  Workflows bei Yellow-Boat Consulting radikal auf AI-First umgestellt. Ende 2024 wurde
+                  das erste reine Copilot Training entwickelt und durchgeführt.
                 </p>
               </div>
 
               <div className="relative">
                 <div className="absolute -left-10 w-4 h-4 bg-accent rounded-full"></div>
                 <div className="font-bold text-lg text-accent mb-1">2025</div>
-                <h3 className="text-xl font-semibold mb-2">Gründung copilotenschule.de</h3>
+                <h3 className="text-xl font-semibold mb-2">Gründung der Copilotenschule</h3>
                 <p className="text-muted-foreground">
-                  Gründung der copilotenschule.de als spezialisierte Akademie mit klarem Fokus
-                  auf die Nutzung von Microsoft Copilot im beruflichen Kontext.
+                  Launch von copilotenschule.de und Aufstellung eines starken Experten-Teams für eine
+                  spezialisierte Akademie mit klarem Fokus auf die Nutzung von Microsoft Copilot im
+                  beruflichen Kontext. Ausbau des Trainings-Portfolios und Erweiterung um weitere
+                  Angebote wie Launch Days und Lernreisen.
                 </p>
               </div>
             </div>
