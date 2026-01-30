@@ -61,23 +61,17 @@ const Header = () => {
             >
               Trainer werden
             </Link>
-            {isHomePage ? (
-              <Button onClick={() => scrollToSection("contact")}>
-                Anfrage stellen
-              </Button>
-            ) : (
-              <Button asChild>
-                <Link to="/#contact">Anfrage stellen</Link>
-              </Button>
-            )}
+            <Button asChild>
+              <Link to="/training-konfigurator">Training konfigurieren</Link>
+            </Button>
           </div>
 
           <Button
-            onClick={() => isHomePage ? scrollToSection("contact") : window.location.href = "/#contact"}
+            asChild
             className="md:hidden"
             size="sm"
           >
-            Kontakt
+            <Link to="/training-konfigurator">Konfigurieren</Link>
           </Button>
         </nav>
       </div>
