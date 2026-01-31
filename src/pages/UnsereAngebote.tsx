@@ -303,6 +303,7 @@ const trainingModulesForSchema = modules.map(m => ({
 const UnsereAngebote = () => {
   const [tierFilter, setTierFilter] = useState<TierFilter>("all");
   const [showTierHelp, setShowTierHelp] = useState(false);
+  const [selectedModule, setSelectedModule] = useState<TrainingModule | null>(null);
 
   const scrollToContact = () => {
     const element = document.getElementById("contact");
@@ -342,7 +343,7 @@ const UnsereAngebote = () => {
       <Header />
 
       <main className="pt-24">
-        <section id="trainings" className="py-16 bg-gradient-to-b from-muted/30 to-background relative overflow-hidden">
+        <section id="trainings" className="py-16 bg-gradient-to-b from-muted/30 to-background relative">
           <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
 
@@ -451,11 +452,11 @@ const UnsereAngebote = () => {
               {filteredModules.map((module, index) => (
                 <Card
                   key={module.title}
-                  className="group hover:shadow-2xl transition-all duration-500 border-2 hover:border-primary/50 animate-fade-in relative bg-card/50 backdrop-blur-sm h-[180px] flex flex-col overflow-visible hover:z-40"
-                  style={{ animationDelay: `${index * 100}ms` }}
+                  className="cursor-pointer hover:shadow-2xl transition-all duration-300 border-2 hover:border-primary/50 relative bg-card/50 backdrop-blur-sm h-[180px] flex flex-col"
+                  onClick={() => setSelectedModule(module)}
                 >
                   {/* Kompakte Ansicht - immer sichtbar */}
-                  <CardHeader className="relative z-10 flex-1 py-4">
+                  <CardHeader className="flex-1 py-4">
                     <div className="flex flex-wrap gap-1.5 mb-2">
                       {module.tiers.includes("free") && (
                         <Badge className="bg-emerald-100 text-emerald-700 border-emerald-200 hover:bg-emerald-100 text-[11px] px-2 py-0.5">
@@ -475,38 +476,6 @@ const UnsereAngebote = () => {
                     </CardDescription>
                   </CardHeader>
 
-                  {/* Hover-Overlay mit Details - zentriert auf Screen */}
-                  <div className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] max-w-[700px] max-h-[85vh] overflow-y-auto z-[100] bg-card border-2 border-primary rounded-xl p-6 shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 pointer-events-none group-hover:pointer-events-auto">
-                    <div className="flex items-start justify-between mb-3">
-                      <h3 className="text-xl font-bold text-primary pr-4">{module.title}</h3>
-                      <span className="text-sm text-muted-foreground whitespace-nowrap flex items-center gap-1 mt-1 bg-muted px-2 py-1 rounded">
-                        <Clock className="w-4 h-4" />
-                        {module.duration}
-                      </span>
-                    </div>
-                    <p className="text-base text-muted-foreground mb-5">{module.description}</p>
-                    <div className="mb-5">
-                      <h4 className="text-base font-semibold mb-3">Inhalte & Lernziele:</h4>
-                      <ul className="space-y-2 columns-1 md:columns-2 gap-6">
-                        {module.features.map((feature, idx) => (
-                          <li key={idx} className="flex items-start gap-2 text-sm break-inside-avoid mb-2">
-                            <span className="text-primary mt-0.5 flex-shrink-0">✓</span>
-                            <span>{feature}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <Button
-                      className="w-full"
-                      size="lg"
-                      onClick={scrollToContact}
-                    >
-                      Training anfragen
-                    </Button>
-                  </div>
-                  {/* Backdrop für bessere Sichtbarkeit */}
-                  <div className="fixed inset-0 bg-black/40 z-[99] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-300 pointer-events-none" />
-
                   {/* SEO: Versteckte Details für Suchmaschinen und LLMs */}
                   <div className="sr-only" aria-hidden="false">
                     <h3>{module.title}</h3>
@@ -521,6 +490,53 @@ const UnsereAngebote = () => {
                 </Card>
               ))}
             </div>
+
+            {/* Zentriertes Modal - Click to open */}
+            {selectedModule && (
+              <>
+                <div
+                  className="fixed inset-0 bg-black/50 z-[99]"
+                  onClick={() => setSelectedModule(null)}
+                />
+                <div className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] max-w-[700px] max-h-[85vh] overflow-y-auto z-[100] bg-card border-2 border-primary rounded-xl p-6 shadow-2xl">
+                  <button
+                    className="absolute top-4 right-4 p-2 hover:bg-muted rounded-full transition-colors"
+                    onClick={() => setSelectedModule(null)}
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                  <div className="flex items-start justify-between mb-3 pr-10">
+                    <h3 className="text-xl font-bold text-primary">{selectedModule.title}</h3>
+                    <span className="text-sm text-muted-foreground whitespace-nowrap flex items-center gap-1 mt-1 bg-muted px-2 py-1 rounded">
+                      <Clock className="w-4 h-4" />
+                      {selectedModule.duration}
+                    </span>
+                  </div>
+                  <p className="text-base text-muted-foreground mb-5">{selectedModule.description}</p>
+                  <div className="mb-5">
+                    <h4 className="text-base font-semibold mb-3">Inhalte & Lernziele:</h4>
+                    <ul className="space-y-2 columns-1 md:columns-2 gap-6">
+                      {selectedModule.features.map((feature, idx) => (
+                        <li key={idx} className="flex items-start gap-2 text-sm break-inside-avoid mb-2">
+                          <span className="text-primary mt-0.5 flex-shrink-0">✓</span>
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <Button
+                    className="w-full"
+                    size="lg"
+                    onClick={() => {
+                      setSelectedModule(null);
+                      scrollToContact();
+                    }}
+                  >
+                    Training anfragen
+                  </Button>
+                </div>
+              </>
+            )}
 
             {/* Modularer Konfigurator CTA */}
             <div className="mt-12 relative max-w-4xl mx-auto">

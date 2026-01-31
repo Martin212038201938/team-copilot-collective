@@ -4,3 +4,8 @@ RewriteRule ^index\.html$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /index.html [L]
+
+# Favicon Cache-Control - prevent aggressive caching
+<FilesMatch "\.(ico|png)$">
+    Header set Cache-Control "max-age=3600, must-revalidate"
+</FilesMatch>
