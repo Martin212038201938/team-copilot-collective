@@ -59,7 +59,7 @@ const Hero = () => {
               ].map((stat, idx) => (
                 <div
                   key={idx}
-                  className={`group animate-fade-in-delayed-3 hover:scale-110 transition-transform duration-300 cursor-default ${stat.delay}`}
+                  className={`group animate-fade-in-delayed-3 hover:scale-110 transition-transform duration-300 cursor-default text-center ${stat.delay}`}
                 >
                   <div className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent group-hover:scale-110 transition-transform">
                     {stat.value}
