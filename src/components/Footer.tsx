@@ -47,7 +47,7 @@ const Footer = () => {
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li><a href="mailto:info@copilotenschule.de" className="hover:text-primary transition-colors">info@copilotenschule.de</a></li>
               <li><a href="tel:+4922195018774" className="hover:text-primary transition-colors">+49 221 950 187 74</a></li>
-              <li>Deutschlandweit</li>
+              <li>Trainings in Köln, Deutschland, Österreich und der Schweiz</li>
             </ul>
           </div>
         </div>
