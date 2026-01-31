@@ -6,7 +6,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Target, Eye, Heart, Users, Building, Award, ArrowRight, ExternalLink } from "lucide-react";
-import gruppeNippes from "@/assets/gruppe-nippes.png";
+import ueberUns from "@/assets/ueber-uns.png";
 
 const UeberUns = () => {
   const organizationSchema = {
@@ -205,7 +205,7 @@ const UeberUns = () => {
           <div className="max-w-4xl mx-auto mb-16">
             <div className="relative rounded-2xl overflow-hidden shadow-2xl">
               <img
-                src={gruppeNippes}
+                src={ueberUns}
                 alt="Das Team der Copilotenschule"
                 className="w-full h-auto"
               />
@@ -283,8 +283,7 @@ const UeberUns = () => {
                   Coaching & Beratung
                 </h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  Individuelle Begleitung von <strong>Führungskräften, Produkt- und Transformationsteams</strong>
-                  zur Etablierung nachhaltiger, Copilot-gestützter Arbeitsweisen.
+                  Individuelle Begleitung von <strong>Führungskräften, Produkt- und Transformationsteams</strong> zur Etablierung nachhaltiger, Copilot-gestützter Arbeitsweisen.
                 </p>
               </Card>
             </div>
@@ -379,7 +378,7 @@ const UeberUns = () => {
                 <h3 className="text-xl font-semibold mb-2">Fokus auf KI-unterstützte Wissensarbeit</h3>
                 <p className="text-muted-foreground">
                   Konsequente Ausrichtung auf praxisnahe Trainings zur Transformation der Arbeitswelt durch
-                  Künstliche Intelligenz. Im Dezember 2023 wird das erste Copilot-Anwendertraining durchgeführt.
+                  Künstliche Intelligenz. 2023 werden die ersten KI-Anwender Trainings durchgeführt. Zuerst Verprobung im Rahmen der "BFF" Workshop Serie in Köln, dann Umsetzung verschiedener KI-Anwendertrainings mit Kunden wie Med360Grad, REWE und mittelständischen Unternehmen. Kontinuierlicher Austausch mit dem DFKI (Deutsche Forschungszentrum Für Künstliche Intelligenz).
                   Parallel erfolgt ein intensiver Wissensaufbau durch zahlreiche Weiterbildungen und
                   Veranstaltungen zur KI-Nutzung in der realen Arbeitswelt.
                 </p>
@@ -390,10 +389,10 @@ const UeberUns = () => {
                 <div className="font-bold text-lg text-primary mb-1">2024</div>
                 <h3 className="text-xl font-semibold mb-2">AI-First & Copilot-Trainings</h3>
                 <p className="text-muted-foreground">
-                  Ab Ende 2024 werden Prozesse und Workflows bei Yellow-Boat Consulting konsequent auf einen
-                  AI-First-Ansatz umgestellt. In diesem Zuge wird das erste reine Copilot-Training entwickelt
-                  und erfolgreich durchgeführt. Zahlreiche IT Development Projekte werden per No-Code oder
-                  Vibe-Code umgesetzt und von erfahrenen Software Entwicklern begleitet und überwacht.
+                  Im Sommer 2024 werden Prozesse und Workflows bei Yellow-Boat Consulting konsequent auf einen
+                  AI-First-Ansatz umgestellt. In diesem Zuge werden zahlreiche IT Development Projekte per No-Code oder
+                  Vibe-Code umgesetzt und von erfahrenen Software Entwicklern begleitet und überwacht. Im Dezember 2024
+                  wird das erste reine Copilot-Training entwickelt und erfolgreich durchgeführt.
                 </p>
               </div>
 

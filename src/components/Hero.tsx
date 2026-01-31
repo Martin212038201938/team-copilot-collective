@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import heroImage from "@/assets/training-nippes.png";
+import heroImage from "@/assets/trainingsraum-nippes.png";
 
 const Hero = () => {
   const scrollToContact = () => {
