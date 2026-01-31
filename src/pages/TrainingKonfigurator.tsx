@@ -484,16 +484,11 @@ ${formData.additionalInfo ? `---\nINFORMATIONEN UND WEITERE BENÖTIGTE INHALTE:\
 
       <main className="pt-24 pb-16">
         <div className="container mx-auto px-4">
-          {/* Header */}
+          {/* Header - Apple-inspired clean design */}
           <div className="text-center mb-8">
-            <div className="relative inline-block mb-6">
-              <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-accent/20 to-primary/20 rounded-xl blur-xl" />
-              <div className="relative bg-gradient-to-r from-primary/10 via-accent/10 to-primary/10 border-2 border-primary/30 rounded-xl px-8 py-6">
-                <h1 className="text-4xl font-bold">
-                  Training Konfigurator
-                </h1>
-              </div>
-            </div>
+            <h1 className="text-4xl lg:text-5xl font-semibold tracking-tight mb-6">
+              Training Konfigurator
+            </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-6">
               Stellen Sie Ihr individuelles Copilot-Training zusammen.
               Wählen Sie die Module, die für Ihr Team relevant sind, und erhalten Sie ein maßgeschneidertes Angebot.

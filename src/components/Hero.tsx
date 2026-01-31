@@ -19,24 +19,21 @@ const Hero = () => {
       <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-float-delayed" />
 
       <div className="container mx-auto px-4 relative z-10">
-        {/* Centered headline section */}
-        <div className="text-center mb-12">
-          <div className="relative inline-block max-w-4xl">
-            <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-accent/20 to-primary/20 rounded-xl blur-xl" />
-            <div className="relative bg-gradient-to-r from-primary/10 via-accent/10 to-primary/10 border-2 border-primary/30 rounded-xl px-8 py-6">
-              <h1 className="text-5xl lg:text-7xl font-bold leading-tight animate-slide-up">
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70">
-                  Trainings für
-                </span>
-                <br />
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
-                  Microsoft Copilot
-                </span>
-                <span className="block text-accent mt-2 animate-slide-up-delayed text-2xl lg:text-3xl">
-                  Für messbar produktivere Büroarbeit
-                </span>
-              </h1>
-            </div>
+        {/* Centered headline section - Apple-inspired clean design */}
+        <div className="text-center mb-16">
+          <div className="max-w-4xl mx-auto">
+            <h1 className="text-5xl lg:text-7xl font-semibold tracking-tight leading-[1.1] animate-slide-up">
+              <span className="text-foreground">
+                Trainings für
+              </span>
+              <br />
+              <span className="text-primary">
+                Microsoft Copilot
+              </span>
+            </h1>
+            <p className="mt-6 text-xl lg:text-2xl text-muted-foreground font-normal animate-slide-up-delayed">
+              Für messbar produktivere Büroarbeit
+            </p>
           </div>
         </div>
 

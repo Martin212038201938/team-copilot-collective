@@ -89,7 +89,7 @@ const CopilotRoiBerechnen = () => {
         readTime="12 Minuten"
       >
         <section id="einleitung" className="mb-8">
-          <h1 className="text-3xl font-bold mb-4">Einleitung</h1>
+          <h1 className="text-3xl font-semibold tracking-tight mb-4">Einleitung</h1>
           <p className="mb-4 text-gray-700 leading-relaxed">Die Frage nach dem Return on Investment (ROI) ist entscheidend für jede Copilot-Einführung. In diesem Artikel zeigen wir Ihnen, wie Sie den ROI konkret berechnen und Ihren Business Case aufbauen.</p>
         </section>
 

@@ -18,7 +18,7 @@ const DynamicKnowledgePage = () => {
       <div className="min-h-screen flex items-center justify-center">
         <Header />
         <div className="text-center">
-          <h1 className="text-4xl font-bold mb-4">Artikel nicht gefunden</h1>
+          <h1 className="text-4xl font-semibold tracking-tight mb-4">Artikel nicht gefunden</h1>
           <p className="text-muted-foreground mb-6">
             Dieser Artikel existiert nicht oder wurde noch nicht veröffentlicht.
           </p>

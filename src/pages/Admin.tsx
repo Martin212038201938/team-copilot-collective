@@ -211,7 +211,7 @@ const AdminContent = () => {
         {/* Header */}
         <div className="mb-8 flex items-start justify-between">
           <div>
-            <h1 className="text-4xl font-bold text-gray-900 mb-2">
+            <h1 className="text-4xl font-semibold tracking-tight text-gray-900 mb-2">
               Redaktionssystem
             </h1>
             <p className="text-lg text-gray-600">

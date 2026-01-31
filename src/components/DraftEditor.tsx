@@ -1349,7 +1349,7 @@ Erstelle jetzt die komplette TSX-Komponente. Der komplette Markdown-Content muss
               Zurück
             </Button>
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">
+              <h1 className="text-3xl font-semibold tracking-tight text-gray-900">
                 Artikel bearbeiten
               </h1>
               <p className="text-gray-600">

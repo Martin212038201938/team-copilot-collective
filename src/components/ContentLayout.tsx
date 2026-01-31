@@ -81,42 +81,29 @@ const ContentLayout = ({
           <div className="grid lg:grid-cols-[1fr_280px] gap-12 max-w-7xl mx-auto">
             {/* Main Content */}
             <article className="max-w-none">
-              {/* Article Header */}
-              <header className="mb-12 not-prose relative">
-                {/* Decorative corner accent */}
-                <div className="absolute -top-4 -left-4 w-16 h-16 border-l-4 border-t-4 border-primary/30 rounded-tl-2xl" />
-
-                <div className="relative bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-sm border-2 border-border/50 rounded-2xl p-8 shadow-2xl hover:shadow-3xl transition-shadow duration-500">
-                  {/* Inner glow effect */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 rounded-2xl" />
-
-                  <div className="relative z-10">
-                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-slide-up bg-clip-text text-transparent bg-gradient-to-r from-foreground via-primary to-foreground/70 leading-tight">
-                      {title}
-                    </h1>
-                    {description && (
-                      <p className="text-xl md:text-2xl text-muted-foreground mb-6 animate-fade-in-delayed leading-relaxed">
-                        {description}
-                      </p>
+              {/* Article Header - Apple-inspired clean design */}
+              <header className="mb-12 not-prose">
+                <div className="py-8">
+                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight mb-6 animate-slide-up leading-tight text-foreground">
+                    {title}
+                  </h1>
+                  {description && (
+                    <p className="text-xl md:text-2xl text-muted-foreground mb-6 animate-fade-in-delayed leading-relaxed">
+                      {description}
+                    </p>
+                  )}
+                  <div className="flex flex-wrap items-center gap-4 text-sm animate-fade-in-delayed-2">
+                    {lastUpdated && (
+                      <div className="flex items-center gap-2 px-4 py-2 bg-muted rounded-full">
+                        <span className="text-muted-foreground">Zuletzt aktualisiert: <span className="font-medium text-foreground">{lastUpdated}</span></span>
+                      </div>
                     )}
-                    <div className="flex flex-wrap items-center gap-4 text-sm animate-fade-in-delayed-2">
-                      {lastUpdated && (
-                        <div className="flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full">
-                          <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-                          <span className="text-muted-foreground">Zuletzt aktualisiert: <span className="font-semibold text-foreground">{lastUpdated}</span></span>
-                        </div>
-                      )}
-                      {readTime && (
-                        <div className="flex items-center gap-2 px-4 py-2 bg-accent/10 rounded-full">
-                          <span className="w-2 h-2 bg-accent rounded-full" />
-                          <span className="text-muted-foreground"><span className="font-semibold text-foreground">{readTime}</span> Lesezeit</span>
-                        </div>
-                      )}
-                    </div>
+                    {readTime && (
+                      <div className="flex items-center gap-2 px-4 py-2 bg-muted rounded-full">
+                        <span className="text-muted-foreground"><span className="font-medium text-foreground">{readTime}</span> Lesezeit</span>
+                      </div>
+                    )}
                   </div>
-
-                  {/* Bottom gradient line */}
-                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary to-transparent" />
                 </div>
               </header>
 

@@ -7,7 +7,7 @@ const Impressum = () => {
       <Header />
       <main className="pt-24 pb-16">
         <div className="container mx-auto px-4 max-w-4xl">
-          <h1 className="text-4xl font-bold mb-8">Datenschutzerklärung / Impressum</h1>
+          <h1 className="text-4xl lg:text-5xl font-semibold tracking-tight mb-8">Datenschutzerklärung / Impressum</h1>
           
           <div className="prose prose-slate max-w-none space-y-8">
             <section>

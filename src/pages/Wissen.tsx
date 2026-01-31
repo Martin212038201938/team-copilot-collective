@@ -170,17 +170,9 @@ const Wissen = () => {
 
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
-              <div className="relative inline-block mb-6">
-                <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-accent/20 to-primary/20 rounded-xl blur-xl" />
-                <div className="relative bg-gradient-to-r from-primary/10 via-accent/10 to-primary/10 border-2 border-primary/30 rounded-xl px-8 py-6">
-                  <span className="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium inline-block mb-4">
-                    Expertenwissen
-                  </span>
-                  <h1 className="text-4xl md:text-5xl font-bold">
-                    Microsoft Copilot Wissen
-                  </h1>
-                </div>
-              </div>
+              <h1 className="text-4xl md:text-5xl font-semibold tracking-tight mb-6">
+                Microsoft Copilot Wissen
+              </h1>
               <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
                 Fundiertes Expertenwissen zu Microsoft Copilot, GitHub Copilot und KI-Agenten.
                 Praxisorientierte Leitfäden, detaillierte Vergleiche und Best Practices für den

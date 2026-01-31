@@ -105,7 +105,7 @@ const CopilotFuerWord = () => {
         readTime="15 Minuten"
       >
         <section id="einleitung" className="mb-8">
-          <h1 className="text-3xl font-bold mb-4">Einleitung</h1>
+          <h1 className="text-3xl font-semibold tracking-tight mb-4">Einleitung</h1>
           <p className="mb-4 text-gray-700 leading-relaxed">Microsoft Copilot für Word ist ein KI-gestützter Assistent, der direkt in Microsoft Word integriert ist und Ihre Dokumentenerstellung auf ein neues Level hebt. Mit natürlicher Sprache können Sie Texte erstellen, bearbeiten, zusammenfassen und formatieren.</p>
         </section>
 
