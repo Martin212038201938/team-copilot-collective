@@ -486,10 +486,10 @@ ${formData.additionalInfo ? `---\nINFORMATIONEN UND WEITERE BENÖTIGTE INHALTE:\
         <div className="container mx-auto px-4">
           {/* Header - Apple-inspired clean design */}
           <div className="text-center mb-8">
-            <h1 className="text-4xl lg:text-5xl font-semibold tracking-tight mb-6">
+            <h1 className="text-5xl lg:text-7xl font-semibold tracking-tight leading-[1.1] animate-slide-up">
               Training Konfigurator
             </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-6">
+            <p className="mt-6 text-xl text-muted-foreground max-w-3xl mx-auto mb-6 animate-slide-up-delayed">
               Stellen Sie Ihr individuelles Copilot-Training zusammen.
               Wählen Sie die Module, die für Ihr Team relevant sind, und erhalten Sie ein maßgeschneidertes Angebot.
             </p>

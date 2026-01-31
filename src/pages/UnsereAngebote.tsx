@@ -349,11 +349,11 @@ const UnsereAngebote = () => {
 
           <div className="container mx-auto px-4 relative z-10">
             {/* Page Header - Apple-inspired clean design */}
-            <div className="text-center mb-12 animate-fade-in">
-              <h1 className="text-4xl lg:text-5xl font-semibold tracking-tight mb-6 animate-slide-up">
+            <div className="text-center mb-12">
+              <h1 className="text-5xl lg:text-7xl font-semibold tracking-tight leading-[1.1] animate-slide-up">
                 Unsere Angebote
               </h1>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              <p className="mt-6 text-xl text-muted-foreground max-w-3xl mx-auto animate-slide-up-delayed">
                 Microsoft Copilot Schulungen & Trainings für Unternehmen –
                 konsequent auf die konkreten Bedarfe Ihrer Organisation zugeschnitten.
               </p>

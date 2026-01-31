@@ -170,10 +170,10 @@ const Wissen = () => {
 
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-4xl md:text-5xl font-semibold tracking-tight mb-6">
-                Microsoft Copilot Wissen
+              <h1 className="text-5xl lg:text-7xl font-semibold tracking-tight leading-[1.1] animate-slide-up">
+                <span className="text-primary">Microsoft Copilot</span> Wissen
               </h1>
-              <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+              <p className="mt-6 text-xl text-muted-foreground mb-8 leading-relaxed animate-slide-up-delayed">
                 Fundiertes Expertenwissen zu Microsoft Copilot, GitHub Copilot und KI-Agenten.
                 Praxisorientierte Leitfäden, detaillierte Vergleiche und Best Practices für den
                 erfolgreichen Einsatz von KI-Tools in Ihrem Unternehmen.

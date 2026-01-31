@@ -139,10 +139,10 @@ const UeberUns = () => {
         <div className="container mx-auto px-4">
           {/* Hero Section - Apple-inspired clean design */}
           <div className="max-w-4xl mx-auto text-center mb-16">
-            <h1 className="text-4xl lg:text-5xl font-semibold tracking-tight leading-tight mb-8">
-              Die spezialisierte Weiterbildungsplattform für Microsoft Copilot
+            <h1 className="text-5xl lg:text-7xl font-semibold tracking-tight leading-[1.1] animate-slide-up">
+              <span className="text-primary">Microsoft Copilot</span> Spezialisten aus der Anwendungspraxis
             </h1>
-            <p className="text-xl text-muted-foreground leading-relaxed mb-4">
+            <p className="mt-6 text-xl text-muted-foreground leading-relaxed mb-4 animate-slide-up-delayed">
               <strong>Die Copilotenschule</strong> ist spezialisiert auf die Einführung und Weiterqualifizierungen
               im Umfeld der Microsoft Copiloten. Im Gegensatz zu anderen Anbietern bieten wir den Teilnehmern
               keinen Bauchladen an Tools an, die in ihrem Umfeld nicht compliant oder wertschöpfend sind.

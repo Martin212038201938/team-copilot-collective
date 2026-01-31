@@ -79,10 +79,10 @@ const BecomeTrainer = () => {
 
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-4xl md:text-5xl font-semibold tracking-tight mb-6 animate-slide-up">
-                Trainer werden bei copilotenschule.de
+              <h1 className="text-5xl lg:text-7xl font-semibold tracking-tight leading-[1.1] animate-slide-up">
+                Trainer der <span className="text-primary">Copilotenschule</span> werden
               </h1>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto animate-fade-in-delayed">
+              <p className="mt-6 text-xl text-muted-foreground max-w-3xl mx-auto animate-slide-up-delayed">
                 Werden Sie Teil unseres Teams und bringen Sie Ihre KI-Expertise in die
                 Unternehmen. Wir suchen praxiserfahrene KI-Umsetzer, die ihr Wissen
                 weitergeben möchten – mit und ohne Trainer-Erfahrung.
