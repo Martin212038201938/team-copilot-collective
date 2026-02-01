@@ -1,7 +1,7 @@
 import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { getAuthor } from "@/data/authors";
+import { getAuthor, getFullArticleSchemaGraph } from "@/data/authors";
 import { Linkedin, Mail } from "lucide-react";
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -158,6 +158,18 @@ const KnowledgePagePreview = ({
     { label: title, href: `/wissen/${slug}` }
   ];
 
+  // Generiere Article-Schema mit author und publisher Verknüpfung
+  const articleSchema = getFullArticleSchemaGraph({
+    title,
+    description,
+    slug,
+    authorId,
+    publishDate,
+    modifiedDate: new Date().toISOString(),
+    keywords,
+    category
+  });
+
   return (
     <>
       <SEOHead
@@ -168,6 +180,7 @@ const KnowledgePagePreview = ({
         author={author}
         publishedTime={publishDate}
         modifiedTime={new Date().toISOString()}
+        schema={articleSchema || undefined}
       />
 
       <ContentLayout
@@ -257,9 +270,15 @@ const KnowledgePagePreview = ({
                   <div className="text-sm text-gray-600 mb-3">{author.role}</div>
                   <p className="text-sm leading-relaxed mb-4 text-gray-800">{author.bio}</p>
                   <div className="mb-3">
+                    <div className="text-sm font-semibold mb-2 text-gray-900">Qualifikationen:</div>
+                    <ul className="list-disc list-inside text-sm text-gray-700 mb-3 space-y-1">
+                      {author.qualifications.slice(0, 4).map((qual, idx) => (
+                        <li key={idx}>{qual}</li>
+                      ))}
+                    </ul>
                     <div className="text-sm font-semibold mb-2 text-gray-900">Expertise:</div>
                     <div className="flex flex-wrap gap-2">
-                      {author.expertise.map((exp, idx) => (
+                      {author.expertise.slice(0, 6).map((exp, idx) => (
                         <span
                           key={idx}
                           className="px-3 py-1 bg-primary/10 text-primary rounded-full text-xs font-medium"

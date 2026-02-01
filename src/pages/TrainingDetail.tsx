@@ -1,0 +1,213 @@
+import { useParams, Link, Navigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Clock, ArrowLeft, CheckCircle2, ArrowRight } from "lucide-react";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import Contact from "@/components/Contact";
+import SEOHead from "@/components/SEOHead";
+import { getTrainingBySlug, trainings } from "@/data/trainings";
+
+const TrainingDetail = () => {
+  const { slug } = useParams<{ slug: string }>();
+  const training = slug ? getTrainingBySlug(slug) : undefined;
+
+  // 404 wenn Training nicht gefunden
+  if (!training) {
+    return <Navigate to="/unsere-angebote" replace />;
+  }
+
+  const Icon = training.icon;
+
+  // Finde ähnliche Trainings (gleiche Tiers, aber anderer Slug)
+  const relatedTrainings = trainings
+    .filter(t => t.slug !== training.slug && t.tiers.some(tier => training.tiers.includes(tier)))
+    .slice(0, 3);
+
+  // Schema.org für SEO
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "name": training.title,
+    "description": training.description,
+    "provider": {
+      "@type": "Organization",
+      "name": "copilotenschule.de",
+      "url": "https://copilotenschule.de"
+    },
+    "hasCourseInstance": {
+      "@type": "CourseInstance",
+      "courseMode": "onsite",
+      "duration": training.duration
+    }
+  };
+
+  return (
+    <div className="min-h-screen">
+      <SEOHead
+        title={training.metaTitle}
+        description={training.metaDescription}
+        keywords={training.keywords}
+        canonicalUrl={`https://copilotenschule.de/trainings/${training.slug}`}
+        schema={schema}
+      />
+      <Header />
+
+      <main className="pt-24">
+        {/* Hero Section */}
+        <section className="py-16 bg-gradient-to-b from-muted/30 to-background relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
+
+          <div className="container mx-auto px-4 relative z-10">
+            {/* Breadcrumb */}
+            <nav aria-label="Breadcrumb" className="mb-8">
+              <Link
+                to="/unsere-angebote"
+                className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
+              >
+                <ArrowLeft className="w-4 h-4" />
+                Zurück zur Übersicht
+              </Link>
+            </nav>
+
+            {/* Header */}
+            <div className="max-w-4xl">
+              {/* Tier Badges */}
+              <div className="flex flex-wrap gap-2 mb-4">
+                {training.tiers.includes("free") && (
+                  <Badge className="bg-emerald-100 text-emerald-700 border-emerald-200 hover:bg-emerald-100">
+                    Copilot Free
+                  </Badge>
+                )}
+                {training.tiers.includes("paid") && (
+                  <Badge className="bg-blue-100 text-blue-700 border-blue-200 hover:bg-blue-100">
+                    Copilot Paid
+                  </Badge>
+                )}
+              </div>
+
+              {/* h1 - Hauptüberschrift */}
+              <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
+                {training.title}
+              </h1>
+
+              {/* Dauer */}
+              <div className="flex items-center gap-2 text-lg text-muted-foreground mb-8">
+                <Clock className="w-5 h-5" />
+                <span>{training.duration}</span>
+              </div>
+
+              {/* Einleitung / Beschreibung */}
+              <p className="text-xl text-muted-foreground leading-relaxed">
+                {training.description}
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Inhalte Section */}
+        <section className="py-16 bg-background">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl">
+              {/* h2 - Unterüberschrift */}
+              <h2 className="text-3xl font-bold mb-8">
+                Inhalte und Lernziele
+              </h2>
+
+              {/* Features Liste - ohne JavaScript sichtbar */}
+              <ul className="space-y-4">
+                {training.features.map((feature, index) => (
+                  <li key={index} className="flex items-start gap-3">
+                    <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-lg">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="py-16 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center">
+              <h2 className="text-3xl font-bold mb-4">
+                Interesse an diesem Training?
+              </h2>
+              <p className="text-lg text-muted-foreground mb-8">
+                Kontaktieren Sie uns für ein unverbindliches Beratungsgespräch. Wir passen das Training an Ihre Anforderungen an.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button size="lg" asChild>
+                  <a href="#contact">
+                    Training anfragen
+                  </a>
+                </Button>
+                <Button size="lg" variant="outline" asChild>
+                  <Link to="/training-konfigurator">
+                    Training konfigurieren
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Ähnliche Trainings */}
+        {relatedTrainings.length > 0 && (
+          <section className="py-16 bg-background">
+            <div className="container mx-auto px-4">
+              <h2 className="text-3xl font-bold mb-8 text-center">
+                Weitere passende Trainings
+              </h2>
+              <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                {relatedTrainings.map((related) => {
+                  const RelatedIcon = related.icon;
+                  return (
+                    <Link
+                      key={related.slug}
+                      to={`/trainings/${related.slug}`}
+                      className="group block p-6 bg-card border rounded-xl hover:border-primary/50 hover:shadow-lg transition-all"
+                    >
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="p-2 bg-primary/10 rounded-lg">
+                          <RelatedIcon className="w-5 h-5 text-primary" />
+                        </div>
+                        <div className="flex gap-1">
+                          {related.tiers.includes("free") && (
+                            <Badge variant="outline" className="text-[10px] px-1.5 py-0">Free</Badge>
+                          )}
+                          {related.tiers.includes("paid") && (
+                            <Badge variant="outline" className="text-[10px] px-1.5 py-0">Paid</Badge>
+                          )}
+                        </div>
+                      </div>
+                      <h3 className="font-semibold text-lg group-hover:text-primary transition-colors line-clamp-2 mb-2">
+                        {related.title}
+                      </h3>
+                      <p className="text-sm text-muted-foreground flex items-center gap-1">
+                        <Clock className="w-3 h-3" />
+                        {related.duration}
+                      </p>
+                      <span className="inline-flex items-center gap-1 mt-3 text-sm text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+                        Mehr erfahren <ArrowRight className="w-3 h-3" />
+                      </span>
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Kontakt Section */}
+        <Contact />
+      </main>
+
+      <Footer />
+    </div>
+  );
+};
+
+export default TrainingDetail;

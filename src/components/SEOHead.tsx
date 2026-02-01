@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Author } from "@/data/authors";
+import { combineWithGlobalSchema } from "@/lib/organizationSchema";
 
 interface SEOHeadProps {
   title: string;
@@ -90,16 +91,15 @@ const SEOHead = ({
       link.setAttribute("href", canonicalUrl);
     }
 
-    // Structured Data (Schema.org)
-    if (schema) {
-      let scriptTag = document.querySelector('script[type="application/ld+json"]');
-      if (!scriptTag) {
-        scriptTag = document.createElement("script");
-        scriptTag.setAttribute("type", "application/ld+json");
-        document.head.appendChild(scriptTag);
-      }
-      scriptTag.textContent = JSON.stringify(schema);
+    // Structured Data (Schema.org) - immer mit globalem Organization/Person Schema
+    const combinedSchema = combineWithGlobalSchema(schema);
+    let scriptTag = document.querySelector('script[type="application/ld+json"]');
+    if (!scriptTag) {
+      scriptTag = document.createElement("script");
+      scriptTag.setAttribute("type", "application/ld+json");
+      document.head.appendChild(scriptTag);
     }
+    scriptTag.textContent = JSON.stringify(combinedSchema);
 
     // Cleanup function
     return () => {

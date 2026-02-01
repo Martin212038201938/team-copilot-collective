@@ -159,7 +159,7 @@ const CustomerReviews = () => {
                         </span>
                       </div>
                     </div>
-                    <p className="text-muted-foreground leading-relaxed">
+                    <p className="text-muted-foreground leading-none">
                       {review.text}
                     </p>
                   </CardContent>
