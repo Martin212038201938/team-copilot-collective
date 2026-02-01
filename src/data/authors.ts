@@ -69,6 +69,7 @@ export const getAuthorSchemaMarkup = (author: Author) => {
     '@type': 'Person',
     '@id': `https://copilotenschule.de/#${author.id}`,
     'name': author.name,
+    'url': `https://copilotenschule.de/trainer/${author.id}`,
     'jobTitle': author.role,
     'description': author.bio,
     'image': {
@@ -87,8 +88,7 @@ export const getAuthorSchemaMarkup = (author: Author) => {
     'worksFor': {
       '@id': 'https://copilotenschule.de/#organization'
     },
-    ...(author.email && { 'email': `mailto:${author.email}` }),
-    ...(author.linkedin && { 'url': author.linkedin })
+    ...(author.email && { 'email': `mailto:${author.email}` })
   };
 };
 

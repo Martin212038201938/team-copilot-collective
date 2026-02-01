@@ -9,17 +9,51 @@ export const founderSchema = {
   "@type": "Person",
   "@id": "https://copilotenschule.de/#martin-lang",
   "name": "Martin Lang",
-  "jobTitle": "Gründer & Trainer",
-  "description": "Microsoft Copilot Trainer, Agile Coach und Gründer der Yellow-Boat Consulting. Seit 2011 Experte für digitale Transformation und seit 2023 spezialisiert auf Microsoft Copilot Trainings.",
-  "url": "https://copilotenschule.de/ueber-uns",
+  "jobTitle": "Gründer & Microsoft Copilot Experte",
+  "description": "Martin Lang ist Gründer der Yellow-Boat Consulting (2011) und der copilotenschule.de (2025). Seit über einem Jahrzehnt realisiert er Agile Trainings und Digitalisierungsprojekte. Als Microsoft Copilot Experte befähigt er Wissensarbeiter, Teams und Organisationen, Microsoft Copilot produktiv und sicher einzusetzen.",
+  "url": "https://copilotenschule.de/trainer/martin-lang",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://copilotenschule.de/images/authors/martin-lang.png",
+    "width": 400,
+    "height": 400
+  },
+  "knowsAbout": [
+    "Microsoft 365 Copilot",
+    "GitHub Copilot",
+    "Microsoft Copilot Studio",
+    "Prompt Engineering",
+    "Agile Transformation",
+    "Change Management",
+    "EU AI Act Compliance"
+  ],
+  "hasCredential": [
+    {
+      "@type": "EducationalOccupationalCredential",
+      "credentialCategory": "certification",
+      "name": "Über 14 Jahre Erfahrung in digitaler Transformation"
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "credentialCategory": "certification",
+      "name": "Gründer Yellow-Boat Consulting (2011)"
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "credentialCategory": "certification",
+      "name": "Certified Scrum Master & Agile Coach"
+    }
+  ],
   "sameAs": [
     "https://www.linkedin.com/in/martin-lang-a95b1010",
     "https://www.springest.de/u/martin-lang#bewertungen",
-    "https://agilescrumgroup.de/uber-uns/team/"
+    "https://agilescrumgroup.de/uber-uns/team/",
+    "https://www.yellow-boat.com"
   ],
   "worksFor": {
     "@id": "https://copilotenschule.de/#organization"
-  }
+  },
+  "email": "mailto:martin@yellow-boat.com"
 };
 
 // Muttergesellschaft: Yellow-Boat Consulting

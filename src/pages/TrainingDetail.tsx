@@ -1,12 +1,14 @@
 import { useParams, Link, Navigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Clock, ArrowLeft, CheckCircle2, ArrowRight } from "lucide-react";
+import { Clock, ArrowLeft, CheckCircle2, ArrowRight, Linkedin, Mail } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import SEOHead from "@/components/SEOHead";
+import { Card, CardContent } from "@/components/ui/card";
 import { getTrainingBySlug, trainings } from "@/data/trainings";
+import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 
 const TrainingDetail = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -24,22 +26,32 @@ const TrainingDetail = () => {
     .filter(t => t.slug !== training.slug && t.tiers.some(tier => training.tiers.includes(tier)))
     .slice(0, 3);
 
-  // Schema.org für SEO
+  // Trainer-Profil
+  const trainer = getAuthor('martin-lang');
+
+  // Schema.org für SEO - Course mit instructor und provider
   const schema = {
-    "@context": "https://schema.org",
     "@type": "Course",
+    "@id": `https://copilotenschule.de/trainings/${training.slug}#course`,
     "name": training.title,
     "description": training.description,
+    "url": `https://copilotenschule.de/trainings/${training.slug}`,
     "provider": {
-      "@type": "Organization",
-      "name": "copilotenschule.de",
-      "url": "https://copilotenschule.de"
+      "@id": "https://copilotenschule.de/#organization"
+    },
+    "instructor": {
+      "@id": "https://copilotenschule.de/#martin-lang"
     },
     "hasCourseInstance": {
       "@type": "CourseInstance",
-      "courseMode": "onsite",
-      "duration": training.duration
-    }
+      "courseMode": ["onsite", "online"],
+      "duration": training.duration,
+      "inLanguage": "de-DE"
+    },
+    "teaches": training.features.slice(0, 5).join(", "),
+    "coursePrerequisites": "Keine Vorkenntnisse erforderlich",
+    "educationalLevel": training.tiers.includes("free") ? "Beginner" : "Intermediate",
+    "inLanguage": "de-DE"
   };
 
   return (
@@ -196,6 +208,76 @@ const TrainingDetail = () => {
                     </Link>
                   );
                 })}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Trainer Section */}
+        {trainer && (
+          <section className="py-16 bg-background">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto">
+                <h2 className="text-3xl font-bold mb-8 text-center">Ihr Trainer</h2>
+                <Card className="border-l-4 border-l-primary">
+                  <CardContent className="pt-6">
+                    <div className="flex flex-col md:flex-row gap-6">
+                      <div className="flex-shrink-0">
+                        <Link to={`/trainer/${trainer.id}`}>
+                          <img
+                            src={trainer.image}
+                            alt={`${trainer.name} - ${trainer.role}`}
+                            className="w-32 h-32 rounded-full object-cover border-4 border-primary/20 hover:border-primary/50 transition-colors"
+                          />
+                        </Link>
+                      </div>
+                      <div className="flex-1">
+                        <Link to={`/trainer/${trainer.id}`} className="hover:text-primary transition-colors">
+                          <h3 className="text-xl font-bold mb-1">{trainer.name}</h3>
+                        </Link>
+                        <div className="text-sm text-muted-foreground mb-3">{trainer.role}</div>
+                        <p className="text-sm leading-relaxed mb-4">{trainer.bio}</p>
+                        <div className="mb-3">
+                          <div className="text-sm font-semibold mb-2">Qualifikationen:</div>
+                          <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+                            {trainer.qualifications.slice(0, 3).map((qual, idx) => (
+                              <li key={idx}>{qual}</li>
+                            ))}
+                          </ul>
+                        </div>
+                        <div className="flex flex-wrap gap-3">
+                          <Link
+                            to={`/trainer/${trainer.id}`}
+                            className="inline-flex items-center gap-2 text-sm text-primary hover:underline font-medium"
+                          >
+                            <ArrowRight className="w-4 h-4" />
+                            Vollständiges Profil
+                          </Link>
+                          {trainer.linkedin && (
+                            <a
+                              href={trainer.linkedin}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-2 text-sm text-primary hover:underline"
+                            >
+                              <Linkedin className="w-4 h-4" />
+                              LinkedIn
+                            </a>
+                          )}
+                          {trainer.email && (
+                            <a
+                              href={`mailto:${trainer.email}`}
+                              className="inline-flex items-center gap-2 text-sm text-primary hover:underline"
+                            >
+                              <Mail className="w-4 h-4" />
+                              Kontakt
+                            </a>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
               </div>
             </div>
           </section>

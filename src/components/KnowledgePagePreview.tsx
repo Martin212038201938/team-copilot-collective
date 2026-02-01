@@ -1,8 +1,9 @@
+import { Link } from "react-router-dom";
 import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getAuthor, getFullArticleSchemaGraph } from "@/data/authors";
-import { Linkedin, Mail } from "lucide-react";
+import { Linkedin, Mail, ArrowRight } from "lucide-react";
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
@@ -257,16 +258,18 @@ const KnowledgePagePreview = ({
               <div className="flex flex-col md:flex-row gap-6">
                 <div className="flex-shrink-0">
                   {author.image && (
-                    <img
-                      src={author.image}
-                      alt={author.name}
-                      className="w-32 h-32 rounded-full object-cover border-4 border-primary/20"
-                    />
+                    <Link to={`/trainer/${author.id}`} className="block hover:opacity-90 transition-opacity">
+                      <img
+                        src={author.image}
+                        alt={author.name}
+                        className="w-32 h-32 rounded-full object-cover border-4 border-primary/20 hover:border-primary/40 transition-colors"
+                      />
+                    </Link>
                   )}
                 </div>
                 <div className="flex-1">
                   <h3 className="text-xl font-bold mb-2 text-gray-900">Über den Autor</h3>
-                  <div className="text-lg font-semibold text-primary mb-1">{author.name}</div>
+                  <Link to={`/trainer/${author.id}`} className="text-lg font-semibold text-primary mb-1 hover:underline block">{author.name}</Link>
                   <div className="text-sm text-gray-600 mb-3">{author.role}</div>
                   <p className="text-sm leading-relaxed mb-4 text-gray-800">{author.bio}</p>
                   <div className="mb-3">
@@ -288,7 +291,14 @@ const KnowledgePagePreview = ({
                       ))}
                     </div>
                   </div>
-                  <div className="flex gap-3">
+                  <div className="flex flex-wrap gap-3">
+                    <Link
+                      to={`/trainer/${author.id}`}
+                      className="inline-flex items-center gap-2 text-sm text-primary hover:underline font-medium"
+                    >
+                      <ArrowRight className="w-4 h-4" />
+                      Vollständiges Profil
+                    </Link>
                     {author.linkedin && (
                       <a
                         href={author.linkedin}

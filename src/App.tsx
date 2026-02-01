@@ -23,6 +23,7 @@ import UeberUns from "./pages/UeberUns";
 import TrainingKonfigurator from "./pages/TrainingKonfigurator";
 import UnsereAngebote from "./pages/UnsereAngebote";
 import TrainingDetail from "./pages/TrainingDetail";
+import TrainerProfil from "./pages/TrainerProfil";
 
 const queryClient = new QueryClient();
 
@@ -49,6 +50,7 @@ const App = () => (
           <Route path="/ueber-uns" element={<UeberUns />} />
           <Route path="/unsere-angebote" element={<UnsereAngebote />} />
           <Route path="/trainings/:slug" element={<TrainingDetail />} />
+          <Route path="/trainer/:id" element={<TrainerProfil />} />
           <Route path="/training-konfigurator" element={<TrainingKonfigurator />} />
           <Route path="/admin" element={<Admin />} />
           {/* Dynamic route for all published knowledge articles */}
