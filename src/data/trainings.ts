@@ -3,6 +3,11 @@ import type { LucideIcon } from "lucide-react";
 
 export type CopilotTier = "free" | "paid";
 
+export interface TrainingFAQ {
+  question: string;
+  answer: string;
+}
+
 export interface Training {
   slug: string;
   icon: LucideIcon;
@@ -15,6 +20,8 @@ export interface Training {
   metaTitle: string;
   metaDescription: string;
   keywords: string[];
+  // FAQ für strukturierte Daten
+  faqs?: TrainingFAQ[];
 }
 
 // Alle Trainingsmodule mit SEO-optimierten Slugs
@@ -39,7 +46,25 @@ export const trainings: Training[] = [
     tiers: ["free"],
     metaTitle: "Copilot Grundlagen Training – Prompt Design & KI-Kompetenz | copilotenschule.de",
     metaDescription: "Lernen Sie effektives Prompt Engineering für Microsoft Copilot. Einsteiger-Training für KI-Assistenten: Prompts formulieren, Outputs bewerten, produktiv arbeiten.",
-    keywords: ["Copilot Grundlagen", "Prompt Engineering Training", "KI-Kompetenz Schulung", "Microsoft Copilot Einsteiger", "Prompt Design lernen"]
+    keywords: ["Copilot Grundlagen", "Prompt Engineering Training", "KI-Kompetenz Schulung", "Microsoft Copilot Einsteiger", "Prompt Design lernen"],
+    faqs: [
+      {
+        question: "Warum bekomme ich von Copilot oft unbrauchbare oder zu allgemeine Antworten?",
+        answer: "Die Qualität der KI-Antworten hängt direkt von der Qualität Ihrer Anfrage ab. Ohne klare Struktur, Kontext und konkrete Beispiele in Ihren Prompts liefert Copilot generische Ergebnisse. Mit gezieltem Prompt Engineering lernen Ihre Mitarbeiter, präzise Anfragen zu formulieren – und erhalten damit deutlich bessere, sofort nutzbare Ergebnisse."
+      },
+      {
+        question: "Wie kann ich mein Team auf KI vorbereiten, bevor wir Copilot-Lizenzen kaufen?",
+        answer: "Starten Sie mit dem kostenlosen Microsoft Copilot Chat. Ihre Mitarbeiter können dort bereits die Grundlagen des Promptings üben – Recherche, Texterstellung, Zusammenfassungen. So bauen sie KI-Kompetenz auf, bevor die kostenpflichtigen Lizenzen kommen, und der spätere Umstieg auf Microsoft 365 Copilot fällt deutlich leichter."
+      },
+      {
+        question: "Wie erkennen meine Mitarbeiter, ob eine KI-Antwort korrekt ist oder halluziniert?",
+        answer: "Kritische Bewertung von KI-Outputs ist eine erlernbare Kompetenz. Dazu gehört: Quellen prüfen, Fakten hinterfragen, bei Web-Suchen die Original-Links checken und die typischen Muster von KI-Halluzinationen kennen. Diese kritische KI-Kompetenz schützt vor teuren Fehlern durch blindes Vertrauen in KI-generierte Inhalte."
+      },
+      {
+        question: "Funktionieren Prompt-Techniken für ChatGPT auch bei Microsoft Copilot?",
+        answer: "Ja, die Grundprinzipien guten Promptings sind plattformübergreifend anwendbar – ob Copilot, ChatGPT, Claude oder Gemini. Wer einmal versteht, wie man Kontext gibt, Beispiele nutzt und iterativ verfeinert, kann diese Techniken bei allen KI-Assistenten einsetzen."
+      }
+    ]
   },
   {
     slug: "microsoft-365-copilot-praxis",
@@ -61,7 +86,25 @@ export const trainings: Training[] = [
     tiers: ["paid"],
     metaTitle: "Microsoft 365 Copilot Training – Word, Excel, PowerPoint, Outlook, Teams | copilotenschule.de",
     metaDescription: "Praxistraining für Microsoft 365 Copilot: Lernen Sie Copilot in Word, Excel, PowerPoint, Outlook und Teams produktiv einzusetzen. Mit echten Workflows.",
-    keywords: ["Microsoft 365 Copilot Training", "Copilot Word Excel", "Office Copilot Schulung", "Copilot PowerPoint", "Copilot Outlook Teams"]
+    keywords: ["Microsoft 365 Copilot Training", "Copilot Word Excel", "Office Copilot Schulung", "Copilot PowerPoint", "Copilot Outlook Teams"],
+    faqs: [
+      {
+        question: "Wir haben Microsoft 365 Copilot-Lizenzen gekauft, aber die Nutzung ist gering – was tun?",
+        answer: "Das ist ein häufiges Problem: Ohne praktische Einführung wissen Mitarbeiter nicht, wo sie anfangen sollen. Der Schlüssel liegt in konkreten, sofort anwendbaren Workflows für den Arbeitsalltag – z.B. wie man in 30 Sekunden ein Meeting-Protokoll aus Teams erstellt oder Excel-Daten mit natürlicher Sprache analysiert. Praxistraining steigert die Nutzungsrate typischerweise um 60-80%."
+      },
+      {
+        question: "Wie erstelle ich mit Copilot automatisch Präsentationen aus einem Word-Dokument?",
+        answer: "Das ist ein Cross-App-Workflow: Copilot in PowerPoint kann direkt auf Word-Dokumente zugreifen und daraus strukturierte Präsentationen generieren. Sie geben den Dateipfad an, Copilot extrahiert die Kernaussagen und erstellt Slides mit passenden Layouts. Ähnlich funktioniert die Erstellung von Word-Dokumenten aus E-Mail-Threads oder Excel-Reports aus Meeting-Notizen."
+      },
+      {
+        question: "Kann Copilot meine Excel-Tabellen wirklich analysieren und Formeln schreiben?",
+        answer: "Ja, Microsoft 365 Copilot in Excel kann Daten analysieren, Trends erkennen, Pivot-Tabellen erstellen und komplexe Formeln generieren – alles per natürlicher Sprache. Sie schreiben z.B. 'Zeige mir den Umsatztrend der letzten 12 Monate nach Produktkategorie' und erhalten ein fertiges Diagramm. Die Lernkurve ist steil, aber mit den richtigen Prompt-Techniken erschließt sich enormes Potenzial."
+      },
+      {
+        question: "Wie hilft Copilot bei der E-Mail-Flut in Outlook?",
+        answer: "Copilot in Outlook kann E-Mail-Threads zusammenfassen, Antwort-Entwürfe erstellen, den Tonfall anpassen und sogar Meeting-Follow-ups automatisieren. Besonders wertvoll: die Zusammenfassung langer E-Mail-Verläufe auf die wesentlichen Punkte und offenen Action Items – spart täglich 30-60 Minuten bei E-Mail-intensiven Jobs."
+      }
+    ]
   },
   {
     slug: "ausbildung-ki-wissensarbeiter",
@@ -86,7 +129,25 @@ export const trainings: Training[] = [
     tiers: ["paid"],
     metaTitle: "Ausbildung KI-Wissensarbeiter – Intensivtraining Microsoft Copilot | copilotenschule.de",
     metaDescription: "2-tägige Intensiv-Ausbildung zum KI-unterstützten Wissensarbeiter. Von Grundlagen bis Expertenniveau: 20+ Übungen, alle M365 Apps, Zertifikat.",
-    keywords: ["KI Ausbildung", "Wissensarbeiter Training", "Copilot Intensivkurs", "KI-Kompetenz Zertifikat", "Microsoft Copilot Ausbildung"]
+    keywords: ["KI Ausbildung", "Wissensarbeiter Training", "Copilot Intensivkurs", "KI-Kompetenz Zertifikat", "Microsoft Copilot Ausbildung"],
+    faqs: [
+      {
+        question: "Wie kann ich meine Mitarbeiter systematisch in KI ausbilden – nicht nur einmalig schulen?",
+        answer: "Einmalige Trainings verpuffen oft schnell. Nachhaltiger Kompetenzaufbau erfordert ein strukturiertes Ausbildungsprogramm: Grundlagen verstehen, jede Office-App einzeln meistern, praktische Use Cases umsetzen, Peer Learning und am Ende eine persönliche Prompt-Bibliothek für wiederkehrende Aufgaben. So wird KI-Kompetenz zur dauerhaften Fähigkeit statt zum einmaligen Workshop-Erlebnis."
+      },
+      {
+        question: "Gibt es ein KI-Zertifikat, das meine Mitarbeiter für HR nachweisen können?",
+        answer: "Ja, nach erfolgreicher Teilnahme an einem umfassenden KI-Ausbildungsprogramm erhalten Mitarbeiter ein Zertifikat, das ihre KI-Kompetenz dokumentiert. Das ist nicht nur für die Personalentwicklung relevant, sondern auch für die EU AI Act Compliance, die nachweisbare KI-Schulungen fordert."
+      },
+      {
+        question: "Welche KI-Kompetenzen brauchen Büromitarbeiter eigentlich konkret?",
+        answer: "Für Wissensarbeiter sind fünf Kernkompetenzen entscheidend: 1) Effektive Prompts formulieren, 2) KI-Outputs kritisch bewerten, 3) Copilot in Office-Apps produktiv nutzen, 4) Cross-App-Workflows beherrschen (z.B. Präsentation aus E-Mail-Thread), 5) Eine persönliche Prompt-Bibliothek für wiederkehrende Aufgaben aufbauen. Diese Fähigkeiten machen den Unterschied zwischen KI-Nutzung und KI-Produktivität."
+      },
+      {
+        question: "Wie lange dauert es, bis Mitarbeiter wirklich produktiv mit KI arbeiten können?",
+        answer: "Die Grundlagen sind in einem halben Tag vermittelt. Für echte Produktivitätssteigerung im Alltag – also das sichere Beherrschen aller relevanten Apps und Workflows – sollten Sie mit 2 intensiven Tagen oder einer 8-wöchigen Lernreise rechnen. Der Vorteil der Lernreise: Zwischen den Sessions wenden Mitarbeiter das Gelernte direkt an und kommen mit echten Fragen zurück."
+      }
+    ]
   },
   {
     slug: "github-copilot-entwickler",
@@ -110,7 +171,25 @@ export const trainings: Training[] = [
     tiers: ["free", "paid"],
     metaTitle: "GitHub Copilot Training für Entwickler – Coding-Produktivität steigern | copilotenschule.de",
     metaDescription: "Hands-on GitHub Copilot Training: Code generieren, testen, debuggen und dokumentieren. Für Entwickler-Teams. Mit VS Code, JetBrains, CI/CD-Integration.",
-    keywords: ["GitHub Copilot Training", "Entwickler Schulung", "AI Coding", "Copilot VS Code", "GitHub Copilot Unternehmen"]
+    keywords: ["GitHub Copilot Training", "Entwickler Schulung", "AI Coding", "Copilot VS Code", "GitHub Copilot Unternehmen"],
+    faqs: [
+      {
+        question: "Lohnt sich GitHub Copilot für unser Entwicklerteam – was bringt es wirklich?",
+        answer: "Studien zeigen 30-55% schnellere Code-Completion und bis zu 46% weniger Zeit für repetitive Coding-Tasks. Der größte Nutzen liegt bei Boilerplate-Code, Unit Tests, Dokumentation und dem Verstehen von Legacy-Code. Ob sich die Investition lohnt, hängt von Ihrem Tech-Stack und den typischen Aufgaben ab – erfahrungsgemäß ist der ROI bei Teams, die viel testen, dokumentieren oder in mehreren Sprachen arbeiten, am höchsten."
+      },
+      {
+        question: "Können unsere Entwickler mit KI auch Code debuggen und refactoren – nicht nur generieren?",
+        answer: "Ja, GitHub Copilot ist weit mehr als Code-Completion. Der Copilot Chat erklärt komplexen Code, identifiziert Bugs, schlägt Refactorings vor und kann sogar Security-Vulnerabilities erkennen. Besonders wertvoll: Legacy-Code verstehen und modernisieren, ohne stundenlang Dokumentation zu wälzen."
+      },
+      {
+        question: "Ist es sicher, GitHub Copilot im Unternehmen einzusetzen – was passiert mit unserem Code?",
+        answer: "Bei GitHub Copilot Business und Enterprise wird Ihr Code nicht für das Training des Modells verwendet und nicht gespeichert. Sie können Content Exclusions konfigurieren, um sensible Repositories auszuschließen. Audit Logs dokumentieren die Nutzung, und Sie behalten volle Kontrolle über die Policies. Damit ist DSGVO-konformer Einsatz möglich."
+      },
+      {
+        question: "Wie konfiguriere ich GitHub Copilot optimal für mein Entwicklerteam?",
+        answer: "Die richtige Konfiguration macht den Unterschied: IDE-spezifische Einstellungen (VS Code, JetBrains), Team-Policies für Code-Suggestions, Content Exclusions für sensible Bereiche, und projektspezifische Instructions in .github/copilot-instructions.md. Dazu kommen Workflows für PR-Beschreibungen, Commit Messages und Code Reviews. Ohne gute Einrichtung nutzen Teams nur 30% des Potenzials."
+      }
+    ]
   },
   {
     slug: "copilot-compliance-datenschutz",
@@ -130,7 +209,25 @@ export const trainings: Training[] = [
     tiers: ["free", "paid"],
     metaTitle: "Copilot Compliance Training – DSGVO & EU AI Act | copilotenschule.de",
     metaDescription: "Rechtssichere KI-Nutzung mit Microsoft Copilot: DSGVO-Compliance, EU AI Act, Datenschutz-Assessment. Mit Checklisten und Templates.",
-    keywords: ["Copilot DSGVO", "KI Compliance Training", "EU AI Act Schulung", "Copilot Datenschutz", "rechtssichere KI-Nutzung"]
+    keywords: ["Copilot DSGVO", "KI Compliance Training", "EU AI Act Schulung", "Copilot Datenschutz", "rechtssichere KI-Nutzung"],
+    faqs: [
+      {
+        question: "Dürfen meine Mitarbeiter Firmendaten in Microsoft Copilot eingeben?",
+        answer: "Bei Microsoft 365 Copilot (der kostenpflichtigen Version) bleiben Ihre Daten innerhalb Ihres Microsoft-Tenants und werden nicht für Modelltraining verwendet. Trotzdem gelten Regeln: Keine personenbezogenen Daten ohne Rechtsgrundlage, keine Betriebsgeheimnisse in Prompts, die intern geteilt werden könnten. Ein klares Datenklassifizierungs-Konzept und Mitarbeiter-Guidelines sind essenziell."
+      },
+      {
+        question: "Ist Microsoft Copilot DSGVO-konform – und wie dokumentiere ich das?",
+        answer: "Microsoft 365 Copilot kann DSGVO-konform eingesetzt werden, da die Datenverarbeitung innerhalb der EU erfolgt und Microsoft als Auftragsverarbeiter agiert. Sie benötigen jedoch: eine Rechtsgrundlage für die Verarbeitung, eine Aktualisierung Ihres Verarbeitungsverzeichnisses, ggf. eine Datenschutz-Folgenabschätzung, und geschulte Mitarbeiter. Die Dokumentationspflichten sind konkret – Checklisten und Templates beschleunigen die Compliance."
+      },
+      {
+        question: "Was muss ich beim EU AI Act beachten, wenn wir Copilot einsetzen?",
+        answer: "Microsoft Copilot fällt als 'KI-System mit geringem Risiko' unter die Transparenzpflichten des EU AI Act. Für Sie als Unternehmen bedeutet das: Mitarbeiter müssen wissen, dass sie mit KI interagieren, KI-generierte Inhalte sollten als solche erkennbar sein, und Ihre Mitarbeiter brauchen nachweisbare KI-Kompetenz (Artikel 4). Die konkreten Anforderungen variieren je nach Anwendungsfall."
+      },
+      {
+        question: "Welche Risiken gibt es bei der KI-Nutzung im Unternehmen?",
+        answer: "Die größten Risiken: Unbeabsichtigte Weitergabe sensibler Daten, Urheberrechtsverletzungen durch KI-generierte Inhalte, Haftungsfragen bei falschen KI-Outputs, und Compliance-Verstöße durch ungeschulte Mitarbeiter. All diese Risiken sind managebar – mit klaren Policies, technischen Guardrails (DLP, Information Protection) und regelmäßigen Schulungen."
+      }
+    ]
   },
   {
     slug: "copilot-strategie-change-management",
@@ -150,7 +247,25 @@ export const trainings: Training[] = [
     tiers: ["free", "paid"],
     metaTitle: "Copilot Strategie Workshop – Rollout & Change Management | copilotenschule.de",
     metaDescription: "Strategischer Copilot-Workshop: ROI berechnen, Rollout planen, Change Management gestalten. Für erfolgreiche Microsoft Copilot Einführung.",
-    keywords: ["Copilot Strategie", "Copilot Rollout", "Change Management KI", "Copilot ROI", "Copilot Einführung Unternehmen"]
+    keywords: ["Copilot Strategie", "Copilot Rollout", "Change Management KI", "Copilot ROI", "Copilot Einführung Unternehmen"],
+    faqs: [
+      {
+        question: "Wie führe ich Microsoft Copilot erfolgreich im Unternehmen ein – ohne dass es flopp?",
+        answer: "Die meisten gescheiterten Copilot-Rollouts haben drei Ursachen: keine klare Strategie (wer bekommt wann Lizenzen?), fehlende Use-Case-Priorisierung (wo bringt Copilot wirklich Mehrwert?) und mangelndes Change Management (Mitarbeiter fühlen sich überrumpelt). Ein erfolgreicher Rollout startet mit einer Pilotgruppe, misst konkrete Erfolge, baut Champions auf und skaliert dann schrittweise."
+      },
+      {
+        question: "Wie berechne ich den ROI von Microsoft Copilot für unseren Business Case?",
+        answer: "Der ROI setzt sich aus Zeitersparnis (typisch 5-10 Stunden pro Mitarbeiter pro Monat), Qualitätsverbesserung (weniger Fehler, bessere Dokumente) und strategischem Wert (schnellere Entscheidungen, Innovation) zusammen. Für den Business Case: Identifizieren Sie 3-5 High-Impact-Prozesse, messen Sie den Zeitaufwand vorher/nachher, und rechnen Sie mit Stundensätzen. Typische Amortisation: 3-6 Monate bei gezieltem Einsatz."
+      },
+      {
+        question: "Was sind die größten Fehler bei der Copilot-Einführung?",
+        answer: "Die Top-5-Fehler: 1) Lizenzen ausrollen ohne Schulung, 2) Keine klaren Use Cases definieren, 3) Keinen Erfolg messen (dann kann niemand den Wert belegen), 4) IT entscheidet ohne Einbindung der Fachabteilungen, 5) Keine Champions aufbauen, die andere begeistern. Die gute Nachricht: All diese Fehler sind vermeidbar mit einer durchdachten Rollout-Strategie."
+      },
+      {
+        question: "Wie überwinde ich Widerstände meiner Mitarbeiter gegen KI?",
+        answer: "Widerstände entstehen meist aus Angst (Jobverlust), Unsicherheit (Überforderung) oder schlechten Erfahrungen (KI liefert schlechte Ergebnisse). Die Lösung: Transparent kommunizieren (KI als Assistenz, nicht Ersatz), niedrigschwellig einführen (mit einfachen, sofort nützlichen Use Cases starten), schnelle Erfolgserlebnisse ermöglichen, und Champions aus der Belegschaft aufbauen, die Kollegen mitnehmen."
+      }
+    ]
   },
   {
     slug: "copilot-studio-ki-agenten",
@@ -170,7 +285,25 @@ export const trainings: Training[] = [
     tiers: ["paid"],
     metaTitle: "Copilot Studio Training – KI-Agenten entwickeln | copilotenschule.de",
     metaDescription: "Entwickeln Sie KI-Agenten mit Microsoft Copilot Studio: Custom Agents, Teams-Integration, Power Automate. Praxis-Training für Unternehmen.",
-    keywords: ["Copilot Studio Training", "KI-Agenten entwickeln", "Microsoft Copilot Agents", "Copilot Automatisierung", "Custom Copilot"]
+    keywords: ["Copilot Studio Training", "KI-Agenten entwickeln", "Microsoft Copilot Agents", "Copilot Automatisierung", "Custom Copilot"],
+    faqs: [
+      {
+        question: "Kann ich einen KI-Assistenten bauen, der auf unsere Firmendaten zugreift?",
+        answer: "Ja, mit Microsoft Copilot Studio können Sie KI-Agenten erstellen, die auf SharePoint, Dataverse oder externe APIs zugreifen. Der Agent beantwortet Fragen basierend auf Ihren internen Dokumenten, Wissensdatenbanken oder Unternehmensdaten – ohne dass diese Daten zu OpenAI oder anderen externen Diensten fließen. Das ist der Unterschied zu allgemeinen KI-Chatbots."
+      },
+      {
+        question: "Brauche ich Programmierkenntnisse, um einen KI-Agenten zu entwickeln?",
+        answer: "Copilot Studio ist eine Low-Code-Plattform – grundlegende Agenten können Sie ohne Programmierung erstellen. Für komplexere Integrationen (APIs, Workflow-Automatisierung, Custom Connectors) sind Power Automate-Kenntnisse hilfreich. Tiefe Entwicklerkenntnisse sind erst bei sehr spezifischen Anpassungen nötig."
+      },
+      {
+        question: "Welche Use Cases eignen sich für KI-Agenten im Unternehmen?",
+        answer: "Die erfolgreichsten Anwendungsfälle: HR-Assistenten (Urlaubsanträge, Policies, Onboarding-Fragen), IT-Helpdesk-Bots (First-Level-Support, Passwort-Reset-Anleitungen), Wissensmanagement (FAQ-Bot auf Basis interner Dokumente), Sales-Support (Produktinfos, Preislisten) und Projekt-Assistenten (Status-Updates, Dokumenten-Suche). Entscheidend: Klar definierter Scope und gute Datenbasis."
+      },
+      {
+        question: "Wie stelle ich sicher, dass mein KI-Agent keine falschen Informationen liefert?",
+        answer: "Drei Hebel: 1) Gute Datenbasis – der Agent ist nur so gut wie seine Quellen, 2) Guardrails – klare Grenzen setzen, bei welchen Themen der Agent antwortet und wann er an Menschen eskaliert, 3) Testing – systematisch Fragen durchspielen, Edge Cases identifizieren, und kontinuierlich verbessern. Ein gut konfigurierter Agent gibt bei Unsicherheit zu, dass er die Antwort nicht weiß."
+      }
+    ]
   },
   {
     slug: "chatbot-workshop",
@@ -191,7 +324,25 @@ export const trainings: Training[] = [
     tiers: ["paid"],
     metaTitle: "Chatbot-Workshop – KI-Assistenten entwickeln mit Copilot Studio | copilotenschule.de",
     metaDescription: "Hands-on Chatbot-Workshop: Entwickeln Sie Ihren ersten Unternehmens-Chatbot mit Microsoft Copilot Studio. Am Ende: fertiger Bot in Teams.",
-    keywords: ["Chatbot Workshop", "Copilot Studio Chatbot", "KI-Assistent entwickeln", "Unternehmens-Chatbot", "Teams Bot erstellen"]
+    keywords: ["Chatbot Workshop", "Copilot Studio Chatbot", "KI-Assistent entwickeln", "Unternehmens-Chatbot", "Teams Bot erstellen"],
+    faqs: [
+      {
+        question: "Wie schnell kann ich einen funktionierenden Chatbot für mein Team erstellen?",
+        answer: "Mit der richtigen Vorbereitung (Use Case definiert, Datenquellen identifiziert) kann ein funktionsfähiger Chatbot in einem Tag entstehen – inklusive Anbindung an SharePoint und Deployment in Microsoft Teams. Das ist keine leere Versprechung: In einem Hands-on-Workshop bauen Sie den Bot Schritt für Schritt selbst, nicht nur in der Theorie."
+      },
+      {
+        question: "Können wir einen FAQ-Bot bauen, der Fragen aus unseren internen Dokumenten beantwortet?",
+        answer: "Ja, genau das ist eine der Kernfunktionen von Microsoft Copilot Studio. Sie verbinden den Bot mit Ihrem SharePoint, internen Wiki oder FAQ-Dokumenten, und er beantwortet Fragen basierend auf diesen Quellen. Wichtig: Je besser Ihre Dokumentation strukturiert ist, desto präziser die Antworten."
+      },
+      {
+        question: "Was brauche ich, um nach dem Workshop den Chatbot selbst weiterzuentwickeln?",
+        answer: "Nach einem guten Workshop haben Sie: einen funktionierenden Bot, eine Dokumentation der Architektur und Konfiguration, Verständnis der Copilot Studio-Plattform, und Know-how für Optimierung und Erweiterung. Die Wartung ist dann Low-Code – neue Inhalte hinzufügen, Antworten verbessern, Edge Cases abfangen. Für größere Erweiterungen können Sie auf das erlernte Wissen aufbauen."
+      },
+      {
+        question: "Für welche Abteilungen eignet sich ein Chatbot am besten?",
+        answer: "Die höchste Wirkung erzielen Chatbots dort, wo viele wiederkehrende Fragen anfallen: HR (Urlaubsregelungen, Benefits, Onboarding), IT-Support (Anleitungen, Passwort-Reset, Standard-Probleme), Kundenservice (FAQs, Produktinfos) und Wissensmanagement (interne Richtlinien, Prozessdokumentation). Je höher das Frageaufkommen und je standardisierter die Antworten, desto größer der Nutzen."
+      }
+    ]
   },
   {
     slug: "low-code-power-platform",
@@ -211,7 +362,25 @@ export const trainings: Training[] = [
     tiers: ["paid"],
     metaTitle: "Low-Code Training – Power Platform mit Copilot | copilotenschule.de",
     metaDescription: "Low-Code Entwicklung mit Microsoft Power Platform und Copilot: Power Apps, Power Automate, Dataverse. Training für Citizen Developer.",
-    keywords: ["Low-Code Training", "Power Platform Schulung", "Citizen Developer", "Power Apps Copilot", "Power Automate Training"]
+    keywords: ["Low-Code Training", "Power Platform Schulung", "Citizen Developer", "Power Apps Copilot", "Power Automate Training"],
+    faqs: [
+      {
+        question: "Können meine Fachabteilungen eigene Apps bauen – ohne auf die IT warten zu müssen?",
+        answer: "Ja, das ist die Idee von Citizen Development mit der Microsoft Power Platform. Business-User können mit Power Apps eigene Anwendungen erstellen, mit Power Automate Workflows automatisieren – und Copilot hilft dabei mit natürlicher Sprache. Wichtig: Ein Governance-Framework stellt sicher, dass keine Schatten-IT entsteht und Sicherheitsstandards eingehalten werden."
+      },
+      {
+        question: "Wie kann ich Geschäftsprozesse automatisieren, ohne programmieren zu können?",
+        answer: "Power Automate ermöglicht Workflow-Automatisierung per Drag-and-Drop und natürlicher Sprache. Genehmigungsprozesse, E-Mail-Benachrichtigungen, Datensynchronisation zwischen Systemen – alles ohne Code. Mit Copilot beschreiben Sie einfach, was passieren soll ('Wenn eine neue Rechnung in SharePoint landet, benachrichtige den Abteilungsleiter und erstelle einen Eintrag in Excel'), und der Flow wird generiert."
+      },
+      {
+        question: "Wie verhindere ich, dass Citizen Development zur Schatten-IT wird?",
+        answer: "Governance ist der Schlüssel: Environment-Strategie (wer darf wo entwickeln), DLP-Policies (welche Daten dürfen wohin fließen), Approval-Prozesse für produktive Apps, und regelmäßige Reviews. Das Power Platform Admin Center gibt IT-Abteilungen volle Kontrolle und Transparenz, während Fachabteilungen trotzdem eigenständig arbeiten können."
+      },
+      {
+        question: "Kann Copilot mir wirklich helfen, Apps und Flows zu erstellen?",
+        answer: "Ja, Copilot in Power Apps und Power Automate ist erstaunlich leistungsfähig. Sie beschreiben Ihre App oder Ihren Workflow in natürlicher Sprache, und Copilot generiert den ersten Entwurf. Für Formeln und Logik können Sie Copilot fragen, was Sie erreichen wollen – er schlägt die passende Syntax vor. Das beschleunigt die Entwicklung enorm, ersetzt aber nicht das Verständnis der Plattform."
+      }
+    ]
   },
   {
     slug: "eu-ai-act-pflichtschulung",
@@ -231,7 +400,25 @@ export const trainings: Training[] = [
     tiers: ["free", "paid"],
     metaTitle: "EU AI Act Pflichtschulung – Artikel 4 KI-Kompetenz | copilotenschule.de",
     metaDescription: "EU AI Act Pflichtschulung nach Artikel 4: KI-Kompetenz, Risikobewusstsein, Compliance. Mit Schulungszertifikat für Audits.",
-    keywords: ["EU AI Act Schulung", "Artikel 4 KI-Kompetenz", "KI Pflichtschulung", "AI Act Training", "KI Compliance Zertifikat"]
+    keywords: ["EU AI Act Schulung", "Artikel 4 KI-Kompetenz", "KI Pflichtschulung", "AI Act Training", "KI Compliance Zertifikat"],
+    faqs: [
+      {
+        question: "Müssen alle Mitarbeiter, die Copilot nutzen, zum EU AI Act geschult werden?",
+        answer: "Ja, Artikel 4 des EU AI Act fordert, dass Personen, die KI-Systeme bedienen oder überwachen, über ausreichende KI-Kompetenz verfügen müssen. Das betrifft faktisch alle Mitarbeiter, die Microsoft Copilot oder andere KI-Tools nutzen. Die Schulung muss nachweisbar sein – ein Zertifikat oder Schulungsnachweis ist für Audits wichtig."
+      },
+      {
+        question: "Was genau fordert der EU AI Act von Unternehmen, die KI einsetzen?",
+        answer: "Für die meisten Unternehmen relevant: 1) KI-Kompetenz-Schulung für Mitarbeiter (Artikel 4), 2) Transparenzpflichten (Nutzer müssen wissen, dass sie mit KI interagieren), 3) Dokumentation der eingesetzten KI-Systeme, 4) Bei Hochrisiko-KI zusätzliche Anforderungen. Microsoft Copilot fällt typischerweise unter 'KI mit geringem Risiko', aber die Grundpflichten gelten trotzdem."
+      },
+      {
+        question: "Bis wann muss ich meine Mitarbeiter zum EU AI Act geschult haben?",
+        answer: "Der EU AI Act ist seit August 2024 in Kraft. Die Anforderungen an KI-Kompetenz (Artikel 4) gelten ab Februar 2025. Unternehmen sollten also zeitnah sicherstellen, dass alle KI-nutzenden Mitarbeiter nachweislich geschult sind. Die Umsetzung sollte nicht auf die lange Bank geschoben werden – bei Prüfungen müssen Sie die Schulungen belegen können."
+      },
+      {
+        question: "Wie dokumentiere ich die KI-Schulung meiner Mitarbeiter für Audits?",
+        answer: "Für die Nachweisführung brauchen Sie: Schulungszertifikate oder -nachweise pro Mitarbeiter, Dokumentation der Schulungsinhalte (welche KI-Kompetenzen wurden vermittelt), Datum und Dauer der Schulung, und idealerweise eine Anwesenheitsliste. Ein professioneller Schulungsnachweis mit konkreten Lerninhalten erfüllt die Anforderungen und gibt Sicherheit bei Behördenanfragen."
+      }
+    ]
   },
   {
     slug: "copilot-hackathon",
@@ -252,7 +439,25 @@ export const trainings: Training[] = [
     tiers: ["free", "paid"],
     metaTitle: "Copilot Hackathon – Innovation ohne Code | copilotenschule.de",
     metaDescription: "Copilot Hackathon für Business-Anwender: Kreative KI-Lösungen entwickeln ohne Programmierkenntnisse. Team-Event mit Pitch und Preisen.",
-    keywords: ["Copilot Hackathon", "KI Innovation Workshop", "Business Hackathon", "Copilot Team Event", "KI ohne Code"]
+    keywords: ["Copilot Hackathon", "KI Innovation Workshop", "Business Hackathon", "Copilot Team Event", "KI ohne Code"],
+    faqs: [
+      {
+        question: "Wie kann ich mein Team spielerisch an KI heranführen – ohne trockene Schulungen?",
+        answer: "Ein Hackathon-Format ist ideal: Teams treten gegeneinander an, lösen echte Geschäftsprobleme mit Copilot, und am Ende werden die besten Lösungen gekürt. Das erzeugt Energie, baut Berührungsängste ab und zeigt sofort, was KI kann. Keine PowerPoint-Folien, sondern Hands-on-Erfahrung mit Wettbewerbscharakter."
+      },
+      {
+        question: "Gibt es KI-Innovationsformate speziell für Nicht-Entwickler?",
+        answer: "Ja, Business-Hackathons sind für Fachabteilungen konzipiert – keine Programmierkenntnisse nötig. Die Teilnehmer nutzen Copilot, um Workflows zu optimieren, Prompts für typische Aufgaben zu entwickeln oder kreative Lösungen für Geschäftsprobleme zu finden. Der Fokus liegt auf Anwendung, nicht auf Technik."
+      },
+      {
+        question: "Was kommt bei einem KI-Hackathon konkret heraus?",
+        answer: "Handfeste Ergebnisse: Funktionierende Prompt-Templates für wiederkehrende Aufgaben, automatisierte Workflows, dokumentierte Best Practices, und oft überraschende Ideen, auf die niemand allein gekommen wäre. Dazu: Teambuilding, KI-Kompetenzaufbau und Begeisterung für die neuen Möglichkeiten. Die besten Lösungen können direkt im Arbeitsalltag eingesetzt werden."
+      },
+      {
+        question: "Wie überzeuge ich mein Management von einem KI-Hackathon?",
+        answer: "Die Argumente: 1) Kombination aus Schulung und Teambuilding, 2) Konkrete Ergebnisse statt nur Wissensvermittlung, 3) Identifikation von High-Impact-Use-Cases aus der Belegschaft, 4) Messbare Outputs (Prompts, Workflows, Ideen), 5) Positive Change-Management-Wirkung (Mitarbeiter werden zu KI-Botschaftern). Der ROI ist oft höher als bei klassischen Trainings."
+      }
+    ]
   },
   {
     slug: "keynote-copilot-arbeitswelt",
@@ -272,7 +477,25 @@ export const trainings: Training[] = [
     tiers: ["free", "paid"],
     metaTitle: "Copilot Keynote – KI-Vortrag für Führungskräfte | copilotenschule.de",
     metaDescription: "Inspirierende Keynote zu Microsoft Copilot: Vision, Live-Demos, Praxisbeispiele. Für All-Hands, Kick-offs und Führungskräfte-Events.",
-    keywords: ["Copilot Keynote", "KI Vortrag", "Copilot Führungskräfte", "KI Transformation", "Microsoft Copilot Speaker"]
+    keywords: ["Copilot Keynote", "KI Vortrag", "Copilot Führungskräfte", "KI Transformation", "Microsoft Copilot Speaker"],
+    faqs: [
+      {
+        question: "Wer kann bei uns eine inspirierende KI-Keynote für Führungskräfte halten?",
+        answer: "Für eine wirkungsvolle KI-Keynote brauchen Sie jemanden, der Microsoft Copilot nicht nur kennt, sondern täglich einsetzt und die Transformation in Unternehmen begleitet. Idealerweise mit Live-Demos, die beeindrucken (nicht nur Folien), konkreten Praxisbeispielen aus deutschen Unternehmen, und der Fähigkeit, sowohl technische als auch strategische Fragen zu beantworten."
+      },
+      {
+        question: "Wie erkläre ich unserem Vorstand die Chancen und Risiken von Microsoft Copilot?",
+        answer: "Eine Executive-Keynote adressiert genau das: Vision (wie verändert KI die Arbeitswelt?), konkreter Nutzen (welche Produktivitätsgewinne sind realistisch?), ROI-Perspektive (wie rechnet sich die Investition?), Risiken (Compliance, Change, Fehlnutzung) und Erfolgsfaktoren (was unterscheidet erfolgreiche Einführungen?). Mit Live-Demos wird das Potenzial greifbar."
+      },
+      {
+        question: "Was sollte eine Copilot-Keynote für ein All-Hands-Meeting beinhalten?",
+        answer: "Für ein breites Publikum: Einordnung (was ist KI, was kann Copilot?), beeindruckende Live-Demos (die 'Wow'-Momente erzeugen), Praxisbeispiele (konkrete Anwendungen aus Word, Excel, Teams), Ausblick (was kommt noch?), und die Botschaft, dass KI unterstützt statt ersetzt. Dauer typisch: 60-90 Minuten inkl. Q&A."
+      },
+      {
+        question: "Wie nehme ich Mitarbeiter mit, die Angst vor KI haben?",
+        answer: "Eine gute Keynote adressiert Ängste direkt: KI als Assistent, nicht als Ersatz; Beispiele, wie KI nervige Routineaufgaben abnimmt (statt Jobs zu vernichten); die Botschaft, dass KI-Kompetenz eine Chance ist. Wichtig: Ehrlich über Grenzen sprechen, keine übertriebenen Versprechungen, und zeigen, dass Menschen die Kontrolle behalten."
+      }
+    ]
   },
   {
     slug: "copilot-lernreise-8-wochen",
@@ -294,7 +517,25 @@ export const trainings: Training[] = [
     tiers: ["paid"],
     metaTitle: "Copilot Lernreise – 8 Wochen Kompetenzaufbau | copilotenschule.de",
     metaDescription: "Nachhaltige Copilot-Lernreise: 8 Wochen, 8 Sessions, 8 Use Cases. Schrittweiser Kompetenzaufbau für Teams mit Praxisaufgaben.",
-    keywords: ["Copilot Lernreise", "Copilot 8 Wochen", "nachhaltiges KI-Training", "Copilot Blended Learning", "Copilot Kompetenzaufbau"]
+    keywords: ["Copilot Lernreise", "Copilot 8 Wochen", "nachhaltiges KI-Training", "Copilot Blended Learning", "Copilot Kompetenzaufbau"],
+    faqs: [
+      {
+        question: "Wie stellen wir sicher, dass KI-Training nachhaltig wirkt und nicht nach einer Woche vergessen ist?",
+        answer: "Das Problem kennen viele: Nach einem eintägigen Workshop verpufft das Wissen schnell. Die Lösung: Ein Lernreise-Format über mehrere Wochen. Jede Woche ein neues Thema, dazwischen praktische Anwendung im Arbeitsalltag, und in der nächsten Session werden echte Fragen aus der Praxis geklärt. So wird Copilot zur Gewohnheit, nicht zum einmaligen Event."
+      },
+      {
+        question: "Gibt es Copilot-Training, das über mehrere Wochen geht statt an einem Tag?",
+        answer: "Ja, eine 8-wöchige Lernreise mit wöchentlichen 2-Stunden-Sessions ist ideal für nachhaltigen Kompetenzaufbau. Jede Woche ein neuer Schwerpunkt (Word, Excel, PowerPoint...), jede Woche ein praktischer Use Case zum Umsetzen. Zwischen den Sessions: echte Anwendung, Peer Learning, Support-Kanal für Fragen. So wird KI-Kompetenz zur dauerhaften Fähigkeit."
+      },
+      {
+        question: "Wie viel Zeit müssen meine Mitarbeiter für eine Copilot-Lernreise einplanen?",
+        answer: "2 Stunden pro Woche für die Live-Session, plus ca. 30-60 Minuten für die praktische Umsetzung des wöchentlichen Use Cases im Arbeitsalltag. Insgesamt also 2,5-3 Stunden pro Woche über 8 Wochen. Das ist überschaubar und lässt sich gut in den Arbeitsalltag integrieren – anders als ein Ganztags-Workshop, der den Kalender blockiert."
+      },
+      {
+        question: "Was unterscheidet eine Lernreise von einem kompakten Workshop?",
+        answer: "Der entscheidende Unterschied: Transfer in die Praxis. Bei einem Tagesworkshop lernen Mitarbeiter viel auf einmal, aber setzen es danach oft nicht um. Bei einer Lernreise kommt jede Woche ein neues Thema – klein genug, um es sofort anzuwenden. Die nächste Session startet mit Erfahrungsaustausch: Was hat funktioniert? Wo gab es Probleme? So entsteht echte Verhaltensänderung."
+      }
+    ]
   },
   {
     slug: "copilot-launch-eventtag",
@@ -317,7 +558,25 @@ export const trainings: Training[] = [
     tiers: ["free", "paid"],
     metaTitle: "Copilot Launch Event – Kick-off für Ihre KI-Einführung | copilotenschule.de",
     metaDescription: "Copilot-Launch als Highlight: Eventtag mit Live-Demos, Challenges, Gamification. Perfekter Kick-off für die Copilot-Einführung.",
-    keywords: ["Copilot Launch Event", "KI Kick-off", "Copilot Einführung Event", "Copilot Gamification", "KI Eventtag"]
+    keywords: ["Copilot Launch Event", "KI Kick-off", "Copilot Einführung Event", "Copilot Gamification", "KI Eventtag"],
+    faqs: [
+      {
+        question: "Wie mache ich den Copilot-Launch zu einem echten Highlight für meine Mitarbeiter?",
+        answer: "Ein Launch-Eventtag mit interaktiven Elementen: Live-Demos zum Staunen, Hands-on-Stationen zum Selbst-Ausprobieren, KI-Challenges mit Wettbewerbscharakter, Gamification mit Preisen, und kompetente Ansprechpartner für individuelle Fragen. Das erzeugt positive Energie, baut Berührungsängste ab und sorgt dafür, dass Mitarbeiter die KI-Einführung als Chance sehen – nicht als Bedrohung."
+      },
+      {
+        question: "Wie kann ich Berührungsängste meiner Mitarbeiter gegenüber KI abbauen?",
+        answer: "Niedrigschwellige erste Erfahrungen sind der Schlüssel. Statt Schulung im Klassenraum: ein Infostand, an dem man Fragen stellen kann; Hands-on-Stationen, an denen man Copilot unter Anleitung ausprobiert; spielerische Challenges, die Spaß machen. Wenn Mitarbeiter erleben, dass KI ihnen hilft (statt sie zu ersetzen), wandelt sich Skepsis in Neugier."
+      },
+      {
+        question: "Was für Ideen gibt es für einen KI-Launchtag in unserem Unternehmen?",
+        answer: "Bewährte Elemente: Professioneller Infostand mit kompetenten Ansprechpartnern, Live-Demos (die 'Wow'-Momente erzeugen), interaktive KI-Challenges (Teams treten gegeneinander an), Gamification mit Quizzen und Gewinnspielen, Hands-on-Stationen zum Selbst-Ausprobieren, individuelle Beratungsgespräche, und hochwertige Infomaterialien zum Mitnehmen. Alles anpassbar an Ihre Location und Corporate Identity."
+      },
+      {
+        question: "Wie viele Mitarbeiter können an einem Launch-Eventtag teilnehmen?",
+        answer: "Das Format ist skalierbar: Von 50 bis mehrere Hundert Teilnehmer. Bei einem Eventtag kommen Mitarbeiter über den Tag verteilt, bleiben so lange sie möchten, und nehmen das mit, was sie interessiert. Kein fester Zeitrahmen, keine Frontalschulung – sondern ein lebendiger Marktplatz der Möglichkeiten. Für größere Standorte kann das Event auch über mehrere Tage gehen."
+      }
+    ]
   },
   {
     slug: "individuelle-copilot-schulung",
@@ -337,7 +596,25 @@ export const trainings: Training[] = [
     tiers: ["free", "paid"],
     metaTitle: "Individuelle Copilot-Schulung – Maßgeschneidert für Ihr Unternehmen | copilotenschule.de",
     metaDescription: "Maßgeschneiderte Copilot-Trainings für Ihre Branche und Abteilung. Mit echten Unternehmensdaten, individuellen Use Cases, flexibler Durchführung.",
-    keywords: ["individuelle Copilot Schulung", "maßgeschneidertes KI-Training", "Copilot Inhouse", "branchenspezifisches Copilot Training", "Copilot nach Maß"]
+    keywords: ["individuelle Copilot Schulung", "maßgeschneidertes KI-Training", "Copilot Inhouse", "branchenspezifisches Copilot Training", "Copilot nach Maß"],
+    faqs: [
+      {
+        question: "Gibt es Copilot-Schulungen speziell für unsere Branche?",
+        answer: "Ja, maßgeschneiderte Trainings mit branchenspezifischen Use Cases sind möglich – ob Fertigung, Gesundheitswesen, Finanzdienstleistungen, öffentlicher Sektor oder Handel. Der Unterschied zu Standardtrainings: Wir arbeiten mit Ihren echten Prozessen, Ihren Dokumententypen, Ihren typischen Aufgaben. So ist der Transfer in den Arbeitsalltag sofort gegeben."
+      },
+      {
+        question: "Können wir Copilot-Training mit unseren echten Firmendaten durchführen?",
+        answer: "Ja, bei Inhouse-Trainings arbeiten wir mit Ihren realen Unternehmensdaten und -prozessen. Das macht den entscheidenden Unterschied: Statt fiktiver Beispiele lernen Mitarbeiter direkt an ihren eigenen E-Mails, Dokumenten und Tabellen. Die Übungen sind sofort übertragbar, weil sie bereits im echten Arbeitskontext stattfinden."
+      },
+      {
+        question: "Wie unterscheidet sich ein maßgeschneidertes Training von einem Standardkurs?",
+        answer: "Standard: Allgemeine Beispiele, vorgegebene Inhalte, one-size-fits-all. Maßgeschneidert: Vorab-Analyse Ihrer Prozesse und Use Cases, Training mit Ihren Daten, abteilungsspezifische Schwerpunkte, und eine individuelle Prompt-Bibliothek für Ihre wiederkehrenden Aufgaben. Der Aufwand ist höher, aber der ROI deutlich besser."
+      },
+      {
+        question: "Können verschiedene Abteilungen unterschiedliche Copilot-Trainings bekommen?",
+        answer: "Absolut sinnvoll: Der Vertrieb braucht andere Copilot-Fähigkeiten als HR oder Finance. Abteilungsspezifische Schulungen fokussieren auf die relevanten Apps und Use Cases: E-Mail-Produktivität für Sales, Dokumentenarbeit für Legal, Datenanalyse für Controlling. So ist jede Minute Trainingszeit optimal investiert."
+      }
+    ]
   }
 ];
 

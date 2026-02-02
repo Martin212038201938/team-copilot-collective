@@ -1,12 +1,12 @@
 import { useParams, Link, Navigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Clock, ArrowLeft, CheckCircle2, ArrowRight, Linkedin, Mail } from "lucide-react";
+import { Clock, ArrowLeft, CheckCircle2, ArrowRight, Linkedin, Mail, HelpCircle } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import SEOHead from "@/components/SEOHead";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getTrainingBySlug, trainings } from "@/data/trainings";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateBreadcrumbSchema } from "@/lib/schema";
@@ -62,10 +62,28 @@ const TrainingDetail = () => {
     { name: training.title, url: `https://copilotenschule.de/trainings/${training.slug}` }
   ]);
 
+  // FAQPage Schema wenn FAQs vorhanden
+  const faqSchema = training.faqs && training.faqs.length > 0 ? {
+    "@type": "FAQPage",
+    "@id": `https://copilotenschule.de/trainings/${training.slug}#faq`,
+    "mainEntity": training.faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  } : null;
+
   // Kombiniertes Schema
   const schema = {
     "@context": "https://schema.org",
-    "@graph": [courseSchema, breadcrumbSchema]
+    "@graph": [
+      courseSchema,
+      breadcrumbSchema,
+      ...(faqSchema ? [faqSchema] : [])
+    ]
   };
 
   return (
@@ -292,6 +310,35 @@ const TrainingDetail = () => {
                     </div>
                   </CardContent>
                 </Card>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* FAQ Section */}
+        {training.faqs && training.faqs.length > 0 && (
+          <section className="py-16 bg-muted/30">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto">
+                <div className="text-center mb-10">
+                  <h2 className="text-3xl font-bold mb-3">Häufig gestellte Fragen</h2>
+                  <p className="text-muted-foreground">Antworten auf die wichtigsten Fragen zu diesem Training</p>
+                </div>
+                <div className="space-y-4">
+                  {training.faqs.map((faq, idx) => (
+                    <Card key={idx} className="border-l-4 border-l-primary/50 hover:border-l-primary transition-colors">
+                      <CardHeader className="pb-2">
+                        <CardTitle className="text-lg flex items-start gap-3">
+                          <HelpCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                          <span>{faq.question}</span>
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent className="pt-0 pl-12">
+                        <p className="text-muted-foreground leading-relaxed">{faq.answer}</p>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
               </div>
             </div>
           </section>
