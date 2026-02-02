@@ -1,6 +1,7 @@
 import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
+import { generateBreadcrumbSchema } from "@/lib/schema";
 
 const CopilotFuerWord = () => {
   const author = getAuthor("martin-lang");
@@ -69,16 +70,37 @@ const CopilotFuerWord = () => {
     { id: "ressourcen", title: "Ressourcen", level: 2 }
   ];
 
-  const articleSchema = {
+  // Breadcrumb Schema für Navigation
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Startseite", url: "https://copilotenschule.de/" },
+    { name: "Wissen", url: "https://copilotenschule.de/wissen" },
+    { name: "Microsoft Copilot für Word", url: "https://copilotenschule.de/wissen/copilot-fuer-word" }
+  ]);
+
+  // Kombiniertes Schema mit @graph
+  const schema = {
     "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "Microsoft Copilot für Word: Der ultimative Guide",
-    "description": "Entdecken Sie, wie Microsoft Copilot in Word Ihre Dokumentenerstellung revolutioniert. Mit praktischen Beispielen, Prompts und Tipps für maximale Produktivität.",
-    "author": getAuthorSchemaMarkup(author),
-    "datePublished": "2025-01-05",
-    "dateModified": "2025-01-05",
-    "keywords": ["Copilot für Word","Microsoft Copilot Word","Word KI Assistent","Dokumente mit KI erstellen","Word Produktivität","Microsoft 365 Copilot"],
-    "articleSection": "Microsoft 365"
+    "@graph": [
+      {
+        "@type": "Article",
+        "@id": "https://copilotenschule.de/wissen/copilot-fuer-word#article",
+        "headline": "Microsoft Copilot für Word: Der ultimative Guide",
+        "description": "Entdecken Sie, wie Microsoft Copilot in Word Ihre Dokumentenerstellung revolutioniert. Mit praktischen Beispielen, Prompts und Tipps für maximale Produktivität.",
+        "author": getAuthorSchemaMarkup(author),
+        "publisher": {
+          "@id": "https://copilotenschule.de/#organization"
+        },
+        "datePublished": "2025-01-05",
+        "dateModified": "2025-01-05",
+        "keywords": ["Copilot für Word","Microsoft Copilot Word","Word KI Assistent","Dokumente mit KI erstellen","Word Produktivität","Microsoft 365 Copilot"],
+        "articleSection": "Microsoft 365",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://copilotenschule.de/wissen/copilot-fuer-word"
+        }
+      },
+      breadcrumbSchema
+    ]
   };
 
   return (
@@ -88,7 +110,7 @@ const CopilotFuerWord = () => {
         description="Entdecken Sie, wie Microsoft Copilot in Word Ihre Dokumentenerstellung revolutioniert. Mit praktischen Beispielen, Prompts und Tipps für maximale Produktivität."
         keywords={["Copilot für Word","Microsoft Copilot Word","Word KI Assistent","Dokumente mit KI erstellen","Word Produktivität","Microsoft 365 Copilot"]}
         canonicalUrl="https://copilotenschule.de/wissen/copilot-fuer-word"
-        schema={articleSchema}
+        schema={schema}
         publishedTime="2025-01-05"
         modifiedTime="2025-01-05"
       />

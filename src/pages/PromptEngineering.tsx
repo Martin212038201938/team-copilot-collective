@@ -3,6 +3,7 @@ import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Zap, Lightbulb, Target, BookOpen } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
+import { generateBreadcrumbSchema } from "@/lib/schema";
 
 const PromptEngineering = () => {
   const martinLang = getAuthor('martin-lang')!;
@@ -19,72 +20,80 @@ const PromptEngineering = () => {
     { id: "faq", title: "Häufig gestellte Fragen", level: 2 }
   ];
 
+  // Breadcrumb Schema für Navigation
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Startseite", url: "https://copilotenschule.de/" },
+    { name: "Wissen", url: "https://copilotenschule.de/wissen" },
+    { name: "Prompt Engineering", url: "https://copilotenschule.de/prompt-engineering" }
+  ]);
+
+  // Kombiniertes Schema mit @graph (Article, FAQ, Breadcrumb)
   const schema = {
     "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "Prompt Engineering: Effektive KI-Prompts für Microsoft Copilot",
-    "description": "Prompt Engineering Masterclass: Bessere Ergebnisse mit Microsoft Copilot durch optimierte Prompts. Techniken, Beispiele und Best Practices.",
-    "author": getAuthorSchemaMarkup(martinLang),
-    "publisher": {
-      "@type": "Organization",
-      "name": "copilotenschule.de",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://copilotenschule.de/logo.png"
-      }
-    },
-    "datePublished": "2025-11-07",
-    "dateModified": "2025-11-07",
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": "https://copilotenschule.de/prompt-engineering"
-    }
-  };
-
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
+    "@graph": [
       {
-        "@type": "Question",
-        "name": "Was macht einen guten Prompt aus?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Ein guter Prompt ist spezifisch, kontextreich, strukturiert und gibt klare Anweisungen. Er enthält relevante Details, definiert das gewünschte Format und nutzt Beispiele wo sinnvoll."
+        "@type": "Article",
+        "@id": "https://copilotenschule.de/prompt-engineering#article",
+        "headline": "Prompt Engineering: Effektive KI-Prompts für Microsoft Copilot",
+        "description": "Prompt Engineering Masterclass: Bessere Ergebnisse mit Microsoft Copilot durch optimierte Prompts. Techniken, Beispiele und Best Practices.",
+        "author": getAuthorSchemaMarkup(martinLang),
+        "publisher": {
+          "@id": "https://copilotenschule.de/#organization"
+        },
+        "datePublished": "2025-11-07",
+        "dateModified": "2025-11-07",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://copilotenschule.de/prompt-engineering"
         }
       },
       {
-        "@type": "Question",
-        "name": "Wie lang sollte ein Prompt sein?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Die optimale Länge hängt von der Aufgabe ab. Einfache Aufgaben: 1-2 Sätze. Komplexe Aufgaben: Mehrere Absätze mit Details. Wichtiger als Länge ist Klarheit und Relevanz."
-        }
+        "@type": "FAQPage",
+        "@id": "https://copilotenschule.de/prompt-engineering#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Was macht einen guten Prompt aus?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ein guter Prompt ist spezifisch, kontextreich, strukturiert und gibt klare Anweisungen. Er enthält relevante Details, definiert das gewünschte Format und nutzt Beispiele wo sinnvoll."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Wie lang sollte ein Prompt sein?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Die optimale Länge hängt von der Aufgabe ab. Einfache Aufgaben: 1-2 Sätze. Komplexe Aufgaben: Mehrere Absätze mit Details. Wichtiger als Länge ist Klarheit und Relevanz."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Funktionieren Prompts in allen Sprachen?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ja, Microsoft Copilot unterstützt mehrere Sprachen. Die beste Performance wird in Englisch erzielt, aber Deutsch funktioniert ebenfalls sehr gut. Konsistenz innerhalb eines Prompts ist wichtig."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Wie lerne ich Prompt Engineering?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Durch Praxis und Iteration. Starten Sie mit einfachen Prompts, analysieren Sie die Ergebnisse, verfeinern Sie schrittweise. Nutzen Sie Prompt-Templates und lernen Sie von Beispielen."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Gibt es Prompt-Templates?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ja, es gibt viele bewährte Prompt-Templates für häufige Aufgaben wie Zusammenfassungen, Analysen, Codegenerierung und Content-Erstellung. Diese Seite bietet eine Prompt-Bibliothek zum Start."
+            }
+          }
+        ]
       },
-      {
-        "@type": "Question",
-        "name": "Funktionieren Prompts in allen Sprachen?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Ja, Microsoft Copilot unterstützt mehrere Sprachen. Die beste Performance wird in Englisch erzielt, aber Deutsch funktioniert ebenfalls sehr gut. Konsistenz innerhalb eines Prompts ist wichtig."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Wie lerne ich Prompt Engineering?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Durch Praxis und Iteration. Starten Sie mit einfachen Prompts, analysieren Sie die Ergebnisse, verfeinern Sie schrittweise. Nutzen Sie Prompt-Templates und lernen Sie von Beispielen."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Gibt es Prompt-Templates?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Ja, es gibt viele bewährte Prompt-Templates für häufige Aufgaben wie Zusammenfassungen, Analysen, Codegenerierung und Content-Erstellung. Diese Seite bietet eine Prompt-Bibliothek zum Start."
-        }
-      }
+      breadcrumbSchema
     ]
   };
 
@@ -103,7 +112,7 @@ const PromptEngineering = () => {
           "Prompt Templates"
         ]}
         canonicalUrl="https://copilotenschule.de/prompt-engineering"
-        schema={[schema, faqSchema]}
+        schema={schema}
         author={martinLang}
         publishedTime="2025-11-07T10:00:00+01:00"
         modifiedTime="2025-11-07T10:00:00+01:00"

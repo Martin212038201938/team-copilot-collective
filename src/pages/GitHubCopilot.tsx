@@ -3,6 +3,7 @@ import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Check, Code, Terminal, MessageSquare, Zap } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
+import { generateBreadcrumbSchema } from "@/lib/schema";
 
 const GitHubCopilot = () => {
   const martinLang = getAuthor('martin-lang')!;
@@ -19,72 +20,80 @@ const GitHubCopilot = () => {
     { id: "faq", title: "Häufig gestellte Fragen", level: 2 }
   ];
 
+  // Breadcrumb Schema für Navigation
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Startseite", url: "https://copilotenschule.de/" },
+    { name: "Wissen", url: "https://copilotenschule.de/wissen" },
+    { name: "GitHub Copilot", url: "https://copilotenschule.de/github-copilot" }
+  ]);
+
+  // Kombiniertes Schema mit @graph (Article, FAQ, Breadcrumb)
   const schema = {
     "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "GitHub Copilot: Der ultimative Leitfaden für Entwickler 2025",
-    "description": "GitHub Copilot für Entwickler: Funktionen, Best Practices und Produktivitäts-Tipps. Vollständiger Leitfaden von Setup bis Advanced Features.",
-    "author": getAuthorSchemaMarkup(martinLang),
-    "publisher": {
-      "@type": "Organization",
-      "name": "copilotenschule.de",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://copilotenschule.de/logo.png"
-      }
-    },
-    "datePublished": "2025-11-07",
-    "dateModified": "2025-11-07",
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": "https://copilotenschule.de/github-copilot"
-    }
-  };
-
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
+    "@graph": [
       {
-        "@type": "Question",
-        "name": "Welche Programmiersprachen unterstützt GitHub Copilot?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "GitHub Copilot unterstützt Python, JavaScript, TypeScript, Ruby, Go, C++, C#, Java, PHP, Rust, Swift, Kotlin und viele weitere Sprachen. Die Qualität der Vorschläge ist bei JavaScript, Python und TypeScript am höchsten."
+        "@type": "Article",
+        "@id": "https://copilotenschule.de/github-copilot#article",
+        "headline": "GitHub Copilot: Der ultimative Leitfaden für Entwickler 2025",
+        "description": "GitHub Copilot für Entwickler: Funktionen, Best Practices und Produktivitäts-Tipps. Vollständiger Leitfaden von Setup bis Advanced Features.",
+        "author": getAuthorSchemaMarkup(martinLang),
+        "publisher": {
+          "@id": "https://copilotenschule.de/#organization"
+        },
+        "datePublished": "2025-11-07",
+        "dateModified": "2025-11-07",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://copilotenschule.de/github-copilot"
         }
       },
       {
-        "@type": "Question",
-        "name": "Wie viel kostet GitHub Copilot?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "GitHub Copilot Individual kostet 10 USD/Monat, Business 19 USD pro Nutzer/Monat und Enterprise 39 USD pro Nutzer/Monat. Studenten und Open-Source-Maintainer erhalten kostenlosen Zugang."
-        }
+        "@type": "FAQPage",
+        "@id": "https://copilotenschule.de/github-copilot#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Welche Programmiersprachen unterstützt GitHub Copilot?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "GitHub Copilot unterstützt Python, JavaScript, TypeScript, Ruby, Go, C++, C#, Java, PHP, Rust, Swift, Kotlin und viele weitere Sprachen. Die Qualität der Vorschläge ist bei JavaScript, Python und TypeScript am höchsten."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Wie viel kostet GitHub Copilot?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "GitHub Copilot Individual kostet 10 USD/Monat, Business 19 USD pro Nutzer/Monat und Enterprise 39 USD pro Nutzer/Monat. Studenten und Open-Source-Maintainer erhalten kostenlosen Zugang."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Ist mein Code sicher mit GitHub Copilot?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ja. GitHub Copilot Business und Enterprise verwenden Ihren Code nicht zum Training öffentlicher Modelle. Ihr Code bleibt privat und wird nicht mit anderen geteilt. GitHub bietet zudem IP-Indemnity-Schutz."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Kann GitHub Copilot komplette Funktionen schreiben?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ja, GitHub Copilot kann ganze Funktionen basierend auf Kommentaren oder Funktionssignaturen generieren. Die Qualität hängt von der Klarheit Ihrer Beschreibung und dem Kontext im Code ab."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Wie verbessere ich die Qualität der Copilot-Vorschläge?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Schreiben Sie klare Kommentare, verwenden Sie aussagekräftige Variablennamen, strukturieren Sie Ihren Code gut und geben Sie Kontext durch bestehenden Code. Nutzen Sie auch Copilot Chat für komplexe Anfragen."
+            }
+          }
+        ]
       },
-      {
-        "@type": "Question",
-        "name": "Ist mein Code sicher mit GitHub Copilot?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Ja. GitHub Copilot Business und Enterprise verwenden Ihren Code nicht zum Training öffentlicher Modelle. Ihr Code bleibt privat und wird nicht mit anderen geteilt. GitHub bietet zudem IP-Indemnity-Schutz."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Kann GitHub Copilot komplette Funktionen schreiben?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Ja, GitHub Copilot kann ganze Funktionen basierend auf Kommentaren oder Funktionssignaturen generieren. Die Qualität hängt von der Klarheit Ihrer Beschreibung und dem Kontext im Code ab."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Wie verbessere ich die Qualität der Copilot-Vorschläge?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Schreiben Sie klare Kommentare, verwenden Sie aussagekräftige Variablennamen, strukturieren Sie Ihren Code gut und geben Sie Kontext durch bestehenden Code. Nutzen Sie auch Copilot Chat für komplexe Anfragen."
-        }
-      }
+      breadcrumbSchema
     ]
   };
 
@@ -103,7 +112,7 @@ const GitHubCopilot = () => {
           "VS Code Copilot"
         ]}
         canonicalUrl="https://copilotenschule.de/github-copilot"
-        schema={[schema, faqSchema]}
+        schema={schema}
         author={martinLang}
         publishedTime="2025-11-07T10:00:00+01:00"
         modifiedTime="2025-11-07T10:00:00+01:00"

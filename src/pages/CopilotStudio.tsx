@@ -3,6 +3,7 @@ import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Check, Zap, Bot, Link as LinkIcon, Shield } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
+import { generateBreadcrumbSchema } from "@/lib/schema";
 
 const CopilotStudio = () => {
   const martinLang = getAuthor('martin-lang')!;
@@ -19,72 +20,80 @@ const CopilotStudio = () => {
     { id: "faq", title: "Häufig gestellte Fragen", level: 2 }
   ];
 
+  // Breadcrumb Schema für Navigation
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Startseite", url: "https://copilotenschule.de/" },
+    { name: "Wissen", url: "https://copilotenschule.de/wissen" },
+    { name: "Copilot Studio", url: "https://copilotenschule.de/copilot-studio" }
+  ]);
+
+  // Kombiniertes Schema mit @graph (Article, FAQ, Breadcrumb)
   const schema = {
     "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "Microsoft Copilot Studio: KI-Agenten und Custom Copilots erstellen",
-    "description": "Copilot Studio Tutorial: Eigene KI-Agenten, Chatbots und Custom Copilots ohne Code erstellen. Low-Code Plattform für Unternehmen.",
-    "author": getAuthorSchemaMarkup(martinLang),
-    "publisher": {
-      "@type": "Organization",
-      "name": "copilotenschule.de",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://copilotenschule.de/logo.png"
-      }
-    },
-    "datePublished": "2025-11-07",
-    "dateModified": "2025-11-07",
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": "https://copilotenschule.de/copilot-studio"
-    }
-  };
-
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
+    "@graph": [
       {
-        "@type": "Question",
-        "name": "Was kann ich mit Copilot Studio erstellen?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Mit Copilot Studio erstellen Sie Custom Copilots, Chatbots, KI-Agenten, Plugins für Microsoft 365 Copilot, automatisierte Workflows und intelligente Assistenten für spezifische Business-Prozesse."
+        "@type": "Article",
+        "@id": "https://copilotenschule.de/copilot-studio#article",
+        "headline": "Microsoft Copilot Studio: KI-Agenten und Custom Copilots erstellen",
+        "description": "Copilot Studio Tutorial: Eigene KI-Agenten, Chatbots und Custom Copilots ohne Code erstellen. Low-Code Plattform für Unternehmen.",
+        "author": getAuthorSchemaMarkup(martinLang),
+        "publisher": {
+          "@id": "https://copilotenschule.de/#organization"
+        },
+        "datePublished": "2025-11-07",
+        "dateModified": "2025-11-07",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://copilotenschule.de/copilot-studio"
         }
       },
       {
-        "@type": "Question",
-        "name": "Brauche ich Programmierkenntnisse?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Nein, Copilot Studio ist eine Low-Code-Plattform mit visuellem Designer. Für erweiterte Funktionen können Sie optional Code hinzufügen, aber die Grundfunktionen sind ohne Programmierung nutzbar."
-        }
+        "@type": "FAQPage",
+        "@id": "https://copilotenschule.de/copilot-studio#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Was kann ich mit Copilot Studio erstellen?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Mit Copilot Studio erstellen Sie Custom Copilots, Chatbots, KI-Agenten, Plugins für Microsoft 365 Copilot, automatisierte Workflows und intelligente Assistenten für spezifische Business-Prozesse."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Brauche ich Programmierkenntnisse?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Nein, Copilot Studio ist eine Low-Code-Plattform mit visuellem Designer. Für erweiterte Funktionen können Sie optional Code hinzufügen, aber die Grundfunktionen sind ohne Programmierung nutzbar."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Wie integriere ich eigene Daten?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sie können SharePoint, OneDrive, Datenbanken, APIs, Power Platform Dataverse und andere Datenquellen direkt anbinden. Copilot Studio bietet vorgefertigte Konnektoren für gängige Systeme."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Was kostet Copilot Studio?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Copilot Studio ist in Microsoft 365 Copilot enthalten (begrenzt auf 25 Nachrichten/Nutzer/Monat) oder als Standalone-Lizenz ab 200 USD/Monat pro Tenant verfügbar, plus nutzungsbasierte Message Credits."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Ist Copilot Studio DSGVO-konform?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ja, Copilot Studio entspricht allen Microsoft-Datenschutzstandards und ist DSGVO-konform. Daten werden in EU-Rechenzentren verarbeitet und unterliegen Enterprise-Grade Security."
+            }
+          }
+        ]
       },
-      {
-        "@type": "Question",
-        "name": "Wie integriere ich eigene Daten?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Sie können SharePoint, OneDrive, Datenbanken, APIs, Power Platform Dataverse und andere Datenquellen direkt anbinden. Copilot Studio bietet vorgefertigte Konnektoren für gängige Systeme."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Was kostet Copilot Studio?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Copilot Studio ist in Microsoft 365 Copilot enthalten (begrenzt auf 25 Nachrichten/Nutzer/Monat) oder als Standalone-Lizenz ab 200 USD/Monat pro Tenant verfügbar, plus nutzungsbasierte Message Credits."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Ist Copilot Studio DSGVO-konform?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Ja, Copilot Studio entspricht allen Microsoft-Datenschutzstandards und ist DSGVO-konform. Daten werden in EU-Rechenzentren verarbeitet und unterliegen Enterprise-Grade Security."
-        }
-      }
+      breadcrumbSchema
     ]
   };
 
@@ -103,7 +112,7 @@ const CopilotStudio = () => {
           "Microsoft 365 Plugins"
         ]}
         canonicalUrl="https://copilotenschule.de/copilot-studio"
-        schema={[schema, faqSchema]}
+        schema={schema}
         author={martinLang}
         publishedTime="2025-11-07T10:00:00+01:00"
         modifiedTime="2025-11-07T10:00:00+01:00"

@@ -3,6 +3,7 @@ import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Zap, AlertTriangle, Shield, Users, FileText, TrendingUp, Target } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
+import { generateBreadcrumbSchema } from "@/lib/schema";
 
 const CopilotFehler = () => {
   const martinLang = getAuthor('martin-lang')!;
@@ -19,80 +20,88 @@ const CopilotFehler = () => {
     { id: "faq", title: "Häufig gestellte Fragen", level: 2 }
   ];
 
+  // Breadcrumb Schema für Navigation
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Startseite", url: "https://copilotenschule.de/" },
+    { name: "Wissen", url: "https://copilotenschule.de/wissen" },
+    { name: "Copilot-Fehler vermeiden", url: "https://copilotenschule.de/copilot-fehler-vermeiden" }
+  ]);
+
+  // Kombiniertes Schema mit @graph (Article, FAQ, Breadcrumb)
   const schema = {
     "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "Die 7 größten Fehler bei der Copilot-Einführung – und wie Sie sie vermeiden",
-    "description": "Copilot-Implementierung ohne Risiko: Vermeiden Sie Oversharing, Halluzinationen und Compliance-Probleme. Konkrete Fehlerbeispiele und Gegenmaßnahmen für deutsche Unternehmen.",
-    "author": getAuthorSchemaMarkup(martinLang),
-    "publisher": {
-      "@type": "Organization",
-      "name": "copilotenschule.de",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://copilotenschule.de/logo.png"
-      }
-    },
-    "datePublished": "2025-11-07",
-    "dateModified": "2025-11-07",
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": "https://copilotenschule.de/copilot-fehler-vermeiden"
-    }
-  };
-
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
+    "@graph": [
       {
-        "@type": "Question",
-        "name": "Was ist der häufigste Fehler bei der Copilot-Einführung?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Der häufigste Fehler ist unzureichendes Training der Mitarbeiter. Viele Unternehmen aktivieren Copilot ohne Schulung, was zu Frustration, falscher Nutzung und mangelnder Akzeptanz führt."
+        "@type": "Article",
+        "@id": "https://copilotenschule.de/copilot-fehler-vermeiden#article",
+        "headline": "Die 7 größten Fehler bei der Copilot-Einführung – und wie Sie sie vermeiden",
+        "description": "Copilot-Implementierung ohne Risiko: Vermeiden Sie Oversharing, Halluzinationen und Compliance-Probleme. Konkrete Fehlerbeispiele und Gegenmaßnahmen für deutsche Unternehmen.",
+        "author": getAuthorSchemaMarkup(martinLang),
+        "publisher": {
+          "@id": "https://copilotenschule.de/#organization"
+        },
+        "datePublished": "2025-11-07",
+        "dateModified": "2025-11-07",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://copilotenschule.de/copilot-fehler-vermeiden"
         }
       },
       {
-        "@type": "Question",
-        "name": "Wie verhindere ich Oversharing sensibler Daten?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Implementieren Sie klare Data Governance Richtlinien, nutzen Sie Sensitivity Labels, aktivieren Sie DLP-Policies und schulen Sie Mitarbeiter im Umgang mit vertraulichen Informationen."
-        }
+        "@type": "FAQPage",
+        "@id": "https://copilotenschule.de/copilot-fehler-vermeiden#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Was ist der häufigste Fehler bei der Copilot-Einführung?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Der häufigste Fehler ist unzureichendes Training der Mitarbeiter. Viele Unternehmen aktivieren Copilot ohne Schulung, was zu Frustration, falscher Nutzung und mangelnder Akzeptanz führt."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Wie verhindere ich Oversharing sensibler Daten?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Implementieren Sie klare Data Governance Richtlinien, nutzen Sie Sensitivity Labels, aktivieren Sie DLP-Policies und schulen Sie Mitarbeiter im Umgang mit vertraulichen Informationen."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Sind Copilot-Antworten immer korrekt?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Nein. KI-Modelle können Halluzinationen erzeugen - plausibel klingende, aber falsche Informationen. Kritische Überprüfung aller Copilot-Outputs ist essentiell, besonders bei Compliance-relevanten Themen."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Ist Microsoft Copilot DSGVO-konform?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ja, Microsoft Copilot ist DSGVO-konform. Unternehmen müssen aber eigene Governance-Regeln implementieren: Datenschutz-Folgenabschätzungen, Mitarbeiter-Schulungen und klare Nutzungsrichtlinien."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Wie lange dauert eine erfolgreiche Copilot-Einführung?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Eine fundierte Einführung dauert 3-6 Monate: Pilotphase (4-6 Wochen), Training und Change Management (2-3 Monate), schrittweiser Rollout. Schnelle Aktivierung ohne Vorbereitung führt zu Problemen."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Welche Rolle spielt Change Management?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Change Management ist kritisch für Akzeptanz. Ohne klare Kommunikation, Champions-Programm und kontinuierliche Unterstützung scheitern 70% der Copilot-Projekte an mangelnder Nutzer-Adoption."
+            }
+          }
+        ]
       },
-      {
-        "@type": "Question",
-        "name": "Sind Copilot-Antworten immer korrekt?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Nein. KI-Modelle können Halluzinationen erzeugen - plausibel klingende, aber falsche Informationen. Kritische Überprüfung aller Copilot-Outputs ist essentiell, besonders bei Compliance-relevanten Themen."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Ist Microsoft Copilot DSGVO-konform?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Ja, Microsoft Copilot ist DSGVO-konform. Unternehmen müssen aber eigene Governance-Regeln implementieren: Datenschutz-Folgenabschätzungen, Mitarbeiter-Schulungen und klare Nutzungsrichtlinien."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Wie lange dauert eine erfolgreiche Copilot-Einführung?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Eine fundierte Einführung dauert 3-6 Monate: Pilotphase (4-6 Wochen), Training und Change Management (2-3 Monate), schrittweiser Rollout. Schnelle Aktivierung ohne Vorbereitung führt zu Problemen."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Welche Rolle spielt Change Management?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Change Management ist kritisch für Akzeptanz. Ohne klare Kommunikation, Champions-Programm und kontinuierliche Unterstützung scheitern 70% der Copilot-Projekte an mangelnder Nutzer-Adoption."
-        }
-      }
+      breadcrumbSchema
     ]
   };
 
@@ -112,7 +121,7 @@ const CopilotFehler = () => {
           "Copilot Compliance"
         ]}
         canonicalUrl="https://copilotenschule.de/copilot-fehler-vermeiden"
-        schema={[schema, faqSchema]}
+        schema={schema}
         author={martinLang}
         publishedTime="2025-11-07T10:00:00+01:00"
         modifiedTime="2025-11-07T10:00:00+01:00"

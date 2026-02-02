@@ -3,6 +3,7 @@ import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Zap, Bot, Network, Workflow, Shield } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
+import { generateBreadcrumbSchema } from "@/lib/schema";
 
 const KIAgenten = () => {
   const martinLang = getAuthor('martin-lang')!;
@@ -19,72 +20,80 @@ const KIAgenten = () => {
     { id: "faq", title: "Häufig gestellte Fragen", level: 2 }
   ];
 
+  // Breadcrumb Schema für Navigation
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Startseite", url: "https://copilotenschule.de/" },
+    { name: "Wissen", url: "https://copilotenschule.de/wissen" },
+    { name: "KI-Agenten", url: "https://copilotenschule.de/ki-agenten" }
+  ]);
+
+  // Kombiniertes Schema mit @graph (Article, FAQ, Breadcrumb)
   const schema = {
     "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "KI-Agenten entwickeln: Autonome Workflows mit Microsoft Copilot",
-    "description": "KI-Agenten Tutorial: Autonome Workflows und Automatisierungen mit Microsoft Copilot und Copilot Studio erstellen. Vom Konzept zur Implementierung.",
-    "author": getAuthorSchemaMarkup(martinLang),
-    "publisher": {
-      "@type": "Organization",
-      "name": "copilotenschule.de",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://copilotenschule.de/logo.png"
-      }
-    },
-    "datePublished": "2025-11-07",
-    "dateModified": "2025-11-07",
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": "https://copilotenschule.de/ki-agenten"
-    }
-  };
-
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
+    "@graph": [
       {
-        "@type": "Question",
-        "name": "Was ist der Unterschied zwischen Chatbot und Agent?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Chatbots reagieren auf Anfragen mit vordefinierten Antworten. KI-Agenten sind autonom, treffen Entscheidungen, nutzen Tools und führen mehrstufige Workflows aus. Agenten können Ziele eigenständig erreichen."
+        "@type": "Article",
+        "@id": "https://copilotenschule.de/ki-agenten#article",
+        "headline": "KI-Agenten entwickeln: Autonome Workflows mit Microsoft Copilot",
+        "description": "KI-Agenten Tutorial: Autonome Workflows und Automatisierungen mit Microsoft Copilot und Copilot Studio erstellen. Vom Konzept zur Implementierung.",
+        "author": getAuthorSchemaMarkup(martinLang),
+        "publisher": {
+          "@id": "https://copilotenschule.de/#organization"
+        },
+        "datePublished": "2025-11-07",
+        "dateModified": "2025-11-07",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://copilotenschule.de/ki-agenten"
         }
       },
       {
-        "@type": "Question",
-        "name": "Welche Tools brauche ich für KI-Agenten?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Microsoft Copilot Studio, Power Automate für Workflows, Azure für APIs und optional Power Platform Dataverse. Alles ist in Microsoft 365 bzw. Azure verfügbar."
-        }
+        "@type": "FAQPage",
+        "@id": "https://copilotenschule.de/ki-agenten#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Was ist der Unterschied zwischen Chatbot und Agent?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Chatbots reagieren auf Anfragen mit vordefinierten Antworten. KI-Agenten sind autonom, treffen Entscheidungen, nutzen Tools und führen mehrstufige Workflows aus. Agenten können Ziele eigenständig erreichen."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Welche Tools brauche ich für KI-Agenten?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Microsoft Copilot Studio, Power Automate für Workflows, Azure für APIs und optional Power Platform Dataverse. Alles ist in Microsoft 365 bzw. Azure verfügbar."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Können Agenten auf Unternehmensdaten zugreifen?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ja, mit entsprechenden Berechtigungen. Agenten können auf SharePoint, OneDrive, Datenbanken und APIs zugreifen. Die Zugriffe werden über Azure AD und RBAC gesteuert."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Wie sicher sind KI-Agenten?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "KI-Agenten in Microsoft-Umgebungen unterliegen Enterprise-Security: Azure AD, RBAC, Audit Logs, Verschlüsselung. Sie haben nur Zugriff auf explizit freigegebene Ressourcen."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Was kosten KI-Agenten im Betrieb?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Kosten setzen sich zusammen aus: Copilot Studio Lizenz (ab 200 USD/Monat), Message Credits (nutzungsbasiert), Power Automate Flows und ggf. Azure-Dienste. Pilot-Projekte starten oft unter 500 USD/Monat."
+            }
+          }
+        ]
       },
-      {
-        "@type": "Question",
-        "name": "Können Agenten auf Unternehmensdaten zugreifen?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Ja, mit entsprechenden Berechtigungen. Agenten können auf SharePoint, OneDrive, Datenbanken und APIs zugreifen. Die Zugriffe werden über Azure AD und RBAC gesteuert."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Wie sicher sind KI-Agenten?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "KI-Agenten in Microsoft-Umgebungen unterliegen Enterprise-Security: Azure AD, RBAC, Audit Logs, Verschlüsselung. Sie haben nur Zugriff auf explizit freigegebene Ressourcen."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Was kosten KI-Agenten im Betrieb?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Kosten setzen sich zusammen aus: Copilot Studio Lizenz (ab 200 USD/Monat), Message Credits (nutzungsbasiert), Power Automate Flows und ggf. Azure-Dienste. Pilot-Projekte starten oft unter 500 USD/Monat."
-        }
-      }
+      breadcrumbSchema
     ]
   };
 
@@ -103,7 +112,7 @@ const KIAgenten = () => {
           "Copilot Studio Agents"
         ]}
         canonicalUrl="https://copilotenschule.de/ki-agenten"
-        schema={[schema, faqSchema]}
+        schema={schema}
         author={martinLang}
         publishedTime="2025-11-07T10:00:00+01:00"
         modifiedTime="2025-11-07T10:00:00+01:00"

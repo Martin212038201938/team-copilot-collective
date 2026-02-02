@@ -3,6 +3,7 @@ import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Check, X, Info, Linkedin, Mail } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
+import { generateBreadcrumbSchema } from "@/lib/schema";
 
 const CopilotLicenses = () => {
   const martinLang = getAuthor('martin-lang')!;
@@ -18,56 +19,64 @@ const CopilotLicenses = () => {
     { id: "faq", title: "Häufig gestellte Fragen", level: 2 }
   ];
 
+  // Breadcrumb Schema für Navigation
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Startseite", url: "https://copilotenschule.de/" },
+    { name: "Wissen", url: "https://copilotenschule.de/wissen" },
+    { name: "Microsoft Copilot Lizenzen", url: "https://copilotenschule.de/microsoft-copilot-lizenzen" }
+  ]);
+
+  // Kombiniertes Schema mit @graph (Article, FAQ, Breadcrumb)
   const schema = {
     "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "Microsoft Copilot Lizenzen: Kompletter Überblick und Vergleich 2025",
-    "description": "Detaillierter Vergleich aller Microsoft Copilot Lizenzen inkl. Microsoft 365 Copilot, GitHub Copilot und Copilot Studio. Erfahren Sie, welche Lizenz Sie für Ihre Anforderungen benötigen.",
-    "author": getAuthorSchemaMarkup(martinLang),
-    "publisher": {
-      "@type": "Organization",
-      "name": "copilotenschule.de",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://copilotenschule.de/logo.png"
-      }
-    },
-    "datePublished": "2025-01-06",
-    "dateModified": "2025-11-07T11:00:00+01:00",
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": "https://copilotenschule.de/microsoft-copilot-lizenzen"
-    }
-  };
-
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
+    "@graph": [
       {
-        "@type": "Question",
-        "name": "Was kostet Microsoft 365 Copilot?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Microsoft 365 Copilot kostet 30 USD pro Nutzer und Monat. Voraussetzung ist eine Microsoft 365 E3, E5, Business Standard oder Business Premium Lizenz."
+        "@type": "Article",
+        "@id": "https://copilotenschule.de/microsoft-copilot-lizenzen#article",
+        "headline": "Microsoft Copilot Lizenzen: Kompletter Überblick und Vergleich 2025",
+        "description": "Detaillierter Vergleich aller Microsoft Copilot Lizenzen inkl. Microsoft 365 Copilot, GitHub Copilot und Copilot Studio. Erfahren Sie, welche Lizenz Sie für Ihre Anforderungen benötigen.",
+        "author": getAuthorSchemaMarkup(martinLang),
+        "publisher": {
+          "@id": "https://copilotenschule.de/#organization"
+        },
+        "datePublished": "2025-01-06",
+        "dateModified": "2025-11-07T11:00:00+01:00",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://copilotenschule.de/microsoft-copilot-lizenzen"
         }
       },
       {
-        "@type": "Question",
-        "name": "Welche Lizenz brauche ich für GitHub Copilot?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "GitHub Copilot ist in drei Varianten verfügbar: Individual (10 USD/Monat), Business (19 USD/Nutzer/Monat) und Enterprise (39 USD/Nutzer/Monat). Die Wahl hängt von Ihren Anforderungen an Teamfunktionen und Sicherheit ab."
-        }
+        "@type": "FAQPage",
+        "@id": "https://copilotenschule.de/microsoft-copilot-lizenzen#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Was kostet Microsoft 365 Copilot?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Microsoft 365 Copilot kostet 30 USD pro Nutzer und Monat. Voraussetzung ist eine Microsoft 365 E3, E5, Business Standard oder Business Premium Lizenz."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Welche Lizenz brauche ich für GitHub Copilot?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "GitHub Copilot ist in drei Varianten verfügbar: Individual (10 USD/Monat), Business (19 USD/Nutzer/Monat) und Enterprise (39 USD/Nutzer/Monat). Die Wahl hängt von Ihren Anforderungen an Teamfunktionen und Sicherheit ab."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Was ist in Copilot Studio enthalten?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Copilot Studio ermöglicht die Entwicklung eigener KI-Agenten und Chatbots. Es ist in Microsoft 365 Copilot enthalten oder separat ab 200 USD/Monat pro Tenant verfügbar."
+            }
+          }
+        ]
       },
-      {
-        "@type": "Question",
-        "name": "Was ist in Copilot Studio enthalten?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Copilot Studio ermöglicht die Entwicklung eigener KI-Agenten und Chatbots. Es ist in Microsoft 365 Copilot enthalten oder separat ab 200 USD/Monat pro Tenant verfügbar."
-        }
-      }
+      breadcrumbSchema
     ]
   };
 
@@ -87,7 +96,7 @@ const CopilotLicenses = () => {
           "Copilot Enterprise"
         ]}
         canonicalUrl="https://copilotenschule.de/microsoft-copilot-lizenzen"
-        schema={[schema, faqSchema]}
+        schema={schema}
         author={martinLang}
         publishedTime="2025-01-06T09:00:00+01:00"
         modifiedTime="2025-11-07T11:00:00+01:00"

@@ -1,6 +1,7 @@
 import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
+import { generateBreadcrumbSchema } from "@/lib/schema";
 
 const CopilotRoiBerechnen = () => {
   const author = getAuthor("martin-lang");
@@ -53,16 +54,37 @@ const CopilotRoiBerechnen = () => {
     { id: "download-roi-rechner-excel", title: "Download: ROI-Rechner Excel", level: 2 }
   ];
 
-  const articleSchema = {
+  // Breadcrumb Schema für Navigation
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Startseite", url: "https://copilotenschule.de/" },
+    { name: "Wissen", url: "https://copilotenschule.de/wissen" },
+    { name: "Copilot ROI berechnen", url: "https://copilotenschule.de/wissen/copilot-roi-berechnen" }
+  ]);
+
+  // Kombiniertes Schema mit @graph
+  const schema = {
     "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "Copilot ROI berechnen: Lohnt sich die Investition?",
-    "description": "Konkrete Methoden zur ROI-Berechnung von Microsoft Copilot. Mit Excel-Vorlage, Praxisbeispielen und messbaren KPIs für Ihr Business Case.",
-    "author": getAuthorSchemaMarkup(author),
-    "datePublished": "2025-11-07",
-    "dateModified": "2025-11-07",
-    "keywords": ["Copilot ROI","Microsoft Copilot ROI berechnen","Copilot Business Case","Copilot Kosten Nutzen","Return on Investment Copilot","Copilot Produktivitätssteigerung"],
-    "articleSection": "Business"
+    "@graph": [
+      {
+        "@type": "Article",
+        "@id": "https://copilotenschule.de/wissen/copilot-roi-berechnen#article",
+        "headline": "Copilot ROI berechnen: Lohnt sich die Investition?",
+        "description": "Konkrete Methoden zur ROI-Berechnung von Microsoft Copilot. Mit Excel-Vorlage, Praxisbeispielen und messbaren KPIs für Ihr Business Case.",
+        "author": getAuthorSchemaMarkup(author),
+        "publisher": {
+          "@id": "https://copilotenschule.de/#organization"
+        },
+        "datePublished": "2025-11-07",
+        "dateModified": "2025-11-07",
+        "keywords": ["Copilot ROI","Microsoft Copilot ROI berechnen","Copilot Business Case","Copilot Kosten Nutzen","Return on Investment Copilot","Copilot Produktivitätssteigerung"],
+        "articleSection": "Business",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://copilotenschule.de/wissen/copilot-roi-berechnen"
+        }
+      },
+      breadcrumbSchema
+    ]
   };
 
   return (
@@ -72,7 +94,7 @@ const CopilotRoiBerechnen = () => {
         description="Konkrete Methoden zur ROI-Berechnung von Microsoft Copilot. Mit Excel-Vorlage, Praxisbeispielen und messbaren KPIs für Ihr Business Case."
         keywords={["Copilot ROI","Microsoft Copilot ROI berechnen","Copilot Business Case","Copilot Kosten Nutzen","Return on Investment Copilot","Copilot Produktivitätssteigerung"]}
         canonicalUrl="https://copilotenschule.de/wissen/copilot-roi-berechnen"
-        schema={articleSchema}
+        schema={schema}
         publishedTime="2025-11-07"
         modifiedTime="2025-11-07"
       />
