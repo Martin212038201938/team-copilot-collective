@@ -150,7 +150,9 @@ const CopilotFehler = () => {
         </Card>
 
         <section id="fehler-1">
-          <h2>Fehler 1: Keine klare Governance und Richtlinien</h2>
+          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-red-500 text-red-700 dark:text-red-400">
+            Fehler 1: Keine klare Governance und Richtlinien
+          </h2>
           <p>
             Der schwerwiegendste Fehler: Copilot wird aktiviert, ohne klare Regeln für Nutzung, Datenschutz und Verantwortlichkeiten
             zu definieren.
@@ -235,15 +237,18 @@ const CopilotFehler = () => {
         </section>
 
         <section id="fehler-2" className="mt-12">
-          <h2>Fehler 2: Unzureichendes Training der Mitarbeiter</h2>
+          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-orange-500 text-orange-700 dark:text-orange-400">
+            Fehler 2: Unzureichendes Training der Mitarbeiter
+          </h2>
           <p>
             Copilot wird ausgerollt, aber Nutzer wissen nicht, wie sie es effektiv und sicher einsetzen können.
           </p>
 
           <blockquote className="my-6 border-l-4 border-primary bg-primary/5 p-6 rounded-r-lg italic text-lg">
             "Die Mitarbeiter nicht professionell schulen ist der teuerste Fehler. Der Einstieg scheint niederschwellig,
-            aber die veränderte Arbeitsweise ist so tiefgreifend, dass man das nicht einer externen Taskforce und
-            einigen Interessierten überlassen kann. Ohne systematisches Training zahlen Sie für Lizenzen,
+            aber die veränderte Arbeitsweise ist so tiefgreifend, dass man das nicht einer internen Taskforce aus
+            interessierten Mitarbeitern überlassen kann, die das nebenher noch treiben soll. Es ist schön wenn Max
+            und Anna 'KI können' aber das ist NICHT skalierbar. Ohne systematisches Training zahlen Sie für Lizenzen,
             die niemand nutzt."
           </blockquote>
 
@@ -314,7 +319,9 @@ const CopilotFehler = () => {
         </section>
 
         <section id="fehler-3" className="mt-12">
-          <h2>Fehler 3: Oversharing sensibler Daten</h2>
+          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-amber-500 text-amber-700 dark:text-amber-400">
+            Fehler 3: Oversharing sensibler Daten
+          </h2>
           <p>
             Mitarbeiter geben unbewusst vertrauliche Informationen in Prompts ein, die dann für andere zugänglich werden können.
           </p>
@@ -422,7 +429,9 @@ const CopilotFehler = () => {
         </section>
 
         <section id="fehler-4" className="mt-12">
-          <h2>Fehler 4: Halluzinationen nicht erkennen und validieren</h2>
+          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-yellow-500 text-yellow-700 dark:text-yellow-400">
+            Fehler 4: Halluzinationen nicht erkennen und validieren
+          </h2>
           <p>
             KI-Modelle können plausibel klingende, aber faktisch falsche Informationen generieren. Ungeprüfte Übernahme
             führt zu Fehlentscheidungen.
@@ -522,7 +531,9 @@ const CopilotFehler = () => {
         </section>
 
         <section id="fehler-5" className="mt-12">
-          <h2>Fehler 5: Compliance und rechtliche Anforderungen ignorieren</h2>
+          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-purple-500 text-purple-700 dark:text-purple-400">
+            Fehler 5: Compliance und rechtliche Anforderungen ignorieren
+          </h2>
           <p>
             Besonders in Deutschland: DSGVO, Betriebsrat, Branchenspezifische Regulations (BAFIN, MDR) werden übersehen.
           </p>
@@ -627,7 +638,9 @@ const CopilotFehler = () => {
         </section>
 
         <section id="fehler-6" className="mt-12">
-          <h2>Fehler 6: Fehlendes Change Management und Kommunikation</h2>
+          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-blue-500 text-blue-700 dark:text-blue-400">
+            Fehler 6: Fehlendes Change Management und Kommunikation
+          </h2>
           <p>
             70% der Copilot-Implementierungen scheitern an mangelnder Nutzer-Akzeptanz, nicht an Technologie.
           </p>
@@ -702,7 +715,9 @@ const CopilotFehler = () => {
         </section>
 
         <section id="fehler-7" className="mt-12">
-          <h2>Fehler 7: ROI und Success Metrics nicht definieren</h2>
+          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-green-500 text-green-700 dark:text-green-400">
+            Fehler 7: ROI und Success Metrics nicht definieren
+          </h2>
           <p>
             Ohne messbare Ziele ist Erfolg nicht bewertbar. Copilot wird zum "Nice-to-have" ohne Business Impact.
           </p>
