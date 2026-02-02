@@ -9,6 +9,7 @@ import SEOHead from "@/components/SEOHead";
 import { Card, CardContent } from "@/components/ui/card";
 import { getTrainingBySlug, trainings } from "@/data/trainings";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
+import { generateBreadcrumbSchema } from "@/lib/schema";
 
 const TrainingDetail = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -30,7 +31,7 @@ const TrainingDetail = () => {
   const trainer = getAuthor('martin-lang');
 
   // Schema.org für SEO - Course mit instructor und provider
-  const schema = {
+  const courseSchema = {
     "@type": "Course",
     "@id": `https://copilotenschule.de/trainings/${training.slug}#course`,
     "name": training.title,
@@ -52,6 +53,19 @@ const TrainingDetail = () => {
     "coursePrerequisites": "Keine Vorkenntnisse erforderlich",
     "educationalLevel": training.tiers.includes("free") ? "Beginner" : "Intermediate",
     "inLanguage": "de-DE"
+  };
+
+  // BreadcrumbList Schema für Navigation
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Startseite", url: "https://copilotenschule.de/" },
+    { name: "Unsere Angebote", url: "https://copilotenschule.de/unsere-angebote" },
+    { name: training.title, url: `https://copilotenschule.de/trainings/${training.slug}` }
+  ]);
+
+  // Kombiniertes Schema
+  const schema = {
+    "@context": "https://schema.org",
+    "@graph": [courseSchema, breadcrumbSchema]
   };
 
   return (

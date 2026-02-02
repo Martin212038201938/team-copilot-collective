@@ -6,9 +6,42 @@
  * - FAQPage schema enables direct citation in AI responses
  * - Organization schema establishes E-E-A-T trust signals
  * - Course schema helps LLMs understand training offerings
+ * - BreadcrumbList schema improves navigation understanding
  */
 
 import { FAQ } from "@/data/faqs";
+
+/**
+ * Breadcrumb item type for navigation hierarchy
+ */
+export interface BreadcrumbItem {
+  name: string;
+  url: string;
+}
+
+/**
+ * Generates BreadcrumbList Schema.org markup
+ * Helps search engines understand page hierarchy and improves rich snippets
+ *
+ * @example
+ * generateBreadcrumbSchema([
+ *   { name: "Startseite", url: "https://copilotenschule.de/" },
+ *   { name: "Unsere Angebote", url: "https://copilotenschule.de/unsere-angebote" },
+ *   { name: "GitHub Copilot Training", url: "https://copilotenschule.de/trainings/github-copilot-entwickler" }
+ * ])
+ */
+export const generateBreadcrumbSchema = (items: BreadcrumbItem[]) => {
+  return {
+    "@type": "BreadcrumbList",
+    "@id": `${items[items.length - 1]?.url || "https://copilotenschule.de"}#breadcrumb`,
+    "itemListElement": items.map((item, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "name": item.name,
+      "item": item.url
+    }))
+  };
+};
 
 export interface TrainingModule {
   title: string;

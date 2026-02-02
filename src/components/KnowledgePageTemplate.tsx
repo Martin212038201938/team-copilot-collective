@@ -2,6 +2,7 @@ import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getAuthor } from "@/data/authors";
+import { generateBreadcrumbSchema } from "@/lib/schema";
 import { Linkedin, Mail } from "lucide-react";
 import { ReactNode } from "react";
 
@@ -83,26 +84,15 @@ const KnowledgePageTemplate = ({
 
   // Build Schema.org Article
   const articleSchema = customSchema || {
-    "@context": "https://schema.org",
     "@type": "Article",
+    "@id": `${canonicalUrl}#article`,
     "headline": title,
     "description": description,
     "author": {
-      "@type": "Person",
-      "name": author.name,
-      "jobTitle": author.role,
-      "expertise": author.expertise.join(", "),
-      "description": author.bio,
-      ...(author.image && { "image": author.image }),
-      ...(author.linkedin && { "sameAs": [author.linkedin] })
+      "@id": "https://copilotenschule.de/#martin-lang"
     },
     "publisher": {
-      "@type": "Organization",
-      "name": "copilotenschule.de",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://copilotenschule.de/logo.png"
-      }
+      "@id": "https://copilotenschule.de/#organization"
     },
     "datePublished": publishedDate,
     "dateModified": modifiedDate,
@@ -114,8 +104,8 @@ const KnowledgePageTemplate = ({
 
   // Build FAQ Schema if FAQ items exist
   const faqSchema = faqItems.length > 0 ? {
-    "@context": "https://schema.org",
     "@type": "FAQPage",
+    "@id": `${canonicalUrl}#faq`,
     "mainEntity": faqItems.map(faq => ({
       "@type": "Question",
       "name": faq.question,
@@ -126,7 +116,23 @@ const KnowledgePageTemplate = ({
     }))
   } : null;
 
-  const schemas = faqSchema ? [articleSchema, faqSchema] : articleSchema;
+  // Build BreadcrumbList Schema from breadcrumbs prop
+  const breadcrumbSchema = generateBreadcrumbSchema(
+    breadcrumbs.map(bc => ({
+      name: bc.label,
+      url: bc.href.startsWith('http') ? bc.href : `https://copilotenschule.de${bc.href}`
+    }))
+  );
+
+  // Combined schema with @graph
+  const schemas = {
+    "@context": "https://schema.org",
+    "@graph": [
+      articleSchema,
+      breadcrumbSchema,
+      ...(faqSchema ? [faqSchema] : [])
+    ]
+  };
 
   // Format date for display
   const formatDate = (dateString: string) => {
