@@ -36,7 +36,7 @@ const CopilotTraining = () => {
   const faqs = [
     {
       name: "Warum reicht ein einmaliges Webinar für Copilot nicht aus?",
-      answer: "Copilot verändert fundamental, wie Menschen arbeiten – das lernt man nicht in 60 Minuten. Studien zeigen, dass ohne kontinuierliches Training 70% der Nutzer innerhalb von 4 Wochen aufhören, Copilot zu nutzen. Nachhaltiger Erfolg erfordert Hands-On-Übungen, rollenspezifische Use Cases und begleitetes Lernen über mindestens 8-12 Wochen."
+      answer: "Copilot verändert fundamental, wie Menschen arbeiten – das lernt man nicht in 60 Minuten. Laut Gartner kämpfen 72% der Nutzer damit, Copilot in den Alltag zu integrieren, und bei 57% sinkt das Engagement schnell wieder. Nachhaltiger Erfolg erfordert Hands-On-Übungen, rollenspezifische Use Cases und begleitetes Lernen über mindestens 8-12 Wochen."
     },
     {
       name: "Können unsere IT-affinen Mitarbeiter die anderen schulen?",
@@ -44,7 +44,7 @@ const CopilotTraining = () => {
     },
     {
       name: "Was kostet es, wenn wir auf Copilot-Training verzichten?",
-      answer: "Bei 100 Lizenzen à 30€/Monat und nur 20% aktiver Nutzung verschwenden Sie jährlich 28.800€ für ungenutzte Lizenzen. Dazu kommen Opportunitätskosten: Die 80% Produktivitätssteigerung, die trainierte Nutzer erreichen, bleibt aus. Training kostet einmalig ca. 150-300€ pro Person – das amortisiert sich in wenigen Wochen."
+      answer: "Bei 100 Lizenzen à 30€/Monat und nur 20% aktiver Nutzung verschwenden Sie jährlich 28.800€ für ungenutzte Lizenzen. Laut Microsoft Work Trend Index berichten 77% der geschulten Nutzer höhere Produktivität, und Forrester beziffert die Zeitersparnis auf 9 Stunden pro Monat. Training kostet einmalig ca. 150-300€ pro Person – das amortisiert sich laut Forrester TEI Study in wenigen Wochen."
     },
     {
       name: "Wie lange dauert ein vollständiges Copilot-Trainingsprogramm?",
@@ -184,28 +184,32 @@ const CopilotTraining = () => {
               <div className="grid md:grid-cols-3 gap-4">
                 {[
                   {
-                    metric: "70%",
-                    label: "Nutzer geben nach 4 Wochen auf",
+                    metric: "72%",
+                    label: "kämpfen mit Alltags-Integration",
                     detail: "ohne strukturiertes Training",
-                    color: "red"
+                    color: "red",
+                    quelle: "Gartner Survey 2024"
                   },
                   {
-                    metric: "80%",
+                    metric: "77%",
                     label: "höhere Produktivität",
-                    detail: "bei trainierten vs. untrainierten Nutzern",
-                    color: "green"
+                    detail: "mit professionellem Training",
+                    color: "green",
+                    quelle: "Microsoft Work Trend Index"
                   },
                   {
-                    metric: "3x",
-                    label: "schnellere Adoption",
-                    detail: "mit Champions-Programm",
-                    color: "blue"
+                    metric: "9h",
+                    label: "Zeitersparnis pro Monat",
+                    detail: "bei trainierten Nutzern",
+                    color: "blue",
+                    quelle: "Forrester TEI Study"
                   }
                 ].map((stat, idx) => (
                   <div key={idx} className={`p-5 border-2 border-${stat.color}-500/30 rounded-xl text-center bg-gradient-to-br from-${stat.color}-500/5 to-${stat.color}-600/10`}>
                     <div className={`text-4xl font-bold text-${stat.color}-600 dark:text-${stat.color}-400`}>{stat.metric}</div>
                     <div className="font-semibold mt-2">{stat.label}</div>
                     <div className="text-sm text-muted-foreground mt-1">{stat.detail}</div>
+                    <div className="text-xs text-muted-foreground mt-2 italic">Quelle: {stat.quelle}</div>
                   </div>
                 ))}
               </div>
@@ -882,45 +886,46 @@ const CopilotTraining = () => {
 
           <p className="mb-6">
             Training ist keine Kostenstelle – es ist die Voraussetzung dafür, dass Ihre Lizenzinvestition
-            überhaupt einen Return liefert. Hier die Rechnung.
+            überhaupt einen Return liefert. Die Forrester TEI Study belegt: <strong>132-353% ROI über 3 Jahre</strong> –
+            aber nur bei professioneller Einführung mit Training.
           </p>
 
           <Card className="my-6 border-2 border-emerald-500/20">
             <CardHeader className="bg-gradient-to-r from-emerald-500/10 to-emerald-600/10">
               <CardTitle className="flex items-center gap-2 text-lg">
                 <TrendingUp className="w-5 h-5 text-emerald-600" />
-                Praxisbeispiel: 200 Mitarbeiter Unternehmen
+                Forrester TEI Study: Belegte Zahlen
               </CardTitle>
             </CardHeader>
             <CardContent className="pt-6">
               <div className="grid md:grid-cols-2 gap-6">
-                <div className="p-4 bg-red-50 dark:bg-red-950 border border-red-200 dark:border-red-800 rounded-lg">
-                  <h5 className="font-bold text-red-700 dark:text-red-300 mb-3">❌ Ohne Training</h5>
+                <div className="p-4 bg-emerald-50 dark:bg-emerald-950 border border-emerald-200 dark:border-emerald-800 rounded-lg">
+                  <h5 className="font-bold text-emerald-700 dark:text-emerald-300 mb-3">📊 Verifizierte Kennzahlen</h5>
                   <ul className="text-sm space-y-2">
-                    <li><strong>Lizenzkosten:</strong> 200 × 30€ × 12 = 72.000€/Jahr</li>
-                    <li><strong>Aktive Nutzung:</strong> 20% (40 Nutzer)</li>
-                    <li><strong>Effektive Kosten/Nutzer:</strong> 1.800€/Jahr</li>
-                    <li><strong>Produktivitätsgewinn:</strong> 40 × 1h/Woche × 50€ × 46 = 92.000€</li>
-                    <li className="pt-2 border-t"><strong>Net Benefit:</strong> 20.000€</li>
+                    <li><strong>Zeitersparnis:</strong> 9 Stunden pro Nutzer/Monat</li>
+                    <li><strong>ROI (SMB):</strong> 132-353% über 3 Jahre</li>
+                    <li><strong>Produktivität:</strong> 77% berichten höhere Produktivität</li>
+                    <li><strong>Aufgaben:</strong> 29% schneller bei Schreiben, Suchen, Zusammenfassen</li>
+                    <li className="pt-2 border-t text-xs italic">Quellen: Forrester TEI Study 2024, Microsoft Work Trend Index</li>
                   </ul>
                 </div>
-                <div className="p-4 bg-green-50 dark:bg-green-950 border border-green-200 dark:border-green-800 rounded-lg">
-                  <h5 className="font-bold text-green-700 dark:text-green-300 mb-3">✓ Mit professionellem Training</h5>
+                <div className="p-4 bg-red-50 dark:bg-red-950 border border-red-200 dark:border-red-800 rounded-lg">
+                  <h5 className="font-bold text-red-700 dark:text-red-300 mb-3">⚠️ Ohne Training (Gartner)</h5>
                   <ul className="text-sm space-y-2">
-                    <li><strong>Lizenzkosten:</strong> 200 × 30€ × 12 = 72.000€/Jahr</li>
-                    <li><strong>Training:</strong> 200 × 200€ = 40.000€ (einmalig)</li>
-                    <li><strong>Aktive Nutzung:</strong> 80% (160 Nutzer)</li>
-                    <li><strong>Produktivitätsgewinn:</strong> 160 × 2h/Woche × 50€ × 46 = 736.000€</li>
-                    <li className="pt-2 border-t"><strong>Net Benefit Jahr 1:</strong> 624.000€</li>
+                    <li><strong>72%</strong> kämpfen mit Alltags-Integration</li>
+                    <li><strong>57%</strong> - Engagement sinkt schnell wieder</li>
+                    <li><strong>60%</strong> führen nur Piloten durch, nicht Rollout</li>
+                    <li><strong>Nur 6%</strong> schaffen den Sprung zum Large-Scale Deployment</li>
+                    <li className="pt-2 border-t text-xs italic">Quelle: Gartner Digital Workplace GenAI Survey 2024</li>
                   </ul>
                 </div>
               </div>
               <div className="mt-6 p-4 bg-emerald-100 dark:bg-emerald-900 border border-emerald-300 dark:border-emerald-700 rounded-lg text-center">
                 <div className="text-2xl font-bold text-emerald-800 dark:text-emerald-200">
-                  31x höherer ROI mit Training
+                  132-353% ROI mit Training
                 </div>
                 <div className="text-sm text-emerald-700 dark:text-emerald-300 mt-1">
-                  624.000€ vs. 20.000€ Net Benefit im ersten Jahr
+                  Laut Forrester TEI Study – aber nur mit professionellem Enablement
                 </div>
               </div>
             </CardContent>
@@ -1065,30 +1070,40 @@ const CopilotTraining = () => {
             Quellen und weiterführende Links
           </h2>
           <p className="text-muted-foreground mb-6">
-            Offizielle Microsoft-Ressourcen zu Copilot-Training und Adoption.
+            Studien und offizielle Ressourcen, auf die sich dieser Artikel stützt.
           </p>
 
           <div className="grid md:grid-cols-2 gap-4">
             {[
+              {
+                titel: "Forrester TEI Study: Microsoft 365 Copilot",
+                beschreibung: "Total Economic Impact™ Studie mit ROI-Zahlen (132-353%)",
+                url: "https://tei.forrester.com/go/microsoft/M365Copilot/?lang=en-us"
+              },
+              {
+                titel: "Microsoft Work Trend Index",
+                beschreibung: "Produktivitätsstudie: 77% berichten höhere Produktivität",
+                url: "https://www.microsoft.com/en-us/worklab/work-trend-index/copilots-earliest-users-teach-us-about-generative-ai-at-work"
+              },
+              {
+                titel: "Gartner: Copilot Impact Assessment",
+                beschreibung: "Unabhängige Analyse: 72% kämpfen mit Alltags-Integration",
+                url: "https://www.gartner.com/en/documents/5659223"
+              },
+              {
+                titel: "Microsoft 365 Copilot ROI Blog",
+                beschreibung: "SMB-Studie: Bis zu 353% ROI für kleine und mittlere Unternehmen",
+                url: "https://www.microsoft.com/en-us/microsoft-365/blog/2024/10/17/microsoft-365-copilot-drove-up-to-353-roi-for-small-and-medium-businesses-new-study/"
+              },
               {
                 titel: "Microsoft Copilot Adoption Hub",
                 beschreibung: "Offizielle Ressourcen für Adoption und Change Management",
                 url: "https://adoption.microsoft.com/en-us/copilot/"
               },
               {
-                titel: "Copilot Lab",
-                beschreibung: "Interaktive Prompt-Bibliothek und Lernressourcen von Microsoft",
-                url: "https://copilot.cloud.microsoft/en-US/prompts"
-              },
-              {
                 titel: "Microsoft Learn: Copilot Training",
                 beschreibung: "Kostenlose Lernpfade für Copilot-Grundlagen",
                 url: "https://learn.microsoft.com/en-us/training/browse/?products=m365-copilot"
-              },
-              {
-                titel: "Copilot Success Kit",
-                beschreibung: "Templates und Materialien für die Copilot-Einführung",
-                url: "https://adoption.microsoft.com/en-us/copilot/success-kit/"
               }
             ].map((link, idx) => (
               <a

@@ -642,37 +642,38 @@ const CopilotFehler = () => {
             Fehler 6: Fehlendes Change Management und Kommunikation
           </h2>
           <p>
-            70% der Copilot-Implementierungen scheitern an mangelnder Nutzer-Akzeptanz, nicht an Technologie.
+            Laut Gartner kämpfen <strong>72% der Nutzer</strong> damit, Copilot in ihren Alltag zu integrieren –
+            das Problem ist selten die Technologie, sondern fehlendes Change Management.
           </p>
 
           <blockquote className="my-6 border-l-4 border-primary bg-primary/5 p-6 rounded-r-lg italic text-lg">
             "Copilot verändert nicht nur Werkzeuge, sondern Arbeitsweisen. Das ist keine IT-Einführung,
-            das ist ein Kulturwandel. Unternehmen, die das wie ein Software-Update behandeln, wundern sich,
-            warum nach sechs Monaten 80% der Lizenzen brach liegen."
+            das ist ein Kulturwandel. Laut Gartner schaffen nur 6% der Unternehmen den Sprung vom Pilot
+            zum unternehmensweiten Rollout."
           </blockquote>
 
           <Card className="my-6 border-l-4 border-l-blue-500">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-lg">
                 <Users className="w-5 h-5 text-blue-600" />
-                Warum Change Management kritisch ist
+                Gartner Survey 2024: Die Realität
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
                 <p className="text-sm">
-                  <strong>Typisches Failure-Szenario:</strong> IT rollt Copilot aus, sendet Ankündigungs-E-Mail,
-                  hofft auf selbstständige Adoption. Resultat nach 3 Monaten:
+                  Die Gartner Digital Workplace GenAI Survey zeigt die Herausforderungen bei der Copilot-Adoption:
                 </p>
                 <div className="grid md:grid-cols-3 gap-4">
                   {[
-                    { metric: "5%", label: "Active Users", farbe: "red" },
-                    { metric: "82%", label: "Haben es nie probiert", farbe: "orange" },
-                    { metric: "13%", label: "Einmal genutzt, dann aufgegeben", farbe: "yellow" }
+                    { metric: "72%", label: "kämpfen mit Alltags-Integration", farbe: "red", quelle: "Gartner 2024" },
+                    { metric: "57%", label: "Engagement sinkt schnell", farbe: "orange", quelle: "Gartner 2024" },
+                    { metric: "6%", label: "schaffen Large-Scale Rollout", farbe: "yellow", quelle: "Gartner 2024" }
                   ].map((stat, idx) => (
                     <div key={idx} className={`p-4 border-2 border-${stat.farbe}-500/30 rounded-lg text-center`}>
                       <div className={`text-3xl font-bold text-${stat.farbe}-600`}>{stat.metric}</div>
                       <div className="text-sm text-muted-foreground mt-1">{stat.label}</div>
+                      <div className="text-xs text-muted-foreground mt-1 italic">{stat.quelle}</div>
                     </div>
                   ))}
                 </div>
@@ -964,10 +965,36 @@ const CopilotFehler = () => {
         <section id="quellen" className="mt-12 mb-12">
           <h2>Quellen und weiterführende Links</h2>
           <p className="text-muted-foreground mb-6">
-            Offizielle Microsoft-Ressourcen zu Governance, Compliance und Best Practices für Copilot.
+            Studien und offizielle Ressourcen, auf die sich dieser Artikel stützt.
           </p>
 
           <div className="grid md:grid-cols-2 gap-4">
+            <a
+              href="https://www.gartner.com/en/documents/5659223"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-3 p-4 border rounded-lg hover:border-primary/50 hover:bg-muted/50 transition-colors group"
+            >
+              <ExternalLink className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+              <div>
+                <div className="font-semibold group-hover:text-primary transition-colors">Gartner: Copilot Impact Assessment</div>
+                <div className="text-sm text-muted-foreground">Unabhängige Analyse: 72% kämpfen mit Alltags-Integration</div>
+              </div>
+            </a>
+
+            <a
+              href="https://tei.forrester.com/go/microsoft/M365Copilot/?lang=en-us"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-3 p-4 border rounded-lg hover:border-primary/50 hover:bg-muted/50 transition-colors group"
+            >
+              <ExternalLink className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+              <div>
+                <div className="font-semibold group-hover:text-primary transition-colors">Forrester TEI Study: Microsoft 365 Copilot</div>
+                <div className="text-sm text-muted-foreground">Total Economic Impact™ Studie mit ROI-Zahlen (132-353%)</div>
+              </div>
+            </a>
+
             <a
               href="https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-privacy"
               target="_blank"
