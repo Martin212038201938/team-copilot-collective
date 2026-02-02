@@ -27,27 +27,23 @@ const GitHubCopilot = () => {
     { name: "GitHub Copilot", url: "https://copilotenschule.de/github-copilot" }
   ]);
 
-  // FAQ-Daten für Schema und Anzeige
+  // FAQ-Daten für Schema und Anzeige (kundenorientierte Fragen)
   const faqs = [
     {
-      name: "Welche Programmiersprachen unterstützt GitHub Copilot?",
-      answer: "GitHub Copilot unterstützt Python, JavaScript, TypeScript, Ruby, Go, C++, C#, Java, PHP, Rust, Swift, Kotlin und viele weitere Sprachen. Die Qualität der Vorschläge ist bei JavaScript, Python und TypeScript am höchsten."
+      name: "Unsere Entwickler sind mit GitHub Copilot unzufrieden – wie können wir das verbessern?",
+      answer: "Die Unzufriedenheit liegt meist an fehlendem Training für effektive Nutzung. Entwickler müssen lernen, Copilot als Pair-Programming-Partner zu verstehen und Prompts gezielt zu formulieren. Die Copilotenschule bietet spezialisierte GitHub Copilot Trainings für Entwicklerteams, die Produktivitätssteigerungen von bis zu 55% ermöglichen."
     },
     {
-      name: "Wie viel kostet GitHub Copilot?",
-      answer: "GitHub Copilot Individual kostet 10 USD/Monat, Business 19 USD pro Nutzer/Monat und Enterprise 39 USD pro Nutzer/Monat. Studenten und Open-Source-Maintainer erhalten kostenlosen Zugang."
+      name: "Wie rechtfertigen wir die Kosten für GitHub Copilot gegenüber dem Management?",
+      answer: "Der ROI von GitHub Copilot ist messbar: Studien zeigen 55% schnellere Task-Completion und bis zu 40% mehr akzeptierten Code. Bei einem Entwickler-Tagessatz von 800€ amortisiert sich die Lizenz (19-39 USD/Monat) bereits bei wenigen Stunden Zeitersparnis. Die Copilotenschule unterstützt Sie bei der Erstellung überzeugender Business Cases mit konkreten Zahlen."
     },
     {
-      name: "Ist mein Code sicher mit GitHub Copilot?",
-      answer: "Ja. GitHub Copilot Business und Enterprise verwenden Ihren Code nicht zum Training öffentlicher Modelle. Ihr Code bleibt privat und wird nicht mit anderen geteilt. GitHub bietet zudem IP-Indemnity-Schutz."
+      name: "Ist GitHub Copilot sicher für unseren proprietären Unternehmens-Code?",
+      answer: "Mit GitHub Copilot Business und Enterprise ist Ihr Code sicher: Er wird nicht für das Training öffentlicher Modelle verwendet, bleibt privat und wird verschlüsselt übertragen. GitHub bietet zudem IP-Indemnity-Schutz. Im GitHub Copilot Training der Copilotenschule behandeln wir Security Best Practices und Compliance-Anforderungen für den Enterprise-Einsatz."
     },
     {
-      name: "Kann GitHub Copilot komplette Funktionen schreiben?",
-      answer: "Ja, GitHub Copilot kann ganze Funktionen basierend auf Kommentaren oder Funktionssignaturen generieren. Die Qualität hängt von der Klarheit Ihrer Beschreibung und dem Kontext im Code ab."
-    },
-    {
-      name: "Wie verbessere ich die Qualität der Copilot-Vorschläge?",
-      answer: "Schreiben Sie klare Kommentare, verwenden Sie aussagekräftige Variablennamen, strukturieren Sie Ihren Code gut und geben Sie Kontext durch bestehenden Code. Nutzen Sie auch Copilot Chat für komplexe Anfragen."
+      name: "Wie messen wir den Erfolg von GitHub Copilot in unserem Entwicklerteam?",
+      answer: "Messen Sie Acceptance Rate (akzeptierte Vorschläge), Lines of Code Suggested, Time-to-Completion bei Standard-Tasks und Entwickler-Zufriedenheit. GitHub Copilot Business bietet ein Admin-Dashboard für Team-Metriken. Die Copilotenschule hilft bei der Definition von KPIs und dem Aufbau eines effektiven Adoption-Trackings."
     }
   ];
 
