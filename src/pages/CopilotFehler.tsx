@@ -56,8 +56,8 @@ const CopilotFehler = () => {
       {
         "@type": "Article",
         "@id": ids.article,
-        "headline": "Die 7 größten Fehler bei der Microsoft Copilot-Einführung | So vermeiden Sie sie",
-        "description": "Microsoft 365 Copilot sicher einführen: DSGVO-Compliance, Governance, Oversharing & Halluzinationen vermeiden. Praxisleitfaden mit Checklisten für deutsche Unternehmen.",
+        "headline": "7 Fehler bei der Microsoft Copilot-Einführung vermeiden",
+        "description": "Microsoft 365 Copilot sicher einführen: DSGVO, Governance, Betriebsrat & Schulung. Praxisleitfaden mit Checklisten für Unternehmen.",
         "author": getAuthorSchemaMarkup(martinLang),
         "publisher": {
           "@id": "https://copilotenschule.de/#organization"
@@ -97,8 +97,8 @@ const CopilotFehler = () => {
   return (
     <>
       <SEOHead
-        title="Die 7 größten Fehler bei der Microsoft Copilot-Einführung | So vermeiden Sie sie"
-        description="Microsoft 365 Copilot sicher einführen: DSGVO-Compliance, Governance, Oversharing & Halluzinationen vermeiden. Praxisleitfaden mit Checklisten für deutsche Unternehmen."
+        title="7 Fehler bei der Microsoft Copilot-Einführung vermeiden"
+        description="Microsoft 365 Copilot sicher einführen: DSGVO, Governance, Betriebsrat & Schulung. Praxisleitfaden mit Checklisten für Unternehmen."
         keywords={[
           "Microsoft 365 Copilot Fehler",
           "Copilot Einführung Fehler vermeiden",
@@ -109,7 +109,9 @@ const CopilotFehler = () => {
           "Copilot Halluzinationen erkennen",
           "Copilot Change Management",
           "Copilot ROI berechnen",
-          "Microsoft Copilot Training"
+          "Microsoft Copilot Training",
+          "Copilot Betriebsrat Mitbestimmung",
+          "Copilot Schulung Mitarbeiter"
         ]}
         canonicalUrl={pageUrl}
         schema={schema}
@@ -123,10 +125,10 @@ const CopilotFehler = () => {
           { label: "Wissen", href: "/wissen" },
           { label: "Copilot-Fehler vermeiden", href: "/copilot-fehler-vermeiden" }
         ]}
-        title="Die 7 größten Fehler bei der Microsoft Copilot-Einführung | So vermeiden Sie sie"
-        description="Microsoft 365 Copilot sicher einführen: DSGVO-Compliance, Governance, Oversharing & Halluzinationen vermeiden. Praxisleitfaden mit Checklisten für deutsche Unternehmen."
+        title="7 Fehler bei der Microsoft Copilot-Einführung vermeiden"
+        description="Microsoft 365 Copilot sicher einführen: DSGVO, Governance, Betriebsrat & Schulung. Praxisleitfaden mit Checklisten für Unternehmen."
         lastUpdated="02. Februar 2026"
-        readTime="18 Minuten"
+        readTime="20 Minuten"
         tableOfContents={tableOfContents}
       >
         <Card className="mb-8 border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-red-500/5">
