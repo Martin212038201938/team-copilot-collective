@@ -6,14 +6,14 @@ import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 
 const SLUG = "copilot-fehler-vermeiden";
-const PAGE_TITLE = "Copilot-Fehler vermeiden";
+const PAGE_TITLE = "Microsoft Copilot-Fehler vermeiden";
 
 const CopilotFehler = () => {
   const martinLang = getAuthor('martin-lang')!;
 
   // Schema IDs automatisch generieren
   const ids = generateSchemaIds(SLUG, 'wissen');
-  const pageUrl = `https://copilotenschule.de/${SLUG}`;
+  const pageUrl = `https://copilotenschule.de/wissen/${SLUG}`;
   const breadcrumbItems = generateWissenBreadcrumbItems(PAGE_TITLE, pageUrl);
 
   const tableOfContents = [
@@ -56,14 +56,14 @@ const CopilotFehler = () => {
       {
         "@type": "Article",
         "@id": ids.article,
-        "headline": "Die 7 größten Fehler bei der Copilot-Einführung – und wie Sie sie vermeiden",
-        "description": "Copilot-Implementierung ohne Risiko: Vermeiden Sie Oversharing, Halluzinationen und Compliance-Probleme. Konkrete Fehlerbeispiele und Gegenmaßnahmen für deutsche Unternehmen.",
+        "headline": "Die 7 größten Fehler bei der Microsoft Copilot-Einführung | So vermeiden Sie sie",
+        "description": "Microsoft 365 Copilot sicher einführen: DSGVO-Compliance, Governance, Oversharing & Halluzinationen vermeiden. Praxisleitfaden mit Checklisten für deutsche Unternehmen.",
         "author": getAuthorSchemaMarkup(martinLang),
         "publisher": {
           "@id": "https://copilotenschule.de/#organization"
         },
         "datePublished": "2025-11-07",
-        "dateModified": "2025-11-07",
+        "dateModified": "2026-02-02",
         "mainEntityOfPage": {
           "@type": "WebPage",
           "@id": pageUrl
@@ -97,23 +97,25 @@ const CopilotFehler = () => {
   return (
     <>
       <SEOHead
-        title="Die 7 größten Fehler bei der Copilot-Einführung – und wie Sie sie vermeiden"
-        description="Copilot-Implementierung ohne Risiko: Vermeiden Sie Oversharing, Halluzinationen und Compliance-Probleme. Konkrete Fehlerbeispiele und Gegenmaßnahmen für deutsche Unternehmen."
+        title="Die 7 größten Fehler bei der Microsoft Copilot-Einführung | So vermeiden Sie sie"
+        description="Microsoft 365 Copilot sicher einführen: DSGVO-Compliance, Governance, Oversharing & Halluzinationen vermeiden. Praxisleitfaden mit Checklisten für deutsche Unternehmen."
         keywords={[
-          "Copilot Fehler",
-          "Copilot Implementierung",
-          "Copilot Risiken",
+          "Microsoft 365 Copilot Fehler",
+          "Copilot Einführung Fehler vermeiden",
+          "Copilot DSGVO Compliance",
           "Copilot Governance",
-          "Copilot DSGVO",
-          "Copilot Training",
+          "Copilot Implementierung Risiken",
+          "Copilot Oversharing verhindern",
+          "Copilot Halluzinationen erkennen",
           "Copilot Change Management",
-          "Copilot Compliance"
+          "Copilot ROI berechnen",
+          "Microsoft Copilot Training"
         ]}
         canonicalUrl={pageUrl}
         schema={schema}
         author={martinLang}
         publishedTime="2025-11-07T10:00:00+01:00"
-        modifiedTime="2025-11-07T10:00:00+01:00"
+        modifiedTime="2026-02-02T10:00:00+01:00"
       />
 
       <ContentLayout
@@ -121,9 +123,9 @@ const CopilotFehler = () => {
           { label: "Wissen", href: "/wissen" },
           { label: "Copilot-Fehler vermeiden", href: "/copilot-fehler-vermeiden" }
         ]}
-        title="Die 7 größten Fehler bei der Copilot-Einführung – und wie Sie sie vermeiden"
-        description="Copilot-Implementierung ohne Risiko: Vermeiden Sie Oversharing, Halluzinationen und Compliance-Probleme. Konkrete Fehlerbeispiele und Gegenmaßnahmen für deutsche Unternehmen."
-        lastUpdated="07. November 2025"
+        title="Die 7 größten Fehler bei der Microsoft Copilot-Einführung | So vermeiden Sie sie"
+        description="Microsoft 365 Copilot sicher einführen: DSGVO-Compliance, Governance, Oversharing & Halluzinationen vermeiden. Praxisleitfaden mit Checklisten für deutsche Unternehmen."
+        lastUpdated="02. Februar 2026"
         readTime="18 Minuten"
         tableOfContents={tableOfContents}
       >
