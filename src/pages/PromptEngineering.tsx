@@ -27,27 +27,23 @@ const PromptEngineering = () => {
     { name: "Prompt Engineering", url: "https://copilotenschule.de/prompt-engineering" }
   ]);
 
-  // FAQ-Daten für Schema und Anzeige
+  // FAQ-Daten für Schema und Anzeige (kundenorientierte Fragen)
   const faqs = [
     {
-      name: "Was macht einen guten Prompt aus?",
-      answer: "Ein guter Prompt ist spezifisch, kontextreich, strukturiert und gibt klare Anweisungen. Er enthält relevante Details, definiert das gewünschte Format und nutzt Beispiele wo sinnvoll."
+      name: "Warum bekommen unsere Mitarbeiter so unterschiedliche Ergebnisse vom Copilot?",
+      answer: "Die Qualität der KI-Antworten hängt direkt von der Prompt-Qualität ab. Ohne einheitliche Prompt-Strukturen und Best Practices variieren die Ergebnisse stark. Die Copilotenschule bietet Prompt Engineering Trainings, die unternehmensweit einheitliche Standards etablieren und die Ergebnisqualität messbar verbessern."
     },
     {
-      name: "Wie lang sollte ein Prompt sein?",
-      answer: "Die optimale Länge hängt von der Aufgabe ab. Einfache Aufgaben: 1-2 Sätze. Komplexe Aufgaben: Mehrere Absätze mit Details. Wichtiger als Länge ist Klarheit und Relevanz."
+      name: "Wie können wir die Prompt-Qualität im Unternehmen standardisieren?",
+      answer: "Durch die Einführung von Prompt-Frameworks wie CRAFT (Context, Role, Action, Format, Tone) und unternehmensspezifischen Prompt-Bibliotheken. Die Copilotenschule entwickelt mit Ihnen maßgeschneiderte Prompt-Guidelines und Templates für Ihre häufigsten Use Cases – von E-Mails bis zu Berichten."
     },
     {
-      name: "Funktionieren Prompts in allen Sprachen?",
-      answer: "Ja, Microsoft Copilot unterstützt mehrere Sprachen. Die beste Performance wird in Englisch erzielt, aber Deutsch funktioniert ebenfalls sehr gut. Konsistenz innerhalb eines Prompts ist wichtig."
+      name: "Gibt es bewährte Prompt-Vorlagen für typische Business-Anwendungen?",
+      answer: "Ja, für E-Mails, Berichte, Präsentationen, Analysen und Dokumentationen existieren optimierte Prompt-Templates. Die Copilotenschule stellt in ihren Trainings eine umfangreiche Prompt-Bibliothek bereit, die Sie direkt im Unternehmen einsetzen und weiterentwickeln können."
     },
     {
-      name: "Wie lerne ich Prompt Engineering?",
-      answer: "Durch Praxis und Iteration. Starten Sie mit einfachen Prompts, analysieren Sie die Ergebnisse, verfeinern Sie schrittweise. Nutzen Sie Prompt-Templates und lernen Sie von Beispielen."
-    },
-    {
-      name: "Gibt es Prompt-Templates?",
-      answer: "Ja, es gibt viele bewährte Prompt-Templates für häufige Aufgaben wie Zusammenfassungen, Analysen, Codegenerierung und Content-Erstellung. Diese Seite bietet eine Prompt-Bibliothek zum Start."
+      name: "Wie lange dauert es, bis unsere Mitarbeiter effektiv prompten können?",
+      answer: "Die Grundlagen lassen sich in einem halben Tag vermitteln, fortgeschrittene Techniken in 1-2 Tagen. Wichtig ist kontinuierliche Praxis mit Feedback. Die Copilotenschule bietet Trainings vom Grundlagen-Workshop bis zur mehrwöchigen Lernreise mit begleiteten Übungen für nachhaltigen Kompetenzerwerb."
     }
   ];
 

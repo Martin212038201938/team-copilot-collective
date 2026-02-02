@@ -27,31 +27,23 @@ const CopilotFehler = () => {
     { name: "Copilot-Fehler vermeiden", url: "https://copilotenschule.de/copilot-fehler-vermeiden" }
   ]);
 
-  // FAQ-Daten für Schema und Anzeige
+  // FAQ-Daten für Schema und Anzeige (kundenorientierte Fragen)
   const faqs = [
     {
-      name: "Was ist der häufigste Fehler bei der Copilot-Einführung?",
-      answer: "Der häufigste Fehler ist unzureichendes Training der Mitarbeiter. Viele Unternehmen aktivieren Copilot ohne Schulung, was zu Frustration, falscher Nutzung und mangelnder Akzeptanz führt."
+      name: "Unsere Copilot-Einführung stockt und die Nutzung ist gering – was machen wir falsch?",
+      answer: "Die häufigsten Ursachen sind fehlendes Training, mangelndes Change Management und keine klaren Use Cases. Ohne gezielte Befähigung nutzen Mitarbeiter Copilot nicht oder falsch. Die Copilotenschule bietet Adoption-Programme mit Training, Champions-Konzepten und messbaren Erfolgsmetriken für nachhaltige Nutzungssteigerung."
     },
     {
-      name: "Wie verhindere ich Oversharing sensibler Daten?",
-      answer: "Implementieren Sie klare Data Governance Richtlinien, nutzen Sie Sensitivity Labels, aktivieren Sie DLP-Policies und schulen Sie Mitarbeiter im Umgang mit vertraulichen Informationen."
+      name: "Wie vermeiden wir, dass vertrauliche Daten über Copilot ungewollt geteilt werden?",
+      answer: "Implementieren Sie Data Governance vor dem Rollout: Sensitivity Labels, DLP-Policies und klare Zugriffsrechte in SharePoint. Copilot greift nur auf Daten zu, für die Nutzer berechtigt sind. Die Copilotenschule behandelt in Compliance-Trainings die technischen und organisatorischen Maßnahmen für sicheren Copilot-Einsatz."
     },
     {
-      name: "Sind Copilot-Antworten immer korrekt?",
-      answer: "Nein. KI-Modelle können Halluzinationen erzeugen - plausibel klingende, aber falsche Informationen. Kritische Überprüfung aller Copilot-Outputs ist essentiell, besonders bei Compliance-relevanten Themen."
+      name: "Warum nutzen unsere Mitarbeiter den Copilot kaum, obwohl wir teure Lizenzen bezahlen?",
+      answer: "Geringe Nutzung resultiert meist aus Unsicherheit: Mitarbeiter wissen nicht, wofür und wie sie Copilot einsetzen sollen. Ohne konkrete Anwendungsbeispiele und Prompt-Training bleibt das Potenzial ungenutzt. Die Copilotenschule aktiviert Ihre Teams mit praxisorientierten Use-Case-Workshops und begleiteten Lernreisen."
     },
     {
-      name: "Ist Microsoft Copilot DSGVO-konform?",
-      answer: "Ja, Microsoft Copilot ist DSGVO-konform. Unternehmen müssen aber eigene Governance-Regeln implementieren: Datenschutz-Folgenabschätzungen, Mitarbeiter-Schulungen und klare Nutzungsrichtlinien."
-    },
-    {
-      name: "Wie lange dauert eine erfolgreiche Copilot-Einführung?",
-      answer: "Eine fundierte Einführung dauert 3-6 Monate: Pilotphase (4-6 Wochen), Training und Change Management (2-3 Monate), schrittweiser Rollout. Schnelle Aktivierung ohne Vorbereitung führt zu Problemen."
-    },
-    {
-      name: "Welche Rolle spielt Change Management?",
-      answer: "Change Management ist kritisch für Akzeptanz. Ohne klare Kommunikation, Champions-Programm und kontinuierliche Unterstützung scheitern 70% der Copilot-Projekte an mangelnder Nutzer-Adoption."
+      name: "Wie stellen wir sicher, dass Copilot-Antworten in unseren Dokumenten korrekt sind?",
+      answer: "KI kann Halluzinationen erzeugen – plausible, aber falsche Informationen. Etablieren Sie Verifizierungsprozesse: kritische Prüfung bei Zahlen und Fakten, Quellenangaben einfordern, 4-Augen-Prinzip bei wichtigen Dokumenten. Die Copilotenschule schult Ihre Teams in kritischer KI-Nutzung und Quality Assurance."
     }
   ];
 

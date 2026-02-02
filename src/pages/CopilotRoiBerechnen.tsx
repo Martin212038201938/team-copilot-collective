@@ -61,7 +61,27 @@ const CopilotRoiBerechnen = () => {
     { name: "Copilot ROI berechnen", url: "https://copilotenschule.de/wissen/copilot-roi-berechnen" }
   ]);
 
-  // Kombiniertes Schema mit @graph
+  // FAQ-Daten für Schema und Anzeige (kundenorientierte Fragen)
+  const faqs = [
+    {
+      name: "Wie überzeuge ich das Management, in Microsoft Copilot zu investieren?",
+      answer: "Mit einem fundierten Business Case: Berechnen Sie konkrete Zeiteinsparungen pro Mitarbeiter, multiplizieren Sie mit Stundensätzen und stellen Sie diese den Lizenzkosten (30 USD/Monat) gegenüber. Die Copilotenschule bietet ROI-Rechner und Business-Case-Templates, die überzeugende Argumentationen für das Management liefern."
+    },
+    {
+      name: "Wie berechne ich den ROI von Microsoft Copilot für unser Unternehmen realistisch?",
+      answer: "Der ROI ergibt sich aus: (Zeitersparnis × Stundensatz × Nutzerzahl) - Lizenzkosten - Implementierungskosten. Microsoft-Studien zeigen 1,2 Stunden Zeitersparnis pro Nutzer/Woche. Die Copilotenschule unterstützt Sie mit Excel-Vorlagen und branchenspezifischen Benchmarks für realistische ROI-Berechnungen."
+    },
+    {
+      name: "Wann amortisiert sich die Copilot-Investition typischerweise?",
+      answer: "Bei durchschnittlichen Produktivitätsgewinnen amortisiert sich Copilot innerhalb von 3-6 Monaten. Der Break-even liegt bei etwa 2-3 Stunden Zeitersparnis pro Nutzer und Monat. Die Copilotenschule hilft Ihnen, realistische Szenarien für Ihre Branche und Unternehmensstruktur zu entwickeln."
+    },
+    {
+      name: "Welche KPIs sollten wir für die Copilot-Erfolgsmessung definieren?",
+      answer: "Messen Sie quantitativ: Nutzungsrate, Time-to-Completion bei Standardtasks, Dokumentenerstellungszeit. Qualitativ: Mitarbeiterzufriedenheit, Dokumentenqualität, Innovationsrate. Die Copilotenschule entwickelt mit Ihnen ein KPI-Framework und unterstützt beim Aufbau eines Adoption-Dashboards."
+    }
+  ];
+
+  // Kombiniertes Schema mit @graph (Article, FAQ, Breadcrumb)
   const schema = {
     "@context": "https://schema.org",
     "@graph": [
@@ -82,6 +102,18 @@ const CopilotRoiBerechnen = () => {
           "@type": "WebPage",
           "@id": "https://copilotenschule.de/wissen/copilot-roi-berechnen"
         }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://copilotenschule.de/wissen/copilot-roi-berechnen#faq",
+        "mainEntity": faqs.map(faq => ({
+          "@type": "Question",
+          "name": faq.name,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": faq.answer
+          }
+        }))
       },
       breadcrumbSchema
     ]

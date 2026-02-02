@@ -27,27 +27,23 @@ const KIAgenten = () => {
     { name: "KI-Agenten", url: "https://copilotenschule.de/ki-agenten" }
   ]);
 
-  // FAQ-Daten für Schema und Anzeige
+  // FAQ-Daten für Schema und Anzeige (kundenorientierte Fragen)
   const faqs = [
     {
-      name: "Was ist der Unterschied zwischen Chatbot und Agent?",
-      answer: "Chatbots reagieren auf Anfragen mit vordefinierten Antworten. KI-Agenten sind autonom, treffen Entscheidungen, nutzen Tools und führen mehrstufige Workflows aus. Agenten können Ziele eigenständig erreichen."
+      name: "Was ist der Unterschied zwischen einem einfachen Chatbot und einem echten KI-Agenten?",
+      answer: "Chatbots reagieren regelbasiert auf Anfragen. KI-Agenten hingegen sind autonom: Sie verstehen komplexe Aufgaben, treffen eigenständige Entscheidungen, nutzen verschiedene Tools und führen mehrstufige Workflows aus. Die Copilotenschule vermittelt in spezialisierten Workshops, wie Sie von einfachen Bots zu intelligenten Agenten aufsteigen."
     },
     {
-      name: "Welche Tools brauche ich für KI-Agenten?",
-      answer: "Microsoft Copilot Studio, Power Automate für Workflows, Azure für APIs und optional Power Platform Dataverse. Alles ist in Microsoft 365 bzw. Azure verfügbar."
+      name: "Können KI-Agenten auch komplexe Geschäftsprozesse in unserem Unternehmen automatisieren?",
+      answer: "Ja, KI-Agenten können Genehmigungsworkflows, Datenanalysen, Berichtserstellung und viele weitere mehrstufige Prozesse automatisieren. Mit Microsoft Copilot Studio und Power Automate lassen sich Agenten an ERP, CRM und interne Systeme anbinden. Die Copilotenschule begleitet Sie von der Use-Case-Identifikation bis zum produktiven Agenten."
     },
     {
-      name: "Können Agenten auf Unternehmensdaten zugreifen?",
-      answer: "Ja, mit entsprechenden Berechtigungen. Agenten können auf SharePoint, OneDrive, Datenbanken und APIs zugreifen. Die Zugriffe werden über Azure AD und RBAC gesteuert."
+      name: "Wie sicher sind KI-Agenten, die auf sensible Unternehmensdaten zugreifen?",
+      answer: "KI-Agenten in der Microsoft-Umgebung unterliegen Enterprise-Grade-Security: Azure AD für Authentifizierung, rollenbasierte Zugriffskontrolle (RBAC), vollständige Audit-Logs und Verschlüsselung. Agenten erhalten nur Zugriff auf explizit freigegebene Ressourcen. Die Copilotenschule behandelt Security Best Practices in jedem Agenten-Workshop."
     },
     {
-      name: "Wie sicher sind KI-Agenten?",
-      answer: "KI-Agenten in Microsoft-Umgebungen unterliegen Enterprise-Security: Azure AD, RBAC, Audit Logs, Verschlüsselung. Sie haben nur Zugriff auf explizit freigegebene Ressourcen."
-    },
-    {
-      name: "Was kosten KI-Agenten im Betrieb?",
-      answer: "Kosten setzen sich zusammen aus: Copilot Studio Lizenz (ab 200 USD/Monat), Message Credits (nutzungsbasiert), Power Automate Flows und ggf. Azure-Dienste. Pilot-Projekte starten oft unter 500 USD/Monat."
+      name: "Mit welchen Tools kann ich einen KI-Agenten für unser Unternehmen ohne Programmierung bauen?",
+      answer: "Microsoft Copilot Studio ermöglicht die Low-Code-Entwicklung von KI-Agenten per Drag-and-Drop. Ergänzt um Power Automate für Workflows und Power Platform Dataverse für Daten, können auch Nicht-Entwickler professionelle Agenten erstellen. Die Copilotenschule bietet praxisnahe Trainings für den schnellen Einstieg in die Agenten-Entwicklung."
     }
   ];
 

@@ -77,7 +77,27 @@ const CopilotFuerWord = () => {
     { name: "Microsoft Copilot für Word", url: "https://copilotenschule.de/wissen/copilot-fuer-word" }
   ]);
 
-  // Kombiniertes Schema mit @graph
+  // FAQ-Daten für Schema und Anzeige (kundenorientierte Fragen)
+  const faqs = [
+    {
+      name: "Wie nutzen wir Copilot in Word effektiv für die Dokumentenerstellung im Team?",
+      answer: "Copilot in Word kann Dokumente aus Stichpunkten erstellen, bestehende Texte zusammenfassen oder umschreiben und sogar aus anderen Dokumenten Inhalte generieren. Für konsistente Ergebnisse im Team brauchen Sie einheitliche Prompt-Standards. Die Copilotenschule bietet Word-spezifische Trainings mit Best Practices und Prompt-Bibliotheken für Business-Dokumente."
+    },
+    {
+      name: "Können wir mit Copilot in Word die Qualität unserer Geschäftsdokumente verbessern?",
+      answer: "Ja, Copilot kann Texte auf Klarheit, Grammatik und Ton prüfen und verbessern. Er kann auch komplexe Inhalte verständlicher formulieren oder für verschiedene Zielgruppen anpassen. Die Copilotenschule zeigt in praxisorientierten Workshops, wie Sie Copilot als Qualitäts-Coach für Ihre Dokumentenerstellung einsetzen."
+    },
+    {
+      name: "Wie integrieren wir unsere bestehenden Vorlagen und Stilrichtlinien in Copilot?",
+      answer: "Copilot kann bestehende Dokumente als Stilvorlage nutzen und neue Inhalte im gleichen Format und Ton erstellen. Durch gezielte Prompts wie 'Schreibe im Stil des angehängten Dokuments' lernt Copilot Ihre Corporate Language. Die Copilotenschule entwickelt mit Ihnen unternehmensspezifische Prompt-Templates für einheitliche Dokumente."
+    },
+    {
+      name: "Funktioniert Microsoft Copilot gut mit deutschen Dokumenten und Formulierungen?",
+      answer: "Ja, Copilot unterstützt Deutsch vollständig – sowohl bei der Eingabe als auch bei der Ausgabe. Die Qualität ist hoch, wenn Sie konsistent in einer Sprache prompten. Die Copilotenschule bietet deutschsprachige Trainings mit Prompts und Beispielen speziell für den deutschen Geschäftsalltag."
+    }
+  ];
+
+  // Kombiniertes Schema mit @graph (Article, FAQ, Breadcrumb)
   const schema = {
     "@context": "https://schema.org",
     "@graph": [
@@ -98,6 +118,18 @@ const CopilotFuerWord = () => {
           "@type": "WebPage",
           "@id": "https://copilotenschule.de/wissen/copilot-fuer-word"
         }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://copilotenschule.de/wissen/copilot-fuer-word#faq",
+        "mainEntity": faqs.map(faq => ({
+          "@type": "Question",
+          "name": faq.name,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": faq.answer
+          }
+        }))
       },
       breadcrumbSchema
     ]

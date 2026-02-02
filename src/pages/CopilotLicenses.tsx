@@ -26,6 +26,26 @@ const CopilotLicenses = () => {
     { name: "Microsoft Copilot Lizenzen", url: "https://copilotenschule.de/microsoft-copilot-lizenzen" }
   ]);
 
+  // FAQ-Daten für Schema und Anzeige (kundenorientierte Fragen)
+  const faqs = [
+    {
+      name: "Welche Microsoft Copilot Lizenz brauchen wir für unser Unternehmen?",
+      answer: "Das hängt von Ihrem Use Case ab: Für Office-Produktivität brauchen Sie Microsoft 365 Copilot (30 USD/Nutzer/Monat), für Entwickler GitHub Copilot (19-39 USD/Nutzer/Monat), für eigene KI-Agenten Copilot Studio (ab 200 USD/Monat). Die Copilotenschule berät Sie bei der optimalen Lizenzstrategie für Ihre Anforderungen."
+    },
+    {
+      name: "Lohnt sich Microsoft Copilot auch für kleine Teams unter 50 Mitarbeitern?",
+      answer: "Ja, es gibt keine Mindestabnahmemenge mehr. Auch kleine Teams profitieren von Copilot – entscheidend ist die Nutzungsintensität, nicht die Teamgröße. Starten Sie mit einem Pilot für die Mitarbeiter mit den meisten repetitiven Aufgaben. Die Copilotenschule bietet auch Trainings für kleine Teams mit maßgeschneiderten Formaten."
+    },
+    {
+      name: "Können wir Copilot-Lizenzen zunächst nur für eine Abteilung pilotieren?",
+      answer: "Ja, ein abteilungsweiser Pilot ist empfehlenswert. Wählen Sie eine Abteilung mit messbaren Routineaufgaben (z.B. HR, Marketing, Finance). Microsoft verlangt keine unternehmensweite Lizenzierung. Die Copilotenschule unterstützt bei der Pilot-Planung mit KPI-Definition und Erfolgsmessung."
+    },
+    {
+      name: "Was sind die versteckten Kosten bei Microsoft Copilot neben der Lizenzgebühr?",
+      answer: "Planen Sie Kosten für: Training der Mitarbeiter (essentiell für ROI), evtl. Azure-Infrastruktur für Copilot Studio, Change Management und Governance-Anpassungen. Ohne Training bleibt das Potenzial ungenutzt. Die Copilotenschule bietet transparente Trainingsbudgets und hilft bei der Gesamtkostenplanung."
+    }
+  ];
+
   // Kombiniertes Schema mit @graph (Article, FAQ, Breadcrumb)
   const schema = {
     "@context": "https://schema.org",
@@ -49,32 +69,14 @@ const CopilotLicenses = () => {
       {
         "@type": "FAQPage",
         "@id": "https://copilotenschule.de/microsoft-copilot-lizenzen#faq",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "Was kostet Microsoft 365 Copilot?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Microsoft 365 Copilot kostet 30 USD pro Nutzer und Monat. Voraussetzung ist eine Microsoft 365 E3, E5, Business Standard oder Business Premium Lizenz."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Welche Lizenz brauche ich für GitHub Copilot?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "GitHub Copilot ist in drei Varianten verfügbar: Individual (10 USD/Monat), Business (19 USD/Nutzer/Monat) und Enterprise (39 USD/Nutzer/Monat). Die Wahl hängt von Ihren Anforderungen an Teamfunktionen und Sicherheit ab."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Was ist in Copilot Studio enthalten?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Copilot Studio ermöglicht die Entwicklung eigener KI-Agenten und Chatbots. Es ist in Microsoft 365 Copilot enthalten oder separat ab 200 USD/Monat pro Tenant verfügbar."
-            }
+        "mainEntity": faqs.map(faq => ({
+          "@type": "Question",
+          "name": faq.name,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": faq.answer
           }
-        ]
+        }))
       },
       breadcrumbSchema
     ]
