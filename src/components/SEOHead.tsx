@@ -14,12 +14,15 @@ interface SEOHeadProps {
   modifiedTime?: string;
 }
 
+const SITE_URL = "https://copilotenschule.de";
+const DEFAULT_OG_IMAGE = "/images/copilotenschule_flugzeug.png";
+
 const SEOHead = ({
   title,
   description,
   keywords = [],
   canonicalUrl,
-  ogImage = "/og-image.jpg",
+  ogImage = DEFAULT_OG_IMAGE,
   schema,
   author = "copilotenschule.de",
   publishedTime,
@@ -28,6 +31,9 @@ const SEOHead = ({
   // Extract author name if it's an Author object
   const authorName = typeof author === 'string' ? author : author.name;
   const authorUrl = typeof author === 'string' ? undefined : author.linkedin;
+
+  // Ensure ogImage is absolute URL
+  const absoluteOgImage = ogImage.startsWith('http') ? ogImage : `${SITE_URL}${ogImage}`;
 
   // Structured Data (Schema.org) - immer mit globalem Organization/Person Schema
   const combinedSchema = combineWithGlobalSchema(schema);
@@ -42,18 +48,18 @@ const SEOHead = ({
       {authorName && <meta name="author" content={authorName} />}
 
       {/* Open Graph tags */}
-      <meta property="og:title" content={title} />
+      <meta property="og:title" content={`${title} | copilotenschule.de`} />
       <meta property="og:description" content={description} />
-      <meta property="og:type" content="article" />
+      <meta property="og:type" content="website" />
       {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
-      <meta property="og:image" content={ogImage} />
+      <meta property="og:image" content={absoluteOgImage} />
       <meta property="og:site_name" content="copilotenschule.de" />
 
       {/* Twitter Card tags */}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={title} />
+      <meta name="twitter:title" content={`${title} | copilotenschule.de`} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={ogImage} />
+      <meta name="twitter:image" content={absoluteOgImage} />
 
       {/* Article tags */}
       {publishedTime && <meta property="article:published_time" content={publishedTime} />}
