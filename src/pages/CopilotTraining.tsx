@@ -770,8 +770,8 @@ const CopilotTraining = () => {
           </h2>
 
           <p className="mb-6">
-            Champions sind der Multiplikator für nachhaltigen Erfolg. Sie sind keine "Max und Anna" –
-            sie sind systematisch ausgebildete Enabler mit klarem Mandat und Ressourcen.
+            Champions sind der Multiplikator für nachhaltigen Erfolg. Hier können Anna und Max
+            Wirkung erzeugen, sich einbringen, begeistern und unterstützen!
           </p>
 
           <blockquote className="my-6 border-l-4 border-primary bg-primary/5 p-6 rounded-r-lg italic text-lg">
