@@ -27,27 +27,23 @@ const CopilotStudio = () => {
     { name: "Copilot Studio", url: "https://copilotenschule.de/copilot-studio" }
   ]);
 
-  // FAQ-Daten für Schema und Anzeige
+  // FAQ-Daten für Schema und Anzeige (kundenorientierte Fragen)
   const faqs = [
     {
-      name: "Was kann ich mit Copilot Studio erstellen?",
-      answer: "Mit Copilot Studio erstellen Sie Custom Copilots, Chatbots, KI-Agenten, Plugins für Microsoft 365 Copilot, automatisierte Workflows und intelligente Assistenten für spezifische Business-Prozesse."
+      name: "Wir brauchen einen speziellen Chatbot für unser Intranet – ist Copilot Studio dafür geeignet?",
+      answer: "Ja, Copilot Studio ist ideal für unternehmensspezifische Chatbots und KI-Assistenten. Sie können SharePoint, interne Datenbanken und APIs anbinden, sodass der Bot auf Ihr Unternehmenswissen zugreift. Die Copilotenschule bietet praxisorientierte Copilot Studio Workshops, in denen Sie lernen, maßgeschneiderte Lösungen für Ihr Intranet zu entwickeln."
     },
     {
-      name: "Brauche ich Programmierkenntnisse?",
-      answer: "Nein, Copilot Studio ist eine Low-Code-Plattform mit visuellem Designer. Für erweiterte Funktionen können Sie optional Code hinzufügen, aber die Grundfunktionen sind ohne Programmierung nutzbar."
+      name: "Können wir ohne Programmierkenntnisse eigene KI-Assistenten mit Copilot Studio bauen?",
+      answer: "Absolut. Copilot Studio ist eine Low-Code-Plattform mit visuellem Designer – Sie können Chatbots und KI-Agenten per Drag-and-Drop erstellen. Für komplexere Anforderungen lässt sich optional Code hinzufügen. Im Copilot Studio Training der Copilotenschule lernen auch Nicht-Entwickler, professionelle KI-Assistenten zu erstellen."
     },
     {
-      name: "Wie integriere ich eigene Daten?",
-      answer: "Sie können SharePoint, OneDrive, Datenbanken, APIs, Power Platform Dataverse und andere Datenquellen direkt anbinden. Copilot Studio bietet vorgefertigte Konnektoren für gängige Systeme."
+      name: "Wie verbinde ich Copilot Studio mit unseren internen Systemen und Datenbanken?",
+      answer: "Copilot Studio bietet über 1.000 vorgefertigte Konnektoren für SharePoint, SAP, Salesforce, SQL-Datenbanken und mehr. Über Custom Connectors und APIs lassen sich auch proprietäre Systeme anbinden. Die Copilotenschule zeigt in praxisnahen Workshops, wie Sie Ihre Unternehmensdaten sicher und effizient integrieren."
     },
     {
-      name: "Was kostet Copilot Studio?",
-      answer: "Copilot Studio ist in Microsoft 365 Copilot enthalten (begrenzt auf 25 Nachrichten/Nutzer/Monat) oder als Standalone-Lizenz ab 200 USD/Monat pro Tenant verfügbar, plus nutzungsbasierte Message Credits."
-    },
-    {
-      name: "Ist Copilot Studio DSGVO-konform?",
-      answer: "Ja, Copilot Studio entspricht allen Microsoft-Datenschutzstandards und ist DSGVO-konform. Daten werden in EU-Rechenzentren verarbeitet und unterliegen Enterprise-Grade Security."
+      name: "Was kostet die Entwicklung eines eigenen Copilot-Agenten mit Copilot Studio?",
+      answer: "Copilot Studio ist in Microsoft 365 Copilot enthalten oder als Standalone ab 200 USD/Monat verfügbar, plus nutzungsbasierte Message Credits. Die Entwicklung eines einfachen Agenten dauert oft nur wenige Tage. Die Copilotenschule unterstützt Sie bei der Kosten-Nutzen-Analyse und dem schnellen Aufbau Ihres ersten KI-Agenten."
     }
   ];
 
