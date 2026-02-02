@@ -28,6 +28,7 @@ import UnsereAngebote from "./pages/UnsereAngebote";
 import TrainingDetail from "./pages/TrainingDetail";
 import TrainerProfil from "./pages/TrainerProfil";
 import KiRealitaet2026 from "./pages/KiRealitaet2026";
+import CopilotUnternehmensweitEinfuehren from "./pages/CopilotUnternehmensweitEinfuehren";
 
 const queryClient = new QueryClient();
 
@@ -54,6 +55,7 @@ const App = () => (
           <Route path="/wissen/copilot-tipps-tricks-produktivitaet" element={<CopilotTippsTricks />} />
           <Route path="/wissen/copilot-training-schulung" element={<CopilotTraining />} />
           <Route path="/wissen/ki-realitaet-beratungsfirmen-2026" element={<KiRealitaet2026 />} />
+          <Route path="/wissen/copilot-unternehmensweit-einfuehren" element={<CopilotUnternehmensweitEinfuehren />} />
           <Route path="/impressum" element={<Impressum />} />
           <Route path="/ueber-uns" element={<UeberUns />} />
           <Route path="/unsere-angebote" element={<UnsereAngebote />} />

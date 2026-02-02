@@ -24,10 +24,19 @@ const Wissen = () => {
   // ============================================================================
   const staticKnowledgeTopics = [
     {
+      title: "Warum Unternehmen Microsoft Copilot zentral einführen sollten",
+      description: "Warum Shadow-IT bei KI gefährlich ist: Zentrale Copilot-Einführung sichert DSGVO-Konformität, Grounding mit Unternehmensdaten und unternehmensweite Synergien.",
+      link: "/wissen/copilot-unternehmensweit-einfuehren",
+      badge: "Neu",
+      icon: "🏢",
+      readTime: "12 Minuten",
+      lastUpdated: "02. Feb. 2026"
+    },
+    {
       title: "KI in deutschen Unternehmen 2026: Was die großen Beratungsfirmen wirklich sehen",
       description: "Umfassende Analyse von McKinsey, BCG, Deloitte, PwC, KPMG: Aktuelle KI-Investitionen, ROI-Realität und warum 80% der Unternehmen noch keine Ergebnisse sehen.",
       link: "/wissen/ki-realitaet-beratungsfirmen-2026",
-      badge: "Neu",
+      badge: "Strategie",
       icon: "📊",
       readTime: "18 Minuten",
       lastUpdated: "02. Feb. 2026"
