@@ -1,8 +1,20 @@
+# robots.txt für copilotenschule.de
+# Generiert am 2025-02-02
+
+# Allgemeine Crawler erlauben
 User-agent: Googlebot
 Allow: /
+Disallow: /admin
+Disallow: /api/
+Disallow: /*?*
+Disallow: /*#*
 
 User-agent: Bingbot
 Allow: /
+Disallow: /admin
+Disallow: /api/
+Disallow: /*?*
+Disallow: /*#*
 
 User-agent: Twitterbot
 Allow: /
@@ -10,5 +22,22 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
+User-agent: LinkedInBot
+Allow: /
+
+# Alle anderen Bots
 User-agent: *
 Allow: /
+
+# Veraltete und interne Pfade sperren
+Disallow: /admin
+Disallow: /api/
+Disallow: /_next/
+Disallow: /static/chunks/
+
+# Query-Parameter und Fragment-Routen blockieren (keine doppelten Inhalte)
+Disallow: /*?*
+Disallow: /*#*
+
+# Sitemap-Referenz
+Sitemap: https://copilotenschule.de/sitemap.xml

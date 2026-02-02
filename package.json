@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite",
     "dev:transcript": "node api/youtube-transcript.js --server",
+    "generate-sitemap": "node scripts/generate-sitemap.js",
+    "prebuild": "npm run generate-sitemap",
     "build": "vite build && npm run copy-api",
     "build:prerender": "vite build && npm run copy-api && npm run snap",
     "snap": "react-snap",
