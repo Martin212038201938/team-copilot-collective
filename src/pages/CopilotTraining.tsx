@@ -27,6 +27,7 @@ const CopilotTraining = () => {
     { id: "zielgruppen", title: "Training nach Zielgruppen", level: 2 },
     { id: "inhalte", title: "Was muss geschult werden?", level: 2 },
     { id: "champions", title: "Champions-Programm aufbauen", level: 2 },
+    { id: "zertifizierung", title: "Prüfungen & Zertifizierungsprogramme", level: 2 },
     { id: "roi", title: "ROI von Copilot-Training", level: 2 },
     { id: "checkliste", title: "Trainings-Checkliste", level: 2 },
     { id: "faq", title: "Häufig gestellte Fragen", level: 2 },
@@ -878,7 +879,178 @@ const CopilotTraining = () => {
           </Card>
         </section>
 
-        {/* Sektion 8: ROI */}
+        {/* Sektion 8: Zertifizierungsprogramme */}
+        <section id="zertifizierung" className="mt-12">
+          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-violet-500 text-violet-700 dark:text-violet-400">
+            Prüfungen & Zertifizierungsprogramme
+          </h2>
+
+          <p className="mb-6">
+            Training allein reicht nicht – erst der <strong>nachweisbare Kompetenzaufbau</strong> gibt Unternehmen
+            Investitionssicherheit und Mitarbeitern einen handfesten Beweis ihrer Fähigkeiten. Die Copilotenschule
+            bietet maßgeschneiderte Prüfungen und Zertifizierungsprogramme, die echtes Können validieren.
+          </p>
+
+          <blockquote className="my-6 border-l-4 border-primary bg-primary/5 p-6 rounded-r-lg italic text-lg">
+            "Ein Zertifikat ist mehr als ein PDF – es ist der dokumentierte Nachweis, dass Ihre Mitarbeiter
+            KI-kompetent sind und dass Ihre Investition in Training messbare Ergebnisse liefert."
+          </blockquote>
+
+          <Card className="my-6 border-2 border-violet-500/20">
+            <CardHeader className="bg-gradient-to-r from-violet-500/10 to-violet-600/10">
+              <CardTitle className="flex items-center gap-2 text-lg">
+                <GraduationCap className="w-5 h-5 text-violet-600" />
+                Customized Quizze & Prüfungen
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="pt-6">
+              <p className="mb-4">
+                Wir entwickeln für Ihr Unternehmen individuelle Wissenstests und Prüfungen, bei denen
+                Teilnehmer aktiv beweisen müssen, dass sie das Gelernte verstanden haben – keine
+                Multiple-Choice-Fragen zum Abhaken, sondern praxisnahe Aufgaben mit echtem Copilot-Einsatz.
+              </p>
+              <div className="grid md:grid-cols-2 gap-4">
+                <div className="p-4 border rounded-lg">
+                  <h5 className="font-semibold text-violet-600 mb-2">Was wir prüfen</h5>
+                  <ul className="text-sm space-y-1">
+                    <li>• Prompt Engineering in realen Szenarien</li>
+                    <li>• Kritische Bewertung von KI-Outputs</li>
+                    <li>• Security-Bewusstsein und Compliance</li>
+                    <li>• App-spezifische Copilot-Nutzung</li>
+                    <li>• Workflow-Integration</li>
+                  </ul>
+                </div>
+                <div className="p-4 border rounded-lg">
+                  <h5 className="font-semibold text-violet-600 mb-2">Prüfungsformate</h5>
+                  <ul className="text-sm space-y-1">
+                    <li>• Praktische Hands-On-Aufgaben</li>
+                    <li>• Live-Demonstrationen vor Prüfer</li>
+                    <li>• Case-Study-Bearbeitung</li>
+                    <li>• Szenario-basierte Assessments</li>
+                    <li>• Peer-Review-Elemente</li>
+                  </ul>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="my-6 border-l-4 border-l-violet-500">
+            <CardHeader>
+              <CardTitle className="text-lg">Aufbauende Zertifizierungsstufen</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="mb-4 text-muted-foreground">
+                Für Unternehmen, die einen strukturierten Kompetenzaufbau wünschen, bieten wir
+                aufeinander aufbauende Zertifizierungsprogramme – von den Grundlagen bis zum Experten-Level.
+              </p>
+              <div className="space-y-4">
+                {[
+                  {
+                    stufe: "Copilot in der Praxis I – Foundation",
+                    badge: "Beginner",
+                    farbe: "emerald",
+                    inhalt: "Grundlagen der KI-Nutzung, erste Prompts, Security-Basics",
+                    zielgruppe: "Alle Mitarbeiter"
+                  },
+                  {
+                    stufe: "Copilot in der Praxis II – Advanced",
+                    badge: "Advanced",
+                    farbe: "blue",
+                    inhalt: "Fortgeschrittenes Prompt Engineering, App-Integration, Workflow-Optimierung",
+                    zielgruppe: "Power User, häufige Copilot-Nutzer"
+                  },
+                  {
+                    stufe: "Copilot in der Praxis III – Professional",
+                    badge: "Pro",
+                    farbe: "purple",
+                    inhalt: "Komplexe Use Cases, abteilungsspezifische Expertise, Best Practices entwickeln",
+                    zielgruppe: "Champions, Multiplikatoren"
+                  },
+                  {
+                    stufe: "Copilot in der Praxis IV – Expert",
+                    badge: "Expert",
+                    farbe: "orange",
+                    inhalt: "Train-the-Trainer, Governance, Strategieberatung, Copilot Studio",
+                    zielgruppe: "Interne Trainer, IT-Leads, Change Manager"
+                  }
+                ].map((level, idx) => (
+                  <div key={idx} className={`flex items-start gap-4 p-4 border-2 border-${level.farbe}-500/30 rounded-lg bg-gradient-to-r from-${level.farbe}-500/5 to-${level.farbe}-600/10`}>
+                    <div className={`px-3 py-1 rounded-full text-xs font-bold bg-${level.farbe}-100 text-${level.farbe}-700 dark:bg-${level.farbe}-900 dark:text-${level.farbe}-300`}>
+                      {level.badge}
+                    </div>
+                    <div className="flex-1">
+                      <div className="font-semibold">{level.stufe}</div>
+                      <div className="text-sm text-muted-foreground mt-1">{level.inhalt}</div>
+                      <div className="text-xs text-muted-foreground mt-2">
+                        <strong>Zielgruppe:</strong> {level.zielgruppe}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="my-6">
+            <CardHeader>
+              <CardTitle className="text-base">Der Mehrwert von Zertifikaten</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="p-4 border rounded-lg">
+                  <h5 className="font-semibold text-green-600 mb-3 flex items-center gap-2">
+                    <Building2 className="w-5 h-5" />
+                    Für Unternehmen
+                  </h5>
+                  <ul className="text-sm space-y-2">
+                    <li className="flex items-start gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span><strong>Investitionssicherheit:</strong> Dokumentierter ROI der Schulungsmaßnahmen</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span><strong>Compliance-Nachweis:</strong> Erfüllung von EU AI Act Artikel 4 (KI-Kompetenz)</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span><strong>Skill-Mapping:</strong> Überblick über Kompetenzniveaus im Unternehmen</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span><strong>Audit-Sicherheit:</strong> Nachweisbare Schulungsmaßnahmen für Prüfungen</span>
+                    </li>
+                  </ul>
+                </div>
+                <div className="p-4 border rounded-lg">
+                  <h5 className="font-semibold text-blue-600 mb-3 flex items-center gap-2">
+                    <UserCheck className="w-5 h-5" />
+                    Für Mitarbeiter
+                  </h5>
+                  <ul className="text-sm space-y-2">
+                    <li className="flex items-start gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0" />
+                      <span><strong>Karriere-Boost:</strong> Nachweisbare KI-Kompetenz für den Lebenslauf</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0" />
+                      <span><strong>Anerkennung:</strong> Sichtbare Wertschätzung für Lernbereitschaft</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0" />
+                      <span><strong>Entwicklungspfad:</strong> Klare Stufen für kontinuierliches Lernen</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0" />
+                      <span><strong>Motivation:</strong> Greifbares Ziel während der Lernreise</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </section>
+
+        {/* Sektion 9: ROI */}
         <section id="roi" className="mt-12">
           <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-emerald-500 text-emerald-700 dark:text-emerald-400">
             ROI von Copilot-Training
