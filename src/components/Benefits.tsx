@@ -4,7 +4,8 @@ import {
   Headset,
   Gauge,
   UsersRound,
-  Medal
+  Medal,
+  ChevronDown
 } from "lucide-react";
 
 const benefits = [
@@ -40,54 +41,43 @@ const benefits = [
   }
 ];
 
-// Flip Card Component
-const FlipCard = ({ icon: Icon, title, description, index }: {
+// SEO-freundliche expandierbare Benefit-Karte
+// Verwendet natives <details>-Element für beste Crawler-Kompatibilität
+const ExpandableCard = ({ icon: Icon, title, description, index }: {
   icon: typeof PlaneTakeoff;
   title: string;
   description: string;
   index: number;
 }) => {
   return (
-    <div
-      className="group perspective-1000 h-52 animate-fade-in"
+    <details
+      className="group rounded-2xl border-2 border-primary/20 bg-gradient-to-br from-card via-card to-primary/5 shadow-xl animate-fade-in overflow-hidden"
       style={{ animationDelay: `${index * 100}ms` }}
     >
-      <div className="relative w-full h-full transition-transform duration-700 transform-style-3d group-hover:rotate-y-180">
-        {/* Front Side - Icon + Title */}
-        <div className="absolute inset-0 backface-hidden rounded-2xl border-2 border-primary/20 bg-gradient-to-br from-card via-card to-primary/5 shadow-xl flex flex-col items-center justify-center p-6 text-center">
-          {/* Icon Container - fades out on flip */}
-          <div className="w-16 h-16 bg-gradient-to-br from-primary/20 via-accent/10 to-primary/20 rounded-xl flex items-center justify-center mb-4 shadow-lg border border-primary/20 relative overflow-hidden transition-opacity duration-300 group-hover:opacity-0">
-            {/* Inner glow */}
-            <div className="absolute inset-0 bg-gradient-to-t from-transparent to-white/10" />
-            <Icon className="w-8 h-8 text-primary relative z-10" strokeWidth={1.5} />
-          </div>
+      <summary className="flex items-center gap-4 p-6 cursor-pointer list-none hover:bg-primary/5 transition-colors">
+        {/* Icon */}
+        <div className="w-14 h-14 bg-gradient-to-br from-primary/20 via-accent/10 to-primary/20 rounded-xl flex items-center justify-center shadow-lg border border-primary/20 flex-shrink-0">
+          <Icon className="w-7 h-7 text-primary" strokeWidth={1.5} />
+        </div>
 
-          {/* Title */}
-          <h3 className="text-lg font-bold text-foreground leading-tight px-2">
+        {/* Title + Chevron */}
+        <div className="flex-1 min-w-0">
+          <h3 className="text-lg font-bold text-foreground leading-tight pr-2">
             {title}
           </h3>
-
         </div>
 
-        {/* Back Side - Description */}
-        <div className="absolute inset-0 backface-hidden rotate-y-180 rounded-2xl border-2 border-accent/30 bg-gradient-to-br from-primary/10 via-card to-accent/10 shadow-xl flex flex-col p-4">
-          {/* Header */}
-          <div className="mb-2 pb-2 border-b border-primary/20">
-            <h3 className="text-base font-semibold text-primary line-clamp-2">
-              {title}
-            </h3>
-          </div>
+        {/* Expand indicator */}
+        <ChevronDown className="w-5 h-5 text-muted-foreground flex-shrink-0 transition-transform duration-300 group-open:rotate-180" />
+      </summary>
 
-          {/* Description */}
-          <p className="text-muted-foreground text-xs leading-relaxed flex-1 overflow-y-auto">
-            {description}
-          </p>
-
-          {/* Decorative corner */}
-          <div className="absolute bottom-0 right-0 w-16 h-16 bg-gradient-to-tl from-accent/20 to-transparent rounded-tl-3xl" />
-        </div>
+      {/* Description - immer im DOM, für SEO sichtbar */}
+      <div className="px-6 pb-6 pt-2 border-t border-primary/10">
+        <p className="text-muted-foreground text-sm leading-relaxed">
+          {description}
+        </p>
       </div>
-    </div>
+    </details>
   );
 };
 
@@ -105,9 +95,9 @@ const Benefits = () => {
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {benefits.map((benefit, index) => (
-            <FlipCard
+            <ExpandableCard
               key={index}
               icon={benefit.icon}
               title={benefit.title}
@@ -118,23 +108,13 @@ const Benefits = () => {
         </div>
       </div>
 
-      {/* Custom CSS for 3D flip effect */}
+      {/* CSS für details/summary Styling */}
       <style>{`
-        .perspective-1000 {
-          perspective: 1000px;
+        details summary::-webkit-details-marker {
+          display: none;
         }
-        .transform-style-3d {
-          transform-style: preserve-3d;
-        }
-        .backface-hidden {
-          backface-visibility: hidden;
-          -webkit-backface-visibility: hidden;
-        }
-        .rotate-y-180 {
-          transform: rotateY(180deg);
-        }
-        .group:hover .group-hover\\:rotate-y-180 {
-          transform: rotateY(180deg);
+        details summary::marker {
+          display: none;
         }
       `}</style>
     </section>

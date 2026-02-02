@@ -172,7 +172,7 @@ const UnsereAngebote = () => {
                   to={`/trainings/${module.slug}`}
                   className="block group"
                 >
-                  <Card className="h-[180px] flex flex-col cursor-pointer hover:shadow-2xl transition-all duration-300 border-2 hover:border-primary/50 bg-card/50 backdrop-blur-sm">
+                  <Card className="h-full min-h-[280px] flex flex-col cursor-pointer hover:shadow-2xl transition-all duration-300 border-2 hover:border-primary/50 bg-card/50 backdrop-blur-sm">
                     <CardHeader className="flex-1 py-4">
                       <div className="flex flex-wrap gap-1.5 mb-2">
                         {module.tiers.includes("free") && (
@@ -193,19 +193,17 @@ const UnsereAngebote = () => {
                         <Clock className="w-4 h-4" />
                         {module.duration}
                       </CardDescription>
-                    </CardHeader>
 
-                    {/* SEO: Versteckte Details für Suchmaschinen */}
-                    <div className="sr-only" aria-hidden="false">
-                      <h3>{module.title}</h3>
-                      <p>{module.description}</p>
-                      <h4>Inhalte und Lernziele:</h4>
-                      <ul>
-                        {module.features.map((feature, idx) => (
-                          <li key={idx}>{feature}</li>
-                        ))}
-                      </ul>
-                    </div>
+                      {/* SEO: Beschreibung jetzt sichtbar im HTML */}
+                      <p className="text-sm text-muted-foreground mt-3 line-clamp-3">
+                        {module.description}
+                      </p>
+
+                      {/* Call-to-Action Link */}
+                      <span className="inline-flex items-center gap-1 mt-3 text-sm font-medium text-primary group-hover:underline">
+                        Mehr erfahren <ArrowRight className="w-3 h-3" />
+                      </span>
+                    </CardHeader>
                   </Card>
                 </Link>
               ))}
