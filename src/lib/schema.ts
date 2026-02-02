@@ -53,14 +53,44 @@ export interface TrainingModule {
 /**
  * Generates FAQPage Schema.org markup
  * Critical for LLM citation - enables AI assistants to quote answers directly
+ *
+ * @param faqs - Array of FAQ objects with question and answer
+ * @param pageUrl - Optional page URL for unique @id (e.g., "https://copilotenschule.de/wissen/copilot-roi-berechnen")
+ *                  If not provided, falls back to generic "https://copilotenschule.de/#faq"
  */
-export const generateFAQPageSchema = (faqs: FAQ[]) => {
+export const generateFAQPageSchema = (faqs: FAQ[], pageUrl?: string) => {
+  const faqId = pageUrl ? `${pageUrl}#faq` : "https://copilotenschule.de/#faq";
   return {
     "@type": "FAQPage",
-    "@id": "https://copilotenschule.de/#faq",
+    "@id": faqId,
     "mainEntity": faqs.map(faq => ({
       "@type": "Question",
       "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  };
+};
+
+/**
+ * Generates FAQPage Schema.org markup from simple FAQ objects (name/answer format)
+ * Used by knowledge pages that define FAQs inline
+ *
+ * @param faqs - Array of FAQ objects with name and answer
+ * @param pageUrl - Page URL for unique @id (e.g., "https://copilotenschule.de/wissen/copilot-roi-berechnen")
+ */
+export const generateSimpleFAQSchema = (
+  faqs: Array<{ name: string; answer: string }>,
+  pageUrl: string
+) => {
+  return {
+    "@type": "FAQPage",
+    "@id": `${pageUrl}#faq`,
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.name,
       "acceptedAnswer": {
         "@type": "Answer",
         "text": faq.answer
