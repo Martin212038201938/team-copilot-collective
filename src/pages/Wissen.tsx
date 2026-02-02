@@ -11,141 +11,113 @@ import { useState, useEffect } from "react";
 const Wissen = () => {
   const [dynamicTopics, setDynamicTopics] = useState<any[]>([]);
 
-  // Load published articles from localStorage
+  // Load published articles from localStorage (für Artikel aus dem Admin-Portal)
   useEffect(() => {
     const published = getPublishedAsKnowledgeTopics();
     setDynamicTopics(published);
   }, []);
 
+  // ============================================================================
+  // STATISCHE WISSENSSEITEN
+  // Nur Artikel die tatsächlich als TSX-Dateien in src/pages/ existieren!
+  // Bei neuen Artikeln: Erst TSX erstellen, dann hier eintragen.
+  // ============================================================================
   const staticKnowledgeTopics = [
     {
-      title: "Microsoft Copilot Lizenzen: Kompletter Überblick",
-      description: "Welche Microsoft Copilot Lizenz benötigen Sie? Umfassender Vergleich aller Lizenzmodelle für Microsoft 365 Copilot, GitHub Copilot und Copilot Studio.",
+      title: "Microsoft Copilot Lizenzen 2026: Preise, Vergleich & Empfehlungen",
+      description: "Welche Microsoft Copilot Lizenz benötigen Sie? Umfassender Vergleich aller Lizenzmodelle für Microsoft 365 Copilot, GitHub Copilot und Copilot Studio mit aktuellen Preisen.",
       link: "/microsoft-copilot-lizenzen",
       badge: "Lizenzierung",
       icon: "📋",
-      readTime: "8 Minuten",
-      lastUpdated: "07. November 2025"
+      readTime: "12 Minuten",
+      lastUpdated: "02. Feb. 2026"
     },
     {
-      title: "GitHub Copilot für Entwickler",
+      title: "GitHub Copilot: Der ultimative Leitfaden für Entwickler",
       description: "Der ultimative Leitfaden für Entwickler: Setup, Best Practices und Advanced Features für produktiveres Coding mit KI-Unterstützung.",
       link: "/github-copilot",
       badge: "Entwicklung",
       icon: "💻",
       readTime: "12 Minuten",
-      lastUpdated: "07. November 2025"
+      lastUpdated: "02. Feb. 2026"
     },
     {
-      title: "Microsoft Copilot Studio",
+      title: "Microsoft Copilot Studio: KI-Agenten und Custom Copilots erstellen",
       description: "Low-Code-Plattform für eigene KI-Agenten: Custom Copilots, Chatbots und Automatisierungen ohne Programmierkenntnisse erstellen.",
       link: "/copilot-studio",
       badge: "Entwicklung",
       icon: "🤖",
       readTime: "10 Minuten",
-      lastUpdated: "07. November 2025"
+      lastUpdated: "02. Feb. 2026"
     },
     {
-      title: "Prompt Engineering Best Practices",
+      title: "Prompt Engineering: Effektive KI-Prompts für Microsoft Copilot",
       description: "Meistern Sie die Kunst effektiver KI-Kommunikation: Techniken, Beispiele und bewährte Prompt-Muster für bessere Copilot-Ergebnisse.",
       link: "/prompt-engineering",
       badge: "Best Practices",
       icon: "✨",
       readTime: "15 Minuten",
-      lastUpdated: "07. November 2025"
+      lastUpdated: "02. Feb. 2026"
     },
     {
-      title: "KI-Agenten entwickeln",
+      title: "KI-Agenten entwickeln: Autonome Workflows mit Microsoft Copilot",
       description: "Autonome KI-Assistenten für Ihr Unternehmen: Von einfachen Workflows bis zu komplexen Multi-Agent-Systemen mit Microsoft-Technologien.",
       link: "/ki-agenten",
       badge: "Automation",
       icon: "🔄",
       readTime: "14 Minuten",
-      lastUpdated: "07. November 2025"
+      lastUpdated: "02. Feb. 2026"
     },
     {
-      title: "Die 7 größten Fehler bei der Copilot-Einführung",
+      title: "7 Fehler bei der Microsoft Copilot-Einführung vermeiden",
       description: "Die 7 kritischsten Fehler vermeiden: Oversharing, Halluzinationen, Compliance-Verstöße. Konkrete Praxisbeispiele und Gegenmaßnahmen für deutsche Unternehmen.",
       link: "/copilot-fehler-vermeiden",
       badge: "Risikomanagement",
       icon: "⚠️",
       readTime: "18 Minuten",
-      lastUpdated: "07. November 2025"
+      lastUpdated: "02. Feb. 2026"
+    },
+    {
+      title: "Copilot ROI berechnen: Lohnt sich die Investition?",
+      description: "Konkrete Methoden zur ROI-Berechnung von Microsoft Copilot. Mit Excel-Vorlage, Praxisbeispielen und messbaren KPIs für Ihr Business Case.",
+      link: "/wissen/copilot-roi-berechnen",
+      badge: "Business",
+      icon: "💰",
+      readTime: "12 Minuten",
+      lastUpdated: "02. Feb. 2026"
+    },
+    {
+      title: "Microsoft Copilot für Word: Der ultimative Guide",
+      description: "Entdecken Sie, wie Microsoft Copilot in Word Ihre Dokumentenerstellung revolutioniert. Mit praktischen Beispielen, Prompts und Tipps für maximale Produktivität.",
+      link: "/wissen/copilot-fuer-word",
+      badge: "Microsoft 365",
+      icon: "📝",
+      readTime: "15 Minuten",
+      lastUpdated: "02. Feb. 2026"
+    },
+    {
+      title: "Microsoft Copilot Datenschutz & Sicherheit: DSGVO-konform einsetzen",
+      description: "Copilot DSGVO-konform einführen: Zero Trust, Datenschutz-Folgenabschätzung, Governance-Richtlinien. Praxis-Leitfaden für IT-Entscheider.",
+      link: "/wissen/copilot-sicherheit-datenschutz",
+      badge: "Sicherheit",
+      icon: "🔒",
+      readTime: "8 Minuten",
+      lastUpdated: "02. Feb. 2026"
+    },
+    {
+      title: "20 Microsoft Copilot Tipps & Tricks: Produktivität steigern",
+      description: "Copilot Produktivität steigern: 20 Profi-Tipps für GitHub Copilot & Microsoft 365 Copilot. Prompting-Tricks, Shortcuts & versteckte Features.",
+      link: "/wissen/copilot-tipps-tricks-produktivitaet",
+      badge: "Best Practices",
+      icon: "💡",
+      readTime: "10 Minuten",
+      lastUpdated: "02. Feb. 2026"
     }
-  ,
-  {
-    title: "Copilot ROI berechnen: Lohnt sich die Investition?",
-    description: "Konkrete Methoden zur ROI-Berechnung von Microsoft Copilot. Mit Excel-Vorlage, Praxisbeispielen und messbaren KPIs für Ihr Business Case.",
-    link: "/wissen/copilot-roi-berechnen",
-    badge: "Business",
-    icon: "💰",
-    readTime: "12 Minuten",
-    lastUpdated: "07. Nov. 2025"
-  }
-];
+  ];
 
-  // Combine static and dynamic topics
-  const knowledgeTopics = [...dynamicTopics, ...staticKnowledgeTopics,
-  {
-    title: "Microsoft Copilot für Word: Der ultimative Guide",
-    description: "Entdecken Sie, wie Microsoft Copilot in Word Ihre Dokumentenerstellung revolutioniert. Mit praktischen Beispielen, Prompts und Tipps für maximale Produktivität.",
-    link: "/wissen/copilot-fuer-word",
-    badge: "Microsoft 365",
-    icon: "📝",
-    readTime: "15 Minuten",
-    lastUpdated: "05. Jan. 2025"
-  }
-,
-  {
-    title: "Sicherheit und Datenschutz bei Microsoft Copilot",
-    description: "Ein umfassender Leitfaden zu Sicherheitsaspekten, Datenschutz und Compliance-Anforderungen bei der Nutzung von Microsoft Copilot im Unternehmen.",
-    link: "/wissen/copilot-sicherheit-datenschutz",
-    badge: "Sicherheit",
-    icon: "🔒",
-    readTime: "8 Minuten",
-    lastUpdated: "11. Nov. 2025"
-  }
-,
-  {
-    title: "20 Copilot Tipps & Tricks für produktiveres Arbeiten",
-    description: "Praxiserprobte Tipps, versteckte Features und Power-User-Tricks, um das Maximum aus GitHub Copilot und Microsoft 365 Copilot herauszuholen.",
-    link: "/wissen/copilot-tipps-tricks-produktivitaet",
-    badge: "Best Practices",
-    icon: "💡",
-    readTime: "10 Minuten",
-    lastUpdated: "18. Nov. 2025"
-  }
-,
-  {
-    title: "Microsoft Copilot Agents - Der komplette Guide für Entwickler",
-    description: "Lernen Sie, wie Sie benutzerdefinierte Copilot Agents erstellen, mit Copilot Studio entwickeln und Agents in Ihrem Unternehmen einsetzen.",
-    link: "/wissen/microsoft-copilot-agents-guide",
-    badge: "Microsoft 365",
-    icon: "🤖",
-    readTime: "10 Minuten",
-    lastUpdated: "21. Nov. 2025"
-  }
-,
-  {
-    title: "Microsoft 365 Copilot - Der komplette Einsteiger-Guide 2025",
-    description: "Lernen Sie Microsoft 365 Copilot von Grund auf kennen. Praktischer Guide mit Schritt-für-Schritt Anleitungen, Prompting-Tipps und Best Practices für produktives Arbeiten.",
-    link: "/wissen/microsoft-copilot-einsteiger-guide",
-    badge: "Microsoft 365",
-    icon: "🤖",
-    readTime: "12 Minuten",
-    lastUpdated: "19. Nov. 2025"
-  }
-,
-  {
-    title: "Microsoft Copilot Memory & Personalisierung - Der komplette Guide",
-    description: "Alles über Microsoft Copilot Memory: Wie Sie Copilot personalisieren, Custom Instructions nutzen und Memory-Features optimal für Ihr Team einsetzen.",
-    link: "/wissen/microsoft-copilot-memory-guide",
-    badge: "Microsoft 365",
-    icon: "🧠",
-    readTime: "8 Minuten",
-    lastUpdated: "20. Nov. 2025"
-  }
-];
+  // Kombiniere dynamische (aus Admin-Portal/localStorage) und statische Artikel
+  // Dynamische zuerst, da diese neuer sind
+  const knowledgeTopics = [...dynamicTopics, ...staticKnowledgeTopics];
 
   return (
     <div className="min-h-screen">
@@ -157,7 +129,9 @@ const Wissen = () => {
           "GitHub Copilot Guide",
           "KI-Tools Best Practices",
           "Microsoft 365 Copilot Leitfaden",
-          "Copilot Expertenwissen"
+          "Copilot Expertenwissen",
+          "Copilot Lizenzen",
+          "Copilot ROI"
         ]}
         canonicalUrl="https://copilotenschule.de/wissen"
       />
