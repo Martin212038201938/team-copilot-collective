@@ -21,6 +21,7 @@ import DynamicKnowledgePage from "./pages/DynamicKnowledgePage";
 import CopilotFuerWord from "./pages/CopilotFuerWord";
 import CopilotSicherheit from "./pages/CopilotSicherheit";
 import CopilotTippsTricks from "./pages/CopilotTippsTricks";
+import CopilotTraining from "./pages/CopilotTraining";
 import UeberUns from "./pages/UeberUns";
 import TrainingKonfigurator from "./pages/TrainingKonfigurator";
 import UnsereAngebote from "./pages/UnsereAngebote";
@@ -50,6 +51,7 @@ const App = () => (
           <Route path="/wissen/copilot-fuer-word" element={<CopilotFuerWord />} />
           <Route path="/wissen/copilot-sicherheit-datenschutz" element={<CopilotSicherheit />} />
           <Route path="/wissen/copilot-tipps-tricks-produktivitaet" element={<CopilotTippsTricks />} />
+          <Route path="/wissen/copilot-training-schulung" element={<CopilotTraining />} />
           <Route path="/impressum" element={<Impressum />} />
           <Route path="/ueber-uns" element={<UeberUns />} />
           <Route path="/unsere-angebote" element={<UnsereAngebote />} />

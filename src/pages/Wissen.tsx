@@ -78,6 +78,15 @@ const Wissen = () => {
       lastUpdated: "02. Feb. 2026"
     },
     {
+      title: "Microsoft Copilot Training: Warum Schulung der entscheidende Erfolgsfaktor ist",
+      description: "Professionelles Copilot-Training ist der Schlüssel zum ROI. Erfahren Sie, warum interne Taskforces scheitern und wie systematische Schulung Ihre Adoption auf 80%+ steigert.",
+      link: "/wissen/copilot-training-schulung",
+      badge: "Enablement",
+      icon: "🎓",
+      readTime: "18 Minuten",
+      lastUpdated: "02. Feb. 2026"
+    },
+    {
       title: "Copilot ROI berechnen: Lohnt sich die Investition?",
       description: "Konkrete Methoden zur ROI-Berechnung von Microsoft Copilot. Mit Excel-Vorlage, Praxisbeispielen und messbaren KPIs für Ihr Business Case.",
       link: "/wissen/copilot-roi-berechnen",
