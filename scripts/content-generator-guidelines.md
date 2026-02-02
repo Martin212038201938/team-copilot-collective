@@ -265,12 +265,87 @@ const [ComponentName] = () => {
 export default [ComponentName];
 ```
 
+## KRITISCH: Pre-Rendering & LLM-Zitierbarkeit
+
+### Anforderungen für statisches HTML
+Damit Suchmaschinen-Bots und LLM-Crawler (ChatGPT, Perplexity, Google AI) die Seite korrekt indexieren, MÜSSEN folgende Elemente im statischen HTML vorhanden sein - NICHT erst nach JavaScript-Ausführung:
+
+1. **Individueller `<title>`** - Jede Seite braucht einen einzigartigen Titel
+2. **Individuelle `<meta name="description">`** - Einzigartige Beschreibung (120-160 Zeichen)
+3. **`<link rel="canonical">`** - Zeigt auf die eigene URL
+4. **JSON-LD Schema** - Article + FAQPage als `<script type="application/ld+json">`
+
+### react-helmet-async Integration
+Das Projekt nutzt `react-helmet-async` mit Pre-Rendering. Alle SEO-Elemente MÜSSEN über die `SEOHead`-Komponente gesetzt werden:
+
+```tsx
+<SEOHead
+  title="Einzigartiger Seitentitel"
+  description="Einzigartige Beschreibung für diese spezifische Seite..."
+  keywords={["keyword1", "keyword2", "keyword3"]}
+  canonicalUrl="https://copilotenschule.de/[route]"
+  schema={[articleSchema, faqSchema]}
+  author={author}
+  publishedTime="2025-01-15T10:00:00+01:00"
+  modifiedTime="2025-01-15T10:00:00+01:00"
+/>
+```
+
+### JSON-LD mit @id Verknüpfungen (Knowledge Graph)
+Article-Schemas MÜSSEN mit dem globalen Organization- und Person-Schema verknüpft werden:
+
+```javascript
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "@id": `https://copilotenschule.de/wissen/${slug}#article`,  // Eindeutige ID
+  "headline": title,
+  "description": description,
+  "url": `https://copilotenschule.de/wissen/${slug}`,
+  "datePublished": "2025-01-15T10:00:00+01:00",
+  "dateModified": "2025-01-15T10:00:00+01:00",
+  "author": {
+    "@id": "https://copilotenschule.de/#martin-lang"  // Verknüpfung zu Person
+  },
+  "publisher": {
+    "@id": "https://copilotenschule.de/#organization"  // Verknüpfung zu Organization
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": `https://copilotenschule.de/wissen/${slug}`
+  },
+  "inLanguage": "de-DE",
+  "keywords": keywords.join(", ")
+};
+```
+
+### Pre-Rendering Routen
+Neue Seiten MÜSSEN in der `reactSnap.include`-Liste in `package.json` hinzugefügt werden:
+
+```json
+"reactSnap": {
+  "include": [
+    // ... bestehende Routen
+    "/wissen/neue-seite-slug"  // NEUE SEITE HIER HINZUFÜGEN
+  ]
+}
+```
+
+### Validierung nach Deployment
+Nach dem Deployment prüfen:
+1. `view-source:https://copilotenschule.de/wissen/[slug]` - Meta-Tags sichtbar?
+2. JSON-LD im `<head>` vorhanden?
+3. Canonical-URL korrekt?
+
 ## Checkliste vor Publikation
 
 - [ ] H1 + Meta Description mit Ziel-Keyword
 - [ ] Erste 100 Wörter beantworten Hauptfrage direkt
 - [ ] 5-10 FAQ-Blöcke vorhanden
 - [ ] FAQPage + Article Schema validiert
+- [ ] **Article Schema mit @id Verknüpfungen zu #organization und #martin-lang**
+- [ ] **Canonical URL auf eigene Seite zeigend**
+- [ ] **Route in package.json reactSnap.include hinzugefügt**
 - [ ] Interne Links zu 3-5 verwandten Seiten
 - [ ] Bilder mit Alt-Text
 - [ ] Mobile-responsive getestet
@@ -279,6 +354,7 @@ export default [ComponentName];
 - [ ] Publikations- + Aktualisierungsdatum sichtbar
 - [ ] Keine Clickbait-Überschriften
 - [ ] Semantic Chunking: 1 Absatz = 1 Idee
+- [ ] **Nach Deployment: view-source prüfen ob Meta-Tags im HTML sind**
 
 ## Beispiel-Keywords für Copilot-Themen
 
