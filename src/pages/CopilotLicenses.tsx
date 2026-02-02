@@ -13,7 +13,7 @@ const CopilotLicenses = () => {
 
   // Schema IDs automatisch generieren
   const ids = generateSchemaIds(SLUG, 'wissen');
-  const pageUrl = `https://copilotenschule.de/${SLUG}`;
+  const pageUrl = `https://copilotenschule.de/wissen/${SLUG}`;
   const breadcrumbItems = generateWissenBreadcrumbItems(PAGE_TITLE, pageUrl);
 
   const tableOfContents = [
@@ -55,14 +55,14 @@ const CopilotLicenses = () => {
       {
         "@type": "Article",
         "@id": ids.article,
-        "headline": "Microsoft Copilot Lizenzen: Kompletter Überblick und Vergleich 2025",
-        "description": "Detaillierter Vergleich aller Microsoft Copilot Lizenzen inkl. Microsoft 365 Copilot, GitHub Copilot und Copilot Studio. Erfahren Sie, welche Lizenz Sie für Ihre Anforderungen benötigen.",
+        "headline": "Microsoft Copilot Lizenzen 2026: Preise, Vergleich & Empfehlungen",
+        "description": "Microsoft Copilot Lizenzen im Vergleich: M365 Copilot, GitHub Copilot & Copilot Studio. Kosten, Voraussetzungen und Empfehlungen für Unternehmen.",
         "author": getAuthorSchemaMarkup(martinLang),
         "publisher": {
           "@id": "https://copilotenschule.de/#organization"
         },
         "datePublished": "2025-01-06",
-        "dateModified": "2025-11-07T11:00:00+01:00",
+        "dateModified": "2026-02-02T10:00:00+01:00",
         "mainEntityOfPage": {
           "@type": "WebPage",
           "@id": pageUrl
@@ -96,8 +96,8 @@ const CopilotLicenses = () => {
   return (
     <>
       <SEOHead
-        title="Microsoft Copilot Lizenzen: Kompletter Überblick und Vergleich 2025"
-        description="Detaillierter Vergleich aller Microsoft Copilot Lizenzen inkl. Microsoft 365 Copilot, GitHub Copilot und Copilot Studio. Erfahren Sie, welche Lizenz Sie für Ihre Anforderungen benötigen."
+        title="Microsoft Copilot Lizenzen 2026: Preise, Vergleich & Empfehlungen"
+        description="Microsoft Copilot Lizenzen im Vergleich: M365 Copilot, GitHub Copilot & Copilot Studio. Kosten, Voraussetzungen und Empfehlungen für Unternehmen."
         keywords={[
           "Microsoft Copilot Lizenz",
           "Microsoft 365 Copilot Preis",
@@ -106,23 +106,27 @@ const CopilotLicenses = () => {
           "Copilot Lizenzvergleich",
           "Microsoft AI Lizenzen",
           "Copilot Business",
-          "Copilot Enterprise"
+          "Copilot Enterprise",
+          "Copilot Kosten",
+          "Microsoft Copilot Preise",
+          "Copilot Lizenzmodell Unternehmen",
+          "M365 Copilot Lizenz"
         ]}
-        canonicalUrl="https://copilotenschule.de/microsoft-copilot-lizenzen"
+        canonicalUrl="https://copilotenschule.de/wissen/microsoft-copilot-lizenzen"
         schema={schema}
         author={martinLang}
         publishedTime="2025-01-06T09:00:00+01:00"
-        modifiedTime="2025-11-07T11:00:00+01:00"
+        modifiedTime="2026-02-02T10:00:00+01:00"
       />
 
       <ContentLayout
         breadcrumbs={[
           { label: "Wissen", href: "/wissen" },
-          { label: "Microsoft Copilot Lizenzen", href: "/microsoft-copilot-lizenzen" }
+          { label: "Microsoft Copilot Lizenzen", href: "/wissen/microsoft-copilot-lizenzen" }
         ]}
-        title="Microsoft Copilot Lizenzen: Kompletter Überblick und Vergleich 2025"
+        title="Microsoft Copilot Lizenzen 2026: Preise, Vergleich & Empfehlungen"
         description="Welche Microsoft Copilot Lizenz benötigen Sie? Umfassender Vergleich aller Lizenzmodelle für Microsoft 365 Copilot, GitHub Copilot und Copilot Studio."
-        lastUpdated="07. November 2025"
+        lastUpdated="02. Februar 2026"
         readTime="8 Minuten"
         tableOfContents={tableOfContents}
       >
