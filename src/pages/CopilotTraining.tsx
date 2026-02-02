@@ -54,6 +54,10 @@ const CopilotTraining = () => {
     {
       name: "Sollten wir alle Mitarbeiter gleichzeitig oder in Wellen schulen?",
       answer: "Wellen-Rollout ist strategisch besser: Starten Sie mit einer Pilotgruppe von 20-50 motivierten Nutzern, lernen Sie aus deren Feedback, optimieren Sie Materialien, und skalieren Sie dann abteilungsweise. So vermeiden Sie, dass 500 Mitarbeiter gleichzeitig dieselben Anfängerfehler machen und den Support überlasten."
+    },
+    {
+      name: "Bieten Sie auch Prüfungen und Zertifikate für Copilot-Trainings an?",
+      answer: "Ja, die Copilotenschule bietet maßgeschneiderte Quizze und Prüfungen, bei denen Teilnehmer aktiv beweisen müssen, dass sie das Gelernte verstanden haben – keine Multiple-Choice-Tests, sondern praxisnahe Aufgaben. Nach bestandener Prüfung erhalten sowohl die Mitarbeiter als auch das Unternehmen ein offizielles Zertifikat. Wir bieten auch aufeinander aufbauende Zertifizierungsstufen wie 'Copilot in der Praxis I-IV' (Beginner bis Expert), die einen strukturierten Kompetenzaufbau ermöglichen. Das gibt Unternehmen Investitionssicherheit und Mitarbeitern einen handfesten Nachweis ihrer KI-Fähigkeiten."
     }
   ];
 

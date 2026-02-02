@@ -194,6 +194,21 @@ const moduleCategories: ModuleCategory[] = [
       { id: "follow-up", title: "Follow-up Sessions: Refresher-Trainings, Coaching, kontinuierliche Begleitung", tiers: ["free", "paid"], category: "individual" },
     ]
   },
+  {
+    id: "certification",
+    title: "Prüfungen & Zertifizierungen",
+    description: "Customized Quizze, Prüfungen und aufbauende Zertifizierungsprogramme für nachweisbare Kompetenz",
+    modules: [
+      { id: "custom-quiz", title: "Customized Quiz: Individuelle Wissenstests mit praxisnahen Fragen", tiers: ["free", "paid"], category: "certification" },
+      { id: "hands-on-exam", title: "Hands-On-Prüfung: Praktische Aufgaben mit echtem Copilot-Einsatz", tiers: ["free", "paid"], category: "certification" },
+      { id: "cert-foundation", title: "Zertifikat 'Copilot in der Praxis I – Foundation' (Beginner)", tiers: ["free", "paid"], category: "certification" },
+      { id: "cert-advanced", title: "Zertifikat 'Copilot in der Praxis II – Advanced'", tiers: ["paid"], category: "certification" },
+      { id: "cert-professional", title: "Zertifikat 'Copilot in der Praxis III – Professional' (Pro)", tiers: ["paid"], category: "certification" },
+      { id: "cert-expert", title: "Zertifikat 'Copilot in der Praxis IV – Expert'", tiers: ["paid"], category: "certification" },
+      { id: "company-report", title: "Unternehmens-Report: Kompetenz-Übersicht aller zertifizierten Mitarbeiter", tiers: ["free", "paid"], category: "certification" },
+      { id: "eu-ai-act-cert", title: "EU AI Act Compliance-Zertifikat: Nachweis gemäß Artikel 4 KI-Kompetenz", tiers: ["free", "paid"], category: "certification" },
+    ]
+  },
 ];
 
 // Alle Module flach für einfache Suche

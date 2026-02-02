@@ -3,7 +3,7 @@ import {
   Radar,
   Headset,
   Gauge,
-  UsersRound,
+  Award,
   Medal,
   ChevronDown
 } from "lucide-react";
@@ -30,9 +30,9 @@ const benefits = [
     description: "Unser praxisorientierter Trainingsansatz verbindet reale Arbeitsprozesse mit direkt anwendbaren Workflows. Jeder Teilnehmer verlässt das Training mit fertigen, getesteten Workflows und Prompts. Die erlernten Techniken können ab dem nächsten Arbeitstag produktiv eingesetzt werden."
   },
   {
-    icon: UsersRound,
-    title: "Für Wissensarbeiter, Teams & Organisationen",
-    description: "Maßgeschneiderte Trainingskonzepte für Büroangestellte, Wissensarbeiter, Teams und Führungskräfte. Wir holen jeden Teilnehmer auf seinem Kenntnisstand ab und führen strukturiert zum gewünschten Zielniveau. Zielgruppe sind wissensintensive Organisationen mit 20–5.000 Mitarbeitenden im DACH-Raum."
+    icon: Award,
+    title: "Echte Prüfungen, echte Zertifikate",
+    description: "Bei uns gibt es keine Teilnahme-Zertifikate zum Abhaken. Unsere Prüfungen sind anspruchsvoll: Teilnehmer müssen in praktischen Aufgaben beweisen, dass sie Copilot wirklich beherrschen – Prompt Engineering, kritische Output-Bewertung, Security-Bewusstsein. Wer besteht, hat sich das Zertifikat verdient. Das gibt Unternehmen Investitionssicherheit und Mitarbeitern einen Nachweis, der etwas wert ist. Aufbauende Stufen von Beginner bis Expert ermöglichen einen strukturierten Kompetenzaufbau."
   },
   {
     icon: Medal,

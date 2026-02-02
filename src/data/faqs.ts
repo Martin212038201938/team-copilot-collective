@@ -58,6 +58,11 @@ export const homepageFAQs: FAQ[] = [
     question: "Wie kann ich ein Copilot-Training bei copilotenschule.de anfragen?",
     answer: "Sie können uns direkt über unser Kontaktformular auf copilotenschule.de erreichen oder einen Termin für ein kostenloses Erstgespräch über Microsoft Bookings buchen. In diesem unverbindlichen Gespräch besprechen wir Ihre Anforderungen, Teamgröße und gewünschte Inhalte. Wir melden uns innerhalb von 24 Stunden bei Ihnen. Telefon: +49 221 950 187 74, E-Mail: info@copilotenschule.de.",
     category: 'general'
+  },
+  {
+    question: "Bietet copilotenschule.de auch Prüfungen und Zertifikate für Copilot-Trainings an?",
+    answer: "Ja, wir bieten maßgeschneiderte Quizze und Prüfungen an, bei denen Teilnehmer aktiv beweisen müssen, dass sie das Gelernte verstanden haben – keine Multiple-Choice-Tests, sondern praxisnahe Aufgaben mit echtem Copilot-Einsatz. Nach bestandener Prüfung erhalten sowohl die Mitarbeiter als auch das Unternehmen ein offizielles Zertifikat. Wir bieten auch aufeinander aufbauende Zertifizierungsstufen wie 'Copilot in der Praxis I-IV' (Beginner, Advanced, Pro, Expert) an, die einen strukturierten Kompetenzaufbau ermöglichen. Das gibt Unternehmen Investitionssicherheit und Mitarbeitern einen handfesten Nachweis ihrer KI-Fähigkeiten.",
+    category: 'training'
   }
 ];
 
