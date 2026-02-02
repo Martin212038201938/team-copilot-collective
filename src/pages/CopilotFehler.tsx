@@ -154,6 +154,12 @@ const CopilotFehler = () => {
             zu definieren.
           </p>
 
+          <blockquote className="my-6 border-l-4 border-primary bg-primary/5 p-6 rounded-r-lg italic text-lg">
+            "Governance ist kein Bremsklotz, sondern die Voraussetzung für Skalierung. Wer ohne Regeln startet,
+            baut technische und rechtliche Schulden auf, die später teuer werden – oft in Form von Datenschutzvorfällen
+            oder einem vollständigen Rollback."
+          </blockquote>
+
           <Card className="my-6 border-l-4 border-l-red-500">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-lg">
@@ -232,6 +238,13 @@ const CopilotFehler = () => {
             Copilot wird ausgerollt, aber Nutzer wissen nicht, wie sie es effektiv und sicher einsetzen können.
           </p>
 
+          <blockquote className="my-6 border-l-4 border-primary bg-primary/5 p-6 rounded-r-lg italic text-lg">
+            "Die Mitarbeiter nicht professionell schulen ist der teuerste Fehler. Der Einstieg scheint niederschwellig,
+            aber die veränderte Arbeitsweise ist so tiefgreifend, dass man das nicht einer externen Taskforce und
+            einigen Interessierten überlassen kann. Ohne systematisches Training zahlen Sie für Lizenzen,
+            die niemand nutzt."
+          </blockquote>
+
           <Card className="my-6 border-l-4 border-l-orange-500">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-lg">
@@ -303,6 +316,12 @@ const CopilotFehler = () => {
           <p>
             Mitarbeiter geben unbewusst vertrauliche Informationen in Prompts ein, die dann für andere zugänglich werden können.
           </p>
+
+          <blockquote className="my-6 border-l-4 border-primary bg-primary/5 p-6 rounded-r-lg italic text-lg">
+            "Copilot macht Ihre bestehenden Berechtigungsprobleme sichtbar – und verstärkt sie. Wer vor dem Rollout
+            nicht aufräumt, gibt jedem Mitarbeiter einen Turbo-Suchmodus für alle Daten, auf die er Zugriff hat.
+            Die meisten Unternehmen unterschätzen massiv, wie weitreichend ihre SharePoint-Berechtigungen gewachsen sind."
+          </blockquote>
 
           <Card className="my-6 border-l-4 border-l-red-500">
             <CardHeader>
@@ -407,6 +426,12 @@ const CopilotFehler = () => {
             führt zu Fehlentscheidungen.
           </p>
 
+          <blockquote className="my-6 border-l-4 border-primary bg-primary/5 p-6 rounded-r-lg italic text-lg">
+            "Das Gefährliche an Halluzinationen: Sie klingen absolut überzeugend. Ein Copilot-generierter Text
+            über DSGVO-Artikel 55 liest sich wie vom Anwalt – ist aber komplett falsch. Ohne geschulte Mitarbeiter,
+            die wissen, dass sie IMMER kritisch prüfen müssen, werden diese Fehler zu Unternehmensrisiken."
+          </blockquote>
+
           <Card className="my-6 border-l-4 border-l-yellow-500">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-lg">
@@ -499,6 +524,12 @@ const CopilotFehler = () => {
           <p>
             Besonders in Deutschland: DSGVO, Betriebsrat, Branchenspezifische Regulations (BAFIN, MDR) werden übersehen.
           </p>
+
+          <blockquote className="my-6 border-l-4 border-primary bg-primary/5 p-6 rounded-r-lg italic text-lg">
+            "In Deutschland können Sie Copilot nicht einfach 'einschalten'. Betriebsrat, Datenschutzbeauftragter,
+            eventuell Branchenregulierung – das sind keine Formalitäten, sondern echte Hürden. Wer den Betriebsrat
+            übergeht, riskiert eine einstweilige Verfügung und muss alles wieder abschalten."
+          </blockquote>
 
           <Card className="my-6 border-l-4 border-l-purple-500">
             <CardHeader>
@@ -599,6 +630,12 @@ const CopilotFehler = () => {
             70% der Copilot-Implementierungen scheitern an mangelnder Nutzer-Akzeptanz, nicht an Technologie.
           </p>
 
+          <blockquote className="my-6 border-l-4 border-primary bg-primary/5 p-6 rounded-r-lg italic text-lg">
+            "Copilot verändert nicht nur Werkzeuge, sondern Arbeitsweisen. Das ist keine IT-Einführung,
+            das ist ein Kulturwandel. Unternehmen, die das wie ein Software-Update behandeln, wundern sich,
+            warum nach sechs Monaten 80% der Lizenzen brach liegen."
+          </blockquote>
+
           <Card className="my-6 border-l-4 border-l-blue-500">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-lg">
@@ -667,6 +704,12 @@ const CopilotFehler = () => {
           <p>
             Ohne messbare Ziele ist Erfolg nicht bewertbar. Copilot wird zum "Nice-to-have" ohne Business Impact.
           </p>
+
+          <blockquote className="my-6 border-l-4 border-primary bg-primary/5 p-6 rounded-r-lg italic text-lg">
+            "'500 Lizenzen aktiviert' ist keine Erfolgsmeldung – das ist eine Kostenstelle. Ohne definierte
+            Metriken VOR dem Rollout können Sie später nicht beweisen, ob sich die Investition gelohnt hat.
+            Und ohne Beweise wird Copilot beim nächsten Budget-Review als erstes gestrichen."
+          </blockquote>
 
           <Card className="my-6 border-l-4 border-l-green-500">
             <CardHeader>
