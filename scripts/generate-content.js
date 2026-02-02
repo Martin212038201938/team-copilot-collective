@@ -1086,7 +1086,10 @@ async function createMode(rl, question) {
   console.log('1. Überprüfe die generierte Komponente');
   console.log('2. Teste die Vorschau im Admin-Dashboard');
   console.log('3. Passe bei Bedarf Details an');
-  console.log('4. Commit und Push zum Repository');
+  console.log('4. ⚠️  WICHTIG FÜR PRE-RENDERING:');
+  console.log(`   → Füge Route zu package.json hinzu: "reactSnap.include": [..., "/wissen/${metadata.slug}"]`);
+  console.log('   → Prüfe nach Deploy mit view-source: ob Meta-Tags im HTML sind');
+  console.log('5. Commit und Push zum Repository');
 }
 
 /**
@@ -1196,17 +1199,13 @@ async function editMode(rl, question) {
     }
 
     console.log('\n🎉 Artikel erfolgreich bearbeitet und gespeichert!');
+    console.log('\n⚠️  PRE-RENDERING: Stelle sicher, dass die Route in package.json reactSnap.include steht!');
   } else {
     console.log('\n❌ Änderungen wurden NICHT gespeichert');
   }
 
   // Show cost statistics
   showStatistics();
-
-  console.log('\nNächste Schritte:');
-  console.log('1. Überprüfe die überarbeitete Komponente');
-  console.log('2. Teste die Vorschau im Admin-Dashboard');
-  console.log('3. Commit und Push zum Repository');
 }
 
 /**
