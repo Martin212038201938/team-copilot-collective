@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import TrainerContactForm from "@/components/TrainerContactForm";
+import SEOHead from "@/components/SEOHead";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { GraduationCap, Briefcase, Building2, Check, ChevronDown, ChevronUp } from "lucide-react";
@@ -70,6 +71,11 @@ const BecomeTrainer = () => {
 
   return (
     <div className="min-h-screen">
+      <SEOHead
+        title="Trainer werden bei copilotenschule.de"
+        description="Werden Sie Teil unseres Trainer-Netzwerks für Microsoft Copilot Schulungen. Drei Wege zum Trainer: KI-Praktiker, erfahrene Trainer oder Unternehmen."
+        canonicalUrl="https://copilotenschule.de/trainer-werden"
+      />
       <Header />
       <main className="pt-16">
         {/* Hero Section */}

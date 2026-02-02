@@ -1,9 +1,15 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SEOHead from "@/components/SEOHead";
 
 const Impressum = () => {
   return (
     <div className="min-h-screen">
+      <SEOHead
+        title="Impressum & Datenschutz"
+        description="Impressum und Datenschutzerklärung von copilotenschule.de - Eine Marke der Yellow-Boat Consulting. Rechtliche Informationen und Kontaktdaten."
+        canonicalUrl="https://copilotenschule.de/impressum"
+      />
       <Header />
       <main className="pt-24 pb-16">
         <div className="container mx-auto px-4 max-w-4xl">
