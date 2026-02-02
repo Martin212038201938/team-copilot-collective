@@ -27,6 +27,30 @@ const PromptEngineering = () => {
     { name: "Prompt Engineering", url: "https://copilotenschule.de/prompt-engineering" }
   ]);
 
+  // FAQ-Daten für Schema und Anzeige
+  const faqs = [
+    {
+      name: "Was macht einen guten Prompt aus?",
+      answer: "Ein guter Prompt ist spezifisch, kontextreich, strukturiert und gibt klare Anweisungen. Er enthält relevante Details, definiert das gewünschte Format und nutzt Beispiele wo sinnvoll."
+    },
+    {
+      name: "Wie lang sollte ein Prompt sein?",
+      answer: "Die optimale Länge hängt von der Aufgabe ab. Einfache Aufgaben: 1-2 Sätze. Komplexe Aufgaben: Mehrere Absätze mit Details. Wichtiger als Länge ist Klarheit und Relevanz."
+    },
+    {
+      name: "Funktionieren Prompts in allen Sprachen?",
+      answer: "Ja, Microsoft Copilot unterstützt mehrere Sprachen. Die beste Performance wird in Englisch erzielt, aber Deutsch funktioniert ebenfalls sehr gut. Konsistenz innerhalb eines Prompts ist wichtig."
+    },
+    {
+      name: "Wie lerne ich Prompt Engineering?",
+      answer: "Durch Praxis und Iteration. Starten Sie mit einfachen Prompts, analysieren Sie die Ergebnisse, verfeinern Sie schrittweise. Nutzen Sie Prompt-Templates und lernen Sie von Beispielen."
+    },
+    {
+      name: "Gibt es Prompt-Templates?",
+      answer: "Ja, es gibt viele bewährte Prompt-Templates für häufige Aufgaben wie Zusammenfassungen, Analysen, Codegenerierung und Content-Erstellung. Diese Seite bietet eine Prompt-Bibliothek zum Start."
+    }
+  ];
+
   // Kombiniertes Schema mit @graph (Article, FAQ, Breadcrumb)
   const schema = {
     "@context": "https://schema.org",
@@ -50,48 +74,14 @@ const PromptEngineering = () => {
       {
         "@type": "FAQPage",
         "@id": "https://copilotenschule.de/prompt-engineering#faq",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "Was macht einen guten Prompt aus?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Ein guter Prompt ist spezifisch, kontextreich, strukturiert und gibt klare Anweisungen. Er enthält relevante Details, definiert das gewünschte Format und nutzt Beispiele wo sinnvoll."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Wie lang sollte ein Prompt sein?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Die optimale Länge hängt von der Aufgabe ab. Einfache Aufgaben: 1-2 Sätze. Komplexe Aufgaben: Mehrere Absätze mit Details. Wichtiger als Länge ist Klarheit und Relevanz."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Funktionieren Prompts in allen Sprachen?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Ja, Microsoft Copilot unterstützt mehrere Sprachen. Die beste Performance wird in Englisch erzielt, aber Deutsch funktioniert ebenfalls sehr gut. Konsistenz innerhalb eines Prompts ist wichtig."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Wie lerne ich Prompt Engineering?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Durch Praxis und Iteration. Starten Sie mit einfachen Prompts, analysieren Sie die Ergebnisse, verfeinern Sie schrittweise. Nutzen Sie Prompt-Templates und lernen Sie von Beispielen."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Gibt es Prompt-Templates?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Ja, es gibt viele bewährte Prompt-Templates für häufige Aufgaben wie Zusammenfassungen, Analysen, Codegenerierung und Content-Erstellung. Diese Seite bietet eine Prompt-Bibliothek zum Start."
-            }
+        "mainEntity": faqs.map(faq => ({
+          "@type": "Question",
+          "name": faq.name,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": faq.answer
           }
-        ]
+        }))
       },
       breadcrumbSchema
     ]
@@ -495,13 +485,13 @@ const PromptEngineering = () => {
           <h2>Häufig gestellte Fragen (FAQ)</h2>
 
           <div className="space-y-4 my-6">
-            {faqSchema.mainEntity.map((faq: any, idx: number) => (
+            {faqs.map((faq, idx) => (
               <Card key={idx} className="hover:shadow-lg transition-shadow">
                 <CardHeader>
                   <CardTitle className="text-lg font-semibold">{faq.name}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">{faq.acceptedAnswer.text}</p>
+                  <p className="text-muted-foreground">{faq.answer}</p>
                 </CardContent>
               </Card>
             ))}

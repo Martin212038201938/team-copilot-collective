@@ -27,6 +27,30 @@ const KIAgenten = () => {
     { name: "KI-Agenten", url: "https://copilotenschule.de/ki-agenten" }
   ]);
 
+  // FAQ-Daten für Schema und Anzeige
+  const faqs = [
+    {
+      name: "Was ist der Unterschied zwischen Chatbot und Agent?",
+      answer: "Chatbots reagieren auf Anfragen mit vordefinierten Antworten. KI-Agenten sind autonom, treffen Entscheidungen, nutzen Tools und führen mehrstufige Workflows aus. Agenten können Ziele eigenständig erreichen."
+    },
+    {
+      name: "Welche Tools brauche ich für KI-Agenten?",
+      answer: "Microsoft Copilot Studio, Power Automate für Workflows, Azure für APIs und optional Power Platform Dataverse. Alles ist in Microsoft 365 bzw. Azure verfügbar."
+    },
+    {
+      name: "Können Agenten auf Unternehmensdaten zugreifen?",
+      answer: "Ja, mit entsprechenden Berechtigungen. Agenten können auf SharePoint, OneDrive, Datenbanken und APIs zugreifen. Die Zugriffe werden über Azure AD und RBAC gesteuert."
+    },
+    {
+      name: "Wie sicher sind KI-Agenten?",
+      answer: "KI-Agenten in Microsoft-Umgebungen unterliegen Enterprise-Security: Azure AD, RBAC, Audit Logs, Verschlüsselung. Sie haben nur Zugriff auf explizit freigegebene Ressourcen."
+    },
+    {
+      name: "Was kosten KI-Agenten im Betrieb?",
+      answer: "Kosten setzen sich zusammen aus: Copilot Studio Lizenz (ab 200 USD/Monat), Message Credits (nutzungsbasiert), Power Automate Flows und ggf. Azure-Dienste. Pilot-Projekte starten oft unter 500 USD/Monat."
+    }
+  ];
+
   // Kombiniertes Schema mit @graph (Article, FAQ, Breadcrumb)
   const schema = {
     "@context": "https://schema.org",
@@ -50,48 +74,14 @@ const KIAgenten = () => {
       {
         "@type": "FAQPage",
         "@id": "https://copilotenschule.de/ki-agenten#faq",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "Was ist der Unterschied zwischen Chatbot und Agent?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Chatbots reagieren auf Anfragen mit vordefinierten Antworten. KI-Agenten sind autonom, treffen Entscheidungen, nutzen Tools und führen mehrstufige Workflows aus. Agenten können Ziele eigenständig erreichen."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Welche Tools brauche ich für KI-Agenten?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Microsoft Copilot Studio, Power Automate für Workflows, Azure für APIs und optional Power Platform Dataverse. Alles ist in Microsoft 365 bzw. Azure verfügbar."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Können Agenten auf Unternehmensdaten zugreifen?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Ja, mit entsprechenden Berechtigungen. Agenten können auf SharePoint, OneDrive, Datenbanken und APIs zugreifen. Die Zugriffe werden über Azure AD und RBAC gesteuert."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Wie sicher sind KI-Agenten?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "KI-Agenten in Microsoft-Umgebungen unterliegen Enterprise-Security: Azure AD, RBAC, Audit Logs, Verschlüsselung. Sie haben nur Zugriff auf explizit freigegebene Ressourcen."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Was kosten KI-Agenten im Betrieb?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Kosten setzen sich zusammen aus: Copilot Studio Lizenz (ab 200 USD/Monat), Message Credits (nutzungsbasiert), Power Automate Flows und ggf. Azure-Dienste. Pilot-Projekte starten oft unter 500 USD/Monat."
-            }
+        "mainEntity": faqs.map(faq => ({
+          "@type": "Question",
+          "name": faq.name,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": faq.answer
           }
-        ]
+        }))
       },
       breadcrumbSchema
     ]
@@ -545,13 +535,13 @@ const KIAgenten = () => {
           <h2>Häufig gestellte Fragen (FAQ)</h2>
 
           <div className="space-y-4 my-6">
-            {faqSchema.mainEntity.map((faq: any, idx: number) => (
+            {faqs.map((faq, idx) => (
               <Card key={idx} className="hover:shadow-lg transition-shadow">
                 <CardHeader>
                   <CardTitle className="text-lg font-semibold">{faq.name}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">{faq.acceptedAnswer.text}</p>
+                  <p className="text-muted-foreground">{faq.answer}</p>
                 </CardContent>
               </Card>
             ))}

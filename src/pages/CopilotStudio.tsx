@@ -27,6 +27,30 @@ const CopilotStudio = () => {
     { name: "Copilot Studio", url: "https://copilotenschule.de/copilot-studio" }
   ]);
 
+  // FAQ-Daten für Schema und Anzeige
+  const faqs = [
+    {
+      name: "Was kann ich mit Copilot Studio erstellen?",
+      answer: "Mit Copilot Studio erstellen Sie Custom Copilots, Chatbots, KI-Agenten, Plugins für Microsoft 365 Copilot, automatisierte Workflows und intelligente Assistenten für spezifische Business-Prozesse."
+    },
+    {
+      name: "Brauche ich Programmierkenntnisse?",
+      answer: "Nein, Copilot Studio ist eine Low-Code-Plattform mit visuellem Designer. Für erweiterte Funktionen können Sie optional Code hinzufügen, aber die Grundfunktionen sind ohne Programmierung nutzbar."
+    },
+    {
+      name: "Wie integriere ich eigene Daten?",
+      answer: "Sie können SharePoint, OneDrive, Datenbanken, APIs, Power Platform Dataverse und andere Datenquellen direkt anbinden. Copilot Studio bietet vorgefertigte Konnektoren für gängige Systeme."
+    },
+    {
+      name: "Was kostet Copilot Studio?",
+      answer: "Copilot Studio ist in Microsoft 365 Copilot enthalten (begrenzt auf 25 Nachrichten/Nutzer/Monat) oder als Standalone-Lizenz ab 200 USD/Monat pro Tenant verfügbar, plus nutzungsbasierte Message Credits."
+    },
+    {
+      name: "Ist Copilot Studio DSGVO-konform?",
+      answer: "Ja, Copilot Studio entspricht allen Microsoft-Datenschutzstandards und ist DSGVO-konform. Daten werden in EU-Rechenzentren verarbeitet und unterliegen Enterprise-Grade Security."
+    }
+  ];
+
   // Kombiniertes Schema mit @graph (Article, FAQ, Breadcrumb)
   const schema = {
     "@context": "https://schema.org",
@@ -50,48 +74,14 @@ const CopilotStudio = () => {
       {
         "@type": "FAQPage",
         "@id": "https://copilotenschule.de/copilot-studio#faq",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "Was kann ich mit Copilot Studio erstellen?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Mit Copilot Studio erstellen Sie Custom Copilots, Chatbots, KI-Agenten, Plugins für Microsoft 365 Copilot, automatisierte Workflows und intelligente Assistenten für spezifische Business-Prozesse."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Brauche ich Programmierkenntnisse?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Nein, Copilot Studio ist eine Low-Code-Plattform mit visuellem Designer. Für erweiterte Funktionen können Sie optional Code hinzufügen, aber die Grundfunktionen sind ohne Programmierung nutzbar."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Wie integriere ich eigene Daten?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Sie können SharePoint, OneDrive, Datenbanken, APIs, Power Platform Dataverse und andere Datenquellen direkt anbinden. Copilot Studio bietet vorgefertigte Konnektoren für gängige Systeme."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Was kostet Copilot Studio?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Copilot Studio ist in Microsoft 365 Copilot enthalten (begrenzt auf 25 Nachrichten/Nutzer/Monat) oder als Standalone-Lizenz ab 200 USD/Monat pro Tenant verfügbar, plus nutzungsbasierte Message Credits."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Ist Copilot Studio DSGVO-konform?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Ja, Copilot Studio entspricht allen Microsoft-Datenschutzstandards und ist DSGVO-konform. Daten werden in EU-Rechenzentren verarbeitet und unterliegen Enterprise-Grade Security."
-            }
+        "mainEntity": faqs.map(faq => ({
+          "@type": "Question",
+          "name": faq.name,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": faq.answer
           }
-        ]
+        }))
       },
       breadcrumbSchema
     ]
@@ -468,13 +458,13 @@ const CopilotStudio = () => {
           <h2>Häufig gestellte Fragen (FAQ)</h2>
 
           <div className="space-y-4 my-6">
-            {faqSchema.mainEntity.map((faq: any, idx: number) => (
+            {faqs.map((faq, idx) => (
               <Card key={idx} className="hover:shadow-lg transition-shadow">
                 <CardHeader>
                   <CardTitle className="text-lg font-semibold">{faq.name}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">{faq.acceptedAnswer.text}</p>
+                  <p className="text-muted-foreground">{faq.answer}</p>
                 </CardContent>
               </Card>
             ))}

@@ -27,6 +27,34 @@ const CopilotFehler = () => {
     { name: "Copilot-Fehler vermeiden", url: "https://copilotenschule.de/copilot-fehler-vermeiden" }
   ]);
 
+  // FAQ-Daten für Schema und Anzeige
+  const faqs = [
+    {
+      name: "Was ist der häufigste Fehler bei der Copilot-Einführung?",
+      answer: "Der häufigste Fehler ist unzureichendes Training der Mitarbeiter. Viele Unternehmen aktivieren Copilot ohne Schulung, was zu Frustration, falscher Nutzung und mangelnder Akzeptanz führt."
+    },
+    {
+      name: "Wie verhindere ich Oversharing sensibler Daten?",
+      answer: "Implementieren Sie klare Data Governance Richtlinien, nutzen Sie Sensitivity Labels, aktivieren Sie DLP-Policies und schulen Sie Mitarbeiter im Umgang mit vertraulichen Informationen."
+    },
+    {
+      name: "Sind Copilot-Antworten immer korrekt?",
+      answer: "Nein. KI-Modelle können Halluzinationen erzeugen - plausibel klingende, aber falsche Informationen. Kritische Überprüfung aller Copilot-Outputs ist essentiell, besonders bei Compliance-relevanten Themen."
+    },
+    {
+      name: "Ist Microsoft Copilot DSGVO-konform?",
+      answer: "Ja, Microsoft Copilot ist DSGVO-konform. Unternehmen müssen aber eigene Governance-Regeln implementieren: Datenschutz-Folgenabschätzungen, Mitarbeiter-Schulungen und klare Nutzungsrichtlinien."
+    },
+    {
+      name: "Wie lange dauert eine erfolgreiche Copilot-Einführung?",
+      answer: "Eine fundierte Einführung dauert 3-6 Monate: Pilotphase (4-6 Wochen), Training und Change Management (2-3 Monate), schrittweiser Rollout. Schnelle Aktivierung ohne Vorbereitung führt zu Problemen."
+    },
+    {
+      name: "Welche Rolle spielt Change Management?",
+      answer: "Change Management ist kritisch für Akzeptanz. Ohne klare Kommunikation, Champions-Programm und kontinuierliche Unterstützung scheitern 70% der Copilot-Projekte an mangelnder Nutzer-Adoption."
+    }
+  ];
+
   // Kombiniertes Schema mit @graph (Article, FAQ, Breadcrumb)
   const schema = {
     "@context": "https://schema.org",
@@ -50,56 +78,14 @@ const CopilotFehler = () => {
       {
         "@type": "FAQPage",
         "@id": "https://copilotenschule.de/copilot-fehler-vermeiden#faq",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "Was ist der häufigste Fehler bei der Copilot-Einführung?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Der häufigste Fehler ist unzureichendes Training der Mitarbeiter. Viele Unternehmen aktivieren Copilot ohne Schulung, was zu Frustration, falscher Nutzung und mangelnder Akzeptanz führt."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Wie verhindere ich Oversharing sensibler Daten?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Implementieren Sie klare Data Governance Richtlinien, nutzen Sie Sensitivity Labels, aktivieren Sie DLP-Policies und schulen Sie Mitarbeiter im Umgang mit vertraulichen Informationen."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Sind Copilot-Antworten immer korrekt?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Nein. KI-Modelle können Halluzinationen erzeugen - plausibel klingende, aber falsche Informationen. Kritische Überprüfung aller Copilot-Outputs ist essentiell, besonders bei Compliance-relevanten Themen."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Ist Microsoft Copilot DSGVO-konform?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Ja, Microsoft Copilot ist DSGVO-konform. Unternehmen müssen aber eigene Governance-Regeln implementieren: Datenschutz-Folgenabschätzungen, Mitarbeiter-Schulungen und klare Nutzungsrichtlinien."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Wie lange dauert eine erfolgreiche Copilot-Einführung?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Eine fundierte Einführung dauert 3-6 Monate: Pilotphase (4-6 Wochen), Training und Change Management (2-3 Monate), schrittweiser Rollout. Schnelle Aktivierung ohne Vorbereitung führt zu Problemen."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Welche Rolle spielt Change Management?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Change Management ist kritisch für Akzeptanz. Ohne klare Kommunikation, Champions-Programm und kontinuierliche Unterstützung scheitern 70% der Copilot-Projekte an mangelnder Nutzer-Adoption."
-            }
+        "mainEntity": faqs.map(faq => ({
+          "@type": "Question",
+          "name": faq.name,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": faq.answer
           }
-        ]
+        }))
       },
       breadcrumbSchema
     ]
@@ -896,13 +882,13 @@ const CopilotFehler = () => {
           <h2>Häufig gestellte Fragen (FAQ)</h2>
 
           <div className="space-y-4 my-6">
-            {faqSchema.mainEntity.map((faq: any, idx: number) => (
+            {faqs.map((faq, idx) => (
               <Card key={idx} className="hover:shadow-lg transition-shadow">
                 <CardHeader>
                   <CardTitle className="text-lg font-semibold">{faq.name}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">{faq.acceptedAnswer.text}</p>
+                  <p className="text-muted-foreground">{faq.answer}</p>
                 </CardContent>
               </Card>
             ))}

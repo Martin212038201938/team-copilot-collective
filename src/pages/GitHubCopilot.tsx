@@ -27,6 +27,30 @@ const GitHubCopilot = () => {
     { name: "GitHub Copilot", url: "https://copilotenschule.de/github-copilot" }
   ]);
 
+  // FAQ-Daten für Schema und Anzeige
+  const faqs = [
+    {
+      name: "Welche Programmiersprachen unterstützt GitHub Copilot?",
+      answer: "GitHub Copilot unterstützt Python, JavaScript, TypeScript, Ruby, Go, C++, C#, Java, PHP, Rust, Swift, Kotlin und viele weitere Sprachen. Die Qualität der Vorschläge ist bei JavaScript, Python und TypeScript am höchsten."
+    },
+    {
+      name: "Wie viel kostet GitHub Copilot?",
+      answer: "GitHub Copilot Individual kostet 10 USD/Monat, Business 19 USD pro Nutzer/Monat und Enterprise 39 USD pro Nutzer/Monat. Studenten und Open-Source-Maintainer erhalten kostenlosen Zugang."
+    },
+    {
+      name: "Ist mein Code sicher mit GitHub Copilot?",
+      answer: "Ja. GitHub Copilot Business und Enterprise verwenden Ihren Code nicht zum Training öffentlicher Modelle. Ihr Code bleibt privat und wird nicht mit anderen geteilt. GitHub bietet zudem IP-Indemnity-Schutz."
+    },
+    {
+      name: "Kann GitHub Copilot komplette Funktionen schreiben?",
+      answer: "Ja, GitHub Copilot kann ganze Funktionen basierend auf Kommentaren oder Funktionssignaturen generieren. Die Qualität hängt von der Klarheit Ihrer Beschreibung und dem Kontext im Code ab."
+    },
+    {
+      name: "Wie verbessere ich die Qualität der Copilot-Vorschläge?",
+      answer: "Schreiben Sie klare Kommentare, verwenden Sie aussagekräftige Variablennamen, strukturieren Sie Ihren Code gut und geben Sie Kontext durch bestehenden Code. Nutzen Sie auch Copilot Chat für komplexe Anfragen."
+    }
+  ];
+
   // Kombiniertes Schema mit @graph (Article, FAQ, Breadcrumb)
   const schema = {
     "@context": "https://schema.org",
@@ -50,48 +74,14 @@ const GitHubCopilot = () => {
       {
         "@type": "FAQPage",
         "@id": "https://copilotenschule.de/github-copilot#faq",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "Welche Programmiersprachen unterstützt GitHub Copilot?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "GitHub Copilot unterstützt Python, JavaScript, TypeScript, Ruby, Go, C++, C#, Java, PHP, Rust, Swift, Kotlin und viele weitere Sprachen. Die Qualität der Vorschläge ist bei JavaScript, Python und TypeScript am höchsten."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Wie viel kostet GitHub Copilot?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "GitHub Copilot Individual kostet 10 USD/Monat, Business 19 USD pro Nutzer/Monat und Enterprise 39 USD pro Nutzer/Monat. Studenten und Open-Source-Maintainer erhalten kostenlosen Zugang."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Ist mein Code sicher mit GitHub Copilot?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Ja. GitHub Copilot Business und Enterprise verwenden Ihren Code nicht zum Training öffentlicher Modelle. Ihr Code bleibt privat und wird nicht mit anderen geteilt. GitHub bietet zudem IP-Indemnity-Schutz."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Kann GitHub Copilot komplette Funktionen schreiben?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Ja, GitHub Copilot kann ganze Funktionen basierend auf Kommentaren oder Funktionssignaturen generieren. Die Qualität hängt von der Klarheit Ihrer Beschreibung und dem Kontext im Code ab."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Wie verbessere ich die Qualität der Copilot-Vorschläge?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Schreiben Sie klare Kommentare, verwenden Sie aussagekräftige Variablennamen, strukturieren Sie Ihren Code gut und geben Sie Kontext durch bestehenden Code. Nutzen Sie auch Copilot Chat für komplexe Anfragen."
-            }
+        "mainEntity": faqs.map(faq => ({
+          "@type": "Question",
+          "name": faq.name,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": faq.answer
           }
-        ]
+        }))
       },
       breadcrumbSchema
     ]
@@ -450,13 +440,13 @@ const GitHubCopilot = () => {
           <h2>Häufig gestellte Fragen (FAQ)</h2>
 
           <div className="space-y-4 my-6">
-            {faqSchema.mainEntity.map((faq: any, idx: number) => (
+            {faqs.map((faq, idx) => (
               <Card key={idx} className="hover:shadow-lg transition-shadow">
                 <CardHeader>
                   <CardTitle className="text-lg font-semibold">{faq.name}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">{faq.acceptedAnswer.text}</p>
+                  <p className="text-muted-foreground">{faq.answer}</p>
                 </CardContent>
               </Card>
             ))}
