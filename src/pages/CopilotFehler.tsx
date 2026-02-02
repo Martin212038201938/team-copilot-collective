@@ -3,10 +3,18 @@ import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Zap, AlertTriangle, Shield, Users, FileText, TrendingUp, Target } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
-import { generateBreadcrumbSchema } from "@/lib/schema";
+import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
+
+const SLUG = "copilot-fehler-vermeiden";
+const PAGE_TITLE = "Copilot-Fehler vermeiden";
 
 const CopilotFehler = () => {
   const martinLang = getAuthor('martin-lang')!;
+
+  // Schema IDs automatisch generieren
+  const ids = generateSchemaIds(SLUG, 'wissen');
+  const pageUrl = `https://copilotenschule.de/${SLUG}`;
+  const breadcrumbItems = generateWissenBreadcrumbItems(PAGE_TITLE, pageUrl);
 
   const tableOfContents = [
     { id: "fehler-1", title: "Fehler 1: Keine klare Governance", level: 2 },
@@ -19,13 +27,6 @@ const CopilotFehler = () => {
     { id: "checkliste", title: "Checkliste für erfolgreiche Einführung", level: 2 },
     { id: "faq", title: "Häufig gestellte Fragen", level: 2 }
   ];
-
-  // Breadcrumb Schema für Navigation
-  const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: "Startseite", url: "https://copilotenschule.de/" },
-    { name: "Wissen", url: "https://copilotenschule.de/wissen" },
-    { name: "Copilot-Fehler vermeiden", url: "https://copilotenschule.de/copilot-fehler-vermeiden" }
-  ]);
 
   // FAQ-Daten für Schema und Anzeige (kundenorientierte Fragen)
   const faqs = [
@@ -53,7 +54,7 @@ const CopilotFehler = () => {
     "@graph": [
       {
         "@type": "Article",
-        "@id": "https://copilotenschule.de/copilot-fehler-vermeiden#article",
+        "@id": ids.article,
         "headline": "Die 7 größten Fehler bei der Copilot-Einführung – und wie Sie sie vermeiden",
         "description": "Copilot-Implementierung ohne Risiko: Vermeiden Sie Oversharing, Halluzinationen und Compliance-Probleme. Konkrete Fehlerbeispiele und Gegenmaßnahmen für deutsche Unternehmen.",
         "author": getAuthorSchemaMarkup(martinLang),
@@ -64,12 +65,12 @@ const CopilotFehler = () => {
         "dateModified": "2025-11-07",
         "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": "https://copilotenschule.de/copilot-fehler-vermeiden"
+          "@id": pageUrl
         }
       },
       {
         "@type": "FAQPage",
-        "@id": "https://copilotenschule.de/copilot-fehler-vermeiden#faq",
+        "@id": ids.faq,
         "mainEntity": faqs.map(faq => ({
           "@type": "Question",
           "name": faq.name,
@@ -79,7 +80,16 @@ const CopilotFehler = () => {
           }
         }))
       },
-      breadcrumbSchema
+      {
+        "@type": "BreadcrumbList",
+        "@id": ids.breadcrumb,
+        "itemListElement": breadcrumbItems.map((item, index) => ({
+          "@type": "ListItem",
+          "position": index + 1,
+          "name": item.name,
+          "item": item.url
+        }))
+      }
     ]
   };
 
@@ -98,7 +108,7 @@ const CopilotFehler = () => {
           "Copilot Change Management",
           "Copilot Compliance"
         ]}
-        canonicalUrl="https://copilotenschule.de/copilot-fehler-vermeiden"
+        canonicalUrl={pageUrl}
         schema={schema}
         author={martinLang}
         publishedTime="2025-11-07T10:00:00+01:00"

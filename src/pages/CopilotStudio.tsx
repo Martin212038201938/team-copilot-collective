@@ -3,10 +3,18 @@ import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Check, Zap, Bot, Link as LinkIcon, Shield } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
-import { generateBreadcrumbSchema } from "@/lib/schema";
+import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
+
+const SLUG = "copilot-studio";
+const PAGE_TITLE = "Copilot Studio";
 
 const CopilotStudio = () => {
   const martinLang = getAuthor('martin-lang')!;
+
+  // Schema IDs automatisch generieren
+  const ids = generateSchemaIds(SLUG, 'wissen');
+  const pageUrl = `https://copilotenschule.de/${SLUG}`;
+  const breadcrumbItems = generateWissenBreadcrumbItems(PAGE_TITLE, pageUrl);
 
   const tableOfContents = [
     { id: "was-ist", title: "Was ist Microsoft Copilot Studio?", level: 2 },
@@ -19,13 +27,6 @@ const CopilotStudio = () => {
     { id: "lizenzierung", title: "Lizenzierung und Kosten", level: 2 },
     { id: "faq", title: "Häufig gestellte Fragen", level: 2 }
   ];
-
-  // Breadcrumb Schema für Navigation
-  const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: "Startseite", url: "https://copilotenschule.de/" },
-    { name: "Wissen", url: "https://copilotenschule.de/wissen" },
-    { name: "Copilot Studio", url: "https://copilotenschule.de/copilot-studio" }
-  ]);
 
   // FAQ-Daten für Schema und Anzeige (kundenorientierte Fragen)
   const faqs = [
@@ -53,7 +54,7 @@ const CopilotStudio = () => {
     "@graph": [
       {
         "@type": "Article",
-        "@id": "https://copilotenschule.de/copilot-studio#article",
+        "@id": ids.article,
         "headline": "Microsoft Copilot Studio: KI-Agenten und Custom Copilots erstellen",
         "description": "Copilot Studio Tutorial: Eigene KI-Agenten, Chatbots und Custom Copilots ohne Code erstellen. Low-Code Plattform für Unternehmen.",
         "author": getAuthorSchemaMarkup(martinLang),
@@ -64,12 +65,12 @@ const CopilotStudio = () => {
         "dateModified": "2025-11-07",
         "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": "https://copilotenschule.de/copilot-studio"
+          "@id": pageUrl
         }
       },
       {
         "@type": "FAQPage",
-        "@id": "https://copilotenschule.de/copilot-studio#faq",
+        "@id": ids.faq,
         "mainEntity": faqs.map(faq => ({
           "@type": "Question",
           "name": faq.name,
@@ -79,7 +80,16 @@ const CopilotStudio = () => {
           }
         }))
       },
-      breadcrumbSchema
+      {
+        "@type": "BreadcrumbList",
+        "@id": ids.breadcrumb,
+        "itemListElement": breadcrumbItems.map((item, index) => ({
+          "@type": "ListItem",
+          "position": index + 1,
+          "name": item.name,
+          "item": item.url
+        }))
+      }
     ]
   };
 
@@ -97,7 +107,7 @@ const CopilotStudio = () => {
           "Chatbot erstellen",
           "Microsoft 365 Plugins"
         ]}
-        canonicalUrl="https://copilotenschule.de/copilot-studio"
+        canonicalUrl={pageUrl}
         schema={schema}
         author={martinLang}
         publishedTime="2025-11-07T10:00:00+01:00"

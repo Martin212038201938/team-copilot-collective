@@ -11,6 +11,64 @@
 
 import { FAQ } from "@/data/faqs";
 
+// Base URL for schema IDs
+const BASE_URL = "https://copilotenschule.de";
+
+/**
+ * Schema ID types for different page types
+ */
+export interface SchemaIds {
+  article: string;  // For Article schema (or Course for trainings)
+  faq: string;      // For FAQPage schema
+  breadcrumb: string; // For BreadcrumbList schema
+}
+
+/**
+ * Generates unique @id strings for a page based on its slug and type
+ *
+ * @param slug - The page slug (e.g., "github-copilot", "copilot-studio")
+ * @param type - The page type: 'wissen' for knowledge pages, 'trainings' for training pages
+ * @returns Object with article, faq, and breadcrumb @id strings
+ *
+ * @example
+ * // Knowledge page
+ * generateSchemaIds("github-copilot", "wissen")
+ * // Returns: {
+ * //   article: "https://copilotenschule.de/github-copilot#article",
+ * //   faq: "https://copilotenschule.de/github-copilot#faq",
+ * //   breadcrumb: "https://copilotenschule.de/github-copilot#breadcrumb"
+ * // }
+ *
+ * @example
+ * // Training page
+ * generateSchemaIds("microsoft-365-copilot-grundlagen", "trainings")
+ * // Returns: {
+ * //   article: "https://copilotenschule.de/trainings/microsoft-365-copilot-grundlagen#course",
+ * //   faq: "https://copilotenschule.de/trainings/microsoft-365-copilot-grundlagen#faq",
+ * //   breadcrumb: "https://copilotenschule.de/trainings/microsoft-365-copilot-grundlagen#breadcrumb"
+ * // }
+ */
+export const generateSchemaIds = (slug: string, type: 'wissen' | 'trainings'): SchemaIds => {
+  const pageUrl = type === 'trainings'
+    ? `${BASE_URL}/trainings/${slug}`
+    : `${BASE_URL}/${slug}`;
+
+  return {
+    article: `${pageUrl}#${type === 'trainings' ? 'course' : 'article'}`,
+    faq: `${pageUrl}#faq`,
+    breadcrumb: `${pageUrl}#breadcrumb`
+  };
+};
+
+/**
+ * Generates the full page URL from slug and type
+ */
+export const getPageUrl = (slug: string, type: 'wissen' | 'trainings'): string => {
+  return type === 'trainings'
+    ? `${BASE_URL}/trainings/${slug}`
+    : `${BASE_URL}/${slug}`;
+};
+
 /**
  * Breadcrumb item type for navigation hierarchy
  */
@@ -79,15 +137,15 @@ export const generateFAQPageSchema = (faqs: FAQ[], pageUrl?: string) => {
  * Used by knowledge pages that define FAQs inline
  *
  * @param faqs - Array of FAQ objects with name and answer
- * @param pageUrl - Page URL for unique @id (e.g., "https://copilotenschule.de/wissen/copilot-roi-berechnen")
+ * @param faqId - The @id for the FAQPage (e.g., "https://copilotenschule.de/github-copilot#faq")
  */
 export const generateSimpleFAQSchema = (
   faqs: Array<{ name: string; answer: string }>,
-  pageUrl: string
+  faqId: string
 ) => {
   return {
     "@type": "FAQPage",
-    "@id": `${pageUrl}#faq`,
+    "@id": faqId,
     "mainEntity": faqs.map(faq => ({
       "@type": "Question",
       "name": faq.name,
@@ -96,6 +154,218 @@ export const generateSimpleFAQSchema = (
         "text": faq.answer
       }
     }))
+  };
+};
+
+/**
+ * Article schema configuration for knowledge pages
+ */
+export interface ArticleSchemaConfig {
+  headline: string;
+  description: string;
+  author: object;      // Author schema markup from getAuthorSchemaMarkup()
+  datePublished: string;
+  dateModified: string;
+  keywords?: string[];
+  articleSection?: string;
+}
+
+/**
+ * Generates Article Schema.org markup for knowledge pages
+ *
+ * @param config - Article configuration object
+ * @param ids - Schema IDs from generateSchemaIds()
+ * @param pageUrl - Full page URL
+ */
+export const generateArticleSchema = (
+  config: ArticleSchemaConfig,
+  ids: SchemaIds,
+  pageUrl: string
+) => {
+  return {
+    "@type": "Article",
+    "@id": ids.article,
+    "headline": config.headline,
+    "description": config.description,
+    "author": config.author,
+    "publisher": {
+      "@id": `${BASE_URL}/#organization`
+    },
+    "datePublished": config.datePublished,
+    "dateModified": config.dateModified,
+    ...(config.keywords && { "keywords": config.keywords }),
+    ...(config.articleSection && { "articleSection": config.articleSection }),
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": pageUrl
+    }
+  };
+};
+
+/**
+ * Course schema configuration for training pages
+ */
+export interface CourseSchemaConfig {
+  title: string;
+  description: string;
+  duration: string;
+  features: string[];
+  tiers: string[];
+}
+
+/**
+ * Generates Course Schema.org markup for training pages
+ *
+ * @param config - Course configuration object
+ * @param ids - Schema IDs from generateSchemaIds()
+ * @param pageUrl - Full page URL
+ */
+export const generateTrainingCourseSchema = (
+  config: CourseSchemaConfig,
+  ids: SchemaIds,
+  pageUrl: string
+) => {
+  return {
+    "@type": "Course",
+    "@id": ids.article, // Uses #course for trainings
+    "name": config.title,
+    "description": config.description,
+    "url": pageUrl,
+    "provider": {
+      "@id": `${BASE_URL}/#organization`
+    },
+    "instructor": {
+      "@id": `${BASE_URL}/#martin-lang`
+    },
+    "hasCourseInstance": {
+      "@type": "CourseInstance",
+      "courseMode": ["onsite", "online"],
+      "duration": config.duration,
+      "inLanguage": "de-DE"
+    },
+    "teaches": config.features.slice(0, 5).join(", "),
+    "coursePrerequisites": "Keine Vorkenntnisse erforderlich",
+    "educationalLevel": config.tiers.includes("free") ? "Beginner" : "Intermediate",
+    "inLanguage": "de-DE"
+  };
+};
+
+/**
+ * Generates breadcrumb items for knowledge pages
+ * Always includes: Startseite > Wissen > Article Name
+ */
+export const generateWissenBreadcrumbItems = (
+  articleName: string,
+  articleUrl: string
+): BreadcrumbItem[] => {
+  return [
+    { name: "Startseite", url: `${BASE_URL}/` },
+    { name: "Wissen", url: `${BASE_URL}/wissen` },
+    { name: articleName, url: articleUrl }
+  ];
+};
+
+/**
+ * Generates breadcrumb items for training pages
+ * Always includes: Startseite > Unsere Angebote > Training Name
+ */
+export const generateTrainingBreadcrumbItems = (
+  trainingName: string,
+  trainingUrl: string
+): BreadcrumbItem[] => {
+  return [
+    { name: "Startseite", url: `${BASE_URL}/` },
+    { name: "Unsere Angebote", url: `${BASE_URL}/unsere-angebote` },
+    { name: trainingName, url: trainingUrl }
+  ];
+};
+
+/**
+ * Generates complete @graph schema for a knowledge page
+ * Includes Article, FAQPage, and BreadcrumbList with unique @ids
+ *
+ * @param slug - Page slug (e.g., "github-copilot")
+ * @param articleConfig - Article schema configuration
+ * @param faqs - Array of FAQs with name and answer
+ * @param articleName - Display name for breadcrumb
+ */
+export const generateKnowledgePageSchema = (
+  slug: string,
+  articleConfig: ArticleSchemaConfig,
+  faqs: Array<{ name: string; answer: string }>,
+  articleName: string
+) => {
+  const ids = generateSchemaIds(slug, 'wissen');
+  const pageUrl = getPageUrl(slug, 'wissen');
+  const breadcrumbItems = generateWissenBreadcrumbItems(articleName, pageUrl);
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      generateArticleSchema(articleConfig, ids, pageUrl),
+      generateSimpleFAQSchema(faqs, ids.faq),
+      {
+        "@type": "BreadcrumbList",
+        "@id": ids.breadcrumb,
+        "itemListElement": breadcrumbItems.map((item, index) => ({
+          "@type": "ListItem",
+          "position": index + 1,
+          "name": item.name,
+          "item": item.url
+        }))
+      }
+    ]
+  };
+};
+
+/**
+ * Generates complete @graph schema for a training page
+ * Includes Course, FAQPage (if FAQs exist), and BreadcrumbList with unique @ids
+ *
+ * @param slug - Training slug (e.g., "microsoft-365-copilot-grundlagen")
+ * @param courseConfig - Course schema configuration
+ * @param faqs - Optional array of FAQs with question and answer
+ * @param trainingName - Display name for breadcrumb
+ */
+export const generateTrainingPageSchema = (
+  slug: string,
+  courseConfig: CourseSchemaConfig,
+  faqs: Array<{ question: string; answer: string }> | null,
+  trainingName: string
+) => {
+  const ids = generateSchemaIds(slug, 'trainings');
+  const pageUrl = getPageUrl(slug, 'trainings');
+  const breadcrumbItems = generateTrainingBreadcrumbItems(trainingName, pageUrl);
+
+  const faqSchema = faqs && faqs.length > 0 ? {
+    "@type": "FAQPage",
+    "@id": ids.faq,
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  } : null;
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      generateTrainingCourseSchema(courseConfig, ids, pageUrl),
+      {
+        "@type": "BreadcrumbList",
+        "@id": ids.breadcrumb,
+        "itemListElement": breadcrumbItems.map((item, index) => ({
+          "@type": "ListItem",
+          "position": index + 1,
+          "name": item.name,
+          "item": item.url
+        }))
+      },
+      ...(faqSchema ? [faqSchema] : [])
+    ]
   };
 };
 

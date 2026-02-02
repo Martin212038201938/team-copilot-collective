@@ -9,7 +9,7 @@ import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getTrainingBySlug, trainings } from "@/data/trainings";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
-import { generateBreadcrumbSchema } from "@/lib/schema";
+import { generateSchemaIds, generateTrainingBreadcrumbItems } from "@/lib/schema";
 
 const TrainingDetail = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -30,13 +30,18 @@ const TrainingDetail = () => {
   // Trainer-Profil
   const trainer = getAuthor('martin-lang');
 
+  // Schema IDs automatisch generieren aus dem Slug
+  const ids = generateSchemaIds(training.slug, 'trainings');
+  const pageUrl = `https://copilotenschule.de/trainings/${training.slug}`;
+  const breadcrumbItems = generateTrainingBreadcrumbItems(training.title, pageUrl);
+
   // Schema.org für SEO - Course mit instructor und provider
   const courseSchema = {
     "@type": "Course",
-    "@id": `https://copilotenschule.de/trainings/${training.slug}#course`,
+    "@id": ids.article, // Nutzt #course für Trainings
     "name": training.title,
     "description": training.description,
-    "url": `https://copilotenschule.de/trainings/${training.slug}`,
+    "url": pageUrl,
     "provider": {
       "@id": "https://copilotenschule.de/#organization"
     },
@@ -56,16 +61,21 @@ const TrainingDetail = () => {
   };
 
   // BreadcrumbList Schema für Navigation
-  const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: "Startseite", url: "https://copilotenschule.de/" },
-    { name: "Unsere Angebote", url: "https://copilotenschule.de/unsere-angebote" },
-    { name: training.title, url: `https://copilotenschule.de/trainings/${training.slug}` }
-  ]);
+  const breadcrumbSchema = {
+    "@type": "BreadcrumbList",
+    "@id": ids.breadcrumb,
+    "itemListElement": breadcrumbItems.map((item, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "name": item.name,
+      "item": item.url
+    }))
+  };
 
   // FAQPage Schema wenn FAQs vorhanden
   const faqSchema = training.faqs && training.faqs.length > 0 ? {
     "@type": "FAQPage",
-    "@id": `https://copilotenschule.de/trainings/${training.slug}#faq`,
+    "@id": ids.faq,
     "mainEntity": training.faqs.map(faq => ({
       "@type": "Question",
       "name": faq.question,

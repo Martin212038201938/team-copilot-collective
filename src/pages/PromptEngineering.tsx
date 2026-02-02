@@ -3,10 +3,18 @@ import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Zap, Lightbulb, Target, BookOpen } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
-import { generateBreadcrumbSchema } from "@/lib/schema";
+import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
+
+const SLUG = "prompt-engineering";
+const PAGE_TITLE = "Prompt Engineering";
 
 const PromptEngineering = () => {
   const martinLang = getAuthor('martin-lang')!;
+
+  // Schema IDs automatisch generieren
+  const ids = generateSchemaIds(SLUG, 'wissen');
+  const pageUrl = `https://copilotenschule.de/${SLUG}`;
+  const breadcrumbItems = generateWissenBreadcrumbItems(PAGE_TITLE, pageUrl);
 
   const tableOfContents = [
     { id: "was-ist", title: "Was ist Prompt Engineering?", level: 2 },
@@ -19,13 +27,6 @@ const PromptEngineering = () => {
     { id: "fehler", title: "Fehler beim Prompten vermeiden", level: 2 },
     { id: "faq", title: "Häufig gestellte Fragen", level: 2 }
   ];
-
-  // Breadcrumb Schema für Navigation
-  const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: "Startseite", url: "https://copilotenschule.de/" },
-    { name: "Wissen", url: "https://copilotenschule.de/wissen" },
-    { name: "Prompt Engineering", url: "https://copilotenschule.de/prompt-engineering" }
-  ]);
 
   // FAQ-Daten für Schema und Anzeige (kundenorientierte Fragen)
   const faqs = [
@@ -53,7 +54,7 @@ const PromptEngineering = () => {
     "@graph": [
       {
         "@type": "Article",
-        "@id": "https://copilotenschule.de/prompt-engineering#article",
+        "@id": ids.article,
         "headline": "Prompt Engineering: Effektive KI-Prompts für Microsoft Copilot",
         "description": "Prompt Engineering Masterclass: Bessere Ergebnisse mit Microsoft Copilot durch optimierte Prompts. Techniken, Beispiele und Best Practices.",
         "author": getAuthorSchemaMarkup(martinLang),
@@ -64,12 +65,12 @@ const PromptEngineering = () => {
         "dateModified": "2025-11-07",
         "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": "https://copilotenschule.de/prompt-engineering"
+          "@id": pageUrl
         }
       },
       {
         "@type": "FAQPage",
-        "@id": "https://copilotenschule.de/prompt-engineering#faq",
+        "@id": ids.faq,
         "mainEntity": faqs.map(faq => ({
           "@type": "Question",
           "name": faq.name,
@@ -79,7 +80,16 @@ const PromptEngineering = () => {
           }
         }))
       },
-      breadcrumbSchema
+      {
+        "@type": "BreadcrumbList",
+        "@id": ids.breadcrumb,
+        "itemListElement": breadcrumbItems.map((item, index) => ({
+          "@type": "ListItem",
+          "position": index + 1,
+          "name": item.name,
+          "item": item.url
+        }))
+      }
     ]
   };
 

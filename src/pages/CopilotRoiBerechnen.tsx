@@ -1,10 +1,18 @@
 import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
-import { generateBreadcrumbSchema } from "@/lib/schema";
+import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
+
+const SLUG = "wissen/copilot-roi-berechnen";
+const PAGE_TITLE = "Copilot ROI berechnen";
 
 const CopilotRoiBerechnen = () => {
   const author = getAuthor("martin-lang");
+
+  // Schema IDs automatisch generieren
+  const ids = generateSchemaIds(SLUG, 'wissen');
+  const pageUrl = `https://copilotenschule.de/${SLUG}`;
+  const breadcrumbItems = generateWissenBreadcrumbItems(PAGE_TITLE, pageUrl);
 
   const tableOfContents = [
     { id: "was-kostet-microsoft-copilot-", title: "Was kostet Microsoft Copilot?", level: 2 },
@@ -54,13 +62,6 @@ const CopilotRoiBerechnen = () => {
     { id: "download-roi-rechner-excel", title: "Download: ROI-Rechner Excel", level: 2 }
   ];
 
-  // Breadcrumb Schema für Navigation
-  const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: "Startseite", url: "https://copilotenschule.de/" },
-    { name: "Wissen", url: "https://copilotenschule.de/wissen" },
-    { name: "Copilot ROI berechnen", url: "https://copilotenschule.de/wissen/copilot-roi-berechnen" }
-  ]);
-
   // FAQ-Daten für Schema und Anzeige (kundenorientierte Fragen)
   const faqs = [
     {
@@ -87,7 +88,7 @@ const CopilotRoiBerechnen = () => {
     "@graph": [
       {
         "@type": "Article",
-        "@id": "https://copilotenschule.de/wissen/copilot-roi-berechnen#article",
+        "@id": ids.article,
         "headline": "Copilot ROI berechnen: Lohnt sich die Investition?",
         "description": "Konkrete Methoden zur ROI-Berechnung von Microsoft Copilot. Mit Excel-Vorlage, Praxisbeispielen und messbaren KPIs für Ihr Business Case.",
         "author": getAuthorSchemaMarkup(author),
@@ -100,12 +101,12 @@ const CopilotRoiBerechnen = () => {
         "articleSection": "Business",
         "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": "https://copilotenschule.de/wissen/copilot-roi-berechnen"
+          "@id": pageUrl
         }
       },
       {
         "@type": "FAQPage",
-        "@id": "https://copilotenschule.de/wissen/copilot-roi-berechnen#faq",
+        "@id": ids.faq,
         "mainEntity": faqs.map(faq => ({
           "@type": "Question",
           "name": faq.name,
@@ -115,7 +116,16 @@ const CopilotRoiBerechnen = () => {
           }
         }))
       },
-      breadcrumbSchema
+      {
+        "@type": "BreadcrumbList",
+        "@id": ids.breadcrumb,
+        "itemListElement": breadcrumbItems.map((item, index) => ({
+          "@type": "ListItem",
+          "position": index + 1,
+          "name": item.name,
+          "item": item.url
+        }))
+      }
     ]
   };
 

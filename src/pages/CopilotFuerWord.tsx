@@ -1,7 +1,10 @@
 import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
-import { generateBreadcrumbSchema } from "@/lib/schema";
+import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
+
+const SLUG = "wissen/copilot-fuer-word";
+const PAGE_TITLE = "Microsoft Copilot für Word";
 
 const CopilotFuerWord = () => {
   const author = getAuthor("martin-lang");
@@ -70,12 +73,10 @@ const CopilotFuerWord = () => {
     { id: "ressourcen", title: "Ressourcen", level: 2 }
   ];
 
-  // Breadcrumb Schema für Navigation
-  const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: "Startseite", url: "https://copilotenschule.de/" },
-    { name: "Wissen", url: "https://copilotenschule.de/wissen" },
-    { name: "Microsoft Copilot für Word", url: "https://copilotenschule.de/wissen/copilot-fuer-word" }
-  ]);
+  // Schema IDs automatisch generieren
+  const ids = generateSchemaIds(SLUG, 'wissen');
+  const pageUrl = `https://copilotenschule.de/${SLUG}`;
+  const breadcrumbItems = generateWissenBreadcrumbItems(PAGE_TITLE, pageUrl);
 
   // FAQ-Daten für Schema und Anzeige (kundenorientierte Fragen)
   const faqs = [
@@ -103,7 +104,7 @@ const CopilotFuerWord = () => {
     "@graph": [
       {
         "@type": "Article",
-        "@id": "https://copilotenschule.de/wissen/copilot-fuer-word#article",
+        "@id": ids.article,
         "headline": "Microsoft Copilot für Word: Der ultimative Guide",
         "description": "Entdecken Sie, wie Microsoft Copilot in Word Ihre Dokumentenerstellung revolutioniert. Mit praktischen Beispielen, Prompts und Tipps für maximale Produktivität.",
         "author": getAuthorSchemaMarkup(author),
@@ -116,12 +117,12 @@ const CopilotFuerWord = () => {
         "articleSection": "Microsoft 365",
         "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": "https://copilotenschule.de/wissen/copilot-fuer-word"
+          "@id": pageUrl
         }
       },
       {
         "@type": "FAQPage",
-        "@id": "https://copilotenschule.de/wissen/copilot-fuer-word#faq",
+        "@id": ids.faq,
         "mainEntity": faqs.map(faq => ({
           "@type": "Question",
           "name": faq.name,
@@ -131,7 +132,16 @@ const CopilotFuerWord = () => {
           }
         }))
       },
-      breadcrumbSchema
+      {
+        "@type": "BreadcrumbList",
+        "@id": ids.breadcrumb,
+        "itemListElement": breadcrumbItems.map((item, index) => ({
+          "@type": "ListItem",
+          "position": index + 1,
+          "name": item.name,
+          "item": item.url
+        }))
+      }
     ]
   };
 

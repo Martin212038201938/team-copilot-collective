@@ -3,10 +3,18 @@ import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Check, X, Info, Linkedin, Mail } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
-import { generateBreadcrumbSchema } from "@/lib/schema";
+import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
+
+const SLUG = "microsoft-copilot-lizenzen";
+const PAGE_TITLE = "Microsoft Copilot Lizenzen";
 
 const CopilotLicenses = () => {
   const martinLang = getAuthor('martin-lang')!;
+
+  // Schema IDs automatisch generieren
+  const ids = generateSchemaIds(SLUG, 'wissen');
+  const pageUrl = `https://copilotenschule.de/${SLUG}`;
+  const breadcrumbItems = generateWissenBreadcrumbItems(PAGE_TITLE, pageUrl);
 
   const tableOfContents = [
     { id: "quick-answer", title: "Schnellantwort", level: 2 },
@@ -18,13 +26,6 @@ const CopilotLicenses = () => {
     { id: "recommendations", title: "Welche Lizenz brauche ich?", level: 2 },
     { id: "faq", title: "Häufig gestellte Fragen", level: 2 }
   ];
-
-  // Breadcrumb Schema für Navigation
-  const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: "Startseite", url: "https://copilotenschule.de/" },
-    { name: "Wissen", url: "https://copilotenschule.de/wissen" },
-    { name: "Microsoft Copilot Lizenzen", url: "https://copilotenschule.de/microsoft-copilot-lizenzen" }
-  ]);
 
   // FAQ-Daten für Schema und Anzeige (kundenorientierte Fragen)
   const faqs = [
@@ -52,7 +53,7 @@ const CopilotLicenses = () => {
     "@graph": [
       {
         "@type": "Article",
-        "@id": "https://copilotenschule.de/microsoft-copilot-lizenzen#article",
+        "@id": ids.article,
         "headline": "Microsoft Copilot Lizenzen: Kompletter Überblick und Vergleich 2025",
         "description": "Detaillierter Vergleich aller Microsoft Copilot Lizenzen inkl. Microsoft 365 Copilot, GitHub Copilot und Copilot Studio. Erfahren Sie, welche Lizenz Sie für Ihre Anforderungen benötigen.",
         "author": getAuthorSchemaMarkup(martinLang),
@@ -63,12 +64,12 @@ const CopilotLicenses = () => {
         "dateModified": "2025-11-07T11:00:00+01:00",
         "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": "https://copilotenschule.de/microsoft-copilot-lizenzen"
+          "@id": pageUrl
         }
       },
       {
         "@type": "FAQPage",
-        "@id": "https://copilotenschule.de/microsoft-copilot-lizenzen#faq",
+        "@id": ids.faq,
         "mainEntity": faqs.map(faq => ({
           "@type": "Question",
           "name": faq.name,
@@ -78,7 +79,16 @@ const CopilotLicenses = () => {
           }
         }))
       },
-      breadcrumbSchema
+      {
+        "@type": "BreadcrumbList",
+        "@id": ids.breadcrumb,
+        "itemListElement": breadcrumbItems.map((item, index) => ({
+          "@type": "ListItem",
+          "position": index + 1,
+          "name": item.name,
+          "item": item.url
+        }))
+      }
     ]
   };
 

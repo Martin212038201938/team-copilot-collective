@@ -3,10 +3,18 @@ import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Check, Code, Terminal, MessageSquare, Zap } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
-import { generateBreadcrumbSchema } from "@/lib/schema";
+import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
+
+const SLUG = "github-copilot";
+const PAGE_TITLE = "GitHub Copilot";
 
 const GitHubCopilot = () => {
   const martinLang = getAuthor('martin-lang')!;
+
+  // Schema IDs automatisch generieren
+  const ids = generateSchemaIds(SLUG, 'wissen');
+  const pageUrl = `https://copilotenschule.de/${SLUG}`;
+  const breadcrumbItems = generateWissenBreadcrumbItems(PAGE_TITLE, pageUrl);
 
   const tableOfContents = [
     { id: "was-ist", title: "Was ist GitHub Copilot?", level: 2 },
@@ -19,13 +27,6 @@ const GitHubCopilot = () => {
     { id: "fehler-vermeiden", title: "Häufige Fehler vermeiden", level: 2 },
     { id: "faq", title: "Häufig gestellte Fragen", level: 2 }
   ];
-
-  // Breadcrumb Schema für Navigation
-  const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: "Startseite", url: "https://copilotenschule.de/" },
-    { name: "Wissen", url: "https://copilotenschule.de/wissen" },
-    { name: "GitHub Copilot", url: "https://copilotenschule.de/github-copilot" }
-  ]);
 
   // FAQ-Daten für Schema und Anzeige (kundenorientierte Fragen)
   const faqs = [
@@ -47,13 +48,13 @@ const GitHubCopilot = () => {
     }
   ];
 
-  // Kombiniertes Schema mit @graph (Article, FAQ, Breadcrumb)
+  // Kombiniertes Schema mit @graph (Article, FAQ, Breadcrumb) - IDs automatisch generiert
   const schema = {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "Article",
-        "@id": "https://copilotenschule.de/github-copilot#article",
+        "@id": ids.article,
         "headline": "GitHub Copilot: Der ultimative Leitfaden für Entwickler 2025",
         "description": "GitHub Copilot für Entwickler: Funktionen, Best Practices und Produktivitäts-Tipps. Vollständiger Leitfaden von Setup bis Advanced Features.",
         "author": getAuthorSchemaMarkup(martinLang),
@@ -64,12 +65,12 @@ const GitHubCopilot = () => {
         "dateModified": "2025-11-07",
         "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": "https://copilotenschule.de/github-copilot"
+          "@id": pageUrl
         }
       },
       {
         "@type": "FAQPage",
-        "@id": "https://copilotenschule.de/github-copilot#faq",
+        "@id": ids.faq,
         "mainEntity": faqs.map(faq => ({
           "@type": "Question",
           "name": faq.name,
@@ -79,7 +80,16 @@ const GitHubCopilot = () => {
           }
         }))
       },
-      breadcrumbSchema
+      {
+        "@type": "BreadcrumbList",
+        "@id": ids.breadcrumb,
+        "itemListElement": breadcrumbItems.map((item, index) => ({
+          "@type": "ListItem",
+          "position": index + 1,
+          "name": item.name,
+          "item": item.url
+        }))
+      }
     ]
   };
 

@@ -3,10 +3,18 @@ import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Zap, Bot, Network, Workflow, Shield } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
-import { generateBreadcrumbSchema } from "@/lib/schema";
+import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
+
+const SLUG = "ki-agenten";
+const PAGE_TITLE = "KI-Agenten";
 
 const KIAgenten = () => {
   const martinLang = getAuthor('martin-lang')!;
+
+  // Schema IDs automatisch generieren
+  const ids = generateSchemaIds(SLUG, 'wissen');
+  const pageUrl = `https://copilotenschule.de/${SLUG}`;
+  const breadcrumbItems = generateWissenBreadcrumbItems(PAGE_TITLE, pageUrl);
 
   const tableOfContents = [
     { id: "was-sind", title: "Was sind KI-Agenten?", level: 2 },
@@ -19,13 +27,6 @@ const KIAgenten = () => {
     { id: "testing", title: "Testing und Deployment", level: 2 },
     { id: "faq", title: "Häufig gestellte Fragen", level: 2 }
   ];
-
-  // Breadcrumb Schema für Navigation
-  const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: "Startseite", url: "https://copilotenschule.de/" },
-    { name: "Wissen", url: "https://copilotenschule.de/wissen" },
-    { name: "KI-Agenten", url: "https://copilotenschule.de/ki-agenten" }
-  ]);
 
   // FAQ-Daten für Schema und Anzeige (kundenorientierte Fragen)
   const faqs = [
@@ -53,7 +54,7 @@ const KIAgenten = () => {
     "@graph": [
       {
         "@type": "Article",
-        "@id": "https://copilotenschule.de/ki-agenten#article",
+        "@id": ids.article,
         "headline": "KI-Agenten entwickeln: Autonome Workflows mit Microsoft Copilot",
         "description": "KI-Agenten Tutorial: Autonome Workflows und Automatisierungen mit Microsoft Copilot und Copilot Studio erstellen. Vom Konzept zur Implementierung.",
         "author": getAuthorSchemaMarkup(martinLang),
@@ -64,12 +65,12 @@ const KIAgenten = () => {
         "dateModified": "2025-11-07",
         "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": "https://copilotenschule.de/ki-agenten"
+          "@id": pageUrl
         }
       },
       {
         "@type": "FAQPage",
-        "@id": "https://copilotenschule.de/ki-agenten#faq",
+        "@id": ids.faq,
         "mainEntity": faqs.map(faq => ({
           "@type": "Question",
           "name": faq.name,
@@ -79,7 +80,16 @@ const KIAgenten = () => {
           }
         }))
       },
-      breadcrumbSchema
+      {
+        "@type": "BreadcrumbList",
+        "@id": ids.breadcrumb,
+        "itemListElement": breadcrumbItems.map((item, index) => ({
+          "@type": "ListItem",
+          "position": index + 1,
+          "name": item.name,
+          "item": item.url
+        }))
+      }
     ]
   };
 
