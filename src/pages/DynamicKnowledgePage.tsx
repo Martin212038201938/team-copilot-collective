@@ -14,41 +14,41 @@ const DynamicKnowledgePage = () => {
   const article = getPublishedArticleBySlug(slug);
 
   if (!article) {
+    // Für 404-Seite: Header/Footer manuell, da kein ContentLayout
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex flex-col">
         <Header />
-        <div className="text-center">
-          <h1 className="text-4xl font-semibold tracking-tight mb-4">Artikel nicht gefunden</h1>
-          <p className="text-muted-foreground mb-6">
-            Dieser Artikel existiert nicht oder wurde noch nicht veröffentlicht.
-          </p>
-          <a href="/wissen" className="text-primary hover:underline">
-            ← Zurück zur Wissensübersicht
-          </a>
-        </div>
+        <main className="flex-grow flex items-center justify-center pt-16">
+          <div className="text-center">
+            <h1 className="text-4xl font-semibold tracking-tight mb-4">Artikel nicht gefunden</h1>
+            <p className="text-muted-foreground mb-6">
+              Dieser Artikel existiert nicht oder wurde noch nicht veröffentlicht.
+            </p>
+            <a href="/wissen" className="text-primary hover:underline">
+              ← Zurück zur Wissensübersicht
+            </a>
+          </div>
+        </main>
         <Footer />
       </div>
     );
   }
 
+  // WICHTIG: KnowledgePagePreview verwendet ContentLayout,
+  // welches bereits Header und Footer enthält.
+  // Daher KEINE zusätzlichen Header/Footer hier rendern!
   return (
-    <>
-      <Header />
-      <main className="pt-16">
-        <KnowledgePagePreview
-          title={article.title}
-          description={article.description}
-          slug={article.slug}
-          keywords={article.keywords}
-          category={article.category}
-          readTime={article.readTime}
-          publishDate={article.publishDate}
-          authorId={article.author}
-          markdownContent={article.generatorState?.reviewedContent || article.content}
-        />
-      </main>
-      <Footer />
-    </>
+    <KnowledgePagePreview
+      title={article.title}
+      description={article.description}
+      slug={article.slug}
+      keywords={article.keywords}
+      category={article.category}
+      readTime={article.readTime}
+      publishDate={article.publishDate}
+      authorId={article.author}
+      markdownContent={article.generatorState?.reviewedContent || article.content}
+    />
   );
 };
 
