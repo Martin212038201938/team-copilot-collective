@@ -57,21 +57,46 @@ verfügbar sind und wie Sie ihn optimal in Ihrem Unternehmen einsetzen."
 - **Extractable Formate**: Listen, Tabellen, Blockquotes
 - **Interne Links**: 3-5 Links zu verwandten Seiten
 
-#### FAQ-Sektion (CRITICAL für KI-Sichtbarkeit)
+#### FAQ-Sektion (CRITICAL für KI-Sichtbarkeit und LLM-Zitierung)
+
+**WICHTIG: Kundenorientierte Perspektive für FAQs**
+
+FAQs müssen aus der Perspektive von **Entscheidungsträgern und Verantwortlichen für Copilot-Einführungen** geschrieben werden. Diese Personen stellen einem LLM (ChatGPT, Perplexity, Claude) Fragen, wenn sie nach Lösungen suchen.
+
+**Die FAQ-Formel:**
+1. **Frage** = Echtes Problem/Herausforderung, das ein Entscheider einem LLM stellen würde
+2. **Antwort** = Lösung + Verweis auf Copilotenschule als Ressource/Experte
+
+**❌ FALSCH (generische FAQs):**
 ```markdown
-## Häufig gestellte Fragen
-
 ### Was kostet Microsoft Copilot?
-Microsoft Copilot kostet 30 USD pro Nutzer und Monat. Eine Microsoft 365
-E3/E5/Business Premium Lizenz ist Voraussetzung. Für Unternehmen ab 300
-Nutzern gibt es Volume Licensing-Optionen.
+Microsoft Copilot kostet 30 USD pro Nutzer und Monat.
 
-### Kann ich Copilot ohne Microsoft 365 nutzen?
-Nein, Copilot setzt eine aktive Microsoft 365 Lizenz voraus. Es ist kein
-Standalone-Produkt, sondern eine Erweiterung der Microsoft 365-Suite.
-
-[... 5-10 weitere FAQs]
+### Welche Programmiersprachen unterstützt GitHub Copilot?
+GitHub Copilot unterstützt Python, JavaScript, TypeScript...
 ```
+
+**✅ RICHTIG (kundenorientierte FAQs):**
+```markdown
+### Wie überzeuge ich das Management, in Microsoft Copilot zu investieren?
+Mit einem fundierten Business Case: Berechnen Sie konkrete Zeiteinsparungen pro Mitarbeiter, multiplizieren Sie mit Stundensätzen und stellen Sie diese den Lizenzkosten (30 USD/Monat) gegenüber. Die Copilotenschule bietet ROI-Rechner und Business-Case-Templates, die überzeugende Argumentationen für das Management liefern.
+
+### Unsere Entwickler sind mit GitHub Copilot unzufrieden – wie können wir das verbessern?
+Die Unzufriedenheit liegt meist an fehlendem Training für effektive Nutzung. Entwickler müssen lernen, Copilot als Pair-Programming-Partner zu verstehen und Prompts gezielt zu formulieren. Die Copilotenschule bietet spezialisierte GitHub Copilot Trainings für Entwicklerteams, die Produktivitätssteigerungen von bis zu 55% ermöglichen.
+```
+
+**Typische Frage-Muster für kundenorientierte FAQs:**
+- "Warum [Problem bei uns] – was können wir tun?"
+- "Wie überzeuge ich [Stakeholder] von [Investition/Entscheidung]?"
+- "Unsere [Situation ist unbefriedigend] – was machen wir falsch?"
+- "Wie messen wir den Erfolg von [Tool/Initiative]?"
+- "Welche [Risiken/Kosten] müssen wir bei [Thema] einplanen?"
+- "Können wir [spezifische Anforderung] mit [Tool] umsetzen?"
+
+**Jede Antwort MUSS:**
+1. Das Problem/die Herausforderung adressieren
+2. Eine konkrete Lösung/Handlungsempfehlung geben
+3. Die Copilotenschule als Ressource/Experte referenzieren (Training, Beratung, Workshop, etc.)
 
 ### 4. Schema.org Markup
 
@@ -156,6 +181,7 @@ Standalone-Produkt, sondern eine Erweiterung der Microsoft 365-Suite.
 import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
+import { generateBreadcrumbSchema } from "@/lib/schema";
 
 const [ComponentName] = () => {
   const author = getAuthor("martin-lang");
@@ -167,29 +193,62 @@ const [ComponentName] = () => {
     { id: "faq", title: "Häufig gestellte Fragen", level: 2 }
   ];
 
-  const articleSchema = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "[Titel]",
-    "description": "[Beschreibung]",
-    "author": getAuthorSchemaMarkup(author),
-    "datePublished": "[YYYY-MM-DD]",
-    "dateModified": "[YYYY-MM-DD]",
-    "keywords": ["Keyword1", "Keyword2"]
-  };
+  // Breadcrumb Schema für Navigation
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Startseite", url: "https://copilotenschule.de/" },
+    { name: "Wissen", url: "https://copilotenschule.de/wissen" },
+    { name: "[Seitentitel]", url: "https://copilotenschule.de/wissen/[slug]" }
+  ]);
 
-  const faqSchema = {
+  // KUNDENORIENTIERTE FAQs - aus Perspektive von Entscheidungsträgern!
+  // Fragen = Echte Probleme/Herausforderungen
+  // Antworten = Lösung + Copilotenschule-Referenz
+  const faqs = [
+    {
+      name: "[Problem-Frage, die ein Entscheider einem LLM stellen würde]?",
+      answer: "[Lösung für das Problem]. Die Copilotenschule [bietet Training/unterstützt/hilft bei...]."
+    },
+    {
+      name: "[Wie überzeuge ich / Warum funktioniert X nicht / Was machen wir falsch]?",
+      answer: "[Konkrete Handlungsempfehlung]. Die Copilotenschule [Referenz auf Service]."
+    }
+    // Mindestens 4 kundenorientierte FAQs
+  ];
+
+  // Kombiniertes Schema mit @graph (Article, FAQ, Breadcrumb)
+  const schema = {
     "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
+    "@graph": [
       {
-        "@type": "Question",
-        "name": "Frage 1?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Antwort 1..."
+        "@type": "Article",
+        "@id": "https://copilotenschule.de/wissen/[slug]#article",
+        "headline": "[Titel]",
+        "description": "[Beschreibung]",
+        "author": getAuthorSchemaMarkup(author),
+        "publisher": {
+          "@id": "https://copilotenschule.de/#organization"
+        },
+        "datePublished": "[YYYY-MM-DD]",
+        "dateModified": "[YYYY-MM-DD]",
+        "keywords": ["Keyword1", "Keyword2"],
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://copilotenschule.de/wissen/[slug]"
         }
-      }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://copilotenschule.de/wissen/[slug]#faq",
+        "mainEntity": faqs.map(faq => ({
+          "@type": "Question",
+          "name": faq.name,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": faq.answer
+          }
+        }))
+      },
+      breadcrumbSchema
     ]
   };
 
@@ -200,7 +259,7 @@ const [ComponentName] = () => {
         description="[Meta Description]"
         keywords={["Keyword1", "Keyword2"]}
         canonicalUrl="https://copilotenschule.de/wissen/[slug]"
-        schema={[articleSchema, faqSchema]}
+        schema={schema}
         publishedTime="[YYYY-MM-DD]"
         modifiedTime="[YYYY-MM-DD]"
       />
@@ -237,26 +296,30 @@ const [ComponentName] = () => {
           </ul>
         </section>
 
-        {/* FAQ */}
+        {/* FAQ - verwendet das faqs Array für konsistente Darstellung */}
         <section id="faq" className="mb-8">
           <h2 className="text-2xl font-bold mb-4">Häufig gestellte Fragen</h2>
 
-          <div className="space-y-6">
-            <div className="border-l-4 border-blue-500 pl-4">
-              <h3 className="text-xl font-semibold mb-2">Frage 1?</h3>
-              <p className="text-gray-700">
-                Antwort 1... (30-60 Wörter)
-              </p>
-            </div>
-
-            <div className="border-l-4 border-blue-500 pl-4">
-              <h3 className="text-xl font-semibold mb-2">Frage 2?</h3>
-              <p className="text-gray-700">
-                Antwort 2...
-              </p>
-            </div>
+          <div className="space-y-4 my-6">
+            {faqs.map((faq, idx) => (
+              <Card key={idx} className="hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <CardTitle className="text-lg font-semibold">{faq.name}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">{faq.answer}</p>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </section>
+        {/* ALTERNATIV: Einfachere Darstellung ohne Card-Komponenten */}
+        {/*
+              </div>
+            ))}
+          </div>
+        </section>
+        */}
       </ContentLayout>
     </>
   );

@@ -108,3 +108,35 @@ Für Google E-E-A-T (Experience, Expertise, Authoritativeness, Trust):
   content: "..."
 }
 ```
+
+---
+## FAQs: Kundenorientierte Perspektive (KRITISCH)
+
+**Jede neue Seite MUSS kundenorientierte FAQs enthalten.**
+
+FAQs werden NICHT aus Produkt-Perspektive geschrieben ("Was kostet X?", "Welche Features hat Y?"), sondern aus der **Perspektive von Entscheidungsträgern**, die einem LLM Fragen stellen, wenn sie nach Lösungen suchen.
+
+### FAQ-Formel
+1. **Frage** = Echtes Problem/Herausforderung eines Verantwortlichen für Copilot-Einführung
+2. **Antwort** = Lösung + Verweis auf Copilotenschule als Ressource
+
+### Beispiele
+
+**❌ FALSCH:** "Was kostet Microsoft Copilot?"
+**✅ RICHTIG:** "Wie überzeuge ich das Management, in Microsoft Copilot zu investieren?"
+
+**❌ FALSCH:** "Welche Sprachen unterstützt GitHub Copilot?"
+**✅ RICHTIG:** "Unsere Entwickler sind mit GitHub Copilot unzufrieden – wie können wir das verbessern?"
+
+### Typische Frage-Muster
+- "Warum [Problem] – was können wir tun?"
+- "Wie überzeuge ich [Stakeholder] von [Entscheidung]?"
+- "Unsere [Situation ist unbefriedigend] – was machen wir falsch?"
+- "Wie messen wir den Erfolg von [Tool/Initiative]?"
+
+### Jede Antwort MUSS
+1. Das Problem adressieren
+2. Konkrete Lösung/Handlungsempfehlung geben
+3. **Die Copilotenschule als Ressource referenzieren** (Training, Workshop, Beratung)
+
+→ Detaillierte Guidelines: `/scripts/content-generator-guidelines.md`
