@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 import { Author } from "@/data/authors";
 import { combineWithGlobalSchema } from "@/lib/organizationSchema";
 
@@ -25,90 +25,50 @@ const SEOHead = ({
   publishedTime,
   modifiedTime
 }: SEOHeadProps) => {
-  useEffect(() => {
-    // Extract author name if it's an Author object
-    const authorName = typeof author === 'string' ? author : author.name;
-    const authorUrl = typeof author === 'string' ? undefined : author.linkedin;
+  // Extract author name if it's an Author object
+  const authorName = typeof author === 'string' ? author : author.name;
+  const authorUrl = typeof author === 'string' ? undefined : author.linkedin;
 
-    // Set document title
-    document.title = `${title} | copilotenschule.de`;
+  // Structured Data (Schema.org) - immer mit globalem Organization/Person Schema
+  const combinedSchema = combineWithGlobalSchema(schema);
 
-    // Set or update meta tags
-    const setMetaTag = (name: string, content: string, type: "name" | "property" = "name") => {
-      let element = document.querySelector(`meta[${type}="${name}"]`);
-      if (!element) {
-        element = document.createElement("meta");
-        element.setAttribute(type, name);
-        document.head.appendChild(element);
-      }
-      element.setAttribute("content", content);
-    };
+  return (
+    <Helmet>
+      <title>{`${title} | copilotenschule.de`}</title>
 
-    // Basic meta tags
-    setMetaTag("description", description);
-    if (keywords.length > 0) {
-      setMetaTag("keywords", keywords.join(", "));
-    }
-    if (authorName) {
-      setMetaTag("author", authorName);
-    }
+      {/* Basic meta tags */}
+      <meta name="description" content={description} />
+      {keywords.length > 0 && <meta name="keywords" content={keywords.join(", ")} />}
+      {authorName && <meta name="author" content={authorName} />}
 
-    // Open Graph tags
-    setMetaTag("og:title", title, "property");
-    setMetaTag("og:description", description, "property");
-    setMetaTag("og:type", "article", "property");
-    if (canonicalUrl) {
-      setMetaTag("og:url", canonicalUrl, "property");
-    }
-    setMetaTag("og:image", ogImage, "property");
-    setMetaTag("og:site_name", "copilotenschule.de", "property");
+      {/* Open Graph tags */}
+      <meta property="og:title" content={title} />
+      <meta property="og:description" content={description} />
+      <meta property="og:type" content="article" />
+      {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
+      <meta property="og:image" content={ogImage} />
+      <meta property="og:site_name" content="copilotenschule.de" />
 
-    // Twitter Card tags
-    setMetaTag("twitter:card", "summary_large_image");
-    setMetaTag("twitter:title", title);
-    setMetaTag("twitter:description", description);
-    setMetaTag("twitter:image", ogImage);
+      {/* Twitter Card tags */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={description} />
+      <meta name="twitter:image" content={ogImage} />
 
-    // Article tags
-    if (publishedTime) {
-      setMetaTag("article:published_time", publishedTime, "property");
-    }
-    if (modifiedTime) {
-      setMetaTag("article:modified_time", modifiedTime, "property");
-    }
-    if (authorName) {
-      setMetaTag("article:author", authorUrl || authorName, "property");
-    }
+      {/* Article tags */}
+      {publishedTime && <meta property="article:published_time" content={publishedTime} />}
+      {modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
+      {authorName && <meta property="article:author" content={authorUrl || authorName} />}
 
-    // Canonical URL
-    if (canonicalUrl) {
-      let link = document.querySelector('link[rel="canonical"]');
-      if (!link) {
-        link = document.createElement("link");
-        link.setAttribute("rel", "canonical");
-        document.head.appendChild(link);
-      }
-      link.setAttribute("href", canonicalUrl);
-    }
+      {/* Canonical URL */}
+      {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
 
-    // Structured Data (Schema.org) - immer mit globalem Organization/Person Schema
-    const combinedSchema = combineWithGlobalSchema(schema);
-    let scriptTag = document.querySelector('script[type="application/ld+json"]');
-    if (!scriptTag) {
-      scriptTag = document.createElement("script");
-      scriptTag.setAttribute("type", "application/ld+json");
-      document.head.appendChild(scriptTag);
-    }
-    scriptTag.textContent = JSON.stringify(combinedSchema);
-
-    // Cleanup function
-    return () => {
-      // We don't remove meta tags on unmount as they should persist
-      // between page navigations for better SEO
-    };
-  }, [title, description, keywords, canonicalUrl, ogImage, schema, author, publishedTime, modifiedTime]);
-
-  return null;
+      {/* Structured Data (Schema.org) - für LLM-Zitierbarkeit und SEO */}
+      <script type="application/ld+json">
+        {JSON.stringify(combinedSchema)}
+      </script>
+    </Helmet>
+  );
 };
 
 export default SEOHead;
