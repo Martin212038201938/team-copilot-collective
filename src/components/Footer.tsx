@@ -65,6 +65,15 @@ const Footer = () => {
             <Link to="/admin" className="hover:text-primary transition-colors">Admin Login</Link>
           </div>
         </div>
+
+        {/* Rechtlicher Hinweis zu Zertifizierungen */}
+        <div className="mt-6 pt-4 border-t border-border/50">
+          <p className="text-xs text-muted-foreground/70 text-center max-w-4xl mx-auto">
+            Hinweis: Die von der copilotenschule.de angebotenen Prüfungen und Zertifikate sind unternehmensinterne Kompetenznachweise
+            und keine staatlich anerkannten Abschlüsse. Zertifizierungsoptionen gelten ausschließlich für Trainings, die direkt über
+            die copilotenschule.de gebucht werden, nicht für extern finanzierte Maßnahmen.
+          </p>
+        </div>
       </div>
     </footer>
   );

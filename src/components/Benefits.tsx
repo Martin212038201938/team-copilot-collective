@@ -31,8 +31,8 @@ const benefits = [
   },
   {
     icon: Award,
-    title: "Echte Prüfungen, echte Zertifikate",
-    description: "Bei uns gibt es keine Teilnahme-Zertifikate zum Abhaken. Unsere Prüfungen sind anspruchsvoll: Teilnehmer müssen in praktischen Aufgaben beweisen, dass sie Copilot wirklich beherrschen – Prompt Engineering, kritische Output-Bewertung, Security-Bewusstsein. Wer besteht, hat sich das Zertifikat verdient. Das gibt Unternehmen Investitionssicherheit und Mitarbeitern einen Nachweis, der etwas wert ist. Aufbauende Stufen von Beginner bis Expert ermöglichen einen strukturierten Kompetenzaufbau."
+    title: "Zertifizierung",
+    description: "Auf Wunsch können Teilnehmende ihr Wissen in einer praxisnahen Prüfung zeigen. Dabei geht es um reale Anwendung: sinnvolles Prompting, kritische Bewertung von Ergebnissen und ein sicheres Arbeiten mit Copilot. Wer die Prüfung ablegt, erhält ein aussagekräftiges Zertifikat als Nachweis der erworbenen Fähigkeiten. Optional aufeinander aufbauende Stufen von Beginner bis Expert unterstützen einen strukturierten Lernweg."
   },
   {
     icon: Medal,

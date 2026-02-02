@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { CheckCircle2, ArrowRight, ArrowLeft, Send, Loader2, Calendar, HelpCircle, X, Plus, Trash2, Sparkles } from "lucide-react";
+import { CheckCircle2, ArrowRight, ArrowLeft, Send, Loader2, Calendar, HelpCircle, X, Plus, Trash2, Sparkles, ChevronDown } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
@@ -614,56 +614,78 @@ ${formData.additionalInfo ? `---\nINFORMATIONEN UND WEITERE BENÖTIGTE INHALTE:\
 
               <div className="grid lg:grid-cols-3 gap-8">
                 {/* Module Categories - left 2/3 */}
-                <div className="lg:col-span-2 space-y-6">
-                  {filteredCategories.map((category) => (
-                    <Card key={category.id} className="overflow-hidden">
-                      <CardHeader className="bg-muted/30 pb-3">
-                        <CardTitle className="text-lg">{category.title}</CardTitle>
-                        <p className="text-sm text-muted-foreground">{category.description}</p>
-                      </CardHeader>
-                      <CardContent className="pt-4">
-                        <div className="grid sm:grid-cols-2 gap-3">
-                          {category.modules.map((module) => {
-                            const isSelected = selectedModules.includes(module.id);
-                            return (
-                              <label
-                                key={module.id}
-                                htmlFor={`module-${module.id}`}
-                                className={`flex items-start gap-3 p-3 rounded-lg border cursor-pointer transition-all duration-200 hover:bg-muted/50 ${
-                                  isSelected
-                                    ? 'border-primary bg-primary/5'
-                                    : 'border-border hover:border-primary/50'
-                                }`}
-                              >
-                                <input
-                                  type="checkbox"
-                                  id={`module-${module.id}`}
-                                  checked={isSelected}
-                                  onChange={() => toggleModule(module.id)}
-                                  className="mt-1 h-4 w-4 rounded border-primary text-primary focus:ring-primary cursor-pointer"
-                                />
-                                <div className="flex-1">
-                                  <span className="text-sm leading-tight block">{module.title}</span>
-                                  <div className="flex gap-1 mt-1.5">
-                                    {module.tiers.includes("free") && (
-                                      <Badge className="bg-emerald-100 text-emerald-700 border-emerald-200 hover:bg-emerald-100 text-[10px] px-1.5 py-0">
-                                        Free
-                                      </Badge>
-                                    )}
-                                    {module.tiers.includes("paid") && (
-                                      <Badge className="bg-blue-100 text-blue-700 border-blue-200 hover:bg-blue-100 text-[10px] px-1.5 py-0">
-                                        Paid
-                                      </Badge>
-                                    )}
+                <div className="lg:col-span-2 space-y-4">
+                  {filteredCategories.map((category, categoryIndex) => {
+                    // Anzahl der ausgewählten Module in dieser Kategorie
+                    const selectedInCategory = category.modules.filter(m => selectedModules.includes(m.id)).length;
+
+                    return (
+                      <details
+                        key={category.id}
+                        className="group rounded-xl border bg-card shadow-sm overflow-hidden"
+                        open={categoryIndex === 0}
+                      >
+                        {/* Summary - immer sichtbar, klickbar zum Auf-/Zuklappen */}
+                        <summary className="flex items-center gap-4 p-4 cursor-pointer list-none hover:bg-muted/50 transition-colors select-none">
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center gap-2">
+                              <h3 className="text-lg font-semibold text-foreground">{category.title}</h3>
+                              {selectedInCategory > 0 && (
+                                <Badge className="bg-primary text-primary-foreground text-[10px] px-1.5 py-0">
+                                  {selectedInCategory} ausgewählt
+                                </Badge>
+                              )}
+                            </div>
+                            <p className="text-sm text-muted-foreground mt-0.5">{category.description}</p>
+                          </div>
+                          <ChevronDown className="w-5 h-5 text-muted-foreground flex-shrink-0 transition-transform duration-300 group-open:rotate-180" />
+                        </summary>
+
+                        {/* Module-Content - immer im DOM für SEO, nur visuell versteckt */}
+                        <div className="px-4 pb-4 pt-2 border-t border-border/50">
+                          <div className="grid sm:grid-cols-2 gap-3">
+                            {category.modules.map((module) => {
+                              const isSelected = selectedModules.includes(module.id);
+                              return (
+                                <label
+                                  key={module.id}
+                                  htmlFor={`module-${module.id}`}
+                                  className={`flex items-start gap-3 p-3 rounded-lg border cursor-pointer transition-all duration-200 hover:bg-muted/50 ${
+                                    isSelected
+                                      ? 'border-primary bg-primary/5'
+                                      : 'border-border hover:border-primary/50'
+                                  }`}
+                                >
+                                  <input
+                                    type="checkbox"
+                                    id={`module-${module.id}`}
+                                    checked={isSelected}
+                                    onChange={() => toggleModule(module.id)}
+                                    className="mt-1 h-4 w-4 rounded border-primary text-primary focus:ring-primary cursor-pointer"
+                                  />
+                                  <div className="flex-1">
+                                    <span className="text-sm leading-tight block">{module.title}</span>
+                                    <div className="flex gap-1 mt-1.5">
+                                      {module.tiers.includes("free") && (
+                                        <Badge className="bg-emerald-100 text-emerald-700 border-emerald-200 hover:bg-emerald-100 text-[10px] px-1.5 py-0">
+                                          Free
+                                        </Badge>
+                                      )}
+                                      {module.tiers.includes("paid") && (
+                                        <Badge className="bg-blue-100 text-blue-700 border-blue-200 hover:bg-blue-100 text-[10px] px-1.5 py-0">
+                                          Paid
+                                        </Badge>
+                                      )}
+                                    </div>
                                   </div>
-                                </div>
-                              </label>
-                            );
-                          })}
+                                </label>
+                              );
+                            })}
+                          </div>
                         </div>
-                      </CardContent>
-                    </Card>
-                  ))}
+                      </details>
+                    );
+                  })}
 
                   {/* Eigene Module anfragen */}
                   <Card className="overflow-hidden border-dashed border-2 border-primary/30 bg-primary/5">
@@ -1092,6 +1114,16 @@ ${formData.additionalInfo ? `---\nINFORMATIONEN UND WEITERE BENÖTIGTE INHALTE:\
       </main>
 
       <Footer />
+
+      {/* CSS für details/summary Styling - versteckt native Marker */}
+      <style>{`
+        details summary::-webkit-details-marker {
+          display: none;
+        }
+        details summary::marker {
+          display: none;
+        }
+      `}</style>
     </div>
   );
 };
