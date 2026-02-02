@@ -1,5 +1,73 @@
 RewriteEngine On
 RewriteBase /
+
+# ============================================
+# 301 REDIRECTS: Alt-URLs → Neue Trainingsseiten
+# ============================================
+
+# GitHub Copilot
+RewriteRule ^trainings/github-copilot/?$ /trainings/github-copilot-entwickler [R=301,L]
+
+# Microsoft 365 Copilot Praxis
+RewriteRule ^trainings/microsoft-copilot/?$ /trainings/microsoft-365-copilot-praxis [R=301,L]
+RewriteRule ^trainings/microsoft-365-copilot/?$ /trainings/microsoft-365-copilot-praxis [R=301,L]
+
+# Copilot Grundlagen & Prompt Design
+RewriteRule ^trainings/copilot-grundlagen/?$ /trainings/copilot-grundlagen-prompt-design [R=301,L]
+RewriteRule ^trainings/prompt-design/?$ /trainings/copilot-grundlagen-prompt-design [R=301,L]
+RewriteRule ^trainings/ki-kompetenz/?$ /trainings/copilot-grundlagen-prompt-design [R=301,L]
+
+# Ausbildung KI-Wissensarbeiter
+RewriteRule ^trainings/ausbildung-ki/?$ /trainings/ausbildung-ki-wissensarbeiter [R=301,L]
+RewriteRule ^trainings/ki-wissensarbeiter/?$ /trainings/ausbildung-ki-wissensarbeiter [R=301,L]
+
+# Copilot Compliance & Datenschutz
+RewriteRule ^trainings/copilot-compliance/?$ /trainings/copilot-compliance-datenschutz [R=301,L]
+RewriteRule ^trainings/microsoft-copilot-compliance/?$ /trainings/copilot-compliance-datenschutz [R=301,L]
+RewriteRule ^trainings/copilot-datenschutz/?$ /trainings/copilot-compliance-datenschutz [R=301,L]
+
+# Copilot Strategie & Change Management
+RewriteRule ^trainings/copilot-strategie/?$ /trainings/copilot-strategie-change-management [R=301,L]
+RewriteRule ^trainings/change-management/?$ /trainings/copilot-strategie-change-management [R=301,L]
+
+# Copilot Studio & KI-Agenten
+RewriteRule ^trainings/copilot-studio/?$ /trainings/copilot-studio-ki-agenten [R=301,L]
+RewriteRule ^trainings/ki-agenten/?$ /trainings/copilot-studio-ki-agenten [R=301,L]
+
+# Chatbot Workshop
+RewriteRule ^trainings/chatbot/?$ /trainings/chatbot-workshop [R=301,L]
+
+# Low-Code Power Platform
+RewriteRule ^trainings/low-code/?$ /trainings/low-code-power-platform [R=301,L]
+RewriteRule ^trainings/copilot-low-code/?$ /trainings/low-code-power-platform [R=301,L]
+RewriteRule ^trainings/flow-coding/?$ /trainings/low-code-power-platform [R=301,L]
+
+# EU AI Act Pflichtschulung
+RewriteRule ^trainings/eu-ai-act/?$ /trainings/eu-ai-act-pflichtschulung [R=301,L]
+RewriteRule ^trainings/ai-act-pflichtschulung/?$ /trainings/eu-ai-act-pflichtschulung [R=301,L]
+
+# Copilot Hackathon
+RewriteRule ^trainings/hackathon/?$ /trainings/copilot-hackathon [R=301,L]
+
+# Keynote Copilot & Arbeitswelt
+RewriteRule ^trainings/keynote/?$ /trainings/keynote-copilot-arbeitswelt [R=301,L]
+RewriteRule ^trainings/copilot-keynote/?$ /trainings/keynote-copilot-arbeitswelt [R=301,L]
+
+# Copilot Lernreise 8 Wochen
+RewriteRule ^trainings/copilot-lernreise/?$ /trainings/copilot-lernreise-8-wochen [R=301,L]
+RewriteRule ^trainings/lernreise-8-wochen/?$ /trainings/copilot-lernreise-8-wochen [R=301,L]
+
+# Copilot Launch Eventtag
+RewriteRule ^trainings/copilot-launch-event/?$ /trainings/copilot-launch-eventtag [R=301,L]
+RewriteRule ^trainings/eventtag/?$ /trainings/copilot-launch-eventtag [R=301,L]
+
+# Individuelle Copilot Schulung
+RewriteRule ^trainings/copilot-schulung/?$ /trainings/individuelle-copilot-schulung [R=301,L]
+RewriteRule ^trainings/individuelle-schulung/?$ /trainings/individuelle-copilot-schulung [R=301,L]
+
+# ============================================
+# SPA Fallback (muss NACH den Redirects kommen)
+# ============================================
 RewriteRule ^index\.html$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
