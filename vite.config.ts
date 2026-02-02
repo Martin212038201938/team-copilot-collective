@@ -15,4 +15,8 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    // Target ES2019 to avoid optional chaining (?.) for react-snap compatibility
+    target: "es2019",
+  },
 }));

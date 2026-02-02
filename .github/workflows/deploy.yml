@@ -15,6 +15,11 @@ jobs:
         with:
           node-version: '18'
 
+      - name: Install Chromium dependencies for Puppeteer
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgbm1 libasound2t64 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdrm2 libxkbcommon0 libxcomposite1 libxdamage1 libxfixes3 libxrandr2 libpango-1.0-0 libcairo2 libnss3 libnspr4 libx11-xcb1 libxcb-dri3-0
+
       - name: Clean build artifacts
         run: |
           echo "Cleaning all build artifacts..."
@@ -26,10 +31,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build project
-        run: npm run build
+      - name: Build project with pre-rendering
+        run: npm run build:prerender
         env:
           VITE_OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          CI: true
       
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
