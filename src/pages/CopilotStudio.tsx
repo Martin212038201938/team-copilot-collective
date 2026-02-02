@@ -1,7 +1,7 @@
 import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Check, Zap, Bot, Link as LinkIcon, Shield } from "lucide-react";
+import { Check, Zap, Bot, Link as LinkIcon, Shield, ExternalLink } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 
@@ -25,7 +25,8 @@ const CopilotStudio = () => {
     { id: "datenquellen", title: "Datenquellen anbinden", level: 2 },
     { id: "sicherheit", title: "Sicherheit und Compliance", level: 2 },
     { id: "lizenzierung", title: "Lizenzierung und Kosten", level: 2 },
-    { id: "faq", title: "Häufig gestellte Fragen", level: 2 }
+    { id: "faq", title: "Häufig gestellte Fragen", level: 2 },
+    { id: "quellen", title: "Quellen und Links", level: 2 }
   ];
 
   // FAQ-Daten für Schema und Anzeige (kundenorientierte Fragen)
@@ -474,6 +475,68 @@ const CopilotStudio = () => {
                 </CardContent>
               </Card>
             ))}
+          </div>
+        </section>
+
+        {/* Quellen und weiterführende Links */}
+        <section id="quellen" className="mt-12 mb-12">
+          <h2>Quellen und weiterführende Links</h2>
+          <p className="text-muted-foreground mb-6">
+            Offizielle Microsoft-Dokumentationen und Ressourcen für vertiefende Informationen zu Copilot Studio.
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-4">
+            <a
+              href="https://learn.microsoft.com/en-us/microsoft-copilot-studio/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-3 p-4 border rounded-lg hover:border-primary/50 hover:bg-muted/50 transition-colors group"
+            >
+              <ExternalLink className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+              <div>
+                <div className="font-semibold group-hover:text-primary transition-colors">Microsoft Learn: Copilot Studio Dokumentation</div>
+                <div className="text-sm text-muted-foreground">Offizielle Dokumentation mit Tutorials, Referenzen und Best Practices</div>
+              </div>
+            </a>
+
+            <a
+              href="https://www.microsoft.com/en-us/microsoft-copilot/microsoft-copilot-studio"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-3 p-4 border rounded-lg hover:border-primary/50 hover:bg-muted/50 transition-colors group"
+            >
+              <ExternalLink className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+              <div>
+                <div className="font-semibold group-hover:text-primary transition-colors">Microsoft Copilot Studio Produktseite</div>
+                <div className="text-sm text-muted-foreground">Übersicht über Features, Preise und Anwendungsfälle</div>
+              </div>
+            </a>
+
+            <a
+              href="https://learn.microsoft.com/en-us/microsoft-copilot-studio/fundamentals-what-is-copilot-studio"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-3 p-4 border rounded-lg hover:border-primary/50 hover:bg-muted/50 transition-colors group"
+            >
+              <ExternalLink className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+              <div>
+                <div className="font-semibold group-hover:text-primary transition-colors">Was ist Microsoft Copilot Studio?</div>
+                <div className="text-sm text-muted-foreground">Einführung in die Grundlagen und Architektur von Copilot Studio</div>
+              </div>
+            </a>
+
+            <a
+              href="https://learn.microsoft.com/en-us/microsoft-copilot-studio/advanced-plugin-actions"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-3 p-4 border rounded-lg hover:border-primary/50 hover:bg-muted/50 transition-colors group"
+            >
+              <ExternalLink className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+              <div>
+                <div className="font-semibold group-hover:text-primary transition-colors">Copilot Studio: Tools und Actions</div>
+                <div className="text-sm text-muted-foreground">Dokumentation zum Hinzufügen von Tools und Actions zu Agenten</div>
+              </div>
+            </a>
           </div>
         </section>
 

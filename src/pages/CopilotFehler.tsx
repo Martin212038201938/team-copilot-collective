@@ -1,7 +1,7 @@
 import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Zap, AlertTriangle, Shield, Users, FileText, TrendingUp, Target } from "lucide-react";
+import { Zap, AlertTriangle, Shield, Users, FileText, TrendingUp, Target, ExternalLink } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 
@@ -25,7 +25,8 @@ const CopilotFehler = () => {
     { id: "fehler-6", title: "Fehler 6: Fehlendes Change Management", level: 2 },
     { id: "fehler-7", title: "Fehler 7: Keine Success Metrics", level: 2 },
     { id: "checkliste", title: "Checkliste für erfolgreiche Einführung", level: 2 },
-    { id: "faq", title: "Häufig gestellte Fragen", level: 2 }
+    { id: "faq", title: "Häufig gestellte Fragen", level: 2 },
+    { id: "quellen", title: "Quellen und Links", level: 2 }
   ];
 
   // FAQ-Daten für Schema und Anzeige (kundenorientierte Fragen)
@@ -894,6 +895,68 @@ const CopilotFehler = () => {
                 </CardContent>
               </Card>
             ))}
+          </div>
+        </section>
+
+        {/* Quellen und weiterführende Links */}
+        <section id="quellen" className="mt-12 mb-12">
+          <h2>Quellen und weiterführende Links</h2>
+          <p className="text-muted-foreground mb-6">
+            Offizielle Microsoft-Ressourcen zu Governance, Compliance und Best Practices für Copilot.
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-4">
+            <a
+              href="https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-privacy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-3 p-4 border rounded-lg hover:border-primary/50 hover:bg-muted/50 transition-colors group"
+            >
+              <ExternalLink className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+              <div>
+                <div className="font-semibold group-hover:text-primary transition-colors">Microsoft 365 Copilot Datenschutz</div>
+                <div className="text-sm text-muted-foreground">Offizielle Dokumentation zu Datenschutz und Datenverarbeitung</div>
+              </div>
+            </a>
+
+            <a
+              href="https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-setup"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-3 p-4 border rounded-lg hover:border-primary/50 hover:bg-muted/50 transition-colors group"
+            >
+              <ExternalLink className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+              <div>
+                <div className="font-semibold group-hover:text-primary transition-colors">Copilot Setup und Bereitstellung</div>
+                <div className="text-sm text-muted-foreground">Microsoft-Leitfaden für die sichere Einführung von Copilot</div>
+              </div>
+            </a>
+
+            <a
+              href="https://learn.microsoft.com/en-us/purview/sensitivity-labels"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-3 p-4 border rounded-lg hover:border-primary/50 hover:bg-muted/50 transition-colors group"
+            >
+              <ExternalLink className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+              <div>
+                <div className="font-semibold group-hover:text-primary transition-colors">Microsoft Purview Sensitivity Labels</div>
+                <div className="text-sm text-muted-foreground">Dokumentation zu Sensitivitätskennzeichnungen für Data Governance</div>
+              </div>
+            </a>
+
+            <a
+              href="https://adoption.microsoft.com/en-us/copilot/responsible-ai/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-3 p-4 border rounded-lg hover:border-primary/50 hover:bg-muted/50 transition-colors group"
+            >
+              <ExternalLink className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+              <div>
+                <div className="font-semibold group-hover:text-primary transition-colors">Responsible AI für Copilot</div>
+                <div className="text-sm text-muted-foreground">Microsoft-Leitfaden für verantwortungsvolle KI-Nutzung</div>
+              </div>
+            </a>
           </div>
         </section>
 

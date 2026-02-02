@@ -2,6 +2,7 @@ import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
+import { ExternalLink } from "lucide-react";
 
 const SLUG = "wissen/copilot-roi-berechnen";
 const PAGE_TITLE = "Copilot ROI berechnen";
@@ -59,7 +60,8 @@ const CopilotRoiBerechnen = () => {
     { id: "kontinuierliche-optimierung", title: "Kontinuierliche Optimierung", level: 3 },
     { id: "zusammenfassung", title: "Zusammenfassung", level: 2 },
     { id: "checkliste-f-r-ihren-business-case", title: "Checkliste für Ihren Business Case", level: 2 },
-    { id: "download-roi-rechner-excel", title: "Download: ROI-Rechner Excel", level: 2 }
+    { id: "download-roi-rechner-excel", title: "Download: ROI-Rechner Excel", level: 2 },
+    { id: "quellen", title: "Quellen und Links", level: 2 }
   ];
 
   // FAQ-Daten für Schema und Anzeige (kundenorientierte Fragen)
@@ -522,6 +524,68 @@ const CopilotRoiBerechnen = () => {
           </ul>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Benötigen Sie Unterstützung bei Ihrer ROI-Berechnung und Business Case-Erstellung?</strong> </p>
           <p className="mb-4 text-gray-700 leading-relaxed">Wir helfen Ihnen mit individueller Beratung und branchenspezifischen Benchmarks. <a href="/" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">Kontakt aufnehmen →</a></p>
+        </section>
+
+        {/* Quellen und weiterführende Links */}
+        <section id="quellen" className="mt-12 mb-12">
+          <h2>Quellen und weiterführende Links</h2>
+          <p className="text-muted-foreground mb-6">
+            Offizielle Studien und Ressourcen zur ROI-Berechnung und Produktivitätsmessung.
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-4">
+            <a
+              href="https://www.microsoft.com/en-us/worklab/work-trend-index/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-3 p-4 border rounded-lg hover:border-primary/50 hover:bg-muted/50 transition-colors group"
+            >
+              <ExternalLink className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+              <div>
+                <div className="font-semibold group-hover:text-primary transition-colors">Microsoft Work Trend Index</div>
+                <div className="text-sm text-muted-foreground">Studien zu Produktivitätsgewinnen durch KI am Arbeitsplatz</div>
+              </div>
+            </a>
+
+            <a
+              href="https://github.blog/news-insights/research/research-quantifying-github-copilots-impact-on-developer-productivity-and-happiness/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-3 p-4 border rounded-lg hover:border-primary/50 hover:bg-muted/50 transition-colors group"
+            >
+              <ExternalLink className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+              <div>
+                <div className="font-semibold group-hover:text-primary transition-colors">GitHub Copilot Productivity Research</div>
+                <div className="text-sm text-muted-foreground">Studie: 55% schnellere Task-Completion mit GitHub Copilot</div>
+              </div>
+            </a>
+
+            <a
+              href="https://adoption.microsoft.com/en-us/copilot/success-kit/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-3 p-4 border rounded-lg hover:border-primary/50 hover:bg-muted/50 transition-colors group"
+            >
+              <ExternalLink className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+              <div>
+                <div className="font-semibold group-hover:text-primary transition-colors">Microsoft Copilot Success Kit</div>
+                <div className="text-sm text-muted-foreground">Offizielles Toolkit für ROI-Messung und Adoption-Tracking</div>
+              </div>
+            </a>
+
+            <a
+              href="https://www.microsoft.com/en-us/microsoft-365/copilot/copilot-for-work"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-3 p-4 border rounded-lg hover:border-primary/50 hover:bg-muted/50 transition-colors group"
+            >
+              <ExternalLink className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+              <div>
+                <div className="font-semibold group-hover:text-primary transition-colors">Copilot for Work Benefits</div>
+                <div className="text-sm text-muted-foreground">Microsoft-Übersicht zu Produktivitätsvorteilen und Business Value</div>
+              </div>
+            </a>
+          </div>
         </section>
       </ContentLayout>
     </>

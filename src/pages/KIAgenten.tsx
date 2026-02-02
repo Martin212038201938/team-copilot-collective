@@ -1,7 +1,7 @@
 import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Zap, Bot, Network, Workflow, Shield } from "lucide-react";
+import { Zap, Bot, Network, Workflow, Shield, ExternalLink } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 
@@ -25,7 +25,8 @@ const KIAgenten = () => {
     { id: "multi-agent", title: "Multi-Agent-Systeme", level: 2 },
     { id: "tool-integration", title: "Tool-Integration und APIs", level: 2 },
     { id: "testing", title: "Testing und Deployment", level: 2 },
-    { id: "faq", title: "Häufig gestellte Fragen", level: 2 }
+    { id: "faq", title: "Häufig gestellte Fragen", level: 2 },
+    { id: "quellen", title: "Quellen und Links", level: 2 }
   ];
 
   // FAQ-Daten für Schema und Anzeige (kundenorientierte Fragen)
@@ -551,6 +552,68 @@ const KIAgenten = () => {
                 </CardContent>
               </Card>
             ))}
+          </div>
+        </section>
+
+        {/* Quellen und weiterführende Links */}
+        <section id="quellen" className="mt-12 mb-12">
+          <h2>Quellen und weiterführende Links</h2>
+          <p className="text-muted-foreground mb-6">
+            Offizielle Ressourcen und Dokumentationen zu KI-Agenten und Agentic AI.
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-4">
+            <a
+              href="https://learn.microsoft.com/en-us/microsoft-copilot-studio/advanced-plugin-actions"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-3 p-4 border rounded-lg hover:border-primary/50 hover:bg-muted/50 transition-colors group"
+            >
+              <ExternalLink className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+              <div>
+                <div className="font-semibold group-hover:text-primary transition-colors">Copilot Studio: Tools und Actions hinzufügen</div>
+                <div className="text-sm text-muted-foreground">Dokumentation zur Erweiterung von Agenten mit benutzerdefinierten Tools</div>
+              </div>
+            </a>
+
+            <a
+              href="https://learn.microsoft.com/en-us/power-automate/overview-cloud"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-3 p-4 border rounded-lg hover:border-primary/50 hover:bg-muted/50 transition-colors group"
+            >
+              <ExternalLink className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+              <div>
+                <div className="font-semibold group-hover:text-primary transition-colors">Power Automate Dokumentation</div>
+                <div className="text-sm text-muted-foreground">Workflow-Automatisierung für KI-Agenten</div>
+              </div>
+            </a>
+
+            <a
+              href="https://www.microsoft.com/en-us/research/project/autogen/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-3 p-4 border rounded-lg hover:border-primary/50 hover:bg-muted/50 transition-colors group"
+            >
+              <ExternalLink className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+              <div>
+                <div className="font-semibold group-hover:text-primary transition-colors">Microsoft Research: AutoGen</div>
+                <div className="text-sm text-muted-foreground">Multi-Agent-Framework für komplexe KI-Systeme</div>
+              </div>
+            </a>
+
+            <a
+              href="https://azure.microsoft.com/en-us/products/ai-services/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-3 p-4 border rounded-lg hover:border-primary/50 hover:bg-muted/50 transition-colors group"
+            >
+              <ExternalLink className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+              <div>
+                <div className="font-semibold group-hover:text-primary transition-colors">Azure AI Services</div>
+                <div className="text-sm text-muted-foreground">Übersicht der Azure-KI-Dienste für Agenten-Entwicklung</div>
+              </div>
+            </a>
           </div>
         </section>
 

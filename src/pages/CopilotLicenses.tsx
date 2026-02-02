@@ -1,7 +1,7 @@
 import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Check, X, Info, Linkedin, Mail } from "lucide-react";
+import { Check, X, Info, Linkedin, Mail, ExternalLink } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 
@@ -24,7 +24,8 @@ const CopilotLicenses = () => {
     { id: "copilot-studio", title: "Microsoft Copilot Studio", level: 2 },
     { id: "comparison", title: "Lizenzvergleich", level: 2 },
     { id: "recommendations", title: "Welche Lizenz brauche ich?", level: 2 },
-    { id: "faq", title: "Häufig gestellte Fragen", level: 2 }
+    { id: "faq", title: "Häufig gestellte Fragen", level: 2 },
+    { id: "quellen", title: "Quellen und Links", level: 2 }
   ];
 
   // FAQ-Daten für Schema und Anzeige (kundenorientierte Fragen)
@@ -596,6 +597,68 @@ const CopilotLicenses = () => {
                 </CardContent>
               </Card>
             ))}
+          </div>
+        </section>
+
+        {/* Quellen und weiterführende Links */}
+        <section id="quellen" className="mt-12 mb-12">
+          <h2>Quellen und weiterführende Links</h2>
+          <p className="text-muted-foreground mb-6">
+            Offizielle Microsoft-Ressourcen zu Lizenzierung und Preisen.
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-4">
+            <a
+              href="https://www.microsoft.com/en-us/microsoft-365/copilot/business"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-3 p-4 border rounded-lg hover:border-primary/50 hover:bg-muted/50 transition-colors group"
+            >
+              <ExternalLink className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+              <div>
+                <div className="font-semibold group-hover:text-primary transition-colors">Microsoft 365 Copilot Preisübersicht</div>
+                <div className="text-sm text-muted-foreground">Offizielle Preise und Lizenzoptionen für Microsoft 365 Copilot</div>
+              </div>
+            </a>
+
+            <a
+              href="https://github.com/features/copilot/plans"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-3 p-4 border rounded-lg hover:border-primary/50 hover:bg-muted/50 transition-colors group"
+            >
+              <ExternalLink className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+              <div>
+                <div className="font-semibold group-hover:text-primary transition-colors">GitHub Copilot Plans</div>
+                <div className="text-sm text-muted-foreground">Übersicht der GitHub Copilot Lizenzmodelle (Individual, Business, Enterprise)</div>
+              </div>
+            </a>
+
+            <a
+              href="https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-licensing"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-3 p-4 border rounded-lg hover:border-primary/50 hover:bg-muted/50 transition-colors group"
+            >
+              <ExternalLink className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+              <div>
+                <div className="font-semibold group-hover:text-primary transition-colors">Microsoft Learn: Copilot Licensing</div>
+                <div className="text-sm text-muted-foreground">Detaillierte Dokumentation zu Lizenzanforderungen und Voraussetzungen</div>
+              </div>
+            </a>
+
+            <a
+              href="https://www.microsoft.com/en-us/microsoft-copilot/microsoft-copilot-studio#tabs-pill-bar-ocded0_tab2"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-3 p-4 border rounded-lg hover:border-primary/50 hover:bg-muted/50 transition-colors group"
+            >
+              <ExternalLink className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+              <div>
+                <div className="font-semibold group-hover:text-primary transition-colors">Copilot Studio Preise</div>
+                <div className="text-sm text-muted-foreground">Lizenzkosten und Message Credits für Copilot Studio</div>
+              </div>
+            </a>
           </div>
         </section>
 

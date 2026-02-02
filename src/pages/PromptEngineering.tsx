@@ -1,7 +1,7 @@
 import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Zap, Lightbulb, Target, BookOpen } from "lucide-react";
+import { Zap, Lightbulb, Target, BookOpen, ExternalLink } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 
@@ -25,7 +25,8 @@ const PromptEngineering = () => {
     { id: "context-windows", title: "Context Windows optimal nutzen", level: 2 },
     { id: "prompt-bibliothek", title: "Prompt-Bibliothek", level: 2 },
     { id: "fehler", title: "Fehler beim Prompten vermeiden", level: 2 },
-    { id: "faq", title: "Häufig gestellte Fragen", level: 2 }
+    { id: "faq", title: "Häufig gestellte Fragen", level: 2 },
+    { id: "quellen", title: "Quellen und Links", level: 2 }
   ];
 
   // FAQ-Daten für Schema und Anzeige (kundenorientierte Fragen)
@@ -501,6 +502,68 @@ const PromptEngineering = () => {
                 </CardContent>
               </Card>
             ))}
+          </div>
+        </section>
+
+        {/* Quellen und weiterführende Links */}
+        <section id="quellen" className="mt-12 mb-12">
+          <h2>Quellen und weiterführende Links</h2>
+          <p className="text-muted-foreground mb-6">
+            Offizielle Ressourcen und wissenschaftliche Grundlagen zum Thema Prompt Engineering.
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-4">
+            <a
+              href="https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/prompt-engineering"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-3 p-4 border rounded-lg hover:border-primary/50 hover:bg-muted/50 transition-colors group"
+            >
+              <ExternalLink className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+              <div>
+                <div className="font-semibold group-hover:text-primary transition-colors">Microsoft Learn: Prompt Engineering Techniques</div>
+                <div className="text-sm text-muted-foreground">Offizielle Microsoft-Dokumentation zu Prompt-Techniken für Azure OpenAI</div>
+              </div>
+            </a>
+
+            <a
+              href="https://support.microsoft.com/en-us/topic/learn-about-copilot-prompts-f6c3b467-f07c-4db1-ae54-ffac96184dd5"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-3 p-4 border rounded-lg hover:border-primary/50 hover:bg-muted/50 transition-colors group"
+            >
+              <ExternalLink className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+              <div>
+                <div className="font-semibold group-hover:text-primary transition-colors">Microsoft Support: Prompting Tips für Copilot</div>
+                <div className="text-sm text-muted-foreground">Praktische Tipps für effektive Prompts in Microsoft 365 Copilot</div>
+              </div>
+            </a>
+
+            <a
+              href="https://www.promptingguide.ai/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-3 p-4 border rounded-lg hover:border-primary/50 hover:bg-muted/50 transition-colors group"
+            >
+              <ExternalLink className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+              <div>
+                <div className="font-semibold group-hover:text-primary transition-colors">Prompt Engineering Guide</div>
+                <div className="text-sm text-muted-foreground">Umfassende Open-Source-Ressource zu Prompt Engineering Techniken</div>
+              </div>
+            </a>
+
+            <a
+              href="https://adoption.microsoft.com/en-us/copilot/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-3 p-4 border rounded-lg hover:border-primary/50 hover:bg-muted/50 transition-colors group"
+            >
+              <ExternalLink className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+              <div>
+                <div className="font-semibold group-hover:text-primary transition-colors">Microsoft Copilot Adoption Hub</div>
+                <div className="text-sm text-muted-foreground">Offizielle Ressourcen für Copilot-Einführung und Best Practices</div>
+              </div>
+            </a>
           </div>
         </section>
 

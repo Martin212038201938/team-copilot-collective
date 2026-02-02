@@ -2,6 +2,7 @@ import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
+import { ExternalLink } from "lucide-react";
 
 const SLUG = "wissen/copilot-fuer-word";
 const PAGE_TITLE = "Microsoft Copilot für Word";
@@ -70,7 +71,8 @@ const CopilotFuerWord = () => {
     { id: "zukunft-was-kommt-", title: "Zukunft: Was kommt?", level: 2 },
     { id: "angek-ndigte-features-2025-", title: "Angekündigte Features (2025)", level: 3 },
     { id: "zusammenfassung", title: "Zusammenfassung", level: 2 },
-    { id: "ressourcen", title: "Ressourcen", level: 2 }
+    { id: "ressourcen", title: "Ressourcen", level: 2 },
+    { id: "quellen", title: "Quellen und Links", level: 2 }
   ];
 
   // Schema IDs automatisch generieren
@@ -699,6 +701,68 @@ const CopilotFuerWord = () => {
           </ul>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Möchten Sie Copilot in Ihrem Unternehmen einführen?</strong>  </p>
           <p className="mb-4 text-gray-700 leading-relaxed">Wir bieten maßgeschneiderte Workshops und Change Management. <a href="/" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">Kontakt →</a></p>
+        </section>
+
+        {/* Quellen und weiterführende Links */}
+        <section id="quellen" className="mt-12 mb-12">
+          <h2>Quellen und weiterführende Links</h2>
+          <p className="text-muted-foreground mb-6">
+            Offizielle Microsoft-Dokumentation zu Copilot in Word.
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-4">
+            <a
+              href="https://support.microsoft.com/en-us/office/welcome-to-copilot-in-word-2135e85f-a467-463b-b2f0-c51a46d625d1"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-3 p-4 border rounded-lg hover:border-primary/50 hover:bg-muted/50 transition-colors group"
+            >
+              <ExternalLink className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+              <div>
+                <div className="font-semibold group-hover:text-primary transition-colors">Microsoft Support: Copilot in Word</div>
+                <div className="text-sm text-muted-foreground">Offizielle Einführung und Grundlagen zu Copilot in Word</div>
+              </div>
+            </a>
+
+            <a
+              href="https://support.microsoft.com/en-us/office/create-a-new-document-with-copilot-in-word-9f09e35c-17e1-4e6a-9dba-e3ff7f105ed6"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-3 p-4 border rounded-lg hover:border-primary/50 hover:bg-muted/50 transition-colors group"
+            >
+              <ExternalLink className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+              <div>
+                <div className="font-semibold group-hover:text-primary transition-colors">Dokumente mit Copilot erstellen</div>
+                <div className="text-sm text-muted-foreground">Anleitung zum Erstellen neuer Dokumente mit Copilot Draft</div>
+              </div>
+            </a>
+
+            <a
+              href="https://support.microsoft.com/en-us/office/rewrite-your-text-with-copilot-in-word-923d9763-f896-4da7-8a3f-5b12c3bfc475"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-3 p-4 border rounded-lg hover:border-primary/50 hover:bg-muted/50 transition-colors group"
+            >
+              <ExternalLink className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+              <div>
+                <div className="font-semibold group-hover:text-primary transition-colors">Texte umschreiben mit Copilot</div>
+                <div className="text-sm text-muted-foreground">Anleitung zur Rewrite-Funktion für Textoptimierung</div>
+              </div>
+            </a>
+
+            <a
+              href="https://support.microsoft.com/en-us/office/summarize-your-document-with-copilot-in-word-95daea3d-6a12-4eb8-8d82-0503bc0e2c91"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-3 p-4 border rounded-lg hover:border-primary/50 hover:bg-muted/50 transition-colors group"
+            >
+              <ExternalLink className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+              <div>
+                <div className="font-semibold group-hover:text-primary transition-colors">Dokumente zusammenfassen</div>
+                <div className="text-sm text-muted-foreground">Anleitung zur Summarize-Funktion für Textzusammenfassungen</div>
+              </div>
+            </a>
+          </div>
         </section>
       </ContentLayout>
     </>

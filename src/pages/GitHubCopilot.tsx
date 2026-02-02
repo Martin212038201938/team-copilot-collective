@@ -1,7 +1,7 @@
 import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Check, Code, Terminal, MessageSquare, Zap } from "lucide-react";
+import { Check, Code, Terminal, MessageSquare, Zap, ExternalLink } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 
@@ -25,7 +25,8 @@ const GitHubCopilot = () => {
     { id: "advanced-features", title: "Advanced Features", level: 2 },
     { id: "prompt-engineering", title: "Prompt Engineering für Copilot", level: 2 },
     { id: "fehler-vermeiden", title: "Häufige Fehler vermeiden", level: 2 },
-    { id: "faq", title: "Häufig gestellte Fragen", level: 2 }
+    { id: "faq", title: "Häufig gestellte Fragen", level: 2 },
+    { id: "quellen", title: "Quellen und Links", level: 2 }
   ];
 
   // FAQ-Daten für Schema und Anzeige (kundenorientierte Fragen)
@@ -456,6 +457,68 @@ const GitHubCopilot = () => {
                 </CardContent>
               </Card>
             ))}
+          </div>
+        </section>
+
+        {/* Quellen und weiterführende Links */}
+        <section id="quellen" className="mt-12 mb-12">
+          <h2>Quellen und weiterführende Links</h2>
+          <p className="text-muted-foreground mb-6">
+            Offizielle Dokumentationen und Ressourcen für vertiefende Informationen zu GitHub Copilot.
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-4">
+            <a
+              href="https://docs.github.com/en/copilot"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-3 p-4 border rounded-lg hover:border-primary/50 hover:bg-muted/50 transition-colors group"
+            >
+              <ExternalLink className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+              <div>
+                <div className="font-semibold group-hover:text-primary transition-colors">GitHub Copilot Dokumentation</div>
+                <div className="text-sm text-muted-foreground">Offizielle Dokumentation von GitHub mit Setup-Guides und Feature-Übersicht</div>
+              </div>
+            </a>
+
+            <a
+              href="https://github.blog/news-insights/product-news/github-copilot-x-the-ai-powered-developer-experience/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-3 p-4 border rounded-lg hover:border-primary/50 hover:bg-muted/50 transition-colors group"
+            >
+              <ExternalLink className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+              <div>
+                <div className="font-semibold group-hover:text-primary transition-colors">GitHub Blog: Copilot X Announcement</div>
+                <div className="text-sm text-muted-foreground">Offizielle Ankündigung der erweiterten Copilot-Funktionen (März 2023)</div>
+              </div>
+            </a>
+
+            <a
+              href="https://github.com/features/copilot"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-3 p-4 border rounded-lg hover:border-primary/50 hover:bg-muted/50 transition-colors group"
+            >
+              <ExternalLink className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+              <div>
+                <div className="font-semibold group-hover:text-primary transition-colors">GitHub Copilot Produktseite</div>
+                <div className="text-sm text-muted-foreground">Übersicht über Preise, Features und Lizenzoptionen</div>
+              </div>
+            </a>
+
+            <a
+              href="https://github.blog/news-insights/research/research-quantifying-github-copilots-impact-on-developer-productivity-and-happiness/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-3 p-4 border rounded-lg hover:border-primary/50 hover:bg-muted/50 transition-colors group"
+            >
+              <ExternalLink className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+              <div>
+                <div className="font-semibold group-hover:text-primary transition-colors">GitHub Research: Produktivitätsstudie</div>
+                <div className="text-sm text-muted-foreground">Studie zur Produktivitätssteigerung durch GitHub Copilot (September 2022)</div>
+              </div>
+            </a>
           </div>
         </section>
 
