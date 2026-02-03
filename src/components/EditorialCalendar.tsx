@@ -42,14 +42,80 @@ interface ArticleMetadata {
   isStatic: boolean; // true = TSX-Datei, false = Draft
 }
 
-// Statische Artikel aus Wissen.tsx (diese existieren als TSX-Dateien)
+// ============================================================================
+// REDAKTIONSPLAN - STATISCHE ARTIKEL
+// ============================================================================
+// WICHTIG: Bei jedem neuen Artikel MUSS hier ein Eintrag hinzugefügt werden!
+//
+// Workflow für neue Artikel:
+// 1. TSX-Datei in src/pages/ erstellen
+// 2. Route in App.tsx hinzufügen
+// 3. Eintrag in Wissen.tsx staticKnowledgeTopics Array
+// 4. HIER einen Eintrag zu DEFAULT_STATIC_ARTICLES hinzufügen (PFLICHT!)
+// ============================================================================
 const DEFAULT_STATIC_ARTICLES: ArticleMetadata[] = [
+  {
+    id: "copilot-roi-erfolgsgeschichten",
+    title: "Copilot ROI: Was CEOs und Vorstände aus dem DACH-Raum berichten",
+    description: "Wörtliche Zitate von Führungskräften bei Bayer, Siemens, Schaeffler, thyssenkrupp und der Schweizerischen Post über ihre Erfahrungen mit Microsoft Copilot.",
+    link: "/wissen/copilot-roi-erfolgsgeschichten",
+    badge: "Neu",
+    icon: "💬",
+    readTime: "12 Minuten",
+    lastUpdated: "03. Feb. 2026",
+    publishDate: "2026-02-03",
+    publishTime: "09:00",
+    isPublished: true,
+    isStatic: true
+  },
+  {
+    id: "copilot-launch-kampagne",
+    title: "Copilot Launch-Kampagne: So bringen Sie Ihr Unternehmen zum Fliegen",
+    description: "Warum eine Copilot-Einführung anders ist als SAP oder Salesforce – und wie Sie mit der richtigen Launch-Kampagne nachhaltige Verhaltensänderung erreichen. Mit 15 konkreten Ideen.",
+    link: "/wissen/copilot-launch-kampagne",
+    badge: "Neu",
+    icon: "🚀",
+    readTime: "14 Minuten",
+    lastUpdated: "03. Feb. 2026",
+    publishDate: "2026-02-03",
+    publishTime: "08:00",
+    isPublished: true,
+    isStatic: true
+  },
+  {
+    id: "prompt-bibliotheken-vs-training",
+    title: "Warum Prompt-Bibliotheken Quatsch sind",
+    description: "Prompt-Listen klingen gut, bringen aber wenig. Warum echtes Prompting-Training und Copilot-Agenten die besseren Alternativen sind – inklusive dem Zauberstab-Prompt.",
+    link: "/wissen/prompt-bibliotheken-vs-training",
+    badge: "Neu",
+    icon: "🪄",
+    readTime: "6 Minuten",
+    lastUpdated: "03. Feb. 2026",
+    publishDate: "2026-02-03",
+    publishTime: "07:00",
+    isPublished: true,
+    isStatic: true
+  },
+  {
+    id: "copilot-digitales-gedaechtnis",
+    title: "Digitales Gedächtnis mit Microsoft Copilot",
+    description: "Wie Copilot mit Transkription, E-Mails, Chats und OneNote zum externen Gedächtnis wird. Praktische Prompts für vergessene Zusagen und Entscheidungen.",
+    link: "/wissen/copilot-digitales-gedaechtnis",
+    badge: "Praxisguide",
+    icon: "🧠",
+    readTime: "14 Minuten",
+    lastUpdated: "03. Feb. 2026",
+    publishDate: "2026-02-03",
+    publishTime: "06:00",
+    isPublished: true,
+    isStatic: true
+  },
   {
     id: "copilot-unternehmensweit-einfuehren",
     title: "Warum Unternehmen Microsoft Copilot zentral einführen sollten",
     description: "Warum Shadow-IT bei KI gefährlich ist: Zentrale Copilot-Einführung sichert DSGVO-Konformität, Grounding mit Unternehmensdaten und unternehmensweite Synergien.",
     link: "/wissen/copilot-unternehmensweit-einfuehren",
-    badge: "Neu",
+    badge: "Strategie",
     icon: "🏢",
     readTime: "12 Minuten",
     lastUpdated: "02. Feb. 2026",
