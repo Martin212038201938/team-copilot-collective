@@ -232,19 +232,52 @@ const CopilotFuerWord = () => {
             <li>Klicken Sie auf die Copilot-Schaltfläche unterhalb des Titels bei leerem Dokument</li>
           </ul>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-cyan-500 pl-4">Erste Schritte</h3>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>1. Leeres Dokument erstellen</strong></p>
+          <p className="mb-4 text-gray-700 leading-relaxed"><strong>1. Leeres Dokument erstellen – mit vollständigem CRAFT-Prompt</strong></p>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>Prompt: "Erstelle einen Projektplan für die Einführung von Microsoft Copilot in einem mittelständischen Unternehmen"</code></pre>
+            <pre className="text-sm"><code>{`Prompt: "Du bist ein erfahrener Projektmanager mit Expertise in IT-Rollouts.
+Erstelle einen detaillierten Projektplan für die unternehmensweite
+Einführung von Microsoft Copilot in einem mittelständischen
+Maschinenbauunternehmen mit 500 Mitarbeitern.
+
+Kontext:
+- Budget: 180.000 € für Lizenzen und Schulungen im ersten Jahr
+- Pilotgruppe: 50 Mitarbeiter aus Marketing, Vertrieb und Engineering
+- IT-Landschaft: Microsoft 365 E3, Teams bereits etabliert
+- Zeitrahmen: 6 Monate vom Kick-off bis Full-Rollout
+
+Der Plan soll enthalten:
+1. Executive Summary (max. 150 Wörter)
+2. Phasenplan mit konkreten Meilensteinen und Daten
+3. Rollen und Verantwortlichkeiten (RACI-Matrix)
+4. Schulungskonzept mit Zeitaufwänden pro Mitarbeitergruppe
+5. KPIs zur Erfolgsmessung (mindestens 5 messbare Kennzahlen)
+6. Risikomatrix mit Mitigationsmaßnahmen
+7. Budget-Breakdown pro Phase
+
+Tonalität: Professionell, strukturiert, für Geschäftsführung geeignet.
+Format: Mit Überschriften H2/H3, Bullet-Points wo sinnvoll, Tabellen für RACI und Budget."`}</code></pre>
           </div>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>2. Copilot generiert sofort:</strong></p>
           <ul className="list-disc list-inside space-y-2 mb-4">
-            <li>Strukturierten Text mit Überschriften</li>
-            <li>Logischen Aufbau</li>
-            <li>Professionelle Formulierungen</li>
+            <li>Strukturierten Text mit Überschriften und professioneller Gliederung</li>
+            <li>Realistische Zeitpläne basierend auf dem 6-Monats-Rahmen</li>
+            <li>Budget-Aufteilung entsprechend der 180.000 € Vorgabe</li>
+            <li>Konkrete KPIs wie Adoptionsrate, Zeitersparnis, NPS-Score</li>
           </ul>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>3. Iterieren und verfeinern:</strong></p>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>Prompt: "Füge eine Zeitachse mit konkreten Meilensteinen hinzu"</code></pre>
+            <pre className="text-sm"><code>{`Prompt: "Ergänze den Projektplan um folgende Aspekte:
+
+1. Detaillierte Zeitachse als Gantt-Chart-Beschreibung mit
+   Kalenderwochen von KW 12 bis KW 36
+2. Change-Management-Aktivitäten pro Phase:
+   - Kommunikationsmaßnahmen (E-Mails, Town Halls, Intranet-Posts)
+   - Champions-Programm mit Auswahlkriterien und Schulungsplan
+   - Feedback-Schleifen mit konkreten Umfrage-Terminen
+3. Eskalationsprozess bei technischen oder organisatorischen Problemen
+4. Abhängigkeiten zwischen den Meilensteinen als Tabelle
+
+Halte die gleiche professionelle Tonalität bei."`}</code></pre>
           </div>
         </section>
 
@@ -252,15 +285,75 @@ const CopilotFuerWord = () => {
           <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-emerald-500 mb-6">Hauptfunktionen im Detail</h2>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-t-4 border-t-emerald-500 pt-4">1. Dokumente erstellen (Draft)</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Use Case:</strong> Vom leeren Dokument zum fertigen Entwurf</p>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Beste Prompts:</strong></p>
+          <p className="mb-4 text-gray-700 leading-relaxed"><strong>CRAFT-konforme Prompts:</strong></p>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>"Erstelle einen formellen Geschäftsbrief an [Kunde], \nder sich für die Verzögerung bei [Projekt] entschuldigt \nund neue Termine vorschlägt."</code></pre>
+            <pre className="text-sm"><code>{`"Erstelle einen formellen Entschuldigungsbrief an die Müller GmbH
+(Ansprechpartner: Frau Dr. Schmidt, Einkaufsleiterin).
+
+Kontext: Unser Projekt 'ERP-Migration' hat sich um 6 Wochen
+verzögert wegen unerwarteter Schnittstellenprobleme mit dem
+Legacy-System. Ursprünglicher Go-Live: 15. März 2026,
+neuer Termin: 30. April 2026.
+
+Der Brief soll:
+- Die Verzögerung bedauern ohne Schuldzuweisungen
+- Die technischen Gründe kurz und verständlich erklären
+- Konkrete Maßnahmen nennen, die wir ergriffen haben
+- Den neuen, realistischen Zeitplan präsentieren
+- Ein Kompensationsangebot machen (10% Rabatt auf Wartungsvertrag)
+- Mit positivem Ausblick auf die Zusammenarbeit enden
+
+Tonalität: Professionell, lösungsorientiert, wertschätzend.
+Format: Klassischer Geschäftsbrief mit Briefkopf-Platzhalter.
+Länge: 1 Seite (ca. 300 Wörter)."`}</code></pre>
           </div>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>"Schreibe einen Blogartikel zum Thema [Topic], \nZielgruppe: [Persona], Tonalität: [Stil], Länge: 800 Wörter"</code></pre>
+            <pre className="text-sm"><code>{`"Du bist ein erfahrener B2B-Content-Marketer.
+Schreibe einen Blogartikel zum Thema 'KI-gestützte Qualitätskontrolle
+in der Fertigung'.
+
+Zielgruppe: Produktionsleiter und COOs in mittelständischen
+Fertigungsunternehmen (50-500 Mitarbeiter), technisch interessiert
+aber keine KI-Experten.
+
+Struktur:
+1. Hook: Reales Problem (Ausschussquoten, manuelle Prüfkosten)
+2. Erklärung: Wie funktioniert KI-Qualitätskontrolle (ohne Fachjargon)
+3. 3 konkrete Anwendungsbeispiele aus verschiedenen Branchen
+4. ROI-Argumentation mit Beispielrechnung
+5. Implementierungs-Roadmap (Pilot → Scale)
+6. Call-to-Action: Beratungsgespräch vereinbaren
+
+Tonalität: Kompetent aber zugänglich, praxisnah mit Zahlen,
+keine Marketing-Floskeln.
+Länge: 1.200 Wörter.
+SEO: Keyword 'KI Qualitätskontrolle' 3-4x natürlich einbauen."`}</code></pre>
           </div>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>"Erstelle eine Agenda für ein Meeting über [Thema] \nmit folgenden Teilnehmern: [Namen] und Schwerpunkten: [Punkte]"</code></pre>
+            <pre className="text-sm"><code>{`"Erstelle eine detaillierte Meeting-Agenda für unser
+Q2 Strategy Review am 15. April 2026, 14:00-17:00 Uhr.
+
+Teilnehmer:
+- CEO (Thomas Berger) - erwartet Executive Summary
+- CFO (Lisa Müller) - fokussiert auf Zahlen und Forecasts
+- VP Sales (Michael Chen) - präsentiert Pipeline-Update
+- VP Engineering (Sarah Weber) - Tech-Roadmap
+- Marketing Director (Anna Hoffmann) - Campaign Performance
+
+Schwerpunkte:
+1. Q1 Performance vs. Plan (30 Min) - wer präsentiert was
+2. Market Insights & Wettbewerbsanalyse (20 Min)
+3. Q2-Q4 Forecast Adjustment (45 Min) - mit Szenarien
+4. Strategische Initiativen: Status und Entscheidungen (60 Min)
+5. Open Discussion & Next Steps (25 Min)
+
+Für jeden Agendapunkt angeben:
+- Verantwortlicher Präsentator
+- Zeitslot mit Puffer
+- Erwartetes Ergebnis (Information/Diskussion/Entscheidung)
+- Benötigte Vorbereitungen der Teilnehmer
+
+Format: Professionelle Agenda-Tabelle mit Timing."`}</code></pre>
           </div>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Tipps:</strong></p>
           <ul className="list-disc list-inside space-y-2 mb-4">
@@ -271,15 +364,62 @@ const CopilotFuerWord = () => {
           </ul>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-t-4 border-t-red-500 pt-4">2. Texte zusammenfassen (Summarize)</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Use Case:</strong> Lange Dokumente schnell erfassen</p>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Beispiele:</strong></p>
+          <p className="mb-4 text-gray-700 leading-relaxed"><strong>CRAFT-konforme Prompts:</strong></p>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>"Fasse dieses 20-seitige Dokument in 5 Kernpunkten zusammen"</code></pre>
+            <pre className="text-sm"><code>{`"Fasse dieses 20-seitige Marktanalyse-Dokument zusammen für
+einen CEO, der in 5 Minuten einen Überblick braucht.
+
+Struktur der Zusammenfassung:
+1. Die 3 wichtigsten Erkenntnisse (je max. 2 Sätze)
+2. Größte Chance für unser Unternehmen (konkret und quantifiziert)
+3. Größtes Risiko (mit empfohlener Gegenmaßnahme)
+4. Die eine strategische Entscheidung, die jetzt ansteht
+5. Empfehlung: Was sollten wir als nächstes tun?
+
+Wichtig:
+- Keine Fachbegriffe ohne Erklärung
+- Zahlen aus dem Dokument einbauen wo verfügbar
+- Aussagen mit 'laut Seite X' referenzieren
+- Unsicherheiten transparent machen
+
+Format: Nummerierte Liste, max. 400 Wörter gesamt."`}</code></pre>
           </div>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>"Erstelle eine Executive Summary für Führungskräfte (max. 1 Seite)"</code></pre>
+            <pre className="text-sm"><code>{`"Erstelle eine Executive Summary dieses Audit-Berichts für den
+Vorstand unseres Kunden (Branchen-Outsider, keine IT-Experten).
+
+Die Executive Summary soll enthalten:
+- Management Summary (max. 3 Sätze): Was wurde geprüft, Gesamturteil
+- Positive Feststellungen (3 Bullet Points): Was läuft gut
+- Kritische Feststellungen (priorisiert nach Risiko):
+  * Hohes Risiko (sofortiger Handlungsbedarf)
+  * Mittleres Risiko (innerhalb 3 Monate beheben)
+  * Niedriges Risiko (Optimierungspotenzial)
+- Kostenimplikation: Geschätzter Aufwand für Behebung
+- Nächste Schritte: Konkreter Maßnahmenplan mit Terminen
+
+Tonalität: Sachlich, lösungsorientiert, nicht alarmistisch.
+Länge: Exakt 1 Seite (ca. 500 Wörter).
+Wichtig: Technische Details nur wo unbedingt nötig, dann mit Erklärung."`}</code></pre>
           </div>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>"Welche Handlungsempfehlungen enthält dieses Dokument?"</code></pre>
+            <pre className="text-sm"><code>{`"Analysiere dieses Dokument und extrahiere alle
+Handlungsempfehlungen in einem strukturierten Format.
+
+Für jede Handlungsempfehlung dokumentiere:
+1. Was genau ist zu tun? (Konkrete Maßnahme)
+2. Wer sollte es tun? (Rolle/Abteilung)
+3. Bis wann? (Falls im Dokument genannt)
+4. Welches Problem löst es? (Bezug zum Dokument)
+5. Priorität (Hoch/Mittel/Niedrig basierend auf Kontext)
+6. Fundstelle: Auf welcher Seite/in welchem Abschnitt steht das?
+
+Zusätzlich:
+- Gruppiere ähnliche Empfehlungen thematisch
+- Kennzeichne widersprüchliche Empfehlungen (falls vorhanden)
+- Markiere Empfehlungen ohne klare Verantwortungszuweisung
+
+Ausgabe als Tabelle sortiert nach Priorität."`}</code></pre>
           </div>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Anwendungsfälle:</strong></p>
           <ul className="list-disc list-inside space-y-2 mb-4">
@@ -290,51 +430,193 @@ const CopilotFuerWord = () => {
           </ul>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-t-4 border-t-amber-500 pt-4">3. Texte umschreiben (Rewrite)</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Use Case:</strong> Bestehende Texte verbessern</p>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Varianten:</strong></p>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Kürzer machen:</strong></p>
+          <p className="mb-4 text-gray-700 leading-relaxed"><strong>CRAFT-konforme Varianten:</strong></p>
+          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Kürzer machen (mit Qualitätskriterien):</strong></p>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>"Schreibe diesen Absatz prägnanter, max. 3 Sätze"</code></pre>
+            <pre className="text-sm"><code>{`"Kürze diesen 500-Wörter-Absatz auf maximal 150 Wörter.
+
+Vorgaben für das Kürzen:
+- Behalte die Kernaussage: [hier Kernaussage einfügen]
+- Diese Fakten müssen erhalten bleiben: [Fakt 1], [Fakt 2]
+- Entferne: Redundanzen, Füllwörter, Nebensächliches
+- Stil: Aktive Formulierungen, kurze Sätze (max. 15 Wörter)
+- Der gekürzte Text muss ohne Vorwissen verständlich sein
+
+Zeige mir auch, was du gestrichen hast und warum."`}</code></pre>
           </div>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Tonalität ändern:</strong></p>
+          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Tonalität ändern (mit konkretem Zielbild):</strong></p>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>"Formuliere diesen Text informeller/formeller/enthusiastischer"</code></pre>
+            <pre className="text-sm"><code>{`"Formuliere diesen internen Projektbericht so um, dass er als
+LinkedIn-Post für unser Firmenprofil funktioniert.
+
+Ursprungstext: [technischer Projektbericht]
+
+Anforderungen an den neuen Text:
+- Zielgruppe: Potenzielle B2B-Kunden und Talente
+- Tonalität: Stolz auf Erreichtes, aber nicht prahlerisch
+- Länge: 150-200 Wörter (LinkedIn-optimal)
+- Struktur: Hook → Story → Learning → Soft-CTA
+- Einbauen: 2-3 relevante Hashtags
+- Vermeiden: Interne Abkürzungen, technischer Jargon
+- Der Projektname darf genannt werden, aber keine Kundennamen
+
+Mach 2 Versionen: Eine enthusiastischer, eine sachlicher."`}</code></pre>
           </div>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Komplexität anpassen:</strong></p>
+          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Komplexität anpassen (für definierte Zielgruppe):</strong></p>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>"Erkläre diesen technischen Absatz für ein nicht-technisches Publikum"</code></pre>
+            <pre className="text-sm"><code>{`"Erkläre diesen technischen Absatz über unsere Cloud-Migration
+für den Aufsichtsrat (Durchschnittsalter 62, keine IT-Hintergründe,
+aber hohe Business-Kompetenz).
+
+Der umgeschriebene Text soll:
+- Alle Fachbegriffe entweder ersetzen oder in Klammern erklären
+- Analogien aus dem klassischen Geschäftsleben verwenden
+- Die Business-Relevanz (Kosten, Risiken, Chancen) betonen
+- Konkrete Zahlen nennen wo möglich (€, %, Monate)
+- In 3 Absätzen aufgebaut sein: Was, Warum, Was bedeutet das für uns
+- Ohne Wertung der IT-Entscheidungen bleiben (neutral informierend)
+
+Maximale Länge: 250 Wörter.
+Erstelle zusätzlich eine Glossar-Box mit 3-4 Schlüsselbegriffen."`}</code></pre>
           </div>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Struktur verbessern:</strong></p>
+          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Struktur verbessern (mit Zielformat):</strong></p>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>"Verbessere die Struktur und Lesbarkeit dieses Texts"</code></pre>
+            <pre className="text-sm"><code>{`"Dieser Text ist als fortlaufender Fließtext schwer lesbar.
+Strukturiere ihn nach folgendem Muster um:
+
+Zielstruktur:
+1. Einleitender Absatz (max. 3 Sätze): Worum geht es?
+2. Hauptteil mit H3-Zwischenüberschriften (3-5 Abschnitte)
+3. Jeder Abschnitt: 1 Einleitungssatz + 2-4 Bullet Points
+4. Kernzahlen in Fettschrift hervorheben
+5. Abschließender Absatz: Fazit und nächster Schritt
+
+Zusätzlich:
+- Absätze nach logischen Themenblöcken trennen
+- Aufzählungen dort verwenden, wo 3+ ähnliche Punkte aufgelistet werden
+- Übergangssätze hinzufügen wo der Gedankenfluss springt
+- Eine 'Key Takeaways'-Box am Ende einfügen (3 Punkte)
+
+Inhalt darf nicht verändert werden, nur die Präsentation."`}</code></pre>
           </div>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-t-4 border-t-indigo-500 pt-4">4. Aus anderen Dokumenten erstellen</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Use Case:</strong> Mehrere Quellen kombinieren</p>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Beispiel:</strong></p>
+          <p className="mb-4 text-gray-700 leading-relaxed"><strong>CRAFT-konformer Beispiel-Prompt:</strong></p>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>"Erstelle ein Proposal basierend auf:\n- Meeting-Notizen.docx\n- Kundenanforderungen.xlsx  \n- Preisliste.pdf"</code></pre>
+            <pre className="text-sm"><code>{`"Erstelle ein professionelles Angebot für die Müller GmbH basierend
+auf folgenden Quelldokumenten:
+
+Quellen:
+1. /Meeting-Notizen-Müller-15-März.docx
+   → Extrahiere: Kundenbedürfnisse, Pain Points, Budget-Rahmen
+2. /Kundenanforderungen-Müller.xlsx
+   → Extrahiere: Technische Spezifikationen, Mengen, Zeitplan
+3. /Preisliste-2026-Q1.pdf
+   → Verwende: Aktuelle Listenpreise, Rabattstaffel Enterprise
+
+Struktur des Angebots:
+1. Deckblatt mit Kundenname, Datum, Angebotsnummer
+2. Management Summary (warum wir der richtige Partner sind)
+3. Verständnis der Anforderungen (zeigt, dass wir zugehört haben)
+4. Lösungskonzept mit allen Komponenten aus der Anforderungsliste
+5. Preistabelle (Positionen aus Excel, Preise aus Preisliste)
+6. Timeline mit Meilensteinen (aus Meeting-Notizen ableiten)
+7. Nächste Schritte und Gültigkeitsdauer
+
+Regeln:
+- Bei widersprüchlichen Informationen: Meeting-Notizen haben Vorrang
+- Rabatt von 15% auf Gesamtsumme einrechnen (im Meeting besprochen)
+- Zahlungsbedingungen: 30 Tage netto
+- Angebotsgültigkeit: 30 Tage
+
+Tonalität: Professionell, kundenorientiert, lösungsfokussiert."`}</code></pre>
           </div>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Copilot kann:</strong></p>
           <ul className="list-disc list-inside space-y-2 mb-4">
-            <li>Informationen aus SharePoint-Dokumenten ziehen</li>
-            <li>E-Mails aus Outlook referenzieren</li>
-            <li>Excel-Daten integrieren</li>
-            <li>PowerPoint-Inhalte einbinden</li>
+            <li>Informationen aus SharePoint-Dokumenten ziehen (mit Pfad referenzieren)</li>
+            <li>E-Mails aus Outlook referenzieren (nach Datum, Absender oder Betreff)</li>
+            <li>Excel-Daten integrieren (Tabellen, Berechnungen, Diagrammbeschreibungen)</li>
+            <li>PowerPoint-Inhalte einbinden (Slide-Inhalte als Text)</li>
           </ul>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Syntax:</strong></p>
+          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Weitere Multi-Dokument-Prompts:</strong></p>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>"Erstelle ein [Dokumenttyp] basierend auf [Dateiname] und [Dateiname]"</code></pre>
+            <pre className="text-sm"><code>{`"Erstelle einen Wettbewerbsvergleich basierend auf:
+- /Analyse-Wettbewerber-A.docx (Stärken, Schwächen, Preise)
+- /Analyse-Wettbewerber-B.docx (Stärken, Schwächen, Preise)
+- /Unsere-Positionierung.pptx (unsere USPs und Preise)
+
+Format: Vergleichstabelle mit Bewertung (++, +, o, -, --)
+für die Kategorien: Preis, Funktionsumfang, Support, Integration, UX.
+Unter der Tabelle: 3-Sätze-Fazit für den Vertrieb."`}</code></pre>
           </div>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-t-4 border-t-slate-500 pt-4">5. Formatierung und Struktur</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Use Case:</strong> Professionelles Layout automatisch</p>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Prompts:</strong></p>
+          <p className="mb-4 text-gray-700 leading-relaxed"><strong>CRAFT-konforme Prompts:</strong></p>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>"Strukturiere diesen Text mit Überschriften, Bullet Points und nummerierten Listen"</code></pre>
+            <pre className="text-sm"><code>{`"Strukturiere diesen Fließtext als professionellen Consulting-Report.
+
+Formatierungs-Vorgaben:
+- H2-Überschriften für Hauptkapitel (max. 5-6 Wörter)
+- H3-Unterüberschriften für Abschnitte innerhalb der Kapitel
+- Nummerierte Listen für sequenzielle Schritte oder Priorisierungen
+- Bullet Points für ungeordnete Aufzählungen (max. 5-7 Punkte pro Liste)
+- Wichtige Zahlen und Kennzahlen in Fettschrift
+- Direkte Zitate in Kursiv mit Quellenangabe
+- Tabellen für Vergleiche mit 3+ Dimensionen
+
+Zusätzlich einbauen:
+- Callout-Box 'Wichtig' für kritische Informationen
+- Callout-Box 'Praxis-Tipp' für konkrete Handlungsempfehlungen
+- Seitenumbrüche vor jedem H2-Kapitel (Hinweis: hier einfügen)
+
+Corporate Design beachten:
+- Keine Emojis oder informellen Marker
+- Absätze zwischen 50-100 Wörtern
+- Konsistente Terminologie (wenn 'Mitarbeiter', dann immer 'Mitarbeiter')"`}</code></pre>
           </div>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>"Füge eine Einleitung und Zusammenfassung hinzu"</code></pre>
+            <pre className="text-sm"><code>{`"Füge diesem Dokument professionelle Rahmung hinzu:
+
+1. Einleitung (150-200 Wörter):
+   - Kontext: Warum wurde dieses Dokument erstellt?
+   - Scope: Was wird behandelt, was nicht?
+   - Zielgruppe: Für wen ist es geschrieben?
+   - Lesehinweis: Wie sollte man es lesen (linear vs. nach Bedarf)?
+
+2. Executive Summary am Anfang (max. 300 Wörter):
+   - Die 3 wichtigsten Erkenntnisse
+   - Die zentrale Empfehlung
+   - Nächste Schritte mit Verantwortlichkeiten
+
+3. Zusammenfassung am Ende:
+   - Recap der Kernpunkte
+   - Offene Fragen/nächste Schritte
+   - Kontaktinformation für Rückfragen
+
+4. Navigations-Hilfen:
+   - Klickbares Inhaltsverzeichnis (auf Seite 2)
+   - Kopfzeile mit Dokumenttitel und Datum
+   - Fußzeile mit Seitenzahlen 'Seite X von Y'"`}</code></pre>
           </div>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>"Erstelle ein Inhaltsverzeichnis für dieses Dokument"</code></pre>
+            <pre className="text-sm"><code>{`"Erstelle ein strukturiertes Inhaltsverzeichnis für dieses Dokument
+im folgenden Format:
+
+Anforderungen:
+- Verzeichnis auf separater Seite nach dem Deckblatt
+- Hierarchie: Hauptkapitel (1, 2, 3...) und Unterkapitel (1.1, 1.2...)
+- Seitenzahlen rechtsbündig mit Punktlinie-Verbindung
+- Maximal 3 Ebenen tief (keine 1.1.1.1)
+
+Zusätzlich erstellen:
+- Abbildungsverzeichnis (falls Bilder referenziert werden)
+- Tabellenverzeichnis (falls Tabellen vorhanden)
+- Abkürzungsverzeichnis mit allen im Dokument verwendeten Abkürzungen
+
+Kapitelüberschriften sollen:
+- Aussagekräftig sein (nicht nur 'Einleitung', sondern 'Einleitung: Warum dieses Projekt jetzt')
+- Parallel formuliert sein (alle als Substantiv ODER alle als Frage)
+- Max. 7 Wörter lang sein"`}</code></pre>
           </div>
         </section>
 
@@ -343,54 +625,357 @@ const CopilotFuerWord = () => {
           <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-purple-500 pl-4">1. Business-Dokumente</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Geschäftsbriefe:</strong></p>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>Prompt: "Erstelle einen Angebotsbrief für [Service] \nan [Kunde], betone [USPs], verwende formelle Sprache"</code></pre>
+            <pre className="text-sm"><code>{`Prompt: "Erstelle einen Angebotsbrief für unsere
+'Copilot Enablement Services' an die Technik GmbH.
+
+Empfänger: Herr Dr. Schneider (CIO)
+Kontext: Erstkontakt nach Messe-Gespräch auf der Hannover Messe
+Budget des Kunden: ca. 50.000 € (im Gespräch erwähnt)
+
+Unsere USPs betonen:
+- 200+ erfolgreiche Copilot-Einführungen in der DACH-Region
+- Branchenspezifische Prompt-Bibliotheken für Maschinenbau
+- Messbarer ROI innerhalb von 6 Monaten garantiert
+
+Struktur:
+1. Persönlicher Bezug zum Messe-Gespräch
+2. Kurze Wiederholung des Kundenbedarfs (zeigt Zuhören)
+3. Passende Leistungspakete (2-3 Optionen mit Preisen)
+4. Referenz: Ähnlicher Kunde in der Branche
+5. Konkreter nächster Schritt (Termin für Vertiefung)
+
+Tonalität: Professionell-persönlich, nicht aufdringlich.
+Länge: 1 Seite, max. 400 Wörter."`}</code></pre>
           </div>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Proposals:</strong></p>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>Prompt: "Erstelle ein Projekt-Proposal für [Projekt],\ninklusive Problemstellung, Lösung, Timeline, Budget"</code></pre>
+            <pre className="text-sm"><code>{`Prompt: "Erstelle ein Projekt-Proposal für 'KI-gestützte
+Dokumentenautomatisierung' für die Versicherungs AG.
+
+Problemstellung des Kunden (aus Briefing-Call):
+- 15.000 Schadenmeldungen/Monat manuell bearbeitet
+- Durchlaufzeit aktuell: 12 Arbeitstage
+- Fehlerquote: 8% (führt zu Kundenreklamationen)
+- Ziel: Durchlaufzeit auf 3 Tage, Fehlerquote unter 2%
+
+Unsere Lösung:
+- Microsoft Copilot für automatische Kategorisierung
+- Power Automate für Routing
+- Custom GPT für Antwortvorschläge
+
+Das Proposal soll enthalten:
+1. Executive Summary (max. 1/2 Seite)
+2. Situation Analysis (aktuelle Pain Points quantifiziert)
+3. Solution Overview (visuell mit Prozessdiagramm-Beschreibung)
+4. Implementation Approach (Phasen mit Meilensteinen)
+5. Investment & ROI (Kosten vs. Einsparungen über 3 Jahre)
+6. Risk Mitigation (Top 3 Risiken mit Gegenmaßnahmen)
+7. Why Us (Differenzierung zum Wettbewerb)
+8. Next Steps (konkreter Aktionsplan)
+
+Länge: 8-10 Seiten. Tonalität: Beratend, lösungsorientiert."`}</code></pre>
           </div>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Reports:</strong></p>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>Prompt: "Erstelle einen Quarterly Business Review Report\nbasierend auf diesen Daten: [Einfügen], mit Executive Summary"</code></pre>
+            <pre className="text-sm"><code>{`Prompt: "Erstelle einen Quarterly Business Review (QBR) Report
+für Q1 2026 basierend auf folgenden Daten:
+
+Datenquellen:
+- Umsatz: 2,3 Mio € (Plan: 2,5 Mio €) = -8%
+- Neukundengewinnung: 12 (Plan: 15) = -20%
+- Churn Rate: 3,2% (Vorquartal: 2,8%)
+- NPS Score: 47 (Branchendurchschnitt: 42)
+- Pipeline Q2: 4,1 Mio € (Conversion erwaret: 35%)
+
+Zielgruppe: Vorstand und Investoren-Board (5 Personen)
+
+Struktur des Reports:
+1. Executive Summary (max. 150 Wörter): Lage in 30 Sekunden
+2. Financial Performance mit Waterfall-Chart-Beschreibung
+3. Customer Metrics mit Trend-Analyse (3-Quartale-Vergleich)
+4. Pipeline Analysis mit Wahrscheinlichkeits-Gewichtung
+5. Strategic Initiatives: Status-Update zu Top 5 Projekten
+6. Challenges & Mitigations (ehrliche Analyse)
+7. Outlook Q2 mit Best/Base/Worst Case Szenario
+8. Appendix: Detailtabellen
+
+Wichtig:
+- Negativentwicklungen nicht beschönigen, aber lösungsorientiert
+- Bei jeder Metrik: Kontext geben (warum dieser Wert?)
+- Empfehlungen immer mit konkreten Maßnahmen verknüpfen
+
+Format: Professioneller Management-Report, 12-15 Seiten."`}</code></pre>
           </div>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-green-500 pl-4">2. Marketing-Content</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Blog-Artikel:</strong></p>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>Prompt: "Schreibe einen SEO-optimierten Blogartikel zu [Keyword],\nmit H2/H3 Struktur, 1200 Wörter, informativ aber zugänglich"</code></pre>
+            <pre className="text-sm"><code>{`Prompt: "Schreibe einen SEO-optimierten Blogartikel zum Thema
+'Microsoft Copilot Kosten-Nutzen-Analyse für KMU'.
+
+SEO-Vorgaben:
+- Hauptkeyword: 'Microsoft Copilot Kosten' (4-5x verwenden)
+- Nebenkeywords: 'Copilot ROI', 'Copilot Lizenzkosten', 'Copilot KMU'
+- Meta-Description: Max. 155 Zeichen, mit Hauptkeyword
+- URL-Vorschlag: /blog/microsoft-copilot-kosten-kmu
+
+Struktur:
+- H1: Frage oder konkreter Nutzen (nicht das Keyword allein)
+- 5-6 H2-Abschnitte mit logischem Aufbau
+- Jeder H2-Abschnitt: 150-250 Wörter
+- Mindestens 1 H3 pro H2-Abschnitt
+- Bullet-Listen wo sinnvoll (max. 7 Punkte)
+- 1 Tabelle (z.B. Lizenzkosten-Vergleich)
+- 1 FAQ-Sektion am Ende (3-4 Fragen)
+
+Inhaltliche Anforderungen:
+- Reale Zahlen verwenden (€30/User/Monat für Copilot)
+- Konkrete Beispielrechnung für 20 Mitarbeiter
+- Mindestens 2 Praxisbeispiele/Anwendungsfälle
+- Backlink-würdige Aussage (quotable für andere Blogs)
+
+Tonalität: Informativ, kompetent, aber nicht akademisch.
+Gesamtlänge: 1.500 Wörter (±100)."`}</code></pre>
           </div>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Social Media Posts:</strong></p>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>Prompt: "Erstelle 10 LinkedIn-Posts basierend auf diesem Whitepaper,\nje mit Hook, Kernaussage und Call-to-Action"</code></pre>
+            <pre className="text-sm"><code>{`Prompt: "Erstelle 8 LinkedIn-Posts basierend auf diesem Whitepaper
+'Die Zukunft der Wissensarbeit mit KI'.
+
+Post-Formate (je 2x):
+1. Storytelling-Post: Konkretes Beispiel aus dem Whitepaper
+2. Statistik-Post: Eine überraschende Zahl mit Einordnung
+3. How-To-Post: Praktischer Tipp zum sofort Umsetzen
+4. Contrarian-Post: Gegen-den-Strom-Meinung aus dem Whitepaper
+
+Für jeden Post:
+- Hook (erste Zeile): Attention-Grabber, keine Clickbait
+- Body: 100-150 Wörter, mit Zeilenumbrüchen für Lesbarkeit
+- CTA: Soft (Meinung fragen) oder Hard (Link zum Whitepaper)
+- 3-4 relevante Hashtags (nicht mehr!)
+- Emoji: Maximal 2 pro Post, keine am Anfang
+
+Tonalität-Varianten:
+- Posts 1-4: Sachlich-informativ (für Entscheider)
+- Posts 5-8: Persönlicher, meinungsstark (für Engagement)
+
+Posting-Zeiten-Empfehlung beifügen (Di-Do, 8-9 oder 17-18 Uhr)."`}</code></pre>
           </div>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Case Studies:</strong></p>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>Prompt: "Erstelle eine Case Study für [Kunde], \nFormat: Challenge → Solution → Results, mit Zahlen und Testimonial"</code></pre>
+            <pre className="text-sm"><code>{`Prompt: "Erstelle eine Case Study für unsere Copilot-Einführung
+bei der Logistik Express GmbH (anonymisiert: 'mittelständisches
+Logistikunternehmen').
+
+Fakten aus dem Projekt:
+- 350 Mitarbeiter, davon 120 Copilot-User
+- Branche: Transport & Logistik
+- Projektzeitraum: 3 Monate (Sept-Nov 2025)
+- Investition: ca. 65.000 € (Lizenzen + Training)
+- Ergebnisse nach 6 Monaten:
+  * Zeitersparnis: Ø 45 Min/Tag in der Disposition
+  * E-Mail-Bearbeitung: 40% schneller
+  * Angebotserstellen: von 2h auf 25 Min
+  * Mitarbeiterzufriedenheit: +18 NPS-Punkte
+- O-Ton vom CEO (genehmigt): 'Copilot hat unsere Arbeitsweise
+  revolutioniert – nach anfänglicher Skepsis will niemand mehr zurück.'
+
+Case Study Struktur:
+1. Headline mit messbarem Ergebnis (nicht Firmenname)
+2. Snapshot-Box: Branche, Größe, Ergebnisse auf einen Blick
+3. The Challenge (250 Wörter): Situation vor Copilot
+4. The Solution (300 Wörter): Was wir gemacht haben
+5. The Results (250 Wörter): Zahlen, Zahlen, Zahlen
+6. Key Learnings (3 Bullet Points)
+7. Testimonial-Zitat groß formatiert
+8. CTA: Ähnliche Ergebnisse erzielen?
+
+Format: 2 Seiten, viel Weißraum, Infografik-würdige Darstellung."`}</code></pre>
           </div>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-cyan-500 pl-4">3. HR-Dokumente</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Stellenbeschreibungen:</strong></p>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>Prompt: "Erstelle eine Job Description für [Position],\ninklusive Verantwortlichkeiten, Requirements, Benefits"</code></pre>
+            <pre className="text-sm"><code>{`Prompt: "Erstelle eine moderne Stellenbeschreibung für die Position
+'Senior Data Analyst (m/w/d)' in unserem Analytics-Team.
+
+Kontext zum Unternehmen:
+- Mittelständisches E-Commerce-Unternehmen, 280 Mitarbeiter
+- Hauptsitz München, Remote-First-Kultur (3 Tage Home Office)
+- Startup-Mentalität in etablierter Struktur
+- Tech-Stack: Python, SQL, Tableau, dbt, Snowflake
+
+Die Position:
+- Report an: Head of Business Intelligence
+- Team: 5 Personen (2 Analysts, 2 Engineers, 1 Manager)
+- Fokus: Kundenverhalten, Marketing-Attribution, Pricing
+
+Stellenbeschreibung soll enthalten:
+1. Catchy Einstieg (nicht 'Wir suchen...', sondern Benefit für Bewerber)
+2. Das erwartet dich: Aufgaben als Bullet Points (max. 6)
+3. Das bringst du mit: Must-haves (4-5) und Nice-to-haves (3)
+4. Das bieten wir: Echte Benefits, keine Floskeln
+5. Bewerbungsprozess: Was erwartet die Bewerber?
+
+Tonalität: Modern, auf Augenhöhe, aber professionell.
+Sprache: Du-Form, inklusive Sprache (nicht nur m/w/d).
+Kein Corporate-Bullshit: 'Spannende Aufgaben' → konkret was
+Länge: 600-800 Wörter."`}</code></pre>
           </div>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Performance Reviews:</strong></p>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>Prompt: "Formuliere konstruktives Feedback für Mitarbeiter,\nbasierend auf diesen Leistungsdaten: [Einfügen]"</code></pre>
+            <pre className="text-sm"><code>{`Prompt: "Formuliere ein konstruktives Performance-Feedback für
+eine Mitarbeiterin im Jahresgespräch.
+
+Leistungsdaten (aus HR-System):
+- Zielerreichung: 87% (Ziel: 100%)
+- Projektabschlüsse: 4 von 5 termingerecht
+- Kundenzufriedenheit: 4,2/5 (Teamschnitt: 3,9)
+- Weiterbildung: 2 Zertifizierungen absolviert
+- 360-Grad-Feedback: Kommunikation ausbaufähig (3,1/5)
+- Krankenstand: 12 Tage (über Teamschnitt)
+
+Das Feedback soll:
+1. Mit Wertschätzung für Stärken beginnen (konkret, nicht pauschal)
+2. Entwicklungsfelder ansprechen (nicht als Kritik, sondern Wachstum)
+3. Konkrete Beispiele für jede Aussage geben
+4. Bei Krankenstand: sensibel ansprechen, nicht vorwerfen
+5. Gemeinsam Ziele für nächstes Jahr ableiten
+
+Struktur:
+- Rückblick: Was lief gut? Was hätte besser laufen können?
+- Stärken: 3 konkrete Stärken mit Beispielen
+- Entwicklungsfelder: 2 Bereiche mit Unterstützungsangebot
+- Ausblick: 3-4 SMART-Ziele für nächstes Jahr vorschlagen
+- Abschluss: Wertschätzung und Unterstützungszusage
+
+Tonalität: Wertschätzend, klar, zukunftsorientiert.
+Länge: 1 Seite (ca. 500 Wörter)."`}</code></pre>
           </div>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Policies:</strong></p>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>Prompt: "Erstelle eine Remote Work Policy, \ninklusive Regelungen zu Arbeitszeiten, Equipment, Security"</code></pre>
+            <pre className="text-sm"><code>{`Prompt: "Erstelle eine praxistaugliche Remote Work Policy für ein
+deutsches Unternehmen mit 150 Mitarbeitern.
+
+Rahmenbedingungen:
+- Branche: IT-Dienstleistung
+- Bestehendes Modell: 2 Tage Büropflicht, 3 Tage frei wählbar
+- Kernarbeitszeit: 10-15 Uhr (muss erhalten bleiben)
+- IT-Setup: Laptops werden gestellt, BYOD erlaubt
+- Internationales Team: 10% der MA im EU-Ausland
+
+Die Policy soll regeln:
+1. Geltungsbereich: Wer ist betroffen, welche Ausnahmen gibt es?
+2. Zeitliche Regelungen: Kernzeit, Erreichbarkeit, Zeiterfassung
+3. Arbeitsort: Deutschland, EU, außerhalb EU (steuerlich!)
+4. Equipment: Was stellt die Firma, was der MA?
+5. Arbeitssicherheit: Ergonomie-Vorgaben, Gefährdungsbeurteilung
+6. Datenschutz: VPN-Pflicht, Screen-Lock, vertrauliche Gespräche
+7. Kommunikation: Erreichbarkeitserwartungen, Tool-Standards
+8. Kosten: Internet-Pauschale, Büromöbel, Arbeitsmittel
+9. Ausnahmen & Eskalation: Wer entscheidet bei Sonderfällen?
+
+Rechtliche Anforderungen beachten:
+- Arbeitszeitgesetz (max. 10h/Tag, Pausen)
+- Arbeitsschutzgesetz (Gefährdungsbeurteilung)
+- DSGVO (Datenverarbeitung im Home Office)
+- Betriebsvereinbarung-Hinweis (falls BR vorhanden)
+
+Format: Offizielles Policy-Dokument mit Versionierung.
+Tonalität: Klar und verbindlich, aber nicht bürokratisch.
+Länge: 3-4 Seiten."`}</code></pre>
           </div>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-emerald-500 pl-4">4. Technische Dokumentation</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>User Manuals:</strong></p>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>Prompt: "Erstelle eine Schritt-für-Schritt Anleitung für [Prozess],\nmit Screenshots-Platzhaltern und Troubleshooting-Sektion"</code></pre>
+            <pre className="text-sm"><code>{`Prompt: "Erstelle eine Schritt-für-Schritt Anleitung für den
+Prozess 'Neuen Mitarbeiter im HR-System anlegen'.
+
+Zielgruppe: HR-Sachbearbeiter ohne IT-Hintergrund.
+System: SAP SuccessFactors
+Durchschnittliche Bearbeitungszeit: ca. 15 Minuten
+
+Die Anleitung soll enthalten:
+1. Voraussetzungen: Was muss vor Start bereitliegen?
+2. Schritt-für-Schritt-Anleitung:
+   - Jeden Klick einzeln beschreiben (Menü → Untermenü → Button)
+   - [Screenshot-Platzhalter] mit Beschreibung was zu sehen sein soll
+   - Eingabefelder: Wo, was eingeben, Formatvorgaben
+   - Pflichtfelder mit (*) kennzeichnen
+   - Wartezeiten/Ladebalken erwähnen
+3. Validierung: Wie prüft man, ob es geklappt hat?
+4. Troubleshooting-Sektion:
+   - 'Fehlermeldung X' → Lösung
+   - 'Button ist ausgegraut' → mögliche Ursachen
+   - 'System reagiert nicht' → Was tun?
+5. Kontakt bei weiteren Problemen
+
+Format:
+- Nummerierte Schritte (1, 2, 3... nicht 1.1, 1.2)
+- Jeder Schritt: Max. 2 Sätze
+- Pro Seite max. 5-6 Schritte (lesbar bleiben)
+- Callout-Boxen für Tipps und Warnungen
+
+Länge: 4-5 Seiten mit großzügigen Screenshot-Platzhaltern."`}</code></pre>
           </div>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>API Dokumentation:</strong></p>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>Prompt: "Dokumentiere diese API-Endpoints,\ninklusive Request/Response Beispiele, Error Codes"</code></pre>
+            <pre className="text-sm"><code>{`Prompt: "Dokumentiere folgenden REST API-Endpoint im
+OpenAPI/Swagger-Stil für unser Developer Portal.
+
+Endpoint: POST /api/v2/orders
+Funktion: Neue Bestellung anlegen
+
+Für diesen Endpoint dokumentiere:
+1. Kurzbeschreibung (1-2 Sätze)
+2. Authentication: Bearer Token (OAuth 2.0)
+3. Request Headers (Content-Type, Authorization)
+4. Request Body (JSON Schema):
+   - Pflichtfelder: customer_id, items[], payment_method
+   - Optionale Felder: shipping_address, coupon_code, notes
+   - Datentypen, min/max Werte, Regex-Patterns wo relevant
+5. Response (Success - 201):
+   - Body-Struktur mit Beispiel
+   - Wichtige Felder erklären (order_id, estimated_delivery)
+6. Error Responses:
+   - 400 Bad Request (mit möglichen Fehlerdetails)
+   - 401 Unauthorized
+   - 422 Unprocessable Entity (Validierungsfehler)
+   - 500 Internal Server Error
+7. Vollständiges Request/Response-Beispiel mit cURL
+8. Rate Limits und Throttling
+9. Hinweis auf verwandte Endpoints (GET /orders/{id}, DELETE /orders/{id})
+
+Code-Beispiele in: cURL, Python (requests), JavaScript (fetch)."`}</code></pre>
           </div>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Changelog:</strong></p>
+          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Changelog/Release Notes:</strong></p>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>Prompt: "Erstelle Release Notes für Version [X],\nbasierend auf diesen Jira-Tickets: [Einfügen]"</code></pre>
+            <pre className="text-sm"><code>{`Prompt: "Erstelle professionelle Release Notes für Version 3.2.0
+unserer B2B-Plattform, basierend auf diesen Jira-Tickets:
+
+Tickets:
+- PLAT-1234: [Feature] Bulk-Import für Kundendaten (Story Points: 8)
+- PLAT-1241: [Feature] PDF-Export für Berichte (Story Points: 5)
+- PLAT-1252: [Bugfix] Login-Loop bei 2FA behoben (Critical)
+- PLAT-1267: [Bugfix] Datumsformat in Reports falsch (Minor)
+- PLAT-1289: [Performance] Dashboard lädt jetzt 40% schneller
+- PLAT-1301: [Security] Dependency Update (log4j)
+- PLAT-1315: [Deprecation] API v1 Sunset-Warnung hinzugefügt
+
+Release Notes Struktur:
+1. Release Summary (3 Sätze: Was ist neu, für wen relevant)
+2. 🚀 Neue Features (mit kurzer Erklärung und Screenshot-Hinweis)
+3. 🐛 Bugfixes (mit Impact-Beschreibung)
+4. ⚡ Performance-Verbesserungen (mit Metriken)
+5. 🔒 Security Updates (ohne Details, aber mit Handlungsbedarf)
+6. ⚠️ Breaking Changes / Deprecations (mit Migration Guide)
+7. Bekannte Einschränkungen (falls vorhanden)
+8. Upgrade-Anleitung (für Self-Hosted-Kunden)
+
+Zielgruppen berücksichtigen:
+- Admins: Technische Details, Upgrade-Schritte
+- Endnutzer: Was ändert sich für mich?
+- Entwickler: API-Änderungen, Deprecations
+
+Format: Markdown mit klarer Hierarchie, Emojis für Kategorien."`}</code></pre>
           </div>
         </section>
 
@@ -399,19 +984,19 @@ const CopilotFuerWord = () => {
           <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-cyan-500 pl-4">Die CRAFT-Formel</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>C - Context (Kontext)</strong></p>
           <p className="mb-4 text-gray-700 leading-relaxed">❌ "Schreibe einen Artikel über KI"</p>
-          <p className="mb-4 text-gray-700 leading-relaxed">✅ "Schreibe einen Artikel über KI im Gesundheitswesen für Krankenhausleiter"</p>
+          <p className="mb-4 text-gray-700 leading-relaxed">✅ "Schreibe einen Fachartikel über KI-gestützte Qualitätskontrolle in der Automobilzulieferer-Branche. Kontext: Unsere Kunden haben durchschnittlich 5% Ausschuss und wollen das auf unter 1% senken. Das Dokument ist für den ersten Termin mit einem potenziellen Neukunden (Produktionsleiter, 15 Jahre Erfahrung, skeptisch gegenüber KI)."</p>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>R - Role (Rolle)</strong></p>
           <p className="mb-4 text-gray-700 leading-relaxed">❌ "Erkläre Blockchain"</p>
-          <p className="mb-4 text-gray-700 leading-relaxed">✅ "Du bist ein Blockchain-Experte. Erkläre Blockchain für CFOs"</p>
+          <p className="mb-4 text-gray-700 leading-relaxed">✅ "Du bist ein erfahrener CFO-Berater mit 20 Jahren Finanzexpertise. Erkläre Blockchain-Technologie so, dass ein konservativer Finanzvorstand einer deutschen Mittelstandsbank den geschäftlichen Nutzen versteht – ohne technischen Jargon, mit konkreten Anwendungsfällen aus dem Banking."</p>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>A - Action (Aktion)</strong></p>
           <p className="mb-4 text-gray-700 leading-relaxed">❌ "Etwas über Sales"</p>
-          <p className="mb-4 text-gray-700 leading-relaxed">✅ "Erstelle einen Sales-Pitch für unser neues Produkt"</p>
+          <p className="mb-4 text-gray-700 leading-relaxed">✅ "Erstelle einen 3-minütigen Elevator Pitch für unser SaaS-Produkt 'DataSync Pro'. USPs: 50% schnellere Integration, No-Code-Setup, DSGVO-konform. Ziel: Der Prospect soll einen Demo-Termin vereinbaren. Einwand-Behandlung für 'Wir haben schon eine Lösung' einbauen."</p>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>F - Format (Format)</strong></p>
           <p className="mb-4 text-gray-700 leading-relaxed">❌ "Schreibe über Projektmanagement"</p>
-          <p className="mb-4 text-gray-700 leading-relaxed">✅ "Erstelle eine Checkliste für erfolgreiches Projektmanagement, 10 Punkte"</p>
+          <p className="mb-4 text-gray-700 leading-relaxed">✅ "Erstelle eine Checkliste für die ersten 90 Tage als neuer Projektmanager. Format: 10 Phasen (je 9 Tage), pro Phase 3-5 Checkpunkte. Jeder Checkpunkt mit: Aufgabe, Erfolgskriterium, typischer Stolperstein. Am Ende: One-Pager-Zusammenfassung für den Vorgesetzten."</p>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>T - Target (Zielgruppe)</strong></p>
           <p className="mb-4 text-gray-700 leading-relaxed">❌ "Erkläre Machine Learning"</p>
-          <p className="mb-4 text-gray-700 leading-relaxed">✅ "Erkläre Machine Learning für Marketing-Manager ohne technischen Hintergrund"</p>
+          <p className="mb-4 text-gray-700 leading-relaxed">✅ "Erkläre Machine Learning für Marketing-Manager im E-Commerce (keine technischen Vorkenntnisse, aber gutes Verständnis von KPIs wie Conversion Rate, ROAS). Fokus auf: Wie hilft ML bei Personalisierung? Welche Daten brauche ich? Was kostet das ungefähr? Konkrete Beispiele von Zalando, About You."</p>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-blue-500 pl-4">Prompt-Patterns</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Pattern 1: Rolle + Aufgabe + Details</strong></p>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
