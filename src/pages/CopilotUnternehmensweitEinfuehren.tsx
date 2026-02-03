@@ -983,35 +983,6 @@ const CopilotUnternehmensweitEinfuehren = () => {
         </section>
 
         <TrustBadge />
-                  <div className="mb-3">
-                    <div className="text-sm font-semibold mb-2">Expertise:</div>
-                    <div className="flex flex-wrap gap-2">
-                      {martinLang.expertise.map((exp, idx) => (
-                        <span key={idx} className="px-3 py-1 bg-primary/10 text-primary rounded-full text-xs font-medium">
-                          {exp}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="flex gap-3">
-                    {martinLang.linkedin && (
-                      <a href={martinLang.linkedin} target="_blank" rel="noopener noreferrer"
-                         className="inline-flex items-center gap-2 text-sm text-primary hover:underline">
-                        <Linkedin className="w-4 h-4" /> LinkedIn
-                      </a>
-                    )}
-                    {martinLang.email && (
-                      <a href={`mailto:${martinLang.email}`}
-                         className="inline-flex items-center gap-2 text-sm text-primary hover:underline">
-                        <Mail className="w-4 h-4" /> Kontakt
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </section>
 
         {/* CTA */}
         <div className="bg-gradient-to-r from-orange-500/10 to-amber-500/10 rounded-xl p-8 text-center my-12 border-2 border-orange-500/20">
