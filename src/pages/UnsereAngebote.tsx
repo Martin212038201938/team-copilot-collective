@@ -220,10 +220,10 @@ const UnsereAngebote = () => {
                   Kein passendes Training gefunden? Bei der Copilotenschule können Sie Ihr Training aus einzelnen Modulen
                   selbst zusammenstellen – exakt auf die Bedürfnisse Ihres Teams zugeschnitten.
                 </p>
-                <Link to="/training-konfigurator">
-                  <Button size="default" className="group">
-                    Module individuell zusammenstellen
-                    <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <Link to="/training-konfigurator" className="inline-block max-w-xs sm:max-w-none">
+                  <Button size="default" className="group whitespace-normal h-auto py-2">
+                    <span>Module individuell zusammenstellen</span>
+                    <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform flex-shrink-0" />
                   </Button>
                 </Link>
               </div>

@@ -85,9 +85,9 @@ const Header = () => {
         </nav>
       </div>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu Overlay - undurchsichtiger Hintergrund */}
       <div
-        className={`lg:hidden fixed inset-0 top-16 bg-background/98 backdrop-blur-lg transform transition-all duration-300 ease-in-out ${
+        className={`lg:hidden fixed inset-0 top-16 bg-background backdrop-blur-none transform transition-all duration-300 ease-in-out ${
           isMobileMenuOpen
             ? 'opacity-100 translate-y-0'
             : 'opacity-0 -translate-y-4 pointer-events-none'

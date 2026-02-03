@@ -28,17 +28,17 @@ const TrainingModules = () => {
               Bei der Copilotenschule können Sie Ihr Microsoft Copilot Training aus einzelnen Modulen
               selbst zusammenstellen – exakt auf die Bedürfnisse Ihres Teams zugeschnitten.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <Link to="/unsere-angebote">
-                <Button size="default" variant="outline" className="group">
+            <div className="flex flex-col sm:flex-row gap-3 justify-center max-w-md sm:max-w-none mx-auto">
+              <Link to="/unsere-angebote" className="w-full sm:w-auto">
+                <Button size="default" variant="outline" className="group w-full">
                   Alle Trainings ansehen
-                  <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform flex-shrink-0" />
                 </Button>
               </Link>
-              <Link to="/training-konfigurator">
-                <Button size="default" className="group">
-                  Module individuell zusammenstellen
-                  <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <Link to="/training-konfigurator" className="w-full sm:w-auto">
+                <Button size="default" className="group w-full whitespace-normal h-auto py-2">
+                  <span>Module individuell zusammenstellen</span>
+                  <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform flex-shrink-0" />
                 </Button>
               </Link>
             </div>

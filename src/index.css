@@ -105,6 +105,23 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground;
   }
+
+  /* Mobile Text-Overflow Prevention
+     Verhindert, dass lange deutsche Wörter über den Bildschirmrand hinausragen */
+  h1, h2, h3, h4, h5, h6 {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+  }
+
+  /* Auf sehr kleinen Screens aggressive Wortumbrüche */
+  @media (max-width: 475px) {
+    h1, h2, h3, h4, h5, h6 {
+      word-break: break-word;
+    }
+  }
 }
 
 @layer utilities {
