@@ -25,10 +25,19 @@ const Wissen = () => {
   // ============================================================================
   const staticKnowledgeTopics = [
     {
+      title: "Warum Prompt-Bibliotheken Quatsch sind",
+      description: "Prompt-Listen klingen gut, bringen aber wenig. Warum echtes Prompting-Training und Copilot-Agenten die besseren Alternativen sind – inklusive dem Zauberstab-Prompt.",
+      link: "/wissen/prompt-bibliotheken-vs-training",
+      badge: "Neu",
+      icon: "🪄",
+      readTime: "6 Minuten",
+      lastUpdated: "03. Feb. 2026"
+    },
+    {
       title: "Warum Unternehmen Microsoft Copilot zentral einführen sollten",
       description: "Warum Shadow-IT bei KI gefährlich ist: Zentrale Copilot-Einführung sichert DSGVO-Konformität, Grounding mit Unternehmensdaten und unternehmensweite Synergien.",
       link: "/wissen/copilot-unternehmensweit-einfuehren",
-      badge: "Neu",
+      badge: "Strategie",
       icon: "🏢",
       readTime: "12 Minuten",
       lastUpdated: "02. Feb. 2026"
