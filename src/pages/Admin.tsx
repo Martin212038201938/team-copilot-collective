@@ -38,34 +38,45 @@ const AdminContent = () => {
 
   const loadDrafts = async () => {
     try {
-      // First, try to load from localStorage
+      // Load from localStorage first
       const savedDrafts = localStorage.getItem('copilot-drafts');
-      if (savedDrafts) {
-        const parsed = JSON.parse(savedDrafts);
-        setDrafts(parsed);
-        console.log('Loaded drafts from localStorage:', parsed.length);
-        return;
-      }
-
-      // Fallback: load from JSON files
-      const draftFiles = ['copilot-sicherheit', 'copilot-tipps-tricks', 'copilot-roi-berechnen'];
-      const loadedDrafts: Draft[] = [];
-
+      const localDrafts: Draft[] = savedDrafts ? JSON.parse(savedDrafts) : [];
+      
+      // Also load from JSON files to catch new drafts
+      const draftFiles = [
+        'copilot-sicherheit',
+        'copilot-tipps-tricks', 
+        'copilot-roi-berechnen',
+        'copilot-fuer-word',
+        'microsoft-copilot-agents-guide',
+        'microsoft-copilot-einsteiger-guide',
+        'microsoft-copilot-memory-guide',
+        'copilot-adoption-2026-zahlen'
+      ];
+      
+      const jsonDrafts: Draft[] = [];
       for (const file of draftFiles) {
         try {
           const response = await fetch(`/content/drafts/${file}.json`);
           if (response.ok) {
             const draft = await response.json();
-            loadedDrafts.push(draft);
+            jsonDrafts.push(draft);
           }
         } catch (error) {
           console.error(`Error loading ${file}:`, error);
         }
       }
 
-      if (loadedDrafts.length > 0) {
-        setDrafts(loadedDrafts);
-        localStorage.setItem('copilot-drafts', JSON.stringify(loadedDrafts));
+      // Merge: localStorage wins for existing drafts, but add new ones from JSON
+      const localIds = new Set(localDrafts.map(d => d.id));
+      const newFromJson = jsonDrafts.filter(d => !localIds.has(d.id));
+      
+      const mergedDrafts = [...localDrafts, ...newFromJson];
+      
+      if (mergedDrafts.length > 0) {
+        setDrafts(mergedDrafts);
+        localStorage.setItem('copilot-drafts', JSON.stringify(mergedDrafts));
+        console.log(`Loaded ${localDrafts.length} from localStorage, ${newFromJson.length} new from JSON`);
       }
     } catch (error) {
       console.error("Error loading drafts:", error);
