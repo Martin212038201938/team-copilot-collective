@@ -796,18 +796,18 @@ const CopilotRoiBerechnen = () => {
 
           <Card className="border-2 border-green-500/30 bg-gradient-to-br from-green-500/5 to-emerald-500/5">
             <CardContent className="pt-6">
-              <div className="flex flex-col md:flex-row items-center gap-6">
-                <div className="w-16 h-16 bg-green-500 rounded-xl flex items-center justify-center flex-shrink-0">
+              <div className="flex flex-col items-center gap-4 text-center">
+                <div className="w-16 h-16 bg-green-500 rounded-xl flex items-center justify-center">
                   <Download className="w-8 h-8 text-white" />
                 </div>
-                <div className="flex-grow text-center md:text-left">
+                <div>
                   <h3 className="font-bold text-xl mb-2">Copilot ROI-Rechner</h3>
-                  <p className="text-muted-foreground">Professionelle Excel-Vorlage mit automatischen Berechnungen</p>
+                  <p className="text-muted-foreground text-sm">Professionelle Excel-Vorlage mit automatischen Berechnungen</p>
                 </div>
                 <a
                   href="/downloads/Copilot-ROI-Rechner.xlsx"
                   download="Copilot-ROI-Rechner.xlsx"
-                  className="px-8 py-4 bg-green-600 text-white rounded-xl font-semibold hover:bg-green-700 transition-colors flex items-center gap-2"
+                  className="px-6 py-3 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 transition-colors flex items-center gap-2"
                 >
                   <Download className="w-5 h-5" />
                   Jetzt herunterladen

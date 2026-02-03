@@ -258,6 +258,41 @@ const EditorialCalendar = () => {
     }
   }, [articles]);
 
+  // Auto-Publish: Prüfe jede Minute ob geplante Artikel veröffentlicht werden sollen
+  useEffect(() => {
+    const checkScheduledArticles = () => {
+      const now = new Date();
+      let hasChanges = false;
+
+      const updatedArticles = articles.map(article => {
+        // Nur unveröffentlichte Artikel mit Datum prüfen
+        if (!article.isPublished && article.publishDate) {
+          const publishDateTime = article.publishTime
+            ? new Date(`${article.publishDate}T${article.publishTime}`)
+            : new Date(article.publishDate);
+
+          // Wenn das geplante Datum erreicht ist → veröffentlichen
+          if (publishDateTime <= now) {
+            hasChanges = true;
+            return { ...article, isPublished: true };
+          }
+        }
+        return article;
+      });
+
+      if (hasChanges) {
+        setArticles(updatedArticles);
+      }
+    };
+
+    // Initial prüfen
+    checkScheduledArticles();
+
+    // Alle 60 Sekunden prüfen
+    const interval = setInterval(checkScheduledArticles, 60000);
+    return () => clearInterval(interval);
+  }, [articles]);
+
   const handleEditClick = (article: ArticleMetadata) => {
     setEditingArticle({ ...article });
     setIsDialogOpen(true);
@@ -266,8 +301,22 @@ const EditorialCalendar = () => {
   const handleSave = () => {
     if (!editingArticle) return;
 
+    let updatedArticle = { ...editingArticle };
+
+    // Prüfe ob Veröffentlichungsdatum in der Zukunft liegt
+    if (updatedArticle.publishDate) {
+      const publishDateTime = updatedArticle.publishTime
+        ? new Date(`${updatedArticle.publishDate}T${updatedArticle.publishTime}`)
+        : new Date(updatedArticle.publishDate);
+
+      if (publishDateTime > new Date()) {
+        // Datum liegt in der Zukunft → automatisch als "geplant" markieren (unveröffentlicht)
+        updatedArticle.isPublished = false;
+      }
+    }
+
     setArticles(articles.map(a =>
-      a.id === editingArticle.id ? editingArticle : a
+      a.id === updatedArticle.id ? updatedArticle : a
     ));
     setIsDialogOpen(false);
     setEditingArticle(null);
@@ -364,9 +413,23 @@ const EditorialCalendar = () => {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1">
                     <h3 className="font-semibold text-lg truncate">{article.title}</h3>
-                    <Badge variant={article.isPublished ? "default" : "secondary"}>
-                      {article.isPublished ? "Live" : "Unveröffentlicht"}
-                    </Badge>
+                    {(() => {
+                      // Prüfe ob Artikel für Zukunft geplant ist
+                      const isScheduled = !article.isPublished && article.publishDate && (() => {
+                        const publishDateTime = article.publishTime
+                          ? new Date(`${article.publishDate}T${article.publishTime}`)
+                          : new Date(article.publishDate);
+                        return publishDateTime > new Date();
+                      })();
+
+                      if (article.isPublished) {
+                        return <Badge variant="default">Live</Badge>;
+                      } else if (isScheduled) {
+                        return <Badge className="bg-amber-500 hover:bg-amber-600">Geplant</Badge>;
+                      } else {
+                        return <Badge variant="secondary">Unveröffentlicht</Badge>;
+                      }
+                    })()}
                     <Badge variant="outline">{article.badge}</Badge>
                   </div>
 
@@ -563,11 +626,14 @@ const EditorialCalendar = () => {
             Über den Redaktionsplan
           </CardTitle>
         </CardHeader>
-        <CardContent>
+        <CardContent className="space-y-3">
           <p className="text-sm text-blue-800">
-            Dieser Redaktionsplan verwaltet die Metadaten Ihrer Wissensartikel. Die Änderungen werden
-            lokal im Browser gespeichert. Um die Änderungen live zu schalten, müssen Sie die entsprechenden
-            TSX-Dateien und <code className="bg-blue-100 px-1 rounded">Wissen.tsx</code> aktualisieren und deployen.
+            <strong>Veröffentlichungs-Status:</strong> Unveröffentlichte Artikel werden nicht auf der Wissen-Seite angezeigt.
+            Die Änderungen wirken sofort (localStorage-basiert, kein Deployment nötig).
+          </p>
+          <p className="text-sm text-blue-800">
+            <strong>Geplante Veröffentlichung:</strong> Wenn Sie ein Datum in der Zukunft setzen, wird der Artikel
+            automatisch als "Geplant" markiert und erst zum angegebenen Zeitpunkt veröffentlicht.
           </p>
         </CardContent>
       </Card>

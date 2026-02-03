@@ -5,11 +5,12 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { BookOpen, Clock } from "lucide-react";
-import { getPublishedAsKnowledgeTopics } from "@/utils/publishedArticles";
+import { getPublishedAsKnowledgeTopics, isArticlePublished } from "@/utils/publishedArticles";
 import { useState, useEffect } from "react";
 
 const Wissen = () => {
   const [dynamicTopics, setDynamicTopics] = useState<any[]>([]);
+  const [visibleStaticTopics, setVisibleStaticTopics] = useState<any[]>([]);
 
   // Load published articles from localStorage (für Artikel aus dem Admin-Portal)
   useEffect(() => {
@@ -142,9 +143,15 @@ const Wissen = () => {
     }
   ];
 
-  // Kombiniere dynamische (aus Admin-Portal/localStorage) und statische Artikel
+  // Filtere statische Artikel basierend auf Editorial Calendar Status
+  useEffect(() => {
+    const filtered = staticKnowledgeTopics.filter(topic => isArticlePublished(topic.link));
+    setVisibleStaticTopics(filtered);
+  }, []);
+
+  // Kombiniere dynamische (aus Admin-Portal/localStorage) und gefilterte statische Artikel
   // Dynamische zuerst, da diese neuer sind
-  const knowledgeTopics = [...dynamicTopics, ...staticKnowledgeTopics];
+  const knowledgeTopics = [...dynamicTopics, ...visibleStaticTopics];
 
   return (
     <div className="min-h-screen">
