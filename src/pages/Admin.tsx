@@ -3,10 +3,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Calendar, Edit, Eye, Trash2, Plus, Clock, CheckCircle } from "lucide-react";
+import { Calendar, Edit, Eye, Trash2, Plus, Clock, CheckCircle, FileText, LayoutList } from "lucide-react";
 import { Draft } from "@/types/draft";
 import DraftEditor from "@/components/DraftEditor";
 import AdminAuth from "@/components/AdminAuth";
+import EditorialCalendar from "@/components/EditorialCalendar";
 
 const Admin = () => {
   return (
@@ -22,6 +23,7 @@ const AdminContent = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [activeTab, setActiveTab] = useState("all");
   const [editorInitialTab, setEditorInitialTab] = useState<string | undefined>(undefined);
+  const [mainView, setMainView] = useState<'drafts' | 'editorial'>('editorial');
 
   useEffect(() => {
     loadDrafts();
@@ -215,18 +217,51 @@ const AdminContent = () => {
               Redaktionssystem
             </h1>
             <p className="text-lg text-gray-600">
-              Verwalten Sie Ihre geplanten Wissen-Artikel
+              Verwalten Sie Ihre Wissen-Artikel
             </p>
           </div>
+          {mainView === 'drafts' && (
+            <Button
+              onClick={handleCreateNew}
+              size="lg"
+              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+            >
+              <Plus className="w-5 h-5 mr-2" />
+              Neue Wissensseite erstellen
+            </Button>
+          )}
+        </div>
+
+        {/* Main View Tabs */}
+        <div className="flex gap-2 mb-8">
           <Button
-            onClick={handleCreateNew}
+            variant={mainView === 'editorial' ? 'default' : 'outline'}
             size="lg"
-            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+            onClick={() => setMainView('editorial')}
+            className="flex items-center gap-2"
           >
-            <Plus className="w-5 h-5 mr-2" />
-            Neue Wissensseite erstellen
+            <LayoutList className="w-5 h-5" />
+            Redaktionsplan
+          </Button>
+          <Button
+            variant={mainView === 'drafts' ? 'default' : 'outline'}
+            size="lg"
+            onClick={() => setMainView('drafts')}
+            className="flex items-center gap-2"
+          >
+            <FileText className="w-5 h-5" />
+            Entwürfe / Drafts
           </Button>
         </div>
+
+        {/* Editorial Calendar View */}
+        {mainView === 'editorial' && (
+          <EditorialCalendar />
+        )}
+
+        {/* Drafts View */}
+        {mainView === 'drafts' && (
+          <>
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
@@ -402,6 +437,8 @@ const AdminContent = () => {
             </p>
           </CardContent>
         </Card>
+        </>
+        )}
       </div>
     </div>
   );

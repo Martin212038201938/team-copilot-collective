@@ -115,7 +115,7 @@ const ContentLayout = ({
             </header>
 
             {/* Article Content with enhanced styling */}
-            <div className="animate-fade-in-delayed-3 space-y-8">
+            <div className="animate-fade-in-delayed-3 space-y-12">
               {children}
             </div>
           </article>
