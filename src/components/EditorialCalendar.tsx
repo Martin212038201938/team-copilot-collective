@@ -52,6 +52,11 @@ interface ArticleMetadata {
 // 2. Route in App.tsx hinzufügen
 // 3. Eintrag in Wissen.tsx staticKnowledgeTopics Array
 // 4. HIER einen Eintrag zu DEFAULT_STATIC_ARTICLES hinzufügen (PFLICHT!)
+//
+// REGEL: Neue Artikel werden standardmäßig als DRAFT eingetragen:
+//        isPublished: false
+//        Nur wenn explizit um sofortige Veröffentlichung gebeten wird,
+//        darf isPublished: true gesetzt werden.
 // ============================================================================
 const DEFAULT_STATIC_ARTICLES: ArticleMetadata[] = [
   {
