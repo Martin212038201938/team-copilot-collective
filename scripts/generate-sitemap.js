@@ -29,7 +29,6 @@ const staticPages = [
   { loc: '/trainer-werden', lastmod: TODAY, changefreq: 'monthly', priority: 0.6 },
   { loc: '/training-konfigurator', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
   { loc: '/impressum', lastmod: TODAY, changefreq: 'yearly', priority: 0.3 },
-  { loc: '/datenschutz', lastmod: TODAY, changefreq: 'yearly', priority: 0.3 },
 ];
 
 // Wissensseiten (Knowledge Pages) mit direktem Slug
@@ -43,9 +42,19 @@ const knowledgePages = [
 ];
 
 // Wissensseiten unter /wissen/ Pfad
+// WICHTIG: Bei neuen Artikeln hier den Pfad hinzufügen!
 const wissenSubpages = [
   { loc: '/wissen/copilot-roi-berechnen', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
   { loc: '/wissen/copilot-fuer-word', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
+  { loc: '/wissen/copilot-sicherheit-datenschutz', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
+  { loc: '/wissen/copilot-tipps-tricks-produktivitaet', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
+  { loc: '/wissen/copilot-training-schulung', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
+  { loc: '/wissen/ki-realitaet-beratungsfirmen-2026', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
+  { loc: '/wissen/copilot-unternehmensweit-einfuehren', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
+  { loc: '/wissen/prompt-bibliotheken-vs-training', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
+  { loc: '/wissen/copilot-digitales-gedaechtnis', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
+  { loc: '/wissen/copilot-launch-kampagne', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
+  { loc: '/wissen/copilot-roi-erfolgsgeschichten', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
 ];
 
 // Trainingsseiten - Slugs aus trainings.ts
