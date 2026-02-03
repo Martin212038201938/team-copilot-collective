@@ -54,6 +54,78 @@ npm run dev
 ---
 ## Content-Erstellung: Wissensartikel
 
+### ⚠️ KRITISCH: Alle Artikel MÜSSEN statisch sein (SEO!)
+
+**Warum?** Nur statische TSX-Dateien werden von Suchmaschinen indexiert. JSON-Drafts, die zur Laufzeit gerendert werden, sind für Google & Co. unsichtbar!
+
+### Pflicht-Workflow für JEDEN neuen Artikel
+
+Bei jedem neuen Wissensartikel MÜSSEN diese 4 Schritte erfolgen:
+
+#### Schritt 1: TSX-Datei erstellen
+```
+src/pages/MeinArtikelName.tsx
+```
+- Vollständiger Artikelinhalt als React-Komponente
+- Mit SEOHead, Schema.org Markup, Autor-Bio
+- Alle Inhalte statisch im Code (nicht dynamisch geladen!)
+
+#### Schritt 2: Route in App.tsx hinzufügen
+```typescript
+import MeinArtikelName from "./pages/MeinArtikelName";
+// ...
+<Route path="/wissen/mein-artikel-slug" element={<MeinArtikelName />} />
+```
+
+#### Schritt 3: Eintrag in Wissen.tsx hinzufügen
+```typescript
+// In staticKnowledgeTopics Array:
+{
+  title: "Mein Artikel Titel",
+  description: "Kurze Beschreibung...",
+  link: "/wissen/mein-artikel-slug",
+  badge: "Kategorie",
+  icon: "📝",
+  readTime: "X Minuten",
+  lastUpdated: "DD. Mon. YYYY",
+  publishDate: "YYYY-MM-DD"  // Für Sortierung!
+}
+```
+
+#### Schritt 4: Eintrag in EditorialCalendar.tsx hinzufügen
+```typescript
+// In DEFAULT_STATIC_ARTICLES Array:
+{
+  id: "mein-artikel-slug",
+  title: "Mein Artikel Titel",
+  description: "Kurze Beschreibung...",
+  link: "/wissen/mein-artikel-slug",
+  badge: "Kategorie",
+  icon: "📝",
+  readTime: "X Minuten",
+  lastUpdated: "DD. Mon. YYYY",
+  publishDate: "YYYY-MM-DD",
+  publishTime: "09:00",
+  isPublished: false,  // ← IMMER als Draft starten!
+  isStatic: true
+}
+```
+
+### Redaktionstool-Nutzung
+Das Redaktionstool (`/admin`) dient **AUSSCHLIESSLICH** zur:
+- Verwaltung der **Launch-Daten** (Veröffentlichungsdatum & Uhrzeit)
+
+**Alles andere (Content, Metadaten, etc.) wird im Code verwaltet!**
+
+### ❌ JSON-Drafts sind NICHT für Produktion
+Die JSON-Dateien in `/public/content/drafts/` sind nur für:
+- Temporäre Entwürfe während der Entwicklung
+- Preview vor TSX-Konvertierung
+
+Sie werden NIEMALS auf der Live-Seite angezeigt, da sie nicht SEO-indexierbar sind.
+
+---
+
 ### Pflichtfelder für jeden Wissensartikel
 Jeder neue Wissensartikel MUSS folgende Felder haben:
 - `title` - Aussagekräftiger Titel (SEO-optimiert)

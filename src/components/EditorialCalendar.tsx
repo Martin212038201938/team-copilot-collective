@@ -60,6 +60,20 @@ interface ArticleMetadata {
 // ============================================================================
 const DEFAULT_STATIC_ARTICLES: ArticleMetadata[] = [
   {
+    id: "copilot-adoption-2026-zahlen",
+    title: "Copilot Adoption 2026: Was die Zahlen wirklich zeigen",
+    description: "Aktuelle Zahlen Januar 2026: 15 Mio. Copilot-Seats, 160% Wachstum, bis zu 408% ROI. Eine nüchterne Einordnung jenseits des Microsoft-Marketings.",
+    link: "/wissen/copilot-adoption-2026-zahlen",
+    badge: "Strategie",
+    icon: "📊",
+    readTime: "10 Minuten",
+    lastUpdated: "03. Feb. 2026",
+    publishDate: "2026-02-03",
+    publishTime: "10:00",
+    isPublished: false,
+    isStatic: true
+  },
+  {
     id: "copilot-roi-erfolgsgeschichten",
     title: "Copilot ROI: Was CEOs und Vorstände aus dem DACH-Raum berichten",
     description: "Wörtliche Zitate von Führungskräften bei Bayer, Siemens, Schaeffler, thyssenkrupp und der Schweizerischen Post über ihre Erfahrungen mit Microsoft Copilot.",
@@ -300,46 +314,13 @@ const DEFAULT_STATIC_ARTICLES: ArticleMetadata[] = [
 ];
 
 const STORAGE_KEY = 'editorial-calendar-articles';
-const DRAFTS_STORAGE_KEY = 'copilot-drafts';
 
-// Interface für Drafts aus dem Draft-System
-interface Draft {
-  id: string;
-  title: string;
-  slug: string;
-  description: string;
-  content: string;
-  category: string;
-  readTime: string;
-  icon: string;
-  status: 'draft' | 'review' | 'published';
-  publishDate: string;
-  author: string;
-}
-
-// Konvertiere Draft zu ArticleMetadata
-const draftToArticleMetadata = (draft: Draft): ArticleMetadata => ({
-  id: draft.id,
-  title: draft.title,
-  description: draft.description,
-  link: `/wissen/${draft.slug}`,
-  badge: draft.category || "Draft",
-  icon: draft.icon || "📝",
-  readTime: draft.readTime || "5 Minuten",
-  lastUpdated: draft.publishDate ? new Date(draft.publishDate).toLocaleDateString('de-DE', {
-    day: '2-digit',
-    month: 'short',
-    year: 'numeric'
-  }).replace('.', '') : new Date().toLocaleDateString('de-DE', {
-    day: '2-digit',
-    month: 'short',
-    year: 'numeric'
-  }).replace('.', ''),
-  publishDate: draft.publishDate ? draft.publishDate.split('T')[0] : undefined,
-  publishTime: draft.publishDate && draft.publishDate.includes('T') ? draft.publishDate.split('T')[1]?.substring(0, 5) : undefined,
-  isPublished: draft.status === 'published',
-  isStatic: false // Drafts sind nicht statisch
-});
+// ============================================================================
+// HINWEIS: Alle Artikel sind jetzt statisch (TSX-Dateien)!
+// Das dynamische Draft-System wurde entfernt, da nur statische Artikel
+// von Suchmaschinen indexiert werden können.
+// Neue Artikel: TSX erstellen → Route → Wissen.tsx → hier eintragen
+// ============================================================================
 
 const EditorialCalendar = () => {
   const [articles, setArticles] = useState<ArticleMetadata[]>([]);
@@ -347,61 +328,33 @@ const EditorialCalendar = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [filterStatus, setFilterStatus] = useState<'all' | 'published' | 'unpublished'>('all');
 
-  // Lade Artikel beim Start - mit Merge-Logik für statische Artikel UND Drafts
+  // Lade Artikel beim Start - nur statische Artikel aus DEFAULT_STATIC_ARTICLES
   useEffect(() => {
-    const loadAllArticles = async () => {
-      // 1. Lade gespeicherte Editorial-Calendar-Daten
-      const saved = localStorage.getItem(STORAGE_KEY);
-      let editorialArticles: ArticleMetadata[] = saved ? JSON.parse(saved) : [];
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      try {
+        const parsed: ArticleMetadata[] = JSON.parse(saved);
 
-      // 2. Merge mit DEFAULT_STATIC_ARTICLES (für neue statische Artikel)
-      const savedIds = new Set(editorialArticles.map(a => a.id));
-      const newStaticArticles = DEFAULT_STATIC_ARTICLES.filter(a => !savedIds.has(a.id));
+        // Merge: Füge neue Artikel aus DEFAULT_STATIC_ARTICLES hinzu,
+        // die noch nicht in localStorage sind
+        const savedIds = new Set(parsed.map(a => a.id));
+        const newArticles = DEFAULT_STATIC_ARTICLES.filter(a => !savedIds.has(a.id));
 
-      if (newStaticArticles.length > 0) {
-        editorialArticles = [...newStaticArticles, ...editorialArticles];
-      }
-
-      // 3. Lade Drafts aus dem Draft-System
-      const savedDrafts = localStorage.getItem(DRAFTS_STORAGE_KEY);
-      if (savedDrafts) {
-        try {
-          const drafts: Draft[] = JSON.parse(savedDrafts);
-          const draftIds = new Set(editorialArticles.map(a => a.id));
-
-          // Füge Drafts hinzu, die noch nicht im Editorial Calendar sind
-          const newDrafts = drafts.filter(d => !draftIds.has(d.id));
-          const convertedDrafts = newDrafts.map(draftToArticleMetadata);
-
-          if (convertedDrafts.length > 0) {
-            editorialArticles = [...convertedDrafts, ...editorialArticles];
-          }
-
-          // Aktualisiere bestehende Draft-Einträge mit neuestem Status
-          editorialArticles = editorialArticles.map(article => {
-            const matchingDraft = drafts.find(d => d.id === article.id);
-            if (matchingDraft && !article.isStatic) {
-              // Update nur für Non-Static (Draft) Artikel
-              return {
-                ...article,
-                isPublished: matchingDraft.status === 'published',
-                title: matchingDraft.title,
-                description: matchingDraft.description
-              };
-            }
-            return article;
-          });
-        } catch (e) {
-          console.error('Error loading drafts:', e);
+        if (newArticles.length > 0) {
+          // Neue Artikel am Anfang hinzufügen
+          const merged = [...newArticles, ...parsed];
+          setArticles(merged);
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
+        } else {
+          setArticles(parsed);
         }
+      } catch {
+        setArticles(DEFAULT_STATIC_ARTICLES);
       }
-
-      // 4. Speichern und setzen
-      setArticles(editorialArticles);
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(editorialArticles));
-    };
-
-    loadAllArticles();
+    } else {
+      setArticles(DEFAULT_STATIC_ARTICLES);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(DEFAULT_STATIC_ARTICLES));
+    }
   }, []);
 
   // Speichere bei Änderungen

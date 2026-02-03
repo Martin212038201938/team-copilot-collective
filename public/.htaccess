@@ -1,5 +1,27 @@
+# ============================================
+# .htaccess für copilotenschule.de
+# Optimiert für SEO, SPA und Sicherheit
+# ============================================
+
 RewriteEngine On
 RewriteBase /
+
+# ============================================
+# SEO & CRAWLER DATEIEN - HÖCHSTE PRIORITÄT
+# Diese Dateien DIREKT ausliefern (keine Rewrites!)
+# ============================================
+
+# robots.txt
+RewriteRule ^robots\.txt$ - [L,NC]
+
+# sitemap.xml
+RewriteRule ^sitemap\.xml$ - [L,NC]
+
+# llms.txt und llm.txt (beide Konventionen)
+RewriteRule ^llms?\.txt$ - [L,NC]
+
+# favicon
+RewriteRule ^favicon\.ico$ - [L,NC]
 
 # ============================================
 # 301 REDIRECTS: Alt-URLs → Neue Trainingsseiten
@@ -66,14 +88,49 @@ RewriteRule ^trainings/copilot-schulung/?$ /trainings/individuelle-copilot-schul
 RewriteRule ^trainings/individuelle-schulung/?$ /trainings/individuelle-copilot-schulung [R=301,L]
 
 # ============================================
-# SPA Fallback (muss NACH den Redirects kommen)
+# SPA Fallback für React Router
+# MUSS nach allen anderen Regeln kommen!
 # ============================================
+
+# index.html direkt ausliefern
 RewriteRule ^index\.html$ - [L]
+
+# Nur wenn Datei/Verzeichnis NICHT existiert → SPA
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /index.html [L]
 
-# Favicon Cache-Control - prevent aggressive caching
-<FilesMatch "\.(ico|png)$">
-    Header set Cache-Control "max-age=3600, must-revalidate"
-</FilesMatch>
+# ============================================
+# MIME-TYPEN
+# ============================================
+
+AddType text/plain .txt
+AddType text/xml .xml
+AddType application/xml .xml
+
+# ============================================
+# CACHE-CONTROL
+# ============================================
+
+<IfModule mod_headers.c>
+    # SEO-Dateien: kurzes Caching
+    <FilesMatch "\.(txt|xml)$">
+        Header set Cache-Control "max-age=3600, must-revalidate"
+    </FilesMatch>
+
+    # Favicon: längeres Caching
+    <FilesMatch "\.(ico)$">
+        Header set Cache-Control "max-age=86400, must-revalidate"
+    </FilesMatch>
+
+    # Sicherheits-Header
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-Content-Type-Options "nosniff"
+</IfModule>
+
+# ============================================
+# SICHERHEIT
+# ============================================
+
+# Verzeichnislistung deaktivieren
+Options -Indexes

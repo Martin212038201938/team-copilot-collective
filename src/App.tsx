@@ -33,6 +33,7 @@ import PromptBibliothekenQuatsch from "./pages/PromptBibliothekenQuatsch";
 import CopilotDigitalesGedaechtnis from "./pages/CopilotDigitalesGedaechtnis";
 import CopilotLaunchKampagne from "./pages/CopilotLaunchKampagne";
 import CopilotROIErfolgsgeschichten from "./pages/CopilotROIErfolgsgeschichten";
+import CopilotAdoption2026 from "./pages/CopilotAdoption2026";
 
 const queryClient = new QueryClient();
 
@@ -64,6 +65,7 @@ const App = () => (
           <Route path="/wissen/copilot-digitales-gedaechtnis" element={<CopilotDigitalesGedaechtnis />} />
           <Route path="/wissen/copilot-launch-kampagne" element={<CopilotLaunchKampagne />} />
           <Route path="/wissen/copilot-roi-erfolgsgeschichten" element={<CopilotROIErfolgsgeschichten />} />
+          <Route path="/wissen/copilot-adoption-2026-zahlen" element={<CopilotAdoption2026 />} />
           <Route path="/impressum" element={<Impressum />} />
           <Route path="/ueber-uns" element={<UeberUns />} />
           <Route path="/unsere-angebote" element={<UnsereAngebote />} />

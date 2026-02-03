@@ -26,6 +26,16 @@ const Wissen = () => {
   // ============================================================================
   const staticKnowledgeTopics = [
     {
+      title: "Copilot Adoption 2026: Was die Zahlen wirklich zeigen",
+      description: "Aktuelle Zahlen Januar 2026: 15 Mio. Copilot-Seats, 160% Wachstum, bis zu 408% ROI. Eine nüchterne Einordnung jenseits des Microsoft-Marketings.",
+      link: "/wissen/copilot-adoption-2026-zahlen",
+      badge: "Strategie",
+      icon: "📊",
+      readTime: "10 Minuten",
+      lastUpdated: "03. Feb. 2026",
+      publishDate: "2026-02-03"
+    },
+    {
       title: "Copilot ROI: Was CEOs und Vorstände aus dem DACH-Raum berichten",
       description: "Wörtliche Zitate von Führungskräften bei Bayer, Siemens, Schaeffler, thyssenkrupp und der Schweizerischen Post über ihre Erfahrungen mit Microsoft Copilot.",
       link: "/wissen/copilot-roi-erfolgsgeschichten",
