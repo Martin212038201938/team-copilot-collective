@@ -67,17 +67,17 @@ const ExpandableCard = ({
       {/* Header - immer sichtbar */}
       <button
         onClick={onToggle}
-        className="flex items-center gap-4 p-6 cursor-pointer w-full text-left hover:bg-primary/5 transition-colors"
+        className="flex items-center gap-3 sm:gap-4 p-4 sm:p-6 cursor-pointer w-full text-left hover:bg-primary/5 transition-colors"
         aria-expanded={isExpanded}
       >
         {/* Icon */}
-        <div className="w-14 h-14 bg-gradient-to-br from-primary/20 via-accent/10 to-primary/20 rounded-xl flex items-center justify-center shadow-lg border border-primary/20 flex-shrink-0">
-          <Icon className="w-7 h-7 text-primary" strokeWidth={1.5} />
+        <div className="w-10 h-10 sm:w-14 sm:h-14 bg-gradient-to-br from-primary/20 via-accent/10 to-primary/20 rounded-xl flex items-center justify-center shadow-lg border border-primary/20 flex-shrink-0">
+          <Icon className="w-5 h-5 sm:w-7 sm:h-7 text-primary" strokeWidth={1.5} />
         </div>
 
         {/* Title + Chevron */}
         <div className="flex-1 min-w-0">
-          <h3 className="text-lg font-bold text-foreground leading-tight pr-2">
+          <h3 className="text-base sm:text-lg font-bold text-foreground leading-tight pr-2">
             {title}
           </h3>
         </div>
@@ -91,8 +91,8 @@ const ExpandableCard = ({
       {/* Description - als Overlay, überlappt andere Karten */}
       {isExpanded && (
         <div className="absolute left-0 right-0 top-full z-50 bg-card border-2 border-t-0 border-primary/20 rounded-b-2xl shadow-2xl">
-          <div className="px-6 pb-6 pt-4">
-            <p className="text-muted-foreground text-sm leading-relaxed">
+          <div className="px-4 sm:px-6 pb-4 sm:pb-6 pt-3 sm:pt-4">
+            <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed">
               {description}
             </p>
           </div>
@@ -115,19 +115,19 @@ const Benefits = () => {
   };
 
   return (
-    <section id="benefits" className="py-24 bg-gradient-to-b from-background to-secondary/20 relative overflow-hidden">
-      {/* Decorative background elements */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
+    <section id="benefits" className="py-12 sm:py-24 bg-gradient-to-b from-background to-secondary/20 relative overflow-hidden">
+      {/* Decorative background elements - kleiner auf Mobile */}
+      <div className="absolute top-0 right-0 w-48 sm:w-96 h-48 sm:h-96 bg-primary/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-48 sm:w-96 h-48 sm:h-96 bg-accent/5 rounded-full blur-3xl" />
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-4xl font-bold mb-4 animate-slide-up">
+        <div className="text-center mb-8 sm:mb-16 animate-fade-in">
+          <h2 className="text-2xl sm:text-4xl font-bold mb-4 animate-slide-up">
             Warum die Copilotenschule die beste Partnerin zur Einführung des Microsoft Copiloten ist
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {benefits.map((benefit, index) => (
             <ExpandableCard
               key={index}
