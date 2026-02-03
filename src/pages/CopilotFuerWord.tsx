@@ -2,7 +2,8 @@ import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
-import { ExternalLink, Zap } from "lucide-react";
+import { ExternalLink, Zap, Linkedin, Twitter } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
 
 const SLUG = "wissen/copilot-fuer-word";
 const PAGE_TITLE = "Microsoft Copilot für Word";
@@ -233,8 +234,8 @@ const CopilotFuerWord = () => {
           </ul>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-cyan-500 pl-4">Erste Schritte</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>1. Leeres Dokument erstellen – mit vollständigem CRAFT-Prompt</strong></p>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>{`Prompt: "Du bist ein erfahrener Projektmanager mit Expertise in IT-Rollouts.
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>{`Prompt: "Du bist ein erfahrener Projektmanager mit Expertise in IT-Rollouts.
 Erstelle einen detaillierten Projektplan für die unternehmensweite
 Einführung von Microsoft Copilot in einem mittelständischen
 Maschinenbauunternehmen mit 500 Mitarbeitern.
@@ -265,8 +266,8 @@ Format: Mit Überschriften H2/H3, Bullet-Points wo sinnvoll, Tabellen für RACI 
             <li>Konkrete KPIs wie Adoptionsrate, Zeitersparnis, NPS-Score</li>
           </ul>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>3. Iterieren und verfeinern:</strong></p>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>{`Prompt: "Ergänze den Projektplan um folgende Aspekte:
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>{`Prompt: "Ergänze den Projektplan um folgende Aspekte:
 
 1. Detaillierte Zeitachse als Gantt-Chart-Beschreibung mit
    Kalenderwochen von KW 12 bis KW 36
@@ -286,8 +287,8 @@ Halte die gleiche professionelle Tonalität bei."`}</code></pre>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-t-4 border-t-emerald-500 pt-4">1. Dokumente erstellen (Draft)</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Use Case:</strong> Vom leeren Dokument zum fertigen Entwurf</p>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>CRAFT-konforme Prompts:</strong></p>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>{`"Erstelle einen formellen Entschuldigungsbrief an die Müller GmbH
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>{`"Erstelle einen formellen Entschuldigungsbrief an die Müller GmbH
 (Ansprechpartner: Frau Dr. Schmidt, Einkaufsleiterin).
 
 Kontext: Unser Projekt 'ERP-Migration' hat sich um 6 Wochen
@@ -307,8 +308,8 @@ Tonalität: Professionell, lösungsorientiert, wertschätzend.
 Format: Klassischer Geschäftsbrief mit Briefkopf-Platzhalter.
 Länge: 1 Seite (ca. 300 Wörter)."`}</code></pre>
           </div>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>{`"Du bist ein erfahrener B2B-Content-Marketer.
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>{`"Du bist ein erfahrener B2B-Content-Marketer.
 Schreibe einen Blogartikel zum Thema 'KI-gestützte Qualitätskontrolle
 in der Fertigung'.
 
@@ -329,8 +330,8 @@ keine Marketing-Floskeln.
 Länge: 1.200 Wörter.
 SEO: Keyword 'KI Qualitätskontrolle' 3-4x natürlich einbauen."`}</code></pre>
           </div>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>{`"Erstelle eine detaillierte Meeting-Agenda für unser
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>{`"Erstelle eine detaillierte Meeting-Agenda für unser
 Q2 Strategy Review am 15. April 2026, 14:00-17:00 Uhr.
 
 Teilnehmer:
@@ -365,8 +366,8 @@ Format: Professionelle Agenda-Tabelle mit Timing."`}</code></pre>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-t-4 border-t-red-500 pt-4">2. Texte zusammenfassen (Summarize)</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Use Case:</strong> Lange Dokumente schnell erfassen</p>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>CRAFT-konforme Prompts:</strong></p>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>{`"Fasse dieses 20-seitige Marktanalyse-Dokument zusammen für
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>{`"Fasse dieses 20-seitige Marktanalyse-Dokument zusammen für
 einen CEO, der in 5 Minuten einen Überblick braucht.
 
 Struktur der Zusammenfassung:
@@ -384,8 +385,8 @@ Wichtig:
 
 Format: Nummerierte Liste, max. 400 Wörter gesamt."`}</code></pre>
           </div>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>{`"Erstelle eine Executive Summary dieses Audit-Berichts für den
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>{`"Erstelle eine Executive Summary dieses Audit-Berichts für den
 Vorstand unseres Kunden (Branchen-Outsider, keine IT-Experten).
 
 Die Executive Summary soll enthalten:
@@ -402,8 +403,8 @@ Tonalität: Sachlich, lösungsorientiert, nicht alarmistisch.
 Länge: Exakt 1 Seite (ca. 500 Wörter).
 Wichtig: Technische Details nur wo unbedingt nötig, dann mit Erklärung."`}</code></pre>
           </div>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>{`"Analysiere dieses Dokument und extrahiere alle
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>{`"Analysiere dieses Dokument und extrahiere alle
 Handlungsempfehlungen in einem strukturierten Format.
 
 Für jede Handlungsempfehlung dokumentiere:
@@ -432,8 +433,8 @@ Ausgabe als Tabelle sortiert nach Priorität."`}</code></pre>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Use Case:</strong> Bestehende Texte verbessern</p>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>CRAFT-konforme Varianten:</strong></p>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Kürzer machen (mit Qualitätskriterien):</strong></p>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>{`"Kürze diesen 500-Wörter-Absatz auf maximal 150 Wörter.
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>{`"Kürze diesen 500-Wörter-Absatz auf maximal 150 Wörter.
 
 Vorgaben für das Kürzen:
 - Behalte die Kernaussage: [hier Kernaussage einfügen]
@@ -445,8 +446,8 @@ Vorgaben für das Kürzen:
 Zeige mir auch, was du gestrichen hast und warum."`}</code></pre>
           </div>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Tonalität ändern (mit konkretem Zielbild):</strong></p>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>{`"Formuliere diesen internen Projektbericht so um, dass er als
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>{`"Formuliere diesen internen Projektbericht so um, dass er als
 LinkedIn-Post für unser Firmenprofil funktioniert.
 
 Ursprungstext: [technischer Projektbericht]
@@ -463,8 +464,8 @@ Anforderungen an den neuen Text:
 Mach 2 Versionen: Eine enthusiastischer, eine sachlicher."`}</code></pre>
           </div>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Komplexität anpassen (für definierte Zielgruppe):</strong></p>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>{`"Erkläre diesen technischen Absatz über unsere Cloud-Migration
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>{`"Erkläre diesen technischen Absatz über unsere Cloud-Migration
 für den Aufsichtsrat (Durchschnittsalter 62, keine IT-Hintergründe,
 aber hohe Business-Kompetenz).
 
@@ -480,8 +481,8 @@ Maximale Länge: 250 Wörter.
 Erstelle zusätzlich eine Glossar-Box mit 3-4 Schlüsselbegriffen."`}</code></pre>
           </div>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Struktur verbessern (mit Zielformat):</strong></p>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>{`"Dieser Text ist als fortlaufender Fließtext schwer lesbar.
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>{`"Dieser Text ist als fortlaufender Fließtext schwer lesbar.
 Strukturiere ihn nach folgendem Muster um:
 
 Zielstruktur:
@@ -502,8 +503,8 @@ Inhalt darf nicht verändert werden, nur die Präsentation."`}</code></pre>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-t-4 border-t-indigo-500 pt-4">4. Aus anderen Dokumenten erstellen</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Use Case:</strong> Mehrere Quellen kombinieren</p>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>CRAFT-konformer Beispiel-Prompt:</strong></p>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>{`"Erstelle ein professionelles Angebot für die Müller GmbH basierend
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>{`"Erstelle ein professionelles Angebot für die Müller GmbH basierend
 auf folgenden Quelldokumenten:
 
 Quellen:
@@ -539,8 +540,8 @@ Tonalität: Professionell, kundenorientiert, lösungsfokussiert."`}</code></pre>
             <li>PowerPoint-Inhalte einbinden (Slide-Inhalte als Text)</li>
           </ul>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Weitere Multi-Dokument-Prompts:</strong></p>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>{`"Erstelle einen Wettbewerbsvergleich basierend auf:
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>{`"Erstelle einen Wettbewerbsvergleich basierend auf:
 - /Analyse-Wettbewerber-A.docx (Stärken, Schwächen, Preise)
 - /Analyse-Wettbewerber-B.docx (Stärken, Schwächen, Preise)
 - /Unsere-Positionierung.pptx (unsere USPs und Preise)
@@ -552,8 +553,8 @@ Unter der Tabelle: 3-Sätze-Fazit für den Vertrieb."`}</code></pre>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-t-4 border-t-slate-500 pt-4">5. Formatierung und Struktur</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Use Case:</strong> Professionelles Layout automatisch</p>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>CRAFT-konforme Prompts:</strong></p>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>{`"Strukturiere diesen Fließtext als professionellen Consulting-Report.
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>{`"Strukturiere diesen Fließtext als professionellen Consulting-Report.
 
 Formatierungs-Vorgaben:
 - H2-Überschriften für Hauptkapitel (max. 5-6 Wörter)
@@ -574,8 +575,8 @@ Corporate Design beachten:
 - Absätze zwischen 50-100 Wörtern
 - Konsistente Terminologie (wenn 'Mitarbeiter', dann immer 'Mitarbeiter')"`}</code></pre>
           </div>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>{`"Füge diesem Dokument professionelle Rahmung hinzu:
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>{`"Füge diesem Dokument professionelle Rahmung hinzu:
 
 1. Einleitung (150-200 Wörter):
    - Kontext: Warum wurde dieses Dokument erstellt?
@@ -598,8 +599,8 @@ Corporate Design beachten:
    - Kopfzeile mit Dokumenttitel und Datum
    - Fußzeile mit Seitenzahlen 'Seite X von Y'"`}</code></pre>
           </div>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>{`"Erstelle ein strukturiertes Inhaltsverzeichnis für dieses Dokument
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>{`"Erstelle ein strukturiertes Inhaltsverzeichnis für dieses Dokument
 im folgenden Format:
 
 Anforderungen:
@@ -624,8 +625,8 @@ Kapitelüberschriften sollen:
           <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-purple-500 mb-6">Praktische Anwendungsfälle</h2>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-purple-500 pl-4">1. Business-Dokumente</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Geschäftsbriefe:</strong></p>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>{`Prompt: "Erstelle einen Angebotsbrief für unsere
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>{`Prompt: "Erstelle einen Angebotsbrief für unsere
 'Copilot Enablement Services' an die Technik GmbH.
 
 Empfänger: Herr Dr. Schneider (CIO)
@@ -648,8 +649,8 @@ Tonalität: Professionell-persönlich, nicht aufdringlich.
 Länge: 1 Seite, max. 400 Wörter."`}</code></pre>
           </div>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Proposals:</strong></p>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>{`Prompt: "Erstelle ein Projekt-Proposal für 'KI-gestützte
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>{`Prompt: "Erstelle ein Projekt-Proposal für 'KI-gestützte
 Dokumentenautomatisierung' für die Versicherungs AG.
 
 Problemstellung des Kunden (aus Briefing-Call):
@@ -676,8 +677,8 @@ Das Proposal soll enthalten:
 Länge: 8-10 Seiten. Tonalität: Beratend, lösungsorientiert."`}</code></pre>
           </div>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Reports:</strong></p>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>{`Prompt: "Erstelle einen Quarterly Business Review (QBR) Report
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>{`Prompt: "Erstelle einen Quarterly Business Review (QBR) Report
 für Q1 2026 basierend auf folgenden Daten:
 
 Datenquellen:
@@ -708,8 +709,8 @@ Format: Professioneller Management-Report, 12-15 Seiten."`}</code></pre>
           </div>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-green-500 pl-4">2. Marketing-Content</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Blog-Artikel:</strong></p>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>{`Prompt: "Schreibe einen SEO-optimierten Blogartikel zum Thema
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>{`Prompt: "Schreibe einen SEO-optimierten Blogartikel zum Thema
 'Microsoft Copilot Kosten-Nutzen-Analyse für KMU'.
 
 SEO-Vorgaben:
@@ -737,8 +738,8 @@ Tonalität: Informativ, kompetent, aber nicht akademisch.
 Gesamtlänge: 1.500 Wörter (±100)."`}</code></pre>
           </div>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Social Media Posts:</strong></p>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>{`Prompt: "Erstelle 8 LinkedIn-Posts basierend auf diesem Whitepaper
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>{`Prompt: "Erstelle 8 LinkedIn-Posts basierend auf diesem Whitepaper
 'Die Zukunft der Wissensarbeit mit KI'.
 
 Post-Formate (je 2x):
@@ -761,8 +762,8 @@ Tonalität-Varianten:
 Posting-Zeiten-Empfehlung beifügen (Di-Do, 8-9 oder 17-18 Uhr)."`}</code></pre>
           </div>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Case Studies:</strong></p>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>{`Prompt: "Erstelle eine Case Study für unsere Copilot-Einführung
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>{`Prompt: "Erstelle eine Case Study für unsere Copilot-Einführung
 bei der Logistik Express GmbH (anonymisiert: 'mittelständisches
 Logistikunternehmen').
 
@@ -793,8 +794,8 @@ Format: 2 Seiten, viel Weißraum, Infografik-würdige Darstellung."`}</code></pr
           </div>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-cyan-500 pl-4">3. HR-Dokumente</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Stellenbeschreibungen:</strong></p>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>{`Prompt: "Erstelle eine moderne Stellenbeschreibung für die Position
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>{`Prompt: "Erstelle eine moderne Stellenbeschreibung für die Position
 'Senior Data Analyst (m/w/d)' in unserem Analytics-Team.
 
 Kontext zum Unternehmen:
@@ -821,8 +822,8 @@ Kein Corporate-Bullshit: 'Spannende Aufgaben' → konkret was
 Länge: 600-800 Wörter."`}</code></pre>
           </div>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Performance Reviews:</strong></p>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>{`Prompt: "Formuliere ein konstruktives Performance-Feedback für
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>{`Prompt: "Formuliere ein konstruktives Performance-Feedback für
 eine Mitarbeiterin im Jahresgespräch.
 
 Leistungsdaten (aus HR-System):
@@ -851,8 +852,8 @@ Tonalität: Wertschätzend, klar, zukunftsorientiert.
 Länge: 1 Seite (ca. 500 Wörter)."`}</code></pre>
           </div>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Policies:</strong></p>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>{`Prompt: "Erstelle eine praxistaugliche Remote Work Policy für ein
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>{`Prompt: "Erstelle eine praxistaugliche Remote Work Policy für ein
 deutsches Unternehmen mit 150 Mitarbeitern.
 
 Rahmenbedingungen:
@@ -885,8 +886,8 @@ Länge: 3-4 Seiten."`}</code></pre>
           </div>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-emerald-500 pl-4">4. Technische Dokumentation</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>User Manuals:</strong></p>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>{`Prompt: "Erstelle eine Schritt-für-Schritt Anleitung für den
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>{`Prompt: "Erstelle eine Schritt-für-Schritt Anleitung für den
 Prozess 'Neuen Mitarbeiter im HR-System anlegen'.
 
 Zielgruppe: HR-Sachbearbeiter ohne IT-Hintergrund.
@@ -917,8 +918,8 @@ Format:
 Länge: 4-5 Seiten mit großzügigen Screenshot-Platzhaltern."`}</code></pre>
           </div>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>API Dokumentation:</strong></p>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>{`Prompt: "Dokumentiere folgenden REST API-Endpoint im
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>{`Prompt: "Dokumentiere folgenden REST API-Endpoint im
 OpenAPI/Swagger-Stil für unser Developer Portal.
 
 Endpoint: POST /api/v2/orders
@@ -947,8 +948,8 @@ Für diesen Endpoint dokumentiere:
 Code-Beispiele in: cURL, Python (requests), JavaScript (fetch)."`}</code></pre>
           </div>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Changelog/Release Notes:</strong></p>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>{`Prompt: "Erstelle professionelle Release Notes für Version 3.2.0
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>{`Prompt: "Erstelle professionelle Release Notes für Version 3.2.0
 unserer B2B-Plattform, basierend auf diesen Jira-Tickets:
 
 Tickets:
@@ -999,16 +1000,16 @@ Format: Markdown mit klarer Hierarchie, Emojis für Kategorien."`}</code></pre>
           <p className="mb-4 text-gray-700 leading-relaxed">✅ "Erkläre Machine Learning für Marketing-Manager im E-Commerce (keine technischen Vorkenntnisse, aber gutes Verständnis von KPIs wie Conversion Rate, ROAS). Fokus auf: Wie hilft ML bei Personalisierung? Welche Daten brauche ich? Was kostet das ungefähr? Konkrete Beispiele von Zalando, About You."</p>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-blue-500 pl-4">Prompt-Patterns</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Pattern 1: Rolle + Aufgabe + Details</strong></p>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>"Du bist [Rolle]. Erstelle [Dokumenttyp] für [Zielgruppe],\nder [Ziel] erreicht, mit [Tonalität] und [Format]"</code></pre>
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>"Du bist [Rolle]. Erstelle [Dokumenttyp] für [Zielgruppe],\nder [Ziel] erreicht, mit [Tonalität] und [Format]"</code></pre>
           </div>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Pattern 2: Basierend auf + Transformation</strong></p>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>"Basierend auf [Dokument1] und [Dokument2],\nerstelle [neues Dokument] mit Fokus auf [Aspekt]"</code></pre>
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>"Basierend auf [Dokument1] und [Dokument2],\nerstelle [neues Dokument] mit Fokus auf [Aspekt]"</code></pre>
           </div>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Pattern 3: Iteratives Verfeinern</strong></p>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>1. "Erstelle einen Entwurf für [X]"\n2. "Füge mehr Details zu [Aspekt] hinzu"\n3. "Ändere die Tonalität zu [Stil]"\n4. "Kürze auf [Länge]"</code></pre>
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>1. "Erstelle einen Entwurf für [X]"\n2. "Füge mehr Details zu [Aspekt] hinzu"\n3. "Ändere die Tonalität zu [Stil]"\n4. "Kürze auf [Länge]"</code></pre>
           </div>
         </section>
 
@@ -1016,21 +1017,21 @@ Format: Markdown mit klarer Hierarchie, Emojis für Kategorien."`}</code></pre>
           <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-red-500 mb-6">Erweiterte Techniken</h2>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-red-500 pl-4">1. Multi-Document Intelligence</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Copilot kann Informationen aus mehreren Quellen kombinieren:</strong></p>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>Prompt: "Erstelle einen Status-Report basierend auf:\n- Projekt-Timeline aus timeline.xlsx\n- Risiken aus risks.docx  \n- Budget-Status aus finance.xlsx\n- Team-Feedback aus E-Mails (letzten 2 Wochen)"</code></pre>
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>Prompt: "Erstelle einen Status-Report basierend auf:\n- Projekt-Timeline aus timeline.xlsx\n- Risiken aus risks.docx  \n- Budget-Status aus finance.xlsx\n- Team-Feedback aus E-Mails (letzten 2 Wochen)"</code></pre>
           </div>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-amber-500 pl-4">2. Stil-Konsistenz</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Copilot lernt Ihren Schreibstil:</strong></p>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>Prompt: "Analysiere meinen Schreibstil in [vorheriges Dokument]\nund schreibe [neues Dokument] im gleichen Stil"</code></pre>
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>Prompt: "Analysiere meinen Schreibstil in [vorheriges Dokument]\nund schreibe [neues Dokument] im gleichen Stil"</code></pre>
           </div>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-indigo-500 pl-4">3. Bedingte Generierung</h3>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>Prompt: "Erstelle 2 Versionen dieses Briefs:\nVersion A: Falls der Kunde zustimmt\nVersion B: Falls der Kunde ablehnt"</code></pre>
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>Prompt: "Erstelle 2 Versionen dieses Briefs:\nVersion A: Falls der Kunde zustimmt\nVersion B: Falls der Kunde ablehnt"</code></pre>
           </div>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-slate-500 pl-4">4. Feedback-Loop</h3>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>1. Prompt: "Erstelle [Dokument]"\n2. Copilot generiert\n3. Prompt: "Was fehlt noch? Welche Aspekte sollte ich ergänzen?"\n4. Copilot macht Vorschläge\n5. Iterieren bis perfekt</code></pre>
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>1. Prompt: "Erstelle [Dokument]"\n2. Copilot generiert\n3. Prompt: "Was fehlt noch? Welche Aspekte sollte ich ergänzen?"\n4. Copilot macht Vorschläge\n5. Iterieren bis perfekt</code></pre>
           </div>
         </section>
 
@@ -1038,24 +1039,24 @@ Format: Markdown mit klarer Hierarchie, Emojis für Kategorien."`}</code></pre>
           <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-gray-500 mb-6">Häufige Fehler vermeiden</h2>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-gray-500 pl-4">❌ Fehler 1: Zu vage Prompts</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Schlecht:</strong></p>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>"Schreibe etwas über Produktivität"</code></pre>
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>"Schreibe etwas über Produktivität"</code></pre>
           </div>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Gut:</strong></p>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>"Erstelle einen 800-Wörter Ratgeber-Artikel zum Thema\n'Produktivität im Home Office', Zielgruppe: Remote Workers,\nTonalität: Praktisch und motivierend, mit konkreten Tipps"</code></pre>
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>"Erstelle einen 800-Wörter Ratgeber-Artikel zum Thema\n'Produktivität im Home Office', Zielgruppe: Remote Workers,\nTonalität: Praktisch und motivierend, mit konkreten Tipps"</code></pre>
           </div>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-blue-500 pl-4">❌ Fehler 2: Keine Iterationen</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Falsch:</strong> Ersten Output akzeptieren ohne Nachfragen</p>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Richtig:</strong> Iterativ verfeinern:</p>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>1. "Erstelle Entwurf"\n2. "Füge mehr Beispiele hinzu"\n3. "Mache es prägnanter"\n4. "Ändere Tonalität"</code></pre>
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>1. "Erstelle Entwurf"\n2. "Füge mehr Beispiele hinzu"\n3. "Mache es prägnanter"\n4. "Ändere Tonalität"</code></pre>
           </div>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-green-500 pl-4">❌ Fehler 3: Kontext ignorieren</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Schlecht:</strong> Copilot weiß nicht, wofür das Dokument ist</p>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Gut:</strong> Immer Kontext geben:</p>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>"Ich schreibe an [Zielgruppe] weil [Grund],\ndas Dokument wird verwendet für [Zweck]"</code></pre>
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>"Ich schreibe an [Zielgruppe] weil [Grund],\ndas Dokument wird verwendet für [Zweck]"</code></pre>
           </div>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-purple-500 pl-4">❌ Fehler 4: Fakten nicht prüfen</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Problem:</strong> Copilot kann "halluzinieren" (Fakten erfinden)</p>
@@ -1076,8 +1077,8 @@ Format: Markdown mit klarer Hierarchie, Emojis für Kategorien."`}</code></pre>
             <li>Action Items werden identifiziert</li>
           </ul>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>2. In Word öffnen</strong></p>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>Prompt: "Erstelle Meeting-Protokoll basierend auf\nTeams-Meeting [Datum], mit Zusammenfassung,\nBeschlüssen und nächsten Schritten"</code></pre>
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>Prompt: "Erstelle Meeting-Protokoll basierend auf\nTeams-Meeting [Datum], mit Zusammenfassung,\nBeschlüssen und nächsten Schritten"</code></pre>
           </div>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>3. Automatisch:</strong></p>
           <ul className="list-disc list-inside space-y-2 mb-4">
@@ -1091,12 +1092,12 @@ Format: Markdown mit klarer Hierarchie, Emojis für Kategorien."`}</code></pre>
             <li>Mehrere Quellen in SharePoint speichern</li>
           </ul>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>2. In Word kombinieren</strong></p>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>Prompt: "Erstelle Übersichtsartikel basierend auf\ndiesen Research-Dokumenten: [Liste], synthetisiere\ndie Kernaussagen und ziehe Schlussfolgerungen"</code></pre>
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>Prompt: "Erstelle Übersichtsartikel basierend auf\ndiesen Research-Dokumenten: [Liste], synthetisiere\ndie Kernaussagen und ziehe Schlussfolgerungen"</code></pre>
           </div>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>3. Verfeinern</strong></p>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>Prompt: "Füge eine Management Summary hinzu"\nPrompt: "Erstelle Handlungsempfehlungen"</code></pre>
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>Prompt: "Füge eine Management Summary hinzu"\nPrompt: "Erstelle Handlungsempfehlungen"</code></pre>
           </div>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Zeitersparnis:</strong> 70% (von 4h auf 1,2h)</p>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-cyan-500 pl-4">Workflow 3: E-Mail → Formeller Brief</h3>
@@ -1105,8 +1106,8 @@ Format: Markdown mit klarer Hierarchie, Emojis für Kategorien."`}</code></pre>
             <li>Kunde schreibt informelle Anfrage</li>
           </ul>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>2. Copilot transformiert</strong></p>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>Prompt: "Basierend auf dieser E-Mail-Konversation,\nerstelle einen formellen Geschäftsbrief der die\nKernanforderungen zusammenfasst und nächste Schritte vorschlägt"</code></pre>
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>Prompt: "Basierend auf dieser E-Mail-Konversation,\nerstelle einen formellen Geschäftsbrief der die\nKernanforderungen zusammenfasst und nächste Schritte vorschlägt"</code></pre>
           </div>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>3. Review & Send</strong></p>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Zeitersparnis:</strong> 90% (von 20 Min auf 2 Min)</p>
@@ -1116,23 +1117,23 @@ Format: Markdown mit klarer Hierarchie, Emojis für Kategorien."`}</code></pre>
           <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-emerald-500 mb-6">Integration mit Microsoft 365</h2>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-emerald-500 pl-4">Word + Outlook</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Szenario:</strong> E-Mail zu Dokument</p>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>Prompt: "Erstelle Projekt-Vorschlag basierend auf\nE-Mail-Thread mit [Name] vom [Datum]"</code></pre>
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>Prompt: "Erstelle Projekt-Vorschlag basierend auf\nE-Mail-Thread mit [Name] vom [Datum]"</code></pre>
           </div>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-red-500 pl-4">Word + SharePoint</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Szenario:</strong> Firmenwissen nutzen</p>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>Prompt: "Erstelle Angebot basierend auf Template\naus SharePoint [Pfad] und Produktinfos aus [Dokument]"</code></pre>
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>Prompt: "Erstelle Angebot basierend auf Template\naus SharePoint [Pfad] und Produktinfos aus [Dokument]"</code></pre>
           </div>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-amber-500 pl-4">Word + Teams</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Szenario:</strong> Meeting-Follow-up</p>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>Prompt: "Erstelle Action-Item Liste basierend auf\nheutigem Teams-Meeting mit [Team-Name]"</code></pre>
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>Prompt: "Erstelle Action-Item Liste basierend auf\nheutigem Teams-Meeting mit [Team-Name]"</code></pre>
           </div>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-indigo-500 pl-4">Word + Excel</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Szenario:</strong> Daten-Report</p>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>Prompt: "Erstelle Quarterly Report basierend auf\nVerkaufszahlen aus [Excel-Datei], mit Trend-Analyse\nund Visualisierung-Beschreibungen"</code></pre>
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>Prompt: "Erstelle Quarterly Report basierend auf\nVerkaufszahlen aus [Excel-Datei], mit Trend-Analyse\nund Visualisierung-Beschreibungen"</code></pre>
           </div>
         </section>
 
@@ -1195,25 +1196,25 @@ Format: Markdown mit klarer Hierarchie, Emojis für Kategorien."`}</code></pre>
         <section id="tipps-von-power-usern" className="mb-8">
           <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-cyan-500 mb-6">Tipps von Power-Usern</h2>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-cyan-500 pl-4">Tipp 1: Copilot als Brainstorming-Partner</h3>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>Prompt: "Ich muss [Aufgabe] erledigen. Gib mir 5 verschiedene\nAnsätze wie ich das angehen könnte, mit Vor- und Nachteilen"</code></pre>
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>Prompt: "Ich muss [Aufgabe] erledigen. Gib mir 5 verschiedene\nAnsätze wie ich das angehen könnte, mit Vor- und Nachteilen"</code></pre>
           </div>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-blue-500 pl-4">Tipp 2: "Erkläre es mir wie ich 5 bin"</h3>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>Prompt: "Erkläre diesen komplexen Sachverhalt so einfach,\ndass es jeder versteht, nutze Analogien"</code></pre>
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>Prompt: "Erkläre diesen komplexen Sachverhalt so einfach,\ndass es jeder versteht, nutze Analogien"</code></pre>
           </div>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-green-500 pl-4">Tipp 3: Reverse Outlining</h3>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>Prompt: "Analysiere die Struktur dieses Dokuments\nund erstelle ein verbessertes Outline"</code></pre>
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>Prompt: "Analysiere die Struktur dieses Dokuments\nund erstelle ein verbessertes Outline"</code></pre>
           </div>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-amber-500 pl-4">Tipp 4: Tone-Checker</h3>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>Prompt: "Wie wirkt dieser Text auf den Leser?\nIst die Tonalität angemessen für [Kontext]?"</code></pre>
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>Prompt: "Wie wirkt dieser Text auf den Leser?\nIst die Tonalität angemessen für [Kontext]?"</code></pre>
           </div>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-red-500 pl-4">Tipp 5: Format-Vorlagen</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Erstellen Sie prompt-templates:</strong></p>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>Template: "Erstelle [DOKUMENTTYP] für [ZIELGRUPPE],\nmit [STRUKTUR], Tonalität: [TON], Länge: [WÖRTER]"\n\nBeispiel: "Erstelle Whitepaper für CTOs,\nmit Executive Summary + 3 Hauptkapitel + Case Study,\nTonalität: Technisch aber zugänglich, Länge: 2500 Wörter"</code></pre>
+          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
+            <pre className="text-sm whitespace-pre-wrap break-words"><code>Template: "Erstelle [DOKUMENTTYP] für [ZIELGRUPPE],\nmit [STRUKTUR], Tonalität: [TON], Länge: [WÖRTER]"\n\nBeispiel: "Erstelle Whitepaper für CTOs,\nmit Executive Summary + 3 Hauptkapitel + Case Study,\nTonalität: Technisch aber zugänglich, Länge: 2500 Wörter"</code></pre>
           </div>
         </section>
 
@@ -1238,27 +1239,70 @@ Format: Markdown mit klarer Hierarchie, Emojis für Kategorien."`}</code></pre>
 
         <section id="zukunft-was-kommt-" className="mb-8">
           <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-purple-500 mb-6">Zukunft: Was kommt?</h2>
-          <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-purple-500 pl-4">Angekündigte Features (2025)</h3>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>1. Plugins & Extensions</strong></p>
+          <p className="mb-6 text-gray-700 leading-relaxed">
+            Microsoft entwickelt Copilot in Word rasant weiter. Hier die wichtigsten Neuerungen und kommenden Features
+            basierend auf der <a href="https://www.microsoft.com/en-us/microsoft-365/roadmap" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">offiziellen Microsoft 365 Roadmap</a>.
+          </p>
+
+          <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-purple-500 pl-4">Bereits verfügbar (2025/2026)</h3>
+
+          <p className="mb-4 text-gray-700 leading-relaxed"><strong>1. Agent Mode in Word</strong></p>
           <ul className="list-disc list-inside space-y-2 mb-4">
-            <li>Copilot kann auf Third-Party Tools zugreifen</li>
-            <li>Z.B. Salesforce, SAP, Adobe</li>
+            <li>Copilot arbeitet aktiv mit Ihnen am Dokument – nicht nur reaktiv</li>
+            <li>Führt Sie durch Schreibaufgaben: Erstellt Entwürfe, stellt Rückfragen, bietet Anpassungen an</li>
+            <li>Reagiert auf Prompts und nimmt eigenständig Änderungen vor</li>
           </ul>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>2. Custom GPTs für Word</strong></p>
+
+          <p className="mb-4 text-gray-700 leading-relaxed"><strong>2. GPT-5 und GPT-5.2 Integration</strong></p>
           <ul className="list-disc list-inside space-y-2 mb-4">
-            <li>Firmenspezifische Copilot-Versionen</li>
-            <li>Mit firmeneigenem Wissen und Prozessen</li>
+            <li>GPT-5 ist jetzt Standard für alle Copilot Chat Erlebnisse</li>
+            <li>GPT-5.2 verfügbar mit „Quick Response" oder „Think Deeper" Modus</li>
+            <li>Besseres Befolgen von Anweisungen, verbesserte Mathematik und klarere Erklärungen</li>
           </ul>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>3. Advanced Formatting</strong></p>
+
+          <p className="mb-4 text-gray-700 leading-relaxed"><strong>3. Enhanced Image Understanding</strong></p>
           <ul className="list-disc list-inside space-y-2 mb-4">
-            <li>KI-generierte Layouts</li>
-            <li>Style-Templates aus Beispieldokumenten lernen</li>
+            <li>Copilot versteht jetzt Bilder in Word-Dokumenten, PowerPoints und PDFs</li>
+            <li>Extrahiert Erkenntnisse aus Charts, Diagrammen und Screenshots</li>
+            <li>Antworten basieren nicht nur auf Text, sondern auch auf visuellem Kontext</li>
           </ul>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>4. Collaborative Copilot</strong></p>
+
+          <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-purple-500 pl-4">Rolling out (Februar 2026)</h3>
+
+          <p className="mb-4 text-gray-700 leading-relaxed"><strong>4. Word, Excel & PowerPoint Agents</strong></p>
           <ul className="list-disc list-inside space-y-2 mb-4">
-            <li>Mehrere User arbeiten mit einem Copilot</li>
-            <li>Team-Prompts und geteilte Assistenz</li>
+            <li>Neue Dateien mit einem einzigen Prompt aus Copilot Chat erstellen</li>
+            <li>Generiert komplette Entwürfe mit Struktur, Formatierung und Details</li>
+            <li>Kein leeres Blatt mehr – direkt polierte Dokumente zum Überarbeiten</li>
+            <li>M365 Copilot-Lizenz: Web- und Work-Grounding | Ohne Lizenz: nur Web-Grounding</li>
           </ul>
+
+          <p className="mb-4 text-gray-700 leading-relaxed"><strong>5. Video-Erstellung aus Word-Dokumenten</strong></p>
+          <ul className="list-disc list-inside space-y-2 mb-4">
+            <li>Word-, PowerPoint- und PDF-Dateien in hochwertige Videos umwandeln</li>
+            <li>Ideal für Trainingsmaterial, Präsentationen und Content-Marketing</li>
+          </ul>
+
+          <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-purple-500 pl-4">Ausblick 2026</h3>
+
+          <p className="mb-4 text-gray-700 leading-relaxed"><strong>6. Multi-Step Task Automation</strong></p>
+          <ul className="list-disc list-inside space-y-2 mb-4">
+            <li>Agent-artiges Verhalten für komplexe, mehrstufige Aufgaben</li>
+            <li>Copilot plant und führt Arbeitsabläufe eigenständig aus</li>
+          </ul>
+
+          <p className="mb-4 text-gray-700 leading-relaxed"><strong>7. Declarative Agents mit Custom Knowledge</strong></p>
+          <ul className="list-disc list-inside space-y-2 mb-4">
+            <li>Firmenspezifische Copilot-Agenten mit eigenem Wissen</li>
+            <li>Greifen auf interne Dokumente und Prozesse zu</li>
+            <li>Verstehen auch Bilder in Firmendokumenten</li>
+          </ul>
+
+          <div className="bg-purple-50 border-l-4 border-purple-500 p-4 my-6">
+            <p className="font-semibold text-purple-800 mb-2">💡 Preisänderung ab Juli 2026</p>
+            <p className="text-purple-700">Microsoft hat Preisanpassungen für Microsoft 365 angekündigt, die am 1. Juli 2026 in Kraft treten.
+            Aktuelle Preise und Details finden Sie im <a href="https://www.microsoft.com/en-us/microsoft-365/blog/2025/12/04/advancing-microsoft-365-new-capabilities-and-pricing-update/" target="_blank" rel="noopener noreferrer" className="underline">offiziellen Microsoft Blog</a>.</p>
+          </div>
         </section>
 
         <section id="zusammenfassung" className="mb-8">
@@ -1362,73 +1406,51 @@ Format: Markdown mit klarer Hierarchie, Emojis für Kategorien."`}</code></pre>
           </div>
         </section>
 
-        {/* Autor-Bio Section */}
-        <section className="mt-16 pt-8 border-t-4 border-t-orange-500">
-          <div className="grid md:grid-cols-4 gap-6">
-            <div className="md:col-span-1">
-              {author?.image && (
-                <img
-                  src={author.image}
-                  alt={author.name}
-                  className="w-full rounded-lg border-2 border-orange-500/30"
-                />
-              )}
-            </div>
-            <div className="md:col-span-3">
-              <h3 className="text-2xl font-bold mb-2">{author?.name}</h3>
-              <p className="text-orange-600 font-semibold mb-4">{author?.role}</p>
-              <p className="text-gray-700 mb-4 leading-relaxed">
-                {author?.bio}
-              </p>
-              <div className="mb-4">
-                <p className="font-semibold mb-2">Expertise:</p>
-                <div className="flex flex-wrap gap-2">
-                  {author?.expertise?.map((skill, index) => (
-                    <span
-                      key={index}
-                      className="px-3 py-1 bg-orange-500/10 border border-orange-500/30 rounded-full text-sm text-gray-700"
-                    >
-                      {skill}
-                    </span>
-                  ))}
+        {/* Autor Bio */}
+        <section className="my-12">
+          <Card className="border-l-4 border-l-primary">
+            <CardContent className="pt-6">
+              <div className="flex flex-col md:flex-row gap-6">
+                <div className="flex-shrink-0">
+                  <img
+                    src={author?.image}
+                    alt={author?.name}
+                    className="w-32 h-32 rounded-full object-cover border-4 border-primary/20"
+                  />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-bold mb-2">Über den Autor</h3>
+                  <div className="text-lg font-semibold text-primary mb-1">{author?.name}</div>
+                  <div className="text-sm text-muted-foreground mb-3">{author?.role}</div>
+                  <p className="text-sm leading-relaxed mb-4">{author?.bio}</p>
+                  <div className="mb-3">
+                    <div className="text-sm font-semibold mb-2">Expertise:</div>
+                    <div className="flex flex-wrap gap-2">
+                      {author?.expertise?.map((exp, idx) => (
+                        <span key={idx} className="px-3 py-1 bg-primary/10 text-primary rounded-full text-xs font-medium">
+                          {exp}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="flex gap-3">
+                    {author?.social?.linkedin && (
+                      <a href={author.social.linkedin} target="_blank" rel="noopener noreferrer"
+                         className="inline-flex items-center gap-2 text-sm text-primary hover:underline">
+                        <Linkedin className="w-4 h-4" /> LinkedIn
+                      </a>
+                    )}
+                    {author?.social?.twitter && (
+                      <a href={author.social.twitter} target="_blank" rel="noopener noreferrer"
+                         className="inline-flex items-center gap-2 text-sm text-primary hover:underline">
+                        <Twitter className="w-4 h-4" /> Twitter
+                      </a>
+                    )}
+                  </div>
                 </div>
               </div>
-              {author?.social && (
-                <div className="flex gap-4">
-                  {author.social.linkedin && (
-                    <a
-                      href={author.social.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-600 hover:underline font-semibold"
-                    >
-                      LinkedIn
-                    </a>
-                  )}
-                  {author.social.twitter && (
-                    <a
-                      href={author.social.twitter}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-400 hover:underline font-semibold"
-                    >
-                      Twitter
-                    </a>
-                  )}
-                  {author.social.website && (
-                    <a
-                      href={author.social.website}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-gray-700 hover:underline font-semibold"
-                    >
-                      Website
-                    </a>
-                  )}
-                </div>
-              )}
-            </div>
-          </div>
+            </CardContent>
+          </Card>
         </section>
       </ContentLayout>
     </>
