@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Dialog,
   DialogContent,
@@ -262,27 +263,35 @@ const EditorialCalendar = () => {
   useEffect(() => {
     const checkScheduledArticles = () => {
       const now = new Date();
-      let hasChanges = false;
 
-      const updatedArticles = articles.map(article => {
-        // Nur unveröffentlichte Artikel mit Datum prüfen
-        if (!article.isPublished && article.publishDate) {
-          const publishDateTime = article.publishTime
-            ? new Date(`${article.publishDate}T${article.publishTime}`)
-            : new Date(article.publishDate);
+      setArticles(prevArticles => {
+        let hasChanges = false;
 
-          // Wenn das geplante Datum erreicht ist → veröffentlichen
-          if (publishDateTime <= now) {
-            hasChanges = true;
-            return { ...article, isPublished: true };
+        const updatedArticles = prevArticles.map(article => {
+          // Nur unveröffentlichte Artikel mit Datum prüfen
+          if (!article.isPublished && article.publishDate) {
+            let publishDateTime: Date;
+
+            if (article.publishTime) {
+              publishDateTime = new Date(`${article.publishDate}T${article.publishTime}`);
+            } else {
+              // Ohne Zeit: Beginn des Tages in lokaler Zeitzone
+              const [year, month, day] = article.publishDate.split('-').map(Number);
+              publishDateTime = new Date(year, month - 1, day, 0, 0, 0);
+            }
+
+            // Wenn das geplante Datum erreicht ist → veröffentlichen
+            if (publishDateTime <= now) {
+              hasChanges = true;
+              return { ...article, isPublished: true };
+            }
           }
-        }
-        return article;
-      });
+          return article;
+        });
 
-      if (hasChanges) {
-        setArticles(updatedArticles);
-      }
+        // Nur updaten wenn sich etwas geändert hat
+        return hasChanges ? updatedArticles : prevArticles;
+      });
     };
 
     // Initial prüfen
@@ -291,11 +300,28 @@ const EditorialCalendar = () => {
     // Alle 60 Sekunden prüfen
     const interval = setInterval(checkScheduledArticles, 60000);
     return () => clearInterval(interval);
-  }, [articles]);
+  }, []); // Leeres Dependency Array - Interval läuft unabhängig
 
   const handleEditClick = (article: ArticleMetadata) => {
     setEditingArticle({ ...article });
     setIsDialogOpen(true);
+  };
+
+  // Hilfsfunktion für korrekten Datumsvergleich (lokale Zeitzone)
+  const isDateInFuture = (dateStr: string, timeStr?: string): boolean => {
+    const now = new Date();
+
+    if (timeStr) {
+      // Mit Zeit: direkter Vergleich
+      const publishDateTime = new Date(`${dateStr}T${timeStr}`);
+      return publishDateTime > now;
+    } else {
+      // Ohne Zeit: Vergleiche nur das Datum (lokale Zeitzone)
+      const [year, month, day] = dateStr.split('-').map(Number);
+      const publishDate = new Date(year, month - 1, day, 23, 59, 59); // Ende des Tages
+      const todayEnd = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59);
+      return publishDate > todayEnd;
+    }
   };
 
   const handleSave = () => {
@@ -305,17 +331,16 @@ const EditorialCalendar = () => {
 
     // Prüfe ob Veröffentlichungsdatum in der Zukunft liegt
     if (updatedArticle.publishDate) {
-      const publishDateTime = updatedArticle.publishTime
-        ? new Date(`${updatedArticle.publishDate}T${updatedArticle.publishTime}`)
-        : new Date(updatedArticle.publishDate);
+      const isFuture = isDateInFuture(updatedArticle.publishDate, updatedArticle.publishTime);
 
-      if (publishDateTime > new Date()) {
+      if (isFuture) {
         // Datum liegt in der Zukunft → automatisch als "geplant" markieren (unveröffentlicht)
         updatedArticle.isPublished = false;
       }
     }
 
-    setArticles(articles.map(a =>
+    // Functional update um Closure-Probleme zu vermeiden
+    setArticles(prevArticles => prevArticles.map(a =>
       a.id === updatedArticle.id ? updatedArticle : a
     ));
     setIsDialogOpen(false);
@@ -325,7 +350,8 @@ const EditorialCalendar = () => {
   const handleTogglePublish = (article: ArticleMetadata) => {
     const action = article.isPublished ? 'unveröffentlichen' : 'veröffentlichen';
     if (confirm(`Möchten Sie "${article.title}" wirklich ${action}?`)) {
-      setArticles(articles.map(a =>
+      // Functional update um Closure-Probleme zu vermeiden
+      setArticles(prevArticles => prevArticles.map(a =>
         a.id === article.id ? { ...a, isPublished: !a.isPublished } : a
       ));
     }
@@ -339,7 +365,8 @@ const EditorialCalendar = () => {
       year: 'numeric'
     }).replace('.', '');
 
-    setArticles(articles.map(a =>
+    // Functional update um Closure-Probleme zu vermeiden
+    setArticles(prevArticles => prevArticles.map(a =>
       a.id === article.id ? { ...a, lastUpdated: formattedDate } : a
     ));
   };
@@ -592,6 +619,32 @@ const EditorialCalendar = () => {
                     value={editingArticle.link}
                     onChange={(e) => setEditingArticle({ ...editingArticle, link: e.target.value })}
                   />
+                </div>
+
+                <div className="col-span-2 flex items-center space-x-3 p-4 bg-gray-50 rounded-lg border">
+                  <Checkbox
+                    id="isPublished"
+                    checked={editingArticle.isPublished}
+                    onCheckedChange={(checked) => setEditingArticle({ ...editingArticle, isPublished: checked === true })}
+                  />
+                  <div className="grid gap-1.5 leading-none">
+                    <Label
+                      htmlFor="isPublished"
+                      className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
+                    >
+                      Artikel ist veröffentlicht
+                    </Label>
+                    <p className="text-xs text-muted-foreground">
+                      {editingArticle.isPublished
+                        ? "Der Artikel ist auf der Wissen-Seite sichtbar."
+                        : "Der Artikel ist nicht auf der Wissen-Seite sichtbar."}
+                      {editingArticle.publishDate && isDateInFuture(editingArticle.publishDate, editingArticle.publishTime) && (
+                        <span className="block text-amber-600 mt-1">
+                          ⚠️ Das Veröffentlichungsdatum liegt in der Zukunft. Der Artikel wird automatisch als "Geplant" markiert.
+                        </span>
+                      )}
+                    </p>
+                  </div>
                 </div>
               </div>
 
