@@ -277,7 +277,7 @@ const CopilotDigitalesGedaechtnis = () => {
 
           <Card className="my-6 border-l-4 border-l-purple-500">
             <CardHeader>
-              <CardTitle className="text-lg">Mein Workflow nach jedem Meeting</CardTitle>
+              <CardTitle className="text-lg">Mein Workflow für jedes Meeting</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
@@ -285,21 +285,21 @@ const CopilotDigitalesGedaechtnis = () => {
                   <div className="w-8 h-8 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center font-bold flex-shrink-0">1</div>
                   <div>
                     <p className="font-semibold">Transkription aktivieren</p>
-                    <p className="text-sm text-muted-foreground">Am Anfang jedes Meetings: "Transkription starten" klicken</p>
+                    <p className="text-sm text-muted-foreground">Am Anfang jedes Meetings: "Transkription starten" klicken, nachdem ich die Teilnehmer darüber informiert und ihre Erlaubnis eingeholt habe</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-8 h-8 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center font-bold flex-shrink-0">2</div>
                   <div>
                     <p className="font-semibold">Automatische Zusammenfassung</p>
-                    <p className="text-sm text-muted-foreground">Copilot erstellt am Ende: Kernpunkte, Aufgaben, Entscheidungen</p>
+                    <p className="text-sm text-muted-foreground">Copilot erstellt am Ende: Kernpunkte, Aufgaben, Entscheidungen. Ich habe mir aber auch einen Agenten gebaut, der mit eigenem Schema die Transkripte so strukturiert wie ich das möchte und sauber in OneNote ablegt.</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-8 h-8 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center font-bold flex-shrink-0">3</div>
                   <div>
                     <p className="font-semibold">Später nachfragen</p>
-                    <p className="text-sm text-muted-foreground">Wochen später: "Was wurde im Projekt-Kickoff zu X beschlossen?"</p>
+                    <p className="text-sm text-muted-foreground">Im Copilot Chat in Teams, in der Copilot App, Copilot im Web oder in OneNote fragen was ich wissen muss. Auch Wochen später: "Was wurde im Projekt-Kickoff zu X beschlossen?"</p>
                   </div>
                 </div>
               </div>
