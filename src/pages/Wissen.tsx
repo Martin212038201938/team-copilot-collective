@@ -149,6 +149,15 @@ const Wissen = () => {
       icon: "💡",
       readTime: "12 Minuten",
       lastUpdated: "03. Feb. 2026"
+    },
+    {
+      title: "Digitales Gedächtnis mit Microsoft Copilot",
+      description: "Wie Copilot mit Transkription, E-Mails, Chats und OneNote zum externen Gedächtnis wird. Praktische Prompts für vergessene Zusagen und Entscheidungen.",
+      link: "/wissen/copilot-digitales-gedaechtnis",
+      badge: "Praxisguide",
+      icon: "🧠",
+      readTime: "14 Minuten",
+      lastUpdated: "03. Feb. 2026"
     }
   ];
 
