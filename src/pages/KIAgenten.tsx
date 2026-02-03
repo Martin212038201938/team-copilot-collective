@@ -63,7 +63,7 @@ const KIAgenten = () => {
           "@id": "https://copilotenschule.de/#organization"
         },
         "datePublished": "2025-11-07",
-        "dateModified": "2025-11-07",
+        "dateModified": "2026-02-03",
         "mainEntityOfPage": {
           "@type": "WebPage",
           "@id": pageUrl
@@ -112,7 +112,7 @@ const KIAgenten = () => {
         schema={schema}
         author={martinLang}
         publishedTime="2025-11-07T10:00:00+01:00"
-        modifiedTime="2025-11-07T10:00:00+01:00"
+        modifiedTime="2026-02-03T10:00:00+01:00"
       />
 
       <ContentLayout
@@ -126,10 +126,10 @@ const KIAgenten = () => {
         readTime="14 Minuten"
         tableOfContents={tableOfContents}
       >
-        <Card className="mb-8 border-2 border-primary/30 bg-gradient-to-br from-primary/5 to-accent/5">
+        <Card className="mb-8 border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-amber-500/5">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <Zap className="w-6 h-6 text-primary" />
+              <Zap className="w-6 h-6 text-orange-600" />
               Schnellantwort
             </CardTitle>
           </CardHeader>
@@ -144,7 +144,7 @@ const KIAgenten = () => {
         </Card>
 
         <section id="was-sind">
-          <h2>Was sind KI-Agenten?</h2>
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-blue-500">Was sind KI-Agenten?</h2>
           <p>
             KI-Agenten sind autonome Softwaresysteme, die Ziele eigenständig verfolgen, Entscheidungen treffen und
             Tools nutzen, um Aufgaben zu erledigen. Sie gehen weit über einfache Chatbots hinaus.
@@ -196,7 +196,7 @@ const KIAgenten = () => {
         </section>
 
         <section id="unterschied" className="mt-12">
-          <h2>Unterschied: Chatbot vs. Agent</h2>
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-green-500">Unterschied: Chatbot vs. Agent</h2>
 
           <div className="grid md:grid-cols-2 gap-6 my-6">
             <Card className="border-l-4 border-l-blue-500">
@@ -238,7 +238,7 @@ const KIAgenten = () => {
         </section>
 
         <section id="architektur" className="mt-12">
-          <h2>Agentic AI Architektur</h2>
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-purple-500">Agentic AI Architektur</h2>
 
           <Card className="my-6">
             <CardHeader>
@@ -285,7 +285,7 @@ const KIAgenten = () => {
         </section>
 
         <section id="use-cases" className="mt-12">
-          <h2>Use Cases in Unternehmen</h2>
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-cyan-500">Use Cases in Unternehmen</h2>
 
           <div className="space-y-6 my-6">
             {[
@@ -334,7 +334,7 @@ const KIAgenten = () => {
         </section>
 
         <section id="copilot-studio" className="mt-12">
-          <h2>Agenten mit Copilot Studio bauen</h2>
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-emerald-500">Agenten mit Copilot Studio bauen</h2>
 
           <Card className="my-6">
             <CardHeader>
@@ -384,7 +384,7 @@ const KIAgenten = () => {
         </section>
 
         <section id="multi-agent" className="mt-12">
-          <h2>Multi-Agent-Systeme</h2>
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-red-500">Multi-Agent-Systeme</h2>
           <p>
             Mehrere spezialisierte Agenten arbeiten zusammen an komplexen Aufgaben.
           </p>
@@ -421,7 +421,7 @@ const KIAgenten = () => {
         </section>
 
         <section id="tool-integration" className="mt-12">
-          <h2>Tool-Integration und APIs</h2>
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-amber-500">Tool-Integration und APIs</h2>
 
           <div className="grid md:grid-cols-2 gap-6 my-6">
             <Card>
@@ -471,7 +471,7 @@ const KIAgenten = () => {
         </section>
 
         <section id="testing" className="mt-12">
-          <h2>Testing und Deployment</h2>
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-indigo-500">Testing und Deployment</h2>
 
           <Card className="my-6">
             <CardHeader>
@@ -539,7 +539,7 @@ const KIAgenten = () => {
         </section>
 
         <section id="faq" className="mt-12 mb-12">
-          <h2>Häufig gestellte Fragen (FAQ)</h2>
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-slate-500">Häufig gestellte Fragen (FAQ)</h2>
 
           <div className="space-y-4 my-6">
             {faqs.map((faq, idx) => (
@@ -557,7 +557,7 @@ const KIAgenten = () => {
 
         {/* Quellen und weiterführende Links */}
         <section id="quellen" className="mt-12 mb-12">
-          <h2>Quellen und weiterführende Links</h2>
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-gray-500">Quellen und weiterführende Links</h2>
           <p className="text-muted-foreground mb-6">
             Offizielle Ressourcen und Dokumentationen zu KI-Agenten und Agentic AI.
           </p>
@@ -629,6 +629,63 @@ const KIAgenten = () => {
             Projekt besprechen
           </a>
         </div>
+
+        {/* Autor-Bio Section */}
+        <section className="mt-16 pt-8 border-t-2 border-gray-200 dark:border-gray-800">
+          <div className="bg-gradient-to-r from-slate-50 to-gray-50 dark:from-slate-950 dark:to-gray-950 rounded-lg p-8">
+            <div className="flex flex-col md:flex-row gap-6 items-center">
+              {martinLang.image && (
+                <div className="flex-shrink-0">
+                  <img
+                    src={martinLang.image}
+                    alt={martinLang.name}
+                    className="w-24 h-24 rounded-full object-cover border-2 border-primary"
+                  />
+                </div>
+              )}
+              <div className="flex-1">
+                <h3 className="text-xl font-bold mb-1">{martinLang.name}</h3>
+                {martinLang.role && (
+                  <p className="text-primary font-semibold mb-3">{martinLang.role}</p>
+                )}
+                {martinLang.bio && (
+                  <p className="text-muted-foreground mb-4">{martinLang.bio}</p>
+                )}
+                {martinLang.expertise && martinLang.expertise.length > 0 && (
+                  <div className="mb-4">
+                    <p className="text-sm font-semibold mb-2">Expertise:</p>
+                    <div className="flex flex-wrap gap-2">
+                      {martinLang.expertise.map((skill) => (
+                        <span
+                          key={skill}
+                          className="px-3 py-1 bg-primary/10 text-primary rounded-full text-xs font-medium"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                {(martinLang.social || []).length > 0 && (
+                  <div className="flex gap-3 mt-4">
+                    {martinLang.social?.map((link) => (
+                      <a
+                        key={link.name}
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors"
+                        title={link.name}
+                      >
+                        <ExternalLink className="w-4 h-4 text-primary" />
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
       </ContentLayout>
     </>
   );

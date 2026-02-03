@@ -63,7 +63,7 @@ const GitHubCopilot = () => {
           "@id": "https://copilotenschule.de/#organization"
         },
         "datePublished": "2025-11-07",
-        "dateModified": "2025-11-07",
+        "dateModified": "2026-02-03",
         "mainEntityOfPage": {
           "@type": "WebPage",
           "@id": pageUrl
@@ -127,10 +127,10 @@ const GitHubCopilot = () => {
         tableOfContents={tableOfContents}
       >
         {/* Quick Answer */}
-        <Card className="mb-8 border-2 border-primary/30 bg-gradient-to-br from-primary/5 to-accent/5">
+        <Card className="mb-8 border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-amber-500/5">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <Zap className="w-6 h-6 text-primary" />
+              <Zap className="w-6 h-6 text-orange-500" />
               Schnellantwort
             </CardTitle>
           </CardHeader>
@@ -145,7 +145,7 @@ const GitHubCopilot = () => {
         </Card>
 
         <section id="was-ist">
-          <h2>Was ist GitHub Copilot?</h2>
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-blue-500">Was ist GitHub Copilot?</h2>
           <p>
             GitHub Copilot ist ein KI-gestützter Code-Completion-Tool, das von GitHub und OpenAI entwickelt wurde.
             Es fungiert als Ihr virtueller Pair-Programming-Partner und schlägt Code-Zeilen oder ganze Funktionen vor,
@@ -190,7 +190,7 @@ const GitHubCopilot = () => {
         </section>
 
         <section id="funktionen" className="mt-12">
-          <h2>Funktionen und Features</h2>
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-green-500">Funktionen und Features</h2>
 
           <div className="space-y-6 my-6">
             <Card>
@@ -258,7 +258,7 @@ const GitHubCopilot = () => {
         </section>
 
         <section id="setup" className="mt-12">
-          <h2>Setup und Installation</h2>
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-purple-500">Setup und Installation</h2>
           <p>
             Die Installation von GitHub Copilot ist in wenigen Schritten erledigt.
           </p>
@@ -285,7 +285,7 @@ const GitHubCopilot = () => {
         </section>
 
         <section id="best-practices" className="mt-12">
-          <h2>Best Practices für Entwickler</h2>
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-cyan-500">Best Practices für Entwickler</h2>
 
           <div className="space-y-6 my-6">
             {[
@@ -321,7 +321,7 @@ const GitHubCopilot = () => {
         </section>
 
         <section id="code-qualitaet" className="mt-12">
-          <h2>Code-Qualität mit Copilot</h2>
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-emerald-500">Code-Qualität mit Copilot</h2>
           <p>
             GitHub Copilot kann Ihre Code-Qualität verbessern, erfordert aber bewussten Einsatz.
           </p>
@@ -360,7 +360,7 @@ const GitHubCopilot = () => {
         </section>
 
         <section id="advanced-features" className="mt-12">
-          <h2>Advanced Features</h2>
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-red-500">Advanced Features</h2>
 
           <Card className="my-6">
             <CardHeader>
@@ -385,7 +385,7 @@ const GitHubCopilot = () => {
         </section>
 
         <section id="prompt-engineering" className="mt-12">
-          <h2>Prompt Engineering für Copilot</h2>
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-amber-500">Prompt Engineering für Copilot</h2>
           <p>
             Die Qualität der Copilot-Vorschläge hängt stark von Ihren Prompts ab.
           </p>
@@ -412,7 +412,7 @@ const GitHubCopilot = () => {
         </section>
 
         <section id="fehler-vermeiden" className="mt-12">
-          <h2>Häufige Fehler vermeiden</h2>
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-indigo-500">Häufige Fehler vermeiden</h2>
 
           <div className="space-y-4 my-6">
             {[
@@ -444,7 +444,7 @@ const GitHubCopilot = () => {
         </section>
 
         <section id="faq" className="mt-12 mb-12">
-          <h2>Häufig gestellte Fragen (FAQ)</h2>
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-slate-500">Häufig gestellte Fragen (FAQ)</h2>
 
           <div className="space-y-4 my-6">
             {faqs.map((faq, idx) => (
@@ -462,7 +462,7 @@ const GitHubCopilot = () => {
 
         {/* Quellen und weiterführende Links */}
         <section id="quellen" className="mt-12 mb-12">
-          <h2>Quellen und weiterführende Links</h2>
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-gray-500">Quellen und weiterführende Links</h2>
           <p className="text-muted-foreground mb-6">
             Offizielle Dokumentationen und Ressourcen für vertiefende Informationen zu GitHub Copilot.
           </p>
@@ -534,6 +534,79 @@ const GitHubCopilot = () => {
             Jetzt Training anfragen
           </a>
         </div>
+
+        {/* Autor-Bio Section */}
+        <Card className="mt-16 border-t-4 border-t-blue-500 overflow-hidden">
+          <CardContent className="p-0">
+            <div className="grid md:grid-cols-12 gap-6 items-center p-8">
+              <div className="md:col-span-3 text-center">
+                <div className="w-32 h-32 mx-auto rounded-lg overflow-hidden border-2 border-gray-200 dark:border-gray-700">
+                  <img
+                    src={martinLang.image}
+                    alt={martinLang.name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+              <div className="md:col-span-9">
+                <div className="mb-4">
+                  <h3 className="text-2xl font-bold">{martinLang.name}</h3>
+                  <p className="text-lg text-primary font-semibold">{martinLang.role}</p>
+                </div>
+                <p className="text-muted-foreground mb-6 leading-relaxed">
+                  {martinLang.bio}
+                </p>
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {martinLang.expertise && martinLang.expertise.map((skill, idx) => (
+                    <span
+                      key={idx}
+                      className="inline-block px-3 py-1 bg-blue-500/10 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium border border-blue-200 dark:border-blue-800"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+                {martinLang.social && (
+                  <div className="flex gap-4">
+                    {martinLang.social.linkedin && (
+                      <a
+                        href={martinLang.social.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors"
+                      >
+                        <ExternalLink className="w-5 h-5" />
+                        LinkedIn
+                      </a>
+                    )}
+                    {martinLang.social.twitter && (
+                      <a
+                        href={martinLang.social.twitter}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors"
+                      >
+                        <ExternalLink className="w-5 h-5" />
+                        Twitter
+                      </a>
+                    )}
+                    {martinLang.social.github && (
+                      <a
+                        href={martinLang.social.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors"
+                      >
+                        <ExternalLink className="w-5 h-5" />
+                        GitHub
+                      </a>
+                    )}
+                  </div>
+                )}
+              </div>
+            </div>
+          </CardContent>
+        </Card>
       </ContentLayout>
     </>
   );

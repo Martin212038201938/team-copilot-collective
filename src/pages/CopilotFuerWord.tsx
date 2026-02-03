@@ -2,7 +2,7 @@ import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Zap } from "lucide-react";
 
 const SLUG = "wissen/copilot-fuer-word";
 const PAGE_TITLE = "Microsoft Copilot für Word";
@@ -114,7 +114,7 @@ const CopilotFuerWord = () => {
           "@id": "https://copilotenschule.de/#organization"
         },
         "datePublished": "2025-01-05",
-        "dateModified": "2025-01-05",
+        "dateModified": "2026-02-03",
         "keywords": ["Copilot für Word","Microsoft Copilot Word","Word KI Assistent","Dokumente mit KI erstellen","Word Produktivität","Microsoft 365 Copilot"],
         "articleSection": "Microsoft 365",
         "mainEntityOfPage": {
@@ -156,7 +156,7 @@ const CopilotFuerWord = () => {
         canonicalUrl="https://copilotenschule.de/wissen/copilot-fuer-word"
         schema={schema}
         publishedTime="2025-01-05"
-        modifiedTime="2025-01-05"
+        modifiedTime="2026-02-03"
       />
       <ContentLayout
         breadcrumbs={[
@@ -168,16 +168,28 @@ const CopilotFuerWord = () => {
         tableOfContents={tableOfContents}
         author={author}
         publishDate="2025-01-05"
+        modifiedDate="2026-02-03"
         readTime="15 Minuten"
       >
+        {/* Schnellantwort Card */}
+        <section className="mb-8">
+          <div className="border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-amber-500/5 rounded-lg p-6 flex items-start gap-4">
+            <Zap className="w-6 h-6 text-orange-500 flex-shrink-0 mt-1" />
+            <div>
+              <h3 className="font-semibold text-lg text-gray-900 mb-2">Schnellantwort</h3>
+              <p className="text-gray-700">Microsoft Copilot für Word ist ein KI-Assistent, der Dokumentenerstellung revolutioniert. Mit natürlicher Sprache können Sie Texte erstellen, zusammenfassen, umschreiben und formatieren – mit bis zu 70% Zeitersparnis pro Aufgabe.</p>
+            </div>
+          </div>
+        </section>
+
         <section id="einleitung" className="mb-8">
           <h1 className="text-3xl font-semibold tracking-tight mb-4">Einleitung</h1>
           <p className="mb-4 text-gray-700 leading-relaxed">Microsoft Copilot für Word ist ein KI-gestützter Assistent, der direkt in Microsoft Word integriert ist und Ihre Dokumentenerstellung auf ein neues Level hebt. Mit natürlicher Sprache können Sie Texte erstellen, bearbeiten, zusammenfassen und formatieren.</p>
         </section>
 
         <section id="was-ist-microsoft-copilot-f-r-word-" className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">Was ist Microsoft Copilot für Word?</h2>
-          <h3 className="text-xl font-semibold mb-3 mt-6">Überblick</h3>
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-blue-500 mb-6">Was ist Microsoft Copilot für Word?</h2>
+          <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-blue-500 pl-4">Überblick</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Microsoft Copilot für Word</strong> ist Teil von Microsoft 365 Copilot und nutzt Large Language Models (LLMs), um Sie bei allen Aspekten der Dokumentenerstellung zu unterstützen.</p>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Kernfunktionen:</strong></p>
           <ul className="list-disc list-inside space-y-2 mb-4">
@@ -188,7 +200,7 @@ const CopilotFuerWord = () => {
             <li>Tonalität anpassen</li>
             <li>Recherche und Faktencheck</li>
           </ul>
-          <h3 className="text-xl font-semibold mb-3 mt-6">Voraussetzungen</h3>
+          <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-green-500 pl-4">Voraussetzungen</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Technische Requirements:</strong></p>
           <ul className="list-disc list-inside space-y-2 mb-4">
             <li>Microsoft 365 E3/E5 oder Business Standard/Premium</li>
@@ -205,8 +217,8 @@ const CopilotFuerWord = () => {
         </section>
 
         <section id="copilot-in-word-aktivieren" className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">Copilot in Word aktivieren</h2>
-          <h3 className="text-xl font-semibold mb-3 mt-6">Zugriff auf Copilot</h3>
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-green-500 mb-6">Copilot in Word aktivieren</h2>
+          <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-purple-500 pl-4">Zugriff auf Copilot</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Option 1: Copilot-Symbol im Ribbon</strong></p>
           <p className="mb-4 text-gray-700 leading-relaxed">1. Öffnen Sie Word</p>
           <p className="mb-4 text-gray-700 leading-relaxed">2. Klicken Sie auf das Copilot-Symbol in der Ribbon-Leiste</p>
@@ -219,7 +231,7 @@ const CopilotFuerWord = () => {
           <ul className="list-disc list-inside space-y-2 mb-4">
             <li>Klicken Sie auf die Copilot-Schaltfläche unterhalb des Titels bei leerem Dokument</li>
           </ul>
-          <h3 className="text-xl font-semibold mb-3 mt-6">Erste Schritte</h3>
+          <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-cyan-500 pl-4">Erste Schritte</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>1. Leeres Dokument erstellen</strong></p>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
             <pre className="text-sm"><code>Prompt: "Erstelle einen Projektplan für die Einführung von Microsoft Copilot in einem mittelständischen Unternehmen"</code></pre>
@@ -237,8 +249,8 @@ const CopilotFuerWord = () => {
         </section>
 
         <section id="hauptfunktionen-im-detail" className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">Hauptfunktionen im Detail</h2>
-          <h3 className="text-xl font-semibold mb-3 mt-6">1. Dokumente erstellen (Draft)</h3>
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-emerald-500 mb-6">Hauptfunktionen im Detail</h2>
+          <h3 className="text-xl font-semibold mb-3 mt-6 border-t-4 border-t-emerald-500 pt-4">1. Dokumente erstellen (Draft)</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Use Case:</strong> Vom leeren Dokument zum fertigen Entwurf</p>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Beste Prompts:</strong></p>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
@@ -257,7 +269,7 @@ const CopilotFuerWord = () => {
             <li>Gewünschte Länge nennen</li>
             <li>Tonalität spezifizieren (formal, casual, technisch, etc.)</li>
           </ul>
-          <h3 className="text-xl font-semibold mb-3 mt-6">2. Texte zusammenfassen (Summarize)</h3>
+          <h3 className="text-xl font-semibold mb-3 mt-6 border-t-4 border-t-red-500 pt-4">2. Texte zusammenfassen (Summarize)</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Use Case:</strong> Lange Dokumente schnell erfassen</p>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Beispiele:</strong></p>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
@@ -276,7 +288,7 @@ const CopilotFuerWord = () => {
             <li>Verträge auf wichtige Punkte prüfen</li>
             <li>E-Mail-Threads zusammenfassen</li>
           </ul>
-          <h3 className="text-xl font-semibold mb-3 mt-6">3. Texte umschreiben (Rewrite)</h3>
+          <h3 className="text-xl font-semibold mb-3 mt-6 border-t-4 border-t-amber-500 pt-4">3. Texte umschreiben (Rewrite)</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Use Case:</strong> Bestehende Texte verbessern</p>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Varianten:</strong></p>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Kürzer machen:</strong></p>
@@ -295,7 +307,7 @@ const CopilotFuerWord = () => {
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
             <pre className="text-sm"><code>"Verbessere die Struktur und Lesbarkeit dieses Texts"</code></pre>
           </div>
-          <h3 className="text-xl font-semibold mb-3 mt-6">4. Aus anderen Dokumenten erstellen</h3>
+          <h3 className="text-xl font-semibold mb-3 mt-6 border-t-4 border-t-indigo-500 pt-4">4. Aus anderen Dokumenten erstellen</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Use Case:</strong> Mehrere Quellen kombinieren</p>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Beispiel:</strong></p>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
@@ -312,7 +324,7 @@ const CopilotFuerWord = () => {
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
             <pre className="text-sm"><code>"Erstelle ein [Dokumenttyp] basierend auf [Dateiname] und [Dateiname]"</code></pre>
           </div>
-          <h3 className="text-xl font-semibold mb-3 mt-6">5. Formatierung und Struktur</h3>
+          <h3 className="text-xl font-semibold mb-3 mt-6 border-t-4 border-t-slate-500 pt-4">5. Formatierung und Struktur</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Use Case:</strong> Professionelles Layout automatisch</p>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Prompts:</strong></p>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
@@ -327,8 +339,8 @@ const CopilotFuerWord = () => {
         </section>
 
         <section id="praktische-anwendungsf-lle" className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">Praktische Anwendungsfälle</h2>
-          <h3 className="text-xl font-semibold mb-3 mt-6">1. Business-Dokumente</h3>
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-purple-500 mb-6">Praktische Anwendungsfälle</h2>
+          <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-purple-500 pl-4">1. Business-Dokumente</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Geschäftsbriefe:</strong></p>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
             <pre className="text-sm"><code>Prompt: "Erstelle einen Angebotsbrief für [Service] \nan [Kunde], betone [USPs], verwende formelle Sprache"</code></pre>
@@ -341,7 +353,7 @@ const CopilotFuerWord = () => {
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
             <pre className="text-sm"><code>Prompt: "Erstelle einen Quarterly Business Review Report\nbasierend auf diesen Daten: [Einfügen], mit Executive Summary"</code></pre>
           </div>
-          <h3 className="text-xl font-semibold mb-3 mt-6">2. Marketing-Content</h3>
+          <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-green-500 pl-4">2. Marketing-Content</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Blog-Artikel:</strong></p>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
             <pre className="text-sm"><code>Prompt: "Schreibe einen SEO-optimierten Blogartikel zu [Keyword],\nmit H2/H3 Struktur, 1200 Wörter, informativ aber zugänglich"</code></pre>
@@ -354,7 +366,7 @@ const CopilotFuerWord = () => {
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
             <pre className="text-sm"><code>Prompt: "Erstelle eine Case Study für [Kunde], \nFormat: Challenge → Solution → Results, mit Zahlen und Testimonial"</code></pre>
           </div>
-          <h3 className="text-xl font-semibold mb-3 mt-6">3. HR-Dokumente</h3>
+          <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-cyan-500 pl-4">3. HR-Dokumente</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Stellenbeschreibungen:</strong></p>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
             <pre className="text-sm"><code>Prompt: "Erstelle eine Job Description für [Position],\ninklusive Verantwortlichkeiten, Requirements, Benefits"</code></pre>
@@ -367,7 +379,7 @@ const CopilotFuerWord = () => {
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
             <pre className="text-sm"><code>Prompt: "Erstelle eine Remote Work Policy, \ninklusive Regelungen zu Arbeitszeiten, Equipment, Security"</code></pre>
           </div>
-          <h3 className="text-xl font-semibold mb-3 mt-6">4. Technische Dokumentation</h3>
+          <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-emerald-500 pl-4">4. Technische Dokumentation</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>User Manuals:</strong></p>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
             <pre className="text-sm"><code>Prompt: "Erstelle eine Schritt-für-Schritt Anleitung für [Prozess],\nmit Screenshots-Platzhaltern und Troubleshooting-Sektion"</code></pre>
@@ -383,8 +395,8 @@ const CopilotFuerWord = () => {
         </section>
 
         <section id="best-practices-f-r-prompts" className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">Best Practices für Prompts</h2>
-          <h3 className="text-xl font-semibold mb-3 mt-6">Die CRAFT-Formel</h3>
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-cyan-500 mb-6">Best Practices für Prompts</h2>
+          <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-cyan-500 pl-4">Die CRAFT-Formel</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>C - Context (Kontext)</strong></p>
           <p className="mb-4 text-gray-700 leading-relaxed">❌ "Schreibe einen Artikel über KI"</p>
           <p className="mb-4 text-gray-700 leading-relaxed">✅ "Schreibe einen Artikel über KI im Gesundheitswesen für Krankenhausleiter"</p>
@@ -400,7 +412,7 @@ const CopilotFuerWord = () => {
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>T - Target (Zielgruppe)</strong></p>
           <p className="mb-4 text-gray-700 leading-relaxed">❌ "Erkläre Machine Learning"</p>
           <p className="mb-4 text-gray-700 leading-relaxed">✅ "Erkläre Machine Learning für Marketing-Manager ohne technischen Hintergrund"</p>
-          <h3 className="text-xl font-semibold mb-3 mt-6">Prompt-Patterns</h3>
+          <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-blue-500 pl-4">Prompt-Patterns</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Pattern 1: Rolle + Aufgabe + Details</strong></p>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
             <pre className="text-sm"><code>"Du bist [Rolle]. Erstelle [Dokumenttyp] für [Zielgruppe],\nder [Ziel] erreicht, mit [Tonalität] und [Format]"</code></pre>
@@ -416,30 +428,30 @@ const CopilotFuerWord = () => {
         </section>
 
         <section id="erweiterte-techniken" className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">Erweiterte Techniken</h2>
-          <h3 className="text-xl font-semibold mb-3 mt-6">1. Multi-Document Intelligence</h3>
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-red-500 mb-6">Erweiterte Techniken</h2>
+          <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-red-500 pl-4">1. Multi-Document Intelligence</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Copilot kann Informationen aus mehreren Quellen kombinieren:</strong></p>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
             <pre className="text-sm"><code>Prompt: "Erstelle einen Status-Report basierend auf:\n- Projekt-Timeline aus timeline.xlsx\n- Risiken aus risks.docx  \n- Budget-Status aus finance.xlsx\n- Team-Feedback aus E-Mails (letzten 2 Wochen)"</code></pre>
           </div>
-          <h3 className="text-xl font-semibold mb-3 mt-6">2. Stil-Konsistenz</h3>
+          <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-amber-500 pl-4">2. Stil-Konsistenz</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Copilot lernt Ihren Schreibstil:</strong></p>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
             <pre className="text-sm"><code>Prompt: "Analysiere meinen Schreibstil in [vorheriges Dokument]\nund schreibe [neues Dokument] im gleichen Stil"</code></pre>
           </div>
-          <h3 className="text-xl font-semibold mb-3 mt-6">3. Bedingte Generierung</h3>
+          <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-indigo-500 pl-4">3. Bedingte Generierung</h3>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
             <pre className="text-sm"><code>Prompt: "Erstelle 2 Versionen dieses Briefs:\nVersion A: Falls der Kunde zustimmt\nVersion B: Falls der Kunde ablehnt"</code></pre>
           </div>
-          <h3 className="text-xl font-semibold mb-3 mt-6">4. Feedback-Loop</h3>
+          <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-slate-500 pl-4">4. Feedback-Loop</h3>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
             <pre className="text-sm"><code>1. Prompt: "Erstelle [Dokument]"\n2. Copilot generiert\n3. Prompt: "Was fehlt noch? Welche Aspekte sollte ich ergänzen?"\n4. Copilot macht Vorschläge\n5. Iterieren bis perfekt</code></pre>
           </div>
         </section>
 
         <section id="h-ufige-fehler-vermeiden" className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">Häufige Fehler vermeiden</h2>
-          <h3 className="text-xl font-semibold mb-3 mt-6">❌ Fehler 1: Zu vage Prompts</h3>
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-gray-500 mb-6">Häufige Fehler vermeiden</h2>
+          <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-gray-500 pl-4">❌ Fehler 1: Zu vage Prompts</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Schlecht:</strong></p>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
             <pre className="text-sm"><code>"Schreibe etwas über Produktivität"</code></pre>
@@ -448,19 +460,19 @@ const CopilotFuerWord = () => {
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
             <pre className="text-sm"><code>"Erstelle einen 800-Wörter Ratgeber-Artikel zum Thema\n'Produktivität im Home Office', Zielgruppe: Remote Workers,\nTonalität: Praktisch und motivierend, mit konkreten Tipps"</code></pre>
           </div>
-          <h3 className="text-xl font-semibold mb-3 mt-6">❌ Fehler 2: Keine Iterationen</h3>
+          <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-blue-500 pl-4">❌ Fehler 2: Keine Iterationen</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Falsch:</strong> Ersten Output akzeptieren ohne Nachfragen</p>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Richtig:</strong> Iterativ verfeinern:</p>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
             <pre className="text-sm"><code>1. "Erstelle Entwurf"\n2. "Füge mehr Beispiele hinzu"\n3. "Mache es prägnanter"\n4. "Ändere Tonalität"</code></pre>
           </div>
-          <h3 className="text-xl font-semibold mb-3 mt-6">❌ Fehler 3: Kontext ignorieren</h3>
+          <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-green-500 pl-4">❌ Fehler 3: Kontext ignorieren</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Schlecht:</strong> Copilot weiß nicht, wofür das Dokument ist</p>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Gut:</strong> Immer Kontext geben:</p>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
             <pre className="text-sm"><code>"Ich schreibe an [Zielgruppe] weil [Grund],\ndas Dokument wird verwendet für [Zweck]"</code></pre>
           </div>
-          <h3 className="text-xl font-semibold mb-3 mt-6">❌ Fehler 4: Fakten nicht prüfen</h3>
+          <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-purple-500 pl-4">❌ Fehler 4: Fakten nicht prüfen</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Problem:</strong> Copilot kann "halluzinieren" (Fakten erfinden)</p>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Lösung:</strong></p>
           <ul className="list-disc list-inside space-y-2 mb-4">
@@ -471,8 +483,8 @@ const CopilotFuerWord = () => {
         </section>
 
         <section id="produktivit-t-steigern-workflows" className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">Produktivität steigern: Workflows</h2>
-          <h3 className="text-xl font-semibold mb-3 mt-6">Workflow 1: Meeting → Dokumentation</h3>
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-blue-500 mb-6">Produktivität steigern: Workflows</h2>
+          <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-blue-500 pl-4">Workflow 1: Meeting → Dokumentation</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>1. Meeting in Teams (mit Copilot)</strong></p>
           <ul className="list-disc list-inside space-y-2 mb-4">
             <li>Copilot erstellt automatisch Transkript</li>
@@ -488,7 +500,7 @@ const CopilotFuerWord = () => {
             <li>Verteilung an Teilnehmer</li>
           </ul>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Zeitersparnis:</strong> 80% (von 30 Min auf 6 Min)</p>
-          <h3 className="text-xl font-semibold mb-3 mt-6">Workflow 2: Research → Artikel</h3>
+          <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-green-500 pl-4">Workflow 2: Research → Artikel</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>1. Research sammeln</strong></p>
           <ul className="list-disc list-inside space-y-2 mb-4">
             <li>Mehrere Quellen in SharePoint speichern</li>
@@ -502,7 +514,7 @@ const CopilotFuerWord = () => {
             <pre className="text-sm"><code>Prompt: "Füge eine Management Summary hinzu"\nPrompt: "Erstelle Handlungsempfehlungen"</code></pre>
           </div>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Zeitersparnis:</strong> 70% (von 4h auf 1,2h)</p>
-          <h3 className="text-xl font-semibold mb-3 mt-6">Workflow 3: E-Mail → Formeller Brief</h3>
+          <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-cyan-500 pl-4">Workflow 3: E-Mail → Formeller Brief</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>1. Informelle E-Mail-Konversation</strong></p>
           <ul className="list-disc list-inside space-y-2 mb-4">
             <li>Kunde schreibt informelle Anfrage</li>
@@ -516,23 +528,23 @@ const CopilotFuerWord = () => {
         </section>
 
         <section id="integration-mit-microsoft-365" className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">Integration mit Microsoft 365</h2>
-          <h3 className="text-xl font-semibold mb-3 mt-6">Word + Outlook</h3>
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-emerald-500 mb-6">Integration mit Microsoft 365</h2>
+          <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-emerald-500 pl-4">Word + Outlook</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Szenario:</strong> E-Mail zu Dokument</p>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
             <pre className="text-sm"><code>Prompt: "Erstelle Projekt-Vorschlag basierend auf\nE-Mail-Thread mit [Name] vom [Datum]"</code></pre>
           </div>
-          <h3 className="text-xl font-semibold mb-3 mt-6">Word + SharePoint</h3>
+          <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-red-500 pl-4">Word + SharePoint</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Szenario:</strong> Firmenwissen nutzen</p>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
             <pre className="text-sm"><code>Prompt: "Erstelle Angebot basierend auf Template\naus SharePoint [Pfad] und Produktinfos aus [Dokument]"</code></pre>
           </div>
-          <h3 className="text-xl font-semibold mb-3 mt-6">Word + Teams</h3>
+          <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-amber-500 pl-4">Word + Teams</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Szenario:</strong> Meeting-Follow-up</p>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
             <pre className="text-sm"><code>Prompt: "Erstelle Action-Item Liste basierend auf\nheutigem Teams-Meeting mit [Team-Name]"</code></pre>
           </div>
-          <h3 className="text-xl font-semibold mb-3 mt-6">Word + Excel</h3>
+          <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-indigo-500 pl-4">Word + Excel</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Szenario:</strong> Daten-Report</p>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
             <pre className="text-sm"><code>Prompt: "Erstelle Quarterly Report basierend auf\nVerkaufszahlen aus [Excel-Datei], mit Trend-Analyse\nund Visualisierung-Beschreibungen"</code></pre>
@@ -540,8 +552,8 @@ const CopilotFuerWord = () => {
         </section>
 
         <section id="sicherheit-und-compliance" className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">Sicherheit und Compliance</h2>
-          <h3 className="text-xl font-semibold mb-3 mt-6">Datenschutz</h3>
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-slate-500 mb-6">Sicherheit und Compliance</h2>
+          <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-slate-500 pl-4">Datenschutz</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Was passiert mit Ihren Daten?</strong></p>
           <ul className="list-disc list-inside space-y-2 mb-4">
             <li>Copilot nutzt nur Daten, auf die Sie Zugriff haben</li>
@@ -556,7 +568,7 @@ const CopilotFuerWord = () => {
             <li>DLP (Data Loss Prevention) Policies konfigurieren</li>
             <li>Compliance Center für Audit Logs</li>
           </ul>
-          <h3 className="text-xl font-semibold mb-3 mt-6">Governance</h3>
+          <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-gray-500 pl-4">Governance</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>IT-Admin Kontrollen:</strong></p>
           <ul className="list-disc list-inside space-y-2 mb-4">
             <li>Copilot pro User aktivieren/deaktivieren</li>
@@ -567,8 +579,8 @@ const CopilotFuerWord = () => {
         </section>
 
         <section id="kosten-lizenzierung" className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">Kosten & Lizenzierung</h2>
-          <h3 className="text-xl font-semibold mb-3 mt-6">Preismodell</h3>
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-green-500 mb-6">Kosten & Lizenzierung</h2>
+          <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-green-500 pl-4">Preismodell</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Microsoft 365 Copilot:</strong></p>
           <ul className="list-disc list-inside space-y-2 mb-4">
             <li>€30 pro Benutzer/Monat</li>
@@ -580,7 +592,7 @@ const CopilotFuerWord = () => {
             <li>Enterprise: 300 Lizenzen (Ausnahme: Frontline Worker)</li>
             <li>Business: Keine Mindestanzahl</li>
           </ul>
-          <h3 className="text-xl font-semibold mb-3 mt-6">ROI-Berechnung</h3>
+          <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-purple-500 pl-4">ROI-Berechnung</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Annahme:</strong> Marketing-Team, 50 Personen</p>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Kosten:</strong></p>
           <ul className="list-disc list-inside space-y-2 mb-4">
@@ -596,52 +608,52 @@ const CopilotFuerWord = () => {
         </section>
 
         <section id="tipps-von-power-usern" className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">Tipps von Power-Usern</h2>
-          <h3 className="text-xl font-semibold mb-3 mt-6">Tipp 1: Copilot als Brainstorming-Partner</h3>
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-cyan-500 mb-6">Tipps von Power-Usern</h2>
+          <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-cyan-500 pl-4">Tipp 1: Copilot als Brainstorming-Partner</h3>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
             <pre className="text-sm"><code>Prompt: "Ich muss [Aufgabe] erledigen. Gib mir 5 verschiedene\nAnsätze wie ich das angehen könnte, mit Vor- und Nachteilen"</code></pre>
           </div>
-          <h3 className="text-xl font-semibold mb-3 mt-6">Tipp 2: "Erkläre es mir wie ich 5 bin"</h3>
+          <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-blue-500 pl-4">Tipp 2: "Erkläre es mir wie ich 5 bin"</h3>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
             <pre className="text-sm"><code>Prompt: "Erkläre diesen komplexen Sachverhalt so einfach,\ndass es jeder versteht, nutze Analogien"</code></pre>
           </div>
-          <h3 className="text-xl font-semibold mb-3 mt-6">Tipp 3: Reverse Outlining</h3>
+          <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-green-500 pl-4">Tipp 3: Reverse Outlining</h3>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
             <pre className="text-sm"><code>Prompt: "Analysiere die Struktur dieses Dokuments\nund erstelle ein verbessertes Outline"</code></pre>
           </div>
-          <h3 className="text-xl font-semibold mb-3 mt-6">Tipp 4: Tone-Checker</h3>
+          <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-amber-500 pl-4">Tipp 4: Tone-Checker</h3>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
             <pre className="text-sm"><code>Prompt: "Wie wirkt dieser Text auf den Leser?\nIst die Tonalität angemessen für [Kontext]?"</code></pre>
           </div>
-          <h3 className="text-xl font-semibold mb-3 mt-6">Tipp 5: Format-Vorlagen</h3>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Erstellen Sie prompt-Templates:</strong></p>
+          <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-red-500 pl-4">Tipp 5: Format-Vorlagen</h3>
+          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Erstellen Sie prompt-templates:</strong></p>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
             <pre className="text-sm"><code>Template: "Erstelle [DOKUMENTTYP] für [ZIELGRUPPE],\nmit [STRUKTUR], Tonalität: [TON], Länge: [WÖRTER]"\n\nBeispiel: "Erstelle Whitepaper für CTOs,\nmit Executive Summary + 3 Hauptkapitel + Case Study,\nTonalität: Technisch aber zugänglich, Länge: 2500 Wörter"</code></pre>
           </div>
         </section>
 
         <section id="h-ufig-gestellte-fragen-faq-" className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">Häufig gestellte Fragen (FAQ)</h2>
-          <h3 className="text-xl font-semibold mb-3 mt-6">Kann Copilot in allen Sprachen arbeiten?</h3>
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-indigo-500 mb-6">Häufig gestellte Fragen (FAQ)</h2>
+          <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-indigo-500 pl-4">Kann Copilot in allen Sprachen arbeiten?</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Ja</strong>, Copilot unterstützt 40+ Sprachen, inklusive:</p>
           <ul className="list-disc list-inside space-y-2 mb-4">
             <li>Deutsch, Englisch, Französisch, Spanisch, Italienisch</li>
             <li>Chinesisch, Japanisch, Koreanisch</li>
             <li>Und viele mehr</li>
           </ul>
-          <h3 className="text-xl font-semibold mb-3 mt-6">Funktioniert Copilot offline?</h3>
+          <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-slate-500 pl-4">Funktioniert Copilot offline?</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Nein</strong>, Copilot benötigt eine aktive Internetverbindung, da die KI-Modelle in der Cloud laufen.</p>
-          <h3 className="text-xl font-semibold mb-3 mt-6">Kann ich meine eigenen Daten zum Training nutzen?</h3>
+          <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-gray-500 pl-4">Kann ich meine eigenen Daten zum Training nutzen?</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Nein</strong>, das LLM selbst kann nicht mit Firmendaten trainiert werden. ABER: Copilot nutzt automatisch Ihre Microsoft 365 Daten (Dokumente, E-Mails, etc.) als Kontext - das nennt sich "Grounding".</p>
-          <h3 className="text-xl font-semibold mb-3 mt-6">Kann Copilot Bilder einfügen?</h3>
+          <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-blue-500 pl-4">Kann Copilot Bilder einfügen?</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Aktuell nein</strong> in Word. Copilot kann Bilder beschreiben und Platzhalter vorschlagen, aber nicht generieren oder einfügen. (In PowerPoint geht das mit DALL-E Integration)</p>
-          <h3 className="text-xl font-semibold mb-3 mt-6">Was passiert wenn ich kündige?</h3>
+          <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-green-500 pl-4">Was passiert wenn ich kündige?</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Nichts verloren!</strong> Alle Dokumente bleiben erhalten. Sie verlieren nur den Zugriff auf die Copilot-Funktionen.</p>
         </section>
 
         <section id="zukunft-was-kommt-" className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">Zukunft: Was kommt?</h2>
-          <h3 className="text-xl font-semibold mb-3 mt-6">Angekündigte Features (2025)</h3>
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-purple-500 mb-6">Zukunft: Was kommt?</h2>
+          <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-purple-500 pl-4">Angekündigte Features (2025)</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>1. Plugins & Extensions</strong></p>
           <ul className="list-disc list-inside space-y-2 mb-4">
             <li>Copilot kann auf Third-Party Tools zugreifen</li>
@@ -665,7 +677,7 @@ const CopilotFuerWord = () => {
         </section>
 
         <section id="zusammenfassung" className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">Zusammenfassung</h2>
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-orange-500 mb-6">Zusammenfassung</h2>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Microsoft Copilot für Word revolutioniert Dokumentenerstellung:</strong></p>
           <p className="mb-4 text-gray-700 leading-relaxed">✅ <strong>Zeitersparnis:</strong> 50-70% weniger Zeit für typische Aufgaben</p>
           <p className="mb-4 text-gray-700 leading-relaxed">✅ <strong>Qualität:</strong> Konsistent professionelle Dokumente</p>
@@ -679,11 +691,11 @@ const CopilotFuerWord = () => {
           <p className="mb-4 text-gray-700 leading-relaxed">4. Best Practices im Team teilen</p>
           <p className="mb-4 text-gray-700 leading-relaxed">5. ROI messen und optimieren</p>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Die wichtigste Regel:</strong> </p>
-          <p className="mb-4 text-gray-700 leading-relaxed italic border-l-4 border-primary pl-4">"Je spezifischer der Prompt, desto besser das Ergebnis"</p>
+          <p className="mb-4 text-gray-700 leading-relaxed italic border-l-4 border-orange-500 pl-4">"Je spezifischer der Prompt, desto besser das Ergebnis"</p>
         </section>
 
         <section id="ressourcen" className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">Ressourcen</h2>
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-teal-500 mb-6">Ressourcen</h2>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Offizielle Microsoft Dokumentation:</strong></p>
           <ul className="list-disc list-inside space-y-2 mb-4">
             <li>[Microsoft Copilot für Word Docs](https://learn.microsoft.com/copilot)</li>
@@ -705,7 +717,7 @@ const CopilotFuerWord = () => {
 
         {/* Quellen und weiterführende Links */}
         <section id="quellen" className="mt-12 mb-12">
-          <h2>Quellen und weiterführende Links</h2>
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-emerald-500 mb-6">Quellen und weiterführende Links</h2>
           <p className="text-muted-foreground mb-6">
             Offizielle Microsoft-Dokumentation zu Copilot in Word.
           </p>
@@ -715,9 +727,9 @@ const CopilotFuerWord = () => {
               href="https://support.microsoft.com/en-us/office/welcome-to-copilot-in-word-2135e85f-a467-463b-b2f0-c51a46d625d1"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-start gap-3 p-4 border rounded-lg hover:border-primary/50 hover:bg-muted/50 transition-colors group"
+              className="flex items-start gap-3 p-4 border-l-4 border-l-blue-500 rounded-lg hover:bg-muted/50 transition-colors group"
             >
-              <ExternalLink className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+              <ExternalLink className="w-5 h-5 text-blue-500 mt-0.5 flex-shrink-0" />
               <div>
                 <div className="font-semibold group-hover:text-primary transition-colors">Microsoft Support: Copilot in Word</div>
                 <div className="text-sm text-muted-foreground">Offizielle Einführung und Grundlagen zu Copilot in Word</div>
@@ -728,9 +740,9 @@ const CopilotFuerWord = () => {
               href="https://support.microsoft.com/en-us/office/create-a-new-document-with-copilot-in-word-9f09e35c-17e1-4e6a-9dba-e3ff7f105ed6"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-start gap-3 p-4 border rounded-lg hover:border-primary/50 hover:bg-muted/50 transition-colors group"
+              className="flex items-start gap-3 p-4 border-l-4 border-l-green-500 rounded-lg hover:bg-muted/50 transition-colors group"
             >
-              <ExternalLink className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+              <ExternalLink className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
               <div>
                 <div className="font-semibold group-hover:text-primary transition-colors">Dokumente mit Copilot erstellen</div>
                 <div className="text-sm text-muted-foreground">Anleitung zum Erstellen neuer Dokumente mit Copilot Draft</div>
@@ -741,9 +753,9 @@ const CopilotFuerWord = () => {
               href="https://support.microsoft.com/en-us/office/rewrite-your-text-with-copilot-in-word-923d9763-f896-4da7-8a3f-5b12c3bfc475"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-start gap-3 p-4 border rounded-lg hover:border-primary/50 hover:bg-muted/50 transition-colors group"
+              className="flex items-start gap-3 p-4 border-l-4 border-l-purple-500 rounded-lg hover:bg-muted/50 transition-colors group"
             >
-              <ExternalLink className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+              <ExternalLink className="w-5 h-5 text-purple-500 mt-0.5 flex-shrink-0" />
               <div>
                 <div className="font-semibold group-hover:text-primary transition-colors">Texte umschreiben mit Copilot</div>
                 <div className="text-sm text-muted-foreground">Anleitung zur Rewrite-Funktion für Textoptimierung</div>
@@ -754,14 +766,83 @@ const CopilotFuerWord = () => {
               href="https://support.microsoft.com/en-us/office/summarize-your-document-with-copilot-in-word-95daea3d-6a12-4eb8-8d82-0503bc0e2c91"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-start gap-3 p-4 border rounded-lg hover:border-primary/50 hover:bg-muted/50 transition-colors group"
+              className="flex items-start gap-3 p-4 border-l-4 border-l-cyan-500 rounded-lg hover:bg-muted/50 transition-colors group"
             >
-              <ExternalLink className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+              <ExternalLink className="w-5 h-5 text-cyan-500 mt-0.5 flex-shrink-0" />
               <div>
                 <div className="font-semibold group-hover:text-primary transition-colors">Dokumente zusammenfassen</div>
                 <div className="text-sm text-muted-foreground">Anleitung zur Summarize-Funktion für Textzusammenfassungen</div>
               </div>
             </a>
+          </div>
+        </section>
+
+        {/* Autor-Bio Section */}
+        <section className="mt-16 pt-8 border-t-4 border-t-orange-500">
+          <div className="grid md:grid-cols-4 gap-6">
+            <div className="md:col-span-1">
+              {author?.image && (
+                <img
+                  src={author.image}
+                  alt={author.name}
+                  className="w-full rounded-lg border-2 border-orange-500/30"
+                />
+              )}
+            </div>
+            <div className="md:col-span-3">
+              <h3 className="text-2xl font-bold mb-2">{author?.name}</h3>
+              <p className="text-orange-600 font-semibold mb-4">{author?.role}</p>
+              <p className="text-gray-700 mb-4 leading-relaxed">
+                {author?.bio}
+              </p>
+              <div className="mb-4">
+                <p className="font-semibold mb-2">Expertise:</p>
+                <div className="flex flex-wrap gap-2">
+                  {author?.expertise?.map((skill, index) => (
+                    <span
+                      key={index}
+                      className="px-3 py-1 bg-orange-500/10 border border-orange-500/30 rounded-full text-sm text-gray-700"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              {author?.social && (
+                <div className="flex gap-4">
+                  {author.social.linkedin && (
+                    <a
+                      href={author.social.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-600 hover:underline font-semibold"
+                    >
+                      LinkedIn
+                    </a>
+                  )}
+                  {author.social.twitter && (
+                    <a
+                      href={author.social.twitter}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-400 hover:underline font-semibold"
+                    >
+                      Twitter
+                    </a>
+                  )}
+                  {author.social.website && (
+                    <a
+                      href={author.social.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-700 hover:underline font-semibold"
+                    >
+                      Website
+                    </a>
+                  )}
+                </div>
+              )}
+            </div>
           </div>
         </section>
       </ContentLayout>

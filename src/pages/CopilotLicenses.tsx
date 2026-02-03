@@ -1,7 +1,7 @@
 import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Check, X, Info, Linkedin, Mail, ExternalLink } from "lucide-react";
+import { Check, X, Info, Linkedin, Mail, ExternalLink, Zap } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 
@@ -62,7 +62,7 @@ const CopilotLicenses = () => {
           "@id": "https://copilotenschule.de/#organization"
         },
         "datePublished": "2025-01-06",
-        "dateModified": "2026-02-02T10:00:00+01:00",
+        "dateModified": "2026-02-03T10:00:00+01:00",
         "mainEntityOfPage": {
           "@type": "WebPage",
           "@id": pageUrl
@@ -116,7 +116,7 @@ const CopilotLicenses = () => {
         schema={schema}
         author={martinLang}
         publishedTime="2025-01-06T09:00:00+01:00"
-        modifiedTime="2026-02-02T10:00:00+01:00"
+        modifiedTime="2026-02-03T10:00:00+01:00"
       />
 
       <ContentLayout
@@ -132,10 +132,10 @@ const CopilotLicenses = () => {
       >
         {/* Quick Answer Section für AIO-Optimierung */}
         <section id="quick-answer" className="mb-8">
-          <Card className="border-2 border-primary/30 bg-gradient-to-br from-primary/5 to-accent/5">
+          <Card className="border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-amber-500/5">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-xl">
-                <span className="text-2xl">⚡</span>
+                <Zap className="w-6 h-6 text-orange-500" />
                 Schnellantwort: Welche Microsoft Copilot Lizenz brauche ich?
               </CardTitle>
             </CardHeader>
@@ -169,7 +169,7 @@ const CopilotLicenses = () => {
         </section>
 
         <section id="overview">
-          <h2>Überblick Microsoft Copilot Lizenzen</h2>
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-blue-500">Überblick Microsoft Copilot Lizenzen</h2>
           <p>
             Microsoft bietet verschiedene Copilot-Lizenzen für unterschiedliche Anwendungsfälle an.
             Dieser Leitfaden hilft Ihnen zu verstehen, welche Lizenz Sie für Ihre spezifischen Anforderungen benötigen.
@@ -185,7 +185,7 @@ const CopilotLicenses = () => {
         </section>
 
         <section id="microsoft-365-copilot" className="mt-12">
-          <h2>Microsoft 365 Copilot</h2>
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-green-500">Microsoft 365 Copilot</h2>
 
           <Card className="my-6 border-2 border-primary/20 hover:shadow-xl transition-shadow">
             <CardHeader className="bg-gradient-to-r from-primary/10 to-accent/10">
@@ -246,7 +246,7 @@ const CopilotLicenses = () => {
         </section>
 
         <section id="github-copilot" className="mt-12">
-          <h2>GitHub Copilot</h2>
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-purple-500">GitHub Copilot</h2>
           <p>
             GitHub Copilot ist in drei Editionen verfügbar, jeweils mit unterschiedlichen Features für
             individuelle Entwickler und Teams.
@@ -350,7 +350,7 @@ const CopilotLicenses = () => {
         </section>
 
         <section id="copilot-studio" className="mt-12">
-          <h2>Microsoft Copilot Studio</h2>
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-cyan-500">Microsoft Copilot Studio</h2>
           <p>
             Microsoft Copilot Studio ermöglicht die Entwicklung eigener KI-Agenten, Chatbots und
             die Erweiterung von Microsoft 365 Copilot mit benutzerdefinierten Funktionen.
@@ -431,7 +431,7 @@ const CopilotLicenses = () => {
         </section>
 
         <section id="comparison" className="mt-12">
-          <h2>Lizenzvergleich im Überblick</h2>
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-emerald-500">Lizenzvergleich im Überblick</h2>
           <div className="overflow-x-auto my-6">
             <table className="w-full border-collapse">
               <thead>
@@ -497,7 +497,7 @@ const CopilotLicenses = () => {
         </section>
 
         <section id="recommendations" className="mt-12">
-          <h2>Welche Lizenz brauche ich?</h2>
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-red-500">Welche Lizenz brauche ich?</h2>
 
           <div className="space-y-6 my-6">
             <Card className="border-l-4 border-l-blue-500">
@@ -563,7 +563,7 @@ const CopilotLicenses = () => {
         </section>
 
         <section id="faq" className="mt-12 mb-12">
-          <h2>Häufig gestellte Fragen (FAQ)</h2>
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-amber-500">Häufig gestellte Fragen (FAQ)</h2>
 
           <div className="space-y-4 my-6">
             {[
@@ -606,7 +606,7 @@ const CopilotLicenses = () => {
 
         {/* Quellen und weiterführende Links */}
         <section id="quellen" className="mt-12 mb-12">
-          <h2>Quellen und weiterführende Links</h2>
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-indigo-500">Quellen und weiterführende Links</h2>
           <p className="text-muted-foreground mb-6">
             Offizielle Microsoft-Ressourcen zu Lizenzierung und Preisen.
           </p>
@@ -668,28 +668,28 @@ const CopilotLicenses = () => {
 
         {/* Author Bio für E-E-A-T */}
         <section className="my-12">
-          <Card className="border-l-4 border-l-primary">
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-slate-500 mb-8">Über den Autor</h2>
+          <Card className="border-t-4 border-t-slate-500">
             <CardContent className="pt-6">
               <div className="flex flex-col md:flex-row gap-6">
                 <div className="flex-shrink-0">
                   <img
                     src={martinLang.image}
                     alt={martinLang.name}
-                    className="w-32 h-32 rounded-full object-cover border-4 border-primary/20"
+                    className="w-32 h-32 rounded-full object-cover border-4 border-slate-500/20"
                   />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-xl font-bold mb-2">Über den Autor</h3>
-                  <div className="text-lg font-semibold text-primary mb-1">{martinLang.name}</div>
+                  <div className="text-lg font-semibold text-slate-700 dark:text-slate-300 mb-1">{martinLang.name}</div>
                   <div className="text-sm text-muted-foreground mb-3">{martinLang.role}</div>
                   <p className="text-sm leading-relaxed mb-4">{martinLang.bio}</p>
                   <div className="mb-3">
-                    <div className="text-sm font-semibold mb-2">Expertise:</div>
+                    <div className="text-sm font-semibold mb-2">Expertise-Tags:</div>
                     <div className="flex flex-wrap gap-2">
                       {martinLang.expertise.map((exp, idx) => (
                         <span
                           key={idx}
-                          className="px-3 py-1 bg-primary/10 text-primary rounded-full text-xs font-medium"
+                          className="px-3 py-1 bg-slate-500/10 text-slate-700 dark:text-slate-300 rounded-full text-xs font-medium border border-slate-500/20"
                         >
                           {exp}
                         </span>
@@ -702,7 +702,7 @@ const CopilotLicenses = () => {
                         href={martinLang.linkedin}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-sm text-primary hover:underline"
+                        className="inline-flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition-colors"
                       >
                         <Linkedin className="w-4 h-4" />
                         LinkedIn
@@ -711,7 +711,7 @@ const CopilotLicenses = () => {
                     {martinLang.email && (
                       <a
                         href={`mailto:${martinLang.email}`}
-                        className="inline-flex items-center gap-2 text-sm text-primary hover:underline"
+                        className="inline-flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition-colors"
                       >
                         <Mail className="w-4 h-4" />
                         Kontakt
