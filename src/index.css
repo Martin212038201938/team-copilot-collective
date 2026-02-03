@@ -247,28 +247,25 @@ All colors MUST be HSL.
      Mehr Weißraum zwischen Abschnitten und Kapiteln
      ================================================ */
 
-  /* Hauptabschnitte (sections) mit großzügigem Abstand */
+  /* Hauptabschnitte (sections) - H2s kontrollieren die Abstände */
   article section {
-    @apply mb-16 mt-16;
+    @apply mb-8;
   }
 
-  article section:first-child {
-    @apply mt-0;
-  }
-
-  /* H2 Überschriften - deutlich mehr Platz für visuelle Trennung der Hauptkapitel */
+  /* H2 Überschriften - Dreifacher Abstand vorher (9rem), doppelter Abstand danach (4rem)
+     !important überschreibt Inline-Tailwind-Klassen wie mb-6 oder mt-12 */
   article h2 {
-    @apply mt-36 mb-16;
+    margin-top: 9rem !important;
+    margin-bottom: 4rem !important;
   }
 
-  article section > h2:first-child {
-    @apply mt-0;
-  }
-
-  /* Erste H2 nach dem Header braucht keinen großen Abstand oben */
+  /* Allererste H2 im Artikel braucht keinen großen Abstand oben
+     (direkt nach Header/Intro-Bereich) */
+  article > section:first-child > h2:first-child,
   article > h2:first-child,
-  article > div > h2:first-child {
-    @apply mt-0;
+  article > div > h2:first-child,
+  article > div:first-child > section:first-child > h2:first-child {
+    margin-top: 0 !important;
   }
 
   /* H3 Überschriften */
