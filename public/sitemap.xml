@@ -4,7 +4,7 @@
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <!-- Automatisch generiert am 2026-02-03 -->
-  <!-- 41 URLs insgesamt -->
+  <!-- 40 URLs insgesamt -->
   <url>
     <loc>https://copilotenschule.de/</loc>
     <lastmod>2026-02-03</lastmod>
@@ -145,12 +145,6 @@
   </url>
   <url>
     <loc>https://copilotenschule.de/wissen/copilot-roi-erfolgsgeschichten</loc>
-    <lastmod>2026-02-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://copilotenschule.de/wissen/copilot-adoption-2026-zahlen</loc>
     <lastmod>2026-02-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
