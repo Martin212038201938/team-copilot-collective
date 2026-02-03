@@ -22,6 +22,7 @@ const Wissen = () => {
   // STATISCHE WISSENSSEITEN
   // Nur Artikel die tatsächlich als TSX-Dateien in src/pages/ existieren!
   // Bei neuen Artikeln: Erst TSX erstellen, dann hier eintragen.
+  // WICHTIG: publishDate für korrekte Sortierung nach Erscheinungsdatum!
   // ============================================================================
   const staticKnowledgeTopics = [
     {
@@ -31,7 +32,8 @@ const Wissen = () => {
       badge: "Neu",
       icon: "💬",
       readTime: "12 Minuten",
-      lastUpdated: "03. Feb. 2026"
+      lastUpdated: "03. Feb. 2026",
+      publishDate: "2026-02-03"
     },
     {
       title: "Copilot Launch-Kampagne: So bringen Sie Ihr Unternehmen zum Fliegen",
@@ -40,7 +42,8 @@ const Wissen = () => {
       badge: "Neu",
       icon: "🚀",
       readTime: "14 Minuten",
-      lastUpdated: "03. Feb. 2026"
+      lastUpdated: "03. Feb. 2026",
+      publishDate: "2026-02-03"
     },
     {
       title: "Warum Prompt-Bibliotheken Quatsch sind",
@@ -49,124 +52,8 @@ const Wissen = () => {
       badge: "Neu",
       icon: "🪄",
       readTime: "6 Minuten",
-      lastUpdated: "03. Feb. 2026"
-    },
-    {
-      title: "Warum Unternehmen Microsoft Copilot zentral einführen sollten",
-      description: "Warum Shadow-IT bei KI gefährlich ist: Zentrale Copilot-Einführung sichert DSGVO-Konformität, Grounding mit Unternehmensdaten und unternehmensweite Synergien.",
-      link: "/wissen/copilot-unternehmensweit-einfuehren",
-      badge: "Strategie",
-      icon: "🏢",
-      readTime: "12 Minuten",
-      lastUpdated: "02. Feb. 2026"
-    },
-    {
-      title: "KI in deutschen Unternehmen 2026: Was die großen Beratungsfirmen wirklich sehen",
-      description: "Umfassende Analyse von McKinsey, BCG, Deloitte, PwC, KPMG: Aktuelle KI-Investitionen, ROI-Realität und warum 80% der Unternehmen noch keine Ergebnisse sehen.",
-      link: "/wissen/ki-realitaet-beratungsfirmen-2026",
-      badge: "Strategie",
-      icon: "📊",
-      readTime: "18 Minuten",
-      lastUpdated: "02. Feb. 2026"
-    },
-    {
-      title: "Microsoft Copilot Lizenzen 2026: Preise, Vergleich & Empfehlungen",
-      description: "Welche Microsoft Copilot Lizenz benötigen Sie? Umfassender Vergleich aller Lizenzmodelle für Microsoft 365 Copilot, GitHub Copilot und Copilot Studio mit aktuellen Preisen.",
-      link: "/microsoft-copilot-lizenzen",
-      badge: "Lizenzierung",
-      icon: "📋",
-      readTime: "12 Minuten",
-      lastUpdated: "02. Feb. 2026"
-    },
-    {
-      title: "GitHub Copilot: Der ultimative Leitfaden für Entwickler",
-      description: "Der ultimative Leitfaden für Entwickler: Setup, Best Practices und Advanced Features für produktiveres Coding mit KI-Unterstützung.",
-      link: "/github-copilot",
-      badge: "Entwicklung",
-      icon: "💻",
-      readTime: "12 Minuten",
-      lastUpdated: "02. Feb. 2026"
-    },
-    {
-      title: "Microsoft Copilot Studio: KI-Agenten und Custom Copilots erstellen",
-      description: "Low-Code-Plattform für eigene KI-Agenten: Custom Copilots, Chatbots und Automatisierungen ohne Programmierkenntnisse erstellen.",
-      link: "/copilot-studio",
-      badge: "Entwicklung",
-      icon: "🤖",
-      readTime: "10 Minuten",
-      lastUpdated: "02. Feb. 2026"
-    },
-    {
-      title: "Prompt Engineering: Effektive KI-Prompts für Microsoft Copilot",
-      description: "Meistern Sie die Kunst effektiver KI-Kommunikation: Techniken, Beispiele und bewährte Prompt-Muster für bessere Copilot-Ergebnisse.",
-      link: "/prompt-engineering",
-      badge: "Best Practices",
-      icon: "✨",
-      readTime: "15 Minuten",
-      lastUpdated: "02. Feb. 2026"
-    },
-    {
-      title: "KI-Agenten entwickeln: Autonome Workflows mit Microsoft Copilot",
-      description: "Autonome KI-Assistenten für Ihr Unternehmen: Von einfachen Workflows bis zu komplexen Multi-Agent-Systemen mit Microsoft-Technologien.",
-      link: "/ki-agenten",
-      badge: "Automation",
-      icon: "🔄",
-      readTime: "14 Minuten",
-      lastUpdated: "02. Feb. 2026"
-    },
-    {
-      title: "7 Fehler bei der Microsoft Copilot-Einführung vermeiden",
-      description: "Die 7 kritischsten Fehler vermeiden: Oversharing, Halluzinationen, Compliance-Verstöße. Konkrete Praxisbeispiele und Gegenmaßnahmen für deutsche Unternehmen.",
-      link: "/copilot-fehler-vermeiden",
-      badge: "Risikomanagement",
-      icon: "⚠️",
-      readTime: "18 Minuten",
-      lastUpdated: "02. Feb. 2026"
-    },
-    {
-      title: "Microsoft Copilot Training: Warum Schulung der entscheidende Erfolgsfaktor ist",
-      description: "Professionelles Copilot-Training ist der Schlüssel zum ROI. Erfahren Sie, warum interne Taskforces scheitern und wie systematische Schulung Ihre Adoption auf 80%+ steigert.",
-      link: "/wissen/copilot-training-schulung",
-      badge: "Enablement",
-      icon: "🎓",
-      readTime: "18 Minuten",
-      lastUpdated: "02. Feb. 2026"
-    },
-    {
-      title: "Copilot ROI berechnen: Lohnt sich die Investition?",
-      description: "Konkrete Methoden zur ROI-Berechnung von Microsoft Copilot. Mit Excel-Vorlage, Praxisbeispielen und messbaren KPIs für Ihr Business Case.",
-      link: "/wissen/copilot-roi-berechnen",
-      badge: "Business",
-      icon: "💰",
-      readTime: "12 Minuten",
-      lastUpdated: "02. Feb. 2026"
-    },
-    {
-      title: "Microsoft Copilot für Word: Der ultimative Guide",
-      description: "Entdecken Sie, wie Microsoft Copilot in Word Ihre Dokumentenerstellung revolutioniert. Mit praktischen Beispielen, Prompts und Tipps für maximale Produktivität.",
-      link: "/wissen/copilot-fuer-word",
-      badge: "Microsoft 365",
-      icon: "📝",
-      readTime: "15 Minuten",
-      lastUpdated: "02. Feb. 2026"
-    },
-    {
-      title: "Microsoft Copilot Datenschutz & Sicherheit: DSGVO-konform einsetzen",
-      description: "Copilot DSGVO-konform einführen: Zero Trust, Datenschutz-Folgenabschätzung, Governance-Richtlinien. Praxis-Leitfaden für IT-Entscheider.",
-      link: "/wissen/copilot-sicherheit-datenschutz",
-      badge: "Sicherheit",
-      icon: "🔒",
-      readTime: "8 Minuten",
-      lastUpdated: "02. Feb. 2026"
-    },
-    {
-      title: "22 Microsoft Copilot Tipps & Tricks für mehr Produktivität",
-      description: "22 Profi-Tipps für Microsoft 365 Copilot in Word, Excel, PowerPoint, Outlook & Teams. Prompting-Tricks, Shortcuts & versteckte Features für den Büroalltag.",
-      link: "/wissen/copilot-tipps-tricks-produktivitaet",
-      badge: "Best Practices",
-      icon: "💡",
-      readTime: "12 Minuten",
-      lastUpdated: "03. Feb. 2026"
+      lastUpdated: "03. Feb. 2026",
+      publishDate: "2026-02-03"
     },
     {
       title: "Digitales Gedächtnis mit Microsoft Copilot",
@@ -175,7 +62,138 @@ const Wissen = () => {
       badge: "Praxisguide",
       icon: "🧠",
       readTime: "14 Minuten",
-      lastUpdated: "03. Feb. 2026"
+      lastUpdated: "03. Feb. 2026",
+      publishDate: "2026-02-03"
+    },
+    {
+      title: "22 Microsoft Copilot Tipps & Tricks für mehr Produktivität",
+      description: "22 Profi-Tipps für Microsoft 365 Copilot in Word, Excel, PowerPoint, Outlook & Teams. Prompting-Tricks, Shortcuts & versteckte Features für den Büroalltag.",
+      link: "/wissen/copilot-tipps-tricks-produktivitaet",
+      badge: "Best Practices",
+      icon: "💡",
+      readTime: "12 Minuten",
+      lastUpdated: "03. Feb. 2026",
+      publishDate: "2026-02-03"
+    },
+    {
+      title: "Warum Unternehmen Microsoft Copilot zentral einführen sollten",
+      description: "Warum Shadow-IT bei KI gefährlich ist: Zentrale Copilot-Einführung sichert DSGVO-Konformität, Grounding mit Unternehmensdaten und unternehmensweite Synergien.",
+      link: "/wissen/copilot-unternehmensweit-einfuehren",
+      badge: "Strategie",
+      icon: "🏢",
+      readTime: "12 Minuten",
+      lastUpdated: "02. Feb. 2026",
+      publishDate: "2026-02-02"
+    },
+    {
+      title: "KI in deutschen Unternehmen 2026: Was die großen Beratungsfirmen wirklich sehen",
+      description: "Umfassende Analyse von McKinsey, BCG, Deloitte, PwC, KPMG: Aktuelle KI-Investitionen, ROI-Realität und warum 80% der Unternehmen noch keine Ergebnisse sehen.",
+      link: "/wissen/ki-realitaet-beratungsfirmen-2026",
+      badge: "Strategie",
+      icon: "📊",
+      readTime: "18 Minuten",
+      lastUpdated: "02. Feb. 2026",
+      publishDate: "2026-02-02"
+    },
+    {
+      title: "Microsoft Copilot Training: Warum Schulung der entscheidende Erfolgsfaktor ist",
+      description: "Professionelles Copilot-Training ist der Schlüssel zum ROI. Erfahren Sie, warum interne Taskforces scheitern und wie systematische Schulung Ihre Adoption auf 80%+ steigert.",
+      link: "/wissen/copilot-training-schulung",
+      badge: "Enablement",
+      icon: "🎓",
+      readTime: "18 Minuten",
+      lastUpdated: "02. Feb. 2026",
+      publishDate: "2026-02-02"
+    },
+    {
+      title: "Microsoft Copilot Lizenzen 2026: Preise, Vergleich & Empfehlungen",
+      description: "Welche Microsoft Copilot Lizenz benötigen Sie? Umfassender Vergleich aller Lizenzmodelle für Microsoft 365 Copilot, GitHub Copilot und Copilot Studio mit aktuellen Preisen.",
+      link: "/microsoft-copilot-lizenzen",
+      badge: "Lizenzierung",
+      icon: "📋",
+      readTime: "12 Minuten",
+      lastUpdated: "02. Feb. 2026",
+      publishDate: "2026-01-15"
+    },
+    {
+      title: "GitHub Copilot: Der ultimative Leitfaden für Entwickler",
+      description: "Der ultimative Leitfaden für Entwickler: Setup, Best Practices und Advanced Features für produktiveres Coding mit KI-Unterstützung.",
+      link: "/github-copilot",
+      badge: "Entwicklung",
+      icon: "💻",
+      readTime: "12 Minuten",
+      lastUpdated: "02. Feb. 2026",
+      publishDate: "2026-01-10"
+    },
+    {
+      title: "Microsoft Copilot Studio: KI-Agenten und Custom Copilots erstellen",
+      description: "Low-Code-Plattform für eigene KI-Agenten: Custom Copilots, Chatbots und Automatisierungen ohne Programmierkenntnisse erstellen.",
+      link: "/copilot-studio",
+      badge: "Entwicklung",
+      icon: "🤖",
+      readTime: "10 Minuten",
+      lastUpdated: "02. Feb. 2026",
+      publishDate: "2026-01-08"
+    },
+    {
+      title: "Prompt Engineering: Effektive KI-Prompts für Microsoft Copilot",
+      description: "Meistern Sie die Kunst effektiver KI-Kommunikation: Techniken, Beispiele und bewährte Prompt-Muster für bessere Copilot-Ergebnisse.",
+      link: "/prompt-engineering",
+      badge: "Best Practices",
+      icon: "✨",
+      readTime: "15 Minuten",
+      lastUpdated: "02. Feb. 2026",
+      publishDate: "2026-01-05"
+    },
+    {
+      title: "KI-Agenten entwickeln: Autonome Workflows mit Microsoft Copilot",
+      description: "Autonome KI-Assistenten für Ihr Unternehmen: Von einfachen Workflows bis zu komplexen Multi-Agent-Systemen mit Microsoft-Technologien.",
+      link: "/ki-agenten",
+      badge: "Automation",
+      icon: "🔄",
+      readTime: "14 Minuten",
+      lastUpdated: "02. Feb. 2026",
+      publishDate: "2026-01-03"
+    },
+    {
+      title: "7 Fehler bei der Microsoft Copilot-Einführung vermeiden",
+      description: "Die 7 kritischsten Fehler vermeiden: Oversharing, Halluzinationen, Compliance-Verstöße. Konkrete Praxisbeispiele und Gegenmaßnahmen für deutsche Unternehmen.",
+      link: "/copilot-fehler-vermeiden",
+      badge: "Risikomanagement",
+      icon: "⚠️",
+      readTime: "18 Minuten",
+      lastUpdated: "02. Feb. 2026",
+      publishDate: "2026-01-01"
+    },
+    {
+      title: "Copilot ROI berechnen: Lohnt sich die Investition?",
+      description: "Konkrete Methoden zur ROI-Berechnung von Microsoft Copilot. Mit Excel-Vorlage, Praxisbeispielen und messbaren KPIs für Ihr Business Case.",
+      link: "/wissen/copilot-roi-berechnen",
+      badge: "Business",
+      icon: "💰",
+      readTime: "12 Minuten",
+      lastUpdated: "02. Feb. 2026",
+      publishDate: "2025-12-15"
+    },
+    {
+      title: "Microsoft Copilot für Word: Der ultimative Guide",
+      description: "Entdecken Sie, wie Microsoft Copilot in Word Ihre Dokumentenerstellung revolutioniert. Mit praktischen Beispielen, Prompts und Tipps für maximale Produktivität.",
+      link: "/wissen/copilot-fuer-word",
+      badge: "Microsoft 365",
+      icon: "📝",
+      readTime: "15 Minuten",
+      lastUpdated: "02. Feb. 2026",
+      publishDate: "2025-12-10"
+    },
+    {
+      title: "Microsoft Copilot Datenschutz & Sicherheit: DSGVO-konform einsetzen",
+      description: "Copilot DSGVO-konform einführen: Zero Trust, Datenschutz-Folgenabschätzung, Governance-Richtlinien. Praxis-Leitfaden für IT-Entscheider.",
+      link: "/wissen/copilot-sicherheit-datenschutz",
+      badge: "Sicherheit",
+      icon: "🔒",
+      readTime: "8 Minuten",
+      lastUpdated: "02. Feb. 2026",
+      publishDate: "2025-12-05"
     }
   ];
 
@@ -186,8 +204,12 @@ const Wissen = () => {
   }, []);
 
   // Kombiniere dynamische (aus Admin-Portal/localStorage) und gefilterte statische Artikel
-  // Dynamische zuerst, da diese neuer sind
-  const knowledgeTopics = [...dynamicTopics, ...visibleStaticTopics];
+  // Sortiere nach publishDate absteigend (neueste zuerst)
+  const knowledgeTopics = [...dynamicTopics, ...visibleStaticTopics].sort((a, b) => {
+    const dateA = a.publishDate ? new Date(a.publishDate).getTime() : 0;
+    const dateB = b.publishDate ? new Date(b.publishDate).getTime() : 0;
+    return dateB - dateA; // Neueste zuerst
+  });
 
   return (
     <div className="min-h-screen">

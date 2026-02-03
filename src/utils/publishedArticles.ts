@@ -113,6 +113,7 @@ export function getPublishedAsKnowledgeTopics() {
       day: '2-digit',
       month: 'short',
       year: 'numeric'
-    })
+    }),
+    publishDate: article.publishDate ? article.publishDate.split('T')[0] : undefined
   }));
 }
