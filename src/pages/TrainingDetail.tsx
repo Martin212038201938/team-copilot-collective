@@ -278,7 +278,9 @@ const TrainingDetail = () => {
                           <h3 className="text-xl font-bold mb-1">{trainer.name}</h3>
                         </Link>
                         <div className="text-sm text-muted-foreground mb-3">{trainer.role}</div>
-                        <p className="text-sm leading-relaxed mb-4">{trainer.bio}</p>
+                        <p className="text-sm leading-relaxed mb-4">
+                          Die copilotenschule.de ist spezialisiert auf die Einführung und Weiterqualifizierungen im Umfeld der Microsoft Copiloten. Im Gegensatz zu anderen Anbietern bieten wir den Teilnehmern keinen Bauchladen an Tools an, die in ihrem Umfeld nicht compliant oder wertschöpfend sind. Unsere Trainings fokussieren konsequent auf reale Arbeitsprozesse.
+                        </p>
                         <div className="mb-3">
                           <div className="text-sm font-semibold mb-2">Qualifikationen:</div>
                           <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">

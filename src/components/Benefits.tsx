@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   PlaneTakeoff,
   Radar,
@@ -41,20 +42,34 @@ const benefits = [
   }
 ];
 
-// SEO-freundliche expandierbare Benefit-Karte
-// Verwendet natives <details>-Element für beste Crawler-Kompatibilität
-const ExpandableCard = ({ icon: Icon, title, description, index }: {
+// SEO-freundliche Benefit-Karte mit Overlay-Expansion
+// Nur eine Karte kann gleichzeitig geöffnet sein, Inhalt überlappt andere Karten
+const ExpandableCard = ({
+  icon: Icon,
+  title,
+  description,
+  index,
+  isExpanded,
+  onToggle
+}: {
   icon: typeof PlaneTakeoff;
   title: string;
   description: string;
   index: number;
+  isExpanded: boolean;
+  onToggle: () => void;
 }) => {
   return (
-    <details
-      className="group rounded-2xl border-2 border-primary/20 bg-gradient-to-br from-card via-card to-primary/5 shadow-xl animate-fade-in overflow-hidden"
+    <div
+      className="group rounded-2xl border-2 border-primary/20 bg-gradient-to-br from-card via-card to-primary/5 shadow-xl animate-fade-in overflow-visible relative"
       style={{ animationDelay: `${index * 100}ms` }}
     >
-      <summary className="flex items-center gap-4 p-6 cursor-pointer list-none hover:bg-primary/5 transition-colors">
+      {/* Header - immer sichtbar */}
+      <button
+        onClick={onToggle}
+        className="flex items-center gap-4 p-6 cursor-pointer w-full text-left hover:bg-primary/5 transition-colors"
+        aria-expanded={isExpanded}
+      >
         {/* Icon */}
         <div className="w-14 h-14 bg-gradient-to-br from-primary/20 via-accent/10 to-primary/20 rounded-xl flex items-center justify-center shadow-lg border border-primary/20 flex-shrink-0">
           <Icon className="w-7 h-7 text-primary" strokeWidth={1.5} />
@@ -68,20 +83,37 @@ const ExpandableCard = ({ icon: Icon, title, description, index }: {
         </div>
 
         {/* Expand indicator */}
-        <ChevronDown className="w-5 h-5 text-muted-foreground flex-shrink-0 transition-transform duration-300 group-open:rotate-180" />
-      </summary>
+        <ChevronDown
+          className={`w-5 h-5 text-muted-foreground flex-shrink-0 transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`}
+        />
+      </button>
 
-      {/* Description - immer im DOM, für SEO sichtbar */}
-      <div className="px-6 pb-6 pt-2 border-t border-primary/10">
-        <p className="text-muted-foreground text-sm leading-relaxed">
-          {description}
-        </p>
+      {/* Description - als Overlay, überlappt andere Karten */}
+      {isExpanded && (
+        <div className="absolute left-0 right-0 top-full z-50 bg-card border-2 border-t-0 border-primary/20 rounded-b-2xl shadow-2xl">
+          <div className="px-6 pb-6 pt-4">
+            <p className="text-muted-foreground text-sm leading-relaxed">
+              {description}
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* Hidden description for SEO - always in DOM but visually hidden */}
+      <div className="sr-only" aria-hidden="true">
+        {description}
       </div>
-    </details>
+    </div>
   );
 };
 
 const Benefits = () => {
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+
+  const handleToggle = (index: number) => {
+    setExpandedIndex(prevIndex => prevIndex === index ? null : index);
+  };
+
   return (
     <section id="benefits" className="py-24 bg-gradient-to-b from-background to-secondary/20 relative overflow-hidden">
       {/* Decorative background elements */}
@@ -103,20 +135,12 @@ const Benefits = () => {
               title={benefit.title}
               description={benefit.description}
               index={index}
+              isExpanded={expandedIndex === index}
+              onToggle={() => handleToggle(index)}
             />
           ))}
         </div>
       </div>
-
-      {/* CSS für details/summary Styling */}
-      <style>{`
-        details summary::-webkit-details-marker {
-          display: none;
-        }
-        details summary::marker {
-          display: none;
-        }
-      `}</style>
     </section>
   );
 };

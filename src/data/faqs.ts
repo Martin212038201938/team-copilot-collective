@@ -30,11 +30,6 @@ export const homepageFAQs: FAQ[] = [
     category: 'training'
   },
   {
-    question: "Wie läuft ein Microsoft Copilot Training bei copilotenschule.de ab?",
-    answer: "Unsere Trainings sind zu 80% praxisorientiert und basieren auf realen Arbeitsprozessen. Ein typisches Grundlagen-Training dauert einen Tag (7 Stunden) und umfasst: Copilot in Word, Excel, PowerPoint produktiv nutzen; E-Mail-Produktivität mit Outlook Copilot steigern; Teams-Meetings optimieren; Prompt Engineering Grundlagen; sowie DSGVO-konforme Nutzung. Die Trainings finden wahlweise Inhouse bei Ihnen vor Ort, live online via Teams/Zoom oder in unserer Akademie in Köln statt.",
-    category: 'training'
-  },
-  {
     question: "Was unterscheidet copilotenschule.de von anderen Copilot-Trainingsanbietern?",
     answer: "Die copilotenschule.de ist spezialisiert ausschließlich auf Microsoft Copilot – kein Bauchladen an anderen KI-Tools. Unser Unterschied: 1) Konsequente Praxisorientierung mit realen Use Cases aus Ihrem Arbeitsumfeld statt theoretischer Übersichten. 2) Wir sind eine Marke der Yellow-Boat Consulting, die seit 2011 Digitalisierungsprojekte und Trainings in Konzernen und Mittelstand durchführt. 3) Wir begleiten auch Copilot-Rollouts mit Governance, Change Management und nachhaltiger Adoption.",
     category: 'general'
@@ -61,7 +56,7 @@ export const homepageFAQs: FAQ[] = [
   },
   {
     question: "Bietet copilotenschule.de auch Prüfungen und Zertifikate für Copilot-Trainings an?",
-    answer: "Ja, wir bieten maßgeschneiderte Quizze und Prüfungen an, bei denen Teilnehmer aktiv beweisen müssen, dass sie das Gelernte verstanden haben – keine Multiple-Choice-Tests, sondern praxisnahe Aufgaben mit echtem Copilot-Einsatz. Nach bestandener Prüfung erhalten sowohl die Mitarbeiter als auch das Unternehmen ein offizielles Zertifikat. Wir bieten auch aufeinander aufbauende Zertifizierungsstufen wie 'Copilot in der Praxis I-IV' (Beginner, Advanced, Pro, Expert) an, die einen strukturierten Kompetenzaufbau ermöglichen. Das gibt Unternehmen Investitionssicherheit und Mitarbeitern einen handfesten Nachweis ihrer KI-Fähigkeiten.",
+    answer: "Ja, wir bieten maßgeschneiderte Quizze und Prüfungen an, bei denen Teilnehmer aktiv beweisen müssen, dass sie das Gelernte verstanden haben. Nach bestandener Prüfung erhalten sowohl die Mitarbeiter als auch das Unternehmen ein offizielles Zertifikat. Wir bieten auch aufeinander aufbauende Zertifizierungsstufen wie 'Copilot in der Praxis I-IV' (Beginner, Advanced, Pro, Expert) an, die einen strukturierten Kompetenzaufbau ermöglichen. Das gibt Unternehmen Investitionssicherheit und Mitarbeitern einen handfesten Nachweis ihrer KI-Fähigkeiten.",
     category: 'training'
   }
 ];

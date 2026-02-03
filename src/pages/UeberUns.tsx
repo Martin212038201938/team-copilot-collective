@@ -5,7 +5,7 @@ import KoelnTraining from "@/components/KoelnTraining";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Target, Eye, Heart, Users, Building, Award, ArrowRight, ExternalLink } from "lucide-react";
+import { Users, Building, Award, ArrowRight, ExternalLink } from "lucide-react";
 import ueberUns from "@/assets/ueber-uns.png";
 
 const UeberUns = () => {
@@ -156,10 +156,7 @@ const UeberUns = () => {
 
           {/* Mission, Vision, Werte */}
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-16">
-            <Card className="p-8 hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/50">
-              <div className="w-14 h-14 bg-gradient-to-br from-primary/20 to-accent/20 rounded-xl flex items-center justify-center mb-6">
-                <Target className="w-7 h-7 text-primary" />
-              </div>
+            <Card className="p-6 hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/50">
               <h2 className="text-2xl font-bold mb-4">Unsere Mission</h2>
               <p className="text-muted-foreground leading-relaxed">
                 Unsere Mission ist es, Büroarbeit durch den gezielten Einsatz von Microsoft Copilot
@@ -167,10 +164,7 @@ const UeberUns = () => {
               </p>
             </Card>
 
-            <Card className="p-8 hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/50">
-              <div className="w-14 h-14 bg-gradient-to-br from-primary/20 to-accent/20 rounded-xl flex items-center justify-center mb-6">
-                <Eye className="w-7 h-7 text-primary" />
-              </div>
+            <Card className="p-6 hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/50">
               <h2 className="text-2xl font-bold mb-4">Unsere Vision</h2>
               <p className="text-muted-foreground leading-relaxed">
                 Unsere Vision ist eine Arbeitswelt, in der Microsoft Copilot als <strong>selbstverständliches
@@ -179,10 +173,7 @@ const UeberUns = () => {
               </p>
             </Card>
 
-            <Card className="p-8 hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/50">
-              <div className="w-14 h-14 bg-gradient-to-br from-primary/20 to-accent/20 rounded-xl flex items-center justify-center mb-6">
-                <Heart className="w-7 h-7 text-primary" />
-              </div>
+            <Card className="p-6 hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/50">
               <h2 className="text-2xl font-bold mb-4">Unsere Werte</h2>
               <p className="text-muted-foreground leading-relaxed">
                 <strong>Praxisnähe, Wirksamkeit, Transparenz.</strong> Diese Werte leiten alle unsere

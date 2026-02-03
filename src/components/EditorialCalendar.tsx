@@ -307,13 +307,26 @@ const EditorialCalendar = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [filterStatus, setFilterStatus] = useState<'all' | 'published' | 'unpublished'>('all');
 
-  // Lade Artikel beim Start
+  // Lade Artikel beim Start - mit Merge-Logik für neue Artikel
   useEffect(() => {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
       try {
-        const parsed = JSON.parse(saved);
-        setArticles(parsed);
+        const parsed: ArticleMetadata[] = JSON.parse(saved);
+
+        // Merge: Füge neue Artikel aus DEFAULT_STATIC_ARTICLES hinzu,
+        // die noch nicht in localStorage sind
+        const savedIds = new Set(parsed.map(a => a.id));
+        const newArticles = DEFAULT_STATIC_ARTICLES.filter(a => !savedIds.has(a.id));
+
+        if (newArticles.length > 0) {
+          // Neue Artikel am Anfang hinzufügen
+          const merged = [...newArticles, ...parsed];
+          setArticles(merged);
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
+        } else {
+          setArticles(parsed);
+        }
       } catch {
         setArticles(DEFAULT_STATIC_ARTICLES);
       }
@@ -393,6 +406,42 @@ const EditorialCalendar = () => {
       const todayEnd = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59);
       return publishDate > todayEnd;
     }
+  };
+
+  // Hilfsfunktion: Datum im deutschen Format (z.B. "03. Feb. 2026")
+  const formatDateGerman = (date: Date): string => {
+    return date.toLocaleDateString('de-DE', {
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric'
+    }).replace('.', '');
+  };
+
+  // Hilfsfunktion: ISO-Datum zu deutschem Format (z.B. "2026-02-03" → "03. Feb. 2026")
+  const isoToGermanDate = (isoDate: string): string => {
+    const [year, month, day] = isoDate.split('-').map(Number);
+    const date = new Date(year, month - 1, day);
+    return formatDateGerman(date);
+  };
+
+  // Handler für Artikel-Feld-Änderungen mit automatischem lastUpdated
+  const handleArticleFieldChange = (field: keyof ArticleMetadata, value: string | boolean) => {
+    if (!editingArticle) return;
+
+    const now = new Date();
+    const currentDateGerman = formatDateGerman(now);
+
+    let updates: Partial<ArticleMetadata> = {
+      [field]: value,
+      lastUpdated: currentDateGerman // Automatisch aktuelles Datum setzen
+    };
+
+    // Wenn publishDate geändert wird, setze lastUpdated auf das neue publishDate
+    if (field === 'publishDate' && typeof value === 'string' && value) {
+      updates.lastUpdated = isoToGermanDate(value);
+    }
+
+    setEditingArticle({ ...editingArticle, ...updates });
   };
 
   const handleSave = () => {
@@ -598,7 +647,7 @@ const EditorialCalendar = () => {
 
       {/* Edit Dialog */}
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent className="max-w-2xl">
+        <DialogContent className="max-w-2xl max-h-[85vh] overflow-hidden flex flex-col">
           <DialogHeader>
             <DialogTitle>Artikel bearbeiten</DialogTitle>
             <DialogDescription>
@@ -607,14 +656,14 @@ const EditorialCalendar = () => {
           </DialogHeader>
 
           {editingArticle && (
-            <div className="space-y-4 py-4">
+            <div className="space-y-4 py-4 overflow-y-auto flex-1 pr-2">
               <div className="grid grid-cols-2 gap-4">
                 <div className="col-span-2">
                   <Label htmlFor="title">Titel</Label>
                   <Input
                     id="title"
                     value={editingArticle.title}
-                    onChange={(e) => setEditingArticle({ ...editingArticle, title: e.target.value })}
+                    onChange={(e) => handleArticleFieldChange('title', e.target.value)}
                   />
                 </div>
 
@@ -623,7 +672,7 @@ const EditorialCalendar = () => {
                   <Input
                     id="description"
                     value={editingArticle.description}
-                    onChange={(e) => setEditingArticle({ ...editingArticle, description: e.target.value })}
+                    onChange={(e) => handleArticleFieldChange('description', e.target.value)}
                   />
                 </div>
 
@@ -633,7 +682,7 @@ const EditorialCalendar = () => {
                     id="publishDate"
                     type="date"
                     value={editingArticle.publishDate || ''}
-                    onChange={(e) => setEditingArticle({ ...editingArticle, publishDate: e.target.value })}
+                    onChange={(e) => handleArticleFieldChange('publishDate', e.target.value)}
                   />
                 </div>
 
@@ -643,7 +692,7 @@ const EditorialCalendar = () => {
                     id="publishTime"
                     type="time"
                     value={editingArticle.publishTime || ''}
-                    onChange={(e) => setEditingArticle({ ...editingArticle, publishTime: e.target.value })}
+                    onChange={(e) => handleArticleFieldChange('publishTime', e.target.value)}
                   />
                 </div>
 
@@ -652,8 +701,10 @@ const EditorialCalendar = () => {
                   <Input
                     id="lastUpdated"
                     value={editingArticle.lastUpdated}
-                    onChange={(e) => setEditingArticle({ ...editingArticle, lastUpdated: e.target.value })}
+                    disabled
+                    className="bg-muted"
                   />
+                  <p className="text-xs text-muted-foreground mt-1">Wird automatisch aktualisiert</p>
                 </div>
 
                 <div>
@@ -661,7 +712,7 @@ const EditorialCalendar = () => {
                   <Input
                     id="readTime"
                     value={editingArticle.readTime}
-                    onChange={(e) => setEditingArticle({ ...editingArticle, readTime: e.target.value })}
+                    onChange={(e) => handleArticleFieldChange('readTime', e.target.value)}
                   />
                 </div>
 
@@ -670,7 +721,7 @@ const EditorialCalendar = () => {
                   <Input
                     id="badge"
                     value={editingArticle.badge}
-                    onChange={(e) => setEditingArticle({ ...editingArticle, badge: e.target.value })}
+                    onChange={(e) => handleArticleFieldChange('badge', e.target.value)}
                   />
                 </div>
 
@@ -679,7 +730,7 @@ const EditorialCalendar = () => {
                   <Input
                     id="icon"
                     value={editingArticle.icon}
-                    onChange={(e) => setEditingArticle({ ...editingArticle, icon: e.target.value })}
+                    onChange={(e) => handleArticleFieldChange('icon', e.target.value)}
                   />
                 </div>
 
@@ -688,7 +739,7 @@ const EditorialCalendar = () => {
                   <Input
                     id="link"
                     value={editingArticle.link}
-                    onChange={(e) => setEditingArticle({ ...editingArticle, link: e.target.value })}
+                    onChange={(e) => handleArticleFieldChange('link', e.target.value)}
                   />
                 </div>
 
@@ -696,7 +747,7 @@ const EditorialCalendar = () => {
                   <Checkbox
                     id="isPublished"
                     checked={editingArticle.isPublished}
-                    onCheckedChange={(checked) => setEditingArticle({ ...editingArticle, isPublished: checked === true })}
+                    onCheckedChange={(checked) => handleArticleFieldChange('isPublished', checked === true)}
                   />
                   <div className="grid gap-1.5 leading-none">
                     <Label

@@ -227,7 +227,7 @@ const Wissen = () => {
         </section>
 
         {/* Knowledge Topics Grid */}
-        <section className="py-16 bg-background">
+        <section className="pt-8 pb-16 bg-background">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
               <h2 className="text-3xl font-bold mb-8">Aktuelle Themen</h2>
