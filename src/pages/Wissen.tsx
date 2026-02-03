@@ -25,15 +25,6 @@ const Wissen = () => {
   // ============================================================================
   const staticKnowledgeTopics = [
     {
-      title: "Warum Sie 2026 unbedingt mit Microsoft 365 Copilot in Teams starten sollten",
-      description: "Aktuelle Zahlen Januar 2026: 15 Mio. Copilot-Seats, 160% Wachstum, bis zu 408% ROI. Mit Satya Nadella-Zitaten und konkreten Handlungsempfehlungen.",
-      link: "/wissen/teams-mit-copilot-starten-2026",
-      badge: "Neu",
-      icon: "🚀",
-      readTime: "12 Minuten",
-      lastUpdated: "03. Feb. 2026"
-    },
-    {
       title: "Copilot ROI: Was CEOs und Vorstände aus dem DACH-Raum berichten",
       description: "Wörtliche Zitate von Führungskräften bei Bayer, Siemens, Schaeffler, thyssenkrupp und der Schweizerischen Post über ihre Erfahrungen mit Microsoft Copilot.",
       link: "/wissen/copilot-roi-erfolgsgeschichten",
