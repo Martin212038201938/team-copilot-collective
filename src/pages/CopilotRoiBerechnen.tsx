@@ -242,10 +242,10 @@ const CopilotRoiBerechnen = () => {
                   <table className="w-full text-sm">
                     <tbody>
                       <tr className="border-b"><td className="py-2">Lizenzen (500 × €30 × 12)</td><td className="text-right">€180.000</td></tr>
-                      <tr className="border-b"><td className="py-2">Training (500 × €800)</td><td className="text-right">€400.000</td></tr>
+                      <tr className="border-b"><td className="py-2">Training (500 × €1.000)</td><td className="text-right">€500.000</td></tr>
                       <tr className="border-b"><td className="py-2">IT-Setup</td><td className="text-right">€30.000</td></tr>
                       <tr className="border-b"><td className="py-2">Change Management</td><td className="text-right">€25.000</td></tr>
-                      <tr className="font-bold"><td className="py-2">Gesamt</td><td className="text-right text-red-600">€635.000</td></tr>
+                      <tr className="font-bold"><td className="py-2">Gesamt</td><td className="text-right text-red-600">€735.000</td></tr>
                     </tbody>
                   </table>
                 </div>
@@ -253,17 +253,20 @@ const CopilotRoiBerechnen = () => {
                   <h4 className="font-bold text-green-600 mb-4">Nutzen (Jahr 1)</h4>
                   <table className="w-full text-sm">
                     <tbody>
-                      <tr className="border-b"><td className="py-2">Zeitersparnis (30% × Arbeitszeit)</td><td className="text-right">€14.400.000</td></tr>
+                      <tr className="border-b"><td className="py-2">Zeitersparnis (9h/Monat ≈ 5,2%)</td><td className="text-right">€2.700.000</td></tr>
                       <tr className="border-b"><td className="py-2">Fehlerreduktion</td><td className="text-right">€100.000</td></tr>
                       <tr className="border-b"><td className="py-2">Schnelleres Onboarding</td><td className="text-right">€50.000</td></tr>
-                      <tr className="font-bold"><td className="py-2">Gesamt</td><td className="text-right text-green-600">€14.550.000</td></tr>
+                      <tr className="font-bold"><td className="py-2">Gesamt</td><td className="text-right text-green-600">€2.850.000</td></tr>
                     </tbody>
                   </table>
                 </div>
               </div>
-              <div className="mt-8 p-6 bg-green-50 dark:bg-green-950/20 rounded-xl text-center">
+              <p className="text-xs text-muted-foreground mt-4 text-center">
+                Annahme: 40h/Woche Vollzeit, Durchschnittsstundensatz €50, Zeitersparnis laut Forrester TEI Study
+              </p>
+              <div className="mt-6 p-6 bg-green-50 dark:bg-green-950/20 rounded-xl text-center">
                 <p className="text-sm text-muted-foreground mb-2">Berechneter ROI</p>
-                <p className="text-4xl font-bold text-green-600">2.191%</p>
+                <p className="text-4xl font-bold text-green-600">288%</p>
               </div>
             </CardContent>
           </Card>
@@ -282,7 +285,7 @@ const CopilotRoiBerechnen = () => {
                 <div className="text-center">
                   <p className="text-5xl font-bold text-blue-600 mb-2">9h</p>
                   <p className="text-lg font-semibold mb-1">Zeitersparnis pro Monat</p>
-                  <p className="text-sm text-muted-foreground">pro aktivem Nutzer</p>
+                  <p className="text-sm text-muted-foreground">pro aktivem Nutzer (≈ 5,2% bei 40h/Woche)</p>
                   <p className="text-xs text-muted-foreground mt-3 border-t pt-3">Quelle: Forrester TEI Study</p>
                 </div>
               </CardContent>
@@ -366,11 +369,13 @@ const CopilotRoiBerechnen = () => {
                 <CardTitle className="text-base">Praxisbeispiel: 300 Knowledge Worker (Forrester-Daten)</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-sm mb-4">M365 Copilot: €30/Monat × 300 = <strong>€108.000/Jahr</strong></p>
-                <p className="text-sm mb-2"><strong>Zeitersparnis:</strong> 9h/Monat × 12 × 300 = 32.400h/Jahr</p>
+                <p className="text-sm mb-2"><strong>Kosten Jahr 1:</strong></p>
+                <p className="text-sm mb-1">• Lizenzen: €30/Monat × 300 × 12 = €108.000</p>
+                <p className="text-sm mb-4">• Training: €1.000 × 300 = €300.000 → <strong>Gesamt: €408.000</strong></p>
+                <p className="text-sm mb-2"><strong>Zeitersparnis:</strong> 9h/Monat (≈ 5,2%) × 12 × 300 = 32.400h/Jahr</p>
                 <p className="text-sm mb-4">Bei €50/h = <strong>€1.620.000 Einsparung</strong></p>
                 <div className="p-3 bg-blue-50 dark:bg-blue-950/30 rounded-lg">
-                  <p className="font-bold text-blue-700 dark:text-blue-400">ROI: 1.400%</p>
+                  <p className="font-bold text-blue-700 dark:text-blue-400">ROI Jahr 1: 297%</p>
                 </div>
               </CardContent>
             </Card>
