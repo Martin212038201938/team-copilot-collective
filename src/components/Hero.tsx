@@ -24,7 +24,7 @@ const Hero = () => {
           <div className="max-w-4xl mx-auto">
             <h1 className="text-5xl lg:text-7xl font-semibold tracking-tight leading-[1.1] animate-slide-up">
               <span className="text-foreground">
-                Spezialisiert auf
+                Fokussiert auf
               </span>
               <br />
               <span className="text-primary">
