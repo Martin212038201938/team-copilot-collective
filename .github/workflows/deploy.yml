@@ -53,20 +53,20 @@ jobs:
 
 
       - name: Notify Bing IndexNow about updated pages
-              run: |
-                        echo "Starting IndexNow notification..."
-                                  SITEMAP_URL="https://copilotenschule.de/sitemap.xml"
-                                            INDEXNOW_KEY="695afc50b8ee44729593fd861c4e96e9"
-                                                      sleep 10
-                                                                echo "Fetching sitemap from $SITEMAP_URL"
-                                                                          URLS=$(curl -s "$SITEMAP_URL" | grep -oP '(?<=<loc>)[^<]+' | head -100)
-                                                                                    URL_COUNT=$(echo "$URLS" | wc -l)
-                                                                                              echo "Found $URL_COUNT URLs in sitemap"
-                                                                                                        SUCCESS_COUNT=0
-                                                                                                                  for URL in $URLS; do
-                                                                                                                              RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" "https://api.indexnow.org/indexnow?url=$URL&key=$INDEXNOW_KEY")
-                                                                                                                                          if [ "$RESPONSE" = "200" ] || [ "$RESPONSE" = "202" ]; then
-                                                                                                                                                        SUCCESS_COUNT=$((SUCCESS_COUNT + 1))
-                                                                                                                                                                    fi
-                                                                                                                                                                              done
-                                                                                                                                                                                        echo "IndexNow completed: $SUCCESS_COUNT/$URL_COUNT URLs submitted"
+        run: |
+          echo "Starting IndexNow notification..."
+          SITEMAP_URL="https://copilotenschule.de/sitemap.xml"
+          INDEXNOW_KEY="695afc50b8ee44729593fd861c4e96e9"
+          sleep 10
+          echo "Fetching sitemap from $SITEMAP_URL"
+          URLS=$(curl -s "$SITEMAP_URL" | grep -oP '(?<=<loc>)[^<]+' | head -100)
+          URL_COUNT=$(echo "$URLS" | wc -l)
+          echo "Found $URL_COUNT URLs in sitemap"
+          SUCCESS_COUNT=0
+          for URL in $URLS; do
+            RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" "https://api.indexnow.org/indexnow?url=$URL&key=$INDEXNOW_KEY")
+            if [ "$RESPONSE" = "200" ] || [ "$RESPONSE" = "202" ]; then
+              SUCCESS_COUNT=$((SUCCESS_COUNT + 1))
+            fi
+          done
+          echo "IndexNow completed: $SUCCESS_COUNT/$URL_COUNT URLs submitted"

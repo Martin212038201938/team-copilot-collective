@@ -5,8 +5,6 @@
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <!-- Automatisch generiert am 2026-02-03 -->
   <!-- 40 URLs insgesamt -->
-
-  <!-- Hauptseiten -->
   <url>
     <loc>https://copilotenschule.de/</loc>
     <lastmod>2026-02-03</lastmod>
@@ -49,8 +47,6 @@
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
-
-  <!-- Produktseiten -->
   <url>
     <loc>https://copilotenschule.de/github-copilot</loc>
     <lastmod>2026-02-03</lastmod>
@@ -87,8 +83,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
-
-  <!-- Wissensartikel -->
   <url>
     <loc>https://copilotenschule.de/wissen/copilot-roi-berechnen</loc>
     <lastmod>2026-02-03</lastmod>
@@ -155,8 +149,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-
-  <!-- Trainings -->
   <url>
     <loc>https://copilotenschule.de/trainings/copilot-grundlagen-prompt-design</loc>
     <lastmod>2026-02-03</lastmod>
@@ -247,8 +239,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-
-  <!-- Trainer -->
   <url>
     <loc>https://copilotenschule.de/trainer/martin-lang</loc>
     <lastmod>2026-02-03</lastmod>
