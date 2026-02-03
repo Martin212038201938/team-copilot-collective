@@ -1,7 +1,11 @@
 # robots.txt für copilotenschule.de
-# Generiert am 2025-02-02
+# Aktualisiert am 2026-02-03
+# Optimiert für Suchmaschinen UND KI-Crawler (LLMs)
 
-# Allgemeine Crawler erlauben
+# ============================================
+# SUCHMASCHINEN-CRAWLER
+# ============================================
+
 User-agent: Googlebot
 Allow: /
 Disallow: /admin
@@ -16,6 +20,77 @@ Disallow: /api/
 Disallow: /*?*
 Disallow: /*#*
 
+User-agent: YandexBot
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+User-agent: DuckDuckBot
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+User-agent: Baiduspider
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+# ============================================
+# KI/LLM-CRAWLER (für Referenzierung & Zitierung)
+# ============================================
+
+# OpenAI GPT
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Google Gemini/Bard
+User-agent: Google-Extended
+Allow: /
+
+# Anthropic Claude
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+# Cohere
+User-agent: cohere-ai
+Allow: /
+
+# Meta AI
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+# Common Crawl (Trainingsdaten für viele LLMs)
+User-agent: CCBot
+Allow: /
+
+# Microsoft Copilot
+User-agent: Copilot
+Allow: /
+
+# You.com
+User-agent: YouBot
+Allow: /
+
+# ============================================
+# SOCIAL MEDIA CRAWLER
+# ============================================
+
 User-agent: Twitterbot
 Allow: /
 
@@ -25,19 +100,30 @@ Allow: /
 User-agent: LinkedInBot
 Allow: /
 
-# Alle anderen Bots
-User-agent: *
+User-agent: Slackbot
 Allow: /
 
-# Veraltete und interne Pfade sperren
+User-agent: WhatsApp
+Allow: /
+
+User-agent: TelegramBot
+Allow: /
+
+# ============================================
+# ALLE ANDEREN BOTS
+# ============================================
+
+User-agent: *
+Allow: /
 Disallow: /admin
 Disallow: /api/
 Disallow: /_next/
 Disallow: /static/chunks/
-
-# Query-Parameter und Fragment-Routen blockieren (keine doppelten Inhalte)
 Disallow: /*?*
 Disallow: /*#*
 
-# Sitemap-Referenz
+# ============================================
+# SITEMAP-REFERENZ
+# ============================================
+
 Sitemap: https://copilotenschule.de/sitemap.xml
