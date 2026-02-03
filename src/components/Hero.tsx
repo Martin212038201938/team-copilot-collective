@@ -24,11 +24,15 @@ const Hero = () => {
           <div className="max-w-4xl mx-auto">
             <h1 className="text-5xl lg:text-7xl font-semibold tracking-tight leading-[1.1] animate-slide-up">
               <span className="text-foreground">
-                Spezialisiert auf Trainings für den
+                Spezialisiert auf
               </span>
               <br />
               <span className="text-primary">
-                Microsoft Copiloten
+                Microsoft Copilot
+              </span>
+              <br />
+              <span className="text-foreground">
+                Trainings
               </span>
             </h1>
             <p className="mt-6 text-xl lg:text-2xl text-muted-foreground font-normal animate-slide-up-delayed">
