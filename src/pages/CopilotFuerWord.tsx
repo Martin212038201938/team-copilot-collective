@@ -4,6 +4,7 @@ import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 import { ExternalLink, Zap, Linkedin, Twitter } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { TrustBadge } from "@/components/TrustBadge";
 
 const SLUG = "wissen/copilot-fuer-word";
 const PAGE_TITLE = "Microsoft Copilot für Word";
@@ -1407,51 +1408,7 @@ Format: Markdown mit klarer Hierarchie, Emojis für Kategorien."`}</code></pre>
         </section>
 
         {/* Autor Bio */}
-        <section className="my-12">
-          <Card className="border-l-4 border-l-primary">
-            <CardContent className="pt-6">
-              <div className="flex flex-col md:flex-row gap-6">
-                <div className="flex-shrink-0">
-                  <img
-                    src={author?.image}
-                    alt={author?.name}
-                    className="w-32 h-32 rounded-full object-cover border-4 border-primary/20"
-                  />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-xl font-bold mb-2">Über den Autor</h3>
-                  <div className="text-lg font-semibold text-primary mb-1">{author?.name}</div>
-                  <div className="text-sm text-muted-foreground mb-3">{author?.role}</div>
-                  <p className="text-sm leading-relaxed mb-4">{author?.bio}</p>
-                  <div className="mb-3">
-                    <div className="text-sm font-semibold mb-2">Expertise:</div>
-                    <div className="flex flex-wrap gap-2">
-                      {author?.expertise?.map((exp, idx) => (
-                        <span key={idx} className="px-3 py-1 bg-primary/10 text-primary rounded-full text-xs font-medium">
-                          {exp}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="flex gap-3">
-                    {author?.social?.linkedin && (
-                      <a href={author.social.linkedin} target="_blank" rel="noopener noreferrer"
-                         className="inline-flex items-center gap-2 text-sm text-primary hover:underline">
-                        <Linkedin className="w-4 h-4" /> LinkedIn
-                      </a>
-                    )}
-                    {author?.social?.twitter && (
-                      <a href={author.social.twitter} target="_blank" rel="noopener noreferrer"
-                         className="inline-flex items-center gap-2 text-sm text-primary hover:underline">
-                        <Twitter className="w-4 h-4" /> Twitter
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </section>
+        <TrustBadge />
       </ContentLayout>
     </>
   );

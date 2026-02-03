@@ -4,6 +4,7 @@ import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 import { Zap, FileText, Table2, Presentation, Mail, Users, Lightbulb, AlertTriangle, CheckCircle2, ExternalLink, Linkedin, Twitter } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { TrustBadge } from "@/components/TrustBadge";
 
 const SLUG = "wissen/copilot-tipps-tricks-produktivitaet";
 const PAGE_TITLE = "22 Microsoft Copilot Tipps & Tricks";
@@ -709,54 +710,7 @@ const CopilotTippsTricks = () => {
           </div>
         </section>
 
-        {/* Autor Bio */}
-        {author && (
-          <section className="mt-16">
-            <Card className="border-t-4 border-t-orange-500">
-              <CardContent className="pt-6">
-                <div className="flex flex-col md:flex-row gap-6">
-                  <div className="flex-shrink-0">
-                    <img
-                      src={author.image}
-                      alt={author.name}
-                      className="w-24 h-24 rounded-full object-cover border-4 border-orange-500/30"
-                    />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-xl font-bold mb-1">Über den Autor</h3>
-                    <div className="text-lg font-semibold text-orange-600 mb-1">{author.name}</div>
-                    <div className="text-sm text-muted-foreground mb-3">{author.role}</div>
-                    <p className="text-sm leading-relaxed mb-4">{author.bio}</p>
-                    <div className="mb-3">
-                      <div className="text-sm font-semibold mb-2">Expertise:</div>
-                      <div className="flex flex-wrap gap-2">
-                        {author.expertise.map((exp, idx) => (
-                          <span key={idx} className="px-3 py-1 bg-orange-500/10 text-orange-700 dark:text-orange-400 border border-orange-500/30 rounded-full text-xs font-medium">
-                            {exp}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                    <div className="flex gap-4">
-                      {author.linkedin && (
-                        <a href={author.linkedin} target="_blank" rel="noopener noreferrer"
-                           className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-orange-600 transition-colors">
-                          <Linkedin className="w-4 h-4" /> LinkedIn
-                        </a>
-                      )}
-                      {author.twitter && (
-                        <a href={author.twitter} target="_blank" rel="noopener noreferrer"
-                           className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-orange-600 transition-colors">
-                          <Twitter className="w-4 h-4" /> Twitter
-                        </a>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </section>
-        )}
+        <TrustBadge />
 
         {/* CTA */}
         <div className="bg-gradient-to-r from-orange-500/10 to-amber-500/10 rounded-xl p-8 text-center mt-12 border-2 border-orange-500/20">

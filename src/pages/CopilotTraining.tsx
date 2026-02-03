@@ -1,6 +1,7 @@
 import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { TrustBadge } from "@/components/TrustBadge";
 import {
   Zap, AlertTriangle, Users, GraduationCap, Target, TrendingUp,
   Clock, CheckCircle2, XCircle, Brain, Lightbulb, ArrowRight,
@@ -1300,62 +1301,7 @@ const CopilotTraining = () => {
         </section>
 
         {/* Autor Bio */}
-        <section className="my-12">
-          <Card className="border-l-4 border-l-primary">
-            <CardContent className="pt-6">
-              <div className="flex flex-col md:flex-row gap-6">
-                <div className="flex-shrink-0">
-                  <img
-                    src={martinLang.image}
-                    alt={martinLang.name}
-                    className="w-32 h-32 rounded-full object-cover border-4 border-primary/20"
-                  />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-xl font-bold mb-2">Über den Autor</h3>
-                  <div className="text-lg font-semibold text-primary mb-1">{martinLang.name}</div>
-                  <div className="text-sm text-muted-foreground mb-3">{martinLang.role}</div>
-                  <p className="text-sm leading-relaxed mb-4">{martinLang.bio}</p>
-                  <div className="mb-3">
-                    <div className="text-sm font-semibold mb-2">Expertise:</div>
-                    <div className="flex flex-wrap gap-2">
-                      {martinLang.expertise.map((exp, idx) => (
-                        <span
-                          key={idx}
-                          className="px-3 py-1 bg-primary/10 text-primary rounded-full text-xs font-medium"
-                        >
-                          {exp}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="flex gap-3">
-                    {martinLang.linkedin && (
-                      <a
-                        href={martinLang.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-sm text-primary hover:underline"
-                      >
-                        <Linkedin className="w-4 h-4" />
-                        LinkedIn
-                      </a>
-                    )}
-                    {martinLang.email && (
-                      <a
-                        href={`mailto:${martinLang.email}`}
-                        className="inline-flex items-center gap-2 text-sm text-primary hover:underline"
-                      >
-                        <Mail className="w-4 h-4" />
-                        Kontakt
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </section>
+        <TrustBadge />
 
         {/* CTA */}
         <div className="bg-gradient-to-r from-orange-500/10 to-amber-500/10 rounded-xl p-8 text-center my-12 border-2 border-orange-500/20">

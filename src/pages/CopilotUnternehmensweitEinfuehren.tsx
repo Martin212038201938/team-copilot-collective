@@ -1,5 +1,6 @@
 import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
+import { TrustBadge } from "@/components/TrustBadge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Zap, AlertTriangle, Shield, Database, Users, TrendingUp,
@@ -981,23 +982,7 @@ const CopilotUnternehmensweitEinfuehren = () => {
           </div>
         </section>
 
-        {/* Autor-Bio */}
-        <section className="my-12">
-          <Card className="border-l-4 border-l-primary">
-            <CardContent className="pt-6">
-              <div className="flex flex-col md:flex-row gap-6">
-                <div className="flex-shrink-0">
-                  <img
-                    src={martinLang.image}
-                    alt={martinLang.name}
-                    className="w-32 h-32 rounded-full object-cover border-4 border-primary/20"
-                  />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-xl font-bold mb-2">Über den Autor</h3>
-                  <div className="text-lg font-semibold text-primary mb-1">{martinLang.name}</div>
-                  <div className="text-sm text-muted-foreground mb-3">{martinLang.role}</div>
-                  <p className="text-sm leading-relaxed mb-4">{martinLang.bio}</p>
+        <TrustBadge />
                   <div className="mb-3">
                     <div className="text-sm font-semibold mb-2">Expertise:</div>
                     <div className="flex flex-wrap gap-2">

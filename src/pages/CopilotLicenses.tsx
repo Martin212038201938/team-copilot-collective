@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Check, X, Info, Linkedin, Mail, ExternalLink, Zap } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
+import { TrustBadge } from "@/components/TrustBadge";
 
 const SLUG = "microsoft-copilot-lizenzen";
 const PAGE_TITLE = "Microsoft Copilot Lizenzen";
@@ -666,63 +667,7 @@ const CopilotLicenses = () => {
           </div>
         </section>
 
-        {/* Author Bio für E-E-A-T */}
-        <section className="my-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-slate-500 mb-8">Über den Autor</h2>
-          <Card className="border-t-4 border-t-slate-500">
-            <CardContent className="pt-6">
-              <div className="flex flex-col md:flex-row gap-6">
-                <div className="flex-shrink-0">
-                  <img
-                    src={martinLang.image}
-                    alt={martinLang.name}
-                    className="w-32 h-32 rounded-full object-cover border-4 border-slate-500/20"
-                  />
-                </div>
-                <div className="flex-1">
-                  <div className="text-lg font-semibold text-slate-700 dark:text-slate-300 mb-1">{martinLang.name}</div>
-                  <div className="text-sm text-muted-foreground mb-3">{martinLang.role}</div>
-                  <p className="text-sm leading-relaxed mb-4">{martinLang.bio}</p>
-                  <div className="mb-3">
-                    <div className="text-sm font-semibold mb-2">Expertise-Tags:</div>
-                    <div className="flex flex-wrap gap-2">
-                      {martinLang.expertise.map((exp, idx) => (
-                        <span
-                          key={idx}
-                          className="px-3 py-1 bg-slate-500/10 text-slate-700 dark:text-slate-300 rounded-full text-xs font-medium border border-slate-500/20"
-                        >
-                          {exp}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="flex gap-3">
-                    {martinLang.linkedin && (
-                      <a
-                        href={martinLang.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition-colors"
-                      >
-                        <Linkedin className="w-4 h-4" />
-                        LinkedIn
-                      </a>
-                    )}
-                    {martinLang.email && (
-                      <a
-                        href={`mailto:${martinLang.email}`}
-                        className="inline-flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition-colors"
-                      >
-                        <Mail className="w-4 h-4" />
-                        Kontakt
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </section>
+        <TrustBadge />
 
         <div className="bg-gradient-to-r from-primary/10 to-accent/10 rounded-xl p-8 text-center my-12">
           <h3 className="text-2xl font-bold mb-4">Benötigen Sie Beratung zur Lizenzierung?</h3>
