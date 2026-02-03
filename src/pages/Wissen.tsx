@@ -25,6 +25,15 @@ const Wissen = () => {
   // ============================================================================
   const staticKnowledgeTopics = [
     {
+      title: "Copilot ROI: Was CEOs und Vorstände aus dem DACH-Raum berichten",
+      description: "Wörtliche Zitate von Führungskräften bei Bayer, Siemens, Schaeffler, thyssenkrupp und der Schweizerischen Post über ihre Erfahrungen mit Microsoft Copilot.",
+      link: "/wissen/copilot-roi-erfolgsgeschichten",
+      badge: "Neu",
+      icon: "💬",
+      readTime: "12 Minuten",
+      lastUpdated: "03. Feb. 2026"
+    },
+    {
       title: "Copilot Launch-Kampagne: So bringen Sie Ihr Unternehmen zum Fliegen",
       description: "Warum eine Copilot-Einführung anders ist als SAP oder Salesforce – und wie Sie mit der richtigen Launch-Kampagne nachhaltige Verhaltensänderung erreichen. Mit 15 konkreten Ideen.",
       link: "/wissen/copilot-launch-kampagne",
