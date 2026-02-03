@@ -1,8 +1,9 @@
 import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Zap, Calculator, TrendingUp, Target, BarChart3, CheckCircle2, AlertTriangle, Download, ExternalLink } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
-import { ExternalLink } from "lucide-react";
 
 const SLUG = "wissen/copilot-roi-berechnen";
 const PAGE_TITLE = "Copilot ROI berechnen";
@@ -10,65 +11,29 @@ const PAGE_TITLE = "Copilot ROI berechnen";
 const CopilotRoiBerechnen = () => {
   const author = getAuthor("martin-lang");
 
-  // Schema IDs automatisch generieren
   const ids = generateSchemaIds(SLUG, 'wissen');
   const pageUrl = `https://copilotenschule.de/${SLUG}`;
   const breadcrumbItems = generateWissenBreadcrumbItems(PAGE_TITLE, pageUrl);
 
   const tableOfContents = [
-    { id: "was-kostet-microsoft-copilot-", title: "Was kostet Microsoft Copilot?", level: 2 },
-    { id: "lizenzkosten-im-berblick", title: "Lizenzkosten im Überblick", level: 3 },
-    { id: "versteckte-kosten-einkalkulieren", title: "Versteckte Kosten einkalkulieren", level: 3 },
-    { id: "roi-berechnung-die-formel", title: "ROI-Berechnung: Die Formel", level: 2 },
-    { id: "grundformel", title: "Grundformel", level: 3 },
-    { id: "beispielrechnung-f-r-500-mitarbeiter", title: "Beispielrechnung für 500 Mitarbeiter", level: 3 },
-    { id: "messbare-produktivit-tsgewinne", title: "Messbare Produktivitätsgewinne", level: 2 },
-    { id: "microsoft-studien-belegen-", title: "Microsoft-Studien belegen:", level: 3 },
-    { id: "praxisbeispiel-softwareentwicklung", title: "Praxisbeispiel: Softwareentwicklung", level: 3 },
-    { id: "praxisbeispiel-knowledge-worker", title: "Praxisbeispiel: Knowledge Worker", level: 3 },
-    { id: "kpis-zur-erfolgsmessung", title: "KPIs zur Erfolgsmessung", level: 2 },
-    { id: "quantitative-metriken", title: "Quantitative Metriken", level: 3 },
-    { id: "qualitative-metriken", title: "Qualitative Metriken", level: 3 },
-    { id: "excel-vorlage-f-r-roi-berechnung", title: "Excel-Vorlage für ROI-Berechnung", level: 2 },
-    { id: "aufbau-der-vorlage", title: "Aufbau der Vorlage", level: 3 },
-    { id: "business-case-template", title: "Business Case Template", level: 2 },
-    { id: "executive-summary-1-seite-", title: "Executive Summary (1 Seite)", level: 3 },
-    { id: "detailplanung-5-10-seiten-", title: "Detailplanung (5-10 Seiten)", level: 3 },
-    { id: "verschiedene-roi-szenarien", title: "Verschiedene ROI-Szenarien", level: 2 },
-    { id: "konservatives-szenario", title: "Konservatives Szenario", level: 3 },
-    { id: "realistisches-szenario", title: "Realistisches Szenario", level: 3 },
-    { id: "optimistisches-szenario", title: "Optimistisches Szenario", level: 3 },
-    { id: "branchenspezifische-roi-beispiele", title: "Branchenspezifische ROI-Beispiele", level: 2 },
-    { id: "software-entwicklung", title: "Software-Entwicklung", level: 3 },
-    { id: "consulting-professional-services", title: "Consulting & Professional Services", level: 3 },
-    { id: "finance-banking", title: "Finance & Banking", level: 3 },
-    { id: "marketing-sales", title: "Marketing & Sales", level: 3 },
-    { id: "kritische-erfolgsfaktoren", title: "Kritische Erfolgsfaktoren", level: 2 },
-    { id: "1-klare-zielsetzung", title: "1. Klare Zielsetzung", level: 3 },
-    { id: "2-realistische-erwartungen", title: "2. Realistische Erwartungen", level: 3 },
-    { id: "3-change-management", title: "3. Change Management", level: 3 },
-    { id: "4-messung-iteration", title: "4. Messung & Iteration", level: 3 },
-    { id: "h-ufige-fehler-bei-der-roi-berechnung", title: "Häufige Fehler bei der ROI-Berechnung", level: 2 },
-    { id: "1-nur-lizenzkosten-ber-cksichtigen", title: "1. Nur Lizenzkosten berücksichtigen", level: 3 },
-    { id: "2-unrealistische-produktivit-tsgewinne", title: "2. Unrealistische Produktivitätsgewinne", level: 3 },
-    { id: "3-keine-baseline-messung", title: "3. Keine Baseline-Messung", level: 3 },
-    { id: "4-adoption-ignorieren", title: "4. Adoption ignorieren", level: 3 },
-    { id: "roi-steigern-best-practices", title: "ROI steigern: Best Practices", level: 2 },
-    { id: "quick-wins-identifizieren", title: "Quick Wins identifizieren", level: 3 },
-    { id: "power-user-f-rdern", title: "Power User fördern", level: 3 },
-    { id: "use-cases-dokumentieren", title: "Use Cases dokumentieren", level: 3 },
-    { id: "kontinuierliche-optimierung", title: "Kontinuierliche Optimierung", level: 3 },
-    { id: "zusammenfassung", title: "Zusammenfassung", level: 2 },
-    { id: "checkliste-f-r-ihren-business-case", title: "Checkliste für Ihren Business Case", level: 2 },
-    { id: "download-roi-rechner-excel", title: "Download: ROI-Rechner Excel", level: 2 },
+    { id: "was-kostet-copilot", title: "Was kostet Microsoft Copilot?", level: 2 },
+    { id: "roi-formel", title: "ROI-Berechnung: Die Formel", level: 2 },
+    { id: "produktivitaetsgewinne", title: "Messbare Produktivitätsgewinne", level: 2 },
+    { id: "kpis", title: "KPIs zur Erfolgsmessung", level: 2 },
+    { id: "szenarien", title: "Verschiedene ROI-Szenarien", level: 2 },
+    { id: "branchen-roi", title: "Branchenspezifische ROI-Beispiele", level: 2 },
+    { id: "erfolgsfaktoren", title: "Kritische Erfolgsfaktoren", level: 2 },
+    { id: "fehler", title: "Häufige Fehler bei der ROI-Berechnung", level: 2 },
+    { id: "best-practices", title: "ROI steigern: Best Practices", level: 2 },
+    { id: "download", title: "Download: ROI-Rechner Excel", level: 2 },
+    { id: "faq", title: "Häufig gestellte Fragen", level: 2 },
     { id: "quellen", title: "Quellen und Links", level: 2 }
   ];
 
-  // FAQ-Daten für Schema und Anzeige (kundenorientierte Fragen)
   const faqs = [
     {
       name: "Wie überzeuge ich das Management, in Microsoft Copilot zu investieren?",
-      answer: "Mit einem fundierten Business Case: Berechnen Sie konkrete Zeiteinsparungen pro Mitarbeiter, multiplizieren Sie mit Stundensätzen und stellen Sie diese den Lizenzkosten (30 USD/Monat) gegenüber. Die Copilotenschule bietet ROI-Rechner und Business-Case-Templates, die überzeugende Argumentationen für das Management liefern."
+      answer: "Mit einem fundierten Business Case: Berechnen Sie konkrete Zeiteinsparungen pro Mitarbeiter, multiplizieren Sie mit Stundensätzen und stellen Sie diese den Lizenzkosten (30 EUR/Monat) gegenüber. Die Copilotenschule bietet ROI-Rechner und Business-Case-Templates, die überzeugende Argumentationen für das Management liefern."
     },
     {
       name: "Wie berechne ich den ROI von Microsoft Copilot für unser Unternehmen realistisch?",
@@ -84,7 +49,6 @@ const CopilotRoiBerechnen = () => {
     }
   ];
 
-  // Kombiniertes Schema mit @graph (Article, FAQ, Breadcrumb)
   const schema = {
     "@context": "https://schema.org",
     "@graph": [
@@ -98,7 +62,7 @@ const CopilotRoiBerechnen = () => {
           "@id": "https://copilotenschule.de/#organization"
         },
         "datePublished": "2025-11-07",
-        "dateModified": "2025-11-07",
+        "dateModified": "2026-02-03",
         "keywords": ["Copilot ROI","Microsoft Copilot ROI berechnen","Copilot Business Case","Copilot Kosten Nutzen","Return on Investment Copilot","Copilot Produktivitätssteigerung"],
         "articleSection": "Business",
         "mainEntityOfPage": {
@@ -140,473 +104,806 @@ const CopilotRoiBerechnen = () => {
         canonicalUrl="https://copilotenschule.de/wissen/copilot-roi-berechnen"
         schema={schema}
         publishedTime="2025-11-07"
-        modifiedTime="2025-11-07"
+        modifiedTime="2026-02-03"
       />
       <ContentLayout
         breadcrumbs={[
           { label: "Wissen", href: "/wissen" },
-          { label: "Copilot ROI berechnen: Lohnt sich die Investition?", href: "/wissen/copilot-roi-berechnen" }
+          { label: "Copilot ROI berechnen", href: "/wissen/copilot-roi-berechnen" }
         ]}
         title="Copilot ROI berechnen: Lohnt sich die Investition?"
         description="Konkrete Methoden zur ROI-Berechnung von Microsoft Copilot. Mit Excel-Vorlage, Praxisbeispielen und messbaren KPIs für Ihr Business Case."
         tableOfContents={tableOfContents}
-        author={author}
-        publishDate="2025-11-07"
+        lastUpdated="03. Februar 2026"
         readTime="12 Minuten"
       >
-        <section id="einleitung" className="mb-8">
-          <h1 className="text-3xl font-semibold tracking-tight mb-4">Einleitung</h1>
-          <p className="mb-4 text-gray-700 leading-relaxed">Die Frage nach dem Return on Investment (ROI) ist entscheidend für jede Copilot-Einführung. In diesem Artikel zeigen wir Ihnen, wie Sie den ROI konkret berechnen und Ihren Business Case aufbauen.</p>
-        </section>
+        {/* Schnellantwort-Card */}
+        <Card className="border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-amber-500/5">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Zap className="w-6 h-6 text-orange-600" />
+              Schnellantwort
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-base leading-relaxed">
+              Der ROI von Microsoft Copilot liegt typischerweise zwischen <strong>800% und 5.000%</strong>, abhängig von Branche und Nutzungsintensität.
+              Bei €30/Monat pro Lizenz und durchschnittlich 1-2 Stunden Zeitersparnis pro Woche amortisiert sich die Investition
+              meist innerhalb von <strong>3-6 Monaten</strong>. Entscheidend sind: realistische Erwartungen, professionelles Training
+              und konsequentes Change Management. Diese Seite liefert Ihnen alle Formeln, Szenarien und eine
+              <strong> kostenlose Excel-Vorlage</strong> für Ihren Business Case.
+            </p>
+          </CardContent>
+        </Card>
 
-        <section id="was-kostet-microsoft-copilot-" className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">Was kostet Microsoft Copilot?</h2>
-          <h3 className="text-xl font-semibold mb-3 mt-6">Lizenzkosten im Überblick</h3>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Microsoft 365 Copilot:</strong></p>
-          <ul className="list-disc list-inside space-y-2 mb-4">
-            <li>€30 pro Benutzer/Monat (zusätzlich zu Microsoft 365)</li>
-            <li>Mindestens 300 Lizenzen (für Unternehmen)</li>
-            <li>Keine Mindestanzahl für Frontline Worker</li>
-          </ul>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>GitHub Copilot:</strong></p>
-          <ul className="list-disc list-inside space-y-2 mb-4">
-            <li>Individual: $10/Monat</li>
-            <li>Business: $19/Monat pro Benutzer</li>
-            <li>Enterprise: $39/Monat pro Benutzer</li>
-          </ul>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Copilot Studio:</strong></p>
-          <ul className="list-disc list-inside space-y-2 mb-4">
-            <li>$200/Monat für 25.000 Nachrichten</li>
-            <li>Pay-as-you-go möglich</li>
-          </ul>
-          <h3 className="text-xl font-semibold mb-3 mt-6">Versteckte Kosten einkalkulieren</h3>
-          <p className="mb-4 text-gray-700 leading-relaxed">✓ <strong>Change Management</strong>: 10-15% der Gesamtkosten</p>
-          <p className="mb-4 text-gray-700 leading-relaxed">✓ <strong>Training & Schulung</strong>: €500-1.500 pro Mitarbeiter</p>
-          <p className="mb-4 text-gray-700 leading-relaxed">✓ <strong>IT-Setup & Integration</strong>: Einmalig €10.000-50.000</p>
-          <p className="mb-4 text-gray-700 leading-relaxed">✓ <strong>Interne Ressourcen</strong>: Project Management, Admins</p>
-        </section>
+        {/* Kosten */}
+        <section id="was-kostet-copilot">
+          <h2 id="was-kostet-copilot-heading" className="text-2xl md:text-3xl font-bold pb-3 border-b-4 border-blue-500 text-blue-700 dark:text-blue-400">
+            Was kostet Microsoft Copilot?
+          </h2>
 
-        <section id="roi-berechnung-die-formel" className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">ROI-Berechnung: Die Formel</h2>
-          <h3 className="text-xl font-semibold mb-3 mt-6">Grundformel</h3>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>ROI = (Nutzen - Kosten) / Kosten × 100%</code></pre>
+          <div className="grid md:grid-cols-3 gap-6">
+            <Card className="border-l-4 border-l-blue-500">
+              <CardHeader>
+                <CardTitle className="text-lg">Microsoft 365 Copilot</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-3xl font-bold text-blue-600 mb-2">€30</p>
+                <p className="text-sm text-muted-foreground mb-4">pro Benutzer/Monat</p>
+                <ul className="text-sm space-y-2">
+                  <li>• Zusätzlich zu M365 Lizenz</li>
+                  <li>• Min. 300 Lizenzen (Enterprise)</li>
+                  <li>• Keine Mindestanzahl für Frontline</li>
+                </ul>
+              </CardContent>
+            </Card>
+
+            <Card className="border-l-4 border-l-purple-500">
+              <CardHeader>
+                <CardTitle className="text-lg">GitHub Copilot</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-3xl font-bold text-purple-600 mb-2">$19</p>
+                <p className="text-sm text-muted-foreground mb-4">pro Benutzer/Monat (Business)</p>
+                <ul className="text-sm space-y-2">
+                  <li>• Individual: $10/Monat</li>
+                  <li>• Business: $19/Monat</li>
+                  <li>• Enterprise: $39/Monat</li>
+                </ul>
+              </CardContent>
+            </Card>
+
+            <Card className="border-l-4 border-l-green-500">
+              <CardHeader>
+                <CardTitle className="text-lg">Copilot Studio</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-3xl font-bold text-green-600 mb-2">$200</p>
+                <p className="text-sm text-muted-foreground mb-4">für 25.000 Nachrichten/Monat</p>
+                <ul className="text-sm space-y-2">
+                  <li>• Pay-as-you-go möglich</li>
+                  <li>• Custom Agents erstellen</li>
+                  <li>• Enterprise-Integration</li>
+                </ul>
+              </CardContent>
+            </Card>
           </div>
-          <h3 className="text-xl font-semibold mb-3 mt-6">Beispielrechnung für 500 Mitarbeiter</h3>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Kosten (Jahr 1):</strong></p>
-          <ul className="list-disc list-inside space-y-2 mb-4">
-            <li>Lizenzen: 500 × €30 × 12 = €180.000</li>
-            <li>Training: 500 × €800 = €400.000</li>
-            <li>IT-Setup: €30.000</li>
-            <li>Change Management: €25.000</li>
-            <li><strong>Gesamt: €635.000</strong></li>
-          </ul>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Nutzen (Jahr 1):</strong></p>
-          <ul className="list-disc list-inside space-y-2 mb-4">
-            <li>Zeitersparnis: 30% × 500 MA × 40h/Woche × 48 Wochen × €50/h = €14.400.000</li>
-            <li>Fehlerreduktion: €100.000</li>
-            <li>Schnellere Onboarding: €50.000</li>
-            <li><strong>Gesamt: €14.550.000</strong></li>
-          </ul>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>ROI = (€14.550.000 - €635.000) / €635.000 × 100% = 2.191%</strong></p>
-        </section>
 
-        <section id="messbare-produktivit-tsgewinne" className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">Messbare Produktivitätsgewinne</h2>
-          <h3 className="text-xl font-semibold mb-3 mt-6">Microsoft-Studien belegen:</h3>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>GitHub Copilot:</strong></p>
-          <ul className="list-disc list-inside space-y-2 mb-4">
-            <li>55% schnellere Task-Completion</li>
-            <li>88% höhere Produktivität (selbstberichtet)</li>
-            <li>46% schnelleres Schreiben von Code</li>
-          </ul>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Microsoft 365 Copilot:</strong></p>
-          <ul className="list-disc list-inside space-y-2 mb-4">
-            <li>29% schnellere Dokumentenerstellung</li>
-            <li>24% Zeitersparnis bei E-Mails</li>
-            <li>22% weniger Zeit für Informationssuche</li>
-          </ul>
-          <h3 className="text-xl font-semibold mb-3 mt-6">Praxisbeispiel: Softwareentwicklung</h3>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Unternehmen:</strong> 50 Entwickler</p>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>GitHub Copilot Business:</strong> $19/Monat × 50 = $950/Monat</p>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Zeitersparnis:</strong></p>
-          <ul className="list-disc list-inside space-y-2 mb-4">
-            <li>30 Minuten pro Tag und Entwickler</li>
-            <li>50 Entwickler × 0,5h × 220 Arbeitstage = 5.500 Stunden/Jahr</li>
-            <li>Bei €80/h Stundensatz = <strong>€440.000 Einsparung</strong></li>
-          </ul>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>ROI:</strong> (€440.000 - €11.400) / €11.400 = <strong>3.760%</strong></p>
-          <h3 className="text-xl font-semibold mb-3 mt-6">Praxisbeispiel: Knowledge Worker</h3>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Unternehmen:</strong> 300 Büroangestellte</p>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>M365 Copilot:</strong> €30/Monat × 300 = €9.000/Monat</p>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Zeitersparnis:</strong></p>
-          <ul className="list-disc list-inside space-y-2 mb-4">
-            <li>1 Stunde pro Tag und Mitarbeiter</li>
-            <li>300 × 1h × 220 Tage = 66.000 Stunden/Jahr</li>
-            <li>Bei €50/h = <strong>€3.300.000 Einsparung</strong></li>
-          </ul>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>ROI:</strong> (€3.300.000 - €108.000) / €108.000 = <strong>2.856%</strong></p>
-        </section>
-
-        <section id="kpis-zur-erfolgsmessung" className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">KPIs zur Erfolgsmessung</h2>
-          <h3 className="text-xl font-semibold mb-3 mt-6">Quantitative Metriken</h3>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Produktivität:</strong></p>
-          <ul className="list-disc list-inside space-y-2 mb-4">
-            <li>Dokumentenerstellung: Seiten/Stunde vorher vs. nachher</li>
-            <li>Code-Output: Lines of Code / Sprint</li>
-            <li>E-Mail-Bearbeitung: Mails/Stunde</li>
-            <li>Meeting-Effizienz: Follow-up Zeit reduziert</li>
-          </ul>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Qualität:</strong></p>
-          <ul className="list-disc list-inside space-y-2 mb-4">
-            <li>Code-Fehlerrate: Bugs pro 1.000 Zeilen</li>
-            <li>Dokumenten-Qualität: Revision-Zyklen</li>
-            <li>Kunden-Satisfaction: NPS-Score</li>
-          </ul>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Adoption:</strong></p>
-          <ul className="list-disc list-inside space-y-2 mb-4">
-            <li>Aktive Nutzer: % der Lizenzen genutzt</li>
-            <li>Nutzungsfrequenz: Interaktionen/Tag</li>
-            <li>Feature-Adoption: Welche Features werden genutzt?</li>
-          </ul>
-          <h3 className="text-xl font-semibold mb-3 mt-6">Qualitative Metriken</h3>
-          <ul className="list-disc list-inside space-y-2 mb-4">
-            <li>Mitarbeiterzufriedenheit: Surveys vor/nach</li>
-            <li>Onboarding-Geschwindigkeit: Time-to-Productivity</li>
-            <li>Innovation: Neue Ideen durch KI-Brainstorming</li>
-            <li>Wettbewerbsfähigkeit: Schnellere Time-to-Market</li>
-          </ul>
-        </section>
-
-        <section id="excel-vorlage-f-r-roi-berechnung" className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">Excel-Vorlage für ROI-Berechnung</h2>
-          <h3 className="text-xl font-semibold mb-3 mt-6">Aufbau der Vorlage</h3>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Tab 1: Kostenkalkulation</strong></p>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>| Kostenart              | Anzahl | Preis    | Total      |\n|------------------------|--------|----------|------------|\n| Lizenzen (Jahr 1)      | 300    | €360     | €108.000   |\n| Training               | 300    | €800     | €240.000   |\n| IT-Setup (einmalig)    | 1      | €25.000  | €25.000    |\n| Change Management      | 1      | €20.000  | €20.000    |\n| **TOTAL JAHR 1**       |        |          | **€393.000**|\n| **TOTAL JAHR 2-5**     |        |          | **€108.000/Jahr**|</code></pre>
-          </div>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Tab 2: Nutzenberechnung</strong></p>
-          <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4 overflow-x-auto">
-            <pre className="text-sm"><code>| Nutzenart              | Basis           | Einsparung | Total      |\n|------------------------|-----------------|------------|------------|\n| Zeitersparnis          | 66.000h × €50   | 30%        | €990.000   |\n| Fehlerreduktion        | 1.000 Fehler    | 20%        | €50.000    |\n| Onboarding             | 50 Neueinst.    | 40%        | €40.000    |\n| **TOTAL JAHR 1**       |                 |            | **€1.080.000**|</code></pre>
-          </div>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Tab 3: ROI-Dashboard</strong></p>
-          <ul className="list-disc list-inside space-y-2 mb-4">
-            <li>Break-even Point: Nach X Monaten</li>
-            <li>5-Jahres-Prognose</li>
-            <li>Verschiedene Szenarien (konservativ, realistisch, optimistisch)</li>
-          </ul>
-        </section>
-
-        <section id="business-case-template" className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">Business Case Template</h2>
-          <h3 className="text-xl font-semibold mb-3 mt-6">Executive Summary (1 Seite)</h3>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Problem:</strong></p>
-          <ul className="list-disc list-inside space-y-2 mb-4">
-            <li>Aktuelle Herausforderungen ohne Copilot</li>
-            <li>Wettbewerbsdruck</li>
-            <li>Mitarbeiterfeedback zu Routineaufgaben</li>
-          </ul>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Lösung:</strong></p>
-          <ul className="list-disc list-inside space-y-2 mb-4">
-            <li>Copilot-Einführung in 3 Phasen</li>
-            <li>Start mit Pilot-Gruppe (50 User)</li>
-            <li>Rollout über 6 Monate</li>
-          </ul>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Investment:</strong></p>
-          <ul className="list-disc list-inside space-y-2 mb-4">
-            <li>Jahr 1: €XXX.XXX</li>
-            <li>Jahre 2-5: €XXX.XXX/Jahr</li>
-          </ul>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Return:</strong></p>
-          <ul className="list-disc list-inside space-y-2 mb-4">
-            <li>Erwarteter ROI: X%</li>
-            <li>Break-even: X Monate</li>
-            <li>5-Jahres-NPV: €XXX.XXX</li>
-          </ul>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Risiken & Mitigation:</strong></p>
-          <ul className="list-disc list-inside space-y-2 mb-4">
-            <li>Adoption-Risiko → Change Management</li>
-            <li>Datenschutz → Compliance-Review</li>
-            <li>Integration → IT-Proof of Concept</li>
-          </ul>
-          <h3 className="text-xl font-semibold mb-3 mt-6">Detailplanung (5-10 Seiten)</h3>
-          <p className="mb-4 text-gray-700 leading-relaxed">1. <strong>Ist-Situation & Pain Points</strong></p>
-          <p className="mb-4 text-gray-700 leading-relaxed">2. <strong>Copilot-Lösung & Features</strong></p>
-          <p className="mb-4 text-gray-700 leading-relaxed">3. <strong>Implementierungsplan & Timeline</strong></p>
-          <p className="mb-4 text-gray-700 leading-relaxed">4. <strong>Kosten-Nutzen-Analyse (detailliert)</strong></p>
-          <p className="mb-4 text-gray-700 leading-relaxed">5. <strong>Risiko-Assessment</strong></p>
-          <p className="mb-4 text-gray-700 leading-relaxed">6. <strong>Success Metrics & KPIs</strong></p>
-          <p className="mb-4 text-gray-700 leading-relaxed">7. <strong>Governance & Compliance</strong></p>
-        </section>
-
-        <section id="verschiedene-roi-szenarien" className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">Verschiedene ROI-Szenarien</h2>
-          <h3 className="text-xl font-semibold mb-3 mt-6">Konservatives Szenario</h3>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Annahmen:</strong></p>
-          <ul className="list-disc list-inside space-y-2 mb-4">
-            <li>Nur 50% Adoption</li>
-            <li>15% Produktivitätssteigerung</li>
-            <li>Längere Lernkurve (6 Monate)</li>
-          </ul>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Ergebnis:</strong> ROI nach 18 Monaten</p>
-          <h3 className="text-xl font-semibold mb-3 mt-6">Realistisches Szenario</h3>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Annahmen:</strong></p>
-          <ul className="list-disc list-inside space-y-2 mb-4">
-            <li>70% Adoption</li>
-            <li>25% Produktivitätssteigerung</li>
-            <li>Moderate Lernkurve (3 Monate)</li>
-          </ul>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Ergebnis:</strong> ROI nach 9 Monaten</p>
-          <h3 className="text-xl font-semibold mb-3 mt-6">Optimistisches Szenario</h3>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Annahmen:</strong></p>
-          <ul className="list-disc list-inside space-y-2 mb-4">
-            <li>90% Adoption</li>
-            <li>35% Produktivitätssteigerung</li>
-            <li>Schnelle Lernkurve (1 Monat)</li>
-          </ul>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Ergebnis:</strong> ROI nach 4 Monaten</p>
-        </section>
-
-        <section id="branchenspezifische-roi-beispiele" className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">Branchenspezifische ROI-Beispiele</h2>
-          <h3 className="text-xl font-semibold mb-3 mt-6">Software-Entwicklung</h3>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Key Benefits:</strong></p>
-          <ul className="list-disc list-inside space-y-2 mb-4">
-            <li>40% schnellere Feature-Entwicklung</li>
-            <li>30% weniger Bugs</li>
-            <li>50% schnellere Code-Reviews</li>
-          </ul>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Typischer ROI:</strong> 2.000-5.000%</p>
-          <h3 className="text-xl font-semibold mb-3 mt-6">Consulting & Professional Services</h3>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Key Benefits:</strong></p>
-          <ul className="list-disc list-inside space-y-2 mb-4">
-            <li>35% schnellere Proposal-Erstellung</li>
-            <li>40% weniger Admin-Zeit</li>
-            <li>25% mehr billable hours</li>
-          </ul>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Typischer ROI:</strong> 1.500-3.000%</p>
-          <h3 className="text-xl font-semibold mb-3 mt-6">Finance & Banking</h3>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Key Benefits:</strong></p>
-          <ul className="list-disc list-inside space-y-2 mb-4">
-            <li>45% schnellere Report-Erstellung</li>
-            <li>30% bessere Datenanalyse</li>
-            <li>20% weniger Compliance-Fehler</li>
-          </ul>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Typischer ROI:</strong> 1.000-2.500%</p>
-          <h3 className="text-xl font-semibold mb-3 mt-6">Marketing & Sales</h3>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Key Benefits:</strong></p>
-          <ul className="list-disc list-inside space-y-2 mb-4">
-            <li>50% schnellere Content-Erstellung</li>
-            <li>35% mehr Leads durch Personalisierung</li>
-            <li>25% höhere Campaign-Performance</li>
-          </ul>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Typischer ROI:</strong> 800-2.000%</p>
-        </section>
-
-        <section id="kritische-erfolgsfaktoren" className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">Kritische Erfolgsfaktoren</h2>
-          <h3 className="text-xl font-semibold mb-3 mt-6">1. Klare Zielsetzung</h3>
-          <p className="mb-4 text-gray-700 leading-relaxed">❌ Vage: "Wir wollen produktiver werden"</p>
-          <p className="mb-4 text-gray-700 leading-relaxed">✅ Konkret: "30% Zeitersparnis bei Dokumentenerstellung innerhalb 6 Monaten"</p>
-          <h3 className="text-xl font-semibold mb-3 mt-6">2. Realistische Erwartungen</h3>
-          <ul className="list-disc list-inside space-y-2 mb-4">
-            <li>Nicht alle Tasks profitieren gleich stark</li>
-            <li>Lernkurve einplanen (2-3 Monate)</li>
-            <li>Individuelle Unterschiede berücksichtigen</li>
-          </ul>
-          <h3 className="text-xl font-semibold mb-3 mt-6">3. Change Management</h3>
-          <ul className="list-disc list-inside space-y-2 mb-4">
-            <li>Executive Sponsorship sicherstellen</li>
-            <li>Champions in jedem Team etablieren</li>
-            <li>Kontinuierliches Training anbieten</li>
-          </ul>
-          <h3 className="text-xl font-semibold mb-3 mt-6">4. Messung & Iteration</h3>
-          <ul className="list-disc list-inside space-y-2 mb-4">
-            <li>Baseline VORHER messen</li>
-            <li>Monatliche KPI-Reviews</li>
-            <li>Feedback-Loops etablieren</li>
-            <li>Bei Bedarf nachsteuern</li>
-          </ul>
-        </section>
-
-        <section id="h-ufige-fehler-bei-der-roi-berechnung" className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">Häufige Fehler bei der ROI-Berechnung</h2>
-          <h3 className="text-xl font-semibold mb-3 mt-6">1. Nur Lizenzkosten berücksichtigen</h3>
-          <p className="mb-4 text-gray-700 leading-relaxed">❌ "Copilot kostet €30/Monat"</p>
-          <p className="mb-4 text-gray-700 leading-relaxed">✅ Total Cost of Ownership inkl. Training, Change Management, IT</p>
-          <h3 className="text-xl font-semibold mb-3 mt-6">2. Unrealistische Produktivitätsgewinne</h3>
-          <p className="mb-4 text-gray-700 leading-relaxed">❌ "100% aller Aufgaben werden 50% schneller"</p>
-          <p className="mb-4 text-gray-700 leading-relaxed">✅ Differenzierte Betrachtung nach Task-Typen</p>
-          <h3 className="text-xl font-semibold mb-3 mt-6">3. Keine Baseline-Messung</h3>
-          <p className="mb-4 text-gray-700 leading-relaxed">❌ Schätzungen aus dem Bauchgefühl</p>
-          <p className="mb-4 text-gray-700 leading-relaxed">✅ Vorher-Messung mit Time-Tracking</p>
-          <h3 className="text-xl font-semibold mb-3 mt-6">4. Adoption ignorieren</h3>
-          <p className="mb-4 text-gray-700 leading-relaxed">❌ Annahme: 100% Nutzung ab Tag 1</p>
-          <p className="mb-4 text-gray-700 leading-relaxed">✅ Realistische Adoption-Kurve über Zeit</p>
-        </section>
-
-        <section id="roi-steigern-best-practices" className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">ROI steigern: Best Practices</h2>
-          <h3 className="text-xl font-semibold mb-3 mt-6">Quick Wins identifizieren</h3>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>High-Impact, Low-Effort Tasks:</strong></p>
-          <ul className="list-disc list-inside space-y-2 mb-4">
-            <li>E-Mail-Zusammenfassungen</li>
-            <li>Meeting-Protokolle</li>
-            <li>Standard-Reports</li>
-            <li>Code-Dokumentation</li>
-          </ul>
-          <p className="mb-4 text-gray-700 leading-relaxed">→ Hier sofort hoher ROI!</p>
-          <h3 className="text-xl font-semibold mb-3 mt-6">Power User fördern</h3>
-          <ul className="list-disc list-inside space-y-2 mb-4">
-            <li>Top 20% der User generieren 80% des Nutzens</li>
-            <li>Identifizieren und fördern</li>
-            <li>Als Multiplikatoren einsetzen</li>
-          </ul>
-          <h3 className="text-xl font-semibold mb-3 mt-6">Use Cases dokumentieren</h3>
-          <ul className="list-disc list-inside space-y-2 mb-4">
-            <li>Erfolgsgeschichten sammeln</li>
-            <li>Intern teilen (Intranet, Newsletter)</li>
-            <li>Motivation für andere schaffen</li>
-          </ul>
-          <h3 className="text-xl font-semibold mb-3 mt-6">Kontinuierliche Optimierung</h3>
-          <ul className="list-disc list-inside space-y-2 mb-4">
-            <li>Prompts optimieren und teilen</li>
-            <li>Best Practices etablieren</li>
-            <li>Neue Features testen</li>
-          </ul>
-        </section>
-
-        <section id="zusammenfassung" className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">Zusammenfassung</h2>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Copilot lohnt sich fast immer, wenn:</strong></p>
-          <p className="mb-4 text-gray-700 leading-relaxed">✅ Knowledge-intensive Arbeit (&gt; 50% der Zeit)</p>
-          <p className="mb-4 text-gray-700 leading-relaxed">✅ Repetitive Tasks existieren</p>
-          <p className="mb-4 text-gray-700 leading-relaxed">✅ Dokumentation & Kommunikation wichtig ist</p>
-          <p className="mb-4 text-gray-700 leading-relaxed">✅ Change Management sichergestellt ist</p>
-          <p className="mb-4 text-gray-700 leading-relaxed">✅ Realistische Erwartungen gesetzt werden</p>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Typische ROIs:</strong></p>
-          <ul className="list-disc list-inside space-y-2 mb-4">
-            <li><strong>Software-Entwicklung:</strong> 2.000-5.000%</li>
-            <li><strong>Professional Services:</strong> 1.500-3.000%</li>
-            <li><strong>Finance & Banking:</strong> 1.000-2.500%</li>
-            <li><strong>Marketing & Sales:</strong> 800-2.000%</li>
-          </ul>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Break-even:</strong> Meist innerhalb 6-12 Monaten</p>
-        </section>
-
-        <section id="checkliste-f-r-ihren-business-case" className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">Checkliste für Ihren Business Case</h2>
-          <ul className="list-disc list-inside space-y-2 mb-4">
-            <li>[ ] Ist-Situation analysiert (Baseline-Messung)</li>
-            <li>[ ] Kosten vollständig kalkuliert (inkl. versteckter Kosten)</li>
-            <li>[ ] Nutzen realistisch geschätzt (verschiedene Szenarien)</li>
-            <li>[ ] KPIs definiert (quantitativ & qualitativ)</li>
-            <li>[ ] Risiken identifiziert und Mitigation geplant</li>
-            <li>[ ] Executive Summary erstellt (max. 1 Seite)</li>
-            <li>[ ] Detailplanung ausgearbeitet</li>
-            <li>[ ] Stakeholder-Buy-in eingeholt</li>
-            <li>[ ] Pilot-Phase geplant (50-100 User)</li>
-            <li>[ ] Governance & Compliance geklärt</li>
-          </ul>
-        </section>
-
-        <section id="download-roi-rechner-excel" className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">Download: ROI-Rechner Excel</h2>
-          <div className="bg-gradient-to-r from-primary/10 to-accent/10 border-2 border-primary/30 rounded-xl p-6 mb-6">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center flex-shrink-0">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
+          <Card className="mt-8 border-amber-500/30 bg-amber-50 dark:bg-amber-950/20">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-amber-700 dark:text-amber-400">
+                <AlertTriangle className="w-5 h-5" />
+                Versteckte Kosten einkalkulieren
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <p><strong>Change Management:</strong> 10-15% der Gesamtkosten</p>
+                  <p><strong>Training & Schulung:</strong> €500-1.500 pro Mitarbeiter</p>
+                </div>
+                <div className="space-y-2">
+                  <p><strong>IT-Setup & Integration:</strong> Einmalig €10.000-50.000</p>
+                  <p><strong>Interne Ressourcen:</strong> Project Management, Admins</p>
+                </div>
               </div>
-              <div className="flex-grow">
-                <h3 className="font-bold text-lg mb-1">Copilot ROI-Rechner</h3>
-                <p className="text-sm text-muted-foreground">Excel-Vorlage mit automatischen Berechnungen</p>
-              </div>
-              <a
-                href="/downloads/Copilot-ROI-Rechner.xlsx"
-                download="Copilot-ROI-Rechner.xlsx"
-                className="px-6 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition-colors flex items-center gap-2"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                </svg>
-                Download
-              </a>
-            </div>
-          </div>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Die Vorlage enthält 5 Arbeitsblätter:</strong></p>
-          <ul className="list-disc list-inside space-y-2 mb-4">
-            <li><strong>1. Eingaben:</strong> Ihre Unternehmensdaten und Szenarien (gelbe Felder ausfüllen)</li>
-            <li><strong>2. Kosten:</strong> Automatische Kostenkalkulation inkl. versteckter Kosten</li>
-            <li><strong>3. Nutzen:</strong> Nutzenberechnung für alle 3 Szenarien</li>
-            <li><strong>4. ROI-Dashboard:</strong> ROI-Übersicht, Break-even und 5-Jahres-Prognose</li>
-            <li><strong>5. Zusammenfassung:</strong> Executive Summary für Ihren Business Case</li>
-          </ul>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Benötigen Sie Unterstützung bei Ihrer ROI-Berechnung und Business Case-Erstellung?</strong> </p>
-          <p className="mb-4 text-gray-700 leading-relaxed">Wir helfen Ihnen mit individueller Beratung und branchenspezifischen Benchmarks. <a href="/#contact" className="text-blue-600 hover:underline">Kontakt aufnehmen →</a></p>
+            </CardContent>
+          </Card>
         </section>
 
-        {/* Quellen und weiterführende Links */}
-        <section id="quellen" className="mt-12 mb-12">
-          <h2>Quellen und weiterführende Links</h2>
+        {/* ROI Formel */}
+        <section id="roi-formel">
+          <h2 id="roi-formel-heading" className="text-2xl md:text-3xl font-bold pb-3 border-b-4 border-green-500 text-green-700 dark:text-green-400">
+            ROI-Berechnung: Die Formel
+          </h2>
+
+          <Card className="bg-gray-900 text-gray-100 border-0">
+            <CardContent className="p-8">
+              <div className="text-center">
+                <p className="text-sm text-gray-400 mb-2">Grundformel</p>
+                <p className="text-2xl md:text-3xl font-mono font-bold">
+                  ROI = (Nutzen - Kosten) / Kosten × 100%
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="mt-8">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Calculator className="w-5 h-5 text-green-600" />
+                Beispielrechnung: 500 Mitarbeiter
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid md:grid-cols-2 gap-8">
+                <div>
+                  <h4 className="font-bold text-red-600 mb-4">Kosten (Jahr 1)</h4>
+                  <table className="w-full text-sm">
+                    <tbody>
+                      <tr className="border-b"><td className="py-2">Lizenzen (500 × €30 × 12)</td><td className="text-right">€180.000</td></tr>
+                      <tr className="border-b"><td className="py-2">Training (500 × €800)</td><td className="text-right">€400.000</td></tr>
+                      <tr className="border-b"><td className="py-2">IT-Setup</td><td className="text-right">€30.000</td></tr>
+                      <tr className="border-b"><td className="py-2">Change Management</td><td className="text-right">€25.000</td></tr>
+                      <tr className="font-bold"><td className="py-2">Gesamt</td><td className="text-right text-red-600">€635.000</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div>
+                  <h4 className="font-bold text-green-600 mb-4">Nutzen (Jahr 1)</h4>
+                  <table className="w-full text-sm">
+                    <tbody>
+                      <tr className="border-b"><td className="py-2">Zeitersparnis (30% × Arbeitszeit)</td><td className="text-right">€14.400.000</td></tr>
+                      <tr className="border-b"><td className="py-2">Fehlerreduktion</td><td className="text-right">€100.000</td></tr>
+                      <tr className="border-b"><td className="py-2">Schnelleres Onboarding</td><td className="text-right">€50.000</td></tr>
+                      <tr className="font-bold"><td className="py-2">Gesamt</td><td className="text-right text-green-600">€14.550.000</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div className="mt-8 p-6 bg-green-50 dark:bg-green-950/20 rounded-xl text-center">
+                <p className="text-sm text-muted-foreground mb-2">Berechneter ROI</p>
+                <p className="text-4xl font-bold text-green-600">2.191%</p>
+              </div>
+            </CardContent>
+          </Card>
+        </section>
+
+        {/* Produktivitätsgewinne */}
+        <section id="produktivitaetsgewinne">
+          <h2 id="produktivitaetsgewinne-heading" className="text-2xl md:text-3xl font-bold pb-3 border-b-4 border-purple-500 text-purple-700 dark:text-purple-400">
+            Messbare Produktivitätsgewinne
+          </h2>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">GitHub Copilot (Studien)</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center">
+                    <span>Task-Completion</span>
+                    <span className="text-2xl font-bold text-purple-600">55% schneller</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span>Produktivität (selbstberichtet)</span>
+                    <span className="text-2xl font-bold text-purple-600">88% höher</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span>Code schreiben</span>
+                    <span className="text-2xl font-bold text-purple-600">46% schneller</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">Microsoft 365 Copilot (Studien)</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center">
+                    <span>Dokumentenerstellung</span>
+                    <span className="text-2xl font-bold text-blue-600">29% schneller</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span>E-Mail-Bearbeitung</span>
+                    <span className="text-2xl font-bold text-blue-600">24% schneller</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span>Informationssuche</span>
+                    <span className="text-2xl font-bold text-blue-600">22% schneller</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6 mt-6">
+            <Card className="border-l-4 border-l-purple-500">
+              <CardHeader>
+                <CardTitle className="text-base">Praxisbeispiel: 50 Entwickler</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm mb-4">GitHub Copilot Business: $19/Monat × 50 = <strong>$950/Monat</strong></p>
+                <p className="text-sm mb-2"><strong>Zeitersparnis:</strong> 30 Min/Tag × 220 Tage = 5.500h/Jahr</p>
+                <p className="text-sm mb-4">Bei €80/h = <strong>€440.000 Einsparung</strong></p>
+                <div className="p-3 bg-purple-50 dark:bg-purple-950/30 rounded-lg">
+                  <p className="font-bold text-purple-700 dark:text-purple-400">ROI: 3.760%</p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-l-4 border-l-blue-500">
+              <CardHeader>
+                <CardTitle className="text-base">Praxisbeispiel: 300 Knowledge Worker</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm mb-4">M365 Copilot: €30/Monat × 300 = <strong>€9.000/Monat</strong></p>
+                <p className="text-sm mb-2"><strong>Zeitersparnis:</strong> 1h/Tag × 220 Tage = 66.000h/Jahr</p>
+                <p className="text-sm mb-4">Bei €50/h = <strong>€3.300.000 Einsparung</strong></p>
+                <div className="p-3 bg-blue-50 dark:bg-blue-950/30 rounded-lg">
+                  <p className="font-bold text-blue-700 dark:text-blue-400">ROI: 2.856%</p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
+        {/* KPIs */}
+        <section id="kpis">
+          <h2 id="kpis-heading" className="text-2xl md:text-3xl font-bold pb-3 border-b-4 border-cyan-500 text-cyan-700 dark:text-cyan-400">
+            KPIs zur Erfolgsmessung
+          </h2>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <BarChart3 className="w-5 h-5 text-cyan-600" />
+                  Quantitative Metriken
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <div>
+                    <h4 className="font-semibold mb-2">Produktivität</h4>
+                    <ul className="text-sm space-y-1 text-muted-foreground">
+                      <li>• Dokumentenerstellung: Seiten/Stunde</li>
+                      <li>• Code-Output: Lines of Code / Sprint</li>
+                      <li>• E-Mail-Bearbeitung: Mails/Stunde</li>
+                      <li>• Meeting-Effizienz: Follow-up Zeit</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold mb-2">Qualität</h4>
+                    <ul className="text-sm space-y-1 text-muted-foreground">
+                      <li>• Code-Fehlerrate: Bugs pro 1.000 Zeilen</li>
+                      <li>• Dokumenten-Qualität: Revision-Zyklen</li>
+                      <li>• Kunden-Satisfaction: NPS-Score</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold mb-2">Adoption</h4>
+                    <ul className="text-sm space-y-1 text-muted-foreground">
+                      <li>• Aktive Nutzer: % der Lizenzen</li>
+                      <li>• Nutzungsfrequenz: Interaktionen/Tag</li>
+                      <li>• Feature-Adoption: Welche Features?</li>
+                    </ul>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Target className="w-5 h-5 text-cyan-600" />
+                  Qualitative Metriken
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-4">
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold">Mitarbeiterzufriedenheit</p>
+                      <p className="text-sm text-muted-foreground">Surveys vor/nach Einführung</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold">Onboarding-Geschwindigkeit</p>
+                      <p className="text-sm text-muted-foreground">Time-to-Productivity neuer Mitarbeiter</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold">Innovation</p>
+                      <p className="text-sm text-muted-foreground">Neue Ideen durch KI-Brainstorming</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold">Wettbewerbsfähigkeit</p>
+                      <p className="text-sm text-muted-foreground">Schnellere Time-to-Market</p>
+                    </div>
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
+        {/* Szenarien */}
+        <section id="szenarien">
+          <h2 id="szenarien-heading" className="text-2xl md:text-3xl font-bold pb-3 border-b-4 border-amber-500 text-amber-700 dark:text-amber-400">
+            Verschiedene ROI-Szenarien
+          </h2>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            <Card className="border-t-4 border-t-gray-400">
+              <CardHeader>
+                <CardTitle className="text-lg">Konservativ</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-3 mb-6">
+                  <p className="text-sm"><strong>Adoption:</strong> 50%</p>
+                  <p className="text-sm"><strong>Produktivität:</strong> +15%</p>
+                  <p className="text-sm"><strong>Lernkurve:</strong> 6 Monate</p>
+                </div>
+                <div className="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg text-center">
+                  <p className="text-sm text-muted-foreground">Break-even</p>
+                  <p className="text-2xl font-bold">18 Monate</p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-t-4 border-t-amber-500 ring-2 ring-amber-500/20">
+              <CardHeader>
+                <CardTitle className="text-lg flex items-center gap-2">
+                  Realistisch
+                  <span className="text-xs bg-amber-100 dark:bg-amber-900 text-amber-700 dark:text-amber-300 px-2 py-0.5 rounded">Empfohlen</span>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-3 mb-6">
+                  <p className="text-sm"><strong>Adoption:</strong> 70%</p>
+                  <p className="text-sm"><strong>Produktivität:</strong> +25%</p>
+                  <p className="text-sm"><strong>Lernkurve:</strong> 3 Monate</p>
+                </div>
+                <div className="p-4 bg-amber-100 dark:bg-amber-900/30 rounded-lg text-center">
+                  <p className="text-sm text-muted-foreground">Break-even</p>
+                  <p className="text-2xl font-bold text-amber-700 dark:text-amber-400">9 Monate</p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-t-4 border-t-green-500">
+              <CardHeader>
+                <CardTitle className="text-lg">Optimistisch</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-3 mb-6">
+                  <p className="text-sm"><strong>Adoption:</strong> 90%</p>
+                  <p className="text-sm"><strong>Produktivität:</strong> +35%</p>
+                  <p className="text-sm"><strong>Lernkurve:</strong> 1 Monat</p>
+                </div>
+                <div className="p-4 bg-green-100 dark:bg-green-900/30 rounded-lg text-center">
+                  <p className="text-sm text-muted-foreground">Break-even</p>
+                  <p className="text-2xl font-bold text-green-700 dark:text-green-400">4 Monate</p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
+        {/* Branchen-ROI */}
+        <section id="branchen-roi">
+          <h2 id="branchen-roi-heading" className="text-2xl md:text-3xl font-bold pb-3 border-b-4 border-indigo-500 text-indigo-700 dark:text-indigo-400">
+            Branchenspezifische ROI-Beispiele
+          </h2>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {[
+              {
+                branche: "Software-Entwicklung",
+                roi: "2.000-5.000%",
+                benefits: ["40% schnellere Feature-Entwicklung", "30% weniger Bugs", "50% schnellere Code-Reviews"],
+                color: "purple"
+              },
+              {
+                branche: "Consulting & Professional Services",
+                roi: "1.500-3.000%",
+                benefits: ["35% schnellere Proposals", "40% weniger Admin-Zeit", "25% mehr billable hours"],
+                color: "blue"
+              },
+              {
+                branche: "Finance & Banking",
+                roi: "1.000-2.500%",
+                benefits: ["45% schnellere Reports", "30% bessere Datenanalyse", "20% weniger Compliance-Fehler"],
+                color: "green"
+              },
+              {
+                branche: "Marketing & Sales",
+                roi: "800-2.000%",
+                benefits: ["50% schnellere Content-Erstellung", "35% mehr Leads", "25% höhere Campaign-Performance"],
+                color: "orange"
+              }
+            ].map((item, idx) => (
+              <Card key={idx} className={`border-l-4 border-l-${item.color}-500`}>
+                <CardHeader>
+                  <CardTitle className="flex justify-between items-center">
+                    <span>{item.branche}</span>
+                    <span className={`text-${item.color}-600 font-bold`}>{item.roi}</span>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-2">
+                    {item.benefits.map((b, bidx) => (
+                      <li key={bidx} className="flex items-center gap-2 text-sm">
+                        <TrendingUp className="w-4 h-4 text-green-500" />
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        {/* Erfolgsfaktoren */}
+        <section id="erfolgsfaktoren">
+          <h2 id="erfolgsfaktoren-heading" className="text-2xl md:text-3xl font-bold pb-3 border-b-4 border-emerald-500 text-emerald-700 dark:text-emerald-400">
+            Kritische Erfolgsfaktoren
+          </h2>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">1. Klare Zielsetzung</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-3">
+                  <div className="p-3 bg-red-50 dark:bg-red-950/30 rounded-lg">
+                    <p className="text-sm"><span className="text-red-600">❌ Vage:</span> "Wir wollen produktiver werden"</p>
+                  </div>
+                  <div className="p-3 bg-green-50 dark:bg-green-950/30 rounded-lg">
+                    <p className="text-sm"><span className="text-green-600">✓ Konkret:</span> "30% Zeitersparnis bei Dokumentenerstellung innerhalb 6 Monaten"</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">2. Realistische Erwartungen</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2 text-sm">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5" />
+                    Nicht alle Tasks profitieren gleich stark
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5" />
+                    Lernkurve einplanen (2-3 Monate)
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5" />
+                    Individuelle Unterschiede berücksichtigen
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">3. Change Management</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2 text-sm">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5" />
+                    Executive Sponsorship sicherstellen
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5" />
+                    Champions in jedem Team etablieren
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5" />
+                    Kontinuierliches Training anbieten
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">4. Messung & Iteration</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2 text-sm">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5" />
+                    Baseline VORHER messen
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5" />
+                    Monatliche KPI-Reviews
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5" />
+                    Feedback-Loops etablieren
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
+        {/* Fehler */}
+        <section id="fehler">
+          <h2 id="fehler-heading" className="text-2xl md:text-3xl font-bold pb-3 border-b-4 border-red-500 text-red-700 dark:text-red-400">
+            Häufige Fehler bei der ROI-Berechnung
+          </h2>
+
+          <div className="space-y-4">
+            {[
+              {
+                fehler: "Nur Lizenzkosten berücksichtigen",
+                falsch: "Copilot kostet €30/Monat",
+                richtig: "Total Cost of Ownership inkl. Training, Change Management, IT"
+              },
+              {
+                fehler: "Unrealistische Produktivitätsgewinne",
+                falsch: "100% aller Aufgaben werden 50% schneller",
+                richtig: "Differenzierte Betrachtung nach Task-Typen"
+              },
+              {
+                fehler: "Keine Baseline-Messung",
+                falsch: "Schätzungen aus dem Bauchgefühl",
+                richtig: "Vorher-Messung mit Time-Tracking"
+              },
+              {
+                fehler: "Adoption ignorieren",
+                falsch: "Annahme: 100% Nutzung ab Tag 1",
+                richtig: "Realistische Adoption-Kurve über Zeit"
+              }
+            ].map((item, idx) => (
+              <Card key={idx} className="border-l-4 border-l-red-500">
+                <CardContent className="pt-6">
+                  <h4 className="font-bold mb-3">{idx + 1}. {item.fehler}</h4>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div className="p-3 bg-red-50 dark:bg-red-950/30 rounded-lg">
+                      <p className="text-sm"><span className="text-red-600 font-semibold">❌</span> {item.falsch}</p>
+                    </div>
+                    <div className="p-3 bg-green-50 dark:bg-green-950/30 rounded-lg">
+                      <p className="text-sm"><span className="text-green-600 font-semibold">✓</span> {item.richtig}</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        {/* Best Practices */}
+        <section id="best-practices">
+          <h2 id="best-practices-heading" className="text-2xl md:text-3xl font-bold pb-3 border-b-4 border-teal-500 text-teal-700 dark:text-teal-400">
+            ROI steigern: Best Practices
+          </h2>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">Quick Wins identifizieren</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground mb-4">High-Impact, Low-Effort Tasks:</p>
+                <ul className="space-y-2">
+                  {["E-Mail-Zusammenfassungen", "Meeting-Protokolle", "Standard-Reports", "Code-Dokumentation"].map((item, idx) => (
+                    <li key={idx} className="flex items-center gap-2 text-sm">
+                      <Zap className="w-4 h-4 text-amber-500" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-4 text-sm font-semibold text-teal-600">→ Hier sofort hoher ROI!</p>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">Power User fördern</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-3 text-sm">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5" />
+                    Top 20% der User generieren 80% des Nutzens
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5" />
+                    Identifizieren und gezielt fördern
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5" />
+                    Als Multiplikatoren einsetzen
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">Use Cases dokumentieren</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-3 text-sm">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5" />
+                    Erfolgsgeschichten sammeln
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5" />
+                    Intern teilen (Intranet, Newsletter)
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5" />
+                    Motivation für andere schaffen
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">Kontinuierliche Optimierung</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-3 text-sm">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5" />
+                    Prompts optimieren und teilen
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5" />
+                    Best Practices etablieren
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5" />
+                    Neue Features testen
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
+        {/* Download */}
+        <section id="download">
+          <h2 id="download-heading" className="text-2xl md:text-3xl font-bold pb-3 border-b-4 border-green-500 text-green-700 dark:text-green-400">
+            Download: ROI-Rechner Excel
+          </h2>
+
+          <Card className="border-2 border-green-500/30 bg-gradient-to-br from-green-500/5 to-emerald-500/5">
+            <CardContent className="pt-6">
+              <div className="flex flex-col md:flex-row items-center gap-6">
+                <div className="w-16 h-16 bg-green-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <Download className="w-8 h-8 text-white" />
+                </div>
+                <div className="flex-grow text-center md:text-left">
+                  <h3 className="font-bold text-xl mb-2">Copilot ROI-Rechner</h3>
+                  <p className="text-muted-foreground">Professionelle Excel-Vorlage mit automatischen Berechnungen</p>
+                </div>
+                <a
+                  href="/downloads/Copilot-ROI-Rechner.xlsx"
+                  download="Copilot-ROI-Rechner.xlsx"
+                  className="px-8 py-4 bg-green-600 text-white rounded-xl font-semibold hover:bg-green-700 transition-colors flex items-center gap-2"
+                >
+                  <Download className="w-5 h-5" />
+                  Jetzt herunterladen
+                </a>
+              </div>
+            </CardContent>
+          </Card>
+
+          <div className="mt-6 grid md:grid-cols-5 gap-4">
+            {[
+              { nr: "1", title: "Eingaben", desc: "Unternehmensdaten & Szenarien" },
+              { nr: "2", title: "Kosten", desc: "Automatische Kalkulation" },
+              { nr: "3", title: "Nutzen", desc: "3 Szenarien berechnet" },
+              { nr: "4", title: "Dashboard", desc: "ROI & Break-even" },
+              { nr: "5", title: "Summary", desc: "Executive Summary" }
+            ].map((tab) => (
+              <div key={tab.nr} className="p-4 bg-muted/50 rounded-lg text-center">
+                <span className="inline-block w-8 h-8 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 rounded-full font-bold text-sm leading-8 mb-2">{tab.nr}</span>
+                <p className="font-semibold text-sm">{tab.title}</p>
+                <p className="text-xs text-muted-foreground">{tab.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <p className="mt-8 text-center">
+            <strong>Benötigen Sie Unterstützung bei Ihrer ROI-Berechnung?</strong><br />
+            <a href="/#contact" className="text-primary hover:underline">Kontaktieren Sie uns für individuelle Beratung →</a>
+          </p>
+        </section>
+
+        {/* FAQ */}
+        <section id="faq">
+          <h2 id="faq-heading" className="text-2xl md:text-3xl font-bold pb-3 border-b-4 border-violet-500 text-violet-700 dark:text-violet-400">
+            Häufig gestellte Fragen
+          </h2>
+
+          <div className="space-y-4">
+            {faqs.map((faq, idx) => (
+              <Card key={idx}>
+                <CardHeader>
+                  <CardTitle className="text-base font-semibold">{faq.name}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground">{faq.answer}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        {/* Quellen */}
+        <section id="quellen">
+          <h2 id="quellen-heading" className="text-2xl md:text-3xl font-bold pb-3 border-b-4 border-gray-500 text-gray-700 dark:text-gray-400">
+            Quellen und weiterführende Links
+          </h2>
           <p className="text-muted-foreground mb-6">
             Offizielle Studien und Ressourcen zur ROI-Berechnung und Produktivitätsmessung.
           </p>
 
           <div className="grid md:grid-cols-2 gap-4">
-            <a
-              href="https://www.microsoft.com/en-us/worklab/work-trend-index/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-start gap-3 p-4 border rounded-lg hover:border-primary/50 hover:bg-muted/50 transition-colors group"
-            >
-              <ExternalLink className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-              <div>
-                <div className="font-semibold group-hover:text-primary transition-colors">Microsoft Work Trend Index</div>
-                <div className="text-sm text-muted-foreground">Studien zu Produktivitätsgewinnen durch KI am Arbeitsplatz</div>
-              </div>
-            </a>
-
-            <a
-              href="https://github.blog/news-insights/research/research-quantifying-github-copilots-impact-on-developer-productivity-and-happiness/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-start gap-3 p-4 border rounded-lg hover:border-primary/50 hover:bg-muted/50 transition-colors group"
-            >
-              <ExternalLink className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-              <div>
-                <div className="font-semibold group-hover:text-primary transition-colors">GitHub Copilot Productivity Research</div>
-                <div className="text-sm text-muted-foreground">Studie: 55% schnellere Task-Completion mit GitHub Copilot</div>
-              </div>
-            </a>
-
-            <a
-              href="https://adoption.microsoft.com/en-us/copilot/success-kit/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-start gap-3 p-4 border rounded-lg hover:border-primary/50 hover:bg-muted/50 transition-colors group"
-            >
-              <ExternalLink className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-              <div>
-                <div className="font-semibold group-hover:text-primary transition-colors">Microsoft Copilot Success Kit</div>
-                <div className="text-sm text-muted-foreground">Offizielles Toolkit für ROI-Messung und Adoption-Tracking</div>
-              </div>
-            </a>
-
-            <a
-              href="https://www.microsoft.com/en-us/microsoft-365/copilot/copilot-for-work"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-start gap-3 p-4 border rounded-lg hover:border-primary/50 hover:bg-muted/50 transition-colors group"
-            >
-              <ExternalLink className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-              <div>
-                <div className="font-semibold group-hover:text-primary transition-colors">Copilot for Work Benefits</div>
-                <div className="text-sm text-muted-foreground">Microsoft-Übersicht zu Produktivitätsvorteilen und Business Value</div>
-              </div>
-            </a>
+            {[
+              {
+                href: "https://www.microsoft.com/en-us/worklab/work-trend-index/",
+                title: "Microsoft Work Trend Index",
+                desc: "Studien zu Produktivitätsgewinnen durch KI"
+              },
+              {
+                href: "https://github.blog/news-insights/research/research-quantifying-github-copilots-impact-on-developer-productivity-and-happiness/",
+                title: "GitHub Copilot Productivity Research",
+                desc: "Studie: 55% schnellere Task-Completion"
+              },
+              {
+                href: "https://adoption.microsoft.com/en-us/copilot/success-kit/",
+                title: "Microsoft Copilot Success Kit",
+                desc: "Offizielles Toolkit für ROI-Messung"
+              },
+              {
+                href: "https://www.microsoft.com/en-us/microsoft-365/copilot/copilot-for-work",
+                title: "Copilot for Work Benefits",
+                desc: "Microsoft-Übersicht zu Business Value"
+              }
+            ].map((link, idx) => (
+              <a
+                key={idx}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-start gap-3 p-4 border rounded-lg hover:border-primary/50 hover:bg-muted/50 transition-colors group"
+              >
+                <ExternalLink className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                <div>
+                  <div className="font-semibold group-hover:text-primary transition-colors">{link.title}</div>
+                  <div className="text-sm text-muted-foreground">{link.desc}</div>
+                </div>
+              </a>
+            ))}
           </div>
         </section>
       </ContentLayout>
