@@ -127,11 +127,11 @@ const CopilotRoiBerechnen = () => {
           </CardHeader>
           <CardContent>
             <p className="text-base leading-relaxed">
-              Der ROI von Microsoft Copilot liegt typischerweise zwischen <strong>800% und 5.000%</strong>, abhängig von Branche und Nutzungsintensität.
-              Bei €30/Monat pro Lizenz und durchschnittlich 1-2 Stunden Zeitersparnis pro Woche amortisiert sich die Investition
-              meist innerhalb von <strong>3-6 Monaten</strong>. Entscheidend sind: realistische Erwartungen, professionelles Training
-              und konsequentes Change Management. Diese Seite liefert Ihnen alle Formeln, Szenarien und eine
-              <strong> kostenlose Excel-Vorlage</strong> für Ihren Business Case.
+              Laut Forrester TEI-Studie sparen Copilot-Nutzer durchschnittlich <strong>9 Stunden pro Monat</strong>.
+              Bei €30/Monat pro Lizenz und einem Stundensatz von €50 ergibt das €450 Nutzen vs. €30 Kosten –
+              ein ROI von <strong>1.400% pro aktivem Nutzer</strong>. Der entscheidende Faktor: <strong>77% der trainierten Nutzer</strong> berichten
+              höhere Produktivität (Microsoft Work Trend Index). Ohne Training liegt die aktive Nutzung oft bei nur 5-15%.
+              Diese Seite liefert Ihnen alle Formeln, Szenarien und eine <strong>kostenlose Excel-Vorlage</strong> für Ihren Business Case.
             </p>
           </CardContent>
         </Card>
@@ -275,6 +275,31 @@ const CopilotRoiBerechnen = () => {
             Messbare Produktivitätsgewinne
           </h2>
 
+          {/* Hervorgehobene Studienergebnisse */}
+          <div className="grid md:grid-cols-2 gap-6 mb-8">
+            <Card className="border-2 border-blue-500/30 bg-gradient-to-br from-blue-500/5 to-cyan-500/5">
+              <CardContent className="pt-6">
+                <div className="text-center">
+                  <p className="text-5xl font-bold text-blue-600 mb-2">9h</p>
+                  <p className="text-lg font-semibold mb-1">Zeitersparnis pro Monat</p>
+                  <p className="text-sm text-muted-foreground">pro aktivem Nutzer</p>
+                  <p className="text-xs text-muted-foreground mt-3 border-t pt-3">Quelle: Forrester TEI Study</p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-2 border-green-500/30 bg-gradient-to-br from-green-500/5 to-emerald-500/5">
+              <CardContent className="pt-6">
+                <div className="text-center">
+                  <p className="text-5xl font-bold text-green-600 mb-2">77%</p>
+                  <p className="text-lg font-semibold mb-1">berichten höhere Produktivität</p>
+                  <p className="text-sm text-muted-foreground">bei trainierten Copilot-Nutzern</p>
+                  <p className="text-xs text-muted-foreground mt-3 border-t pt-3">Quelle: Microsoft Work Trend Index</p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
           <div className="grid md:grid-cols-2 gap-6">
             <Card>
               <CardHeader>
@@ -338,14 +363,14 @@ const CopilotRoiBerechnen = () => {
 
             <Card className="border-l-4 border-l-blue-500">
               <CardHeader>
-                <CardTitle className="text-base">Praxisbeispiel: 300 Knowledge Worker</CardTitle>
+                <CardTitle className="text-base">Praxisbeispiel: 300 Knowledge Worker (Forrester-Daten)</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-sm mb-4">M365 Copilot: €30/Monat × 300 = <strong>€9.000/Monat</strong></p>
-                <p className="text-sm mb-2"><strong>Zeitersparnis:</strong> 1h/Tag × 220 Tage = 66.000h/Jahr</p>
-                <p className="text-sm mb-4">Bei €50/h = <strong>€3.300.000 Einsparung</strong></p>
+                <p className="text-sm mb-4">M365 Copilot: €30/Monat × 300 = <strong>€108.000/Jahr</strong></p>
+                <p className="text-sm mb-2"><strong>Zeitersparnis:</strong> 9h/Monat × 12 × 300 = 32.400h/Jahr</p>
+                <p className="text-sm mb-4">Bei €50/h = <strong>€1.620.000 Einsparung</strong></p>
                 <div className="p-3 bg-blue-50 dark:bg-blue-950/30 rounded-lg">
-                  <p className="font-bold text-blue-700 dark:text-blue-400">ROI: 2.856%</p>
+                  <p className="font-bold text-blue-700 dark:text-blue-400">ROI: 1.400%</p>
                 </div>
               </CardContent>
             </Card>
@@ -872,7 +897,12 @@ const CopilotRoiBerechnen = () => {
               {
                 href: "https://www.microsoft.com/en-us/worklab/work-trend-index/",
                 title: "Microsoft Work Trend Index",
-                desc: "Studien zu Produktivitätsgewinnen durch KI"
+                desc: "77% der trainierten Nutzer berichten höhere Produktivität"
+              },
+              {
+                href: "https://www.forrester.com/report/the-total-economic-impact-of-microsoft-365-copilot/RES181868",
+                title: "Forrester TEI Study",
+                desc: "9 Stunden Zeitersparnis pro Nutzer/Monat"
               },
               {
                 href: "https://github.blog/news-insights/research/research-quantifying-github-copilots-impact-on-developer-productivity-and-happiness/",
@@ -883,11 +913,6 @@ const CopilotRoiBerechnen = () => {
                 href: "https://adoption.microsoft.com/en-us/copilot/success-kit/",
                 title: "Microsoft Copilot Success Kit",
                 desc: "Offizielles Toolkit für ROI-Messung"
-              },
-              {
-                href: "https://www.microsoft.com/en-us/microsoft-365/copilot/copilot-for-work",
-                title: "Copilot for Work Benefits",
-                desc: "Microsoft-Übersicht zu Business Value"
               }
             ].map((link, idx) => (
               <a
