@@ -2,21 +2,24 @@ import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
-import { ExternalLink, Lightbulb, Code, FileText, Zap, AlertCircle } from "lucide-react";
+import { Zap, FileText, Table2, Presentation, Mail, Users, Lightbulb, AlertTriangle, CheckCircle2, ExternalLink, Linkedin, Twitter } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const SLUG = "wissen/copilot-tipps-tricks-produktivitaet";
-const PAGE_TITLE = "20 Microsoft Copilot Tipps & Tricks";
+const PAGE_TITLE = "22 Microsoft Copilot Tipps & Tricks";
 
 const CopilotTippsTricks = () => {
   const author = getAuthor("martin-lang");
 
   const tableOfContents = [
-    { id: "github-copilot-tipps", title: "GitHub Copilot Tipps (1-10)", level: 2 },
-    { id: "microsoft-365-tipps", title: "Microsoft 365 Copilot Tipps (11-20)", level: 2 },
-    { id: "pro-tipps", title: "Pro-Tipps für Power User", level: 2 },
+    { id: "word-tipps", title: "Word Tipps (1-5)", level: 2 },
+    { id: "excel-tipps", title: "Excel Tipps (6-10)", level: 2 },
+    { id: "powerpoint-tipps", title: "PowerPoint Tipps (11-14)", level: 2 },
+    { id: "outlook-tipps", title: "Outlook Tipps (15-18)", level: 2 },
+    { id: "teams-tipps", title: "Teams Tipps (19-22)", level: 2 },
     { id: "fehler-vermeiden", title: "Häufige Fehler vermeiden", level: 2 },
-    { id: "zusammenfassung", title: "Zusammenfassung", level: 2 }
+    { id: "faq", title: "Häufig gestellte Fragen", level: 2 },
+    { id: "quellen", title: "Quellen", level: 2 }
   ];
 
   const ids = generateSchemaIds(SLUG, 'wissen');
@@ -26,15 +29,19 @@ const CopilotTippsTricks = () => {
   const faqs = [
     {
       name: "Wie kann ich meine Copilot-Produktivität sofort steigern?",
-      answer: "Die drei wichtigsten Sofort-Tipps: 1) Geben Sie mehr Kontext in Ihren Prompts, 2) Verwenden Sie beschreibende Funktions- und Variablennamen, 3) Iterieren Sie über erste Ergebnisse statt sie direkt zu akzeptieren."
+      answer: "Die drei wichtigsten Sofort-Tipps: 1) Geben Sie mehr Kontext in Ihren Prompts - je spezifischer, desto besser. 2) Nutzen Sie die App-übergreifende Suche mit 'Finde alle Informationen zu...' 3) Iterieren Sie über erste Ergebnisse mit Folgefragen statt sie direkt zu akzeptieren."
     },
     {
-      name: "Was sind die besten Copilot-Shortcuts für den Alltag?",
-      answer: "In VS Code: Ctrl/Cmd + I für Copilot Chat, Tab zum Akzeptieren, Alt + ] für alternative Vorschläge. In Microsoft 365 Apps variieren die Shortcuts je nach Anwendung - Alt + H öffnet oft das Copilot-Panel."
+      name: "Funktioniert Copilot auch auf Deutsch?",
+      answer: "Ja, Microsoft 365 Copilot funktioniert vollständig auf Deutsch. Sie können alle Prompts in deutscher Sprache eingeben und erhalten deutsche Antworten. Die Qualität ist mit englischen Prompts vergleichbar."
+    },
+    {
+      name: "Welche Microsoft 365 Apps unterstützen Copilot?",
+      answer: "Copilot ist in Word, Excel, PowerPoint, Outlook, Teams, OneNote, Loop und der Microsoft 365 App verfügbar. In jeder App gibt es spezifische Funktionen - von Dokumenterstellung in Word bis Meeting-Zusammenfassungen in Teams."
     },
     {
       name: "Wie erstelle ich effektive Prompt-Vorlagen für mein Team?",
-      answer: "Dokumentieren Sie erfolgreiche Prompts mit Platzhaltern: [Typ], [Zielgruppe], [Umfang]. Teilen Sie diese in einem gemeinsamen Repository und ergänzen Sie Beispiele für verschiedene Anwendungsfälle."
+      answer: "Dokumentieren Sie erfolgreiche Prompts mit Platzhaltern: [Typ], [Zielgruppe], [Umfang], [Ton]. Teilen Sie diese in einem gemeinsamen SharePoint oder OneNote und ergänzen Sie Beispiele für verschiedene Anwendungsfälle."
     }
   ];
 
@@ -44,15 +51,15 @@ const CopilotTippsTricks = () => {
       {
         "@type": "Article",
         "@id": ids.article,
-        "headline": "20 Microsoft Copilot Tipps & Tricks: Produktivität steigern (2026)",
-        "description": "Copilot Produktivität steigern: 20 Profi-Tipps für GitHub Copilot & Microsoft 365 Copilot. Prompting-Tricks, Shortcuts & versteckte Features.",
+        "headline": "22 Microsoft Copilot Tipps & Tricks für mehr Produktivität (2026)",
+        "description": "22 praxiserprobte Tipps für Microsoft 365 Copilot: Word, Excel, PowerPoint, Outlook und Teams. Sofort umsetzbare Tricks für mehr Produktivität im Büroalltag.",
         "author": getAuthorSchemaMarkup(author),
         "publisher": {
           "@id": "https://copilotenschule.de/#organization"
         },
         "datePublished": "2025-11-18",
-        "dateModified": "2026-02-02",
-        "keywords": ["Microsoft Copilot Tipps", "Copilot Tricks", "GitHub Copilot Best Practices", "Copilot Produktivität", "Copilot Power User"],
+        "dateModified": "2026-02-03",
+        "keywords": ["Microsoft Copilot Tipps", "Copilot Tricks", "M365 Copilot Produktivität", "Copilot Word Excel", "Copilot für Einsteiger"],
         "articleSection": "Best Practices",
         "mainEntityOfPage": {
           "@type": "WebPage",
@@ -87,13 +94,13 @@ const CopilotTippsTricks = () => {
   return (
     <>
       <SEOHead
-        title="20 Microsoft Copilot Tipps & Tricks: Produktivität steigern (2026)"
-        description="Copilot Produktivität steigern: 20 Profi-Tipps für GitHub Copilot & Microsoft 365 Copilot. Prompting-Tricks, Shortcuts & versteckte Features."
-        keywords={["Microsoft Copilot Tipps", "Copilot Tricks", "GitHub Copilot Best Practices", "Copilot Produktivität steigern", "Copilot Power User"]}
+        title="22 Microsoft Copilot Tipps & Tricks für mehr Produktivität (2026)"
+        description="22 praxiserprobte Tipps für Microsoft 365 Copilot: Word, Excel, PowerPoint, Outlook und Teams. Sofort umsetzbare Tricks für mehr Produktivität im Büroalltag."
+        keywords={["Microsoft Copilot Tipps", "Copilot Tricks", "M365 Copilot Produktivität", "Copilot Word Excel PowerPoint", "Copilot für Einsteiger"]}
         canonicalUrl={pageUrl}
         author={author}
         publishedTime="2025-11-18"
-        modifiedTime="2026-02-02"
+        modifiedTime="2026-02-03T10:00:00+01:00"
         schema={schema}
       />
       <ContentLayout
@@ -101,336 +108,530 @@ const CopilotTippsTricks = () => {
           { label: "Wissen", href: "/wissen" },
           { label: PAGE_TITLE, href: `/${SLUG}` }
         ]}
-        title="20 Microsoft Copilot Tipps & Tricks für mehr Produktivität"
-        description="Copilot bietet weit mehr als nur einfache Code-Vervollständigung oder Textzusammenfassungen. Hier sind 20 praxiserprobte Tipps für GitHub Copilot und Microsoft 365 Copilot, die Sie sofort umsetzen können."
-        lastUpdated="02. Februar 2026"
-        readTime="10 Minuten"
+        title="22 Microsoft Copilot Tipps & Tricks für mehr Produktivität"
+        description="Praxiserprobte Tipps für Word, Excel, PowerPoint, Outlook und Teams – sofort umsetzbar für Ihren Büroalltag."
+        lastUpdated="03. Februar 2026"
+        readTime="12 Minuten"
         tableOfContents={tableOfContents}
       >
-        {/* GitHub Copilot Tipps Section */}
-        <section id="github-copilot-tipps" className="mb-12">
-          <h2 className="text-3xl font-bold mb-6 text-foreground flex items-center gap-2">
-            <Code className="w-8 h-8 text-primary" />
-            GitHub Copilot Tipps (1-10)
+        {/* Schnellantwort */}
+        <Card className="border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-amber-500/5">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Zap className="w-6 h-6 text-orange-600" />
+              Schnellantwort
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-base leading-relaxed">
+              <strong>Die drei wichtigsten Copilot-Prinzipien:</strong> 1) <strong>Kontext geben</strong> – je mehr Hintergrund, desto besser das Ergebnis.
+              2) <strong>Spezifisch sein</strong> – "Erstelle einen 2-seitigen Report für das Management" statt "Schreib was".
+              3) <strong>Iterieren</strong> – verfeinern Sie das erste Ergebnis mit Folgefragen.
+              Diese 22 Tipps zeigen Ihnen, wie Sie das in Word, Excel, PowerPoint, Outlook und Teams konkret umsetzen.
+            </p>
+          </CardContent>
+        </Card>
+
+        {/* Word Tipps Section */}
+        <section id="word-tipps">
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-blue-500">
+            <span className="flex items-center gap-3">
+              <FileText className="w-8 h-8 text-blue-600" />
+              Word Tipps (1-5)
+            </span>
           </h2>
 
-          <div className="space-y-6">
-            {/* Tipp 1 */}
-            <Card>
+          <div className="space-y-6 mt-8">
+            <Card className="border-l-4 border-l-blue-500">
               <CardHeader className="pb-2">
-                <CardTitle className="text-lg">1. Verwenden Sie beschreibende Funktionsnamen</CardTitle>
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <span className="w-8 h-8 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-sm">1</span>
+                  Der Kontext-Trick: Referenzieren Sie andere Dokumente
+                </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground mb-4">Copilot versteht Ihre Intention besser, wenn Funktionsnamen klar sind:</p>
-                <div className="bg-slate-900 text-slate-100 p-4 rounded-lg font-mono text-sm overflow-x-auto">
-                  <pre>{`# ✅ Gut:
-def calculate_customer_lifetime_value(purchases, avg_order_value):
-    # Copilot generiert präzisen Code
-
-# ❌ Weniger gut:
-def calc(p, v):
-    # Copilot muss raten`}</pre>
+                <p className="text-muted-foreground mb-4">Copilot kann auf Dateien in Ihrem OneDrive zugreifen. Nutzen Sie das!</p>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="p-3 bg-red-50 dark:bg-red-950/30 rounded border border-red-200 dark:border-red-800">
+                    <p className="text-sm font-medium text-red-700 dark:text-red-400">❌ Statt:</p>
+                    <p className="text-sm">"Schreibe einen Projektbericht"</p>
+                  </div>
+                  <div className="p-3 bg-green-50 dark:bg-green-950/30 rounded border border-green-200 dark:border-green-800">
+                    <p className="text-sm font-medium text-green-700 dark:text-green-400">✅ Besser:</p>
+                    <p className="text-sm">"Erstelle einen Projektbericht basierend auf /Projekt-Status-Januar.docx. Fokus: Budget und Timeline."</p>
+                  </div>
                 </div>
               </CardContent>
             </Card>
 
-            {/* Tipp 2 */}
-            <Card>
+            <Card className="border-l-4 border-l-blue-500">
               <CardHeader className="pb-2">
-                <CardTitle className="text-lg">2. Schreiben Sie Kommentare in natürlicher Sprache</CardTitle>
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <span className="w-8 h-8 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-sm">2</span>
+                  Zielgruppe und Ton definieren
+                </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground mb-4">Beschreiben Sie ZUERST, was Sie erreichen wollen:</p>
-                <div className="bg-slate-900 text-slate-100 p-4 rounded-lg font-mono text-sm overflow-x-auto">
-                  <pre>{`// Erstelle eine Funktion, die ein Array von Zahlen nimmt und
-// nur die geraden Zahlen zurückgibt, sortiert in absteigender Reihenfolge
-function filterAndSortEvenNumbers(numbers) {
-    // Copilot vervollständigt hier
-}`}</pre>
+                <p className="text-muted-foreground mb-4">Sagen Sie Copilot, für wen Sie schreiben:</p>
+                <div className="p-4 bg-blue-50 dark:bg-blue-950/30 rounded-lg">
+                  <code className="text-sm">"Schreibe eine Zusammenfassung unserer Q4-Ergebnisse. <strong>Zielgruppe: Vorstand</strong>. <strong>Ton: professionell, prägnant</strong>. <strong>Länge: maximal 1 Seite</strong>."</code>
                 </div>
               </CardContent>
             </Card>
 
-            {/* Tipp 3 */}
-            <Card>
+            <Card className="border-l-4 border-l-blue-500">
               <CardHeader className="pb-2">
-                <CardTitle className="text-lg">3. Nutzen Sie Copilot Chat für Erklärungen</CardTitle>
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <span className="w-8 h-8 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-sm">3</span>
+                  Text umschreiben lassen mit klaren Vorgaben
+                </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground mb-2">Markieren Sie komplexen Code und fragen Sie:</p>
-                <ul className="list-disc list-inside space-y-1 text-muted-foreground">
-                  <li>"Erkläre diesen Code Schritt für Schritt"</li>
-                  <li>"Was sind potenzielle Bugs hier?"</li>
-                  <li>"Wie kann ich das performanter machen?"</li>
+                <p className="text-muted-foreground mb-4">Markieren Sie Text und geben Sie präzise Anweisungen:</p>
+                <ul className="space-y-2 text-sm">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                    "Mache diesen Absatz formeller für eine externe E-Mail"
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                    "Kürze auf die Hälfte, behalte die Kernaussagen"
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                    "Wandle in Stichpunkte um"
+                  </li>
                 </ul>
               </CardContent>
             </Card>
 
-            {/* Tipp 4 */}
-            <Card>
+            <Card className="border-l-4 border-l-blue-500">
               <CardHeader className="pb-2">
-                <CardTitle className="text-lg">4. Test-Driven Development mit Copilot</CardTitle>
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <span className="w-8 h-8 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-sm">4</span>
+                  Dokumentenvergleich nutzen
+                </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground mb-4">Schreiben Sie Tests zuerst, Copilot generiert die Implementation:</p>
-                <div className="bg-slate-900 text-slate-100 p-4 rounded-lg font-mono text-sm overflow-x-auto">
-                  <pre>{`// Test schreiben
-test('should validate email format', () => {
-    expect(validateEmail('test@example.com')).toBe(true);
-    expect(validateEmail('invalid-email')).toBe(false);
-});
-
-// Copilot generiert validateEmail() Funktion automatisch`}</pre>
+                <p className="text-muted-foreground mb-4">Copilot kann Dokumente vergleichen und Unterschiede hervorheben:</p>
+                <div className="p-4 bg-blue-50 dark:bg-blue-950/30 rounded-lg">
+                  <code className="text-sm">"Vergleiche dieses Dokument mit /Vertrag-V1.docx und liste alle Änderungen in einer Tabelle auf."</code>
                 </div>
               </CardContent>
             </Card>
 
-            {/* Tipps 5-10 kompakt */}
-            <div className="grid md:grid-cols-2 gap-4">
-              <Card className="bg-muted/30">
-                <CardContent className="pt-4">
-                  <h4 className="font-semibold mb-2">5. Context ist King</h4>
-                  <p className="text-sm text-muted-foreground">Öffnen Sie relevante Dateien (Interfaces, Types, ähnliche Implementierungen) für besseren Context.</p>
-                </CardContent>
-              </Card>
-              <Card className="bg-muted/30">
-                <CardContent className="pt-4">
-                  <h4 className="font-semibold mb-2">6. Slash Commands nutzen</h4>
-                  <p className="text-sm text-muted-foreground">/explain, /fix, /tests, /doc - Schnelle Befehle für häufige Aufgaben.</p>
-                </CardContent>
-              </Card>
-              <Card className="bg-muted/30">
-                <CardContent className="pt-4">
-                  <h4 className="font-semibold mb-2">7. Multi-File Editing</h4>
-                  <p className="text-sm text-muted-foreground">Refactoring über mehrere Dateien: "Benenne getUserData in allen Dateien zu fetchUserProfile um"</p>
-                </CardContent>
-              </Card>
-              <Card className="bg-muted/30">
-                <CardContent className="pt-4">
-                  <h4 className="font-semibold mb-2">8. Code Reviews mit Copilot</h4>
-                  <p className="text-sm text-muted-foreground">"Reviewe diesen Pull Request", "Finde Sicherheitslücken", "Prüfe auf Performance-Probleme"</p>
-                </CardContent>
-              </Card>
-              <Card className="bg-muted/30">
-                <CardContent className="pt-4">
-                  <h4 className="font-semibold mb-2">9. Boilerplate eliminieren</h4>
-                  <p className="text-sm text-muted-foreground">Lassen Sie Copilot CRUD Operations, API Endpoints und Error Handling generieren.</p>
-                </CardContent>
-              </Card>
-              <Card className="bg-muted/30">
-                <CardContent className="pt-4">
-                  <h4 className="font-semibold mb-2">10. Alternative Vorschläge</h4>
-                  <p className="text-sm text-muted-foreground">Alt + ] / Option + ] für weitere Copilot-Vorschläge.</p>
-                </CardContent>
-              </Card>
-            </div>
+            <Card className="border-l-4 border-l-blue-500">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <span className="w-8 h-8 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-sm">5</span>
+                  Vorlagen mit Platzhaltern erstellen
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground mb-4">Lassen Sie Copilot wiederverwendbare Vorlagen generieren:</p>
+                <div className="p-4 bg-blue-50 dark:bg-blue-950/30 rounded-lg">
+                  <code className="text-sm">"Erstelle eine Vorlage für Kundenangebote mit Platzhaltern für [Kundenname], [Projekttitel], [Budget] und [Timeline]."</code>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </section>
 
-        {/* Microsoft 365 Tipps Section */}
-        <section id="microsoft-365-tipps" className="mb-12">
-          <h2 className="text-3xl font-bold mb-6 text-foreground flex items-center gap-2">
-            <FileText className="w-8 h-8 text-primary" />
-            Microsoft 365 Copilot Tipps (11-20)
+        {/* Excel Tipps Section */}
+        <section id="excel-tipps">
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-green-500">
+            <span className="flex items-center gap-3">
+              <Table2 className="w-8 h-8 text-green-600" />
+              Excel Tipps (6-10)
+            </span>
           </h2>
 
-          <div className="space-y-6">
-            {/* Tipp 11 */}
-            <Card className="border-primary/30">
+          <div className="space-y-6 mt-8">
+            <Card className="border-l-4 border-l-green-500">
               <CardHeader className="pb-2">
-                <CardTitle className="text-lg">11. Kontextreiche Prompts in Word</CardTitle>
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <span className="w-8 h-8 rounded-full bg-green-100 text-green-700 flex items-center justify-center font-bold text-sm">6</span>
+                  Formeln in natürlicher Sprache beschreiben
+                </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div className="p-3 bg-red-50 rounded border border-red-200">
-                    <p className="text-sm font-medium text-red-800">❌ Statt:</p>
-                    <p className="text-sm text-red-700">"Schreibe einen Bericht"</p>
-                  </div>
-                  <div className="p-3 bg-green-50 rounded border border-green-200">
-                    <p className="text-sm font-medium text-green-800">✅ Besser:</p>
-                    <p className="text-sm text-green-700">"Schreibe einen 2-seitigen Quartalsbericht für das Management über unsere Marketing-Performance. Verwende die Daten aus 'Q4_Metrics.xlsx' und füge Vergleiche zum Vorquartal hinzu."</p>
-                  </div>
+                <p className="text-muted-foreground mb-4">Sie müssen keine Formel-Syntax kennen:</p>
+                <div className="p-4 bg-green-50 dark:bg-green-950/30 rounded-lg">
+                  <code className="text-sm">"Erstelle eine Formel, die den Durchschnitt aus Spalte C berechnet, aber nur für Zeilen, wo in Spalte A 'Deutschland' steht."</code>
+                </div>
+                <p className="text-sm text-muted-foreground mt-3">→ Copilot generiert: <code className="bg-muted px-1 rounded">=AVERAGEIF(A:A,"Deutschland",C:C)</code></p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-l-4 border-l-green-500">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <span className="w-8 h-8 rounded-full bg-green-100 text-green-700 flex items-center justify-center font-bold text-sm">7</span>
+                  Datenanalyse mit konkreten Fragen
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground mb-4">Stellen Sie gezielte Fragen zu Ihren Daten:</p>
+                <ul className="space-y-2 text-sm">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                    "Welche 5 Produkte haben den höchsten Umsatz?"
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                    "Gibt es einen Trend bei den monatlichen Verkaufszahlen?"
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                    "Welche Ausreißer gibt es in der Spalte 'Kosten'?"
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+
+            <Card className="border-l-4 border-l-green-500">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <span className="w-8 h-8 rounded-full bg-green-100 text-green-700 flex items-center justify-center font-bold text-sm">8</span>
+                  Automatische Diagramm-Erstellung
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground mb-4">Beschreiben Sie das gewünschte Diagramm:</p>
+                <div className="p-4 bg-green-50 dark:bg-green-950/30 rounded-lg">
+                  <code className="text-sm">"Erstelle ein Balkendiagramm der Top 10 Kunden nach Umsatz. Sortiere absteigend und füge Datenbeschriftungen hinzu."</code>
                 </div>
               </CardContent>
             </Card>
 
-            {/* Weitere Tipps kompakt */}
-            <div className="grid md:grid-cols-2 gap-4">
-              <Card>
-                <CardContent className="pt-4">
-                  <h4 className="font-semibold mb-2">12. Meeting-Zusammenfassungen</h4>
-                  <p className="text-sm text-muted-foreground">"Fasse das Meeting zusammen mit: 1) Wichtigsten Entscheidungen, 2) Action Items mit Verantwortlichen, 3) Nächsten Schritten"</p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="pt-4">
-                  <h4 className="font-semibold mb-2">13. Excel-Formeln generieren</h4>
-                  <p className="text-sm text-muted-foreground">"Erstelle eine Formel, die den Durchschnitt der Spalte B berechnet, aber nur für Zeilen, wo Spalte A größer als 100 ist"</p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="pt-4">
-                  <h4 className="font-semibold mb-2">14. PowerPoint Storytelling</h4>
-                  <p className="text-sm text-muted-foreground">"Erstelle eine 10-Folien Präsentation über unsere Produktstrategie. Zielgruppe: Vorstand. Ton: professionell."</p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="pt-4">
-                  <h4 className="font-semibold mb-2">15. Outlook E-Mail Triage</h4>
-                  <p className="text-sm text-muted-foreground">"Fasse meine E-Mails von gestern zusammen. Welche benötigen sofortige Aufmerksamkeit?"</p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="pt-4">
-                  <h4 className="font-semibold mb-2">16. Datenanalyse in Excel</h4>
-                  <p className="text-sm text-muted-foreground">"Analysiere diese Verkaufsdaten: Top 10 Produkte als Pivot-Chart, Trend-Graph der letzten 6 Monate, Prognose für Q1"</p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="pt-4">
-                  <h4 className="font-semibold mb-2">17. Dokumenten-übergreifende Suche</h4>
-                  <p className="text-sm text-muted-foreground">"Finde alle Informationen über Projekt 'Phoenix' in meinen E-Mails, Teams-Chats und OneDrive-Dokumenten"</p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="pt-4">
-                  <h4 className="font-semibold mb-2">18. Meeting-Vorbereitung</h4>
-                  <p className="text-sm text-muted-foreground">"Bereite mich auf das Meeting mit [Kunde] vor. Was waren die letzten Interaktionen? Welche offenen Themen?"</p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="pt-4">
-                  <h4 className="font-semibold mb-2">19. Content Repurposing</h4>
-                  <p className="text-sm text-muted-foreground">"Wandle diese PowerPoint in einen Blog-Artikel um" oder "Erstelle Social Media Posts aus diesem Whitepaper"</p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="pt-4">
-                  <h4 className="font-semibold mb-2">20. Continuous Learning</h4>
-                  <p className="text-sm text-muted-foreground">"Welche neuen Features hat Copilot in den letzten 30 Tagen bekommen, die für meine Rolle relevant sind?"</p>
-                </CardContent>
-              </Card>
-            </div>
+            <Card className="border-l-4 border-l-green-500">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <span className="w-8 h-8 rounded-full bg-green-100 text-green-700 flex items-center justify-center font-bold text-sm">9</span>
+                  Pivot-Tabellen ohne Vorkenntnisse
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground mb-4">Copilot erstellt Pivot-Tabellen auf Anfrage:</p>
+                <div className="p-4 bg-green-50 dark:bg-green-950/30 rounded-lg">
+                  <code className="text-sm">"Erstelle eine Pivot-Tabelle, die den Umsatz nach Region und Quartal zeigt, mit Summen pro Zeile und Spalte."</code>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-l-4 border-l-green-500">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <span className="w-8 h-8 rounded-full bg-green-100 text-green-700 flex items-center justify-center font-bold text-sm">10</span>
+                  Datenbereinigung automatisieren
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground mb-4">Lassen Sie Copilot Ihre Daten aufräumen:</p>
+                <ul className="space-y-2 text-sm">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                    "Entferne alle Duplikate basierend auf der E-Mail-Spalte"
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                    "Teile die Spalte 'Name' in 'Vorname' und 'Nachname'"
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                    "Formatiere alle Datumsangaben einheitlich als TT.MM.JJJJ"
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
           </div>
         </section>
 
-        {/* Pro-Tipps Section */}
-        <section id="pro-tipps" className="mb-12">
-          <h2 className="text-3xl font-bold mb-6 text-foreground flex items-center gap-2">
-            <Zap className="w-8 h-8 text-yellow-500" />
-            Pro-Tipps für Power User
+        {/* PowerPoint Tipps Section */}
+        <section id="powerpoint-tipps">
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-purple-500">
+            <span className="flex items-center gap-3">
+              <Presentation className="w-8 h-8 text-purple-600" />
+              PowerPoint Tipps (11-14)
+            </span>
           </h2>
 
-          <Card className="mb-6">
-            <CardHeader>
-              <CardTitle>Prompt-Vorlagen erstellen</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-muted-foreground mb-4">Legen Sie sich eine Sammlung bewährter Prompts an:</p>
-              <div className="bg-slate-900 text-slate-100 p-4 rounded-lg font-mono text-sm overflow-x-auto">
-                <pre>{`Für Reports:
-Erstelle einen [Typ]-Bericht über [Thema] für [Zielgruppe].
-Umfang: [X] Seiten
-Datenquellen: [Files]
-Fokus: [Schwerpunkte]
-Ton: [formal/locker/technisch]
-
-Für Analysen:
-Analysiere [Datensatz] und beantworte:
-1. [Frage 1]
-2. [Frage 2]
-3. [Frage 3]
-Erstelle Visualisierungen für jede Antwort.`}</pre>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader>
-              <CardTitle>Keyboard Shortcuts lernen</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid md:grid-cols-2 gap-4">
-                <div>
-                  <h4 className="font-semibold mb-2">VS Code</h4>
-                  <ul className="space-y-1 text-sm text-muted-foreground">
-                    <li><code className="bg-muted px-1 rounded">Ctrl/Cmd + I</code> - Copilot Chat öffnen</li>
-                    <li><code className="bg-muted px-1 rounded">Tab</code> - Vorschlag akzeptieren</li>
-                    <li><code className="bg-muted px-1 rounded">Alt + ]</code> - Nächster Vorschlag</li>
-                  </ul>
+          <div className="space-y-6 mt-8">
+            <Card className="border-l-4 border-l-purple-500">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <span className="w-8 h-8 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center font-bold text-sm">11</span>
+                  Präsentation aus Dokument erstellen
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground mb-4">Verwandeln Sie bestehende Inhalte in Präsentationen:</p>
+                <div className="p-4 bg-purple-50 dark:bg-purple-950/30 rounded-lg">
+                  <code className="text-sm">"Erstelle eine 10-Folien Präsentation aus /Quartalsbericht-Q4.docx. Zielgruppe: Geschäftsführung. Fokus auf KPIs und Highlights."</code>
                 </div>
-                <div>
-                  <h4 className="font-semibold mb-2">Microsoft 365</h4>
-                  <ul className="space-y-1 text-sm text-muted-foreground">
-                    <li><code className="bg-muted px-1 rounded">Alt + H</code> - Copilot Pane öffnen (variiert)</li>
-                    <li>Thumbs up/down für Feedback</li>
-                  </ul>
+              </CardContent>
+            </Card>
+
+            <Card className="border-l-4 border-l-purple-500">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <span className="w-8 h-8 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center font-bold text-sm">12</span>
+                  Struktur vorgeben
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground mb-4">Definieren Sie die gewünschte Struktur:</p>
+                <div className="p-4 bg-purple-50 dark:bg-purple-950/30 rounded-lg">
+                  <code className="text-sm">"Erstelle eine Präsentation mit folgender Struktur: 1) Agenda, 2) Problem, 3) Lösung, 4) Vorteile, 5) Kosten, 6) Timeline, 7) Nächste Schritte, 8) Q&A"</code>
                 </div>
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+
+            <Card className="border-l-4 border-l-purple-500">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <span className="w-8 h-8 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center font-bold text-sm">13</span>
+                  Speaker Notes generieren
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground mb-4">Lassen Sie sich Notizen für jede Folie erstellen:</p>
+                <div className="p-4 bg-purple-50 dark:bg-purple-950/30 rounded-lg">
+                  <code className="text-sm">"Füge zu jeder Folie ausführliche Speaker Notes hinzu. Circa 3-4 Sätze pro Folie mit Talking Points."</code>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-l-4 border-l-purple-500">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <span className="w-8 h-8 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center font-bold text-sm">14</span>
+                  Folien für verschiedene Zielgruppen anpassen
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground mb-4">Erstellen Sie Varianten für unterschiedliche Audiences:</p>
+                <div className="p-4 bg-purple-50 dark:bg-purple-950/30 rounded-lg">
+                  <code className="text-sm">"Erstelle eine vereinfachte Version dieser Präsentation für Kunden ohne technischen Hintergrund. Ersetze Fachbegriffe durch verständliche Erklärungen."</code>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
+        {/* Outlook Tipps Section */}
+        <section id="outlook-tipps">
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-cyan-500">
+            <span className="flex items-center gap-3">
+              <Mail className="w-8 h-8 text-cyan-600" />
+              Outlook Tipps (15-18)
+            </span>
+          </h2>
+
+          <div className="space-y-6 mt-8">
+            <Card className="border-l-4 border-l-cyan-500">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <span className="w-8 h-8 rounded-full bg-cyan-100 text-cyan-700 flex items-center justify-center font-bold text-sm">15</span>
+                  E-Mail-Entwurf mit Ton-Vorgabe
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground mb-4">Geben Sie den gewünschten Ton explizit an:</p>
+                <div className="p-4 bg-cyan-50 dark:bg-cyan-950/30 rounded-lg">
+                  <code className="text-sm">"Schreibe eine E-Mail an den Kunden, dass sich die Lieferung um 2 Wochen verzögert. Ton: entschuldigend aber lösungsorientiert. Biete einen Rabatt als Entschädigung an."</code>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-l-4 border-l-cyan-500">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <span className="w-8 h-8 rounded-full bg-cyan-100 text-cyan-700 flex items-center justify-center font-bold text-sm">16</span>
+                  Intelligente E-Mail-Zusammenfassung
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground mb-4">Fassen Sie lange E-Mail-Threads zusammen:</p>
+                <div className="p-4 bg-cyan-50 dark:bg-cyan-950/30 rounded-lg">
+                  <code className="text-sm">"Fasse diesen E-Mail-Thread zusammen: 1) Was ist das Hauptthema? 2) Welche Entscheidungen wurden getroffen? 3) Welche offenen Punkte gibt es?"</code>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-l-4 border-l-cyan-500">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <span className="w-8 h-8 rounded-full bg-cyan-100 text-cyan-700 flex items-center justify-center font-bold text-sm">17</span>
+                  Kalender-Konflikte erkennen
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground mb-4">Nutzen Sie Copilot für Terminplanung:</p>
+                <ul className="space-y-2 text-sm">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-cyan-500 mt-0.5 flex-shrink-0" />
+                    "Finde einen freien Slot diese Woche für ein 1-Stunden-Meeting mit Anna und Max"
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-cyan-500 mt-0.5 flex-shrink-0" />
+                    "Welche Termine kann ich diese Woche verschieben, um mehr Fokuszeit zu haben?"
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+
+            <Card className="border-l-4 border-l-cyan-500">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <span className="w-8 h-8 rounded-full bg-cyan-100 text-cyan-700 flex items-center justify-center font-bold text-sm">18</span>
+                  Priorisierte E-Mail-Übersicht
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground mb-4">Starten Sie den Tag mit einer priorisierten Übersicht:</p>
+                <div className="p-4 bg-cyan-50 dark:bg-cyan-950/30 rounded-lg">
+                  <code className="text-sm">"Welche E-Mails von gestern benötigen sofortige Aufmerksamkeit? Sortiere nach Dringlichkeit und zeige mir die Absender und Betreffzeilen."</code>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
+        {/* Teams Tipps Section */}
+        <section id="teams-tipps">
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-amber-500">
+            <span className="flex items-center gap-3">
+              <Users className="w-8 h-8 text-amber-600" />
+              Teams Tipps (19-22)
+            </span>
+          </h2>
+
+          <div className="space-y-6 mt-8">
+            <Card className="border-l-4 border-l-amber-500">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <span className="w-8 h-8 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-sm">19</span>
+                  Strukturierte Meeting-Zusammenfassungen
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground mb-4">Geben Sie das gewünschte Format vor:</p>
+                <div className="p-4 bg-amber-50 dark:bg-amber-950/30 rounded-lg">
+                  <code className="text-sm">"Fasse das Meeting zusammen mit: 1) Hauptthemen, 2) Getroffene Entscheidungen, 3) Action Items mit Verantwortlichen und Deadlines, 4) Offene Fragen"</code>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-l-4 border-l-amber-500">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <span className="w-8 h-8 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-sm">20</span>
+                  Verpasste Meetings aufholen
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground mb-4">Holen Sie verpasste Meetings schnell nach:</p>
+                <ul className="space-y-2 text-sm">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-amber-500 mt-0.5 flex-shrink-0" />
+                    "Was habe ich im Team-Meeting verpasst, das mich direkt betrifft?"
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-amber-500 mt-0.5 flex-shrink-0" />
+                    "Wurden im Meeting Aufgaben an mich vergeben?"
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-amber-500 mt-0.5 flex-shrink-0" />
+                    "Was hat [Kollege] im Meeting zu [Thema] gesagt?"
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+
+            <Card className="border-l-4 border-l-amber-500">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <span className="w-8 h-8 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-sm">21</span>
+                  Chat-Zusammenfassungen bei langen Threads
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground mb-4">Holen Sie bei langen Chat-Verläufen auf:</p>
+                <div className="p-4 bg-amber-50 dark:bg-amber-950/30 rounded-lg">
+                  <code className="text-sm">"Fasse die wichtigsten Punkte aus diesem Chat der letzten 7 Tage zusammen. Was wurde entschieden? Welche Fragen sind offen?"</code>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-l-4 border-l-amber-500">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <span className="w-8 h-8 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-sm">22</span>
+                  App-übergreifende Suche
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground mb-4">Nutzen Sie Copilot als zentrale Suchmaschine:</p>
+                <div className="p-4 bg-amber-50 dark:bg-amber-950/30 rounded-lg">
+                  <code className="text-sm">"Finde alle Informationen über das Projekt 'Phoenix' – in E-Mails, Teams-Chats, Meetings und Dokumenten der letzten 30 Tage."</code>
+                </div>
+                <p className="text-sm text-muted-foreground mt-3">→ Copilot durchsucht alle M365-Apps gleichzeitig und fasst die Ergebnisse zusammen.</p>
+              </CardContent>
+            </Card>
+          </div>
         </section>
 
         {/* Fehler vermeiden Section */}
-        <section id="fehler-vermeiden" className="mb-12">
-          <h2 className="text-3xl font-bold mb-6 text-foreground flex items-center gap-2">
-            <AlertCircle className="w-8 h-8 text-red-500" />
-            Häufige Fehler vermeiden
+        <section id="fehler-vermeiden">
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-red-500">
+            <span className="flex items-center gap-3">
+              <AlertTriangle className="w-8 h-8 text-red-600" />
+              Häufige Fehler vermeiden
+            </span>
           </h2>
 
-          <div className="space-y-4">
-            <Card className="border-red-200">
-              <CardContent className="pt-4">
-                <div className="flex items-start gap-3">
-                  <span className="text-red-500 font-bold">❌</span>
-                  <div>
-                    <p className="font-semibold">Zu vage Prompts</p>
-                    <p className="text-sm text-muted-foreground">"Mach etwas mit den Daten"</p>
+          <div className="space-y-4 mt-8">
+            <Card className="border-l-4 border-l-red-500">
+              <CardContent className="pt-6">
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="p-4 bg-red-50 dark:bg-red-950/30 rounded-lg">
+                    <p className="font-semibold text-red-700 dark:text-red-400 mb-2">❌ Zu vage Prompts</p>
+                    <p className="text-sm">"Mach etwas mit diesen Daten"</p>
                   </div>
-                </div>
-                <div className="flex items-start gap-3 mt-3">
-                  <span className="text-green-500 font-bold">✅</span>
-                  <div>
-                    <p className="font-semibold">Spezifisch sein</p>
-                    <p className="text-sm text-muted-foreground">"Erstelle ein Balkendiagramm der Top 5 Verkaufsregionen"</p>
+                  <div className="p-4 bg-green-50 dark:bg-green-950/30 rounded-lg">
+                    <p className="font-semibold text-green-700 dark:text-green-400 mb-2">✅ Spezifisch sein</p>
+                    <p className="text-sm">"Erstelle ein Balkendiagramm der Top 5 Produkte nach Umsatz"</p>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="border-red-200">
-              <CardContent className="pt-4">
-                <div className="flex items-start gap-3">
-                  <span className="text-red-500 font-bold">❌</span>
-                  <div>
-                    <p className="font-semibold">Copilot blind vertrauen</p>
-                    <p className="text-sm text-muted-foreground">Code nicht reviewen</p>
+            <Card className="border-l-4 border-l-red-500">
+              <CardContent className="pt-6">
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="p-4 bg-red-50 dark:bg-red-950/30 rounded-lg">
+                    <p className="font-semibold text-red-700 dark:text-red-400 mb-2">❌ Ergebnis blind übernehmen</p>
+                    <p className="text-sm">Ersten Output direkt verwenden</p>
                   </div>
-                </div>
-                <div className="flex items-start gap-3 mt-3">
-                  <span className="text-green-500 font-bold">✅</span>
-                  <div>
-                    <p className="font-semibold">Immer prüfen</p>
-                    <p className="text-sm text-muted-foreground">Besonders Sicherheit und Edge Cases</p>
+                  <div className="p-4 bg-green-50 dark:bg-green-950/30 rounded-lg">
+                    <p className="font-semibold text-green-700 dark:text-green-400 mb-2">✅ Iterieren</p>
+                    <p className="text-sm">"Kürze das auf die Hälfte" / "Füge Beispiele hinzu"</p>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="border-red-200">
-              <CardContent className="pt-4">
-                <div className="flex items-start gap-3">
-                  <span className="text-red-500 font-bold">❌</span>
-                  <div>
-                    <p className="font-semibold">Keine Iteration</p>
-                    <p className="text-sm text-muted-foreground">Ersten Output nehmen</p>
+            <Card className="border-l-4 border-l-red-500">
+              <CardContent className="pt-6">
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="p-4 bg-red-50 dark:bg-red-950/30 rounded-lg">
+                    <p className="font-semibold text-red-700 dark:text-red-400 mb-2">❌ Zielgruppe vergessen</p>
+                    <p className="text-sm">"Schreibe einen Bericht"</p>
                   </div>
-                </div>
-                <div className="flex items-start gap-3 mt-3">
-                  <span className="text-green-500 font-bold">✅</span>
-                  <div>
-                    <p className="font-semibold">Verfeinern</p>
-                    <p className="text-sm text-muted-foreground">"Mach es prägnanter" / "Füge Beispiele hinzu"</p>
+                  <div className="p-4 bg-green-50 dark:bg-green-950/30 rounded-lg">
+                    <p className="font-semibold text-green-700 dark:text-green-400 mb-2">✅ Kontext geben</p>
+                    <p className="text-sm">"Schreibe einen Bericht für das Management, max. 2 Seiten, Fokus ROI"</p>
                   </div>
                 </div>
               </CardContent>
@@ -438,79 +639,139 @@ Erstelle Visualisierungen für jede Antwort.`}</pre>
           </div>
         </section>
 
-        {/* Zusammenfassung Section */}
-        <section id="zusammenfassung" className="mb-12">
-          <h2 className="text-3xl font-bold mb-6 text-foreground">Zusammenfassung</h2>
+        {/* FAQ Section */}
+        <section id="faq">
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-slate-500">
+            Häufig gestellte Fragen
+          </h2>
 
-          <Card className="border-primary/30 bg-primary/5">
-            <CardContent className="pt-6">
-              <p className="mb-4 font-medium">Copilot wird mit jedem Einsatz wertvoller, wenn Sie:</p>
-              <ol className="space-y-2">
-                <li className="flex items-start gap-2">
-                  <span className="font-bold text-primary">1.</span>
-                  <span><strong>Kontext geben</strong> - Je mehr Information, desto besser die Ergebnisse</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="font-bold text-primary">2.</span>
-                  <span><strong>Spezifisch sein</strong> - Klare Anweisungen führen zu präzisem Output</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="font-bold text-primary">3.</span>
-                  <span><strong>Iterieren</strong> - Erste Antwort verfeinern</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="font-bold text-primary">4.</span>
-                  <span><strong>Experimentieren</strong> - Neue Anwendungsfälle testen</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="font-bold text-primary">5.</span>
-                  <span><strong>Lernen</strong> - Shortcuts und Features kennenlernen</span>
-                </li>
-              </ol>
-            </CardContent>
-          </Card>
-
-          <Card className="mt-6 border-yellow-200 bg-yellow-50/50">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-yellow-800">
-                <Lightbulb className="w-5 h-5" />
-                Nächste Schritte
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="text-yellow-900">
-              <ul className="list-disc list-inside space-y-2">
-                <li>Wählen Sie 3 Tipps aus diesem Artikel und setzen Sie sie diese Woche um</li>
-                <li>Tauschen Sie sich mit Kollegen über Best Practices aus</li>
-                <li>Dokumentieren Sie Ihre eigenen erfolgreichen Prompts</li>
-                <li>Investieren Sie 15 Minuten täglich, um neue Copilot-Techniken auszuprobieren</li>
-              </ul>
-            </CardContent>
-          </Card>
-
-          <Card className="mt-6 border-primary bg-primary/10">
-            <CardContent className="pt-6 text-center">
-              <p className="font-semibold">Möchten Sie Copilot-Power-User werden?</p>
-              <p className="text-muted-foreground mt-2">Buchen Sie unser Advanced Copilot Training!</p>
-            </CardContent>
-          </Card>
-        </section>
-
-        {/* FAQ Section für SEO */}
-        <section id="faq" className="mb-12">
-          <h2 className="text-3xl font-bold mb-6 text-foreground">Häufig gestellte Fragen</h2>
-          <div className="space-y-4">
+          <div className="space-y-4 mt-8">
             {faqs.map((faq, idx) => (
-              <Card key={idx}>
+              <Card key={idx} className="border-l-4 border-l-slate-500">
                 <CardHeader>
-                  <CardTitle className="text-lg">{faq.name}</CardTitle>
+                  <CardTitle className="text-base font-semibold">{faq.name}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">{faq.answer}</p>
+                  <p className="text-sm text-muted-foreground">{faq.answer}</p>
                 </CardContent>
               </Card>
             ))}
           </div>
         </section>
+
+        {/* Quellen Section */}
+        <section id="quellen">
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-gray-500">
+            Quellen und weiterführende Links
+          </h2>
+
+          <div className="grid md:grid-cols-2 gap-4 mt-8">
+            {[
+              {
+                href: "https://support.microsoft.com/de-de/copilot",
+                title: "Microsoft Copilot Hilfe",
+                desc: "Offizielle Dokumentation und Anleitungen",
+                color: "blue"
+              },
+              {
+                href: "https://adoption.microsoft.com/copilot/",
+                title: "Microsoft Copilot Adoption Hub",
+                desc: "Best Practices für die Einführung",
+                color: "green"
+              },
+              {
+                href: "https://learn.microsoft.com/de-de/copilot/",
+                title: "Microsoft Learn: Copilot",
+                desc: "Lernpfade und Tutorials",
+                color: "purple"
+              },
+              {
+                href: "https://copilotenschule.de/wissen/prompt-engineering",
+                title: "Prompt Engineering Guide",
+                desc: "Vertiefte Prompt-Techniken",
+                color: "cyan"
+              }
+            ].map((link, idx) => (
+              <a
+                key={idx}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`flex items-start gap-3 p-4 border-l-4 border-l-${link.color}-500 border rounded-lg hover:bg-muted/50 transition-colors group`}
+              >
+                <ExternalLink className="w-5 h-5 text-muted-foreground mt-0.5 flex-shrink-0 group-hover:text-primary" />
+                <div>
+                  <div className="font-semibold group-hover:text-primary transition-colors">{link.title}</div>
+                  <div className="text-sm text-muted-foreground">{link.desc}</div>
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+
+        {/* Autor Bio */}
+        {author && (
+          <section className="mt-16">
+            <Card className="border-t-4 border-t-orange-500">
+              <CardContent className="pt-6">
+                <div className="flex flex-col md:flex-row gap-6">
+                  <div className="flex-shrink-0">
+                    <img
+                      src={author.image}
+                      alt={author.name}
+                      className="w-24 h-24 rounded-full object-cover border-4 border-orange-500/30"
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-bold mb-1">Über den Autor</h3>
+                    <div className="text-lg font-semibold text-orange-600 mb-1">{author.name}</div>
+                    <div className="text-sm text-muted-foreground mb-3">{author.role}</div>
+                    <p className="text-sm leading-relaxed mb-4">{author.bio}</p>
+                    <div className="mb-3">
+                      <div className="text-sm font-semibold mb-2">Expertise:</div>
+                      <div className="flex flex-wrap gap-2">
+                        {author.expertise.map((exp, idx) => (
+                          <span key={idx} className="px-3 py-1 bg-orange-500/10 text-orange-700 dark:text-orange-400 border border-orange-500/30 rounded-full text-xs font-medium">
+                            {exp}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="flex gap-4">
+                      {author.linkedin && (
+                        <a href={author.linkedin} target="_blank" rel="noopener noreferrer"
+                           className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-orange-600 transition-colors">
+                          <Linkedin className="w-4 h-4" /> LinkedIn
+                        </a>
+                      )}
+                      {author.twitter && (
+                        <a href={author.twitter} target="_blank" rel="noopener noreferrer"
+                           className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-orange-600 transition-colors">
+                          <Twitter className="w-4 h-4" /> Twitter
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </section>
+        )}
+
+        {/* CTA */}
+        <div className="bg-gradient-to-r from-orange-500/10 to-amber-500/10 rounded-xl p-8 text-center mt-12 border-2 border-orange-500/20">
+          <h3 className="text-2xl font-bold mb-4">Copilot-Training für Ihr Team</h3>
+          <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+            Lernen Sie in praxisorientierten Workshops, wie Sie Microsoft 365 Copilot optimal nutzen
+            und diese Tipps im Arbeitsalltag anwenden.
+          </p>
+          <a
+            href="/#contact"
+            className="inline-flex items-center justify-center px-6 py-3 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors font-medium"
+          >
+            Workshop anfragen
+          </a>
+        </div>
       </ContentLayout>
     </>
   );

@@ -142,13 +142,13 @@ const Wissen = () => {
       lastUpdated: "02. Feb. 2026"
     },
     {
-      title: "20 Microsoft Copilot Tipps & Tricks: Produktivität steigern",
-      description: "Copilot Produktivität steigern: 20 Profi-Tipps für GitHub Copilot & Microsoft 365 Copilot. Prompting-Tricks, Shortcuts & versteckte Features.",
+      title: "22 Microsoft Copilot Tipps & Tricks für mehr Produktivität",
+      description: "22 Profi-Tipps für Microsoft 365 Copilot in Word, Excel, PowerPoint, Outlook & Teams. Prompting-Tricks, Shortcuts & versteckte Features für den Büroalltag.",
       link: "/wissen/copilot-tipps-tricks-produktivitaet",
       badge: "Best Practices",
       icon: "💡",
-      readTime: "10 Minuten",
-      lastUpdated: "02. Feb. 2026"
+      readTime: "12 Minuten",
+      lastUpdated: "03. Feb. 2026"
     }
   ];
 
