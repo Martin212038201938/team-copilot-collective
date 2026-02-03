@@ -513,17 +513,39 @@ const CopilotRoiBerechnen = () => {
 
         <section id="download-roi-rechner-excel" className="mb-8">
           <h2 className="text-2xl font-bold mb-4">Download: ROI-Rechner Excel</h2>
-          <p className="mb-4 text-gray-700 leading-relaxed"><strong><a href="#" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">Kostenlose Excel-Vorlage herunterladen</a></strong> (Coming Soon)</p>
-          <p className="mb-4 text-gray-700 leading-relaxed">Die Vorlage enthält:</p>
+          <div className="bg-gradient-to-r from-primary/10 to-accent/10 border-2 border-primary/30 rounded-xl p-6 mb-6">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+              </div>
+              <div className="flex-grow">
+                <h3 className="font-bold text-lg mb-1">Copilot ROI-Rechner</h3>
+                <p className="text-sm text-muted-foreground">Excel-Vorlage mit automatischen Berechnungen</p>
+              </div>
+              <a
+                href="/downloads/Copilot-ROI-Rechner.xlsx"
+                download="Copilot-ROI-Rechner.xlsx"
+                className="px-6 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition-colors flex items-center gap-2"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+                Download
+              </a>
+            </div>
+          </div>
+          <p className="mb-4 text-gray-700 leading-relaxed"><strong>Die Vorlage enthält 5 Arbeitsblätter:</strong></p>
           <ul className="list-disc list-inside space-y-2 mb-4">
-            <li>Automatische ROI-Berechnung</li>
-            <li>3 Szenarien (konservativ, realistisch, optimistisch)</li>
-            <li>5-Jahres-Prognose</li>
-            <li>Break-even Analyse</li>
-            <li>Dashboard mit Visualisierungen</li>
+            <li><strong>1. Eingaben:</strong> Ihre Unternehmensdaten und Szenarien (gelbe Felder ausfüllen)</li>
+            <li><strong>2. Kosten:</strong> Automatische Kostenkalkulation inkl. versteckter Kosten</li>
+            <li><strong>3. Nutzen:</strong> Nutzenberechnung für alle 3 Szenarien</li>
+            <li><strong>4. ROI-Dashboard:</strong> ROI-Übersicht, Break-even und 5-Jahres-Prognose</li>
+            <li><strong>5. Zusammenfassung:</strong> Executive Summary für Ihren Business Case</li>
           </ul>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Benötigen Sie Unterstützung bei Ihrer ROI-Berechnung und Business Case-Erstellung?</strong> </p>
-          <p className="mb-4 text-gray-700 leading-relaxed">Wir helfen Ihnen mit individueller Beratung und branchenspezifischen Benchmarks. <a href="/" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">Kontakt aufnehmen →</a></p>
+          <p className="mb-4 text-gray-700 leading-relaxed">Wir helfen Ihnen mit individueller Beratung und branchenspezifischen Benchmarks. <a href="/#contact" className="text-blue-600 hover:underline">Kontakt aufnehmen →</a></p>
         </section>
 
         {/* Quellen und weiterführende Links */}
