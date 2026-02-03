@@ -136,7 +136,7 @@ const PromptEngineering = () => {
 
         {/* Was ist Prompt Engineering */}
         <section id="was-ist">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 border-b-4 border-blue-500 text-blue-700 dark:text-blue-400">
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-blue-500">
             Was ist Prompt Engineering?
           </h2>
 
@@ -196,7 +196,7 @@ const PromptEngineering = () => {
 
         {/* CRAFT Framework */}
         <section id="craft-framework">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 border-b-4 border-green-500 text-green-700 dark:text-green-400">
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-green-500">
             Das CRAFT-Framework
           </h2>
 
@@ -296,7 +296,7 @@ const PromptEngineering = () => {
 
         {/* Prompt-Techniken */}
         <section id="techniken">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 border-b-4 border-purple-500 text-purple-700 dark:text-purple-400">
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-purple-500">
             Prompt-Techniken im Überblick
           </h2>
 
@@ -353,7 +353,7 @@ const PromptEngineering = () => {
 
         {/* M365 Prompts */}
         <section id="m365-prompts">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 border-b-4 border-cyan-500 text-cyan-700 dark:text-cyan-400">
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-cyan-500">
             Prompts für Microsoft 365 Copilot
           </h2>
 
@@ -449,7 +449,7 @@ const PromptEngineering = () => {
 
         {/* GitHub Copilot */}
         <section id="github-prompts">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 border-b-4 border-emerald-500 text-emerald-700 dark:text-emerald-400">
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-emerald-500">
             Prompts für GitHub Copilot
           </h2>
 
@@ -507,7 +507,7 @@ const PromptEngineering = () => {
 
         {/* Typische Fehler */}
         <section id="fehler">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 border-b-4 border-red-500 text-red-700 dark:text-red-400">
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-red-500">
             Typische Fehler vermeiden
           </h2>
 
@@ -565,7 +565,7 @@ const PromptEngineering = () => {
 
         {/* Zauberstab-Prompt */}
         <section id="zauberstab">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 border-b-4 border-amber-500 text-amber-700 dark:text-amber-400">
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-amber-500">
             Der Zauberstab-Prompt
           </h2>
 
@@ -629,7 +629,7 @@ const PromptEngineering = () => {
 
         {/* Kernaussagen */}
         <section id="kernaussagen">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 border-b-4 border-indigo-500 text-indigo-700 dark:text-indigo-400">
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-indigo-500">
             Kernaussagen für Entscheider
           </h2>
 
@@ -660,7 +660,7 @@ const PromptEngineering = () => {
 
         {/* FAQ */}
         <section id="faq">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 border-b-4 border-slate-500 text-slate-700 dark:text-slate-400">
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-slate-500">
             Häufig gestellte Fragen
           </h2>
 
@@ -680,7 +680,7 @@ const PromptEngineering = () => {
 
         {/* Quellen */}
         <section id="quellen">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 border-b-4 border-gray-500 text-gray-700 dark:text-gray-400">
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-gray-500">
             Quellen und weiterführende Links
           </h2>
 
