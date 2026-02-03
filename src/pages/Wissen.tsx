@@ -25,6 +25,15 @@ const Wissen = () => {
   // ============================================================================
   const staticKnowledgeTopics = [
     {
+      title: "Copilot Launch-Kampagne: So bringen Sie Ihr Unternehmen zum Fliegen",
+      description: "Warum eine Copilot-Einführung anders ist als SAP oder Salesforce – und wie Sie mit der richtigen Launch-Kampagne nachhaltige Verhaltensänderung erreichen. Mit 15 konkreten Ideen.",
+      link: "/wissen/copilot-launch-kampagne",
+      badge: "Neu",
+      icon: "🚀",
+      readTime: "14 Minuten",
+      lastUpdated: "03. Feb. 2026"
+    },
+    {
       title: "Warum Prompt-Bibliotheken Quatsch sind",
       description: "Prompt-Listen klingen gut, bringen aber wenig. Warum echtes Prompting-Training und Copilot-Agenten die besseren Alternativen sind – inklusive dem Zauberstab-Prompt.",
       link: "/wissen/prompt-bibliotheken-vs-training",
