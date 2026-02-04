@@ -26,6 +26,16 @@ const Wissen = () => {
   // ============================================================================
   const staticKnowledgeTopics = [
     {
+      title: "Warum verteiltes Lernen bei Copilot-Trainings funktioniert",
+      description: "Ein persönlicher Erfahrungsbericht: Warum Copilot-Lernreisen nachhaltiger wirken als ganztägige Schulungen – und was die Wissenschaft dazu sagt.",
+      link: "/wissen/warum-verteiltes-lernen-bei-copilot-trainings-funktioniert",
+      badge: "Erfahrungsbericht",
+      icon: "✍️",
+      readTime: "10 Minuten",
+      lastUpdated: "04. Feb. 2026",
+      publishDate: "2026-02-04"
+    },
+    {
       title: "Copilot Lernreise vs. Tagesschulung: Warum 4×2 Stunden mehr bringen als 1×8",
       description: "Warum Copilot-Lernreisen nachhaltiger wirken als ganztägige Schulungen. Vergessenskurve, Praxistransfer, Kalenderfreundlichkeit – 8 Gründe für verteiltes Lernen.",
       link: "/wissen/copilot-lernreise-vs-tagesschulung",
