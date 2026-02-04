@@ -60,6 +60,20 @@ interface ArticleMetadata {
 // ============================================================================
 const DEFAULT_STATIC_ARTICLES: ArticleMetadata[] = [
   {
+    id: "copilot-lernreise-vs-tagesschulung",
+    title: "Copilot Lernreise vs. Tagesschulung: Warum 4×2 Stunden mehr bringen als 1×8",
+    description: "Warum Copilot-Lernreisen nachhaltiger wirken als ganztägige Schulungen. Vergessenskurve, Praxistransfer, Kalenderfreundlichkeit – 8 Gründe für verteiltes Lernen.",
+    link: "/wissen/copilot-lernreise-vs-tagesschulung",
+    badge: "Enablement",
+    icon: "🎯",
+    readTime: "12 Minuten",
+    lastUpdated: "04. Feb. 2026",
+    publishDate: "2026-02-04",
+    publishTime: "10:00",
+    isPublished: true,
+    isStatic: true
+  },
+  {
     id: "copilot-adoption-2026-zahlen",
     title: "Copilot Adoption 2026: Was die Zahlen wirklich zeigen",
     description: "Aktuelle Zahlen Januar 2026: 15 Mio. Copilot-Seats, 160% Wachstum, bis zu 408% ROI. Eine nüchterne Einordnung jenseits des Microsoft-Marketings.",
