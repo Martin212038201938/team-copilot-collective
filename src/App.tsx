@@ -35,7 +35,6 @@ import CopilotLaunchKampagne from "./pages/CopilotLaunchKampagne";
 import CopilotROIErfolgsgeschichten from "./pages/CopilotROIErfolgsgeschichten";
 import CopilotAdoption2026 from "./pages/CopilotAdoption2026";
 import CopilotLernreisen from "./pages/CopilotLernreisen";
-import SpacingEffektCopilotTraining from "./pages/SpacingEffektCopilotTraining";
 
 const queryClient = new QueryClient();
 
@@ -69,7 +68,6 @@ const App = () => (
           <Route path="/wissen/copilot-roi-erfolgsgeschichten" element={<CopilotROIErfolgsgeschichten />} />
           <Route path="/wissen/copilot-adoption-2026-zahlen" element={<CopilotAdoption2026 />} />
           <Route path="/wissen/copilot-lernreise-vs-tagesschulung" element={<CopilotLernreisen />} />
-          <Route path="/wissen/spacing-effekt-copilot-training" element={<SpacingEffektCopilotTraining />} />
           <Route path="/impressum" element={<Impressum />} />
           <Route path="/ueber-uns" element={<UeberUns />} />
           <Route path="/unsere-angebote" element={<UnsereAngebote />} />
