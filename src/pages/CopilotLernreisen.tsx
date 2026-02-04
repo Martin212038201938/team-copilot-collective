@@ -607,7 +607,7 @@ const CopilotLernreisen = () => {
           <div className="space-y-4 my-6">
             {[
               {
-                fehler: "Tagesschulung als „effizienter" betrachten",
+                fehler: "Tagesschulung als 'effizienter' betrachten",
                 konsequenz: "Ein Tag fühlt sich schnell und effizient an – aber wenn 80–90 % des Wissens nach einem Monat verschwunden sind, war es das Gegenteil. Die wahren Kosten liegen in der verlorenen Lizenznutzung und den nötigen Nachschulungen.",
                 icon: <XCircle className="w-5 h-5 text-red-600" />
               },
