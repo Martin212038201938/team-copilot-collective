@@ -143,8 +143,8 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <SEOHead
-        title="Microsoft Copilot Schulungen & Trainings | copilotenschule.de"
-        description="Praxisnahe Microsoft Copilot Trainings für Unternehmen: Hands-on Workshops, Inhouse-Enablement und Rollout-Begleitung. Ihre Mitarbeiter lernen sofort anwendbare KI-Workflows – DSGVO-konform, herstellernah, seit 2011 erprobt."
+        title="Microsoft Copilot Schulungen & Trainings"
+        description="Praxisnahe Microsoft Copilot Trainings für Unternehmen: Hands-on Workshops, Inhouse-Enablement und Rollout-Begleitung. DSGVO-konform."
         keywords={[
           "Microsoft Copilot Schulung",
           "Microsoft 365 Copilot Training",
