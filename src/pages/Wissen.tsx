@@ -26,6 +26,16 @@ const Wissen = () => {
   // ============================================================================
   const staticKnowledgeTopics = [
     {
+      title: "Spacing-Effekt: Warum Ihr Copilot-Training wissenschaftlich scheitert",
+      description: "Der Spacing-Effekt ist eines der am besten belegten Phänomene der Lernforschung. Erfahren Sie, warum klassische Copilot-Tagesschulungen zum Scheitern verurteilt sind.",
+      link: "/wissen/spacing-effekt-copilot-training",
+      badge: "Wissenschaft",
+      icon: "🧪",
+      readTime: "10 Minuten",
+      lastUpdated: "04. Feb. 2026",
+      publishDate: "2026-02-04"
+    },
+    {
       title: "Copilot Lernreise vs. Tagesschulung: Warum 4×2 Stunden mehr bringen als 1×8",
       description: "Warum Copilot-Lernreisen nachhaltiger wirken als ganztägige Schulungen. Vergessenskurve, Praxistransfer, Kalenderfreundlichkeit – 8 Gründe für verteiltes Lernen.",
       link: "/wissen/copilot-lernreise-vs-tagesschulung",
