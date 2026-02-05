@@ -60,6 +60,20 @@ interface ArticleMetadata {
 // ============================================================================
 const DEFAULT_STATIC_ARTICLES: ArticleMetadata[] = [
   {
+    id: "copilot-adhs-produktiver-arbeiten",
+    title: "Microsoft Copilot und ADHS: Wie KI mir hilft, fokussierter zu arbeiten",
+    description: "Ein persönlicher Erfahrungsbericht: Wie Microsoft Copilot mir als ADHS-Betroffener hilft, fokussierter und produktiver zu arbeiten - mit konkreten Workflows und ehrlichen Grenzen.",
+    link: "/wissen/copilot-adhs-produktiver-arbeiten",
+    badge: "Erfahrungsbericht",
+    icon: "🧠",
+    readTime: "7 Minuten",
+    lastUpdated: "05. Feb. 2026",
+    publishDate: "2026-02-05",
+    publishTime: "10:00",
+    isPublished: false,
+    isStatic: true
+  },
+  {
     id: "copilot-lernreise-vs-tagesschulung",
     title: "Copilot Lernreise vs. Tagesschulung: Warum 4×2 Stunden mehr bringen als 1×8",
     description: "Warum Copilot-Lernreisen nachhaltiger wirken als ganztägige Schulungen. Vergessenskurve, Praxistransfer, Kalenderfreundlichkeit – 8 Gründe für verteiltes Lernen.",

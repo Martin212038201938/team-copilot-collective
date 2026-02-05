@@ -26,6 +26,16 @@ const Wissen = () => {
   // ============================================================================
   const staticKnowledgeTopics = [
     {
+      title: "Microsoft Copilot und ADHS: Wie KI mir hilft, fokussierter zu arbeiten",
+      description: "Ein persönlicher Erfahrungsbericht: Wie Microsoft Copilot mir als ADHS-Betroffener hilft, fokussierter und produktiver zu arbeiten - mit konkreten Workflows und ehrlichen Grenzen.",
+      link: "/wissen/copilot-adhs-produktiver-arbeiten",
+      badge: "Erfahrungsbericht",
+      icon: "🧠",
+      readTime: "7 Minuten",
+      lastUpdated: "05. Feb. 2026",
+      publishDate: "2026-02-05"
+    },
+    {
       title: "Warum verteiltes Lernen bei Copilot-Trainings funktioniert",
       description: "Ein persönlicher Erfahrungsbericht: Warum Copilot-Lernreisen nachhaltiger wirken als ganztägige Schulungen – und was die Wissenschaft dazu sagt.",
       link: "/wissen/warum-verteiltes-lernen-bei-copilot-trainings-funktioniert",
