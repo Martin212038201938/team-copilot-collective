@@ -43,6 +43,7 @@ import { ALL_ARTICLES, ArticleData } from "@/data/articles";
 // Erweiterter Typ mit Veröffentlichungsstatus
 interface ArticleMetadata extends ArticleData {
   isPublished: boolean;
+  manuallyUnpublished?: boolean; // NEU: true wenn manuell deaktiviert (schützt vor Auto-Publisher)
   isStatic: boolean;
 }
 
@@ -55,16 +56,22 @@ const EditorialCalendar = () => {
   const [filterStatus, setFilterStatus] = useState<'all' | 'published' | 'unpublished'>('all');
 
   // Lade Artikel beim Start - Kombiniere zentrale Datenquelle mit localStorage-Status
+  // BUGFIX: isDraft: true in articles.ts hat jetzt höchste Priorität.
+  // Wenn ein Entwickler isDraft: true setzt, wird der Artikel IMMER als Draft behandelt,
+  // unabhängig davon, was in localStorage steht.
   useEffect(() => {
     const saved = localStorage.getItem(STORAGE_KEY);
-    let savedStatusMap: Record<string, { isPublished: boolean }> = {};
+    let savedStatusMap: Record<string, { isPublished: boolean; manuallyUnpublished?: boolean }> = {};
 
     if (saved) {
       try {
         const parsed: ArticleMetadata[] = JSON.parse(saved);
         // Erstelle Map von ID → Veröffentlichungsstatus
         parsed.forEach(a => {
-          savedStatusMap[a.id] = { isPublished: a.isPublished };
+          savedStatusMap[a.id] = {
+            isPublished: a.isPublished,
+            manuallyUnpublished: a.manuallyUnpublished
+          };
         });
       } catch {
         // Bei Fehler: leere Map verwenden
@@ -72,14 +79,37 @@ const EditorialCalendar = () => {
     }
 
     // Kombiniere zentrale Datenquelle mit gespeichertem Status
-    const articlesWithStatus: ArticleMetadata[] = ALL_ARTICLES.map(article => ({
-      ...article,
-      isStatic: true,
-      // Verwende gespeicherten Status falls vorhanden, sonst isDraft-Flag aus articles.ts
-      // isDraft: true → isPublished: false (Draft)
-      // isDraft: false/undefined → isPublished: true (Veröffentlicht)
-      isPublished: savedStatusMap[article.id]?.isPublished ?? !article.isDraft
-    }));
+    const articlesWithStatus: ArticleMetadata[] = ALL_ARTICLES.map(article => {
+      const savedStatus = savedStatusMap[article.id];
+
+      // PRIORITÄT 1: isDraft: true in articles.ts → IMMER Draft (höchste Priorität)
+      if (article.isDraft === true) {
+        return {
+          ...article,
+          isStatic: true,
+          isPublished: false,
+          manuallyUnpublished: false // Kein manuelles Flag nötig, Code-Level-Draft
+        };
+      }
+
+      // PRIORITÄT 2: localStorage-Status (manuell gesetzt im Redaktionssystem)
+      if (savedStatus) {
+        return {
+          ...article,
+          isStatic: true,
+          isPublished: savedStatus.isPublished,
+          manuallyUnpublished: savedStatus.manuallyUnpublished ?? false
+        };
+      }
+
+      // PRIORITÄT 3: Fallback – kein localStorage-Eintrag vorhanden
+      return {
+        ...article,
+        isStatic: true,
+        isPublished: !article.isDraft,
+        manuallyUnpublished: false
+      };
+    });
 
     setArticles(articlesWithStatus);
     // Speichere kombinierte Daten zurück
@@ -94,6 +124,7 @@ const EditorialCalendar = () => {
   }, [articles]);
 
   // Auto-Publish: Prüfe jede Minute ob geplante Artikel veröffentlicht werden sollen
+  // BUGFIX: Respektiert jetzt manuallyUnpublished und isDraft aus articles.ts
   useEffect(() => {
     const checkScheduledArticles = () => {
       const now = new Date();
@@ -104,6 +135,13 @@ const EditorialCalendar = () => {
         const updatedArticles = prevArticles.map(article => {
           // Nur unveröffentlichte Artikel mit Datum prüfen
           if (!article.isPublished && article.publishDate) {
+            // BUGFIX: NIEMALS manuell deaktivierte Artikel automatisch veröffentlichen
+            if (article.manuallyUnpublished) return article;
+
+            // BUGFIX: NIEMALS Artikel mit isDraft: true in articles.ts auto-publishen
+            const sourceArticle = ALL_ARTICLES.find(a => a.id === article.id);
+            if (sourceArticle?.isDraft === true) return article;
+
             let publishDateTime: Date;
 
             if (article.publishTime) {
@@ -117,7 +155,7 @@ const EditorialCalendar = () => {
             // Wenn das geplante Datum erreicht ist → veröffentlichen
             if (publishDateTime <= now) {
               hasChanges = true;
-              return { ...article, isPublished: true };
+              return { ...article, isPublished: true, manuallyUnpublished: false };
             }
           }
           return article;
@@ -192,6 +230,13 @@ const EditorialCalendar = () => {
 
     let updatedArticle = { ...editingArticle };
 
+    // BUGFIX: Artikel mit isDraft: true können nicht über den Dialog veröffentlicht werden
+    const sourceArticle = ALL_ARTICLES.find(a => a.id === updatedArticle.id);
+    if (sourceArticle?.isDraft === true && updatedArticle.isPublished) {
+      alert(`"${updatedArticle.title}" ist in articles.ts als Draft markiert (isDraft: true). Entfernen Sie das isDraft-Flag im Code, bevor Sie den Artikel veröffentlichen können.`);
+      updatedArticle.isPublished = false;
+    }
+
     // Prüfe ob Veröffentlichungsdatum in der Zukunft liegt
     if (updatedArticle.publishDate) {
       const isFuture = isDateInFuture(updatedArticle.publishDate, updatedArticle.publishTime);
@@ -201,6 +246,12 @@ const EditorialCalendar = () => {
       }
     }
 
+    // BUGFIX: manuallyUnpublished korrekt setzen
+    // Wenn im Dialog explizit unveröffentlicht → manuell markieren
+    // Wenn veröffentlicht → manuelles Flag zurücksetzen
+    updatedArticle.manuallyUnpublished = !updatedArticle.isPublished &&
+      !isDateInFuture(updatedArticle.publishDate || '', updatedArticle.publishTime);
+
     setArticles(prevArticles => prevArticles.map(a =>
       a.id === updatedArticle.id ? updatedArticle : a
     ));
@@ -209,10 +260,26 @@ const EditorialCalendar = () => {
   };
 
   const handleTogglePublish = (article: ArticleMetadata) => {
+    // BUGFIX: Artikel mit isDraft: true in articles.ts können nicht über das UI veröffentlicht werden
+    const sourceArticle = ALL_ARTICLES.find(a => a.id === article.id);
+    if (sourceArticle?.isDraft === true && !article.isPublished) {
+      alert(`"${article.title}" ist in articles.ts als Draft markiert (isDraft: true). Entfernen Sie das isDraft-Flag im Code, bevor Sie den Artikel hier veröffentlichen können.`);
+      return;
+    }
+
     const action = article.isPublished ? 'unveröffentlichen' : 'veröffentlichen';
     if (confirm(`Möchten Sie "${article.title}" wirklich ${action}?`)) {
+      const newIsPublished = !article.isPublished;
       setArticles(prevArticles => prevArticles.map(a =>
-        a.id === article.id ? { ...a, isPublished: !a.isPublished } : a
+        a.id === article.id
+          ? {
+              ...a,
+              isPublished: newIsPublished,
+              // BUGFIX: Wenn manuell unveröffentlicht → Flag setzen, damit Auto-Publisher es nicht überschreibt
+              // Wenn manuell veröffentlicht → Flag zurücksetzen
+              manuallyUnpublished: !newIsPublished
+            }
+          : a
       ));
     }
   };
@@ -299,6 +366,8 @@ const EditorialCalendar = () => {
                   <div className="flex items-center gap-2 mb-1">
                     <h3 className="font-semibold text-lg truncate">{article.title}</h3>
                     {(() => {
+                      const sourceArticle = ALL_ARTICLES.find(a => a.id === article.id);
+                      const isCodeDraft = sourceArticle?.isDraft === true;
                       const isScheduled = !article.isPublished && article.publishDate && (() => {
                         const publishDateTime = article.publishTime
                           ? new Date(`${article.publishDate}T${article.publishTime}`)
@@ -308,6 +377,10 @@ const EditorialCalendar = () => {
 
                       if (article.isPublished) {
                         return <Badge variant="default">Live</Badge>;
+                      } else if (isCodeDraft) {
+                        return <Badge className="bg-red-500 hover:bg-red-600 text-white">Draft (Code)</Badge>;
+                      } else if (article.manuallyUnpublished) {
+                        return <Badge className="bg-orange-500 hover:bg-orange-600 text-white">Manuell deaktiviert</Badge>;
                       } else if (isScheduled) {
                         return <Badge className="bg-amber-500 hover:bg-amber-600">Geplant</Badge>;
                       } else {

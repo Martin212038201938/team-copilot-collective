@@ -8,6 +8,7 @@ interface EditorialArticle {
   id: string;
   link: string;
   isPublished: boolean;
+  manuallyUnpublished?: boolean; // NEU: Unterscheidet manuelles Deaktivieren von "noch nicht fällig"
   publishDate?: string;
   publishTime?: string;
 }
@@ -27,19 +28,32 @@ export function getEditorialCalendarArticles(): EditorialArticle[] {
 
 /**
  * Check if a static article should be visible based on editorial calendar
- * Returns true if: article is published AND (no future publish date OR publish date is in the past)
  *
- * Priorität:
- * 1. localStorage (Editorial Calendar Status) - wenn vorhanden, gilt dieser
- * 2. articles.ts isDraft-Flag - wenn kein localStorage-Eintrag existiert
+ * Priorität (NEU - Bugfix):
+ * 1. articles.ts isDraft-Flag – wenn isDraft: true, ist der Artikel IMMER ein Draft.
+ *    Das ist die Build-Zeit-Entscheidung des Entwicklers und hat höchste Priorität.
+ * 2. localStorage manuallyUnpublished – wenn im Redaktionssystem manuell deaktiviert,
+ *    bleibt der Artikel offline. Der Auto-Publisher darf das NICHT überschreiben.
+ * 3. localStorage isPublished – normaler Editorial-Status
+ * 4. Fallback: isDraft aus articles.ts (für Artikel ohne localStorage-Eintrag)
  */
 export function isArticlePublished(articleLink: string): boolean {
+  // SCHRITT 1: Prüfe isDraft in articles.ts (höchste Priorität)
+  // Wenn der Entwickler isDraft: true setzt, ist das endgültig.
+  const articleData = getArticleByLink(articleLink);
+  if (articleData?.isDraft === true) {
+    return false;
+  }
+
+  // SCHRITT 2: Prüfe Editorial Calendar (localStorage)
   const editorialArticles = getEditorialCalendarArticles();
   const editorialEntry = editorialArticles.find(a => a.link === articleLink);
 
-  // Wenn Editorial-Eintrag existiert, verwende diesen Status
   if (editorialEntry) {
-    // Wenn explizit unveröffentlicht
+    // Wenn manuell unveröffentlicht → bleibt offline (Auto-Publisher kann das nicht überschreiben)
+    if (editorialEntry.manuallyUnpublished) return false;
+
+    // Wenn explizit unveröffentlicht (ohne manuallyUnpublished → könnte noch geplant sein)
     if (!editorialEntry.isPublished) return false;
 
     // Prüfe ob Veröffentlichungsdatum in der Zukunft liegt
@@ -56,11 +70,8 @@ export function isArticlePublished(articleLink: string): boolean {
     return true;
   }
 
-  // Fallback: Prüfe isDraft-Flag in articles.ts
-  const articleData = getArticleByLink(articleLink);
+  // SCHRITT 3: Fallback für Artikel ohne localStorage-Eintrag
   if (articleData) {
-    // isDraft: true → nicht veröffentlicht
-    // isDraft: false/undefined → veröffentlicht
     return !articleData.isDraft;
   }
 
