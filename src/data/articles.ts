@@ -29,6 +29,18 @@ export interface ArticleData {
 // Alle Artikel - sortiert nach Veröffentlichungsdatum (neueste zuerst)
 export const ALL_ARTICLES: ArticleData[] = [
   {
+    id: "copilot-adhs",
+    title: "Microsoft Copilot und ADHS: Wie KI mir hilft, fokussierter zu arbeiten",
+    description: "Ein persönlicher Erfahrungsbericht: Wie Microsoft Copilot bei ADHS unterstützt – von Meeting-Recaps über E-Mail-Zusammenfassungen bis zum digitalen Gedächtnis.",
+    link: "/wissen/copilot-adhs-produktiver-arbeiten",
+    badge: "Erfahrungsbericht",
+    icon: "🧠",
+    readTime: "12 Minuten",
+    lastUpdated: "05. Feb. 2026",
+    publishDate: "2026-02-05",
+    publishTime: "08:00"
+  },
+  {
     id: "warum-verteiltes-lernen",
     title: "Warum verteiltes Lernen bei Copilot-Trainings funktioniert",
     description: "Warum Copilot-Lernreisen nachhaltiger wirken als ganztägige Schulungen – und was die Wissenschaft dazu sagt.",
