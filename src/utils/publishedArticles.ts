@@ -29,11 +29,12 @@ export function getEditorialCalendarArticles(): EditorialArticle[] {
 /**
  * Check if a static article should be visible based on editorial calendar
  *
- * Priorität (NEU - Bugfix):
+ * Priorität (Bugfix v2):
  * 1. articles.ts isDraft-Flag – wenn isDraft: true, ist der Artikel IMMER ein Draft.
  *    Das ist die Build-Zeit-Entscheidung des Entwicklers und hat höchste Priorität.
  * 2. localStorage manuallyUnpublished – wenn im Redaktionssystem manuell deaktiviert,
  *    bleibt der Artikel offline. Der Auto-Publisher darf das NICHT überschreiben.
+ *    Ein Artikel bleibt so lange offline, bis ein neues Datum IN DER ZUKUNFT gesetzt wird.
  * 3. localStorage isPublished – normaler Editorial-Status
  * 4. Fallback: isDraft aus articles.ts (für Artikel ohne localStorage-Eintrag)
  */
@@ -50,10 +51,13 @@ export function isArticlePublished(articleLink: string): boolean {
   const editorialEntry = editorialArticles.find(a => a.link === articleLink);
 
   if (editorialEntry) {
-    // Wenn manuell unveröffentlicht → bleibt offline (Auto-Publisher kann das nicht überschreiben)
+    // Wenn manuell unveröffentlicht → bleibt offline.
+    // Der Artikel wird erst wieder sichtbar, wenn:
+    // a) Er manuell wieder veröffentlicht wird, ODER
+    // b) Ein neues publishDate IN DER ZUKUNFT gesetzt wird und dieses Datum dann erreicht wird
     if (editorialEntry.manuallyUnpublished) return false;
 
-    // Wenn explizit unveröffentlicht (ohne manuallyUnpublished → könnte noch geplant sein)
+    // Wenn explizit unveröffentlicht (isPublished: false)
     if (!editorialEntry.isPublished) return false;
 
     // Prüfe ob Veröffentlichungsdatum in der Zukunft liegt

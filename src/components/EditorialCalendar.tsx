@@ -124,7 +124,9 @@ const EditorialCalendar = () => {
   }, [articles]);
 
   // Auto-Publish: Prüfe jede Minute ob geplante Artikel veröffentlicht werden sollen
-  // BUGFIX: Respektiert jetzt manuallyUnpublished und isDraft aus articles.ts
+  // BUGFIX v2: Respektiert manuallyUnpublished, isDraft aus articles.ts,
+  // und veröffentlicht NUR Artikel, deren publishDate NACH dem Zeitpunkt der
+  // manuellen Deaktivierung liegt (d.h. ein neues Zukunftsdatum wurde gesetzt).
   useEffect(() => {
     const checkScheduledArticles = () => {
       const now = new Date();
@@ -135,10 +137,14 @@ const EditorialCalendar = () => {
         const updatedArticles = prevArticles.map(article => {
           // Nur unveröffentlichte Artikel mit Datum prüfen
           if (!article.isPublished && article.publishDate) {
-            // BUGFIX: NIEMALS manuell deaktivierte Artikel automatisch veröffentlichen
+            // NIEMALS manuell deaktivierte Artikel automatisch veröffentlichen.
+            // Ein manuell deaktivierter Artikel kann NUR wieder live gehen, wenn:
+            // 1. Der User ihn manuell wieder veröffentlicht (Toggle-Button), ODER
+            // 2. Der User ein neues publishDate IN DER ZUKUNFT setzt
+            //    (handleSave setzt dann manuallyUnpublished auf false + scheduledForRepublish auf true)
             if (article.manuallyUnpublished) return article;
 
-            // BUGFIX: NIEMALS Artikel mit isDraft: true in articles.ts auto-publishen
+            // NIEMALS Artikel mit isDraft: true in articles.ts auto-publishen
             const sourceArticle = ALL_ARTICLES.find(a => a.id === article.id);
             if (sourceArticle?.isDraft === true) return article;
 
@@ -230,27 +236,41 @@ const EditorialCalendar = () => {
 
     let updatedArticle = { ...editingArticle };
 
-    // BUGFIX: Artikel mit isDraft: true können nicht über den Dialog veröffentlicht werden
+    // Artikel mit isDraft: true können nicht über den Dialog veröffentlicht werden
     const sourceArticle = ALL_ARTICLES.find(a => a.id === updatedArticle.id);
     if (sourceArticle?.isDraft === true && updatedArticle.isPublished) {
       alert(`"${updatedArticle.title}" ist in articles.ts als Draft markiert (isDraft: true). Entfernen Sie das isDraft-Flag im Code, bevor Sie den Artikel veröffentlichen können.`);
       updatedArticle.isPublished = false;
     }
 
+    // Finde den vorherigen Zustand des Artikels
+    const previousArticle = articles.find(a => a.id === updatedArticle.id);
+    const wasManuallyUnpublished = previousArticle?.manuallyUnpublished ?? false;
+
     // Prüfe ob Veröffentlichungsdatum in der Zukunft liegt
-    if (updatedArticle.publishDate) {
-      const isFuture = isDateInFuture(updatedArticle.publishDate, updatedArticle.publishTime);
+    const hasFutureDate = updatedArticle.publishDate
+      ? isDateInFuture(updatedArticle.publishDate, updatedArticle.publishTime)
+      : false;
 
-      if (isFuture) {
-        updatedArticle.isPublished = false;
-      }
+    if (hasFutureDate) {
+      // Zukunftsdatum gesetzt → Artikel ist "geplant"
+      // WICHTIG: manuallyUnpublished zurücksetzen, damit der Auto-Publisher
+      // den Artikel zum neuen Datum veröffentlichen kann
+      updatedArticle.isPublished = false;
+      updatedArticle.manuallyUnpublished = false;
+    } else if (!updatedArticle.isPublished) {
+      // Checkbox "Veröffentlicht" ist NICHT gesetzt und Datum ist NICHT in der Zukunft
+      // → Das ist eine manuelle Deaktivierung.
+      // Der Artikel bleibt offline, auch wenn das Datum in der Vergangenheit liegt.
+      // Er wird erst wieder live gehen, wenn:
+      //   a) Die Checkbox manuell wieder aktiviert wird, ODER
+      //   b) Ein neues Datum IN DER ZUKUNFT gesetzt wird
+      updatedArticle.manuallyUnpublished = true;
+    } else {
+      // Artikel ist veröffentlicht (Checkbox aktiv, Datum nicht in der Zukunft)
+      // → manuallyUnpublished zurücksetzen
+      updatedArticle.manuallyUnpublished = false;
     }
-
-    // BUGFIX: manuallyUnpublished korrekt setzen
-    // Wenn im Dialog explizit unveröffentlicht → manuell markieren
-    // Wenn veröffentlicht → manuelles Flag zurücksetzen
-    updatedArticle.manuallyUnpublished = !updatedArticle.isPublished &&
-      !isDateInFuture(updatedArticle.publishDate || '', updatedArticle.publishTime);
 
     setArticles(prevArticles => prevArticles.map(a =>
       a.id === updatedArticle.id ? updatedArticle : a
