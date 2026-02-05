@@ -61,7 +61,7 @@ const WarumVerteiltesLernen = () => {
         "@type": "Article",
         "@id": ids.article,
         "headline": PAGE_TITLE,
-        "description": "Ein persönlicher Erfahrungsbericht: Warum Copilot-Lernreisen nachhaltiger wirken als ganztägige Schulungen – und was die Wissenschaft dazu sagt.",
+        "description": "Warum Copilot-Lernreisen nachhaltiger wirken als ganztägige Schulungen – und was die Wissenschaft dazu sagt.",
         "author": getAuthorSchemaMarkup(martinLang),
         "publisher": {
           "@id": "https://copilotenschule.de/#organization"
@@ -102,7 +102,7 @@ const WarumVerteiltesLernen = () => {
     <>
       <SEOHead
         title="Warum verteiltes Lernen bei Copilot-Trainings funktioniert | copilotenschule.de"
-        description="Ein persönlicher Erfahrungsbericht: Warum Copilot-Lernreisen nachhaltiger wirken als ganztägige Schulungen – und was die Wissenschaft dazu sagt."
+        description="Warum Copilot-Lernreisen nachhaltiger wirken als ganztägige Schulungen – und was die Wissenschaft dazu sagt."
         keywords={[
           "Copilot Training Erfahrung",
           "Spaced Learning",
@@ -127,7 +127,7 @@ const WarumVerteiltesLernen = () => {
           { label: "Warum verteiltes Lernen funktioniert", href: `/wissen/${SLUG}` }
         ]}
         title={PAGE_TITLE}
-        description="Ein persönlicher Erfahrungsbericht: Warum Copilot-Lernreisen nachhaltiger wirken als ganztägige Schulungen – und was die Wissenschaft dazu sagt."
+        description="Warum Copilot-Lernreisen nachhaltiger wirken als ganztägige Schulungen – und was die Wissenschaft dazu sagt."
         lastUpdated="04. Februar 2026"
         readTime="10 Minuten"
         tableOfContents={tableOfContents}
@@ -155,7 +155,7 @@ const WarumVerteiltesLernen = () => {
           </div>
 
           <Card className="my-8">
-            <CardHeader>
+            <CardHeader className="py-3">
               <CardTitle className="flex items-center gap-2 text-lg">
                 <Brain className="w-5 h-5 text-red-600" />
                 Die Vergessenskurve nach Ebbinghaus
@@ -263,10 +263,10 @@ const WarumVerteiltesLernen = () => {
           </div>
 
           <Card className="my-8 border-2 border-blue-500/20">
-            <CardHeader className="bg-gradient-to-r from-blue-500/10 to-blue-600/10">
+            <CardHeader className="py-3 bg-gradient-to-r from-blue-500/10 to-blue-600/10">
               <CardTitle className="text-base">Evidenz aus der Forschung</CardTitle>
             </CardHeader>
-            <CardContent className="pt-6">
+            <CardContent className="pt-4">
               <div className="grid md:grid-cols-3 gap-4">
                 <div className="p-5 border-2 border-gray-200 rounded-xl text-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900">
                   <div className="text-3xl font-bold text-primary">300+</div>
@@ -320,10 +320,10 @@ const WarumVerteiltesLernen = () => {
           </div>
 
           <Card className="my-8 border-2 border-amber-500/20">
-            <CardHeader className="bg-gradient-to-r from-amber-500/10 to-amber-600/10">
+            <CardHeader className="py-3 bg-gradient-to-r from-amber-500/10 to-amber-600/10">
               <CardTitle className="text-base">Vergleich: Tagesschulung vs. Lernreise</CardTitle>
             </CardHeader>
-            <CardContent className="pt-6">
+            <CardContent className="pt-4">
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead>
@@ -398,10 +398,10 @@ const WarumVerteiltesLernen = () => {
           <div className="space-y-4 my-6">
             {faqs.map((faq, idx) => (
               <Card key={idx} className="hover:shadow-lg transition-shadow">
-                <CardHeader>
+                <CardHeader className="py-3">
                   <CardTitle className="text-lg font-semibold">{faq.name}</CardTitle>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="pt-0">
                   <p className="text-muted-foreground">{faq.answer}</p>
                 </CardContent>
               </Card>

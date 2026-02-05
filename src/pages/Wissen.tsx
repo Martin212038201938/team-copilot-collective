@@ -27,7 +27,7 @@ const Wissen = () => {
   const staticKnowledgeTopics = [
     {
       title: "Warum verteiltes Lernen bei Copilot-Trainings funktioniert",
-      description: "Ein persönlicher Erfahrungsbericht: Warum Copilot-Lernreisen nachhaltiger wirken als ganztägige Schulungen – und was die Wissenschaft dazu sagt.",
+      description: "Warum Copilot-Lernreisen nachhaltiger wirken als ganztägige Schulungen – und was die Wissenschaft dazu sagt.",
       link: "/wissen/warum-verteiltes-lernen-bei-copilot-trainings-funktioniert",
       badge: "Erfahrungsbericht",
       icon: "✍️",
