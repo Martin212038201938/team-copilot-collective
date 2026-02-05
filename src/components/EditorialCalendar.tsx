@@ -25,316 +25,31 @@ import {
   Check,
   X
 } from "lucide-react";
-
-// Typ für Artikel-Metadaten
-interface ArticleMetadata {
-  id: string;
-  title: string;
-  description: string;
-  link: string;
-  badge: string;
-  icon: string;
-  readTime: string;
-  lastUpdated: string;
-  publishDate?: string;
-  publishTime?: string;
-  isPublished: boolean;
-  isStatic: boolean; // true = TSX-Datei, false = Draft
-}
+import { ALL_ARTICLES, ArticleData } from "@/data/articles";
 
 // ============================================================================
-// REDAKTIONSPLAN - STATISCHE ARTIKEL
+// REDAKTIONSPLAN - Verwendet zentrale Datenquelle
 // ============================================================================
-// WICHTIG: Bei jedem neuen Artikel MUSS hier ein Eintrag hinzugefügt werden!
+// Die Artikel-Stammdaten kommen aus src/data/articles.ts
+// Der Veröffentlichungsstatus wird in localStorage gespeichert
 //
 // Workflow für neue Artikel:
 // 1. TSX-Datei in src/pages/ erstellen
 // 2. Route in App.tsx hinzufügen
-// 3. Eintrag in Wissen.tsx staticKnowledgeTopics Array
-// 4. HIER einen Eintrag zu DEFAULT_STATIC_ARTICLES hinzufügen (PFLICHT!)
-//
-// REGEL: Neue Artikel werden standardmäßig als DRAFT eingetragen:
-//        isPublished: false
-//        Nur wenn explizit um sofortige Veröffentlichung gebeten wird,
-//        darf isPublished: true gesetzt werden.
+// 3. Eintrag in src/data/articles.ts hinzufügen (PFLICHT!)
+//    → Artikel erscheint automatisch hier UND in Wissen.tsx
 // ============================================================================
-const DEFAULT_STATIC_ARTICLES: ArticleMetadata[] = [
-  {
-    id: "copilot-lernreise-vs-tagesschulung",
-    title: "Copilot Lernreise vs. Tagesschulung: Warum 4×2 Stunden mehr bringen als 1×8",
-    description: "Warum Copilot-Lernreisen nachhaltiger wirken als ganztägige Schulungen. Vergessenskurve, Praxistransfer, Kalenderfreundlichkeit – 8 Gründe für verteiltes Lernen.",
-    link: "/wissen/copilot-lernreise-vs-tagesschulung",
-    badge: "Enablement",
-    icon: "🎯",
-    readTime: "12 Minuten",
-    lastUpdated: "04. Feb. 2026",
-    publishDate: "2026-02-04",
-    publishTime: "10:00",
-    isPublished: true,
-    isStatic: true
-  },
-  {
-    id: "copilot-adoption-2026-zahlen",
-    title: "Copilot Adoption 2026: Was die Zahlen wirklich zeigen",
-    description: "Aktuelle Zahlen Januar 2026: 15 Mio. Copilot-Seats, 160% Wachstum, bis zu 408% ROI. Eine nüchterne Einordnung jenseits des Microsoft-Marketings.",
-    link: "/wissen/copilot-adoption-2026-zahlen",
-    badge: "Strategie",
-    icon: "📊",
-    readTime: "10 Minuten",
-    lastUpdated: "03. Feb. 2026",
-    publishDate: "2026-02-03",
-    publishTime: "10:00",
-    isPublished: false,
-    isStatic: true
-  },
-  {
-    id: "copilot-roi-erfolgsgeschichten",
-    title: "Copilot ROI: Was CEOs und Vorstände aus dem DACH-Raum berichten",
-    description: "Wörtliche Zitate von Führungskräften bei Bayer, Siemens, Schaeffler, thyssenkrupp und der Schweizerischen Post über ihre Erfahrungen mit Microsoft Copilot.",
-    link: "/wissen/copilot-roi-erfolgsgeschichten",
-    badge: "Neu",
-    icon: "💬",
-    readTime: "12 Minuten",
-    lastUpdated: "03. Feb. 2026",
-    publishDate: "2026-02-03",
-    publishTime: "09:00",
-    isPublished: true,
-    isStatic: true
-  },
-  {
-    id: "copilot-launch-kampagne",
-    title: "Copilot Launch-Kampagne: So bringen Sie Ihr Unternehmen zum Fliegen",
-    description: "Warum eine Copilot-Einführung anders ist als SAP oder Salesforce – und wie Sie mit der richtigen Launch-Kampagne nachhaltige Verhaltensänderung erreichen. Mit 15 konkreten Ideen.",
-    link: "/wissen/copilot-launch-kampagne",
-    badge: "Neu",
-    icon: "🚀",
-    readTime: "14 Minuten",
-    lastUpdated: "03. Feb. 2026",
-    publishDate: "2026-02-03",
-    publishTime: "08:00",
-    isPublished: true,
-    isStatic: true
-  },
-  {
-    id: "prompt-bibliotheken-vs-training",
-    title: "Warum Prompt-Bibliotheken Quatsch sind",
-    description: "Prompt-Listen klingen gut, bringen aber wenig. Warum echtes Prompting-Training und Copilot-Agenten die besseren Alternativen sind – inklusive dem Zauberstab-Prompt.",
-    link: "/wissen/prompt-bibliotheken-vs-training",
-    badge: "Neu",
-    icon: "🪄",
-    readTime: "6 Minuten",
-    lastUpdated: "03. Feb. 2026",
-    publishDate: "2026-02-03",
-    publishTime: "07:00",
-    isPublished: true,
-    isStatic: true
-  },
-  {
-    id: "copilot-digitales-gedaechtnis",
-    title: "Digitales Gedächtnis mit Microsoft Copilot",
-    description: "Wie Copilot mit Transkription, E-Mails, Chats und OneNote zum externen Gedächtnis wird. Praktische Prompts für vergessene Zusagen und Entscheidungen.",
-    link: "/wissen/copilot-digitales-gedaechtnis",
-    badge: "Praxisguide",
-    icon: "🧠",
-    readTime: "14 Minuten",
-    lastUpdated: "03. Feb. 2026",
-    publishDate: "2026-02-03",
-    publishTime: "06:00",
-    isPublished: true,
-    isStatic: true
-  },
-  {
-    id: "copilot-unternehmensweit-einfuehren",
-    title: "Warum Unternehmen Microsoft Copilot zentral einführen sollten",
-    description: "Warum Shadow-IT bei KI gefährlich ist: Zentrale Copilot-Einführung sichert DSGVO-Konformität, Grounding mit Unternehmensdaten und unternehmensweite Synergien.",
-    link: "/wissen/copilot-unternehmensweit-einfuehren",
-    badge: "Strategie",
-    icon: "🏢",
-    readTime: "12 Minuten",
-    lastUpdated: "02. Feb. 2026",
-    publishDate: "2026-02-02",
-    publishTime: "10:00",
-    isPublished: true,
-    isStatic: true
-  },
-  {
-    id: "ki-realitaet-beratungsfirmen-2026",
-    title: "KI in deutschen Unternehmen 2026: Was die großen Beratungsfirmen wirklich sehen",
-    description: "Umfassende Analyse von McKinsey, BCG, Deloitte, PwC, KPMG: Aktuelle KI-Investitionen, ROI-Realität und warum 80% der Unternehmen noch keine Ergebnisse sehen.",
-    link: "/wissen/ki-realitaet-beratungsfirmen-2026",
-    badge: "Strategie",
-    icon: "📊",
-    readTime: "18 Minuten",
-    lastUpdated: "02. Feb. 2026",
-    publishDate: "2026-02-02",
-    publishTime: "09:00",
-    isPublished: true,
-    isStatic: true
-  },
-  {
-    id: "microsoft-copilot-lizenzen",
-    title: "Microsoft Copilot Lizenzen 2026: Preise, Vergleich & Empfehlungen",
-    description: "Welche Microsoft Copilot Lizenz benötigen Sie? Umfassender Vergleich aller Lizenzmodelle für Microsoft 365 Copilot, GitHub Copilot und Copilot Studio mit aktuellen Preisen.",
-    link: "/microsoft-copilot-lizenzen",
-    badge: "Lizenzierung",
-    icon: "📋",
-    readTime: "12 Minuten",
-    lastUpdated: "02. Feb. 2026",
-    publishDate: "2026-01-15",
-    publishTime: "09:00",
-    isPublished: true,
-    isStatic: true
-  },
-  {
-    id: "github-copilot",
-    title: "GitHub Copilot: Der ultimative Leitfaden für Entwickler",
-    description: "Der ultimative Leitfaden für Entwickler: Setup, Best Practices und Advanced Features für produktiveres Coding mit KI-Unterstützung.",
-    link: "/github-copilot",
-    badge: "Entwicklung",
-    icon: "💻",
-    readTime: "12 Minuten",
-    lastUpdated: "02. Feb. 2026",
-    publishDate: "2026-01-10",
-    publishTime: "09:00",
-    isPublished: true,
-    isStatic: true
-  },
-  {
-    id: "copilot-studio",
-    title: "Microsoft Copilot Studio: KI-Agenten und Custom Copilots erstellen",
-    description: "Low-Code-Plattform für eigene KI-Agenten: Custom Copilots, Chatbots und Automatisierungen ohne Programmierkenntnisse erstellen.",
-    link: "/copilot-studio",
-    badge: "Entwicklung",
-    icon: "🤖",
-    readTime: "10 Minuten",
-    lastUpdated: "02. Feb. 2026",
-    publishDate: "2026-01-08",
-    publishTime: "09:00",
-    isPublished: true,
-    isStatic: true
-  },
-  {
-    id: "prompt-engineering",
-    title: "Prompt Engineering für Microsoft Copilot: Best Practices",
-    description: "Meistern Sie die Kunst des Prompt Engineerings: Praxiserprobte Techniken für effektive Copilot-Prompts in Word, Excel, PowerPoint und mehr.",
-    link: "/prompt-engineering",
-    badge: "Grundlagen",
-    icon: "✨",
-    readTime: "15 Minuten",
-    lastUpdated: "02. Feb. 2026",
-    publishDate: "2026-01-05",
-    publishTime: "09:00",
-    isPublished: true,
-    isStatic: true
-  },
-  {
-    id: "ki-agenten",
-    title: "KI-Agenten im Unternehmen: Autonome Workflows mit Copilot",
-    description: "Von der Automatisierung zur Autonomie: Wie KI-Agenten Ihre Geschäftsprozesse transformieren und was das für Ihr Unternehmen bedeutet.",
-    link: "/ki-agenten",
-    badge: "Fortgeschritten",
-    icon: "🧠",
-    readTime: "14 Minuten",
-    lastUpdated: "02. Feb. 2026",
-    publishDate: "2026-01-03",
-    publishTime: "09:00",
-    isPublished: true,
-    isStatic: true
-  },
-  {
-    id: "copilot-fehler-vermeiden",
-    title: "Die 10 häufigsten Copilot-Fehler und wie Sie sie vermeiden",
-    description: "Lernen Sie aus den Fehlern anderer: Die häufigsten Stolperfallen bei der Copilot-Nutzung und praxiserprobte Lösungen.",
-    link: "/copilot-fehler-vermeiden",
-    badge: "Best Practices",
-    icon: "⚠️",
-    readTime: "11 Minuten",
-    lastUpdated: "02. Feb. 2026",
-    publishDate: "2026-01-01",
-    publishTime: "09:00",
-    isPublished: true,
-    isStatic: true
-  },
-  {
-    id: "copilot-roi-berechnen",
-    title: "Copilot ROI berechnen: Lohnt sich die Investition?",
-    description: "Praxisnahe Methoden zur ROI-Berechnung für Microsoft Copilot. Mit konkreten Formeln, Beispielrechnungen und Benchmarks.",
-    link: "/wissen/copilot-roi-berechnen",
-    badge: "ROI",
-    icon: "💰",
-    readTime: "10 Minuten",
-    lastUpdated: "02. Feb. 2026",
-    publishDate: "2025-12-15",
-    publishTime: "09:00",
-    isPublished: true,
-    isStatic: true
-  },
-  {
-    id: "copilot-fuer-word",
-    title: "Copilot für Word: Dokumente schneller erstellen",
-    description: "Praktische Anleitungen für den Einsatz von Copilot in Microsoft Word: Von der Dokumenterstellung bis zur Überarbeitung.",
-    link: "/wissen/copilot-fuer-word",
-    badge: "Anwendung",
-    icon: "📝",
-    readTime: "8 Minuten",
-    lastUpdated: "02. Feb. 2026",
-    publishDate: "2025-12-10",
-    publishTime: "09:00",
-    isPublished: true,
-    isStatic: true
-  },
-  {
-    id: "copilot-sicherheit-datenschutz",
-    title: "Copilot Sicherheit & Datenschutz: Was Unternehmen wissen müssen",
-    description: "DSGVO-Konformität, Datensicherheit und Governance bei Microsoft Copilot: Ein Leitfaden für IT-Verantwortliche.",
-    link: "/wissen/copilot-sicherheit-datenschutz",
-    badge: "Compliance",
-    icon: "🔒",
-    readTime: "12 Minuten",
-    lastUpdated: "02. Feb. 2026",
-    publishDate: "2025-12-05",
-    publishTime: "09:00",
-    isPublished: true,
-    isStatic: true
-  },
-  {
-    id: "copilot-tipps-tricks-produktivitaet",
-    title: "Copilot Tipps & Tricks für maximale Produktivität",
-    description: "25 praxiserprobte Tipps und Tricks für den effizienten Einsatz von Microsoft Copilot im Arbeitsalltag.",
-    link: "/wissen/copilot-tipps-tricks-produktivitaet",
-    badge: "Produktivität",
-    icon: "🚀",
-    readTime: "9 Minuten",
-    lastUpdated: "02. Feb. 2026",
-    publishDate: "2025-12-01",
-    publishTime: "09:00",
-    isPublished: true,
-    isStatic: true
-  },
-  {
-    id: "copilot-training-schulung",
-    title: "Copilot Training & Schulung: Der komplette Leitfaden",
-    description: "Alles über Copilot-Schulungen: Formate, Inhalte, Kosten und wie Sie das richtige Training für Ihr Team finden.",
-    link: "/wissen/copilot-training-schulung",
-    badge: "Training",
-    icon: "🎓",
-    readTime: "11 Minuten",
-    lastUpdated: "02. Feb. 2026",
-    publishDate: "2025-11-25",
-    publishTime: "09:00",
-    isPublished: true,
-    isStatic: true
-  }
-];
+
+// Erweiterter Typ mit Veröffentlichungsstatus
+interface ArticleMetadata extends ArticleData {
+  isPublished: boolean;
+  isStatic: boolean;
+}
 
 const STORAGE_KEY = 'editorial-calendar-articles';
 
-// ============================================================================
-// HINWEIS: Alle Artikel sind jetzt statisch (TSX-Dateien)!
-// Das dynamische Draft-System wurde entfernt, da nur statische Artikel
-// von Suchmaschinen indexiert werden können.
-// Neue Artikel: TSX erstellen → Route → Wissen.tsx → hier eintragen
-// ============================================================================
+// Standard-Veröffentlichungsstatus für neue Artikel
+const DEFAULT_PUBLISH_STATUS = true; // Neue Artikel sind standardmäßig veröffentlicht
 
 const EditorialCalendar = () => {
   const [articles, setArticles] = useState<ArticleMetadata[]>([]);
@@ -342,33 +57,34 @@ const EditorialCalendar = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [filterStatus, setFilterStatus] = useState<'all' | 'published' | 'unpublished'>('all');
 
-  // Lade Artikel beim Start - nur statische Artikel aus DEFAULT_STATIC_ARTICLES
+  // Lade Artikel beim Start - Kombiniere zentrale Datenquelle mit localStorage-Status
   useEffect(() => {
     const saved = localStorage.getItem(STORAGE_KEY);
+    let savedStatusMap: Record<string, { isPublished: boolean }> = {};
+
     if (saved) {
       try {
         const parsed: ArticleMetadata[] = JSON.parse(saved);
-
-        // Merge: Füge neue Artikel aus DEFAULT_STATIC_ARTICLES hinzu,
-        // die noch nicht in localStorage sind
-        const savedIds = new Set(parsed.map(a => a.id));
-        const newArticles = DEFAULT_STATIC_ARTICLES.filter(a => !savedIds.has(a.id));
-
-        if (newArticles.length > 0) {
-          // Neue Artikel am Anfang hinzufügen
-          const merged = [...newArticles, ...parsed];
-          setArticles(merged);
-          localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
-        } else {
-          setArticles(parsed);
-        }
+        // Erstelle Map von ID → Veröffentlichungsstatus
+        parsed.forEach(a => {
+          savedStatusMap[a.id] = { isPublished: a.isPublished };
+        });
       } catch {
-        setArticles(DEFAULT_STATIC_ARTICLES);
+        // Bei Fehler: leere Map verwenden
       }
-    } else {
-      setArticles(DEFAULT_STATIC_ARTICLES);
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(DEFAULT_STATIC_ARTICLES));
     }
+
+    // Kombiniere zentrale Datenquelle mit gespeichertem Status
+    const articlesWithStatus: ArticleMetadata[] = ALL_ARTICLES.map(article => ({
+      ...article,
+      isStatic: true,
+      // Verwende gespeicherten Status falls vorhanden, sonst Default
+      isPublished: savedStatusMap[article.id]?.isPublished ?? DEFAULT_PUBLISH_STATUS
+    }));
+
+    setArticles(articlesWithStatus);
+    // Speichere kombinierte Daten zurück
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(articlesWithStatus));
   }, []);
 
   // Speichere bei Änderungen
@@ -408,18 +124,14 @@ const EditorialCalendar = () => {
           return article;
         });
 
-        // Nur updaten wenn sich etwas geändert hat
         return hasChanges ? updatedArticles : prevArticles;
       });
     };
 
-    // Initial prüfen
     checkScheduledArticles();
-
-    // Alle 60 Sekunden prüfen
     const interval = setInterval(checkScheduledArticles, 60000);
     return () => clearInterval(interval);
-  }, []); // Leeres Dependency Array - Interval läuft unabhängig
+  }, []);
 
   const handleEditClick = (article: ArticleMetadata) => {
     setEditingArticle({ ...article });
@@ -431,19 +143,17 @@ const EditorialCalendar = () => {
     const now = new Date();
 
     if (timeStr) {
-      // Mit Zeit: direkter Vergleich
       const publishDateTime = new Date(`${dateStr}T${timeStr}`);
       return publishDateTime > now;
     } else {
-      // Ohne Zeit: Vergleiche nur das Datum (lokale Zeitzone)
       const [year, month, day] = dateStr.split('-').map(Number);
-      const publishDate = new Date(year, month - 1, day, 23, 59, 59); // Ende des Tages
+      const publishDate = new Date(year, month - 1, day, 23, 59, 59);
       const todayEnd = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59);
       return publishDate > todayEnd;
     }
   };
 
-  // Hilfsfunktion: Datum im deutschen Format (z.B. "03. Feb. 2026")
+  // Hilfsfunktion: Datum im deutschen Format
   const formatDateGerman = (date: Date): string => {
     return date.toLocaleDateString('de-DE', {
       day: '2-digit',
@@ -452,14 +162,14 @@ const EditorialCalendar = () => {
     }).replace('.', '');
   };
 
-  // Hilfsfunktion: ISO-Datum zu deutschem Format (z.B. "2026-02-03" → "03. Feb. 2026")
+  // Hilfsfunktion: ISO-Datum zu deutschem Format
   const isoToGermanDate = (isoDate: string): string => {
     const [year, month, day] = isoDate.split('-').map(Number);
     const date = new Date(year, month - 1, day);
     return formatDateGerman(date);
   };
 
-  // Handler für Artikel-Feld-Änderungen mit automatischem lastUpdated
+  // Handler für Artikel-Feld-Änderungen
   const handleArticleFieldChange = (field: keyof ArticleMetadata, value: string | boolean) => {
     if (!editingArticle) return;
 
@@ -468,10 +178,9 @@ const EditorialCalendar = () => {
 
     let updates: Partial<ArticleMetadata> = {
       [field]: value,
-      lastUpdated: currentDateGerman // Automatisch aktuelles Datum setzen
+      lastUpdated: currentDateGerman
     };
 
-    // Wenn publishDate geändert wird, setze lastUpdated auf das neue publishDate
     if (field === 'publishDate' && typeof value === 'string' && value) {
       updates.lastUpdated = isoToGermanDate(value);
     }
@@ -489,12 +198,10 @@ const EditorialCalendar = () => {
       const isFuture = isDateInFuture(updatedArticle.publishDate, updatedArticle.publishTime);
 
       if (isFuture) {
-        // Datum liegt in der Zukunft → automatisch als "geplant" markieren (unveröffentlicht)
         updatedArticle.isPublished = false;
       }
     }
 
-    // Functional update um Closure-Probleme zu vermeiden
     setArticles(prevArticles => prevArticles.map(a =>
       a.id === updatedArticle.id ? updatedArticle : a
     ));
@@ -505,7 +212,6 @@ const EditorialCalendar = () => {
   const handleTogglePublish = (article: ArticleMetadata) => {
     const action = article.isPublished ? 'unveröffentlichen' : 'veröffentlichen';
     if (confirm(`Möchten Sie "${article.title}" wirklich ${action}?`)) {
-      // Functional update um Closure-Probleme zu vermeiden
       setArticles(prevArticles => prevArticles.map(a =>
         a.id === article.id ? { ...a, isPublished: !a.isPublished } : a
       ));
@@ -514,13 +220,8 @@ const EditorialCalendar = () => {
 
   const handleRefreshDate = (article: ArticleMetadata) => {
     const now = new Date();
-    const formattedDate = now.toLocaleDateString('de-DE', {
-      day: '2-digit',
-      month: 'short',
-      year: 'numeric'
-    }).replace('.', '');
+    const formattedDate = formatDateGerman(now);
 
-    // Functional update um Closure-Probleme zu vermeiden
     setArticles(prevArticles => prevArticles.map(a =>
       a.id === article.id ? { ...a, lastUpdated: formattedDate } : a
     ));
@@ -536,12 +237,10 @@ const EditorialCalendar = () => {
     if (filterStatus === 'unpublished') return !article.isPublished;
     return true;
   }).sort((a, b) => {
-    // Sortierung: Unveröffentlichte Artikel zuerst, dann nach Veröffentlichungsdatum (neueste zuerst)
-    // 1. Unveröffentlichte Artikel haben Priorität
+    // Unveröffentlichte Artikel zuerst, dann nach Datum
     if (!a.isPublished && b.isPublished) return -1;
     if (a.isPublished && !b.isPublished) return 1;
 
-    // 2. Bei gleichem Status: nach Datum sortieren (neueste zuerst)
     const dateA = a.publishDate ? new Date(a.publishDate).getTime() : 0;
     const dateB = b.publishDate ? new Date(b.publishDate).getTime() : 0;
     return dateB - dateA;
@@ -601,7 +300,6 @@ const EditorialCalendar = () => {
                   <div className="flex items-center gap-2 mb-1">
                     <h3 className="font-semibold text-lg truncate">{article.title}</h3>
                     {(() => {
-                      // Prüfe ob Artikel für Zukunft geplant ist
                       const isScheduled = !article.isPublished && article.publishDate && (() => {
                         const publishDateTime = article.publishTime
                           ? new Date(`${article.publishDate}T${article.publishTime}`)
@@ -802,7 +500,7 @@ const EditorialCalendar = () => {
                         : "Der Artikel ist nicht auf der Wissen-Seite sichtbar."}
                       {editingArticle.publishDate && isDateInFuture(editingArticle.publishDate, editingArticle.publishTime) && (
                         <span className="block text-amber-600 mt-1">
-                          ⚠️ Das Veröffentlichungsdatum liegt in der Zukunft. Der Artikel wird automatisch als "Geplant" markiert.
+                          Das Veröffentlichungsdatum liegt in der Zukunft. Der Artikel wird automatisch als "Geplant" markiert.
                         </span>
                       )}
                     </p>
@@ -843,8 +541,12 @@ const EditorialCalendar = () => {
         </CardHeader>
         <CardContent className="space-y-3">
           <p className="text-sm text-blue-800">
+            <strong>Datenquelle:</strong> Die Artikel-Stammdaten kommen aus <code className="bg-blue-100 px-1 rounded">src/data/articles.ts</code>.
+            Der Veröffentlichungsstatus wird im Browser-Speicher (localStorage) verwaltet.
+          </p>
+          <p className="text-sm text-blue-800">
             <strong>Veröffentlichungs-Status:</strong> Unveröffentlichte Artikel werden nicht auf der Wissen-Seite angezeigt.
-            Die Änderungen wirken sofort (localStorage-basiert, kein Deployment nötig).
+            Die Änderungen wirken sofort.
           </p>
           <p className="text-sm text-blue-800">
             <strong>Geplante Veröffentlichung:</strong> Wenn Sie ein Datum in der Zukunft setzen, wird der Artikel
