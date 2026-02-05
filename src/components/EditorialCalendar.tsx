@@ -48,9 +48,6 @@ interface ArticleMetadata extends ArticleData {
 
 const STORAGE_KEY = 'editorial-calendar-articles';
 
-// Standard-Veröffentlichungsstatus für neue Artikel
-const DEFAULT_PUBLISH_STATUS = true; // Neue Artikel sind standardmäßig veröffentlicht
-
 const EditorialCalendar = () => {
   const [articles, setArticles] = useState<ArticleMetadata[]>([]);
   const [editingArticle, setEditingArticle] = useState<ArticleMetadata | null>(null);
@@ -78,8 +75,10 @@ const EditorialCalendar = () => {
     const articlesWithStatus: ArticleMetadata[] = ALL_ARTICLES.map(article => ({
       ...article,
       isStatic: true,
-      // Verwende gespeicherten Status falls vorhanden, sonst Default
-      isPublished: savedStatusMap[article.id]?.isPublished ?? DEFAULT_PUBLISH_STATUS
+      // Verwende gespeicherten Status falls vorhanden, sonst isDraft-Flag aus articles.ts
+      // isDraft: true → isPublished: false (Draft)
+      // isDraft: false/undefined → isPublished: true (Veröffentlicht)
+      isPublished: savedStatusMap[article.id]?.isPublished ?? !article.isDraft
     }));
 
     setArticles(articlesWithStatus);

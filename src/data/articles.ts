@@ -24,6 +24,7 @@ export interface ArticleData {
   lastUpdated: string;
   publishDate: string;      // ISO Format: "2026-02-04"
   publishTime?: string;     // Optional: "10:00"
+  isDraft?: boolean;        // true = Artikel ist ein Draft (nicht veröffentlicht), false/undefined = veröffentlicht
 }
 
 // Alle Artikel - sortiert nach Veröffentlichungsdatum (neueste zuerst)
@@ -38,7 +39,8 @@ export const ALL_ARTICLES: ArticleData[] = [
     readTime: "12 Minuten",
     lastUpdated: "05. Feb. 2026",
     publishDate: "2026-02-05",
-    publishTime: "08:00"
+    publishTime: "08:00",
+    isDraft: true  // Draft - noch nicht veröffentlicht
   },
   {
     id: "warum-verteiltes-lernen",

@@ -1,4 +1,5 @@
 import { Draft } from "@/types/draft";
+import { ALL_ARTICLES, getArticleByLink } from "@/data/articles";
 
 // Storage key für Editorial Calendar (muss identisch sein mit EditorialCalendar.tsx)
 const EDITORIAL_CALENDAR_KEY = 'editorial-calendar-articles';
@@ -27,29 +28,44 @@ export function getEditorialCalendarArticles(): EditorialArticle[] {
 /**
  * Check if a static article should be visible based on editorial calendar
  * Returns true if: article is published AND (no future publish date OR publish date is in the past)
+ *
+ * Priorität:
+ * 1. localStorage (Editorial Calendar Status) - wenn vorhanden, gilt dieser
+ * 2. articles.ts isDraft-Flag - wenn kein localStorage-Eintrag existiert
  */
 export function isArticlePublished(articleLink: string): boolean {
   const editorialArticles = getEditorialCalendarArticles();
-  const article = editorialArticles.find(a => a.link === articleLink);
+  const editorialEntry = editorialArticles.find(a => a.link === articleLink);
 
-  // Wenn kein Editorial-Eintrag existiert, zeige Artikel an (Fallback)
-  if (!article) return true;
+  // Wenn Editorial-Eintrag existiert, verwende diesen Status
+  if (editorialEntry) {
+    // Wenn explizit unveröffentlicht
+    if (!editorialEntry.isPublished) return false;
 
-  // Wenn explizit unveröffentlicht
-  if (!article.isPublished) return false;
+    // Prüfe ob Veröffentlichungsdatum in der Zukunft liegt
+    if (editorialEntry.publishDate) {
+      const publishDateTime = editorialEntry.publishTime
+        ? new Date(`${editorialEntry.publishDate}T${editorialEntry.publishTime}`)
+        : new Date(editorialEntry.publishDate);
 
-  // Prüfe ob Veröffentlichungsdatum in der Zukunft liegt
-  if (article.publishDate) {
-    const publishDateTime = article.publishTime
-      ? new Date(`${article.publishDate}T${article.publishTime}`)
-      : new Date(article.publishDate);
-
-    if (publishDateTime > new Date()) {
-      return false; // Noch nicht veröffentlicht (geplant für Zukunft)
+      if (publishDateTime > new Date()) {
+        return false; // Noch nicht veröffentlicht (geplant für Zukunft)
+      }
     }
+
+    return true;
   }
 
-  return true;
+  // Fallback: Prüfe isDraft-Flag in articles.ts
+  const articleData = getArticleByLink(articleLink);
+  if (articleData) {
+    // isDraft: true → nicht veröffentlicht
+    // isDraft: false/undefined → veröffentlicht
+    return !articleData.isDraft;
+  }
+
+  // Artikel nicht in articles.ts gefunden → nicht anzeigen (Sicherheit)
+  return false;
 }
 
 /**
