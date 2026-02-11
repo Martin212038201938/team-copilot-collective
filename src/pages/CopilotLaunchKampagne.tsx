@@ -112,7 +112,7 @@ const CopilotLaunchKampagne = () => {
       <ContentLayout
         breadcrumbs={[
           { label: "Wissen", href: "/wissen" },
-          { label: PAGE_TITLE, href: `/${SLUG}` }
+          { label: PAGE_TITLE, href: `/wissen/${SLUG}` }
         ]}
         title="🚀 Copilot Launch-Kampagne: So wird der Rollout zum Erfolg"
         description="Warum Copilot-Einführung kein IT-Projekt ist – und wie Sie echte Begeisterung entfachen."

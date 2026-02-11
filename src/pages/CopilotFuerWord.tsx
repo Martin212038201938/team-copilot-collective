@@ -155,7 +155,7 @@ const CopilotFuerWord = () => {
         title="Microsoft Copilot für Word: Der ultimative Guide | Copilotenschule"
         description="Entdecken Sie, wie Microsoft Copilot in Word Ihre Dokumentenerstellung revolutioniert. Mit praktischen Beispielen, Prompts und Tipps für maximale Produktivität."
         keywords={["Copilot für Word","Microsoft Copilot Word","Word KI Assistent","Dokumente mit KI erstellen","Word Produktivität","Microsoft 365 Copilot"]}
-        canonicalUrl="https://copilotenschule.de/wissen/copilot-fuer-word"
+        canonicalUrl={pageUrl}
         schema={schema}
         publishedTime="2025-01-05"
         modifiedTime="2026-02-03"

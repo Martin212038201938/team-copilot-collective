@@ -116,7 +116,7 @@ const CopilotSicherheit = () => {
       <ContentLayout
         breadcrumbs={[
           { label: "Wissen", href: "/wissen" },
-          { label: PAGE_TITLE, href: `/${SLUG}` }
+          { label: PAGE_TITLE, href: `/wissen/${SLUG}` }
         ]}
         title="Microsoft Copilot: Sicherheit & Datenschutz für Unternehmen"
         description="Der aktuelle Leitfaden für IT-Entscheider zu DSGVO-Compliance, Enterprise Data Protection und dem neuen M365-Kit von Microsoft."

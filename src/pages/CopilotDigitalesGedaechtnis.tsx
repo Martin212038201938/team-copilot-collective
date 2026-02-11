@@ -118,7 +118,7 @@ const CopilotDigitalesGedaechtnis = () => {
       <ContentLayout
         breadcrumbs={[
           { label: "Wissen", href: "/wissen" },
-          { label: PAGE_TITLE, href: `/${SLUG}` }
+          { label: PAGE_TITLE, href: `/wissen/${SLUG}` }
         ]}
         title="Digitales Gedächtnis mit Microsoft Copilot"
         description="Wie Copilot mir hilft, trotz ADHS, Multitasking und 20 parallelen Projekten nichts Wichtiges zu vergessen."

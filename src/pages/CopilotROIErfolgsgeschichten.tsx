@@ -112,7 +112,7 @@ const CopilotROIErfolgsgeschichten = () => {
       <ContentLayout
         breadcrumbs={[
           { label: "Wissen", href: "/wissen" },
-          { label: PAGE_TITLE, href: `/${SLUG}` }
+          { label: PAGE_TITLE, href: `/wissen/${SLUG}` }
         ]}
         title="Copilot ROI: Was CEOs und Vorstände berichten"
         description="Wörtliche Zitate von Führungskräften aus Deutschland, Österreich und der Schweiz über ihre Erfahrungen mit Microsoft Copilot."

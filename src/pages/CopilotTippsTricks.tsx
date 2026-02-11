@@ -107,7 +107,7 @@ const CopilotTippsTricks = () => {
       <ContentLayout
         breadcrumbs={[
           { label: "Wissen", href: "/wissen" },
-          { label: PAGE_TITLE, href: `/${SLUG}` }
+          { label: PAGE_TITLE, href: `/wissen/${SLUG}` }
         ]}
         title="22 Microsoft Copilot Tipps & Tricks für mehr Produktivität"
         description="Praxiserprobte Tipps für Word, Excel, PowerPoint, Outlook und Teams – sofort umsetzbar für Ihren Büroalltag."
