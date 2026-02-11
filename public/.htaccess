@@ -33,6 +33,18 @@ RewriteRule ^llms?\.txt$ - [L,NC]
 RewriteRule ^favicon\.ico$ - [L,NC]
 
 # ============================================
+# 301 REDIRECTS: Wissensseiten-Konsolidierung unter /wissen/
+# Alle Knowledge-Artikel leben jetzt unter /wissen/slug
+# ============================================
+
+RewriteRule ^github-copilot/?$ /wissen/github-copilot [R=301,L]
+RewriteRule ^copilot-studio/?$ /wissen/copilot-studio [R=301,L]
+RewriteRule ^prompt-engineering/?$ /wissen/prompt-engineering [R=301,L]
+RewriteRule ^copilot-fehler-vermeiden/?$ /wissen/copilot-fehler-vermeiden [R=301,L]
+RewriteRule ^ki-agenten/?$ /wissen/ki-agenten [R=301,L]
+RewriteRule ^microsoft-copilot-lizenzen/?$ /wissen/microsoft-copilot-lizenzen [R=301,L]
+
+# ============================================
 # 301 REDIRECTS: Alt-URLs → Neue Trainingsseiten
 # ============================================
 

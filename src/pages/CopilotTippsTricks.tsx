@@ -6,7 +6,7 @@ import { Zap, FileText, Table2, Presentation, Mail, Users, Lightbulb, AlertTrian
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { TrustBadge } from "@/components/TrustBadge";
 
-const SLUG = "wissen/copilot-tipps-tricks-produktivitaet";
+const SLUG = "copilot-tipps-tricks-produktivitaet";
 const PAGE_TITLE = "22 Microsoft Copilot Tipps & Tricks";
 
 const CopilotTippsTricks = () => {
@@ -24,7 +24,7 @@ const CopilotTippsTricks = () => {
   ];
 
   const ids = generateSchemaIds(SLUG, 'wissen');
-  const pageUrl = `https://copilotenschule.de/${SLUG}`;
+  const pageUrl = `https://copilotenschule.de/wissen/${SLUG}`;
   const breadcrumbItems = generateWissenBreadcrumbItems(PAGE_TITLE, pageUrl);
 
   const faqs = [

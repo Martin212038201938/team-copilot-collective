@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-const SLUG = "wissen/copilot-launch-kampagne";
+const SLUG = "copilot-launch-kampagne";
 const PAGE_TITLE = "Copilot Launch-Kampagne";
 
 const CopilotLaunchKampagne = () => {
@@ -29,7 +29,7 @@ const CopilotLaunchKampagne = () => {
   ];
 
   const ids = generateSchemaIds(SLUG, 'wissen');
-  const pageUrl = `https://copilotenschule.de/${SLUG}`;
+  const pageUrl = `https://copilotenschule.de/wissen/${SLUG}`;
   const breadcrumbItems = generateWissenBreadcrumbItems(PAGE_TITLE, pageUrl);
 
   const faqs = [

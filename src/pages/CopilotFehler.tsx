@@ -123,7 +123,7 @@ const CopilotFehler = () => {
       <ContentLayout
         breadcrumbs={[
           { label: "Wissen", href: "/wissen" },
-          { label: "Copilot-Fehler vermeiden", href: "/copilot-fehler-vermeiden" }
+          { label: "Copilot-Fehler vermeiden", href: "/wissen/copilot-fehler-vermeiden" }
         ]}
         title="7 Fehler bei der Microsoft Copilot-Einführung vermeiden"
         description="Microsoft 365 Copilot sicher einführen: DSGVO, Governance, Betriebsrat & Schulung. Praxisleitfaden mit Checklisten für Unternehmen."

@@ -31,19 +31,15 @@ const staticPages = [
   { loc: '/impressum', lastmod: TODAY, changefreq: 'yearly', priority: 0.3 },
 ];
 
-// Wissensseiten (Knowledge Pages) mit direktem Slug
-const knowledgePages = [
-  { loc: '/github-copilot', lastmod: TODAY, changefreq: 'monthly', priority: 0.9 },
-  { loc: '/copilot-studio', lastmod: TODAY, changefreq: 'monthly', priority: 0.9 },
-  { loc: '/prompt-engineering', lastmod: TODAY, changefreq: 'monthly', priority: 0.9 },
-  { loc: '/copilot-fehler-vermeiden', lastmod: TODAY, changefreq: 'monthly', priority: 0.9 },
-  { loc: '/ki-agenten', lastmod: TODAY, changefreq: 'monthly', priority: 0.9 },
-  { loc: '/microsoft-copilot-lizenzen', lastmod: TODAY, changefreq: 'monthly', priority: 0.9 },
-];
-
-// Wissensseiten unter /wissen/ Pfad
+// Alle Wissensseiten unter /wissen/ (konsolidiert)
 // WICHTIG: Bei neuen Artikeln hier den Pfad hinzufügen!
-const wissenSubpages = [
+const knowledgePages = [
+  { loc: '/wissen/github-copilot', lastmod: TODAY, changefreq: 'monthly', priority: 0.9 },
+  { loc: '/wissen/copilot-studio', lastmod: TODAY, changefreq: 'monthly', priority: 0.9 },
+  { loc: '/wissen/prompt-engineering', lastmod: TODAY, changefreq: 'monthly', priority: 0.9 },
+  { loc: '/wissen/copilot-fehler-vermeiden', lastmod: TODAY, changefreq: 'monthly', priority: 0.9 },
+  { loc: '/wissen/ki-agenten', lastmod: TODAY, changefreq: 'monthly', priority: 0.9 },
+  { loc: '/wissen/microsoft-copilot-lizenzen', lastmod: TODAY, changefreq: 'monthly', priority: 0.9 },
   { loc: '/wissen/copilot-roi-berechnen', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
   { loc: '/wissen/copilot-fuer-word', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
   { loc: '/wissen/copilot-sicherheit-datenschutz', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
@@ -55,6 +51,10 @@ const wissenSubpages = [
   { loc: '/wissen/copilot-digitales-gedaechtnis', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
   { loc: '/wissen/copilot-launch-kampagne', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
   { loc: '/wissen/copilot-roi-erfolgsgeschichten', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
+  { loc: '/wissen/copilot-adoption-2026-zahlen', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
+  { loc: '/wissen/copilot-lernreise-vs-tagesschulung', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
+  { loc: '/wissen/warum-verteiltes-lernen-bei-copilot-trainings-funktioniert', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
+  { loc: '/wissen/copilot-adhs-produktiver-arbeiten', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
 ];
 
 // Trainingsseiten - Slugs aus trainings.ts
@@ -92,7 +92,6 @@ const trainerProfiles = [
 const allPages = [
   ...staticPages,
   ...knowledgePages,
-  ...wissenSubpages,
   ...trainingPages,
   ...trainerProfiles,
 ];

@@ -34,9 +34,9 @@ export interface SchemaIds {
  * // Knowledge page
  * generateSchemaIds("github-copilot", "wissen")
  * // Returns: {
- * //   article: "https://copilotenschule.de/github-copilot#article",
- * //   faq: "https://copilotenschule.de/github-copilot#faq",
- * //   breadcrumb: "https://copilotenschule.de/github-copilot#breadcrumb"
+ * //   article: "https://copilotenschule.de/wissen/github-copilot#article",
+ * //   faq: "https://copilotenschule.de/wissen/github-copilot#faq",
+ * //   breadcrumb: "https://copilotenschule.de/wissen/github-copilot#breadcrumb"
  * // }
  *
  * @example
@@ -51,7 +51,7 @@ export interface SchemaIds {
 export const generateSchemaIds = (slug: string, type: 'wissen' | 'trainings'): SchemaIds => {
   const pageUrl = type === 'trainings'
     ? `${BASE_URL}/trainings/${slug}`
-    : `${BASE_URL}/${slug}`;
+    : `${BASE_URL}/wissen/${slug}`;
 
   return {
     article: `${pageUrl}#${type === 'trainings' ? 'course' : 'article'}`,
@@ -66,7 +66,7 @@ export const generateSchemaIds = (slug: string, type: 'wissen' | 'trainings'): S
 export const getPageUrl = (slug: string, type: 'wissen' | 'trainings'): string => {
   return type === 'trainings'
     ? `${BASE_URL}/trainings/${slug}`
-    : `${BASE_URL}/${slug}`;
+    : `${BASE_URL}/wissen/${slug}`;
 };
 
 /**

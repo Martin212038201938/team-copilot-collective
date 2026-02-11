@@ -51,12 +51,12 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/trainer-werden" element={<BecomeTrainer />} />
           <Route path="/wissen" element={<Wissen />} />
-          <Route path="/microsoft-copilot-lizenzen" element={<CopilotLicenses />} />
-          <Route path="/github-copilot" element={<GitHubCopilot />} />
-          <Route path="/copilot-studio" element={<CopilotStudio />} />
-          <Route path="/prompt-engineering" element={<PromptEngineering />} />
-          <Route path="/ki-agenten" element={<KIAgenten />} />
-          <Route path="/copilot-fehler-vermeiden" element={<CopilotFehler />} />
+          <Route path="/wissen/microsoft-copilot-lizenzen" element={<CopilotLicenses />} />
+          <Route path="/wissen/github-copilot" element={<GitHubCopilot />} />
+          <Route path="/wissen/copilot-studio" element={<CopilotStudio />} />
+          <Route path="/wissen/prompt-engineering" element={<PromptEngineering />} />
+          <Route path="/wissen/ki-agenten" element={<KIAgenten />} />
+          <Route path="/wissen/copilot-fehler-vermeiden" element={<CopilotFehler />} />
           <Route path="/wissen/copilot-roi-berechnen" element={<CopilotRoiBerechnen />} />
           <Route path="/wissen/copilot-fuer-word" element={<CopilotFuerWord />} />
           <Route path="/wissen/copilot-sicherheit-datenschutz" element={<CopilotSicherheit />} />

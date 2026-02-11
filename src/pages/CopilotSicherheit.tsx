@@ -10,7 +10,7 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { TrustBadge } from "@/components/TrustBadge";
 
-const SLUG = "wissen/copilot-sicherheit-datenschutz";
+const SLUG = "copilot-sicherheit-datenschutz";
 const PAGE_TITLE = "Microsoft Copilot Datenschutz & Sicherheit";
 
 const CopilotSicherheit = () => {
@@ -29,7 +29,7 @@ const CopilotSicherheit = () => {
   ];
 
   const ids = generateSchemaIds(SLUG, 'wissen');
-  const pageUrl = `https://copilotenschule.de/${SLUG}`;
+  const pageUrl = `https://copilotenschule.de/wissen/${SLUG}`;
   const breadcrumbItems = generateWissenBreadcrumbItems(PAGE_TITLE, pageUrl);
 
   const faqs = [

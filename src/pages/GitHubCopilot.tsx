@@ -13,7 +13,7 @@ const GitHubCopilot = () => {
 
   // Schema IDs automatisch generieren
   const ids = generateSchemaIds(SLUG, 'wissen');
-  const pageUrl = `https://copilotenschule.de/${SLUG}`;
+  const pageUrl = `https://copilotenschule.de/wissen/${SLUG}`;
   const breadcrumbItems = generateWissenBreadcrumbItems(PAGE_TITLE, pageUrl);
 
   const tableOfContents = [
@@ -108,7 +108,7 @@ const GitHubCopilot = () => {
           "Developer Productivity",
           "VS Code Copilot"
         ]}
-        canonicalUrl="https://copilotenschule.de/github-copilot"
+        canonicalUrl={pageUrl}
         schema={schema}
         author={martinLang}
         publishedTime="2025-11-07T10:00:00+01:00"
@@ -118,7 +118,7 @@ const GitHubCopilot = () => {
       <ContentLayout
         breadcrumbs={[
           { label: "Wissen", href: "/wissen" },
-          { label: "GitHub Copilot", href: "/github-copilot" }
+          { label: "GitHub Copilot", href: "/wissen/github-copilot" }
         ]}
         title="GitHub Copilot: Der ultimative Leitfaden für Entwickler 2025"
         description="GitHub Copilot für Entwickler: Funktionen, Best Practices und Produktivitäts-Tipps. Vollständiger Leitfaden von Setup bis Advanced Features."

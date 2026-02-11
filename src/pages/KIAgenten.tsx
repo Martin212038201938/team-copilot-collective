@@ -13,7 +13,7 @@ const KIAgenten = () => {
 
   // Schema IDs automatisch generieren
   const ids = generateSchemaIds(SLUG, 'wissen');
-  const pageUrl = `https://copilotenschule.de/${SLUG}`;
+  const pageUrl = `https://copilotenschule.de/wissen/${SLUG}`;
   const breadcrumbItems = generateWissenBreadcrumbItems(PAGE_TITLE, pageUrl);
 
   const tableOfContents = [
@@ -108,7 +108,7 @@ const KIAgenten = () => {
           "Multi-Agent-Systeme",
           "Copilot Studio Agents"
         ]}
-        canonicalUrl="https://copilotenschule.de/ki-agenten"
+        canonicalUrl={pageUrl}
         schema={schema}
         author={martinLang}
         publishedTime="2025-11-07T10:00:00+01:00"
@@ -118,7 +118,7 @@ const KIAgenten = () => {
       <ContentLayout
         breadcrumbs={[
           { label: "Wissen", href: "/wissen" },
-          { label: "KI-Agenten", href: "/ki-agenten" }
+          { label: "KI-Agenten", href: "/wissen/ki-agenten" }
         ]}
         title="KI-Agenten entwickeln: Autonome Workflows mit Microsoft Copilot"
         description="KI-Agenten Tutorial: Autonome Workflows und Automatisierungen mit Microsoft Copilot und Copilot Studio erstellen. Vom Konzept zur Implementierung."

@@ -5,14 +5,14 @@ import { Zap, Calculator, TrendingUp, Target, BarChart3, CheckCircle2, AlertTria
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 
-const SLUG = "wissen/copilot-roi-berechnen";
+const SLUG = "copilot-roi-berechnen";
 const PAGE_TITLE = "Copilot ROI berechnen";
 
 const CopilotRoiBerechnen = () => {
   const author = getAuthor("martin-lang");
 
   const ids = generateSchemaIds(SLUG, 'wissen');
-  const pageUrl = `https://copilotenschule.de/${SLUG}`;
+  const pageUrl = `https://copilotenschule.de/wissen/${SLUG}`;
   const breadcrumbItems = generateWissenBreadcrumbItems(PAGE_TITLE, pageUrl);
 
   const tableOfContents = [

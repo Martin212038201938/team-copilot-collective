@@ -113,7 +113,7 @@ const CopilotLicenses = () => {
           "Copilot Lizenzmodell Unternehmen",
           "M365 Copilot Lizenz"
         ]}
-        canonicalUrl="https://copilotenschule.de/wissen/microsoft-copilot-lizenzen"
+        canonicalUrl={pageUrl}
         schema={schema}
         author={martinLang}
         publishedTime="2025-01-06T09:00:00+01:00"

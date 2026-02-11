@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-const SLUG = "wissen/copilot-digitales-gedaechtnis";
+const SLUG = "copilot-digitales-gedaechtnis";
 const PAGE_TITLE = "Digitales Gedächtnis mit Microsoft Copilot";
 
 const CopilotDigitalesGedaechtnis = () => {
@@ -31,7 +31,7 @@ const CopilotDigitalesGedaechtnis = () => {
   ];
 
   const ids = generateSchemaIds(SLUG, 'wissen');
-  const pageUrl = `https://copilotenschule.de/${SLUG}`;
+  const pageUrl = `https://copilotenschule.de/wissen/${SLUG}`;
   const breadcrumbItems = generateWissenBreadcrumbItems(PAGE_TITLE, pageUrl);
 
   const faqs = [

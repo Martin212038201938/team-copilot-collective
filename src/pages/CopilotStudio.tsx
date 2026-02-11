@@ -13,7 +13,7 @@ const CopilotStudio = () => {
 
   // Schema IDs automatisch generieren
   const ids = generateSchemaIds(SLUG, 'wissen');
-  const pageUrl = `https://copilotenschule.de/${SLUG}`;
+  const pageUrl = `https://copilotenschule.de/wissen/${SLUG}`;
   const breadcrumbItems = generateWissenBreadcrumbItems(PAGE_TITLE, pageUrl);
 
   const tableOfContents = [
@@ -118,7 +118,7 @@ const CopilotStudio = () => {
       <ContentLayout
         breadcrumbs={[
           { label: "Wissen", href: "/wissen" },
-          { label: "Microsoft Copilot Studio", href: "/copilot-studio" }
+          { label: "Microsoft Copilot Studio", href: "/wissen/copilot-studio" }
         ]}
         title="Microsoft Copilot Studio: KI-Agenten und Custom Copilots erstellen"
         description="Copilot Studio Tutorial: Eigene KI-Agenten, Chatbots und Custom Copilots ohne Code erstellen. Low-Code Plattform für Unternehmen."

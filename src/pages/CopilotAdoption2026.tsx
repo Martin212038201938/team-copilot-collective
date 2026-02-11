@@ -5,14 +5,14 @@ import { TrendingUp, AlertTriangle, CheckCircle2, BarChart3, Quote, Target, User
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 
-const SLUG = "wissen/copilot-adoption-2026-zahlen";
+const SLUG = "copilot-adoption-2026-zahlen";
 const PAGE_TITLE = "Copilot Adoption 2026: Was die Zahlen wirklich zeigen";
 
 const CopilotAdoption2026 = () => {
   const author = getAuthor("martin-lang");
 
   const ids = generateSchemaIds(SLUG, 'wissen');
-  const pageUrl = `https://copilotenschule.de/${SLUG}`;
+  const pageUrl = `https://copilotenschule.de/wissen/${SLUG}`;
   const breadcrumbItems = generateWissenBreadcrumbItems(PAGE_TITLE, pageUrl);
 
   const tableOfContents = [

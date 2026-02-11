@@ -6,7 +6,7 @@ import { ExternalLink, Zap, Linkedin, Twitter } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { TrustBadge } from "@/components/TrustBadge";
 
-const SLUG = "wissen/copilot-fuer-word";
+const SLUG = "copilot-fuer-word";
 const PAGE_TITLE = "Microsoft Copilot für Word";
 
 const CopilotFuerWord = () => {
@@ -79,7 +79,7 @@ const CopilotFuerWord = () => {
 
   // Schema IDs automatisch generieren
   const ids = generateSchemaIds(SLUG, 'wissen');
-  const pageUrl = `https://copilotenschule.de/${SLUG}`;
+  const pageUrl = `https://copilotenschule.de/wissen/${SLUG}`;
   const breadcrumbItems = generateWissenBreadcrumbItems(PAGE_TITLE, pageUrl);
 
   // FAQ-Daten für Schema und Anzeige (kundenorientierte Fragen)

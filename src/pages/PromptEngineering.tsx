@@ -13,7 +13,7 @@ const PromptEngineering = () => {
   const author = getAuthor('martin-lang');
 
   const ids = generateSchemaIds(SLUG, 'wissen');
-  const pageUrl = `https://copilotenschule.de/${SLUG}`;
+  const pageUrl = `https://copilotenschule.de/wissen/${SLUG}`;
   const breadcrumbItems = generateWissenBreadcrumbItems(PAGE_TITLE, pageUrl);
 
   const tableOfContents = [
@@ -99,7 +99,7 @@ const PromptEngineering = () => {
         title="Prompt Engineering: Effektive KI-Prompts für Microsoft Copilot | Copilotenschule"
         description="Prompt Engineering Masterclass: Das CRAFT-Framework, bewährte Techniken und der Zauberstab-Prompt für bessere Copilot-Ergebnisse."
         keywords={["Prompt Engineering", "CRAFT Framework", "Microsoft Copilot Prompts", "Prompt Techniken", "KI Prompts", "Copilot Best Practices"]}
-        canonicalUrl="https://copilotenschule.de/prompt-engineering"
+        canonicalUrl={pageUrl}
         schema={schema}
         publishedTime="2025-11-07"
         modifiedTime="2026-02-03"
@@ -108,7 +108,7 @@ const PromptEngineering = () => {
       <ContentLayout
         breadcrumbs={[
           { label: "Wissen", href: "/wissen" },
-          { label: "Prompt Engineering", href: "/prompt-engineering" }
+          { label: "Prompt Engineering", href: "/wissen/prompt-engineering" }
         ]}
         title="Prompt Engineering: Effektive KI-Prompts für Microsoft Copilot"
         description="Das CRAFT-Framework, bewährte Techniken und der Zauberstab-Prompt für bessere Ergebnisse."

@@ -6,14 +6,14 @@ import { TrustBadge } from "@/components/TrustBadge";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 
-const SLUG = "wissen/prompt-bibliotheken-vs-training";
+const SLUG = "prompt-bibliotheken-vs-training";
 const PAGE_TITLE = "Prompt-Bibliotheken vs. echtes Training";
 
 const PromptBibliothekenQuatsch = () => {
   const author = getAuthor("martin-lang");
 
   const ids = generateSchemaIds(SLUG, 'wissen');
-  const pageUrl = `https://copilotenschule.de/${SLUG}`;
+  const pageUrl = `https://copilotenschule.de/wissen/${SLUG}`;
   const breadcrumbItems = generateWissenBreadcrumbItems(PAGE_TITLE, pageUrl);
 
   const tableOfContents = [
@@ -97,7 +97,7 @@ const PromptBibliothekenQuatsch = () => {
         title="Warum Prompt-Bibliotheken Quatsch sind | Copilotenschule"
         description="Prompt-Listen klingen gut, bringen aber wenig. Erfahren Sie, warum echtes Prompting-Training und Copilot-Agenten die besseren Alternativen sind."
         keywords={["Prompt Bibliothek", "Prompting Training", "Copilot Agenten", "KI Training", "Prompt Engineering", "Copilot Training"]}
-        canonicalUrl={`https://copilotenschule.de/${SLUG}`}
+        canonicalUrl={pageUrl}
         schema={schema}
         publishedTime="2026-02-03"
         modifiedTime="2026-02-03"
@@ -105,7 +105,7 @@ const PromptBibliothekenQuatsch = () => {
       <ContentLayout
         breadcrumbs={[
           { label: "Wissen", href: "/wissen" },
-          { label: "Prompt-Bibliotheken vs. Training", href: `/${SLUG}` }
+          { label: "Prompt-Bibliotheken vs. Training", href: `/wissen/${SLUG}` }
         ]}
         title="Warum Prompt-Bibliotheken Quatsch sind – und was wirklich funktioniert"
         description="Prompt-Listen klingen gut, bringen aber wenig. Erfahren Sie, warum echtes Training und Agenten die besseren Alternativen sind."

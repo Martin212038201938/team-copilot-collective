@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-const SLUG = "wissen/copilot-roi-erfolgsgeschichten";
+const SLUG = "copilot-roi-erfolgsgeschichten";
 const PAGE_TITLE = "Copilot ROI: Was CEOs und Vorstände aus dem DACH-Raum berichten";
 
 const CopilotROIErfolgsgeschichten = () => {
@@ -29,7 +29,7 @@ const CopilotROIErfolgsgeschichten = () => {
   ];
 
   const ids = generateSchemaIds(SLUG, 'wissen');
-  const pageUrl = `https://copilotenschule.de/${SLUG}`;
+  const pageUrl = `https://copilotenschule.de/wissen/${SLUG}`;
   const breadcrumbItems = generateWissenBreadcrumbItems(PAGE_TITLE, pageUrl);
 
   const faqs = [
