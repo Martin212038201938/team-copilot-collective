@@ -126,11 +126,97 @@ Sie werden NIEMALS auf der Live-Seite angezeigt, da sie nicht SEO-indexierbar si
 
 ---
 
+### ⚠️ VERBINDLICHE URL-Regeln (SEO-kritisch!)
+
+Diese Regeln verhindern Canonical-Mismatches und sind **nicht verhandelbar**:
+
+#### SLUG-Format
+```typescript
+// ✅ RICHTIG: Nur der Slug-Teil, OHNE Pfad-Prefix
+const SLUG = "mein-artikel-slug";
+
+// ❌ FALSCH: Niemals Pfad in SLUG einbauen!
+const SLUG = "wissen/mein-artikel-slug";
+```
+
+#### pageUrl-Konstruktion
+```typescript
+// ✅ RICHTIG: Immer mit /wissen/ Prefix konstruieren
+const pageUrl = `https://copilotenschule.de/wissen/${SLUG}`;
+
+// ❌ FALSCH: Ohne /wissen/
+const pageUrl = `https://copilotenschule.de/${SLUG}`;
+```
+
+#### canonicalUrl: IMMER {pageUrl} Variable verwenden
+```typescript
+// ✅ RICHTIG: Variable verwenden
+<SEOHead canonicalUrl={pageUrl} ... />
+
+// ❌ FALSCH: Hardcoded String
+<SEOHead canonicalUrl="https://copilotenschule.de/wissen/mein-slug" ... />
+```
+
+#### Breadcrumb-Href: IMMER /wissen/${SLUG}
+```typescript
+// ✅ RICHTIG:
+breadcrumbs={[
+  { label: "Wissen", href: "/wissen" },
+  { label: PAGE_TITLE, href: `/wissen/${SLUG}` }
+]}
+
+// ❌ FALSCH:
+{ label: PAGE_TITLE, href: `/${SLUG}` }
+```
+
+#### Schritt 1 Template: TSX-Datei Kopf (verbindlich!)
+Jede neue Wissensartikel-TSX muss exakt dieses Muster im Kopf verwenden:
+```typescript
+import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
+
+const SLUG = "mein-artikel-slug";            // ← NUR slug, OHNE "wissen/"
+const PAGE_TITLE = "Mein Artikel Titel";
+
+const MeinArtikel = () => {
+  const author = getAuthor("martin-lang");
+  const ids = generateSchemaIds(SLUG, 'wissen');
+  const pageUrl = `https://copilotenschule.de/wissen/${SLUG}`;
+  const breadcrumbItems = generateWissenBreadcrumbItems(PAGE_TITLE, pageUrl);
+  // ...
+  return (
+    <>
+      <SEOHead
+        canonicalUrl={pageUrl}           // ← IMMER Variable, nie hardcoded!
+        // ...
+      />
+      <ContentLayout
+        breadcrumbs={[
+          { label: "Wissen", href: "/wissen" },
+          { label: PAGE_TITLE, href: `/wissen/${SLUG}` }  // ← IMMER /wissen/
+        ]}
+        // ...
+      >
+```
+
+#### Schritt 5 (NEU!): react-snap include-Liste aktualisieren
+Bei JEDEM neuen Artikel muss `/wissen/mein-slug` zur `reactSnap.include` Liste in `package.json` hinzugefügt werden! Ohne diesen Eintrag wird die Seite NICHT pre-gerendert und hat keine SEO-Meta-Tags im initialen HTML.
+
+#### Automatische Validierung
+Beim Build läuft `scripts/validate-seo.js` und prüft automatisch:
+- Alle SLUGs sind clean (kein `/wissen/` Prefix)
+- Alle canonicalUrl nutzen `{pageUrl}` Variable
+- Alle Breadcrumb-Hrefs haben `/wissen/` Prefix
+- Alle Routen in App.tsx sind unter `/wissen/`
+- Alle Seiten in react-snap include-Liste vorhanden
+Bei Fehlern bricht der Build ab!
+
+---
+
 ### Pflichtfelder für jeden Wissensartikel
 Jeder neue Wissensartikel MUSS folgende Felder haben:
 - `title` - Aussagekräftiger Titel (SEO-optimiert)
 - `description` - Meta-Description (max. 160 Zeichen)
-- `slug` - URL-freundlicher Slug
+- `slug` - URL-freundlicher Slug (**ohne** `wissen/` Prefix!)
 - `keywords` - Array mit relevanten Keywords
 - `category` - Kategorie (z.B. "Microsoft 365 Copilot", "GitHub Copilot")
 - `author` - Autor-ID (Standard: "martin-lang")
