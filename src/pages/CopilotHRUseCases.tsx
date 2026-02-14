@@ -237,6 +237,26 @@ const CopilotHRUseCases = () => {
               Qualitätseffekt auf die Candidate Experience ist enorm. Kandidaten, die innerhalb von 24 Stunden eine
               persönliche Rückmeldung erhalten, bewerten den Arbeitgeber auf Kununu und Glassdoor messbar besser.
             </p>
+            <p>
+              Ein wichtiger Hinweis an dieser Stelle: Sobald Copilot nicht nur Texte formuliert, sondern bei
+              der Vorauswahl von Kandidaten unterstützt, bewegt man sich im Grenzbereich des EU AI Act. Die
+              Verordnung stuft KI-Systeme im Recruiting als Hochrisiko-Anwendung ein – aus gutem Grund.
+              Zahlreiche dokumentierte Fälle zeigen, dass KI-Modelle gesellschaftliche Vorurteile übernehmen
+              und in ihren Bewertungen reproduzieren. Ein Prompt wie „Wähle die Kandidaten aus, die mit
+              hoher Wahrscheinlichkeit eine große Karriere machen werden" klingt harmlos, kann aber zu
+              fataler Diskriminierung führen: Die KI stützt sich auf statistische Muster historischer Daten,
+              in denen bestimmte Bevölkerungsgruppen systematisch unterrepräsentiert sind. Was als
+              datengestützte Effizienz daherkommt, zementiert dann bestehende Ungleichheiten.
+            </p>
+            <p>
+              Das bedeutet nicht, dass Copilot im Bewerbermanagement nichts zu suchen hat – aber die Grenze
+              zwischen sinnvoller Unterstützung und unzulässiger Automatisierung muss klar gezogen werden.
+              Zusammenfassungen erstellen, Kommunikation beschleunigen, Eingangsbestätigungen formulieren:
+              ja. Kandidaten bewerten, vorselektieren oder ranken: nur mit äußerster Vorsicht, transparenten
+              Kriterien und menschlicher Letztentscheidung. HR-Teams müssen gezielt geschult und sensibilisiert
+              werden, wie sie KI fair und rechtskonform im Recruiting einsetzen – bevor sie damit anfangen,
+              nicht erst wenn etwas schiefgeht.
+            </p>
           </div>
         </section>
 
