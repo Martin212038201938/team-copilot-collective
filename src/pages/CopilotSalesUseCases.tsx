@@ -157,23 +157,25 @@ const CopilotSalesUseCases = () => {
           </CardHeader>
           <CardContent>
             <p className="text-base leading-relaxed">
-              Copilot ist der größte Produktivitätshebel für Vertriebsteams seit der Einführung von CRM-Systemen.
-              Nicht weil die Technologie spektakulär wäre, sondern weil sie an exakt den Stellen ansetzt, an denen
-              Vertriebler seit Jahren Zeit verlieren: CRM-Pflege, Meeting-Nachbereitung, Follow-up-Mails, Pipeline-Auswertungen.
-              In der Summe können Vertriebsteams realistisch 35–55 Stunden pro Woche einsparen – bei einem
-              10-köpfigen Team mit M365 Copilot-Lizenzen für 30 $ pro Nutzer und Monat.
+              Copilot ist der größte Produktivitätshebel für Vertriebsteams seit der Einführung von CRM-Systemen –
+              und zwar auf zwei Ebenen: Zeitersparnis und Qualitätsverbesserung. Pro Mitarbeiter lassen sich
+              realistisch 3–6 Stunden pro Woche einsparen. Gleichzeitig steigt die Qualität an kritischen
+              Touchpoints – schnellere Follow-ups, bessere Vorbereitung, sauberere Daten – was sich direkt auf
+              Sales Cycles und Abschlussquoten auswirkt. Bei 30 $ pro Nutzer und Monat amortisiert sich das schnell.
             </p>
           </CardContent>
         </Card>
 
         {/* Einleitung */}
-        <div className="prose prose-lg max-w-none dark:prose-invert mb-12">
+        <div className="prose prose-lg max-w-none dark:prose-invert mb-8">
           <p className="text-lg leading-relaxed">
-            Letzte Woche saß ich mit einem Vertriebsleiter zusammen, der mir sein CRM aufklappte und sagte:
-            „Mein Team verbringt freitags zwei Stunden damit, die Woche ins System zu klopfen. Die Hälfte davon
-            ist Copy-Paste aus Outlook." Das war kein Sonderfall. Es war das achte Gespräch in Folge, in dem mir
-            jemand beschrieb, wie sein Vertrieb den Großteil seiner Energie nicht mit Verkaufen verbringt, sondern
-            mit der Verwaltung des Verkaufens.
+            In Gesprächen mit Entscheidern werde ich regelmäßig gefragt, wo ich die größten messbaren Potenziale
+            für KI im Unternehmen sehe. Meine Antwort überrascht viele: nicht in der IT, nicht im Marketing –
+            sondern im Vertrieb. Denn kaum eine Abteilung verbringt so viel Zeit mit Verwaltungsarbeit, die
+            eigentlich niemand machen will. CRM-Pflege am Freitagabend, Copy-Paste aus Outlook ins System,
+            Pipeline-Reports für das Montagsmeeting. Sales dürfte in vielen Organisationen der Bereich sein, in dem
+            Copilot die Lizenzkosten am schnellsten marginalisiert – durch Zeitersparnis pro Kopf und durch eine
+            spürbare Qualitätsverbesserung im gesamten Pipeline-Prozess, die sich direkt auf die Abschlussquote auswirkt.
           </p>
           <p className="leading-relaxed">
             Genau an dieser Stelle wird Copilot zum stärksten Produktivitätshebel, den Sales-Teams seit der
@@ -190,8 +192,8 @@ const CopilotSalesUseCases = () => {
         </div>
 
         {/* CRM-Pflege */}
-        <section id="crm-pflege" className="mb-12">
-          <div className="flex items-center gap-3 mb-6">
+        <section id="crm-pflege" className="mb-8">
+          <div className="flex items-center gap-3 mb-3">
             <h2 className="text-2xl md:text-3xl font-bold pb-3 border-b-4 border-primary">
               Die CRM-Pflege, die niemand machen will
             </h2>
@@ -222,8 +224,8 @@ const CopilotSalesUseCases = () => {
         </section>
 
         {/* Meeting-Vorbereitung */}
-        <section id="meeting-vorbereitung" className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-primary">
+        <section id="meeting-vorbereitung" className="mb-8">
+          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
             Meeting-Vorbereitung, die diesen Namen verdient
           </h2>
           <div className="mb-4"><RoleBadge role="Außendienst" /></div>
@@ -241,17 +243,18 @@ const CopilotSalesUseCases = () => {
               manueller Deep Dive in 15 Minuten bringt.
             </p>
             <p>
-              Die Zeitersparnis pro Termin ist moderat – vielleicht zehn bis fünfzehn Minuten. Aber wer vier Termine
-              pro Woche so vorbereitet, gewinnt eine knappe Stunde. Der eigentliche Wert liegt allerdings woanders:
-              besser vorbereitete Gespräche führen zu kürzeren Sales Cycles. Das lässt sich in Minuten schlecht
-              messen, in Abschlussquoten aber schon.
+              Die reine Zeitersparnis pro Mitarbeiter ist moderat – vielleicht eine Stunde pro Woche bei vier
+              vorbereiteten Terminen. Der eigentliche Hebel ist aber ein anderer: besser vorbereitete Gespräche
+              führen nachweislich zu kürzeren Sales Cycles und höheren Abschlussquoten. Wer den Kunden beim
+              Ersttermin mit Kontextwissen überrascht statt mit Standardfragen nervt, verkauft anders. Dieser
+              Qualitätseffekt lässt sich in Minuten schlecht messen, in der Win-Rate aber sehr wohl.
             </p>
           </div>
         </section>
 
         {/* Follow-up-Mails */}
-        <section id="follow-up-mails" className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-primary">
+        <section id="follow-up-mails" className="mb-8">
+          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
             E-Mail-Entwürfe nach dem Gespräch
           </h2>
           <div className="mb-4"><RoleBadge role="Außendienst" /></div>
@@ -267,15 +270,17 @@ const CopilotSalesUseCases = () => {
               E-Mail das Letzte, worauf man Lust hat. Copilot in Outlook entwirft auf Basis des Meeting-Transkripts
               einen Nachfass, der die besprochenen Punkte referenziert und konkrete Vorschläge für die nächsten Schritte
               macht. Der Vertriebler passt an, ergänzt seine persönliche Note und schickt – statt am nächsten Morgen
-              erst um neun. Bei einer Vertriebsorganisation mit zehn Außendienstlern sind das am Ende des Monats nicht
-              nur ein paar eingesparte Stunden, sondern nachweisbar schnellere Response-Zeiten.
+              erst um neun. Pro Mitarbeiter spart das etwa 30–45 Minuten pro Woche an reiner Schreibzeit. Aber der
+              größere Effekt ist qualitativ: Eine Follow-up-Mail, die am selben Abend rausgeht und die besprochenen
+              Punkte präzise referenziert, signalisiert dem Kunden Verbindlichkeit und Professionalität. Das ist
+              kein Soft Factor – das beeinflusst direkt, ob ein Deal weiterläuft oder im Sande verläuft.
             </p>
           </div>
         </section>
 
         {/* Angebote */}
-        <section id="angebote" className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-primary">
+        <section id="angebote" className="mb-8">
+          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
             Angebote und Proposals vorbereiten
           </h2>
           <div className="mb-4"><RoleBadge role="Innendienst" /></div>
@@ -290,7 +295,10 @@ const CopilotSalesUseCases = () => {
               Copilot in Word erstellt brauchbare Erstentwürfe, wenn man ihn mit den richtigen Informationen füttert.
               Ein Prompt wie „Erstelle ein Begleitschreiben für unser Angebot an die Firma Schmidt. Referenziere die
               Gespräche vom Januar und hebe die drei genannten Pain Points hervor" generiert einen Text, der in zehn
-              Minuten angepasst werden kann statt in 40 Minuten komplett geschrieben werden muss.
+              Minuten angepasst werden kann statt in 40 Minuten komplett geschrieben werden muss. Pro Mitarbeiter
+              sind das bei zwei bis drei Angeboten pro Woche schnell ein bis zwei Stunden Ersparnis. Und auch hier
+              gibt es einen Qualitätseffekt: Ein Begleitschreiben, das konkret auf die Pain Points des Kunden
+              eingeht, hebt sich von der generischen Angebotspost ab, die die meisten Wettbewerber verschicken.
             </p>
             <p>
               Eine Einschränkung gehört dazu: Die Qualität der Entwürfe steht und fällt mit der Qualität der Daten
@@ -302,8 +310,8 @@ const CopilotSalesUseCases = () => {
         </section>
 
         {/* Pipeline-Analysen */}
-        <section id="pipeline" className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-primary">
+        <section id="pipeline" className="mb-8">
+          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
             Pipeline-Analysen und Forecasting
           </h2>
           <div className="mb-4"><RoleBadge role="Innendienst" /></div>
@@ -330,8 +338,8 @@ const CopilotSalesUseCases = () => {
         </section>
 
         {/* Wissenstransfer */}
-        <section id="wissenstransfer" className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-primary">
+        <section id="wissenstransfer" className="mb-8">
+          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
             Interne Abstimmung und Wissenstransfer
           </h2>
           <div className="mb-4"><RoleBadge role="Beide" /></div>
@@ -351,8 +359,8 @@ const CopilotSalesUseCases = () => {
         </section>
 
         {/* Einarbeitung */}
-        <section id="einarbeitung" className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-primary">
+        <section id="einarbeitung" className="mb-8">
+          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
             Einarbeitung neuer Mitarbeiter
           </h2>
           <div className="mb-4"><RoleBadge role="Beide" /></div>
@@ -368,8 +376,8 @@ const CopilotSalesUseCases = () => {
         </section>
 
         {/* Gesamtrechnung */}
-        <section id="gesamtrechnung" className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-primary">
+        <section id="gesamtrechnung" className="mb-8">
+          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
             Was heißt das in der Summe?
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -386,24 +394,24 @@ const CopilotSalesUseCases = () => {
                 <div className="p-4 rounded-lg bg-green-50 dark:bg-green-900/20">
                   <div className="flex items-center gap-2 mb-2">
                     <Target className="w-5 h-5 text-green-700 dark:text-green-400" />
-                    <h3 className="font-bold text-green-700 dark:text-green-400">Außendienst (5 Mitarbeiter)</h3>
+                    <h3 className="font-bold text-green-700 dark:text-green-400">Außendienst</h3>
                   </div>
                   <p className="text-sm text-muted-foreground mb-2">
                     Meeting-Zusammenfassungen, Termin-Vorbereitung, Follow-up-Mails
                   </p>
-                  <p className="text-2xl font-bold text-green-700 dark:text-green-400">20–30 Std./Woche</p>
-                  <p className="text-xs text-muted-foreground">je 4–6 Stunden pro Person</p>
+                  <p className="text-2xl font-bold text-green-700 dark:text-green-400">4–6 Std./Woche</p>
+                  <p className="text-xs text-muted-foreground">pro Mitarbeiter</p>
                 </div>
                 <div className="p-4 rounded-lg bg-blue-50 dark:bg-blue-900/20">
                   <div className="flex items-center gap-2 mb-2">
                     <Briefcase className="w-5 h-5 text-blue-700 dark:text-blue-400" />
-                    <h3 className="font-bold text-blue-700 dark:text-blue-400">Innendienst (5 Mitarbeiter)</h3>
+                    <h3 className="font-bold text-blue-700 dark:text-blue-400">Innendienst</h3>
                   </div>
                   <p className="text-sm text-muted-foreground mb-2">
                     Pipeline-Analysen, Angebotstexte, interne Abstimmung
                   </p>
-                  <p className="text-2xl font-bold text-blue-700 dark:text-blue-400">15–25 Std./Woche</p>
-                  <p className="text-xs text-muted-foreground">je 3–5 Stunden pro Person</p>
+                  <p className="text-2xl font-bold text-blue-700 dark:text-blue-400">3–5 Std./Woche</p>
+                  <p className="text-xs text-muted-foreground">pro Mitarbeiter</p>
                 </div>
               </div>
             </CardContent>
@@ -411,17 +419,20 @@ const CopilotSalesUseCases = () => {
 
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
-              In der Summe reden wir über <strong>35 bis 55 Stunden pro Woche</strong>, die frei werden – nicht für mehr
-              Verwaltung, sondern für das, wofür Vertrieb eigentlich bezahlt wird: Gespräche führen, Beziehungen pflegen,
-              Abschlüsse machen. Bei einer M365 Copilot-Lizenz von rund 30 Dollar pro Nutzer und Monat ist der Business
-              Case für ein zehnköpfiges Team in den meisten Organisationen nach wenigen Wochen positiv.
+              Pro Mitarbeiter reden wir über <strong>3 bis 6 Stunden pro Woche</strong>, die frei werden – nicht für
+              mehr Verwaltung, sondern für das, wofür Vertrieb eigentlich bezahlt wird: Gespräche führen, Beziehungen
+              pflegen, Abschlüsse machen. In einem zehnköpfigen Team sind das 30 bis 60 Stunden pro Woche. Dazu
+              kommt der Qualitätseffekt: bessere Vorbereitung, schnellere Follow-ups, präzisere Angebote – alles
+              Faktoren, die sich in der Abschlussquote niederschlagen. Bei einer M365 Copilot-Lizenz von rund
+              30 Dollar pro Nutzer und Monat ist der Business Case in den meisten Organisationen nach wenigen
+              Wochen positiv.
             </p>
           </div>
         </section>
 
         {/* Dynamics 365 Exkurs */}
-        <section id="dynamics" className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-primary">
+        <section id="dynamics" className="mb-8">
+          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
             Exkurs: Copilot in Dynamics 365 Sales
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -510,7 +521,7 @@ const CopilotSalesUseCases = () => {
             </p>
           </div>
 
-          <h3 className="text-xl font-bold mt-8 mb-4">Ein Wort zur Ehrlichkeit</h3>
+          <h3 className="text-xl font-bold mt-8 mb-4">Ist KI also das Allheilmittel für schlechte oder schlampig gelebte Vertriebsprozesse?</h3>
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
               Was ich in der Praxis sehe: Viele Unternehmen kaufen Dynamics 365 Sales Premium, nutzen aber nur einen
@@ -523,26 +534,28 @@ const CopilotSalesUseCases = () => {
         </section>
 
         {/* Fazit */}
-        <section id="fazit" className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-primary">
+        <section id="fazit" className="mb-8">
+          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
             Fazit
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
               Copilot ist kein Wundermittel und er wird auch keinen schlechten Vertriebsprozess reparieren. Aber
               für Organisationen, die ihre Grundlagen im Griff haben – saubere Daten, definierte Prozesse, eine
-              gewisse Disziplin in der Nutzung von M365 – ist er der größte einzelne Hebel zur
-              Produktivitätssteigerung, den es im Vertrieb aktuell gibt. Die Zeitersparnis entsteht nicht durch
-              einen großen Wurf, sondern durch die Summe vieler kleiner Entlastungen an den Stellen, an denen
-              Vertriebler heute ihre Energie verschwenden. Und das macht am Ende den Unterschied zwischen einem
-              Team, das verkauft, und einem Team, das sich selbst verwaltet.
+              gewisse Disziplin in der Nutzung von M365 – ist er der größte einzelne Hebel, den es im Vertrieb
+              aktuell gibt. Und zwar auf zwei Ebenen gleichzeitig: Die Zeitersparnis von 3 bis 6 Stunden pro
+              Mitarbeiter und Woche entsteht durch die Summe vieler kleiner Entlastungen. Aber der oft
+              unterschätzte zweite Effekt wiegt mindestens genauso schwer: Wenn Follow-ups schneller rausgehen,
+              Angebote präziser auf den Kunden zugeschnitten sind und Meetings besser vorbereitet werden, verbessert
+              sich die Qualität des gesamten Pipeline-Prozesses. Und das schlägt sich dort nieder, wo es wirklich
+              zählt – in der Abschlussquote.
             </p>
           </div>
         </section>
 
         {/* FAQ */}
-        <section id="faq" className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-primary">
+        <section id="faq" className="mb-8">
+          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
             Häufig gestellte Fragen
           </h2>
           <div className="space-y-6">
