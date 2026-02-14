@@ -37,6 +37,7 @@ import CopilotAdoption2026 from "./pages/CopilotAdoption2026";
 import CopilotLernreisen from "./pages/CopilotLernreisen";
 import WarumVerteiltesLernen from "./pages/WarumVerteiltesLernen";
 import CopilotADHS from "./pages/CopilotADHS";
+import CopilotSalesUseCases from "./pages/CopilotSalesUseCases";
 
 const queryClient = new QueryClient();
 
@@ -72,6 +73,7 @@ const App = () => (
           <Route path="/wissen/copilot-lernreise-vs-tagesschulung" element={<CopilotLernreisen />} />
           <Route path="/wissen/warum-verteiltes-lernen-bei-copilot-trainings-funktioniert" element={<WarumVerteiltesLernen />} />
           <Route path="/wissen/copilot-adhs-produktiver-arbeiten" element={<CopilotADHS />} />
+          <Route path="/wissen/copilot-vertrieb-use-cases" element={<CopilotSalesUseCases />} />
           <Route path="/impressum" element={<Impressum />} />
           <Route path="/ueber-uns" element={<UeberUns />} />
           <Route path="/unsere-angebote" element={<UnsereAngebote />} />

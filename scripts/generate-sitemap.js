@@ -55,6 +55,7 @@ const knowledgePages = [
   { loc: '/wissen/copilot-lernreise-vs-tagesschulung', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
   { loc: '/wissen/warum-verteiltes-lernen-bei-copilot-trainings-funktioniert', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
   { loc: '/wissen/copilot-adhs-produktiver-arbeiten', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
+  { loc: '/wissen/copilot-vertrieb-use-cases', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
 ];
 
 // Trainingsseiten - Slugs aus trainings.ts

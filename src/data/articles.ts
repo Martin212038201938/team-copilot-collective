@@ -30,6 +30,18 @@ export interface ArticleData {
 // Alle Artikel - sortiert nach Veröffentlichungsdatum (neueste zuerst)
 export const ALL_ARTICLES: ArticleData[] = [
   {
+    id: "copilot-vertrieb-use-cases",
+    title: "Copilot im Vertrieb: Wo die Zeitersparnis wirklich entsteht",
+    description: "Die wirkungsvollsten Copilot Use Cases für Vertriebsteams: Konkrete Zeitersparnis für Innendienst und Außendienst mit M365 Copilot und Dynamics 365 Sales.",
+    link: "/wissen/copilot-vertrieb-use-cases",
+    badge: "Sales",
+    icon: "💼",
+    readTime: "15 Minuten",
+    lastUpdated: "14. Feb. 2026",
+    publishDate: "2026-02-14",
+    publishTime: "09:00"
+  },
+  {
     id: "copilot-adhs",
     title: "Microsoft Copilot und ADHS: Wie KI mir hilft, fokussierter zu arbeiten",
     description: "Ein persönlicher Erfahrungsbericht: Wie Microsoft Copilot bei ADHS unterstützt – von Meeting-Recaps über E-Mail-Zusammenfassungen bis zum digitalen Gedächtnis.",
