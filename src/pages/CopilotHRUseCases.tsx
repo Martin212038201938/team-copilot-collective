@@ -44,7 +44,7 @@ const CopilotHRUseCases = () => {
     },
     {
       name: "Lohnt sich Copilot auch für kleine HR-Teams mit zwei bis drei Personen?",
-      answer: "Gerade dort. Kleine HR-Teams tragen die gesamte Bandbreite von Recruiting bis Zeugnisse auf wenigen Schultern. Wenn jede Person durch Copilot zwei bis vier Stunden pro Woche gewinnt, ist das bei einem dreiköpfigen Team fast ein kompletter Arbeitstag. Bei 27,70 Euro pro Lizenz und Monat amortisiert sich das sofort. Die Copilotenschule berät Sie zur richtigen Lizenzstrategie für Ihre Teamgröße."
+      answer: "Gerade dort. Kleine HR-Teams tragen die gesamte Bandbreite von Recruiting bis Zeugnisse auf wenigen Schultern. Wenn jede Person durch Copilot zwei bis vier Stunden pro Woche gewinnt, ist das bei einem dreiköpfigen Team fast ein kompletter Arbeitstag. Bei 28 Euro pro Lizenz und Monat amortisiert sich das sofort. Die Copilotenschule berät Sie zur richtigen Lizenzstrategie für Ihre Teamgröße."
     }
   ];
 
@@ -139,11 +139,11 @@ const CopilotHRUseCases = () => {
           <CardContent>
             <p className="text-base leading-relaxed">
               HR-Abteilungen gehören zu den Bereichen, in denen Copilot den höchsten Hebel pro Kopf erzielt –
-              weil ein großer Teil der täglichen Arbeit aus Textproduktion besteht: Stellenausschreibungen,
-              Zeugnisse, Bescheinigungen, Gesprächsprotokolle, Richtlinien, E-Mails an Mitarbeitende. Pro
-              HR-Mitarbeiter lassen sich realistisch 3–5 Stunden pro Woche einsparen. Gleichzeitig steigt die
-              Qualität an entscheidenden Stellen: schnellere Rückmeldungen an Bewerber, individuellere Zeugnisse,
-              besser vorbereitete Mitarbeitergespräche.
+              nicht nur wegen der Zeitersparnis von realistisch 3–5 Stunden pro Woche, sondern weil die
+              gewonnene Zeit direkt dorthin fließen kann, wo HR den größten Unterschied macht: individuelle
+              Beratung, Personalentwicklung, Organisationsgestaltung. Gleichzeitig steigt die Qualität an
+              entscheidenden Stellen: fachlich präzisere Stellenausschreibungen, schnellere Rückmeldungen
+              an Bewerber, besser vorbereitete Mitarbeitergespräche.
             </p>
           </CardContent>
         </Card>
@@ -151,20 +151,29 @@ const CopilotHRUseCases = () => {
         {/* Einleitung */}
         <div className="prose prose-lg max-w-none dark:prose-invert mb-8">
           <p className="text-lg leading-relaxed">
-            Wenn ich Unternehmen frage, welche Abteilung am meisten unter Verwaltungsaufwand leidet, fällt die
-            Antwort überraschend oft auf HR. Nicht weil Personaler ineffizient arbeiten, sondern weil kaum ein
-            Bereich so textlastig ist. Jede Stellenausschreibung, jedes Arbeitszeugnis, jede Betriebsvereinbarung,
-            jede Absagemail, jeder Onboarding-Plan – alles muss formuliert, abgestimmt und dokumentiert werden.
-            Gleichzeitig erwarten Mitarbeitende und Bewerber schnelle, persönliche Kommunikation. Diese Kombination
-            aus hohem Textvolumen und hohem Qualitätsanspruch macht HR zu einem der Bereiche, in denen Copilot den
-            größten messbaren Effekt pro Kopf entfaltet.
+            Was können Personaler richtig gut? Nach vielen Jahren enger Zusammenarbeit mit verschiedenen
+            HR-Abteilungen würde ich sagen: Mitarbeitende individuell beraten und begleiten. Einen Schritt
+            weiter denken, wie Arbeit, Arbeitsplätze und Organisationen gestaltet werden müssen, damit das
+            Unternehmen den nächsten großen Schritt gehen kann. Und: ein offenes Ohr haben, wenn jemand
+            nicht weiterkommt. An HR Business Partner wird darüber hinaus die Anforderung gestellt, inhaltlich
+            zu verstehen, was die ihnen zugeordneten Einheiten machen – das Fachvokabular zumindest grob
+            einordnen zu können, die relevanten Kennzahlen im Kopf zu haben.
           </p>
           <p className="leading-relaxed">
-            Dabei geht es nicht nur um Geschwindigkeit. Wer schneller auf Bewerbungen reagiert, verliert weniger
-            Kandidaten an die Konkurrenz. Wer bessere Stellenausschreibungen formuliert, bekommt passendere
-            Bewerbungen. Wer Mitarbeitergespräche gründlicher vorbereitet, führt bessere Gespräche. Copilot wirkt
-            im HR auf zwei Ebenen gleichzeitig: Zeitersparnis und Qualitätsverbesserung – und beides zahlt direkt
-            auf die Employer Brand ein.
+            Und genau hier fängt es an, schwierig zu werden. Ich will ungern über einen Kamm scheren, aber
+            nach meiner Erfahrung gehören Zahlenarbeit, technische Prozesse und datengetriebene Auswertungen
+            nicht zu den Kernstärken der meisten Personaler. Nicht, weil die Kompetenz fehlt, sondern weil
+            die Zeit dafür fehlt. Wer den halben Tag Zeugnisse formuliert, Stellenausschreibungen überarbeitet,
+            Absagemails individualisiert und Betriebsvereinbarungen aufsetzt, hat schlicht keine Kapazität mehr
+            für die Arbeit, die eigentlich den Unterschied macht: echten Kontakt mit Menschen, strategische
+            Personalentwicklung, Organisationsgestaltung.
+          </p>
+          <p className="leading-relaxed">
+            Copilot verschiebt diese Gleichung. Nicht indem er HR-Arbeit ersetzt, sondern indem er die
+            textlastigen Routineaufgaben so stark beschleunigt, dass Personalern wieder Raum entsteht für
+            das, was sie gut können und was die Organisation wirklich weiterbringt. Der Hebel ist dabei
+            doppelt: weniger Zeit für Verwaltung und gleichzeitig bessere Qualität in der Kommunikation
+            mit Bewerbern, Mitarbeitenden und Führungskräften.
           </p>
         </div>
 
@@ -182,16 +191,27 @@ const CopilotHRUseCases = () => {
               Nur fehlt HR dafür meistens die Zeit, weil parallel drei andere Stellen besetzt werden müssen.
             </p>
             <p>
-              Copilot in Word verändert die Gleichung. Ein Prompt wie „Erstelle eine Stellenausschreibung für
-              einen Senior Controller bei einem mittelständischen Maschinenbauer. Tone of Voice: professionell
-              aber nahbar, keine Floskeln, hebe die Gestaltungsfreiheit und die flachen Hierarchien hervor" liefert
-              in 30 Sekunden einen Entwurf, der deutlich über dem Niveau einer kopierten Vorlage liegt. Pro
-              Ausschreibung spart das einer HR-Fachkraft 30 bis 45 Minuten. Bei fünf bis zehn Ausschreibungen pro
-              Monat summiert sich das schnell auf drei bis vier Stunden.
+              Es gibt aber noch ein tieferes Problem: die Lücke zwischen Recruiter und Fachabteilung. Der
+              Hiring Manager spricht von „CI/CD-Pipelines", „IFRS-Konsolidierung" oder „SPS-Programmierung" –
+              und die HR-Fachkraft muss daraus eine Ausschreibung machen, die sowohl fachlich korrekt als auch
+              für Kandidaten ansprechend ist. In der Praxis entstehen dabei Texte, die entweder zu generisch
+              sind oder Fachbegriffe falsch verwenden. Beides schreckt die richtigen Bewerber ab.
             </p>
             <p>
-              Mindestens ebenso wichtig: Bessere Ausschreibungen ziehen passendere Bewerbungen an. Wer weniger
-              Fehlbewerbungen sichtet, spart nochmals Zeit im Screening – ein Kaskadeneffekt, der oft übersehen wird.
+              Copilot überbrückt genau dieses Delta. Die KI kennt die gängigen Rollenbeschreibungen, das
+              Fachvokabular und die typischen Anforderungsprofile quer durch alle Branchen. Ein besonders
+              wirksamer Ansatz ist dabei das sogenannte Few-Shot-Prompting: Man gibt Copilot zwei oder drei
+              bestehende, gut gelungene Ausschreibungen des eigenen Unternehmens als Referenz mit und lässt
+              ihn darauf aufbauend eine neue erstellen. Das Ergebnis übernimmt automatisch den Tonfall, die
+              Struktur und die Unternehmenssprache – und ergänzt das fachliche Vokabular, das der Recruiter
+              selbst vielleicht nicht sicher beherrscht. Pro Ausschreibung spart das 30 bis 45 Minuten.
+              Bei fünf bis zehn Ausschreibungen pro Monat summiert sich das schnell auf drei bis vier Stunden.
+            </p>
+            <p>
+              Der Qualitätseffekt ist hier mindestens so wichtig wie die Zeitersparnis: Ausschreibungen, die
+              fachlich präzise und gleichzeitig gut lesbar sind, ziehen passendere Bewerbungen an. Wer weniger
+              Fehlbewerbungen sichtet, spart nochmals Zeit im Screening – ein Kaskadeneffekt, der in der
+              Gesamtrechnung oft übersehen wird.
             </p>
           </div>
         </section>
@@ -241,10 +261,11 @@ const CopilotHRUseCases = () => {
               Kommunikationsaufwand – und der neue Kollege fühlt sich ab Tag eins willkommen statt vergessen.
             </p>
             <p>
-              Der Qualitätseffekt ist hier besonders relevant: Unternehmen mit strukturiertem Onboarding
-              haben laut Studien eine um 82 % höhere Retention im ersten Jahr. Copilot macht strukturiertes
-              Onboarding auch für kleine HR-Teams machbar, die keine Kapazität für ausgefeilte
-              Welcome-Journeys haben.
+              Der eigentliche Gewinn liegt aber nicht in der Zeitersparnis, sondern in der Wirkung: Ein
+              Mitarbeiter, der am ersten Tag eine durchdachte Willkommensmail bekommt, fühlt sich gesehen.
+              Wer in der ersten Woche einen klaren Einarbeitungsplan hat, wird schneller produktiv. Und wer
+              schneller produktiv ist, bleibt länger. Copilot macht diese Qualität auch für HR-Teams
+              machbar, die sonst keine Kapazität für strukturiertes Onboarding hätten.
             </p>
           </div>
         </section>
@@ -332,7 +353,9 @@ const CopilotHRUseCases = () => {
               FAQ-Dokumente zu neuen Regelungen. Copilot in Outlook formuliert diese Texte so, dass sie
               tatsächlich gelesen werden – verständlich, auf den Punkt, in einem Ton, der zur
               Unternehmenskultur passt. Pro HR-Mitarbeiter spart das ein bis zwei Stunden pro Woche,
-              die sonst in das Formulieren und Gegenlesen interner Texte fließen.
+              die sonst in das Formulieren und Gegenlesen interner Texte fließen. Das ist Zeit, die
+              direkt zurückfließt in die Arbeit mit Menschen – Beratungsgespräche, Konfliktmoderation,
+              Organisationsentwicklung. Genau die Dinge, für die HR eigentlich da ist.
             </p>
           </div>
         </section>
@@ -426,7 +449,7 @@ const CopilotHRUseCases = () => {
 
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
-              Bei einer M365 Copilot-Lizenz von rund 27,70 Euro pro Nutzer und Monat ist der Business Case
+              Bei einer M365 Copilot-Lizenz von rund 28 Euro pro Nutzer und Monat ist der Business Case
               für eine HR-Abteilung in den meisten Organisationen sofort positiv. Selbst bei konservativer
               Schätzung – drei Stunden pro Woche – entspricht das einem Vielfachen der Lizenzkosten an
               zurückgewonnener Arbeitszeit. Die Frage ist nicht, ob sich Copilot im HR rechnet, sondern

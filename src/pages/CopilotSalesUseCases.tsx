@@ -36,7 +36,7 @@ const CopilotSalesUseCases = () => {
     },
     {
       name: "Lohnt sich Copilot auch für kleine Vertriebsteams mit fünf oder weniger Mitarbeitern?",
-      answer: "Ja, aber mit einer Einschränkung: Bei kleinen Teams reicht der M365 Copilot für 27,70 Euro pro Nutzer und Monat in der Regel völlig aus. Die teurere Dynamics-365-Integration rechnet sich erst bei größeren Teams mit komplexen Deal-Strukturen. Die Copilotenschule hilft Ihnen, den richtigen Lizenz-Mix für Ihre Teamgröße zu finden."
+      answer: "Ja, aber mit einer Einschränkung: Bei kleinen Teams reicht der M365 Copilot für 28 Euro pro Nutzer und Monat in der Regel völlig aus. Die teurere Dynamics-365-Integration rechnet sich erst bei größeren Teams mit komplexen Deal-Strukturen. Die Copilotenschule hilft Ihnen, den richtigen Lizenz-Mix für Ihre Teamgröße zu finden."
     },
     {
       name: "Wie messen wir, ob Copilot im Vertrieb tatsächlich Zeit spart?",
@@ -161,7 +161,7 @@ const CopilotSalesUseCases = () => {
               und zwar auf zwei Ebenen: Zeitersparnis und Qualitätsverbesserung. Pro Mitarbeiter lassen sich
               realistisch 3–6 Stunden pro Woche einsparen. Gleichzeitig steigt die Qualität an kritischen
               Touchpoints – schnellere Follow-ups, bessere Vorbereitung, sauberere Daten – was sich direkt auf
-              Sales Cycles und Abschlussquoten auswirkt. Bei 27,70 € pro Nutzer und Monat amortisiert sich das schnell.
+              Sales Cycles und Abschlussquoten auswirkt. Bei 28 € pro Nutzer und Monat amortisiert sich das schnell.
             </p>
           </CardContent>
         </Card>
@@ -424,7 +424,7 @@ const CopilotSalesUseCases = () => {
               pflegen, Abschlüsse machen. In einem zehnköpfigen Team sind das 30 bis 60 Stunden pro Woche. Dazu
               kommt der Qualitätseffekt: bessere Vorbereitung, schnellere Follow-ups, präzisere Angebote – alles
               Faktoren, die sich in der Abschlussquote niederschlagen. Bei einer M365 Copilot-Lizenz von rund
-              27,70 Euro pro Nutzer und Monat ist der Business Case in den meisten Organisationen nach wenigen
+              28 Euro pro Nutzer und Monat ist der Business Case in den meisten Organisationen nach wenigen
               Wochen positiv.
             </p>
           </div>
@@ -482,23 +482,23 @@ const CopilotSalesUseCases = () => {
                   <tbody>
                     <tr className="border-b">
                       <td className="py-2 pr-4">Dynamics 365 Sales Professional</td>
-                      <td className="text-right py-2">60 €</td>
+                      <td className="text-right py-2">56,30 €</td>
                     </tr>
                     <tr className="border-b">
                       <td className="py-2 pr-4">Dynamics 365 Sales Enterprise</td>
-                      <td className="text-right py-2">97 €</td>
+                      <td className="text-right py-2">91 €</td>
                     </tr>
                     <tr className="border-b">
                       <td className="py-2 pr-4">Dynamics 365 Sales Premium (alle KI-Features)</td>
-                      <td className="text-right py-2">138 €</td>
+                      <td className="text-right py-2">130 €</td>
                     </tr>
                     <tr className="border-b bg-primary/5">
                       <td className="py-2 pr-4 font-medium">M365 Copilot (inkl. Sales-Funktionen seit Okt. 2025)</td>
-                      <td className="text-right py-2 font-medium">27,70 €</td>
+                      <td className="text-right py-2 font-medium">28 €</td>
                     </tr>
                     <tr className="bg-primary/10">
                       <td className="py-2 pr-4 font-bold">Voller Umfang: Sales Premium + M365 Copilot</td>
-                      <td className="text-right py-2 font-bold">ca. 166 €</td>
+                      <td className="text-right py-2 font-bold">ca. 158 €</td>
                     </tr>
                   </tbody>
                 </table>
@@ -509,7 +509,7 @@ const CopilotSalesUseCases = () => {
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
               Die Copilot-Funktionen für Sales sind seit Oktober 2025 in der M365 Copilot-Lizenz enthalten – also in
-              den 27,70 Euro pro Nutzer und Monat, die man ohnehin zahlt. Voraussetzung ist allerdings, dass eine
+              den 28 Euro pro Nutzer und Monat, die man ohnehin zahlt. Voraussetzung ist allerdings, dass eine
               Dynamics 365 Sales-Lizenz vorhanden ist. Ohne CRM keine CRM-KI, was logisch klingt, aber in der
               Budgetplanung gerne übersehen wird.
             </p>
