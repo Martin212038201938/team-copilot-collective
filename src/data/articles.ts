@@ -30,6 +30,18 @@ export interface ArticleData {
 // Alle Artikel - sortiert nach Veröffentlichungsdatum (neueste zuerst)
 export const ALL_ARTICLES: ArticleData[] = [
   {
+    id: "copilot-hr-use-cases",
+    title: "Copilot im HR: Wo Personalabteilungen wirklich Zeit gewinnen",
+    description: "Die wirkungsvollsten Copilot Use Cases für HR: Von Stellenausschreibungen über Zeugnisse bis People Analytics – konkrete Zeitersparnis pro Mitarbeiter.",
+    link: "/wissen/copilot-hr-use-cases",
+    badge: "HR",
+    icon: "👥",
+    readTime: "14 Minuten",
+    lastUpdated: "14. Feb. 2026",
+    publishDate: "2026-02-14",
+    publishTime: "10:00"
+  },
+  {
     id: "copilot-vertrieb-use-cases",
     title: "Copilot im Vertrieb: Wo die Zeitersparnis wirklich entsteht",
     description: "Die wirkungsvollsten Copilot Use Cases für Vertriebsteams: Konkrete Zeitersparnis für Innendienst und Außendienst mit M365 Copilot und Dynamics 365 Sales.",
