@@ -30,6 +30,17 @@ export interface ArticleData {
 // Alle Artikel - sortiert nach Veröffentlichungsdatum (neueste zuerst)
 export const ALL_ARTICLES: ArticleData[] = [
   {
+    id: "ki-halluzinationen-vermeiden",
+    title: "KI-Halluzinationen vermeiden und KI zur Qualitätssicherung nutzen",
+    description: "Wie KI-Halluzinationen entstehen, wie man sie durch besseres Prompting vermeidet und wie man KI selbst als Werkzeug zur Qualitätssicherung einsetzt.",
+    link: "/wissen/ki-halluzinationen-vermeiden",
+    badge: "Qualität",
+    icon: "🔍",
+    lastUpdated: "15. Feb. 2026",
+    publishDate: "2026-02-15",
+    publishTime: "09:00"
+  },
+  {
     id: "copilot-hr-use-cases",
     title: "Copilot im HR: Wo Personalabteilungen wirklich Zeit gewinnen",
     description: "Die wirkungsvollsten Copilot Use Cases für HR: Von Stellenausschreibungen über Zeugnisse bis People Analytics – konkrete Zeitersparnis pro Mitarbeiter.",
