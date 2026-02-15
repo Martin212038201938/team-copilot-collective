@@ -126,7 +126,7 @@ const CopilotHRUseCases = () => {
         title={PAGE_TITLE}
         description="Die wirkungsvollsten Copilot Use Cases für HR-Abteilungen: konkrete Zeitersparnis pro Mitarbeiter."
         lastUpdated="14. Februar 2026"
-        readTime="14 Minuten"
+        
         tableOfContents={tableOfContents}
       >
         {/* Schnellantwort */}

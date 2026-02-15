@@ -36,7 +36,6 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/copilot-hr-use-cases",
     badge: "HR",
     icon: "👥",
-    readTime: "14 Minuten",
     lastUpdated: "14. Feb. 2026",
     publishDate: "2026-02-14",
     publishTime: "10:00"
@@ -48,7 +47,6 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/copilot-vertrieb-use-cases",
     badge: "Sales",
     icon: "💼",
-    readTime: "15 Minuten",
     lastUpdated: "14. Feb. 2026",
     publishDate: "2026-02-14",
     publishTime: "09:00"
