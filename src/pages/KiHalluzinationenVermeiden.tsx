@@ -153,6 +153,14 @@ const KiHalluzinationenVermeiden = () => {
             ungeprüft an den Kunden geschickt hätte. Fast.
           </p>
           <p className="leading-relaxed">
+            Was daraus entstand, war eine der besten Diskussionen, die ich in Trainings erlebe: Ist es
+            überhaupt sinnvoll, KI einzusetzen, wenn man hinterher selbst noch prüfen muss? Warum
+            tolerieren wir menschliche Fehler in Angeboten mit einem Achselzucken, reagieren aber auf
+            maschinengenerierte Fehler mit grundsätzlichem Misstrauen? Wo liegt der Mehrwert, wenn die
+            Kontrolle beim Menschen bleibt? Das sind keine oberflächlichen Fragen – sie rühren an
+            grundlegende Annahmen darüber, wie wir Arbeit bewerten und wem wir Fehler zugestehen.
+          </p>
+          <p className="leading-relaxed">
             Das ist kein Einzelfall. In praktisch jedem Training, das ich gebe, taucht irgendwann die Frage
             auf: Wie kann ich dem vertrauen, was die KI schreibt? Die ehrliche Antwort lautet: gar nicht
             blind. Aber das ist auch nicht nötig. Es gibt erprobte Techniken, um Halluzinationen zu
