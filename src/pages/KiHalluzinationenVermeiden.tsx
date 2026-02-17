@@ -318,27 +318,39 @@ const KiHalluzinationenVermeiden = () => {
               prüfen soll, ist die Aufgabe eine andere – und eine, die KI überraschend gut kann.
             </p>
             <p>
+              Wenn wir hier von Qualitätssicherung sprechen, meinen wir sowohl sprachliche Qualität –
+              Struktur, Verständlichkeit, Tonfall – als auch inhaltliche Plausibilitätsprüfung: Stimmen
+              die Fakten? Sind die Aussagen belegt? Fehlen wichtige Einschränkungen? Was wir nicht meinen,
+              ist ein vollständiger juristischer oder wissenschaftlicher Faktencheck. Der bleibt beim
+              Fachexperten.
+            </p>
+            <p>
               Ein konkretes Beispiel: Ein Vertriebsmitarbeiter lässt Copilot ein Angebot formulieren.
               Statt den Text direkt zu verschicken, kopiert er ihn in einen neuen Chat und promptet:
-              „Prüfe diesen Angebotstext kritisch. Welche Aussagen sind nicht durch die beigefügten
-              Produktunterlagen gedeckt? Wo werden Versprechen gemacht, die wir möglicherweise nicht
-              halten können? Welche Formulierungen könnten rechtlich problematisch sein?" Die KI
-              schlüpft jetzt in eine andere Rolle – die des Reviewers – und findet Schwachstellen,
-              die dem Ersteller-Prompt nicht aufgefallen wären.
+              „Prüfe diesen Angebotstext kritisch. Welche Aussagen sind nicht durch die Produktunterlagen
+              gedeckt oder rechtlich heikel?" Die KI schlüpft in die Rolle des Reviewers – und findet
+              Schwachstellen, die dem Ersteller-Prompt nicht aufgefallen wären.
             </p>
             <p>
-              Der Trick liegt darin, den Prüf-Prompt gezielt anders zu formulieren als den
-              Erstellungs-Prompt. Wer die KI fragt „Ist mein Text gut?", bekommt ein Ja. Wer fragt
-              „Welche drei Schwachstellen hat dieser Text?", bekommt verwertbares Feedback. Der
-              Unterschied ist: Im ersten Fall bittet man um Bestätigung, im zweiten um Analyse.
-              Sprachmodelle können beides – aber nur das zweite ist nützlich.
+              Entscheidend ist, den Prüf-Prompt bewusst anders zu formulieren als den Erstellungs-Prompt –
+              nicht nach Bestätigung fragen, sondern nach konkreten Schwachstellen. Wer die KI fragt
+              „Ist mein Text gut?", bekommt ein Ja. Wer fragt „Welche drei Schwachstellen hat dieser
+              Text?", bekommt verwertbares Feedback.
             </p>
+            <Card className="my-6 border-primary/20 bg-primary/5">
+              <CardHeader>
+                <CardTitle className="text-lg">Nützliche Prüf-Prompts</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-2 text-base">
+                <p className="italic">„Nenne mir die 5 größten Risiken oder Unklarheiten in diesem Text."</p>
+                <p className="italic">„Welche Aussagen sind spekulativ oder nicht belegt?"</p>
+                <p className="italic">„Wo könnten Fachleute aus [Rolle] widersprechen – und warum?"</p>
+              </CardContent>
+            </Card>
             <p>
-              Ein weiterer wirksamer Ansatz: den gleichen Inhalt von der KI aus einer anderen
-              Perspektive bewerten lassen. „Lies diesen Text aus der Sicht eines skeptischen
-              Einkäufers. Welche Fragen würde er stellen? Welche Behauptungen würde er
-              anzweifeln?" Oder: „Lies diesen Text aus der Sicht unseres Compliance-Officers.
-              Wo sieht er Risiken?" Diese Perspektivwechsel decken blinde Flecken auf, die
+              Ein weiterer wirksamer Ansatz: denselben Text aus verschiedenen Rollen lesen lassen. „Lies
+              diesen Text wie ein skeptischer Einkäufer bzw. wie unser Compliance-Officer: Welche Fragen,
+              Zweifel und Risiken siehst du?" Solche Perspektivwechsel decken blinde Flecken auf, die
               weder der Autor noch ein einfaches Korrekturlesen finden würden.
             </p>
           </div>
@@ -357,19 +369,25 @@ const KiHalluzinationenVermeiden = () => {
               dabei mit einem einfachen Drei-Stufen-Modell, das sich in der Praxis bewährt hat.
             </p>
             <p>
-              Stufe eins: interner, informeller Einsatz. Brainstorming-Ideen, erste Entwürfe für interne
+              <strong>Stufe 1: Unkritische interne Kommunikation.</strong> Brainstorming-Ideen, erste Entwürfe für interne
               E-Mails, Zusammenfassungen für den eigenen Gebrauch. Hier reicht ein kurzer Plausibilitätscheck
               durch den Nutzer selbst. Der Aufwand ist minimal, das Risiko gering.
             </p>
             <p>
-              Stufe zwei: geschäftsrelevante Kommunikation. Kundenangebote, Berichte für die
+              <strong>Stufe 2: Kundenkommunikation und geschäftsrelevante Inhalte.</strong> Kundenangebote, Berichte für die
               Geschäftsleitung, Präsentationen für externe Stakeholder. Hier sollte der KI-generierte
               Inhalt durch eine zweite Person gegengelesen werden – oder, wenn das zeitlich nicht möglich
               ist, durch einen gezielten KI-Review-Prompt. Faktenbehauptungen, Zahlen und Zusagen müssen
               einzeln geprüft werden.
             </p>
+            <Card className="my-4 border-primary/20 bg-primary/5">
+              <CardContent className="pt-4 text-base">
+                <p className="font-medium mb-1">Beispiel-Prompt für Stufe 2:</p>
+                <p className="italic">„Prüfe diesen Text im Hinblick auf übertriebene Versprechen, unklare Konditionen und potenziell missverständliche Formulierungen für Kunden."</p>
+              </CardContent>
+            </Card>
             <p>
-              Stufe drei: rechtsverbindliche oder öffentliche Inhalte. Verträge, Datenschutzerklärungen,
+              <strong>Stufe 3: Rechtlich und finanziell hochkritische Inhalte.</strong> Verträge, Datenschutzerklärungen,
               Pressemitteilungen, regulatorische Dokumentation. Hier hat KI-Output nichts ungeprüft zu
               suchen. Der Entwurf kann von KI kommen – die Freigabe niemals. Jede Faktenbehauptung muss
               gegen Primärquellen geprüft werden, jede juristische Formulierung durch einen Fachexperten.
