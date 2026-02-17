@@ -178,12 +178,14 @@ const KiHalluzinationenVermeiden = () => {
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
               Der Begriff „Halluzination" ist eigentlich irreführend, weil er suggeriert, die KI hätte eine
-              Fehlfunktion. In Wahrheit tut ein Sprachmodell wie GPT-4, Claude oder Copilot genau das, wofür
-              es gebaut wurde: Es sagt das wahrscheinlichste nächste Wort vorher. Nicht das richtigste. Nicht
-              das faktisch korrekteste. Das statistisch plausibelste. Wenn Sie ein Sprachmodell bitten, eine
-              Aussage über ein Thema zu machen, rechnet es nicht nach, schaut nicht in einer Datenbank nach
-              und überprüft keine Quelle. Es konstruiert einen Text, der so klingt, als wäre er richtig –
-              weil Texte, die richtig klingen, in den Trainingsdaten am häufigsten vorkommen.
+              Fehlfunktion. In Wahrheit tut ein Sprachmodell wie ChatGPT, Claude oder der Copilot genau das,
+              wofür es gebaut wurde: Es sagt das wahrscheinlichste nächste Wort vorher. Nicht das richtigste.
+              Nicht das faktisch korrekteste. Das statistisch plausibelste. Wenn Sie ein Sprachmodell bitten,
+              eine Aussage über ein Thema zu machen, will es uns unbedingt helfen – koste es, was es wolle.
+              Das hängt mit dem Training der Modelle zusammen: Sie werden für hilfreiche Antworten belohnt und
+              für schlechte bestraft. Und keine Antwort ist auf jeden Fall mal keine gute. Also liefert das
+              Modell lieber etwas Plausibles als zuzugeben, dass es nicht weiterkommt. Das hier ist bewusst
+              stark vereinfacht und nicht ganz technisch korrekt – aber es trifft den Kern.
             </p>
             <p>
               Das erklärt, warum Halluzinationen oft so überzeugend sind. Die KI erfindet keine offensichtlich
@@ -197,6 +199,19 @@ const KiHalluzinationenVermeiden = () => {
               grundsätzlich keinen Unterschied zwischen Fakt und Fiktion kennt. Es produziert Text.
               Ob dieser Text wahr ist, ist eine Frage, die außerhalb des Modells beantwortet werden muss –
               durch den Menschen, durch Referenzdokumente oder durch einen gezielten Prüf-Workflow.
+            </p>
+            <p>
+              Die gute Nachricht: Das Problem ist in den letzten zwei Jahren deutlich kleiner geworden. Die
+              Modellhersteller haben mehrere Mechanismen eingebaut, die Halluzinationen reduzieren. Der
+              wichtigste ist Retrieval-Augmented Generation (RAG) – das Modell wird vor der Antwort mit
+              relevanten Dokumenten oder Suchergebnissen versorgt und antwortet auf dieser Basis statt frei
+              zu erfinden. Microsoft setzt das im Copilot konsequent um: Antworten werden auf den
+              M365-Tenant, auf Bing-Suchergebnisse oder auf das gerade geöffnete Dokument „geerdet" –
+              Microsoft nennt das Grounding. Dazu kommen Quellenverweise, die der Nutzer nachprüfen kann,
+              und seit 2024 eine automatische Korrektur-Funktion in Azure AI, die halluzinierte Passagen
+              in Echtzeit erkennt und umschreibt. Im Ergebnis ist der Copilot von 2026 deutlich
+              zuverlässiger als die erste Version von 2023 – aber eben nicht fehlerfrei. Wer das weiß,
+              kann damit arbeiten.
             </p>
           </div>
         </section>
