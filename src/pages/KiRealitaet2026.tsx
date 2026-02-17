@@ -136,7 +136,7 @@ const KiRealitaet2026 = () => {
         title={PAGE_TITLE}
         description="Eine datenbasierte Analyse der führenden Beratungshäuser: Wie steht es wirklich um KI-Investitionen und deren Return in deutschen Unternehmen?"
         lastUpdated="02. Februar 2026"
-        readTime="18 Minuten"
+        authorName="Martin Lang"
         tableOfContents={tableOfContents}
       >
         {/* Schnellantwort-Card */}

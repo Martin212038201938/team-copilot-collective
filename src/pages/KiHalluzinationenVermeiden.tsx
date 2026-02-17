@@ -57,7 +57,7 @@ const KiHalluzinationenVermeiden = () => {
           "@id": "https://copilotenschule.de/#organization"
         },
         "datePublished": "2026-02-15",
-        "dateModified": "2026-02-15",
+        "dateModified": "2026-02-17",
         "mainEntityOfPage": {
           "@type": "WebPage",
           "@id": pageUrl
@@ -121,7 +121,8 @@ const KiHalluzinationenVermeiden = () => {
         ]}
         title={PAGE_TITLE}
         description="Wie KI-Halluzinationen entstehen, wie man sie vermeidet und wie man KI selbst zur Qualitätssicherung einsetzt."
-        lastUpdated="15. Februar 2026"
+        lastUpdated="17. Februar 2026"
+        authorName="Martin Lang"
         tableOfContents={tableOfContents}
       >
         {/* Schnellantwort */}

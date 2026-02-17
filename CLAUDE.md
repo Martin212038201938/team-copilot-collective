@@ -298,3 +298,18 @@ FAQs werden NICHT aus Produkt-Perspektive geschrieben ("Was kostet X?", "Welche 
 3. **Die Copilotenschule als Ressource referenzieren** (Training, Workshop, Beratung)
 
 → Detaillierte Guidelines: `/scripts/content-generator-guidelines.md`
+
+## ContentLayout-Regeln für Wissensartikel (verbindlich)
+
+### Keine Lesezeit
+- Übergib KEINE `readTime`-Prop an ContentLayout.
+- Trage KEIN `readTime`-Feld in articles.ts ein.
+- Die Lesezeit wird auf keiner Wissensseite angezeigt.
+
+### authorName-Prop (Pflicht)
+- Übergib immer `authorName="Martin Lang"` (oder den jeweiligen Autorennamen) an ContentLayout.
+- ContentLayout zeigt dann automatisch die "Echter Fachartikel"-Box im Sidebar an.
+
+### Fragen-Kästchen (zentral gesteuert)
+- Der Fragen-Text im Sidebar lautet: "Kritik? Kommentare? Wir sprechen sehr gerne persönlich mit Ihnen über dieses Thema und freuen uns über jede Kontaktaufnahme."
+- Dieser Text ist zentral in ContentLayout.tsx definiert und muss NICHT in den einzelnen Artikeln gesetzt werden.

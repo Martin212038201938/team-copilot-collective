@@ -16,6 +16,7 @@ interface ContentLayoutProps {
   description?: string;
   lastUpdated?: string;
   readTime?: string;
+  authorName?: string;
   tableOfContents?: { id: string; title: string; level: number }[];
   /**
    * Wenn true, wird nur der innere Content ohne Header/Footer gerendert.
@@ -33,6 +34,7 @@ const ContentLayout = ({
   description,
   lastUpdated,
   readTime,
+  authorName,
   tableOfContents = [],
   noShell = false
 }: ContentLayoutProps) => {
@@ -105,11 +107,6 @@ const ContentLayout = ({
                       <span className="text-muted-foreground">Zuletzt aktualisiert: <span className="font-medium text-foreground">{lastUpdated}</span></span>
                     </div>
                   )}
-                  {readTime && (
-                    <div className="flex items-center gap-2 px-4 py-2 bg-muted rounded-full">
-                      <span className="text-muted-foreground"><span className="font-medium text-foreground">{readTime}</span> Lesezeit</span>
-                    </div>
-                  )}
                 </div>
               </div>
             </header>
@@ -153,6 +150,18 @@ const ContentLayout = ({
                   </div>
                 </div>
 
+                {/* Echter Fachartikel Box */}
+                {authorName && (
+                  <div className="relative bg-card/80 backdrop-blur-md border border-border/50 rounded-2xl p-5 shadow-md">
+                    <p className="text-xs text-muted-foreground leading-relaxed">
+                      Echter Fachartikel, verfasst von <span className="font-medium text-foreground">{authorName}</span> unter
+                      Zuhilfenahme unterstützender KI-basierter Tools. Die Inhalte geben die Meinung des Autors wieder,
+                      wurden gewissenhaft mit Mühe und Aufwand für menschliche Leser verfasst und geprüft.
+                      Es handelt sich nicht um sogenannten AI-Blob oder SEO Content.
+                    </p>
+                  </div>
+                )}
+
                 {/* CTA Box */}
                 <div className="relative group">
                   {/* Animated glow */}
@@ -169,7 +178,7 @@ const ContentLayout = ({
                         <span>Fragen?</span>
                       </h3>
                       <p className="text-sm text-muted-foreground mb-5 leading-relaxed">
-                        Wir beraten Sie gerne zu Microsoft Copilot Lizenzen und Trainings.
+                        Kritik? Kommentare? Wir sprechen sehr gerne persönlich mit Ihnen über dieses Thema und freuen uns über jede Kontaktaufnahme.
                       </p>
                       <Link
                         to="/#contact"

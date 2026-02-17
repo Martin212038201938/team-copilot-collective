@@ -129,7 +129,7 @@ const CopilotADHS = () => {
         title={PAGE_TITLE}
         description="Ein persönlicher Erfahrungsbericht: Wie Microsoft Copilot mir als ADHS-Betroffener hilft, fokussierter und produktiver zu arbeiten - mit konkreten Workflows und ehrlichen Grenzen."
         lastUpdated="05. Februar 2026"
-        readTime="7 Minuten"
+        authorName="Martin Lang"
         tableOfContents={tableOfContents}
       >
         {/* Einleitung */}

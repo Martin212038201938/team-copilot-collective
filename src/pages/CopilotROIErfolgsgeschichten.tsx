@@ -117,7 +117,7 @@ const CopilotROIErfolgsgeschichten = () => {
         title="Copilot ROI: Was CEOs und Vorstände berichten"
         description="Wörtliche Zitate von Führungskräften aus Deutschland, Österreich und der Schweiz über ihre Erfahrungen mit Microsoft Copilot."
         lastUpdated="03. Februar 2026"
-        readTime="12 Minuten"
+        authorName="Martin Lang"
         tableOfContents={tableOfContents}
       >
         {/* Schnellantwort */}

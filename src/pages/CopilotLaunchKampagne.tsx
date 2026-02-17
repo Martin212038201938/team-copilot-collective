@@ -117,7 +117,7 @@ const CopilotLaunchKampagne = () => {
         title="🚀 Copilot Launch-Kampagne: So wird der Rollout zum Erfolg"
         description="Warum Copilot-Einführung kein IT-Projekt ist – und wie Sie echte Begeisterung entfachen."
         lastUpdated="03. Februar 2026"
-        readTime="12 Minuten"
+        authorName="Martin Lang"
         tableOfContents={tableOfContents}
       >
         {/* Schnellantwort */}

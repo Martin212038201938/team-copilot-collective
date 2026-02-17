@@ -129,7 +129,7 @@ const WarumVerteiltesLernen = () => {
         title={PAGE_TITLE}
         description="Warum Copilot-Lernreisen nachhaltiger wirken als ganztägige Schulungen – und was die Wissenschaft dazu sagt."
         lastUpdated="04. Februar 2026"
-        readTime="10 Minuten"
+        authorName="Martin Lang"
         tableOfContents={tableOfContents}
       >
         {/* Einleitung */}

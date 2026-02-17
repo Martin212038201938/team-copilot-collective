@@ -135,7 +135,7 @@ const CopilotLernreisen = () => {
         title={PAGE_TITLE}
         description="Warum verteiltes Lernen in kurzen Einheiten bei Copilot-Trainings deutlich mehr bewirkt als ein einzelner Schulungstag – und wie Ihr Unternehmen davon profitiert."
         lastUpdated="04. Februar 2026"
-        readTime="12 Minuten"
+        authorName="Martin Lang"
         tableOfContents={tableOfContents}
       >
         {/* Schnellantwort-Card */}

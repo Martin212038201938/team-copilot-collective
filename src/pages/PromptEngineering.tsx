@@ -113,7 +113,7 @@ const PromptEngineering = () => {
         title="Prompt Engineering: Effektive KI-Prompts für Microsoft Copilot"
         description="Das CRAFT-Framework, bewährte Techniken und der Zauberstab-Prompt für bessere Ergebnisse."
         lastUpdated="03. Februar 2026"
-        readTime="12 Minuten"
+        authorName="Martin Lang"
         tableOfContents={tableOfContents}
       >
         {/* Schnellantwort */}

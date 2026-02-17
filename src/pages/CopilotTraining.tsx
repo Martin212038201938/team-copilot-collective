@@ -140,7 +140,7 @@ const CopilotTraining = () => {
         title="Microsoft Copilot Training: Warum Schulung der entscheidende Erfolgsfaktor ist"
         description="Professionelles Copilot-Training ist der Schlüssel zum ROI. Erfahren Sie, warum interne Taskforces scheitern und wie systematische Schulung Ihre Adoption auf 80%+ steigert."
         lastUpdated="02. Februar 2026"
-        readTime="18 Minuten"
+        authorName="Martin Lang"
         tableOfContents={tableOfContents}
       >
         {/* Schnellantwort */}

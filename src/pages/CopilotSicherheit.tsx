@@ -121,7 +121,7 @@ const CopilotSicherheit = () => {
         title="Microsoft Copilot: Sicherheit & Datenschutz für Unternehmen"
         description="Der aktuelle Leitfaden für IT-Entscheider zu DSGVO-Compliance, Enterprise Data Protection und dem neuen M365-Kit von Microsoft."
         lastUpdated="03. Februar 2026"
-        readTime="14 Minuten"
+        authorName="Martin Lang"
         tableOfContents={tableOfContents}
       >
         {/* Schnellantwort */}

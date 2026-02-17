@@ -4,7 +4,7 @@ import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { BookOpen, Clock } from "lucide-react";
+import { BookOpen } from "lucide-react";
 import { getPublishedAsKnowledgeTopics, isArticlePublished } from "@/utils/publishedArticles";
 import { useState, useEffect } from "react";
 import { ALL_ARTICLES } from "@/data/articles";
@@ -98,10 +98,6 @@ const Wissen = () => {
                         </CardDescription>
 
                         <div className="flex items-center gap-4 text-xs text-muted-foreground pt-4 border-t">
-                          <div className="flex items-center gap-1">
-                            <Clock className="w-3 h-3" />
-                            <span>{topic.readTime}</span>
-                          </div>
                           <div className="flex items-center gap-1">
                             <BookOpen className="w-3 h-3" />
                             <span>{topic.lastUpdated}</span>

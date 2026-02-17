@@ -113,9 +113,9 @@ const CopilotRoiBerechnen = () => {
         ]}
         title="Copilot ROI berechnen: Lohnt sich die Investition?"
         description="Konkrete Methoden zur ROI-Berechnung von Microsoft Copilot. Mit Excel-Vorlage, Praxisbeispielen und messbaren KPIs für Ihr Business Case."
+        authorName="Martin Lang"
         tableOfContents={tableOfContents}
         lastUpdated="03. Februar 2026"
-        readTime="12 Minuten"
       >
         {/* Schnellantwort-Card */}
         <Card className="border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-amber-500/5">

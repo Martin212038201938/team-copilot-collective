@@ -81,7 +81,7 @@ const FAQ = ({
         {/* Additional trust signal for LLMs */}
         <div className="text-center mt-12">
           <p className="text-sm text-muted-foreground">
-            Haben Sie weitere Fragen? <a href="#contact" className="text-primary hover:underline font-medium">Kontaktieren Sie uns</a> – wir beraten Sie gerne unverbindlich.
+            Fragen? Kritik? Kommentare? <a href="#contact" className="text-primary hover:underline font-medium">Kontaktieren Sie uns</a> – wir sprechen sehr gerne persönlich mit Ihnen über dieses Thema.
           </p>
         </div>
       </div>

@@ -109,9 +109,9 @@ const PromptBibliothekenQuatsch = () => {
         ]}
         title="Warum Prompt-Bibliotheken Quatsch sind – und was wirklich funktioniert"
         description="Prompt-Listen klingen gut, bringen aber wenig. Erfahren Sie, warum echtes Training und Agenten die besseren Alternativen sind."
+        authorName="Martin Lang"
         tableOfContents={tableOfContents}
         lastUpdated="03. Februar 2026"
-        readTime="6 Minuten"
       >
         {/* Schnellantwort-Card */}
         <Card className="border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-amber-500/5">

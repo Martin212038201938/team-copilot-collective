@@ -167,11 +167,11 @@ const CopilotFuerWord = () => {
         ]}
         title="Microsoft Copilot für Word: Der ultimative Guide"
         description="Entdecken Sie, wie Microsoft Copilot in Word Ihre Dokumentenerstellung revolutioniert. Mit praktischen Beispielen, Prompts und Tipps für maximale Produktivität."
+        authorName="Martin Lang"
         tableOfContents={tableOfContents}
         author={author}
         publishDate="2025-01-05"
         modifiedDate="2026-02-03"
-        readTime="15 Minuten"
       >
         {/* Schnellantwort Card */}
         <section className="mb-8">

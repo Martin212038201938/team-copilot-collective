@@ -146,6 +146,7 @@ const CopilotSalesUseCases = () => {
         description="Die wirkungsvollsten Copilot Use Cases für Vertriebsteams: Konkrete Zeitersparnis für Innendienst und Außendienst."
         lastUpdated="14. Februar 2026"
         
+        authorName="Martin Lang"
         tableOfContents={tableOfContents}
       >
         {/* Schnellantwort */}

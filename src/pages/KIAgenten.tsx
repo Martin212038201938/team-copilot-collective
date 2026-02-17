@@ -123,7 +123,7 @@ const KIAgenten = () => {
         title="KI-Agenten entwickeln: Autonome Workflows mit Microsoft Copilot"
         description="KI-Agenten Tutorial: Autonome Workflows und Automatisierungen mit Microsoft Copilot und Copilot Studio erstellen. Vom Konzept zur Implementierung."
         lastUpdated="07. November 2025"
-        readTime="14 Minuten"
+        authorName="Martin Lang"
         tableOfContents={tableOfContents}
       >
         <Card className="mb-8 border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-amber-500/5">

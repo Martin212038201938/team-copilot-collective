@@ -123,7 +123,7 @@ const GitHubCopilot = () => {
         title="GitHub Copilot: Der ultimative Leitfaden für Entwickler 2025"
         description="GitHub Copilot für Entwickler: Funktionen, Best Practices und Produktivitäts-Tipps. Vollständiger Leitfaden von Setup bis Advanced Features."
         lastUpdated="07. November 2025"
-        readTime="12 Minuten"
+        authorName="Martin Lang"
         tableOfContents={tableOfContents}
       >
         {/* Quick Answer */}

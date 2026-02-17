@@ -20,7 +20,7 @@ export interface ArticleData {
   link: string;
   badge: string;
   icon: string;
-  readTime: string;
+  readTime?: string;
   lastUpdated: string;
   publishDate: string;      // ISO Format: "2026-02-04"
   publishTime?: string;     // Optional: "10:00"
@@ -36,7 +36,7 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/ki-halluzinationen-vermeiden",
     badge: "Qualität",
     icon: "🔍",
-    lastUpdated: "15. Feb. 2026",
+    lastUpdated: "17. Feb. 2026",
     publishDate: "2026-02-15",
     publishTime: "09:00"
   },
@@ -69,7 +69,6 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/copilot-adhs-produktiver-arbeiten",
     badge: "Erfahrungsbericht",
     icon: "🧠",
-    readTime: "12 Minuten",
     lastUpdated: "05. Feb. 2026",
     publishDate: "2026-02-05",
     publishTime: "08:00",
@@ -82,7 +81,6 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/warum-verteiltes-lernen-bei-copilot-trainings-funktioniert",
     badge: "Erfahrungsbericht",
     icon: "✍️",
-    readTime: "10 Minuten",
     lastUpdated: "05. Feb. 2026",
     publishDate: "2026-02-04",
     publishTime: "10:00"
@@ -94,7 +92,6 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/copilot-lernreise-vs-tagesschulung",
     badge: "Enablement",
     icon: "🎯",
-    readTime: "12 Minuten",
     lastUpdated: "04. Feb. 2026",
     publishDate: "2026-02-04",
     publishTime: "09:00"
@@ -106,7 +103,6 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/copilot-adoption-2026-zahlen",
     badge: "Strategie",
     icon: "📊",
-    readTime: "10 Minuten",
     lastUpdated: "03. Feb. 2026",
     publishDate: "2026-02-03",
     publishTime: "10:00"
@@ -118,7 +114,6 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/copilot-roi-erfolgsgeschichten",
     badge: "Neu",
     icon: "💬",
-    readTime: "12 Minuten",
     lastUpdated: "03. Feb. 2026",
     publishDate: "2026-02-03",
     publishTime: "09:00"
@@ -130,7 +125,6 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/copilot-launch-kampagne",
     badge: "Neu",
     icon: "🚀",
-    readTime: "14 Minuten",
     lastUpdated: "03. Feb. 2026",
     publishDate: "2026-02-03",
     publishTime: "08:00"
@@ -142,7 +136,6 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/prompt-bibliotheken-vs-training",
     badge: "Neu",
     icon: "🪄",
-    readTime: "6 Minuten",
     lastUpdated: "03. Feb. 2026",
     publishDate: "2026-02-03",
     publishTime: "07:00"
@@ -154,7 +147,6 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/copilot-digitales-gedaechtnis",
     badge: "Praxisguide",
     icon: "🧠",
-    readTime: "14 Minuten",
     lastUpdated: "03. Feb. 2026",
     publishDate: "2026-02-03",
     publishTime: "06:00"
@@ -166,7 +158,6 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/copilot-tipps-tricks-produktivitaet",
     badge: "Best Practices",
     icon: "💡",
-    readTime: "12 Minuten",
     lastUpdated: "03. Feb. 2026",
     publishDate: "2026-02-03"
   },
@@ -177,7 +168,6 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/copilot-unternehmensweit-einfuehren",
     badge: "Strategie",
     icon: "🏢",
-    readTime: "12 Minuten",
     lastUpdated: "02. Feb. 2026",
     publishDate: "2026-02-02",
     publishTime: "10:00"
@@ -189,7 +179,6 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/ki-realitaet-beratungsfirmen-2026",
     badge: "Strategie",
     icon: "📊",
-    readTime: "18 Minuten",
     lastUpdated: "02. Feb. 2026",
     publishDate: "2026-02-02",
     publishTime: "09:00"
@@ -201,7 +190,6 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/microsoft-copilot-lizenzen",
     badge: "Lizenzierung",
     icon: "📋",
-    readTime: "12 Minuten",
     lastUpdated: "02. Feb. 2026",
     publishDate: "2026-01-15",
     publishTime: "09:00"
@@ -213,7 +201,6 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/github-copilot",
     badge: "Entwicklung",
     icon: "💻",
-    readTime: "12 Minuten",
     lastUpdated: "02. Feb. 2026",
     publishDate: "2026-01-10",
     publishTime: "09:00"
@@ -225,7 +212,6 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/copilot-studio",
     badge: "Entwicklung",
     icon: "🤖",
-    readTime: "10 Minuten",
     lastUpdated: "02. Feb. 2026",
     publishDate: "2026-01-08",
     publishTime: "09:00"
@@ -237,7 +223,6 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/prompt-engineering",
     badge: "Grundlagen",
     icon: "✨",
-    readTime: "15 Minuten",
     lastUpdated: "02. Feb. 2026",
     publishDate: "2026-01-05",
     publishTime: "09:00"
@@ -249,7 +234,6 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/ki-agenten",
     badge: "Fortgeschritten",
     icon: "🧠",
-    readTime: "14 Minuten",
     lastUpdated: "02. Feb. 2026",
     publishDate: "2026-01-03",
     publishTime: "09:00"
@@ -261,7 +245,6 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/copilot-fehler-vermeiden",
     badge: "Best Practices",
     icon: "⚠️",
-    readTime: "11 Minuten",
     lastUpdated: "02. Feb. 2026",
     publishDate: "2026-01-01",
     publishTime: "09:00"
@@ -273,7 +256,6 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/copilot-roi-berechnen",
     badge: "ROI",
     icon: "💰",
-    readTime: "10 Minuten",
     lastUpdated: "02. Feb. 2026",
     publishDate: "2025-12-15",
     publishTime: "09:00"
@@ -285,7 +267,6 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/copilot-fuer-word",
     badge: "Anwendung",
     icon: "📝",
-    readTime: "8 Minuten",
     lastUpdated: "02. Feb. 2026",
     publishDate: "2025-12-10",
     publishTime: "09:00"
@@ -297,7 +278,6 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/copilot-sicherheit-datenschutz",
     badge: "Compliance",
     icon: "🔒",
-    readTime: "12 Minuten",
     lastUpdated: "02. Feb. 2026",
     publishDate: "2025-12-05",
     publishTime: "09:00"
@@ -309,7 +289,6 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/copilot-training-schulung",
     badge: "Training",
     icon: "🎓",
-    readTime: "11 Minuten",
     lastUpdated: "02. Feb. 2026",
     publishDate: "2025-11-25",
     publishTime: "09:00"

@@ -128,7 +128,7 @@ const CopilotFehler = () => {
         title="7 Fehler bei der Microsoft Copilot-Einführung vermeiden"
         description="Microsoft 365 Copilot sicher einführen: DSGVO, Governance, Betriebsrat & Schulung. Praxisleitfaden mit Checklisten für Unternehmen."
         lastUpdated="02. Februar 2026"
-        readTime="20 Minuten"
+        authorName="Martin Lang"
         tableOfContents={tableOfContents}
       >
         <Card className="mb-8 border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-red-500/5">

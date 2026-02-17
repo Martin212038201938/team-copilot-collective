@@ -128,7 +128,7 @@ const CopilotLicenses = () => {
         title="Microsoft Copilot Lizenzen 2026: Preise, Vergleich & Empfehlungen"
         description="Welche Microsoft Copilot Lizenz benötigen Sie? Umfassender Vergleich aller Lizenzmodelle für Microsoft 365 Copilot, GitHub Copilot und Copilot Studio."
         lastUpdated="02. Februar 2026"
-        readTime="8 Minuten"
+        authorName="Martin Lang"
         tableOfContents={tableOfContents}
       >
         {/* Quick Answer Section für AIO-Optimierung */}

@@ -110,6 +110,7 @@ const CopilotAdoption2026 = () => {
         datePublished="2026-02-03"
         dateModified="2026-02-03"
         author={author}
+        authorName="Martin Lang"
         tableOfContents={tableOfContents}
         breadcrumbItems={breadcrumbItems}
         faqs={faqs}

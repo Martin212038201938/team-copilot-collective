@@ -144,7 +144,7 @@ const CopilotUnternehmensweitEinfuehren = () => {
         title={PAGE_TITLE}
         description="Warum Unternehmen KI nicht dem Zufall überlassen sollten: Sicherheit, DSGVO, Grounding und der Mehrwert einer koordinierten Copilot-Strategie."
         lastUpdated="02. Februar 2026"
-        readTime="12 Minuten"
+        authorName="Martin Lang"
         tableOfContents={tableOfContents}
       >
         {/* Schnellantwort */}

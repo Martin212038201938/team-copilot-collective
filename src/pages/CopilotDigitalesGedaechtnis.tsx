@@ -123,7 +123,7 @@ const CopilotDigitalesGedaechtnis = () => {
         title="Digitales Gedächtnis mit Microsoft Copilot"
         description="Wie Copilot mir hilft, trotz ADHS, Multitasking und 20 parallelen Projekten nichts Wichtiges zu vergessen."
         lastUpdated="03. Februar 2026"
-        readTime="14 Minuten"
+        authorName="Martin Lang"
         tableOfContents={tableOfContents}
       >
         {/* Schnellantwort */}

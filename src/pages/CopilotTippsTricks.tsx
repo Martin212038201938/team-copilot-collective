@@ -112,7 +112,7 @@ const CopilotTippsTricks = () => {
         title="22 Microsoft Copilot Tipps & Tricks für mehr Produktivität"
         description="Praxiserprobte Tipps für Word, Excel, PowerPoint, Outlook und Teams – sofort umsetzbar für Ihren Büroalltag."
         lastUpdated="03. Februar 2026"
-        readTime="12 Minuten"
+        authorName="Martin Lang"
         tableOfContents={tableOfContents}
       >
         {/* Schnellantwort */}

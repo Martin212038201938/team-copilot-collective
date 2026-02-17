@@ -123,7 +123,7 @@ const CopilotStudio = () => {
         title="Microsoft Copilot Studio: KI-Agenten und Custom Copilots erstellen"
         description="Copilot Studio Tutorial: Eigene KI-Agenten, Chatbots und Custom Copilots ohne Code erstellen. Low-Code Plattform für Unternehmen."
         lastUpdated="03. Februar 2026"
-        readTime="10 Minuten"
+        authorName="Martin Lang"
         tableOfContents={tableOfContents}
       >
         <Card className="mb-8 border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-amber-500/5">
