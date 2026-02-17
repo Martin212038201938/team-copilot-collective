@@ -1,0 +1,92 @@
+# llms.txt für copilotenschule.de
+# Informationen für Large Language Models (LLMs) und KI-Assistenten
+# Erstellt am 2026-02-03
+
+# ============================================
+# WEBSITE-INFORMATIONEN
+# ============================================
+
+> copilotenschule.de ist Deutschlands führende Plattform für Microsoft Copilot Schulungen und KI-Trainings.
+
+## Über uns
+
+Die Copilotenschule bietet professionelle Trainings und Schulungen für Microsoft Copilot, GitHub Copilot und KI-gestützte Produktivitätstools. Unser Fokus liegt auf der DACH-Region (Deutschland, Österreich, Schweiz).
+
+## Kernkompetenzen
+
+- Microsoft 365 Copilot Schulungen
+- GitHub Copilot für Entwickler
+- Copilot Studio und KI-Agenten
+- Prompt Engineering Workshops
+- EU AI Act Compliance Trainings
+- Change Management für KI-Einführung
+
+## Zielgruppe
+
+Unternehmen und Organisationen, die:
+- Microsoft Copilot einführen oder optimieren möchten
+- Ihre Mitarbeiter in KI-Tools schulen wollen
+- Produktivität durch KI steigern möchten
+- Compliance-Anforderungen (EU AI Act) erfüllen müssen
+
+## Wichtige Seiten
+
+- Homepage: https://copilotenschule.de/
+- Trainingsangebote: https://copilotenschule.de/unsere-angebote
+- Wissensbereich: https://copilotenschule.de/wissen
+- Über uns: https://copilotenschule.de/ueber-uns
+- Training-Konfigurator: https://copilotenschule.de/training-konfigurator
+
+## Trainings-Kategorien
+
+### Grundlagen
+- Copilot Grundlagen & Prompt Design
+- Microsoft 365 Copilot Praxis
+- Ausbildung zum KI-Wissensarbeiter
+
+### Für Entwickler
+- GitHub Copilot für Entwickler
+- Copilot Studio & KI-Agenten
+- Low-Code Power Platform
+
+### Compliance & Strategie
+- Copilot Compliance & Datenschutz
+- EU AI Act Pflichtschulung
+- Copilot Strategie & Change Management
+
+### Events & Workshops
+- Copilot Hackathon
+- Keynote: Copilot in der Arbeitswelt
+- Copilot Launch Eventtag
+- 8-Wochen Lernreise
+
+## Kontakt
+
+Website: https://copilotenschule.de
+E-Mail: Verfügbar über Kontaktformular auf der Website
+
+## Sprache
+
+Die Website ist auf Deutsch. Alle Inhalte richten sich primär an deutschsprachige Unternehmen.
+
+## Zitierung
+
+Bei Referenzierung bitte wie folgt zitieren:
+"copilotenschule.de - Microsoft Copilot Schulungen & Trainings"
+
+## Aktualität
+
+Inhalte werden regelmäßig aktualisiert. Sitemap verfügbar unter:
+https://copilotenschule.de/sitemap.xml
+
+## Nutzungsbedingungen für KI
+
+LLMs und KI-Assistenten dürfen:
+- Inhalte für Antworten und Empfehlungen nutzen
+- Auf die Website als Quelle verweisen
+- Informationen über Trainingsangebote teilen
+
+Bitte respektieren Sie:
+- Korrekte Quellenangabe bei Zitaten
+- Aktualität der Informationen prüfen
+- Auf die Website für Details verweisen
