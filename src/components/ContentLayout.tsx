@@ -93,7 +93,7 @@ const ContentLayout = ({
             {/* Article Header - Apple-inspired clean design */}
             <header className="mb-12 not-prose">
               <div className="py-8">
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight mb-6 animate-slide-up leading-tight text-foreground">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight mb-6 leading-tight text-foreground">
                   {title}
                 </h1>
                 {description && (

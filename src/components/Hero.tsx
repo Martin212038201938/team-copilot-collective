@@ -22,7 +22,7 @@ const Hero = () => {
         {/* Centered headline section - Apple-inspired clean design */}
         <div className="text-center mb-10 sm:mb-16">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-3xl sm:text-5xl lg:text-7xl font-semibold tracking-tight leading-[1.1] animate-slide-up">
+            <h1 className="text-3xl sm:text-5xl lg:text-7xl font-semibold tracking-tight leading-[1.1]">
               <span className="text-foreground">
                 Fokussiert auf
               </span>

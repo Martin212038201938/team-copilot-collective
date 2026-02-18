@@ -59,7 +59,7 @@ const Wissen = () => {
 
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-5xl lg:text-7xl font-semibold tracking-tight leading-[1.1] animate-slide-up">
+              <h1 className="text-5xl lg:text-7xl font-semibold tracking-tight leading-[1.1]">
                 <span className="text-primary">Microsoft Copilot</span> Wissen
               </h1>
               <p className="mt-6 text-xl text-muted-foreground mb-8 leading-relaxed animate-slide-up-delayed">
