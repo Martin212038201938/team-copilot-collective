@@ -201,7 +201,37 @@ const MeinArtikel = () => {
 #### Schritt 5 (NEU!): react-snap include-Liste aktualisieren
 Bei JEDEM neuen Artikel muss `/wissen/mein-slug` zur `reactSnap.include` Liste in `package.json` hinzugefügt werden! Ohne diesen Eintrag wird die Seite NICHT pre-gerendert und hat keine SEO-Meta-Tags im initialen HTML.
 
-#### Automatische Validierung
+#### IndexNow: Bing sofort über Änderungen informieren
+
+Nach jedem Deployment von neuen oder geänderten Seiten **MUSS** ein IndexNow-Ping gesendet werden, damit Bing die Änderungen innerhalb von Minuten statt Tagen crawlt.
+
+**IndexNow-Key:** `02184b6b954d4a158c75668dbf809161`
+**Key-Datei:** `public/02184b6b954d4a158c75668dbf809161.txt` (wird als statische Datei ausgeliefert dank `.htaccess`-Regel)
+
+**Ping senden (curl):**
+```bash
+curl -X POST "https://api.indexnow.org/IndexNow" \
+  -H "Content-Type: application/json; charset=utf-8" \
+  -d '{
+    "host": "copilotenschule.de",
+    "key": "02184b6b954d4a158c75668dbf809161",
+    "keyLocation": "https://copilotenschule.de/02184b6b954d4a158c75668dbf809161.txt",
+    "urlList": [
+      "https://copilotenschule.de/wissen/mein-neuer-artikel"
+    ]
+  }'
+```
+
+**Erwartete Antwort:** HTTP 202 Accepted = Erfolgreich
+**Wann verwenden:**
+- Nach jedem neuen Wissensartikel
+- Nach SEO-relevanten Änderungen (Meta-Tags, H1, Canonical URLs, etc.)
+- Nach Content-Updates auf bestehenden Seiten
+- Auch die Hauptseiten (`/`, `/unsere-angebote`, `/ueber-uns`, `/wissen`, etc.) bei strukturellen Änderungen
+
+**Hinweis:** IndexNow informiert automatisch Bing, Yandex und andere teilnehmende Suchmaschinen. Google nutzt IndexNow aktuell nicht – dort über Google Search Console einreichen.
+
+### Automatische Validierung
 Beim Build läuft `scripts/validate-seo.js` und prüft automatisch:
 - Alle SLUGs sind clean (kein `/wissen/` Prefix)
 - Alle canonicalUrl nutzen `{pageUrl}` Variable
