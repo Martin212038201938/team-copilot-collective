@@ -29,6 +29,9 @@ RewriteRule ^sitemap\.xml$ - [L,NC]
 # llms.txt und llm.txt (beide Konventionen)
 RewriteRule ^llms?\.txt$ - [L,NC]
 
+# IndexNow Key-Dateien (32-char hex .txt im Root)
+RewriteRule ^[0-9a-f]{32}\.txt$ - [L,NC]
+
 # favicon
 RewriteRule ^favicon\.ico$ - [L,NC]
 
