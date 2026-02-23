@@ -52,6 +52,14 @@ RewriteCond %{REQUEST_URI} !^/$
 RewriteRule ^(.+)/$ /$1 [R=301,L]
 
 # ============================================
+# 301 REDIRECTS: Alte Seiten die nicht mehr existieren
+# Verhindert 404er für alte URLs (z.B. aus Bing-Index)
+# ============================================
+
+RewriteRule ^betreute-it-leistungen/?$ /unsere-angebote [R=301,L]
+RewriteRule ^agb/?$ /impressum [R=301,L]
+
+# ============================================
 # 301 REDIRECTS: Wissensseiten-Konsolidierung unter /wissen/
 # Alle Knowledge-Artikel leben jetzt unter /wissen/slug
 # ============================================

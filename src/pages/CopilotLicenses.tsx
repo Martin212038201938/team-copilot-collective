@@ -56,8 +56,8 @@ const CopilotLicenses = () => {
       {
         "@type": "Article",
         "@id": ids.article,
-        "headline": "Microsoft Copilot Lizenzen 2026: Preise, Vergleich & Empfehlungen",
-        "description": "Microsoft Copilot Lizenzen im Vergleich: M365 Copilot, GitHub Copilot & Copilot Studio. Kosten, Voraussetzungen und Empfehlungen für Unternehmen.",
+        "headline": "Microsoft Copilot Lizenzen: Preisvergleich 2026 + Kaufempfehlung",
+        "description": "Welche Copilot-Lizenz lohnt sich? M365 Copilot (30€/User), GitHub Copilot & Copilot Studio im direkten Vergleich – mit konkreter Kaufempfehlung für Ihr Unternehmen.",
         "author": getAuthorSchemaMarkup(martinLang),
         "publisher": {
           "@id": "https://copilotenschule.de/#organization"
@@ -97,8 +97,8 @@ const CopilotLicenses = () => {
   return (
     <>
       <SEOHead
-        title="Microsoft Copilot Lizenzen 2026: Preise, Vergleich & Empfehlungen"
-        description="Microsoft Copilot Lizenzen im Vergleich: M365 Copilot, GitHub Copilot & Copilot Studio. Kosten, Voraussetzungen und Empfehlungen für Unternehmen."
+        title="Microsoft Copilot Lizenzen: Preisvergleich 2026 + Kaufempfehlung"
+        description="Welche Copilot-Lizenz lohnt sich? M365 Copilot (30€/User), GitHub Copilot & Copilot Studio im direkten Vergleich – mit konkreter Kaufempfehlung für Ihr Unternehmen."
         keywords={[
           "Microsoft Copilot Lizenz",
           "Microsoft 365 Copilot Preis",
@@ -125,8 +125,8 @@ const CopilotLicenses = () => {
           { label: "Wissen", href: "/wissen" },
           { label: "Microsoft Copilot Lizenzen", href: "/wissen/microsoft-copilot-lizenzen" }
         ]}
-        title="Microsoft Copilot Lizenzen 2026: Preise, Vergleich & Empfehlungen"
-        description="Welche Microsoft Copilot Lizenz benötigen Sie? Umfassender Vergleich aller Lizenzmodelle für Microsoft 365 Copilot, GitHub Copilot und Copilot Studio."
+        title="Microsoft Copilot Lizenzen: Preisvergleich 2026 + Kaufempfehlung"
+        description="Welche Copilot-Lizenz lohnt sich? M365 Copilot, GitHub Copilot und Copilot Studio im direkten Vergleich – mit konkreter Kaufempfehlung für Ihr Unternehmen."
         lastUpdated="02. Februar 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
