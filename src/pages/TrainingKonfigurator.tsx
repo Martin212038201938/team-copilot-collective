@@ -381,6 +381,10 @@ ${formData.additionalInfo ? `---\nINFORMATIONEN UND WEITERE BENÖTIGTE INHALTE:\
         const errorData = await response.json().catch(() => ({}));
         throw new Error(errorData.error || `HTTP ${response.status}`);
       }
+      const result = await response.json();
+      if (!result.success) {
+        throw new Error(result.error || 'Unbekannter Fehler');
+      }
       toast({
         title: "Konfiguration gesendet!",
         description: "Ihre Auswahl wurde übermittelt.",
@@ -452,31 +456,36 @@ ${formData.additionalInfo ? `---\nINFORMATIONEN UND WEITERE BENÖTIGTE INHALTE:\
         }),
       });
 
-      if (response.ok) {
-        toast({
-          title: "Anfrage gesendet!",
-          description: "Wir melden uns innerhalb von 24 Stunden bei Ihnen.",
-        });
-        setStep(1);
-        setSelectedModules([]);
-        setCustomModules([]);
-        setFormData({
-          firstName: "",
-          lastName: "",
-          email: "",
-          company: "",
-          phone: "",
-          licenseType: "",
-          employeeCount: "",
-          trainingCount: "",
-          locationType: "",
-          trainingLocation: "",
-          groupCount: "",
-          additionalInfo: ""
-        });
-      } else {
-        throw new Error('Failed to send');
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
       }
+
+      const result = await response.json();
+      if (!result.success) {
+        throw new Error(result.error || 'Unbekannter Fehler');
+      }
+
+      toast({
+        title: "Anfrage gesendet!",
+        description: "Wir melden uns innerhalb von 24 Stunden bei Ihnen.",
+      });
+      setStep(1);
+      setSelectedModules([]);
+      setCustomModules([]);
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        company: "",
+        phone: "",
+        licenseType: "",
+        employeeCount: "",
+        trainingCount: "",
+        locationType: "",
+        trainingLocation: "",
+        groupCount: "",
+        additionalInfo: ""
+      });
     } catch (error) {
       toast({
         title: "Fehler beim Senden",
