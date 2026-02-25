@@ -1,0 +1,10 @@
+id,email,name,source,opt_in_status,form_submitted_at,confirmed_at
+1,dams.telefon@gmail.com,Max Mustermann,contact,pending,2026-01-30,
+4,test.trainer@example.com,Test Trainer,trainer,pending,2026-01-03,
+10,melissa.silvasantos@ihk-nordwestfalen.de,Melissa Silva Santos,contact,confirmed,2026-01-07,2026-01-07
+11,fabischd@esv.de,Dietmar Fabisch,contact,confirmed,2026-01-08,2026-01-08
+12,sarah-johanna.schiesser@gutes-aus-hessen.de,Sarah Johanna Schiesser,contact,confirmed,2026-01-21,2026-01-21
+13,n.walterscheid@effektweit.de,Nikolas Walterscheid,contact,confirmed,2026-01-23,2026-01-23
+14,sayyed@progen.com,Kaif Sayyed,contact,confirmed,2026-01-27,2026-01-27
+17,hartwigmichael@gmx.de,Michael Hartwig,trainer,confirmed,2026-01-31,2026-01-31
+18,sascha@sfventure.de,Sascha Theismann,contact,pending,2026-02-02,
