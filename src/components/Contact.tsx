@@ -79,6 +79,10 @@ const Contact = () => {
         throw new Error(data.error || 'Fehler beim Versenden der Anfrage');
       }
 
+      if (!data.success) {
+        throw new Error(data.error || 'Unbekannter Fehler beim Versenden');
+      }
+
       toast({
         title: "Anfrage gesendet!",
         description: "Wir melden uns innerhalb von 24 Stunden bei Ihnen.",

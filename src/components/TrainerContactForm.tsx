@@ -52,10 +52,22 @@ const TrainerContactForm = () => {
         body: submitData, // FormData sets Content-Type automatically
       });
 
-      const data = await response.json();
+      const responseText = await response.text();
+      let data;
+      try {
+        data = JSON.parse(responseText);
+      } catch (parseError) {
+        console.error('JSON Parse Error:', parseError);
+        console.error('Server Response:', responseText);
+        throw new Error('Server-Antwort konnte nicht verarbeitet werden. Bitte versuchen Sie es erneut.');
+      }
 
       if (!response.ok) {
         throw new Error(data.error || 'Fehler beim Versenden der Bewerbung');
+      }
+
+      if (!data.success) {
+        throw new Error(data.error || 'Unbekannter Fehler beim Versenden');
       }
 
       toast({
