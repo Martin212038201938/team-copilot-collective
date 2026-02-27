@@ -30,6 +30,17 @@ export interface ArticleData {
 // Alle Artikel - sortiert nach Veröffentlichungsdatum (neueste zuerst)
 export const ALL_ARTICLES: ArticleData[] = [
   {
+    id: "copilot-chat-free-pernod-ricard",
+    title: "Copilot Chat im Büroalltag: Was bei Pernod Ricard passiert, wenn man einfach anfängt",
+    description: "Wie Pernod Ricard vom kostenlosen Copilot Chat in Microsoft 365 profitieren kann: Praxisbeispiele aus Außendienst, Consumer Care und Geschäftsführung.",
+    link: "/wissen/copilot-chat-free-pernod-ricard",
+    badge: "Praxisbericht",
+    icon: "🥃",
+    lastUpdated: "27. Feb. 2026",
+    publishDate: "2026-02-27",
+    publishTime: "09:00"
+  },
+  {
     id: "ki-halluzinationen-vermeiden",
     title: "KI-Halluzinationen vermeiden und KI zur Qualitätssicherung nutzen",
     description: "Wie KI-Halluzinationen entstehen, wie man sie durch besseres Prompting vermeidet und wie man KI selbst als Werkzeug zur Qualitätssicherung einsetzt.",
