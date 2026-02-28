@@ -30,6 +30,17 @@ export interface ArticleData {
 // Alle Artikel - sortiert nach Veröffentlichungsdatum (neueste zuerst)
 export const ALL_ARTICLES: ArticleData[] = [
   {
+    id: "copilot-fuer-excel",
+    title: "Microsoft Copilot für Excel: Was die KI in Tabellen wirklich kann",
+    description: "Was kann Microsoft Copilot in Excel wirklich? Praxisbeispiele, Prompts und ehrliche Einschätzung der Grenzen – von jemandem, der Werbung studiert hat und Pivot-Tabellen früher gefürchtet hat.",
+    link: "/wissen/copilot-fuer-excel",
+    badge: "Excel",
+    icon: "📊",
+    lastUpdated: "28. Feb. 2026",
+    publishDate: "2026-02-28",
+    publishTime: "10:00"
+  },
+  {
     id: "copilot-agent-digitales-gedaechtnis",
     title: "Copilot Agent für Ihr digitales Gedächtnis: Meeting-Protokolle automatisch erstellen und durchsuchbar machen",
     description: "Schritt-für-Schritt-Anleitung: Eigenen Copilot-Agenten bauen, der Meeting-Transkripte automatisch in Ihr Wunschformat bringt und als durchsuchbares digitales Gedächtnis ablegt.",

@@ -77,7 +77,8 @@
       "/wissen/copilot-hr-use-cases",
       "/wissen/ki-halluzinationen-vermeiden",
       "/wissen/copilot-chat-free-pernod-ricard",
-      "/wissen/copilot-agent-digitales-gedaechtnis"
+      "/wissen/copilot-agent-digitales-gedaechtnis",
+      "/wissen/copilot-fuer-excel"
     ],
     "skipThirdPartyRequests": true,
     "crawl": false

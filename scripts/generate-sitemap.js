@@ -60,6 +60,7 @@ const knowledgePages = [
   { loc: '/wissen/ki-halluzinationen-vermeiden', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
   { loc: '/wissen/copilot-chat-free-pernod-ricard', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
   { loc: '/wissen/copilot-agent-digitales-gedaechtnis', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
+  { loc: '/wissen/copilot-fuer-excel', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
 ];
 
 // Trainingsseiten - Slugs aus trainings.ts

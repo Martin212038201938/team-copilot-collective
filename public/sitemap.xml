@@ -4,7 +4,7 @@
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <!-- Automatisch generiert am 2026-02-28 -->
-  <!-- 49 URLs insgesamt -->
+  <!-- 50 URLs insgesamt -->
   <url>
     <loc>https://copilotenschule.de/</loc>
     <lastmod>2026-02-28</lastmod>
@@ -199,6 +199,12 @@
   </url>
   <url>
     <loc>https://copilotenschule.de/wissen/copilot-agent-digitales-gedaechtnis</loc>
+    <lastmod>2026-02-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://copilotenschule.de/wissen/copilot-fuer-excel</loc>
     <lastmod>2026-02-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

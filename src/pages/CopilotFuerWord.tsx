@@ -1136,6 +1136,7 @@ Format: Markdown mit klarer Hierarchie, Emojis für Kategorien."`}</code></pre>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
             <pre className="text-sm whitespace-pre-wrap break-words"><code>Prompt: "Erstelle Quarterly Report basierend auf\nVerkaufszahlen aus [Excel-Datei], mit Trend-Analyse\nund Visualisierung-Beschreibungen"</code></pre>
           </div>
+          <p className="mb-4 text-gray-700 leading-relaxed">Mehr dazu, was Copilot direkt in Excel kann: <a href="/wissen/copilot-fuer-excel" className="text-primary hover:underline">Copilot für Excel: Was die KI in Tabellen wirklich kann</a></p>
         </section>
 
         <section id="sicherheit-und-compliance" className="mb-8">
