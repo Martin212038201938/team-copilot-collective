@@ -437,11 +437,18 @@ Wichtige Regeln:
 - Sei präzise und faktisch. Erfinde nichts hinzu.
 - Wenn etwas im Transkript unklar ist, kennzeichne es mit [unklar].
 - Halte das Protokoll sachlich und professionell.
-- Bei Action Items: Versuche immer eine verantwortliche Person zuzuordnen.`}
+- Bei Action Items: Versuche immer eine verantwortliche Person zuzuordnen.
+
+Ablage:
+- Schlage am Ende jedes Protokolls einen Dateinamen vor im Format: "YYYY-MM-DD – [Hauptthema oder Gesprächspartner].docx"
+- Wenn ich dich bitte, das Protokoll zu speichern, erstelle ein Word-Dokument und lege es in meinem OneDrive im Ordner "Meeting-Protokolle" ab.`}
               </div>
               <p className="text-sm text-muted-foreground mt-3">
                 Diese Anweisung können Sie direkt in das Instruktionsfeld Ihres Agenten kopieren und an
-                Ihre Bedürfnisse anpassen.
+                Ihre Bedürfnisse anpassen. Beachten Sie den Abschnitt „Ablage" am Ende – der ist
+                entscheidend dafür, dass der Agent nicht nur Protokolle erstellt, sondern Ihnen auch einen
+                sauberen Dateinamen vorschlägt und auf Ihren Wunsch hin das Dokument direkt in Ihrem
+                OneDrive oder SharePoint ablegt (dazu mehr in Schritt 4).
               </p>
             </CardContent>
           </Card>
@@ -528,76 +535,181 @@ Wichtige Regeln:
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
-              Jetzt kommt der Schritt, der den eigentlichen Unterschied macht. Ein Protokoll, das im
-              Chat-Verlauf verschwindet, ist kaum besser als ein Notizblock, den Sie zu Hause vergessen
-              haben. Damit aus Ihren Protokollen ein echtes digitales Gedächtnis wird, müssen Sie sie an
-              einem Ort speichern, den Copilot später durchsuchen kann. Hier sind Ihre Optionen:
+              Jetzt kommt der Schritt, der den eigentlichen Unterschied macht – und der in den meisten
+              Anleitungen fehlt. Ein Protokoll, das im Chat-Verlauf verschwindet, ist kaum besser als ein
+              Notizblock, den Sie zu Hause vergessen haben. Die entscheidende Frage ist: Wie kommt das
+              Protokoll automatisch dorthin, wo Copilot es später wiederfindet? Ich zeige Ihnen drei Wege –
+              vom einfachsten bis zum vollautomatischen.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6 my-6">
-            <Card className="border-l-4 border-l-blue-500">
-              <CardHeader>
-                <CardTitle className="text-lg">SharePoint (meine Empfehlung)</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground mb-3">
-                  Erstellen Sie eine SharePoint-Dokumentenbibliothek „Meeting-Protokolle" in Ihrem Team-
-                  oder Projekt-Bereich. Kopieren Sie das fertige Protokoll vom Agenten in ein Word-Dokument
-                  und speichern Sie es dort.
-                </p>
-                <div className="text-sm space-y-1">
-                  <p className="text-green-600 dark:text-green-400 font-medium">+ Copilot durchsucht SharePoint nativ</p>
-                  <p className="text-green-600 dark:text-green-400 font-medium">+ Berechtigungen steuerbar</p>
-                  <p className="text-green-600 dark:text-green-400 font-medium">+ Team-Mitglieder können mitnutzen</p>
-                  <p className="text-muted-foreground">- Erfordert kurze Ablage-Disziplin</p>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="border-l-4 border-l-purple-500">
-              <CardHeader>
-                <CardTitle className="text-lg">OneNote</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground mb-3">
-                  Legen Sie ein OneNote-Notizbuch „Meeting-Protokolle" an, mit Abschnitten pro
-                  Monat oder Projekt. Kopieren Sie das Protokoll direkt vom Agenten in eine neue Seite.
-                </p>
-                <div className="text-sm space-y-1">
-                  <p className="text-green-600 dark:text-green-400 font-medium">+ Schnelles Copy & Paste</p>
-                  <p className="text-green-600 dark:text-green-400 font-medium">+ Copilot kann OneNote durchsuchen</p>
-                  <p className="text-green-600 dark:text-green-400 font-medium">+ Flexible Struktur</p>
-                  <p className="text-muted-foreground">- Weniger geeignet für Team-Zugriff</p>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          <Card className="my-6 border-l-4 border-l-amber-500">
+          {/* Weg A: Copilot Pages */}
+          <Card className="my-6 border-2 border-green-500/30 bg-gradient-to-br from-green-500/5 to-emerald-500/5">
             <CardHeader>
-              <CardTitle className="text-lg">Praxis-Tipp: Mein Ablage-Workflow</CardTitle>
+              <CardTitle className="text-lg">Weg A: Copilot Pages – Ein Klick, dauerhaft gespeichert (mein Favorit)</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="prose prose-lg max-w-none dark:prose-invert">
                 <p>
-                  Ich nutze SharePoint und habe mir eine simple Ordnerstruktur angelegt:
-                  „Meeting-Protokolle → 2026 → Februar". Nach jedem Meeting öffne ich meinen Agenten,
-                  lasse das Protokoll erstellen, kopiere es in ein neues Word-Dokument und speichere es
-                  als „2026-02-28 – Kundenname – Thema.docx" in den passenden Ordner. Das dauert zwei
-                  Minuten. Und diese zwei Minuten sparen mir später Stunden, wenn ich Informationen suche.
+                  Das ist der Weg, den ich im Alltag am häufigsten nutze, weil er exakt null zusätzlichen
+                  Aufwand bedeutet. Wenn der Agent Ihr Protokoll im Chat erstellt hat, sehen Sie unter der
+                  Antwort den Button <strong>„In Seite bearbeiten"</strong> (auf Englisch: „Edit in Pages").
+                  Klicken Sie darauf – fertig. Das Protokoll wird automatisch als sogenannte Copilot Page
+                  gespeichert.
+                </p>
+              </div>
+              <div className="my-4 space-y-3">
+                <div className="flex items-start gap-3">
+                  <div className="w-7 h-7 rounded-full bg-green-100 text-green-700 flex items-center justify-center font-bold flex-shrink-0 text-sm">1</div>
+                  <p className="text-sm">Agent erstellt Ihr Protokoll im Chat</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-7 h-7 rounded-full bg-green-100 text-green-700 flex items-center justify-center font-bold flex-shrink-0 text-sm">2</div>
+                  <p className="text-sm">Klick auf <strong>„In Seite bearbeiten"</strong> unter der Antwort</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-7 h-7 rounded-full bg-green-100 text-green-700 flex items-center justify-center font-bold flex-shrink-0 text-sm">3</div>
+                  <p className="text-sm">Die Page wird in Ihrem OneDrive gespeichert und ist sofort von Copilot durchsuchbar</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-7 h-7 rounded-full bg-green-100 text-green-700 flex items-center justify-center font-bold flex-shrink-0 text-sm">4</div>
+                  <p className="text-sm">Optional: Sie können die Page mit Kollegen teilen – die sehen dann das Protokoll und können es bearbeiten</p>
+                </div>
+              </div>
+              <div className="prose prose-lg max-w-none dark:prose-invert">
+                <p>
+                  Copilot Pages sind das von Microsoft vorgesehene Werkzeug, um Chat-Antworten dauerhaft zu
+                  speichern. Sie liegen in Ihrem OneDrive, sind mit einem Titel versehen und werden von
+                  Copilot automatisch beim Durchsuchen Ihrer Daten berücksichtigt. Kein Kopieren, kein
+                  Einfügen, kein Dateiname ausdenken. Einfach klicken.
                 </p>
               </div>
             </CardContent>
           </Card>
 
-          <div className="prose prose-lg max-w-none dark:prose-invert">
-            <p>
-              Entscheidend ist nicht, welchen Speicherort Sie wählen – entscheidend ist, dass Sie es
-              konsequent tun. Ein digitales Gedächtnis ist nur so gut wie die Informationen, die Sie
-              hineingeben. Drei Wochen Disziplin, und es wird zur Gewohnheit.
-            </p>
-          </div>
+          {/* Weg B: Agent speichert als Word */}
+          <Card className="my-6 border-2 border-blue-500/30 bg-gradient-to-br from-blue-500/5 to-indigo-500/5">
+            <CardHeader>
+              <CardTitle className="text-lg">Weg B: Den Agenten direkt bitten, ein Word-Dokument zu erstellen</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="prose prose-lg max-w-none dark:prose-invert">
+                <p>
+                  Wenn Sie eine strukturierte Ordnerablage bevorzugen, können Sie dem Agenten direkt sagen,
+                  dass er das Protokoll als Datei speichern soll. Dafür haben wir in Schritt 2 die
+                  Ablage-Anweisung in den Agenten eingebaut. In der Praxis sieht das so aus:
+                </p>
+              </div>
+              <div className="font-mono text-sm bg-blue-50 dark:bg-blue-950/30 p-4 rounded-lg border border-blue-200 dark:border-blue-800 my-4">
+                „Erstelle das Protokoll vom Meeting mit Kunde Müller von heute und speichere es als Word-Dokument in meinem OneDrive im Ordner Meeting-Protokolle."
+              </div>
+              <div className="prose prose-lg max-w-none dark:prose-invert">
+                <p>
+                  Copilot erstellt dann ein Word-Dokument mit dem Protokoll und legt es im angegebenen
+                  Ordner ab. Den Dateinamen schlägt der Agent automatisch vor – basierend auf der
+                  Ablage-Anweisung, die wir ihm gegeben haben (Format: „2026-02-28 – Kunde Müller –
+                  Projektbesprechung.docx"). Sie können den Ordnerpfad in der Anweisung fest hinterlegen,
+                  damit Sie ihn nicht jedes Mal mitschreiben müssen.
+                </p>
+                <p>
+                  Für SharePoint funktioniert das genauso – ersetzen Sie „OneDrive" durch den konkreten
+                  SharePoint-Ordner:
+                </p>
+              </div>
+              <div className="font-mono text-sm bg-blue-50 dark:bg-blue-950/30 p-4 rounded-lg border border-blue-200 dark:border-blue-800 my-4">
+                „Speichere das Protokoll als Word-Dokument in unserem SharePoint unter Team-Ablage / Meeting-Protokolle / 2026."
+              </div>
+              <div className="prose prose-lg max-w-none dark:prose-invert">
+                <p>
+                  Wichtig: Damit das funktioniert, muss der Copilot Schreibzugriff auf den jeweiligen
+                  SharePoint-Bereich haben. Das ist normalerweise der Fall, wenn Sie selbst Zugriff haben –
+                  Copilot arbeitet mit Ihren Berechtigungen. Falls der Agent den Ordner nicht findet,
+                  nennen Sie den vollständigen Pfad oder erstellen Sie den Ordner vorher manuell.
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Weg C: Power Automate */}
+          <Card className="my-6 border-2 border-purple-500/30 bg-gradient-to-br from-purple-500/5 to-violet-500/5">
+            <CardHeader>
+              <CardTitle className="text-lg">Weg C: Power Automate – Vollautomatisch, kein Handgriff nötig</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="prose prose-lg max-w-none dark:prose-invert">
+                <p>
+                  Wenn Sie wollen, dass Protokolle komplett ohne Ihr Zutun erstellt und abgelegt werden,
+                  brauchen Sie Power Automate. Das ist Microsofts Automatisierungsplattform, die ebenfalls
+                  in vielen M365-Lizenzen enthalten ist. Die Idee: Ein Flow wird automatisch nach jedem
+                  Teams-Meeting ausgelöst, holt das Transkript, verarbeitet es mit KI in Ihr
+                  Protokollformat und speichert das Ergebnis in SharePoint. Sie tun nichts – es passiert
+                  von allein.
+                </p>
+              </div>
+              <div className="my-4 space-y-3">
+                <div className="flex items-start gap-3">
+                  <div className="w-7 h-7 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center font-bold flex-shrink-0 text-sm">1</div>
+                  <div>
+                    <p className="text-sm font-semibold">Trigger: „Wenn ein Teams-Meeting endet"</p>
+                    <p className="text-xs text-muted-foreground">Power Automate erkennt, dass ein Meeting mit Transkription beendet wurde</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-7 h-7 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center font-bold flex-shrink-0 text-sm">2</div>
+                  <div>
+                    <p className="text-sm font-semibold">Aktion: Transkript abrufen</p>
+                    <p className="text-xs text-muted-foreground">Der Flow holt das vollständige Meeting-Transkript über die Graph API</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-7 h-7 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center font-bold flex-shrink-0 text-sm">3</div>
+                  <div>
+                    <p className="text-sm font-semibold">Aktion: KI-Prompt mit Ihrem Protokollformat</p>
+                    <p className="text-xs text-muted-foreground">Über den „AI Builder"-Connector oder einen „HTTP-Request an Copilot" wird das Transkript mit exakt denselben Anweisungen verarbeitet, die Sie Ihrem Agenten gegeben haben</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-7 h-7 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center font-bold flex-shrink-0 text-sm">4</div>
+                  <div>
+                    <p className="text-sm font-semibold">Aktion: Word-Dokument erstellen und in SharePoint ablegen</p>
+                    <p className="text-xs text-muted-foreground">Der Flow erstellt automatisch ein Dokument mit dem Dateinamen „2026-02-28 – [Thema].docx" in Ihrem definierten SharePoint-Ordner</p>
+                  </div>
+                </div>
+              </div>
+              <div className="prose prose-lg max-w-none dark:prose-invert">
+                <p>
+                  Das ist die Königsdisziplin: Sie beenden ein Meeting, und zehn Minuten später liegt das
+                  fertige Protokoll in SharePoint. Ohne dass Sie auch nur einen Button klicken. Allerdings
+                  ist Power Automate ein eigenes Thema – wenn Sie damit noch nicht gearbeitet haben,
+                  empfehle ich, zuerst mit Weg A oder B zu starten und Power Automate als nächsten Schritt
+                  in Angriff zu nehmen.
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Mein Workflow */}
+          <Card className="my-6 border-l-4 border-l-amber-500">
+            <CardHeader>
+              <CardTitle className="text-lg">Mein persönlicher Workflow</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="prose prose-lg max-w-none dark:prose-invert">
+                <p>
+                  Ehrlich gesagt: Ich nutze eine Mischung aus Weg A und Weg B. Für schnelle interne
+                  Meetings klicke ich auf „In Seite bearbeiten" – fertig in einer Sekunde. Für wichtige
+                  Kundengespräche sage ich dem Agenten: „Speichere das als Word in meinem
+                  Meeting-Protokolle-Ordner auf SharePoint." Dann liegt es dort, wo auch meine Kollegen
+                  es finden können.
+                </p>
+                <p>
+                  Der Punkt ist: Es gibt keinen „richtigen" Weg. Es gibt nur den Weg, der so wenig
+                  Reibung erzeugt, dass Sie es tatsächlich nach jedem Meeting machen. Für mich sind das
+                  Copilot Pages für 80% der Meetings und SharePoint-Dokumente für die restlichen 20%.
+                </p>
+              </div>
+            </CardContent>
+          </Card>
         </section>
 
         {/* Schritt 5: Gedächtnis durchsuchen */}
