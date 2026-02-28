@@ -41,6 +41,7 @@ import CopilotSalesUseCases from "./pages/CopilotSalesUseCases";
 import CopilotHRUseCases from "./pages/CopilotHRUseCases";
 import KiHalluzinationenVermeiden from "./pages/KiHalluzinationenVermeiden";
 import CopilotChatPernodRicard from "./pages/CopilotChatPernodRicard";
+import CopilotAgentDigitalesGedaechtnis from "./pages/CopilotAgentDigitalesGedaechtnis";
 
 const queryClient = new QueryClient();
 
@@ -80,6 +81,7 @@ const App = () => (
           <Route path="/wissen/copilot-hr-use-cases" element={<CopilotHRUseCases />} />
           <Route path="/wissen/ki-halluzinationen-vermeiden" element={<KiHalluzinationenVermeiden />} />
           <Route path="/wissen/copilot-chat-free-pernod-ricard" element={<CopilotChatPernodRicard />} />
+          <Route path="/wissen/copilot-agent-digitales-gedaechtnis" element={<CopilotAgentDigitalesGedaechtnis />} />
           <Route path="/impressum" element={<Impressum />} />
           <Route path="/ueber-uns" element={<UeberUns />} />
           <Route path="/unsere-angebote" element={<UnsereAngebote />} />

@@ -30,6 +30,17 @@ export interface ArticleData {
 // Alle Artikel - sortiert nach Veröffentlichungsdatum (neueste zuerst)
 export const ALL_ARTICLES: ArticleData[] = [
   {
+    id: "copilot-agent-digitales-gedaechtnis",
+    title: "Copilot Agent für Ihr digitales Gedächtnis: Meeting-Protokolle automatisch erstellen und durchsuchbar machen",
+    description: "Schritt-für-Schritt-Anleitung: Eigenen Copilot-Agenten bauen, der Meeting-Transkripte automatisch in Ihr Wunschformat bringt und als durchsuchbares digitales Gedächtnis ablegt.",
+    link: "/wissen/copilot-agent-digitales-gedaechtnis",
+    badge: "Automatisierung",
+    icon: "🤖",
+    lastUpdated: "28. Feb. 2026",
+    publishDate: "2026-02-28",
+    publishTime: "09:00"
+  },
+  {
     id: "copilot-chat-free-pernod-ricard",
     title: "Copilot Chat im Büroalltag: Was bei Pernod Ricard passiert, wenn man einfach anfängt",
     description: "Wie Pernod Ricard vom kostenlosen Copilot Chat in Microsoft 365 profitieren kann: Praxisbeispiele aus Außendienst, Consumer Care und Geschäftsführung.",
