@@ -295,12 +295,12 @@ export const ALL_ARTICLES: ArticleData[] = [
   },
   {
     id: "copilot-sicherheit-datenschutz",
-    title: "Copilot Sicherheit & Datenschutz: Was Unternehmen wissen müssen",
-    description: "DSGVO-Konformität, Datensicherheit und Governance bei Microsoft Copilot: Ein Leitfaden für IT-Verantwortliche.",
+    title: "Microsoft Copilot und Datenschutz: Kann die KI jetzt alles sehen?",
+    description: "Kann Copilot alle Firmendaten sehen? Liest Microsoft mit? Was ist mit der DSGVO? Ehrliche Antworten auf die häufigsten Datenschutz-Fragen rund um Microsoft 365 Copilot.",
     link: "/wissen/copilot-sicherheit-datenschutz",
     badge: "Compliance",
     icon: "🔒",
-    lastUpdated: "02. Feb. 2026",
+    lastUpdated: "28. Feb. 2026",
     publishDate: "2025-12-05",
     publishTime: "09:00"
   },
