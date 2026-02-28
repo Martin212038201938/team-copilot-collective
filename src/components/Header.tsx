@@ -32,8 +32,17 @@ const Header = () => {
     { to: "/trainer-werden", label: "Trainer werden" },
   ];
 
+  const isActive = (path: string) => {
+    if (path === "/") return location.pathname === "/";
+    return location.pathname.startsWith(path);
+  };
+
   return (
-    <header className="fixed top-0 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border z-50">
+    <header className={`fixed top-0 w-full border-b border-border z-50 transition-colors duration-300 ${
+      isMobileMenuOpen
+        ? 'bg-background'
+        : 'bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60'
+    }`}>
       <div className="container mx-auto px-4">
         <nav className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -85,22 +94,26 @@ const Header = () => {
         </nav>
       </div>
 
-      {/* Mobile Menu Overlay - undurchsichtiger Hintergrund */}
+      {/* Mobile Menu Overlay - vollständig deckender Hintergrund */}
       <div
-        className={`lg:hidden fixed inset-0 top-16 bg-background backdrop-blur-none transform transition-all duration-300 ease-in-out ${
+        className={`lg:hidden fixed inset-0 top-16 z-40 bg-background transform transition-all duration-300 ease-in-out ${
           isMobileMenuOpen
             ? 'opacity-100 translate-y-0'
             : 'opacity-0 -translate-y-4 pointer-events-none'
         }`}
       >
-        <nav className="container mx-auto px-4 py-6">
-          <div className="flex flex-col space-y-1">
+        <nav className="container mx-auto px-4 pt-4 pb-8">
+          <div className="flex flex-col rounded-xl border border-border bg-card shadow-sm overflow-hidden">
             {navLinks.map((link, index) => (
               <Link
                 key={link.to}
                 to={link.to}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`text-lg font-medium py-4 px-4 rounded-lg text-foreground hover:bg-accent transition-all duration-200 transform ${
+                className={`flex items-center gap-3 text-base font-medium py-3.5 px-5 transition-all duration-200 transform ${
+                  isActive(link.to)
+                    ? 'text-primary bg-primary/5 border-l-[3px] border-l-primary'
+                    : 'text-foreground hover:bg-accent border-l-[3px] border-l-transparent'
+                } ${index < navLinks.length - 1 ? 'border-b border-border' : ''} ${
                   isMobileMenuOpen
                     ? 'translate-x-0 opacity-100'
                     : '-translate-x-4 opacity-0'
@@ -112,22 +125,22 @@ const Header = () => {
                 {link.label}
               </Link>
             ))}
-            <div
-              className={`pt-4 transform transition-all duration-200 ${
-                isMobileMenuOpen
-                  ? 'translate-x-0 opacity-100'
-                  : '-translate-x-4 opacity-0'
-              }`}
-              style={{
-                transitionDelay: isMobileMenuOpen ? `${navLinks.length * 50}ms` : '0ms'
-              }}
-            >
-              <Button asChild className="w-full" size="lg">
-                <Link to="/training-konfigurator" onClick={() => setIsMobileMenuOpen(false)}>
-                  Training konfigurieren
-                </Link>
-              </Button>
-            </div>
+          </div>
+          <div
+            className={`mt-4 transform transition-all duration-200 ${
+              isMobileMenuOpen
+                ? 'translate-x-0 opacity-100'
+                : '-translate-x-4 opacity-0'
+            }`}
+            style={{
+              transitionDelay: isMobileMenuOpen ? `${navLinks.length * 50}ms` : '0ms'
+            }}
+          >
+            <Button asChild className="w-full" size="lg">
+              <Link to="/training-konfigurator" onClick={() => setIsMobileMenuOpen(false)}>
+                Training konfigurieren
+              </Link>
+            </Button>
           </div>
         </nav>
       </div>
