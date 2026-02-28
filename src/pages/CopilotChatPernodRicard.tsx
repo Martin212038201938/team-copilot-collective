@@ -162,6 +162,21 @@ const CopilotChatPernodRicard = () => {
           </p>
         </div>
 
+        {/* Bild vom Training */}
+        <figure className="mb-8">
+          <img
+            src="/images/pernod-ricard-copilot-training.jpg"
+            alt="Copilot-Training bei Pernod Ricard: Gruppenfoto der Teilnehmenden vor der Präsentation 'Applying AI Effectively in Business'"
+            className="w-full rounded-lg shadow-md"
+            width={1188}
+            height={800}
+            loading="eager"
+          />
+          <figcaption className="text-sm text-muted-foreground mt-2 text-center">
+            Copilot-Training bei Pernod Ricard Deutschland – Einstieg in KI-unterstütztes Arbeiten mit dem kostenlosen Copilot Chat.
+          </figcaption>
+        </figure>
+
         {/* Was Copilot Chat ist */}
         <section id="einstieg" className="mb-8">
           <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
