@@ -52,9 +52,23 @@ curl -X POST https://api.alwaysdata.com/v1/database/ \
 pg_dump --schema-only -h postgresql-[account].alwaysdata.net copilotenschule_main > schema.sql
 ```
 
+### 4. Domain in AlwaysData registrieren (PFLICHT!)
+- AlwaysData Admin → **Domains** → "+ Add a domain"
+- Domain eingeben → Submit → **"Manage"** (nicht Transfer) → Next step
+- Domain erscheint als "N/A (external domain name)"
+- **Ohne diesen Schritt kann AlwaysData die Domain nicht bedienen!**
+
+### 5. Site-Adressen konfigurieren
+- AlwaysData Admin → **Web → Sites** → **Zahnrad-Icon** (Modify) bei der Site
+- **WICHTIG:** Zahnrad klicken, NICHT den Domain-Link (der navigiert zur Live-Domain!)
+- Tab "Configuration" → **Addresses**: `www.[domain]` als zweite Adresse hinzufuegen
+- Tab "SSL" → **"Force HTTPS"** aktivieren
+- Submit
+
 ## Validation
-- Site erreichbar unter `https://[domain]` (auch wenn noch leer)
+- Site erreichbar unter `https://[domain]` (nach DNS-Propagation + Let's Encrypt)
 - DB Connection Test via `psql -h postgresql-[account].alwaysdata.net`
+- HTTPS-Zertifikat pruefen: `curl -svI --resolve [domain]:443:185.31.40.15 https://[domain] 2>&1 | grep subject`
 
 ## Reference
 - AlwaysData API Docs: https://help.alwaysdata.com/en/api/
