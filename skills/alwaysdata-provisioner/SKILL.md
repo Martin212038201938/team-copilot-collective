@@ -88,3 +88,21 @@ pg_dump --schema-only -h postgresql-[account].alwaysdata.net copilotenschule_mai
 - Implementiere Transaction-Rollback bei Fehlern
 - Logge alle API Responses fuer Debugging
 - Erstelle IMMER einen dedizierten FTP-User pro Projekt (nicht auf shared Credentials verlassen)
+
+## Website-Clone: Provisioning-Reihenfolge
+
+Beim Clonen einer bestehenden Seite (z.B. copilotenschule.de → chatgpt-trainings.de) ist die korrekte Reihenfolge kritisch:
+
+### Vollstaendige 7-Schritt-Sequenz (Domain-Setup)
+1. **GitHub Repo erstellen** + Secrets setzen (FTP_SERVER, FTP_USERNAME, FTP_PASSWORD)
+2. **AlwaysData:** FTP-User anlegen (oder ueber API erstellen)
+3. **AlwaysData:** Site anlegen mit Domain + www als Adressen + Force HTTPS
+4. **AlwaysData:** Domain registrieren (Domains → Add a domain → Manage) ← WIRD OFT VERGESSEN!
+5. **IONOS:** A-Record `@` → `185.31.40.15` (www wird automatisch angeboten)
+6. **IONOS:** Webhosting-Deaktivierungs-Warnung bestaetigen
+7. **Warten:** 15-90 Minuten fuer DNS-Propagation + Let's Encrypt Zertifikat
+
+### Haeufige Fehler
+- Schritt 3 (www + HTTPS) und Schritt 4 (Domain registrieren) werden am haeufigsten vergessen
+- Ohne Schritt 4 kann AlwaysData die Domain nicht bedienen, auch wenn DNS korrekt ist
+- `curl --resolve` nutzen um DNS-Cache beim Testen zu umgehen

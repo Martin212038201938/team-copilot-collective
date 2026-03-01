@@ -62,19 +62,12 @@ jobs:
           VITE_OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           CI: true
 
-      - name: Deploy via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftps
-          port: 21
-          local-dir: dist/
-          server-dir: /www/[DOMAIN]/
-          dangerous-clean-slate: false
-          timeout: 300000
-          log-level: verbose
+      - name: Install lftp
+        run: sudo apt-get install -y lftp
+
+      - name: Deploy via LFTP
+        run: |
+          lftp -e "set ssl:verify-certificate no; set ftp:ssl-allow yes; set ftp:ssl-protect-data yes; mirror -R --delete dist/ /www/[DOMAIN]/ ; quit" -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}
 
       - name: Notify Bing IndexNow about updated pages
         run: |
@@ -107,3 +100,24 @@ jobs:
 - Validiere Secrets bevor du Repo erstellst
 - Nutze beschreibende Commit Messages
 - Verwende lftp statt FTP-Deploy-Action fuer AlwaysData Deployments
+- IMMER `npm run build` vor Git-Commit ausfuehren (faengt fehlende Imports, TS-Fehler, react-snap-Fehler ab)
+
+## Git & Sandbox Learnings
+
+### Sandbox hat keine GitHub-Credentials
+Die Cowork-Sandbox hat weder `gh` CLI, noch SSH-Keys, noch gespeicherte Git-Credentials. Push ist aus der Sandbox heraus NICHT moeglich.
+- Git-Commits in der Sandbox vorbereiten
+- Dem User KLAR kommunizieren welches Repo gepusht werden muss
+- Explizit den Repo-Namen nennen, nicht nur "Push origin"
+
+### Verwechslungsgefahr bei mehreren Repos
+Bei mehreren Repos im selben Workspace ist Verwechslungsgefahr hoch.
+- Vor dem Push-Auftrag immer sagen: "Bitte stelle sicher, dass du im Repo **[exakter Name]** bist."
+- Bei versehentlichem Push ins falsche Repo: `git revert <hash> --no-edit` (NIEMALS reset --hard oder force push)
+
+### index.lock Dateien
+Wenn Git-Operationen mit "index.lock exists" fehlschlagen:
+```bash
+rm .git/index.lock
+```
+In der Cowork-Sandbox braucht man dafuer ggf. `allow_cowork_file_delete` Berechtigung.

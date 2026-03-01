@@ -113,6 +113,21 @@ SSL: no alternative certificate subject name matches
 | `curl` Exit Code 60 (Cert-Fehler) | Zertifikat noch nicht ausgestellt – mit `-k` Flag testen ob Site antwortet |
 | AAAA-Records (IPv6) stoeren | IONOS deaktiviert sie automatisch bei A-Record-Aenderung |
 | www geht, aber Hauptdomain nicht | DNS-Caches unterschiedlich – einfach warten |
+| IONOS braucht keinen separaten CNAME fuer www | Wird beim Speichern automatisch angeboten |
+| AlwaysData Domain-Registrierung vergessen | Ohne Domains → Add a domain → Manage funktioniert NICHTS |
+
+## WICHTIG: Domain-Setup hat 7 Schritte, nicht 3!
+
+Die vollstaendige Reihenfolge fuer ein neues Deployment:
+1. GitHub Repo erstellen + Secrets setzen
+2. AlwaysData: FTP-User anlegen
+3. AlwaysData: Site anlegen (Domain + www + Force HTTPS)
+4. AlwaysData: Domain registrieren (Domains → Add a domain → Manage) ← PFLICHT!
+5. IONOS: A-Record `@` → 185.31.40.15
+6. IONOS: Webhosting-Warnung bestaetigen
+7. Warten: 15-90 Min fuer DNS + Let's Encrypt
+
+Besonders Schritte 3 und 4 werden haeufig vergessen.
 
 ---
 

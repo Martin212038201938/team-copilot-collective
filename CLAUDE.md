@@ -343,3 +343,73 @@ FAQs werden NICHT aus Produkt-Perspektive geschrieben ("Was kostet X?", "Welche 
 ### Fragen-Kästchen (zentral gesteuert)
 - Der Fragen-Text im Sidebar lautet: "Kritik? Kommentare? Wir sprechen sehr gerne persönlich mit Ihnen über dieses Thema und freuen uns über jede Kontaktaufnahme."
 - Dieser Text ist zentral in ContentLayout.tsx definiert und muss NICHT in den einzelnen Artikeln gesetzt werden.
+
+---
+## Website-Clone & Rebranding (End-to-End)
+
+Wenn eine Kopie dieser Seite unter einer neuen Domain mit neuem Thema veröffentlicht werden soll, gelten folgende Regeln. Detailliertes Runbook: `skills/website-clone-runbook/RUNBOOK.md`
+
+### Optimale Reihenfolge
+```
+1.  Repo erstellen + Clone + Remote konfigurieren
+2.  deploy.yml anpassen (lftp, neue Secrets)
+3.  Domain-Setup (AlwaysData + IONOS) ← 7 Schritte!
+4.  Logo erstellen (wird an 5+ Stellen referenziert)
+5.  Typ-System anpassen (trainings.ts Types ZUERST)
+6.  Trainingsdaten komplett umschreiben
+7.  Wissensartikel ALLE löschen + an 5 Stellen deregistrieren
+8.  Schema.org + SEO-Metadaten (grep nach alter Domain)
+9.  Seiten mit einzigartigem Content neu schreiben
+10. Global grep: Restliche Referenzen zur alten Domain
+11. npm run build → Fehler fixen
+12. Git commit + Push + Live-Test
+```
+
+### ⚠️ Content-Differenzierung ist 60% der Arbeit
+Es gibt KEINE "quick find-and-replace" Lösung. Jede sichtbare Seite muss inhaltlich eigenständig werden, sonst bestraft Google beide Seiten wegen Duplicate Content.
+
+**Komplett neu schreiben:** Hero.tsx, BecomeTrainer.tsx, TrainingKonfigurator.tsx, trainings.ts, faqs.ts
+**Anpassen reicht:** Benefits.tsx, Footer, Impressum, Datenschutz
+
+### Wissensartikel beim Clone
+Alle Wissensartikel der Quell-Seite MÜSSEN gelöscht werden (themenspezifisch, nicht übertragbar). Artikel sind an **5 Stellen** registriert – ALLE bereinigen:
+1. TSX-Datei in `/src/pages/`
+2. Route in `App.tsx`
+3. Eintrag in `Wissen.tsx` (`staticKnowledgeTopics`)
+4. Eintrag in `EditorialCalendar.tsx` (`DEFAULT_STATIC_ARTICLES`)
+5. Eintrag in `package.json` (`reactSnap.include`)
+
+### Typ-System anpassen
+Das Typ-System in `trainings.ts` ZUERST ändern. Reihenfolge: **Types → Data → Components → Pages**. Beispiel: `CopilotTier` → `ChatGPTTier` mit eigenen Werten.
+
+### Domain-Referenzen finden
+```bash
+grep -r "copilotenschule" src/
+```
+Betroffene Dateien (mindestens):
+- `src/lib/schema.ts` – Organization-Schema
+- `src/lib/organizationSchema.ts` – Komplett-Daten
+- `src/data/authors.ts` – Autor-Profil
+- `src/components/SEOHead.tsx` – OG-Image, Site-Name
+- `public/sitemap.xml` – Alle URLs
+- `public/robots.txt` – Sitemap-URL
+- `public/llm.txt` + `public/llms.txt`
+- `index.html` – Title, Meta-Tags, OG-Tags
+
+### Logo-Referenzen (mindestens 5 Stellen)
+- `public/images/[logo].png`
+- `index.html` – Favicon/OG-Image
+- `src/components/Header.tsx`
+- `src/components/Footer.tsx`
+- `src/lib/organizationSchema.ts` – Logo-URL
+
+### Deployment: lftp statt FTP-Deploy-Action
+Für AlwaysData IMMER `lftp` verwenden (SamKirkland FTP-Deploy-Action hat ECONNRESET):
+```yaml
+- name: Deploy via LFTP
+  run: |
+    lftp -e "set ssl:verify-certificate no; set ftp:ssl-allow yes; set ftp:ssl-protect-data yes; mirror -R --delete dist/ /www/[DOMAIN]/ ; quit" -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}
+```
+
+### Build-Validierung (PFLICHT vor Commit)
+`npm run build` fängt ab: fehlende Imports, TypeScript-Fehler, react-snap-Fehler, validate-seo.js-Fehler.
