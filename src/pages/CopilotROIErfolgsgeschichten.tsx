@@ -144,6 +144,7 @@ const CopilotROIErfolgsgeschichten = () => {
           <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-blue-500">
             Die andere Seite der Debatte
           </h2>
+          <p className="text-gray-500 italic mb-4">Welche Unternehmen haben mit Microsoft Copilot messbaren ROI erzielt?</p>
 
           <div className="prose prose-lg max-w-none">
             <p className="text-lg leading-relaxed mb-6">
@@ -445,6 +446,7 @@ const CopilotROIErfolgsgeschichten = () => {
             <Target className="inline-block w-8 h-8 mr-2 text-indigo-600" />
             Was die erfolgreichen Unternehmen anders machen
           </h2>
+          <p className="text-gray-500 italic mb-4">Was haben erfolgreiche Copilot-Einführungen gemeinsam?</p>
 
           <p className="text-lg leading-relaxed mb-6">
             Die Zitate zeigen ein klares Muster: Erfolgreiche Copilot-Einführungen sind keine IT-Projekte,

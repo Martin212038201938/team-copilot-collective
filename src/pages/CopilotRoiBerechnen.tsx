@@ -218,6 +218,7 @@ const CopilotRoiBerechnen = () => {
           <h2 id="roi-formel-heading" className="text-2xl md:text-3xl font-bold pb-3 border-b-4 border-green-500 text-green-700 dark:text-green-400">
             ROI-Berechnung: Die Formel
           </h2>
+          <p className="text-gray-500 italic mb-4">Wie berechnet man den ROI von Microsoft Copilot konkret – und ab wann rechnet sich die Investition?</p>
 
           <Card className="bg-gray-900 text-gray-100 border-0">
             <CardContent className="p-8">
@@ -279,6 +280,7 @@ const CopilotRoiBerechnen = () => {
           <h2 id="produktivitaetsgewinne-heading" className="text-2xl md:text-3xl font-bold pb-3 border-b-4 border-purple-500 text-purple-700 dark:text-purple-400">
             Messbare Produktivitätsgewinne
           </h2>
+          <p className="text-gray-500 italic mb-4">Wie viel Zeit sparen Mitarbeiter mit Microsoft Copilot tatsächlich ein?</p>
 
           {/* Hervorgehobene Studienergebnisse */}
           <div className="grid md:grid-cols-2 gap-6 mb-8">
@@ -389,6 +391,7 @@ const CopilotRoiBerechnen = () => {
           <h2 id="kpis-heading" className="text-2xl md:text-3xl font-bold pb-3 border-b-4 border-cyan-500 text-cyan-700 dark:text-cyan-400">
             KPIs zur Erfolgsmessung
           </h2>
+          <p className="text-gray-500 italic mb-4">Welche KPIs sollte man für die Microsoft Copilot Erfolgsmessung definieren?</p>
 
           <div className="grid md:grid-cols-2 gap-6">
             <Card>

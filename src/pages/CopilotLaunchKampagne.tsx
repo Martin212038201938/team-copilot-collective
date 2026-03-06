@@ -166,6 +166,7 @@ const CopilotLaunchKampagne = () => {
           <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-purple-500">
             Warum ein Copilot-Launch anders ist als SAP oder Salesforce
           </h2>
+          <p className="text-gray-500 italic mb-4">Warum scheitern so viele Copilot-Einführungen – und was macht eine gute Launch-Kampagne anders?</p>
 
           <p className="my-6">
             Ich höre oft: <em>"Wir haben schon SAP eingeführt, wir wissen wie das geht."</em>
@@ -352,6 +353,7 @@ const CopilotLaunchKampagne = () => {
           <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-blue-500">
             Die 4 Phasen einer erfolgreichen Launch-Kampagne
           </h2>
+          <p className="text-gray-500 italic mb-4">Wie plant man eine erfolgreiche Microsoft Copilot Launch-Kampagne Schritt für Schritt?</p>
 
           <div className="space-y-6 my-8">
             {[

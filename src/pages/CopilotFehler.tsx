@@ -154,6 +154,7 @@ const CopilotFehler = () => {
           <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-red-500 text-red-700 dark:text-red-400">
             Fehler 1: Keine klare Governance und Richtlinien
           </h2>
+          <p className="text-gray-500 italic mb-4">Welche Fehler machen Unternehmen bei der Einführung von Microsoft Copilot am häufigsten?</p>
           <p>
             Der schwerwiegendste Fehler: Copilot wird aktiviert, ohne klare Regeln für Nutzung, Datenschutz und Verantwortlichkeiten
             zu definieren.
@@ -864,6 +865,7 @@ const CopilotFehler = () => {
 
         <section id="checkliste" className="mt-12">
           <h2>Checkliste für erfolgreiche Copilot-Einführung</h2>
+          <p className="text-gray-500 italic mb-4">Was muss man bei einem Copilot-Rollout unbedingt beachten?</p>
 
           <Card className="my-6">
             <CardHeader>

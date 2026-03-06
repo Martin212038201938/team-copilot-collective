@@ -165,6 +165,7 @@ const CopilotSicherheit = () => {
           <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
             Kann Copilot alle Dateien im Unternehmen sehen?
           </h2>
+          <p className="text-gray-500 italic mb-4">Kann Microsoft Copilot auf alle Unternehmensdaten zugreifen – und wer kontrolliert das?</p>
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
               <strong>Kurze Antwort: Nein.</strong> Copilot kann exakt das sehen, was Sie selbst sehen können – und
@@ -195,6 +196,7 @@ const CopilotSicherheit = () => {
           <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
             Kann Microsoft meine Daten lesen?
           </h2>
+          <p className="text-gray-500 italic mb-4">Liest Microsoft mit, wenn Mitarbeiter Copilot nutzen?</p>
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
               <strong>Nein.</strong> Microsoft hat keinen inhaltlichen Zugriff auf Ihre Unternehmensdaten in
@@ -310,6 +312,7 @@ const CopilotSicherheit = () => {
           <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
             Betriebsrat und Mitbestimmung
           </h2>
+          <p className="text-gray-500 italic mb-4">Muss der Betriebsrat bei der Copilot-Einführung eingebunden werden?</p>
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
               In vielen deutschen Unternehmen ist die Einführung von Microsoft Copilot

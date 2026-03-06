@@ -184,6 +184,7 @@ const CopilotHRUseCases = () => {
           <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
             Stellenausschreibungen, die nicht nach Vorlage klingen
           </h2>
+          <p className="text-gray-500 italic mb-4">Welche HR-Prozesse kann Microsoft Copilot automatisieren – und wo spart man am meisten Zeit?</p>
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
               Die meisten Stellenausschreibungen in Deutschland lesen sich, als hätte dieselbe Person sie alle
@@ -267,6 +268,7 @@ const CopilotHRUseCases = () => {
           <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
             Onboarding-Kommunikation
           </h2>
+          <p className="text-gray-500 italic mb-4">Wie verbessert Copilot das Onboarding neuer Mitarbeiter?</p>
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
               Die ersten Wochen eines neuen Mitarbeiters entscheiden darüber, ob er bleibt oder in der Probezeit

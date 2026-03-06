@@ -172,6 +172,7 @@ const CopilotUnternehmensweitEinfuehren = () => {
           <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-blue-500 text-blue-700 dark:text-blue-400">
             Was bedeutet zentrale Copilot-Einführung?
           </h2>
+          <p className="text-gray-500 italic mb-4">Warum scheitern zwei von drei Rollouts – und was unterscheidet erfolgreiche von gescheiterten Einführungen?</p>
 
           <p className="mb-6">
             Eine <strong>zentrale Copilot-Einführung</strong> bedeutet, dass Unternehmen Microsoft 365 Copilot
@@ -322,6 +323,7 @@ const CopilotUnternehmensweitEinfuehren = () => {
           <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-red-500 text-red-700 dark:text-red-400">
             Sicherheit: Shadow-IT vermeiden
           </h2>
+          <p className="text-gray-500 italic mb-4">Wie stelle ich sicher, dass sensible Unternehmensdaten in einem generativen KI-Tool geschützt sind – und welche Compliance-Anforderungen muss ich erfüllen?</p>
 
           <p className="mb-6">
             Der größte Risikofaktor bei KI ist nicht die Technologie selbst, sondern der unkontrollierte Einsatz.
@@ -712,6 +714,7 @@ const CopilotUnternehmensweitEinfuehren = () => {
           <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-emerald-500 text-emerald-700 dark:text-emerald-400">
             Implementierung im Unternehmen
           </h2>
+          <p className="text-gray-500 italic mb-4">Mit wie vielen Monaten sollte ein Unternehmen rechnen – und wann ist mit messbarem ROI zu rechnen?</p>
 
           <p className="mb-6">
             Eine erfolgreiche Copilot-Einführung folgt einem strukturierten Prozess. Die technische

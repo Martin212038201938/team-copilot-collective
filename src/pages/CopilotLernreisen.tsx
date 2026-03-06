@@ -159,6 +159,7 @@ const CopilotLernreisen = () => {
           <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-red-500 text-red-700 dark:text-red-400">
             Die Vergessenskurve: Warum Tagesschulungen scheitern
           </h2>
+          <p className="text-gray-500 italic mb-4">Warum vergessen Mitarbeiter Copilot-Schulungen so schnell – und was hilft dagegen?</p>
 
           <p className="mb-6">
             Der deutsche Psychologe Hermann Ebbinghaus entdeckte bereits 1885 ein Phänomen, das jeder aus eigener Erfahrung kennt: Frisch Gelerntes verschwindet erschreckend schnell aus dem Gedächtnis. Seine Vergessenskurve zeigt: Schon nach 20 Minuten können wir nur noch etwa 60 % abrufen. Nach einem Tag sind es rund 34 %. Nach sechs Tagen bleiben gerade einmal 23 % übrig.
@@ -291,6 +292,7 @@ const CopilotLernreisen = () => {
           <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-green-500 text-green-700 dark:text-green-400">
             8 Gründe, warum Lernreisen besser funktionieren
           </h2>
+          <p className="text-gray-500 italic mb-4">Ist eine Copilot-Lernreise wirklich besser als eine Tagesschulung?</p>
 
           <div className="space-y-4 my-6">
             {[

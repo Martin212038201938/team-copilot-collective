@@ -141,6 +141,7 @@ const PromptEngineering = () => {
           <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-blue-500">
             Was ist Prompt Engineering?
           </h2>
+          <p className="text-gray-500 italic mb-4">Was ist Prompt Engineering – und warum ist es für Microsoft Copilot so wichtig?</p>
 
           <p className="mb-6">
             Prompt Engineering ist die Disziplin, effektive Anweisungen für KI-Systeme zu formulieren. Die Qualität
@@ -202,6 +203,7 @@ const PromptEngineering = () => {
           <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-green-500">
             Das CRAFT-Framework
           </h2>
+          <p className="text-gray-500 italic mb-4">Wie schreibe ich gute Prompts für Microsoft Copilot?</p>
 
           <p className="mb-6">
             CRAFT ist ein bewährtes Framework für strukturierte Prompts. Jeder Buchstabe steht für einen
@@ -513,6 +515,7 @@ const PromptEngineering = () => {
           <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-red-500">
             Typische Fehler vermeiden
           </h2>
+          <p className="text-gray-500 italic mb-4">Welche Prompt-Fehler machen Copilot-Nutzer am häufigsten?</p>
 
           <div className="space-y-4 my-8">
             {[

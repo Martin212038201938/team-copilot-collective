@@ -142,6 +142,7 @@ const CopilotTippsTricks = () => {
               Word Tipps (1-5)
             </span>
           </h2>
+          <p className="text-gray-500 italic mb-4">Welche Copilot-Tricks machen im Arbeitsalltag den größten Unterschied?</p>
 
           <div className="space-y-6 mt-8">
             <Card className="border-l-4 border-l-blue-500">
@@ -429,6 +430,7 @@ const CopilotTippsTricks = () => {
               Outlook Tipps (15-18)
             </span>
           </h2>
+          <p className="text-gray-500 italic mb-4">Wie nutze ich Microsoft Copilot in Outlook am effektivsten?</p>
 
           <div className="space-y-6 mt-8">
             <Card className="border-l-4 border-l-cyan-500">

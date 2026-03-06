@@ -168,6 +168,7 @@ const CopilotTraining = () => {
           <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-orange-500 text-orange-700 dark:text-orange-400">
             Warum professionelles Training entscheidend ist
           </h2>
+          <p className="text-gray-500 italic mb-4">Warum brauchen Mitarbeiter ein professionelles Copilot-Training?</p>
 
           <p className="mb-6">
             Microsoft 365 Copilot ist keine gewöhnliche Software-Einführung. Es verändert fundamental, wie Menschen
@@ -471,6 +472,7 @@ const CopilotTraining = () => {
           <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-blue-500 text-blue-700 dark:text-blue-400">
             Das 4-Phasen-Trainingskonzept
           </h2>
+          <p className="text-gray-500 italic mb-4">Wie sieht ein effektives Microsoft Copilot Schulungskonzept aus?</p>
 
           <p className="mb-6">
             Erfolgreiches Copilot-Training folgt einem erprobten 4-Phasen-Modell, das über 8-12 Wochen verteilt ist. Dies wird auch als <Link to="/wissen/copilot-lernreise-vs-tagesschulung" className="text-primary hover:underline">"Lernreise"</Link> bezeichnet und verankert Wissen nachhaltig

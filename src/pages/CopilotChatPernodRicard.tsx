@@ -184,6 +184,7 @@ const CopilotChatPernodRicard = () => {
           <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
             Was Copilot Chat eigentlich ist – und was nicht
           </h2>
+          <p className="text-gray-500 italic mb-4">Was passiert, wenn ein Unternehmen einfach mit Copilot Chat Free anfängt – ohne großes Projekt?</p>
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
               Bevor wir in die konkreten Szenarien einsteigen, lohnt sich eine kurze Einordnung, weil

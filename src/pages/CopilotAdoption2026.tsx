@@ -146,6 +146,7 @@ const CopilotAdoption2026 = () => {
             <BarChart3 className="w-6 h-6 text-primary" />
             Die Zahlen: Microsoft Q2 FY2026 (Januar 2026)
           </h2>
+          <p className="text-gray-500 italic mb-4">Wie hoch ist die tatsächliche Copilot-Nutzung in Unternehmen 2026?</p>
 
           <p className="text-muted-foreground mb-6">
             Am 28. Januar 2026 veröffentlichte Microsoft seine Quartalszahlen. Die Copilot-Metriken im Überblick:
@@ -372,6 +373,7 @@ const CopilotAdoption2026 = () => {
             <Target className="w-6 h-6 text-primary" />
             Was das für Ihre Copilot-Strategie bedeutet
           </h2>
+          <p className="text-gray-500 italic mb-4">Was können Unternehmen tun, um die Copilot-Adoption zu steigern?</p>
 
           <div className="space-y-4">
             <Card>

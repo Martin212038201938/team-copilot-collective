@@ -167,6 +167,7 @@ const CopilotDigitalesGedaechtnis = () => {
           <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-red-500">
             Das Problem: Zu viel auf einmal
           </h2>
+          <p className="text-gray-500 italic mb-4">Wie kann Microsoft Copilot als digitales Gedächtnis für Teams funktionieren?</p>
 
           <p className="my-6">
             Kennen Sie diese Momente? Sie sitzen im Meeting und jemand sagt: "Martin, du hattest doch zugesagt,
@@ -213,6 +214,7 @@ const CopilotDigitalesGedaechtnis = () => {
           <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-blue-500">
             Wie Copilot zum Gedächtnis wird
           </h2>
+          <p className="text-gray-500 italic mb-4">Wie findet Copilot Informationen aus Meetings, E-Mails und Chats wieder?</p>
 
           <p className="my-6">
             Microsoft Copilot ist nicht einfach nur ein Chatbot. Er hat Zugriff auf Ihr gesamtes Microsoft 365-Universum:

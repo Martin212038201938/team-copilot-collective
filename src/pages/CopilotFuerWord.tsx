@@ -192,6 +192,7 @@ const CopilotFuerWord = () => {
 
         <section id="was-ist-microsoft-copilot-f-r-word-" className="mb-8">
           <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-blue-500 mb-6">Was ist Microsoft Copilot für Word?</h2>
+          <p className="text-gray-500 italic mb-4">Was kann Microsoft Copilot in Word – und wo liegen die Grenzen?</p>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-blue-500 pl-4">Überblick</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Microsoft Copilot für Word</strong> ist Teil von Microsoft 365 Copilot und nutzt Large Language Models (LLMs), um Sie bei allen Aspekten der Dokumentenerstellung zu unterstützen.</p>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Kernfunktionen:</strong></p>
@@ -286,6 +287,7 @@ Halte die gleiche professionelle Tonalität bei."`}</code></pre>
 
         <section id="hauptfunktionen-im-detail" className="mb-8">
           <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-emerald-500 mb-6">Hauptfunktionen im Detail</h2>
+          <p className="text-gray-500 italic mb-4">Wie erstellt man mit Copilot in Word professionelle Dokumente?</p>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-t-4 border-t-emerald-500 pt-4">1. Dokumente erstellen (Draft)</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Use Case:</strong> Vom leeren Dokument zum fertigen Entwurf</p>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>CRAFT-konforme Prompts:</strong></p>

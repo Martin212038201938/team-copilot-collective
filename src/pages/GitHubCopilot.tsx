@@ -147,6 +147,7 @@ const GitHubCopilot = () => {
 
         <section id="was-ist">
           <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-blue-500">Was ist GitHub Copilot?</h2>
+          <p className="text-gray-500 italic mb-4">Was ist GitHub Copilot – und wie verändert es die Softwareentwicklung?</p>
           <p>
             GitHub Copilot ist ein KI-gestützter Code-Completion-Tool, das von GitHub und OpenAI entwickelt wurde.
             Es fungiert als Ihr virtueller Pair-Programming-Partner und schlägt Code-Zeilen oder ganze Funktionen vor,
@@ -287,6 +288,7 @@ const GitHubCopilot = () => {
 
         <section id="best-practices" className="mt-12">
           <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-cyan-500">Best Practices für Entwickler</h2>
+          <p className="text-gray-500 italic mb-4">Wie nutzt man GitHub Copilot am effektivsten?</p>
 
           <div className="space-y-6 my-6">
             {[

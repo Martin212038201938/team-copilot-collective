@@ -202,6 +202,7 @@ const CopilotSalesUseCases = () => {
             </h2>
           </div>
           <div className="mb-4"><RoleBadge role="Beide" /></div>
+          <p className="text-gray-500 italic mb-4">Wie kann Microsoft Copilot den Vertrieb konkret unterstützen – und wie viel Zeit spart das?</p>
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
               Fangen wir dort an, wo der Schmerz am größten ist. In fast jedem Sales-Team gibt es eine
@@ -232,6 +233,7 @@ const CopilotSalesUseCases = () => {
             Meeting-Vorbereitung, die diesen Namen verdient
           </h2>
           <div className="mb-4"><RoleBadge role="Außendienst" /></div>
+          <p className="text-gray-500 italic mb-4">Wie bereitet man sich mit Copilot effizient auf Kundengespräche vor?</p>
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
               Außendienstmitarbeiter bereiten Kundentermine vor. Theoretisch. Praktisch heißt das oft: kurz ins

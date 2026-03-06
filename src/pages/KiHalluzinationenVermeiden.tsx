@@ -177,6 +177,7 @@ const KiHalluzinationenVermeiden = () => {
           <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
             Warum KI halluziniert – und warum das kein Bug ist
           </h2>
+          <p className="text-gray-500 italic mb-4">Warum halluziniert KI – und wie kann man Fehler in den Ergebnissen erkennen?</p>
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
               Der Begriff „Halluzination" ist eigentlich irreführend, weil er suggeriert, die KI hätte eine
@@ -266,6 +267,7 @@ const KiHalluzinationenVermeiden = () => {
           <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
             Prompting-Techniken, die Fehler reduzieren
           </h2>
+          <p className="text-gray-500 italic mb-4">Welche Prompt-Techniken reduzieren KI-Halluzinationen am wirksamsten?</p>
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
               Die wirksamste Maßnahme gegen Halluzinationen ist zugleich die einfachste: Kontext mitgeben.

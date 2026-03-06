@@ -146,6 +146,7 @@ const CopilotStudio = () => {
 
         <section id="was-ist">
           <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-blue-500">Was ist Microsoft Copilot Studio?</h2>
+          <p className="text-gray-500 italic mb-4">Was ist Microsoft Copilot Studio – und wer braucht es?</p>
           <p>
             Microsoft Copilot Studio (früher Power Virtual Agents) ist eine Low-Code-Plattform zur Erstellung eigener
             KI-Agenten, Custom Copilots und intelligenter Chatbots. Es ermöglicht Unternehmen, spezialisierte KI-Assistenten
@@ -199,6 +200,7 @@ const CopilotStudio = () => {
 
         <section id="anwendungsfaelle" className="mt-12">
           <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-green-500">Anwendungsfälle für Unternehmen</h2>
+          <p className="text-gray-500 italic mb-4">Welche Geschäftsprozesse lassen sich mit Copilot Studio automatisieren?</p>
 
           <div className="space-y-6 my-6">
             {[

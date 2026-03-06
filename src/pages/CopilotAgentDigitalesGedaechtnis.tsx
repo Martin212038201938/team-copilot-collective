@@ -181,6 +181,7 @@ const CopilotAgentDigitalesGedaechtnis = () => {
           <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
             Warum ein eigener Agent?
           </h2>
+          <p className="text-gray-500 italic mb-4">Wie baut man einen Copilot-Agenten, der Meeting-Protokolle automatisch erstellt und durchsuchbar macht?</p>
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
               Microsoft Copilot kann Meeting-Zusammenfassungen schon von Haus aus erstellen – das ist
@@ -338,6 +339,7 @@ const CopilotAgentDigitalesGedaechtnis = () => {
           <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
             Schritt 2: Den Agenten in Copilot erstellen
           </h2>
+          <p className="text-gray-500 italic mb-4">Welche Schritte sind nötig, um einen eigenen Copilot-Agenten in Copilot Studio zu erstellen?</p>
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
               Jetzt wird es konkret. Öffnen Sie Microsoft 365 Copilot – entweder über copilot.microsoft.com

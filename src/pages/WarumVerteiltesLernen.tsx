@@ -148,6 +148,7 @@ const WarumVerteiltesLernen = () => {
           <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-red-500 text-red-700 dark:text-red-400">
             Was Ebbinghaus schon 1885 wusste
           </h2>
+          <p className="text-gray-500 italic mb-4">Warum funktioniert verteiltes Lernen bei Copilot-Trainings besser als Blockunterricht?</p>
 
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
@@ -310,6 +311,7 @@ const WarumVerteiltesLernen = () => {
           <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-amber-500 text-amber-700 dark:text-amber-400">
             Wann eine Tagesschulung trotzdem Sinn ergibt
           </h2>
+          <p className="text-gray-500 italic mb-4">Wann ist eine Tagesschulung für Copilot doch die bessere Wahl?</p>
 
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>

@@ -229,6 +229,7 @@ const KiRealitaet2026 = () => {
           <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-emerald-500 text-emerald-700 dark:text-emerald-400">
             Investitionen: Die harten Zahlen der Beratungshäuser
           </h2>
+          <p className="text-gray-500 italic mb-4">Wie viel investieren deutsche Unternehmen 2026 tatsächlich in KI?</p>
 
           <p className="mb-6">
             Die Investitionsbereitschaft in KI erreicht 2026 neue Höchststände. Doch die Studien zeigen auch: Es gibt erhebliche Unterschiede zwischen Großunternehmen und Mittelstand, zwischen Vorreitern und Nachzüglern.
@@ -337,6 +338,7 @@ const KiRealitaet2026 = () => {
           <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-red-500 text-red-700 dark:text-red-400">
             ROI-Realität: Die ernüchternde Wahrheit hinter den Investitionen
           </h2>
+          <p className="text-gray-500 italic mb-4">Rechnet sich KI für Unternehmen wirklich – oder ist der ROI ein Mythos?</p>
 
           <p className="mb-6">
             Hier zeigt sich die größte Diskrepanz zwischen Anspruch und Wirklichkeit. Während die Investitionen steigen, bleibt der messbare Return für die Mehrheit aus. Die Studien zeichnen ein konsistentes Bild der Ernüchterung.

@@ -155,6 +155,7 @@ const CopilotFuerExcel = () => {
         {/* Voraussetzungen */}
         <section id="voraussetzungen" className="mb-8">
           <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-blue-500 mb-6">Was Sie brauchen</h2>
+          <p className="text-gray-500 italic mb-4">Was braucht man, damit Microsoft Copilot in Excel funktioniert?</p>
           <p className="mb-4 text-gray-700 leading-relaxed">Bevor wir loslegen, die Basics:</p>
           <ul className="list-disc list-inside space-y-2 mb-4 text-gray-700">
             <li><strong>Microsoft 365 Copilot Lizenz</strong> (die kostenpflichtige Variante, 30 €/Monat pro User)</li>
@@ -169,6 +170,7 @@ const CopilotFuerExcel = () => {
         {/* Daten vorbereiten */}
         <section id="daten-vorbereiten" className="mb-8">
           <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-emerald-500 mb-6">Daten vorbereiten: Die Grundregel</h2>
+          <p className="text-gray-500 italic mb-4">Warum funktioniert Copilot in Excel bei manchen Tabellen nicht – und wie bereitet man Daten richtig vor?</p>
           <Card className="border-amber-500/30 bg-amber-50/50 mb-6">
             <CardContent className="pt-6">
               <p className="text-gray-800 font-semibold mb-2">Die goldene Regel:</p>

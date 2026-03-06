@@ -146,6 +146,7 @@ const KIAgenten = () => {
 
         <section id="was-sind">
           <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-blue-500">Was sind KI-Agenten?</h2>
+          <p className="text-gray-500 italic mb-4">Was sind KI-Agenten – und wie unterscheiden sie sich von Chatbots?</p>
           <p>
             KI-Agenten sind autonome Softwaresysteme, die Ziele eigenständig verfolgen, Entscheidungen treffen und
             Tools nutzen, um Aufgaben zu erledigen. Sie gehen weit über einfache Chatbots hinaus.
@@ -287,6 +288,7 @@ const KIAgenten = () => {
 
         <section id="use-cases" className="mt-12">
           <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-cyan-500">Use Cases in Unternehmen</h2>
+          <p className="text-gray-500 italic mb-4">Welche konkreten Anwendungsfälle gibt es für KI-Agenten in Unternehmen?</p>
 
           <div className="space-y-6 my-6">
             {[

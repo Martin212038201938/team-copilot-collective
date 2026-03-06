@@ -138,6 +138,7 @@ const CopilotADHS = () => {
           <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-purple-500 text-purple-700 dark:text-purple-400">
             ADHS - bevor es cool war
           </h2>
+          <p className="text-gray-500 italic mb-4">Kann Microsoft Copilot Menschen mit ADHS wirklich im Arbeitsalltag helfen?</p>
 
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p className="text-lg leading-relaxed">
@@ -199,6 +200,7 @@ const CopilotADHS = () => {
           <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-green-500 text-green-700 dark:text-green-400">
             Wo Copilot wirklich hilft
           </h2>
+          <p className="text-gray-500 italic mb-4">Welche Copilot-Funktionen sind bei ADHS am nützlichsten?</p>
 
           <div className="prose prose-lg max-w-none dark:prose-invert mb-6">
             <p>

@@ -172,6 +172,7 @@ const CopilotLicenses = () => {
 
         <section id="overview">
           <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-blue-500">Überblick Microsoft Copilot Lizenzen</h2>
+          <p className="text-gray-500 italic mb-4">Welche Microsoft Copilot Lizenzen gibt es und was kosten sie?</p>
           <p>
             Microsoft bietet verschiedene Copilot-Lizenzen für unterschiedliche Anwendungsfälle an.
             Dieser Leitfaden hilft Ihnen zu verstehen, welche Lizenz Sie für Ihre spezifischen Anforderungen benötigen.
@@ -501,6 +502,7 @@ const CopilotLicenses = () => {
 
         <section id="recommendations" className="mt-12">
           <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-red-500">Welche Lizenz brauche ich?</h2>
+          <p className="text-gray-500 italic mb-4">Welche Copilot-Lizenz ist die richtige für mein Unternehmen?</p>
 
           <div className="space-y-6 my-6">
             <Card className="border-l-4 border-l-blue-500">

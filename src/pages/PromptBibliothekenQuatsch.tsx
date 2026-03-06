@@ -140,6 +140,7 @@ const PromptBibliothekenQuatsch = () => {
           <h2 className="text-2xl md:text-3xl font-bold pb-3 border-b-4 border-red-500 text-red-700 dark:text-red-400">
             Das Problem mit Prompt-Bibliotheken
           </h2>
+          <p className="text-gray-500 italic mb-4">Bringen Prompt-Bibliotheken für Microsoft Copilot wirklich etwas – oder sind sie Zeitverschwendung?</p>
 
           <p className="mb-6">
             Die Idee klingt bestechend: Man sammelt die besten Prompts für verschiedene Anwendungsfälle,
@@ -265,6 +266,7 @@ const PromptBibliothekenQuatsch = () => {
           <h2 className="text-2xl md:text-3xl font-bold pb-3 border-b-4 border-green-500 text-green-700 dark:text-green-400">
             Der echte Nutzen: Prompting lernen
           </h2>
+          <p className="text-gray-500 italic mb-4">Was hilft stattdessen, damit Mitarbeiter Copilot wirklich effektiv nutzen?</p>
 
           <p className="mb-6">
             Statt Prompts zu verteilen, sollten Unternehmen ihre Mitarbeiter befähigen, selbständig mit KI zu arbeiten.
