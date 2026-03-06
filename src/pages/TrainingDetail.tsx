@@ -1,7 +1,7 @@
 import { useParams, Link, Navigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Clock, ArrowLeft, CheckCircle2, ArrowRight, Linkedin, Mail, HelpCircle } from "lucide-react";
+import { Clock, ArrowLeft, CheckCircle2, ArrowRight, Linkedin, Mail, HelpCircle, Users, GraduationCap, TrendingUp } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
@@ -55,10 +55,21 @@ const TrainingDetail = () => {
       "duration": training.duration,
       "inLanguage": "de-DE"
     },
-    "teaches": training.features.slice(0, 5).join(", "),
+    "teaches": training.learningOutcomes
+      ? training.learningOutcomes.join(", ")
+      : training.features.slice(0, 5).join(", "),
     "coursePrerequisites": "Keine Vorkenntnisse erforderlich",
     "educationalLevel": training.tiers.includes("free") ? "Beginner" : "Intermediate",
-    "inLanguage": "de-DE"
+    "inLanguage": "de-DE",
+    ...(training.targetAudience && {
+      "audience": {
+        "@type": "EducationalAudience",
+        "educationalRole": training.targetAudience.join(", ")
+      }
+    }),
+    ...(training.businessImpact && {
+      "competencyRequired": training.businessImpact.join(", ")
+    })
   };
 
   // BreadcrumbList Schema für Navigation
@@ -153,6 +164,11 @@ const TrainingDetail = () => {
                 <span>{training.duration}</span>
               </div>
 
+              {/* Kursive LLM-Frage als Teaser */}
+              {training.questionLead && (
+                <p className="text-gray-500 italic mb-4">{training.questionLead}</p>
+              )}
+
               {/* Einleitung / Beschreibung */}
               <p className="text-xl text-muted-foreground leading-relaxed">
                 {training.description}
@@ -183,8 +199,86 @@ const TrainingDetail = () => {
           </div>
         </section>
 
+        {/* Zielgruppe Section */}
+        {training.targetAudience && training.targetAudience.length > 0 && (
+          <section className="py-16 bg-muted/30">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl">
+                <div className="flex items-center gap-3 mb-8">
+                  <div className="p-2 bg-primary/10 rounded-lg">
+                    <Users className="w-6 h-6 text-primary" />
+                  </div>
+                  <h2 className="text-3xl font-bold">
+                    Für wen ist dieses Training?
+                  </h2>
+                </div>
+                <ul className="space-y-4">
+                  {training.targetAudience.map((audience, index) => (
+                    <li key={index} className="flex items-start gap-3">
+                      <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-0.5" />
+                      <span className="text-lg">{audience}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Lernziele Section */}
+        {training.learningOutcomes && training.learningOutcomes.length > 0 && (
+          <section className="py-16 bg-background">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl">
+                <div className="flex items-center gap-3 mb-8">
+                  <div className="p-2 bg-primary/10 rounded-lg">
+                    <GraduationCap className="w-6 h-6 text-primary" />
+                  </div>
+                  <h2 className="text-3xl font-bold">
+                    Was lernen die Teilnehmer?
+                  </h2>
+                </div>
+                <ul className="space-y-4">
+                  {training.learningOutcomes.map((outcome, index) => (
+                    <li key={index} className="flex items-start gap-3">
+                      <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-0.5" />
+                      <span className="text-lg">{outcome}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Business Impact Section */}
+        {training.businessImpact && training.businessImpact.length > 0 && (
+          <section className="py-16 bg-muted/30">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl">
+                <div className="flex items-center gap-3 mb-8">
+                  <div className="p-2 bg-primary/10 rounded-lg">
+                    <TrendingUp className="w-6 h-6 text-primary" />
+                  </div>
+                  <h2 className="text-3xl font-bold">
+                    Erwartbare Effekte im Arbeitsalltag
+                  </h2>
+                </div>
+                <ul className="space-y-4">
+                  {training.businessImpact.map((impact, index) => (
+                    <li key={index} className="flex items-start gap-3">
+                      <TrendingUp className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
+                      <span className="text-lg">{impact}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </section>
+        )}
+
         {/* CTA Section */}
-        <section className="py-16 bg-muted/30">
+        <section className="py-16 bg-background">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
               <h2 className="text-3xl font-bold mb-4">

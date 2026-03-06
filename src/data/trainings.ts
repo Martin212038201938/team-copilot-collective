@@ -16,6 +16,11 @@ export interface Training {
   description: string;
   features: string[];
   tiers: CopilotTier[];
+  // Neue Rubriken für Content-Tiefe & LLM-Sichtbarkeit
+  questionLead?: string;          // Kursive LLM-Frage als Teaser
+  targetAudience?: string[];      // Wer profitiert davon
+  learningOutcomes?: string[];    // Was lernen die Teilnehmer
+  businessImpact?: string[];      // Erwartbare Effekte im Arbeitsalltag
   // SEO-Felder
   metaTitle: string;
   metaDescription: string;
@@ -44,6 +49,25 @@ export const trainings: Training[] = [
       "Buchbar als: Halbtag (4h), Ganztag (7h) oder Lernreise (3×2h über 3 Wochen)"
     ],
     tiers: ["free"],
+    questionLead: "Welches Training eignet sich am besten, um Microsoft Copilot von Grund auf zu lernen – auch ohne Lizenz?",
+    targetAudience: [
+      "Büromitarbeiter, die zum ersten Mal mit KI-Assistenten arbeiten und einen strukturierten Einstieg suchen",
+      "Teamleiter, die ihr Team auf die Copilot-Einführung vorbereiten wollen, bevor Lizenzen beschafft werden",
+      "L&D-Verantwortliche, die ein Grundlagen-Modul für die KI-Kompetenz im Unternehmen brauchen",
+      "Assistenzen und Office Manager, die Routineaufgaben mit KI beschleunigen möchten"
+    ],
+    learningOutcomes: [
+      "Sie formulieren präzise Prompts mit klarer Struktur, Kontext und Beispielen – und erhalten deutlich bessere KI-Antworten",
+      "Sie bewerten KI-Outputs kritisch: Halluzinationen erkennen, Fakten prüfen, Grenzen einschätzen",
+      "Sie nutzen Copilot Chat produktiv für Recherche, Texterstellung, Zusammenfassungen und kreative Aufgaben",
+      "Sie entwickeln eine persönliche Prompt-Bibliothek mit Templates für Ihre wiederkehrenden Aufgaben"
+    ],
+    businessImpact: [
+      "Recherche-Aufgaben, die bisher 30-60 Minuten dauerten, erledigen Sie in unter 10 Minuten",
+      "Texterstellung (E-Mails, Berichte, Zusammenfassungen) wird 3-5x schneller bei gleichbleibender Qualität",
+      "Die Hemmschwelle gegenüber KI sinkt – Mitarbeiter nutzen Copilot eigenständig im Alltag",
+      "Der spätere Umstieg auf Microsoft 365 Copilot (bezahlte Version) gelingt deutlich schneller"
+    ],
     metaTitle: "Copilot Grundlagen Training – Prompt Design & KI-Kompetenz | copilotenschule.de",
     metaDescription: "Lernen Sie effektives Prompt Engineering für Microsoft Copilot. Einsteiger-Training für KI-Assistenten: Prompts formulieren, Outputs bewerten, produktiv arbeiten.",
     keywords: ["Copilot Grundlagen", "Prompt Engineering Training", "KI-Kompetenz Schulung", "Microsoft Copilot Einsteiger", "Prompt Design lernen"],
@@ -84,6 +108,26 @@ export const trainings: Training[] = [
       "Buchbar als: Halbtag (4h), Ganztag (7h) oder Lernreise (3×2h über 3 Wochen)"
     ],
     tiers: ["paid"],
+    questionLead: "Wie nutze ich Microsoft 365 Copilot in Word, Excel, PowerPoint, Outlook und Teams produktiv?",
+    targetAudience: [
+      "Wissensarbeiter mit bestehender Copilot-Lizenz, die das volle Potenzial der Office-Integration ausschöpfen wollen",
+      "Führungskräfte, die Meetings effizienter gestalten und Entscheidungsvorlagen schneller erstellen möchten",
+      "Projektmanager, die Cross-App-Workflows beherrschen und Reports automatisieren wollen",
+      "Assistenzen und Office Manager, die E-Mail-Flut und Dokumentenarbeit spürbar reduzieren möchten"
+    ],
+    learningOutcomes: [
+      "Sie erstellen Dokumente, Präsentationen und E-Mails mit Copilot in einem Bruchteil der bisherigen Zeit",
+      "Sie analysieren Excel-Daten per natürlicher Sprache – Formeln, Pivot-Tabellen und Diagramme auf Knopfdruck",
+      "Sie beherrschen Cross-App-Workflows: aus E-Mails werden Dokumente, aus Word-Texten Präsentationen",
+      "Sie fassen Meetings in Teams automatisch zusammen und extrahieren Aktionspunkte",
+      "Sie kennen app-spezifische Prompt-Techniken, die in Word anders funktionieren als in Excel oder PowerPoint"
+    ],
+    businessImpact: [
+      "Dokumenterstellung wird 60-80% schneller: Berichte, Angebote und Protokolle entstehen in Minuten statt Stunden",
+      "Meeting-Nachbereitung schrumpft von 30 Minuten auf 2 Minuten durch automatische Teams-Zusammenfassungen",
+      "E-Mail-Bearbeitungszeit sinkt um 30-50% durch KI-generierte Entwürfe und Thread-Zusammenfassungen",
+      "Die aktive Copilot-Nutzungsrate im Team steigt typischerweise um 60-80% nach dem Training"
+    ],
     metaTitle: "Microsoft 365 Copilot Training – Word, Excel, PowerPoint, Outlook, Teams | copilotenschule.de",
     metaDescription: "Praxistraining für Microsoft 365 Copilot: Lernen Sie Copilot in Word, Excel, PowerPoint, Outlook und Teams produktiv einzusetzen. Mit echten Workflows.",
     keywords: ["Microsoft 365 Copilot Training", "Copilot Word Excel", "Office Copilot Schulung", "Copilot PowerPoint", "Copilot Outlook Teams"],
@@ -127,6 +171,26 @@ export const trainings: Training[] = [
       "Buchbar als: 2 Tage intensiv (14h) oder Lernreise (8×2h über 8 Wochen mit Praxisaufgaben)"
     ],
     tiers: ["paid"],
+    questionLead: "Gibt es eine umfassende KI-Ausbildung für Büromitarbeiter – mit Zertifikat?",
+    targetAudience: [
+      "Unternehmen, die eine systematische KI-Qualifizierung ihrer gesamten Belegschaft brauchen",
+      "Personalentwickler, die ein nachweisbares KI-Kompetenzprogramm gemäß EU AI Act aufbauen müssen",
+      "Mitarbeiter, die sich als KI-Experten in ihrem Team positionieren und andere begleiten wollen",
+      "Führungskräfte, die den gesamten Copilot-Funktionsumfang verstehen müssen, um fundiert entscheiden zu können"
+    ],
+    learningOutcomes: [
+      "Sie beherrschen alle Microsoft 365 Copilot-Apps auf Expertenniveau – von einfachen bis zu komplexen Anwendungen",
+      "Sie entwickeln Cross-App-Workflows, die mehrere Office-Anwendungen nahtlos verbinden",
+      "Sie bauen eine vollständige, dokumentierte Prompt-Bibliothek für Ihre Abteilung auf",
+      "Sie können KI-Outputs kritisch bewerten, Halluzinationen erkennen und Qualitätskontrolle durchführen",
+      "Sie erhalten ein Zertifikat, das Ihre KI-Kompetenz für HR und Compliance-Zwecke nachweist"
+    ],
+    businessImpact: [
+      "Mitarbeiter werden zu KI-Multiplikatoren, die Kollegen selbstständig unterstützen und begeistern",
+      "Die Copilot-Nutzungsrate im Unternehmen steigt nachhaltig, weil echte Kompetenz aufgebaut wird",
+      "Zeiteinsparung von durchschnittlich 5-10 Stunden pro Mitarbeiter und Woche bei routineintensiven Aufgaben",
+      "Die EU AI Act Schulungspflicht (Artikel 4) wird nachweisbar erfüllt – Audit-sicher dokumentiert"
+    ],
     metaTitle: "Ausbildung KI-Wissensarbeiter – Intensivtraining Microsoft Copilot | copilotenschule.de",
     metaDescription: "2-tägige Intensiv-Ausbildung zum KI-unterstützten Wissensarbeiter. Von Grundlagen bis Expertenniveau: 20+ Übungen, alle M365 Apps, Zertifikat.",
     keywords: ["KI Ausbildung", "Wissensarbeiter Training", "Copilot Intensivkurs", "KI-Kompetenz Zertifikat", "Microsoft Copilot Ausbildung"],
@@ -169,6 +233,26 @@ export const trainings: Training[] = [
       "Team-Konfiguration: Copilot Business/Enterprise Features, Policies, Content Exclusions, Audit Logs"
     ],
     tiers: ["free", "paid"],
+    questionLead: "Wie kann unser Entwicklerteam GitHub Copilot optimal nutzen – und wie konfigurieren wir es sicher?",
+    targetAudience: [
+      "Softwareentwickler, die ihre Coding-Produktivität mit KI-Unterstützung signifikant steigern wollen",
+      "Engineering Manager, die GitHub Copilot für ihr Team ausrollen und Best Practices etablieren möchten",
+      "DevOps-Engineers, die Copilot in CI/CD-Pipelines und Entwickler-Workflows integrieren wollen",
+      "Tech Leads, die Code-Qualität und Security Standards trotz KI-Einsatz sicherstellen müssen"
+    ],
+    learningOutcomes: [
+      "Sie konfigurieren GitHub Copilot optimal für Ihr Team: IDE-Setup, Policies, Content Exclusions, Audit Logs",
+      "Sie generieren, debuggen, refactoren und dokumentieren Code effizient mit Copilot – sprachunabhängig",
+      "Sie schreiben Unit Tests mit Copilot und erhöhen Ihre Code-Coverage systematisch",
+      "Sie nutzen Copilot Chat und Agent Mode für Multi-File-Refactoring und komplexe Code-Erklärungen",
+      "Sie identifizieren Security-Vulnerabilities und halten Code-Standards automatisiert ein"
+    ],
+    businessImpact: [
+      "Code-Completion wird 30-55% schneller – besonders bei Boilerplate, Tests und Dokumentation",
+      "Onboarding neuer Entwickler beschleunigt sich erheblich, weil Copilot Legacy-Code erklärt und kontextualisiert",
+      "Die Code-Dokumentation verbessert sich drastisch, weil Copilot Inline-Kommentare und READMEs generiert",
+      "Security-Findings werden früher erkannt, weil Copilot proaktiv auf Schwachstellen hinweist"
+    ],
     metaTitle: "GitHub Copilot Training für Entwickler – Coding-Produktivität steigern | copilotenschule.de",
     metaDescription: "Hands-on GitHub Copilot Training: Code generieren, testen, debuggen und dokumentieren. Für Entwickler-Teams. Mit VS Code, JetBrains, CI/CD-Integration.",
     keywords: ["GitHub Copilot Training", "Entwickler Schulung", "AI Coding", "Copilot VS Code", "GitHub Copilot Unternehmen"],
@@ -207,6 +291,25 @@ export const trainings: Training[] = [
       "Rechtliche Fallstricke vermeiden: Urheberrecht, Haftungsfragen, Vertragsgestaltung mit Microsoft"
     ],
     tiers: ["free", "paid"],
+    questionLead: "Ist Microsoft Copilot DSGVO-konform – und was müssen wir als Unternehmen beachten?",
+    targetAudience: [
+      "Datenschutzbeauftragte, die eine Bewertung von Microsoft Copilot für ihr Verarbeitungsverzeichnis brauchen",
+      "IT-Sicherheitsverantwortliche, die Copilot technisch absichern und Policies konfigurieren müssen",
+      "Geschäftsführer und Compliance-Officer, die regulatorische Risiken bei der KI-Einführung minimieren wollen",
+      "Betriebsräte, die eine fundierte Einschätzung zu Mitarbeiterüberwachung und Datenschutz benötigen"
+    ],
+    learningOutcomes: [
+      "Sie verstehen die Microsoft 365 Sicherheitsarchitektur: Datenflüsse, Verschlüsselung, Zugriffskontrolle",
+      "Sie führen ein Datenschutz-Impact-Assessment für Microsoft Copilot eigenständig durch",
+      "Sie kennen die EU AI Act Anforderungen und können die Compliance-Pflichten für Ihr Unternehmen ableiten",
+      "Sie erstellen praktische Guidelines und Policies für die DSGVO-konforme Copilot-Nutzung"
+    ],
+    businessImpact: [
+      "Rechtssicherheit: Ihr Unternehmen erfüllt nachweisbar DSGVO- und EU AI Act-Anforderungen",
+      "Risikominimierung: Compliance-Verstöße und Bußgelder durch ungeschulten KI-Einsatz werden vermieden",
+      "Beschleunigter Rollout: Datenschutz-Freigabe kommt schneller, weil alle Fragen proaktiv geklärt sind",
+      "Betriebsrat-Akzeptanz: Transparente Dokumentation schafft Vertrauen bei der Arbeitnehmervertretung"
+    ],
     metaTitle: "Copilot Compliance Training – DSGVO & EU AI Act | copilotenschule.de",
     metaDescription: "Rechtssichere KI-Nutzung mit Microsoft Copilot: DSGVO-Compliance, EU AI Act, Datenschutz-Assessment. Mit Checklisten und Templates.",
     keywords: ["Copilot DSGVO", "KI Compliance Training", "EU AI Act Schulung", "Copilot Datenschutz", "rechtssichere KI-Nutzung"],
@@ -245,6 +348,25 @@ export const trainings: Training[] = [
       "Best Practices aus erfolgreichen Copilot-Rollouts: Lessons learned, typische Stolpersteine, Erfolgsfaktoren"
     ],
     tiers: ["free", "paid"],
+    questionLead: "Wie führe ich Microsoft Copilot erfolgreich im Unternehmen ein – und wie überzeuge ich das Management?",
+    targetAudience: [
+      "CIOs und IT-Leiter, die eine datenbasierte Copilot-Strategie für den Vorstand brauchen",
+      "Change Manager, die den kulturellen Wandel bei der KI-Einführung professionell begleiten sollen",
+      "Projektleiter, die den Copilot-Rollout steuern und einen konkreten Implementierungsplan benötigen",
+      "L&D-Verantwortliche, die Trainings, Champions-Programm und Adoption-Maßnahmen koordinieren müssen"
+    ],
+    learningOutcomes: [
+      "Sie entwickeln einen datenbasierten Business Case mit ROI-Berechnung für Ihren Copilot-Rollout",
+      "Sie identifizieren die High-Impact-Use-Cases, die in Ihrem Unternehmen den größten Mehrwert erzeugen",
+      "Sie erstellen einen phasenweisen Rollout-Plan mit Pilotgruppen, KPIs und Skalierungsstrategie",
+      "Sie bauen ein Change-Management-Konzept auf: Champions-Netzwerk, Kommunikationsplan, Widerstandsmanagement"
+    ],
+    businessImpact: [
+      "Die Erfolgswahrscheinlichkeit des Copilot-Rollouts steigt drastisch – von typischen 30% auf über 70%",
+      "Das Management erhält einen belastbaren Business Case, der die Investitionsentscheidung fundiert begründet",
+      "Widerstände werden frühzeitig erkannt und adressiert, bevor sie den Rollout blockieren",
+      "Messbarer ROI durch systematische Erfolgsmessung – keine Bauchgefühl-Einführung, sondern datengetrieben"
+    ],
     metaTitle: "Copilot Strategie Workshop – Rollout & Change Management | copilotenschule.de",
     metaDescription: "Strategischer Copilot-Workshop: ROI berechnen, Rollout planen, Change Management gestalten. Für erfolgreiche Microsoft Copilot Einführung.",
     keywords: ["Copilot Strategie", "Copilot Rollout", "Change Management KI", "Copilot ROI", "Copilot Einführung Unternehmen"],
@@ -283,6 +405,25 @@ export const trainings: Training[] = [
       "Use Cases aus der Praxis: HR-Assistent, IT-Helpdesk-Agent, Sales-Support-Bot, Onboarding-Assistent"
     ],
     tiers: ["paid"],
+    questionLead: "Wie entwickle ich einen KI-Agenten mit Microsoft Copilot Studio – und welche Geschäftsprozesse kann ich automatisieren?",
+    targetAudience: [
+      "Power User und Citizen Developer, die intelligente Chatbots und KI-Agenten für ihr Unternehmen bauen wollen",
+      "IT-Abteilungen, die den Fachbereichen Self-Service-KI-Lösungen ermöglichen möchten",
+      "Prozessverantwortliche, die repetitive Anfragen (HR, IT-Support, FAQ) durch KI-Agenten entlasten wollen",
+      "Innovationsmanager, die KI-Automatisierung als strategisches Differenzierungsmerkmal positionieren"
+    ],
+    learningOutcomes: [
+      "Sie erstellen funktionsfähige Custom Agents mit Microsoft Copilot Studio – von der Konzeption bis zum Deployment",
+      "Sie verbinden KI-Agenten mit Ihren Unternehmensdaten: SharePoint, Dataverse, externe APIs",
+      "Sie implementieren Guardrails und Testing-Routinen, damit Ihre Agenten zuverlässig und sicher antworten",
+      "Sie beherrschen Workflow-Automatisierung mit Power Automate für komplexe Geschäftsprozesse"
+    ],
+    businessImpact: [
+      "First-Level-Support wird um 40-60% entlastet durch KI-Agenten, die Standardfragen selbstständig beantworten",
+      "Mitarbeiter finden Informationen in Sekunden statt Minuten – der Agent durchsucht alle internen Quellen",
+      "Wiederkehrende Prozesse (Urlaubsanträge, Onboarding-Fragen, IT-Tickets) laufen automatisiert ab",
+      "Die Time-to-Value für neue Automatisierungsprojekte sinkt von Monaten auf Wochen"
+    ],
     metaTitle: "Copilot Studio Training – KI-Agenten entwickeln | copilotenschule.de",
     metaDescription: "Entwickeln Sie KI-Agenten mit Microsoft Copilot Studio: Custom Agents, Teams-Integration, Power Automate. Praxis-Training für Unternehmen.",
     keywords: ["Copilot Studio Training", "KI-Agenten entwickeln", "Microsoft Copilot Agents", "Copilot Automatisierung", "Custom Copilot"],
@@ -322,6 +463,25 @@ export const trainings: Training[] = [
       "Use Cases: HR-Bot, IT-Helpdesk, Onboarding-Assistent, FAQ-Bot, Wissensmanagement-Agent"
     ],
     tiers: ["paid"],
+    questionLead: "Kann ich in einem Tag einen funktionierenden Chatbot für mein Unternehmen bauen – auch ohne Programmierkenntnisse?",
+    targetAudience: [
+      "Fachabteilungen (HR, IT-Support, Kundenservice), die einen FAQ-Bot für wiederkehrende Fragen brauchen",
+      "Innovationsteams, die schnell einen Proof of Concept für KI-gestützte Prozesse erstellen wollen",
+      "Wissensmanager, die interne Dokumentation per Chatbot durchsuchbar machen möchten",
+      "Entscheider, die das Potenzial von KI-Agenten am konkreten Beispiel erleben wollen, bevor sie investieren"
+    ],
+    learningOutcomes: [
+      "Sie haben am Ende des Tages einen funktionierenden Chatbot, der in Microsoft Teams deployed ist",
+      "Sie verstehen den gesamten Entwicklungszyklus: Konzeption, Aufbau, Datenanbindung, Test, Deployment",
+      "Sie können Ihren Bot selbstständig warten, erweitern und die Antwortqualität kontinuierlich verbessern",
+      "Sie wissen, welche Use Cases sich für Chatbots eignen und wo die Grenzen liegen"
+    ],
+    businessImpact: [
+      "Sofortiger Proof of Concept: Am Abend läuft ein funktionierender Bot – kein theoretisches Konzeptpapier",
+      "Wiederkehrende Fragen (HR-Policies, IT-Anleitungen, Onboarding) werden automatisiert beantwortet",
+      "Das Team entwickelt Ownership und kann den Bot eigenständig weiterentwickeln – keine Abhängigkeit von externen Dienstleistern",
+      "Interne Dokumentation wird erstmals wirklich durchsuchbar und nutzbar für alle Mitarbeiter"
+    ],
     metaTitle: "Chatbot-Workshop – KI-Assistenten entwickeln mit Copilot Studio | copilotenschule.de",
     metaDescription: "Hands-on Chatbot-Workshop: Entwickeln Sie Ihren ersten Unternehmens-Chatbot mit Microsoft Copilot Studio. Am Ende: fertiger Bot in Teams.",
     keywords: ["Chatbot Workshop", "Copilot Studio Chatbot", "KI-Assistent entwickeln", "Unternehmens-Chatbot", "Teams Bot erstellen"],
@@ -360,6 +520,25 @@ export const trainings: Training[] = [
       "Praktische Projekte: Von der Idee zur fertigen App – Teilnehmer entwickeln eigene Anwendungen"
     ],
     tiers: ["paid"],
+    questionLead: "Wie können Fachabteilungen eigene Apps und Automations bauen – ohne auf die IT warten zu müssen?",
+    targetAudience: [
+      "Citizen Developer in Fachabteilungen, die eigene digitale Lösungen für ihre Prozesse bauen wollen",
+      "IT-Abteilungen, die Citizen Development ermöglichen möchten, ohne die Governance zu verlieren",
+      "Prozessverantwortliche, die manuelle Genehmigungsprozesse und Excel-Workarounds automatisieren wollen",
+      "Digitalisierungsbeauftragte, die die Microsoft Power Platform als strategische Plattform evaluieren"
+    ],
+    learningOutcomes: [
+      "Sie erstellen funktionsfähige Business-Apps mit Power Apps – per Drag-and-Drop und natürlicher Sprache",
+      "Sie automatisieren Geschäftsprozesse mit Power Automate: Genehmigungen, Benachrichtigungen, Datensynchronisation",
+      "Sie nutzen Copilot als Entwicklungsassistenten für Formeln, Logik und Fehlersuche",
+      "Sie verstehen Governance-Best-Practices: Wann ist Citizen Development erwünscht, wann braucht es die IT?"
+    ],
+    businessImpact: [
+      "Fachabteilungen lösen eigene Digitalisierungsprobleme in Tagen statt Monaten – ohne IT-Backlog",
+      "Manuelle Prozesse (Genehmigungen, Reportings, Dateneingabe) werden automatisiert und fehlerresistent",
+      "Die IT-Abteilung wird entlastet, weil Standardanforderungen von den Fachbereichen selbst umgesetzt werden",
+      "Schatten-IT wird durch eine governierte Plattform ersetzt – mehr Innovation bei weniger Risiko"
+    ],
     metaTitle: "Low-Code Training – Power Platform mit Copilot | copilotenschule.de",
     metaDescription: "Low-Code Entwicklung mit Microsoft Power Platform und Copilot: Power Apps, Power Automate, Dataverse. Training für Citizen Developer.",
     keywords: ["Low-Code Training", "Power Platform Schulung", "Citizen Developer", "Power Apps Copilot", "Power Automate Training"],
@@ -398,6 +577,25 @@ export const trainings: Training[] = [
       "Nachweisführung: Schulungszertifikat und Dokumentation für Audits und Behörden"
     ],
     tiers: ["free", "paid"],
+    questionLead: "Welche KI-Schulung brauchen unsere Mitarbeiter, um den EU AI Act Artikel 4 zu erfüllen?",
+    targetAudience: [
+      "Compliance-Officer und Rechtsabteilungen, die die EU AI Act Anforderungen operativ umsetzen müssen",
+      "Geschäftsführer, die ihre gesetzliche Pflicht zur KI-Schulung nachweisbar erfüllen wollen",
+      "Personalentwickler, die eine Pflichtschulung für alle KI-nutzenden Mitarbeiter organisieren müssen",
+      "Datenschutzbeauftragte, die KI-Kompetenz in bestehende Schulungskonzepte integrieren wollen"
+    ],
+    learningOutcomes: [
+      "Sie verstehen den EU AI Act und können die relevanten Pflichten für Ihr Unternehmen identifizieren",
+      "Sie kennen die Risikoklassifizierung von KI-Systemen und wissen, wo Microsoft Copilot einzuordnen ist",
+      "Sie wenden die praktische Compliance-Checkliste im Arbeitsalltag an: Do's und Don'ts beim KI-Einsatz",
+      "Sie erhalten einen Schulungsnachweis, der bei Audits und Behördenanfragen als Kompetenzbeleg dient"
+    ],
+    businessImpact: [
+      "Rechtssicherheit: Die gesetzliche Schulungspflicht nach Artikel 4 EU AI Act ist nachweisbar erfüllt",
+      "Bei Audits und Behördenanfragen liegen zertifizierte Schulungsnachweise für jeden Mitarbeiter vor",
+      "Das Risiko von Bußgeldern durch unwissentliche Verstöße gegen KI-Regulierung wird minimiert",
+      "Mitarbeiter entwickeln ein gesundes Risikobewusstsein – weder KI-Angst noch blindes Vertrauen"
+    ],
     metaTitle: "EU AI Act Pflichtschulung – Artikel 4 KI-Kompetenz | copilotenschule.de",
     metaDescription: "EU AI Act Pflichtschulung nach Artikel 4: KI-Kompetenz, Risikobewusstsein, Compliance. Mit Schulungszertifikat für Audits.",
     keywords: ["EU AI Act Schulung", "Artikel 4 KI-Kompetenz", "KI Pflichtschulung", "AI Act Training", "KI Compliance Zertifikat"],
@@ -437,6 +635,25 @@ export const trainings: Training[] = [
       "Preise und Anerkennung: Beste Lösungen werden ausgezeichnet und können implementiert werden"
     ],
     tiers: ["free", "paid"],
+    questionLead: "Wie kann ich mein Team spielerisch an KI heranführen – mit einem Hackathon statt einer Schulung?",
+    targetAudience: [
+      "HR- und L&D-Verantwortliche, die Teambuilding und KI-Kompetenzaufbau verbinden wollen",
+      "Innovationsmanager, die kreative KI-Anwendungen aus den eigenen Fachabteilungen identifizieren möchten",
+      "Change Manager, die Begeisterung für die KI-Transformation erzeugen wollen statt Widerstand",
+      "Führungskräfte, die erleben wollen, was ihre Teams mit Copilot in kurzer Zeit entwickeln können"
+    ],
+    learningOutcomes: [
+      "Teams entwickeln kreative Copilot-Lösungen für echte Geschäftsprobleme – in wenigen Stunden",
+      "Teilnehmer beherrschen Rapid Prototyping mit KI: schnell ausprobieren, iterieren, Ergebnisse liefern",
+      "Jedes Team erstellt funktionierende Prompt-Templates und Workflows, die direkt nutzbar sind",
+      "Die besten Lösungen werden dokumentiert und können sofort im Arbeitsalltag eingesetzt werden"
+    ],
+    businessImpact: [
+      "Identifikation der wertvollsten KI-Use-Cases – direkt aus der Belegschaft, nicht aus der Theorie",
+      "Berührungsängste gegenüber KI sinken drastisch, wenn Mitarbeiter eigene Erfolge erleben",
+      "Teamdynamik und abteilungsübergreifende Zusammenarbeit werden durch das Wettbewerbsformat gestärkt",
+      "Konkrete, implementierbare Ergebnisse statt nur Wissensvermittlung – der ROI ist sofort sichtbar"
+    ],
     metaTitle: "Copilot Hackathon – Innovation ohne Code | copilotenschule.de",
     metaDescription: "Copilot Hackathon für Business-Anwender: Kreative KI-Lösungen entwickeln ohne Programmierkenntnisse. Team-Event mit Pitch und Preisen.",
     keywords: ["Copilot Hackathon", "KI Innovation Workshop", "Business Hackathon", "Copilot Team Event", "KI ohne Code"],
@@ -475,6 +692,25 @@ export const trainings: Training[] = [
       "Q&A Session: Ihre Fragen zu Copilot, KI-Strategie und Implementierung"
     ],
     tiers: ["free", "paid"],
+    questionLead: "Wer kann bei uns eine inspirierende KI-Keynote für Führungskräfte oder ein All-Hands-Meeting halten?",
+    targetAudience: [
+      "Vorstände und Geschäftsführer, die einen fundierten Überblick über KI-Chancen und -Risiken brauchen",
+      "Event-Organisatoren, die einen Keynote-Speaker für Kick-offs, Offsites oder All-Hands-Meetings suchen",
+      "Change-Verantwortliche, die den Startschuss für eine KI-Transformation setzen wollen",
+      "Betriebsräte und Mitarbeitervertretungen, die eine sachliche, ehrliche Einordnung von KI wünschen"
+    ],
+    learningOutcomes: [
+      "Teilnehmer verstehen, was Microsoft Copilot konkret kann – durch Live-Demos statt nur Folien",
+      "Führungskräfte können KI-Chancen und -Risiken fundiert einordnen und strategisch bewerten",
+      "Mitarbeiter erleben KI als Unterstützung statt Bedrohung – die Keynote baut Ängste ab",
+      "Das Publikum versteht, was eine erfolgreiche KI-Einführung von einer gescheiterten unterscheidet"
+    ],
+    businessImpact: [
+      "Der Kick-off für die KI-Transformation wird zum positiven Schlüsselmoment – nicht zum Pflichttermin",
+      "Führungskräfte treffen fundierte Entscheidungen zu KI-Investitionen, weil sie das Potenzial verstehen",
+      "Mitarbeiter-Akzeptanz für die anstehende Copilot-Einführung steigt messbar nach der Keynote",
+      "Interne Kommunikation bekommt Bildmaterial und Zitate für die weitere KI-Kampagne"
+    ],
     metaTitle: "Copilot Keynote – KI-Vortrag für Führungskräfte | copilotenschule.de",
     metaDescription: "Inspirierende Keynote zu Microsoft Copilot: Vision, Live-Demos, Praxisbeispiele. Für All-Hands, Kick-offs und Führungskräfte-Events.",
     keywords: ["Copilot Keynote", "KI Vortrag", "Copilot Führungskräfte", "KI Transformation", "Microsoft Copilot Speaker"],
@@ -515,6 +751,25 @@ export const trainings: Training[] = [
       "Zwischen den Sessions: Praxisaufgaben, Peer-Learning, Support via Teams-Kanal"
     ],
     tiers: ["paid"],
+    questionLead: "Gibt es ein Copilot-Training, das über mehrere Wochen geht – für nachhaltigen Kompetenzaufbau statt Tagesschulung?",
+    targetAudience: [
+      "Unternehmen, die nachhaltige KI-Kompetenz aufbauen wollen statt einmaliger Workshop-Events",
+      "L&D-Verantwortliche, die eine begleitete Lernreise in bestehende Weiterbildungsprogramme integrieren möchten",
+      "Teams, die Copilot schrittweise in den Arbeitsalltag integrieren und dabei begleitet werden wollen",
+      "Führungskräfte, die messbare Verhaltensänderung statt nur Wissensvermittlung erreichen möchten"
+    ],
+    learningOutcomes: [
+      "Sie beherrschen nach 8 Wochen alle relevanten Copilot-Funktionen in Word, Excel, PowerPoint, Outlook und Teams",
+      "Sie haben jede Woche einen konkreten Use Case in Ihrem echten Arbeitsalltag umgesetzt und verfestigt",
+      "Sie verfügen über eine persönliche Prompt-Bibliothek und einen individuellen End-to-End-Workflow",
+      "Sie können Kollegen eigenständig unterstützen, weil Sie die häufigsten Probleme bereits selbst gelöst haben"
+    ],
+    businessImpact: [
+      "Nachhaltigkeit: 87% der Teilnehmer nutzen Copilot auch 3 Monate nach der Lernreise aktiv – vs. 30% bei Tagesschulungen",
+      "Jede Woche entsteht ein direkt anwendbarer Workflow – der Produktivitätsgewinn beginnt ab Woche 1",
+      "Der Betreuungsaufwand für IT und Helpdesk sinkt, weil Teilnehmer lernen, Probleme selbst zu lösen",
+      "Die Lernreise ist mit 2,5 Stunden pro Woche minimal invasiv – kein ganzer Arbeitstag geht verloren"
+    ],
     metaTitle: "Copilot Lernreise – 8 Wochen Kompetenzaufbau | copilotenschule.de",
     metaDescription: "Nachhaltige Copilot-Lernreise: 8 Wochen, 8 Sessions, 8 Use Cases. Schrittweiser Kompetenzaufbau für Teams mit Praxisaufgaben.",
     keywords: ["Copilot Lernreise", "Copilot 8 Wochen", "nachhaltiges KI-Training", "Copilot Blended Learning", "Copilot Kompetenzaufbau"],
@@ -556,6 +811,25 @@ export const trainings: Training[] = [
       "Flexible Gestaltung: Anpassbar an Ihre Location, Teilnehmerzahl und Corporate Identity"
     ],
     tiers: ["free", "paid"],
+    questionLead: "Wie machen wir den Copilot-Launch zu einem echten Highlight für unsere Mitarbeiter – mit Event statt Schulung?",
+    targetAudience: [
+      "Interne Kommunikation und Change Management, die den Copilot-Start als positives Erlebnis inszenieren wollen",
+      "HR und Personalentwicklung, die eine niedrigschwellige erste KI-Erfahrung für alle Mitarbeiter suchen",
+      "IT-Projektleiter, die den Copilot-Rollout mit einem sichtbaren Kick-off begleiten möchten",
+      "Führungskräfte, die Begeisterung statt Widerstand bei der KI-Einführung erzeugen wollen"
+    ],
+    learningOutcomes: [
+      "Mitarbeiter erleben Copilot zum ersten Mal unter professioneller Anleitung – mit sofortigen Erfolgserlebnissen",
+      "Berührungsängste werden durch spielerische Formate (Challenges, Quizze, Hands-on) abgebaut",
+      "Jeder Teilnehmer nimmt konkrete Quick Guides und Cheat Sheets mit, die den Einstieg erleichtern",
+      "Individuelle Fragen zu persönlichen Use Cases werden vor Ort von Experten beantwortet"
+    ],
+    businessImpact: [
+      "Der Copilot-Launch wird zum positiven Gesprächsthema im Unternehmen – statt zur stillen Einführung per E-Mail",
+      "Die initiale Nutzungsrate nach dem Launch ist signifikant höher als bei Rollouts ohne Event-Begleitung",
+      "Früh-Adopter werden identifiziert und können als Champions für das weitere Programm gewonnen werden",
+      "Professionelle Foto-Dokumentation liefert Material für die interne KI-Kommunikation der nächsten Monate"
+    ],
     metaTitle: "Copilot Launch Event – Kick-off für Ihre KI-Einführung | copilotenschule.de",
     metaDescription: "Copilot-Launch als Highlight: Eventtag mit Live-Demos, Challenges, Gamification. Perfekter Kick-off für die Copilot-Einführung.",
     keywords: ["Copilot Launch Event", "KI Kick-off", "Copilot Einführung Event", "Copilot Gamification", "KI Eventtag"],
@@ -594,6 +868,25 @@ export const trainings: Training[] = [
       "Flexible Durchführung: Vor Ort, Remote oder Hybrid – passend zu Ihren Rahmenbedingungen"
     ],
     tiers: ["free", "paid"],
+    questionLead: "Gibt es Copilot-Schulungen, die speziell auf unsere Branche und unsere Unternehmensprozesse zugeschnitten sind?",
+    targetAudience: [
+      "Unternehmen mit branchenspezifischen Anforderungen, die kein Standardtraining von der Stange wollen",
+      "L&D-Verantwortliche, die ein Schulungskonzept brauchen, das sich in bestehende Programme integriert",
+      "Abteilungsleiter, die rollenspezifische Copilot-Trainings für Sales, HR, Finance oder Marketing suchen",
+      "Konzerne und Großunternehmen, die Copilot in mehreren Wellen an verschiedene Zielgruppen ausrollen"
+    ],
+    learningOutcomes: [
+      "Teilnehmer arbeiten mit ihren eigenen Unternehmensdaten und -dokumenten – kein fiktives Übungsmaterial",
+      "Jede Abteilung bekommt Use Cases, die zu ihren tatsächlichen Aufgaben und Prozessen passen",
+      "Teams entwickeln eine abteilungsspezifische Prompt-Bibliothek, die sofort im Alltag einsetzbar ist",
+      "Follow-up Sessions und Support sichern den nachhaltigen Transfer in die Praxis"
+    ],
+    businessImpact: [
+      "Der ROI des Trainings ist höher als bei Standardkursen, weil jede Minute auf reale Geschäftsprozesse fokussiert ist",
+      "Mitarbeiter setzen das Gelernte sofort um, weil sie bereits während des Trainings mit echten Aufgaben arbeiten",
+      "Die Trainings skalieren über Abteilungen und Standorte hinweg, weil sie modular aufgebaut sind",
+      "Branchenspezifische Compliance-Anforderungen werden direkt im Training berücksichtigt"
+    ],
     metaTitle: "Individuelle Copilot-Schulung – Maßgeschneidert für Ihr Unternehmen | copilotenschule.de",
     metaDescription: "Maßgeschneiderte Copilot-Trainings für Ihre Branche und Abteilung. Mit echten Unternehmensdaten, individuellen Use Cases, flexibler Durchführung.",
     keywords: ["individuelle Copilot Schulung", "maßgeschneidertes KI-Training", "Copilot Inhouse", "branchenspezifisches Copilot Training", "Copilot nach Maß"],
