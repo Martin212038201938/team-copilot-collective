@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ExternalLink } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
+import { Link } from "react-router-dom";
 
 const SLUG = "copilot-sicherheit-datenschutz";
 const PAGE_TITLE = "Microsoft Copilot und Datenschutz: Kann die KI jetzt alles sehen?";
@@ -154,8 +155,8 @@ const CopilotSicherheit = () => {
           </p>
           <p className="leading-relaxed">
             Dieser Artikel beantwortet die häufigsten Datenschutz-Fragen rund um Microsoft 365 Copilot.
-            Vieles davon ist gut gelöst – besser, als die meisten erwarten. Aber es gibt echte Risiken,
-            wenn Organisationen ihre Hausaufgaben nicht machen. Beides gehört auf den Tisch.
+            Vieles davon ist gut gelöst – besser, als die meisten erwarten. Ein echtes Risiko sind <Link to="/wissen/ki-halluzinationen-vermeiden" className="text-primary hover:underline">KI-Halluzinationen</Link> – wenn Copilot
+            plausibel klingende, aber falsche Informationen liefert. Wenn Organisationen ihre Hausaufgaben nicht machen, entstehen Risiken. Beides gehört auf den Tisch.
           </p>
         </div>
 
@@ -406,6 +407,37 @@ const CopilotSicherheit = () => {
                 </CardContent>
               </Card>
             ))}
+          </div>
+        </section>
+
+        {/* Weiterführende Artikel */}
+        <section className="mb-8">
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-sky-500 mb-6">Weiterführende Artikel</h2>
+          <div className="grid md:grid-cols-2 gap-4 mb-4">
+            <Link to="/wissen/microsoft-copilot-lizenzen" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Microsoft Copilot Lizenzen</p>
+                  <p className="text-sm text-gray-600">Lizenzierungsmodelle und sichere Deployment-Optionen</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/wissen/ki-halluzinationen-vermeiden" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">KI-Halluzinationen vermeiden</p>
+                  <p className="text-sm text-gray-600">Erkennen und minimieren von Fehlinformationen</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/wissen/copilot-unternehmensweit-einfuehren" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Copilot unternehmensw. einführen</p>
+                  <p className="text-sm text-gray-600">Sichere Rollout-Strategien mit Governance</p>
+                </CardContent>
+              </Card>
+            </Link>
           </div>
         </section>
 

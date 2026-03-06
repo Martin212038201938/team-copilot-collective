@@ -2,6 +2,7 @@ import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Check, Zap, Bot, Link as LinkIcon, Shield, ExternalLink } from "lucide-react";
+import { Link } from "react-router-dom";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 
@@ -239,6 +240,10 @@ const CopilotStudio = () => {
         <section id="custom-copilots" className="mt-12">
           <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-purple-500">Custom Copilots erstellen</h2>
 
+          <p className="mb-6">
+            Mit Copilot Studio können Sie eigene <Link to="/wissen/ki-agenten" className="text-primary hover:underline">KI-Agenten</Link> erstellen, die speziell auf Ihre Unternehmensbedürfnisse zugeschnitten sind.
+          </p>
+
           <Card className="my-6 border-l-4 border-l-purple-500">
             <CardHeader>
               <CardTitle>Schritt-für-Schritt: Ihren ersten Copilot erstellen</CardTitle>
@@ -458,6 +463,37 @@ const CopilotStudio = () => {
                 </ul>
               </CardContent>
             </Card>
+          </div>
+        </section>
+
+        {/* Weiterführende Artikel */}
+        <section className="mb-8">
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-sky-500 mb-6">Weiterführende Artikel</h2>
+          <div className="grid md:grid-cols-2 gap-4 mb-4">
+            <Link to="/wissen/ki-agenten" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">KI-Agenten</p>
+                  <p className="text-sm text-gray-600">Autonome Assistenten für Automatisierung und komplexe Workflows</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/wissen/copilot-agent-digitales-gedaechtnis" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Copilot Agent: Digitales Gedächtnis</p>
+                  <p className="text-sm text-gray-600">Wie Agenten auf Ihre Unternehmensdaten zugreifen und arbeiten</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/wissen/copilot-digitales-gedaechtnis" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Digitales Gedächtnis mit Copilot</p>
+                  <p className="text-sm text-gray-600">Meeting-Transkripte, E-Mails und Dokumente als durchsuchbare Basis</p>
+                </CardContent>
+              </Card>
+            </Link>
           </div>
         </section>
 

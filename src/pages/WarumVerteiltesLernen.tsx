@@ -1,6 +1,7 @@
 import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Link } from "react-router-dom";
 import {
   ExternalLink, Linkedin, Mail, Brain
 } from "lucide-react";
@@ -201,7 +202,7 @@ const WarumVerteiltesLernen = () => {
 
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
-              Eine Copilot-Lernreise funktioniert nach genau diesem Prinzip. Statt alle Inhalte an einem Tag zu komprimieren, verteile ich sie auf vier Einheiten à zwei Stunden über vier Wochen. Das klingt zunächst nach demselben Zeitaufwand – ist es auch. Aber der Effekt ist fundamental anders.
+              Eine <Link to="/wissen/copilot-lernreise-vs-tagesschulung" className="text-primary hover:underline">Copilot-Lernreise</Link> funktioniert nach genau diesem Prinzip. Statt alle Inhalte an einem Tag zu komprimieren, verteile ich sie auf vier Einheiten à zwei Stunden über vier Wochen. Das klingt zunächst nach demselben Zeitaufwand – ist es auch. Aber der Effekt ist fundamental anders.
             </p>
             <p>
               Zwischen den Sessions passiert etwas Entscheidendes: Die Teilnehmenden gehen zurück an ihren Arbeitsplatz und setzen das Gelernte in echten Aufgaben ein. Sie testen Copilot in Outlook mit ihren tatsächlichen E-Mails. Sie probieren Prompts in Word an Dokumenten, die sie sowieso schreiben müssen. Dieses unmittelbare Ausprobieren ist der eigentliche Transfermoment – und er fehlt bei einer Tagesschulung komplett, weil dort ein Inhalt den nächsten jagt.
@@ -387,6 +388,37 @@ const WarumVerteiltesLernen = () => {
           <blockquote className="my-8 border-l-4 border-primary bg-primary/5 p-6 rounded-r-lg italic text-lg">
             Verteiltes Lernen über mehrere Wochen führt laut über 300 Studien zu zwei- bis dreifach höherer Wissensretention als kompakte Einmal-Schulungen – bei identischem Zeitaufwand.
           </blockquote>
+        </section>
+
+        {/* Weiterführende Artikel */}
+        <section className="mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-sky-500 mb-6">Weiterführende Artikel</h2>
+          <div className="grid md:grid-cols-3 gap-4">
+            <Link to="/wissen/copilot-lernreise-vs-tagesschulung" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Copilot Lernreise vs. Tagesschulung</p>
+                  <p className="text-sm text-gray-600">Der praktische Vergleich zwischen beiden Trainingsformaten</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/wissen/copilot-training-schulung" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Copilot-Schulung richtig gestalten</p>
+                  <p className="text-sm text-gray-600">Trainingsdesign und didaktische Grundprinzipien</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/wissen/prompt-bibliotheken-vs-training" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Prompt-Bibliotheken vs. Training</p>
+                  <p className="text-sm text-gray-600">Wann Dokumentation reicht und wann echtes Training nötig ist</p>
+                </CardContent>
+              </Card>
+            </Link>
+          </div>
         </section>
 
         {/* FAQ */}

@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
+import { Link } from "react-router-dom";
 
 const SLUG = "copilot-training-schulung";
 const PAGE_TITLE = "Microsoft Copilot Training & Schulung";
@@ -472,8 +473,8 @@ const CopilotTraining = () => {
           </h2>
 
           <p className="mb-6">
-            Erfolgreiches Copilot-Training folgt einem erprobten 4-Phasen-Modell, das Wissen nachhaltig verankert
-            und kontinuierliche Verbesserung ermöglicht.
+            Erfolgreiches Copilot-Training folgt einem erprobten 4-Phasen-Modell, das über 8-12 Wochen verteilt ist. Dies wird auch als <Link to="/wissen/copilot-lernreise-vs-tagesschulung" className="text-primary hover:underline">"Lernreise"</Link> bezeichnet und verankert Wissen nachhaltig
+            mit kontinuierlicher Verbesserung.
           </p>
 
           <div className="space-y-6 my-6">
@@ -1219,6 +1220,37 @@ const CopilotTraining = () => {
               </div>
             </CardContent>
           </Card>
+        </section>
+
+        {/* Weiterführende Artikel */}
+        <section className="mb-8">
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-sky-500 mb-6">Weiterführende Artikel</h2>
+          <div className="grid md:grid-cols-2 gap-4 mb-4">
+            <Link to="/wissen/copilot-lernreise-vs-tagesschulung" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Lernreise vs. Tagesschulung</p>
+                  <p className="text-sm text-gray-600">Vergleich von Trainings-Formaten für nachhaltiges Lernen</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/wissen/warum-verteiltes-lernen-bei-copilot-trainings-funktioniert" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Verteiltes Lernen bei Copilot-Trainings</p>
+                  <p className="text-sm text-gray-600">Warum 8-12 Wochen effektiver sind als intensive Tage</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/wissen/prompt-bibliotheken-vs-training" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Prompt-Bibliotheken vs. Training</p>
+                  <p className="text-sm text-gray-600">Warum Training wichtiger ist als vorgefertigte Prompts</p>
+                </CardContent>
+              </Card>
+            </Link>
+          </div>
         </section>
 
         {/* Sektion 10: FAQ */}

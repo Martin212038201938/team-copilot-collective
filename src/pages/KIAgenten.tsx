@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Zap, Bot, Network, Workflow, Shield, ExternalLink } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
+import { Link } from "react-router-dom";
 
 const SLUG = "ki-agenten";
 const PAGE_TITLE = "KI-Agenten";
@@ -334,7 +335,7 @@ const KIAgenten = () => {
         </section>
 
         <section id="copilot-studio" className="mt-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-emerald-500">Agenten mit Copilot Studio bauen</h2>
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-emerald-500">Agenten mit <Link to="/wissen/copilot-studio" className="text-primary hover:underline">Copilot Studio</Link> bauen</h2>
 
           <Card className="my-6">
             <CardHeader>
@@ -536,6 +537,37 @@ const KIAgenten = () => {
               </div>
             </CardContent>
           </Card>
+        </section>
+
+        {/* Weiterführende Artikel */}
+        <section className="mb-8">
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-sky-500 mb-6">Weiterführende Artikel</h2>
+          <div className="grid md:grid-cols-2 gap-4 mb-4">
+            <Link to="/wissen/copilot-studio" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Copilot Studio</p>
+                  <p className="text-sm text-gray-600">Low-Code Plattform zur Entwicklung eigener KI-Agenten</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/wissen/copilot-agent-digitales-gedaechtnis" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Copilot Agent Digitales Gedächtnis</p>
+                  <p className="text-sm text-gray-600">Memory und Kontext für intelligente Agenten</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/wissen/ki-realitaet-beratungsfirmen-2026" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">KI-Realität in Beratungsfirmen 2026</p>
+                  <p className="text-sm text-gray-600">Praktische Implementierung von KI-Agenten im Geschäft</p>
+                </CardContent>
+              </Card>
+            </Link>
+          </div>
         </section>
 
         <section id="faq" className="mt-12 mb-12">

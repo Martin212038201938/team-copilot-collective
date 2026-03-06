@@ -5,6 +5,7 @@ import { Check, X, Info, Linkedin, Mail, ExternalLink, Zap } from "lucide-react"
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 import { TrustBadge } from "@/components/TrustBadge";
+import { Link } from "react-router-dom";
 
 const SLUG = "microsoft-copilot-lizenzen";
 const PAGE_TITLE = "Microsoft Copilot Lizenzen";
@@ -174,6 +175,7 @@ const CopilotLicenses = () => {
           <p>
             Microsoft bietet verschiedene Copilot-Lizenzen für unterschiedliche Anwendungsfälle an.
             Dieser Leitfaden hilft Ihnen zu verstehen, welche Lizenz Sie für Ihre spezifischen Anforderungen benötigen.
+            Mit unserem <Link to="/wissen/copilot-roi-berechnen" className="text-primary hover:underline">ROI-Rechner</Link> können Sie konkrete Einsparungen berechnen.
           </p>
           <p>
             Die drei Hauptprodukte sind:
@@ -560,6 +562,37 @@ const CopilotLicenses = () => {
                 </p>
               </CardContent>
             </Card>
+          </div>
+        </section>
+
+        {/* Weiterführende Artikel */}
+        <section className="mb-8">
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-sky-500 mb-6">Weiterführende Artikel</h2>
+          <div className="grid md:grid-cols-2 gap-4 mb-4">
+            <Link to="/wissen/copilot-roi-berechnen" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Copilot ROI berechnen</p>
+                  <p className="text-sm text-gray-600">Business Case mit Formeln und Excel-Vorlage</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/wissen/copilot-sicherheit-datenschutz" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Sicherheit & Datenschutz</p>
+                  <p className="text-sm text-gray-600">Ehrliche Antworten zu DSGVO und Datenschutzfragen</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/wissen/copilot-unternehmensweit-einfuehren" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Copilot unternehmensw. einführen</p>
+                  <p className="text-sm text-gray-600">Roadmap und Best Practices für erfolgreiche Rollouts</p>
+                </CardContent>
+              </Card>
+            </Link>
           </div>
         </section>
 

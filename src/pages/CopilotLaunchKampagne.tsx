@@ -10,6 +10,7 @@ import {
   Music, Trophy, MessageCircle, Clock, ArrowRight
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Link } from "react-router-dom";
 
 const SLUG = "copilot-launch-kampagne";
 const PAGE_TITLE = "Copilot Launch-Kampagne";
@@ -553,7 +554,7 @@ const CopilotLaunchKampagne = () => {
 
           <p className="my-6">
             Bei der Copilotenschule haben wir alle Bausteine, die Sie für einen erfolgreichen Launch brauchen.
-            Hier ein Überblick – natürlich modular kombinierbar nach Ihren Bedürfnissen:
+            Hier ein Überblick – natürlich modular kombinierbar nach Ihren Bedürfnissen. Erfahren Sie auch, wie Sie <Link to="/wissen/copilot-unternehmensweit-einfuehren" className="text-primary hover:underline">Copilot unternehmensweite einführen</Link> können.
           </p>
 
           <div className="grid md:grid-cols-2 gap-6 my-8">
@@ -692,6 +693,37 @@ const CopilotLaunchKampagne = () => {
               </div>
             </CardContent>
           </Card>
+        </section>
+
+        {/* Weiterführende Artikel */}
+        <section className="mb-8">
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-sky-500 mb-6">Weiterführende Artikel</h2>
+          <div className="grid md:grid-cols-2 gap-4 mb-4">
+            <Link to="/wissen/copilot-unternehmensweit-einfuehren" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Copilot Unternehmensweite Einführung</p>
+                  <p className="text-sm text-gray-600">Sicherheit, Governance und Strategie für zentrale Rollouts</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/wissen/copilot-adoption-2026-zahlen" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Copilot Adoption 2026</p>
+                  <p className="text-sm text-gray-600">Aktuelle Zahlen und Wachstumstends aus 2026</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/wissen/copilot-fehler-vermeiden" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Typische Fehler vermeiden</p>
+                  <p className="text-sm text-gray-600">Die 10 größten Fehler bei Launch und Rollout</p>
+                </CardContent>
+              </Card>
+            </Link>
+          </div>
         </section>
 
         {/* FAQ */}

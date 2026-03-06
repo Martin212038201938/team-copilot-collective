@@ -1,6 +1,7 @@
 import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Link } from "react-router-dom";
 import { ExternalLink } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
@@ -202,8 +203,8 @@ const CopilotAgentDigitalesGedaechtnis = () => {
               von hundert Chats – sondern als strukturiertes Dokument in Ihrem digitalen Gedächtnis.
             </p>
             <p>
-              Falls Sie den grundlegenden Ansatz, Copilot als digitales Gedächtnis zu nutzen, noch nicht
-              kennen, empfehle ich Ihnen meinen Artikel <a href="/wissen/copilot-digitales-gedaechtnis" className="text-primary hover:underline">Digitales Gedächtnis mit Microsoft Copilot</a>.
+              Falls Sie den grundlegenden Ansatz, Copilot als <Link to="/wissen/copilot-digitales-gedaechtnis" className="text-primary hover:underline">digitales Gedächtnis</Link> zu nutzen, noch nicht
+              kennen, empfehle ich Ihnen meinen entsprechenden Artikel.
               Dort beschreibe ich das Gesamtkonzept. In diesem Artikel hier geht es um die praktische
               Umsetzung: Ihren eigenen Agenten bauen.
             </p>
@@ -829,6 +830,37 @@ Ablage:
               Meeting. Und dann machen Sie es zur Gewohnheit. Drei Wochen reichen. Danach werden Sie sich
               fragen, wie Sie jemals ohne gearbeitet haben.
             </p>
+          </div>
+        </section>
+
+        {/* Weiterführende Artikel */}
+        <section className="mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-sky-500 mb-6">Weiterführende Artikel</h2>
+          <div className="grid md:grid-cols-3 gap-4">
+            <Link to="/wissen/copilot-digitales-gedaechtnis" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Digitales Gedächtnis mit Copilot</p>
+                  <p className="text-sm text-gray-600">Grundkonzepte und Strategien für strukturierte Wissensverwaltung</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/wissen/copilot-studio" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Copilot Studio</p>
+                  <p className="text-sm text-gray-600">Erweiterte Anpassung und benutzerdefinierte Copilots</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/wissen/ki-agenten" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">KI-Agenten</p>
+                  <p className="text-sm text-gray-600">Intelligente Automatisierung und Agent-basierte Workflows</p>
+                </CardContent>
+              </Card>
+            </Link>
           </div>
         </section>
 

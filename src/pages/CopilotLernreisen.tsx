@@ -1,6 +1,7 @@
 import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Link } from "react-router-dom";
 import {
   Zap, AlertTriangle, Users, Target, TrendingUp,
   ExternalLink, Linkedin, Mail, CheckCircle2, XCircle,
@@ -197,7 +198,7 @@ const CopilotLernreisen = () => {
           </p>
 
           <blockquote className="my-6 border-l-4 border-primary bg-primary/5 p-6 rounded-r-lg italic text-lg">
-            Die Erfahrung zeigt: Vier Sessions à zwei Stunden mit je einer Woche Pause dazwischen schlagen einen einzigen Acht-Stunden-Tag – bei identischem Gesamtumfang, aber fundamental besserem Ergebnis.
+            Die Erfahrung zeigt: Vier Sessions à zwei Stunden mit je einer Woche Pause dazwischen schlagen einen einzigen Acht-Stunden-Tag – bei identischem Gesamtumfang, aber fundamental besserem Ergebnis. Mehr dazu im Artikel <Link to="/wissen/warum-verteiltes-lernen-bei-copilot-trainings-funktioniert" className="text-primary hover:underline font-semibold">Warum verteiltes Lernen funktioniert</Link>.
           </blockquote>
         </section>
 
@@ -741,6 +742,37 @@ const CopilotLernreisen = () => {
               </div>
             </CardContent>
           </Card>
+        </section>
+
+        {/* Weiterführende Artikel */}
+        <section className="mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-sky-500 mb-6">Weiterführende Artikel</h2>
+          <div className="grid md:grid-cols-3 gap-4">
+            <Link to="/wissen/warum-verteiltes-lernen-bei-copilot-trainings-funktioniert" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Warum verteiltes Lernen funktioniert</p>
+                  <p className="text-sm text-gray-600">Die Wissenschaft hinter Spaced Learning und evidenzbasiertem Trainingsdesign</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/wissen/copilot-training-schulung" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Copilot-Schulung richtig gestalten</p>
+                  <p className="text-sm text-gray-600">Trainingsformate, Didaktik und praktische Umsetzung</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/wissen/copilot-fehler-vermeiden" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Häufige Fehler vermeiden</p>
+                  <p className="text-sm text-gray-600">Typische Fallstricke bei Copilot-Trainings und deren Lösungen</p>
+                </CardContent>
+              </Card>
+            </Link>
+          </div>
         </section>
 
         {/* FAQ */}

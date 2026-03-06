@@ -5,6 +5,7 @@ import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 import { Zap, FileText, Table2, Presentation, Mail, Users, Lightbulb, AlertTriangle, CheckCircle2, ExternalLink, Linkedin, Twitter } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { TrustBadge } from "@/components/TrustBadge";
+import { Link } from "react-router-dom";
 
 const SLUG = "copilot-tipps-tricks-produktivitaet";
 const PAGE_TITLE = "22 Microsoft Copilot Tipps & Tricks";
@@ -128,7 +129,7 @@ const CopilotTippsTricks = () => {
               <strong>Die drei wichtigsten Copilot-Prinzipien:</strong> 1) <strong>Kontext geben</strong> – je mehr Hintergrund, desto besser das Ergebnis.
               2) <strong>Spezifisch sein</strong> – "Erstelle einen 2-seitigen Report für das Management" statt "Schreib was".
               3) <strong>Iterieren</strong> – verfeinern Sie das erste Ergebnis mit Folgefragen.
-              Diese 22 Tipps zeigen Ihnen, wie Sie das in Word, Excel, PowerPoint, Outlook und Teams konkret umsetzen.
+              Diese 22 Tipps zeigen Ihnen, wie Sie das in Word, Excel, PowerPoint, Outlook und Teams konkret umsetzen. Vertiefen Sie Ihr Wissen mit <Link to="/wissen/prompt-engineering" className="text-primary hover:underline">Prompt Engineering</Link>.
             </p>
           </CardContent>
         </Card>
@@ -637,6 +638,37 @@ const CopilotTippsTricks = () => {
                 </div>
               </CardContent>
             </Card>
+          </div>
+        </section>
+
+        {/* Weiterführende Artikel */}
+        <section className="mb-8">
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-sky-500 mb-6">Weiterführende Artikel</h2>
+          <div className="grid md:grid-cols-2 gap-4 mb-4">
+            <Link to="/wissen/copilot-fuer-excel" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Copilot für Excel</p>
+                  <p className="text-sm text-gray-600">Datenanalyse und intelligente Tabellenkalkulation</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/wissen/copilot-fuer-word" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Copilot für Word</p>
+                  <p className="text-sm text-gray-600">Dokumentenerstellung und Textverbesserung</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/wissen/prompt-engineering" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Prompt Engineering</p>
+                  <p className="text-sm text-gray-600">Das CRAFT-Framework für bessere KI-Prompts</p>
+                </CardContent>
+              </Card>
+            </Link>
           </div>
         </section>
 

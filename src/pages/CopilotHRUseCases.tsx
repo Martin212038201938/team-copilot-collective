@@ -1,6 +1,7 @@
 import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Link } from "react-router-dom";
 import { ExternalLink, Users, Briefcase, Target } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
@@ -167,7 +168,7 @@ const CopilotHRUseCases = () => {
             die Zeit dafür fehlt. Wer den halben Tag Zeugnisse formuliert, Stellenausschreibungen überarbeitet,
             Absagemails individualisiert und Betriebsvereinbarungen aufsetzt, hat schlicht keine Kapazität mehr
             für die Arbeit, die eigentlich den Unterschied macht: echten Kontakt mit Menschen, strategische
-            Personalentwicklung, Organisationsgestaltung.
+            Personalentwicklung, Organisationsgestaltung. Das gleiche Problem beobachte ich im <Link to="/wissen/copilot-vertrieb-use-cases" className="text-primary hover:underline">Vertrieb</Link>.
           </p>
           <p className="leading-relaxed">
             Copilot verschiebt diese Gleichung. Nicht indem er HR-Arbeit ersetzt, sondern indem er die
@@ -532,6 +533,37 @@ const CopilotHRUseCases = () => {
               die Use Cases, die am meisten schmerzen – und die Bereitschaft, die eigenen Prozesse soweit
               zu digitalisieren, dass Copilot etwas zu arbeiten hat.
             </p>
+          </div>
+        </section>
+
+        {/* Weiterführende Artikel */}
+        <section className="mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-sky-500 mb-6">Weiterführende Artikel</h2>
+          <div className="grid md:grid-cols-3 gap-4">
+            <Link to="/wissen/copilot-vertrieb-use-cases" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Copilot im Vertrieb</p>
+                  <p className="text-sm text-gray-600">Use Cases für Sales und Vertriebsteams</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/wissen/copilot-roi-berechnen" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">ROI von Copilot berechnen</p>
+                  <p className="text-sm text-gray-600">Investitionsrechnung und Business Case</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/wissen/copilot-unternehmensweit-einfuehren" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Copilot unternehmensweit einführen</p>
+                  <p className="text-sm text-gray-600">Implementierungsstrategie und Change Management</p>
+                </CardContent>
+              </Card>
+            </Link>
           </div>
         </section>
 

@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Zap, AlertTriangle, Shield, Users, FileText, TrendingUp, Target, ExternalLink } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
+import { Link } from "react-router-dom";
 
 const SLUG = "copilot-fehler-vermeiden";
 const PAGE_TITLE = "Microsoft Copilot-Fehler vermeiden";
@@ -248,7 +249,7 @@ const CopilotFehler = () => {
             "Die Mitarbeiter nicht professionell schulen ist der teuerste Fehler. Der Einstieg scheint niederschwellig,
             aber die veränderte Arbeitsweise ist so tiefgreifend, dass man das nicht einer internen Taskforce aus
             interessierten Mitarbeitern überlassen kann, die das nebenher noch treiben soll. Es ist schön wenn Max
-            und Anna 'KI können' aber das ist NICHT skalierbar. Ohne systematisches Training zahlen Sie für Lizenzen,
+            und Anna 'KI können' aber das ist NICHT skalierbar. Ohne systematisches <Link to="/wissen/copilot-training-schulung" className="text-primary hover:underline">Training</Link> zahlen Sie für Lizenzen,
             die niemand nutzt."
           </blockquote>
 
@@ -942,6 +943,37 @@ const CopilotFehler = () => {
               </div>
             </CardContent>
           </Card>
+        </section>
+
+        {/* Weiterführende Artikel */}
+        <section className="mb-8">
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-sky-500 mb-6">Weiterführende Artikel</h2>
+          <div className="grid md:grid-cols-2 gap-4 mb-4">
+            <Link to="/wissen/copilot-unternehmensweit-einfuehren" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Copilot unternehmensw. einführen</p>
+                  <p className="text-sm text-gray-600">Roadmap und Best Practices für erfolgreiche Rollouts</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/wissen/copilot-tipps-tricks-produktivitaet" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Tipps & Tricks für Produktivität</p>
+                  <p className="text-sm text-gray-600">22 praxiserprobte Tipps für bessere Copilot-Nutzung</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/wissen/prompt-bibliotheken-vs-training" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Prompt-Bibliotheken vs. Training</p>
+                  <p className="text-sm text-gray-600">Warum strukturiertes Training wichtiger ist als vorgefertigte Prompts</p>
+                </CardContent>
+              </Card>
+            </Link>
+          </div>
         </section>
 
         <section id="faq" className="mt-12 mb-12">

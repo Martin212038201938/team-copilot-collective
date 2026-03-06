@@ -1,6 +1,7 @@
 import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Link } from "react-router-dom";
 import {
   ExternalLink, Linkedin, Mail, Brain, Calendar, MessageSquare, FileText, Smartphone, Clock, AlertTriangle
 } from "lucide-react";
@@ -272,7 +273,7 @@ const CopilotADHS = () => {
 
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
-              Der größte Game-Changer: Ich habe mir ein externes Gedächtnis gebaut. Die Standard-Meeting-Zusammenfassungen von Teams sind mir zu kurz und oberflächlich. Also lasse ich mir zusätzlich ein komplettes Transkript erstellen und füttere das in einen Berichtsagenten.
+              Der größte Game-Changer: Ich habe mir ein externes Gedächtnis gebaut. Die Standard-Meeting-Zusammenfassungen von Teams sind mir zu kurz und oberflächlich. Also lasse ich mir zusätzlich ein komplettes Transkript erstellen und füttere das in einen Berichtsagenten. Für weitere <Link to="/wissen/copilot-tipps-tricks-produktivitaet" className="text-primary hover:underline">Tipps & Tricks</Link>, die im Alltag funktionieren, schau dir unsere spezialisierte Sammlung an.
             </p>
             <p>
               Dieser Agent strukturiert das gesamte Meeting so auf, dass ich auch Tage später noch fragen kann:
@@ -473,6 +474,37 @@ const CopilotADHS = () => {
           <blockquote className="my-8 border-l-4 border-primary bg-primary/5 p-6 rounded-r-lg italic text-lg">
             ADHS ist keine Ausrede - aber es ist auch kein Grund, alles auf die harte Tour zu machen. Wenn es Tools gibt, die helfen, wäre es doch blöd, sie nicht zu nutzen.
           </blockquote>
+        </section>
+
+        {/* Weiterführende Artikel */}
+        <section className="mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-sky-500 mb-6">Weiterführende Artikel</h2>
+          <div className="grid md:grid-cols-3 gap-4">
+            <Link to="/wissen/copilot-tipps-tricks-produktivitaet" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Copilot Tipps & Tricks</p>
+                  <p className="text-sm text-gray-600">Produktivitätshacks und praktische Workflows für den Alltag</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/wissen/copilot-fuer-word" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Copilot für Word</p>
+                  <p className="text-sm text-gray-600">Textbearbeitung und Dokumentenerstellung mit KI</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/wissen/copilot-digitales-gedaechtnis" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Digitales Gedächtnis mit Copilot</p>
+                  <p className="text-sm text-gray-600">Strukturierte Wissensablage und Durchsuchbarkeit</p>
+                </CardContent>
+              </Card>
+            </Link>
+          </div>
         </section>
 
         {/* FAQ */}

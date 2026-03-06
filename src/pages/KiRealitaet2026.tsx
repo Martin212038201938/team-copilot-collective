@@ -9,6 +9,7 @@ import {
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 import { TrustBadge } from "@/components/TrustBadge";
+import { Link } from "react-router-dom";
 
 const SLUG = "ki-realitaet-beratungsfirmen-2026";
 const PAGE_TITLE = "KI in deutschen Unternehmen 2026: Was die großen Beratungsfirmen wirklich sehen";
@@ -571,7 +572,7 @@ const KiRealitaet2026 = () => {
           </h2>
 
           <p className="mb-6">
-            Die BCG-Studie identifiziert drei CEO-Archetypen: "Followers" (15%), "Pragmatists" (70%) und "Trailblazers" (15%). Die Trailblazers treiben KI-Transformation durch entschiedene Investitionen, schnelles Upskilling und starken Glauben an den ROI.
+            Die BCG-Studie identifiziert drei CEO-Archetypen: "Followers" (15%), "Pragmatists" (70%) und "Trailblazers" (15%). Die Trailblazers treiben KI-Transformation durch entschiedene Investitionen, schnelles Upskilling und starken Glauben an den ROI. Informieren Sie sich über konkrete <Link to="/wissen/copilot-adoption-2026-zahlen" className="text-primary hover:underline">Adoption-Zahlen und Statistiken</Link> aus dem Jahr 2026.
           </p>
 
           <Card className="my-6">
@@ -851,6 +852,37 @@ const KiRealitaet2026 = () => {
           <blockquote className="my-6 border-l-4 border-green-500 bg-green-500/5 p-6 rounded-r-lg italic text-lg">
             Die Erfahrung zeigt: 94% der Unternehmen investieren weiter in KI, auch ohne sofortige Returns (BCG). Die Frage ist nicht ob, sondern wie. Die 5% "Future-built" Unternehmen zeigen: Mit der richtigen Strategie ist doppelter Umsatz-Impact erreichbar.
           </blockquote>
+        </section>
+
+        {/* Weiterführende Artikel */}
+        <section className="mb-8">
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-sky-500 mb-6">Weiterführende Artikel</h2>
+          <div className="grid md:grid-cols-2 gap-4 mb-4">
+            <Link to="/wissen/copilot-adoption-2026-zahlen" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Copilot Adoption 2026: Zahlen</p>
+                  <p className="text-sm text-gray-600">Aktuelle Statistiken und Wachstumszahlen für Microsoft Copilot</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/wissen/copilot-roi-erfolgsgeschichten" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Copilot ROI: Erfolgsgeschichten</p>
+                  <p className="text-sm text-gray-600">Zitate von Bayer, Siemens und anderen: Wie sie ROI erreichen</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/wissen/copilot-unternehmensweit-einfuehren" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Copilot Unternehmensweite Einführung</p>
+                  <p className="text-sm text-gray-600">Strategien und Best Practices für erfolgreiche zentrale Einführung</p>
+                </CardContent>
+              </Card>
+            </Link>
+          </div>
         </section>
 
         {/* FAQ-Sektion */}

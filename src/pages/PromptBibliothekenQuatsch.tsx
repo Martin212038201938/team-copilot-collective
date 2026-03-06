@@ -5,6 +5,8 @@ import { Zap, AlertTriangle, BookOpen, Brain, Wand2, XCircle, CheckCircle2, Exte
 import { TrustBadge } from "@/components/TrustBadge";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
+import { Link } from "react-router-dom";
+import { Card, CardContent } from "@/components/ui/card";
 
 const SLUG = "prompt-bibliotheken-vs-training";
 const PAGE_TITLE = "Prompt-Bibliotheken vs. echtes Training";
@@ -266,7 +268,7 @@ const PromptBibliothekenQuatsch = () => {
 
           <p className="mb-6">
             Statt Prompts zu verteilen, sollten Unternehmen ihre Mitarbeiter befähigen, selbständig mit KI zu arbeiten.
-            Das bedeutet: <strong>Use Cases erkennen, bewerten, entwickeln und umsetzen</strong>.
+            Das bedeutet: <strong>Use Cases erkennen, bewerten, entwickeln und umsetzen</strong>. Ein echtes <Link to="/wissen/copilot-training-schulung" className="text-primary hover:underline">Copilot Training</Link> macht den Unterschied.
           </p>
 
           <div className="grid md:grid-cols-4 gap-4 my-6">
@@ -536,6 +538,37 @@ const PromptBibliothekenQuatsch = () => {
                 <p>Agenten als „nice-to-have" betrachten statt als strategisches Enablement-Tool.</p>
               </CardContent>
             </Card>
+          </div>
+        </section>
+
+        {/* Weiterführende Artikel */}
+        <section className="mb-8">
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-sky-500 mb-6">Weiterführende Artikel</h2>
+          <div className="grid md:grid-cols-2 gap-4 mb-4">
+            <Link to="/wissen/prompt-engineering" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Prompt Engineering</p>
+                  <p className="text-sm text-gray-600">Professionelle Techniken zum Schreiben besserer Prompts</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/wissen/copilot-training-schulung" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Copilot Training & Schulung</p>
+                  <p className="text-sm text-gray-600">Strukturierte Trainings für echte Kompetenz und Nachhaltigkeit</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/wissen/copilot-fehler-vermeiden" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Copilot Fehler vermeiden</p>
+                  <p className="text-sm text-gray-600">Die häufigsten Fehler bei Copilot-Einführung und -Nutzung</p>
+                </CardContent>
+              </Card>
+            </Link>
           </div>
         </section>
 

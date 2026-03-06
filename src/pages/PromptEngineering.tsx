@@ -5,6 +5,7 @@ import { Zap, Lightbulb, Target, BookOpen, ExternalLink, CheckCircle2, XCircle, 
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 import { TrustBadge } from "@/components/TrustBadge";
+import { Link } from "react-router-dom";
 
 const SLUG = "prompt-engineering";
 const PAGE_TITLE = "Prompt Engineering";
@@ -39,7 +40,7 @@ const PromptEngineering = () => {
     },
     {
       name: "Brauchen wir wirklich Prompt-Training oder reicht eine Prompt-Bibliothek?",
-      answer: "Prompt-Bibliotheken sind ein guter Einstieg zur Inspiration, ersetzen aber kein Training. Mitarbeiter müssen lernen, selbständig Use Cases zu erkennen und Prompts anzupassen. Der Zauberstab-Prompt am Ende dieses Artikels zeigt, wie man auch ohne Expertise gute Prompts erstellt."
+      answer: "Prompt-Bibliotheken sind ein guter Einstieg zur Inspiration, ersetzen aber kein Training. Mitarbeiter müssen lernen, selbständig Use Cases zu erkennen und Prompts anzupassen. Lesen Sie mehr über das Verhältnis von Prompt-Bibliotheken zu strukturiertem Training in unserem Artikel zu diesem Thema. Der Zauberstab-Prompt am Ende dieses Artikels zeigt, wie man auch ohne Expertise gute Prompts erstellt."
     },
     {
       name: "Wie lange dauert es, bis unsere Mitarbeiter effektiv prompten können?",
@@ -143,7 +144,8 @@ const PromptEngineering = () => {
 
           <p className="mb-6">
             Prompt Engineering ist die Disziplin, effektive Anweisungen für KI-Systeme zu formulieren. Die Qualität
-            Ihrer Ergebnisse hängt direkt davon ab, wie gut Sie Ihre Anfrage strukturieren.
+            Ihrer Ergebnisse hängt direkt davon ab, wie gut Sie Ihre Anfrage strukturieren. <Link to="/wissen/prompt-bibliotheken-vs-training" className="text-primary hover:underline">Strukturiertes Training</Link> ist
+            dabei wichtiger als vorgefertigte Prompt-Bibliotheken.
           </p>
 
           <div className="grid md:grid-cols-3 gap-6 my-8">
@@ -656,6 +658,37 @@ const PromptEngineering = () => {
                 <p>Jeder Mitarbeiter erfindet das Rad neu – ohne gemeinsame Best Practices.</p>
               </CardContent>
             </Card>
+          </div>
+        </section>
+
+        {/* Weiterführende Artikel */}
+        <section className="mb-8">
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-sky-500 mb-6">Weiterführende Artikel</h2>
+          <div className="grid md:grid-cols-2 gap-4 mb-4">
+            <Link to="/wissen/copilot-tipps-tricks-produktivitaet" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Tipps & Tricks für Produktivität</p>
+                  <p className="text-sm text-gray-600">22 praxiserprobte Tipps für bessere Copilot-Nutzung</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/wissen/prompt-bibliotheken-vs-training" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Prompt-Bibliotheken vs. Training</p>
+                  <p className="text-sm text-gray-600">Warum Training wichtiger ist als vorgefertigte Prompts</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/wissen/copilot-fehler-vermeiden" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Copilot-Fehler vermeiden</p>
+                  <p className="text-sm text-gray-600">7 kritische Fehler bei der Einführung und wie man sie vermeidet</p>
+                </CardContent>
+              </Card>
+            </Link>
           </div>
         </section>
 

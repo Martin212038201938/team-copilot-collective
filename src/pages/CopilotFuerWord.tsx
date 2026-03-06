@@ -3,8 +3,9 @@ import SEOHead from "@/components/SEOHead";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 import { ExternalLink, Zap, Linkedin, Twitter } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { TrustBadge } from "@/components/TrustBadge";
+import { Link } from "react-router-dom";
 
 const SLUG = "copilot-fuer-word";
 const PAGE_TITLE = "Microsoft Copilot für Word";
@@ -1136,7 +1137,7 @@ Format: Markdown mit klarer Hierarchie, Emojis für Kategorien."`}</code></pre>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
             <pre className="text-sm whitespace-pre-wrap break-words"><code>Prompt: "Erstelle Quarterly Report basierend auf\nVerkaufszahlen aus [Excel-Datei], mit Trend-Analyse\nund Visualisierung-Beschreibungen"</code></pre>
           </div>
-          <p className="mb-4 text-gray-700 leading-relaxed">Mehr dazu, was Copilot direkt in Excel kann: <a href="/wissen/copilot-fuer-excel" className="text-primary hover:underline">Copilot für Excel: Was die KI in Tabellen wirklich kann</a></p>
+          <p className="mb-4 text-gray-700 leading-relaxed">Mehr dazu, was Copilot direkt in <Link to="/wissen/copilot-fuer-excel" className="text-primary hover:underline">Excel</Link> kann.</p>
         </section>
 
         <section id="sicherheit-und-compliance" className="mb-8">
@@ -1217,6 +1218,37 @@ Format: Markdown mit klarer Hierarchie, Emojis für Kategorien."`}</code></pre>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Erstellen Sie prompt-templates:</strong></p>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
             <pre className="text-sm whitespace-pre-wrap break-words"><code>Template: "Erstelle [DOKUMENTTYP] für [ZIELGRUPPE],\nmit [STRUKTUR], Tonalität: [TON], Länge: [WÖRTER]"\n\nBeispiel: "Erstelle Whitepaper für CTOs,\nmit Executive Summary + 3 Hauptkapitel + Case Study,\nTonalität: Technisch aber zugänglich, Länge: 2500 Wörter"</code></pre>
+          </div>
+        </section>
+
+        {/* Weiterführende Artikel */}
+        <section className="mb-8">
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-sky-500 mb-6">Weiterführende Artikel</h2>
+          <div className="grid md:grid-cols-2 gap-4 mb-4">
+            <Link to="/wissen/copilot-fuer-excel" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Copilot für Excel</p>
+                  <p className="text-sm text-gray-600">Datenanalyse und Formeln mit KI-Unterstützung</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/wissen/copilot-tipps-tricks-produktivitaet" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Tipps & Tricks für Produktivität</p>
+                  <p className="text-sm text-gray-600">22 praxiserprobte Tipps für M365 Copilot</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/wissen/prompt-engineering" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Prompt Engineering</p>
+                  <p className="text-sm text-gray-600">Das CRAFT-Framework für bessere KI-Prompts</p>
+                </CardContent>
+              </Card>
+            </Link>
           </div>
         </section>
 

@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { TrendingUp, AlertTriangle, CheckCircle2, BarChart3, Quote, Target, Users, Clock, Lightbulb } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
+import { Link } from "react-router-dom";
 
 const SLUG = "copilot-adoption-2026-zahlen";
 const PAGE_TITLE = "Copilot Adoption 2026: Was die Zahlen wirklich zeigen";
@@ -416,7 +417,7 @@ const CopilotAdoption2026 = () => {
                   Realistische Erwartungen setzen
                 </h3>
                 <p className="text-muted-foreground">
-                  Copilot ist kein Wundermittel. 14 Minuten Zeitersparnis pro Tag sind gut – aber keine Revolution. Kalkulieren Sie konservativ.
+                  Copilot ist kein Wundermittel. 14 Minuten Zeitersparnis pro Tag sind gut – aber keine Revolution. Kalkulieren Sie konservativ. Sehen Sie sich reale <Link to="/wissen/copilot-roi-erfolgsgeschichten" className="text-primary hover:underline">Erfolgsgeschichten</Link> an, um zu verstehen, wie andere Unternehmen messbaren ROI erreicht haben.
                 </p>
               </CardContent>
             </Card>
@@ -509,6 +510,66 @@ const CopilotAdoption2026 = () => {
               </p>
             </CardContent>
           </Card>
+        </section>
+
+        {/* Weiterführende Artikel */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold mb-6">Weiterführende Artikel</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            <Link
+              to="/wissen/copilot-roi-erfolgsgeschichten"
+              className="group"
+            >
+              <Card className="h-full hover:shadow-lg hover:border-primary transition-all duration-300 cursor-pointer">
+                <CardHeader className="border-b border-sky-500">
+                  <CardTitle className="text-lg group-hover:text-primary transition-colors">
+                    Copilot ROI: Erfolgsgeschichten
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="pt-4">
+                  <p className="text-sm text-muted-foreground">
+                    Reale Fälle: Wie Unternehmen messbaren ROI aus Microsoft Copilot generieren.
+                  </p>
+                </CardContent>
+              </Card>
+            </Link>
+
+            <Link
+              to="/wissen/ki-realitaet-beratungsfirmen-2026"
+              className="group"
+            >
+              <Card className="h-full hover:shadow-lg hover:border-primary transition-all duration-300 cursor-pointer">
+                <CardHeader className="border-b border-sky-500">
+                  <CardTitle className="text-lg group-hover:text-primary transition-colors">
+                    KI in deutschen Unternehmen 2026
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="pt-4">
+                  <p className="text-sm text-muted-foreground">
+                    Aktuelle Markttrends und Realität in Beratungsfirmen und Enterprise-Umgebungen.
+                  </p>
+                </CardContent>
+              </Card>
+            </Link>
+
+            <Link
+              to="/wissen/copilot-unternehmensweit-einfuehren"
+              className="group"
+            >
+              <Card className="h-full hover:shadow-lg hover:border-primary transition-all duration-300 cursor-pointer">
+                <CardHeader className="border-b border-sky-500">
+                  <CardTitle className="text-lg group-hover:text-primary transition-colors">
+                    Unternehmensweite Einführung
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="pt-4">
+                  <p className="text-sm text-muted-foreground">
+                    Schritt-für-Schritt-Anleitung für die erfolgreiche Skalierung vom Pilot zum unternehmensweiten Rollout.
+                  </p>
+                </CardContent>
+              </Card>
+            </Link>
+          </div>
         </section>
 
         {/* Quellen */}

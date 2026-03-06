@@ -1,6 +1,7 @@
 import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Link } from "react-router-dom";
 import { ExternalLink } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
@@ -158,7 +159,8 @@ const CopilotChatPernodRicard = () => {
             vereint: Außendienstmitarbeitende, die jeden Tag beim Kunden stehen. Ein Consumer-Care-Team,
             das E-Mails und Anrufe beantwortet. Eine Geschäftsführung, die zwischen Strategie-Decks und
             Quartalsberichten jongliert. Für jede dieser Gruppen liefert der kostenlose Copilot Chat
-            einen anderen Hebel – und keiner davon erfordert eine zusätzliche Lizenz.
+            einen anderen Hebel – und keiner davon erfordert eine zusätzliche Lizenz. Für weitere Anwendungsideen
+            schau dir unsere <Link to="/wissen/copilot-tipps-tricks-produktivitaet" className="text-primary hover:underline">Copilot Tipps & Tricks</Link> an.
           </p>
         </div>
 
@@ -414,6 +416,37 @@ const CopilotChatPernodRicard = () => {
         </section>
 
         {/* FAQ */}
+        {/* Weiterführende Artikel */}
+        <section className="mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-sky-500 mb-6">Weiterführende Artikel</h2>
+          <div className="grid md:grid-cols-3 gap-4">
+            <Link to="/wissen/copilot-tipps-tricks-produktivitaet" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Copilot Tipps & Tricks</p>
+                  <p className="text-sm text-gray-600">Praktische Workflows und Produktivitätshacks</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/wissen/copilot-adoption-2026-zahlen" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Copilot Adoption 2026</p>
+                  <p className="text-sm text-gray-600">Markttrends und Einsatzzahlen für 2026</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/wissen/copilot-unternehmensweit-einfuehren" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Copilot unternehmensweit einführen</p>
+                  <p className="text-sm text-gray-600">Implementierungsstrategie und Change Management</p>
+                </CardContent>
+              </Card>
+            </Link>
+          </div>
+        </section>
+
         <section id="faq" className="mb-8">
           <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
             Häufig gestellte Fragen

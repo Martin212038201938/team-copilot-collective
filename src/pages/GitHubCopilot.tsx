@@ -2,6 +2,7 @@ import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Check, Code, Terminal, MessageSquare, Zap, ExternalLink } from "lucide-react";
+import { Link } from "react-router-dom";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 
@@ -387,7 +388,7 @@ const GitHubCopilot = () => {
         <section id="prompt-engineering" className="mt-12">
           <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-amber-500">Prompt Engineering für Copilot</h2>
           <p>
-            Die Qualität der Copilot-Vorschläge hängt stark von Ihren Prompts ab.
+            Die Qualität der Copilot-Vorschläge hängt stark von Ihren Prompts ab. Mit <Link to="/wissen/prompt-engineering" className="text-primary hover:underline">Prompt Engineering</Link> lernen Sie die Techniken, um maximale Ergebnisse aus Copilot herauszuholen.
           </p>
 
           <Card className="my-6">
@@ -440,6 +441,37 @@ const GitHubCopilot = () => {
                 </CardContent>
               </Card>
             ))}
+          </div>
+        </section>
+
+        {/* Weiterführende Artikel */}
+        <section className="mb-8">
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-sky-500 mb-6">Weiterführende Artikel</h2>
+          <div className="grid md:grid-cols-2 gap-4 mb-4">
+            <Link to="/wissen/ki-agenten" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">KI-Agenten</p>
+                  <p className="text-sm text-gray-600">Autonome KI-Assistenten für automatisierte Aufgaben und Workflows</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/wissen/prompt-engineering" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Prompt Engineering</p>
+                  <p className="text-sm text-gray-600">Meistern Sie die Kunst, perfekte Prompts zu schreiben</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/wissen/ki-realitaet-beratungsfirmen-2026" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">KI in deutschen Unternehmen 2026</p>
+                  <p className="text-sm text-gray-600">Was die großen Beratungsfirmen über KI-Investitionen wirklich sehen</p>
+                </CardContent>
+              </Card>
+            </Link>
           </div>
         </section>
 

@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Zap, Calculator, TrendingUp, Target, BarChart3, CheckCircle2, AlertTriangle, Download, ExternalLink } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
+import { Link } from "react-router-dom";
 
 const SLUG = "copilot-roi-berechnen";
 const PAGE_TITLE = "Copilot ROI berechnen";
@@ -131,7 +132,8 @@ const CopilotRoiBerechnen = () => {
               Bei €30/Monat pro Lizenz und einem Stundensatz von €50 ergibt das €450 Nutzen vs. €30 Kosten –
               ein ROI von <strong>1.400% pro aktivem Nutzer</strong>. Der entscheidende Faktor: <strong>77% der trainierten Nutzer</strong> berichten
               höhere Produktivität (Microsoft Work Trend Index). Ohne Training liegt die aktive Nutzung oft bei nur 5-15%.
-              Diese Seite liefert Ihnen alle Formeln, Szenarien und eine <strong>kostenlose Excel-Vorlage</strong> für Ihren Business Case.
+              Echte <Link to="/wissen/copilot-roi-erfolgsgeschichten" className="text-primary hover:underline">Erfolgsgeschichten</Link> zeigen,
+              wie Unternehmen diese Zahlen konkret erreicht haben. Diese Seite liefert Ihnen alle Formeln, Szenarien und eine <strong>kostenlose Excel-Vorlage</strong> für Ihren Business Case.
             </p>
           </CardContent>
         </Card>
@@ -866,6 +868,37 @@ const CopilotRoiBerechnen = () => {
             <strong>Benötigen Sie Unterstützung bei Ihrer ROI-Berechnung?</strong><br />
             <a href="/#contact" className="text-primary hover:underline">Kontaktieren Sie uns für individuelle Beratung →</a>
           </p>
+        </section>
+
+        {/* Weiterführende Artikel */}
+        <section className="mb-8">
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-sky-500 mb-6">Weiterführende Artikel</h2>
+          <div className="grid md:grid-cols-2 gap-4 mb-4">
+            <Link to="/wissen/copilot-roi-erfolgsgeschichten" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Copilot Erfolgsgeschichten</p>
+                  <p className="text-sm text-gray-600">Echte Fälle von Unternehmen, die mit Copilot hohe ROI erreicht haben</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/wissen/copilot-adoption-2026-zahlen" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Copilot Adoption 2026</p>
+                  <p className="text-sm text-gray-600">Zahlen, Trends und Benchmarks zur Copilot-Einführung weltweit</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/wissen/copilot-unternehmensweit-einfuehren" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Copilot unternehmensw. einführen</p>
+                  <p className="text-sm text-gray-600">Roadmap und Best Practices für großflächige Copilot-Rollouts</p>
+                </CardContent>
+              </Card>
+            </Link>
+          </div>
         </section>
 
         {/* FAQ */}

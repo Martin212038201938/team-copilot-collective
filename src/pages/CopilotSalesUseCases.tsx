@@ -1,6 +1,7 @@
 import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Link } from "react-router-dom";
 import { ExternalLink, Users, Briefcase, Target } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
@@ -177,6 +178,7 @@ const CopilotSalesUseCases = () => {
             Pipeline-Reports für das Montagsmeeting. Sales dürfte in vielen Organisationen der Bereich sein, in dem
             Copilot die Lizenzkosten am schnellsten marginalisiert – durch Zeitersparnis pro Kopf und durch eine
             spürbare Qualitätsverbesserung im gesamten Pipeline-Prozess, die sich direkt auf die Abschlussquote auswirkt.
+            Ähnliche Effekte zeigen sich auch in <Link to="/wissen/copilot-hr-use-cases" className="text-primary hover:underline">HR und Personalabteilungen</Link>.
           </p>
           <p className="leading-relaxed">
             Genau an dieser Stelle wird Copilot zum stärksten Produktivitätshebel, den Sales-Teams seit der
@@ -551,6 +553,37 @@ const CopilotSalesUseCases = () => {
               sich die Qualität des gesamten Pipeline-Prozesses. Und das schlägt sich dort nieder, wo es wirklich
               zählt – in der Abschlussquote.
             </p>
+          </div>
+        </section>
+
+        {/* Weiterführende Artikel */}
+        <section className="mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-sky-500 mb-6">Weiterführende Artikel</h2>
+          <div className="grid md:grid-cols-3 gap-4">
+            <Link to="/wissen/copilot-hr-use-cases" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Copilot im HR</p>
+                  <p className="text-sm text-gray-600">Use Cases für Personalabteilungen und HR-Teams</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/wissen/copilot-roi-berechnen" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">ROI von Copilot berechnen</p>
+                  <p className="text-sm text-gray-600">Kosten-Nutzen-Analyse und Investitionsrechnung</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/wissen/copilot-tipps-tricks-produktivitaet" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Copilot Tipps & Tricks</p>
+                  <p className="text-sm text-gray-600">Praktische Produktivitätshacks für den Arbeitsalltag</p>
+                </CardContent>
+              </Card>
+            </Link>
           </div>
         </section>
 

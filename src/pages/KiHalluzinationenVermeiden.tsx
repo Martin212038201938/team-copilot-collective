@@ -1,6 +1,7 @@
 import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Link } from "react-router-dom";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 
@@ -271,7 +272,8 @@ const KiHalluzinationenVermeiden = () => {
               Je mehr relevantes Material die KI als Grundlage hat, desto weniger muss sie erfinden.
               Copilot in M365 hat hier einen strukturellen Vorteil, weil er auf E-Mails, Dokumente, Chats
               und Meetings im Tenant zugreifen kann. Aber dieser Zugriff funktioniert nur, wenn man ihn
-              aktiviert – durch Referenzen auf konkrete Dateien, Personen oder Zeiträume.
+              aktiviert – durch Referenzen auf konkrete Dateien, Personen oder Zeiträume. Mehr Details dazu
+              finden Sie in unserem Artikel zu <Link to="/wissen/prompt-engineering" className="text-primary hover:underline">Prompt Engineering</Link>.
             </p>
             <p>
               „Fasse die Ergebnisse unseres Strategiemeetings vom 10. Februar zusammen" ist ein
@@ -456,6 +458,37 @@ const KiHalluzinationenVermeiden = () => {
               technische Frage. Es ist eine Kompetenzfrage. Und genau deshalb gehört sie in jedes
               Copilot-Einführungsprojekt ganz nach oben auf die Agenda.
             </p>
+          </div>
+        </section>
+
+        {/* Weiterführende Artikel */}
+        <section className="mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-sky-500 mb-6">Weiterführende Artikel</h2>
+          <div className="grid md:grid-cols-3 gap-4">
+            <Link to="/wissen/copilot-sicherheit-datenschutz" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Copilot Sicherheit & Datenschutz</p>
+                  <p className="text-sm text-gray-600">Sichere Nutzung und Compliance-Anforderungen</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/wissen/prompt-engineering" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Prompt Engineering</p>
+                  <p className="text-sm text-gray-600">Bessere Prompts für zuverlässigere Ergebnisse</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/wissen/copilot-fehler-vermeiden" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Häufige Fehler vermeiden</p>
+                  <p className="text-sm text-gray-600">Typische Fallstricke und ihre Lösungen</p>
+                </CardContent>
+              </Card>
+            </Link>
           </div>
         </section>
 

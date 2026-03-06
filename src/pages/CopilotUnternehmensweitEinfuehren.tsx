@@ -2,6 +2,7 @@ import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { TrustBadge } from "@/components/TrustBadge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Link } from "react-router-dom";
 import {
   Zap, AlertTriangle, Shield, Database, Users, TrendingUp,
   ExternalLink, Linkedin, Mail, CheckCircle2, XCircle, Building2,
@@ -851,6 +852,10 @@ const CopilotUnternehmensweitEinfuehren = () => {
             Entscheidungshilfe: Wann zentrale Einführung?
           </h2>
 
+          <p className="mb-6">
+            Eine durchdachte <Link to="/wissen/copilot-launch-kampagne" className="text-primary hover:underline">Launch-Kampagne</Link> ist der Schlüssel zu erfolgreicher Einführung. Mit den richtigen Maßnahmen können Sie Adoption und Engagement deutlich steigern.
+          </p>
+
           <Card className="my-6 border-2 border-amber-500/20">
             <CardContent className="pt-6">
               <div className="grid md:grid-cols-2 gap-6">
@@ -911,6 +916,37 @@ const CopilotUnternehmensweitEinfuehren = () => {
               </div>
             </CardContent>
           </Card>
+        </section>
+
+        {/* Weiterführende Artikel */}
+        <section className="mb-8">
+          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-sky-500 mb-6">Weiterführende Artikel</h2>
+          <div className="grid md:grid-cols-2 gap-4 mb-4">
+            <Link to="/wissen/copilot-launch-kampagne" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Copilot Launch-Kampagne</p>
+                  <p className="text-sm text-gray-600">So wird der Rollout zum Erfolg: Mit Momentum, Events und strukturiertem Change Management</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/wissen/copilot-fehler-vermeiden" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Copilot Fehler vermeiden</p>
+                  <p className="text-sm text-gray-600">Die 10 größten Fehler bei der Copilot-Einführung und wie Sie sie vermeiden</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/wissen/copilot-roi-berechnen" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Copilot ROI berechnen</p>
+                  <p className="text-sm text-gray-600">Wie Sie den Business Case für Copilot mit konkreten Zahlen begründen</p>
+                </CardContent>
+              </Card>
+            </Link>
+          </div>
         </section>
 
         {/* FAQ */}
