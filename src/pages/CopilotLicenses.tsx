@@ -34,7 +34,7 @@ const CopilotLicenses = () => {
   const faqs = [
     {
       name: "Welche Microsoft Copilot Lizenz brauchen wir für unser Unternehmen?",
-      answer: "Das hängt von Ihrem Use Case ab: Für Office-Produktivität brauchen Sie Microsoft 365 Copilot (30 USD/Nutzer/Monat), für Entwickler GitHub Copilot (19-39 USD/Nutzer/Monat), für eigene KI-Agenten Copilot Studio (ab 200 USD/Monat). Die Copilotenschule berät Sie bei der optimalen Lizenzstrategie für Ihre Anforderungen."
+      answer: "Das hängt von Ihrem Use Case ab: Für Office-Produktivität brauchen Sie Microsoft 365 Copilot (26 €/Nutzer/Monat zzgl. MwSt.), für Entwickler GitHub Copilot (19–39 USD/Nutzer/Monat), für eigene KI-Agenten Copilot Studio (ab 26 €/Nutzer/Monat zzgl. MwSt.). Die Copilotenschule berät Sie bei der optimalen Lizenzstrategie für Ihre Anforderungen."
     },
     {
       name: "Lohnt sich Microsoft Copilot auch für kleine Teams unter 50 Mitarbeitern?",
@@ -58,13 +58,13 @@ const CopilotLicenses = () => {
         "@type": "Article",
         "@id": ids.article,
         "headline": "Microsoft Copilot Lizenzen: Preisvergleich 2026 + Kaufempfehlung",
-        "description": "Welche Copilot-Lizenz lohnt sich? M365 Copilot (30€/User), GitHub Copilot & Copilot Studio im direkten Vergleich – mit konkreter Kaufempfehlung für Ihr Unternehmen.",
+        "description": "Welche Copilot-Lizenz lohnt sich? M365 Copilot (ab 15,60 €/User), GitHub Copilot & Copilot Studio im direkten Vergleich – mit konkreter Kaufempfehlung für Ihr Unternehmen.",
         "author": getAuthorSchemaMarkup(martinLang),
         "publisher": {
           "@id": "https://copilotenschule.de/#organization"
         },
         "datePublished": "2025-01-06",
-        "dateModified": "2026-02-03T10:00:00+01:00",
+        "dateModified": "2026-03-09T10:00:00+01:00",
         "mainEntityOfPage": {
           "@type": "WebPage",
           "@id": pageUrl
@@ -99,7 +99,7 @@ const CopilotLicenses = () => {
     <>
       <SEOHead
         title="Microsoft Copilot Lizenzen: Preisvergleich 2026 + Kaufempfehlung"
-        description="Welche Copilot-Lizenz lohnt sich? M365 Copilot (30€/User), GitHub Copilot & Copilot Studio im direkten Vergleich – mit konkreter Kaufempfehlung für Ihr Unternehmen."
+        description="Welche Copilot-Lizenz lohnt sich? M365 Copilot (ab 15,60 €/User), GitHub Copilot & Copilot Studio im direkten Vergleich – mit konkreter Kaufempfehlung für Ihr Unternehmen."
         keywords={[
           "Microsoft Copilot Lizenz",
           "Microsoft 365 Copilot Preis",
@@ -118,7 +118,7 @@ const CopilotLicenses = () => {
         schema={schema}
         author={martinLang}
         publishedTime="2025-01-06T09:00:00+01:00"
-        modifiedTime="2026-02-03T10:00:00+01:00"
+        modifiedTime="2026-03-09T10:00:00+01:00"
       />
 
       <ContentLayout
@@ -128,7 +128,7 @@ const CopilotLicenses = () => {
         ]}
         title="Microsoft Copilot Lizenzen: Preisvergleich 2026 + Kaufempfehlung"
         description="Welche Copilot-Lizenz lohnt sich? M365 Copilot, GitHub Copilot und Copilot Studio im direkten Vergleich – mit konkreter Kaufempfehlung für Ihr Unternehmen."
-        lastUpdated="02. Februar 2026"
+        lastUpdated="09. März 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
       >
@@ -143,8 +143,8 @@ const CopilotLicenses = () => {
             </CardHeader>
             <CardContent className="space-y-3">
               <p className="text-base leading-relaxed">
-                <strong>Microsoft bietet drei Hauptlizenzmodelle:</strong> Microsoft 365 Copilot (30 USD/Monat für Office-Produktivität),
-                GitHub Copilot (10-39 USD/Monat für Entwickler) und Copilot Studio (ab 200 USD/Monat für eigene KI-Agenten).
+                <strong>Microsoft bietet drei Hauptlizenzmodelle:</strong> Microsoft 365 Copilot (26 €/Monat zzgl. MwSt. für Office-Produktivität),
+                GitHub Copilot (10–39 USD/Monat für Entwickler) und Copilot Studio (ab 26 €/Nutzer/Monat zzgl. MwSt. für eigene KI-Agenten).
                 Die richtige Wahl hängt von Ihrem Anwendungsfall ab: Business User benötigen Microsoft 365 Copilot,
                 Entwicklerteams GitHub Copilot Business, und für Custom AI-Lösungen ist Copilot Studio die beste Option.
                 Alle Lizenzen sind DSGVO-konform und nutzen Unternehmensdaten nicht für öffentliches KI-Training.
@@ -153,17 +153,19 @@ const CopilotLicenses = () => {
                 <div className="p-3 bg-white dark:bg-gray-900 rounded-lg border">
                   <div className="font-bold text-primary mb-1">M365 Copilot</div>
                   <div className="text-sm text-muted-foreground">Office-Produktivität</div>
-                  <div className="text-lg font-semibold mt-2">30 USD/Monat</div>
+                  <div className="text-lg font-semibold mt-2">26 €/Monat</div>
+                  <div className="text-xs text-muted-foreground">zzgl. MwSt.</div>
                 </div>
                 <div className="p-3 bg-white dark:bg-gray-900 rounded-lg border">
                   <div className="font-bold text-primary mb-1">GitHub Copilot</div>
                   <div className="text-sm text-muted-foreground">Code-Entwicklung</div>
-                  <div className="text-lg font-semibold mt-2">10-39 USD/Monat</div>
+                  <div className="text-lg font-semibold mt-2">10–39 USD/Monat</div>
                 </div>
                 <div className="p-3 bg-white dark:bg-gray-900 rounded-lg border">
                   <div className="font-bold text-primary mb-1">Copilot Studio</div>
                   <div className="text-sm text-muted-foreground">Custom AI-Agents</div>
-                  <div className="text-lg font-semibold mt-2">ab 200 USD/Monat</div>
+                  <div className="text-lg font-semibold mt-2">ab 26 €/Nutzer/Monat</div>
+                  <div className="text-xs text-muted-foreground">zzgl. MwSt.</div>
                 </div>
               </div>
             </CardContent>
@@ -202,8 +204,8 @@ const CopilotLicenses = () => {
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <h3 className="font-bold text-lg mb-2">Preis</h3>
-                  <p className="text-3xl font-bold text-primary">30 USD</p>
-                  <p className="text-sm text-muted-foreground">pro Nutzer / Monat</p>
+                  <p className="text-3xl font-bold text-primary">26 €</p>
+                  <p className="text-sm text-muted-foreground">pro Nutzer / Monat (jährlich, zzgl. MwSt.)</p>
                 </div>
                 <div>
                   <h3 className="font-bold text-lg mb-2">Voraussetzungen</h3>
@@ -259,7 +261,7 @@ const CopilotLicenses = () => {
           <div className="grid md:grid-cols-3 gap-6 my-6">
             {[
               {
-                name: "Individual",
+                name: "Pro",
                 price: "10 USD",
                 period: "pro Monat",
                 description: "Für einzelne Entwickler",
@@ -370,49 +372,60 @@ const CopilotLicenses = () => {
             <CardContent className="pt-6 space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="border rounded-lg p-4">
-                  <h3 className="font-bold text-lg mb-2">Copilot Studio in Microsoft 365 Copilot</h3>
+                  <h3 className="font-bold text-lg mb-2">In M365 Copilot enthalten</h3>
                   <p className="text-2xl font-bold text-primary mb-2">Enthalten</p>
                   <p className="text-sm text-muted-foreground mb-3">
-                    Begrenzt auf 25 Nachrichten pro Nutzer und Monat
+                    Begrenzt auf 25 Agent-Nachrichten pro Nutzer und Monat
                   </p>
                   <div className="space-y-2">
                     <div className="flex items-start gap-2">
                       <Check className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" />
-                      <span className="text-sm">Eigene Copilot-Agents erstellen</span>
+                      <span className="text-sm">Eigene Copilot-Agents im Low-Code-Editor erstellen</span>
                     </div>
                     <div className="flex items-start gap-2">
                       <Check className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" />
-                      <span className="text-sm">Custom Plugins entwickeln</span>
+                      <span className="text-sm">Agents in Teams, SharePoint & M365 Chat veröffentlichen</span>
                     </div>
                     <div className="flex items-start gap-2">
                       <Check className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" />
-                      <span className="text-sm">Low-Code Development</span>
+                      <span className="text-sm">Einfache Workflows mit Power Automate-Aktionen</span>
+                    </div>
+                    <div className="flex items-start gap-2 opacity-50">
+                      <X className="w-4 h-4 text-gray-400 flex-shrink-0 mt-0.5" />
+                      <span className="text-sm">Keine eigenen Websites oder externe Kanäle</span>
+                    </div>
+                    <div className="flex items-start gap-2 opacity-50">
+                      <X className="w-4 h-4 text-gray-400 flex-shrink-0 mt-0.5" />
+                      <span className="text-sm">Keine Custom AI Models oder Knowledge-Anbindung</span>
                     </div>
                   </div>
                 </div>
 
                 <div className="border rounded-lg p-4 bg-primary/5">
-                  <h3 className="font-bold text-lg mb-2">Standalone Copilot Studio</h3>
-                  <p className="text-2xl font-bold text-primary mb-2">ab 200 USD</p>
-                  <p className="text-sm text-muted-foreground mb-3">
-                    pro Tenant / Monat + nutzungsbasierte Kosten
+                  <h3 className="font-bold text-lg mb-2">Standalone Copilot Studio Lizenz</h3>
+                  <p className="text-2xl font-bold text-primary mb-1">26 €</p>
+                  <p className="text-sm text-muted-foreground mb-1">
+                    pro Nutzer / Monat (zzgl. MwSt.)
+                  </p>
+                  <p className="text-xs text-muted-foreground mb-3">
+                    oder 173,30 €/Monat für 25.000 Message Credits
                   </p>
                   <div className="space-y-2">
                     <div className="flex items-start gap-2">
                       <Check className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" />
-                      <span className="text-sm">Unbegrenzte Nachrichten möglich</span>
+                      <span className="text-sm">Höheres Message-Kontingent (über 25/Monat)</span>
                     </div>
                     <div className="flex items-start gap-2">
                       <Check className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" />
-                      <span className="text-sm">Erweiterte Integrationen</span>
+                      <span className="text-sm">Agents auf eigenen Websites und externen Kanälen</span>
                     </div>
                     <div className="flex items-start gap-2">
                       <Check className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" />
-                      <span className="text-sm">Custom AI Models</span>
+                      <span className="text-sm">Custom AI Models & eigene Knowledge-Quellen</span>
                     </div>
                     <div className="flex items-start gap-2">
                       <Check className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" />
-                      <span className="text-sm">Ohne Microsoft 365 Copilot nutzbar</span>
+                      <span className="text-sm">Auch ohne Microsoft 365 Copilot nutzbar</span>
                     </div>
                   </div>
                 </div>
@@ -424,10 +437,10 @@ const CopilotLicenses = () => {
                   Copilot Studio berechnet zusätzlich nutzungsbasierte "Message Credits":
                 </p>
                 <ul className="text-sm space-y-1 text-purple-800 dark:text-purple-200">
-                  <li>• 1 Message Credit = ca. 0,01 USD</li>
                   <li>• Kosten variieren je nach Nachrichtenkomplexität</li>
                   <li>• Generative AI-Antworten verbrauchen mehr Credits</li>
-                  <li>• 25.000 Messages im Basispaket enthalten (200 USD/Monat)</li>
+                  <li>• 25.000 Message Credits im Paket für 173,30 €/Monat (zzgl. MwSt.)</li>
+                  <li>• Alternativ: 26 €/Nutzer/Monat als Per-User-Lizenz (zzgl. MwSt.)</li>
                 </ul>
               </div>
             </CardContent>
@@ -449,9 +462,9 @@ const CopilotLicenses = () => {
               <tbody>
                 <tr>
                   <td className="border p-3 font-medium">Preis pro Nutzer/Monat</td>
-                  <td className="border p-3 text-center">30 USD</td>
-                  <td className="border p-3 text-center">10-39 USD</td>
-                  <td className="border p-3 text-center">ab 200 USD/Tenant</td>
+                  <td className="border p-3 text-center">26 € zzgl. MwSt.</td>
+                  <td className="border p-3 text-center">10–39 USD</td>
+                  <td className="border p-3 text-center">ab 26 € zzgl. MwSt.</td>
                 </tr>
                 <tr className="bg-muted/30">
                   <td className="border p-3 font-medium">Hauptanwendungsgebiet</td>
@@ -545,7 +558,7 @@ const CopilotLicenses = () => {
                 </p>
                 <p className="text-sm text-muted-foreground">
                   Wenn Sie bereits Microsoft 365 Copilot haben, ist Copilot Studio (begrenzt) enthalten.
-                  Für umfangreichere Projekte benötigen Sie die Standalone-Lizenz ab 200 USD/Monat.
+                  Für umfangreichere Projekte benötigen Sie die Standalone-Lizenz ab 26 €/Nutzer/Monat zzgl. MwSt.
                 </p>
               </CardContent>
             </Card>
@@ -649,7 +662,7 @@ const CopilotLicenses = () => {
 
           <div className="grid md:grid-cols-2 gap-4">
             <a
-              href="https://www.microsoft.com/en-us/microsoft-365/copilot/business"
+              href="https://www.microsoft.com/de-de/microsoft-365-copilot/pricing"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-start gap-3 p-4 border rounded-lg hover:border-primary/50 hover:bg-muted/50 transition-colors group"
@@ -657,7 +670,7 @@ const CopilotLicenses = () => {
               <ExternalLink className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
               <div>
                 <div className="font-semibold group-hover:text-primary transition-colors">Microsoft 365 Copilot Preisübersicht</div>
-                <div className="text-sm text-muted-foreground">Offizielle Preise und Lizenzoptionen für Microsoft 365 Copilot</div>
+                <div className="text-sm text-muted-foreground">Offizielle Preise und Lizenzoptionen für Microsoft 365 Copilot (DE)</div>
               </div>
             </a>
 
@@ -675,7 +688,7 @@ const CopilotLicenses = () => {
             </a>
 
             <a
-              href="https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-licensing"
+              href="https://learn.microsoft.com/de-de/copilot/microsoft-365/microsoft-365-copilot-licensing"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-start gap-3 p-4 border rounded-lg hover:border-primary/50 hover:bg-muted/50 transition-colors group"
@@ -683,12 +696,12 @@ const CopilotLicenses = () => {
               <ExternalLink className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
               <div>
                 <div className="font-semibold group-hover:text-primary transition-colors">Microsoft Learn: Copilot Licensing</div>
-                <div className="text-sm text-muted-foreground">Detaillierte Dokumentation zu Lizenzanforderungen und Voraussetzungen</div>
+                <div className="text-sm text-muted-foreground">Detaillierte Dokumentation zu Lizenzanforderungen und Voraussetzungen (DE)</div>
               </div>
             </a>
 
             <a
-              href="https://www.microsoft.com/en-us/microsoft-copilot/microsoft-copilot-studio#tabs-pill-bar-ocded0_tab2"
+              href="https://www.microsoft.com/de-de/microsoft-365-copilot/pricing/copilot-studio"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-start gap-3 p-4 border rounded-lg hover:border-primary/50 hover:bg-muted/50 transition-colors group"
@@ -696,7 +709,7 @@ const CopilotLicenses = () => {
               <ExternalLink className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
               <div>
                 <div className="font-semibold group-hover:text-primary transition-colors">Copilot Studio Preise</div>
-                <div className="text-sm text-muted-foreground">Lizenzkosten und Message Credits für Copilot Studio</div>
+                <div className="text-sm text-muted-foreground">Lizenzkosten und Message Credits für Copilot Studio (DE)</div>
               </div>
             </a>
           </div>
