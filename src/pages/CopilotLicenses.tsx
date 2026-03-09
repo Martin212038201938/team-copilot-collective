@@ -57,8 +57,8 @@ const CopilotLicenses = () => {
       {
         "@type": "Article",
         "@id": ids.article,
-        "headline": "Microsoft Copilot Lizenzen: Preisvergleich 2026 + Kaufempfehlung",
-        "description": "Welche Copilot-Lizenz lohnt sich? M365 Copilot (ab 15,60 €/User), GitHub Copilot & Copilot Studio im direkten Vergleich – mit konkreter Kaufempfehlung für Ihr Unternehmen.",
+        "headline": "Microsoft Copilot Lizenzen: Preisvergleich 2026",
+        "description": "Welche Copilot-Lizenz lohnt sich? M365 Copilot (ab 15,60 €/User), GitHub Copilot & Copilot Studio im direkten Vergleich – mit allen Infos für Ihre Entscheidung.",
         "author": getAuthorSchemaMarkup(martinLang),
         "publisher": {
           "@id": "https://copilotenschule.de/#organization"
@@ -98,8 +98,8 @@ const CopilotLicenses = () => {
   return (
     <>
       <SEOHead
-        title="Microsoft Copilot Lizenzen: Preisvergleich 2026 + Kaufempfehlung"
-        description="Welche Copilot-Lizenz lohnt sich? M365 Copilot (ab 15,60 €/User), GitHub Copilot & Copilot Studio im direkten Vergleich – mit konkreter Kaufempfehlung für Ihr Unternehmen."
+        title="Microsoft Copilot Lizenzen: Preisvergleich 2026"
+        description="Welche Copilot-Lizenz lohnt sich? M365 Copilot (ab 15,60 €/User), GitHub Copilot & Copilot Studio im direkten Vergleich – mit allen Infos für Ihre Entscheidung."
         keywords={[
           "Microsoft Copilot Lizenz",
           "Microsoft 365 Copilot Preis",
@@ -126,8 +126,8 @@ const CopilotLicenses = () => {
           { label: "Wissen", href: "/wissen" },
           { label: "Microsoft Copilot Lizenzen", href: "/wissen/microsoft-copilot-lizenzen" }
         ]}
-        title="Microsoft Copilot Lizenzen: Preisvergleich 2026 + Kaufempfehlung"
-        description="Welche Copilot-Lizenz lohnt sich? M365 Copilot, GitHub Copilot und Copilot Studio im direkten Vergleich – mit konkreter Kaufempfehlung für Ihr Unternehmen."
+        title="Microsoft Copilot Lizenzen: Preisvergleich 2026"
+        description="Welche Copilot-Lizenz lohnt sich? M365 Copilot, GitHub Copilot und Copilot Studio im direkten Vergleich – mit allen Infos für Ihre Entscheidung."
         lastUpdated="09. März 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
@@ -292,8 +292,7 @@ const CopilotLicenses = () => {
                 ],
                 notIncluded: [
                   "Keine erweiterten Security-Features"
-                ],
-                highlight: true
+                ]
               },
               {
                 name: "Enterprise",
@@ -313,18 +312,11 @@ const CopilotLicenses = () => {
             ].map((plan, idx) => (
               <Card
                 key={idx}
-                className={`hover:shadow-xl transition-all duration-300 ${
-                  plan.highlight ? 'border-2 border-primary shadow-lg scale-105' : 'border-2 border-border'
-                }`}
+                className="hover:shadow-xl transition-all duration-300 border-2 border-border"
               >
-                <CardHeader className={plan.highlight ? 'bg-gradient-to-r from-primary/10 to-accent/10' : ''}>
+                <CardHeader>
                   <CardTitle className="text-xl">
                     GitHub Copilot {plan.name}
-                    {plan.highlight && (
-                      <span className="ml-2 text-xs bg-primary text-primary-foreground px-2 py-1 rounded">
-                        Empfohlen
-                      </span>
-                    )}
                   </CardTitle>
                   <div className="mt-4">
                     <div className="text-3xl font-bold text-primary">{plan.price}</div>
@@ -524,10 +516,10 @@ const CopilotLicenses = () => {
               </CardHeader>
               <CardContent>
                 <p className="mb-3">
-                  <strong>Empfehlung: Microsoft 365 Copilot</strong>
+                  <strong>Passende Lizenz: Microsoft 365 Copilot</strong>
                 </p>
                 <p className="text-sm text-muted-foreground">
-                  Ideal für Business User, die täglichmit Microsoft Office arbeiten. Benötigt eine Microsoft 365 E3, E5,
+                  Konzipiert für Business User, die täglich mit Microsoft Office arbeiten. Benötigt eine Microsoft 365 E3, E5,
                   Business Standard oder Business Premium Lizenz als Grundlage.
                 </p>
               </CardContent>
@@ -539,11 +531,11 @@ const CopilotLicenses = () => {
               </CardHeader>
               <CardContent>
                 <p className="mb-3">
-                  <strong>Empfehlung: GitHub Copilot Business oder Enterprise</strong>
+                  <strong>Passende Lizenz: GitHub Copilot Business oder Enterprise</strong>
                 </p>
                 <p className="text-sm text-muted-foreground">
-                  Für Teams empfiehlt sich GitHub Copilot Business (19 USD) mit zentraler Verwaltung und IP-Indemnity.
-                  Große Unternehmen mit hohen Compliance-Anforderungen sollten Enterprise (39 USD) wählen.
+                  GitHub Copilot Business (19 USD) bietet zentrale Verwaltung und IP-Indemnity für Teams.
+                  Große Unternehmen mit hohen Compliance-Anforderungen greifen auf Enterprise (39 USD) zurück.
                 </p>
               </CardContent>
             </Card>
@@ -554,7 +546,7 @@ const CopilotLicenses = () => {
               </CardHeader>
               <CardContent>
                 <p className="mb-3">
-                  <strong>Empfehlung: Microsoft Copilot Studio</strong>
+                  <strong>Passende Lizenz: Microsoft Copilot Studio</strong>
                 </p>
                 <p className="text-sm text-muted-foreground">
                   Wenn Sie bereits Microsoft 365 Copilot haben, ist Copilot Studio (begrenzt) enthalten.
@@ -569,11 +561,11 @@ const CopilotLicenses = () => {
               </CardHeader>
               <CardContent>
                 <p className="mb-3">
-                  <strong>Empfehlung: Microsoft 365 Copilot + GitHub Copilot Business</strong>
+                  <strong>Passende Kombination: Microsoft 365 Copilot + GitHub Copilot Business</strong>
                 </p>
                 <p className="text-sm text-muted-foreground">
-                  Für Unternehmen, die sowohl Business-Produktivität als auch Softwareentwicklung unterstützen möchten,
-                  ist eine Kombination sinnvoll: M365 Copilot für Business User, GitHub Copilot für das Dev-Team.
+                  Unternehmen, die sowohl Business-Produktivität als auch Softwareentwicklung abdecken möchten,
+                  kombinieren häufig M365 Copilot für Business User mit GitHub Copilot für das Dev-Team.
                 </p>
               </CardContent>
             </Card>
@@ -637,8 +629,8 @@ const CopilotLicenses = () => {
                 answer: "Ja, alle Microsoft Copilot-Produkte sind DSGVO-konform und entsprechen den Microsoft-Datenschutzstandards. Daten werden in EU-Rechenzentren verarbeitet."
               },
               {
-                question: "Welche Schulungen empfehlen Sie für Copilot?",
-                answer: "Wir empfehlen praxisorientierte Schulungen für Microsoft 365 Copilot (1-2 Tage) und GitHub Copilot (1 Tag). Kontaktieren Sie uns für ein individuelles Trainingsangebot."
+                question: "Welche Schulungen gibt es für Copilot?",
+                answer: "Praxisorientierte Schulungen für Microsoft 365 Copilot (1-2 Tage) und GitHub Copilot (1 Tag) haben sich bewährt. Kontaktieren Sie uns für ein individuelles Trainingsangebot."
               }
             ].map((faq, idx) => (
               <Card key={idx} className="hover:shadow-lg transition-shadow">

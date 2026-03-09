@@ -218,7 +218,7 @@ export const ALL_ARTICLES: ArticleData[] = [
   },
   {
     id: "microsoft-copilot-lizenzen",
-    title: "Microsoft Copilot Lizenzen 2026: Preise, Vergleich & Empfehlungen",
+    title: "Microsoft Copilot Lizenzen 2026: Preise & Vergleich",
     description: "Welche Microsoft Copilot Lizenz benötigen Sie? Umfassender Vergleich aller Lizenzmodelle für Microsoft 365 Copilot, GitHub Copilot und Copilot Studio mit aktuellen Preisen.",
     link: "/wissen/microsoft-copilot-lizenzen",
     badge: "Lizenzierung",
