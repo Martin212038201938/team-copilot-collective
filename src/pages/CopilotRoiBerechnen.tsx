@@ -34,15 +34,15 @@ const CopilotRoiBerechnen = () => {
   const faqs = [
     {
       name: "Wie überzeuge ich das Management, in Microsoft Copilot zu investieren?",
-      answer: "Mit einem fundierten Business Case: Berechnen Sie konkrete Zeiteinsparungen pro Mitarbeiter, multiplizieren Sie mit Stundensätzen und stellen Sie diese den Lizenzkosten (30 EUR/Monat) gegenüber. Die Copilotenschule bietet ROI-Rechner und Business-Case-Templates, die überzeugende Argumentationen für das Management liefern."
+      answer: "Mit einem fundierten Business Case: Berechnen Sie konkrete Zeiteinsparungen pro Mitarbeiter, multiplizieren Sie mit Stundensätzen und stellen Sie diese den Lizenzkosten (26 €/Monat zzgl. MwSt.) gegenüber. Wichtig: Planen Sie Budget für Schulungen und Change Management ein – ohne begleitende Maßnahmen bleiben die Produktivitätsgewinne weit hinter den Erwartungen zurück. Die Copilotenschule bietet ROI-Rechner, Business-Case-Templates und praxisnahe Schulungsprogramme."
     },
     {
       name: "Wie berechne ich den ROI von Microsoft Copilot für unser Unternehmen realistisch?",
-      answer: "Der ROI ergibt sich aus: (Zeitersparnis × Stundensatz × Nutzerzahl) - Lizenzkosten - Implementierungskosten. Microsoft-Studien zeigen 1,2 Stunden Zeitersparnis pro Nutzer/Woche. Die Copilotenschule unterstützt Sie mit Excel-Vorlagen und branchenspezifischen Benchmarks für realistische ROI-Berechnungen."
+      answer: "Der ROI ergibt sich aus: (Zeitersparnis × Stundensatz × Nutzerzahl) - Lizenzkosten - Implementierungskosten. Microsoft-Studien zeigen 9 Stunden Zeitersparnis pro Nutzer/Monat – wir empfehlen, diesen Wert zu halbieren (~4,5h), da die vollen Gewinne gezielte Schulung und Workflow-Änderungen voraussetzen. Die Copilotenschule unterstützt Sie mit Excel-Vorlagen, branchenspezifischen Benchmarks und begleitenden Schulungsprogrammen."
     },
     {
       name: "Wann amortisiert sich die Copilot-Investition typischerweise?",
-      answer: "Bei durchschnittlichen Produktivitätsgewinnen amortisiert sich Copilot innerhalb von 3-6 Monaten. Der Break-even liegt bei etwa 2-3 Stunden Zeitersparnis pro Nutzer und Monat. Die Copilotenschule hilft Ihnen, realistische Szenarien für Ihre Branche und Unternehmensstruktur zu entwickeln."
+      answer: "Mit begleitender Schulung und Change Management rechnen wir mit einem Break-even nach ca. 10 Monaten. Ohne diese Maßnahmen kann sich die Amortisation auf über 24 Monate verzögern. Der Break-even liegt bei etwa 2-3 Stunden Zeitersparnis pro Nutzer und Monat – das setzt aber voraus, dass Nutzer ihre Arbeitsweise aktiv anpassen. Die Copilotenschule hilft Ihnen, realistische Szenarien für Ihre Branche zu entwickeln und die Adoption gezielt zu beschleunigen."
     },
     {
       name: "Welche KPIs sollten wir für die Copilot-Erfolgsmessung definieren?",
@@ -63,7 +63,7 @@ const CopilotRoiBerechnen = () => {
           "@id": "https://copilotenschule.de/#organization"
         },
         "datePublished": "2025-11-07",
-        "dateModified": "2026-02-03",
+        "dateModified": "2026-03-09",
         "keywords": ["Copilot ROI","Microsoft Copilot ROI berechnen","Copilot Business Case","Copilot Kosten Nutzen","Return on Investment Copilot","Copilot Produktivitätssteigerung"],
         "articleSection": "Business",
         "mainEntityOfPage": {
@@ -105,7 +105,7 @@ const CopilotRoiBerechnen = () => {
         canonicalUrl={pageUrl}
         schema={schema}
         publishedTime="2025-11-07"
-        modifiedTime="2026-02-03"
+        modifiedTime="2026-03-09"
       />
       <ContentLayout
         breadcrumbs={[
@@ -116,7 +116,7 @@ const CopilotRoiBerechnen = () => {
         description="Konkrete Methoden zur ROI-Berechnung von Microsoft Copilot. Mit Excel-Vorlage, Praxisbeispielen und messbaren KPIs für Ihr Business Case."
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
-        lastUpdated="03. Februar 2026"
+        lastUpdated="09. März 2026"
       >
         {/* Schnellantwort-Card */}
         <Card className="border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-amber-500/5">
@@ -129,9 +129,10 @@ const CopilotRoiBerechnen = () => {
           <CardContent>
             <p className="text-base leading-relaxed">
               Laut Forrester TEI-Studie sparen Copilot-Nutzer durchschnittlich <strong>9 Stunden pro Monat</strong>.
-              Bei €30/Monat pro Lizenz und einem Stundensatz von €50 ergibt das €450 Nutzen vs. €30 Kosten –
-              ein ROI von <strong>1.400% pro aktivem Nutzer</strong>. Der entscheidende Faktor: <strong>77% der trainierten Nutzer</strong> berichten
-              höhere Produktivität (Microsoft Work Trend Index). Ohne Training liegt die aktive Nutzung oft bei nur 5-15%.
+              Bei €26/Monat pro Lizenz (zzgl. MwSt.) und einem Stundensatz von €50 ergibt das €450 Nutzen vs. €26 Kosten –
+              ein ROI von <strong>1.631% pro aktivem Nutzer</strong>. <strong>Unsere realistische Einschätzung</strong> halbiert diese Werte bewusst:
+              Aus Erfahrung erreichen die meisten Unternehmen die vollen Studienwerte erst nach intensiver Schulung und konsequentem Change Management.
+              Ohne Training liegt die aktive Nutzung oft bei nur 5-15%.
               Echte <Link to="/wissen/copilot-roi-erfolgsgeschichten" className="text-primary hover:underline">Erfolgsgeschichten</Link> zeigen,
               wie Unternehmen diese Zahlen konkret erreicht haben. Diese Seite liefert Ihnen alle Formeln, Szenarien und eine <strong>kostenlose Excel-Vorlage</strong> für Ihren Business Case.
             </p>
@@ -150,12 +151,12 @@ const CopilotRoiBerechnen = () => {
                 <CardTitle className="text-lg">Microsoft 365 Copilot</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-3xl font-bold text-blue-600 mb-2">€30</p>
-                <p className="text-sm text-muted-foreground mb-4">pro Benutzer/Monat</p>
+                <p className="text-3xl font-bold text-blue-600 mb-2">€26</p>
+                <p className="text-sm text-muted-foreground mb-4">pro Benutzer/Monat (zzgl. MwSt.)</p>
                 <ul className="text-sm space-y-2">
                   <li>• Zusätzlich zu M365 Lizenz</li>
-                  <li>• Min. 300 Lizenzen (Enterprise)</li>
-                  <li>• Keine Mindestanzahl für Frontline</li>
+                  <li>• Keine Mindestabnahme</li>
+                  <li>• Jährliche Abrechnung</li>
                 </ul>
               </CardContent>
             </Card>
@@ -180,10 +181,10 @@ const CopilotRoiBerechnen = () => {
                 <CardTitle className="text-lg">Copilot Studio</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-3xl font-bold text-green-600 mb-2">$200</p>
-                <p className="text-sm text-muted-foreground mb-4">für 25.000 Nachrichten/Monat</p>
+                <p className="text-3xl font-bold text-green-600 mb-2">€26</p>
+                <p className="text-sm text-muted-foreground mb-4">pro Nutzer/Monat (zzgl. MwSt.)</p>
                 <ul className="text-sm space-y-2">
-                  <li>• Pay-as-you-go möglich</li>
+                  <li>• oder €173,30 für 25.000 Credits</li>
                   <li>• Custom Agents erstellen</li>
                   <li>• Enterprise-Integration</li>
                 </ul>
@@ -239,38 +240,62 @@ const CopilotRoiBerechnen = () => {
               </CardTitle>
             </CardHeader>
             <CardContent>
+              {/* Kosten – identisch für beide Szenarien */}
+              <div className="mb-6">
+                <h4 className="font-bold text-red-600 mb-4">Kosten (Jahr 1) – identisch für beide Prognosen</h4>
+                <table className="w-full text-sm">
+                  <tbody>
+                    <tr className="border-b"><td className="py-2">Lizenzen (500 × €26 × 12)</td><td className="text-right">€156.000</td></tr>
+                    <tr className="border-b"><td className="py-2">Training & Schulung (500 × €1.000)</td><td className="text-right">€500.000</td></tr>
+                    <tr className="border-b"><td className="py-2">IT-Setup</td><td className="text-right">€30.000</td></tr>
+                    <tr className="border-b"><td className="py-2">Change Management</td><td className="text-right">€25.000</td></tr>
+                    <tr className="font-bold"><td className="py-2">Gesamt (zzgl. MwSt.)</td><td className="text-right text-red-600">€711.000</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              {/* Zwei Prognosen nebeneinander */}
               <div className="grid md:grid-cols-2 gap-8">
-                <div>
-                  <h4 className="font-bold text-red-600 mb-4">Kosten (Jahr 1)</h4>
-                  <table className="w-full text-sm">
-                    <tbody>
-                      <tr className="border-b"><td className="py-2">Lizenzen (500 × €30 × 12)</td><td className="text-right">€180.000</td></tr>
-                      <tr className="border-b"><td className="py-2">Training (500 × €1.000)</td><td className="text-right">€500.000</td></tr>
-                      <tr className="border-b"><td className="py-2">IT-Setup</td><td className="text-right">€30.000</td></tr>
-                      <tr className="border-b"><td className="py-2">Change Management</td><td className="text-right">€25.000</td></tr>
-                      <tr className="font-bold"><td className="py-2">Gesamt</td><td className="text-right text-red-600">€735.000</td></tr>
-                    </tbody>
-                  </table>
-                </div>
-                <div>
-                  <h4 className="font-bold text-green-600 mb-4">Nutzen (Jahr 1)</h4>
+                <div className="border-2 border-blue-500/30 rounded-lg p-4">
+                  <h4 className="font-bold text-blue-600 mb-1">Microsoft-Prognose</h4>
+                  <p className="text-xs text-muted-foreground mb-4">Basierend auf Forrester TEI Study</p>
                   <table className="w-full text-sm">
                     <tbody>
                       <tr className="border-b"><td className="py-2">Zeitersparnis (9h/Monat ≈ 5,2%)</td><td className="text-right">€2.700.000</td></tr>
                       <tr className="border-b"><td className="py-2">Fehlerreduktion</td><td className="text-right">€100.000</td></tr>
                       <tr className="border-b"><td className="py-2">Schnelleres Onboarding</td><td className="text-right">€50.000</td></tr>
-                      <tr className="font-bold"><td className="py-2">Gesamt</td><td className="text-right text-green-600">€2.850.000</td></tr>
+                      <tr className="font-bold"><td className="py-2">Gesamt</td><td className="text-right text-blue-600">€2.850.000</td></tr>
                     </tbody>
                   </table>
+                  <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-950/20 rounded-lg text-center">
+                    <p className="text-xs text-muted-foreground mb-1">ROI (Microsoft-Prognose)</p>
+                    <p className="text-3xl font-bold text-blue-600">301%</p>
+                  </div>
+                </div>
+
+                <div className="border-2 border-orange-500/30 rounded-lg p-4 bg-orange-500/5">
+                  <h4 className="font-bold text-orange-600 mb-1">Unsere realistische Einschätzung</h4>
+                  <p className="text-xs text-muted-foreground mb-4">Halbierte Werte – basierend auf Erfahrung mit Lernkurven und Schulungsbedarf</p>
+                  <table className="w-full text-sm">
+                    <tbody>
+                      <tr className="border-b"><td className="py-2">Zeitersparnis (4,5h/Monat ≈ 2,6%)</td><td className="text-right">€1.350.000</td></tr>
+                      <tr className="border-b"><td className="py-2">Fehlerreduktion</td><td className="text-right">€50.000</td></tr>
+                      <tr className="border-b"><td className="py-2">Schnelleres Onboarding</td><td className="text-right">€25.000</td></tr>
+                      <tr className="font-bold"><td className="py-2">Gesamt</td><td className="text-right text-orange-600">€1.425.000</td></tr>
+                    </tbody>
+                  </table>
+                  <div className="mt-4 p-4 bg-orange-50 dark:bg-orange-950/20 rounded-lg text-center">
+                    <p className="text-xs text-muted-foreground mb-1">ROI (unsere Einschätzung)</p>
+                    <p className="text-3xl font-bold text-orange-600">100%</p>
+                  </div>
                 </div>
               </div>
+
               <p className="text-xs text-muted-foreground mt-4 text-center">
-                Annahme: 40h/Woche Vollzeit, Durchschnittsstundensatz €50, Zeitersparnis laut Forrester TEI Study
+                Annahme: 40h/Woche Vollzeit, Durchschnittsstundensatz €50. Unsere Einschätzung basiert auf
+                Praxiserfahrung: Die vollen Produktivitätsgewinne erfordern grundlegende Verhaltens- und Workflow-Änderungen bei den Nutzern,
+                die nur durch begleitende Schulungen und kontinuierliche Betreuung erreichbar sind.
               </p>
-              <div className="mt-6 p-6 bg-green-50 dark:bg-green-950/20 rounded-xl text-center">
-                <p className="text-sm text-muted-foreground mb-2">Berechneter ROI</p>
-                <p className="text-4xl font-bold text-green-600">288%</p>
-              </div>
             </CardContent>
           </Card>
         </section>
@@ -282,15 +307,21 @@ const CopilotRoiBerechnen = () => {
           </h2>
           <p className="text-gray-500 italic mb-4">Wie viel Zeit sparen Mitarbeiter mit Microsoft Copilot tatsächlich ein?</p>
 
-          {/* Hervorgehobene Studienergebnisse */}
+          {/* Hervorgehobene Studienergebnisse – dual */}
           <div className="grid md:grid-cols-2 gap-6 mb-8">
             <Card className="border-2 border-blue-500/30 bg-gradient-to-br from-blue-500/5 to-cyan-500/5">
               <CardContent className="pt-6">
                 <div className="text-center">
+                  <p className="text-xs font-semibold text-blue-600 mb-1 uppercase tracking-wider">Microsoft-Prognose</p>
                   <p className="text-5xl font-bold text-blue-600 mb-2">9h</p>
                   <p className="text-lg font-semibold mb-1">Zeitersparnis pro Monat</p>
                   <p className="text-sm text-muted-foreground">pro aktivem Nutzer (≈ 5,2% bei 40h/Woche)</p>
                   <p className="text-xs text-muted-foreground mt-3 border-t pt-3">Quelle: Forrester TEI Study</p>
+                </div>
+                <div className="mt-4 p-3 bg-orange-50 dark:bg-orange-950/20 rounded-lg text-center">
+                  <p className="text-xs font-semibold text-orange-600 uppercase tracking-wider">Unsere Einschätzung</p>
+                  <p className="text-2xl font-bold text-orange-600">4,5h</p>
+                  <p className="text-xs text-muted-foreground">≈ 2,6% – erreichbar mit gezielter Schulung und Workflow-Anpassung</p>
                 </div>
               </CardContent>
             </Card>
@@ -298,14 +329,26 @@ const CopilotRoiBerechnen = () => {
             <Card className="border-2 border-green-500/30 bg-gradient-to-br from-green-500/5 to-emerald-500/5">
               <CardContent className="pt-6">
                 <div className="text-center">
+                  <p className="text-xs font-semibold text-green-600 mb-1 uppercase tracking-wider">Microsoft-Prognose</p>
                   <p className="text-5xl font-bold text-green-600 mb-2">77%</p>
                   <p className="text-lg font-semibold mb-1">berichten höhere Produktivität</p>
                   <p className="text-sm text-muted-foreground">bei trainierten Copilot-Nutzern</p>
                   <p className="text-xs text-muted-foreground mt-3 border-t pt-3">Quelle: Microsoft Work Trend Index</p>
                 </div>
+                <div className="mt-4 p-3 bg-orange-50 dark:bg-orange-950/20 rounded-lg text-center">
+                  <p className="text-xs font-semibold text-orange-600 uppercase tracking-wider">Unsere Einschätzung</p>
+                  <p className="text-2xl font-bold text-orange-600">~40%</p>
+                  <p className="text-xs text-muted-foreground">Voraussetzung: gezielte Schulungen und begleitendes Change Management</p>
+                </div>
               </CardContent>
             </Card>
           </div>
+
+          <p className="text-sm text-muted-foreground mb-8">
+            <strong>Warum halbieren wir die Microsoft-Werte?</strong> Die Studien bilden idealisierte Bedingungen ab. In der Praxis erfordern
+            Produktivitätsgewinne grundlegende Verhaltens- und Workflow-Änderungen bei den Nutzern. Ohne gezielte Schulung, begleitendes
+            Coaching und kontinuierliche Betreuung bleiben die Gewinne deutlich hinter den Studienwerten zurück.
+          </p>
 
           <div className="grid md:grid-cols-2 gap-6">
             <Card>
@@ -314,17 +357,26 @@ const CopilotRoiBerechnen = () => {
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  <div className="flex justify-between items-center">
-                    <span>Task-Completion</span>
-                    <span className="text-2xl font-bold text-purple-600">55% schneller</span>
+                  <div>
+                    <div className="flex justify-between items-center">
+                      <span>Task-Completion</span>
+                      <span className="text-2xl font-bold text-purple-600">55% schneller</span>
+                    </div>
+                    <p className="text-xs text-orange-600 text-right">Unsere Einschätzung: ~28%</p>
                   </div>
-                  <div className="flex justify-between items-center">
-                    <span>Produktivität (selbstberichtet)</span>
-                    <span className="text-2xl font-bold text-purple-600">88% höher</span>
+                  <div>
+                    <div className="flex justify-between items-center">
+                      <span>Produktivität (selbstberichtet)</span>
+                      <span className="text-2xl font-bold text-purple-600">88% höher</span>
+                    </div>
+                    <p className="text-xs text-orange-600 text-right">Unsere Einschätzung: ~44%</p>
                   </div>
-                  <div className="flex justify-between items-center">
-                    <span>Code schreiben</span>
-                    <span className="text-2xl font-bold text-purple-600">46% schneller</span>
+                  <div>
+                    <div className="flex justify-between items-center">
+                      <span>Code schreiben</span>
+                      <span className="text-2xl font-bold text-purple-600">46% schneller</span>
+                    </div>
+                    <p className="text-xs text-orange-600 text-right">Unsere Einschätzung: ~23%</p>
                   </div>
                 </div>
               </CardContent>
@@ -336,17 +388,26 @@ const CopilotRoiBerechnen = () => {
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  <div className="flex justify-between items-center">
-                    <span>Dokumentenerstellung</span>
-                    <span className="text-2xl font-bold text-blue-600">29% schneller</span>
+                  <div>
+                    <div className="flex justify-between items-center">
+                      <span>Dokumentenerstellung</span>
+                      <span className="text-2xl font-bold text-blue-600">29% schneller</span>
+                    </div>
+                    <p className="text-xs text-orange-600 text-right">Unsere Einschätzung: ~15%</p>
                   </div>
-                  <div className="flex justify-between items-center">
-                    <span>E-Mail-Bearbeitung</span>
-                    <span className="text-2xl font-bold text-blue-600">24% schneller</span>
+                  <div>
+                    <div className="flex justify-between items-center">
+                      <span>E-Mail-Bearbeitung</span>
+                      <span className="text-2xl font-bold text-blue-600">24% schneller</span>
+                    </div>
+                    <p className="text-xs text-orange-600 text-right">Unsere Einschätzung: ~12%</p>
                   </div>
-                  <div className="flex justify-between items-center">
-                    <span>Informationssuche</span>
-                    <span className="text-2xl font-bold text-blue-600">22% schneller</span>
+                  <div>
+                    <div className="flex justify-between items-center">
+                      <span>Informationssuche</span>
+                      <span className="text-2xl font-bold text-blue-600">22% schneller</span>
+                    </div>
+                    <p className="text-xs text-orange-600 text-right">Unsere Einschätzung: ~11%</p>
                   </div>
                 </div>
               </CardContent>
@@ -359,27 +420,45 @@ const CopilotRoiBerechnen = () => {
                 <CardTitle className="text-base">Praxisbeispiel: 50 Entwickler</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-sm mb-4">GitHub Copilot Business: $19/Monat × 50 = <strong>$950/Monat</strong></p>
-                <p className="text-sm mb-2"><strong>Zeitersparnis:</strong> 30 Min/Tag × 220 Tage = 5.500h/Jahr</p>
-                <p className="text-sm mb-4">Bei €80/h = <strong>€440.000 Einsparung</strong></p>
-                <div className="p-3 bg-purple-50 dark:bg-purple-950/30 rounded-lg">
-                  <p className="font-bold text-purple-700 dark:text-purple-400">ROI: 3.760%</p>
+                <p className="text-sm mb-4">GitHub Copilot Business: $19/Monat × 50 = <strong>$950/Monat ($11.400/Jahr)</strong></p>
+                <div className="grid grid-cols-2 gap-3 mt-3">
+                  <div className="p-3 bg-blue-50 dark:bg-blue-950/30 rounded-lg">
+                    <p className="text-xs font-semibold text-blue-600 mb-1">Microsoft-Prognose</p>
+                    <p className="text-xs">30 Min/Tag × 220 Tage = 5.500h</p>
+                    <p className="text-xs">Bei €80/h = €440.000</p>
+                    <p className="font-bold text-blue-700 dark:text-blue-400 mt-1">ROI: 3.760%</p>
+                  </div>
+                  <div className="p-3 bg-orange-50 dark:bg-orange-950/30 rounded-lg">
+                    <p className="text-xs font-semibold text-orange-600 mb-1">Unsere Einschätzung</p>
+                    <p className="text-xs">15 Min/Tag × 220 Tage = 2.750h</p>
+                    <p className="text-xs">Bei €80/h = €220.000</p>
+                    <p className="font-bold text-orange-700 dark:text-orange-400 mt-1">ROI: 1.830%</p>
+                  </div>
                 </div>
               </CardContent>
             </Card>
 
             <Card className="border-l-4 border-l-blue-500">
               <CardHeader>
-                <CardTitle className="text-base">Praxisbeispiel: 300 Knowledge Worker (Forrester-Daten)</CardTitle>
+                <CardTitle className="text-base">Praxisbeispiel: 300 Knowledge Worker</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-sm mb-2"><strong>Kosten Jahr 1:</strong></p>
-                <p className="text-sm mb-1">• Lizenzen: €30/Monat × 300 × 12 = €108.000</p>
-                <p className="text-sm mb-4">• Training: €1.000 × 300 = €300.000 → <strong>Gesamt: €408.000</strong></p>
-                <p className="text-sm mb-2"><strong>Zeitersparnis:</strong> 9h/Monat (≈ 5,2%) × 12 × 300 = 32.400h/Jahr</p>
-                <p className="text-sm mb-4">Bei €50/h = <strong>€1.620.000 Einsparung</strong></p>
-                <div className="p-3 bg-blue-50 dark:bg-blue-950/30 rounded-lg">
-                  <p className="font-bold text-blue-700 dark:text-blue-400">ROI Jahr 1: 297%</p>
+                <p className="text-sm mb-1">Lizenzen: €26/Monat × 300 × 12 = €93.600</p>
+                <p className="text-sm mb-4">Training: €1.000 × 300 = €300.000 → <strong>Gesamt: €393.600</strong></p>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="p-3 bg-blue-50 dark:bg-blue-950/30 rounded-lg">
+                    <p className="text-xs font-semibold text-blue-600 mb-1">Microsoft-Prognose</p>
+                    <p className="text-xs">9h/Monat × 12 × 300 = 32.400h</p>
+                    <p className="text-xs">Bei €50/h = €1.620.000</p>
+                    <p className="font-bold text-blue-700 dark:text-blue-400 mt-1">ROI: 312%</p>
+                  </div>
+                  <div className="p-3 bg-orange-50 dark:bg-orange-950/30 rounded-lg">
+                    <p className="text-xs font-semibold text-orange-600 mb-1">Unsere Einschätzung</p>
+                    <p className="text-xs">4,5h/Monat × 12 × 300 = 16.200h</p>
+                    <p className="text-xs">Bei €50/h = €810.000</p>
+                    <p className="font-bold text-orange-700 dark:text-orange-400 mt-1">ROI: 106%</p>
+                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -485,57 +564,69 @@ const CopilotRoiBerechnen = () => {
             <Card className="border-t-4 border-t-gray-400">
               <CardHeader>
                 <CardTitle className="text-lg">Konservativ</CardTitle>
+                <p className="text-xs text-muted-foreground">Ohne begleitende Schulung</p>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3 mb-6">
-                  <p className="text-sm"><strong>Adoption:</strong> 50%</p>
-                  <p className="text-sm"><strong>Produktivität:</strong> +15%</p>
-                  <p className="text-sm"><strong>Lernkurve:</strong> 6 Monate</p>
+                  <p className="text-sm"><strong>Adoption:</strong> 30%</p>
+                  <p className="text-sm"><strong>Produktivität:</strong> +8%</p>
+                  <p className="text-sm"><strong>Lernkurve:</strong> 9+ Monate</p>
                 </div>
                 <div className="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg text-center">
                   <p className="text-sm text-muted-foreground">Break-even</p>
-                  <p className="text-2xl font-bold">18 Monate</p>
+                  <p className="text-2xl font-bold">24+ Monate</p>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="border-t-4 border-t-amber-500 ring-2 ring-amber-500/20">
+            <Card className="border-t-4 border-t-orange-500 ring-2 ring-orange-500/20">
               <CardHeader>
                 <CardTitle className="text-lg flex items-center gap-2">
                   Realistisch
-                  <span className="text-xs bg-amber-100 dark:bg-amber-900 text-amber-700 dark:text-amber-300 px-2 py-0.5 rounded">Empfohlen</span>
+                  <span className="text-xs bg-orange-100 dark:bg-orange-900 text-orange-700 dark:text-orange-300 px-2 py-0.5 rounded">Unsere Einschätzung</span>
                 </CardTitle>
+                <p className="text-xs text-muted-foreground">Mit gezielter Schulung &amp; Change Management</p>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3 mb-6">
-                  <p className="text-sm"><strong>Adoption:</strong> 70%</p>
-                  <p className="text-sm"><strong>Produktivität:</strong> +25%</p>
-                  <p className="text-sm"><strong>Lernkurve:</strong> 3 Monate</p>
+                  <p className="text-sm"><strong>Adoption:</strong> 60%</p>
+                  <p className="text-sm"><strong>Produktivität:</strong> +15%</p>
+                  <p className="text-sm"><strong>Lernkurve:</strong> 4 Monate</p>
                 </div>
-                <div className="p-4 bg-amber-100 dark:bg-amber-900/30 rounded-lg text-center">
+                <div className="p-4 bg-orange-100 dark:bg-orange-900/30 rounded-lg text-center">
                   <p className="text-sm text-muted-foreground">Break-even</p>
-                  <p className="text-2xl font-bold text-amber-700 dark:text-amber-400">9 Monate</p>
+                  <p className="text-2xl font-bold text-orange-700 dark:text-orange-400">10 Monate</p>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="border-t-4 border-t-green-500">
+            <Card className="border-t-4 border-t-blue-500">
               <CardHeader>
-                <CardTitle className="text-lg">Optimistisch</CardTitle>
+                <CardTitle className="text-lg flex items-center gap-2">
+                  Optimistisch
+                  <span className="text-xs bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 px-2 py-0.5 rounded">Microsoft-Studien</span>
+                </CardTitle>
+                <p className="text-xs text-muted-foreground">Ideal: hohe Adoption + intensives Training</p>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3 mb-6">
                   <p className="text-sm"><strong>Adoption:</strong> 90%</p>
-                  <p className="text-sm"><strong>Produktivität:</strong> +35%</p>
+                  <p className="text-sm"><strong>Produktivität:</strong> +30%</p>
                   <p className="text-sm"><strong>Lernkurve:</strong> 1 Monat</p>
                 </div>
-                <div className="p-4 bg-green-100 dark:bg-green-900/30 rounded-lg text-center">
+                <div className="p-4 bg-blue-100 dark:bg-blue-900/30 rounded-lg text-center">
                   <p className="text-sm text-muted-foreground">Break-even</p>
-                  <p className="text-2xl font-bold text-green-700 dark:text-green-400">4 Monate</p>
+                  <p className="text-2xl font-bold text-blue-700 dark:text-blue-400">4 Monate</p>
                 </div>
               </CardContent>
             </Card>
           </div>
+
+          <p className="text-sm text-muted-foreground mt-4">
+            Das „Konservativ"-Szenario zeigt, was passiert, wenn Copilot ohne begleitende Maßnahmen ausgerollt wird – ein häufiger Fehler.
+            Unser „Realistisch"-Szenario setzt gezielte Schulungen und Workflow-Anpassungen voraus. Die Microsoft-Werte im „Optimistisch"-Szenario
+            sind unter Idealbedingungen erreichbar, erfordern aber maximale Adoption und intensives Change Management.
+          </p>
         </section>
 
         {/* Branchen-ROI */}
@@ -544,30 +635,35 @@ const CopilotRoiBerechnen = () => {
             Branchenspezifische ROI-Beispiele
           </h2>
 
+          <p className="text-sm text-muted-foreground mb-6">
+            Die folgenden Werte basieren auf Microsoft-Studien, die wir auf Basis unserer Praxiserfahrung halbiert haben.
+            Die tatsächlichen Gewinne hängen stark von der Qualität der Einführung, der Schulung und dem Change Management ab.
+          </p>
+
           <div className="grid md:grid-cols-2 gap-6">
             {[
               {
                 branche: "Software-Entwicklung",
-                roi: "2.000-5.000%",
-                benefits: ["40% schnellere Feature-Entwicklung", "30% weniger Bugs", "50% schnellere Code-Reviews"],
+                roi: "1.000-2.500%",
+                benefits: ["20% schnellere Feature-Entwicklung", "15% weniger Bugs", "25% schnellere Code-Reviews"],
                 color: "purple"
               },
               {
                 branche: "Consulting & Professional Services",
-                roi: "1.500-3.000%",
-                benefits: ["35% schnellere Proposals", "40% weniger Admin-Zeit", "25% mehr billable hours"],
+                roi: "750-1.500%",
+                benefits: ["18% schnellere Proposals", "20% weniger Admin-Zeit", "13% mehr billable hours"],
                 color: "blue"
               },
               {
                 branche: "Finance & Banking",
-                roi: "1.000-2.500%",
-                benefits: ["45% schnellere Reports", "30% bessere Datenanalyse", "20% weniger Compliance-Fehler"],
+                roi: "500-1.250%",
+                benefits: ["23% schnellere Reports", "15% bessere Datenanalyse", "10% weniger Compliance-Fehler"],
                 color: "green"
               },
               {
                 branche: "Marketing & Sales",
-                roi: "800-2.000%",
-                benefits: ["50% schnellere Content-Erstellung", "35% mehr Leads", "25% höhere Campaign-Performance"],
+                roi: "400-1.000%",
+                benefits: ["25% schnellere Content-Erstellung", "18% mehr Leads", "13% höhere Campaign-Performance"],
                 color: "orange"
               }
             ].map((item, idx) => (
@@ -694,8 +790,8 @@ const CopilotRoiBerechnen = () => {
             {[
               {
                 fehler: "Nur Lizenzkosten berücksichtigen",
-                falsch: "Copilot kostet €30/Monat",
-                richtig: "Total Cost of Ownership inkl. Training, Change Management, IT"
+                falsch: "Copilot kostet €26/Monat – fertig",
+                richtig: "Total Cost of Ownership inkl. Schulung, Change Management und IT-Aufwand"
               },
               {
                 fehler: "Unrealistische Produktivitätsgewinne",

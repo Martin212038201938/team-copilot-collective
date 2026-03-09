@@ -223,7 +223,7 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/microsoft-copilot-lizenzen",
     badge: "Lizenzierung",
     icon: "📋",
-    lastUpdated: "02. Feb. 2026",
+    lastUpdated: "09. März 2026",
     publishDate: "2026-01-15",
     publishTime: "09:00"
   },
@@ -289,7 +289,7 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/copilot-roi-berechnen",
     badge: "ROI",
     icon: "💰",
-    lastUpdated: "02. Feb. 2026",
+    lastUpdated: "09. März 2026",
     publishDate: "2025-12-15",
     publishTime: "09:00"
   },
