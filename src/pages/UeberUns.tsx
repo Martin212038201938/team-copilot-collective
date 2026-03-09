@@ -140,7 +140,11 @@ const UeberUns = () => {
           {/* Hero Section - Apple-inspired clean design */}
           <div className="max-w-4xl mx-auto text-center mb-16">
             <h1 className="text-5xl lg:text-7xl font-semibold tracking-tight leading-[1.1]">
-              <span className="text-primary">Microsoft Copilot</span> Spezialisten aus der Anwendungspraxis
+              <span className="text-primary">Microsoft Copilot</span>
+              <br />
+              Spezialisten aus der
+              <br />
+              Anwendungspraxis
             </h1>
             <p className="mt-6 text-xl text-muted-foreground leading-relaxed mb-4 animate-slide-up-delayed">
               <strong>Die Copilotenschule</strong> ist spezialisiert auf die Einführung und Weiterqualifizierungen
