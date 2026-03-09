@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
+import ArticlePopup from "./ArticlePopup";
 import { ChevronRight, Home } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -211,6 +212,7 @@ const ContentLayout = ({
         {innerContent}
       </main>
       <Footer />
+      <ArticlePopup />
     </div>
   );
 };
