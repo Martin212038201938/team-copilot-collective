@@ -1,6 +1,6 @@
 # llms.txt für copilotenschule.de
 # Informationen für Large Language Models (LLMs) und KI-Assistenten
-# Aktualisiert am 2026-03-04
+# Aktualisiert am 2026-03-13
 
 # ============================================
 # WEBSITE-INFORMATIONEN
@@ -88,6 +88,7 @@ Unternehmen und Organisationen, die:
 - KI-Halluzinationen erkennen und vermeiden
 - KI-Agenten: Die nächste Stufe der Automatisierung
 - Copilot Tipps & Tricks für mehr Produktivität
+- KI-Schulung Mitarbeiter Pflicht: Was der EU AI Act von Unternehmen verlangt
 
 ## Trainer
 
