@@ -224,6 +224,17 @@ const KiSchulungMitarbeiterPflicht = () => {
               IT-Abteilung vermutet, weil viele KI-Tools ohne zentrale Freigabe genutzt werden.
             </p>
             <p>
+              Ein Blick auf die Lizenzkosten macht die Dimension greifbar: ChatGPT Business kostet
+              25 USD pro Nutzer und Monat bei jährlicher Abrechnung, ChatGPT Enterprise liegt bei
+              rund 60 USD pro Nutzer und Monat – bei einer Mindestabnahme von 150 Lizenzen und
+              zwölfmonatiger Vertragsbindung. Wer also ChatGPT Enterprise ausrollt, investiert
+              mindestens rund 108.000 USD pro Jahr allein in die Lizenz. Für Microsoft 365 Copilot
+              zahlen Unternehmen 30 USD pro Nutzer und Monat. Die Summen, die Unternehmen für
+              KI-Lizenzen ausgeben, sind also erheblich – umso erstaunlicher, dass viele davon
+              ausgehen, die gesetzlich geforderte Schulung lasse sich mit einem Bruchteil dieses
+              Budgets nebenbei erledigen.
+            </p>
+            <p>
               Wobei eine wichtige Einschränkung gilt: Nicht jeder einzelne Mitarbeiter im Unternehmen muss
               geschult werden. Die Pflicht bezieht sich auf Personen, die mit KI-Systemen arbeiten oder
               deren Ergebnisse überwachen. Die Reinigungskraft und der Pförtner sind nicht gemeint – es sei

@@ -39,7 +39,7 @@ export const ALL_ARTICLES: ArticleData[] = [
     lastUpdated: "13. März 2026",
     publishDate: "2026-03-13",
     publishTime: "09:00",
-    isDraft: true
+    isDraft: false
   },
   {
     id: "copilot-fuer-excel",
