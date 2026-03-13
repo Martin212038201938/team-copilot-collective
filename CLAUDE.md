@@ -77,52 +77,23 @@ import MeinArtikelName from "./pages/MeinArtikelName";
 <Route path="/wissen/mein-artikel-slug" element={<MeinArtikelName />} />
 ```
 
-#### Schritt 3: Eintrag in Wissen.tsx hinzufügen
+#### Schritt 3: Eintrag in articles.ts hinzufügen
+Neuen Eintrag am **Anfang** des `ALL_ARTICLES` Arrays in `/src/data/articles.ts` (neueste zuerst):
 ```typescript
-// In staticKnowledgeTopics Array:
-{
-  title: "Mein Artikel Titel",
-  description: "Kurze Beschreibung...",
-  link: "/wissen/mein-artikel-slug",
-  badge: "Kategorie",
-  icon: "📝",
-  readTime: "X Minuten",
-  lastUpdated: "DD. Mon. YYYY",
-  publishDate: "YYYY-MM-DD"  // Für Sortierung!
-}
-```
-
-#### Schritt 4: Eintrag in EditorialCalendar.tsx hinzufügen
-```typescript
-// In DEFAULT_STATIC_ARTICLES Array:
 {
   id: "mein-artikel-slug",
   title: "Mein Artikel Titel",
-  description: "Kurze Beschreibung...",
+  description: "Kurze Beschreibung max 160 Zeichen",
   link: "/wissen/mein-artikel-slug",
   badge: "Kategorie",
-  icon: "📝",
-  readTime: "X Minuten",
+  icon: "§",
   lastUpdated: "DD. Mon. YYYY",
   publishDate: "YYYY-MM-DD",
-  publishTime: "09:00",
-  isPublished: false,  // ← IMMER als Draft starten!
-  isStatic: true
+  publishTime: "09:00"
 }
 ```
 
-### Redaktionstool-Nutzung
-Das Redaktionstool (`/admin`) dient **AUSSCHLIESSLICH** zur:
-- Verwaltung der **Launch-Daten** (Veröffentlichungsdatum & Uhrzeit)
-
-**Alles andere (Content, Metadaten, etc.) wird im Code verwaltet!**
-
-### ❌ JSON-Drafts sind NICHT für Produktion
-Die JSON-Dateien in `/public/content/drafts/` sind nur für:
-- Temporäre Entwürfe während der Entwicklung
-- Preview vor TSX-Konvertierung
-
-Sie werden NIEMALS auf der Live-Seite angezeigt, da sie nicht SEO-indexierbar sind.
+**HINWEIS:** `articles.ts` ist die einzige Stelle, an der Artikel-Metadaten registriert werden. Wissen.tsx und EditorialCalendar.tsx lesen beide aus `ALL_ARTICLES`. Es gibt KEIN separates `staticKnowledgeTopics`-Array in Wissen.tsx und KEIN `DEFAULT_STATIC_ARTICLES`-Array in EditorialCalendar.tsx mehr. Kein `isDraft`-Feld verwenden – das Redaktionssystem ist nicht aktiv.
 
 ---
 

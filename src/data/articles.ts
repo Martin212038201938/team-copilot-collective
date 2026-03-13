@@ -39,7 +39,7 @@ export const ALL_ARTICLES: ArticleData[] = [
     lastUpdated: "13. März 2026",
     publishDate: "2026-03-13",
     publishTime: "11:00",
-    isDraft: true
+    isDraft: false
   },
   {
     id: "microsoft-365-e7-frontier-suite",
@@ -141,7 +141,7 @@ export const ALL_ARTICLES: ArticleData[] = [
     lastUpdated: "05. Feb. 2026",
     publishDate: "2026-02-05",
     publishTime: "08:00",
-    isDraft: true  // Draft - noch nicht veröffentlicht
+    isDraft: false  // Draft - noch nicht veröffentlicht
   },
   {
     id: "warum-verteiltes-lernen",
