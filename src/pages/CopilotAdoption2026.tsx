@@ -1,7 +1,6 @@
 import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { TrendingUp, AlertTriangle, CheckCircle2, BarChart3, Quote, Target, Users, Lightbulb } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 import { Link } from "react-router-dom";
@@ -10,7 +9,7 @@ const SLUG = "copilot-adoption-2026-zahlen";
 const PAGE_TITLE = "Copilot Adoption 2026: Was die Zahlen wirklich zeigen";
 
 const CopilotAdoption2026 = () => {
-  const author = getAuthor("martin-lang");
+  const martinLang = getAuthor("martin-lang")!;
 
   const ids = generateSchemaIds(SLUG, 'wissen');
   const pageUrl = `https://copilotenschule.de/wissen/${SLUG}`;
@@ -45,6 +44,10 @@ const CopilotAdoption2026 = () => {
     {
       name: "Wie lange dauert es, bis sich Copilot amortisiert?",
       answer: "Bei durchschnittlich 14 Minuten Zeitersparnis pro Tag und Lizenzkosten von 30 EUR/Monat liegt der Break-even bei einem Stundensatz von ca. 45 EUR bereits im ersten Monat. Voraussetzung ist jedoch aktive Nutzung – und genau hier setzt das Training der Copilotenschule an."
+    },
+    {
+      name: "Sollten wir mit Copilot warten, bis die Technologie ausgereifter ist?",
+      answer: "Die Technologie ist bereits produktionsreif – das zeigen 15 Millionen zahlende Nutzer weltweit. Das Risiko liegt nicht im Warten auf bessere Features, sondern im Verpassen der Lernkurve. Unternehmen, die jetzt starten, bauen internes Know-how auf, das sich nicht nachholen lässt. Die Copilotenschule begleitet Sie von einem strukturierten Pilot bis zum unternehmensweiten Rollout – damit Sie nicht zu den 94% gehören, die an der Skalierung scheitern."
     }
   ];
 
@@ -56,7 +59,7 @@ const CopilotAdoption2026 = () => {
         "@id": ids.article,
         "headline": PAGE_TITLE,
         "description": "Aktuelle Zahlen Januar 2026: 15 Mio. Copilot-Seats, 160% Wachstum, bis zu 408% ROI. Eine nüchterne Einordnung jenseits des Microsoft-Marketings.",
-        "author": getAuthorSchemaMarkup(author),
+        "author": getAuthorSchemaMarkup(martinLang),
         "publisher": {
           "@id": "https://copilotenschule.de/#organization"
         },
@@ -102,24 +105,39 @@ const CopilotAdoption2026 = () => {
         keywords={["Microsoft Copilot 2026", "Copilot Adoption", "Satya Nadella Copilot", "Microsoft 365 Copilot ROI", "Copilot Statistiken"]}
         canonicalUrl={pageUrl}
         schema={schema}
+        author={martinLang}
+        publishedTime="2026-02-03T09:00:00+01:00"
+        modifiedTime="2026-02-03T09:00:00+01:00"
       />
 
       <ContentLayout
+        breadcrumbs={[
+          { label: "Wissen", href: "/wissen" },
+          { label: "Copilot Adoption 2026", href: `/wissen/${SLUG}` }
+        ]}
         title={PAGE_TITLE}
         description="Aktuelle Zahlen Januar 2026: 15 Mio. Copilot-Seats, 160% Wachstum, bis zu 408% ROI. Eine nüchterne Einordnung jenseits des Microsoft-Marketings."
-        keywords={["Microsoft Copilot 2026", "Copilot Adoption", "Satya Nadella Copilot", "Microsoft 365 Copilot ROI"]}
-        datePublished="2026-02-03"
-        dateModified="2026-02-03"
-        author={author}
+        lastUpdated="03. Februar 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
-        breadcrumbItems={breadcrumbItems}
-        faqs={faqs}
       >
+        {/* Schnellantwort */}
+        <Card className="mb-6 border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-red-500/5">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              Schnellantwort
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-base leading-relaxed">
+              Stand Januar 2026 nutzen 15 Millionen zahlende Kunden Microsoft 365 Copilot – ein Wachstum von 160% gegenüber dem Vorjahr. Die Forrester-Studie prognostiziert bis zu 408% ROI über drei Jahre. Gleichzeitig kämpfen laut Gartner 72% der Unternehmen mit der Adoption. Die Technologie funktioniert – das Problem liegt in der Einführung.
+            </p>
+          </CardContent>
+        </Card>
+
         {/* Einleitung: Microsoft-Kommunikation */}
-        <section id="microsoft-kommunikation" className="mb-12">
-          <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-            <AlertTriangle className="w-6 h-6 text-amber-500" />
+        <section id="microsoft-kommunikation" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Vorab: Ein Wort zur Microsoft-Kommunikation
           </h2>
 
@@ -141,9 +159,8 @@ const CopilotAdoption2026 = () => {
         </section>
 
         {/* Die Zahlen */}
-        <section id="zahlen-q2-2026" className="mb-12">
-          <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-            <BarChart3 className="w-6 h-6 text-primary" />
+        <section id="zahlen-q2-2026" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Die Zahlen: Microsoft Q2 FY2026 (Januar 2026)
           </h2>
 
@@ -154,8 +171,7 @@ const CopilotAdoption2026 = () => {
           <div className="grid md:grid-cols-2 gap-6 mb-8">
             <Card>
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Users className="w-5 h-5 text-blue-600" />
+                <CardTitle>
                   Microsoft 365 Copilot
                 </CardTitle>
               </CardHeader>
@@ -177,8 +193,7 @@ const CopilotAdoption2026 = () => {
 
             <Card>
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <TrendingUp className="w-5 h-5 text-purple-600" />
+                <CardTitle>
                   GitHub Copilot
                 </CardTitle>
               </CardHeader>
@@ -198,12 +213,20 @@ const CopilotAdoption2026 = () => {
               </CardContent>
             </Card>
           </div>
+
+          <div className="my-6">
+            <img
+              src="/images/charts/adoption-forrester-roi.png"
+              alt="Balkendiagramm: Forrester ROI-Prognosen für Microsoft 365 Copilot – Low 122%, Medium 243%, High 408%"
+              className="w-full rounded-lg"
+              loading="lazy"
+            />
+          </div>
         </section>
 
         {/* Nadella Zitate */}
-        <section id="nadella-zitate" className="mb-12">
-          <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-            <Quote className="w-6 h-6 text-primary" />
+        <section id="nadella-zitate" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Was Satya Nadella sagt – wörtlich zitiert
           </h2>
 
@@ -243,9 +266,8 @@ const CopilotAdoption2026 = () => {
         </section>
 
         {/* ROI Prognosen */}
-        <section id="roi-prognosen" className="mb-12">
-          <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-            <TrendingUp className="w-6 h-6 text-green-600" />
+        <section id="roi-prognosen" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             ROI-Prognosen: Was die Studien sagen
           </h2>
 
@@ -319,9 +341,8 @@ const CopilotAdoption2026 = () => {
         </section>
 
         {/* Gartner Schattenseite */}
-        <section id="gartner-adoption" className="mb-12">
-          <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-            <AlertTriangle className="w-6 h-6 text-amber-500" />
+        <section id="gartner-adoption" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Die Schattenseite: Gartner-Daten zur Adoption
           </h2>
 
@@ -364,21 +385,28 @@ const CopilotAdoption2026 = () => {
               </p>
             </CardContent>
           </Card>
+
+          <div className="my-6">
+            <img
+              src="/images/charts/adoption-gartner-probleme.png"
+              alt="Balkendiagramm: Gartner Copilot-Adoptionsprobleme – 72% kämpfen mit Integration, nur 6% schaffen Rollout"
+              className="w-full rounded-lg"
+              loading="lazy"
+            />
+          </div>
         </section>
 
         {/* Strategie */}
-        <section id="strategie" className="mb-12">
-          <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-            <Target className="w-6 h-6 text-primary" />
+        <section id="strategie" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Was das für Ihre Copilot-Strategie bedeutet
           </h2>
 
           <div className="space-y-4">
             <Card>
               <CardContent className="pt-6">
-                <h3 className="font-bold text-lg mb-2 flex items-center gap-2">
-                  <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">1</span>
-                  Die Diffusionsphase hat begonnen
+                <h3 className="font-bold text-lg mb-2">
+                  1. Die Diffusionsphase hat begonnen
                 </h3>
                 <p className="text-muted-foreground">
                   15 Millionen Seats sind keine Early-Adopter-Spielerei mehr. Wenn Ihre Wettbewerber Copilot nutzen und Sie nicht, entsteht ein Produktivitätsgap.
@@ -388,9 +416,8 @@ const CopilotAdoption2026 = () => {
 
             <Card>
               <CardContent className="pt-6">
-                <h3 className="font-bold text-lg mb-2 flex items-center gap-2">
-                  <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">2</span>
-                  Training ist nicht optional
+                <h3 className="font-bold text-lg mb-2">
+                  2. Training ist nicht optional
                 </h3>
                 <p className="text-muted-foreground">
                   72% Adoptionsprobleme bedeuten: Lizenz kaufen und hoffen reicht nicht. Ohne strukturiertes Enablement verbrennen Sie Geld.
@@ -400,9 +427,8 @@ const CopilotAdoption2026 = () => {
 
             <Card>
               <CardContent className="pt-6">
-                <h3 className="font-bold text-lg mb-2 flex items-center gap-2">
-                  <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">3</span>
-                  Piloten müssen skalieren
+                <h3 className="font-bold text-lg mb-2">
+                  3. Piloten müssen skalieren
                 </h3>
                 <p className="text-muted-foreground">
                   Nur 6% schaffen den Rollout. Planen Sie von Anfang an, wie aus dem Pilot ein unternehmensweites Programm wird.
@@ -412,9 +438,8 @@ const CopilotAdoption2026 = () => {
 
             <Card>
               <CardContent className="pt-6">
-                <h3 className="font-bold text-lg mb-2 flex items-center gap-2">
-                  <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">4</span>
-                  Realistische Erwartungen setzen
+                <h3 className="font-bold text-lg mb-2">
+                  4. Realistische Erwartungen setzen
                 </h3>
                 <p className="text-muted-foreground">
                   Copilot ist kein Wundermittel. 14 Minuten Zeitersparnis pro Tag sind gut – aber keine Revolution. Kalkulieren Sie konservativ. Sehen Sie sich reale <Link to="/wissen/copilot-roi-erfolgsgeschichten" className="text-primary hover:underline">Erfolgsgeschichten</Link> an, um zu verstehen, wie andere Unternehmen messbaren ROI erreicht haben.
@@ -425,37 +450,31 @@ const CopilotAdoption2026 = () => {
         </section>
 
         {/* Checkliste */}
-        <section id="checkliste" className="mb-12">
-          <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-            <CheckCircle2 className="w-6 h-6 text-green-600" />
+        <section id="checkliste" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Checkliste: Sind Sie bereit für Copilot?
           </h2>
 
           <div className="grid md:grid-cols-2 gap-6">
             <Card className="bg-green-50 border-green-200">
               <CardHeader>
-                <CardTitle className="text-green-800">✅ Starten Sie, wenn:</CardTitle>
+                <CardTitle className="text-green-800">Starten Sie, wenn:</CardTitle>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2">
                   <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
                     <span>Sie bereits Microsoft 365 aktiv nutzen</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
                     <span>Budget für Training (nicht nur Lizenzen) vorhanden ist</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
                     <span>Führungskräfte das Projekt sponsoren</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
                     <span>Sie bereit sind, 12+ Wochen in einen strukturierten Pilot zu investieren</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
                     <span>Klare Use Cases identifiziert sind</span>
                   </li>
                 </ul>
@@ -464,24 +483,20 @@ const CopilotAdoption2026 = () => {
 
             <Card className="bg-amber-50 border-amber-200">
               <CardHeader>
-                <CardTitle className="text-amber-800">⚠️ Warten Sie noch, wenn:</CardTitle>
+                <CardTitle className="text-amber-800">Warten Sie noch, wenn:</CardTitle>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2">
                   <li className="flex items-start gap-2">
-                    <AlertTriangle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
                     <span>Keine Ressourcen für begleitendes Training verfügbar sind</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <AlertTriangle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
                     <span>Datenschutz- und Compliance-Fragen ungeklärt sind</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <AlertTriangle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
                     <span>"Weil alle es machen" die einzige Begründung ist</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <AlertTriangle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
                     <span>Sie ROI in 3 Monaten erwarten</span>
                   </li>
                 </ul>
@@ -491,9 +506,8 @@ const CopilotAdoption2026 = () => {
         </section>
 
         {/* Fazit */}
-        <section id="fazit" className="mb-12">
-          <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-            <Lightbulb className="w-6 h-6 text-primary" />
+        <section id="fazit" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Fazit: Nüchtern betrachtet
           </h2>
 
@@ -513,7 +527,7 @@ const CopilotAdoption2026 = () => {
         </section>
 
         {/* Weiterführende Artikel */}
-        <section className="mb-12">
+        <section className="mb-6">
           <h2 className="text-2xl font-bold mb-6">Weiterführende Artikel</h2>
           <div className="grid md:grid-cols-3 gap-6">
             <Link
@@ -572,6 +586,25 @@ const CopilotAdoption2026 = () => {
           </div>
         </section>
 
+        {/* FAQs */}
+        <section id="faq" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
+            Häufig gestellte Fragen
+          </h2>
+          <div className="space-y-4">
+            {faqs.map((faq, index) => (
+              <Card key={index}>
+                <CardHeader>
+                  <CardTitle className="text-lg">{faq.name}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">{faq.answer}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
         {/* Quellen */}
         <section id="quellen" className="mb-12">
           <h2 className="text-2xl font-bold mb-6">Quellen</h2>
@@ -583,6 +616,24 @@ const CopilotAdoption2026 = () => {
             <li>• Microsoft Work Trend Index, 2025</li>
           </ul>
         </section>
+
+        {/* Autor */}
+        <Card className="mt-8 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800/50 dark:to-gray-900/50">
+          <CardContent className="pt-6">
+            <div className="flex items-start gap-4">
+              <img
+                src={martinLang.image}
+                alt={martinLang.name}
+                className="w-16 h-16 rounded-full object-cover"
+              />
+              <div>
+                <p className="font-semibold text-lg">{martinLang.name}</p>
+                <p className="text-sm text-muted-foreground mb-2">{martinLang.role}</p>
+                <p className="text-sm leading-relaxed">{martinLang.bio}</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
       </ContentLayout>
     </>
   );

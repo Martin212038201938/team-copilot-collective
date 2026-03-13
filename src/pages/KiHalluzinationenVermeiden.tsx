@@ -42,6 +42,10 @@ const KiHalluzinationenVermeiden = () => {
     {
       name: "Wie gehen wir damit um, dass Mitarbeitende KI-Texte ungeprüft übernehmen?",
       answer: "Das ist weniger ein Technologie- als ein Kulturproblem. In vielen Unternehmen fehlt ein gemeinsames Verständnis davon, wann KI-Output direkt verwendbar ist und wann er geprüft werden muss. Die Lösung: klare Richtlinien nach Risikostufen. Ein interner E-Mail-Entwurf braucht weniger Prüfung als ein Kundenangebot. Ein Brainstorming-Input weniger als eine Vertragsklausel. Die Copilotenschule entwickelt mit Ihnen solche Richtlinien und schult Ihre Teams in der praktischen Anwendung."
+    },
+    {
+      name: "Wir möchten KI-Richtlinien für unser Unternehmen erstellen – wo fangen wir an?",
+      answer: "Starten Sie mit einer Risikoklassifizierung Ihrer typischen KI-Anwendungsfälle. Nicht jeder Output braucht die gleiche Prüftiefe – ein interner Brainstorming-Protokoll ist anders zu bewerten als ein Kundenangebot oder eine Compliance-Dokumentation. Definieren Sie für jede Stufe klare Regeln: Wer prüft? Wie wird dokumentiert? Wo ist KI-Einsatz tabu? Die Copilotenschule unterstützt Unternehmen bei der Entwicklung praxistauglicher KI-Richtlinien und schult Teams in deren Anwendung."
     }
   ];
 
@@ -127,7 +131,7 @@ const KiHalluzinationenVermeiden = () => {
         tableOfContents={tableOfContents}
       >
         {/* Schnellantwort */}
-        <Card className="mb-8 border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-red-500/5">
+        <Card className="mb-6 border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-red-500/5">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               Schnellantwort
@@ -146,7 +150,7 @@ const KiHalluzinationenVermeiden = () => {
         </Card>
 
         {/* Einleitung */}
-        <div className="prose prose-lg max-w-none dark:prose-invert mb-8">
+        <div className="prose prose-lg max-w-none dark:prose-invert mb-6">
           <p className="text-lg leading-relaxed">
             Letzte Woche hat mir ein Teilnehmer in einem Workshop seinen Copilot-Entwurf für ein
             Kundenangebot gezeigt. Der Text war flüssig geschrieben, professionell formuliert, auf den
@@ -462,8 +466,8 @@ const KiHalluzinationenVermeiden = () => {
         </section>
 
         {/* Weiterführende Artikel */}
-        <section className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">Weiterführende Artikel</h2>
+        <section className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Weiterführende Artikel</h2>
           <div className="grid md:grid-cols-3 gap-4">
             <Link to="/wissen/copilot-sicherheit-datenschutz" className="block">
               <Card className="hover:shadow-md transition-shadow h-full">

@@ -1,7 +1,6 @@
 import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Zap, Calculator, TrendingUp, Target, BarChart3, CheckCircle2, AlertTriangle, Download, ExternalLink } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 import { Link } from "react-router-dom";
@@ -10,7 +9,7 @@ const SLUG = "copilot-roi-berechnen";
 const PAGE_TITLE = "Copilot ROI berechnen";
 
 const CopilotRoiBerechnen = () => {
-  const author = getAuthor("martin-lang");
+  const martinLang = getAuthor("martin-lang")!;
 
   const ids = generateSchemaIds(SLUG, 'wissen');
   const pageUrl = `https://copilotenschule.de/wissen/${SLUG}`;
@@ -47,6 +46,10 @@ const CopilotRoiBerechnen = () => {
     {
       name: "Welche KPIs sollten wir für die Copilot-Erfolgsmessung definieren?",
       answer: "Messen Sie quantitativ: Nutzungsrate, Time-to-Completion bei Standardtasks, Dokumentenerstellungszeit. Qualitativ: Mitarbeiterzufriedenheit, Dokumentenqualität, Innovationsrate. Die Copilotenschule entwickelt mit Ihnen ein KPI-Framework und unterstützt beim Aufbau eines Adoption-Dashboards."
+    },
+    {
+      name: "Wie argumentiere ich gegenüber dem CFO, wenn die Zeitersparnis pro Mitarbeiter nur 14 Minuten am Tag beträgt?",
+      answer: "14 Minuten klingen wenig – aber rechnen Sie es hoch: Bei 300 Mitarbeitern sind das 70 Stunden pro Tag oder knapp 9 Vollzeitstellen. Hinzu kommt der Qualitätseffekt, der sich in Zahlen schwerer fassen lässt: schnellere Reaktionszeiten, bessere Dokumentenqualität, kürzere Einarbeitungszeiten. Die Copilotenschule unterstützt Sie beim Aufbau eines Business Case, der beide Dimensionen – Zeitersparnis und Qualitätsverbesserung – überzeugend darstellt."
     }
   ];
 
@@ -58,7 +61,7 @@ const CopilotRoiBerechnen = () => {
         "@id": ids.article,
         "headline": "Copilot ROI berechnen: Lohnt sich die Investition?",
         "description": "Konkrete Methoden zur ROI-Berechnung von Microsoft Copilot. Mit Excel-Vorlage, Praxisbeispielen und messbaren KPIs für Ihr Business Case.",
-        "author": getAuthorSchemaMarkup(author),
+        "author": getAuthorSchemaMarkup(martinLang),
         "publisher": {
           "@id": "https://copilotenschule.de/#organization"
         },
@@ -106,6 +109,7 @@ const CopilotRoiBerechnen = () => {
         schema={schema}
         publishedTime="2025-11-07"
         modifiedTime="2026-03-09"
+        author={martinLang}
       />
       <ContentLayout
         breadcrumbs={[
@@ -121,8 +125,7 @@ const CopilotRoiBerechnen = () => {
         {/* Schnellantwort-Card */}
         <Card className="border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-amber-500/5">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Zap className="w-6 h-6 text-orange-600" />
+            <CardTitle>
               Schnellantwort
             </CardTitle>
           </CardHeader>
@@ -194,8 +197,7 @@ const CopilotRoiBerechnen = () => {
 
           <Card className="mt-8 border-amber-500/30 bg-amber-50 dark:bg-amber-950/20">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-amber-700 dark:text-amber-400">
-                <AlertTriangle className="w-5 h-5" />
+              <CardTitle className="text-amber-700 dark:text-amber-400">
                 Versteckte Kosten einkalkulieren
               </CardTitle>
             </CardHeader>
@@ -233,8 +235,7 @@ const CopilotRoiBerechnen = () => {
 
           <Card className="mt-8">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Calculator className="w-5 h-5 text-green-600" />
+              <CardTitle>
                 Beispielrechnung: 500 Mitarbeiter
               </CardTitle>
             </CardHeader>
@@ -340,6 +341,15 @@ const CopilotRoiBerechnen = () => {
                 </div>
               </CardContent>
             </Card>
+          </div>
+
+          <div className="my-6">
+            <img
+              src="/images/charts/roi-microsoft-vs-realistisch.png"
+              alt="Balkendiagramm: Copilot-Produktivitätsgewinne – Microsoft-Prognose vs. realistische Einschätzung"
+              className="w-full rounded-lg"
+              loading="lazy"
+            />
           </div>
 
           <p className="text-sm text-muted-foreground mb-8">
@@ -472,8 +482,7 @@ const CopilotRoiBerechnen = () => {
           <div className="grid md:grid-cols-2 gap-6">
             <Card>
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <BarChart3 className="w-5 h-5 text-cyan-600" />
+                <CardTitle>
                   Quantitative Metriken
                 </CardTitle>
               </CardHeader>
@@ -510,40 +519,27 @@ const CopilotRoiBerechnen = () => {
 
             <Card>
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Target className="w-5 h-5 text-cyan-600" />
+                <CardTitle>
                   Qualitative Metriken
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-4">
-                  <li className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                    <div>
-                      <p className="font-semibold">Mitarbeiterzufriedenheit</p>
-                      <p className="text-sm text-muted-foreground">Surveys vor/nach Einführung</p>
-                    </div>
+                  <li className="text-sm">
+                    <p className="font-semibold">Mitarbeiterzufriedenheit</p>
+                    <p className="text-muted-foreground">Surveys vor/nach Einführung</p>
                   </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                    <div>
-                      <p className="font-semibold">Onboarding-Geschwindigkeit</p>
-                      <p className="text-sm text-muted-foreground">Time-to-Productivity neuer Mitarbeiter</p>
-                    </div>
+                  <li className="text-sm mt-3">
+                    <p className="font-semibold">Onboarding-Geschwindigkeit</p>
+                    <p className="text-muted-foreground">Time-to-Productivity neuer Mitarbeiter</p>
                   </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                    <div>
-                      <p className="font-semibold">Innovation</p>
-                      <p className="text-sm text-muted-foreground">Neue Ideen durch KI-Brainstorming</p>
-                    </div>
+                  <li className="text-sm mt-3">
+                    <p className="font-semibold">Innovation</p>
+                    <p className="text-muted-foreground">Neue Ideen durch KI-Brainstorming</p>
                   </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                    <div>
-                      <p className="font-semibold">Wettbewerbsfähigkeit</p>
-                      <p className="text-sm text-muted-foreground">Schnellere Time-to-Market</p>
-                    </div>
+                  <li className="text-sm mt-3">
+                    <p className="font-semibold">Wettbewerbsfähigkeit</p>
+                    <p className="text-muted-foreground">Schnellere Time-to-Market</p>
                   </li>
                 </ul>
               </CardContent>
@@ -619,6 +615,15 @@ const CopilotRoiBerechnen = () => {
             </Card>
           </div>
 
+          <div className="my-6">
+            <img
+              src="/images/charts/roi-breakeven-szenarien.png"
+              alt="Balkendiagramm: Copilot ROI Break-even nach Szenario – konservativ 24 Monate, realistisch 10 Monate, optimistisch 4 Monate"
+              className="w-full rounded-lg"
+              loading="lazy"
+            />
+          </div>
+
           <p className="text-sm text-muted-foreground mt-4">
             Das „Konservativ"-Szenario zeigt, was passiert, wenn Copilot ohne begleitende Maßnahmen ausgerollt wird – ein häufiger Fehler.
             Unser „Realistisch"-Szenario setzt gezielte Schulungen und Workflow-Anpassungen voraus. Die Microsoft-Werte im „Optimistisch"-Szenario
@@ -674,8 +679,7 @@ const CopilotRoiBerechnen = () => {
                 <CardContent>
                   <ul className="space-y-2">
                     {item.benefits.map((b, bidx) => (
-                      <li key={bidx} className="flex items-center gap-2 text-sm">
-                        <TrendingUp className="w-4 h-4 text-green-500" />
+                      <li key={bidx} className="text-sm">
                         {b}
                       </li>
                     ))}
@@ -715,18 +719,9 @@ const CopilotRoiBerechnen = () => {
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2 text-sm">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5" />
-                    Nicht alle Tasks profitieren gleich stark
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5" />
-                    Lernkurve einplanen (2-3 Monate)
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5" />
-                    Individuelle Unterschiede berücksichtigen
-                  </li>
+                  <li className="text-sm">Nicht alle Tasks profitieren gleich stark</li>
+                  <li className="text-sm">Lernkurve einplanen (2-3 Monate)</li>
+                  <li className="text-sm">Individuelle Unterschiede berücksichtigen</li>
                 </ul>
               </CardContent>
             </Card>
@@ -737,18 +732,9 @@ const CopilotRoiBerechnen = () => {
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2 text-sm">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5" />
-                    Executive Sponsorship sicherstellen
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5" />
-                    Champions in jedem Team etablieren
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5" />
-                    Kontinuierliches Training anbieten
-                  </li>
+                  <li className="text-sm">Executive Sponsorship sicherstellen</li>
+                  <li className="text-sm">Champions in jedem Team etablieren</li>
+                  <li className="text-sm">Kontinuierliches Training anbieten</li>
                 </ul>
               </CardContent>
             </Card>
@@ -759,18 +745,9 @@ const CopilotRoiBerechnen = () => {
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2 text-sm">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5" />
-                    Baseline VORHER messen
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5" />
-                    Monatliche KPI-Reviews
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5" />
-                    Feedback-Loops etablieren
-                  </li>
+                  <li className="text-sm">Baseline VORHER messen</li>
+                  <li className="text-sm">Monatliche KPI-Reviews</li>
+                  <li className="text-sm">Feedback-Loops etablieren</li>
                 </ul>
               </CardContent>
             </Card>
@@ -838,8 +815,7 @@ const CopilotRoiBerechnen = () => {
                 <p className="text-sm text-muted-foreground mb-4">High-Impact, Low-Effort Tasks:</p>
                 <ul className="space-y-2">
                   {["E-Mail-Zusammenfassungen", "Meeting-Protokolle", "Standard-Reports", "Code-Dokumentation"].map((item, idx) => (
-                    <li key={idx} className="flex items-center gap-2 text-sm">
-                      <Zap className="w-4 h-4 text-amber-500" />
+                    <li key={idx} className="text-sm">
                       {item}
                     </li>
                   ))}
@@ -854,18 +830,9 @@ const CopilotRoiBerechnen = () => {
               </CardHeader>
               <CardContent>
                 <ul className="space-y-3 text-sm">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5" />
-                    Top 20% der User generieren 80% des Nutzens
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5" />
-                    Identifizieren und gezielt fördern
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5" />
-                    Als Multiplikatoren einsetzen
-                  </li>
+                  <li>Top 20% der User generieren 80% des Nutzens</li>
+                  <li>Identifizieren und gezielt fördern</li>
+                  <li>Als Multiplikatoren einsetzen</li>
                 </ul>
               </CardContent>
             </Card>
@@ -876,18 +843,9 @@ const CopilotRoiBerechnen = () => {
               </CardHeader>
               <CardContent>
                 <ul className="space-y-3 text-sm">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5" />
-                    Erfolgsgeschichten sammeln
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5" />
-                    Intern teilen (Intranet, Newsletter)
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5" />
-                    Motivation für andere schaffen
-                  </li>
+                  <li>Erfolgsgeschichten sammeln</li>
+                  <li>Intern teilen (Intranet, Newsletter)</li>
+                  <li>Motivation für andere schaffen</li>
                 </ul>
               </CardContent>
             </Card>
@@ -898,18 +856,9 @@ const CopilotRoiBerechnen = () => {
               </CardHeader>
               <CardContent>
                 <ul className="space-y-3 text-sm">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5" />
-                    Prompts optimieren und teilen
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5" />
-                    Best Practices etablieren
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5" />
-                    Neue Features testen
-                  </li>
+                  <li>Prompts optimieren und teilen</li>
+                  <li>Best Practices etablieren</li>
+                  <li>Neue Features testen</li>
                 </ul>
               </CardContent>
             </Card>
@@ -925,9 +874,6 @@ const CopilotRoiBerechnen = () => {
           <Card className="border-2 border-green-500/30 bg-gradient-to-br from-green-500/5 to-emerald-500/5">
             <CardContent className="pt-6">
               <div className="flex flex-col items-center gap-4 text-center">
-                <div className="w-16 h-16 bg-green-500 rounded-xl flex items-center justify-center">
-                  <Download className="w-8 h-8 text-white" />
-                </div>
                 <div>
                   <h3 className="font-bold text-xl mb-2">Copilot ROI-Rechner</h3>
                   <p className="text-muted-foreground text-sm">Professionelle Excel-Vorlage mit automatischen Berechnungen</p>
@@ -935,9 +881,8 @@ const CopilotRoiBerechnen = () => {
                 <a
                   href="/downloads/Copilot-ROI-Rechner.xlsx"
                   download="Copilot-ROI-Rechner.xlsx"
-                  className="px-6 py-3 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 transition-colors flex items-center gap-2"
+                  className="px-6 py-3 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 transition-colors"
                 >
-                  <Download className="w-5 h-5" />
                   Jetzt herunterladen
                 </a>
               </div>
@@ -1054,13 +999,10 @@ const CopilotRoiBerechnen = () => {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-start gap-3 p-4 border rounded-lg hover:border-primary/50 hover:bg-muted/50 transition-colors group"
+                className="block p-4 border rounded-lg hover:border-primary/50 hover:bg-muted/50 transition-colors group"
               >
-                <ExternalLink className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                <div>
-                  <div className="font-semibold group-hover:text-primary transition-colors">{link.title}</div>
-                  <div className="text-sm text-muted-foreground">{link.desc}</div>
-                </div>
+                <div className="font-semibold group-hover:text-primary transition-colors">{link.title}</div>
+                <div className="text-sm text-muted-foreground">{link.desc}</div>
               </a>
             ))}
           </div>

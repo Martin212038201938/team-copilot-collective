@@ -2,7 +2,6 @@ import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
-import { ExternalLink, Users, Briefcase, Target } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 
@@ -46,6 +45,10 @@ const CopilotSalesUseCases = () => {
     {
       name: "Brauchen wir Dynamics 365 oder reicht Microsoft 365 Copilot für den Vertrieb?",
       answer: "Für die meisten Use Cases – Meeting-Zusammenfassungen, Follow-up-Mails, Angebotsentwürfe, Pipeline-Analysen in Excel – reicht M365 Copilot. Dynamics 365 Sales lohnt sich, wenn Sie KI-gestütztes Lead Scoring, Predictive Forecasting oder Conversation Intelligence benötigen. Die Copilotenschule berät Sie zur richtigen Kombination passend zu Ihrer Vertriebsstruktur."
+    },
+    {
+      name: "Wie schaffen wir es, dass Copilot-generierte Angebote trotzdem persönlich und individuell klingen?",
+      answer: "Der Schlüssel liegt im Prompting: Statt generische Vorlagen generieren zu lassen, referenzieren Sie konkret auf das letzte Kundengespräch, die besprochenen Pain Points und die individuellen Anforderungen. Copilot liefert dann einen Entwurf, der auf den Kunden zugeschnitten ist – den Feinschliff und die persönliche Note ergänzt der Vertriebler in wenigen Minuten. Die Copilotenschule trainiert Sales-Teams genau in dieser Technik: KI als Entwurfshelfer nutzen, ohne die persönliche Handschrift zu verlieren."
     }
   ];
 
@@ -93,24 +96,6 @@ const CopilotSalesUseCases = () => {
     ]
   };
 
-  // Badge-Komponente für Innen-/Außendienst-Tags
-  const RoleBadge = ({ role }: { role: "Innendienst" | "Außendienst" | "Beide" }) => {
-    const colors = {
-      "Innendienst": "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300",
-      "Außendienst": "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300",
-      "Beide": "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300"
-    };
-    const icons = {
-      "Innendienst": <Briefcase className="w-3.5 h-3.5" />,
-      "Außendienst": <Target className="w-3.5 h-3.5" />,
-      "Beide": <Users className="w-3.5 h-3.5" />
-    };
-    return (
-      <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-medium ${colors[role]}`}>
-        {icons[role]} {role}
-      </span>
-    );
-  };
 
   return (
     <>
@@ -151,7 +136,7 @@ const CopilotSalesUseCases = () => {
         tableOfContents={tableOfContents}
       >
         {/* Schnellantwort */}
-        <Card className="mb-8 border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-red-500/5">
+        <Card className="mb-6 border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-red-500/5">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               Schnellantwort
@@ -169,7 +154,7 @@ const CopilotSalesUseCases = () => {
         </Card>
 
         {/* Einleitung */}
-        <div className="prose prose-lg max-w-none dark:prose-invert mb-8">
+        <div className="prose prose-lg max-w-none dark:prose-invert mb-6">
           <p className="text-lg leading-relaxed">
             In Gesprächen mit Entscheidern werde ich regelmäßig gefragt, wo ich die größten messbaren Potenziale
             für KI im Unternehmen sehe. Meine Antwort überrascht viele: nicht in der IT, nicht im Marketing –
@@ -194,6 +179,15 @@ const CopilotSalesUseCases = () => {
           </p>
         </div>
 
+        <div className="my-6">
+          <img
+            src="/images/charts/vertrieb-zeitersparnis-use-cases.png"
+            alt="Balkendiagramm: Zeitersparnis durch Copilot im Vertrieb nach Use Case, pro Mitarbeiter und Woche"
+            className="w-full rounded-lg"
+            loading="lazy"
+          />
+        </div>
+
         {/* CRM-Pflege */}
         <section id="crm-pflege" className="mb-6">
           <div className="flex items-center gap-3 mb-3">
@@ -201,7 +195,6 @@ const CopilotSalesUseCases = () => {
               Die CRM-Pflege, die niemand machen will
             </h2>
           </div>
-          <div className="mb-4"><RoleBadge role="Beide" /></div>
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
               Fangen wir dort an, wo der Schmerz am größten ist. In fast jedem Sales-Team gibt es eine
@@ -231,7 +224,6 @@ const CopilotSalesUseCases = () => {
           <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Meeting-Vorbereitung, die diesen Namen verdient
           </h2>
-          <div className="mb-4"><RoleBadge role="Außendienst" /></div>
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
               Außendienstmitarbeiter bereiten Kundentermine vor. Theoretisch. Praktisch heißt das oft: kurz ins
@@ -260,7 +252,6 @@ const CopilotSalesUseCases = () => {
           <h2 className="text-2xl md:text-3xl font-bold mb-3">
             E-Mail-Entwürfe nach dem Gespräch
           </h2>
-          <div className="mb-4"><RoleBadge role="Außendienst" /></div>
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
               Jeder erfahrene Vertriebler weiß: Die Follow-up-Mail nach dem Ersttermin ist einer der kritischsten
@@ -286,7 +277,6 @@ const CopilotSalesUseCases = () => {
           <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Angebote und Proposals vorbereiten
           </h2>
-          <div className="mb-4"><RoleBadge role="Innendienst" /></div>
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
               Für den Innendienst ist die Angebotserstellung ein wiederkehrender Zeitfresser. Nicht der kaufmännische
@@ -317,7 +307,6 @@ const CopilotSalesUseCases = () => {
           <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Pipeline-Analysen und Forecasting
           </h2>
-          <div className="mb-4"><RoleBadge role="Innendienst" /></div>
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
               Vertriebsinnendienst und Sales Operations verbringen einen überraschend großen Teil ihrer Zeit mit der
@@ -345,7 +334,6 @@ const CopilotSalesUseCases = () => {
           <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Interne Abstimmung und Wissenstransfer
           </h2>
-          <div className="mb-4"><RoleBadge role="Beide" /></div>
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
               Sales-Teams kommunizieren ständig intern – Account-Übergaben, Urlaubsvertretungen, Rückfragen an
@@ -366,7 +354,6 @@ const CopilotSalesUseCases = () => {
           <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Einarbeitung neuer Mitarbeiter
           </h2>
-          <div className="mb-4"><RoleBadge role="Beide" /></div>
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
               Einen Aspekt unterschätzen die meisten: Copilot verkürzt die Ramp-up-Zeit neuer Sales-Mitarbeiter
@@ -395,10 +382,7 @@ const CopilotSalesUseCases = () => {
             <CardContent className="pt-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="p-4 rounded-lg bg-green-50 dark:bg-green-900/20">
-                  <div className="flex items-center gap-2 mb-2">
-                    <Target className="w-5 h-5 text-green-700 dark:text-green-400" />
-                    <h3 className="font-bold text-green-700 dark:text-green-400">Außendienst</h3>
-                  </div>
+                  <h3 className="font-bold text-green-700 dark:text-green-400 mb-2">Außendienst</h3>
                   <p className="text-sm text-muted-foreground mb-2">
                     Meeting-Zusammenfassungen, Termin-Vorbereitung, Follow-up-Mails
                   </p>
@@ -406,10 +390,7 @@ const CopilotSalesUseCases = () => {
                   <p className="text-xs text-muted-foreground">pro Mitarbeiter</p>
                 </div>
                 <div className="p-4 rounded-lg bg-blue-50 dark:bg-blue-900/20">
-                  <div className="flex items-center gap-2 mb-2">
-                    <Briefcase className="w-5 h-5 text-blue-700 dark:text-blue-400" />
-                    <h3 className="font-bold text-blue-700 dark:text-blue-400">Innendienst</h3>
-                  </div>
+                  <h3 className="font-bold text-blue-700 dark:text-blue-400 mb-2">Innendienst</h3>
                   <p className="text-sm text-muted-foreground mb-2">
                     Pipeline-Analysen, Angebotstexte, interne Abstimmung
                   </p>
@@ -557,7 +538,7 @@ const CopilotSalesUseCases = () => {
         </section>
 
         {/* Weiterführende Artikel */}
-        <section className="mb-12">
+        <section className="mb-6">
           <h2 className="text-2xl md:text-3xl font-bold mb-4">Weiterführende Artikel</h2>
           <div className="grid md:grid-cols-3 gap-4">
             <Link to="/wissen/copilot-hr-use-cases" className="block">
@@ -607,7 +588,7 @@ const CopilotSalesUseCases = () => {
         </section>
 
         {/* Autor-Info */}
-        <Card className="mt-12 border-2">
+        <Card className="mt-8 border-2">
           <CardContent className="pt-6">
             <div className="flex items-start gap-4">
               <img
@@ -622,8 +603,8 @@ const CopilotSalesUseCases = () => {
                 <div className="flex gap-3 mt-3">
                   {martinLang.sameAs?.filter(url => url.includes('linkedin')).map((url, i) => (
                     <a key={i} href={url} target="_blank" rel="noopener noreferrer"
-                       className="text-primary hover:underline text-sm inline-flex items-center gap-1">
-                      LinkedIn-Profil <ExternalLink className="w-3 h-3" />
+                       className="text-primary hover:underline text-sm">
+                      LinkedIn-Profil
                     </a>
                   ))}
                 </div>
