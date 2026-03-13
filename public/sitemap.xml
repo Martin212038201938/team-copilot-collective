@@ -4,7 +4,7 @@
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <!-- Automatisch generiert am 2026-03-13 -->
-  <!-- 51 URLs insgesamt -->
+  <!-- 52 URLs insgesamt -->
   <url>
     <loc>https://copilotenschule.de/</loc>
     <lastmod>2026-03-13</lastmod>
@@ -211,6 +211,12 @@
   </url>
   <url>
     <loc>https://copilotenschule.de/wissen/ki-schulung-mitarbeiter-pflicht</loc>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://copilotenschule.de/wissen/microsoft-365-e7-frontier-suite</loc>
     <lastmod>2026-03-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
