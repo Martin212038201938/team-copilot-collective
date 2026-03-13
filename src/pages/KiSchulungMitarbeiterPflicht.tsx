@@ -150,29 +150,28 @@ const KiSchulungMitarbeiterPflicht = () => {
         </Card>
 
         {/* Einleitung */}
-        <div className="prose prose-lg max-w-none dark:prose-invert mb-8">
+        <div className="prose prose-lg max-w-none dark:prose-invert mb-6">
           <p className="text-lg leading-relaxed">
-            Vor ein paar Wochen saß ich in einem Strategiemeeting mit der Geschäftsführung eines mittelständischen
-            Maschinenbauers. 800 Mitarbeiter, Microsoft 365 Copilot seit sechs Monaten im Einsatz, die Nutzung steigt.
-            Gute Stimmung, bis die Compliance-Leiterin eine Frage stellte, die den Raum merklich stiller machte:
-            Haben wir eigentlich unsere Schulungspflicht nach dem EU AI Act erfüllt? Die Antwort war ein etwas zu
-            langes Schweigen.
+            Seit dem 2. Februar 2025 verpflichtet Artikel 4 des EU AI Act jedes Unternehmen, das KI-Systeme
+            einsetzt, zur Sicherstellung ausreichender KI-Kompetenz bei seinen Mitarbeitern. Was viele nicht
+            wissen: Die meisten Unternehmen, die bereits Copilot-Trainings oder Prompt-Workshops durchgeführt
+            haben, erfüllen einen großen Teil dieser Anforderung bereits – denn wer seine Mitarbeiter im Umgang
+            mit KI-Tools schult, vermittelt genau die praktische Anwendungskompetenz, die der Gesetzgeber fordert.
           </p>
           <p className="leading-relaxed">
-            Diese Szene erlebe ich seit Anfang 2025 in Variationen immer wieder. Viele Unternehmen haben Copilot
-            eingeführt, Prompt-Workshops gebucht, vielleicht sogar Use Cases identifiziert. Aber dass seit dem
-            2. Februar 2025 eine gesetzliche Pflicht besteht, Mitarbeiter im Umgang mit KI zu schulen, ist in den
-            Führungsetagen erstaunlich wenig angekommen. Dabei ist die Regelung nicht versteckt – sie steht in
-            Artikel 4 der EU-KI-Verordnung, dem sogenannten AI Act. Und sie gilt bereits.
+            Was in der Praxis oft fehlt, ist der dokumentierte Nachweis und die explizite Abdeckung der
+            regulatorischen Dimension: Risikoklassen, Grenzen der Technologie, Datenschutz-Implikationen. Ein
+            reines Prompting-Training macht Mitarbeiter produktiver, aber es macht ein Unternehmen nicht
+            automatisch compliant. Und genau diese Lücke zwischen praktischem Know-how und regulatorischer
+            Absicherung wird zum Problem, wenn eine Aufsichtsbehörde nachfragt oder ein Schadensfall eintritt.
           </p>
         </div>
 
         {/* Was Artikel 4 konkret fordert */}
-        <section id="was-artikel-4-fordert" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="was-artikel-4-fordert" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Was Artikel 4 konkret fordert – und was nicht
           </h2>
-          <p className="text-gray-500 italic mb-4">Was genau steht im EU AI Act zur KI-Schulungspflicht?</p>
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
               Der Wortlaut von Artikel 4 klingt zunächst unspektakulär: Anbieter und Betreiber von KI-Systemen
@@ -194,16 +193,20 @@ const KiSchulungMitarbeiterPflicht = () => {
               technische. Der EU AI Act definiert sie als Fähigkeit, KI-Systeme sachkundig einzusetzen und sich
               der Chancen und Risiken bewusst zu sein. Das schließt technisches Grundverständnis ein, aber eben
               auch Risikobewusstsein, ethische Urteilsfähigkeit und das Wissen darum, was ein KI-System kann
-              und was nicht. Wer seinen Mitarbeitern ein reines Prompting-Training gibt, hat die Pflicht formal
-              nicht vollständig erfüllt – weil der regulatorische Teil fehlt. Wer nur ein Compliance-Webinar
-              abspielt, hat das Problem umgekehrt: Die praktische Anwendungskompetenz fehlt.
+              und was nicht. Die gute Nachricht: Wer seine Mitarbeiter bereits in einem seriösen Copilot- oder
+              ChatGPT-Training geschult hat, deckt einen erheblichen Teil dieser Anforderungen ab – denn jedes
+              vernünftige KI-Training vermittelt Grundverständnis, Grenzen und Risikobewusstsein. Was häufig
+              fehlt, ist die explizite Dokumentation dieser Schulung als Compliance-Nachweis und die formale
+              Einordnung in den regulatorischen Rahmen des EU AI Act. Wer nur ein reines Compliance-Webinar
+              ohne praktische Anwendung abspielt, hat das umgekehrte Problem: Die theoretische Box ist
+              abgehakt, aber die tatsächliche Anwendungskompetenz fehlt.
             </p>
           </div>
         </section>
 
         {/* Wen betrifft es */}
-        <section id="wen-betrifft-es" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="wen-betrifft-es" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Wen betrifft die Pflicht wirklich?
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -245,11 +248,10 @@ const KiSchulungMitarbeiterPflicht = () => {
         </section>
 
         {/* Fristen und Konsequenzen */}
-        <section id="fristen-und-konsequenzen" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="fristen-und-konsequenzen" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Fristen und Konsequenzen: Was passiert, wenn nichts passiert
           </h2>
-          <p className="text-gray-500 italic mb-4">Welche Fristen und Strafen gelten bei Nichterfüllung der KI-Schulungspflicht?</p>
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
               Artikel 4 gilt seit dem 2. Februar 2025. Das ist kein Stichtag in der Zukunft – er liegt bereits
@@ -279,8 +281,8 @@ const KiSchulungMitarbeiterPflicht = () => {
         </section>
 
         {/* Was eine Schulung enthalten muss */}
-        <section id="was-schulung-enthalten-muss" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="was-schulung-enthalten-muss" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Was eine KI-Schulung nach EU AI Act enthalten muss
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -330,8 +332,8 @@ const KiSchulungMitarbeiterPflicht = () => {
         </section>
 
         {/* Typische Fehler */}
-        <section id="typische-fehler" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="typische-fehler" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Die drei häufigsten Fehler bei der Umsetzung
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -367,8 +369,8 @@ const KiSchulungMitarbeiterPflicht = () => {
         </section>
 
         {/* Wie Unternehmen jetzt starten */}
-        <section id="wie-unternehmen-starten" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="wie-unternehmen-starten" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Wie Unternehmen jetzt starten sollten
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -417,8 +419,8 @@ const KiSchulungMitarbeiterPflicht = () => {
         </section>
 
         {/* Fazit */}
-        <section id="fazit" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="fazit" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Fazit
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -444,7 +446,7 @@ const KiSchulungMitarbeiterPflicht = () => {
 
         {/* Weiterführende Artikel */}
         <section className="mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-sky-500 mb-6">Weiterführende Artikel</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Weiterführende Artikel</h2>
           <div className="grid md:grid-cols-3 gap-4">
             <Link to="/wissen/copilot-sicherheit-datenschutz" className="block">
               <Card className="hover:shadow-md transition-shadow h-full">
@@ -474,8 +476,8 @@ const KiSchulungMitarbeiterPflicht = () => {
         </section>
 
         {/* FAQ */}
-        <section id="faq" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="faq" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Häufig gestellte Fragen
           </h2>
           <div className="space-y-4">
