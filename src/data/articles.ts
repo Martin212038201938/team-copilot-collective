@@ -30,6 +30,18 @@ export interface ArticleData {
 // Alle Artikel - sortiert nach Veröffentlichungsdatum (neueste zuerst)
 export const ALL_ARTICLES: ArticleData[] = [
   {
+    id: "claude-in-microsoft-copilot",
+    title: "Claude in Microsoft Copilot: Was Anthropics KI im Copilot-Ökosystem verändert",
+    description: "Microsoft integriert Anthropics Claude-KI in Copilot – inklusive Copilot Cowork für agentenbasierte Aufgaben. Use Cases, Datenschutz für EU-Unternehmen und was sich für Copilot-Nutzer ändert.",
+    link: "/wissen/claude-in-microsoft-copilot",
+    badge: "Microsoft 365 Copilot",
+    icon: "§",
+    lastUpdated: "13. März 2026",
+    publishDate: "2026-03-13",
+    publishTime: "11:00",
+    isDraft: true
+  },
+  {
     id: "microsoft-365-e7-frontier-suite",
     title: "Microsoft 365 E7: Kosten, Inhalte & Preisvergleich der Frontier Suite 2026",
     description: "Microsoft 365 E7 (Frontier Suite) ab Mai 2026 für 99 €/Nutzer: Was enthalten ist, Preisvergleich E3 vs. E5 vs. E7, Agent 365 erklärt und für wen sich der Umstieg lohnt.",

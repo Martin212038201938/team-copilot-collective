@@ -80,7 +80,8 @@
       "/wissen/copilot-agent-digitales-gedaechtnis",
       "/wissen/copilot-fuer-excel",
       "/wissen/ki-schulung-mitarbeiter-pflicht",
-      "/wissen/microsoft-365-e7-frontier-suite"
+      "/wissen/microsoft-365-e7-frontier-suite",
+      "/wissen/claude-in-microsoft-copilot"
     ],
     "skipThirdPartyRequests": true,
     "crawl": false
