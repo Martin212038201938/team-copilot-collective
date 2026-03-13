@@ -89,6 +89,7 @@ Unternehmen und Organisationen, die:
 - KI-Halluzinationen erkennen und vermeiden
 - KI-Agenten: Die nächste Stufe der Automatisierung
 - Copilot Tipps & Tricks für mehr Produktivität
+- Claude in Microsoft Copilot: Was Anthropics KI im Copilot-Ökosystem verändert
 - KI-Schulung Mitarbeiter Pflicht: Was der EU AI Act von Unternehmen verlangt
 
 ## Trainer
