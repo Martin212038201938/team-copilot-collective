@@ -30,6 +30,18 @@ export interface ArticleData {
 // Alle Artikel - sortiert nach Veröffentlichungsdatum (neueste zuerst)
 export const ALL_ARTICLES: ArticleData[] = [
   {
+    id: "ki-schulung-mitarbeiter-pflicht",
+    title: "KI-Schulung für Mitarbeiter ist Pflicht: Was der EU AI Act von Unternehmen verlangt",
+    description: "EU AI Act Artikel 4 verpflichtet Unternehmen seit Februar 2025 zur KI-Schulung aller Mitarbeiter, die mit KI arbeiten. Fristen, Haftungsrisiken und konkrete Umsetzung.",
+    link: "/wissen/ki-schulung-mitarbeiter-pflicht",
+    badge: "Compliance",
+    icon: "§",
+    lastUpdated: "13. März 2026",
+    publishDate: "2026-03-13",
+    publishTime: "09:00",
+    isDraft: true
+  },
+  {
     id: "copilot-fuer-excel",
     title: "Microsoft Copilot für Excel: Was die KI in Tabellen wirklich kann",
     description: "Was kann Microsoft Copilot in Excel wirklich? Praxisbeispiele, Prompts und ehrliche Einschätzung der Grenzen – von jemandem, der Werbung studiert hat und Pivot-Tabellen früher gefürchtet hat.",
