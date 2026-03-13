@@ -165,7 +165,7 @@ const CopilotChatPernodRicard = () => {
         </div>
 
         {/* Bild vom Training */}
-        <figure className="mb-8">
+        <figure className="mb-6">
           <img
             src="/images/pernod-ricard-copilot-training.jpg"
             alt="Copilot-Training bei Pernod Ricard: Gruppenfoto der Teilnehmenden vor der Präsentation 'Applying AI Effectively in Business'"
@@ -180,11 +180,10 @@ const CopilotChatPernodRicard = () => {
         </figure>
 
         {/* Was Copilot Chat ist */}
-        <section id="einstieg" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="einstieg" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Was Copilot Chat eigentlich ist – und was nicht
           </h2>
-          <p className="text-gray-500 italic mb-4">Was passiert, wenn ein Unternehmen einfach mit Copilot Chat Free anfängt – ohne großes Projekt?</p>
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
               Bevor wir in die konkreten Szenarien einsteigen, lohnt sich eine kurze Einordnung, weil
@@ -205,8 +204,8 @@ const CopilotChatPernodRicard = () => {
         </section>
 
         {/* Außendienst */}
-        <section id="aussendienst" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="aussendienst" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Außendienst: Zwischen Parkplatz und Kundentermin
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -250,8 +249,8 @@ const CopilotChatPernodRicard = () => {
         </section>
 
         {/* Consumer-Anfragen */}
-        <section id="consumer-anfragen" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="consumer-anfragen" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Consumer-Anfragen: Wenn jemand wissen will, ob Havana Club vegan ist
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -294,8 +293,8 @@ const CopilotChatPernodRicard = () => {
         </section>
 
         {/* Geschäftsführung */}
-        <section id="geschaeftsfuehrung" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="geschaeftsfuehrung" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Geschäftsführung: Die Präsentation, die um 14 Uhr fertig sein muss
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -348,8 +347,8 @@ const CopilotChatPernodRicard = () => {
         </section>
 
         {/* Unbequeme Wahrheit */}
-        <section id="unbequeme-wahrheit" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="unbequeme-wahrheit" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Die unbequeme Wahrheit über den Free Plan
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -391,8 +390,8 @@ const CopilotChatPernodRicard = () => {
         </section>
 
         {/* Fazit */}
-        <section id="fazit" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="fazit" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Was bleibt
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -419,7 +418,7 @@ const CopilotChatPernodRicard = () => {
         {/* FAQ */}
         {/* Weiterführende Artikel */}
         <section className="mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-sky-500 mb-6">Weiterführende Artikel</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Weiterführende Artikel</h2>
           <div className="grid md:grid-cols-3 gap-4">
             <Link to="/wissen/copilot-tipps-tricks-produktivitaet" className="block">
               <Card className="hover:shadow-md transition-shadow h-full">
@@ -448,8 +447,8 @@ const CopilotChatPernodRicard = () => {
           </div>
         </section>
 
-        <section id="faq" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="faq" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Häufig gestellte Fragen
           </h2>
           <div className="space-y-6">

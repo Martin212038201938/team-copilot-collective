@@ -1,13 +1,8 @@
 import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
-import { TrustBadge } from "@/components/TrustBadge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
-import {
-  Zap, AlertTriangle, Shield, Database, Users, TrendingUp,
-  ExternalLink, Linkedin, Mail, CheckCircle2, XCircle, Building2,
-  Lock, Network, BookOpen, Workflow, Scale, BrainCircuit, AlertCircle
-} from "lucide-react";
+import { Zap, AlertTriangle, Shield, Database, Users, TrendingUp, ExternalLink, Mail, CheckCircle2, XCircle, Building2, Network, BookOpen, Scale, BrainCircuit, AlertCircle } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 
@@ -169,10 +164,9 @@ const CopilotUnternehmensweitEinfuehren = () => {
 
         {/* Definition */}
         <section id="definition">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-blue-500 text-blue-700 dark:text-blue-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Was bedeutet zentrale Copilot-Einführung?
           </h2>
-          <p className="text-gray-500 italic mb-4">Warum scheitern zwei von drei Rollouts – und was unterscheidet erfolgreiche von gescheiterten Einführungen?</p>
 
           <p className="mb-6">
             Eine <strong>zentrale Copilot-Einführung</strong> bedeutet, dass Unternehmen Microsoft 365 Copilot
@@ -251,7 +245,7 @@ const CopilotUnternehmensweitEinfuehren = () => {
 
         {/* Kernaussagen für Entscheider */}
         <section id="kernaussagen" className="mt-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-indigo-500 text-indigo-700 dark:text-indigo-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Kernaussagen für Entscheider
           </h2>
 
@@ -320,10 +314,9 @@ const CopilotUnternehmensweitEinfuehren = () => {
 
         {/* Sicherheit */}
         <section id="sicherheit" className="mt-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-red-500 text-red-700 dark:text-red-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Sicherheit: Shadow-IT vermeiden
           </h2>
-          <p className="text-gray-500 italic mb-4">Wie stelle ich sicher, dass sensible Unternehmensdaten in einem generativen KI-Tool geschützt sind – und welche Compliance-Anforderungen muss ich erfüllen?</p>
 
           <p className="mb-6">
             Der größte Risikofaktor bei KI ist nicht die Technologie selbst, sondern der unkontrollierte Einsatz.
@@ -370,7 +363,7 @@ const CopilotUnternehmensweitEinfuehren = () => {
 
         {/* DSGVO */}
         <section id="dsgvo" className="mt-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-purple-500 text-purple-700 dark:text-purple-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             DSGVO und Compliance
           </h2>
 
@@ -432,7 +425,7 @@ const CopilotUnternehmensweitEinfuehren = () => {
 
         {/* Grounding */}
         <section id="grounding" className="mt-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-cyan-500 text-cyan-700 dark:text-cyan-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Grounding und Unternehmensdaten
           </h2>
 
@@ -519,7 +512,7 @@ const CopilotUnternehmensweitEinfuehren = () => {
 
         {/* Skalierbarkeit */}
         <section id="skalierbarkeit" className="mt-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-green-500 text-green-700 dark:text-green-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Skalierbarkeit und Synergien
           </h2>
 
@@ -613,7 +606,7 @@ const CopilotUnternehmensweitEinfuehren = () => {
 
         {/* Praxis-Szenarien */}
         <section id="praxis-szenarien" className="mt-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-orange-500 text-orange-700 dark:text-orange-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Praxis-Szenarien
           </h2>
 
@@ -711,10 +704,9 @@ const CopilotUnternehmensweitEinfuehren = () => {
 
         {/* Implementierung */}
         <section id="implementierung" className="mt-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-emerald-500 text-emerald-700 dark:text-emerald-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Implementierung im Unternehmen
           </h2>
-          <p className="text-gray-500 italic mb-4">Mit wie vielen Monaten sollte ein Unternehmen rechnen – und wann ist mit messbarem ROI zu rechnen?</p>
 
           <p className="mb-6">
             Eine erfolgreiche Copilot-Einführung folgt einem strukturierten Prozess. Die technische
@@ -794,7 +786,7 @@ const CopilotUnternehmensweitEinfuehren = () => {
 
         {/* Typische Fehler */}
         <section id="typische-fehler" className="mt-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-red-500 text-red-700 dark:text-red-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Typische Fehler
           </h2>
 
@@ -851,7 +843,7 @@ const CopilotUnternehmensweitEinfuehren = () => {
 
         {/* Entscheidungshilfe */}
         <section id="entscheidungshilfe" className="mt-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-amber-500 text-amber-700 dark:text-amber-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Entscheidungshilfe: Wann zentrale Einführung?
           </h2>
 
@@ -922,8 +914,8 @@ const CopilotUnternehmensweitEinfuehren = () => {
         </section>
 
         {/* Weiterführende Artikel */}
-        <section className="mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-sky-500 mb-6">Weiterführende Artikel</h2>
+        <section className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Weiterführende Artikel</h2>
           <div className="grid md:grid-cols-2 gap-4 mb-4">
             <Link to="/wissen/copilot-launch-kampagne" className="block">
               <Card className="hover:shadow-md transition-shadow h-full">
@@ -954,7 +946,7 @@ const CopilotUnternehmensweitEinfuehren = () => {
 
         {/* FAQ */}
         <section id="faq" className="mt-12 mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-slate-500 text-slate-700 dark:text-slate-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Häufig gestellte Fragen (FAQ)
           </h2>
 
@@ -974,7 +966,7 @@ const CopilotUnternehmensweitEinfuehren = () => {
 
         {/* Quellen */}
         <section id="quellen" className="mt-12 mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-slate-500 text-slate-700 dark:text-slate-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Quellen und weiterführende Links
           </h2>
           <p className="text-muted-foreground mb-6">
@@ -1020,8 +1012,6 @@ const CopilotUnternehmensweitEinfuehren = () => {
             ))}
           </div>
         </section>
-
-        <TrustBadge />
 
         {/* CTA */}
         <div className="bg-gradient-to-r from-orange-500/10 to-amber-500/10 rounded-xl p-8 text-center my-12 border-2 border-orange-500/20">

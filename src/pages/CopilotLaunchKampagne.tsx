@@ -1,14 +1,8 @@
 import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
-import { TrustBadge } from "@/components/TrustBadge";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
-import {
-  Zap, Rocket, PartyPopper, Megaphone, Users, Calendar,
-  TrendingUp, Heart, Target, CheckCircle2, AlertTriangle,
-  ExternalLink, Linkedin, Twitter, Lightbulb, Sparkles,
-  Music, Trophy, MessageCircle, Clock, ArrowRight
-} from "lucide-react";
+import { Zap, Rocket, PartyPopper, Megaphone, Users, Calendar, TrendingUp, Target, CheckCircle2, AlertTriangle, ExternalLink, Sparkles, Trophy, ArrowRight } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 
@@ -163,10 +157,9 @@ const CopilotLaunchKampagne = () => {
 
         {/* Warum Copilot-Launch anders ist */}
         <section id="warum-launch-anders" className="mt-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-purple-500">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Warum ein Copilot-Launch anders ist als SAP oder Salesforce
           </h2>
-          <p className="text-gray-500 italic mb-4">Warum scheitern so viele Copilot-Einführungen – und was macht eine gute Launch-Kampagne anders?</p>
 
           <p className="my-6">
             Ich höre oft: <em>"Wir haben schon SAP eingeführt, wir wissen wie das geht."</em>
@@ -251,7 +244,7 @@ const CopilotLaunchKampagne = () => {
 
         {/* Momentum aufbauen */}
         <section id="momentum-aufbauen" className="mt-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-orange-500">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Momentum aufbauen (und halten!)
           </h2>
 
@@ -350,10 +343,9 @@ const CopilotLaunchKampagne = () => {
 
         {/* Die 4 Launch-Phasen */}
         <section id="die-launch-phasen" className="mt-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-blue-500">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Die 4 Phasen einer erfolgreichen Launch-Kampagne
           </h2>
-          <p className="text-gray-500 italic mb-4">Wie plant man eine erfolgreiche Microsoft Copilot Launch-Kampagne Schritt für Schritt?</p>
 
           <div className="space-y-6 my-8">
             {[
@@ -444,7 +436,7 @@ const CopilotLaunchKampagne = () => {
 
         {/* 15 Launch-Ideen */}
         <section id="launch-ideen" className="mt-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-pink-500">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             15 Launch-Ideen, die wirklich zünden
           </h2>
 
@@ -489,7 +481,7 @@ const CopilotLaunchKampagne = () => {
 
         {/* Die 5 größten Launch-Killer */}
         <section id="typische-fehler" className="mt-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-red-500">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Die 5 größten Launch-Killer
           </h2>
 
@@ -550,7 +542,7 @@ const CopilotLaunchKampagne = () => {
 
         {/* Unsere Bausteine */}
         <section id="unsere-bausteine" className="mt-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-emerald-500">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Unsere Launch-Bausteine für Ihren Erfolg
           </h2>
 
@@ -698,8 +690,8 @@ const CopilotLaunchKampagne = () => {
         </section>
 
         {/* Weiterführende Artikel */}
-        <section className="mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-sky-500 mb-6">Weiterführende Artikel</h2>
+        <section className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Weiterführende Artikel</h2>
           <div className="grid md:grid-cols-2 gap-4 mb-4">
             <Link to="/wissen/copilot-unternehmensweit-einfuehren" className="block">
               <Card className="hover:shadow-md transition-shadow h-full">
@@ -730,7 +722,7 @@ const CopilotLaunchKampagne = () => {
 
         {/* FAQ */}
         <section id="faq" className="mt-12 mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-slate-500">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Häufig gestellte Fragen (FAQ)
           </h2>
 
@@ -750,7 +742,7 @@ const CopilotLaunchKampagne = () => {
 
         {/* Quellen */}
         <section id="quellen" className="mt-12 mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-slate-500">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Quellen und weiterführende Links
           </h2>
           <p className="text-muted-foreground mb-6">
@@ -796,8 +788,6 @@ const CopilotLaunchKampagne = () => {
             ))}
           </div>
         </section>
-
-        <TrustBadge />
 
         {/* CTA */}
         <div className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-xl p-8 text-center my-12 border-2 border-purple-500/30">

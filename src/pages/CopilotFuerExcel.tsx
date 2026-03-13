@@ -2,7 +2,7 @@ import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
-import { Zap, ExternalLink, Linkedin, Twitter } from "lucide-react";
+import { Zap, Linkedin, Twitter } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 
@@ -125,7 +125,7 @@ const CopilotFuerExcel = () => {
         modifiedDate="2026-02-28"
       >
         {/* Schnellantwort Card */}
-        <section className="mb-8">
+        <section className="mb-6">
           <div className="border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-amber-500/5 rounded-lg p-6 flex items-start gap-4">
             <Zap className="w-6 h-6 text-orange-500 flex-shrink-0 mt-1" />
             <div>
@@ -136,8 +136,8 @@ const CopilotFuerExcel = () => {
         </section>
 
         {/* Persönliche Einleitung */}
-        <section id="meine-vorgeschichte" className="mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-green-600 mb-6">Meine Vorgeschichte mit Excel</h2>
+        <section id="meine-vorgeschichte" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Meine Vorgeschichte mit Excel</h2>
           <p className="mb-4 text-gray-700 leading-relaxed">
             Ich habe Werbung studiert. Ich bin gut mit Worten, ich kann Geschichten erzählen und Menschen für Ideen begeistern. Was ich nicht kann: Zahlen. Nicht so schlecht, dass ich Excel als kariertes Papier benutze – aber jenseits von SUMME und einfachen Wenn-Dann-Formeln wurde es bei mir schnell dünn.
           </p>
@@ -153,9 +153,8 @@ const CopilotFuerExcel = () => {
         </section>
 
         {/* Voraussetzungen */}
-        <section id="voraussetzungen" className="mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-blue-500 mb-6">Was Sie brauchen</h2>
-          <p className="text-gray-500 italic mb-4">Was braucht man, damit Microsoft Copilot in Excel funktioniert?</p>
+        <section id="voraussetzungen" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Was Sie brauchen</h2>
           <p className="mb-4 text-gray-700 leading-relaxed">Bevor wir loslegen, die Basics:</p>
           <ul className="list-disc list-inside space-y-2 mb-4 text-gray-700">
             <li><strong>Microsoft 365 Copilot Lizenz</strong> (die kostenpflichtige Variante, 30 €/Monat pro User)</li>
@@ -168,9 +167,8 @@ const CopilotFuerExcel = () => {
         </section>
 
         {/* Daten vorbereiten */}
-        <section id="daten-vorbereiten" className="mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-emerald-500 mb-6">Daten vorbereiten: Die Grundregel</h2>
-          <p className="text-gray-500 italic mb-4">Warum funktioniert Copilot in Excel bei manchen Tabellen nicht – und wie bereitet man Daten richtig vor?</p>
+        <section id="daten-vorbereiten" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Daten vorbereiten: Die Grundregel</h2>
           <Card className="border-amber-500/30 bg-amber-50/50 mb-6">
             <CardContent className="pt-6">
               <p className="text-gray-800 font-semibold mb-2">Die goldene Regel:</p>
@@ -225,8 +223,8 @@ const CopilotFuerExcel = () => {
         </section>
 
         {/* Was Copilot selbstständig kann */}
-        <section id="was-copilot-selbststaendig-kann" className="mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-purple-500 mb-6">Was Copilot selbstständig kann</h2>
+        <section id="was-copilot-selbststaendig-kann" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Was Copilot selbstständig kann</h2>
           <p className="mb-4 text-gray-700 leading-relaxed">
             Bei diesen Aufgaben macht Copilot die eigentliche Arbeit. Sie stellen die Frage, Copilot liefert das Ergebnis:
           </p>
@@ -313,8 +311,8 @@ const CopilotFuerExcel = () => {
         </section>
 
         {/* Wo Copilot nur assistiert */}
-        <section id="wo-copilot-assistiert" className="mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-orange-500 mb-6">Wo Copilot nur assistiert</h2>
+        <section id="wo-copilot-assistiert" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Wo Copilot nur assistiert</h2>
           <p className="mb-4 text-gray-700 leading-relaxed">
             Bei diesen Aufgaben liefert Copilot Vorschläge, aber Sie müssen die Arbeit selbst machen oder das Ergebnis stark nacharbeiten:
           </p>
@@ -348,8 +346,8 @@ const CopilotFuerExcel = () => {
         </section>
 
         {/* Desktop vs. Web */}
-        <section id="desktop-vs-web" className="mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-indigo-500 mb-6">Desktop-App vs. Web: Ein klares Votum</h2>
+        <section id="desktop-vs-web" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Desktop-App vs. Web: Ein klares Votum</h2>
           <p className="mb-4 text-gray-700 leading-relaxed">
             Ich sage es direkt: <strong>Nutzen Sie die Desktop-App.</strong> Die Web-Version von Excel hat bei Copilot-Funktionen deutliche Einschränkungen.
           </p>
@@ -393,8 +391,8 @@ const CopilotFuerExcel = () => {
         </section>
 
         {/* Praxisbeispiel 1: AB-Test */}
-        <section id="praxis-ab-test" className="mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-pink-500 mb-6">Praxisbeispiel 1: AB-Test im Marketing auswerten</h2>
+        <section id="praxis-ab-test" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Praxisbeispiel 1: AB-Test im Marketing auswerten</h2>
           <p className="mb-4 text-gray-700 leading-relaxed">
             <strong>Die Situation:</strong> Sie haben eine Marketing-Kampagne mit zwei Varianten laufen lassen – Version A und Version B. Jetzt haben Sie eine Tabelle mit den Ergebnissen: Impressions, Klicks, Conversions, Kosten, Umsatz. Sie wollen wissen: Welche Variante hat gewonnen?
           </p>
@@ -435,8 +433,8 @@ const CopilotFuerExcel = () => {
         </section>
 
         {/* Praxisbeispiel 2: Liquiditätsplanung */}
-        <section id="praxis-liquiditaet" className="mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-teal-500 mb-6">Praxisbeispiel 2: Liquiditätsplanung und Prognosen</h2>
+        <section id="praxis-liquiditaet" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Praxisbeispiel 2: Liquiditätsplanung und Prognosen</h2>
           <p className="mb-4 text-gray-700 leading-relaxed">
             <strong>Die Situation:</strong> Sie planen ein Training für ein Unternehmen und müssen eine Liquiditätsvorschau für die nächsten 6 Monate erstellen. Einnahmen (Trainingsgebühren), Ausgaben (Trainer-Honorare, Reisekosten, Materialkosten, laufende Fixkosten), und Sie wollen wissen: In welchem Monat wird es eng?
           </p>
@@ -473,8 +471,8 @@ const CopilotFuerExcel = () => {
         </section>
 
         {/* Praxisbeispiel 3: Business Plan */}
-        <section id="praxis-business-plan" className="mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-violet-500 mb-6">Praxisbeispiel 3: Business Plan Finanzplanung</h2>
+        <section id="praxis-business-plan" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Praxisbeispiel 3: Business Plan Finanzplanung</h2>
           <p className="mb-4 text-gray-700 leading-relaxed">
             <strong>Die Situation:</strong> Sie bauen einen Business Plan und brauchen die Finanzseiten: Umsatzplanung, Kostenstruktur, Break-Even-Analyse, Ergebnisrechnung. Normalerweise der Teil, bei dem Betriebswirte glänzen und Werbe-Studenten schwitzen.
           </p>
@@ -510,8 +508,8 @@ const CopilotFuerExcel = () => {
         </section>
 
         {/* Prompt-Sammlung */}
-        <section id="prompt-sammlung" className="mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-cyan-500 mb-6">Prompt-Sammlung für Excel</h2>
+        <section id="prompt-sammlung" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Prompt-Sammlung für Excel</h2>
           <p className="mb-4 text-gray-700 leading-relaxed">
             Hier sind die Prompts, die ich in meinem Trainingsalltag am häufigsten verwende. Alle auf Deutsch – das funktioniert in den meisten Fällen problemlos.
           </p>
@@ -589,8 +587,8 @@ const CopilotFuerExcel = () => {
         </section>
 
         {/* Tipps für bessere Prompts */}
-        <section id="tipps-prompts" className="mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-amber-500 mb-6">Tipps für bessere Excel-Prompts</h2>
+        <section id="tipps-prompts" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Tipps für bessere Excel-Prompts</h2>
 
           <div className="space-y-4 mb-4">
             <div>
@@ -644,8 +642,8 @@ const CopilotFuerExcel = () => {
         </section>
 
         {/* Grenzen */}
-        <section id="grenzen" className="mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-red-500 mb-6">Wo Copilot an seine Grenzen kommt</h2>
+        <section id="grenzen" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Wo Copilot an seine Grenzen kommt</h2>
           <p className="mb-4 text-gray-700 leading-relaxed">
             Ich verspreche in meinen Trainings nie das Blaue vom Himmel. Hier die ehrliche Bilanz, wo Copilot in Excel (noch) nicht gut funktioniert:
           </p>
@@ -689,8 +687,8 @@ const CopilotFuerExcel = () => {
         </section>
 
         {/* Weiterführende Artikel */}
-        <section id="weiterfuehrend" className="mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-sky-500 mb-6">Copilot in anderen Apps</h2>
+        <section id="weiterfuehrend" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Copilot in anderen Apps</h2>
           <p className="mb-4 text-gray-700 leading-relaxed">
             Excel ist nur eine von vielen Apps, in denen Copilot arbeitet. Hier finden Sie unsere weiteren Praxis-Guides:
           </p>
@@ -731,8 +729,8 @@ const CopilotFuerExcel = () => {
         </section>
 
         {/* Fazit */}
-        <section id="fazit" className="mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-green-600 mb-6">Fazit</h2>
+        <section id="fazit" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Fazit</h2>
           <p className="mb-4 text-gray-700 leading-relaxed">
             Copilot macht aus mir keinen Excel-Experten. Aber er macht etwas Besseres: Er erlaubt mir, <strong>die Fragen zu stellen, die ich schon immer stellen wollte</strong> – ohne die technische Hürde der Formeln und Funktionen.
           </p>
@@ -748,8 +746,8 @@ const CopilotFuerExcel = () => {
         </section>
 
         {/* FAQ-Bereich */}
-        <section id="faq" className="mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-gray-300 mb-6">Häufig gestellte Fragen</h2>
+        <section id="faq" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Häufig gestellte Fragen</h2>
           <div className="space-y-6">
             {faqs.map((faq, index) => (
               <div key={index} className="border-b border-gray-200 pb-6 last:border-b-0">

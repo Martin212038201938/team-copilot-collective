@@ -195,14 +195,13 @@ const CopilotSalesUseCases = () => {
         </div>
 
         {/* CRM-Pflege */}
-        <section id="crm-pflege" className="mb-8">
+        <section id="crm-pflege" className="mb-6">
           <div className="flex items-center gap-3 mb-3">
-            <h2 className="text-2xl md:text-3xl font-bold pb-3 border-b-4 border-primary">
+            <h2 className="text-2xl md:text-3xl font-bold mb-3">
               Die CRM-Pflege, die niemand machen will
             </h2>
           </div>
           <div className="mb-4"><RoleBadge role="Beide" /></div>
-          <p className="text-gray-500 italic mb-4">Wie kann Microsoft Copilot den Vertrieb konkret unterstützen – und wie viel Zeit spart das?</p>
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
               Fangen wir dort an, wo der Schmerz am größten ist. In fast jedem Sales-Team gibt es eine
@@ -228,12 +227,11 @@ const CopilotSalesUseCases = () => {
         </section>
 
         {/* Meeting-Vorbereitung */}
-        <section id="meeting-vorbereitung" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="meeting-vorbereitung" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Meeting-Vorbereitung, die diesen Namen verdient
           </h2>
           <div className="mb-4"><RoleBadge role="Außendienst" /></div>
-          <p className="text-gray-500 italic mb-4">Wie bereitet man sich mit Copilot effizient auf Kundengespräche vor?</p>
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
               Außendienstmitarbeiter bereiten Kundentermine vor. Theoretisch. Praktisch heißt das oft: kurz ins
@@ -258,8 +256,8 @@ const CopilotSalesUseCases = () => {
         </section>
 
         {/* Follow-up-Mails */}
-        <section id="follow-up-mails" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="follow-up-mails" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             E-Mail-Entwürfe nach dem Gespräch
           </h2>
           <div className="mb-4"><RoleBadge role="Außendienst" /></div>
@@ -284,8 +282,8 @@ const CopilotSalesUseCases = () => {
         </section>
 
         {/* Angebote */}
-        <section id="angebote" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="angebote" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Angebote und Proposals vorbereiten
           </h2>
           <div className="mb-4"><RoleBadge role="Innendienst" /></div>
@@ -315,8 +313,8 @@ const CopilotSalesUseCases = () => {
         </section>
 
         {/* Pipeline-Analysen */}
-        <section id="pipeline" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="pipeline" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Pipeline-Analysen und Forecasting
           </h2>
           <div className="mb-4"><RoleBadge role="Innendienst" /></div>
@@ -343,8 +341,8 @@ const CopilotSalesUseCases = () => {
         </section>
 
         {/* Wissenstransfer */}
-        <section id="wissenstransfer" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="wissenstransfer" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Interne Abstimmung und Wissenstransfer
           </h2>
           <div className="mb-4"><RoleBadge role="Beide" /></div>
@@ -364,8 +362,8 @@ const CopilotSalesUseCases = () => {
         </section>
 
         {/* Einarbeitung */}
-        <section id="einarbeitung" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="einarbeitung" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Einarbeitung neuer Mitarbeiter
           </h2>
           <div className="mb-4"><RoleBadge role="Beide" /></div>
@@ -381,8 +379,8 @@ const CopilotSalesUseCases = () => {
         </section>
 
         {/* Gesamtrechnung */}
-        <section id="gesamtrechnung" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="gesamtrechnung" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Was heißt das in der Summe?
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -436,8 +434,8 @@ const CopilotSalesUseCases = () => {
         </section>
 
         {/* Dynamics 365 Exkurs */}
-        <section id="dynamics" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="dynamics" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Exkurs: Copilot in Dynamics 365 Sales
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -539,8 +537,8 @@ const CopilotSalesUseCases = () => {
         </section>
 
         {/* Fazit */}
-        <section id="fazit" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="fazit" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Fazit
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -560,7 +558,7 @@ const CopilotSalesUseCases = () => {
 
         {/* Weiterführende Artikel */}
         <section className="mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-sky-500 mb-6">Weiterführende Artikel</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Weiterführende Artikel</h2>
           <div className="grid md:grid-cols-3 gap-4">
             <Link to="/wissen/copilot-hr-use-cases" className="block">
               <Card className="hover:shadow-md transition-shadow h-full">
@@ -590,8 +588,8 @@ const CopilotSalesUseCases = () => {
         </section>
 
         {/* FAQ */}
-        <section id="faq" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="faq" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Häufig gestellte Fragen
           </h2>
           <div className="space-y-6">

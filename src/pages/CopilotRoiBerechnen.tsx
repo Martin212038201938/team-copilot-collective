@@ -141,7 +141,7 @@ const CopilotRoiBerechnen = () => {
 
         {/* Kosten */}
         <section id="was-kostet-copilot">
-          <h2 id="was-kostet-copilot-heading" className="text-2xl md:text-3xl font-bold pb-3 border-b-4 border-blue-500 text-blue-700 dark:text-blue-400">
+          <h2 id="was-kostet-copilot-heading" className="text-2xl md:text-3xl font-bold mb-3">
             Was kostet Microsoft Copilot?
           </h2>
 
@@ -216,10 +216,9 @@ const CopilotRoiBerechnen = () => {
 
         {/* ROI Formel */}
         <section id="roi-formel">
-          <h2 id="roi-formel-heading" className="text-2xl md:text-3xl font-bold pb-3 border-b-4 border-green-500 text-green-700 dark:text-green-400">
+          <h2 id="roi-formel-heading" className="text-2xl md:text-3xl font-bold mb-3">
             ROI-Berechnung: Die Formel
           </h2>
-          <p className="text-gray-500 italic mb-4">Wie berechnet man den ROI von Microsoft Copilot konkret – und ab wann rechnet sich die Investition?</p>
 
           <Card className="bg-gray-900 text-gray-100 border-0">
             <CardContent className="p-8">
@@ -302,10 +301,9 @@ const CopilotRoiBerechnen = () => {
 
         {/* Produktivitätsgewinne */}
         <section id="produktivitaetsgewinne">
-          <h2 id="produktivitaetsgewinne-heading" className="text-2xl md:text-3xl font-bold pb-3 border-b-4 border-purple-500 text-purple-700 dark:text-purple-400">
+          <h2 id="produktivitaetsgewinne-heading" className="text-2xl md:text-3xl font-bold mb-3">
             Messbare Produktivitätsgewinne
           </h2>
-          <p className="text-gray-500 italic mb-4">Wie viel Zeit sparen Mitarbeiter mit Microsoft Copilot tatsächlich ein?</p>
 
           {/* Hervorgehobene Studienergebnisse – dual */}
           <div className="grid md:grid-cols-2 gap-6 mb-8">
@@ -467,10 +465,9 @@ const CopilotRoiBerechnen = () => {
 
         {/* KPIs */}
         <section id="kpis">
-          <h2 id="kpis-heading" className="text-2xl md:text-3xl font-bold pb-3 border-b-4 border-cyan-500 text-cyan-700 dark:text-cyan-400">
+          <h2 id="kpis-heading" className="text-2xl md:text-3xl font-bold mb-3">
             KPIs zur Erfolgsmessung
           </h2>
-          <p className="text-gray-500 italic mb-4">Welche KPIs sollte man für die Microsoft Copilot Erfolgsmessung definieren?</p>
 
           <div className="grid md:grid-cols-2 gap-6">
             <Card>
@@ -556,7 +553,7 @@ const CopilotRoiBerechnen = () => {
 
         {/* Szenarien */}
         <section id="szenarien">
-          <h2 id="szenarien-heading" className="text-2xl md:text-3xl font-bold pb-3 border-b-4 border-amber-500 text-amber-700 dark:text-amber-400">
+          <h2 id="szenarien-heading" className="text-2xl md:text-3xl font-bold mb-3">
             Verschiedene ROI-Szenarien
           </h2>
 
@@ -631,7 +628,7 @@ const CopilotRoiBerechnen = () => {
 
         {/* Branchen-ROI */}
         <section id="branchen-roi">
-          <h2 id="branchen-roi-heading" className="text-2xl md:text-3xl font-bold pb-3 border-b-4 border-indigo-500 text-indigo-700 dark:text-indigo-400">
+          <h2 id="branchen-roi-heading" className="text-2xl md:text-3xl font-bold mb-3">
             Branchenspezifische ROI-Beispiele
           </h2>
 
@@ -691,7 +688,7 @@ const CopilotRoiBerechnen = () => {
 
         {/* Erfolgsfaktoren */}
         <section id="erfolgsfaktoren">
-          <h2 id="erfolgsfaktoren-heading" className="text-2xl md:text-3xl font-bold pb-3 border-b-4 border-emerald-500 text-emerald-700 dark:text-emerald-400">
+          <h2 id="erfolgsfaktoren-heading" className="text-2xl md:text-3xl font-bold mb-3">
             Kritische Erfolgsfaktoren
           </h2>
 
@@ -782,7 +779,7 @@ const CopilotRoiBerechnen = () => {
 
         {/* Fehler */}
         <section id="fehler">
-          <h2 id="fehler-heading" className="text-2xl md:text-3xl font-bold pb-3 border-b-4 border-red-500 text-red-700 dark:text-red-400">
+          <h2 id="fehler-heading" className="text-2xl md:text-3xl font-bold mb-3">
             Häufige Fehler bei der ROI-Berechnung
           </h2>
 
@@ -828,7 +825,7 @@ const CopilotRoiBerechnen = () => {
 
         {/* Best Practices */}
         <section id="best-practices">
-          <h2 id="best-practices-heading" className="text-2xl md:text-3xl font-bold pb-3 border-b-4 border-teal-500 text-teal-700 dark:text-teal-400">
+          <h2 id="best-practices-heading" className="text-2xl md:text-3xl font-bold mb-3">
             ROI steigern: Best Practices
           </h2>
 
@@ -921,7 +918,7 @@ const CopilotRoiBerechnen = () => {
 
         {/* Download */}
         <section id="download">
-          <h2 id="download-heading" className="text-2xl md:text-3xl font-bold pb-3 border-b-4 border-green-500 text-green-700 dark:text-green-400">
+          <h2 id="download-heading" className="text-2xl md:text-3xl font-bold mb-3">
             Download: ROI-Rechner Excel
           </h2>
 
@@ -970,8 +967,8 @@ const CopilotRoiBerechnen = () => {
         </section>
 
         {/* Weiterführende Artikel */}
-        <section className="mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-sky-500 mb-6">Weiterführende Artikel</h2>
+        <section className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Weiterführende Artikel</h2>
           <div className="grid md:grid-cols-2 gap-4 mb-4">
             <Link to="/wissen/copilot-roi-erfolgsgeschichten" className="block">
               <Card className="hover:shadow-md transition-shadow h-full">
@@ -1002,7 +999,7 @@ const CopilotRoiBerechnen = () => {
 
         {/* FAQ */}
         <section id="faq">
-          <h2 id="faq-heading" className="text-2xl md:text-3xl font-bold pb-3 border-b-4 border-violet-500 text-violet-700 dark:text-violet-400">
+          <h2 id="faq-heading" className="text-2xl md:text-3xl font-bold mb-3">
             Häufig gestellte Fragen
           </h2>
 
@@ -1022,7 +1019,7 @@ const CopilotRoiBerechnen = () => {
 
         {/* Quellen */}
         <section id="quellen">
-          <h2 id="quellen-heading" className="text-2xl md:text-3xl font-bold pb-3 border-b-4 border-gray-500 text-gray-700 dark:text-gray-400">
+          <h2 id="quellen-heading" className="text-2xl md:text-3xl font-bold mb-3">
             Quellen und weiterführende Links
           </h2>
           <p className="text-muted-foreground mb-6">

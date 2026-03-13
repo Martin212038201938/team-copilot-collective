@@ -1,13 +1,8 @@
 import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
-import { TrustBadge } from "@/components/TrustBadge";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
-import {
-  Zap, Quote, Building2, Factory, Truck, Package, Briefcase,
-  TrendingUp, Clock, Users, ExternalLink, CheckCircle2,
-  AlertTriangle, Linkedin, Twitter, Target, Lightbulb
-} from "lucide-react";
+import { Zap, Quote, Building2, Factory, Package, Users, ExternalLink, CheckCircle2, AlertTriangle, Target, Lightbulb } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 
@@ -141,10 +136,9 @@ const CopilotROIErfolgsgeschichten = () => {
 
         {/* Einleitung */}
         <section id="einleitung" className="my-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-blue-500">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Die andere Seite der Debatte
           </h2>
-          <p className="text-gray-500 italic mb-4">Welche Unternehmen haben mit Microsoft Copilot messbaren ROI erzielt?</p>
 
           <div className="prose prose-lg max-w-none">
             <p className="text-lg leading-relaxed mb-6">
@@ -169,7 +163,7 @@ const CopilotROIErfolgsgeschichten = () => {
 
         {/* Bayer AG */}
         <section id="bayer" className="my-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-green-500">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             <Building2 className="inline-block w-8 h-8 mr-2 text-green-600" />
             Bayer AG: 700+ Anwendungsfälle identifiziert
           </h2>
@@ -229,7 +223,7 @@ const CopilotROIErfolgsgeschichten = () => {
 
         {/* Siemens */}
         <section id="siemens" className="my-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-cyan-500">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             <Factory className="inline-block w-8 h-8 mr-2 text-cyan-600" />
             Siemens: Industrial Copilot bei 100+ Kunden
           </h2>
@@ -326,7 +320,7 @@ const CopilotROIErfolgsgeschichten = () => {
 
         {/* Schweizerische Post */}
         <section id="swiss-post" className="my-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-red-500">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             <Package className="inline-block w-8 h-8 mr-2 text-red-600" />
             Schweizerische Post: 45.000 Mitarbeitende
           </h2>
@@ -380,7 +374,7 @@ const CopilotROIErfolgsgeschichten = () => {
 
         {/* Weitere Stimmen */}
         <section id="weitere-stimmen" className="my-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-amber-500">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             <Users className="inline-block w-8 h-8 mr-2 text-amber-600" />
             Weitere Stimmen aus der DACH-Region
           </h2>
@@ -442,11 +436,10 @@ const CopilotROIErfolgsgeschichten = () => {
 
         {/* Erfolgsfaktoren */}
         <section id="erfolgsfaktoren" className="my-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-indigo-500">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             <Target className="inline-block w-8 h-8 mr-2 text-indigo-600" />
             Was die erfolgreichen Unternehmen anders machen
           </h2>
-          <p className="text-gray-500 italic mb-4">Was haben erfolgreiche Copilot-Einführungen gemeinsam?</p>
 
           <p className="text-lg leading-relaxed mb-6">
             Die Zitate zeigen ein klares Muster: Erfolgreiche Copilot-Einführungen sind keine IT-Projekte,
@@ -530,7 +523,7 @@ const CopilotROIErfolgsgeschichten = () => {
 
         {/* Kernaussagen für Entscheider */}
         <section id="kernaussagen" className="my-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-teal-500">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             <Lightbulb className="inline-block w-8 h-8 mr-2 text-teal-600" />
             Kernaussagen für Entscheider
           </h2>
@@ -578,8 +571,8 @@ const CopilotROIErfolgsgeschichten = () => {
         </section>
 
         {/* Weiterführende Artikel */}
-        <section className="mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-sky-500 mb-6">Weiterführende Artikel</h2>
+        <section className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Weiterführende Artikel</h2>
           <div className="grid md:grid-cols-2 gap-4 mb-4">
             <Link to="/wissen/copilot-roi-berechnen" className="block">
               <Card className="hover:shadow-md transition-shadow h-full">
@@ -610,7 +603,7 @@ const CopilotROIErfolgsgeschichten = () => {
 
         {/* FAQ */}
         <section id="faq" className="my-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-violet-500">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Häufig gestellte Fragen
           </h2>
 
@@ -630,7 +623,7 @@ const CopilotROIErfolgsgeschichten = () => {
 
         {/* Quellen */}
         <section id="quellen" className="my-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-slate-500">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Quellen
           </h2>
 
@@ -732,8 +725,6 @@ const CopilotROIErfolgsgeschichten = () => {
             </a>
           </div>
         </section>
-
-        <TrustBadge />
 
         {/* CTA */}
         <div className="bg-gradient-to-r from-emerald-500/10 to-green-500/10 rounded-xl p-8 text-center my-12 border-2 border-emerald-500/20">

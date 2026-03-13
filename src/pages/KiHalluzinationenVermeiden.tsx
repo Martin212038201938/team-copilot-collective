@@ -173,11 +173,10 @@ const KiHalluzinationenVermeiden = () => {
         </div>
 
         {/* Warum KI halluziniert */}
-        <section id="warum-ki-halluziniert" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="warum-ki-halluziniert" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Warum KI halluziniert – und warum das kein Bug ist
           </h2>
-          <p className="text-gray-500 italic mb-4">Warum halluziniert KI – und wie kann man Fehler in den Ergebnissen erkennen?</p>
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
               Der Begriff „Halluzination" ist eigentlich irreführend, weil er suggeriert, die KI hätte eine
@@ -220,8 +219,8 @@ const KiHalluzinationenVermeiden = () => {
         </section>
 
         {/* Typische Fehlerquellen */}
-        <section id="typische-fehlerquellen" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="typische-fehlerquellen" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Die häufigsten Fehlerquellen im Arbeitsalltag
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -263,11 +262,10 @@ const KiHalluzinationenVermeiden = () => {
         </section>
 
         {/* Prompting gegen Fehler */}
-        <section id="prompting-gegen-fehler" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="prompting-gegen-fehler" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Prompting-Techniken, die Fehler reduzieren
           </h2>
-          <p className="text-gray-500 italic mb-4">Welche Prompt-Techniken reduzieren KI-Halluzinationen am wirksamsten?</p>
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
               Die wirksamste Maßnahme gegen Halluzinationen ist zugleich die einfachste: Kontext mitgeben.
@@ -310,8 +308,8 @@ const KiHalluzinationenVermeiden = () => {
         </section>
 
         {/* KI prüft KI */}
-        <section id="ki-prueft-ki" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="ki-prueft-ki" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             KI prüft KI: Qualitätssicherung mit dem gleichen Tool
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -362,8 +360,8 @@ const KiHalluzinationenVermeiden = () => {
         </section>
 
         {/* Review-Workflows */}
-        <section id="review-workflows" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="review-workflows" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Review-Workflows für Teams
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -407,8 +405,8 @@ const KiHalluzinationenVermeiden = () => {
         </section>
 
         {/* Grenzen */}
-        <section id="grenzen" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="grenzen" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Wo Vertrauen endet und Prüfpflicht beginnt
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -439,8 +437,8 @@ const KiHalluzinationenVermeiden = () => {
         </section>
 
         {/* Fazit */}
-        <section id="fazit" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="fazit" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Fazit
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -465,7 +463,7 @@ const KiHalluzinationenVermeiden = () => {
 
         {/* Weiterführende Artikel */}
         <section className="mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-sky-500 mb-6">Weiterführende Artikel</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Weiterführende Artikel</h2>
           <div className="grid md:grid-cols-3 gap-4">
             <Link to="/wissen/copilot-sicherheit-datenschutz" className="block">
               <Card className="hover:shadow-md transition-shadow h-full">
@@ -495,8 +493,8 @@ const KiHalluzinationenVermeiden = () => {
         </section>
 
         {/* FAQ */}
-        <section id="faq" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="faq" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Häufig gestellte Fragen
           </h2>
           <div className="space-y-4">

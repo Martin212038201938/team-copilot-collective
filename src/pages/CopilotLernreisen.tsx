@@ -156,10 +156,9 @@ const CopilotLernreisen = () => {
 
         {/* Sektion 1: Vergessenskurve */}
         <section id="vergessenskurve">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-red-500 text-red-700 dark:text-red-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Die Vergessenskurve: Warum Tagesschulungen scheitern
           </h2>
-          <p className="text-gray-500 italic mb-4">Warum vergessen Mitarbeiter Copilot-Schulungen so schnell – und was hilft dagegen?</p>
 
           <p className="mb-6">
             Der deutsche Psychologe Hermann Ebbinghaus entdeckte bereits 1885 ein Phänomen, das jeder aus eigener Erfahrung kennt: Frisch Gelerntes verschwindet erschreckend schnell aus dem Gedächtnis. Seine Vergessenskurve zeigt: Schon nach 20 Minuten können wir nur noch etwa 60 % abrufen. Nach einem Tag sind es rund 34 %. Nach sechs Tagen bleiben gerade einmal 23 % übrig.
@@ -205,7 +204,7 @@ const CopilotLernreisen = () => {
 
         {/* Sektion 2: Wissenschaftliche Grundlagen */}
         <section id="wissenschaft" className="mt-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-purple-500 text-purple-700 dark:text-purple-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Was die Wissenschaft über Spaced Learning sagt
           </h2>
 
@@ -289,10 +288,9 @@ const CopilotLernreisen = () => {
 
         {/* Sektion 3: 8 Gründe */}
         <section id="lernreise-vorteile" className="mt-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-green-500 text-green-700 dark:text-green-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             8 Gründe, warum Lernreisen besser funktionieren
           </h2>
-          <p className="text-gray-500 italic mb-4">Ist eine Copilot-Lernreise wirklich besser als eine Tagesschulung?</p>
 
           <div className="space-y-4 my-6">
             {[
@@ -416,7 +414,7 @@ const CopilotLernreisen = () => {
 
         {/* Sektion 4: Praxis-Szenarien */}
         <section id="praxis-szenarien" className="mt-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-blue-500 text-blue-700 dark:text-blue-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Praxis-Szenarien: Lernreise vs. Tagesschulung
           </h2>
 
@@ -511,7 +509,7 @@ const CopilotLernreisen = () => {
 
         {/* Sektion 5: Implementierung */}
         <section id="implementierung" className="mt-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-orange-500 text-orange-700 dark:text-orange-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             So planen Sie eine Copilot-Lernreise
           </h2>
 
@@ -603,7 +601,7 @@ const CopilotLernreisen = () => {
 
         {/* Sektion 6: Typische Fehler */}
         <section id="typische-fehler" className="mt-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-amber-500 text-amber-700 dark:text-amber-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Typische Fehler bei der Trainingsplanung
           </h2>
 
@@ -647,7 +645,7 @@ const CopilotLernreisen = () => {
 
         {/* Sektion 7: Entscheidungshilfe */}
         <section id="entscheidungshilfe" className="mt-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-indigo-500 text-indigo-700 dark:text-indigo-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Entscheidungshilfe: Lernreise oder Tagesschulung?
           </h2>
 
@@ -722,7 +720,7 @@ const CopilotLernreisen = () => {
 
         {/* Kernaussagen für Entscheider */}
         <section id="kernaussagen" className="mt-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-emerald-500 text-emerald-700 dark:text-emerald-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Kernaussagen für Entscheider
           </h2>
 
@@ -748,7 +746,7 @@ const CopilotLernreisen = () => {
 
         {/* Weiterführende Artikel */}
         <section className="mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-sky-500 mb-6">Weiterführende Artikel</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Weiterführende Artikel</h2>
           <div className="grid md:grid-cols-3 gap-4">
             <Link to="/wissen/warum-verteiltes-lernen-bei-copilot-trainings-funktioniert" className="block">
               <Card className="hover:shadow-md transition-shadow h-full">
@@ -779,7 +777,7 @@ const CopilotLernreisen = () => {
 
         {/* FAQ */}
         <section id="faq" className="mt-12 mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-slate-500 text-slate-700 dark:text-slate-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Häufig gestellte Fragen (FAQ)
           </h2>
 
@@ -799,7 +797,7 @@ const CopilotLernreisen = () => {
 
         {/* Quellen */}
         <section id="quellen" className="mt-12 mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-slate-500 text-slate-700 dark:text-slate-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Quellen und weiterführende Links
           </h2>
           <p className="text-muted-foreground mb-6">

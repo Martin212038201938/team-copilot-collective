@@ -146,8 +146,7 @@ const GitHubCopilot = () => {
         </Card>
 
         <section id="was-ist">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-blue-500">Was ist GitHub Copilot?</h2>
-          <p className="text-gray-500 italic mb-4">Was ist GitHub Copilot – und wie verändert es die Softwareentwicklung?</p>
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Was ist GitHub Copilot?</h2>
           <p>
             GitHub Copilot ist ein KI-gestützter Code-Completion-Tool, das von GitHub und OpenAI entwickelt wurde.
             Es fungiert als Ihr virtueller Pair-Programming-Partner und schlägt Code-Zeilen oder ganze Funktionen vor,
@@ -192,7 +191,7 @@ const GitHubCopilot = () => {
         </section>
 
         <section id="funktionen" className="mt-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-green-500">Funktionen und Features</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Funktionen und Features</h2>
 
           <div className="space-y-6 my-6">
             <Card>
@@ -260,7 +259,7 @@ const GitHubCopilot = () => {
         </section>
 
         <section id="setup" className="mt-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-purple-500">Setup und Installation</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Setup und Installation</h2>
           <p>
             Die Installation von GitHub Copilot ist in wenigen Schritten erledigt.
           </p>
@@ -287,8 +286,7 @@ const GitHubCopilot = () => {
         </section>
 
         <section id="best-practices" className="mt-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-cyan-500">Best Practices für Entwickler</h2>
-          <p className="text-gray-500 italic mb-4">Wie nutzt man GitHub Copilot am effektivsten?</p>
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Best Practices für Entwickler</h2>
 
           <div className="space-y-6 my-6">
             {[
@@ -324,7 +322,7 @@ const GitHubCopilot = () => {
         </section>
 
         <section id="code-qualitaet" className="mt-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-emerald-500">Code-Qualität mit Copilot</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Code-Qualität mit Copilot</h2>
           <p>
             GitHub Copilot kann Ihre Code-Qualität verbessern, erfordert aber bewussten Einsatz.
           </p>
@@ -363,7 +361,7 @@ const GitHubCopilot = () => {
         </section>
 
         <section id="advanced-features" className="mt-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-red-500">Advanced Features</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Advanced Features</h2>
 
           <Card className="my-6">
             <CardHeader>
@@ -388,7 +386,7 @@ const GitHubCopilot = () => {
         </section>
 
         <section id="prompt-engineering" className="mt-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-amber-500">Prompt Engineering für Copilot</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Prompt Engineering für Copilot</h2>
           <p>
             Die Qualität der Copilot-Vorschläge hängt stark von Ihren Prompts ab. Mit <Link to="/wissen/prompt-engineering" className="text-primary hover:underline">Prompt Engineering</Link> lernen Sie die Techniken, um maximale Ergebnisse aus Copilot herauszuholen.
           </p>
@@ -415,7 +413,7 @@ const GitHubCopilot = () => {
         </section>
 
         <section id="fehler-vermeiden" className="mt-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-indigo-500">Häufige Fehler vermeiden</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Häufige Fehler vermeiden</h2>
 
           <div className="space-y-4 my-6">
             {[
@@ -447,8 +445,8 @@ const GitHubCopilot = () => {
         </section>
 
         {/* Weiterführende Artikel */}
-        <section className="mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-sky-500 mb-6">Weiterführende Artikel</h2>
+        <section className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Weiterführende Artikel</h2>
           <div className="grid md:grid-cols-2 gap-4 mb-4">
             <Link to="/wissen/ki-agenten" className="block">
               <Card className="hover:shadow-md transition-shadow h-full">
@@ -478,7 +476,7 @@ const GitHubCopilot = () => {
         </section>
 
         <section id="faq" className="mt-12 mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-slate-500">Häufig gestellte Fragen (FAQ)</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Häufig gestellte Fragen (FAQ)</h2>
 
           <div className="space-y-4 my-6">
             {faqs.map((faq, idx) => (
@@ -496,7 +494,7 @@ const GitHubCopilot = () => {
 
         {/* Quellen und weiterführende Links */}
         <section id="quellen" className="mt-12 mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-gray-500">Quellen und weiterführende Links</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Quellen und weiterführende Links</h2>
           <p className="text-muted-foreground mb-6">
             Offizielle Dokumentationen und Ressourcen für vertiefende Informationen zu GitHub Copilot.
           </p>

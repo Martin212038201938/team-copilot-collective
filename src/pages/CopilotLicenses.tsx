@@ -1,10 +1,9 @@
 import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Check, X, Info, Linkedin, Mail, ExternalLink, Zap } from "lucide-react";
+import { Check, X, Info, ExternalLink, Zap } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
-import { TrustBadge } from "@/components/TrustBadge";
 import { Link } from "react-router-dom";
 
 const SLUG = "microsoft-copilot-lizenzen";
@@ -133,7 +132,7 @@ const CopilotLicenses = () => {
         tableOfContents={tableOfContents}
       >
         {/* Quick Answer Section für AIO-Optimierung */}
-        <section id="quick-answer" className="mb-8">
+        <section id="quick-answer" className="mb-6">
           <Card className="border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-amber-500/5">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-xl">
@@ -173,8 +172,7 @@ const CopilotLicenses = () => {
         </section>
 
         <section id="overview">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-blue-500">Überblick Microsoft Copilot Lizenzen</h2>
-          <p className="text-gray-500 italic mb-4">Welche Microsoft Copilot Lizenzen gibt es und was kosten sie?</p>
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Überblick Microsoft Copilot Lizenzen</h2>
           <p>
             Microsoft bietet verschiedene Copilot-Lizenzen für unterschiedliche Anwendungsfälle an.
             Dieser Leitfaden hilft Ihnen zu verstehen, welche Lizenz Sie für Ihre spezifischen Anforderungen benötigen.
@@ -191,7 +189,7 @@ const CopilotLicenses = () => {
         </section>
 
         <section id="microsoft-365-copilot" className="mt-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-green-500">Microsoft 365 Copilot</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Microsoft 365 Copilot</h2>
 
           <Card className="my-6 border-2 border-primary/20 hover:shadow-xl transition-shadow">
             <CardHeader className="bg-gradient-to-r from-primary/10 to-accent/10">
@@ -252,7 +250,7 @@ const CopilotLicenses = () => {
         </section>
 
         <section id="github-copilot" className="mt-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-purple-500">GitHub Copilot</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">GitHub Copilot</h2>
           <p>
             GitHub Copilot ist in drei Editionen verfügbar, jeweils mit unterschiedlichen Features für
             individuelle Entwickler und Teams.
@@ -348,7 +346,7 @@ const CopilotLicenses = () => {
         </section>
 
         <section id="copilot-studio" className="mt-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-cyan-500">Microsoft Copilot Studio</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Microsoft Copilot Studio</h2>
           <p>
             Microsoft Copilot Studio ermöglicht die Entwicklung eigener KI-Agenten, Chatbots und
             die Erweiterung von Microsoft 365 Copilot mit benutzerdefinierten Funktionen.
@@ -440,7 +438,7 @@ const CopilotLicenses = () => {
         </section>
 
         <section id="comparison" className="mt-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-emerald-500">Lizenzvergleich im Überblick</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Lizenzvergleich im Überblick</h2>
           <div className="overflow-x-auto my-6">
             <table className="w-full border-collapse">
               <thead>
@@ -506,8 +504,7 @@ const CopilotLicenses = () => {
         </section>
 
         <section id="recommendations" className="mt-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-red-500">Welche Lizenz brauche ich?</h2>
-          <p className="text-gray-500 italic mb-4">Welche Copilot-Lizenz ist die richtige für mein Unternehmen?</p>
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Welche Lizenz brauche ich?</h2>
 
           <div className="space-y-6 my-6">
             <Card className="border-l-4 border-l-blue-500">
@@ -573,8 +570,8 @@ const CopilotLicenses = () => {
         </section>
 
         {/* Weiterführende Artikel */}
-        <section className="mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-sky-500 mb-6">Weiterführende Artikel</h2>
+        <section className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Weiterführende Artikel</h2>
           <div className="grid md:grid-cols-2 gap-4 mb-4">
             <Link to="/wissen/copilot-roi-berechnen" className="block">
               <Card className="hover:shadow-md transition-shadow h-full">
@@ -604,7 +601,7 @@ const CopilotLicenses = () => {
         </section>
 
         <section id="faq" className="mt-12 mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-amber-500">Häufig gestellte Fragen (FAQ)</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Häufig gestellte Fragen (FAQ)</h2>
 
           <div className="space-y-4 my-6">
             {[
@@ -647,7 +644,7 @@ const CopilotLicenses = () => {
 
         {/* Quellen und weiterführende Links */}
         <section id="quellen" className="mt-12 mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-indigo-500">Quellen und weiterführende Links</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Quellen und weiterführende Links</h2>
           <p className="text-muted-foreground mb-6">
             Offizielle Microsoft-Ressourcen zu Lizenzierung und Preisen.
           </p>
@@ -706,8 +703,6 @@ const CopilotLicenses = () => {
             </a>
           </div>
         </section>
-
-        <TrustBadge />
 
         <div className="bg-gradient-to-r from-primary/10 to-accent/10 rounded-xl p-8 text-center my-12">
           <h3 className="text-2xl font-bold mb-4">Benötigen Sie Beratung zur Lizenzierung?</h3>

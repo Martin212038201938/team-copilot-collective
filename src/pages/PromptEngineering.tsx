@@ -1,10 +1,9 @@
 import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Zap, Lightbulb, Target, BookOpen, ExternalLink, CheckCircle2, XCircle, AlertTriangle, Code, FileText, BarChart3, Wand2, Linkedin, Mail } from "lucide-react";
+import { Zap, Lightbulb, Target, BookOpen, ExternalLink, CheckCircle2, AlertTriangle, Code, Wand2 } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
-import { TrustBadge } from "@/components/TrustBadge";
 import { Link } from "react-router-dom";
 
 const SLUG = "prompt-engineering";
@@ -138,10 +137,9 @@ const PromptEngineering = () => {
 
         {/* Was ist Prompt Engineering */}
         <section id="was-ist">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-blue-500">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Was ist Prompt Engineering?
           </h2>
-          <p className="text-gray-500 italic mb-4">Was ist Prompt Engineering – und warum ist es für Microsoft Copilot so wichtig?</p>
 
           <p className="mb-6">
             Prompt Engineering ist die Disziplin, effektive Anweisungen für KI-Systeme zu formulieren. Die Qualität
@@ -200,10 +198,9 @@ const PromptEngineering = () => {
 
         {/* CRAFT Framework */}
         <section id="craft-framework">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-green-500">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Das CRAFT-Framework
           </h2>
-          <p className="text-gray-500 italic mb-4">Wie schreibe ich gute Prompts für Microsoft Copilot?</p>
 
           <p className="mb-6">
             CRAFT ist ein bewährtes Framework für strukturierte Prompts. Jeder Buchstabe steht für einen
@@ -301,7 +298,7 @@ const PromptEngineering = () => {
 
         {/* Prompt-Techniken */}
         <section id="techniken">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-purple-500">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Prompt-Techniken im Überblick
           </h2>
 
@@ -358,7 +355,7 @@ const PromptEngineering = () => {
 
         {/* M365 Prompts */}
         <section id="m365-prompts">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-cyan-500">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Prompts für Microsoft 365 Copilot
           </h2>
 
@@ -454,7 +451,7 @@ const PromptEngineering = () => {
 
         {/* GitHub Copilot */}
         <section id="github-prompts">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-emerald-500">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Prompts für GitHub Copilot
           </h2>
 
@@ -512,10 +509,9 @@ const PromptEngineering = () => {
 
         {/* Typische Fehler */}
         <section id="fehler">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-red-500">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Typische Fehler vermeiden
           </h2>
-          <p className="text-gray-500 italic mb-4">Welche Prompt-Fehler machen Copilot-Nutzer am häufigsten?</p>
 
           <div className="space-y-4 my-8">
             {[
@@ -571,7 +567,7 @@ const PromptEngineering = () => {
 
         {/* Zauberstab-Prompt */}
         <section id="zauberstab">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-amber-500">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Der Zauberstab-Prompt
           </h2>
 
@@ -635,7 +631,7 @@ const PromptEngineering = () => {
 
         {/* Kernaussagen */}
         <section id="kernaussagen">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-indigo-500">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Kernaussagen für Entscheider
           </h2>
 
@@ -665,8 +661,8 @@ const PromptEngineering = () => {
         </section>
 
         {/* Weiterführende Artikel */}
-        <section className="mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-sky-500 mb-6">Weiterführende Artikel</h2>
+        <section className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Weiterführende Artikel</h2>
           <div className="grid md:grid-cols-2 gap-4 mb-4">
             <Link to="/wissen/copilot-tipps-tricks-produktivitaet" className="block">
               <Card className="hover:shadow-md transition-shadow h-full">
@@ -697,7 +693,7 @@ const PromptEngineering = () => {
 
         {/* FAQ */}
         <section id="faq">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-slate-500">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Häufig gestellte Fragen
           </h2>
 
@@ -717,7 +713,7 @@ const PromptEngineering = () => {
 
         {/* Quellen */}
         <section id="quellen">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-gray-500">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Quellen und weiterführende Links
           </h2>
 
@@ -760,8 +756,6 @@ const PromptEngineering = () => {
             ))}
           </div>
         </section>
-
-        <TrustBadge />
 
         {/* CTA */}
         <div className="bg-gradient-to-r from-orange-500/10 to-amber-500/10 rounded-xl p-8 text-center my-12 border-2 border-orange-500/20">

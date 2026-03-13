@@ -177,11 +177,10 @@ const CopilotAgentDigitalesGedaechtnis = () => {
         </div>
 
         {/* Warum ein Agent */}
-        <section id="warum-ein-agent" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="warum-ein-agent" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Warum ein eigener Agent?
           </h2>
-          <p className="text-gray-500 italic mb-4">Wie baut man einen Copilot-Agenten, der Meeting-Protokolle automatisch erstellt und durchsuchbar macht?</p>
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
               Microsoft Copilot kann Meeting-Zusammenfassungen schon von Haus aus erstellen – das ist
@@ -213,8 +212,8 @@ const CopilotAgentDigitalesGedaechtnis = () => {
         </section>
 
         {/* Voraussetzungen */}
-        <section id="voraussetzungen" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="voraussetzungen" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Was Sie brauchen
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -272,8 +271,8 @@ const CopilotAgentDigitalesGedaechtnis = () => {
         </section>
 
         {/* Schritt 1: Format definieren */}
-        <section id="format-definieren" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="format-definieren" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Schritt 1: Ihr Protokoll-Format definieren
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -335,11 +334,10 @@ const CopilotAgentDigitalesGedaechtnis = () => {
         </section>
 
         {/* Schritt 2: Agent erstellen */}
-        <section id="agent-erstellen" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="agent-erstellen" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Schritt 2: Den Agenten in Copilot erstellen
           </h2>
-          <p className="text-gray-500 italic mb-4">Welche Schritte sind nötig, um einen eigenen Copilot-Agenten in Copilot Studio zu erstellen?</p>
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
               Jetzt wird es konkret. Öffnen Sie Microsoft 365 Copilot – entweder über copilot.microsoft.com
@@ -467,8 +465,8 @@ Ablage:
         </section>
 
         {/* Schritt 3: Agent testen */}
-        <section id="agent-testen" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="agent-testen" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Schritt 3: Den Agenten testen
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -532,8 +530,8 @@ Ablage:
         </section>
 
         {/* Schritt 4: Protokolle speichern */}
-        <section id="protokolle-speichern" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="protokolle-speichern" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Schritt 4: Protokolle ablegen – Ihr digitales Gedächtnis aufbauen
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -716,8 +714,8 @@ Ablage:
         </section>
 
         {/* Schritt 5: Gedächtnis durchsuchen */}
-        <section id="gedaechtnis-durchsuchen" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="gedaechtnis-durchsuchen" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Schritt 5: Ihr digitales Gedächtnis nutzen
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -766,8 +764,8 @@ Ablage:
         </section>
 
         {/* Was nicht funktioniert */}
-        <section id="grenzen" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="grenzen" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Was nicht funktioniert – ehrliche Grenzen
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -808,8 +806,8 @@ Ablage:
         </section>
 
         {/* Fazit */}
-        <section id="fazit" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="fazit" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Fazit
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -837,7 +835,7 @@ Ablage:
 
         {/* Weiterführende Artikel */}
         <section className="mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-sky-500 mb-6">Weiterführende Artikel</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Weiterführende Artikel</h2>
           <div className="grid md:grid-cols-3 gap-4">
             <Link to="/wissen/copilot-digitales-gedaechtnis" className="block">
               <Card className="hover:shadow-md transition-shadow h-full">
@@ -867,8 +865,8 @@ Ablage:
         </section>
 
         {/* FAQ */}
-        <section id="faq" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="faq" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Häufig gestellte Fragen
           </h2>
           <div className="space-y-6">

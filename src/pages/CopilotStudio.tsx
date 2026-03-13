@@ -1,7 +1,7 @@
 import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Check, Zap, Bot, Link as LinkIcon, Shield, ExternalLink } from "lucide-react";
+import { Check, Zap, Bot, Shield, ExternalLink } from "lucide-react";
 import { Link } from "react-router-dom";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
@@ -145,8 +145,7 @@ const CopilotStudio = () => {
         </Card>
 
         <section id="was-ist">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-blue-500">Was ist Microsoft Copilot Studio?</h2>
-          <p className="text-gray-500 italic mb-4">Was ist Microsoft Copilot Studio – und wer braucht es?</p>
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Was ist Microsoft Copilot Studio?</h2>
           <p>
             Microsoft Copilot Studio (früher Power Virtual Agents) ist eine Low-Code-Plattform zur Erstellung eigener
             KI-Agenten, Custom Copilots und intelligenter Chatbots. Es ermöglicht Unternehmen, spezialisierte KI-Assistenten
@@ -199,8 +198,7 @@ const CopilotStudio = () => {
         </section>
 
         <section id="anwendungsfaelle" className="mt-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-green-500">Anwendungsfälle für Unternehmen</h2>
-          <p className="text-gray-500 italic mb-4">Welche Geschäftsprozesse lassen sich mit Copilot Studio automatisieren?</p>
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Anwendungsfälle für Unternehmen</h2>
 
           <div className="space-y-6 my-6">
             {[
@@ -240,7 +238,7 @@ const CopilotStudio = () => {
         </section>
 
         <section id="custom-copilots" className="mt-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-purple-500">Custom Copilots erstellen</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Custom Copilots erstellen</h2>
 
           <p className="mb-6">
             Mit Copilot Studio können Sie eigene <Link to="/wissen/ki-agenten" className="text-primary hover:underline">KI-Agenten</Link> erstellen, die speziell auf Ihre Unternehmensbedürfnisse zugeschnitten sind.
@@ -276,7 +274,7 @@ const CopilotStudio = () => {
         </section>
 
         <section id="plugins" className="mt-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-cyan-500">Plugins und Erweiterungen</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Plugins und Erweiterungen</h2>
           <p>
             Erweitern Sie Microsoft 365 Copilot mit Custom Plugins aus Copilot Studio.
           </p>
@@ -323,7 +321,7 @@ const CopilotStudio = () => {
         </section>
 
         <section id="integration" className="mt-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-red-500">Integration mit Microsoft 365</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Integration mit Microsoft 365</h2>
 
           <Card className="my-6 border-l-4 border-l-red-500">
             <CardHeader>
@@ -348,7 +346,7 @@ const CopilotStudio = () => {
         </section>
 
         <section id="datenquellen" className="mt-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-amber-500">Datenquellen anbinden</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Datenquellen anbinden</h2>
           <p>
             Copilot Studio unterstützt verschiedene Datenquellen für intelligente, kontextbezogene Antworten.
           </p>
@@ -399,7 +397,7 @@ const CopilotStudio = () => {
         </section>
 
         <section id="sicherheit" className="mt-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-green-500">Sicherheit und Compliance</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Sicherheit und Compliance</h2>
 
           <Card className="my-6 border-2 border-green-500/20 border-l-4 border-l-green-500">
             <CardHeader className="bg-gradient-to-r from-green-500/10 to-green-600/10">
@@ -429,7 +427,7 @@ const CopilotStudio = () => {
         </section>
 
         <section id="lizenzierung" className="mt-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-indigo-500">Lizenzierung und Kosten</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Lizenzierung und Kosten</h2>
 
           <div className="grid md:grid-cols-2 gap-6 my-6">
             <Card className="border-t-4 border-t-blue-500">
@@ -469,8 +467,8 @@ const CopilotStudio = () => {
         </section>
 
         {/* Weiterführende Artikel */}
-        <section className="mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-sky-500 mb-6">Weiterführende Artikel</h2>
+        <section className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Weiterführende Artikel</h2>
           <div className="grid md:grid-cols-2 gap-4 mb-4">
             <Link to="/wissen/ki-agenten" className="block">
               <Card className="hover:shadow-md transition-shadow h-full">
@@ -500,7 +498,7 @@ const CopilotStudio = () => {
         </section>
 
         <section id="faq" className="mt-12 mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-gray-500">Häufig gestellte Fragen (FAQ)</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Häufig gestellte Fragen (FAQ)</h2>
 
           <div className="space-y-4 my-6">
             {faqs.map((faq, idx) => (
@@ -517,7 +515,7 @@ const CopilotStudio = () => {
         </section>
 
         <section id="quellen" className="mt-12 mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-cyan-500">Quellen und weiterführende Links</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Quellen und weiterführende Links</h2>
           <p className="text-muted-foreground mb-6">
             Offizielle Microsoft-Dokumentationen und Ressourcen für vertiefende Informationen zu Copilot Studio.
           </p>

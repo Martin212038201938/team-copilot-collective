@@ -2,9 +2,8 @@ import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
-import { ExternalLink, Zap, Linkedin, Twitter } from "lucide-react";
+import { ExternalLink, Zap } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { TrustBadge } from "@/components/TrustBadge";
 import { Link } from "react-router-dom";
 
 const SLUG = "copilot-fuer-word";
@@ -175,7 +174,7 @@ const CopilotFuerWord = () => {
         modifiedDate="2026-02-03"
       >
         {/* Schnellantwort Card */}
-        <section className="mb-8">
+        <section className="mb-6">
           <div className="border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-amber-500/5 rounded-lg p-6 flex items-start gap-4">
             <Zap className="w-6 h-6 text-orange-500 flex-shrink-0 mt-1" />
             <div>
@@ -185,14 +184,13 @@ const CopilotFuerWord = () => {
           </div>
         </section>
 
-        <section id="einleitung" className="mb-8">
+        <section id="einleitung" className="mb-6">
           <h1 className="text-3xl font-semibold tracking-tight mb-4">Einleitung</h1>
           <p className="mb-4 text-gray-700 leading-relaxed">Microsoft Copilot für Word ist ein KI-gestützter Assistent, der direkt in Microsoft Word integriert ist und Ihre Dokumentenerstellung auf ein neues Level hebt. Mit natürlicher Sprache können Sie Texte erstellen, bearbeiten, zusammenfassen und formatieren.</p>
         </section>
 
-        <section id="was-ist-microsoft-copilot-f-r-word-" className="mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-blue-500 mb-6">Was ist Microsoft Copilot für Word?</h2>
-          <p className="text-gray-500 italic mb-4">Was kann Microsoft Copilot in Word – und wo liegen die Grenzen?</p>
+        <section id="was-ist-microsoft-copilot-f-r-word-" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Was ist Microsoft Copilot für Word?</h2>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-blue-500 pl-4">Überblick</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Microsoft Copilot für Word</strong> ist Teil von Microsoft 365 Copilot und nutzt Large Language Models (LLMs), um Sie bei allen Aspekten der Dokumentenerstellung zu unterstützen.</p>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Kernfunktionen:</strong></p>
@@ -220,8 +218,8 @@ const CopilotFuerWord = () => {
           </ul>
         </section>
 
-        <section id="copilot-in-word-aktivieren" className="mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-green-500 mb-6">Copilot in Word aktivieren</h2>
+        <section id="copilot-in-word-aktivieren" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Copilot in Word aktivieren</h2>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-purple-500 pl-4">Zugriff auf Copilot</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Option 1: Copilot-Symbol im Ribbon</strong></p>
           <p className="mb-4 text-gray-700 leading-relaxed">1. Öffnen Sie Word</p>
@@ -285,9 +283,8 @@ Halte die gleiche professionelle Tonalität bei."`}</code></pre>
           </div>
         </section>
 
-        <section id="hauptfunktionen-im-detail" className="mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-emerald-500 mb-6">Hauptfunktionen im Detail</h2>
-          <p className="text-gray-500 italic mb-4">Wie erstellt man mit Copilot in Word professionelle Dokumente?</p>
+        <section id="hauptfunktionen-im-detail" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Hauptfunktionen im Detail</h2>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-t-4 border-t-emerald-500 pt-4">1. Dokumente erstellen (Draft)</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Use Case:</strong> Vom leeren Dokument zum fertigen Entwurf</p>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>CRAFT-konforme Prompts:</strong></p>
@@ -625,8 +622,8 @@ Kapitelüberschriften sollen:
           </div>
         </section>
 
-        <section id="praktische-anwendungsf-lle" className="mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-purple-500 mb-6">Praktische Anwendungsfälle</h2>
+        <section id="praktische-anwendungsf-lle" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Praktische Anwendungsfälle</h2>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-purple-500 pl-4">1. Business-Dokumente</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Geschäftsbriefe:</strong></p>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
@@ -984,8 +981,8 @@ Format: Markdown mit klarer Hierarchie, Emojis für Kategorien."`}</code></pre>
           </div>
         </section>
 
-        <section id="best-practices-f-r-prompts" className="mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-cyan-500 mb-6">Best Practices für Prompts</h2>
+        <section id="best-practices-f-r-prompts" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Best Practices für Prompts</h2>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-cyan-500 pl-4">Die CRAFT-Formel</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>C - Context (Kontext)</strong></p>
           <p className="mb-4 text-gray-700 leading-relaxed">❌ "Schreibe einen Artikel über KI"</p>
@@ -1017,8 +1014,8 @@ Format: Markdown mit klarer Hierarchie, Emojis für Kategorien."`}</code></pre>
           </div>
         </section>
 
-        <section id="erweiterte-techniken" className="mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-red-500 mb-6">Erweiterte Techniken</h2>
+        <section id="erweiterte-techniken" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Erweiterte Techniken</h2>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-red-500 pl-4">1. Multi-Document Intelligence</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Copilot kann Informationen aus mehreren Quellen kombinieren:</strong></p>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
@@ -1039,8 +1036,8 @@ Format: Markdown mit klarer Hierarchie, Emojis für Kategorien."`}</code></pre>
           </div>
         </section>
 
-        <section id="h-ufige-fehler-vermeiden" className="mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-gray-500 mb-6">Häufige Fehler vermeiden</h2>
+        <section id="h-ufige-fehler-vermeiden" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Häufige Fehler vermeiden</h2>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-gray-500 pl-4">❌ Fehler 1: Zu vage Prompts</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Schlecht:</strong></p>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
@@ -1072,8 +1069,8 @@ Format: Markdown mit klarer Hierarchie, Emojis für Kategorien."`}</code></pre>
           </ul>
         </section>
 
-        <section id="produktivit-t-steigern-workflows" className="mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-blue-500 mb-6">Produktivität steigern: Workflows</h2>
+        <section id="produktivit-t-steigern-workflows" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Produktivität steigern: Workflows</h2>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-blue-500 pl-4">Workflow 1: Meeting → Dokumentation</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>1. Meeting in Teams (mit Copilot)</strong></p>
           <ul className="list-disc list-inside space-y-2 mb-4">
@@ -1117,8 +1114,8 @@ Format: Markdown mit klarer Hierarchie, Emojis für Kategorien."`}</code></pre>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Zeitersparnis:</strong> 90% (von 20 Min auf 2 Min)</p>
         </section>
 
-        <section id="integration-mit-microsoft-365" className="mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-emerald-500 mb-6">Integration mit Microsoft 365</h2>
+        <section id="integration-mit-microsoft-365" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Integration mit Microsoft 365</h2>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-emerald-500 pl-4">Word + Outlook</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Szenario:</strong> E-Mail zu Dokument</p>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
@@ -1142,8 +1139,8 @@ Format: Markdown mit klarer Hierarchie, Emojis für Kategorien."`}</code></pre>
           <p className="mb-4 text-gray-700 leading-relaxed">Mehr dazu, was Copilot direkt in <Link to="/wissen/copilot-fuer-excel" className="text-primary hover:underline">Excel</Link> kann.</p>
         </section>
 
-        <section id="sicherheit-und-compliance" className="mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-slate-500 mb-6">Sicherheit und Compliance</h2>
+        <section id="sicherheit-und-compliance" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Sicherheit und Compliance</h2>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-slate-500 pl-4">Datenschutz</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Was passiert mit Ihren Daten?</strong></p>
           <ul className="list-disc list-inside space-y-2 mb-4">
@@ -1169,8 +1166,8 @@ Format: Markdown mit klarer Hierarchie, Emojis für Kategorien."`}</code></pre>
           </ul>
         </section>
 
-        <section id="kosten-lizenzierung" className="mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-green-500 mb-6">Kosten & Lizenzierung</h2>
+        <section id="kosten-lizenzierung" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Kosten & Lizenzierung</h2>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-green-500 pl-4">Preismodell</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Microsoft 365 Copilot:</strong></p>
           <ul className="list-disc list-inside space-y-2 mb-4">
@@ -1198,8 +1195,8 @@ Format: Markdown mit klarer Hierarchie, Emojis für Kategorien."`}</code></pre>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>ROI:</strong> 1.233% im ersten Jahr</p>
         </section>
 
-        <section id="tipps-von-power-usern" className="mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-cyan-500 mb-6">Tipps von Power-Usern</h2>
+        <section id="tipps-von-power-usern" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Tipps von Power-Usern</h2>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-cyan-500 pl-4">Tipp 1: Copilot als Brainstorming-Partner</h3>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
             <pre className="text-sm whitespace-pre-wrap break-words"><code>Prompt: "Ich muss [Aufgabe] erledigen. Gib mir 5 verschiedene\nAnsätze wie ich das angehen könnte, mit Vor- und Nachteilen"</code></pre>
@@ -1224,8 +1221,8 @@ Format: Markdown mit klarer Hierarchie, Emojis für Kategorien."`}</code></pre>
         </section>
 
         {/* Weiterführende Artikel */}
-        <section className="mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-sky-500 mb-6">Weiterführende Artikel</h2>
+        <section className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Weiterführende Artikel</h2>
           <div className="grid md:grid-cols-2 gap-4 mb-4">
             <Link to="/wissen/copilot-fuer-excel" className="block">
               <Card className="hover:shadow-md transition-shadow h-full">
@@ -1254,8 +1251,8 @@ Format: Markdown mit klarer Hierarchie, Emojis für Kategorien."`}</code></pre>
           </div>
         </section>
 
-        <section id="h-ufig-gestellte-fragen-faq-" className="mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-indigo-500 mb-6">Häufig gestellte Fragen (FAQ)</h2>
+        <section id="h-ufig-gestellte-fragen-faq-" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Häufig gestellte Fragen (FAQ)</h2>
           <h3 className="text-xl font-semibold mb-3 mt-6 border-l-4 border-l-indigo-500 pl-4">Kann Copilot in allen Sprachen arbeiten?</h3>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Ja</strong>, Copilot unterstützt 40+ Sprachen, inklusive:</p>
           <ul className="list-disc list-inside space-y-2 mb-4">
@@ -1273,8 +1270,8 @@ Format: Markdown mit klarer Hierarchie, Emojis für Kategorien."`}</code></pre>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Nichts verloren!</strong> Alle Dokumente bleiben erhalten. Sie verlieren nur den Zugriff auf die Copilot-Funktionen.</p>
         </section>
 
-        <section id="zukunft-was-kommt-" className="mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-purple-500 mb-6">Zukunft: Was kommt?</h2>
+        <section id="zukunft-was-kommt-" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Zukunft: Was kommt?</h2>
           <p className="mb-6 text-gray-700 leading-relaxed">
             Microsoft entwickelt Copilot in Word rasant weiter. Hier die wichtigsten Neuerungen und kommenden Features
             basierend auf der <a href="https://www.microsoft.com/en-us/microsoft-365/roadmap" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">offiziellen Microsoft 365 Roadmap</a>.
@@ -1341,8 +1338,8 @@ Format: Markdown mit klarer Hierarchie, Emojis für Kategorien."`}</code></pre>
           </div>
         </section>
 
-        <section id="zusammenfassung" className="mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-orange-500 mb-6">Zusammenfassung</h2>
+        <section id="zusammenfassung" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Zusammenfassung</h2>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Microsoft Copilot für Word revolutioniert Dokumentenerstellung:</strong></p>
           <p className="mb-4 text-gray-700 leading-relaxed">✅ <strong>Zeitersparnis:</strong> 50-70% weniger Zeit für typische Aufgaben</p>
           <p className="mb-4 text-gray-700 leading-relaxed">✅ <strong>Qualität:</strong> Konsistent professionelle Dokumente</p>
@@ -1359,8 +1356,8 @@ Format: Markdown mit klarer Hierarchie, Emojis für Kategorien."`}</code></pre>
           <p className="mb-4 text-gray-700 leading-relaxed italic border-l-4 border-orange-500 pl-4">"Je spezifischer der Prompt, desto besser das Ergebnis"</p>
         </section>
 
-        <section id="ressourcen" className="mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-teal-500 mb-6">Ressourcen</h2>
+        <section id="ressourcen" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Ressourcen</h2>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Offizielle Microsoft Dokumentation:</strong></p>
           <ul className="list-disc list-inside space-y-2 mb-4">
             <li>[Microsoft Copilot für Word Docs](https://learn.microsoft.com/copilot)</li>
@@ -1382,7 +1379,7 @@ Format: Markdown mit klarer Hierarchie, Emojis für Kategorien."`}</code></pre>
 
         {/* Quellen und weiterführende Links */}
         <section id="quellen" className="mt-12 mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-emerald-500 mb-6">Quellen und weiterführende Links</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Quellen und weiterführende Links</h2>
           <p className="text-muted-foreground mb-6">
             Offizielle Microsoft-Dokumentation zu Copilot in Word.
           </p>
@@ -1443,7 +1440,6 @@ Format: Markdown mit klarer Hierarchie, Emojis für Kategorien."`}</code></pre>
         </section>
 
         {/* Autor Bio */}
-        <TrustBadge />
       </ContentLayout>
     </>
   );

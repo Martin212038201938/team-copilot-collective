@@ -145,8 +145,7 @@ const KIAgenten = () => {
         </Card>
 
         <section id="was-sind">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-blue-500">Was sind KI-Agenten?</h2>
-          <p className="text-gray-500 italic mb-4">Was sind KI-Agenten – und wie unterscheiden sie sich von Chatbots?</p>
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Was sind KI-Agenten?</h2>
           <p>
             KI-Agenten sind autonome Softwaresysteme, die Ziele eigenständig verfolgen, Entscheidungen treffen und
             Tools nutzen, um Aufgaben zu erledigen. Sie gehen weit über einfache Chatbots hinaus.
@@ -198,7 +197,7 @@ const KIAgenten = () => {
         </section>
 
         <section id="unterschied" className="mt-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-green-500">Unterschied: Chatbot vs. Agent</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Unterschied: Chatbot vs. Agent</h2>
 
           <div className="grid md:grid-cols-2 gap-6 my-6">
             <Card className="border-l-4 border-l-blue-500">
@@ -240,7 +239,7 @@ const KIAgenten = () => {
         </section>
 
         <section id="architektur" className="mt-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-purple-500">Agentic AI Architektur</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Agentic AI Architektur</h2>
 
           <Card className="my-6">
             <CardHeader>
@@ -287,8 +286,7 @@ const KIAgenten = () => {
         </section>
 
         <section id="use-cases" className="mt-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-cyan-500">Use Cases in Unternehmen</h2>
-          <p className="text-gray-500 italic mb-4">Welche konkreten Anwendungsfälle gibt es für KI-Agenten in Unternehmen?</p>
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Use Cases in Unternehmen</h2>
 
           <div className="space-y-6 my-6">
             {[
@@ -337,7 +335,7 @@ const KIAgenten = () => {
         </section>
 
         <section id="copilot-studio" className="mt-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-emerald-500">Agenten mit <Link to="/wissen/copilot-studio" className="text-primary hover:underline">Copilot Studio</Link> bauen</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Agenten mit <Link to="/wissen/copilot-studio" className="text-primary hover:underline">Copilot Studio</Link> bauen</h2>
 
           <Card className="my-6">
             <CardHeader>
@@ -387,7 +385,7 @@ const KIAgenten = () => {
         </section>
 
         <section id="multi-agent" className="mt-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-red-500">Multi-Agent-Systeme</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Multi-Agent-Systeme</h2>
           <p>
             Mehrere spezialisierte Agenten arbeiten zusammen an komplexen Aufgaben.
           </p>
@@ -424,7 +422,7 @@ const KIAgenten = () => {
         </section>
 
         <section id="tool-integration" className="mt-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-amber-500">Tool-Integration und APIs</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Tool-Integration und APIs</h2>
 
           <div className="grid md:grid-cols-2 gap-6 my-6">
             <Card>
@@ -474,7 +472,7 @@ const KIAgenten = () => {
         </section>
 
         <section id="testing" className="mt-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-indigo-500">Testing und Deployment</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Testing und Deployment</h2>
 
           <Card className="my-6">
             <CardHeader>
@@ -542,8 +540,8 @@ const KIAgenten = () => {
         </section>
 
         {/* Weiterführende Artikel */}
-        <section className="mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-sky-500 mb-6">Weiterführende Artikel</h2>
+        <section className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Weiterführende Artikel</h2>
           <div className="grid md:grid-cols-2 gap-4 mb-4">
             <Link to="/wissen/copilot-studio" className="block">
               <Card className="hover:shadow-md transition-shadow h-full">
@@ -573,7 +571,7 @@ const KIAgenten = () => {
         </section>
 
         <section id="faq" className="mt-12 mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-slate-500">Häufig gestellte Fragen (FAQ)</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Häufig gestellte Fragen (FAQ)</h2>
 
           <div className="space-y-4 my-6">
             {faqs.map((faq, idx) => (
@@ -591,7 +589,7 @@ const KIAgenten = () => {
 
         {/* Quellen und weiterführende Links */}
         <section id="quellen" className="mt-12 mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-gray-500">Quellen und weiterführende Links</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Quellen und weiterführende Links</h2>
           <p className="text-muted-foreground mb-6">
             Offizielle Ressourcen und Dokumentationen zu KI-Agenten und Agentic AI.
           </p>

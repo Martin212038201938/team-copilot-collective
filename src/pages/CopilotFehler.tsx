@@ -151,10 +151,9 @@ const CopilotFehler = () => {
         </Card>
 
         <section id="fehler-1">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-red-500 text-red-700 dark:text-red-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Fehler 1: Keine klare Governance und Richtlinien
           </h2>
-          <p className="text-gray-500 italic mb-4">Welche Fehler machen Unternehmen bei der Einführung von Microsoft Copilot am häufigsten?</p>
           <p>
             Der schwerwiegendste Fehler: Copilot wird aktiviert, ohne klare Regeln für Nutzung, Datenschutz und Verantwortlichkeiten
             zu definieren.
@@ -239,7 +238,7 @@ const CopilotFehler = () => {
         </section>
 
         <section id="fehler-2" className="mt-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-orange-500 text-orange-700 dark:text-orange-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Fehler 2: Unzureichendes Training der Mitarbeiter
           </h2>
           <p>
@@ -321,7 +320,7 @@ const CopilotFehler = () => {
         </section>
 
         <section id="fehler-3" className="mt-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-amber-500 text-amber-700 dark:text-amber-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Fehler 3: Oversharing sensibler Daten
           </h2>
           <p>
@@ -431,7 +430,7 @@ const CopilotFehler = () => {
         </section>
 
         <section id="fehler-4" className="mt-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-yellow-500 text-yellow-700 dark:text-yellow-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Fehler 4: Halluzinationen nicht erkennen und validieren
           </h2>
           <p>
@@ -533,7 +532,7 @@ const CopilotFehler = () => {
         </section>
 
         <section id="fehler-5" className="mt-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-purple-500 text-purple-700 dark:text-purple-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Fehler 5: Compliance und rechtliche Anforderungen ignorieren
           </h2>
           <p>
@@ -640,7 +639,7 @@ const CopilotFehler = () => {
         </section>
 
         <section id="fehler-6" className="mt-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-blue-500 text-blue-700 dark:text-blue-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Fehler 6: Fehlendes Change Management und Kommunikation
           </h2>
           <p>
@@ -718,7 +717,7 @@ const CopilotFehler = () => {
         </section>
 
         <section id="fehler-7" className="mt-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-green-500 text-green-700 dark:text-green-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Fehler 7: ROI und Success Metrics nicht definieren
           </h2>
           <p>
@@ -865,7 +864,6 @@ const CopilotFehler = () => {
 
         <section id="checkliste" className="mt-12">
           <h2>Checkliste für erfolgreiche Copilot-Einführung</h2>
-          <p className="text-gray-500 italic mb-4">Was muss man bei einem Copilot-Rollout unbedingt beachten?</p>
 
           <Card className="my-6">
             <CardHeader>
@@ -948,8 +946,8 @@ const CopilotFehler = () => {
         </section>
 
         {/* Weiterführende Artikel */}
-        <section className="mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-sky-500 mb-6">Weiterführende Artikel</h2>
+        <section className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Weiterführende Artikel</h2>
           <div className="grid md:grid-cols-2 gap-4 mb-4">
             <Link to="/wissen/copilot-unternehmensweit-einfuehren" className="block">
               <Card className="hover:shadow-md transition-shadow h-full">

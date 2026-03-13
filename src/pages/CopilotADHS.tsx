@@ -135,10 +135,9 @@ const CopilotADHS = () => {
       >
         {/* Einleitung */}
         <section id="intro" className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-purple-500 text-purple-700 dark:text-purple-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             ADHS - bevor es cool war
           </h2>
-          <p className="text-gray-500 italic mb-4">Kann Microsoft Copilot Menschen mit ADHS wirklich im Arbeitsalltag helfen?</p>
 
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p className="text-lg leading-relaxed">
@@ -155,7 +154,7 @@ const CopilotADHS = () => {
 
         {/* Herausforderungen */}
         <section id="herausforderungen" className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-red-500 text-red-700 dark:text-red-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Die täglichen Kämpfe
           </h2>
 
@@ -197,10 +196,9 @@ const CopilotADHS = () => {
 
         {/* Wo Copilot hilft */}
         <section id="copilot-hilft" className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-green-500 text-green-700 dark:text-green-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Wo Copilot wirklich hilft
           </h2>
-          <p className="text-gray-500 italic mb-4">Welche Copilot-Funktionen sind bei ADHS am nützlichsten?</p>
 
           <div className="prose prose-lg max-w-none dark:prose-invert mb-6">
             <p>
@@ -269,7 +267,7 @@ const CopilotADHS = () => {
 
         {/* Digitales Gedächtnis */}
         <section id="digitales-gedaechtnis" className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-blue-500 text-blue-700 dark:text-blue-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Mein digitales Gedächtnis
           </h2>
 
@@ -320,7 +318,7 @@ const CopilotADHS = () => {
 
         {/* Mobile */}
         <section id="mobile" className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-orange-500 text-orange-700 dark:text-orange-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Unterwegs nicht vergessen
           </h2>
 
@@ -364,7 +362,7 @@ const CopilotADHS = () => {
 
         {/* Grenzen */}
         <section id="grenzen" className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-amber-500 text-amber-700 dark:text-amber-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Was Copilot nicht löst
           </h2>
 
@@ -409,7 +407,7 @@ const CopilotADHS = () => {
 
         {/* Pünktlichkeit */}
         <section id="puenktlichkeit" className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-indigo-500 text-indigo-700 dark:text-indigo-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Bonus: Nie wieder zu spät
           </h2>
 
@@ -457,7 +455,7 @@ const CopilotADHS = () => {
 
         {/* Fazit */}
         <section id="fazit" className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-emerald-500 text-emerald-700 dark:text-emerald-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Fazit
           </h2>
 
@@ -480,7 +478,7 @@ const CopilotADHS = () => {
 
         {/* Weiterführende Artikel */}
         <section className="mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-sky-500 mb-6">Weiterführende Artikel</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Weiterführende Artikel</h2>
           <div className="grid md:grid-cols-3 gap-4">
             <Link to="/wissen/copilot-tipps-tricks-produktivitaet" className="block">
               <Card className="hover:shadow-md transition-shadow h-full">
@@ -511,7 +509,7 @@ const CopilotADHS = () => {
 
         {/* FAQ */}
         <section id="faq" className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-slate-500 text-slate-700 dark:text-slate-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Häufig gestellte Fragen (FAQ)
           </h2>
 
@@ -531,7 +529,7 @@ const CopilotADHS = () => {
 
         {/* Weiterlesen */}
         <section id="weiterlesen" className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-slate-500 text-slate-700 dark:text-slate-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Weiterlesen
           </h2>
           <p className="text-muted-foreground mb-6">

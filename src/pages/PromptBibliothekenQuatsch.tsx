@@ -1,8 +1,7 @@
 import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Zap, AlertTriangle, BookOpen, Brain, Wand2, XCircle, CheckCircle2, ExternalLink, Linkedin, Mail, Lightbulb, Users, Bot } from "lucide-react";
-import { TrustBadge } from "@/components/TrustBadge";
+import { Zap, AlertTriangle, BookOpen, Wand2, XCircle, CheckCircle2, ExternalLink, Lightbulb, Users, Bot } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 import { Link } from "react-router-dom";
@@ -137,10 +136,9 @@ const PromptBibliothekenQuatsch = () => {
 
         {/* Das Problem */}
         <section id="problem">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 border-b-4 border-red-500 text-red-700 dark:text-red-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Das Problem mit Prompt-Bibliotheken
           </h2>
-          <p className="text-gray-500 italic mb-4">Bringen Prompt-Bibliotheken für Microsoft Copilot wirklich etwas – oder sind sie Zeitverschwendung?</p>
 
           <p className="mb-6">
             Die Idee klingt bestechend: Man sammelt die besten Prompts für verschiedene Anwendungsfälle,
@@ -178,7 +176,7 @@ const PromptBibliothekenQuatsch = () => {
 
         {/* Warum Quatsch */}
         <section id="warum-quatsch">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 border-b-4 border-amber-500 text-amber-700 dark:text-amber-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Warum Prompt-Listen selten funktionieren
           </h2>
 
@@ -263,10 +261,9 @@ const PromptBibliothekenQuatsch = () => {
 
         {/* Echter Nutzen */}
         <section id="echter-nutzen">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 border-b-4 border-green-500 text-green-700 dark:text-green-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Der echte Nutzen: Prompting lernen
           </h2>
-          <p className="text-gray-500 italic mb-4">Was hilft stattdessen, damit Mitarbeiter Copilot wirklich effektiv nutzen?</p>
 
           <p className="mb-6">
             Statt Prompts zu verteilen, sollten Unternehmen ihre Mitarbeiter befähigen, selbständig mit KI zu arbeiten.
@@ -372,7 +369,7 @@ const PromptBibliothekenQuatsch = () => {
 
         {/* Agenten statt Listen */}
         <section id="agenten-statt-listen">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 border-b-4 border-blue-500 text-blue-700 dark:text-blue-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Die bessere Alternative: Copilot-Agenten
           </h2>
 
@@ -446,7 +443,7 @@ const PromptBibliothekenQuatsch = () => {
 
         {/* Zauberstab-Prompt */}
         <section id="zauberstab">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 border-b-4 border-purple-500 text-purple-700 dark:text-purple-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Der Zauberstab-Prompt
           </h2>
 
@@ -503,7 +500,7 @@ const PromptBibliothekenQuatsch = () => {
 
         {/* Kernaussagen für Entscheider */}
         <section id="kernaussagen">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 border-b-4 border-indigo-500 text-indigo-700 dark:text-indigo-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Kernaussagen für Entscheider
           </h2>
 
@@ -544,8 +541,8 @@ const PromptBibliothekenQuatsch = () => {
         </section>
 
         {/* Weiterführende Artikel */}
-        <section className="mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-sky-500 mb-6">Weiterführende Artikel</h2>
+        <section className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Weiterführende Artikel</h2>
           <div className="grid md:grid-cols-2 gap-4 mb-4">
             <Link to="/wissen/prompt-engineering" className="block">
               <Card className="hover:shadow-md transition-shadow h-full">
@@ -576,7 +573,7 @@ const PromptBibliothekenQuatsch = () => {
 
         {/* FAQ */}
         <section id="faq">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 border-b-4 border-slate-500 text-slate-700 dark:text-slate-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Häufig gestellte Fragen
           </h2>
 
@@ -596,7 +593,7 @@ const PromptBibliothekenQuatsch = () => {
 
         {/* Quellen */}
         <section id="quellen">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 border-b-4 border-gray-500 text-gray-700 dark:text-gray-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Quellen und weiterführende Links
           </h2>
 
@@ -631,7 +628,6 @@ const PromptBibliothekenQuatsch = () => {
         </section>
 
         {/* Autor-Bio */}
-        <TrustBadge />
 
         {/* CTA */}
         <div className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-xl p-8 text-center my-12 border-2 border-purple-500/20">

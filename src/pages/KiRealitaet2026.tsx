@@ -1,14 +1,9 @@
 import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  Zap, AlertTriangle, TrendingUp, TrendingDown, Building2, Target,
-  ExternalLink, Linkedin, Mail, CheckCircle2, XCircle, BarChart3,
-  Users, Euro, Clock, Brain, LineChart, PieChart, Lightbulb, Scale
-} from "lucide-react";
+import { Zap, AlertTriangle, TrendingUp, TrendingDown, Target, ExternalLink, CheckCircle2, XCircle, Euro, Clock, PieChart, Scale } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
-import { TrustBadge } from "@/components/TrustBadge";
 import { Link } from "react-router-dom";
 
 const SLUG = "ki-realitaet-beratungsfirmen-2026";
@@ -157,7 +152,7 @@ const KiRealitaet2026 = () => {
 
         {/* Sektion 1: Definition */}
         <section id="definition">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-blue-500 text-blue-700 dark:text-blue-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Definition: Der Status Quo der KI in deutschen Unternehmen
           </h2>
 
@@ -226,10 +221,9 @@ const KiRealitaet2026 = () => {
 
         {/* Sektion 2: Investitionen */}
         <section id="investitionen" className="mt-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-emerald-500 text-emerald-700 dark:text-emerald-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Investitionen: Die harten Zahlen der Beratungshäuser
           </h2>
-          <p className="text-gray-500 italic mb-4">Wie viel investieren deutsche Unternehmen 2026 tatsächlich in KI?</p>
 
           <p className="mb-6">
             Die Investitionsbereitschaft in KI erreicht 2026 neue Höchststände. Doch die Studien zeigen auch: Es gibt erhebliche Unterschiede zwischen Großunternehmen und Mittelstand, zwischen Vorreitern und Nachzüglern.
@@ -335,10 +329,9 @@ const KiRealitaet2026 = () => {
 
         {/* Sektion 3: ROI-Realität */}
         <section id="roi-realitaet" className="mt-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-red-500 text-red-700 dark:text-red-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             ROI-Realität: Die ernüchternde Wahrheit hinter den Investitionen
           </h2>
-          <p className="text-gray-500 italic mb-4">Rechnet sich KI für Unternehmen wirklich – oder ist der ROI ein Mythos?</p>
 
           <p className="mb-6">
             Hier zeigt sich die größte Diskrepanz zwischen Anspruch und Wirklichkeit. Während die Investitionen steigen, bleibt der messbare Return für die Mehrheit aus. Die Studien zeichnen ein konsistentes Bild der Ernüchterung.
@@ -460,7 +453,7 @@ const KiRealitaet2026 = () => {
 
         {/* Sektion 4: Praxis-Szenarien */}
         <section id="praxis-szenarien" className="mt-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-orange-500 text-orange-700 dark:text-orange-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Praxis-Szenarien: Wo KI-Investitionen scheitern und gelingen
           </h2>
 
@@ -569,7 +562,7 @@ const KiRealitaet2026 = () => {
 
         {/* Sektion 5: Implementierung */}
         <section id="implementierung" className="mt-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-cyan-500 text-cyan-700 dark:text-cyan-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Implementierung: Was erfolgreiche Unternehmen anders machen
           </h2>
 
@@ -692,7 +685,7 @@ const KiRealitaet2026 = () => {
 
         {/* Sektion 6: Typische Fehler */}
         <section id="typische-fehler" className="mt-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-red-500 text-red-700 dark:text-red-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Typische Fehler bei KI-Investitionen
           </h2>
 
@@ -753,7 +746,7 @@ const KiRealitaet2026 = () => {
 
         {/* Sektion 7: Kernaussagen */}
         <section id="kernaussagen" className="mt-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-indigo-500 text-indigo-700 dark:text-indigo-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Kernaussagen für Entscheider
           </h2>
 
@@ -787,7 +780,7 @@ const KiRealitaet2026 = () => {
 
         {/* Sektion 8: Entscheidungshilfe */}
         <section id="entscheidungshilfe" className="mt-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-green-500 text-green-700 dark:text-green-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Entscheidungshilfe: Wann lohnt sich KI-Investment?
           </h2>
 
@@ -857,8 +850,8 @@ const KiRealitaet2026 = () => {
         </section>
 
         {/* Weiterführende Artikel */}
-        <section className="mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-sky-500 mb-6">Weiterführende Artikel</h2>
+        <section className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Weiterführende Artikel</h2>
           <div className="grid md:grid-cols-2 gap-4 mb-4">
             <Link to="/wissen/copilot-adoption-2026-zahlen" className="block">
               <Card className="hover:shadow-md transition-shadow h-full">
@@ -889,7 +882,7 @@ const KiRealitaet2026 = () => {
 
         {/* FAQ-Sektion */}
         <section id="faq" className="mt-12 mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-slate-500 text-slate-700 dark:text-slate-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Häufig gestellte Fragen (FAQ)
           </h2>
 
@@ -909,7 +902,7 @@ const KiRealitaet2026 = () => {
 
         {/* Quellen-Sektion */}
         <section id="quellen" className="mt-12 mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-slate-500 text-slate-700 dark:text-slate-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Quellen und Studien
           </h2>
           <p className="text-muted-foreground mb-6">
@@ -1012,7 +1005,6 @@ const KiRealitaet2026 = () => {
         </section>
 
         {/* Autor-Bio */}
-        <TrustBadge />
 
         {/* CTA */}
         <div className="bg-gradient-to-r from-orange-500/10 to-amber-500/10 rounded-xl p-8 text-center my-12 border-2 border-orange-500/20">

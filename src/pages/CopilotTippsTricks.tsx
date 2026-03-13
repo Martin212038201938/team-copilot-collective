@@ -2,9 +2,8 @@ import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
-import { Zap, FileText, Table2, Presentation, Mail, Users, Lightbulb, AlertTriangle, CheckCircle2, ExternalLink, Linkedin, Twitter } from "lucide-react";
+import { Zap, FileText, Table2, Presentation, Mail, Users, AlertTriangle, CheckCircle2, ExternalLink } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { TrustBadge } from "@/components/TrustBadge";
 import { Link } from "react-router-dom";
 
 const SLUG = "copilot-tipps-tricks-produktivitaet";
@@ -136,13 +135,12 @@ const CopilotTippsTricks = () => {
 
         {/* Word Tipps Section */}
         <section id="word-tipps">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-blue-500">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             <span className="flex items-center gap-3">
               <FileText className="w-8 h-8 text-blue-600" />
               Word Tipps (1-5)
             </span>
           </h2>
-          <p className="text-gray-500 italic mb-4">Welche Copilot-Tricks machen im Arbeitsalltag den größten Unterschied?</p>
 
           <div className="space-y-6 mt-8">
             <Card className="border-l-4 border-l-blue-500">
@@ -242,7 +240,7 @@ const CopilotTippsTricks = () => {
 
         {/* Excel Tipps Section */}
         <section id="excel-tipps">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-green-500">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             <span className="flex items-center gap-3">
               <Table2 className="w-8 h-8 text-green-600" />
               Excel Tipps (6-10)
@@ -352,7 +350,7 @@ const CopilotTippsTricks = () => {
 
         {/* PowerPoint Tipps Section */}
         <section id="powerpoint-tipps">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-purple-500">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             <span className="flex items-center gap-3">
               <Presentation className="w-8 h-8 text-purple-600" />
               PowerPoint Tipps (11-14)
@@ -424,13 +422,12 @@ const CopilotTippsTricks = () => {
 
         {/* Outlook Tipps Section */}
         <section id="outlook-tipps">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-cyan-500">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             <span className="flex items-center gap-3">
               <Mail className="w-8 h-8 text-cyan-600" />
               Outlook Tipps (15-18)
             </span>
           </h2>
-          <p className="text-gray-500 italic mb-4">Wie nutze ich Microsoft Copilot in Outlook am effektivsten?</p>
 
           <div className="space-y-6 mt-8">
             <Card className="border-l-4 border-l-cyan-500">
@@ -504,7 +501,7 @@ const CopilotTippsTricks = () => {
 
         {/* Teams Tipps Section */}
         <section id="teams-tipps">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-amber-500">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             <span className="flex items-center gap-3">
               <Users className="w-8 h-8 text-amber-600" />
               Teams Tipps (19-22)
@@ -588,7 +585,7 @@ const CopilotTippsTricks = () => {
 
         {/* Fehler vermeiden Section */}
         <section id="fehler-vermeiden">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-red-500">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             <span className="flex items-center gap-3">
               <AlertTriangle className="w-8 h-8 text-red-600" />
               Häufige Fehler vermeiden
@@ -644,8 +641,8 @@ const CopilotTippsTricks = () => {
         </section>
 
         {/* Weiterführende Artikel */}
-        <section className="mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-sky-500 mb-6">Weiterführende Artikel</h2>
+        <section className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Weiterführende Artikel</h2>
           <div className="grid md:grid-cols-2 gap-4 mb-4">
             <Link to="/wissen/copilot-fuer-excel" className="block">
               <Card className="hover:shadow-md transition-shadow h-full">
@@ -676,7 +673,7 @@ const CopilotTippsTricks = () => {
 
         {/* FAQ Section */}
         <section id="faq">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-slate-500">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Häufig gestellte Fragen
           </h2>
 
@@ -696,7 +693,7 @@ const CopilotTippsTricks = () => {
 
         {/* Quellen Section */}
         <section id="quellen">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-gray-500">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Quellen und weiterführende Links
           </h2>
 
@@ -743,8 +740,6 @@ const CopilotTippsTricks = () => {
             ))}
           </div>
         </section>
-
-        <TrustBadge />
 
         {/* CTA */}
         <div className="bg-gradient-to-r from-orange-500/10 to-amber-500/10 rounded-xl p-8 text-center mt-12 border-2 border-orange-500/20">

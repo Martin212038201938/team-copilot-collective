@@ -161,11 +161,10 @@ const CopilotSicherheit = () => {
         </div>
 
         {/* Kann Copilot alles sehen? */}
-        <section id="kann-copilot-alles-sehen" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="kann-copilot-alles-sehen" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Kann Copilot alle Dateien im Unternehmen sehen?
           </h2>
-          <p className="text-gray-500 italic mb-4">Kann Microsoft Copilot auf alle Unternehmensdaten zugreifen – und wer kontrolliert das?</p>
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
               <strong>Kurze Antwort: Nein.</strong> Copilot kann exakt das sehen, was Sie selbst sehen können – und
@@ -192,11 +191,10 @@ const CopilotSicherheit = () => {
         </section>
 
         {/* Kann Microsoft mitlesen? */}
-        <section id="kann-microsoft-mitlesen" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="kann-microsoft-mitlesen" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Kann Microsoft meine Daten lesen?
           </h2>
-          <p className="text-gray-500 italic mb-4">Liest Microsoft mit, wenn Mitarbeiter Copilot nutzen?</p>
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
               <strong>Nein.</strong> Microsoft hat keinen inhaltlichen Zugriff auf Ihre Unternehmensdaten in
@@ -217,8 +215,8 @@ const CopilotSicherheit = () => {
         </section>
 
         {/* USA-Verarbeitung */}
-        <section id="usa-verarbeitung" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="usa-verarbeitung" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Werden meine Daten in den USA verarbeitet?
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -246,8 +244,8 @@ const CopilotSicherheit = () => {
         </section>
 
         {/* Können Kollegen meine E-Mails sehen? */}
-        <section id="kollegen-sichtbarkeit" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="kollegen-sichtbarkeit" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Können Kollegen jetzt meine E-Mails und Chats sehen?
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -275,8 +273,8 @@ const CopilotSicherheit = () => {
         </section>
 
         {/* Monitoring */}
-        <section id="monitoring" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="monitoring" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Kann mein Chef sehen, was ich Copilot frage?
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -308,11 +306,10 @@ const CopilotSicherheit = () => {
         </section>
 
         {/* Betriebsrat */}
-        <section id="betriebsrat" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="betriebsrat" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Betriebsrat und Mitbestimmung
           </h2>
-          <p className="text-gray-500 italic mb-4">Muss der Betriebsrat bei der Copilot-Einführung eingebunden werden?</p>
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
               In vielen deutschen Unternehmen ist die Einführung von Microsoft Copilot
@@ -337,8 +334,8 @@ const CopilotSicherheit = () => {
         </section>
 
         {/* Hausaufgaben */}
-        <section id="hausaufgaben" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="hausaufgaben" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Fünf Hausaufgaben vor dem Copilot-Rollout
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -395,8 +392,8 @@ const CopilotSicherheit = () => {
         </section>
 
         {/* FAQ */}
-        <section id="faq" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="faq" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Häufig gestellte Fragen
           </h2>
           <div className="space-y-6">
@@ -414,8 +411,8 @@ const CopilotSicherheit = () => {
         </section>
 
         {/* Weiterführende Artikel */}
-        <section className="mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-sky-500 mb-6">Weiterführende Artikel</h2>
+        <section className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Weiterführende Artikel</h2>
           <div className="grid md:grid-cols-2 gap-4 mb-4">
             <Link to="/wissen/microsoft-copilot-lizenzen" className="block">
               <Card className="hover:shadow-md transition-shadow h-full">

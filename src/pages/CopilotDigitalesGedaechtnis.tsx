@@ -1,14 +1,8 @@
 import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
-import { TrustBadge } from "@/components/TrustBadge";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
-import {
-  Zap, Brain, MessageSquare, Mail, Calendar, FileText,
-  Search, Users, CheckCircle2, AlertTriangle, ExternalLink,
-  Linkedin, Twitter, Lightbulb, Clock, Video, BookOpen,
-  ListTodo, Target, XCircle
-} from "lucide-react";
+import { Zap, Brain, MessageSquare, Mail, Calendar, FileText, Search, Users, CheckCircle2, AlertTriangle, ExternalLink, Lightbulb, Clock, Video, BookOpen, ListTodo, Target, XCircle } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 
@@ -164,10 +158,9 @@ const CopilotDigitalesGedaechtnis = () => {
 
         {/* Das Problem */}
         <section id="das-problem">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-red-500">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Das Problem: Zu viel auf einmal
           </h2>
-          <p className="text-gray-500 italic mb-4">Wie kann Microsoft Copilot als digitales Gedächtnis für Teams funktionieren?</p>
 
           <p className="my-6">
             Kennen Sie diese Momente? Sie sitzen im Meeting und jemand sagt: "Martin, du hattest doch zugesagt,
@@ -211,10 +204,9 @@ const CopilotDigitalesGedaechtnis = () => {
 
         {/* Wie es funktioniert */}
         <section id="wie-es-funktioniert" className="mt-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-blue-500">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Wie Copilot zum Gedächtnis wird
           </h2>
-          <p className="text-gray-500 italic mb-4">Wie findet Copilot Informationen aus Meetings, E-Mails und Chats wieder?</p>
 
           <p className="my-6">
             Microsoft Copilot ist nicht einfach nur ein Chatbot. Er hat Zugriff auf Ihr gesamtes Microsoft 365-Universum:
@@ -270,7 +262,7 @@ const CopilotDigitalesGedaechtnis = () => {
 
         {/* Meetings & Transkription */}
         <section id="meetings-transkription" className="mt-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-purple-500">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Meetings: Nie wieder "Was hatten wir gesagt?"
           </h2>
 
@@ -358,7 +350,7 @@ const CopilotDigitalesGedaechtnis = () => {
 
         {/* E-Mails & Chats */}
         <section id="emails-chats" className="mt-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-cyan-500">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             E-Mails & Chats: Kontext wiederfinden
           </h2>
 
@@ -435,7 +427,7 @@ const CopilotDigitalesGedaechtnis = () => {
 
         {/* Kalender & OneNote */}
         <section id="kalender-onenote" className="mt-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-green-500">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Kalender & OneNote: Alles verknüpft
           </h2>
 
@@ -501,7 +493,7 @@ const CopilotDigitalesGedaechtnis = () => {
 
         {/* Praxis-Prompts */}
         <section id="praxis-prompts" className="mt-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-amber-500">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Meine 10 Lieblings-Prompts für das digitale Gedächtnis
           </h2>
 
@@ -601,7 +593,7 @@ const CopilotDigitalesGedaechtnis = () => {
 
         {/* Typische Fehler */}
         <section id="typische-fehler" className="mt-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-red-500">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Typische Fehler vermeiden
           </h2>
 
@@ -661,7 +653,7 @@ const CopilotDigitalesGedaechtnis = () => {
 
         {/* Implementierung */}
         <section id="implementierung" className="mt-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-emerald-500">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             So richten Sie es ein
           </h2>
 
@@ -752,8 +744,8 @@ const CopilotDigitalesGedaechtnis = () => {
         </section>
 
         {/* Weiterführende Artikel */}
-        <section className="mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-sky-500 mb-6">Weiterführende Artikel</h2>
+        <section className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Weiterführende Artikel</h2>
           <div className="grid md:grid-cols-2 gap-4 mb-4">
             <Link to="/wissen/copilot-agent-digitales-gedaechtnis" className="block">
               <Card className="hover:shadow-md transition-shadow h-full">
@@ -784,7 +776,7 @@ const CopilotDigitalesGedaechtnis = () => {
 
         {/* FAQ */}
         <section id="faq" className="mt-12 mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-slate-500">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Häufig gestellte Fragen (FAQ)
           </h2>
 
@@ -804,7 +796,7 @@ const CopilotDigitalesGedaechtnis = () => {
 
         {/* Quellen */}
         <section id="quellen" className="mt-12 mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-slate-500">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Quellen und weiterführende Links
           </h2>
           <p className="text-muted-foreground mb-6">
@@ -850,8 +842,6 @@ const CopilotDigitalesGedaechtnis = () => {
             ))}
           </div>
         </section>
-
-        <TrustBadge />
 
         {/* CTA */}
         <div className="bg-gradient-to-r from-orange-500/10 to-amber-500/10 rounded-xl p-8 text-center my-12 border-2 border-orange-500/20">

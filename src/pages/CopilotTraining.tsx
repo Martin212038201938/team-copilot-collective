@@ -1,12 +1,7 @@
 import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { TrustBadge } from "@/components/TrustBadge";
-import {
-  Zap, AlertTriangle, Users, GraduationCap, Target, TrendingUp,
-  Clock, CheckCircle2, XCircle, Brain, Lightbulb, ArrowRight,
-  Building2, UserCheck, Calendar, ExternalLink, BookOpen, Linkedin, Mail
-} from "lucide-react";
+import { Zap, AlertTriangle, GraduationCap, Target, TrendingUp, Clock, CheckCircle2, XCircle, ArrowRight, Building2, UserCheck, Calendar, ExternalLink, BookOpen } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 import { Link } from "react-router-dom";
@@ -165,10 +160,9 @@ const CopilotTraining = () => {
 
         {/* Sektion 1: Warum Training */}
         <section id="warum-training">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-orange-500 text-orange-700 dark:text-orange-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Warum professionelles Training entscheidend ist
           </h2>
-          <p className="text-gray-500 italic mb-4">Warum brauchen Mitarbeiter ein professionelles Copilot-Training?</p>
 
           <p className="mb-6">
             Microsoft 365 Copilot ist keine gewöhnliche Software-Einführung. Es verändert fundamental, wie Menschen
@@ -267,7 +261,7 @@ const CopilotTraining = () => {
 
         {/* Sektion 2: Typische Fehler */}
         <section id="typische-fehler" className="mt-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-red-500 text-red-700 dark:text-red-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Typische Fehler bei der Copilot-Schulung
           </h2>
 
@@ -355,7 +349,7 @@ const CopilotTraining = () => {
 
         {/* Sektion 3: Max und Anna Problem */}
         <section id="max-und-anna" className="mt-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-amber-500 text-amber-700 dark:text-amber-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Das "Max und Anna"-Problem
           </h2>
 
@@ -469,10 +463,9 @@ const CopilotTraining = () => {
 
         {/* Sektion 4: 4-Phasen-Konzept */}
         <section id="trainingskonzept" className="mt-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-blue-500 text-blue-700 dark:text-blue-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Das 4-Phasen-Trainingskonzept
           </h2>
-          <p className="text-gray-500 italic mb-4">Wie sieht ein effektives Microsoft Copilot Schulungskonzept aus?</p>
 
           <p className="mb-6">
             Erfolgreiches Copilot-Training folgt einem erprobten 4-Phasen-Modell, das über 8-12 Wochen verteilt ist. Dies wird auch als <Link to="/wissen/copilot-lernreise-vs-tagesschulung" className="text-primary hover:underline">"Lernreise"</Link> bezeichnet und verankert Wissen nachhaltig
@@ -585,7 +578,7 @@ const CopilotTraining = () => {
 
         {/* Sektion 5: Zielgruppen */}
         <section id="zielgruppen" className="mt-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-purple-500 text-purple-700 dark:text-purple-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Training nach Zielgruppen
           </h2>
 
@@ -679,7 +672,7 @@ const CopilotTraining = () => {
 
         {/* Sektion 6: Was muss geschult werden */}
         <section id="inhalte" className="mt-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-green-500 text-green-700 dark:text-green-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Was muss geschult werden?
           </h2>
 
@@ -778,7 +771,7 @@ const CopilotTraining = () => {
 
         {/* Sektion 7: Champions-Programm */}
         <section id="champions" className="mt-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-cyan-500 text-cyan-700 dark:text-cyan-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Champions-Programm aufbauen
           </h2>
 
@@ -889,7 +882,7 @@ const CopilotTraining = () => {
 
         {/* Sektion 8: Zertifizierungsprogramme */}
         <section id="zertifizierung" className="mt-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-violet-500 text-violet-700 dark:text-violet-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Prüfungen & Zertifizierungsprogramme
           </h2>
 
@@ -1060,7 +1053,7 @@ const CopilotTraining = () => {
 
         {/* Sektion 9: ROI */}
         <section id="roi" className="mt-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-emerald-500 text-emerald-700 dark:text-emerald-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             ROI von Copilot-Training
           </h2>
 
@@ -1162,7 +1155,7 @@ const CopilotTraining = () => {
 
         {/* Sektion 9: Checkliste */}
         <section id="checkliste" className="mt-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-indigo-500 text-indigo-700 dark:text-indigo-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Trainings-Checkliste
           </h2>
 
@@ -1225,8 +1218,8 @@ const CopilotTraining = () => {
         </section>
 
         {/* Weiterführende Artikel */}
-        <section className="mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-sky-500 mb-6">Weiterführende Artikel</h2>
+        <section className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Weiterführende Artikel</h2>
           <div className="grid md:grid-cols-2 gap-4 mb-4">
             <Link to="/wissen/copilot-lernreise-vs-tagesschulung" className="block">
               <Card className="hover:shadow-md transition-shadow h-full">
@@ -1257,7 +1250,7 @@ const CopilotTraining = () => {
 
         {/* Sektion 10: FAQ */}
         <section id="faq" className="mt-12 mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-slate-500 text-slate-700 dark:text-slate-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Häufig gestellte Fragen (FAQ)
           </h2>
 
@@ -1277,7 +1270,7 @@ const CopilotTraining = () => {
 
         {/* Sektion 11: Quellen */}
         <section id="quellen" className="mt-12 mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-slate-500 text-slate-700 dark:text-slate-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Quellen und weiterführende Links
           </h2>
           <p className="text-muted-foreground mb-6">
@@ -1335,7 +1328,6 @@ const CopilotTraining = () => {
         </section>
 
         {/* Autor Bio */}
-        <TrustBadge />
 
         {/* CTA */}
         <div className="bg-gradient-to-r from-orange-500/10 to-amber-500/10 rounded-xl p-8 text-center my-12 border-2 border-orange-500/20">

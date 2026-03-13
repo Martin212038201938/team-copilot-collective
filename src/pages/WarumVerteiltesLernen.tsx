@@ -145,10 +145,9 @@ const WarumVerteiltesLernen = () => {
 
         {/* Sektion: Ebbinghaus */}
         <section id="ebbinghaus" className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-red-500 text-red-700 dark:text-red-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Was Ebbinghaus schon 1885 wusste
           </h2>
-          <p className="text-gray-500 italic mb-4">Warum funktioniert verteiltes Lernen bei Copilot-Trainings besser als Blockunterricht?</p>
 
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
@@ -197,7 +196,7 @@ const WarumVerteiltesLernen = () => {
 
         {/* Sektion: Warum 4x2 */}
         <section id="warum-4x2" className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-green-500 text-green-700 dark:text-green-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Warum vier mal zwei Stunden mehr bewirken als einmal acht
           </h2>
 
@@ -216,7 +215,7 @@ const WarumVerteiltesLernen = () => {
 
         {/* Sektion: Kalender */}
         <section id="kalender" className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-orange-500 text-orange-700 dark:text-orange-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Der Kalender als stiller Feind der Tagesschulung
           </h2>
 
@@ -232,7 +231,7 @@ const WarumVerteiltesLernen = () => {
 
         {/* Sektion: Aufmerksamkeit */}
         <section id="aufmerksamkeit" className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-purple-500 text-purple-700 dark:text-purple-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Das unbequeme Argument: Aufmerksamkeit hat Grenzen
           </h2>
 
@@ -251,7 +250,7 @@ const WarumVerteiltesLernen = () => {
 
         {/* Sektion: Forschung */}
         <section id="forschung" className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-blue-500 text-blue-700 dark:text-blue-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Was die Forschung sagt
           </h2>
 
@@ -292,7 +291,7 @@ const WarumVerteiltesLernen = () => {
 
         {/* Sektion: Verhaltensänderung */}
         <section id="verhaltensaenderung" className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-emerald-500 text-emerald-700 dark:text-emerald-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Das eigentliche Ziel ist Verhaltensänderung
           </h2>
 
@@ -308,10 +307,9 @@ const WarumVerteiltesLernen = () => {
 
         {/* Sektion: Wann Tagesschulung */}
         <section id="wann-tagesschulung" className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-amber-500 text-amber-700 dark:text-amber-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Wann eine Tagesschulung trotzdem Sinn ergibt
           </h2>
-          <p className="text-gray-500 italic mb-4">Wann ist eine Tagesschulung für Copilot doch die bessere Wahl?</p>
 
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
@@ -361,7 +359,7 @@ const WarumVerteiltesLernen = () => {
 
         {/* Sektion: Planungsfehler */}
         <section id="planungsfehler" className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-red-500 text-red-700 dark:text-red-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Der typische Planungsfehler
           </h2>
 
@@ -377,7 +375,7 @@ const WarumVerteiltesLernen = () => {
 
         {/* Sektion: Fazit */}
         <section id="fazit" className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-indigo-500 text-indigo-700 dark:text-indigo-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Fazit
           </h2>
 
@@ -394,7 +392,7 @@ const WarumVerteiltesLernen = () => {
 
         {/* Weiterführende Artikel */}
         <section className="mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-sky-500 mb-6">Weiterführende Artikel</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Weiterführende Artikel</h2>
           <div className="grid md:grid-cols-3 gap-4">
             <Link to="/wissen/copilot-lernreise-vs-tagesschulung" className="block">
               <Card className="hover:shadow-md transition-shadow h-full">
@@ -425,7 +423,7 @@ const WarumVerteiltesLernen = () => {
 
         {/* FAQ */}
         <section id="faq" className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-slate-500 text-slate-700 dark:text-slate-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Häufig gestellte Fragen (FAQ)
           </h2>
 
@@ -445,7 +443,7 @@ const WarumVerteiltesLernen = () => {
 
         {/* Quellen */}
         <section id="quellen" className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-6 border-b-4 border-slate-500 text-slate-700 dark:text-slate-400">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Quellen
           </h2>
           <p className="text-muted-foreground mb-6">

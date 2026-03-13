@@ -2,7 +2,7 @@ import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
-import { ExternalLink, Users, Briefcase, Target } from "lucide-react";
+import { Users } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 
@@ -180,11 +180,10 @@ const CopilotHRUseCases = () => {
         </div>
 
         {/* Stellenausschreibungen */}
-        <section id="stellenausschreibungen" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="stellenausschreibungen" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Stellenausschreibungen, die nicht nach Vorlage klingen
           </h2>
-          <p className="text-gray-500 italic mb-4">Welche HR-Prozesse kann Microsoft Copilot automatisieren – und wo spart man am meisten Zeit?</p>
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
               Die meisten Stellenausschreibungen in Deutschland lesen sich, als hätte dieselbe Person sie alle
@@ -220,8 +219,8 @@ const CopilotHRUseCases = () => {
         </section>
 
         {/* Bewerbermanagement */}
-        <section id="bewerbermanagement" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="bewerbermanagement" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Bewerbermanagement und Screening
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -264,11 +263,10 @@ const CopilotHRUseCases = () => {
         </section>
 
         {/* Onboarding */}
-        <section id="onboarding" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="onboarding" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Onboarding-Kommunikation
           </h2>
-          <p className="text-gray-500 italic mb-4">Wie verbessert Copilot das Onboarding neuer Mitarbeiter?</p>
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
               Die ersten Wochen eines neuen Mitarbeiters entscheiden darüber, ob er bleibt oder in der Probezeit
@@ -295,8 +293,8 @@ const CopilotHRUseCases = () => {
         </section>
 
         {/* Zeugnisse */}
-        <section id="zeugnisse" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="zeugnisse" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Zeugnisse und Bescheinigungen
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -323,8 +321,8 @@ const CopilotHRUseCases = () => {
         </section>
 
         {/* Mitarbeitergespräche */}
-        <section id="mitarbeitergespraeche" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="mitarbeitergespraeche" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Mitarbeitergespräche vorbereiten
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -353,8 +351,8 @@ const CopilotHRUseCases = () => {
         </section>
 
         {/* Richtlinien */}
-        <section id="richtlinien" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="richtlinien" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Richtlinien, Policies und interne Kommunikation
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -385,8 +383,8 @@ const CopilotHRUseCases = () => {
         </section>
 
         {/* People Analytics */}
-        <section id="people-analytics" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="people-analytics" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             People Analytics ohne Data-Science-Abteilung
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -415,8 +413,8 @@ const CopilotHRUseCases = () => {
         </section>
 
         {/* Gesamtrechnung */}
-        <section id="gesamtrechnung" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="gesamtrechnung" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Was heißt das in der Summe?
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -483,8 +481,8 @@ const CopilotHRUseCases = () => {
         </section>
 
         {/* Grenzen */}
-        <section id="grenzen" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="grenzen" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Wo Copilot im HR an seine Grenzen stößt
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -515,8 +513,8 @@ const CopilotHRUseCases = () => {
         </section>
 
         {/* Fazit */}
-        <section id="fazit" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="fazit" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Fazit
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -540,7 +538,7 @@ const CopilotHRUseCases = () => {
 
         {/* Weiterführende Artikel */}
         <section className="mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold pb-4 border-b-4 border-sky-500 mb-6">Weiterführende Artikel</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Weiterführende Artikel</h2>
           <div className="grid md:grid-cols-3 gap-4">
             <Link to="/wissen/copilot-vertrieb-use-cases" className="block">
               <Card className="hover:shadow-md transition-shadow h-full">
@@ -570,8 +568,8 @@ const CopilotHRUseCases = () => {
         </section>
 
         {/* FAQ */}
-        <section id="faq" className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold pb-3 mb-3 border-b-4 border-primary">
+        <section id="faq" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Häufig gestellte Fragen
           </h2>
           <div className="space-y-4">
