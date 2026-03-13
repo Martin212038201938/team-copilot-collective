@@ -67,6 +67,7 @@ Unternehmen und Organisationen, die:
 
 ## Wissensbereich (Fachartikel)
 
+- Microsoft 365 E7: Kosten, Inhalte & Preisvergleich der Frontier Suite 2026
 - GitHub Copilot: Einstieg und Best Practices
 - Copilot Studio: Eigene KI-Agenten bauen
 - Prompt Engineering: Effektive Prompts für Copilot

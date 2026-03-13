@@ -44,6 +44,7 @@ import CopilotChatPernodRicard from "./pages/CopilotChatPernodRicard";
 import CopilotAgentDigitalesGedaechtnis from "./pages/CopilotAgentDigitalesGedaechtnis";
 import CopilotFuerExcel from "./pages/CopilotFuerExcel";
 import KiSchulungMitarbeiterPflicht from "./pages/KiSchulungMitarbeiterPflicht";
+import Microsoft365E7FrontierSuite from "./pages/Microsoft365E7FrontierSuite";
 
 const queryClient = new QueryClient();
 
@@ -86,6 +87,7 @@ const App = () => (
           <Route path="/wissen/copilot-agent-digitales-gedaechtnis" element={<CopilotAgentDigitalesGedaechtnis />} />
           <Route path="/wissen/copilot-fuer-excel" element={<CopilotFuerExcel />} />
           <Route path="/wissen/ki-schulung-mitarbeiter-pflicht" element={<KiSchulungMitarbeiterPflicht />} />
+          <Route path="/wissen/microsoft-365-e7-frontier-suite" element={<Microsoft365E7FrontierSuite />} />
           <Route path="/impressum" element={<Impressum />} />
           <Route path="/ueber-uns" element={<UeberUns />} />
           <Route path="/unsere-angebote" element={<UnsereAngebote />} />

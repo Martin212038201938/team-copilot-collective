@@ -30,6 +30,18 @@ export interface ArticleData {
 // Alle Artikel - sortiert nach Veröffentlichungsdatum (neueste zuerst)
 export const ALL_ARTICLES: ArticleData[] = [
   {
+    id: "microsoft-365-e7-frontier-suite",
+    title: "Microsoft 365 E7: Kosten, Inhalte & Preisvergleich der Frontier Suite 2026",
+    description: "Microsoft 365 E7 (Frontier Suite) ab Mai 2026 für 99 €/Nutzer: Was enthalten ist, Preisvergleich E3 vs. E5 vs. E7, Agent 365 erklärt und für wen sich der Umstieg lohnt.",
+    link: "/wissen/microsoft-365-e7-frontier-suite",
+    badge: "Lizenzierung",
+    icon: "📦",
+    lastUpdated: "13. März 2026",
+    publishDate: "2026-03-13",
+    publishTime: "10:00",
+    isDraft: false
+  },
+  {
     id: "ki-schulung-mitarbeiter-pflicht",
     title: "KI-Schulung für Mitarbeiter ist Pflicht: Was der EU AI Act von Unternehmen verlangt",
     description: "EU AI Act Artikel 4 verpflichtet Unternehmen seit Februar 2025 zur KI-Schulung aller Mitarbeiter, die mit KI arbeiten. Fristen, Haftungsrisiken und konkrete Umsetzung.",
