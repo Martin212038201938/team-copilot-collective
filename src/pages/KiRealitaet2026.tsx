@@ -1,7 +1,7 @@
 import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Zap, AlertTriangle, TrendingUp, TrendingDown, Target, ExternalLink, CheckCircle2, XCircle, Euro, Clock, PieChart, Scale, Users } from "lucide-react";
+import { Zap, AlertTriangle, TrendingUp, TrendingDown, Target, ExternalLink, CheckCircle2, XCircle, Euro, Clock, PieChart, Scale, Users, Brain } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 import { Link } from "react-router-dom";

@@ -1,7 +1,7 @@
 import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Zap, AlertTriangle, GraduationCap, Target, TrendingUp, Clock, CheckCircle2, XCircle, ArrowRight, Building2, UserCheck, Calendar, ExternalLink, BookOpen, Brain } from "lucide-react";
+import { Zap, AlertTriangle, GraduationCap, Target, TrendingUp, Clock, CheckCircle2, XCircle, ArrowRight, Building2, UserCheck, Calendar, ExternalLink, BookOpen, Brain, Lightbulb, Users } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 import { Link } from "react-router-dom";
