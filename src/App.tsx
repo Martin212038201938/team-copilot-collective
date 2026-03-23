@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
 import Index from "./pages/Index";
 import BecomeTrainer from "./pages/BecomeTrainer";
@@ -92,7 +92,8 @@ const App = () => (
           <Route path="/wissen/claude-in-microsoft-copilot" element={<CopilotClaudeIntegration />} />
           <Route path="/impressum" element={<Impressum />} />
           <Route path="/ueber-uns" element={<UeberUns />} />
-          <Route path="/unsere-angebote" element={<UnsereAngebote />} />
+          <Route path="/trainings" element={<UnsereAngebote />} />
+          <Route path="/unsere-angebote" element={<Navigate to="/trainings" replace />} />
           <Route path="/trainings/:slug" element={<TrainingDetail />} />
           <Route path="/trainer/:id" element={<TrainerProfil />} />
           <Route path="/training-konfigurator" element={<TrainingKonfigurator />} />

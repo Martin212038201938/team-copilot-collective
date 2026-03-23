@@ -186,7 +186,7 @@ const TrainerProfil = () => {
               </div>
               <div className="text-center mt-8">
                 <Button asChild>
-                  <Link to="/unsere-angebote">Alle Trainings ansehen</Link>
+                  <Link to="/trainings">Alle Trainings ansehen</Link>
                 </Button>
               </div>
             </div>

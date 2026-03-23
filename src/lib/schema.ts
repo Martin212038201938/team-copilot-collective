@@ -275,7 +275,7 @@ export const generateTrainingBreadcrumbItems = (
 ): BreadcrumbItem[] => {
   return [
     { name: "Startseite", url: `${BASE_URL}/` },
-    { name: "Unsere Angebote", url: `${BASE_URL}/unsere-angebote` },
+    { name: "Trainings", url: `${BASE_URL}/trainings` },
     { name: trainingName, url: trainingUrl }
   ];
 };

@@ -35,7 +35,7 @@ Unternehmen und Organisationen, die:
 ## Wichtige Seiten
 
 - Homepage: https://copilotenschule.de/
-- Trainingsangebote: https://copilotenschule.de/unsere-angebote
+- Trainingsangebote: https://copilotenschule.de/trainings
 - Wissensbereich: https://copilotenschule.de/wissen
 - Über uns: https://copilotenschule.de/ueber-uns
 - Training-Konfigurator: https://copilotenschule.de/training-konfigurator

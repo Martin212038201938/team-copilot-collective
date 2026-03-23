@@ -798,7 +798,7 @@ const CopilotLaunchKampagne = () => {
             oder 8-Wochen-Lernreise: Gemeinsam machen wir Ihre Copilot-Einführung zum Erfolg.
           </p>
           <a
-            href="/unsere-angebote"
+            href="/trainings"
             className="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all font-medium"
           >
             <Rocket className="w-5 h-5 mr-2" />

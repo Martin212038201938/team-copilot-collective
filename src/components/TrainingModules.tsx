@@ -29,7 +29,7 @@ const TrainingModules = () => {
               selbst zusammenstellen – exakt auf die Bedürfnisse Ihres Teams zugeschnitten.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center max-w-md sm:max-w-none mx-auto">
-              <Link to="/unsere-angebote" className="w-full sm:w-auto">
+              <Link to="/trainings" className="w-full sm:w-auto">
                 <Button size="default" variant="outline" className="group w-full">
                   Alle Trainings ansehen
                   <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform flex-shrink-0" />

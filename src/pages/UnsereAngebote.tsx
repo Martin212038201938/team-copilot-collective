@@ -56,7 +56,7 @@ const UnsereAngebote = () => {
           "Copilot Free Training",
           "Copilot Paid Training"
         ]}
-        canonicalUrl="https://copilotenschule.de/unsere-angebote"
+        canonicalUrl="https://copilotenschule.de/trainings"
         schema={schema}
       />
       <Header />

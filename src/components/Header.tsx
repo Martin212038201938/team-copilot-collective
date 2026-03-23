@@ -28,7 +28,7 @@ const Header = () => {
     { to: "/", label: "Home" },
     { to: "/ueber-uns", label: "Über uns" },
     { to: "/wissen", label: "Copilot Wissen" },
-    { to: "/unsere-angebote", label: "Unsere Angebote" },
+    { to: "/trainings", label: "Trainings" },
     { to: "/trainer-werden", label: "Trainer werden" },
   ];
 

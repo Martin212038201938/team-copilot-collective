@@ -18,7 +18,7 @@ const TrainingDetail = () => {
 
   // 404 wenn Training nicht gefunden
   if (!training) {
-    return <Navigate to="/unsere-angebote" replace />;
+    return <Navigate to="/trainings" replace />;
   }
 
   const Icon = training.icon;
@@ -129,7 +129,7 @@ const TrainingDetail = () => {
             {/* Breadcrumb */}
             <nav aria-label="Breadcrumb" className="mb-8">
               <Link
-                to="/unsere-angebote"
+                to="/trainings"
                 className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
               >
                 <ArrowLeft className="w-4 h-4" />

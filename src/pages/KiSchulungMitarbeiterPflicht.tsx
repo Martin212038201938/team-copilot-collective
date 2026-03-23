@@ -400,7 +400,7 @@ const KiSchulungMitarbeiterPflicht = () => {
                   Unsere <Link to="/trainings/eu-ai-act-pflichtschulung" className="text-primary hover:underline font-semibold">EU AI Act Pflichtschulung</Link> deckt
                   in einem Halbtag alle regulatorischen Anforderungen ab – inklusive Schulungszertifikat
                   für die Compliance-Dokumentation. Kombiniert mit unseren
-                  praxisnahen <Link to="/unsere-angebote" className="text-primary hover:underline font-semibold">Copilot-Trainings</Link> erhalten
+                  praxisnahen <Link to="/trainings" className="text-primary hover:underline font-semibold">Copilot-Trainings</Link> erhalten
                   Ihre Mitarbeiter sowohl das regulatorische Wissen als auch die praktische Anwendungskompetenz,
                   die Artikel 4 verlangt.
                 </p>

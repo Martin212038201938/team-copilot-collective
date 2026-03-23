@@ -132,7 +132,7 @@ function checkReactSnap(wissenPages) {
   // Check ob alte Root-Level-URLs noch drin sind
   for (const inc of includes) {
     if (inc.startsWith('/') && !inc.startsWith('/wissen/') && !inc.startsWith('/trainings/') &&
-        !inc.startsWith('/trainer/') && !['/', '/unsere-angebote', '/wissen', '/impressum',
+        !inc.startsWith('/trainer/') && !['/', '/trainings', '/wissen', '/impressum',
         '/ueber-uns', '/kontakt', '/trainer-werden', '/training-konfigurator'].includes(inc)) {
       warnings.push(`[package.json] Verdächtiger Root-Level-Eintrag in reactSnap.include: "${inc}" → sollte unter /wissen/ oder /trainings/ sein`);
     }
