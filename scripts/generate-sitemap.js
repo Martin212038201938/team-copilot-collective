@@ -23,7 +23,7 @@ const TODAY = new Date().toISOString().split('T')[0];
 // Statische Seiten
 const staticPages = [
   { loc: '/', lastmod: TODAY, changefreq: 'weekly', priority: 1.0 },
-  { loc: '/unsere-angebote', lastmod: TODAY, changefreq: 'weekly', priority: 0.9 },
+  { loc: '/trainings', lastmod: TODAY, changefreq: 'weekly', priority: 0.9 },
   { loc: '/wissen', lastmod: TODAY, changefreq: 'weekly', priority: 0.9 },
   { loc: '/ueber-uns', lastmod: TODAY, changefreq: 'monthly', priority: 0.7 },
   { loc: '/trainer-werden', lastmod: TODAY, changefreq: 'monthly', priority: 0.6 },
