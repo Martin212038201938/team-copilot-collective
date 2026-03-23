@@ -1,7 +1,7 @@
 import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Check, Zap, Bot, Shield, ExternalLink } from "lucide-react";
+import { Check, Zap, Bot, Shield, ExternalLink, LinkIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
