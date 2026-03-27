@@ -1,0 +1,18 @@
+# robots.txt für copilotenschule.de
+# Letzte Aktualisierung: 2026-02-04
+
+# Alle Crawler erlaubt
+User-agent: *
+Allow: /
+
+# Nur Admin-Bereich blockieren
+Disallow: /admin
+
+# Sitemap
+Sitemap: https://copilotenschule.de/sitemap.xml
+
+# IndexNow - Sofortige Indexierung für Bing, Yandex, Seznam, Naver
+# Key-Datei: https://copilotenschule.de/695afc50b8ee44729593fd861c4e96e9.txt
+
+# LLMs.txt für KI-Crawler
+# https://copilotenschule.de/llms.txt

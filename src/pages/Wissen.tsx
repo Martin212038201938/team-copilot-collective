@@ -37,8 +37,8 @@ const Wissen = () => {
   return (
     <div className="min-h-screen">
       <SEOHead
-        title="Microsoft Copilot Wissen - Expertenwissen & Best Practices"
-        description="Fundiertes Expertenwissen zu Microsoft Copilot, GitHub Copilot und KI-Agenten. Praxisorientierte Leitfäden, detaillierte Vergleiche und Best Practices für den erfolgreichen Einsatz von KI-Tools in Ihrem Unternehmen."
+        title="Copilot Wissen – Leitfäden & Best Practices"
+        description="Praxiswissen zu Microsoft 365 Copilot, GitHub Copilot und KI-Agenten. Leitfäden, Vergleiche und Best Practices für den erfolgreichen KI-Einsatz im Unternehmen."
         keywords={[
           "Microsoft Copilot Wissen",
           "GitHub Copilot Guide",

@@ -44,8 +44,8 @@ const UnsereAngebote = () => {
   return (
     <div className="min-h-screen">
       <SEOHead
-        title="Unsere Angebote – Microsoft Copilot Schulungen & Trainings | copilotenschule.de"
-        description="Alle Microsoft Copilot Trainings im Überblick: Grundlagen, M365 Apps, GitHub Copilot, Compliance, Strategie, KI-Agenten und mehr. Trainings für Copilot Free und Copilot Paid Lizenzen."
+        title="Microsoft Copilot Schulungen & Trainings"
+        description="Praxisnahe Copilot Schulungen: Von M365-Grundlagen über GitHub Copilot bis KI-Agenten. Für Free und Paid Lizenzen – als Workshop, Lernreise oder Keynote."
         keywords={[
           "Microsoft Copilot Schulung",
           "Microsoft 365 Copilot Training",
