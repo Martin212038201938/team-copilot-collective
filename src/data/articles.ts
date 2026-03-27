@@ -31,7 +31,7 @@ export interface ArticleData {
 export const ALL_ARTICLES: ArticleData[] = [
   {
     id: "copilot-in-outlook-nutzen-tipps",
-    title: "Copilot in Outlook nutzen: So hole ich das Maximum aus meinen E-Mails",
+    title: "Copilot in Outlook nutzen: Tipps und Use Cases für Mail und Kalender",
     description: "Praxisbericht: Copilot in Outlook für Fragen, E-Mail-Entwürfe und Terminvorbereitung. Inklusive Tipps und was sich ab April 2026 ändert.",
     link: "/wissen/copilot-in-outlook-nutzen-tipps",
     badge: "Microsoft 365 Copilot",

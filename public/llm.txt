@@ -91,6 +91,7 @@ Unternehmen und Organisationen, die:
 - Copilot Tipps & Tricks für mehr Produktivität
 - Claude in Microsoft Copilot: Was Anthropics KI im Copilot-Ökosystem verändert
 - KI-Schulung Mitarbeiter Pflicht: Was der EU AI Act von Unternehmen verlangt
+- Copilot in Outlook nutzen: Tipps und Use Cases für Mail und Kalender
 
 ## Trainer
 

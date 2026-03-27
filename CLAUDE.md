@@ -315,6 +315,12 @@ FAQs werden NICHT aus Produkt-Perspektive geschrieben ("Was kostet X?", "Welche 
 - Der Fragen-Text im Sidebar lautet: "Kritik? Kommentare? Wir sprechen sehr gerne persönlich mit Ihnen über dieses Thema und freuen uns über jede Kontaktaufnahme."
 - Dieser Text ist zentral in ContentLayout.tsx definiert und muss NICHT in den einzelnen Artikeln gesetzt werden.
 
+### CSS-Abstände in Wissensartikeln (verbindlich)
+- H2-Überschriften: `className="text-2xl md:text-3xl font-bold mb-2"` – KEINE border-bottom, KEINE farbigen Linien.
+- Sections: `className="mb-4 mt-2"` – kompakte Abstände. Nicht mb-6 oder größer. Der Artikel soll zusammenhängend wirken, keine großen Lücken zwischen Abschnitten.
+- Einleitung nach Schnellantwort: `className="prose prose-lg max-w-none dark:prose-invert mb-4"`.
+- Keine Italic-Untertitel unter H2-Überschriften.
+
 ---
 ## Website-Clone & Rebranding (End-to-End)
 

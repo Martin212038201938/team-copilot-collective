@@ -6,7 +6,7 @@ import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 
 const SLUG = "copilot-in-outlook-nutzen-tipps";
-const PAGE_TITLE = "Copilot in Outlook nutzen: So hole ich das Maximum aus meinen E-Mails";
+const PAGE_TITLE = "Copilot in Outlook nutzen: Tipps und Use Cases für Mail und Kalender";
 
 const CopilotInOutlook = () => {
   const martinLang = getAuthor('martin-lang')!;
@@ -383,6 +383,7 @@ const CopilotInOutlook = () => {
             alt="Balkendiagramm: Zeitaufwand pro Outlook-Aufgabe mit und ohne Copilot – E-Mail suchen, Antwort formulieren, Meeting vorbereiten, Status-Update schreiben, Zahlungserinnerung"
             className="w-full max-w-2xl mx-auto rounded-lg shadow-sm"
           />
+          <p className="text-xs text-gray-400 text-center mt-1 italic">Zeiten vom Autor geschätzt, nicht empirisch belegt.</p>
         </div>
 
         {/* Was sich ab April 2026 ändert */}
@@ -523,18 +524,11 @@ const CopilotInOutlook = () => {
           <h2 className="text-2xl md:text-3xl font-bold mb-2">
             Übersicht: Was geht kostenlos, was braucht die Lizenz?
           </h2>
-          <div className="mb-4">
-            <img
-              src="/images/charts/copilot-outlook-basic-vs-premium.png"
-              alt="Übersicht: Copilot in Outlook Funktionen – Basic (kostenlos) vs. Premium (M365 Copilot-Lizenz)"
-              className="w-full max-w-2xl mx-auto rounded-lg shadow-sm"
-            />
-          </div>
           <div className="overflow-x-auto">
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="bg-gray-100 dark:bg-gray-800">
-                  <th className="text-left p-3 border border-gray-200 dark:border-gray-700 font-semibold">Funktion</th>
+                  <th className="text-left p-3 border border-gray-200 dark:border-gray-700 font-semibold">Funktion / Use Case</th>
                   <th className="text-center p-3 border border-gray-200 dark:border-gray-700 font-semibold w-36">Basic (kostenlos)</th>
                   <th className="text-center p-3 border border-gray-200 dark:border-gray-700 font-semibold w-36">Premium (Lizenz)</th>
                 </tr>
@@ -542,53 +536,53 @@ const CopilotInOutlook = () => {
               <tbody>
                 <tr>
                   <td className="p-3 border border-gray-200 dark:border-gray-700">Fragen an den Posteingang stellen (Copilot Chat)</td>
-                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-green-600 font-bold">Ja</td>
-                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-green-600 font-bold">Ja</td>
+                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-green-600 text-lg">✓</td>
+                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-green-600 text-lg">✓</td>
                 </tr>
                 <tr className="bg-gray-50 dark:bg-gray-800/50">
                   <td className="p-3 border border-gray-200 dark:border-gray-700">E-Mail-Threads zusammenfassen</td>
-                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-green-600 font-bold">Ja</td>
-                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-green-600 font-bold">Ja</td>
+                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-green-600 text-lg">✓</td>
+                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-green-600 text-lg">✓</td>
                 </tr>
                 <tr>
                   <td className="p-3 border border-gray-200 dark:border-gray-700">Anhänge über Copilot Chat finden</td>
-                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-green-600 font-bold">Ja</td>
-                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-green-600 font-bold">Ja</td>
+                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-green-600 text-lg">✓</td>
+                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-green-600 text-lg">✓</td>
                 </tr>
                 <tr className="bg-gray-50 dark:bg-gray-800/50">
                   <td className="p-3 border border-gray-200 dark:border-gray-700">Projektstatus-Updates generieren (via Chat)</td>
-                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-green-600 font-bold">Ja</td>
-                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-green-600 font-bold">Ja</td>
+                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-green-600 text-lg">✓</td>
+                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-green-600 text-lg">✓</td>
                 </tr>
                 <tr>
-                  <td className="p-3 border border-gray-200 dark:border-gray-700">E-Mail-Entwurf mit Canvas (iterativ im Schreibfenster)</td>
-                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-red-500">Nein</td>
-                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-green-600 font-bold">Ja</td>
-                </tr>
-                <tr className="bg-gray-50 dark:bg-gray-800/50">
-                  <td className="p-3 border border-gray-200 dark:border-gray-700">Schreibstil-Anpassung und Tonalitätswechsel</td>
-                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-red-500">Nein</td>
-                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-green-600 font-bold">Ja</td>
-                </tr>
-                <tr>
-                  <td className="p-3 border border-gray-200 dark:border-gray-700">Agentisches RSVP-Management (automatische Terminantworten)</td>
-                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-red-500">Nein</td>
-                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-green-600 font-bold">Ja</td>
-                </tr>
-                <tr className="bg-gray-50 dark:bg-gray-800/50">
-                  <td className="p-3 border border-gray-200 dark:border-gray-700">Meeting-Koordination (Zeitfenster finden, Raum buchen)</td>
-                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-red-500">Nein</td>
-                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-green-600 font-bold">Ja</td>
-                </tr>
-                <tr>
-                  <td className="p-3 border border-gray-200 dark:border-gray-700">Meeting-Vorbereitung mit Kontext aus Mails und Teams</td>
-                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-red-500">Nein</td>
-                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-green-600 font-bold">Ja</td>
-                </tr>
-                <tr className="bg-gray-50 dark:bg-gray-800/50">
                   <td className="p-3 border border-gray-200 dark:border-gray-700">Action Items aus Threads extrahieren</td>
-                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-green-600 font-bold">Ja</td>
-                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-green-600 font-bold">Ja</td>
+                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-green-600 text-lg">✓</td>
+                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-green-600 text-lg">✓</td>
+                </tr>
+                <tr className="bg-gray-50 dark:bg-gray-800/50">
+                  <td className="p-3 border border-gray-200 dark:border-gray-700">E-Mail-Entwurf mit Canvas (iterativ im Schreibfenster)</td>
+                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-red-400 text-lg">✗</td>
+                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-green-600 text-lg">✓</td>
+                </tr>
+                <tr>
+                  <td className="p-3 border border-gray-200 dark:border-gray-700">Schreibstil-Anpassung und Tonalitätswechsel</td>
+                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-red-400 text-lg">✗</td>
+                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-green-600 text-lg">✓</td>
+                </tr>
+                <tr className="bg-gray-50 dark:bg-gray-800/50">
+                  <td className="p-3 border border-gray-200 dark:border-gray-700">Agentisches RSVP-Management (automatische Terminantworten)</td>
+                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-red-400 text-lg">✗</td>
+                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-green-600 text-lg">✓</td>
+                </tr>
+                <tr>
+                  <td className="p-3 border border-gray-200 dark:border-gray-700">Meeting-Koordination (Zeitfenster finden, Raum buchen)</td>
+                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-red-400 text-lg">✗</td>
+                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-green-600 text-lg">✓</td>
+                </tr>
+                <tr className="bg-gray-50 dark:bg-gray-800/50">
+                  <td className="p-3 border border-gray-200 dark:border-gray-700">Meeting-Vorbereitung mit Kontext aus Mails und Teams</td>
+                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-red-400 text-lg">✗</td>
+                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-green-600 text-lg">✓</td>
                 </tr>
               </tbody>
             </table>
