@@ -35,7 +35,7 @@ export const ALL_ARTICLES: ArticleData[] = [
     description: "Praxisbericht: Copilot in Outlook für Fragen, E-Mail-Entwürfe und Terminvorbereitung. Inklusive Tipps und was sich ab April 2026 ändert.",
     link: "/wissen/copilot-in-outlook-nutzen-tipps",
     badge: "Microsoft 365 Copilot",
-    icon: "§",
+    icon: "✉",
     lastUpdated: "27. März 2026",
     publishDate: "2026-03-27",
     publishTime: "09:00"
