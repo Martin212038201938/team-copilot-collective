@@ -4,7 +4,7 @@
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <!-- Automatisch generiert am 2026-03-27 -->
-  <!-- 53 URLs insgesamt -->
+  <!-- 54 URLs insgesamt -->
   <url>
     <loc>https://copilotenschule.de/</loc>
     <lastmod>2026-03-27</lastmod>
@@ -223,6 +223,12 @@
   </url>
   <url>
     <loc>https://copilotenschule.de/wissen/claude-in-microsoft-copilot</loc>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://copilotenschule.de/wissen/copilot-in-outlook-nutzen-tipps</loc>
     <lastmod>2026-03-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

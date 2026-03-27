@@ -46,6 +46,7 @@ import CopilotFuerExcel from "./pages/CopilotFuerExcel";
 import KiSchulungMitarbeiterPflicht from "./pages/KiSchulungMitarbeiterPflicht";
 import Microsoft365E7FrontierSuite from "./pages/Microsoft365E7FrontierSuite";
 import CopilotClaudeIntegration from "./pages/CopilotClaudeIntegration";
+import CopilotInOutlook from "./pages/CopilotInOutlook";
 
 const queryClient = new QueryClient();
 
@@ -90,6 +91,7 @@ const App = () => (
           <Route path="/wissen/ki-schulung-mitarbeiter-pflicht" element={<KiSchulungMitarbeiterPflicht />} />
           <Route path="/wissen/microsoft-365-e7-frontier-suite" element={<Microsoft365E7FrontierSuite />} />
           <Route path="/wissen/claude-in-microsoft-copilot" element={<CopilotClaudeIntegration />} />
+          <Route path="/wissen/copilot-in-outlook-nutzen-tipps" element={<CopilotInOutlook />} />
           <Route path="/impressum" element={<Impressum />} />
           <Route path="/ueber-uns" element={<UeberUns />} />
           <Route path="/trainings" element={<UnsereAngebote />} />

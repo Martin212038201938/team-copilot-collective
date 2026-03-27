@@ -30,6 +30,17 @@ export interface ArticleData {
 // Alle Artikel - sortiert nach Veröffentlichungsdatum (neueste zuerst)
 export const ALL_ARTICLES: ArticleData[] = [
   {
+    id: "copilot-in-outlook-nutzen-tipps",
+    title: "Copilot in Outlook nutzen: So hole ich das Maximum aus meinen E-Mails",
+    description: "Praxisbericht: Copilot in Outlook für Fragen, E-Mail-Entwürfe und Terminvorbereitung. Inklusive Tipps und was sich ab April 2026 ändert.",
+    link: "/wissen/copilot-in-outlook-nutzen-tipps",
+    badge: "Microsoft 365 Copilot",
+    icon: "§",
+    lastUpdated: "27. März 2026",
+    publishDate: "2026-03-27",
+    publishTime: "09:00"
+  },
+  {
     id: "claude-in-microsoft-copilot",
     title: "Claude in Microsoft Copilot: Was Anthropics KI im Copilot-Ökosystem verändert",
     description: "Microsoft integriert Anthropics Claude-KI in Copilot – inklusive Copilot Cowork für agentenbasierte Aufgaben. Use Cases, Datenschutz für EU-Unternehmen und was sich für Copilot-Nutzer ändert.",
