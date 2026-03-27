@@ -22,6 +22,7 @@ const CopilotInOutlook = () => {
     { id: "was-sich-ab-april-2026-aendert", title: "Was sich ab April 2026 für Copilot in Outlook ändert", level: 2 },
     { id: "tipps-fuer-bessere-ergebnisse", title: "Tipps für bessere Ergebnisse mit Copilot in Outlook", level: 2 },
     { id: "fazit", title: "Fazit", level: 2 },
+    { id: "basic-vs-premium", title: "Übersicht: Kostenlos vs. Lizenz", level: 2 },
     { id: "faq", title: "Häufig gestellte Fragen", level: 2 },
   ];
 
@@ -165,9 +166,24 @@ const CopilotInOutlook = () => {
           </p>
         </div>
 
+        {/* Hinweis: Kostenlos vs. Bezahlt */}
+        <Card className="mb-6 border border-blue-200 bg-blue-50/50 dark:bg-blue-950/20 dark:border-blue-800">
+          <CardContent className="pt-4 pb-4">
+            <p className="text-base leading-relaxed">
+              <strong>Wichtig vorab:</strong> Copilot in Outlook gibt es in zwei Varianten. Die kostenlose
+              Basic-Version (verfügbar für alle Microsoft 365 Nutzer) umfasst den Copilot Chat im Seitenbereich –
+              dort kann man Fragen an den Posteingang stellen und Threads zusammenfassen lassen. Viele der in diesem
+              Artikel beschriebenen Use Cases – etwa die Canvas-Schreibunterstützung, die agentische Kalenderverwaltung
+              oder die automatische Stilanpassung – erfordern jedoch die <Link to="/wissen/microsoft-copilot-lizenzen" className="text-primary underline hover:no-underline">bezahlte
+              Microsoft 365 Copilot-Lizenz</Link> (Premium). Am Ende des Artikels finden Sie eine Übersichtstabelle,
+              welche Funktionen mit welcher Variante verfügbar sind.
+            </p>
+          </CardContent>
+        </Card>
+
         {/* Outlook als Wissensdatenbank */}
-        <section id="outlook-als-wissensdatenbank" className="mb-6">
-          <h2 className="text-2xl md:text-3xl font-bold mb-3">
+        <section id="outlook-als-wissensdatenbank" className="mb-4 mt-2">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">
             Outlook als Wissensdatenbank: Fragen statt Suchen
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -191,8 +207,8 @@ const CopilotInOutlook = () => {
               zwanzig bis dreißig Minuten – verteilt auf viele kleine Suchvorgänge, die sich sonst summieren.
             </p>
             <p>
-              Ein paar Fragestellungen, die bei mir regelmäßig zum Einsatz kommen: „Was hat die Rechtsabteilung zum
-              neuen Vertragsentwurf gesagt?" – „Wann war der letzte Kontakt mit Kunde X?" – „Welche Action Items
+              Ein paar Fragestellungen, die bei mir regelmäßig zum Einsatz kommen: „Was hat Kunde XY zum
+              abgeänderten Angebot gesagt?" – „Wann war der letzte Kontakt mit Kunde X?" – „Welche Action Items
               sind aus dem Meeting vom 15. März noch offen?" Die Qualität der Antworten hängt direkt davon ab, wie
               präzise die Frage formuliert ist. Ein vages „Was gibt es Neues?" liefert wenig Brauchbares. Aber eine
               gezielte Frage mit Personen, Zeiträumen oder Themen trifft fast immer ins Schwarze.
@@ -201,8 +217,8 @@ const CopilotInOutlook = () => {
         </section>
 
         {/* Antworten vorformulieren */}
-        <section id="antworten-vorformulieren" className="mb-6">
-          <h2 className="text-2xl md:text-3xl font-bold mb-3">
+        <section id="antworten-vorformulieren" className="mb-4 mt-2">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">
             Antworten vorformulieren mit Kontext aus Mails und Dateien
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -212,19 +228,28 @@ const CopilotInOutlook = () => {
               beim gezielten Vorformulieren mit Kontext.
             </p>
             <p>
-              Beispiel aus meinem Alltag: Ein Trainingsteilnehmer schreibt mir nach einem Workshop und fragt, ob wir
-              auch ein Format für sein gesamtes Team anbieten können. Statt von Null anzufangen, sage ich Copilot:
-              „Schreibe eine Antwort, in der ich auf unsere Teamformate hinweise. Beziehe dich auf das Copilot-Praxis-Training,
-              an dem er letzte Woche teilgenommen hat, und erwähne die Möglichkeit einer individuellen Anpassung." Copilot zieht
-              sich die relevanten Informationen aus dem Thread, formuliert eine professionelle Antwort und referenziert sogar
-              Details aus der ursprünglichen Buchungsmail. Ich muss nur noch prüfen, leicht anpassen und abschicken.
+              Beispiel aus meinem Alltag: Eine Abteilungsleiterin, die ein Inhouse-Training für ihr Team bei uns
+              gebucht und selbst teilgenommen hat, schreibt mir, dass sie Copilot intern weiterempfehlen möchte und
+              mich gerne an ihr L&D-Team übergeben würde. Statt von Null anzufangen, sage ich Copilot:
+              „Schreibe eine Antwort, in der ich mich für die Weiterempfehlung bedanke. Beziehe dich auf das
+              Copilot-Praxis-Training, das wir letzte Woche bei ihrem Team durchgeführt haben, und biete ein
+              kurzes Abstimmungsgespräch mit der L&D-Abteilung an, um weitere Formate für andere Teams zu
+              besprechen." Copilot zieht sich die relevanten Informationen aus dem Thread, formuliert eine
+              professionelle Antwort und referenziert sogar Details aus der ursprünglichen Buchungsbestätigung.
+              Ich muss nur noch prüfen, leicht anpassen und abschicken.
             </p>
             <p>
-              Seit dem Frühjahr 2026 geht Microsoft hier noch einen Schritt weiter. Die neue Canvas-Funktion arbeitet
-              iterativ: Copilot stellt Rückfragen – „Für wen ist die Mail? Welcher Ton? Was ist das Ziel?" – und
-              verfeinert den Entwurf direkt im Schreibfenster. Das klingt nach einer Kleinigkeit, macht aber einen
-              spürbaren Unterschied. Denn statt einen fertigen Text zu bekommen, der in die falsche Richtung geht,
-              entsteht der Entwurf im Dialog. Das Ergebnis ist deutlich näher an dem, was ich tatsächlich senden will.
+              Seit dem Frühjahr 2026 geht Microsoft hier noch einen Schritt weiter mit der neuen Canvas-Funktion.
+              Gestartet wird sie direkt im E-Mail-Entwurfsfenster: Man klickt auf „Entwurf mit Copilot" und
+              beschreibt kurz, was die Mail leisten soll. Der entscheidende Unterschied zum bisherigen Workflow:
+              Copilot liefert nicht einfach einen fertigen Text, den man annehmen oder verwerfen muss. Stattdessen
+              schreibt Copilot den Entwurf direkt in das Mailfenster – sichtbar und editierbar – und stellt dann
+              Rückfragen: „Für wen ist die Mail? Welcher Ton? Was ist das Ziel?" Jede Antwort führt dazu, dass
+              Copilot den Text vor den eigenen Augen anpasst. Der Vorteil gegenüber dem alten „Draft by Copilot",
+              bei dem man einen generierten Block akzeptieren oder ablehnen musste: Man sieht den Entwurf von Anfang
+              an im richtigen Kontext, kann jederzeit selbst eingreifen und behält die Kontrolle über den Schreibfluss.
+              Das Ergebnis ist deutlich näher an dem, was ich tatsächlich senden will – weil der Entwurf im Dialog
+              entsteht statt als Blackbox-Ausgabe.
             </p>
             <p>
               Besonders stark ist die Vorformulierung, wenn man sie mit konkreten Quellen füttert. Wenn ein Kunde nach einem
@@ -237,8 +262,8 @@ const CopilotInOutlook = () => {
         </section>
 
         {/* Termine vorbereiten */}
-        <section id="termine-vorbereiten" className="mb-6">
-          <h2 className="text-2xl md:text-3xl font-bold mb-3">
+        <section id="termine-vorbereiten" className="mb-4 mt-2">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">
             Termine vorbereiten: Agenda, Kontext und Links für Teilnehmer
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -275,8 +300,8 @@ const CopilotInOutlook = () => {
         </section>
 
         {/* Weitere Use Cases */}
-        <section id="weitere-use-cases" className="mb-6">
-          <h2 className="text-2xl md:text-3xl font-bold mb-3">
+        <section id="weitere-use-cases" className="mb-4 mt-2">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">
             Weitere Use Cases, die im Alltag funktionieren
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -351,9 +376,18 @@ const CopilotInOutlook = () => {
           </div>
         </section>
 
+        {/* Illustration: Zeitersparnis */}
+        <div className="my-6">
+          <img
+            src="/images/charts/copilot-outlook-zeitersparnis.png"
+            alt="Balkendiagramm: Zeitaufwand pro Outlook-Aufgabe mit und ohne Copilot – E-Mail suchen, Antwort formulieren, Meeting vorbereiten, Status-Update schreiben, Zahlungserinnerung"
+            className="w-full max-w-2xl mx-auto rounded-lg shadow-sm"
+          />
+        </div>
+
         {/* Was sich ab April 2026 ändert */}
-        <section id="was-sich-ab-april-2026-aendert" className="mb-6">
-          <h2 className="text-2xl md:text-3xl font-bold mb-3">
+        <section id="was-sich-ab-april-2026-aendert" className="mb-4 mt-2">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">
             Was sich ab April 2026 für Copilot in Outlook ändert
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -389,8 +423,8 @@ const CopilotInOutlook = () => {
         </section>
 
         {/* Tipps für bessere Ergebnisse */}
-        <section id="tipps-fuer-bessere-ergebnisse" className="mb-6">
-          <h2 className="text-2xl md:text-3xl font-bold mb-3">
+        <section id="tipps-fuer-bessere-ergebnisse" className="mb-4 mt-2">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">
             Tipps für bessere Ergebnisse mit Copilot in Outlook
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -429,8 +463,8 @@ const CopilotInOutlook = () => {
         </section>
 
         {/* Fazit */}
-        <section id="fazit" className="mb-6">
-          <h2 className="text-2xl md:text-3xl font-bold mb-3">
+        <section id="fazit" className="mb-4 mt-2">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">
             Fazit
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -454,8 +488,8 @@ const CopilotInOutlook = () => {
         </section>
 
         {/* Weiterführende Artikel */}
-        <section className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">Weiterführende Artikel</h2>
+        <section className="mb-8 mt-2">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">Weiterführende Artikel</h2>
           <div className="grid md:grid-cols-3 gap-4">
             <Link to="/wissen/copilot-tipps-tricks-produktivitaet" className="block">
               <Card className="hover:shadow-md transition-shadow h-full">
@@ -484,9 +518,87 @@ const CopilotInOutlook = () => {
           </div>
         </section>
 
+        {/* Vergleichstabelle: Basic vs. Premium */}
+        <section id="basic-vs-premium" className="mb-4 mt-2">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">
+            Übersicht: Was geht kostenlos, was braucht die Lizenz?
+          </h2>
+          <div className="mb-4">
+            <img
+              src="/images/charts/copilot-outlook-basic-vs-premium.png"
+              alt="Übersicht: Copilot in Outlook Funktionen – Basic (kostenlos) vs. Premium (M365 Copilot-Lizenz)"
+              className="w-full max-w-2xl mx-auto rounded-lg shadow-sm"
+            />
+          </div>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm border-collapse">
+              <thead>
+                <tr className="bg-gray-100 dark:bg-gray-800">
+                  <th className="text-left p-3 border border-gray-200 dark:border-gray-700 font-semibold">Funktion</th>
+                  <th className="text-center p-3 border border-gray-200 dark:border-gray-700 font-semibold w-36">Basic (kostenlos)</th>
+                  <th className="text-center p-3 border border-gray-200 dark:border-gray-700 font-semibold w-36">Premium (Lizenz)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="p-3 border border-gray-200 dark:border-gray-700">Fragen an den Posteingang stellen (Copilot Chat)</td>
+                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-green-600 font-bold">Ja</td>
+                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-green-600 font-bold">Ja</td>
+                </tr>
+                <tr className="bg-gray-50 dark:bg-gray-800/50">
+                  <td className="p-3 border border-gray-200 dark:border-gray-700">E-Mail-Threads zusammenfassen</td>
+                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-green-600 font-bold">Ja</td>
+                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-green-600 font-bold">Ja</td>
+                </tr>
+                <tr>
+                  <td className="p-3 border border-gray-200 dark:border-gray-700">Anhänge über Copilot Chat finden</td>
+                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-green-600 font-bold">Ja</td>
+                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-green-600 font-bold">Ja</td>
+                </tr>
+                <tr className="bg-gray-50 dark:bg-gray-800/50">
+                  <td className="p-3 border border-gray-200 dark:border-gray-700">Projektstatus-Updates generieren (via Chat)</td>
+                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-green-600 font-bold">Ja</td>
+                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-green-600 font-bold">Ja</td>
+                </tr>
+                <tr>
+                  <td className="p-3 border border-gray-200 dark:border-gray-700">E-Mail-Entwurf mit Canvas (iterativ im Schreibfenster)</td>
+                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-red-500">Nein</td>
+                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-green-600 font-bold">Ja</td>
+                </tr>
+                <tr className="bg-gray-50 dark:bg-gray-800/50">
+                  <td className="p-3 border border-gray-200 dark:border-gray-700">Schreibstil-Anpassung und Tonalitätswechsel</td>
+                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-red-500">Nein</td>
+                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-green-600 font-bold">Ja</td>
+                </tr>
+                <tr>
+                  <td className="p-3 border border-gray-200 dark:border-gray-700">Agentisches RSVP-Management (automatische Terminantworten)</td>
+                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-red-500">Nein</td>
+                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-green-600 font-bold">Ja</td>
+                </tr>
+                <tr className="bg-gray-50 dark:bg-gray-800/50">
+                  <td className="p-3 border border-gray-200 dark:border-gray-700">Meeting-Koordination (Zeitfenster finden, Raum buchen)</td>
+                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-red-500">Nein</td>
+                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-green-600 font-bold">Ja</td>
+                </tr>
+                <tr>
+                  <td className="p-3 border border-gray-200 dark:border-gray-700">Meeting-Vorbereitung mit Kontext aus Mails und Teams</td>
+                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-red-500">Nein</td>
+                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-green-600 font-bold">Ja</td>
+                </tr>
+                <tr className="bg-gray-50 dark:bg-gray-800/50">
+                  <td className="p-3 border border-gray-200 dark:border-gray-700">Action Items aus Threads extrahieren</td>
+                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-green-600 font-bold">Ja</td>
+                  <td className="p-3 border border-gray-200 dark:border-gray-700 text-center text-green-600 font-bold">Ja</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p className="text-sm text-gray-500 mt-2 italic">Stand: März 2026. Microsoft kann den Funktionsumfang jederzeit ändern.</p>
+        </section>
+
         {/* FAQ */}
-        <section id="faq" className="mb-6">
-          <h2 className="text-2xl md:text-3xl font-bold mb-3">
+        <section id="faq" className="mb-4 mt-2">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">
             Häufig gestellte Fragen
           </h2>
           <div className="space-y-4">
