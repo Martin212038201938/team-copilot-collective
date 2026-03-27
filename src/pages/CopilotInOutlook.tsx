@@ -22,12 +22,12 @@ const CopilotInOutlook = () => {
     { id: "termine-vorbereiten", title: "Termine vorbereiten: Agenda, Kontext, Links", level: 2 },
     { id: "weitere-use-cases", title: "Weitere Use Cases im Alltag", level: 2 },
     { id: "was-sich-ab-april-2026-aendert", title: "Was sich ab April 2026 ändert", level: 2 },
+    { id: "basic-vs-premium", title: "Übersicht: Kostenlos vs. Lizenz", level: 2 },
     { id: "tipps-fuer-bessere-ergebnisse", title: "Tipps für bessere Ergebnisse", level: 2 },
     { id: "konkrete-prompts", title: "Konkrete Prompts für typische Szenarien", level: 2 },
-    { id: "fazit", title: "Fazit", level: 2 },
     { id: "grenzen", title: "Grenzen von Copilot in Outlook", level: 2 },
     { id: "datensicherheit", title: "Wie Copilot mit Ihren Daten arbeitet", level: 2 },
-    { id: "basic-vs-premium", title: "Übersicht: Kostenlos vs. Lizenz", level: 2 },
+    { id: "fazit", title: "Fazit", level: 2 },
     { id: "faq", title: "Häufig gestellte Fragen", level: 2 },
   ];
 
@@ -167,7 +167,7 @@ const CopilotInOutlook = () => {
             eingestellt und würde ihn den ganzen Tag Briefe sortieren lassen.
           </p>
           <p className="leading-relaxed">
-            Der Moment, in dem sich Copilot in Outlook für mich verändert hat, war ein ganz banaler Mittwochnachmittag. Ich
+            Der Moment, in dem sich Copilot in Outlook für mich verändert hat: Ich
             saß in einer Kaffeepause und fragte mich, ob ein bestimmter Kunde in den letzten Wochen irgendetwas zum Thema
             Budgetfreigabe geschrieben hatte. Statt minutenlang durch mein Postfach zu scrollen, habe ich Copilot gefragt.
             Und die Antwort kam in Sekunden – mit Verweis auf die konkrete Mail, das Datum und den entscheidenden Satz. Ab
@@ -192,13 +192,13 @@ const CopilotInOutlook = () => {
         </Card>
 
         {/* Voraussetzungen */}
-        <section id="voraussetzungen" className="mb-4 mt-2">
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">
+        <section id="voraussetzungen" className="mb-2 mt-1">
+          <h2 className="text-2xl md:text-3xl font-bold mb-1">
             Voraussetzungen: Was brauche ich, damit Copilot in Outlook funktioniert?
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
-              Bevor wir in die Praxis einsteigen, eine ehrliche Bestandsaufnahme: Copilot in Outlook funktioniert nicht
+              Bevor wir in die Praxis einsteigen: Copilot in Outlook funktioniert nicht
               überall und nicht in jeder Konfiguration. Die Grundvoraussetzung ist eine Microsoft 365 Business- oder
               Enterprise-Lizenz (Business Basic, Business Standard, Business Premium, E3, E5 oder vergleichbar). Ohne
               Microsoft 365 gibt es kein Copilot in Outlook – die On-Premise-Versionen von Outlook (2019, 2021, LTSC) sind
@@ -216,16 +216,15 @@ const CopilotInOutlook = () => {
               eingeschränkte Copilot-Unterstützung – Microsoft drängt aktiv zur Migration auf New Outlook. Auf dem Mac
               funktioniert Copilot seit Anfang 2026 ebenfalls, die mobile App (iOS/Android) unterstützt grundlegende
               Zusammenfassungen und den Chat. Welche Features auf welcher Plattform verfügbar sind, ändert sich mit jedem
-              Update-Zyklus – prüfen Sie im Zweifel den <strong>Current Channel</strong> in den Einstellungen Ihres
-              Outlook-Clients.
+              Update-Zyklus.
             </p>
           </div>
         </section>
 
         {/* Wo finde ich Copilot in Outlook? */}
-        <section id="wo-finde-ich-copilot" className="mb-4 mt-2">
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">
-            Wo finde ich Copilot in Outlook? Konkrete Bedienhinweise
+        <section id="wo-finde-ich-copilot" className="mb-2 mt-1">
+          <h2 className="text-2xl md:text-3xl font-bold mb-1">
+            Wo finde ich Copilot in Outlook?
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
@@ -234,7 +233,7 @@ const CopilotInOutlook = () => {
             </p>
             <p>
               <strong>1. Copilot-Chat in der Seitenleiste:</strong> In Outlook für Web und New Outlook für Windows
-              finden Sie das Copilot-Symbol (ein stilisierter Stern) in der oberen Menüleiste. Ein Klick öffnet die
+              finden Sie das Copilot-Symbol in der oberen Menüleiste. Ein Klick öffnet die
               Chat-Seitenleiste rechts. Dort stellen Sie Fragen an Ihren Posteingang: „Was hat Frau Meier zum Vertrag
               gesagt?" – die Antwort erscheint mit Quellenverweisen direkt in der Sidebar. Dieser Chatbereich ist auch
               ohne Premium-Lizenz verfügbar.
@@ -267,8 +266,8 @@ const CopilotInOutlook = () => {
         </section>
 
         {/* Outlook als Wissensdatenbank */}
-        <section id="outlook-als-wissensdatenbank" className="mb-4 mt-2">
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">
+        <section id="outlook-als-wissensdatenbank" className="mb-2 mt-1">
+          <h2 className="text-2xl md:text-3xl font-bold mb-1">
             Outlook als Wissensdatenbank: Fragen statt Suchen
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -311,8 +310,8 @@ const CopilotInOutlook = () => {
         </section>
 
         {/* Antworten vorformulieren */}
-        <section id="antworten-vorformulieren" className="mb-4 mt-2">
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">
+        <section id="antworten-vorformulieren" className="mb-2 mt-1">
+          <h2 className="text-2xl md:text-3xl font-bold mb-1">
             Antworten vorformulieren mit Kontext aus Mails und Dateien
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -362,15 +361,15 @@ const CopilotInOutlook = () => {
         </section>
 
         {/* Termine vorbereiten */}
-        <section id="termine-vorbereiten" className="mb-4 mt-2">
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">
+        <section id="termine-vorbereiten" className="mb-2 mt-1">
+          <h2 className="text-2xl md:text-3xl font-bold mb-1">
             Termine vorbereiten: Agenda, Kontext und Links für Teilnehmer
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
               Wenn ich morgens meinen Kalender öffne und drei Kundentermine sehe, war mein Workflow früher: Outlook
               durchsuchen, Teams-Chats lesen, OneNote-Notizen vom letzten Gespräch finden, irgendwo die offenen
-              Punkte zusammenklauben. Zwanzig Minuten pro Termin, mindestens. Heute frage ich Copilot: „Bereite mich
+              Punkte zusammenklauben. Zehn Minuten pro Termin, mindestens. Heute frage ich Copilot: „Bereite mich
               auf mein Meeting mit der Firma XY um 14 Uhr vor. Was war der letzte Stand aus unseren E-Mails und
               Teams-Nachrichten?"
             </p>
@@ -403,8 +402,8 @@ const CopilotInOutlook = () => {
         </section>
 
         {/* Weitere Use Cases */}
-        <section id="weitere-use-cases" className="mb-4 mt-2">
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">
+        <section id="weitere-use-cases" className="mb-2 mt-1">
+          <h2 className="text-2xl md:text-3xl font-bold mb-1">
             Weitere Use Cases, die im Alltag funktionieren
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -422,7 +421,9 @@ const CopilotInOutlook = () => {
               manchmal anders als ich –, aber die Grundstruktur und die Fakten stimmen in den meisten Fällen. Was mich
               früher zwanzig Minuten gekostet hat, dauert jetzt etwa fünf – vorausgesetzt, der Prompt ist spezifisch
               genug. Wer nur tippt „Schreib ein Update", bekommt ein generisches Ergebnis, das am Ende mehr
-              Nachbearbeitungszeit kostet als das manuelle Schreiben.
+              Nachbearbeitungszeit kostet als das manuelle Schreiben. Sollte ich diesen Report wöchentlich benötigen,
+              kann ich das natürlich noch effizienter gestalten, indem ich mir einen Copilot-Agenten baue – aber
+              das ist ein Thema für ein anderes Mal.
             </p>
             <p>
               <strong>Zahlungserinnerungen und Routine-Mails aus Kontext erstellen:</strong> Ein typisches Szenario
@@ -457,13 +458,20 @@ const CopilotInOutlook = () => {
               den Prompt. Noch eleganter: eine gut formulierte eigene Mail als Referenz mitgeben. „Hier ist eine
               typische Mail von mir – schreibe die neue Mail im gleichen Stil." Das liefert in meiner Erfahrung
               die besten Ergebnisse, weil Copilot den Stil aus einem echten Beispiel deutlich besser trifft als
-              aus einer abstrakten Beschreibung.
+              aus einer abstrakten Beschreibung. Copilot lernt angeblich auch meinen Stil aus meinen selbst
+              geschriebenen Antworten, aber ich bin damit ehrlicherweise noch nicht so richtig zufrieden. Da ist
+              noch Luft nach oben.
             </p>
             <p>
               <strong>Anhänge finden, ohne zu suchen:</strong> Seit dem Update Anfang 2026 durchsucht Copilot auch
               E-Mail-Anhänge. Die Frage „Wo ist das Excel mit den Q1-Zahlen, das mir jemand letzte Woche geschickt
               hat?" liefert den Anhang direkt – nicht nur die Mail, an der er hing. Das funktioniert auch, wenn man
               den Dateinamen nicht mehr weiß. Copilot versteht den Inhaltsbezug und findet die richtige Datei.
+              Ich bin leider kein sehr strukturierter Mensch und tanze auf zu vielen Hochzeiten, als dass mein
+              armes kleines Gehirn da immer mitkäme. Diese Art der Suche nutze ich daher quer durch alle Copiloten
+              so oft am Tag, dass es mir unmöglich ist, die Zeitersparnis und das Ausmaß der Schonung meiner
+              Geduld und Nerven zu schätzen. Würde mir diese Möglichkeit in einem Angestelltenverhältnis
+              weggenommen, würde ich kündigen. Wirklich wahr.
             </p>
             <p>
               <strong>Action Items extrahieren:</strong> Nach langen E-Mail-Threads mit vielen Beteiligten frage ich
@@ -492,8 +500,8 @@ const CopilotInOutlook = () => {
         </div>
 
         {/* Was sich ab April 2026 ändert */}
-        <section id="was-sich-ab-april-2026-aendert" className="mb-4 mt-2">
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">
+        <section id="was-sich-ab-april-2026-aendert" className="mb-2 mt-1">
+          <h2 className="text-2xl md:text-3xl font-bold mb-1">
             Was sich ab April 2026 für Copilot in Outlook ändert
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -528,279 +536,9 @@ const CopilotInOutlook = () => {
           </div>
         </section>
 
-        {/* Tipps für bessere Ergebnisse */}
-        <section id="tipps-fuer-bessere-ergebnisse" className="mb-4 mt-2">
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">
-            Tipps für bessere Ergebnisse mit Copilot in Outlook
-          </h2>
-          <div className="prose prose-lg max-w-none dark:prose-invert">
-            <p>
-              Nach einem Jahr täglicher Nutzung gibt es ein paar Muster, die sich herauskristallisiert haben. Die
-              meisten davon klingen offensichtlich, werden aber erstaunlich oft ignoriert.
-            </p>
-            <p>
-              <strong>Strukturiertes Prompting nutzen:</strong> Die Qualität der Copilot-Antworten hängt direkt von der
-              Qualität der Eingabe ab. Ein Modell, das sich bei mir bewährt hat, besteht aus drei Bausteinen:
-              Ziel (was soll erreicht werden?), Kontext (welche Informationen sind relevant?) und Format (wie soll
-              das Ergebnis aussehen?). Ein Beispiel:
-            </p>
-            <Card className="mb-4 border border-gray-200 dark:border-gray-700 bg-gray-50/50 dark:bg-gray-800/30">
-              <CardContent className="pt-4 pb-4">
-                <p className="text-sm font-mono leading-relaxed">
-                  <strong>Ziel:</strong> „Formuliere eine kurze Antwort an Frau Meier."<br/>
-                  <strong>Kontext:</strong> „Sie hat nach dem Status des Angebots für Projekt Delta gefragt. Wir haben
-                  das Angebot am 20. März verschickt, Rückmeldung steht noch aus."<br/>
-                  <strong>Format:</strong> „Ton: freundlich-professionell. Maximal fünf Sätze. Erwähne das Datum des Angebots."
-                </p>
-              </CardContent>
-            </Card>
-            <p>
-              Im Vergleich dazu liefert „Schreib eine Antwort an Frau Meier" ein generisches Ergebnis, das mehr
-              Nacharbeit verursacht als es Zeit spart. Der Unterschied zwischen gut und schlecht genutztem Copilot
-              liegt fast immer im Prompt.
-            </p>
-            <p>
-              <strong>Personen und Zeiträume nennen:</strong> „Was hat sich letzte Woche beim Projekt Alpha getan?" liefert
-              gute Ergebnisse. „Was gibt es Neues?" liefert Müll. Copilot braucht Ankerpunkte – Namen, Daten, Themen –
-              um die richtigen Mails zu identifizieren. Je spezifischer die Frage, desto präziser die Antwort. Das ist
-              kein Copilot-Problem, das ist Informationslogik.
-            </p>
-            <p>
-              <strong>Copilot als ersten Entwurf nutzen, nicht als letztes Wort:</strong> Ich habe noch nie eine Mail unverändert
-              abgeschickt, die Copilot formuliert hat. Nicht weil die Entwürfe schlecht wären, sondern weil jede Mail
-              meine Stimme tragen muss. Copilot liefert die Struktur, den Kontext und einen soliden ersten Aufschlag.
-              Die letzten zehn Prozent – Wortwahl, Betonung, der richtige Schluss – sind Menschenarbeit. Und genau
-              so sollte es sein.
-            </p>
-            <p>
-              <strong>Alle Einstiegspunkte kennen:</strong> Copilot in Outlook hat mittlerweile mehrere
-              Einstiegspunkte. Der Chat-Bereich für Fragen an den Posteingang. Die Schreibunterstützung direkt
-              beim Verfassen einer Mail. Die Zusammenfassungsfunktion über einem E-Mail-Thread. Und die
-              Kalenderintegration für Terminvorbereitung und -planung. Wer nur einen dieser Kanäle nutzt, verschenkt
-              den Großteil des Potenzials.
-            </p>
-            <p>
-              <strong>Gewohnheiten aufbauen, nicht Funktionen lernen:</strong> Der Punkt, an dem Copilot in Outlook den
-              größten Wert entfaltet, ist nicht der Tag, an dem man die Funktionen entdeckt. Es ist der Moment,
-              in dem man sich angewöhnt hat, morgens als Erstes zu fragen: „Was ist seit gestern Abend Wichtiges
-              reingekommen?" Oder vor jedem Meeting: „Was ist der aktuelle Stand mit diesem Teilnehmer?" Wenn
-              das reflexartig passiert, spart man nicht fünf Minuten pro Tag, sondern deutlich mehr.
-            </p>
-          </div>
-        </section>
-
-        {/* Konkrete Prompts für typische Szenarien */}
-        <section id="konkrete-prompts" className="mb-4 mt-2">
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">
-            Konkrete Prompts für typische Outlook-Szenarien
-          </h2>
-          <div className="prose prose-lg max-w-none dark:prose-invert">
-            <p>
-              Theorie ist gut, aber Copilot in Outlook nutzen lernt man am besten mit konkreten Beispielen. Hier sind
-              Prompts, die ich regelmäßig verwende – mit dem typischen Ergebnis und den häufigsten Fallstricken.
-            </p>
-          </div>
-          <div className="space-y-3 mt-3">
-            <Card className="border border-gray-200 dark:border-gray-700">
-              <CardContent className="pt-4 pb-4">
-                <p className="font-semibold text-sm mb-1">Szenario: Thread zusammenfassen mit Fokus</p>
-                <p className="text-sm font-mono bg-gray-50 dark:bg-gray-800 p-2 rounded mb-2">
-                  „Fasse diesen Thread zusammen und markiere offene Punkte, die noch eine Antwort von mir erfordern."
-                </p>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">
-                  <strong>Erwartetes Ergebnis:</strong> Strukturierte Zusammenfassung mit klar markierten Action Items und Quellenverweisen.
-                </p>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
-                  <strong>Typischer Fehler:</strong> Copilot markiert gelegentlich Punkte als „offen", die bereits in einer Folgemail beantwortet wurden – besonders bei langen Threads mit vielen Beteiligten. Immer gegenprüfen.
-                </p>
-              </CardContent>
-            </Card>
-            <Card className="border border-gray-200 dark:border-gray-700">
-              <CardContent className="pt-4 pb-4">
-                <p className="font-semibold text-sm mb-1">Szenario: Faktencheck über den Posteingang</p>
-                <p className="text-sm font-mono bg-gray-50 dark:bg-gray-800 p-2 rounded mb-2">
-                  „Hat Herr Schneider in den letzten zwei Wochen etwas zum Liefertermin für Projekt Beta geschrieben? Wenn ja, was genau?"
-                </p>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">
-                  <strong>Erwartetes Ergebnis:</strong> Zitat oder Paraphrase aus der relevanten Mail mit Datum und Quellverweis.
-                </p>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
-                  <strong>Typischer Fehler:</strong> Bei häufigen Namen (z. B. „Herr Müller") ohne Firmenkontext kann Copilot Mails verschiedener Personen vermischen. Firmennamen oder E-Mail-Adresse mitgeben.
-                </p>
-              </CardContent>
-            </Card>
-            <Card className="border border-gray-200 dark:border-gray-700">
-              <CardContent className="pt-4 pb-4">
-                <p className="font-semibold text-sm mb-1">Szenario: Meeting-Vorbereitung</p>
-                <p className="text-sm font-mono bg-gray-50 dark:bg-gray-800 p-2 rounded mb-2">
-                  „Bereite mich auf mein Meeting mit Firma XY um 14 Uhr vor. Fasse den letzten Stand aus E-Mails und Teams-Nachrichten zusammen. Liste offene Themen und verlinke die Quellen."
-                </p>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">
-                  <strong>Erwartetes Ergebnis:</strong> Briefing mit Zusammenfassung der letzten Kommunikation, offenen Punkten und verlinkten Quellen.
-                </p>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
-                  <strong>Typischer Fehler:</strong> Copilot berücksichtigt nur digitale Kommunikation – mündliche Absprachen, Telefonnotizen oder Wissen aus persönlichen Gesprächen fehlen. Das Briefing ergänzen, nicht blind übernehmen.
-                </p>
-              </CardContent>
-            </Card>
-            <Card className="border border-gray-200 dark:border-gray-700">
-              <CardContent className="pt-4 pb-4">
-                <p className="font-semibold text-sm mb-1">Szenario: E-Mail-Entwurf mit Quellenkontext</p>
-                <p className="text-sm font-mono bg-gray-50 dark:bg-gray-800 p-2 rounded mb-2">
-                  „Schreibe eine Antwort an Herrn Weber. Beziehe dich auf das Angebot, das ich ihm am 10. März geschickt habe. Ton: verbindlich, kurz. Biete einen Telefontermin nächste Woche an."
-                </p>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">
-                  <strong>Erwartetes Ergebnis:</strong> Professioneller Entwurf mit korrekten Details aus der referenzierten Mail.
-                </p>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
-                  <strong>Typischer Fehler:</strong> Copilot verwendet manchmal einen förmlicheren Ton als die bisherige Konversation – plötzlich „Sie" statt „Du" oder umgekehrt. Tonalität im Prompt explizit angeben oder im Entwurf anpassen.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </section>
-
-        {/* Fazit */}
-        <section id="fazit" className="mb-4 mt-2">
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">
-            Fazit
-          </h2>
-          <div className="prose prose-lg max-w-none dark:prose-invert">
-            <p>
-              Copilot in Outlook nutzen bringt dann echten Mehrwert, wenn man über die naheliegenden Funktionen
-              hinausgeht und sich die richtigen Gewohnheiten aufbaut. Wer nur Threads zusammenfassen lässt, nutzt
-              vielleicht zehn Prozent. Wer anfängt, seinem Posteingang gezielte Fragen zu stellen, E-Mails mit
-              Quellenkontext vorformulieren zu lassen und Meetings systematisch vorzubereiten, spart tatsächlich
-              Zeit – allerdings nur, wenn die Prompts stimmen und man die Ergebnisse konsequent prüft.
-            </p>
-            <p>
-              Copilot ist kein Autopilot. Er macht Fehler, kennt nicht jeden Kontext und ersetzt nicht das eigene
-              Urteil. Aber als Assistent, der zuarbeitet und den man kritisch begleitet, ist er das Beste, was
-              Outlook je bekommen hat. Die Tipps in diesem Artikel basieren auf über einem Jahr täglicher Nutzung –
-              mit allen Höhen und den ehrlichen Grenzen.
-            </p>
-            <p>
-              Dass Microsoft Copilot Chat in Outlook auch nach dem 15. April 2026 kostenlos zugänglich hält, ist
-              ein guter Einstiegspunkt. Wer jetzt lernt, was Copilot in Outlook kann und was nicht, trifft eine
-              fundierte Entscheidung darüber, ob die Premium-Lizenz den Aufpreis wert ist.
-            </p>
-          </div>
-        </section>
-
-        {/* Grenzen von Copilot in Outlook */}
-        <section id="grenzen" className="mb-4 mt-2">
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">
-            Grenzen von Copilot in Outlook: Was man wissen muss
-          </h2>
-          <div className="prose prose-lg max-w-none dark:prose-invert">
-            <p>
-              So nützlich Copilot in Outlook im Alltag ist – es gibt klare Grenzen, die man kennen sollte. Wer
-              diese Grenzen ignoriert, riskiert Fehler, die im schlimmsten Fall nach außen gehen. Die Verantwortung
-              für jede versendete Mail liegt immer beim Absender, nicht bei der KI.
-            </p>
-            <p>
-              <strong>Halluzinationen sind selten, aber möglich:</strong> Copilot kann gelegentlich Informationen
-              „erfinden" – etwa ein Datum falsch zuordnen, eine Aussage dem falschen Absender zuschreiben oder
-              Details ergänzen, die in keiner Mail stehen. In meiner täglichen Erfahrung kommt das selten vor
-              und die Tendenz ist abnehmend, aber es passiert. Gerade bei komplexen Themen mit vielen ähnlich
-              klingenden Threads sollte man die genannten Fakten gegen die Originalquelle prüfen. Copilot verlinkt
-              seine Quellen – nutzen Sie das.
-            </p>
-            <p>
-              <strong>Fehlender Kontext bei externen Quellen:</strong> Copilot arbeitet mit dem, was in Ihrem
-              Microsoft-365-Ökosystem liegt – E-Mails, Teams-Chats, OneDrive, SharePoint. Informationen, die nur
-              in Ihrem Kopf, in einem Telefonat, in einem externen CRM oder auf einer Website existieren, kennt
-              Copilot nicht. Das führt dazu, dass Briefings oder Zusammenfassungen Lücken haben können, die Ihnen
-              als Nutzer sofort auffallen, die Copilot aber nicht selbständig erkennt. Mein Ansatz: Copilot liefert
-              das digitale Gedächtnis, ich ergänze das menschliche.
-            </p>
-            <p>
-              <strong>Falsche Priorisierung in Zusammenfassungen:</strong> Manchmal gewichtet Copilot einen
-              Nebenpunkt stärker als den Kerninhalt einer Mail oder lässt eine wichtige Aussage weg. In meiner
-              Erfahrung ist das selten, aber es kommt vor – besonders bei langen Threads mit vielen Themenwechseln.
-              Kritische Entscheidungen sollte man nie allein auf Basis einer Copilot-Zusammenfassung treffen.
-            </p>
-            <p>
-              <strong>Tonfall-Brüche:</strong> Ein Problem, das in der Praxis häufiger auftritt als Faktenfehler:
-              Copilot wechselt den Kommunikationsstil. Sie duzen sich mit einem Kollegen seit Jahren, und der
-              Entwurf kommt plötzlich mit „Sehr geehrter Herr..." Oder umgekehrt: Eine formelle Kundenkorrespondenz
-              wird unerwartet locker. Das liegt daran, dass Copilot den Ton aus dem gesamten Postfach ableitet,
-              nicht nur aus dem aktuellen Thread. Tipp: Geben Sie den gewünschten Ton im Prompt explizit an.
-            </p>
-            <p>
-              Mein Fazit zu den Grenzen: Sie sind real, aber beherrschbar. Wer Copilot als Assistenten behandelt –
-              der zuliefert, aber nicht entscheidet – und jede Ausgabe vor dem Absenden prüft, fährt gut damit.
-            </p>
-          </div>
-        </section>
-
-        {/* Wie Copilot mit Daten arbeitet */}
-        <section id="datensicherheit" className="mb-4 mt-2">
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">
-            Wie Copilot in Outlook mit Ihren Daten arbeitet
-          </h2>
-          <div className="prose prose-lg max-w-none dark:prose-invert">
-            <p>
-              Eine der häufigsten Fragen in unseren Trainings: „Sieht Copilot alles? Und was passiert mit meinen Daten?"
-              Die kurze Antwort: Copilot arbeitet innerhalb der bestehenden Microsoft-365-Berechtigungen und hat
-              keinen globalen Zugriff auf alle Daten im Unternehmen.
-            </p>
-            <p>
-              Konkret bedeutet das: Copilot sieht in Outlook nur die E-Mails, Kalendereinträge, Anhänge und
-              Teams-Nachrichten, auf die Sie als Nutzer ohnehin Zugriff haben. Wenn Sie keinen Zugang zu einem
-              bestimmten SharePoint-Ordner oder einem Gruppenpostfach haben, kann Copilot dort auch nicht
-              hinschauen. Die Berechtigungslogik von Microsoft 365 gilt unverändert.
-            </p>
-            <p>
-              Was Copilot nicht tut: Ihre Daten werden nicht zum Training des Sprachmodells verwendet. Inhalte
-              Ihrer Mails und Dateien verlassen nicht Ihren Microsoft-365-Tenant (bei Nutzung innerhalb der
-              kommerziellen Datenschutzgrenzen). Microsoft hat dies in den Copilot-Datenschutzbestimmungen
-              explizit zugesichert.
-            </p>
-            <p>
-              Worauf Unternehmen trotzdem achten sollten: Wenn Berechtigungen im Unternehmen zu großzügig vergeben
-              sind – etwa wenn jeder Mitarbeiter auf alle Abteilungspostfächer zugreifen kann – sieht auch Copilot
-              entsprechend viel. Das ist kein Copilot-Problem, sondern ein Berechtigungsproblem, das durch Copilot
-              sichtbar wird. Vor einem Copilot-Rollout empfehle ich daher, die bestehende Berechtigungsstruktur
-              zu überprüfen – das ist auch unabhängig von Copilot gute IT-Hygiene.
-            </p>
-          </div>
-        </section>
-
-        {/* Weiterführende Artikel */}
-        <section className="mb-8 mt-2">
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">Weiterführende Artikel</h2>
-          <div className="grid md:grid-cols-3 gap-4">
-            <Link to="/wissen/copilot-tipps-tricks-produktivitaet" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Copilot Tipps & Tricks</p>
-                  <p className="text-sm text-gray-600">Produktiver arbeiten mit Microsoft 365 Copilot</p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/copilot-sicherheit-datenschutz" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Copilot Sicherheit & Datenschutz</p>
-                  <p className="text-sm text-gray-600">DSGVO-Konformität und Datenschutz bei Microsoft Copilot</p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/microsoft-copilot-lizenzen" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Microsoft Copilot Lizenzen</p>
-                  <p className="text-sm text-gray-600">Übersicht der Lizenzmodelle und Preise 2026</p>
-                </CardContent>
-              </Card>
-            </Link>
-          </div>
-        </section>
-
         {/* Vergleichstabelle: Basic vs. Premium */}
-        <section id="basic-vs-premium" className="mb-4 mt-2">
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">
+        <section id="basic-vs-premium" className="mb-2 mt-1">
+          <h2 className="text-2xl md:text-3xl font-bold mb-1">
             Übersicht: Was geht kostenlos, was braucht die Lizenz?
           </h2>
           <div className="overflow-x-auto">
@@ -869,9 +607,279 @@ const CopilotInOutlook = () => {
           <p className="text-sm text-gray-500 mt-2 italic">Stand: März 2026. Microsoft kann den Funktionsumfang jederzeit ändern.</p>
         </section>
 
+        {/* Tipps für bessere Ergebnisse */}
+        <section id="tipps-fuer-bessere-ergebnisse" className="mb-2 mt-1">
+          <h2 className="text-2xl md:text-3xl font-bold mb-1">
+            Tipps für bessere Ergebnisse mit Copilot in Outlook
+          </h2>
+          <div className="prose prose-lg max-w-none dark:prose-invert">
+            <p>
+              Nach einem Jahr täglicher Nutzung gibt es ein paar Muster, die sich herauskristallisiert haben. Die
+              meisten davon klingen offensichtlich, werden aber erstaunlich oft ignoriert.
+            </p>
+            <p>
+              <strong>Strukturiertes Prompting nutzen:</strong> Die Qualität der Copilot-Antworten hängt direkt von der
+              Qualität der Eingabe ab. Ein Modell, das sich bei mir bewährt hat, besteht aus drei Bausteinen:
+              Ziel (was soll erreicht werden?), Kontext (welche Informationen sind relevant?) und Format (wie soll
+              das Ergebnis aussehen?). Ein Beispiel:
+            </p>
+            <Card className="mb-4 border border-gray-200 dark:border-gray-700 bg-gray-50/50 dark:bg-gray-800/30">
+              <CardContent className="pt-4 pb-4">
+                <p className="text-sm font-mono leading-relaxed">
+                  <strong>Ziel:</strong> „Formuliere eine kurze Antwort an Frau Meier."<br/>
+                  <strong>Kontext:</strong> „Sie hat nach dem Status des Angebots für Projekt Delta gefragt. Wir haben
+                  das Angebot am 20. März verschickt, Rückmeldung steht noch aus."<br/>
+                  <strong>Format:</strong> „Ton: freundlich-professionell. Maximal fünf Sätze. Erwähne das Datum des Angebots."
+                </p>
+              </CardContent>
+            </Card>
+            <p>
+              Im Vergleich dazu liefert „Schreib eine Antwort an Frau Meier" ein generisches Ergebnis, das mehr
+              Nacharbeit verursacht als es Zeit spart. Der Unterschied zwischen gut und schlecht genutztem Copilot
+              liegt fast immer im Prompt.
+            </p>
+            <p>
+              <strong>Personen und Zeiträume nennen:</strong> „Was hat sich letzte Woche beim Projekt Alpha getan?" liefert
+              gute Ergebnisse. „Was gibt es Neues?" liefert Müll. Copilot braucht Ankerpunkte – Namen, Daten, Themen –
+              um die richtigen Mails zu identifizieren. Je spezifischer die Frage, desto präziser die Antwort. Das ist
+              kein Copilot-Problem, das ist Informationslogik.
+            </p>
+            <p>
+              <strong>Copilot als ersten Entwurf nutzen, nicht als letztes Wort:</strong> Ich habe noch nie eine Mail unverändert
+              abgeschickt, die Copilot formuliert hat. Nicht weil die Entwürfe schlecht wären, sondern weil jede Mail
+              meine Stimme tragen muss. Copilot liefert die Struktur, den Kontext und einen soliden ersten Aufschlag.
+              Die letzten zehn Prozent – Wortwahl, Betonung, der richtige Schluss – sind Menschenarbeit. Und genau
+              so sollte es sein.
+            </p>
+            <p>
+              <strong>Alle Einstiegspunkte kennen:</strong> Copilot in Outlook hat mittlerweile mehrere
+              Einstiegspunkte. Der Chat-Bereich für Fragen an den Posteingang. Die Schreibunterstützung direkt
+              beim Verfassen einer Mail. Die Zusammenfassungsfunktion über einem E-Mail-Thread. Und die
+              Kalenderintegration für Terminvorbereitung und -planung. Wer nur einen dieser Kanäle nutzt, verschenkt
+              den Großteil des Potenzials.
+            </p>
+            <p>
+              <strong>Gewohnheiten aufbauen, nicht Funktionen lernen:</strong> Der Punkt, an dem Copilot in Outlook den
+              größten Wert entfaltet, ist nicht der Tag, an dem man die Funktionen entdeckt. Es ist der Moment,
+              in dem man sich angewöhnt hat, morgens als Erstes zu fragen: „Was ist seit gestern Abend Wichtiges
+              reingekommen?" Oder vor jedem Meeting: „Was ist der aktuelle Stand mit diesem Teilnehmer?" Wenn
+              das reflexartig passiert, spart man nicht fünf Minuten pro Tag, sondern deutlich mehr.
+            </p>
+          </div>
+        </section>
+
+        {/* Konkrete Prompts für typische Szenarien */}
+        <section id="konkrete-prompts" className="mb-2 mt-1">
+          <h2 className="text-2xl md:text-3xl font-bold mb-1">
+            Konkrete Prompts für typische Outlook-Szenarien
+          </h2>
+          <div className="prose prose-lg max-w-none dark:prose-invert">
+            <p>
+              Theorie ist gut, aber Copilot in Outlook nutzen lernt man am besten mit konkreten Beispielen. Hier sind
+              Prompts, die ich regelmäßig verwende – mit dem typischen Ergebnis und den häufigsten Fallstricken.
+            </p>
+          </div>
+          <div className="space-y-3 mt-3">
+            <Card className="border border-gray-200 dark:border-gray-700">
+              <CardContent className="pt-4 pb-4">
+                <p className="font-semibold text-sm mb-1">Szenario: Thread zusammenfassen mit Fokus</p>
+                <p className="text-sm font-mono bg-gray-50 dark:bg-gray-800 p-2 rounded mb-2">
+                  „Fasse diesen Thread zusammen und markiere offene Punkte, die noch eine Antwort von mir erfordern."
+                </p>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">
+                  <strong>Erwartetes Ergebnis:</strong> Strukturierte Zusammenfassung mit klar markierten Action Items und Quellenverweisen.
+                </p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  <strong>Typischer Fehler:</strong> Copilot markiert gelegentlich Punkte als „offen", die bereits in einer Folgemail beantwortet wurden – besonders bei langen Threads mit vielen Beteiligten. Immer gegenprüfen.
+                </p>
+              </CardContent>
+            </Card>
+            <Card className="border border-gray-200 dark:border-gray-700">
+              <CardContent className="pt-4 pb-4">
+                <p className="font-semibold text-sm mb-1">Szenario: Faktencheck über den Posteingang</p>
+                <p className="text-sm font-mono bg-gray-50 dark:bg-gray-800 p-2 rounded mb-2">
+                  „Hat Herr Schneider in den letzten zwei Wochen etwas zum Liefertermin für Projekt Beta geschrieben? Wenn ja, was genau?"
+                </p>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">
+                  <strong>Erwartetes Ergebnis:</strong> Zitat oder Paraphrase aus der relevanten Mail mit Datum und Quellverweis.
+                </p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  <strong>Typischer Fehler:</strong> Bei häufigen Namen (z. B. „Herr Müller") ohne Firmenkontext kann Copilot Mails verschiedener Personen vermischen. Firmennamen oder E-Mail-Adresse mitgeben.
+                </p>
+              </CardContent>
+            </Card>
+            <Card className="border border-gray-200 dark:border-gray-700">
+              <CardContent className="pt-4 pb-4">
+                <p className="font-semibold text-sm mb-1">Szenario: Meeting-Vorbereitung</p>
+                <p className="text-sm font-mono bg-gray-50 dark:bg-gray-800 p-2 rounded mb-2">
+                  „Bereite mich auf mein Meeting mit Firma XY um 14 Uhr vor. Fasse den letzten Stand aus E-Mails und Teams-Nachrichten zusammen. Liste offene Themen und verlinke die Quellen."
+                </p>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">
+                  <strong>Erwartetes Ergebnis:</strong> Briefing mit Zusammenfassung der letzten Kommunikation, offenen Punkten und verlinkten Quellen.
+                </p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  <strong>Typischer Fehler:</strong> Copilot berücksichtigt nur digitale Kommunikation – mündliche Absprachen, Telefonnotizen oder Wissen aus persönlichen Gesprächen fehlen. Das Briefing ergänzen, nicht blind übernehmen.
+                </p>
+              </CardContent>
+            </Card>
+            <Card className="border border-gray-200 dark:border-gray-700">
+              <CardContent className="pt-4 pb-4">
+                <p className="font-semibold text-sm mb-1">Szenario: E-Mail-Entwurf mit Quellenkontext</p>
+                <p className="text-sm font-mono bg-gray-50 dark:bg-gray-800 p-2 rounded mb-2">
+                  „Schreibe eine Antwort an Herrn Weber. Beziehe dich auf das Angebot, das ich ihm am 10. März geschickt habe. Ton: verbindlich, kurz. Biete einen Telefontermin nächste Woche an."
+                </p>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">
+                  <strong>Erwartetes Ergebnis:</strong> Professioneller Entwurf mit korrekten Details aus der referenzierten Mail.
+                </p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  <strong>Typischer Fehler:</strong> Copilot verwendet manchmal einen förmlicheren Ton als die bisherige Konversation – plötzlich „Sie" statt „Du" oder umgekehrt. Tonalität im Prompt explizit angeben oder im Entwurf anpassen.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
+        {/* Grenzen von Copilot in Outlook */}
+        <section id="grenzen" className="mb-2 mt-1">
+          <h2 className="text-2xl md:text-3xl font-bold mb-1">
+            Grenzen von Copilot in Outlook: Was man wissen muss
+          </h2>
+          <div className="prose prose-lg max-w-none dark:prose-invert">
+            <p>
+              So nützlich Copilot in Outlook im Alltag ist – es gibt klare Grenzen, die man kennen sollte. Wer
+              diese Grenzen ignoriert, riskiert Fehler, die im schlimmsten Fall nach außen gehen. Die Verantwortung
+              für jede versendete Mail liegt immer beim Absender, nicht bei der KI.
+            </p>
+            <p>
+              <strong>Halluzinationen sind selten, aber möglich:</strong> Copilot kann gelegentlich Informationen
+              „erfinden" – etwa ein Datum falsch zuordnen, eine Aussage dem falschen Absender zuschreiben oder
+              Details ergänzen, die in keiner Mail stehen. In meiner täglichen Erfahrung kommt das selten vor
+              und die Tendenz ist abnehmend, aber es passiert. Gerade bei komplexen Themen mit vielen ähnlich
+              klingenden Threads sollte man die genannten Fakten gegen die Originalquelle prüfen. Copilot verlinkt
+              seine Quellen – nutzen Sie das.
+            </p>
+            <p>
+              <strong>Fehlender Kontext bei externen Quellen:</strong> Copilot arbeitet mit dem, was in Ihrem
+              Microsoft-365-Ökosystem liegt – E-Mails, Teams-Chats, OneDrive, SharePoint. Informationen, die nur
+              in Ihrem Kopf, in einem Telefonat, in einem externen CRM oder auf einer Website existieren, kennt
+              Copilot nicht. Das führt dazu, dass Briefings oder Zusammenfassungen Lücken haben können, die Ihnen
+              als Nutzer sofort auffallen, die Copilot aber nicht selbständig erkennt. Mein Ansatz: Copilot liefert
+              das digitale Gedächtnis, ich ergänze das menschliche.
+            </p>
+            <p>
+              <strong>Falsche Priorisierung in Zusammenfassungen:</strong> Manchmal gewichtet Copilot einen
+              Nebenpunkt stärker als den Kerninhalt einer Mail oder lässt eine wichtige Aussage weg. In meiner
+              Erfahrung ist das selten, aber es kommt vor – besonders bei langen Threads mit vielen Themenwechseln.
+              Kritische Entscheidungen sollte man nie allein auf Basis einer Copilot-Zusammenfassung treffen.
+            </p>
+            <p>
+              <strong>Tonfall-Brüche:</strong> Ein Problem, das in der Praxis häufiger auftritt als Faktenfehler:
+              Copilot wechselt den Kommunikationsstil. Sie duzen sich mit einem Kollegen seit Jahren, und der
+              Entwurf kommt plötzlich mit „Sehr geehrter Herr..." Oder umgekehrt: Eine formelle Kundenkorrespondenz
+              wird unerwartet locker. Das liegt daran, dass Copilot den Ton aus dem gesamten Postfach ableitet,
+              nicht nur aus dem aktuellen Thread. Tipp: Geben Sie den gewünschten Ton im Prompt explizit an.
+            </p>
+            <p>
+              Mein Fazit zu den Grenzen: Sie sind real, aber beherrschbar. Wer Copilot als Assistenten behandelt –
+              der zuliefert, aber nicht entscheidet – und jede Ausgabe vor dem Absenden prüft, fährt gut damit.
+            </p>
+          </div>
+        </section>
+
+        {/* Wie Copilot mit Daten arbeitet */}
+        <section id="datensicherheit" className="mb-2 mt-1">
+          <h2 className="text-2xl md:text-3xl font-bold mb-1">
+            Wie Copilot in Outlook mit Ihren Daten arbeitet
+          </h2>
+          <div className="prose prose-lg max-w-none dark:prose-invert">
+            <p>
+              Eine der häufigsten Fragen in unseren Trainings: „Sieht Copilot alles? Und was passiert mit meinen Daten?"
+              Die kurze Antwort: Copilot arbeitet innerhalb der bestehenden Microsoft-365-Berechtigungen und hat
+              keinen globalen Zugriff auf alle Daten im Unternehmen.
+            </p>
+            <p>
+              Konkret bedeutet das: Copilot sieht in Outlook nur die E-Mails, Kalendereinträge, Anhänge und
+              Teams-Nachrichten, auf die Sie als Nutzer ohnehin Zugriff haben. Wenn Sie keinen Zugang zu einem
+              bestimmten SharePoint-Ordner oder einem Gruppenpostfach haben, kann Copilot dort auch nicht
+              hinschauen. Die Berechtigungslogik von Microsoft 365 gilt unverändert.
+            </p>
+            <p>
+              Was Copilot nicht tut: Ihre Daten werden nicht zum Training des Sprachmodells verwendet. Inhalte
+              Ihrer Mails und Dateien verlassen nicht Ihren Microsoft-365-Tenant (bei Nutzung innerhalb der
+              kommerziellen Datenschutzgrenzen). Microsoft hat dies in den Copilot-Datenschutzbestimmungen
+              explizit zugesichert.
+            </p>
+            <p>
+              Worauf Unternehmen trotzdem achten sollten: Wenn Berechtigungen im Unternehmen zu großzügig vergeben
+              sind – etwa wenn jeder Mitarbeiter auf alle Abteilungspostfächer zugreifen kann – sieht auch Copilot
+              entsprechend viel. Das ist kein Copilot-Problem, sondern ein Berechtigungsproblem, das durch Copilot
+              sichtbar wird. Vor einem Copilot-Rollout empfehle ich daher, die bestehende Berechtigungsstruktur
+              zu überprüfen – das ist auch unabhängig von Copilot gute IT-Hygiene.
+            </p>
+          </div>
+        </section>
+
+        {/* Fazit */}
+        <section id="fazit" className="mb-2 mt-1">
+          <h2 className="text-2xl md:text-3xl font-bold mb-1">
+            Fazit
+          </h2>
+          <div className="prose prose-lg max-w-none dark:prose-invert">
+            <p>
+              Copilot in Outlook nutzen bringt dann echten Mehrwert, wenn man über die naheliegenden Funktionen
+              hinausgeht und sich die richtigen Gewohnheiten aufbaut. Wer nur Threads zusammenfassen lässt, nutzt
+              vielleicht zehn Prozent. Wer anfängt, seinem Posteingang gezielte Fragen zu stellen, E-Mails mit
+              Quellenkontext vorformulieren zu lassen und Meetings systematisch vorzubereiten, spart tatsächlich
+              Zeit – allerdings nur, wenn die Prompts stimmen und man die Ergebnisse konsequent prüft.
+            </p>
+            <p>
+              Copilot ist kein Autopilot. Er macht Fehler, kennt nicht jeden Kontext und ersetzt nicht das eigene
+              Urteil. Aber als Assistent, der zuarbeitet und den man kritisch begleitet, ist er das Beste, was
+              Outlook je bekommen hat. Die Tipps in diesem Artikel basieren auf über einem Jahr täglicher Nutzung –
+              mit allen Höhen und den ehrlichen Grenzen.
+            </p>
+            <p>
+              Dass Microsoft Copilot Chat in Outlook auch nach dem 15. April 2026 kostenlos zugänglich hält, ist
+              ein guter Einstiegspunkt. Wer jetzt lernt, was Copilot in Outlook kann und was nicht, trifft eine
+              fundierte Entscheidung darüber, ob die Premium-Lizenz den Aufpreis wert ist.
+            </p>
+          </div>
+        </section>
+
+        {/* Weiterführende Artikel */}
+        <section className="mb-8 mt-2">
+          <h2 className="text-2xl md:text-3xl font-bold mb-1">Weiterführende Artikel</h2>
+          <div className="grid md:grid-cols-3 gap-4">
+            <Link to="/wissen/copilot-tipps-tricks-produktivitaet" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Copilot Tipps & Tricks</p>
+                  <p className="text-sm text-gray-600">Produktiver arbeiten mit Microsoft 365 Copilot</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/wissen/copilot-sicherheit-datenschutz" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Copilot Sicherheit & Datenschutz</p>
+                  <p className="text-sm text-gray-600">DSGVO-Konformität und Datenschutz bei Microsoft Copilot</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/wissen/microsoft-copilot-lizenzen" className="block">
+              <Card className="hover:shadow-md transition-shadow h-full">
+                <CardContent className="pt-4">
+                  <p className="font-semibold text-primary mb-1">Microsoft Copilot Lizenzen</p>
+                  <p className="text-sm text-gray-600">Übersicht der Lizenzmodelle und Preise 2026</p>
+                </CardContent>
+              </Card>
+            </Link>
+          </div>
+        </section>
+
         {/* FAQ */}
-        <section id="faq" className="mb-4 mt-2">
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">
+        <section id="faq" className="mb-2 mt-1">
+          <h2 className="text-2xl md:text-3xl font-bold mb-1">
             Häufig gestellte Fragen
           </h2>
           <div className="space-y-4">
