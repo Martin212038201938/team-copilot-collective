@@ -285,12 +285,49 @@ const CopilotInOutlook = () => {
               einige Use Cases, die weniger offensichtlich, aber im Alltag enorm nützlich sind.
             </p>
             <p>
+              <strong>Projektstatus-Updates aus dem Posteingang generieren:</strong> Freitagnachmittag, das Wochenupdate an
+              die Geschäftsführung steht an. Früher habe ich zwanzig Minuten gesammelt, sortiert und formuliert. Heute
+              sage ich Copilot: „Erstelle ein Projektstatus-Update für Projekt Alpha. Struktur: Fortschritt, erreichte
+              Meilensteine, aktuelle Risiken, nächste Schritte. Ton: professionell und knapp. Zielgruppe: Management."
+              Copilot zieht die relevanten Informationen aus meinen Mails der letzten Woche und baut ein strukturiertes
+              Update zusammen. Das Ergebnis muss ich noch redigieren – Copilot kennt nicht jedes Detail –, aber die
+              Grundstruktur und die Fakten stimmen in den meisten Fällen. Was mich früher zwanzig Minuten gekostet hat,
+              dauert jetzt fünf.
+            </p>
+            <p>
+              <strong>Zahlungserinnerungen und Routine-Mails aus Kontext erstellen:</strong> Ein typisches Szenario
+              aus der Buchhaltung: Eine Rechnung ist überfällig, eine freundliche Erinnerung muss raus. Der alte
+              Workflow dafür war erstaunlich umständlich: Textbaustein aus einer Vorlagensammlung kopieren, dann
+              die Original-Rechnung im Postfach suchen, Rechnungsnummer, Betrag und Fälligkeitsdatum heraussuchen
+              und händisch in die Vorlage einsetzen. Bei zehn überfälligen Rechnungen ging dafür eine halbe Stunde
+              drauf – nicht weil die Formulierung schwierig war, sondern weil das Zusammensuchen der Daten so
+              mühsam ist. Mit Copilot sage ich: „Erstelle eine höfliche Zahlungserinnerung basierend auf der Rechnung,
+              die ich am 3. März an Firma XY geschickt habe." Copilot findet die ursprüngliche Mail, extrahiert
+              Rechnungsnummer, Betrag und Fälligkeitsdatum und formuliert eine professionelle Erinnerung mit den
+              richtigen Zahlen – personalisiert statt aus der Textbaustein-Schublade. Gleicher Workflow funktioniert
+              für Nachfass-Mails nach Angeboten, Bestätigungen nach Terminvereinbarungen oder Erinnerungen an
+              ausstehende Rückmeldungen. Überall dort, wo eine frühere Mail den Kontext liefert, den Copilot in die
+              neue Mail einbauen kann.
+            </p>
+            <p>
               <strong>Automatisches RSVP-Management:</strong> Seit 2026 kann Copilot auf Wunsch eigenständig auf
               Termineinladungen reagieren. Man gibt Regeln vor – etwa „Akzeptiere alle Einladungen von meinem direkten
               Team, lehne alles ab, was außerhalb meiner Arbeitszeiten liegt, und frage bei allem anderen nach" – und
               Copilot erledigt das. Wer pro Tag zehn bis fünfzehn Termineinladungen bekommt, spart damit ernsthafte
               Managementzeit. Die Funktion arbeitet regelbasiert und informiert über jede Aktion, sodass man die
               Kontrolle behält, ohne jeden Termin einzeln bearbeiten zu müssen.
+            </p>
+            <p>
+              <strong>Copilot den eigenen Schreibstil beibringen:</strong> Ein Problem, das viele kennen: Copilot
+              formuliert korrekt, aber die Mail klingt nicht nach einem selbst. Es gibt zwei Wege, das zu lösen. Der
+              einfachste: eine kurze Stilbeschreibung direkt im Prompt mitgeben. „Schreibe die Antwort in meinem
+              Stil: direkt und prägnant, kurze Absätze, keine Floskeln, lösungsorientiert, maximal fünf Sätze."
+              Das funktioniert sofort und zuverlässig. Wer das häufig braucht, schreibt sich eine persönliche
+              Stilvorlage – drei bis vier Sätze, die den eigenen Ton beschreiben – und kopiert sie bei Bedarf in
+              den Prompt. Noch eleganter: eine gut formulierte eigene Mail als Referenz mitgeben. „Hier ist eine
+              typische Mail von mir – schreibe die neue Mail im gleichen Stil." Das liefert in meiner Erfahrung
+              die besten Ergebnisse, weil Copilot den Stil aus einem echten Beispiel deutlich besser trifft als
+              aus einer abstrakten Beschreibung.
             </p>
             <p>
               <strong>Anhänge finden, ohne zu suchen:</strong> Seit dem Update Anfang 2026 durchsucht Copilot auch
