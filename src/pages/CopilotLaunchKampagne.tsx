@@ -642,11 +642,7 @@ const CopilotLaunchKampagne = () => {
                   </li>
                   <li className="flex items-center gap-2">
                     <ArrowRight className="w-4 h-4 text-green-500" />
-                    <strong>Zertifizierungsprogramm</strong>: Foundation → Advanced → Expert
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <ArrowRight className="w-4 h-4 text-green-500" />
-                    <strong>EU AI Act Schulung</strong>: Compliance-Zertifikat
+                    <strong>EU AI Act Schulung</strong>: Compliance-Nachweis gemäß Artikel 4
                   </li>
                 </ul>
               </CardContent>

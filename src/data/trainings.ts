@@ -167,11 +167,10 @@ export const trainings: Training[] = [
       "Use Case Workshop: 10+ reale Anwendungsszenarien aus Vertrieb, Marketing, HR, Finance, Projektmanagement",
       "Persönliche Prompt-Bibliothek: Templates für Ihre wiederkehrenden Aufgaben entwickeln und dokumentieren",
       "Peer Learning & Gruppenarbeit: Voneinander lernen, Best Practices teilen, gemeinsam Probleme lösen",
-      "Zertifikat: Nachweis Ihrer KI-Kompetenz für HR und Personalentwicklung",
       "Buchbar als: 2 Tage intensiv (14h) oder Lernreise (8×2h über 8 Wochen mit Praxisaufgaben)"
     ],
     tiers: ["paid"],
-    questionLead: "Gibt es eine umfassende KI-Ausbildung für Büromitarbeiter – mit Zertifikat?",
+    questionLead: "Gibt es eine umfassende KI-Ausbildung für Büromitarbeiter?",
     targetAudience: [
       "Unternehmen, die eine systematische KI-Qualifizierung ihrer gesamten Belegschaft brauchen",
       "Personalentwickler, die ein nachweisbares KI-Kompetenzprogramm gemäß EU AI Act aufbauen müssen",
@@ -183,7 +182,7 @@ export const trainings: Training[] = [
       "Sie entwickeln Cross-App-Workflows, die mehrere Office-Anwendungen nahtlos verbinden",
       "Sie bauen eine vollständige, dokumentierte Prompt-Bibliothek für Ihre Abteilung auf",
       "Sie können KI-Outputs kritisch bewerten, Halluzinationen erkennen und Qualitätskontrolle durchführen",
-      "Sie erhalten ein Zertifikat, das Ihre KI-Kompetenz für HR und Compliance-Zwecke nachweist"
+      "Sie erhalten eine Teilnahmebestätigung, die Ihre KI-Schulung für HR und Compliance-Zwecke dokumentiert"
     ],
     businessImpact: [
       "Mitarbeiter werden zu KI-Multiplikatoren, die Kollegen selbstständig unterstützen und begeistern",
@@ -192,16 +191,12 @@ export const trainings: Training[] = [
       "Die EU AI Act Schulungspflicht (Artikel 4) wird nachweisbar erfüllt – Audit-sicher dokumentiert"
     ],
     metaTitle: "Ausbildung KI-Wissensarbeiter – Intensivtraining Microsoft Copilot | copilotenschule.de",
-    metaDescription: "2-tägige Intensiv-Ausbildung zum KI-unterstützten Wissensarbeiter. Von Grundlagen bis Expertenniveau: 20+ Übungen, alle M365 Apps, Zertifikat.",
-    keywords: ["KI Ausbildung", "Wissensarbeiter Training", "Copilot Intensivkurs", "KI-Kompetenz Zertifikat", "Microsoft Copilot Ausbildung"],
+    metaDescription: "2-tägige Intensiv-Ausbildung zum KI-unterstützten Wissensarbeiter. Von Grundlagen bis Expertenniveau: 20+ Übungen, alle M365 Apps.",
+    keywords: ["KI Ausbildung", "Wissensarbeiter Training", "Copilot Intensivkurs", "KI-Kompetenz", "Microsoft Copilot Ausbildung"],
     faqs: [
       {
         question: "Wie kann ich meine Mitarbeiter systematisch in KI ausbilden – nicht nur einmalig schulen?",
         answer: "Einmalige Trainings verpuffen oft schnell. Nachhaltiger Kompetenzaufbau erfordert ein strukturiertes Ausbildungsprogramm: Grundlagen verstehen, jede Office-App einzeln meistern, praktische Use Cases umsetzen, Peer Learning und am Ende eine persönliche Prompt-Bibliothek für wiederkehrende Aufgaben. So wird KI-Kompetenz zur dauerhaften Fähigkeit statt zum einmaligen Workshop-Erlebnis."
-      },
-      {
-        question: "Gibt es ein KI-Zertifikat, das meine Mitarbeiter für HR nachweisen können?",
-        answer: "Ja, nach erfolgreicher Teilnahme an einem umfassenden KI-Ausbildungsprogramm erhalten Mitarbeiter ein Zertifikat, das ihre KI-Kompetenz dokumentiert. Das ist nicht nur für die Personalentwicklung relevant, sondern auch für die EU AI Act Compliance, die nachweisbare KI-Schulungen fordert."
       },
       {
         question: "Welche KI-Kompetenzen brauchen Büromitarbeiter eigentlich konkret?",
@@ -574,7 +569,7 @@ export const trainings: Training[] = [
       "Transparenz- und Dokumentationspflichten: Was bei der KI-Nutzung dokumentiert werden muss",
       "Praktische Compliance: Checklisten für den Arbeitsalltag, Do's und Don'ts",
       "Microsoft Copilot im EU AI Act Kontext: Einordnung, Verantwortlichkeiten, Best Practices",
-      "Nachweisführung: Schulungszertifikat und Dokumentation für Audits und Behörden"
+      "Nachweisführung: Teilnahmebestätigung und Dokumentation für Audits und Behörden"
     ],
     tiers: ["free", "paid"],
     questionLead: "Welche KI-Schulung brauchen unsere Mitarbeiter, um den EU AI Act Artikel 4 zu erfüllen?",
@@ -592,17 +587,17 @@ export const trainings: Training[] = [
     ],
     businessImpact: [
       "Rechtssicherheit: Die gesetzliche Schulungspflicht nach Artikel 4 EU AI Act ist nachweisbar erfüllt",
-      "Bei Audits und Behördenanfragen liegen zertifizierte Schulungsnachweise für jeden Mitarbeiter vor",
+      "Bei Audits und Behördenanfragen liegen Schulungsnachweise für jeden Mitarbeiter vor",
       "Das Risiko von Bußgeldern durch unwissentliche Verstöße gegen KI-Regulierung wird minimiert",
       "Mitarbeiter entwickeln ein gesundes Risikobewusstsein – weder KI-Angst noch blindes Vertrauen"
     ],
     metaTitle: "EU AI Act Pflichtschulung – Artikel 4 KI-Kompetenz | copilotenschule.de",
-    metaDescription: "EU AI Act Pflichtschulung nach Artikel 4: KI-Kompetenz, Risikobewusstsein, Compliance. Mit Schulungszertifikat für Audits.",
-    keywords: ["EU AI Act Schulung", "Artikel 4 KI-Kompetenz", "KI Pflichtschulung", "AI Act Training", "KI Compliance Zertifikat"],
+    metaDescription: "EU AI Act Pflichtschulung nach Artikel 4: KI-Kompetenz, Risikobewusstsein, Compliance. Mit Schulungsnachweis für Audits.",
+    keywords: ["EU AI Act Schulung", "Artikel 4 KI-Kompetenz", "KI Pflichtschulung", "AI Act Training", "KI Compliance"],
     faqs: [
       {
         question: "Müssen alle Mitarbeiter, die Copilot nutzen, zum EU AI Act geschult werden?",
-        answer: "Ja, Artikel 4 des EU AI Act fordert, dass Personen, die KI-Systeme bedienen oder überwachen, über ausreichende KI-Kompetenz verfügen müssen. Das betrifft faktisch alle Mitarbeiter, die Microsoft Copilot oder andere KI-Tools nutzen. Die Schulung muss nachweisbar sein – ein Zertifikat oder Schulungsnachweis ist für Audits wichtig."
+        answer: "Ja, Artikel 4 des EU AI Act fordert, dass Personen, die KI-Systeme bedienen oder überwachen, über ausreichende KI-Kompetenz verfügen müssen. Das betrifft faktisch alle Mitarbeiter, die Microsoft Copilot oder andere KI-Tools nutzen. Die Schulung muss nachweisbar sein – ein Schulungsnachweis ist für Audits wichtig."
       },
       {
         question: "Was genau fordert der EU AI Act von Unternehmen, die KI einsetzen?",
@@ -614,7 +609,7 @@ export const trainings: Training[] = [
       },
       {
         question: "Wie dokumentiere ich die KI-Schulung meiner Mitarbeiter für Audits?",
-        answer: "Für die Nachweisführung brauchen Sie: Schulungszertifikate oder -nachweise pro Mitarbeiter, Dokumentation der Schulungsinhalte (welche KI-Kompetenzen wurden vermittelt), Datum und Dauer der Schulung, und idealerweise eine Anwesenheitsliste. Ein professioneller Schulungsnachweis mit konkreten Lerninhalten erfüllt die Anforderungen und gibt Sicherheit bei Behördenanfragen."
+        answer: "Für die Nachweisführung brauchen Sie: Teilnahmebestätigungen pro Mitarbeiter, Dokumentation der Schulungsinhalte (welche KI-Kompetenzen wurden vermittelt), Datum und Dauer der Schulung, und idealerweise eine Anwesenheitsliste. Ein professioneller Schulungsnachweis mit konkreten Lerninhalten erfüllt die Anforderungen und gibt Sicherheit bei Behördenanfragen."
       }
     ]
   },

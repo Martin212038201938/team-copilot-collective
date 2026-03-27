@@ -41,7 +41,7 @@ const KiSchulungMitarbeiterPflicht = () => {
     },
     {
       name: "Wie dokumentiere ich die KI-Schulungen meiner Mitarbeiter rechtssicher?",
-      answer: "Dokumentieren Sie mindestens: Schulungsinhalte mit Bezug zum EU AI Act, Teilnehmerlisten mit Datum und Dauer, die eingesetzten KI-Systeme im Unternehmen und die jeweilige Risikoklasse. Ein professioneller Schulungsnachweis mit konkreten Lerninhalten erfüllt die Anforderungen bei Audits. Die Copilotenschule stellt Teilnahme-Zertifikate mit detaillierten Schulungsinhalten aus, die als Compliance-Nachweis dienen."
+      answer: "Dokumentieren Sie mindestens: Schulungsinhalte mit Bezug zum EU AI Act, Teilnehmerlisten mit Datum und Dauer, die eingesetzten KI-Systeme im Unternehmen und die jeweilige Risikoklasse. Ein professioneller Schulungsnachweis mit konkreten Lerninhalten erfüllt die Anforderungen bei Audits. Die Copilotenschule stellt Teilnahmebestätigungen mit detaillierten Schulungsinhalten aus, die als Compliance-Nachweis dienen."
     },
     {
       name: "Wir nutzen nur Microsoft Copilot – brauchen wir trotzdem eine EU AI Act Schulung?",
@@ -398,7 +398,7 @@ const KiSchulungMitarbeiterPflicht = () => {
                 <p className="font-medium mb-2">Die Copilotenschule bietet genau diese Kombination:</p>
                 <p className="mb-2">
                   Unsere <Link to="/trainings/eu-ai-act-pflichtschulung" className="text-primary hover:underline font-semibold">EU AI Act Pflichtschulung</Link> deckt
-                  in einem Halbtag alle regulatorischen Anforderungen ab – inklusive Schulungszertifikat
+                  in einem Halbtag alle regulatorischen Anforderungen ab – inklusive Schulungsnachweis
                   für die Compliance-Dokumentation. Kombiniert mit unseren
                   praxisnahen <Link to="/trainings" className="text-primary hover:underline font-semibold">Copilot-Trainings</Link> erhalten
                   Ihre Mitarbeiter sowohl das regulatorische Wissen als auch die praktische Anwendungskompetenz,

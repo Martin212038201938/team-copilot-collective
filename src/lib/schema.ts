@@ -601,11 +601,6 @@ export const generateTrainingSchemas = (modules: TrainingModule[], faqs?: FAQ[])
           "Copilot Governance und Compliance",
           "Copilot Rollout und Adoption"
         ],
-        "hasCredential": {
-          "@type": "EducationalOccupationalCredential",
-          "name": "Microsoft Copilot Training Zertifikat",
-          "credentialCategory": "Professional Development"
-        }
       },
       // All Courses
       ...courses,

@@ -229,28 +229,6 @@ const UnsereAngebote = () => {
               </div>
             </div>
 
-            {/* Zertifizierungsprogramme Info */}
-            <div className="mt-8 max-w-4xl mx-auto">
-              <Card className="border-2 border-violet-500/30 bg-gradient-to-br from-violet-500/5 to-purple-500/5">
-                <CardHeader className="pb-3">
-                  <CardTitle className="flex items-center justify-center gap-2 text-lg">
-                    🎓 Prüfungen & Zertifizierungen auf Wunsch
-                  </CardTitle>
-                </CardHeader>
-                <CardDescription className="px-6 pb-6 text-center">
-                  <p className="mb-3">
-                    Für alle Trainings bieten wir optional <strong>maßgeschneiderte Quizze und Prüfungen</strong> an,
-                    bei denen Teilnehmer beweisen, dass sie das Gelernte verstanden haben. Nach bestandener Prüfung
-                    erhalten Mitarbeiter und Unternehmen ein offizielles <strong>Zertifikat</strong>.
-                  </p>
-                  <p className="text-sm text-muted-foreground">
-                    Auch aufbauende Zertifizierungsstufen möglich: <strong>Beginner → Advanced → Pro → Expert</strong>
-                    <br />
-                    <span className="italic">Investitionssicherheit für Unternehmen, Karriere-Boost für Mitarbeiter.</span>
-                  </p>
-                </CardDescription>
-              </Card>
-            </div>
           </div>
         </section>
       </main>

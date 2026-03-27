@@ -4,7 +4,6 @@ import {
   Radar,
   Headset,
   Gauge,
-  Award,
   Medal,
   ChevronDown
 } from "lucide-react";
@@ -29,11 +28,6 @@ const benefits = [
     icon: Gauge,
     title: "Praxisorientierter Trainingsansatz",
     description: "Unser praxisorientierter Trainingsansatz verbindet reale Arbeitsprozesse mit direkt anwendbaren Workflows. Jeder Teilnehmer verlässt das Training mit fertigen, getesteten Workflows und Prompts. Die erlernten Techniken können ab dem nächsten Arbeitstag produktiv eingesetzt werden."
-  },
-  {
-    icon: Award,
-    title: "Zertifizierung",
-    description: "Auf Wunsch können Teilnehmende ihr Wissen in einer praxisnahen Prüfung zeigen. Dabei geht es um reale Anwendung: sinnvolles Prompting, kritische Bewertung von Ergebnissen und ein sicheres Arbeiten mit Copilot. Wer die Prüfung ablegt, erhält ein aussagekräftiges Zertifikat als Nachweis der erworbenen Fähigkeiten. Optional aufeinander aufbauende Stufen von Beginner bis Expert unterstützen einen strukturierten Lernweg."
   },
   {
     icon: Medal,

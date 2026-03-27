@@ -89,7 +89,6 @@ const UeberUns = () => {
           "@id": "https://yellow-boat.com/#organization"
         },
         "areaServed": "DACH",
-        "educationalCredentialAwarded": "Microsoft Copilot Zertifikat",
         "teaches": [
           "Microsoft 365 Copilot für Büroarbeit",
           "GitHub Copilot für Entwickler",
