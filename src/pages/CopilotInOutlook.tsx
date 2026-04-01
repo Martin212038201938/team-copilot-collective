@@ -101,7 +101,7 @@ const CopilotInOutlook = () => {
   return (
     <>
       <SEOHead
-        title="Copilot in Outlook nutzen: Tipps & Praxisbeispiele 2026 | copilotenschule.de"
+        title="Copilot in Outlook nutzen: Tipps & Praxisbeispiele 2026"
         description="So nutze ich Copilot in Outlook: Fragen beantworten, Mails vorformulieren, Termine vorbereiten. Praxistipps und was sich ab April 2026 ändert."
         keywords={[
           "Copilot in Outlook nutzen",

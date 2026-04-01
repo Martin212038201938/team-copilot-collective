@@ -95,7 +95,7 @@ const CopilotAgentDigitalesGedaechtnis = () => {
   return (
     <>
       <SEOHead
-        title="Copilot Agent für Meeting-Protokolle: Digitales Gedächtnis bauen | copilotenschule.de"
+        title="Copilot Agent für Meeting-Protokolle: Digitales Gedächtnis bauen"
         description="Schritt-für-Schritt-Anleitung: Eigenen Copilot-Agenten bauen, der Meeting-Transkripte automatisch in Ihr Wunschformat bringt und als durchsuchbares digitales Gedächtnis ablegt."
         keywords={[
           "Copilot Agent erstellen",

@@ -95,7 +95,7 @@ const PromptBibliothekenQuatsch = () => {
   return (
     <>
       <SEOHead
-        title="Warum Prompt-Bibliotheken Quatsch sind | Copilotenschule"
+        title="Warum Prompt-Bibliotheken Quatsch sind"
         description="Prompt-Listen klingen gut, bringen aber wenig. Erfahren Sie, warum echtes Prompting-Training und Copilot-Agenten die besseren Alternativen sind."
         keywords={["Prompt Bibliothek", "Prompting Training", "Copilot Agenten", "KI Training", "Prompt Engineering", "Copilot Training"]}
         canonicalUrl={pageUrl}

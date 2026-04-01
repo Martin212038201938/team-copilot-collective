@@ -100,7 +100,7 @@ const CopilotAdoption2026 = () => {
   return (
     <>
       <SEOHead
-        title={`${PAGE_TITLE} | Copilotenschule`}
+        title={`${PAGE_TITLE}`}
         description="Aktuelle Zahlen Januar 2026: 15 Mio. Copilot-Seats, 160% Wachstum, bis zu 408% ROI. Eine nüchterne Einordnung jenseits des Microsoft-Marketings."
         keywords={["Microsoft Copilot 2026", "Copilot Adoption", "Satya Nadella Copilot", "Microsoft 365 Copilot ROI", "Copilot Statistiken"]}
         canonicalUrl={pageUrl}

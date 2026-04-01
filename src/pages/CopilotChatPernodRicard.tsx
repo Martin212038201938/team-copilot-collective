@@ -92,7 +92,7 @@ const CopilotChatPernodRicard = () => {
   return (
     <>
       <SEOHead
-        title="Copilot Chat Free bei Pernod Ricard: Use Cases aus dem Büroalltag | copilotenschule.de"
+        title="Copilot Chat Free bei Pernod Ricard: Use Cases aus dem Büroalltag"
         description="Wie Pernod Ricard vom kostenlosen Copilot Chat in Microsoft 365 profitieren kann: Praxisbeispiele aus Außendienst, Consumer Care und Geschäftsführung."
         keywords={[
           "Copilot Chat Free Plan",

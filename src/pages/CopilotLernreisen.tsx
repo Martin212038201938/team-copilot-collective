@@ -103,7 +103,7 @@ const CopilotLernreisen = () => {
   return (
     <>
       <SEOHead
-        title="Copilot Lernreise vs. Tagesschulung: Warum 4×2 Stunden mehr bringen als 1×8 | copilotenschule.de"
+        title="Copilot Lernreise vs. Tagesschulung: Warum 4×2 Stunden mehr bringen als 1×8"
         description="Warum Copilot-Lernreisen nachhaltiger wirken als ganztägige Schulungen. Vergessenskurve, Praxistransfer, Kalenderfreundlichkeit – 8 Gründe für verteiltes Lernen."
         keywords={[
           "Copilot Lernreise",

@@ -99,7 +99,7 @@ const KiRealitaet2026 = () => {
   return (
     <>
       <SEOHead
-        title="KI in deutschen Unternehmen 2026: Was die großen Beratungsfirmen wirklich sehen | copilotenschule.de"
+        title="KI in deutschen Unternehmen 2026: Was die großen Beratungsfirmen wirklich sehen"
         description="Umfassende Analyse der KI-Realität: McKinsey, BCG, Deloitte, PwC, KPMG zeigen aktuelle Investitionen, ROI und Implementierungserfolg in deutschen Unternehmen 2026."
         keywords={[
           "KI Deutschland 2026",

@@ -102,7 +102,7 @@ const WarumVerteiltesLernen = () => {
   return (
     <>
       <SEOHead
-        title="Warum verteiltes Lernen bei Copilot-Trainings funktioniert | copilotenschule.de"
+        title="Warum verteiltes Lernen bei Copilot-Trainings funktioniert"
         description="Warum Copilot-Lernreisen nachhaltiger wirken als ganztägige Schulungen – und was die Wissenschaft dazu sagt."
         keywords={[
           "Copilot Training Erfahrung",

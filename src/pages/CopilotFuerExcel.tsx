@@ -101,7 +101,7 @@ const CopilotFuerExcel = () => {
   return (
     <>
       <SEOHead
-        title="Microsoft Copilot für Excel: Was die KI in Tabellen wirklich kann | Copilotenschule"
+        title="Microsoft Copilot für Excel: Was die KI in Tabellen wirklich kann"
         description="Was kann Microsoft Copilot in Excel wirklich? Praxisbeispiele, Prompts und ehrliche Einschätzung der Grenzen – von jemandem, der Werbung studiert hat und Pivot-Tabellen früher gefürchtet hat."
         keywords={["Copilot Excel", "Microsoft Copilot Excel", "Excel KI", "Copilot Tabellen", "Excel Prompts", "Copilot Datenanalyse", "Excel Pivot Copilot", "KI Excel Formeln"]}
         canonicalUrl={pageUrl}

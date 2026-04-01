@@ -96,7 +96,7 @@ const KiSchulungMitarbeiterPflicht = () => {
   return (
     <>
       <SEOHead
-        title="KI-Schulung Mitarbeiter Pflicht: Was der EU AI Act fordert | copilotenschule.de"
+        title="KI-Schulung Mitarbeiter Pflicht: Was der EU AI Act fordert"
         description="EU AI Act Artikel 4 verpflichtet Unternehmen seit Februar 2025 zur KI-Schulung aller Mitarbeiter, die mit KI arbeiten. Fristen, Haftungsrisiken und konkrete Umsetzung."
         keywords={[
           "KI Schulung Mitarbeiter Pflicht",

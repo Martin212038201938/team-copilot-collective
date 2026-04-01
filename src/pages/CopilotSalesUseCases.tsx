@@ -100,7 +100,7 @@ const CopilotSalesUseCases = () => {
   return (
     <>
       <SEOHead
-        title="Copilot im Vertrieb: Use Cases mit echter Zeitersparnis | copilotenschule.de"
+        title="Copilot im Vertrieb: Use Cases mit echter Zeitersparnis"
         description="Die wirkungsvollsten Copilot Use Cases für Vertriebsteams: Konkrete Zeitersparnis für Innendienst und Außendienst mit M365 Copilot und Dynamics 365 Sales."
         keywords={[
           "Microsoft Copilot Vertrieb",

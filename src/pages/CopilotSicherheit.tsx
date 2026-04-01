@@ -93,7 +93,7 @@ const CopilotSicherheit = () => {
   return (
     <>
       <SEOHead
-        title="Microsoft Copilot und Datenschutz: Kann die KI jetzt alles sehen? | copilotenschule.de"
+        title="Microsoft Copilot und Datenschutz: Kann die KI jetzt alles sehen?"
         description="Kann Copilot alle Firmendaten sehen? Liest Microsoft mit? Was ist mit der DSGVO? Ehrliche Antworten auf die häufigsten Datenschutz-Fragen rund um Microsoft 365 Copilot."
         keywords={[
           "Copilot Datenschutz",

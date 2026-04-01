@@ -93,7 +93,7 @@ const Microsoft365E7FrontierSuite = () => {
   return (
     <>
       <SEOHead
-        title="Microsoft 365 E7: Kosten, Inhalte & Preisvergleich der Frontier Suite 2026 | copilotenschule.de"
+        title="Microsoft 365 E7: Kosten, Inhalte & Preisvergleich der Frontier Suite 2026"
         description="Microsoft 365 E7 (Frontier Suite) ab Mai 2026 für 99 €/Nutzer: Was enthalten ist, Preisvergleich E3 vs. E5 vs. E7, Agent 365 erklärt und für wen sich der Umstieg lohnt."
         keywords={[
           "Microsoft 365 E7",

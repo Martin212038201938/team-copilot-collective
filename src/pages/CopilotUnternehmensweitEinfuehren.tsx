@@ -109,7 +109,7 @@ const CopilotUnternehmensweitEinfuehren = () => {
   return (
     <>
       <SEOHead
-        title="Warum Microsoft Copilot unternehmensweit einführen? | copilotenschule.de"
+        title="Warum Microsoft Copilot unternehmensweit einführen?"
         description="Warum Shadow-IT bei KI gefährlich ist: Zentrale Copilot-Einführung sichert DSGVO-Konformität, Grounding mit Unternehmensdaten und unternehmensweite Synergien."
         keywords={[
           "Microsoft Copilot Einführung",

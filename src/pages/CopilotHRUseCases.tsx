@@ -96,7 +96,7 @@ const CopilotHRUseCases = () => {
   return (
     <>
       <SEOHead
-        title="Copilot im HR: Use Cases mit echter Zeitersparnis für Personalabteilungen | copilotenschule.de"
+        title="Copilot im HR: Use Cases mit echter Zeitersparnis für Personalabteilungen"
         description="Die wirkungsvollsten Copilot Use Cases für HR: Von Stellenausschreibungen über Zeugnisse bis People Analytics – konkrete Zeitersparnis pro Mitarbeiter."
         keywords={[
           "Microsoft Copilot HR",

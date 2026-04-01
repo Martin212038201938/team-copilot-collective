@@ -72,7 +72,7 @@ const BecomeTrainer = () => {
   return (
     <div className="min-h-screen">
       <SEOHead
-        title="Trainer werden bei copilotenschule.de"
+        title="Trainer werden bei der Copilotenschule"
         description="Werden Sie Teil unseres Trainer-Netzwerks für Microsoft Copilot Schulungen. Drei Wege zum Trainer: KI-Praktiker, erfahrene Trainer oder Unternehmen."
         canonicalUrl="https://copilotenschule.de/trainer-werden"
       />

@@ -96,7 +96,7 @@ const PromptEngineering = () => {
   return (
     <>
       <SEOHead
-        title="Prompt Engineering: Effektive KI-Prompts für Microsoft Copilot | Copilotenschule"
+        title="Prompt Engineering: Effektive KI-Prompts für Microsoft Copilot"
         description="Prompt Engineering Masterclass: Das CRAFT-Framework, bewährte Techniken und der Zauberstab-Prompt für bessere Copilot-Ergebnisse."
         keywords={["Prompt Engineering", "CRAFT Framework", "Microsoft Copilot Prompts", "Prompt Techniken", "KI Prompts", "Copilot Best Practices"]}
         canonicalUrl={pageUrl}

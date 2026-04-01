@@ -102,7 +102,7 @@ const CopilotRoiBerechnen = () => {
   return (
     <>
       <SEOHead
-        title="Copilot ROI berechnen: Lohnt sich die Investition? | Copilotenschule"
+        title="Copilot ROI berechnen: Lohnt sich die Investition?"
         description="Konkrete Methoden zur ROI-Berechnung von Microsoft Copilot. Mit Excel-Vorlage, Praxisbeispielen und messbaren KPIs für Ihr Business Case."
         keywords={["Copilot ROI","Microsoft Copilot ROI berechnen","Copilot Business Case","Copilot Kosten Nutzen","Return on Investment Copilot","Copilot Produktivitätssteigerung"]}
         canonicalUrl={pageUrl}

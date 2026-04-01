@@ -120,7 +120,7 @@ const UeberUns = () => {
   return (
     <div className="min-h-screen">
       <SEOHead
-        title="Über uns - copilotenschule.de | Microsoft Copilot Trainings"
+        title="Über uns – Microsoft Copilot Trainings"
         description="Die Copilotenschule ist spezialisiert auf die Einführung und Weiterqualifizierungen im Umfeld der Microsoft Copiloten. Im Gegensatz zu anderen Anbietern bieten wir den Teilnehmern keinen Bauchladen an Tools an, die in ihrem Umfeld nicht compliant oder wertschöpfend sind."
         keywords={[
           "copilotenschule",

@@ -96,7 +96,7 @@ const KiHalluzinationenVermeiden = () => {
   return (
     <>
       <SEOHead
-        title="KI-Halluzinationen vermeiden: So wird KI-Output verlässlich | copilotenschule.de"
+        title="KI-Halluzinationen vermeiden: So wird KI-Output verlässlich"
         description="Wie KI-Halluzinationen entstehen, wie man sie durch besseres Prompting vermeidet und wie man KI selbst zur Qualitätssicherung und Fehlerkorrektur einsetzt."
         keywords={[
           "KI Halluzinationen vermeiden",

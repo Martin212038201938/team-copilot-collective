@@ -152,7 +152,7 @@ const CopilotFuerWord = () => {
   return (
     <>
       <SEOHead
-        title="Microsoft Copilot für Word: Der ultimative Guide | Copilotenschule"
+        title="Microsoft Copilot für Word: Der ultimative Guide"
         description="Entdecken Sie, wie Microsoft Copilot in Word Ihre Dokumentenerstellung revolutioniert. Mit praktischen Beispielen, Prompts und Tipps für maximale Produktivität."
         keywords={["Copilot für Word","Microsoft Copilot Word","Word KI Assistent","Dokumente mit KI erstellen","Word Produktivität","Microsoft 365 Copilot"]}
         canonicalUrl={pageUrl}

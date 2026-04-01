@@ -101,7 +101,7 @@ const CopilotADHS = () => {
   return (
     <>
       <SEOHead
-        title="Microsoft Copilot und ADHS: Wie KI mir hilft, fokussierter zu arbeiten | copilotenschule.de"
+        title="Microsoft Copilot und ADHS: Wie KI mir hilft, fokussierter zu arbeiten"
         description="Ein persönlicher Erfahrungsbericht: Wie Microsoft Copilot mir als ADHS-Betroffener hilft, fokussierter und produktiver zu arbeiten - mit konkreten Workflows und ehrlichen Grenzen."
         keywords={[
           "ADHS Produktivität",
