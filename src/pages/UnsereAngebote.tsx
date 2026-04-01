@@ -172,9 +172,14 @@ const UnsereAngebote = () => {
                   to={`/trainings/${module.slug}`}
                   className="block group"
                 >
-                  <Card className="h-full min-h-[280px] flex flex-col cursor-pointer hover:shadow-2xl transition-all duration-300 border-2 hover:border-primary/50 bg-card/50 backdrop-blur-sm">
+                  <Card className={`h-full min-h-[280px] flex flex-col cursor-pointer hover:shadow-2xl transition-all duration-300 border-2 hover:border-primary/50 bg-card/50 backdrop-blur-sm ${module.popular ? 'border-amber-300 shadow-md ring-1 ring-amber-200/50' : ''}`}>
                     <CardHeader className="flex-1 py-4">
                       <div className="flex flex-wrap gap-1.5 mb-2">
+                        {module.popular && (
+                          <Badge className="bg-amber-100 text-amber-800 border-amber-300 hover:bg-amber-100 text-[11px] px-2 py-0.5 font-semibold">
+                            ★ Häufig gebucht
+                          </Badge>
+                        )}
                         {module.tiers.includes("free") && (
                           <Badge className="bg-emerald-100 text-emerald-700 border-emerald-200 hover:bg-emerald-100 text-[11px] px-2 py-0.5">
                             Copilot Free

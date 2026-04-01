@@ -27,77 +27,12 @@ export interface Training {
   keywords: string[];
   // FAQ für strukturierte Daten
   faqs?: TrainingFAQ[];
+  // "Häufig gebucht" Badge
+  popular?: boolean;
 }
 
 // Alle Trainingsmodule mit SEO-optimierten Slugs
 export const trainings: Training[] = [
-  {
-    slug: "betriebsrat-ki-workshop",
-    icon: Scale,
-    title: "Betriebsrat & KI: Workshop zur Gestaltung der KI-unterstützten Arbeit",
-    duration: "Halbtag (4h) | Ganztag (7,5h)",
-    description: "Workshop speziell für Betriebsräte und Personalvertretungen: Sie erarbeiten gemeinsam die Maßnahmen, Entscheidungen und Dokumente, die für eine erfolgreiche und rechtssichere Copilot-Einführung nötig sind. Kein Frontalunterricht – sondern strukturierte Arbeit an Ihrer konkreten Situation. Im Ganztags-Format zusätzlich mit praktischer Einführung in die Copilot-Funktionen und Einblick in die Admin-Dashboards.",
-    features: [
-      "Scope des anstehenden Changes gemeinsam definieren: Welche Copilot-Produkte werden eingeführt, wer ist betroffen, was ändert sich?",
-      "Begriffe und Zusammenhänge verstehen: Microsoft 365 Copilot vs. kostenloser Copilot, Purview, EU Data Boundary, EU AI Act – verständlich erklärt",
-      "Mitbestimmungsrechte konkret anwenden: §87, §80, §90, §97 BetrVG, LAG Hessen 2024, Sachverständigenrecht – was greift bei Ihnen?",
-      "Betriebsvereinbarung erarbeiten: Muster-Textbausteine als Ausgangsbasis, gemeinsam auf Ihre Situation angepasst",
-      "Recruiting und KI: Wo ist Copilot als Werkzeug zulässig, wo beginnt Hochrisiko-KI nach EU AI Act?",
-      "Einblick in Admin-Dashboards: Was kann ein Admin sehen, was nicht? Purview, Usage Reports, Berechtigungen – live oder mit Screenshots",
-      "Checkliste ausfüllen: 14-Punkte-Checkliste für den Copilot-Rollout gemeinsam durcharbeiten und dokumentieren",
-      "Maßnahmenplan erstellen: Konkrete nächste Schritte, Zuständigkeiten und Fristen – als Ergebnis des Workshops",
-      "Ganztags-Format: Zusätzlich praktische Einführung in die Copilot-Funktionen in Word, Excel, Outlook und Teams",
-      "Alle Teilnehmenden erhalten: BV-Textbausteine, ausgefüllte Checkliste, Maßnahmenplan und Schulungsunterlage"
-    ],
-    tiers: ["free", "paid"],
-    questionLead: "Unser Betriebsrat steht vor der Copilot-Einführung – wie können wir den Prozess aktiv mitgestalten statt nur zu reagieren?",
-    targetAudience: [
-      "Betriebsratsgremien, die vor oder während einer Microsoft Copilot-Einführung stehen und den Prozess aktiv mitgestalten wollen",
-      "Betriebsratsvorsitzende, die eine fundierte Verhandlungsgrundlage für die Betriebsvereinbarung brauchen",
-      "Gesamtbetriebsräte und Konzernbetriebsräte, die einheitliche Regelungen für mehrere Standorte erarbeiten wollen",
-      "Schwerbehindertenvertretungen und Jugend- und Auszubildendenvertretungen, die ihre Perspektive in die KI-Einführung einbringen wollen",
-      "Personalvertretungen im öffentlichen Dienst mit vergleichbarer Mitbestimmungssituation"
-    ],
-    learningOutcomes: [
-      "Sie kennen Ihre konkreten Mitbestimmungsrechte bei der KI-Einführung – und deren Grenzen (inkl. aktuelle Rechtsprechung LAG Hessen 2024)",
-      "Sie verstehen die technischen Grundlagen von Microsoft 365 Copilot: Was kann ein Admin sehen, was kann Copilot auf welche Daten zugreifen, was regelt Purview?",
-      "Sie haben eine auf Ihr Unternehmen zugeschnittene Checkliste und einen Maßnahmenplan erarbeitet",
-      "Sie verfügen über Muster-Textbausteine für die Betriebsvereinbarung, die Sie als Verhandlungsgrundlage nutzen können",
-      "Im Ganztags-Format: Sie können Microsoft Copilot selbst bedienen und für Ihre Betriebsratsarbeit einsetzen"
-    ],
-    businessImpact: [
-      "Der Copilot-Rollout wird nicht durch ungeklärte Mitbestimmungsfragen verzögert – der Betriebsrat agiert als kompetenter Partner",
-      "Die Betriebsvereinbarung entsteht auf Basis erprobter Textbausteine statt auf dem leeren Blatt – das spart Wochen",
-      "Betriebsratsmitglieder können gegenüber der Belegschaft kompetent Auskunft geben und Bedenken adressieren",
-      "Der Betriebsrat nutzt Copilot selbst produktiv – für Protokolle, BV-Entwürfe und Kommunikation (Ganztags-Format)",
-      "Die Qualifizierung des Betriebsrats ist nach §37 Abs. 6 BetrVG als erforderliche Schulung einzustufen – Kosten trägt der Arbeitgeber"
-    ],
-    metaTitle: "Betriebsrat KI-Workshop: Copilot-Einführung aktiv gestalten | copilotenschule.de",
-    metaDescription: "Workshop für Betriebsräte: Copilot-Einführung mitgestalten. Mitbestimmung, Betriebsvereinbarung und Praxis – Halbtag oder Ganztag. Kosten trägt der Arbeitgeber (§37.6 BetrVG).",
-    keywords: ["Betriebsrat KI Workshop", "Copilot Betriebsrat Schulung", "Betriebsvereinbarung Copilot", "KI Mitbestimmung Workshop", "Betriebsrat Copilot Training"],
-    faqs: [
-      {
-        question: "Wer bezahlt die Schulung des Betriebsrats zu Microsoft Copilot?",
-        answer: "Der Arbeitgeber. Nach §37 Abs. 6 BetrVG hat der Betriebsrat Anspruch auf Schulungen, die für seine Arbeit erforderlich sind. Bei der Einführung eines KI-Systems wie Microsoft 365 Copilot ist die Erforderlichkeit regelmäßig gegeben. Eine fertige Begründungshilfe zum Herunterladen finden Sie auf unserer Wissensseite unter copilotenschule.de/wissen/copilot-betriebsrat."
-      },
-      {
-        question: "Was ist der Unterschied zwischen dem Halbtags- und dem Ganztags-Format?",
-        answer: "Im Halbtags-Format (4 Stunden) liegt der Fokus auf der gemeinsamen Erarbeitung von Maßnahmen, Betriebsvereinbarung und Checkliste – die Teilnehmenden arbeiten an ihrer konkreten Situation. Das Ganztags-Format (7,5 Stunden) enthält zusätzlich eine praktische Einführung in die Copilot-Funktionen in Word, Excel, Outlook und Teams sowie einen Einblick in die Admin-Dashboards. Empfehlung: Ganztag, wenn der Betriebsrat Copilot auch selbst nutzen will."
-      },
-      {
-        question: "Können wir den Workshop auch als Online-Training durchführen?",
-        answer: "Ja, der Workshop funktioniert als Classroom-Training vor Ort und als Live-Online-Training gleichermaßen. Bei der Online-Variante arbeiten wir mit Breakout-Sessions und geteilten Dokumenten, damit die gemeinsame Erarbeitung genauso intensiv ist wie im Seminarraum."
-      },
-      {
-        question: "Brauchen die Teilnehmenden bereits Copilot-Lizenzen?",
-        answer: "Für das Halbtags-Format nicht – dort geht es um Strategie, Recht und Betriebsvereinbarung. Für den praktischen Teil im Ganztags-Format sind Lizenzen hilfreich, aber nicht zwingend: Wir arbeiten auch mit dem kostenlosen Microsoft Copilot und zeigen die M365-Copilot-Funktionen bei Bedarf per Demo."
-      },
-      {
-        question: "Was nehmen die Teilnehmenden konkret mit nach Hause?",
-        answer: "Drei Dokumente: Erstens Muster-Textbausteine für die Betriebsvereinbarung, die auf Ihre Situation angepasst wurden. Zweitens eine ausgefüllte 14-Punkte-Checkliste mit dem Status Ihrer Copilot-Einführung. Drittens einen Maßnahmenplan mit konkreten nächsten Schritten, Zuständigkeiten und Fristen."
-      }
-    ]
-  },
   {
     slug: "copilot-grundlagen-prompt-design",
     icon: Brain,
@@ -116,6 +51,7 @@ export const trainings: Training[] = [
       "Buchbar als: Halbtag (4h), Ganztag (7h) oder Lernreise (3×2h über 3 Wochen)"
     ],
     tiers: ["free"],
+    popular: true,
     questionLead: "Welches Training eignet sich am besten, um Microsoft Copilot von Grund auf zu lernen – auch ohne Lizenz?",
     targetAudience: [
       "Büromitarbeiter, die zum ersten Mal mit KI-Assistenten arbeiten und einen strukturierten Einstieg suchen",
@@ -175,6 +111,7 @@ export const trainings: Training[] = [
       "Buchbar als: Halbtag (4h), Ganztag (7h), 2-tägig oder Online-Lernreise (4×, 6× oder 8×2h)"
     ],
     tiers: ["paid"],
+    popular: true,
     questionLead: "Wie nutze ich Microsoft 365 Copilot in Word, Excel, PowerPoint, Outlook und Teams produktiv?",
     targetAudience: [
       "Wissensarbeiter mit bestehender Copilot-Lizenz, die das volle Potenzial der Office-Integration ausschöpfen wollen",
@@ -392,6 +329,66 @@ export const trainings: Training[] = [
       {
         question: "Welche Risiken gibt es bei der KI-Nutzung im Unternehmen?",
         answer: "Die größten Risiken: Unbeabsichtigte Weitergabe sensibler Daten, Urheberrechtsverletzungen durch KI-generierte Inhalte, Haftungsfragen bei falschen KI-Outputs, und Compliance-Verstöße durch ungeschulte Mitarbeiter. All diese Risiken sind managebar – mit klaren Policies, technischen Guardrails (DLP, Information Protection) und regelmäßigen Schulungen."
+      }
+    ]
+  },
+  {
+    slug: "copilot-lernreise-8-wochen",
+    icon: GraduationCap,
+    title: "Copilot Lernreise: Von 0 auf 100 in 8 Wochen",
+    duration: "8 × 2 Stunden (16 Stunden gesamt)",
+    description: "Begleitete Lernreise für nachhaltigen Kompetenzaufbau: In 8 wöchentlichen Sessions à 2 Stunden lernen Sie Microsoft Copilot von Grund auf – mit Theorie, Live-Demos und jede Woche einem neuen praktischen Use Case, den Sie direkt in Ihrem Arbeitsalltag umsetzen. Ideal für Teams, die Copilot schrittweise und nachhaltig in ihre Arbeit integrieren wollen.",
+    features: [
+      "Woche 1: Copilot Grundlagen – Interface, erste Prompts, Erwartungsmanagement + Use Case: E-Mail-Zusammenfassungen",
+      "Woche 2: Copilot in Word – Dokumente erstellen, überarbeiten, zusammenfassen + Use Case: Protokoll aus Meeting-Notizen",
+      "Woche 3: Copilot in Excel – Datenanalyse, Formeln, Visualisierungen + Use Case: Monatsbericht automatisieren",
+      "Woche 4: Copilot in PowerPoint – Präsentationen erstellen und optimieren + Use Case: Pitch-Deck aus Briefing",
+      "Woche 5: Copilot in Outlook – E-Mail-Produktivität steigern + Use Case: Wöchentliche Status-Mail automatisieren",
+      "Woche 6: Copilot in Teams – Meetings zusammenfassen, Chat nutzen + Use Case: Meeting-Follow-ups automatisieren",
+      "Woche 7: Advanced Prompting – Komplexe Anfragen, Verkettung, Custom Instructions + Use Case: Persönliche Prompt-Bibliothek",
+      "Woche 8: Integration & Workflow – Alles zusammenführen + Use Case: Individuellen End-to-End-Workflow entwickeln",
+      "Zwischen den Sessions: Praxisaufgaben, Peer-Learning, Support via Teams-Kanal"
+    ],
+    tiers: ["paid"],
+    popular: true,
+    questionLead: "Gibt es ein Copilot-Training, das über mehrere Wochen geht – für nachhaltigen Kompetenzaufbau statt Tagesschulung?",
+    targetAudience: [
+      "Unternehmen, die nachhaltige KI-Kompetenz aufbauen wollen statt einmaliger Workshop-Events",
+      "L&D-Verantwortliche, die eine begleitete Lernreise in bestehende Weiterbildungsprogramme integrieren möchten",
+      "Teams, die Copilot schrittweise in den Arbeitsalltag integrieren und dabei begleitet werden wollen",
+      "Führungskräfte, die messbare Verhaltensänderung statt nur Wissensvermittlung erreichen möchten"
+    ],
+    learningOutcomes: [
+      "Sie beherrschen nach 8 Wochen alle relevanten Copilot-Funktionen in Word, Excel, PowerPoint, Outlook und Teams",
+      "Sie haben jede Woche einen konkreten Use Case in Ihrem echten Arbeitsalltag umgesetzt und verfestigt",
+      "Sie verfügen über eine persönliche Prompt-Bibliothek und einen individuellen End-to-End-Workflow",
+      "Sie können Kollegen eigenständig unterstützen, weil Sie die häufigsten Probleme bereits selbst gelöst haben"
+    ],
+    businessImpact: [
+      "Nachhaltigkeit: 87% der Teilnehmer nutzen Copilot auch 3 Monate nach der Lernreise aktiv – vs. 30% bei Tagesschulungen",
+      "Jede Woche entsteht ein direkt anwendbarer Workflow – der Produktivitätsgewinn beginnt ab Woche 1",
+      "Der Betreuungsaufwand für IT und Helpdesk sinkt, weil Teilnehmer lernen, Probleme selbst zu lösen",
+      "Die Lernreise ist mit 2,5 Stunden pro Woche minimal invasiv – kein ganzer Arbeitstag geht verloren"
+    ],
+    metaTitle: "Copilot Lernreise – 8 Wochen Kompetenzaufbau | copilotenschule.de",
+    metaDescription: "Nachhaltige Copilot-Lernreise: 8 Wochen, 8 Sessions, 8 Use Cases. Schrittweiser Kompetenzaufbau für Teams mit Praxisaufgaben.",
+    keywords: ["Copilot Lernreise", "Copilot 8 Wochen", "nachhaltiges KI-Training", "Copilot Blended Learning", "Copilot Kompetenzaufbau"],
+    faqs: [
+      {
+        question: "Wie stellen wir sicher, dass KI-Training nachhaltig wirkt und nicht nach einer Woche vergessen ist?",
+        answer: "Das Problem kennen viele: Nach einem eintägigen Workshop verpufft das Wissen schnell. Die Lösung: Ein Lernreise-Format über mehrere Wochen. Jede Woche ein neues Thema, dazwischen praktische Anwendung im Arbeitsalltag, und in der nächsten Session werden echte Fragen aus der Praxis geklärt. So wird Copilot zur Gewohnheit, nicht zum einmaligen Event."
+      },
+      {
+        question: "Gibt es Copilot-Training, das über mehrere Wochen geht statt an einem Tag?",
+        answer: "Ja, eine 8-wöchige Lernreise mit wöchentlichen 2-Stunden-Sessions ist ideal für nachhaltigen Kompetenzaufbau. Jede Woche ein neuer Schwerpunkt (Word, Excel, PowerPoint...), jede Woche ein praktischer Use Case zum Umsetzen. Zwischen den Sessions: echte Anwendung, Peer Learning, Support-Kanal für Fragen. So wird KI-Kompetenz zur dauerhaften Fähigkeit."
+      },
+      {
+        question: "Wie viel Zeit müssen meine Mitarbeiter für eine Copilot-Lernreise einplanen?",
+        answer: "2 Stunden pro Woche für die Live-Session, plus ca. 30-60 Minuten für die praktische Umsetzung des wöchentlichen Use Cases im Arbeitsalltag. Insgesamt also 2,5-3 Stunden pro Woche über 8 Wochen. Das ist überschaubar und lässt sich gut in den Arbeitsalltag integrieren – anders als ein Ganztags-Workshop, der den Kalender blockiert."
+      },
+      {
+        question: "Was unterscheidet eine Lernreise von einem kompakten Workshop?",
+        answer: "Der entscheidende Unterschied: Transfer in die Praxis. Bei einem Tagesworkshop lernen Mitarbeiter viel auf einmal, aber setzen es danach oft nicht um. Bei einer Lernreise kommt jede Woche ein neues Thema – klein genug, um es sofort anzuwenden. Die nächste Session startet mit Erfahrungsaustausch: Was hat funktioniert? Wo gab es Probleme? So entsteht echte Verhaltensänderung."
       }
     ]
   },
@@ -682,6 +679,74 @@ export const trainings: Training[] = [
     ]
   },
   {
+    slug: "betriebsrat-ki-workshop",
+    icon: Scale,
+    title: "Betriebsrat & KI: Workshop zur Gestaltung der KI-unterstützten Arbeit",
+    duration: "Halbtag (4h) | Ganztag (7,5h)",
+    description: "Workshop speziell für Betriebsräte und Personalvertretungen: Sie erarbeiten gemeinsam die Maßnahmen, Entscheidungen und Dokumente, die für eine erfolgreiche und rechtssichere Copilot-Einführung nötig sind. Kein Frontalunterricht – sondern strukturierte Arbeit an Ihrer konkreten Situation. Im Ganztags-Format zusätzlich mit praktischer Einführung in die Copilot-Funktionen und Einblick in die Admin-Dashboards.",
+    features: [
+      "Scope des anstehenden Changes gemeinsam definieren: Welche Copilot-Produkte werden eingeführt, wer ist betroffen, was ändert sich?",
+      "Begriffe und Zusammenhänge verstehen: Microsoft 365 Copilot vs. kostenloser Copilot, Purview, EU Data Boundary, EU AI Act – verständlich erklärt",
+      "Mitbestimmungsrechte konkret anwenden: §87, §80, §90, §97 BetrVG, LAG Hessen 2024, Sachverständigenrecht – was greift bei Ihnen?",
+      "Betriebsvereinbarung erarbeiten: Muster-Textbausteine als Ausgangsbasis, gemeinsam auf Ihre Situation angepasst",
+      "Recruiting und KI: Wo ist Copilot als Werkzeug zulässig, wo beginnt Hochrisiko-KI nach EU AI Act?",
+      "Einblick in Admin-Dashboards: Was kann ein Admin sehen, was nicht? Purview, Usage Reports, Berechtigungen – live oder mit Screenshots",
+      "Checkliste ausfüllen: 14-Punkte-Checkliste für den Copilot-Rollout gemeinsam durcharbeiten und dokumentieren",
+      "Maßnahmenplan erstellen: Konkrete nächste Schritte, Zuständigkeiten und Fristen – als Ergebnis des Workshops",
+      "Ganztags-Format: Zusätzlich praktische Einführung in die Copilot-Funktionen in Word, Excel, Outlook und Teams",
+      "Alle Teilnehmenden erhalten: BV-Textbausteine, ausgefüllte Checkliste, Maßnahmenplan und Schulungsunterlage"
+    ],
+    tiers: ["free", "paid"],
+    popular: true,
+    questionLead: "Unser Betriebsrat steht vor der Copilot-Einführung – wie können wir den Prozess aktiv mitgestalten statt nur zu reagieren?",
+    targetAudience: [
+      "Betriebsratsgremien, die vor oder während einer Microsoft Copilot-Einführung stehen und den Prozess aktiv mitgestalten wollen",
+      "Betriebsratsvorsitzende, die eine fundierte Verhandlungsgrundlage für die Betriebsvereinbarung brauchen",
+      "Gesamtbetriebsräte und Konzernbetriebsräte, die einheitliche Regelungen für mehrere Standorte erarbeiten wollen",
+      "Schwerbehindertenvertretungen und Jugend- und Auszubildendenvertretungen, die ihre Perspektive in die KI-Einführung einbringen wollen",
+      "Personalvertretungen im öffentlichen Dienst mit vergleichbarer Mitbestimmungssituation"
+    ],
+    learningOutcomes: [
+      "Sie kennen Ihre konkreten Mitbestimmungsrechte bei der KI-Einführung – und deren Grenzen (inkl. aktuelle Rechtsprechung LAG Hessen 2024)",
+      "Sie verstehen die technischen Grundlagen von Microsoft 365 Copilot: Was kann ein Admin sehen, was kann Copilot auf welche Daten zugreifen, was regelt Purview?",
+      "Sie haben eine auf Ihr Unternehmen zugeschnittene Checkliste und einen Maßnahmenplan erarbeitet",
+      "Sie verfügen über Muster-Textbausteine für die Betriebsvereinbarung, die Sie als Verhandlungsgrundlage nutzen können",
+      "Im Ganztags-Format: Sie können Microsoft Copilot selbst bedienen und für Ihre Betriebsratsarbeit einsetzen"
+    ],
+    businessImpact: [
+      "Der Copilot-Rollout wird nicht durch ungeklärte Mitbestimmungsfragen verzögert – der Betriebsrat agiert als kompetenter Partner",
+      "Die Betriebsvereinbarung entsteht auf Basis erprobter Textbausteine statt auf dem leeren Blatt – das spart Wochen",
+      "Betriebsratsmitglieder können gegenüber der Belegschaft kompetent Auskunft geben und Bedenken adressieren",
+      "Der Betriebsrat nutzt Copilot selbst produktiv – für Protokolle, BV-Entwürfe und Kommunikation (Ganztags-Format)",
+      "Die Qualifizierung des Betriebsrats ist nach §37 Abs. 6 BetrVG als erforderliche Schulung einzustufen – Kosten trägt der Arbeitgeber"
+    ],
+    metaTitle: "Betriebsrat KI-Workshop: Copilot-Einführung aktiv gestalten | copilotenschule.de",
+    metaDescription: "Workshop für Betriebsräte: Copilot-Einführung mitgestalten. Mitbestimmung, Betriebsvereinbarung und Praxis – Halbtag oder Ganztag. Kosten trägt der Arbeitgeber (§37.6 BetrVG).",
+    keywords: ["Betriebsrat KI Workshop", "Copilot Betriebsrat Schulung", "Betriebsvereinbarung Copilot", "KI Mitbestimmung Workshop", "Betriebsrat Copilot Training"],
+    faqs: [
+      {
+        question: "Wer bezahlt die Schulung des Betriebsrats zu Microsoft Copilot?",
+        answer: "Der Arbeitgeber. Nach §37 Abs. 6 BetrVG hat der Betriebsrat Anspruch auf Schulungen, die für seine Arbeit erforderlich sind. Bei der Einführung eines KI-Systems wie Microsoft 365 Copilot ist die Erforderlichkeit regelmäßig gegeben. Eine fertige Begründungshilfe zum Herunterladen finden Sie auf unserer Wissensseite unter copilotenschule.de/wissen/copilot-betriebsrat."
+      },
+      {
+        question: "Was ist der Unterschied zwischen dem Halbtags- und dem Ganztags-Format?",
+        answer: "Im Halbtags-Format (4 Stunden) liegt der Fokus auf der gemeinsamen Erarbeitung von Maßnahmen, Betriebsvereinbarung und Checkliste – die Teilnehmenden arbeiten an ihrer konkreten Situation. Das Ganztags-Format (7,5 Stunden) enthält zusätzlich eine praktische Einführung in die Copilot-Funktionen in Word, Excel, Outlook und Teams sowie einen Einblick in die Admin-Dashboards. Empfehlung: Ganztag, wenn der Betriebsrat Copilot auch selbst nutzen will."
+      },
+      {
+        question: "Können wir den Workshop auch als Online-Training durchführen?",
+        answer: "Ja, der Workshop funktioniert als Classroom-Training vor Ort und als Live-Online-Training gleichermaßen. Bei der Online-Variante arbeiten wir mit Breakout-Sessions und geteilten Dokumenten, damit die gemeinsame Erarbeitung genauso intensiv ist wie im Seminarraum."
+      },
+      {
+        question: "Brauchen die Teilnehmenden bereits Copilot-Lizenzen?",
+        answer: "Für das Halbtags-Format nicht – dort geht es um Strategie, Recht und Betriebsvereinbarung. Für den praktischen Teil im Ganztags-Format sind Lizenzen hilfreich, aber nicht zwingend: Wir arbeiten auch mit dem kostenlosen Microsoft Copilot und zeigen die M365-Copilot-Funktionen bei Bedarf per Demo."
+      },
+      {
+        question: "Was nehmen die Teilnehmenden konkret mit nach Hause?",
+        answer: "Drei Dokumente: Erstens Muster-Textbausteine für die Betriebsvereinbarung, die auf Ihre Situation angepasst wurden. Zweitens eine ausgefüllte 14-Punkte-Checkliste mit dem Status Ihrer Copilot-Einführung. Drittens einen Maßnahmenplan mit konkreten nächsten Schritten, Zuständigkeiten und Fristen."
+      }
+    ]
+  },
+  {
     slug: "copilot-hackathon",
     icon: Lightbulb,
     title: "Copilot Hackathon für Nicht-Entwickler",
@@ -793,65 +858,6 @@ export const trainings: Training[] = [
       {
         question: "Wie nehme ich Mitarbeiter mit, die Angst vor KI haben?",
         answer: "Eine gute Keynote adressiert Ängste direkt: KI als Assistent, nicht als Ersatz; Beispiele, wie KI nervige Routineaufgaben abnimmt (statt Jobs zu vernichten); die Botschaft, dass KI-Kompetenz eine Chance ist. Wichtig: Ehrlich über Grenzen sprechen, keine übertriebenen Versprechungen, und zeigen, dass Menschen die Kontrolle behalten."
-      }
-    ]
-  },
-  {
-    slug: "copilot-lernreise-8-wochen",
-    icon: GraduationCap,
-    title: "Copilot Lernreise: Von 0 auf 100 in 8 Wochen",
-    duration: "8 × 2 Stunden (16 Stunden gesamt)",
-    description: "Begleitete Lernreise für nachhaltigen Kompetenzaufbau: In 8 wöchentlichen Sessions à 2 Stunden lernen Sie Microsoft Copilot von Grund auf – mit Theorie, Live-Demos und jede Woche einem neuen praktischen Use Case, den Sie direkt in Ihrem Arbeitsalltag umsetzen. Ideal für Teams, die Copilot schrittweise und nachhaltig in ihre Arbeit integrieren wollen.",
-    features: [
-      "Woche 1: Copilot Grundlagen – Interface, erste Prompts, Erwartungsmanagement + Use Case: E-Mail-Zusammenfassungen",
-      "Woche 2: Copilot in Word – Dokumente erstellen, überarbeiten, zusammenfassen + Use Case: Protokoll aus Meeting-Notizen",
-      "Woche 3: Copilot in Excel – Datenanalyse, Formeln, Visualisierungen + Use Case: Monatsbericht automatisieren",
-      "Woche 4: Copilot in PowerPoint – Präsentationen erstellen und optimieren + Use Case: Pitch-Deck aus Briefing",
-      "Woche 5: Copilot in Outlook – E-Mail-Produktivität steigern + Use Case: Wöchentliche Status-Mail automatisieren",
-      "Woche 6: Copilot in Teams – Meetings zusammenfassen, Chat nutzen + Use Case: Meeting-Follow-ups automatisieren",
-      "Woche 7: Advanced Prompting – Komplexe Anfragen, Verkettung, Custom Instructions + Use Case: Persönliche Prompt-Bibliothek",
-      "Woche 8: Integration & Workflow – Alles zusammenführen + Use Case: Individuellen End-to-End-Workflow entwickeln",
-      "Zwischen den Sessions: Praxisaufgaben, Peer-Learning, Support via Teams-Kanal"
-    ],
-    tiers: ["paid"],
-    questionLead: "Gibt es ein Copilot-Training, das über mehrere Wochen geht – für nachhaltigen Kompetenzaufbau statt Tagesschulung?",
-    targetAudience: [
-      "Unternehmen, die nachhaltige KI-Kompetenz aufbauen wollen statt einmaliger Workshop-Events",
-      "L&D-Verantwortliche, die eine begleitete Lernreise in bestehende Weiterbildungsprogramme integrieren möchten",
-      "Teams, die Copilot schrittweise in den Arbeitsalltag integrieren und dabei begleitet werden wollen",
-      "Führungskräfte, die messbare Verhaltensänderung statt nur Wissensvermittlung erreichen möchten"
-    ],
-    learningOutcomes: [
-      "Sie beherrschen nach 8 Wochen alle relevanten Copilot-Funktionen in Word, Excel, PowerPoint, Outlook und Teams",
-      "Sie haben jede Woche einen konkreten Use Case in Ihrem echten Arbeitsalltag umgesetzt und verfestigt",
-      "Sie verfügen über eine persönliche Prompt-Bibliothek und einen individuellen End-to-End-Workflow",
-      "Sie können Kollegen eigenständig unterstützen, weil Sie die häufigsten Probleme bereits selbst gelöst haben"
-    ],
-    businessImpact: [
-      "Nachhaltigkeit: 87% der Teilnehmer nutzen Copilot auch 3 Monate nach der Lernreise aktiv – vs. 30% bei Tagesschulungen",
-      "Jede Woche entsteht ein direkt anwendbarer Workflow – der Produktivitätsgewinn beginnt ab Woche 1",
-      "Der Betreuungsaufwand für IT und Helpdesk sinkt, weil Teilnehmer lernen, Probleme selbst zu lösen",
-      "Die Lernreise ist mit 2,5 Stunden pro Woche minimal invasiv – kein ganzer Arbeitstag geht verloren"
-    ],
-    metaTitle: "Copilot Lernreise – 8 Wochen Kompetenzaufbau | copilotenschule.de",
-    metaDescription: "Nachhaltige Copilot-Lernreise: 8 Wochen, 8 Sessions, 8 Use Cases. Schrittweiser Kompetenzaufbau für Teams mit Praxisaufgaben.",
-    keywords: ["Copilot Lernreise", "Copilot 8 Wochen", "nachhaltiges KI-Training", "Copilot Blended Learning", "Copilot Kompetenzaufbau"],
-    faqs: [
-      {
-        question: "Wie stellen wir sicher, dass KI-Training nachhaltig wirkt und nicht nach einer Woche vergessen ist?",
-        answer: "Das Problem kennen viele: Nach einem eintägigen Workshop verpufft das Wissen schnell. Die Lösung: Ein Lernreise-Format über mehrere Wochen. Jede Woche ein neues Thema, dazwischen praktische Anwendung im Arbeitsalltag, und in der nächsten Session werden echte Fragen aus der Praxis geklärt. So wird Copilot zur Gewohnheit, nicht zum einmaligen Event."
-      },
-      {
-        question: "Gibt es Copilot-Training, das über mehrere Wochen geht statt an einem Tag?",
-        answer: "Ja, eine 8-wöchige Lernreise mit wöchentlichen 2-Stunden-Sessions ist ideal für nachhaltigen Kompetenzaufbau. Jede Woche ein neuer Schwerpunkt (Word, Excel, PowerPoint...), jede Woche ein praktischer Use Case zum Umsetzen. Zwischen den Sessions: echte Anwendung, Peer Learning, Support-Kanal für Fragen. So wird KI-Kompetenz zur dauerhaften Fähigkeit."
-      },
-      {
-        question: "Wie viel Zeit müssen meine Mitarbeiter für eine Copilot-Lernreise einplanen?",
-        answer: "2 Stunden pro Woche für die Live-Session, plus ca. 30-60 Minuten für die praktische Umsetzung des wöchentlichen Use Cases im Arbeitsalltag. Insgesamt also 2,5-3 Stunden pro Woche über 8 Wochen. Das ist überschaubar und lässt sich gut in den Arbeitsalltag integrieren – anders als ein Ganztags-Workshop, der den Kalender blockiert."
-      },
-      {
-        question: "Was unterscheidet eine Lernreise von einem kompakten Workshop?",
-        answer: "Der entscheidende Unterschied: Transfer in die Praxis. Bei einem Tagesworkshop lernen Mitarbeiter viel auf einmal, aber setzen es danach oft nicht um. Bei einer Lernreise kommt jede Woche ein neues Thema – klein genug, um es sofort anzuwenden. Die nächste Session startet mit Erfahrungsaustausch: Was hat funktioniert? Wo gab es Probleme? So entsteht echte Verhaltensänderung."
       }
     ]
   },
@@ -971,10 +977,9 @@ export const trainings: Training[] = [
         answer: "Absolut sinnvoll: Der Vertrieb braucht andere Copilot-Fähigkeiten als HR oder Finance. Abteilungsspezifische Schulungen fokussieren auf die relevanten Apps und Use Cases: E-Mail-Produktivität für Sales, Dokumentenarbeit für Legal, Datenanalyse für Controlling. So ist jede Minute Trainingszeit optimal investiert."
       }
     ]
-  }
+  },
 ];
 
-// Hilfsfunktion: Training nach Slug finden
 export function getTrainingBySlug(slug: string): Training | undefined {
   return trainings.find(t => t.slug === slug);
 }
