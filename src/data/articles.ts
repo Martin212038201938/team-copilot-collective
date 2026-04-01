@@ -30,6 +30,17 @@ export interface ArticleData {
 // Alle Artikel - sortiert nach Veröffentlichungsdatum (neueste zuerst)
 export const ALL_ARTICLES: ArticleData[] = [
   {
+    id: "microsoft-copilot-schulung-online",
+    title: "Microsoft Copilot Schulung online: Was funktioniert – und was nicht",
+    description: "Copilot-Schulung online: Classroom, Live-Online oder aufgezeichnet? Erfahrungsbericht nach über 100 Trainings.",
+    link: "/wissen/microsoft-copilot-schulung-online",
+    badge: "Microsoft 365 Copilot",
+    icon: "§",
+    lastUpdated: "01. April 2026",
+    publishDate: "2026-04-01",
+    publishTime: "09:00"
+  },
+  {
     id: "copilot-in-outlook-nutzen-tipps",
     title: "Copilot in Outlook nutzen: Tipps und Use Cases für Mail und Kalender",
     description: "Praxisbericht: Copilot in Outlook für Fragen, E-Mail-Entwürfe und Terminvorbereitung. Inklusive Tipps und was sich ab April 2026 ändert.",

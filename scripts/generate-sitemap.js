@@ -65,6 +65,7 @@ const knowledgePages = [
   { loc: '/wissen/microsoft-365-e7-frontier-suite', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
   { loc: '/wissen/claude-in-microsoft-copilot', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
   { loc: '/wissen/copilot-in-outlook-nutzen-tipps', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
+  { loc: '/wissen/microsoft-copilot-schulung-online', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
 ];
 
 // Trainingsseiten - Slugs aus trainings.ts

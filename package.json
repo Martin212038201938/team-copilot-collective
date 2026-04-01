@@ -27,7 +27,10 @@
       "collapseWhitespace": true,
       "removeComments": true
     },
-    "puppeteerArgs": ["--no-sandbox", "--disable-setuid-sandbox"],
+    "puppeteerArgs": [
+      "--no-sandbox",
+      "--disable-setuid-sandbox"
+    ],
     "include": [
       "/",
       "/trainings",
@@ -82,7 +85,8 @@
       "/wissen/ki-schulung-mitarbeiter-pflicht",
       "/wissen/microsoft-365-e7-frontier-suite",
       "/wissen/claude-in-microsoft-copilot",
-      "/wissen/copilot-in-outlook-nutzen-tipps"
+      "/wissen/copilot-in-outlook-nutzen-tipps",
+      "/wissen/microsoft-copilot-schulung-online"
     ],
     "skipThirdPartyRequests": true,
     "crawl": false
