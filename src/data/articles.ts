@@ -35,7 +35,7 @@ export const ALL_ARTICLES: ArticleData[] = [
     description: "Copilot-Schulung online: Classroom, Live-Online oder aufgezeichnet? Erfahrungsbericht nach über 100 Trainings.",
     link: "/wissen/microsoft-copilot-schulung-online",
     badge: "Microsoft 365 Copilot",
-    icon: "§",
+    icon: "💻",
     lastUpdated: "01. April 2026",
     publishDate: "2026-04-01",
     publishTime: "09:00"
