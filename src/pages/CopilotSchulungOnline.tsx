@@ -286,8 +286,7 @@ const CopilotSchulungOnline = () => {
 
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p className="leading-relaxed">
-              Wenn ich ehrlich bin, gibt es ein Online-Format, das in Sachen Nachhaltigkeit sogar den Classroom
-              schlägt: die Lernreise. Das Prinzip ist einfach – statt eines ganzen Tages am Stück gibt es vier
+              Das Prinzip ist einfach – statt eines ganzen Tages am Stück gibt es vier
               Sessions à zwei Stunden, jeweils mit einer Woche Pause dazwischen. Zwei Stunden sind kurz genug,
               um die Aufmerksamkeit hochzuhalten, und lang genug, um einen echten Praxisblock mit Übungen
               unterzubringen.
