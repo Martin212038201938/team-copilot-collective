@@ -30,6 +30,17 @@ export interface ArticleData {
 // Alle Artikel - sortiert nach Veröffentlichungsdatum (neueste zuerst)
 export const ALL_ARTICLES: ArticleData[] = [
   {
+    id: "copilot-betriebsrat",
+    title: "Microsoft Copilot und der Betriebsrat: Was Arbeitnehmervertreter wirklich wissen müssen",
+    description: "Was der Betriebsrat über Microsoft Copilot wissen muss: Mitbestimmung, Datenschutz, Vorurteile widerlegt. Mit Checkliste und FAQ.",
+    link: "/wissen/copilot-betriebsrat",
+    badge: "Betriebsrat & KI",
+    icon: "§",
+    lastUpdated: "02. April 2026",
+    publishDate: "2026-04-02",
+    publishTime: "09:00"
+  },
+  {
     id: "microsoft-copilot-schulung-online",
     title: "Microsoft Copilot Schulung online: Was funktioniert – und was nicht",
     description: "Copilot-Schulung online: Classroom, Live-Online oder aufgezeichnet? Erfahrungsbericht nach über 100 Trainings.",

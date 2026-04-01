@@ -32,6 +32,73 @@ export interface Training {
 // Alle Trainingsmodule mit SEO-optimierten Slugs
 export const trainings: Training[] = [
   {
+    slug: "betriebsrat-ki-workshop",
+    icon: Scale,
+    title: "Betriebsrat & KI: Workshop zur Gestaltung der KI-unterstützten Arbeit",
+    duration: "Halbtag (4h) | Ganztag (7,5h)",
+    description: "Workshop speziell für Betriebsräte und Personalvertretungen: Sie erarbeiten gemeinsam die Maßnahmen, Entscheidungen und Dokumente, die für eine erfolgreiche und rechtssichere Copilot-Einführung nötig sind. Kein Frontalunterricht – sondern strukturierte Arbeit an Ihrer konkreten Situation. Im Ganztags-Format zusätzlich mit praktischer Einführung in die Copilot-Funktionen und Einblick in die Admin-Dashboards.",
+    features: [
+      "Scope des anstehenden Changes gemeinsam definieren: Welche Copilot-Produkte werden eingeführt, wer ist betroffen, was ändert sich?",
+      "Begriffe und Zusammenhänge verstehen: Microsoft 365 Copilot vs. kostenloser Copilot, Purview, EU Data Boundary, EU AI Act – verständlich erklärt",
+      "Mitbestimmungsrechte konkret anwenden: §87, §80, §90, §97 BetrVG, LAG Hessen 2024, Sachverständigenrecht – was greift bei Ihnen?",
+      "Betriebsvereinbarung erarbeiten: Muster-Textbausteine als Ausgangsbasis, gemeinsam auf Ihre Situation angepasst",
+      "Recruiting und KI: Wo ist Copilot als Werkzeug zulässig, wo beginnt Hochrisiko-KI nach EU AI Act?",
+      "Einblick in Admin-Dashboards: Was kann ein Admin sehen, was nicht? Purview, Usage Reports, Berechtigungen – live oder mit Screenshots",
+      "Checkliste ausfüllen: 14-Punkte-Checkliste für den Copilot-Rollout gemeinsam durcharbeiten und dokumentieren",
+      "Maßnahmenplan erstellen: Konkrete nächste Schritte, Zuständigkeiten und Fristen – als Ergebnis des Workshops",
+      "Ganztags-Format: Zusätzlich praktische Einführung in die Copilot-Funktionen in Word, Excel, Outlook und Teams",
+      "Alle Teilnehmenden erhalten: BV-Textbausteine, ausgefüllte Checkliste, Maßnahmenplan und Schulungsunterlage"
+    ],
+    tiers: ["free", "paid"],
+    questionLead: "Unser Betriebsrat steht vor der Copilot-Einführung – wie können wir den Prozess aktiv mitgestalten statt nur zu reagieren?",
+    targetAudience: [
+      "Betriebsratsgremien, die vor oder während einer Microsoft Copilot-Einführung stehen und den Prozess aktiv mitgestalten wollen",
+      "Betriebsratsvorsitzende, die eine fundierte Verhandlungsgrundlage für die Betriebsvereinbarung brauchen",
+      "Gesamtbetriebsräte und Konzernbetriebsräte, die einheitliche Regelungen für mehrere Standorte erarbeiten wollen",
+      "Schwerbehindertenvertretungen und Jugend- und Auszubildendenvertretungen, die ihre Perspektive in die KI-Einführung einbringen wollen",
+      "Personalvertretungen im öffentlichen Dienst mit vergleichbarer Mitbestimmungssituation"
+    ],
+    learningOutcomes: [
+      "Sie kennen Ihre konkreten Mitbestimmungsrechte bei der KI-Einführung – und deren Grenzen (inkl. aktuelle Rechtsprechung LAG Hessen 2024)",
+      "Sie verstehen die technischen Grundlagen von Microsoft 365 Copilot: Was kann ein Admin sehen, was kann Copilot auf welche Daten zugreifen, was regelt Purview?",
+      "Sie haben eine auf Ihr Unternehmen zugeschnittene Checkliste und einen Maßnahmenplan erarbeitet",
+      "Sie verfügen über Muster-Textbausteine für die Betriebsvereinbarung, die Sie als Verhandlungsgrundlage nutzen können",
+      "Im Ganztags-Format: Sie können Microsoft Copilot selbst bedienen und für Ihre Betriebsratsarbeit einsetzen"
+    ],
+    businessImpact: [
+      "Der Copilot-Rollout wird nicht durch ungeklärte Mitbestimmungsfragen verzögert – der Betriebsrat agiert als kompetenter Partner",
+      "Die Betriebsvereinbarung entsteht auf Basis erprobter Textbausteine statt auf dem leeren Blatt – das spart Wochen",
+      "Betriebsratsmitglieder können gegenüber der Belegschaft kompetent Auskunft geben und Bedenken adressieren",
+      "Der Betriebsrat nutzt Copilot selbst produktiv – für Protokolle, BV-Entwürfe und Kommunikation (Ganztags-Format)",
+      "Die Qualifizierung des Betriebsrats ist nach §37 Abs. 6 BetrVG als erforderliche Schulung einzustufen – Kosten trägt der Arbeitgeber"
+    ],
+    metaTitle: "Betriebsrat KI-Workshop: Copilot-Einführung aktiv gestalten | copilotenschule.de",
+    metaDescription: "Workshop für Betriebsräte: Copilot-Einführung mitgestalten. Mitbestimmung, Betriebsvereinbarung und Praxis – Halbtag oder Ganztag. Kosten trägt der Arbeitgeber (§37.6 BetrVG).",
+    keywords: ["Betriebsrat KI Workshop", "Copilot Betriebsrat Schulung", "Betriebsvereinbarung Copilot", "KI Mitbestimmung Workshop", "Betriebsrat Copilot Training"],
+    faqs: [
+      {
+        question: "Wer bezahlt die Schulung des Betriebsrats zu Microsoft Copilot?",
+        answer: "Der Arbeitgeber. Nach §37 Abs. 6 BetrVG hat der Betriebsrat Anspruch auf Schulungen, die für seine Arbeit erforderlich sind. Bei der Einführung eines KI-Systems wie Microsoft 365 Copilot ist die Erforderlichkeit regelmäßig gegeben. Eine fertige Begründungshilfe zum Herunterladen finden Sie auf unserer Wissensseite unter copilotenschule.de/wissen/copilot-betriebsrat."
+      },
+      {
+        question: "Was ist der Unterschied zwischen dem Halbtags- und dem Ganztags-Format?",
+        answer: "Im Halbtags-Format (4 Stunden) liegt der Fokus auf der gemeinsamen Erarbeitung von Maßnahmen, Betriebsvereinbarung und Checkliste – die Teilnehmenden arbeiten an ihrer konkreten Situation. Das Ganztags-Format (7,5 Stunden) enthält zusätzlich eine praktische Einführung in die Copilot-Funktionen in Word, Excel, Outlook und Teams sowie einen Einblick in die Admin-Dashboards. Empfehlung: Ganztag, wenn der Betriebsrat Copilot auch selbst nutzen will."
+      },
+      {
+        question: "Können wir den Workshop auch als Online-Training durchführen?",
+        answer: "Ja, der Workshop funktioniert als Classroom-Training vor Ort und als Live-Online-Training gleichermaßen. Bei der Online-Variante arbeiten wir mit Breakout-Sessions und geteilten Dokumenten, damit die gemeinsame Erarbeitung genauso intensiv ist wie im Seminarraum."
+      },
+      {
+        question: "Brauchen die Teilnehmenden bereits Copilot-Lizenzen?",
+        answer: "Für das Halbtags-Format nicht – dort geht es um Strategie, Recht und Betriebsvereinbarung. Für den praktischen Teil im Ganztags-Format sind Lizenzen hilfreich, aber nicht zwingend: Wir arbeiten auch mit dem kostenlosen Microsoft Copilot und zeigen die M365-Copilot-Funktionen bei Bedarf per Demo."
+      },
+      {
+        question: "Was nehmen die Teilnehmenden konkret mit nach Hause?",
+        answer: "Drei Dokumente: Erstens Muster-Textbausteine für die Betriebsvereinbarung, die auf Ihre Situation angepasst wurden. Zweitens eine ausgefüllte 14-Punkte-Checkliste mit dem Status Ihrer Copilot-Einführung. Drittens einen Maßnahmenplan mit konkreten nächsten Schritten, Zuständigkeiten und Fristen."
+      }
+    ]
+  },
+  {
     slug: "copilot-grundlagen-prompt-design",
     icon: Brain,
     title: "Copilot Grundlagen: Prompt Design & KI-Kompetenz",
@@ -94,18 +161,18 @@ export const trainings: Training[] = [
     slug: "microsoft-365-copilot-praxis",
     icon: Brain,
     title: "Microsoft 365 Copilot in der Praxis: Word, Excel, PowerPoint, Outlook & Teams",
-    duration: "Halbtag | Ganztag | 4×2h Lernreise",
+    duration: "Halbtag | Ganztag | 2-tägig | Lernreise (4×, 6× oder 8×2h online)",
     description: "Praxisorientiertes Training für Copilot-Lizenzinhaber: Sie lernen, wie Sie Microsoft 365 Copilot direkt in Ihren Office-Anwendungen einsetzen – von der Dokumenterstellung in Word über Datenanalyse in Excel bis zur Meeting-Zusammenfassung in Teams. Mit echten Arbeitsszenarien und direkt anwendbaren Workflows.",
     features: [
       "Copilot in Word: Projektpläne, Angebote und Entscheidungsvorlagen in Minuten statt Stunden erstellen – inklusive Struktur, Formatierung und Zusammenfassungen für die Geschäftsleitung",
-      "Copilot in Excel: Umsatzanalysen, Liquiditätsplanungen und Forecast-Modelle per natürlicher Sprache aufbauen – Formeln, Pivot-Tabellen und Diagramme ohne Excel-Expertenwissen",
+      "Copilot in Excel: Daten analysieren, Pivot-Tabellen erstellen, Diagramme erzeugen und komplizierte Formeln schreiben lassen – per natürlicher Sprache. Endlich Excel voll nutzen, auch ohne tiefes Excel-Wissen",
       "Copilot in PowerPoint: Aus einem Word-Briefing oder Projektbericht direkt eine präsentationsfertige Slide-Deck generieren, statt Stunden in Layouts zu investieren",
-      "Copilot in Outlook: E-Mail-Threads auf Action Items verdichten, Antworten im richtigen Tonfall vorfertigen lassen und Meeting-Vorbereitungen automatisch aus dem Posteingang ziehen",
+      "Copilot in Outlook: E-Mail-Threads auf Action Items verdichten, Antworten im richtigen Tonfall vorfertigen lassen, Meeting-Vorbereitungen automatisch aus dem Posteingang ziehen, freie Termine aller Teilnehmer suchen lassen und inhaltlich quer durch alle Mails suchen",
       "Copilot in Teams: Meetings automatisch protokollieren lassen, verpasste Besprechungen in 30 Sekunden nachlesen und offene Aufgaben direkt extrahieren",
       "Cross-App-Workflows: Aus einer E-Mail-Kette wird ein strukturiertes Word-Dokument, aus dem Word-Text eine Präsentation – nahtlos zwischen den Apps arbeiten",
       "Prompt Engineering für Office: App-spezifische Prompt-Techniken, die in Word anders funktionieren als in Excel oder PowerPoint – mit sofort einsetzbaren Vorlagen",
       "Eigene Use Cases aus Ihrem Arbeitsalltag praktisch umsetzen",
-      "Buchbar als: Halbtag (4h), Ganztag (7h) oder Lernreise (4×2h über 4 Wochen)"
+      "Buchbar als: Halbtag (4h), Ganztag (7h), 2-tägig oder Online-Lernreise (4×, 6× oder 8×2h)"
     ],
     tiers: ["paid"],
     questionLead: "Wie nutze ich Microsoft 365 Copilot in Word, Excel, PowerPoint, Outlook und Teams produktiv?",
