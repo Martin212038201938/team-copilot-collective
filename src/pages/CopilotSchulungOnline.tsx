@@ -18,6 +18,7 @@ const CopilotSchulungOnline = () => {
     { id: "classroom-bleibt-king", title: "Warum Classroom-Training nicht zu schlagen ist", level: 2 },
     { id: "online-live-richtig-gemacht", title: "Online-Live: Die echte Alternative", level: 2 },
     { id: "aufgezeichnet-ehrliche-bilanz", title: "Aufgezeichnete Trainings: Eine ehrliche Bilanz", level: 2 },
+    { id: "lernreisen-nachhaltiges-format", title: "Lernreisen: Das nachhaltigste Online-Format", level: 2 },
     { id: "woran-sie-gute-online-schulung-erkennen", title: "Woran Sie eine gute Online-Schulung erkennen", level: 2 },
     { id: "faq", title: "Häufig gestellte Fragen", level: 2 },
   ];
@@ -40,8 +41,8 @@ const CopilotSchulungOnline = () => {
       answer: "In einem Live-Online-Training absolut. Bei der Copilotenschule arbeiten Teilnehmer in jeder Übung mit ihren echten Word-Dokumenten, Excel-Tabellen und Outlook-Mails. Der Trainer sieht per Screensharing, wo es hakt, und hilft individuell. Bei aufgezeichneten Kursen ist das naturgemäß unmöglich – dort gibt es nur generische Beispiele."
     },
     {
-      name: "Wie viele Teilnehmer sind bei einer Online-Copilot-Schulung sinnvoll?",
-      answer: "Für echten Lerneffekt empfehlen wir maximal 12 bis 15 Teilnehmer pro Session. Ab 20 Personen wird es schwierig, in Übungen individuell zu helfen – und gerade bei Copilot ist das entscheidend, weil jeder Teilnehmer andere Daten und andere Probleme mitbringt. Bei größeren Gruppen splitten wir auf mehrere Sessions. Das kostet etwas mehr, bringt aber messbar mehr."
+      name: "Bringt eine Lernreise mit 2-Stunden-Sessions wirklich mehr als ein ganzer Schulungstag?",
+      answer: "Ja, und zwar messbar. Nach einer Tagesschulung erinnern sich Teilnehmer nach einer Woche an weniger als ein Viertel der Inhalte – das ist keine Vermutung, sondern durch die Vergessenskurve nach Ebbinghaus gut belegt. Bei einer Lernreise mit vier 2-Stunden-Sessions wenden Teilnehmer das Gelernte zwischen den Sessions aktiv an und kommen mit konkreten Fragen zurück. In unserer Erfahrung nutzen nach einer Lernreise deutlich mehr Mitarbeiter Copilot regelmäßig als nach einem Einzeltag."
     }
   ];
 
@@ -277,7 +278,48 @@ const CopilotSchulungOnline = () => {
           </div>
         </section>
 
-        {/* Sektion 4: Woran man gute Online-Schulung erkennt */}
+        {/* Sektion 4: Lernreisen */}
+        <section id="lernreisen-nachhaltiges-format" className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
+            Lernreisen: Das nachhaltigste Online-Format
+          </h2>
+
+          <div className="prose prose-lg max-w-none dark:prose-invert">
+            <p className="leading-relaxed">
+              Wenn ich ehrlich bin, gibt es ein Online-Format, das in Sachen Nachhaltigkeit sogar den Classroom
+              schlägt: die Lernreise. Das Prinzip ist einfach – statt eines ganzen Tages am Stück gibt es vier
+              Sessions à zwei Stunden, jeweils mit einer Woche Pause dazwischen. Zwei Stunden sind kurz genug,
+              um die Aufmerksamkeit hochzuhalten, und lang genug, um einen echten Praxisblock mit Übungen
+              unterzubringen.
+            </p>
+            <p className="leading-relaxed">
+              Der entscheidende Unterschied liegt in den Wochen zwischen den Sessions. Teilnehmer gehen zurück
+              an ihren Arbeitsplatz und probieren das Gelernte mit ihren echten Aufgaben aus. Wenn sie in der
+              nächsten Session wiederkommen, bringen sie konkrete Fragen mit: „Ich habe das in Excel versucht,
+              aber das Ergebnis war falsch – was mache ich anders?" Dieses Wechselspiel aus Lernen, Anwenden
+              und Reflektieren ist der Grund, warum Lernreisen die Verhaltens- und Nutzungsveränderung bewirken,
+              die ein einzelner Schulungstag nicht leisten kann. Wer nach vier Wochen Copilot regelmäßig nutzt,
+              bleibt dabei.
+            </p>
+          </div>
+
+          <Card className="mt-4 mb-2 border-2 border-primary/30 bg-gradient-to-br from-primary/5 to-primary/10">
+            <CardContent className="pt-6">
+              <p className="text-base leading-relaxed mb-3">
+                <strong>Warum 4 x 2 Stunden mehr bringen als 1 x 8:</strong> Die wissenschaftlichen und
+                praktischen Argumente für verteiltes Lernen haben wir in einem eigenen Artikel aufbereitet.
+              </p>
+              <Link
+                to="/wissen/copilot-lernreise-vs-tagesschulung"
+                className="inline-flex items-center gap-2 text-primary font-semibold hover:underline"
+              >
+                Zum Artikel: Copilot Lernreise vs. Tagesschulung &rarr;
+              </Link>
+            </CardContent>
+          </Card>
+        </section>
+
+        {/* Sektion 5: Woran man gute Online-Schulung erkennt */}
         <section id="woran-sie-gute-online-schulung-erkennen" className="mb-6">
           <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Woran Sie eine gute Online-Schulung erkennen
@@ -285,13 +327,12 @@ const CopilotSchulungOnline = () => {
 
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p className="leading-relaxed">
-              Wenn Sie gerade einen Anbieter für eine Copilot-Schulung suchen, stellen Sie drei Fragen: Erstens,
-              sind alle Sessions live oder gibt es aufgezeichnete Anteile? Zweitens, wie viele Teilnehmer sind in einer
-              Session – mehr als 15 deutet darauf hin, dass individuelle Betreuung schwierig wird. Und drittens:
+              Wenn Sie gerade einen Anbieter für eine Copilot-Schulung suchen, stellen Sie zwei Fragen: Erstens,
+              sind alle Sessions live oder gibt es aufgezeichnete Anteile? Und zweitens:
               Wird in den Übungen mit den echten Daten der Teilnehmer gearbeitet, oder mit generischen Beispielen?
             </p>
             <p className="leading-relaxed">
-              Die Antworten auf diese drei Fragen trennen ein seriöses Training von einer Massenveranstaltung
+              Die Antworten auf diese zwei Fragen trennen ein seriöses Training von einer Massenveranstaltung
               zuverlässiger als jedes Zertifikat oder jede Kundenbewertung. Copilot ist ein Werkzeug, das in
               jedem Unternehmen anders eingesetzt wird – und ein Training, das diesen Unterschied ignoriert,
               wird wenig bewirken.

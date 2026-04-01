@@ -12,6 +12,26 @@ import { getTrainingBySlug, trainings } from "@/data/trainings";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateTrainingBreadcrumbItems } from "@/lib/schema";
 
+/** Renders a string that may contain markdown-style links [text](/path) as React Router Links */
+const RichText = ({ text }: { text: string }) => {
+  const parts = text.split(/(\[[^\]]+\]\([^)]+\))/g);
+  return (
+    <>
+      {parts.map((part, i) => {
+        const match = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+        if (match) {
+          return (
+            <Link key={i} to={match[2]} className="text-primary hover:underline font-medium">
+              {match[1]}
+            </Link>
+          );
+        }
+        return <span key={i}>{part}</span>;
+      })}
+    </>
+  );
+};
+
 const TrainingDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const training = slug ? getTrainingBySlug(slug) : undefined;
@@ -268,7 +288,7 @@ const TrainingDetail = () => {
                   {training.businessImpact.map((impact, index) => (
                     <li key={index} className="flex items-start gap-3">
                       <TrendingUp className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
-                      <span className="text-lg">{impact}</span>
+                      <span className="text-lg"><RichText text={impact} /></span>
                     </li>
                   ))}
                 </ul>

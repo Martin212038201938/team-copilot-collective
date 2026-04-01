@@ -94,18 +94,18 @@ export const trainings: Training[] = [
     slug: "microsoft-365-copilot-praxis",
     icon: Brain,
     title: "Microsoft 365 Copilot in der Praxis: Word, Excel, PowerPoint, Outlook & Teams",
-    duration: "Halbtag | Ganztag | 3×2h Lernreise",
+    duration: "Halbtag | Ganztag | 4×2h Lernreise",
     description: "Praxisorientiertes Training für Copilot-Lizenzinhaber: Sie lernen, wie Sie Microsoft 365 Copilot direkt in Ihren Office-Anwendungen einsetzen – von der Dokumenterstellung in Word über Datenanalyse in Excel bis zur Meeting-Zusammenfassung in Teams. Mit echten Arbeitsszenarien und direkt anwendbaren Workflows.",
     features: [
-      "Copilot in Word: Dokumente erstellen, überarbeiten, zusammenfassen, formatieren",
-      "Copilot in Excel: Formeln generieren, Daten analysieren, Pivot-Tabellen erstellen, Insights gewinnen",
-      "Copilot in PowerPoint: Präsentationen aus Briefings erstellen, Design optimieren, Inhalte strukturieren",
-      "Copilot in Outlook: E-Mail-Entwürfe erstellen, Postfach organisieren, Meeting-Follow-ups automatisieren",
-      "Copilot in Teams: Meetings zusammenfassen, Aktionspunkte extrahieren, Chat-Verlauf durchsuchen",
-      "Cross-App-Workflows: Dokumente aus E-Mails erstellen, Präsentationen aus Word-Texten generieren",
-      "Prompt Engineering für Office: App-spezifische Prompts, die wirklich funktionieren",
+      "Copilot in Word: Projektpläne, Angebote und Entscheidungsvorlagen in Minuten statt Stunden erstellen – inklusive Struktur, Formatierung und Zusammenfassungen für die Geschäftsleitung",
+      "Copilot in Excel: Umsatzanalysen, Liquiditätsplanungen und Forecast-Modelle per natürlicher Sprache aufbauen – Formeln, Pivot-Tabellen und Diagramme ohne Excel-Expertenwissen",
+      "Copilot in PowerPoint: Aus einem Word-Briefing oder Projektbericht direkt eine präsentationsfertige Slide-Deck generieren, statt Stunden in Layouts zu investieren",
+      "Copilot in Outlook: E-Mail-Threads auf Action Items verdichten, Antworten im richtigen Tonfall vorfertigen lassen und Meeting-Vorbereitungen automatisch aus dem Posteingang ziehen",
+      "Copilot in Teams: Meetings automatisch protokollieren lassen, verpasste Besprechungen in 30 Sekunden nachlesen und offene Aufgaben direkt extrahieren",
+      "Cross-App-Workflows: Aus einer E-Mail-Kette wird ein strukturiertes Word-Dokument, aus dem Word-Text eine Präsentation – nahtlos zwischen den Apps arbeiten",
+      "Prompt Engineering für Office: App-spezifische Prompt-Techniken, die in Word anders funktionieren als in Excel oder PowerPoint – mit sofort einsetzbaren Vorlagen",
       "Eigene Use Cases aus Ihrem Arbeitsalltag praktisch umsetzen",
-      "Buchbar als: Halbtag (4h), Ganztag (7h) oder Lernreise (3×2h über 3 Wochen)"
+      "Buchbar als: Halbtag (4h), Ganztag (7h) oder Lernreise (4×2h über 4 Wochen)"
     ],
     tiers: ["paid"],
     questionLead: "Wie nutze ich Microsoft 365 Copilot in Word, Excel, PowerPoint, Outlook und Teams produktiv?",
@@ -116,17 +116,18 @@ export const trainings: Training[] = [
       "Assistenzen und Office Manager, die E-Mail-Flut und Dokumentenarbeit spürbar reduzieren möchten"
     ],
     learningOutcomes: [
-      "Sie erstellen Dokumente, Präsentationen und E-Mails mit Copilot in einem Bruchteil der bisherigen Zeit",
-      "Sie analysieren Excel-Daten per natürlicher Sprache – Formeln, Pivot-Tabellen und Diagramme auf Knopfdruck",
-      "Sie beherrschen Cross-App-Workflows: aus E-Mails werden Dokumente, aus Word-Texten Präsentationen",
-      "Sie fassen Meetings in Teams automatisch zusammen und extrahieren Aktionspunkte",
-      "Sie kennen app-spezifische Prompt-Techniken, die in Word anders funktionieren als in Excel oder PowerPoint"
+      "Sie erstellen Angebote, Berichte und Entscheidungsvorlagen mit Copilot in Word – von der leeren Seite zum fertigen Dokument in Minuten",
+      "Sie bauen Finanzanalysen, Forecasts und Auswertungen in Excel per Sprachbefehl auf, ohne komplexe Formelkenntnisse zu benötigen",
+      "Sie beherrschen Cross-App-Workflows: aus einem E-Mail-Thread wird ein strukturierter Bericht, aus einem Word-Dokument eine Präsentation",
+      "Sie nutzen Copilot in Outlook, um E-Mail-Flut zu bewältigen, Kernaussagen aus langen Threads zu extrahieren und Meetings vorzubereiten",
+      "Sie lassen Teams-Meetings automatisch zusammenfassen und können verpasste Besprechungen in Sekunden nachlesen",
+      "Sie kennen app-spezifische Prompt-Techniken und wissen, warum derselbe Prompt in Word, Excel und PowerPoint unterschiedliche Ergebnisse liefert"
     ],
     businessImpact: [
       "Dokumenterstellung wird 60-80% schneller: Berichte, Angebote und Protokolle entstehen in Minuten statt Stunden",
       "Meeting-Nachbereitung schrumpft von 30 Minuten auf 2 Minuten durch automatische Teams-Zusammenfassungen",
       "E-Mail-Bearbeitungszeit sinkt um 30-50% durch KI-generierte Entwürfe und Thread-Zusammenfassungen",
-      "Die aktive Copilot-Nutzungsrate im Team steigt typischerweise um 60-80% nach dem Training"
+      "Die aktive Copilot-Nutzungsrate im Team steigt typischerweise um 60-80% nach dem Training – [wie das Beispiel Pernod Ricard zeigt](/wissen/copilot-chat-free-pernod-ricard)"
     ],
     metaTitle: "Microsoft 365 Copilot Training – Word, Excel, PowerPoint, Outlook, Teams | copilotenschule.de",
     metaDescription: "Praxistraining für Microsoft 365 Copilot: Lernen Sie Copilot in Word, Excel, PowerPoint, Outlook und Teams produktiv einzusetzen. Mit echten Workflows.",
