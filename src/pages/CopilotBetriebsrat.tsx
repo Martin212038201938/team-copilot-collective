@@ -6,7 +6,7 @@ import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 
 const SLUG = "copilot-betriebsrat";
-const PAGE_TITLE = "Microsoft Copilot und der Betriebsrat: Gestalter statt Bremser";
+const PAGE_TITLE = "Microsoft Copilot und der Betriebsrat: Was Arbeitnehmervertreter wirklich wissen müssen";
 
 const CopilotBetriebsrat = () => {
   const martinLang = getAuthor('martin-lang')!;
@@ -32,7 +32,7 @@ const CopilotBetriebsrat = () => {
   const faqs = [
     {
       name: "Muss der Arbeitgeber den Betriebsrat vor der Copilot-Einführung einbeziehen?",
-      answer: "Ja – und zwar vor dem Kauf der Lizenzen, nicht danach. Microsoft 365 Copilot ist nach §87 Abs. 1 Nr. 6 BetrVG mitbestimmungspflichtig, weil es technisch geeignet ist, Nutzungsdaten zu erzeugen. Wichtig: Das LAG Hessen hat 2024 (5 TaBV 4/24) klargestellt, dass reine Datenschutzbedenken ohne konkreten Überwachungsbezug kein Mitbestimmungsrecht begründen. Der Betriebsrat hat also ein echtes Mitgestaltungsrecht, aber kein pauschales Vetorecht aus Datenschutzgründen allein. Die Copilotenschule unterstützt Betriebsräte dabei, dieses Recht konstruktiv einzusetzen."
+      answer: "Die Einführung von Microsoft 365 Copilot kann nach §87 Abs. 1 Nr. 6 BetrVG mitbestimmungspflichtig sein, wenn die konkrete Nutzung eine Überwachungseignung begründet – weil das System objektiv geeignet ist, Verhaltens- und Leistungsdaten zu erfassen. Der Betriebsrat sollte deshalb frühzeitig, vor dem Rollout, eingebunden werden. Wichtig: Das LAG Hessen hat 2024 (5 TaBV 4/24) klargestellt, dass abstrakte Datenschutzbedenken ohne konkreten Überwachungsbezug kein eigenständiges Mitbestimmungsrecht begründen. Es braucht also eine auf das konkrete Einsatzszenario bezogene Argumentation. Die Copilotenschule unterstützt Betriebsräte dabei, diese Grundlagen fundiert einzusetzen."
     },
     {
       name: "Kann der Arbeitgeber sehen, was ich in Copilot eintippe?",
@@ -44,7 +44,7 @@ const CopilotBetriebsrat = () => {
     },
     {
       name: "Wann gilt Copilot als Hochrisiko-KI nach dem EU AI Act?",
-      answer: "Microsoft 365 Copilot als allgemeines Produktivitätswerkzeug ist in der Regel als Low-Risk eingestuft. Hochrisiko-KI entsteht, wenn Copilot-basierte Auswertungen für automatisierte Personalentscheidungen genutzt werden – zum Beispiel für Beförderungen, Leistungsbewertungen oder Entlassungen ohne menschliche Entscheidung. Ab August 2026 gelten dafür strenge Dokumentationspflichten. Der Betriebsrat sollte in der Betriebsvereinbarung festhalten, dass Copilot ausschließlich als Unterstützungswerkzeug eingesetzt wird, nicht als Entscheidungssystem."
+      answer: "Microsoft 365 Copilot als allgemeines Produktivitätswerkzeug ist in der Regel nicht als Hochrisiko-KI eingestuft. Relevant wird der EU AI Act, wenn Copilot-basierte Systeme für Entscheidungen im Beschäftigungskontext eingesetzt werden – Personalauswahl, Beförderung, Leistungsbewertung. Solche Anwendungen können unter Anhang III des EU AI Act fallen und unterliegen ab dem maßgeblichen Anwendungszeitpunkt strengen Dokumentations- und Transparenzpflichten. Die Betriebsvereinbarung sollte deshalb klarstellen, für welche Zwecke Copilot eingesetzt wird – und für welche nicht."
     },
     {
       name: "Wie kommen wir als Betriebsrat an eine Schulung – und wer bezahlt?",
@@ -64,11 +64,11 @@ const CopilotBetriebsrat = () => {
     },
     {
       name: "Können wir als Betriebsrat einen Sachverständigen hinzuziehen?",
-      answer: "Ja – mit einer wichtigen Erleichterung seit 2021: Das Betriebsrätemodernisierungsgesetz macht die Hinzuziehung eines Sachverständigen bei KI-Themen nach §80 Abs. 3 BetrVG zur Regel. Erforderlichkeit muss nicht gesondert nachgewiesen werden. Der Betriebsrat muss sich lediglich mit dem Arbeitgeber auf die konkrete Person und Vergütung einigen. Das ermöglicht externe technische Expertise ohne langen Streit über die Grundsatzfrage."
+      answer: "Ja – mit einer wichtigen Erleichterung seit 2021: Das Betriebsrätemodernisierungsgesetz hat die Begründung der Erforderlichkeit bei klar mitbestimmungsrelevanten KI-Einführungen deutlich vereinfacht. Eine Darlegung bleibt grundsätzlich erforderlich, ist aber bei konkreten IT- und KI-Themen in der Regel gut argumentierbar. Der Betriebsrat muss sich mit dem Arbeitgeber auf die konkrete Person und Vergütung einigen. Das ermöglicht externe technische Expertise ohne unverhältnismäßigen Aufwand bei der Begründungsfrage."
     },
     {
       name: "Wie sichern wir, dass die Copilot-Einführung wirklich der Belegschaft nützt?",
-      answer: "Das ist die entscheidende Frage – und sie zeigt, dass ein konstruktiv agierender Betriebsrat mehr erreicht als einer, der nur blockiert. Konkrete Hebel: Qualifizierungsklausel im §97 Abs. 2 BetrVG-Rahmen verankern (alle Betroffenen werden geschult, nicht nur Early Adopters), Evaluierungsrunde nach 6-12 Monaten vereinbaren, Beschäftigungssicherungsklausel aufnehmen. Und: Selbst Copilot-kompetent werden. Ein Betriebsrat, der das Werkzeug kennt, verhandelt auf Augenhöhe."
+      answer: "Konkrete Hebel: Qualifizierungsklausel im §97 Abs. 2 BetrVG-Rahmen verankern (alle Betroffenen werden geschult, nicht nur Early Adopters), Evaluierungsrunde nach 6-12 Monaten vereinbaren, Beschäftigungssicherungsklausel aufnehmen. Und: Selbst Copilot-kompetent werden. Ein Betriebsrat, der das Werkzeug kennt, verhandelt auf Augenhöhe und kann die Belegschaft fundiert beraten."
     }
   ];
 
@@ -79,7 +79,7 @@ const CopilotBetriebsrat = () => {
         "@type": "Article",
         "@id": ids.article,
         "headline": PAGE_TITLE,
-        "description": "Copilot Betriebsrat: Mitbestimmung, Betriebsvereinbarung Muster und Rollout Checkliste. Rechtssicher, praxisnah – BR als Gestalter statt Bremser.",
+        "description": "Copilot Betriebsrat: Mitbestimmungsrechte, Betriebsvereinbarung Muster, Rollout Checkliste. Juristisch präzise, praxisnah – mit Checkliste und FAQ.",
         "author": getAuthorSchemaMarkup(martinLang),
         "publisher": {
           "@id": "https://copilotenschule.de/#organization"
@@ -160,13 +160,13 @@ const CopilotBetriebsrat = () => {
           </CardHeader>
           <CardContent>
             <p className="text-base leading-relaxed">
-              Microsoft Copilot ist mitbestimmungspflichtig – das ist der Ausgangspunkt. Entscheidender ist
-              aber die Frage, was der Betriebsrat mit diesem Recht macht. Wer die Technik versteht,
-              kann den Rollout aktiv mitgestalten: klare Regeln für Datenschutz und Nutzung, Schulungsansprüche
-              für alle Beschäftigten, und eine Betriebsvereinbarung, die Copilot als das positioniert, was
-              es ist – ein Werkzeug für die Belegschaft, nicht gegen sie. Dieser Artikel erklärt den
-              rechtlichen Rahmen, korrigiert verbreitete Fehleinschätzungen und liefert konkrete
-              Grundlagen für eine Betriebsvereinbarung, der beide Seiten zustimmen können.
+              Die Einführung von Microsoft Copilot kann mitbestimmungspflichtig sein – das ist der Ausgangspunkt.
+              Entscheidender ist die Frage, wie der Betriebsrat dieses Recht konkret ausübt. Wer die Technik
+              versteht, kann den Rollout aktiv mitgestalten: klare Regeln für Datenschutz und Nutzung,
+              Schulungsansprüche für alle Beschäftigten, und eine Betriebsvereinbarung, die Copilot als das
+              positioniert, was es ist – ein Werkzeug für die Belegschaft. Dieser Artikel erklärt den
+              rechtlichen Rahmen, klärt häufige Fragen und liefert konkrete Grundlagen für eine
+              Betriebsvereinbarung, der beide Seiten zustimmen können.
             </p>
           </CardContent>
         </Card>
@@ -180,11 +180,11 @@ const CopilotBetriebsrat = () => {
             informiert wird, reagiert defensiver als einer, der von Anfang an mitgestaltet.
           </p>
           <p className="leading-relaxed">
-            Dieser Leitfaden richtet sich an Betriebsräte, die mehr wollen als ein Vetorecht: die
-            verstehen möchten, wie Copilot technisch funktioniert, was rechtlich gilt (und was nicht),
-            und wie eine Betriebsvereinbarung aussieht, die den Rollout nicht blockiert, sondern
-            absichert. Dazu gehört auch ein ehrlicher Blick auf Fragen, die Betriebsräte häufig
-            stellen – und die oft auf Missverständnissen beruhen, die sich klären lassen.
+            Dieser Leitfaden richtet sich an Betriebsräte, die verstehen möchten, wie Copilot
+            technisch funktioniert, was rechtlich gilt (und was nicht), und wie eine
+            Betriebsvereinbarung aussieht, die den Rollout absichert und für alle Seiten
+            tragfähig ist. Dazu gehört auch ein differenzierter Blick auf Fragen, die Betriebsräte
+            häufig stellen – und die präzisere Antworten verdienen, als sie im Umlauf sind.
           </p>
         </div>
 
@@ -237,11 +237,11 @@ const CopilotBetriebsrat = () => {
               Compliance-Verdachtsfällen – etwa einer Datenschutzverletzung oder dem Verdacht auf
               Weitergabe vertraulicher Informationen – gezielt durchsucht werden kann. Es ist weder
               standardmäßig aktiv noch zeigt es kontinuierlich alle Inhalte aller Nutzer an.
-              Entscheidend: Der Einsatz von Purview ist selbst mitbestimmungspflichtig. Wer als
-              Betriebsrat in der Betriebsvereinbarung festhält, unter welchen Bedingungen
-              Purview eingesetzt werden darf und welche Genehmigungswege dabei gelten,
-              hat diesen Punkt rechtssicher geregelt – ohne den Einsatz grundsätzlich
-              zu blockieren.
+              Entscheidend: Auch der Einsatz von Purview kann nach §87 Abs. 1 Nr. 6 BetrVG
+              mitbestimmungspflichtig sein, wenn die konkrete Konfiguration eine
+              Überwachungseignung begründet. Wer als Betriebsrat in der Betriebsvereinbarung
+              festhält, unter welchen Bedingungen Purview eingesetzt werden darf und welche
+              Genehmigungswege dabei gelten, hat diesen Punkt rechtssicher geregelt.
             </p>
             <p className="leading-relaxed">
               Die klare Botschaft an die Belegschaft: Copilot ist kein Überwachungssystem.
@@ -420,49 +420,56 @@ const CopilotBetriebsrat = () => {
             </p>
             <p className="leading-relaxed">
               <strong>§87 Abs. 1 Nr. 6 BetrVG</strong> ist das zentrale
-              Mitbestimmungsrecht: technische Einrichtungen, die geeignet sind,
-              Verhalten oder Leistung zu überwachen, sind mitbestimmungspflichtig.
-              Copilot erzeugt Nutzungsdaten und ist damit technisch zur Überwachung
-              geeignet – auch wenn der Arbeitgeber das nicht beabsichtigt. Das Recht
-              greift also, und zwar vor der Einführung, nicht danach.
+              Mitbestimmungsrecht: technische Einrichtungen, die objektiv geeignet
+              sind, Verhaltens- oder Leistungsdaten zu erfassen, können
+              mitbestimmungspflichtig sein. Ob das auf Copilot zutrifft, hängt
+              von der konkreten Ausgestaltung im jeweiligen Betrieb ab. Da Copilot
+              Nutzungsdaten erzeugen kann, ist eine Überwachungseignung nicht von
+              vornherein ausgeschlossen – weshalb eine frühzeitige Beteiligung des
+              Betriebsrats sinnvoll ist.
             </p>
             <p className="leading-relaxed">
               <strong>Wichtige Einschränkung durch das LAG Hessen (5 TaBV 4/24,
-              2024):</strong> Das Gericht hat klargestellt, dass reine
+              2024):</strong> Das Gericht hat klargestellt, dass abstrakte
               Datenschutzbedenken ohne konkreten Überwachungsbezug kein
-              eigenständiges Mitbestimmungsrecht begründen. Der Betriebsrat kann
-              die Einführung also nicht allein aus Datenschutzgründen blockieren –
-              er braucht einen konkreten Bezug zur Überwachungseignung.
+              eigenständiges Mitbestimmungsrecht begründen. Für eine
+              belastbare Rechtsposition braucht es einen nachvollziehbaren
+              Bezug zur Überwachungseignung im konkreten Einsatzszenario.
               Diese Entscheidung ist für die Verhandlungsstrategie relevant:
               Starke Argumente sind konkrete Regelungsbedarfe, keine
-              pauschalen Datenschutzbedenken.
+              pauschalen Bedenken.
             </p>
             <p className="leading-relaxed">
               <strong>§90 BetrVG</strong> verpflichtet den Arbeitgeber zur
-              rechtzeitigen Unterrichtung. Das bedeutet: vor dem Lizenzkauf,
-              nicht danach. Der Betriebsrat sollte früh signalisieren, dass er
-              informiert werden möchte – das verhindert Konflikte, die durch
-              schlechte Kommunikation entstehen.
+              rechtzeitigen Unterrichtung vor der Einführung neuer technischer
+              Anlagen. Der Betriebsrat sollte deshalb frühzeitig – vor dem
+              Rollout – aktiv eingebunden werden. Je früher die Beteiligung,
+              desto weniger Reibung entsteht auf beiden Seiten.
             </p>
             <p className="leading-relaxed">
               <strong>§80 Abs. 3 BetrVG</strong> (Sachverständigenrecht): Seit
-              dem Betriebsrätemodernisierungsgesetz 2021 gilt die Hinzuziehung
-              eines Sachverständigen bei KI-Themen als grundsätzlich erforderlich.
-              Der Betriebsrat muss die Erforderlichkeit nicht mehr nachweisen –
-              er muss sich nur mit dem Arbeitgeber auf die Person und Vergütung
-              einigen.
+              dem Betriebsrätemodernisierungsgesetz 2021 ist die Hinzuziehung
+              eines Sachverständigen bei klar mitbestimmungsrelevanten KI-Themen
+              leichter begründbar als zuvor. Eine Darlegung der Erforderlichkeit
+              bleibt grundsätzlich erforderlich, ist bei konkreten IT- und
+              KI-Einführungen aber in der Regel gut argumentierbar. Die konkrete
+              Person und Vergütung sind mit dem Arbeitgeber abzustimmen.
             </p>
             <p className="leading-relaxed">
-              <strong>EU AI Act und Recruiting:</strong> Copilot als allgemeines
-              Produktivitätswerkzeug gilt als Low-Risk-KI. Hochrisiko entsteht,
-              wenn Copilot-basierte Systeme automatisiert über Personalentscheidungen
-              mitbestimmen. Die Grenze ist eindeutig: Copilot als Werkzeug in
-              der Hand eines geschulten, verantwortungsvollen Mitarbeitenden
-              beim Bewerberscreening ist zulässig. Ein System, das Bewerber
-              automatisch kategorisiert, einordnet oder aussortiert, ohne dass
-              ein Mensch die Entscheidung trifft, ist Hochrisiko-KI –
-              mitbestimmungspflichtig und ab August 2026 strengen
-              Dokumentationsregeln unterworfen.
+              <strong>EU AI Act und Recruiting:</strong> Microsoft 365 Copilot
+              als allgemeines Produktivitätswerkzeug ist in der Regel nicht als
+              Hochrisiko-KI eingestuft. Relevant wird der EU AI Act, wenn
+              Copilot-basierte Auswertungen für Entscheidungen im
+              Beschäftigungskontext genutzt werden – Personalauswahl,
+              Beförderung, Leistungsbewertung. Solche Anwendungen können
+              unter Anhang III des EU AI Act fallen und unterliegen ab dem
+              maßgeblichen Anwendungszeitpunkt strengen Dokumentations-
+              und Transparenzpflichten. Die praxisrelevante Unterscheidung:
+              Copilot als Hilfsmittel in der Hand einer informierten Person
+              beim Bewerberscreening ist etwas anderes als ein System,
+              das Bewerber automatisch kategorisiert oder aussortiert,
+              ohne dass eine nachvollziehbare menschliche Entscheidung
+              dahintersteht.
             </p>
           </div>
         </section>
@@ -592,19 +599,19 @@ const CopilotBetriebsrat = () => {
 
           <div className="space-y-2 mb-6">
             {[
-              "Arbeitgeber hat Betriebsrat rechtzeitig informiert (§90 BetrVG) – vor dem Lizenzkauf",
+              "Arbeitgeber hat Betriebsrat vor dem Rollout beteiligt (§90 BetrVG – rechtzeitige Unterrichtung)",
               "Welche Copilot-Produkte werden eingeführt? (M365 Copilot, Teams, Studio, kostenlos?)",
               "Wird Microsoft Purview eingesetzt? Falls ja: eigene BV-Regelung erforderlich",
               "Berechtigungsstruktur im M365-Mandanten geprüft und ggf. bereinigt",
               "Betriebsrats-Dokumente in geschütztem SharePoint-Bereich abgelegt",
-              "Mitbestimmungsrecht §87 Abs. 1 Nr. 6 BetrVG geltend gemacht",
-              "Sachverständigen hinzugezogen falls nötig (§80 Abs. 3 BetrVG)",
+              "Mitbestimmungsrecht §87 Abs. 1 Nr. 6 BetrVG geprüft – Überwachungseignung im konkreten Einsatz bewertet",
+              "Sachverständigen-Bedarf geprüft (§80 Abs. 3 BetrVG) – Erforderlichkeit bei KI-Themen gut begründbar",
               "Schulungsanspruch für BR-Mitglieder nach §37 Abs. 6 BetrVG eingefordert",
               "Qualifizierungsrecht für alle Beschäftigten nach §97 Abs. 2 BetrVG verankert",
               "BV enthält: Zweckbindung, Überwachungsausschluss, Purview-Regelung",
               "BV enthält: Qualifizierungsklausel, Beschäftigungssicherung, Evaluierung",
               "Recruiting-Regelung klar: Copilot als Werkzeug für Menschen – kein automatisiertes Screening",
-              "EU AI Act geprüft: kein Hochrisiko-Einsatz (automatisierte Personalentscheidungen) ohne Dokumentation",
+              "EU AI Act geprüft: Hochrisiko-KI nach Anhang III (automatisierte Personalentscheidungen) identifiziert und dokumentiert",
               "Belegschaft über Einführung, Zweck und BV-Regeln informiert",
             ].map((item, i) => (
               <div key={i} className="flex gap-3 items-start">
