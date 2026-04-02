@@ -682,19 +682,22 @@ export const trainings: Training[] = [
     slug: "betriebsrat-ki-workshop",
     icon: Scale,
     title: "Betriebsrat & KI: Workshop zur Gestaltung der KI-unterstützten Arbeit",
-    duration: "Halbtag (4h) | Ganztag (7,5h)",
-    description: "Workshop speziell für Betriebsräte und Personalvertretungen: Sie erarbeiten gemeinsam die Maßnahmen, Entscheidungen und Dokumente, die für eine erfolgreiche und rechtssichere Copilot-Einführung nötig sind. Kein Frontalunterricht – sondern strukturierte Arbeit an Ihrer konkreten Situation. Im Ganztags-Format zusätzlich mit praktischer Einführung in die Copilot-Funktionen und Einblick in die Admin-Dashboards.",
+    duration: "Ganztag (1 Tag) | Optional: 2. Tag Intensivtraining",
+    description: "Workshop speziell für Betriebsräte und Personalvertretungen: Vormittags erarbeiten Sie gemeinsam rechtliche Grundlagen, Betriebsvereinbarung und Maßnahmenplan. Nachmittags erleben Sie Copilot live – die wichtigsten Features, KI-unterstützte Wissensarbeit und was das für Ihre Belegschaft bedeutet. Optional buchbar: ein zweiter Tag als Intensivtraining, bei dem Betriebsratsmitglieder Copilot direkt für ihre eigene Arbeit nutzen lernen.",
     features: [
+      "Vormittags – Recht und Verhandlungskompetenz: §87, §80, §90, §97 BetrVG, LAG Hessen 2024, Sachverständigenrecht – was greift bei Ihnen?",
       "Scope des anstehenden Changes gemeinsam definieren: Welche Copilot-Produkte werden eingeführt, wer ist betroffen, was ändert sich?",
       "Begriffe und Zusammenhänge verstehen: Microsoft 365 Copilot vs. kostenloser Copilot, Purview, EU Data Boundary, EU AI Act – verständlich erklärt",
-      "Mitbestimmungsrechte konkret anwenden: §87, §80, §90, §97 BetrVG, LAG Hessen 2024, Sachverständigenrecht – was greift bei Ihnen?",
-      "Betriebsvereinbarung erarbeiten: Muster-Textbausteine als Ausgangsbasis, gemeinsam auf Ihre Situation angepasst",
+      "Betriebsvereinbarung erarbeiten: Muster-Textbausteine als Ausgangsbasis, gemeinsam auf Ihre Situation angepasst – inkl. Regelung für Teams-Transkripte",
       "Recruiting und KI: Wo ist Copilot als Werkzeug zulässig, wo beginnt Hochrisiko-KI nach EU AI Act?",
-      "Einblick in Admin-Dashboards: Was kann ein Admin sehen, was nicht? Purview, Usage Reports, Berechtigungen – live oder mit Screenshots",
-      "Checkliste ausfüllen: 14-Punkte-Checkliste für den Copilot-Rollout gemeinsam durcharbeiten und dokumentieren",
-      "Maßnahmenplan erstellen: Konkrete nächste Schritte, Zuständigkeiten und Fristen – als Ergebnis des Workshops",
-      "Ganztags-Format: Zusätzlich praktische Einführung in die Copilot-Funktionen in Word, Excel, Outlook und Teams",
-      "Alle Teilnehmenden erhalten: BV-Textbausteine, ausgefüllte Checkliste, Maßnahmenplan und Schulungsunterlage"
+      "Maßnahmenplan erstellen: Konkrete nächste Schritte, Zuständigkeiten und Fristen – als Ergebnis der Vormittagssession",
+      "Nachmittags – Copilot live erleben: Demo der wichtigsten Features aus Betriebsrats-Perspektive (Teams, Outlook, Word)",
+      "Simultanübersetzung, Live-Untertitel, Meeting-Protokolle automatisch erstellen – was das für die Belegschaft bedeutet",
+      "Einblick in Admin-Dashboards: Was kann ein Admin sehen, was nicht? Purview, Usage Reports, Berechtigungen",
+      "KI-Output kritisch bewerten: Halluzinationen erkennen, Qualitätskontrolle (besonders wichtig bei juristischen Themen)",
+      "Alle Teilnehmenden erhalten: BV-Textbausteine, ausgefüllte Checkliste, Maßnahmenplan und Schulungsunterlage",
+      "Optionaler Tag 2 – Intensivtraining (kostenloser Copilot): Prompt Engineering, Recherche (Urteile, Gesetze), Textarbeit (Aushänge, Stellungnahmen), Prompt-Bibliothek aufbauen",
+      "Optionaler Tag 2 – Intensivtraining (M365 Copilot): Teams-Protokolle live erstellen, Outlook-Korrespondenz strukturieren, BV-Entwürfe in Word, Cross-App-Workflow"
     ],
     tiers: ["free", "paid"],
     popular: true,
@@ -711,13 +714,15 @@ export const trainings: Training[] = [
       "Sie verstehen die technischen Grundlagen von Microsoft 365 Copilot: Was kann ein Admin sehen, was kann Copilot auf welche Daten zugreifen, was regelt Purview?",
       "Sie haben eine auf Ihr Unternehmen zugeschnittene Checkliste und einen Maßnahmenplan erarbeitet",
       "Sie verfügen über Muster-Textbausteine für die Betriebsvereinbarung, die Sie als Verhandlungsgrundlage nutzen können",
-      "Im Ganztags-Format: Sie können Microsoft Copilot selbst bedienen und für Ihre Betriebsratsarbeit einsetzen"
+      "Am Nachmittag: Sie sehen live, was Copilot kann – aus der Perspektive von Betriebsratsmitgliedern und Beschäftigten",
+      "Optional Tag 2: Sie können Copilot eigenständig für Ihre Betriebsratsarbeit einsetzen – Protokolle, BV-Entwürfe, Recherche, Kommunikation"
     ],
     businessImpact: [
       "Der Copilot-Rollout wird nicht durch ungeklärte Mitbestimmungsfragen verzögert – der Betriebsrat agiert als kompetenter Partner",
       "Die Betriebsvereinbarung entsteht auf Basis erprobter Textbausteine statt auf dem leeren Blatt – das spart Wochen",
       "Betriebsratsmitglieder können gegenüber der Belegschaft kompetent Auskunft geben und Bedenken adressieren",
-      "Der Betriebsrat nutzt Copilot selbst produktiv – für Protokolle, BV-Entwürfe und Kommunikation (Ganztags-Format)",
+      "Der Betriebsrat versteht Copilot aus eigener Anschauung – und kann die Belegschaft fundiert beraten (Nachmittagsblock)",
+      "Optional Tag 2: Betriebsratsmitglieder nutzen Copilot eigenständig für Protokolle, BV-Entwürfe und Kommunikation",
       "Die Qualifizierung des Betriebsrats ist nach §37 Abs. 6 BetrVG als erforderliche Schulung einzustufen – Kosten trägt der Arbeitgeber"
     ],
     metaTitle: "Betriebsrat KI-Workshop: Copilot-Einführung aktiv gestalten | copilotenschule.de",
@@ -729,8 +734,8 @@ export const trainings: Training[] = [
         answer: "Der Arbeitgeber. Nach §37 Abs. 6 BetrVG hat der Betriebsrat Anspruch auf Schulungen, die für seine Arbeit erforderlich sind. Bei der Einführung eines KI-Systems wie Microsoft 365 Copilot ist die Erforderlichkeit regelmäßig gegeben. Eine fertige Begründungshilfe zum Herunterladen finden Sie auf unserer Wissensseite unter copilotenschule.de/wissen/copilot-betriebsrat."
       },
       {
-        question: "Was ist der Unterschied zwischen dem Halbtags- und dem Ganztags-Format?",
-        answer: "Im Halbtags-Format (4 Stunden) liegt der Fokus auf der gemeinsamen Erarbeitung von Maßnahmen, Betriebsvereinbarung und Checkliste – die Teilnehmenden arbeiten an ihrer konkreten Situation. Das Ganztags-Format (7,5 Stunden) enthält zusätzlich eine praktische Einführung in die Copilot-Funktionen in Word, Excel, Outlook und Teams sowie einen Einblick in die Admin-Dashboards. Empfehlung: Ganztag, wenn der Betriebsrat Copilot auch selbst nutzen will."
+        question: "Wie ist der Tag aufgebaut – und was bringt der optionale zweite Tag?",
+        answer: "Der erste Tag ist ganztägig: Vormittags erarbeiten Sie rechtliche Grundlagen, Mitbestimmungsrechte, Betriebsvereinbarung und Maßnahmenplan. Nachmittags erleben Sie Copilot live – Demo der wichtigsten Features (Teams, Outlook, Word) aus Betriebsrats-Perspektive, inklusive Übersetzungsfunktionen, Protokoll-Automatisierung und was das für verschiedene Beschäftigtengruppen bedeutet. Der optionale zweite Tag ist ein intensives Hands-on-Training, bei dem Betriebsratsmitglieder Copilot direkt für ihre eigene Arbeit nutzen lernen – wahlweise mit dem kostenlosen Copilot (Prompt Engineering, Recherche, Textarbeit) oder der lizenzierten M365-Version (Teams-Protokolle, Outlook, Word, Cross-App-Workflows)."
       },
       {
         question: "Können wir den Workshop auch als Online-Training durchführen?",
@@ -738,7 +743,7 @@ export const trainings: Training[] = [
       },
       {
         question: "Brauchen die Teilnehmenden bereits Copilot-Lizenzen?",
-        answer: "Für das Halbtags-Format nicht – dort geht es um Strategie, Recht und Betriebsvereinbarung. Für den praktischen Teil im Ganztags-Format sind Lizenzen hilfreich, aber nicht zwingend: Wir arbeiten auch mit dem kostenlosen Microsoft Copilot und zeigen die M365-Copilot-Funktionen bei Bedarf per Demo."
+        answer: "Für Tag 1 nicht – der Nachmittagsblock funktioniert als Demo, die Teilnehmenden müssen Copilot nicht selbst bedienen. Für den optionalen zweiten Tag sind Lizenzen hilfreich, aber nicht zwingend: Wir arbeiten auch mit dem kostenlosen Microsoft Copilot und zeigen die M365-Copilot-Funktionen bei Bedarf per Demo. Der zweite Tag ist bewusst so aufgebaut, dass beide Varianten (kostenlos und lizenziert) abgedeckt werden."
       },
       {
         question: "Was nehmen die Teilnehmenden konkret mit nach Hause?",

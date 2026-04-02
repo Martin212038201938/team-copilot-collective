@@ -48,7 +48,7 @@ const CopilotBetriebsrat = () => {
     },
     {
       name: "Wie kommen wir als Betriebsrat an eine Schulung – und wer bezahlt?",
-      answer: "Der Arbeitgeber trägt die Kosten. Nach §37 Abs. 6 BetrVG hat der Betriebsrat Anspruch auf Schulungen, die für seine Arbeit erforderlich sind. Bei der Einführung eines KI-Systems wie Microsoft 365 Copilot ist das praktisch immer der Fall. Die Copilotenschule bietet ein speziell auf Betriebsräte zugeschnittenes 1-2-tägiges Format an – rechtliche Grundlagen am ersten Tag, praktische Copilot-Nutzung am zweiten. Auf Wunsch stellen wir eine Begründungshilfe für den Arbeitgeber zusammen."
+      answer: "Der Arbeitgeber trägt die Kosten. Nach §37 Abs. 6 BetrVG hat der Betriebsrat Anspruch auf Schulungen, die für seine Arbeit erforderlich sind. Bei der Einführung eines KI-Systems wie Microsoft 365 Copilot ist das praktisch immer der Fall. Die Copilotenschule bietet ein eintägiges Format an: Vormittags rechtliche Grundlagen und Verhandlungskompetenz, nachmittags live Copilot-Features erleben und verstehen, wie KI-unterstützte Wissensarbeit funktioniert. Optional buchbar: ein zweiter Tag als Intensivtraining, bei dem Betriebsratsmitglieder Copilot direkt für ihre eigene Arbeit nutzen lernen. Auf Wunsch stellen wir eine Begründungshilfe für den Arbeitgeber zusammen."
     },
     {
       name: "Was passiert mit sensiblen Betriebsratsdokumenten, wenn wir Copilot nutzen?",
@@ -68,7 +68,7 @@ const CopilotBetriebsrat = () => {
     },
     {
       name: "Wie sichern wir, dass die Copilot-Einführung wirklich der Belegschaft nützt?",
-      answer: "Konkrete Hebel: Qualifizierungsklausel im §97 Abs. 2 BetrVG-Rahmen verankern (alle Betroffenen werden geschult, nicht nur Early Adopters), Evaluierungsrunde nach 6-12 Monaten vereinbaren, Beschäftigungssicherungsklausel aufnehmen. Und: Selbst Copilot-kompetent werden. Ein Betriebsrat, der das Werkzeug kennt, verhandelt auf Augenhöhe und kann die Belegschaft fundiert beraten."
+      answer: "Konkrete Hebel: Qualifizierungsklausel im §97 Abs. 2 BetrVG-Rahmen verankern (alle Betroffenen werden geschult, nicht nur Early Adopters), Regelung für Teams-Transkripte und Meeting-Aufzeichnungen aufnehmen, Evaluierungsrunde nach 6-12 Monaten vereinbaren. Und: Selbst Copilot-kompetent werden. Ein Betriebsrat, der das Werkzeug kennt, verhandelt auf Augenhöhe und kann die Belegschaft fundiert beraten."
     }
   ];
 
@@ -176,8 +176,7 @@ const CopilotBetriebsrat = () => {
           <p className="text-lg leading-relaxed">
             Wenn Unternehmen Microsoft 365 Copilot einführen, landet das Thema früher oder später auf dem
             Tisch des Betriebsrats. Oft mit wenig Vorlauf, manchmal erst nachdem die Lizenzen schon
-            bestellt sind. Das ist ungünstig für alle Beteiligten – denn ein Betriebsrat, der zu spät
-            informiert wird, reagiert defensiver als einer, der von Anfang an mitgestaltet.
+            bestellt sind.
           </p>
           <p className="leading-relaxed">
             Dieser Leitfaden richtet sich an Betriebsräte, die verstehen möchten, wie Copilot
@@ -280,13 +279,6 @@ const CopilotBetriebsrat = () => {
               seine Gedanken und bekommt ein strukturiertes Protokoll. Das ist
               Selbstwirksamkeit – und die lässt sich nicht wegrationalisieren.
             </p>
-            <p className="leading-relaxed">
-              Der Betriebsrat kann und sollte das absichern: durch eine
-              Beschäftigungssicherungsklausel in der BV und durch das Einfordern des
-              Qualifizierungsrechts nach §97 Abs. 2 BetrVG – damit wirklich alle
-              Beschäftigten mitgenommen werden, nicht nur die, die ohnehin schon
-              technikaffin sind.
-            </p>
           </div>
         </section>
 
@@ -359,7 +351,35 @@ const CopilotBetriebsrat = () => {
               für Tätigkeiten mit echtem inhaltlichen Wert.
             </p>
             <p className="leading-relaxed">
-              Diese drei Effekte nutzen nur dann allen Beschäftigten, wenn alle
+              <strong>Sprachbarrieren abbauen.</strong> Simultaneübersetzungen in
+              Teams-Meetings und die Möglichkeit, E-Mails oder eigene Antworten
+              per Knopfdruck in andere Sprachen zu übertragen, helfen Beschäftigten,
+              die sich in der jeweiligen Fremdsprache bisher schwer getan haben.
+              Was bisher viel Überwindung gekostet hat – aktiv an internationalen
+              Meetings teilzunehmen, selbstständig auf englische Mails zu antworten –
+              wird deutlich zugänglicher. Das ist kein Luxusfeature, sondern ein
+              handfester Beitrag zur Chancengleichheit.
+            </p>
+            <p className="leading-relaxed">
+              <strong>Asynchrones Arbeiten ermöglichen.</strong> Wer Transkripte
+              konsequent nutzt, erstellt nebenbei bessere Protokolle – und schafft
+              die Grundlage für asynchrone Arbeitsweisen. Für Beschäftigte, die
+              Care-Arbeit zu Hause leisten und nicht immer live an Meetings
+              teilnehmen können, ist das ein echter Gewinn: vollständige Protokolle
+              statt lückenhafter Notizen, die Möglichkeit, verpasste Besprechungen
+              inhaltlich nachzuvollziehen, ohne auf Kolleginnen und Kollegen
+              angewiesen zu sein.
+            </p>
+            <p className="leading-relaxed">
+              <strong>Inklusion für Hörgeschädigte.</strong> Beschäftigte mit
+              eingeschränktem Hörvermögen profitieren unmittelbar von der
+              Möglichkeit, sich Live-Untertitel in der eigenen Sprache direkt
+              im Termin einblenden zu lassen. Das verändert die Qualität der
+              Teilhabe an Meetings grundlegend – nicht im Nachhinein, sondern
+              in Echtzeit.
+            </p>
+            <p className="leading-relaxed">
+              All diese Möglichkeiten nutzen nur dann allen Beschäftigten, wenn alle
               geschult werden. Das ist der entscheidende Hebel, den der Betriebsrat
               durch §97 Abs. 2 BetrVG in der Hand hält: Er kann verlangen, dass
               Qualifizierung kein Angebot ist, sondern ein verbindlicher Bestandteil
@@ -504,6 +524,10 @@ const CopilotBetriebsrat = () => {
                 text: "Unter welchen Voraussetzungen darf Purview Copilot-Interaktionen erfassen? Welches Genehmigungsverfahren gilt? Das muss in der BV stehen – nicht pauschal verboten, aber klar geregelt."
               },
               {
+                title: "Teams-Transkripte und Meeting-Aufzeichnungen regeln",
+                text: "Die automatische Transkription von Teams-Meetings gibt es nicht erst seit Copilot, gewinnt aber durch den Assistenten stark an Verbreitung und Attraktivität. Viele Betriebe haben diese Funktion noch nicht geregelt. Die BV sollte klären: Wer darf aufzeichnen oder transkribieren? Wie werden alle Teilnehmenden informiert? Wie lange werden Transkripte gespeichert? Wer hat Zugriff auf sie?"
+              },
+              {
                 title: "Berechtigungsstruktur bereinigen",
                 text: "Vor dem Rollout prüfen und dokumentieren, dass Zugriffsrechte im M365-Mandanten korrekt gesetzt sind. Besonders: Betriebsrats-Dokumente in einem nur für BR-Mitglieder zugänglichen Bereich ablegen."
               },
@@ -514,10 +538,6 @@ const CopilotBetriebsrat = () => {
               {
                 title: "Recruiting klar abgrenzen",
                 text: "Copilot als Unterstützungswerkzeug für geschulte Recruiter: zulässig. Automatisiertes System zur Bewerberklassifizierung ohne menschliche Entscheidung: nicht zulässig. Das muss explizit stehen."
-              },
-              {
-                title: "Beschäftigungssicherungsklausel",
-                text: "Die Copilot-Einführung führt nicht unmittelbar zu betriebsbedingten Kündigungen. Bei wesentlichen Tätigkeitsänderungen werden Qualifizierungsmaßnahmen nach §97 Abs. 2 BetrVG vereinbart."
               },
               {
                 title: "Evaluierungsklausel",
@@ -577,9 +597,10 @@ const CopilotBetriebsrat = () => {
               zusammenzufassen – dafür ist Copilot besonders nützlich.
             </p>
             <p className="leading-relaxed">
-              Das zweite Training-Tag in unserem Betriebsrats-Format ist genau
+              Der optionale zweite Tag unseres Betriebsrats-Formats ist genau
               diesem praktischen Einstieg gewidmet – damit Betriebsratsmitglieder
-              das Werkzeug nicht nur aus der Theorie kennen.
+              das Werkzeug nicht nur aus der Theorie kennen, sondern direkt für
+              ihre eigene Arbeit nutzen können.
             </p>
           </div>
         </section>
@@ -609,7 +630,7 @@ const CopilotBetriebsrat = () => {
               "Schulungsanspruch für BR-Mitglieder nach §37 Abs. 6 BetrVG eingefordert",
               "Qualifizierungsrecht für alle Beschäftigten nach §97 Abs. 2 BetrVG verankert",
               "BV enthält: Zweckbindung, Überwachungsausschluss, Purview-Regelung",
-              "BV enthält: Qualifizierungsklausel, Beschäftigungssicherung, Evaluierung",
+              "BV enthält: Qualifizierungsklausel, Transkript-Regelung und Evaluierungsklausel",
               "Recruiting-Regelung klar: Copilot als Werkzeug für Menschen – kein automatisiertes Screening",
               "EU AI Act geprüft: Hochrisiko-KI nach Anhang III (automatisierte Personalentscheidungen) identifiziert und dokumentiert",
               "Belegschaft über Einführung, Zweck und BV-Regeln informiert",
@@ -653,22 +674,68 @@ const CopilotBetriebsrat = () => {
               Die Copilotenschule bietet ein eigenes Schulungsformat an, das speziell
               für Betriebsräte und Personalvertretungen entwickelt wurde. Es ist kein
               umfunktioniertes Standard-Training – es stellt die Perspektive der
-              Arbeitnehmervertretung in den Mittelpunkt.
+              Arbeitnehmervertretung in den Mittelpunkt. Format: eintägig, mit
+              optionalem zweitem Intensivtag.
             </p>
-            <p className="leading-relaxed">
-              <strong>Tag 1 – Recht und Verhandlungskompetenz:</strong> Mitbestimmungsrechte
-              bei KI-Einführung (§87, §80, §90, §97 BetrVG), aktueller Rechtsprechungsstand
-              (LAG Hessen 2024), Datenschutz und Berechtigungsstruktur in Microsoft 365,
-              EU AI Act und seine Konsequenzen für den Betriebsrat, Regelungspunkte
-              für die Betriebsvereinbarung, Copilot im Recruiting – was geht, was nicht.
-            </p>
-            <p className="leading-relaxed">
-              <strong>Tag 2 (optional) – Copilot in der Praxis:</strong>
-              Unterschied kostenloser Copilot vs. Microsoft 365 Copilot,
-              praktisches Arbeiten mit Word, Excel, Outlook und Teams,
-              Copilot für die eigene Betriebsratsarbeit (Protokolle, BV-Entwürfe,
-              Kommunikation), Grenzen von KI erkennen.
-            </p>
+          </div>
+
+          <div className="mt-4 space-y-4">
+            {/* Tag 1 */}
+            <div className="border rounded-lg p-5 bg-muted/20">
+              <p className="font-bold text-base mb-3">Tag 1 – Ganztägig</p>
+
+              <p className="font-semibold text-sm mb-1">Vormittags: Recht und Verhandlungskompetenz</p>
+              <ul className="text-sm text-muted-foreground space-y-1 mb-4 list-disc list-inside">
+                <li>Mitbestimmungsrechte bei KI-Einführung: §87, §80, §90, §97 BetrVG</li>
+                <li>Aktueller Rechtsprechungsstand – LAG Hessen 2024 und Konsequenzen für die Verhandlung</li>
+                <li>Datenschutz, EU Data Boundary, Berechtigungsstruktur in Microsoft 365</li>
+                <li>EU AI Act: Was für den Betriebsrat relevant ist (Hochrisiko-KI nach Anhang III)</li>
+                <li>Regelungspunkte für die Betriebsvereinbarung – mit Muster-Textbausteinen</li>
+                <li>Copilot im Recruiting: Werkzeug vs. automatisiertes Entscheidungssystem</li>
+                <li>Teams-Transkripte und Meeting-Aufzeichnungen: Regelungsbedarf erkennen</li>
+              </ul>
+
+              <p className="font-semibold text-sm mb-1">Nachmittags: Copilot live erleben – KI-unterstützte Wissensarbeit</p>
+              <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside">
+                <li>Wie Copilot funktioniert – Demo der wichtigsten Features aus Betriebsrats-Perspektive</li>
+                <li>Copilot in Teams: Meeting-Protokolle automatisch erstellen, Beschlüsse und offene Punkte extrahieren</li>
+                <li>Copilot in Outlook: Arbeitgeberkorrespondenz überblicken, Antwort-Entwürfe vorfertigen</li>
+                <li>Copilot in Word: BV-Entwürfe und Info-Schreiben für die Belegschaft schneller formulieren</li>
+                <li>Simultanübersetzung, Live-Untertitel, asynchrone Protokolle – was das für die Belegschaft bedeutet</li>
+                <li>KI-Output kritisch bewerten: Halluzinationen erkennen, Qualitätskontrolle (besonders wichtig bei juristischen Themen)</li>
+              </ul>
+            </div>
+
+            {/* Optionaler Tag 2 */}
+            <div className="border rounded-lg p-5 bg-muted/20">
+              <p className="font-bold text-base mb-1">Optionaler Tag 2 – Intensivtraining: Copilot für die eigene Betriebsratsarbeit</p>
+              <p className="text-sm text-muted-foreground mb-3">
+                Betriebsratsmitglieder arbeiten selbst mit Copilot – wahlweise mit der kostenlosen Version
+                oder einer extra lizenzierten M365-Copilot-Version, je nach Verfügbarkeit.
+              </p>
+
+              <p className="font-semibold text-sm mb-1">Mit dem kostenlosen Copilot (ohne Lizenz):</p>
+              <ul className="text-sm text-muted-foreground space-y-1 mb-4 list-disc list-inside">
+                <li>Prompt Engineering Grundlagen – Anfragen so formulieren, dass Copilot präzise Antworten liefert</li>
+                <li>Recherche mit Copilot: Gesetzestexte zusammenfassen, Urteile verstehen, Verhandlungsargumente vorbereiten</li>
+                <li>Textarbeit: Aushänge, Einladungen, Informationsschreiben und Stellungnahmen formulieren</li>
+                <li>Brainstorming und Perspektivwechsel: Verhandlungsstrategien durchdenken, Pro/Contra zu Arbeitgebervorschlägen strukturieren</li>
+                <li>Iteratives Prompting: Ergebnisse verfeinern – vom groben Entwurf zur fertigen Formulierung</li>
+                <li>Eigene Prompt-Bibliothek aufbauen: Templates für wiederkehrende BR-Aufgaben entwickeln</li>
+              </ul>
+
+              <p className="font-semibold text-sm mb-1">Zusätzlich mit Microsoft 365 Copilot (lizenzierte Version):</p>
+              <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside">
+                <li>Copilot in Teams: Betriebsratssitzungen live protokollieren – Beschlüsse, Aufgaben und offene Punkte automatisch extrahieren</li>
+                <li>Copilot in Outlook: Große Mengen BR-Korrespondenz strukturieren, Threads zusammenfassen, Antworten im richtigen Tonfall vorfertigen</li>
+                <li>Copilot in Word: BV-Entwürfe erstellen und überarbeiten, Berichte für die Belegschaft schneller fertigstellen</li>
+                <li>Cross-App-Workflow: E-Mail-Thread → strukturiertes Word-Dokument → Infoschreiben für alle Beschäftigten</li>
+                <li>Sitzungsprotokoll → sofort nutzbare Zusammenfassung mit offenen Punkten und Zuständigkeiten</li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="prose prose-lg max-w-none dark:prose-invert mt-4">
             <p className="leading-relaxed">
               Die Schulungskosten trägt der Arbeitgeber nach §37 Abs. 6 BetrVG.
               Nutzen Sie unsere fertige Begründungshilfe, um den Schulungsanspruch
