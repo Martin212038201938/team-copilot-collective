@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
-import { Mail, Phone, MapPin, Calendar } from "lucide-react";
+import { Mail, Phone, MapPin, Calendar, MessageSquare } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -243,6 +243,31 @@ const Contact = () => {
                     <Button variant="secondary" className="w-full font-semibold">
                       <Calendar className="w-4 h-4 mr-2" />
                       Jetzt Termin buchen →
+                    </Button>
+                  </a>
+                </div>
+              </div>
+            </Card>
+
+            {/* Teams Chat - Prominente CTA */}
+            <Card className="p-6 border-primary/20">
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <MessageSquare className="w-5 h-5 text-primary" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-semibold mb-1">Teams Chat</h3>
+                  <p className="text-sm text-muted-foreground mb-3">
+                    Kurze Frage? Schreiben Sie mir direkt im Teams-Chat.
+                  </p>
+                  <a
+                    href="https://teams.microsoft.com/l/chat/0/0?users=martin@yellow-boat.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button variant="outline" className="w-full">
+                      <MessageSquare className="w-4 h-4 mr-2" />
+                      Chat starten →
                     </Button>
                   </a>
                 </div>

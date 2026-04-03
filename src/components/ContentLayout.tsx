@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import ArticlePopup from "./ArticlePopup";
-import { ChevronRight, Home } from "lucide-react";
+import { ChevronRight, Home, MessageSquare } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface Breadcrumb {
@@ -188,6 +188,15 @@ const ContentLayout = ({
                         <span className="relative z-10">Kontakt aufnehmen</span>
                         <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover/btn:opacity-100 transition-opacity" />
                       </Link>
+                      <a
+                        href="https://teams.microsoft.com/l/chat/0/0?users=martin@yellow-boat.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center w-full px-5 py-3 mt-3 border border-primary/30 text-primary rounded-xl hover:bg-primary/5 transition-all duration-300 text-sm font-semibold"
+                      >
+                        <MessageSquare className="w-4 h-4 mr-2" />
+                        Teams Chat starten
+                      </a>
                     </div>
                   </div>
                 </div>
