@@ -38,7 +38,7 @@ const benefits = [
   {
     icon: CalendarDays,
     title: "Live-Formate statt aufgezeichneter Videos",
-    description: "Wir setzen auf interaktive Live-Sessions – keine vorab aufgezeichneten Videos. Besonders bewährt hat sich unsere begleitende Lernreise: 6 oder 8 Einheiten à 2 Stunden, verteilt über mehrere Wochen nach dem Kick-off. So bleibt das Wissen haften, der Transfer in den Alltag gelingt und das Team wächst gemeinsam. Beliebig erweiterbar um Sonderthemen, die sich im Rollout ergeben."
+    description: "Alle unsere Trainings finden live statt – vor Ort bei Ihnen, bei uns in Köln oder online. Immer live, niemals aufgezeichnet. Echte Interaktion, echte Fragen, echte Antworten. Keine Videokurse, die niemand zu Ende schaut."
   }
 ];
 
