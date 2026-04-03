@@ -5,6 +5,7 @@ import {
   Headset,
   Gauge,
   Medal,
+  CalendarDays,
   ChevronDown
 } from "lucide-react";
 
@@ -33,6 +34,11 @@ const benefits = [
     icon: Medal,
     title: "Über ein Jahrzehnt Erfahrung",
     description: "Die copilotenschule.de ist eine Marke der 2011 gegründeten Yellow-Boat Consulting. Seit über einem Jahrzehnt realisieren wir Agile Trainings und Digitalisierungsprojekte in Konzernen und im Mittelstand. Seit 2023 liegt ein starker Fokus auf praxisnahen Copilot-Anwendertrainings für Microsoft 365 Copilot und GitHub Copilot."
+  },
+  {
+    icon: CalendarDays,
+    title: "Live-Formate statt aufgezeichneter Videos",
+    description: "Wir setzen auf interaktive Live-Sessions – keine vorab aufgezeichneten Videos. Besonders bewährt hat sich unsere begleitende Lernreise: 6 oder 8 Einheiten à 2 Stunden, verteilt über mehrere Wochen nach dem Kick-off. So bleibt das Wissen haften, der Transfer in den Alltag gelingt und das Team wächst gemeinsam. Beliebig erweiterbar um Sonderthemen, die sich im Rollout ergeben."
   }
 ];
 
