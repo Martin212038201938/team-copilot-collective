@@ -1,7 +1,7 @@
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Clock, HelpCircle, X, ArrowRight } from "lucide-react";
+import { Clock, HelpCircle, X, ArrowRight, ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
@@ -31,30 +31,62 @@ const trainingModulesForSchema = modules.map(m => ({
   features: m.features
 }));
 
+// FAQs für die Trainings-Übersichtsseite (Entscheider-Perspektive)
+const trainingsFAQs = [
+  {
+    question: "Welche Microsoft Copilot Schulung passt zu meinem Team?",
+    answer: "Das hängt davon ab, welches Copilot-Tier Ihre Organisation nutzt (Free oder Paid) und welche Vorkenntnisse Ihr Team mitbringt. Für den Einstieg empfehlen wir das Grundlagen-Training zu Prompt Design & KI-Kompetenz – es funktioniert mit beiden Varianten. Teams mit Microsoft 365 Copilot Lizenz profitieren besonders vom Praxis-Training für Word, Excel, PowerPoint, Outlook und Teams. Die Copilotenschule berät Sie gerne bei der Auswahl: Wir analysieren Ihre Ausgangslage und stellen ein passgenaues Trainingspaket zusammen."
+  },
+  {
+    question: "Sind KI-Schulungen für Mitarbeiter seit dem EU AI Act Pflicht?",
+    answer: "Ja. Seit dem 2. Februar 2025 verpflichtet Artikel 4 des EU AI Act alle Unternehmen, die KI-Systeme einsetzen, zur Sicherstellung ausreichender KI-Kompetenz bei ihren Mitarbeitenden. Ab August 2026 gelten die vollständigen Pflichten inklusive Bußgeldtatbeständen von bis zu 30 Millionen Euro. Die Copilotenschule bietet mit der EU AI Act Pflichtschulung ein Training, das diese gesetzliche Anforderung abdeckt – praxisnah und speziell auf die Arbeit mit Microsoft Copilot zugeschnitten."
+  },
+  {
+    question: "Wie laufen die Copilot Schulungen ab – Inhouse, online oder beides?",
+    answer: "Alle Schulungen der Copilotenschule sind als Inhouse-Workshop bei Ihnen vor Ort, als Live-Online-Training via Microsoft Teams oder Zoom sowie als Lernreise über mehrere Wochen verfügbar. Sie wählen das Format, das zu Ihrer Organisation passt. Inhouse-Workshops eignen sich besonders, wenn Sie teamübergreifend schulen wollen. Online-Trainings sind ideal für verteilte Teams. Die 8-Wochen-Lernreise kombiniert beide Formate für nachhaltigen Lerntransfer."
+  },
+  {
+    question: "Wie überzeuge ich die Geschäftsführung, in Copilot Schulungen zu investieren?",
+    answer: "Der stärkste Hebel: Zeigen Sie den konkreten Produktivitätsgewinn. Studien belegen, dass geschulte Copilot-Nutzer bis zu 30 % schneller bei Routineaufgaben wie E-Mails, Zusammenfassungen und Datenanalysen arbeiten. Ohne Schulung hingegen nutzen die meisten Mitarbeiter nur einen Bruchteil der Möglichkeiten – die Lizenzkosten verpuffen. Die Copilotenschule unterstützt Sie mit einem Strategie- und Change-Management-Workshop, der speziell für Entscheider konzipiert ist und den ROI der Copilot-Investition klar aufzeigt."
+  },
+  {
+    question: "Was unterscheidet die Copilotenschule von anderen Trainingsanbietern?",
+    answer: "Drei Dinge: Erstens sind wir auf Microsoft Copilot spezialisiert – kein breiter IT-Schulungskatalog, sondern ausschließlich Copilot-Expertise. Zweitens trainieren wir gezielt auf das Copilot-Tier, das Ihre Teilnehmer tatsächlich nutzen (Free oder Paid), statt generische Inhalte zu vermitteln. Drittens begleiten wir den gesamten Enablement-Prozess – von der Pilotgruppe über den Rollout bis zur nachhaltigen Verankerung im Arbeitsalltag. Unsere Trainer sind zertifizierte Copilot-Experten mit Erfahrung aus über hundert Unternehmensschulungen."
+  }
+];
+
 const UnsereAngebote = () => {
   const [tierFilter, setTierFilter] = useState<TierFilter>("all");
   const [showTierHelp, setShowTierHelp] = useState(false);
+  const [openFAQ, setOpenFAQ] = useState<number | null>(null);
 
   const filteredModules = tierFilter === "all"
     ? modules
     : modules.filter(m => m.tiers.includes(tierFilter));
 
-  const schema = generateTrainingSchemas(trainingModulesForSchema, []);
+  const schema = generateTrainingSchemas(
+    trainingModulesForSchema,
+    trainingsFAQs
+  );
 
   return (
     <div className="min-h-screen">
       <SEOHead
-        title="Microsoft Copilot Schulungen & Trainings"
-        description="Praxisnahe Copilot Schulungen: Von M365-Grundlagen über GitHub Copilot bis KI-Agenten. Für Free und Paid Lizenzen – als Workshop, Lernreise oder Keynote."
+        title="Microsoft Copilot Schulung für Unternehmen"
+        description="Microsoft Copilot Schulungen & Workshops: Inhouse, online oder als Lernreise. Von M365-Grundlagen bis KI-Agenten – jetzt passende Schulung finden."
         keywords={[
           "Microsoft Copilot Schulung",
+          "Copilot Schulung für Unternehmen",
           "Microsoft 365 Copilot Training",
-          "Copilot Trainings Übersicht",
+          "Copilot Workshop",
+          "Copilot Seminar",
+          "KI Schulung Unternehmen",
+          "Copilot Inhouse Schulung",
+          "Copilot Weiterbildung",
           "GitHub Copilot Training",
           "Copilot Studio Schulung",
-          "KI Training Unternehmen",
-          "Copilot Free Training",
-          "Copilot Paid Training"
+          "KI Schulung Mitarbeiter Pflicht",
+          "Copilot Kurs"
         ]}
         canonicalUrl="https://copilotenschule.de/trainings"
         schema={schema}
@@ -70,11 +102,13 @@ const UnsereAngebote = () => {
             {/* Page Header */}
             <div className="text-center mb-12">
               <h1 className="text-5xl lg:text-7xl font-semibold tracking-tight leading-[1.1]">
-                Unsere Angebote
+                Microsoft Copilot Schulungen & Workshops
               </h1>
               <p className="mt-6 text-xl text-muted-foreground max-w-3xl mx-auto animate-slide-up-delayed">
-                Microsoft Copilot Schulungen & Trainings für Unternehmen –
-                konsequent auf die konkreten Bedarfe Ihrer Organisation zugeschnitten.
+                Praxisnahe Microsoft Copilot Schulungen für Unternehmen – als Inhouse-Workshop, Live-Online-Seminar oder mehrteilige Lernreise. Konsequent auf die konkreten Bedarfe Ihrer Organisation zugeschnitten.
+              </p>
+              <p className="mt-3 text-base text-muted-foreground max-w-3xl mx-auto">
+                Von Microsoft 365 Copilot Grundlagen über GitHub Copilot bis zu KI-Agenten mit Copilot Studio: Wählen Sie aus {modules.length} Trainingsformaten das passende Angebot für Ihr Team – für Copilot Free und Copilot Paid Lizenzen.
               </p>
             </div>
 
@@ -234,6 +268,40 @@ const UnsereAngebote = () => {
               </div>
             </div>
 
+          </div>
+        </section>
+
+        {/* FAQ-Sektion */}
+        <section className="py-16 bg-muted/20">
+          <div className="container mx-auto px-4 max-w-3xl">
+            <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center">
+              Häufige Fragen zu unseren Copilot Schulungen
+            </h2>
+            <div className="space-y-3">
+              {trainingsFAQs.map((faq, index) => (
+                <div
+                  key={index}
+                  className="bg-card border rounded-lg overflow-hidden"
+                >
+                  <button
+                    onClick={() => setOpenFAQ(openFAQ === index ? null : index)}
+                    className="w-full flex items-center justify-between p-5 text-left hover:bg-muted/30 transition-colors"
+                  >
+                    <span className="font-medium text-base pr-4">{faq.question}</span>
+                    <ChevronDown
+                      className={`w-5 h-5 flex-shrink-0 text-muted-foreground transition-transform duration-200 ${
+                        openFAQ === index ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
+                  {openFAQ === index && (
+                    <div className="px-5 pb-5 text-muted-foreground text-sm leading-relaxed animate-fade-in">
+                      {faq.answer}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
         </section>
       </main>
