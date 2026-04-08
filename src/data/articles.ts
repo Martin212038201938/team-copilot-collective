@@ -30,6 +30,17 @@ export interface ArticleData {
 // Alle Artikel - sortiert nach Veröffentlichungsdatum (neueste zuerst)
 export const ALL_ARTICLES: ArticleData[] = [
   {
+    id: "copilot-in-excel-aktivieren",
+    title: "Copilot in Excel aktivieren: Schritt-für-Schritt für Unternehmen",
+    description: "Copilot in Excel aktivieren: Voraussetzungen, Schritt-für-Schritt-Anleitung, Datenschutzkonfiguration und typische Fehler beim Rollout.",
+    link: "/wissen/copilot-in-excel-aktivieren",
+    badge: "Microsoft 365 Copilot",
+    icon: "⚡",
+    lastUpdated: "08. April 2026",
+    publishDate: "2026-04-08",
+    publishTime: "09:00"
+  },
+  {
     id: "copilot-betriebsrat",
     title: "Microsoft Copilot und der Betriebsrat: Was Arbeitnehmervertreter wirklich wissen müssen",
     description: "Was der Betriebsrat über Microsoft Copilot wissen muss: Mitbestimmung, Datenschutz, Vorurteile widerlegt. Mit Checkliste und FAQ.",

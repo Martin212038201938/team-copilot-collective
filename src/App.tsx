@@ -49,6 +49,7 @@ import CopilotClaudeIntegration from "./pages/CopilotClaudeIntegration";
 import CopilotInOutlook from "./pages/CopilotInOutlook";
 import CopilotSchulungOnline from "./pages/CopilotSchulungOnline";
 import CopilotBetriebsrat from "./pages/CopilotBetriebsrat";
+import CopilotInExcelAktivieren from "./pages/CopilotInExcelAktivieren";
 
 const queryClient = new QueryClient();
 
@@ -96,6 +97,7 @@ const App = () => (
           <Route path="/wissen/copilot-in-outlook-nutzen-tipps" element={<CopilotInOutlook />} />
           <Route path="/wissen/microsoft-copilot-schulung-online" element={<CopilotSchulungOnline />} />
           <Route path="/wissen/copilot-betriebsrat" element={<CopilotBetriebsrat />} />
+          <Route path="/wissen/copilot-in-excel-aktivieren" element={<CopilotInExcelAktivieren />} />
           <Route path="/impressum" element={<Impressum />} />
           <Route path="/ueber-uns" element={<UeberUns />} />
           <Route path="/trainings" element={<UnsereAngebote />} />

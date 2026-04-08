@@ -92,6 +92,7 @@ Unternehmen und Organisationen, die:
 - Claude in Microsoft Copilot: Was Anthropics KI im Copilot-Ökosystem verändert
 - KI-Schulung Mitarbeiter Pflicht: Was der EU AI Act von Unternehmen verlangt
 - Copilot in Outlook nutzen: Tipps und Use Cases für Mail und Kalender
+- Copilot in Excel aktivieren: Schritt-für-Schritt für Unternehmen
 
 ## Trainer
 
