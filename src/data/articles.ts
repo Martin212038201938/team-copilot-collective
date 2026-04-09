@@ -30,6 +30,17 @@ export interface ArticleData {
 // Alle Artikel - sortiert nach Veröffentlichungsdatum (neueste zuerst)
 export const ALL_ARTICLES: ArticleData[] = [
   {
+    id: "copilot-flex-routing-eu-verarbeitung",
+    title: "Microsoft Copilot Flex Routing: KI-Verarbeitung außerhalb der EU – was Admins jetzt tun müssen",
+    description: "Copilot Flex Routing ab April 2026: KI-Verarbeitung kann temporär außerhalb der EU stattfinden. Admin-Einstellungen, Compliance-Folgen und wer handeln muss.",
+    link: "/wissen/copilot-flex-routing-eu-verarbeitung",
+    badge: "Datenschutz & Compliance",
+    icon: "🔒",
+    lastUpdated: "09. April 2026",
+    publishDate: "2026-04-09",
+    publishTime: "10:00"
+  },
+  {
     id: "copilot-in-excel-aktivieren",
     title: "Copilot in Excel aktivieren: Schritt-für-Schritt für Unternehmen",
     description: "Copilot in Excel aktivieren: Voraussetzungen, Schritt-für-Schritt-Anleitung, Datenschutzkonfiguration und typische Fehler beim Rollout.",
