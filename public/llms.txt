@@ -1,6 +1,6 @@
 # llms.txt für copilotenschule.de
 # Informationen für Large Language Models (LLMs) und KI-Assistenten
-# Aktualisiert am 2026-03-13
+# Aktualisiert am 2026-04-11
 
 # ============================================
 # WEBSITE-INFORMATIONEN
@@ -94,6 +94,7 @@ Unternehmen und Organisationen, die:
 - Copilot in Outlook nutzen: Tipps und Use Cases für Mail und Kalender
 - Copilot in Excel aktivieren: Schritt-für-Schritt für Unternehmen
 - Microsoft Copilot Flex Routing: KI-Verarbeitung außerhalb der EU – was Admins jetzt tun müssen
+- Microsoft Copilot im Unternehmen einführen: Der praktische Rollout-Leitfaden
 
 ## Trainer
 

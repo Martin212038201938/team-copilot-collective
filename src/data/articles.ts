@@ -30,6 +30,17 @@ export interface ArticleData {
 // Alle Artikel - sortiert nach Veröffentlichungsdatum (neueste zuerst)
 export const ALL_ARTICLES: ArticleData[] = [
   {
+    id: "copilot-im-unternehmen-einfuehren-leitfaden",
+    title: "Microsoft Copilot im Unternehmen einführen: Der praktische Rollout-Leitfaden",
+    description: "Praxisleitfaden für den Microsoft Copilot Rollout: Phasen, Change Management, Training-Ansätze und Launch-Event aus echten Unternehmenseinführungen.",
+    link: "/wissen/copilot-im-unternehmen-einfuehren-leitfaden",
+    badge: "Rollout & Adoption",
+    icon: "🚀",
+    lastUpdated: "11. Apr. 2026",
+    publishDate: "2026-04-11",
+    publishTime: "09:00"
+  },
+  {
     id: "copilot-flex-routing-eu-verarbeitung",
     title: "Microsoft Copilot Flex Routing: KI-Verarbeitung außerhalb der EU – was Admins jetzt tun müssen",
     description: "Copilot Flex Routing ab April 2026: KI-Verarbeitung kann temporär außerhalb der EU stattfinden. Admin-Einstellungen, Compliance-Folgen und wer handeln muss.",

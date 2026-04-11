@@ -51,6 +51,7 @@ import CopilotSchulungOnline from "./pages/CopilotSchulungOnline";
 import CopilotBetriebsrat from "./pages/CopilotBetriebsrat";
 import CopilotInExcelAktivieren from "./pages/CopilotInExcelAktivieren";
 import CopilotFlexRoutingEU from "./pages/CopilotFlexRoutingEU";
+import CopilotRolloutLeitfaden from "./pages/CopilotRolloutLeitfaden";
 
 const queryClient = new QueryClient();
 
@@ -100,6 +101,7 @@ const App = () => (
           <Route path="/wissen/copilot-betriebsrat" element={<CopilotBetriebsrat />} />
           <Route path="/wissen/copilot-in-excel-aktivieren" element={<CopilotInExcelAktivieren />} />
           <Route path="/wissen/copilot-flex-routing-eu-verarbeitung" element={<CopilotFlexRoutingEU />} />
+          <Route path="/wissen/copilot-im-unternehmen-einfuehren-leitfaden" element={<CopilotRolloutLeitfaden />} />
           <Route path="/impressum" element={<Impressum />} />
           <Route path="/ueber-uns" element={<UeberUns />} />
           <Route path="/trainings" element={<UnsereAngebote />} />
