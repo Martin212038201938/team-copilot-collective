@@ -121,26 +121,69 @@ damit sichtbar wird, welche Maßnahmen welche Wirkung hatten.
 
 ### Modul 1: Technische Performance
 
-Für jede Domain und deren wichtigste Unterseiten (max. 10 pro Domain):
+**⚠️ WICHTIG — PageSpeed Insights API ist unzuverlässig:**
+Die kostenlose Google PageSpeed Insights API hat ein winziges Tageskontingent
+und liefert regelmäßig HTTP 429 ("Quota exceeded"). Verlasse dich NICHT auf sie
+als einzige Methode. Verwende **immer Methode 1 (HTTP-basiert)** als Primärquelle
+und Methode 2 (PageSpeed) nur wenn sie zufällig funktioniert.
 
-1. Rufe die PageSpeed Insights API auf (kostenlos, kein API-Key nötig):
-   ```
-   WebFetch: https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=https://DOMAIN/PFAD&strategy=mobile&category=performance&category=accessibility&category=best-practices&category=seo
-   ```
+#### Methode 1: HTTP-basierte Messung — PRIMÄR (immer verfügbar)
 
-2. Extrahiere aus dem Ergebnis:
-   - **Performance Score** (0-100)
-   - **LCP** (Largest Contentful Paint) — Ziel: < 2.5s
-   - **FID/INP** (Interaction to Next Paint) — Ziel: < 200ms
-   - **CLS** (Cumulative Layout Shift) — Ziel: < 0.1
-   - **TTFB** (Time to First Byte) — Ziel: < 800ms
-   - **Accessibility Score**
-   - **SEO Score**
+```python
+import requests, time
 
-3. Bewertung:
-   - Grün: Alle Core Web Vitals im "guten" Bereich
-   - Gelb: Mindestens ein Wert im "needs improvement" Bereich
-   - Rot: Mindestens ein Wert im "poor" Bereich
+def measure_performance(url):
+    start = time.time()
+    r = requests.get(url, timeout=20, allow_redirects=True,
+                     headers={"User-Agent": "Mozilla/5.0 (compatible; HealthCheck/1.0)"})
+    ttfb_ms = r.elapsed.total_seconds() * 1000
+    total_ms = (time.time() - start) * 1000
+    return {
+        "ttfb_ms": round(ttfb_ms),
+        "total_ms": round(total_ms),
+        "html_size_kb": round(len(r.content) / 1024, 1),
+        "http_status": r.status_code,
+        "server": r.headers.get("server", "unknown"),
+        "cache_control": r.headers.get("cache-control", "MISSING — empfehlen zu setzen!"),
+    }
+```
+
+Alternativ per curl (für schnellen Check):
+```bash
+curl -s -o /dev/null -w "Status: %{http_code}\nTTFB: %{time_starttransfer}s\nTotal: %{time_total}s\n" https://DOMAIN/
+```
+
+Extrahiere und bewerte:
+- **TTFB** (Time to First Byte):
+  - ✅ Gut: < 200ms → `status: "good"`
+  - 🟡 Needs Improvement: 200–800ms → `status: "needs_improvement"`
+  - 🔴 Poor: > 800ms → `status: "poor"` — KRITISCH, sofort handeln!
+- **HTML-Größe**: > 200KB ist ein Warnsignal (ungezippte Übertragung)
+- **Cache-Control**: Fehlt? → Empfehlen es zu setzen
+- **HTTP-Status**: Muss 200 sein
+
+Ausführliche Dokumentation: `references/performance-fallback.md`
+
+#### Methode 2: PageSpeed Insights API — SEKUNDÄR (oft 429-Fehler)
+
+Versuche zusätzlich (aber rechne mit Fehlschlag):
+```
+WebFetch: https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=https://DOMAIN/PFAD&strategy=mobile&category=performance&category=accessibility&category=best-practices&category=seo
+```
+
+Bei HTTP 429: Im Snapshot `"performance_score": null` und
+`"note": "PageSpeed API quota exhausted"` setzen — kein Problem, die
+HTTP-Metriken reichen für Trending-Vergleiche vollständig aus.
+
+Falls verfügbar, extrahiere:
+- **Performance Score** (0-100), **LCP** (Ziel: < 2.5s),
+  **INP** (Ziel: < 200ms), **CLS** (Ziel: < 0.1),
+  **Accessibility Score**, **SEO Score**
+
+#### Gesamtbewertung:
+- 🟢 Grün: TTFB < 200ms UND (falls PageSpeed verfügbar) alle CWV gut
+- 🟡 Gelb: TTFB 200–800ms ODER ein CWV im "needs improvement" Bereich
+- 🔴 Rot: TTFB > 800ms (egal was PageSpeed sagt)
 
 ### Modul 2: Indexierung & Crawling
 
