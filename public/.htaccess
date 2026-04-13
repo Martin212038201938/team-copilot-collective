@@ -184,12 +184,19 @@ AddType application/xml .xml
 # ============================================
 
 <IfModule mod_headers.c>
-    # Gehashte Assets (Vite fingerprinted: JS, CSS, Fonts, Bilder in /assets/)
-    # max-age=31536000 (1 Jahr) + immutable: Browser fragt NIE nach.
-    # Sicher weil Vite bei jedem Build neue Hashes erzeugt → kein Stale-Content möglich.
-    <FilesMatch "\.(js|css|woff|woff2|ttf|eot|otf|svg|png|jpg|jpeg|gif|webp|avif)$">
-        Header set Cache-Control "max-age=31536000, immutable"
+    # Öffentliche Bilder (ungehashed, z.B. /images/, /public/ Root): 30 Tage
+    # Für /assets/-Bilder wird dieser Wert durch LocationMatch unten überschrieben.
+    # (Apache-Precedence: LocationMatch > FilesMatch)
+    <FilesMatch "\.(png|jpg|jpeg|gif|webp|avif|svg)$">
+        Header set Cache-Control "max-age=2592000, must-revalidate"
     </FilesMatch>
+
+    # Gehashte Vite-Assets (/assets/): 1 Jahr + immutable
+    # Vite erzeugt bei jedem Build neue Content-Hashes → kein Stale-Content möglich.
+    # LocationMatch überschreibt obiges FilesMatch für Dateien in /assets/.
+    <LocationMatch "^/assets/">
+        Header set Cache-Control "max-age=31536000, immutable"
+    </LocationMatch>
 
     # HTML-Seiten (react-snap pre-gerendert): Browser fragt immer nach (ETag/304).
     # Kein stale Content bei Updates, trotzdem schnell durch 304-Responses.
