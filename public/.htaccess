@@ -185,18 +185,19 @@ AddType application/xml .xml
 
 <IfModule mod_headers.c>
     # Öffentliche Bilder (ungehashed, z.B. /images/, /public/ Root): 30 Tage
-    # Für /assets/-Bilder wird dieser Wert durch LocationMatch unten überschrieben.
-    # (Apache-Precedence: LocationMatch > FilesMatch)
+    # Gilt als Fallback für alle Bild-Extensions.
+    # Vite-gehashte Bilder in /assets/ werden durch die präzisere Regel unten überschrieben.
     <FilesMatch "\.(png|jpg|jpeg|gif|webp|avif|svg)$">
         Header set Cache-Control "max-age=2592000, must-revalidate"
     </FilesMatch>
 
-    # Gehashte Vite-Assets (/assets/): 1 Jahr + immutable
-    # Vite erzeugt bei jedem Build neue Content-Hashes → kein Stale-Content möglich.
-    # LocationMatch überschreibt obiges FilesMatch für Dateien in /assets/.
-    <LocationMatch "^/assets/">
+    # Gehashte Vite-Assets: 1 Jahr + immutable
+    # Vite erzeugt Dateinamen wie "index-Cxjk9haj.js" (Bindestrich + 8 alphanum. Zeichen).
+    # Dieses Muster trifft NUR gehashte Dateien – unversioned Files wie "api.js" bleiben aus.
+    # Überschreibt das 30-Tage-FilesMatch für gehashte Bilder (spätere Regel gewinnt in Apache).
+    <FilesMatch "^.+-[A-Za-z0-9]{8}\.(js|css|woff|woff2|ttf|eot|otf|png|jpg|jpeg|gif|webp|avif|svg)$">
         Header set Cache-Control "max-age=31536000, immutable"
-    </LocationMatch>
+    </FilesMatch>
 
     # HTML-Seiten (react-snap pre-gerendert): Browser fragt immer nach (ETag/304).
     # Kein stale Content bei Updates, trotzdem schnell durch 304-Responses.
