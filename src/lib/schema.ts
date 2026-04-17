@@ -12,49 +12,64 @@
 import { FAQ } from "@/data/faqs";
 
 // Base URL for schema IDs
-const BASE_URL = "https://copilotenschule.de";
+export const BASE_URL = "https://copilotenschule.de";
 
 /**
  * Schema ID types for different page types
  */
 export interface SchemaIds {
-  article: string;  // For Article schema (or Course for trainings)
+  article: string;  // For Article schema (or Course for trainings/workshops)
   faq: string;      // For FAQPage schema
   breadcrumb: string; // For BreadcrumbList schema
 }
 
 /**
+ * Supported page types for schema generation
+ */
+export type SchemaPageType = 'wissen' | 'trainings' | 'workshops';
+
+/**
+ * Mapping from page type to URL path segment
+ */
+const PATH_SEGMENT: Record<SchemaPageType, string> = {
+  wissen: 'wissen',
+  trainings: 'trainings',
+  workshops: 'workshops'
+};
+
+/**
+ * Mapping from page type to schema fragment identifier
+ * - wissen → #article (Article schema)
+ * - trainings → #course (Course schema)
+ * - workshops → #course (Course schema, with BusinessEvent for events/keynotes)
+ */
+const SCHEMA_FRAGMENT: Record<SchemaPageType, string> = {
+  wissen: 'article',
+  trainings: 'course',
+  workshops: 'course'
+};
+
+/**
  * Generates unique @id strings for a page based on its slug and type
  *
- * @param slug - The page slug (e.g., "github-copilot", "copilot-studio")
- * @param type - The page type: 'wissen' for knowledge pages, 'trainings' for training pages
+ * @param slug - The page slug (e.g., "github-copilot", "copilot-studio", "copilot-hackathon")
+ * @param type - The page type: 'wissen', 'trainings' or 'workshops'
  * @returns Object with article, faq, and breadcrumb @id strings
  *
  * @example
- * // Knowledge page
- * generateSchemaIds("github-copilot", "wissen")
+ * // Workshop page
+ * generateSchemaIds("copilot-hackathon", "workshops")
  * // Returns: {
- * //   article: "https://copilotenschule.de/wissen/github-copilot#article",
- * //   faq: "https://copilotenschule.de/wissen/github-copilot#faq",
- * //   breadcrumb: "https://copilotenschule.de/wissen/github-copilot#breadcrumb"
- * // }
- *
- * @example
- * // Training page
- * generateSchemaIds("microsoft-365-copilot-grundlagen", "trainings")
- * // Returns: {
- * //   article: "https://copilotenschule.de/trainings/microsoft-365-copilot-grundlagen#course",
- * //   faq: "https://copilotenschule.de/trainings/microsoft-365-copilot-grundlagen#faq",
- * //   breadcrumb: "https://copilotenschule.de/trainings/microsoft-365-copilot-grundlagen#breadcrumb"
+ * //   article: "https://copilotenschule.de/workshops/copilot-hackathon#course",
+ * //   faq: "https://copilotenschule.de/workshops/copilot-hackathon#faq",
+ * //   breadcrumb: "https://copilotenschule.de/workshops/copilot-hackathon#breadcrumb"
  * // }
  */
-export const generateSchemaIds = (slug: string, type: 'wissen' | 'trainings'): SchemaIds => {
-  const pageUrl = type === 'trainings'
-    ? `${BASE_URL}/trainings/${slug}`
-    : `${BASE_URL}/wissen/${slug}`;
+export const generateSchemaIds = (slug: string, type: SchemaPageType): SchemaIds => {
+  const pageUrl = `${BASE_URL}/${PATH_SEGMENT[type]}/${slug}`;
 
   return {
-    article: `${pageUrl}#${type === 'trainings' ? 'course' : 'article'}`,
+    article: `${pageUrl}#${SCHEMA_FRAGMENT[type]}`,
     faq: `${pageUrl}#faq`,
     breadcrumb: `${pageUrl}#breadcrumb`
   };
@@ -63,10 +78,8 @@ export const generateSchemaIds = (slug: string, type: 'wissen' | 'trainings'): S
 /**
  * Generates the full page URL from slug and type
  */
-export const getPageUrl = (slug: string, type: 'wissen' | 'trainings'): string => {
-  return type === 'trainings'
-    ? `${BASE_URL}/trainings/${slug}`
-    : `${BASE_URL}/wissen/${slug}`;
+export const getPageUrl = (slug: string, type: SchemaPageType): string => {
+  return `${BASE_URL}/${PATH_SEGMENT[type]}/${slug}`;
 };
 
 /**
@@ -277,6 +290,21 @@ export const generateTrainingBreadcrumbItems = (
     { name: "Startseite", url: `${BASE_URL}/` },
     { name: "Trainings", url: `${BASE_URL}/trainings` },
     { name: trainingName, url: trainingUrl }
+  ];
+};
+
+/**
+ * Generates breadcrumb items for workshop pages
+ * Always includes: Startseite > Workshops > Workshop Name
+ */
+export const generateWorkshopsBreadcrumbItems = (
+  workshopName: string,
+  workshopUrl: string
+): BreadcrumbItem[] => {
+  return [
+    { name: "Startseite", url: `${BASE_URL}/` },
+    { name: "Workshops", url: `${BASE_URL}/workshops` },
+    { name: workshopName, url: workshopUrl }
   ];
 };
 

@@ -26,6 +26,8 @@ import UeberUns from "./pages/UeberUns";
 import TrainingKonfigurator from "./pages/TrainingKonfigurator";
 import UnsereAngebote from "./pages/UnsereAngebote";
 import TrainingDetail from "./pages/TrainingDetail";
+import Workshops from "./pages/Workshops";
+import WorkshopDetail from "./pages/WorkshopDetail";
 import TrainerProfil from "./pages/TrainerProfil";
 import KiRealitaet2026 from "./pages/KiRealitaet2026";
 import CopilotUnternehmensweitEinfuehren from "./pages/CopilotUnternehmensweitEinfuehren";
@@ -106,6 +108,37 @@ const App = () => (
           <Route path="/ueber-uns" element={<UeberUns />} />
           <Route path="/trainings" element={<UnsereAngebote />} />
           <Route path="/unsere-angebote" element={<Navigate to="/trainings" replace />} />
+
+          {/* Workshops und Events – eigene Kategorie parallel zu Trainings */}
+          <Route path="/workshops" element={<Workshops />} />
+          <Route path="/workshops/:slug" element={<WorkshopDetail />} />
+
+          {/* 301-Redirects: alte Workshop-URLs unter /trainings → /workshops */}
+          <Route
+            path="/trainings/copilot-strategie-change-management"
+            element={<Navigate to="/workshops/copilot-strategie-change-management" replace />}
+          />
+          <Route
+            path="/trainings/chatbot-workshop"
+            element={<Navigate to="/workshops/chatbot-workshop" replace />}
+          />
+          <Route
+            path="/trainings/copilot-hackathon"
+            element={<Navigate to="/workshops/copilot-hackathon" replace />}
+          />
+          <Route
+            path="/trainings/keynote-copilot-arbeitswelt"
+            element={<Navigate to="/workshops/keynote-copilot-arbeitswelt" replace />}
+          />
+          <Route
+            path="/trainings/copilot-launch-eventtag"
+            element={<Navigate to="/workshops/copilot-launch-eventtag" replace />}
+          />
+          <Route
+            path="/trainings/betriebsrat-ki-workshop"
+            element={<Navigate to="/workshops/betriebsrat-ki-workshop" replace />}
+          />
+
           <Route path="/trainings/:slug" element={<TrainingDetail />} />
           <Route path="/trainer/:id" element={<TrainerProfil />} />
           <Route path="/training-konfigurator" element={<TrainingKonfigurator />} />

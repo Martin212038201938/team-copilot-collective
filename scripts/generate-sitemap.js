@@ -24,6 +24,7 @@ const TODAY = new Date().toISOString().split('T')[0];
 const staticPages = [
   { loc: '/', lastmod: TODAY, changefreq: 'weekly', priority: 1.0 },
   { loc: '/trainings', lastmod: TODAY, changefreq: 'weekly', priority: 0.9 },
+  { loc: '/workshops', lastmod: TODAY, changefreq: 'weekly', priority: 0.9 },
   { loc: '/wissen', lastmod: TODAY, changefreq: 'weekly', priority: 0.9 },
   { loc: '/ueber-uns', lastmod: TODAY, changefreq: 'monthly', priority: 0.7 },
   { loc: '/trainer-werden', lastmod: TODAY, changefreq: 'monthly', priority: 0.6 },
@@ -69,29 +70,44 @@ const knowledgePages = [
   { loc: '/wissen/copilot-betriebsrat', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
   { loc: '/wissen/copilot-in-excel-aktivieren', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
   { loc: '/wissen/copilot-flex-routing-eu-verarbeitung', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
+  { loc: '/wissen/copilot-im-unternehmen-einfuehren-leitfaden', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
 ];
 
 // Trainingsseiten - Slugs aus trainings.ts
+// Hinweis: Die 6 Workshops-Slugs wurden nach /workshops/ migriert (siehe unten).
 const trainingsSlugs = [
   'copilot-grundlagen-prompt-design',
   'microsoft-365-copilot-praxis',
   'ausbildung-ki-wissensarbeiter',
   'github-copilot-entwickler',
   'copilot-compliance-datenschutz',
-  'copilot-strategie-change-management',
   'copilot-studio-ki-agenten',
-  'chatbot-workshop',
   'low-code-power-platform',
   'eu-ai-act-pflichtschulung',
-  'copilot-hackathon',
-  'keynote-copilot-arbeitswelt',
   'copilot-lernreise-8-wochen',
-  'copilot-launch-eventtag',
   'individuelle-copilot-schulung',
 ];
 
 const trainingPages = trainingsSlugs.map(slug => ({
   loc: `/trainings/${slug}`,
+  lastmod: TODAY,
+  changefreq: 'monthly',
+  priority: 0.8,
+}));
+
+// Workshops & Events - Slugs aus workshops.ts (eigene Kategorie parallel zu Trainings)
+const workshopsSlugs = [
+  'copilot-change-programm',
+  'copilot-strategie-change-management',
+  'chatbot-workshop',
+  'betriebsrat-ki-workshop',
+  'copilot-hackathon',
+  'keynote-copilot-arbeitswelt',
+  'copilot-launch-eventtag',
+];
+
+const workshopPages = workshopsSlugs.map(slug => ({
+  loc: `/workshops/${slug}`,
   lastmod: TODAY,
   changefreq: 'monthly',
   priority: 0.8,
@@ -107,6 +123,7 @@ const allPages = [
   ...staticPages,
   ...knowledgePages,
   ...trainingPages,
+  ...workshopPages,
   ...trainerProfiles,
 ];
 

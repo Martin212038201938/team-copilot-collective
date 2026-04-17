@@ -133,6 +133,20 @@ RewriteRule ^trainings/copilot-schulung/?$ /trainings/individuelle-copilot-schul
 RewriteRule ^trainings/individuelle-schulung/?$ /trainings/individuelle-copilot-schulung [R=301,L]
 
 # ============================================
+# 301 REDIRECTS: Workshops & Events – Migration von /trainings → /workshops
+# Die sechs Formate wurden in die eigene Kategorie "Copilot Workshops und Events"
+# überführt. Alte Links in externen Quellen, Bing-Index oder LLM-Antworten
+# werden per 301 dauerhaft umgeleitet.
+# ============================================
+
+RewriteRule ^trainings/copilot-strategie-change-management/?$ /workshops/copilot-strategie-change-management [R=301,L]
+RewriteRule ^trainings/chatbot-workshop/?$ /workshops/chatbot-workshop [R=301,L]
+RewriteRule ^trainings/copilot-hackathon/?$ /workshops/copilot-hackathon [R=301,L]
+RewriteRule ^trainings/keynote-copilot-arbeitswelt/?$ /workshops/keynote-copilot-arbeitswelt [R=301,L]
+RewriteRule ^trainings/copilot-launch-eventtag/?$ /workshops/copilot-launch-eventtag [R=301,L]
+RewriteRule ^trainings/betriebsrat-ki-workshop/?$ /workshops/betriebsrat-ki-workshop [R=301,L]
+
+# ============================================
 # TRAILING-SLASH NORMALISIERUNG
 # React-snap erstellt Verzeichnisse (slug/index.html).
 # Apache mod_dir würde automatisch 301 → slug/ machen.
