@@ -72,8 +72,8 @@ const UnsereAngebote = () => {
   return (
     <div className="min-h-screen">
       <SEOHead
-        title="Microsoft Copilot Schulung für Unternehmen"
-        description="Microsoft Copilot Schulungen & Workshops: Inhouse, online oder als Lernreise. Von M365-Grundlagen bis KI-Agenten – jetzt passende Schulung finden."
+        title="Microsoft Copilot Trainings und Schulungen für Unternehmen"
+        description="Microsoft Copilot Trainings und Schulungen: Inhouse, online oder als Lernreise. Von M365-Grundlagen bis KI-Agenten – jetzt passendes Training finden."
         keywords={[
           "Microsoft Copilot Schulung",
           "Copilot Schulung für Unternehmen",
@@ -102,13 +102,19 @@ const UnsereAngebote = () => {
             {/* Page Header */}
             <div className="text-center mb-12">
               <h1 className="text-5xl lg:text-7xl font-semibold tracking-tight leading-[1.1]">
-                Microsoft Copilot Schulungen & Workshops
+                Microsoft Copilot Trainings und Schulungen
               </h1>
               <p className="mt-6 text-xl text-muted-foreground max-w-3xl mx-auto animate-slide-up-delayed">
-                Praxisnahe Microsoft Copilot Schulungen für Unternehmen – als Inhouse-Workshop, Live-Online-Seminar oder mehrteilige Lernreise. Konsequent auf die konkreten Bedarfe Ihrer Organisation zugeschnitten.
+                Praxisnahe Microsoft Copilot Trainings für Unternehmen – als Inhouse-Workshop, Live-Online-Seminar oder mehrteilige Lernreise. Konsequent auf die konkreten Bedarfe Ihrer Organisation zugeschnitten.
               </p>
               <p className="mt-3 text-base text-muted-foreground max-w-3xl mx-auto">
                 Von Microsoft 365 Copilot Grundlagen über GitHub Copilot bis zu KI-Agenten mit Copilot Studio: Wählen Sie aus {modules.length} Trainingsformaten das passende Angebot für Ihr Team – für Copilot Free und Copilot Paid Lizenzen.
+              </p>
+              <p className="mt-4 text-sm text-muted-foreground max-w-3xl mx-auto">
+                Sie suchen eintägige Events, Keynotes oder ein mehrmonatiges Change-Programm?{" "}
+                <Link to="/workshops" className="text-primary font-medium hover:underline">
+                  → Zur Übersicht Copilot Workshops und Events
+                </Link>
               </p>
             </div>
 
