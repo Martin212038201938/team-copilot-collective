@@ -24,7 +24,6 @@ import {
   MessageSquare,
   Sparkles,
   GraduationCap,
-  Rocket,
 } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -183,10 +182,7 @@ const Workshops = () => {
                 <Link to={`/workshops/${featured.slug}`} className="block group">
                   <div className="relative overflow-hidden rounded-2xl border-2 border-amber-300 bg-gradient-to-br from-amber-50 via-orange-50 to-amber-50 p-8 md:p-10 shadow-lg hover:shadow-2xl transition-all">
                     <div className="absolute top-0 right-0 w-72 h-72 bg-amber-200/30 rounded-full blur-3xl" />
-                    <div className="relative z-10 flex flex-col md:flex-row gap-6 items-start">
-                      <div className="p-4 bg-amber-100 rounded-2xl flex-shrink-0">
-                        <Rocket className="w-10 h-10 text-amber-700" />
-                      </div>
+                    <div className="relative z-10">
                       <div className="flex-1">
                         <div className="flex flex-wrap gap-2 mb-3">
                           <Badge className="bg-amber-100 text-amber-900 border-amber-300 hover:bg-amber-100 text-xs px-2 py-0.5 font-semibold">
@@ -253,7 +249,6 @@ const Workshops = () => {
              * ------------------------------------------------------- */}
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {nonFeatured.map((w) => {
-                const Icon = w.icon;
                 const typeLabel = WORKSHOP_TYPE_LABELS[w.type];
                 return (
                   <Link
@@ -280,14 +275,9 @@ const Workshops = () => {
                           )}
                         </div>
 
-                        <div className="flex items-start gap-3 mb-1">
-                          <div className="p-2 bg-primary/10 rounded-lg flex-shrink-0">
-                            <Icon className="w-5 h-5 text-primary" />
-                          </div>
-                          <CardTitle className="text-lg leading-snug group-hover:text-primary transition-colors duration-300 line-clamp-3">
-                            {w.title}
-                          </CardTitle>
-                        </div>
+                        <CardTitle className="text-lg leading-snug group-hover:text-primary transition-colors duration-300 line-clamp-3 mb-1">
+                          {w.title}
+                        </CardTitle>
 
                         <CardDescription className="flex flex-wrap gap-x-4 gap-y-1 mt-2 text-xs">
                           <span className="flex items-center gap-1.5">
