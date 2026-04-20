@@ -126,6 +126,7 @@ const GitHubCopilot = () => {
         lastUpdated="07. November 2025"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
+        relatedContent={["training:github-copilot-entwickler", "wissen:copilot-studio", "wissen:microsoft-copilot-lizenzen", "wissen:ki-agenten", "wissen:prompt-engineering"]}
       >
         {/* Quick Answer */}
         <Card className="mb-8 border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-amber-500/5">
@@ -441,37 +442,6 @@ const GitHubCopilot = () => {
                 </CardContent>
               </Card>
             ))}
-          </div>
-        </section>
-
-        {/* Weiterführende Artikel */}
-        <section className="mb-6">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">Weiterführende Artikel</h2>
-          <div className="grid md:grid-cols-2 gap-4 mb-4">
-            <Link to="/wissen/ki-agenten" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">KI-Agenten</p>
-                  <p className="text-sm text-gray-600">Autonome KI-Assistenten für automatisierte Aufgaben und Workflows</p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/prompt-engineering" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Prompt Engineering</p>
-                  <p className="text-sm text-gray-600">Meistern Sie die Kunst, perfekte Prompts zu schreiben</p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/ki-realitaet-beratungsfirmen-2026" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">KI in deutschen Unternehmen 2026</p>
-                  <p className="text-sm text-gray-600">Was die großen Beratungsfirmen über KI-Investitionen wirklich sehen</p>
-                </CardContent>
-              </Card>
-            </Link>
           </div>
         </section>
 

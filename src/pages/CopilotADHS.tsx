@@ -132,6 +132,7 @@ const CopilotADHS = () => {
         lastUpdated="05. Februar 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
+        relatedContent={["wissen:copilot-digitales-gedaechtnis", "wissen:copilot-agent-digitales-gedaechtnis", "wissen:copilot-tipps-tricks-produktivitaet", "wissen:copilot-in-outlook-nutzen-tipps", "training:copilot-grundlagen-prompt-design"]}
       >
         {/* Einleitung */}
         <section id="intro" className="mb-12">
@@ -476,36 +477,6 @@ const CopilotADHS = () => {
           </blockquote>
         </section>
 
-        {/* Weiterführende Artikel */}
-        <section className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">Weiterführende Artikel</h2>
-          <div className="grid md:grid-cols-3 gap-4">
-            <Link to="/wissen/copilot-tipps-tricks-produktivitaet" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Copilot Tipps & Tricks</p>
-                  <p className="text-sm text-gray-600">Produktivitätshacks und praktische Workflows für den Alltag</p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/copilot-fuer-word" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Copilot für Word</p>
-                  <p className="text-sm text-gray-600">Textbearbeitung und Dokumentenerstellung mit KI</p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/copilot-digitales-gedaechtnis" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Digitales Gedächtnis mit Copilot</p>
-                  <p className="text-sm text-gray-600">Strukturierte Wissensablage und Durchsuchbarkeit</p>
-                </CardContent>
-              </Card>
-            </Link>
-          </div>
-        </section>
 
         {/* FAQ */}
         <section id="faq" className="mb-12">

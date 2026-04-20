@@ -132,6 +132,13 @@ const CopilotRolloutLeitfaden = () => {
         lastUpdated="11. April 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
+        relatedContent={[
+          "workshop:copilot-change-programm",
+          "workshop:copilot-strategie-change-management",
+          "wissen:copilot-launch-kampagne",
+          "wissen:copilot-unternehmensweit-einfuehren",
+          "wissen:copilot-adoption-2026-zahlen",
+        ]}
       >
         {/* Schnellantwort-Box */}
         <Card className="mb-6 border-orange-200 bg-orange-50 dark:bg-orange-950/20 dark:border-orange-800">
@@ -336,69 +343,6 @@ const CopilotRolloutLeitfaden = () => {
                 </CardContent>
               </Card>
             ))}
-          </div>
-        </section>
-
-        {/* Weiterführende Artikel */}
-        <section className="mb-6">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">Weiterführende Artikel</h2>
-          <div className="grid md:grid-cols-2 gap-4">
-            <Card className="hover:shadow-md transition-shadow">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-base">
-                  <Link to="/wissen/copilot-lernreise-vs-tagesschulung" className="text-blue-600 dark:text-blue-400 hover:underline">
-                    Copilot-Lernreise vs. Tagesschulung
-                  </Link>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
-                  Warum einmalige Workshops die falsche Wahl sind und wie eine Lernreise die Adoption nachhaltig verbessert.
-                </p>
-              </CardContent>
-            </Card>
-            <Card className="hover:shadow-md transition-shadow">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-base">
-                  <Link to="/wissen/copilot-unternehmensweit-einfuehren" className="text-blue-600 dark:text-blue-400 hover:underline">
-                    Warum Unternehmen Copilot zentral einführen sollten
-                  </Link>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
-                  Shadow-IT, DSGVO und Governance: Das Argument für eine koordinierte statt dezentrale KI-Einführung.
-                </p>
-              </CardContent>
-            </Card>
-            <Card className="hover:shadow-md transition-shadow">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-base">
-                  <Link to="/wissen/copilot-adoption-2026-zahlen" className="text-blue-600 dark:text-blue-400 hover:underline">
-                    Copilot Adoption 2026: Die aktuellen Zahlen
-                  </Link>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
-                  Aktuelle Nutzungsdaten, Adoption-Raten und was sie für Ihren eigenen Rollout bedeuten.
-                </p>
-              </CardContent>
-            </Card>
-            <Card className="hover:shadow-md transition-shadow">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-base">
-                  <Link to="/wissen/copilot-roi-erfolgsgeschichten" className="text-blue-600 dark:text-blue-400 hover:underline">
-                    Copilot ROI: Erfolgsgeschichten aus der Praxis
-                  </Link>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
-                  Konkrete Beispiele, wie Unternehmen mit Copilot messbare Zeitgewinne und Effizienzsteigerungen erzielen.
-                </p>
-              </CardContent>
-            </Card>
           </div>
         </section>
 

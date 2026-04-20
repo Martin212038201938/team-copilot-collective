@@ -120,6 +120,13 @@ const CopilotFlexRoutingEU = () => {
         lastUpdated="09. April 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
+        relatedContent={[
+          "wissen:copilot-sicherheit-datenschutz",
+          "training:copilot-compliance-datenschutz",
+          "wissen:copilot-betriebsrat",
+          "wissen:ki-schulung-mitarbeiter-pflicht",
+          "workshop:betriebsrat-ki-workshop"
+        ]}
       >
         {/* Schnellantwort */}
         <Card className="mb-8 border-orange-200 bg-orange-50 dark:bg-orange-950/20 dark:border-orange-800">
@@ -256,35 +263,6 @@ const CopilotFlexRoutingEU = () => {
               </Link>
               {" "}– technisch und organisatorisch.
             </p>
-          </div>
-        </section>
-
-        {/* Weiterführendes */}
-        <section className="mb-6 mt-2">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">
-            Weiterführende Artikel
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Card className="hover:shadow-md transition-shadow">
-              <CardContent className="pt-4">
-                <Link to="/wissen/copilot-betriebsrat" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 font-semibold">
-                  Copilot und der Betriebsrat: Was Arbeitnehmervertreter wissen müssen
-                </Link>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                  Mitbestimmung, Datenschutz und Betriebsvereinbarungen im Kontext von Microsoft Copilot.
-                </p>
-              </CardContent>
-            </Card>
-            <Card className="hover:shadow-md transition-shadow">
-              <CardContent className="pt-4">
-                <Link to="/wissen/copilot-in-excel-aktivieren" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 font-semibold">
-                  Copilot in Excel aktivieren: Datenschutzkonfiguration für Unternehmen
-                </Link>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                  Admin-Einstellungen, EU Data Boundary und Sensitivity Labels im Überblick.
-                </p>
-              </CardContent>
-            </Card>
           </div>
         </section>
 

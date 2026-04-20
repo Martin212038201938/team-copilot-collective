@@ -127,9 +127,10 @@ const CopilotHRUseCases = () => {
         title={PAGE_TITLE}
         description="Die wirkungsvollsten Copilot Use Cases für HR-Abteilungen: konkrete Zeitersparnis pro Mitarbeiter."
         lastUpdated="14. Februar 2026"
-        
+
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
+        relatedContent={["wissen:copilot-vertrieb-use-cases", "training:microsoft-365-copilot-praxis", "wissen:copilot-roi-berechnen", "wissen:copilot-tipps-tricks-produktivitaet", "wissen:copilot-fuer-word"]}
       >
         {/* Schnellantwort */}
         <Card className="mb-8 border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-red-500/5">
@@ -536,36 +537,6 @@ const CopilotHRUseCases = () => {
           </div>
         </section>
 
-        {/* Weiterführende Artikel */}
-        <section className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">Weiterführende Artikel</h2>
-          <div className="grid md:grid-cols-3 gap-4">
-            <Link to="/wissen/copilot-vertrieb-use-cases" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Copilot im Vertrieb</p>
-                  <p className="text-sm text-gray-600">Use Cases für Sales und Vertriebsteams</p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/copilot-roi-berechnen" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">ROI von Copilot berechnen</p>
-                  <p className="text-sm text-gray-600">Investitionsrechnung und Business Case</p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/copilot-unternehmensweit-einfuehren" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Copilot unternehmensweit einführen</p>
-                  <p className="text-sm text-gray-600">Implementierungsstrategie und Change Management</p>
-                </CardContent>
-              </Card>
-            </Link>
-          </div>
-        </section>
 
         {/* FAQ */}
         <section id="faq" className="mb-6">

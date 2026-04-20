@@ -152,6 +152,13 @@ const CopilotBetriebsrat = () => {
         lastUpdated="02. April 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
+        relatedContent={[
+          "workshop:betriebsrat-ki-workshop",
+          "wissen:copilot-sicherheit-datenschutz",
+          "wissen:ki-schulung-mitarbeiter-pflicht",
+          "wissen:copilot-flex-routing-eu-verarbeitung",
+          "training:copilot-compliance-datenschutz"
+        ]}
       >
         {/* Schnellantwort */}
         <Card className="mb-8 border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-red-500/5">

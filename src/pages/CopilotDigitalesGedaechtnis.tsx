@@ -120,6 +120,7 @@ const CopilotDigitalesGedaechtnis = () => {
         lastUpdated="03. Februar 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
+        relatedContent={["wissen:copilot-agent-digitales-gedaechtnis", "wissen:copilot-in-outlook-nutzen-tipps", "wissen:copilot-adhs", "training:microsoft-365-copilot-praxis", "wissen:copilot-tipps-tricks-produktivitaet"]}
       >
         {/* Schnellantwort */}
         <Card className="border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-amber-500/5">
@@ -741,37 +742,6 @@ const CopilotDigitalesGedaechtnis = () => {
               </div>
             </CardContent>
           </Card>
-        </section>
-
-        {/* Weiterführende Artikel */}
-        <section className="mb-6">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">Weiterführende Artikel</h2>
-          <div className="grid md:grid-cols-2 gap-4 mb-4">
-            <Link to="/wissen/copilot-agent-digitales-gedaechtnis" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Copilot Agent: Digitales Gedächtnis</p>
-                  <p className="text-sm text-gray-600">Wie Agenten systematisch auf Ihre Daten zugreifen und arbeiten</p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/copilot-studio" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Copilot Studio</p>
-                  <p className="text-sm text-gray-600">Low-Code Plattform zum Erstellen eigener KI-Assistenten</p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/copilot-tipps-tricks-produktivitaet" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Copilot Tipps & Tricks</p>
-                  <p className="text-sm text-gray-600">Produktivitäts-Hacks und geheime Features</p>
-                </CardContent>
-              </Card>
-            </Link>
-          </div>
         </section>
 
         {/* FAQ */}

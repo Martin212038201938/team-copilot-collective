@@ -131,6 +131,7 @@ const CopilotFehler = () => {
         lastUpdated="02. Februar 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
+        relatedContent={["wissen:prompt-engineering", "wissen:ki-halluzinationen-vermeiden", "wissen:copilot-tipps-tricks-produktivitaet", "training:copilot-grundlagen-prompt-design", "wissen:copilot-im-unternehmen-einfuehren-leitfaden"]}
       >
         <Card className="mb-8 border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-red-500/5">
           <CardHeader>
@@ -945,36 +946,6 @@ const CopilotFehler = () => {
           </Card>
         </section>
 
-        {/* Weiterführende Artikel */}
-        <section className="mb-6">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">Weiterführende Artikel</h2>
-          <div className="grid md:grid-cols-2 gap-4 mb-4">
-            <Link to="/wissen/copilot-unternehmensweit-einfuehren" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Copilot unternehmensw. einführen</p>
-                  <p className="text-sm text-gray-600">Roadmap und Best Practices für erfolgreiche Rollouts</p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/copilot-tipps-tricks-produktivitaet" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Tipps & Tricks für Produktivität</p>
-                  <p className="text-sm text-gray-600">22 praxiserprobte Tipps für bessere Copilot-Nutzung</p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/prompt-bibliotheken-vs-training" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Prompt-Bibliotheken vs. Training</p>
-                  <p className="text-sm text-gray-600">Warum strukturiertes Training wichtiger ist als vorgefertigte Prompts</p>
-                </CardContent>
-              </Card>
-            </Link>
-          </div>
-        </section>
 
         <section id="faq" className="mt-12 mb-12">
           <h2>Häufig gestellte Fragen (FAQ)</h2>

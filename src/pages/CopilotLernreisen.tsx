@@ -138,6 +138,7 @@ const CopilotLernreisen = () => {
         lastUpdated="04. Februar 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
+        relatedContent={["wissen:warum-verteiltes-lernen", "training:copilot-lernreise-8-wochen", "wissen:microsoft-copilot-schulung-online", "wissen:copilot-training-schulung", "wissen:copilot-launch-kampagne"]}
       >
         {/* Schnellantwort-Card */}
         <Card className="mb-8 border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-amber-500/5">
@@ -744,36 +745,6 @@ const CopilotLernreisen = () => {
           </Card>
         </section>
 
-        {/* Weiterführende Artikel */}
-        <section className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">Weiterführende Artikel</h2>
-          <div className="grid md:grid-cols-3 gap-4">
-            <Link to="/wissen/warum-verteiltes-lernen-bei-copilot-trainings-funktioniert" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Warum verteiltes Lernen funktioniert</p>
-                  <p className="text-sm text-gray-600">Die Wissenschaft hinter Spaced Learning und evidenzbasiertem Trainingsdesign</p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/copilot-training-schulung" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Copilot-Schulung richtig gestalten</p>
-                  <p className="text-sm text-gray-600">Trainingsformate, Didaktik und praktische Umsetzung</p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/copilot-fehler-vermeiden" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Häufige Fehler vermeiden</p>
-                  <p className="text-sm text-gray-600">Typische Fallstricke bei Copilot-Trainings und deren Lösungen</p>
-                </CardContent>
-              </Card>
-            </Link>
-          </div>
-        </section>
 
         {/* FAQ */}
         <section id="faq" className="mt-12 mb-12">

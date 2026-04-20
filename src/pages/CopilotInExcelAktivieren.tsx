@@ -123,6 +123,13 @@ const CopilotInExcelAktivieren = () => {
         lastUpdated="08. April 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
+        relatedContent={[
+          "wissen:copilot-fuer-excel",
+          "training:microsoft-365-copilot-praxis",
+          "wissen:microsoft-copilot-lizenzen",
+          "wissen:copilot-im-unternehmen-einfuehren-leitfaden",
+          "wissen:copilot-fehler-vermeiden"
+        ]}
       >
         {/* Schnellantwort */}
         <Card className="mb-8 border-orange-200 bg-orange-50 dark:bg-orange-950/20 dark:border-orange-800">
@@ -274,35 +281,6 @@ const CopilotInExcelAktivieren = () => {
               </Link>{" "}
               an, in der diese Fragen systematisch für Ihre spezifische Umgebung geklärt werden.
             </p>
-          </div>
-        </section>
-
-        {/* Weiterführendes */}
-        <section className="mb-6 mt-2">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">
-            Weiterführende Artikel
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Card className="hover:shadow-md transition-shadow">
-              <CardContent className="pt-4">
-                <Link to="/wissen/copilot-fuer-excel" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 font-semibold">
-                  Copilot für Excel: Was die KI in Tabellen wirklich kann
-                </Link>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                  Praxisbeispiele, Prompt-Sammlung und Grenzen von Copilot in Excel.
-                </p>
-              </CardContent>
-            </Card>
-            <Card className="hover:shadow-md transition-shadow">
-              <CardContent className="pt-4">
-                <Link to="/wissen/copilot-in-outlook-nutzen-tipps" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 font-semibold">
-                  Copilot in Outlook nutzen
-                </Link>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                  Tipps und Voraussetzungen für Copilot in Outlook – analog zu Excel.
-                </p>
-              </CardContent>
-            </Card>
           </div>
         </section>
 

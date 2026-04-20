@@ -132,6 +132,7 @@ const WarumVerteiltesLernen = () => {
         lastUpdated="04. Februar 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
+        relatedContent={["wissen:copilot-lernreise-vs-tagesschulung", "training:copilot-lernreise-8-wochen", "wissen:microsoft-copilot-schulung-online", "wissen:copilot-training-schulung", "training:ausbildung-ki-wissensarbeiter"]}
       >
         {/* Einleitung */}
         <div className="prose prose-lg max-w-none dark:prose-invert mb-12">
@@ -390,36 +391,6 @@ const WarumVerteiltesLernen = () => {
           </blockquote>
         </section>
 
-        {/* Weiterführende Artikel */}
-        <section className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">Weiterführende Artikel</h2>
-          <div className="grid md:grid-cols-3 gap-4">
-            <Link to="/wissen/copilot-lernreise-vs-tagesschulung" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Copilot Lernreise vs. Tagesschulung</p>
-                  <p className="text-sm text-gray-600">Der praktische Vergleich zwischen beiden Trainingsformaten</p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/copilot-training-schulung" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Copilot-Schulung richtig gestalten</p>
-                  <p className="text-sm text-gray-600">Trainingsdesign und didaktische Grundprinzipien</p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/prompt-bibliotheken-vs-training" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Prompt-Bibliotheken vs. Training</p>
-                  <p className="text-sm text-gray-600">Wann Dokumentation reicht und wann echtes Training nötig ist</p>
-                </CardContent>
-              </Card>
-            </Link>
-          </div>
-        </section>
 
         {/* FAQ */}
         <section id="faq" className="mb-12">

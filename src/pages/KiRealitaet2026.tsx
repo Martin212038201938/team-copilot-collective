@@ -134,6 +134,7 @@ const KiRealitaet2026 = () => {
         lastUpdated="02. Februar 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
+        relatedContent={["wissen:copilot-adoption-2026-zahlen", "wissen:copilot-roi-erfolgsgeschichten", "wissen:copilot-roi-berechnen", "wissen:copilot-im-unternehmen-einfuehren-leitfaden", "workshop:copilot-strategie-change-management"]}
       >
         {/* Schnellantwort-Card */}
         <Card className="mb-8 border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-amber-500/5">
@@ -847,37 +848,6 @@ const KiRealitaet2026 = () => {
           <blockquote className="my-6 border-l-4 border-green-500 bg-green-500/5 p-6 rounded-r-lg italic text-lg">
             Die Erfahrung zeigt: 94% der Unternehmen investieren weiter in KI, auch ohne sofortige Returns (BCG). Die Frage ist nicht ob, sondern wie. Die 5% "Future-built" Unternehmen zeigen: Mit der richtigen Strategie ist doppelter Umsatz-Impact erreichbar.
           </blockquote>
-        </section>
-
-        {/* Weiterführende Artikel */}
-        <section className="mb-6">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">Weiterführende Artikel</h2>
-          <div className="grid md:grid-cols-2 gap-4 mb-4">
-            <Link to="/wissen/copilot-adoption-2026-zahlen" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Copilot Adoption 2026: Zahlen</p>
-                  <p className="text-sm text-gray-600">Aktuelle Statistiken und Wachstumszahlen für Microsoft Copilot</p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/copilot-roi-erfolgsgeschichten" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Copilot ROI: Erfolgsgeschichten</p>
-                  <p className="text-sm text-gray-600">Zitate von Bayer, Siemens und anderen: Wie sie ROI erreichen</p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/copilot-unternehmensweit-einfuehren" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Copilot Unternehmensweite Einführung</p>
-                  <p className="text-sm text-gray-600">Strategien und Best Practices für erfolgreiche zentrale Einführung</p>
-                </CardContent>
-              </Card>
-            </Link>
-          </div>
         </section>
 
         {/* FAQ-Sektion */}

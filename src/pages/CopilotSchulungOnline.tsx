@@ -125,6 +125,13 @@ const CopilotSchulungOnline = () => {
         lastUpdated="01. April 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
+        relatedContent={[
+          "wissen:copilot-lernreise-vs-tagesschulung",
+          "wissen:warum-verteiltes-lernen",
+          "training:copilot-lernreise-8-wochen",
+          "wissen:copilot-training-schulung",
+          "training:individuelle-copilot-schulung"
+        ]}
       >
         {/* Schnellantwort */}
         <Card className="mb-8 border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-red-500/5">

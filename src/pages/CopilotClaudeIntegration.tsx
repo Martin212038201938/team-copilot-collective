@@ -136,6 +136,13 @@ const CopilotClaudeIntegration = () => {
         lastUpdated="13. März 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
+        relatedContent={[
+          "wissen:microsoft-365-e7-frontier-suite",
+          "wissen:microsoft-copilot-lizenzen",
+          "wissen:copilot-sicherheit-datenschutz",
+          "wissen:ki-agenten",
+          "wissen:copilot-flex-routing-eu-verarbeitung"
+        ]}
       >
         {/* Schnellantwort */}
         <Card className="mb-8 border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-amber-500/5">
@@ -413,67 +420,6 @@ const CopilotClaudeIntegration = () => {
               eigenständig E-Mails liest, Kalender umräumt und Dokumente erstellt, muss man seinen
               Mitarbeitern erklären. Und zwar bevor er losläuft.
             </p>
-          </div>
-        </section>
-
-        {/* Weiterführende Artikel */}
-        <section className="mb-6">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">
-            Weiterführende Artikel
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Link to="/wissen/microsoft-365-e7-frontier-suite" className="no-underline">
-              <Card className="h-full hover:shadow-md transition-shadow">
-                <CardHeader>
-                  <CardTitle className="text-lg">Microsoft 365 E7: Kosten, Inhalte und Preisvergleich</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground text-sm">
-                    Die neue Frontier Suite ab Mai 2026 im Detail – mit Preisvergleich E3 vs. E5 vs. E7
-                    und der Frage, für wen sich der Umstieg lohnt.
-                  </p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/copilot-unternehmensweit-einfuehren" className="no-underline">
-              <Card className="h-full hover:shadow-md transition-shadow">
-                <CardHeader>
-                  <CardTitle className="text-lg">Microsoft Copilot unternehmensweit einführen</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground text-sm">
-                    Der bewährte Fahrplan für eine erfolgreiche Copilot-Einführung – von der Pilotphase
-                    bis zum Rollout auf tausende Nutzer.
-                  </p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/copilot-lizenzen" className="no-underline">
-              <Card className="h-full hover:shadow-md transition-shadow">
-                <CardHeader>
-                  <CardTitle className="text-lg">Microsoft Copilot Lizenzen: Welche brauchen Sie?</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground text-sm">
-                    Überblick über alle Copilot-Lizenzmodelle, Voraussetzungen und die optimale
-                    Lizenzstrategie für Ihr Unternehmen.
-                  </p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/ki-agenten-unternehmen" className="no-underline">
-              <Card className="h-full hover:shadow-md transition-shadow">
-                <CardHeader>
-                  <CardTitle className="text-lg">KI-Agenten im Unternehmen</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground text-sm">
-                    Was KI-Agenten von Chatbots unterscheidet, wo sie echten Nutzen stiften und worauf
-                    Sie beim Einsatz achten müssen.
-                  </p>
-                </CardContent>
-              </Card>
-            </Link>
           </div>
         </section>
 

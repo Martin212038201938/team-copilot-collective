@@ -129,6 +129,13 @@ const KiSchulungMitarbeiterPflicht = () => {
         lastUpdated="13. März 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
+        relatedContent={[
+          "training:eu-ai-act-pflichtschulung",
+          "wissen:copilot-sicherheit-datenschutz",
+          "wissen:copilot-betriebsrat",
+          "training:copilot-compliance-datenschutz",
+          "wissen:copilot-flex-routing-eu-verarbeitung"
+        ]}
       >
         {/* Schnellantwort */}
         <Card className="mb-8 border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-red-500/5">
@@ -441,37 +448,6 @@ const KiSchulungMitarbeiterPflicht = () => {
               sichtbar, wenn der Ernstfall eintritt. Und der Ernstfall ist bei KI kein hypothetisches
               Szenario, sondern eine Frage der Zeit.
             </p>
-          </div>
-        </section>
-
-        {/* Weiterführende Artikel */}
-        <section className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">Weiterführende Artikel</h2>
-          <div className="grid md:grid-cols-3 gap-4">
-            <Link to="/wissen/copilot-sicherheit-datenschutz" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Copilot Sicherheit & Datenschutz</p>
-                  <p className="text-sm text-gray-600">DSGVO-Konformität und Datenschutz bei Microsoft Copilot</p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/ki-halluzinationen-vermeiden" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">KI-Halluzinationen vermeiden</p>
-                  <p className="text-sm text-gray-600">Warum KI Fehler macht und wie man sie systematisch reduziert</p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/copilot-unternehmensweit-einfuehren" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Copilot unternehmensweit einführen</p>
-                  <p className="text-sm text-gray-600">Warum eine zentrale Copilot-Einführung entscheidend ist</p>
-                </CardContent>
-              </Card>
-            </Link>
           </div>
         </section>
 

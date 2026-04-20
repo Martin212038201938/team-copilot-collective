@@ -124,6 +124,7 @@ const CopilotSicherheit = () => {
         lastUpdated="28. Februar 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
+        relatedContent={["wissen:copilot-flex-routing-eu-verarbeitung", "wissen:copilot-betriebsrat", "training:copilot-compliance-datenschutz", "wissen:ki-schulung-mitarbeiter-pflicht", "wissen:copilot-unternehmensweit-einfuehren"]}
       >
         {/* Schnellantwort */}
         <Card className="mb-8 border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-red-500/5">
@@ -410,36 +411,6 @@ const CopilotSicherheit = () => {
           </div>
         </section>
 
-        {/* Weiterführende Artikel */}
-        <section className="mb-6">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">Weiterführende Artikel</h2>
-          <div className="grid md:grid-cols-2 gap-4 mb-4">
-            <Link to="/wissen/microsoft-copilot-lizenzen" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Microsoft Copilot Lizenzen</p>
-                  <p className="text-sm text-gray-600">Lizenzierungsmodelle und sichere Deployment-Optionen</p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/ki-halluzinationen-vermeiden" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">KI-Halluzinationen vermeiden</p>
-                  <p className="text-sm text-gray-600">Erkennen und minimieren von Fehlinformationen</p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/copilot-unternehmensweit-einfuehren" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Copilot unternehmensw. einführen</p>
-                  <p className="text-sm text-gray-600">Sichere Rollout-Strategien mit Governance</p>
-                </CardContent>
-              </Card>
-            </Link>
-          </div>
-        </section>
 
         {/* Autor-Info */}
         <Card className="mt-12 border-2">

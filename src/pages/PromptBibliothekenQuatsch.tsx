@@ -113,6 +113,7 @@ const PromptBibliothekenQuatsch = () => {
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
         lastUpdated="03. Februar 2026"
+        relatedContent={["wissen:prompt-engineering", "training:copilot-grundlagen-prompt-design", "wissen:ki-halluzinationen-vermeiden", "wissen:copilot-tipps-tricks-produktivitaet", "wissen:copilot-agent-digitales-gedaechtnis"]}
       >
         {/* Schnellantwort-Card */}
         <Card className="border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-amber-500/5">
@@ -537,37 +538,6 @@ const PromptBibliothekenQuatsch = () => {
                 <p>Agenten als „nice-to-have" betrachten statt als strategisches Enablement-Tool.</p>
               </CardContent>
             </Card>
-          </div>
-        </section>
-
-        {/* Weiterführende Artikel */}
-        <section className="mb-6">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">Weiterführende Artikel</h2>
-          <div className="grid md:grid-cols-2 gap-4 mb-4">
-            <Link to="/wissen/prompt-engineering" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Prompt Engineering</p>
-                  <p className="text-sm text-gray-600">Professionelle Techniken zum Schreiben besserer Prompts</p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/copilot-training-schulung" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Copilot Training & Schulung</p>
-                  <p className="text-sm text-gray-600">Strukturierte Trainings für echte Kompetenz und Nachhaltigkeit</p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/copilot-fehler-vermeiden" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Copilot Fehler vermeiden</p>
-                  <p className="text-sm text-gray-600">Die häufigsten Fehler bei Copilot-Einführung und -Nutzung</p>
-                </CardContent>
-              </Card>
-            </Link>
           </div>
         </section>
 

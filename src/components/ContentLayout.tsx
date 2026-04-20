@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import ArticlePopup from "./ArticlePopup";
+import RelatedContent from "./RelatedContent";
 import { ChevronRight, Home, MessageSquare } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -26,6 +27,13 @@ interface ContentLayoutProps {
    * @default false
    */
   noShell?: boolean;
+  /**
+   * Liste von Content-IDs (siehe src/lib/contentRegistry.ts) im Format
+   * "<kind>:<slug>", die am Seitenende als "Das könnte Sie auch interessieren"
+   * gerendert werden. Mischung aus wissen / training / workshop ist gewollt.
+   * Beispiel: ["wissen:copilot-sicherheit-datenschutz", "training:copilot-compliance-datenschutz"]
+   */
+  relatedContent?: string[];
 }
 
 const ContentLayout = ({
@@ -37,7 +45,8 @@ const ContentLayout = ({
   readTime,
   authorName,
   tableOfContents = [],
-  noShell = false
+  noShell = false,
+  relatedContent,
 }: ContentLayoutProps) => {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -116,6 +125,11 @@ const ContentLayout = ({
             <div className="animate-fade-in-delayed-3 space-y-12">
               {children}
             </div>
+
+            {/* "Das könnte Sie auch interessieren" – gemischte Quer-Verlinkungen */}
+            {relatedContent && relatedContent.length > 0 && (
+              <RelatedContent ids={relatedContent} />
+            )}
           </article>
 
           {/* Sidebar - Table of Contents */}

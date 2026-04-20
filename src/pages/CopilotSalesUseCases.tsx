@@ -131,9 +131,10 @@ const CopilotSalesUseCases = () => {
         title={PAGE_TITLE}
         description="Die wirkungsvollsten Copilot Use Cases für Vertriebsteams: Konkrete Zeitersparnis für Innendienst und Außendienst."
         lastUpdated="14. Februar 2026"
-        
+
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
+        relatedContent={["wissen:copilot-hr-use-cases", "training:microsoft-365-copilot-praxis", "wissen:copilot-roi-erfolgsgeschichten", "wissen:copilot-digitales-gedaechtnis", "wissen:copilot-fuer-word"]}
       >
         {/* Schnellantwort */}
         <Card className="mb-6 border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-red-500/5">
@@ -537,36 +538,6 @@ const CopilotSalesUseCases = () => {
           </div>
         </section>
 
-        {/* Weiterführende Artikel */}
-        <section className="mb-6">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">Weiterführende Artikel</h2>
-          <div className="grid md:grid-cols-3 gap-4">
-            <Link to="/wissen/copilot-hr-use-cases" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Copilot im HR</p>
-                  <p className="text-sm text-gray-600">Use Cases für Personalabteilungen und HR-Teams</p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/copilot-roi-berechnen" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">ROI von Copilot berechnen</p>
-                  <p className="text-sm text-gray-600">Kosten-Nutzen-Analyse und Investitionsrechnung</p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/copilot-tipps-tricks-produktivitaet" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Copilot Tipps & Tricks</p>
-                  <p className="text-sm text-gray-600">Praktische Produktivitätshacks für den Arbeitsalltag</p>
-                </CardContent>
-              </Card>
-            </Link>
-          </div>
-        </section>
 
         {/* FAQ */}
         <section id="faq" className="mb-6">

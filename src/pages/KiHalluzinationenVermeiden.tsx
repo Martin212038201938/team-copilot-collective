@@ -129,6 +129,7 @@ const KiHalluzinationenVermeiden = () => {
         lastUpdated="17. Februar 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
+        relatedContent={["wissen:prompt-engineering", "wissen:copilot-fehler-vermeiden", "training:copilot-grundlagen-prompt-design", "wissen:prompt-bibliotheken-vs-training", "wissen:ki-realitaet-beratungsfirmen-2026"]}
       >
         {/* Schnellantwort */}
         <Card className="mb-6 border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-red-500/5">
@@ -465,36 +466,6 @@ const KiHalluzinationenVermeiden = () => {
           </div>
         </section>
 
-        {/* Weiterführende Artikel */}
-        <section className="mb-6">
-          <h2 className="text-2xl md:text-3xl font-bold mb-3">Weiterführende Artikel</h2>
-          <div className="grid md:grid-cols-3 gap-4">
-            <Link to="/wissen/copilot-sicherheit-datenschutz" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Copilot Sicherheit & Datenschutz</p>
-                  <p className="text-sm text-gray-600">Sichere Nutzung und Compliance-Anforderungen</p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/prompt-engineering" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Prompt Engineering</p>
-                  <p className="text-sm text-gray-600">Bessere Prompts für zuverlässigere Ergebnisse</p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/copilot-fehler-vermeiden" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Häufige Fehler vermeiden</p>
-                  <p className="text-sm text-gray-600">Typische Fallstricke und ihre Lösungen</p>
-                </CardContent>
-              </Card>
-            </Link>
-          </div>
-        </section>
 
         {/* FAQ */}
         <section id="faq" className="mb-6">

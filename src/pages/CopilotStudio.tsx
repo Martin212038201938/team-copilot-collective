@@ -126,6 +126,7 @@ const CopilotStudio = () => {
         lastUpdated="03. Februar 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
+        relatedContent={["wissen:ki-agenten", "wissen:copilot-agent-digitales-gedaechtnis", "training:copilot-studio-ki-agenten", "workshop:chatbot-workshop", "training:low-code-power-platform"]}
       >
         <Card className="mb-8 border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-amber-500/5">
           <CardHeader>
@@ -466,36 +467,6 @@ const CopilotStudio = () => {
           </div>
         </section>
 
-        {/* Weiterführende Artikel */}
-        <section className="mb-6">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">Weiterführende Artikel</h2>
-          <div className="grid md:grid-cols-2 gap-4 mb-4">
-            <Link to="/wissen/ki-agenten" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">KI-Agenten</p>
-                  <p className="text-sm text-gray-600">Autonome Assistenten für Automatisierung und komplexe Workflows</p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/copilot-agent-digitales-gedaechtnis" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Copilot Agent: Digitales Gedächtnis</p>
-                  <p className="text-sm text-gray-600">Wie Agenten auf Ihre Unternehmensdaten zugreifen und arbeiten</p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/copilot-digitales-gedaechtnis" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Digitales Gedächtnis mit Copilot</p>
-                  <p className="text-sm text-gray-600">Meeting-Transkripte, E-Mails und Dokumente als durchsuchbare Basis</p>
-                </CardContent>
-              </Card>
-            </Link>
-          </div>
-        </section>
 
         <section id="faq" className="mt-12 mb-12">
           <h2 className="text-2xl md:text-3xl font-bold mb-3">Häufig gestellte Fragen (FAQ)</h2>

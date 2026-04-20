@@ -142,6 +142,7 @@ const CopilotUnternehmensweitEinfuehren = () => {
         lastUpdated="02. Februar 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
+        relatedContent={["wissen:copilot-im-unternehmen-einfuehren-leitfaden", "wissen:copilot-sicherheit-datenschutz", "workshop:copilot-strategie-change-management", "wissen:copilot-adoption-2026-zahlen", "wissen:copilot-roi-berechnen"]}
       >
         {/* Schnellantwort */}
         <Card className="mb-8 border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-amber-500/5">
@@ -911,37 +912,6 @@ const CopilotUnternehmensweitEinfuehren = () => {
               </div>
             </CardContent>
           </Card>
-        </section>
-
-        {/* Weiterführende Artikel */}
-        <section className="mb-6">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">Weiterführende Artikel</h2>
-          <div className="grid md:grid-cols-2 gap-4 mb-4">
-            <Link to="/wissen/copilot-launch-kampagne" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Copilot Launch-Kampagne</p>
-                  <p className="text-sm text-gray-600">So wird der Rollout zum Erfolg: Mit Momentum, Events und strukturiertem Change Management</p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/copilot-fehler-vermeiden" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Copilot Fehler vermeiden</p>
-                  <p className="text-sm text-gray-600">Die 10 größten Fehler bei der Copilot-Einführung und wie Sie sie vermeiden</p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/copilot-roi-berechnen" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Copilot ROI berechnen</p>
-                  <p className="text-sm text-gray-600">Wie Sie den Business Case für Copilot mit konkreten Zahlen begründen</p>
-                </CardContent>
-              </Card>
-            </Link>
-          </div>
         </section>
 
         {/* FAQ */}

@@ -130,6 +130,7 @@ const CopilotLicenses = () => {
         lastUpdated="09. März 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
+        relatedContent={["wissen:microsoft-365-e7-frontier-suite", "wissen:claude-in-microsoft-copilot", "wissen:copilot-roi-berechnen", "wissen:copilot-studio", "wissen:github-copilot"]}
       >
         {/* Quick Answer Section für AIO-Optimierung */}
         <section id="quick-answer" className="mb-6">
@@ -566,37 +567,6 @@ const CopilotLicenses = () => {
                 </p>
               </CardContent>
             </Card>
-          </div>
-        </section>
-
-        {/* Weiterführende Artikel */}
-        <section className="mb-6">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">Weiterführende Artikel</h2>
-          <div className="grid md:grid-cols-2 gap-4 mb-4">
-            <Link to="/wissen/copilot-roi-berechnen" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Copilot ROI berechnen</p>
-                  <p className="text-sm text-gray-600">Business Case mit Formeln und Excel-Vorlage</p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/copilot-sicherheit-datenschutz" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Sicherheit & Datenschutz</p>
-                  <p className="text-sm text-gray-600">Ehrliche Antworten zu DSGVO und Datenschutzfragen</p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/copilot-unternehmensweit-einfuehren" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Copilot unternehmensw. einführen</p>
-                  <p className="text-sm text-gray-600">Roadmap und Best Practices für erfolgreiche Rollouts</p>
-                </CardContent>
-              </Card>
-            </Link>
           </div>
         </section>
 

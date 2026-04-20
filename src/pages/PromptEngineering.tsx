@@ -115,6 +115,7 @@ const PromptEngineering = () => {
         lastUpdated="03. Februar 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
+        relatedContent={["training:copilot-grundlagen-prompt-design", "wissen:prompt-bibliotheken-vs-training", "wissen:ki-halluzinationen-vermeiden", "wissen:copilot-tipps-tricks-produktivitaet", "wissen:copilot-fuer-word"]}
       >
         {/* Schnellantwort */}
         <Card className="border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-amber-500/5">
@@ -660,36 +661,6 @@ const PromptEngineering = () => {
           </div>
         </section>
 
-        {/* Weiterführende Artikel */}
-        <section className="mb-6">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">Weiterführende Artikel</h2>
-          <div className="grid md:grid-cols-2 gap-4 mb-4">
-            <Link to="/wissen/copilot-tipps-tricks-produktivitaet" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Tipps & Tricks für Produktivität</p>
-                  <p className="text-sm text-gray-600">22 praxiserprobte Tipps für bessere Copilot-Nutzung</p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/prompt-bibliotheken-vs-training" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Prompt-Bibliotheken vs. Training</p>
-                  <p className="text-sm text-gray-600">Warum Training wichtiger ist als vorgefertigte Prompts</p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/copilot-fehler-vermeiden" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Copilot-Fehler vermeiden</p>
-                  <p className="text-sm text-gray-600">7 kritische Fehler bei der Einführung und wie man sie vermeidet</p>
-                </CardContent>
-              </Card>
-            </Link>
-          </div>
-        </section>
 
         {/* FAQ */}
         <section id="faq">

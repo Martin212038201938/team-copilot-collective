@@ -115,6 +115,7 @@ const CopilotROIErfolgsgeschichten = () => {
         lastUpdated="03. Februar 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
+        relatedContent={["wissen:copilot-roi-berechnen", "wissen:copilot-adoption-2026-zahlen", "wissen:ki-realitaet-beratungsfirmen-2026", "workshop:copilot-strategie-change-management", "wissen:copilot-im-unternehmen-einfuehren-leitfaden"]}
       >
         {/* Schnellantwort */}
         <Card className="border-2 border-emerald-500/30 bg-gradient-to-br from-emerald-500/5 to-green-500/5">
@@ -567,37 +568,6 @@ const CopilotROIErfolgsgeschichten = () => {
                 </p>
               </CardContent>
             </Card>
-          </div>
-        </section>
-
-        {/* Weiterführende Artikel */}
-        <section className="mb-6">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">Weiterführende Artikel</h2>
-          <div className="grid md:grid-cols-2 gap-4 mb-4">
-            <Link to="/wissen/copilot-roi-berechnen" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Copilot ROI berechnen</p>
-                  <p className="text-sm text-gray-600">Business Case mit konkreten Zahlen und Modellen</p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/copilot-adoption-2026-zahlen" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Copilot Adoption 2026</p>
-                  <p className="text-sm text-gray-600">Aktuelle Statistiken und Markttrends</p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/copilot-unternehmensweit-einfuehren" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Unternehmensweite Einführung</p>
-                  <p className="text-sm text-gray-600">Strategie, Governance und zentrale Rollout-Planung</p>
-                </CardContent>
-              </Card>
-            </Link>
           </div>
         </section>
 

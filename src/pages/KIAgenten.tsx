@@ -126,6 +126,7 @@ const KIAgenten = () => {
         lastUpdated="07. November 2025"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
+        relatedContent={["wissen:copilot-studio", "wissen:copilot-agent-digitales-gedaechtnis", "training:copilot-studio-ki-agenten", "workshop:chatbot-workshop", "wissen:microsoft-365-e7-frontier-suite"]}
       >
         <Card className="mb-8 border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-amber-500/5">
           <CardHeader>
@@ -539,36 +540,6 @@ const KIAgenten = () => {
           </Card>
         </section>
 
-        {/* Weiterführende Artikel */}
-        <section className="mb-6">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">Weiterführende Artikel</h2>
-          <div className="grid md:grid-cols-2 gap-4 mb-4">
-            <Link to="/wissen/copilot-studio" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Copilot Studio</p>
-                  <p className="text-sm text-gray-600">Low-Code Plattform zur Entwicklung eigener KI-Agenten</p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/copilot-agent-digitales-gedaechtnis" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Copilot Agent Digitales Gedächtnis</p>
-                  <p className="text-sm text-gray-600">Memory und Kontext für intelligente Agenten</p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/ki-realitaet-beratungsfirmen-2026" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">KI-Realität in Beratungsfirmen 2026</p>
-                  <p className="text-sm text-gray-600">Praktische Implementierung von KI-Agenten im Geschäft</p>
-                </CardContent>
-              </Card>
-            </Link>
-          </div>
-        </section>
 
         <section id="faq" className="mt-12 mb-12">
           <h2 className="text-2xl md:text-3xl font-bold mb-3">Häufig gestellte Fragen (FAQ)</h2>

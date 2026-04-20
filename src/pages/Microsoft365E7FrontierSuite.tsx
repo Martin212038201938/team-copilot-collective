@@ -129,6 +129,13 @@ const Microsoft365E7FrontierSuite = () => {
         lastUpdated="13. März 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
+        relatedContent={[
+          "wissen:microsoft-copilot-lizenzen",
+          "wissen:ki-agenten",
+          "wissen:claude-in-microsoft-copilot",
+          "wissen:copilot-studio",
+          "wissen:copilot-roi-berechnen"
+        ]}
       >
         {/* Schnellantwort */}
         <Card className="mb-8 border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-amber-500/5">

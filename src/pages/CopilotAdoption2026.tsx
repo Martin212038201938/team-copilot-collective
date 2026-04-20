@@ -120,6 +120,7 @@ const CopilotAdoption2026 = () => {
         lastUpdated="03. Februar 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
+        relatedContent={["wissen:copilot-roi-erfolgsgeschichten", "wissen:copilot-roi-berechnen", "wissen:ki-realitaet-beratungsfirmen-2026", "wissen:copilot-unternehmensweit-einfuehren", "workshop:copilot-strategie-change-management"]}
       >
         {/* Schnellantwort */}
         <Card className="mb-6 border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-red-500/5">
@@ -526,65 +527,6 @@ const CopilotAdoption2026 = () => {
           </Card>
         </section>
 
-        {/* Weiterführende Artikel */}
-        <section className="mb-6">
-          <h2 className="text-2xl font-bold mb-6">Weiterführende Artikel</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            <Link
-              to="/wissen/copilot-roi-erfolgsgeschichten"
-              className="group"
-            >
-              <Card className="h-full hover:shadow-lg hover:border-primary transition-all duration-300 cursor-pointer">
-                <CardHeader className="border-b border-sky-500">
-                  <CardTitle className="text-lg group-hover:text-primary transition-colors">
-                    Copilot ROI: Erfolgsgeschichten
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="pt-4">
-                  <p className="text-sm text-muted-foreground">
-                    Reale Fälle: Wie Unternehmen messbaren ROI aus Microsoft Copilot generieren.
-                  </p>
-                </CardContent>
-              </Card>
-            </Link>
-
-            <Link
-              to="/wissen/ki-realitaet-beratungsfirmen-2026"
-              className="group"
-            >
-              <Card className="h-full hover:shadow-lg hover:border-primary transition-all duration-300 cursor-pointer">
-                <CardHeader className="border-b border-sky-500">
-                  <CardTitle className="text-lg group-hover:text-primary transition-colors">
-                    KI in deutschen Unternehmen 2026
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="pt-4">
-                  <p className="text-sm text-muted-foreground">
-                    Aktuelle Markttrends und Realität in Beratungsfirmen und Enterprise-Umgebungen.
-                  </p>
-                </CardContent>
-              </Card>
-            </Link>
-
-            <Link
-              to="/wissen/copilot-unternehmensweit-einfuehren"
-              className="group"
-            >
-              <Card className="h-full hover:shadow-lg hover:border-primary transition-all duration-300 cursor-pointer">
-                <CardHeader className="border-b border-sky-500">
-                  <CardTitle className="text-lg group-hover:text-primary transition-colors">
-                    Unternehmensweite Einführung
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="pt-4">
-                  <p className="text-sm text-muted-foreground">
-                    Schritt-für-Schritt-Anleitung für die erfolgreiche Skalierung vom Pilot zum unternehmensweiten Rollout.
-                  </p>
-                </CardContent>
-              </Card>
-            </Link>
-          </div>
-        </section>
 
         {/* FAQs */}
         <section id="faq" className="mb-6">

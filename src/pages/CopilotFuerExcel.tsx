@@ -28,7 +28,6 @@ const CopilotFuerExcel = () => {
     { id: "prompt-sammlung", title: "Prompt-Sammlung für Excel", level: 2 },
     { id: "tipps-prompts", title: "Tipps für bessere Excel-Prompts", level: 2 },
     { id: "grenzen", title: "Wo Copilot an seine Grenzen kommt", level: 2 },
-    { id: "weiterfuehrend", title: "Copilot in anderen Apps", level: 2 },
     { id: "fazit", title: "Fazit", level: 2 },
     { id: "faq", title: "Häufig gestellte Fragen", level: 2 },
   ];
@@ -123,6 +122,13 @@ const CopilotFuerExcel = () => {
         author={author}
         publishDate="2026-02-28"
         modifiedDate="2026-02-28"
+        relatedContent={[
+          "wissen:copilot-in-excel-aktivieren",
+          "training:microsoft-365-copilot-praxis",
+          "wissen:copilot-tipps-tricks-produktivitaet",
+          "wissen:copilot-fuer-word",
+          "wissen:copilot-hr-use-cases"
+        ]}
       >
         {/* Schnellantwort Card */}
         <section className="mb-6">
@@ -683,48 +689,6 @@ const CopilotFuerExcel = () => {
                 <p className="text-sm text-gray-700">Bei Analyse-Fragen kann es vorkommen, dass Copilot Zahlen liefert, die nicht in Ihren Daten stehen. Das passiert selten bei Formeln (die können Sie in der Zelle prüfen), aber häufiger bei textuellen Zusammenfassungen. Deshalb: Ergebnisse immer stichprobenartig gegen die Rohdaten prüfen. Mehr dazu in unserem Artikel über <Link to="/wissen/ki-halluzinationen-vermeiden" className="text-primary hover:underline">KI-Halluzinationen vermeiden</Link>.</p>
               </CardContent>
             </Card>
-          </div>
-        </section>
-
-        {/* Weiterführende Artikel */}
-        <section id="weiterfuehrend" className="mb-6">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">Copilot in anderen Apps</h2>
-          <p className="mb-4 text-gray-700 leading-relaxed">
-            Excel ist nur eine von vielen Apps, in denen Copilot arbeitet. Hier finden Sie unsere weiteren Praxis-Guides:
-          </p>
-          <div className="grid md:grid-cols-2 gap-4 mb-4">
-            <Link to="/wissen/copilot-fuer-word" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Copilot für Word</p>
-                  <p className="text-sm text-gray-600">Dokumente schneller erstellen, zusammenfassen und überarbeiten.</p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/copilot-tipps-tricks-produktivitaet" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">22 Copilot Tipps & Tricks</p>
-                  <p className="text-sm text-gray-600">Profi-Tipps für alle Microsoft 365 Apps – inklusive Excel.</p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/prompt-engineering" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Prompt Engineering</p>
-                  <p className="text-sm text-gray-600">Die Grundlagen des Promptings – nicht nur für Excel.</p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/copilot-sicherheit-datenschutz" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Copilot & Datenschutz</p>
-                  <p className="text-sm text-gray-600">Was passiert mit Ihren Daten, wenn Copilot sie analysiert?</p>
-                </CardContent>
-              </Card>
-            </Link>
           </div>
         </section>
 

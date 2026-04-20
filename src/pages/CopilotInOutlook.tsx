@@ -138,6 +138,13 @@ const CopilotInOutlook = () => {
         lastUpdated="27. März 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
+        relatedContent={[
+          "wissen:copilot-tipps-tricks-produktivitaet",
+          "training:microsoft-365-copilot-praxis",
+          "wissen:copilot-digitales-gedaechtnis",
+          "wissen:copilot-fuer-word",
+          "wissen:copilot-fuer-excel"
+        ]}
       >
         {/* Schnellantwort */}
         <Card className="mb-8 border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-red-500/5">
@@ -843,37 +850,6 @@ const CopilotInOutlook = () => {
               ein guter Einstiegspunkt. Wer jetzt lernt, was Copilot in Outlook kann und was nicht, trifft eine
               fundierte Entscheidung darüber, ob die Premium-Lizenz den Aufpreis wert ist.
             </p>
-          </div>
-        </section>
-
-        {/* Weiterführende Artikel */}
-        <section className="mb-8 mt-2">
-          <h2 className="text-2xl md:text-3xl font-bold mb-1">Weiterführende Artikel</h2>
-          <div className="grid md:grid-cols-3 gap-4">
-            <Link to="/wissen/copilot-tipps-tricks-produktivitaet" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Copilot Tipps & Tricks</p>
-                  <p className="text-sm text-gray-600">Produktiver arbeiten mit Microsoft 365 Copilot</p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/copilot-sicherheit-datenschutz" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Copilot Sicherheit & Datenschutz</p>
-                  <p className="text-sm text-gray-600">DSGVO-Konformität und Datenschutz bei Microsoft Copilot</p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/microsoft-copilot-lizenzen" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Microsoft Copilot Lizenzen</p>
-                  <p className="text-sm text-gray-600">Übersicht der Lizenzmodelle und Preise 2026</p>
-                </CardContent>
-              </Card>
-            </Link>
           </div>
         </section>
 

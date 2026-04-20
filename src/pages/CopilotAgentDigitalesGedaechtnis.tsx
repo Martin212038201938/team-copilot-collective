@@ -126,6 +126,7 @@ const CopilotAgentDigitalesGedaechtnis = () => {
         lastUpdated="28. Februar 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
+        relatedContent={["wissen:copilot-digitales-gedaechtnis", "wissen:copilot-studio", "workshop:chatbot-workshop", "training:copilot-studio-ki-agenten", "wissen:ki-agenten"]}
       >
         {/* Schnellantwort */}
         <Card className="mb-8 border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-red-500/5">
@@ -833,36 +834,6 @@ Ablage:
           </div>
         </section>
 
-        {/* Weiterführende Artikel */}
-        <section className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">Weiterführende Artikel</h2>
-          <div className="grid md:grid-cols-3 gap-4">
-            <Link to="/wissen/copilot-digitales-gedaechtnis" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Digitales Gedächtnis mit Copilot</p>
-                  <p className="text-sm text-gray-600">Grundkonzepte und Strategien für strukturierte Wissensverwaltung</p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/copilot-studio" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Copilot Studio</p>
-                  <p className="text-sm text-gray-600">Erweiterte Anpassung und benutzerdefinierte Copilots</p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/ki-agenten" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">KI-Agenten</p>
-                  <p className="text-sm text-gray-600">Intelligente Automatisierung und Agent-basierte Workflows</p>
-                </CardContent>
-              </Card>
-            </Link>
-          </div>
-        </section>
 
         {/* FAQ */}
         <section id="faq" className="mb-6">

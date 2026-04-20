@@ -114,6 +114,7 @@ const CopilotTippsTricks = () => {
         lastUpdated="03. Februar 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
+        relatedContent={["wissen:prompt-engineering", "wissen:copilot-fuer-word", "wissen:copilot-fuer-excel", "wissen:copilot-in-outlook-nutzen-tipps", "training:microsoft-365-copilot-praxis"]}
       >
         {/* Schnellantwort */}
         <Card className="border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-amber-500/5">
@@ -637,37 +638,6 @@ const CopilotTippsTricks = () => {
                 </div>
               </CardContent>
             </Card>
-          </div>
-        </section>
-
-        {/* Weiterführende Artikel */}
-        <section className="mb-6">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">Weiterführende Artikel</h2>
-          <div className="grid md:grid-cols-2 gap-4 mb-4">
-            <Link to="/wissen/copilot-fuer-excel" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Copilot für Excel</p>
-                  <p className="text-sm text-gray-600">Datenanalyse und intelligente Tabellenkalkulation</p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/copilot-fuer-word" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Copilot für Word</p>
-                  <p className="text-sm text-gray-600">Dokumentenerstellung und Textverbesserung</p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/prompt-engineering" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Prompt Engineering</p>
-                  <p className="text-sm text-gray-600">Das CRAFT-Framework für bessere KI-Prompts</p>
-                </CardContent>
-              </Card>
-            </Link>
           </div>
         </section>
 

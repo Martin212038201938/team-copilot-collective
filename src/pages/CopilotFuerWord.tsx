@@ -172,6 +172,7 @@ const CopilotFuerWord = () => {
         author={author}
         publishDate="2025-01-05"
         modifiedDate="2026-02-03"
+        relatedContent={["wissen:copilot-fuer-excel", "wissen:copilot-tipps-tricks-produktivitaet", "wissen:copilot-in-outlook-nutzen-tipps", "training:microsoft-365-copilot-praxis", "wissen:prompt-engineering"]}
       >
         {/* Schnellantwort Card */}
         <section className="mb-6">
@@ -1220,36 +1221,6 @@ Format: Markdown mit klarer Hierarchie, Emojis für Kategorien."`}</code></pre>
           </div>
         </section>
 
-        {/* Weiterführende Artikel */}
-        <section className="mb-6">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">Weiterführende Artikel</h2>
-          <div className="grid md:grid-cols-2 gap-4 mb-4">
-            <Link to="/wissen/copilot-fuer-excel" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Copilot für Excel</p>
-                  <p className="text-sm text-gray-600">Datenanalyse und Formeln mit KI-Unterstützung</p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/copilot-tipps-tricks-produktivitaet" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Tipps & Tricks für Produktivität</p>
-                  <p className="text-sm text-gray-600">22 praxiserprobte Tipps für M365 Copilot</p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/wissen/prompt-engineering" className="block">
-              <Card className="hover:shadow-md transition-shadow h-full">
-                <CardContent className="pt-4">
-                  <p className="font-semibold text-primary mb-1">Prompt Engineering</p>
-                  <p className="text-sm text-gray-600">Das CRAFT-Framework für bessere KI-Prompts</p>
-                </CardContent>
-              </Card>
-            </Link>
-          </div>
-        </section>
 
         <section id="h-ufig-gestellte-fragen-faq-" className="mb-6">
           <h2 className="text-2xl md:text-3xl font-bold mb-3">Häufig gestellte Fragen (FAQ)</h2>
