@@ -149,7 +149,7 @@ const CopilotTraining = () => {
               Einstieg scheint niederschwellig, aber die veränderte Arbeitsweise ist so tiefgreifend, dass man das nicht einer
               internen Taskforce aus interessierten Mitarbeitern überlassen kann, die das nebenher noch treiben soll.
               Es ist schön wenn Max und Anna "KI können" – aber das ist NICHT skalierbar. Ohne systematisches Training
-              zahlen Sie für Lizenzen, die niemand nutzt. Dieser Artikel zeigt, wie Sie Training richtig aufsetzen.
+              und klares <Link to="/wissen/copilot-sicherheit-datenschutz" className="text-primary hover:underline">Datenschutz</Link>-Bewusstsein zahlen Sie für Lizenzen, die niemand nutzt. Dieser Artikel zeigt, wie Sie Training richtig aufsetzen.
             </p>
           </CardContent>
         </Card>

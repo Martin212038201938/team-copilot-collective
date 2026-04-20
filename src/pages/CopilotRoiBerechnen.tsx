@@ -135,7 +135,7 @@ const CopilotRoiBerechnen = () => {
               Laut Forrester TEI-Studie sparen Copilot-Nutzer durchschnittlich <strong>9 Stunden pro Monat</strong>.
               Bei €26/Monat pro Lizenz (zzgl. MwSt.) und einem Stundensatz von €50 ergibt das €450 Nutzen vs. €26 Kosten –
               ein ROI von <strong>1.631% pro aktivem Nutzer</strong>. <strong>Unsere realistische Einschätzung</strong> halbiert diese Werte bewusst:
-              Aus Erfahrung erreichen die meisten Unternehmen die vollen Studienwerte erst nach intensiver Schulung und konsequentem Change Management.
+              Aus Erfahrung erreichen die meisten Unternehmen die vollen Studienwerte erst nach intensiver Schulung und konsequentem <Link to="/workshops/copilot-strategie-change-management" className="text-primary hover:underline">Change Management</Link>.
               Ohne Training liegt die aktive Nutzung oft bei nur 5-15%.
               Echte <Link to="/wissen/copilot-roi-erfolgsgeschichten" className="text-primary hover:underline">Erfolgsgeschichten</Link> zeigen,
               wie Unternehmen diese Zahlen konkret erreicht haben. Diese Seite liefert Ihnen alle Formeln, Szenarien und eine <strong>kostenlose Excel-Vorlage</strong> für Ihren Business Case.

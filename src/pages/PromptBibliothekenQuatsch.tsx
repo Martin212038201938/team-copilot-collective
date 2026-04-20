@@ -495,7 +495,7 @@ const PromptBibliothekenQuatsch = () => {
 
           <blockquote className="my-6 border-l-4 border-purple-500 bg-purple-50 dark:bg-purple-950/30 p-6 rounded-r-lg text-lg">
             <strong>Der Meta-Trick:</strong> Statt die KI zu prompten, lassen Sie sich von der KI prompten.
-            So nutzen Sie die Stärke der KI (Fragen stellen, Kontext verstehen), ohne selbst Prompt-Engineering-Experte zu sein.
+            So nutzen Sie die Stärke der KI (Fragen stellen, Kontext verstehen), ohne selbst <Link to="/wissen/prompt-engineering" className="text-primary hover:underline">Prompt-Engineering</Link>-Experte zu sein.
           </blockquote>
         </section>
 

@@ -166,7 +166,7 @@ const CopilotAdoption2026 = () => {
           </h2>
 
           <p className="text-muted-foreground mb-6">
-            Am 28. Januar 2026 veröffentlichte Microsoft seine Quartalszahlen. Die Copilot-Metriken im Überblick:
+            Am 28. Januar 2026 veröffentlichte Microsoft seine Quartalszahlen. Die Copilot-Metriken im Überblick. Für konkrete Erfolgsbeispiele aus dem deutschsprachigen Raum, siehe unsere <Link to="/wissen/copilot-roi-erfolgsgeschichten" className="text-primary hover:underline">Copilot ROI Erfolgsgeschichten</Link>.
           </p>
 
           <div className="grid md:grid-cols-2 gap-6 mb-8">

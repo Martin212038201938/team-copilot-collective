@@ -444,7 +444,7 @@ const CopilotROIErfolgsgeschichten = () => {
 
           <p className="text-lg leading-relaxed mb-6">
             Die Zitate zeigen ein klares Muster: Erfolgreiche Copilot-Einführungen sind keine IT-Projekte,
-            sondern Transformationsprogramme. Erfahren Sie auch mehr über <Link to="/wissen/copilot-roi-berechnen" className="text-primary hover:underline">ROI Berechnung</Link> als Grundlage.
+            sondern Transformationsprogramme. Erfahren Sie auch mehr über <Link to="/wissen/copilot-roi-berechnen" className="text-primary hover:underline">ROI Berechnung</Link> als Grundlage und die <Link to="/wissen/copilot-adoption-2026-zahlen" className="text-primary hover:underline">Adoption 2026 Zahlen</Link>.
             Hier die gemeinsamen Erfolgsfaktoren:
           </p>
 

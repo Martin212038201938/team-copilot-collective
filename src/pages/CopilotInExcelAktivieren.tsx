@@ -140,7 +140,7 @@ const CopilotInExcelAktivieren = () => {
           </CardHeader>
           <CardContent>
             <p className="text-orange-900 dark:text-orange-200">
-              Copilot in Excel funktioniert, wenn drei Bedingungen erfüllt sind: eine zugewiesene Microsoft 365 Copilot-Lizenz, eine aktuelle Version von Microsoft 365 Apps und die Datei auf OneDrive oder SharePoint mit aktiviertem AutoSave. Fehlt eine dieser drei Voraussetzungen, erscheint der Copilot-Button in Excel entweder gar nicht oder bleibt ausgegraut. Die Aktivierung selbst ist im Admin Center in wenigen Minuten erledigt – der eigentliche Aufwand liegt in der Vorbereitung.
+              Copilot in Excel funktioniert, wenn drei Bedingungen erfüllt sind: eine zugewiesene <Link to="/wissen/microsoft-copilot-lizenzen" className="text-primary hover:underline">Microsoft 365 Copilot-Lizenz</Link>, eine aktuelle Version von Microsoft 365 Apps und die Datei auf OneDrive oder SharePoint mit aktiviertem AutoSave. Fehlt eine dieser drei Voraussetzungen, erscheint der Copilot-Button in Excel entweder gar nicht oder bleibt ausgegraut. Die Aktivierung selbst ist im Admin Center in wenigen Minuten erledigt – der eigentliche Aufwand liegt in der Vorbereitung.
             </p>
           </CardContent>
         </Card>

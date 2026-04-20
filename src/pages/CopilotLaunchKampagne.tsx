@@ -142,6 +142,7 @@ const CopilotLaunchKampagne = () => {
               Ich liebe Launches. Richtig durchgezogene, durchdachte, energiegeladene Launches.
               Nicht weil ich ein Marketing-Mensch bin (bin ich nicht), sondern weil ich gesehen habe,
               was passiert, wenn man den Unterschied zwischen einem guten und einem schlechten Launch erlebt.
+              Bei echtem <Link to="/workshops/copilot-strategie-change-management" className="text-primary hover:underline">Change Management</Link> geht es um Verhaltensänderung.
             </span>
           </p>
           <p className="leading-relaxed mb-4">
@@ -593,7 +594,7 @@ const CopilotLaunchKampagne = () => {
                   </li>
                   <li className="flex items-center gap-2">
                     <ArrowRight className="w-4 h-4 text-blue-500" />
-                    <strong>Lernreise 8 Wochen</strong>: Nachhaltige Verhaltensänderung
+                    <strong><Link to="/trainings/copilot-lernreise-8-wochen" className="text-primary hover:underline">Lernreise 8 Wochen</Link></strong>: Nachhaltige Verhaltensänderung
                   </li>
                   <li className="flex items-center gap-2">
                     <ArrowRight className="w-4 h-4 text-blue-500" />

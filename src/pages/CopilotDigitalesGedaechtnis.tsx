@@ -270,6 +270,7 @@ const CopilotDigitalesGedaechtnis = () => {
           <p className="my-6">
             Der größte Game-Changer für mich: Meeting-Transkription in Teams. Jedes Gespräch wird automatisch
             protokolliert – nicht nur Stichpunkte, sondern <strong>alles</strong>. Wer was gesagt hat, wann, in welchem Kontext.
+            Mit gutem <Link to="/wissen/prompt-engineering" className="text-primary hover:underline">Prompt Engineering</Link> kann ich diese Transkripte dann effizient abfragen.
           </p>
 
           <Card className="my-6 border-l-4 border-l-purple-500">

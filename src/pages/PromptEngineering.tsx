@@ -145,7 +145,7 @@ const PromptEngineering = () => {
           <p className="mb-6">
             Prompt Engineering ist die Disziplin, effektive Anweisungen für KI-Systeme zu formulieren. Die Qualität
             Ihrer Ergebnisse hängt direkt davon ab, wie gut Sie Ihre Anfrage strukturieren. <Link to="/wissen/prompt-bibliotheken-vs-training" className="text-primary hover:underline">Strukturiertes Training</Link> ist
-            dabei wichtiger als vorgefertigte Prompt-Bibliotheken.
+            dabei wichtiger als vorgefertigte Prompt-Bibliotheken. Mit dem CRAFT-Framework können Sie konsistente Ergebnisse mit <Link to="/wissen/microsoft-copilot-lizenzen" className="text-primary hover:underline">Microsoft Copilot</Link> erreichen.
           </p>
 
           <div className="grid md:grid-cols-3 gap-6 my-8">

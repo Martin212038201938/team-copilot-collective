@@ -387,7 +387,7 @@ const KiSchulungMitarbeiterPflicht = () => {
               KI-Systeme sind im Unternehmen im Einsatz – offiziell und inoffiziell? Wer nutzt sie?
               Das klingt trivial, ist es aber selten, weil Shadow-IT gerade bei generativer KI weit
               verbreitet ist. Zweitens: Priorisierung. Nicht jeder Mitarbeiter braucht dasselbe
-              Schulungsniveau. Ein Entwickler, der GitHub Copilot nutzt, braucht andere Inhalte als
+              Schulungsniveau. Ein Entwickler, der <Link to="/wissen/github-copilot" className="text-primary hover:underline">GitHub Copilot</Link> nutzt, braucht andere Inhalte als
               eine Sachbearbeiterin, die Copilot in Outlook verwendet. Die Tiefe der Schulung sollte sich
               am Risikoprofil der jeweiligen KI-Nutzung orientieren. Drittens: Umsetzung mit
               dokumentiertem Nachweis. Die beste Schulung bringt wenig, wenn bei einem Audit niemand

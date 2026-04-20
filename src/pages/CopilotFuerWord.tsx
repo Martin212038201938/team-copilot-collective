@@ -187,7 +187,7 @@ const CopilotFuerWord = () => {
 
         <section id="einleitung" className="mb-6">
           <h1 className="text-3xl font-semibold tracking-tight mb-4">Einleitung</h1>
-          <p className="mb-4 text-gray-700 leading-relaxed">Microsoft Copilot für Word ist ein KI-gestützter Assistent, der direkt in Microsoft Word integriert ist und Ihre Dokumentenerstellung auf ein neues Level hebt. Mit natürlicher Sprache können Sie Texte erstellen, bearbeiten, zusammenfassen und formatieren.</p>
+          <p className="mb-4 text-gray-700 leading-relaxed">Microsoft Copilot für Word ist ein KI-gestützter Assistent, der direkt in Microsoft Word integriert ist und Ihre Dokumentenerstellung auf ein neues Level hebt. Mit natürlicher Sprache können Sie Texte erstellen, bearbeiten, zusammenfassen und formatieren. Das Erfolgsgeheimnis liegt in effektiven <Link to="/wissen/prompt-engineering" className="text-primary hover:underline">Prompts</Link> und strukturiertem <Link to="/wissen/copilot-training-schulung" className="text-primary hover:underline">Training</Link>.</p>
         </section>
 
         <section id="was-ist-microsoft-copilot-f-r-word-" className="mb-6">

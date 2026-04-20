@@ -168,7 +168,7 @@ const CopilotFlexRoutingEU = () => {
             <ul>
               <li><strong>Default abhängig vom Tenant:</strong> Für Tenants, die <em>nach dem 25. März 2026</em> erstellt wurden, ist Flex Routing standardmäßig aktiv. Für bestehende Tenants ist der Default je nach Tenant-Typ unterschiedlich: Laut Message Center Posts soll Flex Routing für Enterprise-Tenants, Public-Sector-Tenants und Tenants mit Advanced Data Residency standardmäßig <em>deaktiviert</em> bleiben. Für SMB- und Bildungseinrichtungen kann das abweichen. <strong>Verbindlich ist der spezifische Message Center Post im eigenen Admin Center</strong> – dort steht, welcher Default für den eigenen Tenant gilt.</li>
               <li><strong>Geltungsbereich M365:</strong> Die Einstellung im Microsoft 365 Admin Center gilt für Microsoft 365 Copilot und Copilot Chat.</li>
-              <li><strong>Geltungsbereich Power Platform:</strong> Copilot Studio, Dynamics 365 und Power Platform haben eine separate Einstellung im Power Platform Admin Center.</li>
+              <li><strong>Geltungsbereich Power Platform:</strong> <Link to="/wissen/copilot-studio" className="text-primary hover:underline">Copilot Studio</Link>, Dynamics 365 und Power Platform haben eine separate Einstellung im Power Platform Admin Center.</li>
               <li><strong>Abschaltbar:</strong> Die Einstellung lässt sich jederzeit deaktivieren – sie muss aber aktiv gefunden und ausgeschaltet werden. Ist sie im M365 Admin Center deaktiviert, ist sie automatisch auch im Power Platform Admin Center gesperrt.</li>
             </ul>
             <p>

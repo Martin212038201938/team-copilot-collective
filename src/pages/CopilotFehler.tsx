@@ -250,7 +250,7 @@ const CopilotFehler = () => {
             "Die Mitarbeiter nicht professionell schulen ist der teuerste Fehler. Der Einstieg scheint niederschwellig,
             aber die veränderte Arbeitsweise ist so tiefgreifend, dass man das nicht einer internen Taskforce aus
             interessierten Mitarbeitern überlassen kann, die das nebenher noch treiben soll. Es ist schön wenn Max
-            und Anna 'KI können' aber das ist NICHT skalierbar. Ohne systematisches <Link to="/wissen/copilot-training-schulung" className="text-primary hover:underline">Training</Link> zahlen Sie für Lizenzen,
+            und Anna 'KI können' aber das ist NICHT skalierbar. Ohne systematisches <Link to="/wissen/copilot-training-schulung" className="text-primary hover:underline">Training</Link> und klare <Link to="/wissen/copilot-sicherheit-datenschutz" className="text-primary hover:underline">Datenschutz</Link>-Richtlinien zahlen Sie für Lizenzen,
             die niemand nutzt."
           </blockquote>
 

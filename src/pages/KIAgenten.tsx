@@ -289,6 +289,10 @@ const KIAgenten = () => {
         <section id="use-cases" className="mt-12">
           <h2 className="text-2xl md:text-3xl font-bold mb-3">Use Cases in Unternehmen</h2>
 
+          <p className="mb-6">
+            Autonome Workflows mit <Link to="/wissen/copilot-studio" className="text-primary hover:underline">Copilot Studio</Link> ermöglichen es Unternehmen, komplexe Geschäftsprozesse zu automatisieren und damit ihre <Link to="/wissen/copilot-roi-berechnen" className="text-primary hover:underline">Produktivität zu steigern</Link>.
+          </p>
+
           <div className="space-y-6 my-6">
             {[
               {
@@ -336,7 +340,7 @@ const KIAgenten = () => {
         </section>
 
         <section id="copilot-studio" className="mt-12">
-          <h2 className="text-2xl md:text-3xl font-bold mb-3">Agenten mit <Link to="/wissen/copilot-studio" className="text-primary hover:underline">Copilot Studio</Link> bauen</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Agenten mit Copilot Studio bauen</h2>
 
           <Card className="my-6">
             <CardHeader>

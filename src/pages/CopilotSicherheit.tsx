@@ -157,7 +157,7 @@ const CopilotSicherheit = () => {
           <p className="leading-relaxed">
             Dieser Artikel beantwortet die häufigsten Datenschutz-Fragen rund um Microsoft 365 Copilot.
             Vieles davon ist gut gelöst – besser, als die meisten erwarten. Ein echtes Risiko sind <Link to="/wissen/ki-halluzinationen-vermeiden" className="text-primary hover:underline">KI-Halluzinationen</Link> – wenn Copilot
-            plausibel klingende, aber falsche Informationen liefert. Wenn Organisationen ihre Hausaufgaben nicht machen, entstehen Risiken. Beides gehört auf den Tisch.
+            plausibel klingende, aber falsche Informationen liefert. Daher ist professionelles <Link to="/wissen/copilot-training-schulung" className="text-primary hover:underline">Training</Link> entscheidend. Wenn Organisationen ihre Hausaufgaben nicht machen, entstehen Risiken. Beides gehört auf den Tisch.
           </p>
         </div>
 

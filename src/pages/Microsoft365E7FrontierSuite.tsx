@@ -220,7 +220,7 @@ const Microsoft365E7FrontierSuite = () => {
               Wer sich die Tabelle genau ansieht, erkennt den entscheidenden Unterschied zu E5: E7 ist nicht
               einfach E5 mit einem KI-Aufpreis. Es ist der erste Microsoft-Tarif, in dem KI-Funktionalität und
               Agent-Management als integrale Bestandteile behandelt werden – nicht als nachträglich hinzubuchbare
-              Extras. Copilot Studio mit dem Agent Builder, Work IQ als kontextsensitive Intelligence-Schicht,
+              Extras. <Link to="/wissen/copilot-studio" className="text-primary hover:underline">Copilot Studio</Link> mit dem Agent Builder, Work IQ als kontextsensitive Intelligence-Schicht,
               die auf Unternehmensdaten und Drittanbieter-Konnektoren zugreift, und das komplette
               Agent-365-Management: All das gibt es in dieser Kombination nur im E7-Paket.
             </p>

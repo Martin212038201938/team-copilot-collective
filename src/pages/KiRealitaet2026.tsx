@@ -825,7 +825,7 @@ const KiRealitaet2026 = () => {
                     </li>
                     <li className="flex items-start gap-2">
                       <XCircle className="w-4 h-4 text-red-600 mt-0.5 flex-shrink-0" />
-                      Kein Budget für Schulung und Change Management vorhanden ist
+                      Kein Budget für Schulung und <Link to="/workshops/copilot-strategie-change-management" className="text-primary hover:underline">Change Management</Link> vorhanden ist
                     </li>
                     <li className="flex items-start gap-2">
                       <XCircle className="w-4 h-4 text-red-600 mt-0.5 flex-shrink-0" />

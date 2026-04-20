@@ -242,7 +242,7 @@ const CopilotStudio = () => {
           <h2 className="text-2xl md:text-3xl font-bold mb-3">Custom Copilots erstellen</h2>
 
           <p className="mb-6">
-            Mit Copilot Studio können Sie eigene <Link to="/wissen/ki-agenten" className="text-primary hover:underline">KI-Agenten</Link> erstellen, die speziell auf Ihre Unternehmensbedürfnisse zugeschnitten sind.
+            Mit Copilot Studio können Sie eigene <Link to="/wissen/ki-agenten" className="text-primary hover:underline">KI-Agenten</Link> erstellen, die speziell auf Ihre Unternehmensbedürfnisse zugeschnitten sind. Die Plattform ermöglicht Integration mit <Link to="/wissen/microsoft-copilot-lizenzen" className="text-primary hover:underline">Microsoft 365</Link> und verschiedenen externen Systemen.
           </p>
 
           <Card className="my-6 border-l-4 border-l-purple-500">

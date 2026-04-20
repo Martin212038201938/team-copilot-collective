@@ -185,7 +185,7 @@ const CopilotLicenses = () => {
           <ul>
             <li><strong>Microsoft 365 Copilot</strong> – KI-Assistent für Word, Excel, PowerPoint, Outlook, Teams</li>
             <li><strong>GitHub Copilot</strong> – KI-Coding-Assistent für Softwareentwickler</li>
-            <li><strong>Microsoft Copilot Studio</strong> – Plattform zur Entwicklung eigener KI-Agenten</li>
+            <li><strong><Link to="/wissen/copilot-studio" className="text-primary hover:underline">Microsoft Copilot Studio</Link></strong> – Plattform zur Entwicklung eigener <Link to="/wissen/ki-agenten" className="text-primary hover:underline">KI-Agenten</Link></li>
           </ul>
         </section>
 

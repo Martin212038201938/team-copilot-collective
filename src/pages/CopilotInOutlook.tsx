@@ -214,7 +214,7 @@ const CopilotInOutlook = () => {
             <p>
               Für die Basic-Funktionen (Chat im Seitenbereich, Zusammenfassungen) reicht die reguläre M365-Lizenz. Für
               die Premium-Funktionen – Canvas-Entwürfe, agentisches RSVP-Management, tiefe Schreibunterstützung –
-              benötigen Sie zusätzlich eine <strong>Microsoft 365 Copilot-Lizenz</strong> (derzeit ca. 30 USD/Monat pro Nutzer).
+              benötigen Sie zusätzlich eine <Link to="/wissen/microsoft-copilot-lizenzen" className="text-primary hover:underline">Microsoft 365 Copilot-Lizenz</Link> (derzeit ca. 30 USD/Monat pro Nutzer).
               Ihr IT-Admin muss Copilot im Admin Center aktivieren, und der Tenant muss die Copilot-Dienste freigegeben haben.
             </p>
             <p>
