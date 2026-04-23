@@ -708,7 +708,7 @@ export const workshops: Workshop[] = [
     icon: Brain,
     title: "Bessere Entscheidungen mit Copilot",
     subtitle: "Verzerrungen und Noise verstehen – und Copilot gezielt dagegen einsetzen.",
-    duration: "3 Stunden (Online)",
+    duration: "4 Stunden als eigenständiger Workshop · 2 Stunden als Modul in der Lernreise",
     participants: "bis 15 Teilnehmende",
     format: "Online · Microsoft Copilot oder ChatGPT",
     description: "Die Lernreise zeigt, wie Teams Copilot produktiv nutzen. Dieses Modul setzt eine Ebene darüber an: Wie lassen sich mit Copilot bessere Entscheidungen treffen – indem systematische Denkfehler sichtbar werden, die sonst unerkannt einfließen? Nach der Lernreise weiß man, wie man Copilot nutzt. Nach diesem Modul weiß man, wie man damit bewusster entscheidet. Das Seminar wird geleitet von Saskia Kaden, Agile Coach und systemische Beraterin, die seit Jahren mit Führungskräften und Teams an Entscheidungsqualität arbeitet. Das Modul basiert auf einem eigenständigen dreitägigen Training zur Entscheidungspsychologie, das Saskia Kaden entwickelt hat.",
@@ -748,7 +748,8 @@ export const workshops: Workshop[] = [
       "Das Modul hebt die Copilot-Nutzung von Automatisierung auf strategische Entscheidungsunterstützung.",
     ],
     deliverables: [
-      "3-stündiges interaktives Online-Seminar mit Raum für eigene Entscheidungssituationen der Teilnehmenden",
+      "Als eigenständiger Workshop: 4-stündiges interaktives Online-Seminar mit Raum für eigene Entscheidungssituationen der Teilnehmenden",
+      "Als Modul in der Lernreise: 2-stündige Einheit, integrierbar als zusätzliche Session oder Erweiterung des Advanced-Prompting-Moduls",
       "Handout mit Methoden-Toolkit (Bias-Übersicht, Noise-Checkliste, Prompt-Vorlagen für Entscheidungs-Sparring)",
     ],
     relatedTrainings: [
@@ -760,7 +761,7 @@ export const workshops: Workshop[] = [
       "copilot-strategie-change-management",
     ],
     metaTitle: "Bessere Entscheidungen mit Copilot – Bias, Noise & Entscheidungsqualität | copilotenschule.de",
-    metaDescription: "Online-Kursseminar (3h): Wie Copilot als Sparringspartner hilft, systematische Denkfehler und Noise zu überwinden – für bessere Entscheidungen im Arbeitsalltag. Mit Saskia Kaden.",
+    metaDescription: "Workshop (4h) oder Lernreise-Modul (2h): Wie Copilot als Sparringspartner hilft, systematische Denkfehler und Noise zu überwinden – für bessere Entscheidungen. Mit Saskia Kaden.",
     keywords: [
       "Bessere Entscheidungen KI",
       "Copilot Entscheidungsqualität",
