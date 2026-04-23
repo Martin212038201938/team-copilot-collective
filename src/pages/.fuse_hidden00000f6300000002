@@ -27,7 +27,6 @@ const CopilotFehler = () => {
 
   const tableOfContents = [
     { id: "fehler-1", title: "Fehler 1: Keine klare Governance", level: 2 },
-    { id: "experience-quantified", title: "Meine Erfahrung: Kostenbrechnung & Priorisierung", level: 2 },
     { id: "fehler-2", title: "Fehler 2: Unzureichendes Training", level: 2 },
     { id: "fehler-3", title: "Fehler 3: Oversharing sensibler Daten", level: 2 },
     { id: "fehler-4", title: "Fehler 4: Halluzinationen ignorieren", level: 2 },
@@ -145,7 +144,7 @@ const CopilotFehler = () => {
         ]}
         title="7 Fehler bei der Microsoft Copilot-Einführung vermeiden"
         description="Microsoft 365 Copilot sicher einführen: DSGVO, Governance, Betriebsrat & Schulung. Praxisleitfaden mit Checklisten für Unternehmen."
-        lastUpdated="14. April 2026"
+        lastUpdated="02. Februar 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
         relatedContent={["wissen:prompt-engineering", "wissen:ki-halluzinationen-vermeiden", "wissen:copilot-tipps-tricks-produktivitaet", "training:copilot-grundlagen-prompt-design", "wissen:copilot-im-unternehmen-einfuehren-leitfaden"]}

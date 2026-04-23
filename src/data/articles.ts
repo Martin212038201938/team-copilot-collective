@@ -216,7 +216,7 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/warum-verteiltes-lernen-bei-copilot-trainings-funktioniert",
     badge: "Erfahrungsbericht",
     icon: "✍️",
-    lastUpdated: "05. Feb. 2026",
+    lastUpdated: "16. Apr. 2026",
     publishDate: "2026-02-04",
     publishTime: "10:00"
   },
@@ -282,7 +282,7 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/copilot-digitales-gedaechtnis",
     badge: "Praxisguide",
     icon: "🧠",
-    lastUpdated: "03. Feb. 2026",
+    lastUpdated: "19. Apr. 2026",
     publishDate: "2026-02-03",
     publishTime: "06:00"
   },
@@ -293,7 +293,7 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/copilot-tipps-tricks-produktivitaet",
     badge: "Best Practices",
     icon: "💡",
-    lastUpdated: "03. Feb. 2026",
+    lastUpdated: "10. Apr. 2026",
     publishDate: "2026-02-03"
   },
   {
@@ -303,7 +303,7 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/copilot-unternehmensweit-einfuehren",
     badge: "Strategie",
     icon: "🏢",
-    lastUpdated: "02. Feb. 2026",
+    lastUpdated: "12. Apr. 2026",
     publishDate: "2026-02-02",
     publishTime: "10:00"
   },
@@ -369,7 +369,7 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/ki-agenten",
     badge: "Fortgeschritten",
     icon: "🧠",
-    lastUpdated: "02. Feb. 2026",
+    lastUpdated: "17. Apr. 2026",
     publishDate: "2026-01-03",
     publishTime: "09:00"
   },
@@ -380,7 +380,7 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/copilot-fehler-vermeiden",
     badge: "Best Practices",
     icon: "⚠️",
-    lastUpdated: "02. Feb. 2026",
+    lastUpdated: "14. Apr. 2026",
     publishDate: "2026-01-01",
     publishTime: "09:00"
   },
