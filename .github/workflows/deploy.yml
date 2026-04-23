@@ -33,10 +33,22 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build project with pre-rendering
-        run: npm run build:prerender
+      - name: Verify Chrome
+        run: |
+          google-chrome-stable --version
+          which google-chrome-stable
+
+      - name: Vite Build
+        run: npx vite build
         env:
           VITE_OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+
+      - name: Copy API files
+        run: npm run copy-api
+
+      - name: React-Snap pre-render
+        run: npm run snap
+        env:
           PUPPETEER_EXECUTABLE_PATH: /usr/bin/google-chrome-stable
           CI: true
       
