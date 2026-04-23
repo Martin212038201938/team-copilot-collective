@@ -29,6 +29,8 @@ export interface Training {
   faqs?: TrainingFAQ[];
   // "Häufig gebucht" Badge
   popular?: boolean;
+  // Verknüpfte Workshops (Slugs) – werden als optionale Erweiterungsmodule angezeigt
+  relatedWorkshops?: string[];
 }
 
 // Alle Trainingsmodule mit SEO-optimierten Slugs
@@ -211,7 +213,8 @@ export const trainings: Training[] = [
         question: "Wie lange dauert es, bis Mitarbeiter wirklich produktiv mit KI arbeiten können?",
         answer: "Die Grundlagen sind in einem halben Tag vermittelt. Für echte Produktivitätssteigerung im Alltag – also das sichere Beherrschen aller relevanten Apps und Workflows – sollten Sie mit 2 intensiven Tagen oder einer 8-wöchigen Lernreise rechnen. Der Vorteil der Lernreise: Zwischen den Sessions wenden Mitarbeiter das Gelernte direkt an und kommen mit echten Fragen zurück."
       }
-    ]
+    ],
+    relatedWorkshops: ["bessere-entscheidungen-mit-copilot"],
   },
   {
     slug: "github-copilot-entwickler",
@@ -390,7 +393,8 @@ export const trainings: Training[] = [
         question: "Was unterscheidet eine Lernreise von einem kompakten Workshop?",
         answer: "Der entscheidende Unterschied: Transfer in die Praxis. Bei einem Tagesworkshop lernen Mitarbeiter viel auf einmal, aber setzen es danach oft nicht um. Bei einer Lernreise kommt jede Woche ein neues Thema – klein genug, um es sofort anzuwenden. Die nächste Session startet mit Erfahrungsaustausch: Was hat funktioniert? Wo gab es Probleme? So entsteht echte Verhaltensänderung."
       }
-    ]
+    ],
+    relatedWorkshops: ["bessere-entscheidungen-mit-copilot"],
   },
   {
     slug: "copilot-studio-ki-agenten",

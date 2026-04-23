@@ -9,6 +9,7 @@ import SEOHead from "@/components/SEOHead";
 import { TrustBadge } from "@/components/TrustBadge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getTrainingBySlug, trainings } from "@/data/trainings";
+import { getWorkshopBySlug } from "@/data/workshops";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateTrainingBreadcrumbItems } from "@/lib/schema";
 
@@ -47,6 +48,11 @@ const TrainingDetail = () => {
   const relatedTrainings = trainings
     .filter(t => t.slug !== training.slug && t.tiers.some(tier => training.tiers.includes(tier)))
     .slice(0, 3);
+
+  // Verknüpfte Workshops als optionale Erweiterungsmodule
+  const relatedWorkshops = (training.relatedWorkshops ?? [])
+    .map(slug => getWorkshopBySlug(slug))
+    .filter(Boolean);
 
   // Trainer-Profil
   const trainer = getAuthor('martin-lang');
@@ -292,6 +298,45 @@ const TrainingDetail = () => {
                     </li>
                   ))}
                 </ul>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Optionale Erweiterungsmodule (verknüpfte Workshops) */}
+        {relatedWorkshops.length > 0 && (
+          <section className="py-16 bg-muted/30">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto">
+                <h2 className="text-3xl font-bold mb-2">Optionales Erweiterungsmodul</h2>
+                <p className="text-muted-foreground mb-8">
+                  Dieses Training lässt sich um ein spezialisiertes Modul ergänzen – buchbar als eigenständiger Workshop oder als integrierter Baustein.
+                </p>
+                <div className="space-y-6">
+                  {relatedWorkshops.map((workshop) => {
+                    const WorkshopIcon = workshop!.icon;
+                    return (
+                      <div key={workshop!.slug} className="bg-card border rounded-xl p-6 flex flex-col md:flex-row gap-6 hover:border-primary/50 transition-colors">
+                        <div className="flex-shrink-0">
+                          <div className="p-3 bg-primary/10 rounded-lg w-fit">
+                            <WorkshopIcon className="w-7 h-7 text-primary" />
+                          </div>
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-xl font-semibold mb-1">{workshop!.title}</h3>
+                          <p className="text-sm text-muted-foreground mb-3">{workshop!.duration}</p>
+                          <p className="text-muted-foreground mb-4">{workshop!.questionLead}</p>
+                          <Link
+                            to={`/workshops/${workshop!.slug}`}
+                            className="inline-flex items-center gap-2 text-primary font-medium hover:underline"
+                          >
+                            Mehr zum Modul <ArrowRight className="w-4 h-4" />
+                          </Link>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             </div>
           </section>
