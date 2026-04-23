@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
