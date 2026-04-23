@@ -708,16 +708,16 @@ export const workshops: Workshop[] = [
     icon: Brain,
     title: "Bessere Entscheidungen mit Copilot",
     subtitle: "Verzerrungen und Noise verstehen – und Copilot gezielt dagegen einsetzen.",
-    duration: "4 Stunden als eigenständiger Workshop · 2 Stunden als Modul in der Lernreise",
+    duration: "4 Stunden · 7 Stunden",
     participants: "bis 15 Teilnehmende",
     format: "Online · Microsoft Copilot oder ChatGPT",
-    description: "Die Lernreise zeigt, wie Teams Copilot produktiv nutzen. Dieses Modul setzt eine Ebene darüber an: Wie lassen sich mit Copilot bessere Entscheidungen treffen – indem systematische Denkfehler sichtbar werden, die sonst unerkannt einfließen? Nach der Lernreise weiß man, wie man Copilot nutzt. Nach diesem Modul weiß man, wie man damit bewusster entscheidet. Das Seminar wird geleitet von Saskia Kaden, Agile Coach und systemische Beraterin, die seit Jahren mit Führungskräften und Teams an Entscheidungsqualität arbeitet. Das Modul basiert auf einem eigenständigen dreitägigen Training zur Entscheidungspsychologie, das Saskia Kaden entwickelt hat.",
+    description: "Wie lassen sich mit Copilot bessere Entscheidungen treffen – indem systematische Denkfehler sichtbar werden, die sonst unerkannt einfließen? Wer Copilot produktiv nutzt, kann ihn auch als kognitiven Sparringspartner einsetzen: Pre-Mortem, Kriterien-Check, Gegenargumente – strukturiert und in Minuten. Das Seminar wird geleitet von Saskia Kaden, Agile Coach und systemische Beraterin, die seit Jahren mit Führungskräften und Teams an Entscheidungsqualität arbeitet. Es basiert auf einem eigenständigen dreitägigen Training zur Entscheidungspsychologie – mit Methoden aus der Verhaltensökonomie (Kahneman, Thaler) und der Noise-Forschung.",
     questionLead: "Wie kann Copilot helfen, systematische Denkfehler und Noise in Entscheidungsprozessen sichtbar zu machen – und bessere Entscheidungen zu treffen?",
     framework: {
-      name: "Zwei Integrationspfade",
+      name: "Buchungsoptionen",
       steps: [
-        "Variante A · Aufbaumodul nach der Lernreise: Eigenständiges 3-Stunden-Modul für alle, die die 8-Wochen-Lernreise abgeschlossen haben. Ideal als Upsell, Wiederaktivierung oder Angebot für Alumni-Gruppen.",
-        "Variante B · Baustein in der Lernreise: Integration als zusätzliche 9. Woche oder als Erweiterung von Woche 7 \"Advanced Prompting\". Sinnvoll, wenn Kund:innen gezielt Entscheidungsqualität in die Lernreise aufnehmen wollen.",
+        "4 Stunden · Kompakter Halbtag: Kernthemen Bias, Noise und Copilot-Sparring – direkt anwendbar, ideal für Teams mit wenig Zeitbudget.",
+        "7 Stunden · Vertiefter Ganztag: Mehr Raum für eigene Entscheidungssituationen der Teilnehmenden, intensiveres Hands-on mit Copilot und erweiterter Methodenteil.",
       ],
     },
     features: [
@@ -730,10 +730,10 @@ export const workshops: Workshop[] = [
       "Handout mit Methoden-Toolkit als Abschluss-Material",
     ],
     targetAudience: [
-      "Teams und Führungskräfte, die die 8-Wochen-Copilot-Lernreise abgeschlossen haben und den nächsten Schritt gehen wollen",
       "Fach- und Führungskräfte, die täglich Entscheidungen unter Unsicherheit treffen und KI gezielt als Sparring nutzen möchten",
-      "L&D-Verantwortliche, die Entscheidungsqualität als eigenständiges Modul oder als Erweiterung der Copilot-Lernreise verankern wollen",
-      "Organisationen, die nach der technischen Copilot-Einführung den kognitiven Mehrwert aktivieren möchten",
+      "Teams, die Copilot bereits nutzen und ihn auf eine neue kognitive Ebene heben wollen",
+      "L&D-Verantwortliche, die Entscheidungsqualität als eigenständiges Format in ihre Weiterbildungslandschaft integrieren wollen",
+      "Organisationen, die neben Effizienz auch die Qualität von Entscheidungen verbessern möchten",
     ],
     learningOutcomes: [
       "Ein geschärftes Gespür dafür, wann das eigene Denken in die Irre führt – und wann bewusste Reflexion nötig ist.",
@@ -747,11 +747,6 @@ export const workshops: Workshop[] = [
       "Riskante Entscheidungen werden systematisch durch Pre-Mortem und Kriterien-Check hinterfragt.",
       "Das Modul hebt die Copilot-Nutzung von Automatisierung auf strategische Entscheidungsunterstützung.",
     ],
-    deliverables: [
-      "Als eigenständiger Workshop: 4-stündiges interaktives Online-Seminar mit Raum für eigene Entscheidungssituationen der Teilnehmenden",
-      "Als Modul in der Lernreise: 2-stündige Einheit, integrierbar als zusätzliche Session oder Erweiterung des Advanced-Prompting-Moduls",
-      "Handout mit Methoden-Toolkit (Bias-Übersicht, Noise-Checkliste, Prompt-Vorlagen für Entscheidungs-Sparring)",
-    ],
     relatedTrainings: [
       "copilot-lernreise-8-wochen",
       "ausbildung-ki-wissensarbeiter",
@@ -761,7 +756,7 @@ export const workshops: Workshop[] = [
       "copilot-strategie-change-management",
     ],
     metaTitle: "Bessere Entscheidungen mit Copilot – Bias, Noise & Entscheidungsqualität | copilotenschule.de",
-    metaDescription: "Workshop (4h) oder Lernreise-Modul (2h): Wie Copilot als Sparringspartner hilft, systematische Denkfehler und Noise zu überwinden – für bessere Entscheidungen. Mit Saskia Kaden.",
+    metaDescription: "Workshop (4h oder 7h) mit Saskia Kaden: Wie Copilot als Sparringspartner hilft, systematische Denkfehler und Noise zu überwinden – für bessere Entscheidungen.",
     keywords: [
       "Bessere Entscheidungen KI",
       "Copilot Entscheidungsqualität",
@@ -777,12 +772,12 @@ export const workshops: Workshop[] = [
         answer: "Copilot kann als strukturierter Sparringspartner eingesetzt werden: Pre-Mortem-Analysen durchführen, Gegenargumente generieren, Entscheidungskriterien explizit machen und blinde Flecken aufdecken. Das Kursseminar zeigt konkret, wie diese Prompts aussehen – und warum es hilft, das eigene Denken vorher zu verstehen (System 1 vs. System 2, Bias-Fallen, Noise).",
       },
       {
-        question: "Was ist der Unterschied zwischen diesem Modul und der regulären Copilot-Lernreise?",
-        answer: "Die Lernreise vermittelt, wie man Copilot produktiv nutzt – Prompting, Office-Apps, Workflows. Dieses Modul setzt eine Ebene darüber an: Wie nutze ich Copilot, um bewusster und qualitativ bessere Entscheidungen zu treffen? Es geht nicht um mehr Effizienz, sondern um mehr kognitive Schärfe. Die beiden Formate ergänzen sich ideal.",
+        question: "Brauchen Teilnehmende Vorerfahrung mit Copilot?",
+        answer: "Grundlegende Vertrautheit mit Copilot oder ChatGPT ist hilfreich, aber keine Voraussetzung. Der Workshop funktioniert eigenständig – die Entscheidungspsychologie ist für alle verständlich, und die Copilot-Prompts werden im Seminar gemeinsam entwickelt.",
       },
       {
-        question: "Für wen eignet sich dieses Modul als Aufbau nach der Lernreise?",
-        answer: "Ideal für Teams, die die 8-Wochen-Copilot-Lernreise abgeschlossen haben und den nächsten Schritt gehen wollen – als Alumni-Modul, Upsell oder Wiederaktivierung. Es kann aber auch eigenständig gebucht werden, wenn Entscheidungsqualität das primäre Thema ist. Voraussetzung: grundlegende Vertrautheit mit Copilot oder ChatGPT.",
+        question: "Was ist der Unterschied zwischen dem 4h- und dem 7h-Format?",
+        answer: "Das 4-Stunden-Format deckt die Kernthemen kompakt ab: Bias-Fallen, Noise, Copilot als Sparring. Ideal wenn Zeit knapp ist und ein konkreter Impuls gewünscht wird. Das 7-Stunden-Format gibt mehr Raum für eigene Entscheidungssituationen der Teilnehmenden, einen intensiveren Hands-on-Teil mit Copilot und einen erweiterten Methodenteil mit vertieften Übungen.",
       },
       {
         question: "Wer leitet das Seminar?",
