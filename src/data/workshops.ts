@@ -711,7 +711,7 @@ export const workshops: Workshop[] = [
     duration: "3 Stunden (Online)",
     participants: "bis 15 Teilnehmende",
     format: "Online · Microsoft Copilot oder ChatGPT",
-    description: "Die Lernreise zeigt, wie Teams Copilot produktiv nutzen. Dieses Modul setzt eine Ebene darüber an: Wie lassen sich mit Copilot bessere Entscheidungen treffen – indem systematische Denkfehler sichtbar werden, die sonst unerkannt einfließen? Nach der Lernreise weiß man, wie man Copilot nutzt. Nach diesem Modul weiß man, wie man damit bewusster entscheidet. Durchgeführt von Saskia Kaden (Potentially Shippable), Agile Coach und systemische Beraterin mit Schwerpunkt Entscheidungsqualität.",
+    description: "Die Lernreise zeigt, wie Teams Copilot produktiv nutzen. Dieses Modul setzt eine Ebene darüber an: Wie lassen sich mit Copilot bessere Entscheidungen treffen – indem systematische Denkfehler sichtbar werden, die sonst unerkannt einfließen? Nach der Lernreise weiß man, wie man Copilot nutzt. Nach diesem Modul weiß man, wie man damit bewusster entscheidet. Das Seminar wird geleitet von Saskia Kaden, Agile Coach und systemische Beraterin, die seit Jahren mit Führungskräften und Teams an Entscheidungsqualität arbeitet. Das Modul basiert auf einem eigenständigen dreitägigen Training zur Entscheidungspsychologie, das Saskia Kaden entwickelt hat.",
     questionLead: "Wie kann Copilot helfen, systematische Denkfehler und Noise in Entscheidungsprozessen sichtbar zu machen – und bessere Entscheidungen zu treffen?",
     framework: {
       name: "Zwei Integrationspfade",
@@ -785,7 +785,7 @@ export const workshops: Workshop[] = [
       },
       {
         question: "Wer leitet das Seminar?",
-        answer: "Das Seminar wird von Saskia Kaden (Potentially Shippable) durchgeführt. Sie ist Agile Coach und systemische Beraterin und arbeitet mit Führungskräften und Teams an Entscheidungsqualität. Das Modul basiert auf einem dreitägigen Training, das sie entwickelt hat. Kontakt: saskia@potentially-shippable.de",
+        answer: "Das Seminar wird von Saskia Kaden geleitet. Sie ist Agile Coach und systemische Beraterin und arbeitet seit Jahren mit Führungskräften und Teams daran, wie Entscheidungen in Organisationen systematisch besser werden. Das Modul basiert auf einem eigenständigen dreitägigen Training zur Entscheidungspsychologie, das Saskia Kaden entwickelt hat – mit Methoden aus der Verhaltensökonomie (Kahneman, Thaler) und der Noise-Forschung (Kahneman, Sibony, Sunstein). Sie bringt damit eine Expertise mit, die über klassisches Copilot-Training hinausgeht: nicht nur wie man KI nutzt, sondern wie man mit KI besser denkt.",
       },
     ],
   },

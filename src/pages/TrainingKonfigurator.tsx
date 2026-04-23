@@ -72,7 +72,7 @@ const moduleCategories: ModuleCategory[] = [
       { id: "usecase-workshop", title: "Use Case Workshop: 10+ reale Szenarien aus Vertrieb, Marketing, HR, Finance", tiers: ["paid"], category: "m365-advanced" },
       { id: "peer-learning", title: "Peer Learning & Gruppenarbeit: Best Practices teilen, gemeinsam Probleme lösen", tiers: ["paid"], category: "m365-advanced" },
       { id: "certificate", title: "Zertifikat: Nachweis Ihrer KI-Kompetenz für HR und Personalentwicklung", tiers: ["paid"], category: "m365-advanced" },
-      { id: "bessere-entscheidungen", title: "Bessere Entscheidungen mit Copilot: Bias, Noise und Entscheidungsqualität (3h Online-Modul)", tiers: ["free", "paid"], category: "m365-advanced", note: "Kursseminar mit Saskia Kaden · Potentially Shippable" },
+      { id: "bessere-entscheidungen", title: "Bessere Entscheidungen mit Copilot: Bias, Noise und Entscheidungsqualität (3h Online-Modul)", tiers: ["free", "paid"], category: "m365-advanced", note: "Kursseminar · Dozentin: Saskia Kaden, Agile Coach & systemische Beraterin" },
     ]
   },
   {
