@@ -34,7 +34,8 @@
 - **Repository:** Martin212038201938/team-copilot-collective
 - **Live-URL:** https://copilotenschule.de
 - **Tech Stack:** Vite + React + TypeScript + Tailwind CSS + shadcn/ui
-- **Deployment:** Push zu `main` → GitHub Actions → FTP zu alwaysdata.com
+- **Deployment:** Push zu `main` → GitHub Actions (`npm run build:prerender`) → FTP zu alwaysdata.com
+- **Build-Befehl lokal testen:** `npm run build:prerender` (NICHT `npm run build`)
 
 ### Lokale Entwicklung
 ```bash
@@ -50,6 +51,61 @@ npm run dev
 - `/src/data/` - Daten (authors.ts, trainings.ts, faqs.ts, etc.)
 - `/src/lib/` - Utilities und Schema-Generierung
 - `/public/` - Statische Assets
+
+---
+## ⚠️ PFLICHT-Checkliste: Neue Seite/Route live schalten
+
+**Gilt für ALLE Seitentypen** – Wissensartikel, Workshops, Trainings, Trainer-Profile, sonstige Seiten.
+Ohne diese Schritte wird die Seite NICHT pre-gerendert → kein SEO, keine Meta-Tags im initialen HTML, Seite erscheint nicht in Suchergebnissen.
+
+### Schritt 1: Route in App.tsx eintragen
+```typescript
+<Route path="/workshops/mein-slug" element={<MeineSeite />} />
+```
+
+### Schritt 2: react-snap include-Liste in package.json ergänzen
+```json
+"reactSnap": {
+  "include": [
+    "/workshops/mein-slug"
+  ]
+}
+```
+→ Ohne diesen Eintrag baut react-snap die Seite NICHT vor.
+
+### Schritt 3: Sitemap aktualisieren (public/sitemap.xml)
+```xml
+<url>
+  <loc>https://copilotenschule.de/workshops/mein-slug</loc>
+  <lastmod>YYYY-MM-DD</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
+```
+
+### Schritt 4: Build lokal testen
+```bash
+npx vite build --outDir /tmp/dist-test
+```
+→ Muss fehlerfrei durchlaufen. Bei react-snap-Fehlern: Seite fehlt in der include-Liste.
+
+### Schritt 5: Commit & Push
+Claude pusht NUR wenn der User es explizit anfordert. Ansonsten: Änderungen bereitstellen, User commitet via GitHub Desktop.
+
+### Schritt 6: IndexNow-Ping (nach Go-Live)
+Nach erfolgtem Deployment Bing per IndexNow über die neue URL informieren (Key: `02184b6b954d4a158c75668dbf809161`).
+
+**Übersicht: Welche Seiten brauchen welche Einträge**
+
+| Seitentyp | App.tsx Route | react-snap include | sitemap.xml |
+|-----------|--------------|-------------------|-------------|
+| Wissensartikel `/wissen/slug` | ✅ Pflicht | ✅ Pflicht | ✅ Pflicht |
+| Workshop `/workshops/slug` | ✅ Pflicht | ✅ Pflicht | ✅ Pflicht |
+| Training `/trainings/slug` | ✅ Pflicht | ✅ Pflicht | ✅ Pflicht |
+| Trainer `/trainer/slug` | ✅ Pflicht | ✅ Pflicht | ✅ Pflicht |
+| Sonstige Seiten | ✅ Pflicht | ✅ Pflicht | ✅ Pflicht |
+
+**Hinweis:** validate-seo.js prüft automatisch nur `/wissen`-Routen. Für alle anderen Seitentypen ist diese Checkliste die einzige Absicherung.
 
 ---
 ## Content-Erstellung: Wissensartikel
@@ -389,4 +445,5 @@ Für AlwaysData IMMER `lftp` verwenden (SamKirkland FTP-Deploy-Action hat ECONNR
 ```
 
 ### Build-Validierung (PFLICHT vor Commit)
-`npm run build` fängt ab: fehlende Imports, TypeScript-Fehler, react-snap-Fehler, validate-seo.js-Fehler.
+`npm run build:prerender` fängt ab: fehlende Imports, TypeScript-Fehler, react-snap-Fehler, validate-seo.js-Fehler.
+**ACHTUNG:** Der GitHub Actions Workflow verwendet `npm run build:prerender` (nicht `npm run build`). validate-seo.js prüft nur `/wissen`-Routen automatisch – Workshops, Trainings und andere Seiten müssen manuell geprüft werden (siehe Pflicht-Checkliste unten).
