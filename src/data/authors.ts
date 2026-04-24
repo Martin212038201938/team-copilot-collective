@@ -19,6 +19,40 @@ export interface Author {
 }
 
 export const authors: Record<string, Author> = {
+  'saskia-kaden': {
+    id: 'saskia-kaden',
+    name: 'Saskia Kaden',
+    role: 'Agile Coach & systemische Beraterin',
+    expertise: [
+      'Entscheidungspsychologie',
+      'Cognitive Bias & Noise',
+      'Agile Coaching',
+      'Change Management',
+      'KI & Entscheidungsqualität',
+      'Verhaltensökonomie',
+      'Führungskräfteentwicklung',
+      'Organisationsentwicklung',
+      'Scrum & Kanban',
+      'Teamdynamiken'
+    ],
+    qualifications: [
+      'Certified Professional Agile Coach (ICAgile, 2017)',
+      'Agile Scrum Master (EXIN, 2015)',
+      'Systemisches Coaching und Changemanagement (INeKO Köln)',
+      'OKR Champion (OKRs at the Center, 2020)',
+      'Über 8 Jahre Erfahrung als Agile Coach',
+      'Trainerin bei der Agile Scrum Group',
+      'Agile Coach REWE digital (2018–2024)',
+      'Autorin des Trainings zur Entscheidungspsychologie'
+    ],
+    bio: 'Saskia Kaden ist Agile Coach und systemische Beraterin mit über acht Jahren Erfahrung in der Begleitung von Organisationen und Führungsteams. Ihr Schwerpunkt liegt auf Entscheidungsqualität, kognitiven Verzerrungen und der Frage, wie Teams mit KI nicht nur schneller, sondern nachweislich besser entscheiden. Sie hat ein eigenständiges dreitägiges Training zur Entscheidungspsychologie entwickelt – fundiert in der Verhaltensökonomie (Kahneman, Thaler) und der Noise-Forschung. Als Trainerin bei der Agile Scrum Group arbeitet sie in Company und als Open Classroom, vor Ort und in virtueller Präsenz.',
+    image: '/images/authors/saskia-kaden.jpg',
+    linkedin: 'https://www.linkedin.com/in/saskia-kaden',
+    sameAs: [
+      'https://potentially-shippable.de',
+      'https://agilescrumgroup.de'
+    ]
+  },
   'martin-lang': {
     id: 'martin-lang',
     name: 'Martin Lang',

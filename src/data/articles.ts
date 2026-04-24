@@ -30,6 +30,17 @@ export interface ArticleData {
 // Alle Artikel - sortiert nach Veröffentlichungsdatum (neueste zuerst)
 export const ALL_ARTICLES: ArticleData[] = [
   {
+    id: "bessere-entscheidungen-mit-ki",
+    title: "Bias, Noise und KI: Warum gute Entscheidungen mehr brauchen als ein gutes Bauchgefühl",
+    description: "Was die Entscheidungsforschung wirklich sagt – und warum Copilot ohne das richtige Handwerk die eigenen Denkfehler automatisiert.",
+    link: "/wissen/bessere-entscheidungen-mit-ki",
+    badge: "KI & Entscheidungsqualität",
+    icon: "🧠",
+    lastUpdated: "24. Apr. 2026",
+    publishDate: "2026-04-24",
+    publishTime: "09:00"
+  },
+  {
     id: "copilot-im-unternehmen-einfuehren-leitfaden",
     title: "Microsoft Copilot im Unternehmen einführen: Der praktische Rollout-Leitfaden",
     description: "Praxisleitfaden für den Microsoft Copilot Rollout: Phasen, Change Management, Training-Ansätze und Launch-Event aus echten Unternehmenseinführungen.",

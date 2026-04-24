@@ -54,6 +54,7 @@ import CopilotBetriebsrat from "./pages/CopilotBetriebsrat";
 import CopilotInExcelAktivieren from "./pages/CopilotInExcelAktivieren";
 import CopilotFlexRoutingEU from "./pages/CopilotFlexRoutingEU";
 import CopilotRolloutLeitfaden from "./pages/CopilotRolloutLeitfaden";
+import BiasNoiseKiEntscheidungen from "./pages/BiasNoiseKiEntscheidungen";
 
 const queryClient = new QueryClient();
 
@@ -104,6 +105,7 @@ const App = () => (
           <Route path="/wissen/copilot-in-excel-aktivieren" element={<CopilotInExcelAktivieren />} />
           <Route path="/wissen/copilot-flex-routing-eu-verarbeitung" element={<CopilotFlexRoutingEU />} />
           <Route path="/wissen/copilot-im-unternehmen-einfuehren-leitfaden" element={<CopilotRolloutLeitfaden />} />
+          <Route path="/wissen/bessere-entscheidungen-mit-ki" element={<BiasNoiseKiEntscheidungen />} />
           <Route path="/impressum" element={<Impressum />} />
           <Route path="/ueber-uns" element={<UeberUns />} />
           <Route path="/trainings" element={<UnsereAngebote />} />
