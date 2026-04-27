@@ -45,6 +45,9 @@ export interface Workshop {
   keywords: string[];
   faqs: WorkshopFAQ[];
 
+  // Dozent / Gasttrainerin (falls abweichend von Martin Lang)
+  instructor?: string;       // Author-ID aus authors.ts (z.B. "saskia-kaden")
+
   // UI
   popular?: boolean;
   featured?: boolean;        // auf Landingpage oben hervorgehoben
@@ -706,6 +709,7 @@ export const workshops: Workshop[] = [
     slug: "bessere-entscheidungen-mit-copilot",
     type: "workshop",
     icon: Brain,
+    instructor: "saskia-kaden",
     title: "Bessere Entscheidungen mit Copilot",
     subtitle: "Verzerrungen und Noise verstehen – und Copilot gezielt dagegen einsetzen.",
     duration: "4 Stunden · 7 Stunden",

@@ -34,6 +34,8 @@ import {
   Calendar as CalendarIcon,
   MessageSquare,
   Sparkles,
+  Linkedin,
+  Award,
 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -47,6 +49,7 @@ import {
   type WorkshopType,
 } from "@/data/workshops";
 import { getTrainingBySlug } from "@/data/trainings";
+import { getAuthor } from "@/data/authors";
 import { generateWorkshopPageSchema } from "@/lib/workshopSchema";
 
 // Typ-spezifische Farb-/Badge-Darstellung
@@ -91,6 +94,9 @@ const WorkshopDetail = () => {
   // Schema.org für SEO + GEO
   const schema = generateWorkshopPageSchema(workshop);
   const pageUrl = `https://copilotenschule.de/workshops/${workshop.slug}`;
+
+  // Gasttrainer/Dozentin (optional – für Autor-Bio und Schema.org Person)
+  const instructorAuthor = workshop.instructor ? getAuthor(workshop.instructor) : undefined;
 
   return (
     <div className="min-h-screen">
@@ -368,6 +374,100 @@ const WorkshopDetail = () => {
                     </li>
                   ))}
                 </ul>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* -----------------------------------------------------------
+         *  DOZENTIN / GASTTRAINER BIO (falls instructor gesetzt)
+         * ----------------------------------------------------------- */}
+        {instructorAuthor && (
+          <section className="py-16 bg-background">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl">
+                <div className="flex items-center gap-3 mb-8">
+                  <div className="p-2 bg-primary/10 rounded-lg">
+                    <Award className="w-6 h-6 text-primary" />
+                  </div>
+                  <h2 className="text-3xl font-bold">
+                    Über die Dozentin
+                  </h2>
+                </div>
+
+                <div className="flex flex-col md:flex-row gap-8 items-start p-8 bg-card border rounded-2xl shadow-sm">
+                  {/* Profilbild */}
+                  <div className="flex-shrink-0">
+                    <div className="w-28 h-28 rounded-full overflow-hidden bg-muted border-2 border-border">
+                      <img
+                        src={instructorAuthor.image}
+                        alt={`Porträtfoto ${instructorAuthor.name}`}
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          const target = e.currentTarget;
+                          target.style.display = "none";
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Text */}
+                  <div className="flex-1">
+                    <div className="flex flex-wrap items-center gap-3 mb-1">
+                      <h3 className="text-2xl font-bold">{instructorAuthor.name}</h3>
+                      {instructorAuthor.linkedin && (
+                        <a
+                          href={instructorAuthor.linkedin}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 text-sm text-primary hover:underline"
+                          aria-label={`LinkedIn-Profil von ${instructorAuthor.name}`}
+                        >
+                          <Linkedin className="w-4 h-4" />
+                          LinkedIn
+                        </a>
+                      )}
+                    </div>
+                    <p className="text-base text-muted-foreground font-medium mb-4">
+                      {instructorAuthor.role}
+                    </p>
+                    <p className="text-base leading-relaxed mb-5">
+                      {instructorAuthor.bio}
+                    </p>
+
+                    {/* Qualifikationen */}
+                    {instructorAuthor.qualifications.length > 0 && (
+                      <div className="mb-5">
+                        <p className="text-sm font-semibold text-foreground mb-2 uppercase tracking-wide">
+                          Qualifikationen & Erfahrung
+                        </p>
+                        <ul className="space-y-1">
+                          {instructorAuthor.qualifications.map((q, i) => (
+                            <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                              <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                              {q}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+
+                    {/* Expertise-Badges */}
+                    {instructorAuthor.expertise.length > 0 && (
+                      <div className="flex flex-wrap gap-2">
+                        {instructorAuthor.expertise.map((topic, i) => (
+                          <Badge
+                            key={i}
+                            variant="secondary"
+                            className="text-xs font-medium"
+                          >
+                            {topic}
+                          </Badge>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
           </section>

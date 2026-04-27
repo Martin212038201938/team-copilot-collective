@@ -19,6 +19,7 @@ import {
   type BreadcrumbItem,
 } from "./schema";
 import type { Workshop, WorkshopType } from "@/data/workshops";
+import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 
 /**
  * Baut das Schema.org-Hauptobjekt eines einzelnen Workshops.
@@ -119,6 +120,10 @@ export const generateWorkshopMainSchema = (
   }
 
   // Workshop (inkl. Chatbot-Workshop, Hackathon, Strategie, Betriebsrat) → Course
+  const instructorId = workshop.instructor
+    ? `${BASE_URL}/#${workshop.instructor}`
+    : `${BASE_URL}/#martin-lang`;
+
   return {
     ...base,
     "@type": "Course",
@@ -131,7 +136,7 @@ export const generateWorkshopMainSchema = (
       "duration": workshop.duration,
       "inLanguage": "de-DE",
       "instructor": {
-        "@id": `${BASE_URL}/#martin-lang`,
+        "@id": instructorId,
       },
     },
     "availableLanguage": {
@@ -162,6 +167,12 @@ export const generateWorkshopPageSchema = (workshop: Workshop) => {
 
   const mainSchema = generateWorkshopMainSchema(workshop, ids, pageUrl);
 
+  // Person-Schema für Gasttrainerin/Gasttrainer (GEO: maximale LLM-Zitierfähigkeit)
+  const instructorAuthor = workshop.instructor ? getAuthor(workshop.instructor) : undefined;
+  const instructorPersonSchema = instructorAuthor
+    ? getAuthorSchemaMarkup(instructorAuthor)
+    : null;
+
   const faqSchema =
     workshop.faqs.length > 0
       ? {
@@ -191,7 +202,12 @@ export const generateWorkshopPageSchema = (workshop: Workshop) => {
 
   return {
     "@context": "https://schema.org",
-    "@graph": [mainSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema] : [])],
+    "@graph": [
+      mainSchema,
+      breadcrumbSchema,
+      ...(instructorPersonSchema ? [instructorPersonSchema] : []),
+      ...(faqSchema ? [faqSchema] : []),
+    ],
   };
 };
 
