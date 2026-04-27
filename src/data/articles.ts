@@ -35,7 +35,7 @@ export const ALL_ARTICLES: ArticleData[] = [
     description: "Welches Microsoft-365-Tool ist wofür gemacht – und warum Ihre Workflows aus 2023 in 2026 nicht mehr funktionieren.",
     link: "/wissen/copilot-pages-loop-notebooks-sharepoint-workflows",
     badge: "Microsoft 365 Copilot",
-    icon: "§",
+    icon: "🧠",
     lastUpdated: "27. Apr. 2026",
     publishDate: "2026-04-27",
     publishTime: "09:00"

@@ -20,7 +20,7 @@ const CopilotPagesLoopNotebooksSharepointWorkflows = () => {
     { id: "loop", title: "Microsoft Loop: wenn ein Team gleichzeitig denkt", level: 2 },
     { id: "sharepoint", title: "SharePoint-Seiten: Wissen, das die Person überlebt", level: 2 },
     { id: "notebook", title: "Copilot Notebook: wenn aus Material Erkenntnis werden soll", level: 2 },
-    { id: "pages", title: "Copilot Pages: der persönliche Denkraum mit der KI", level: 2 },
+    { id: "pages", title: "Copilot Pages: der unterschätzte Pairing-Modus mit der KI", level: 2 },
     { id: "integration", title: "So greifen die vier Werkzeuge ineinander", level: 2 },
     { id: "unbequeme-wahrheit", title: "Die unbequeme Wahrheit über Tool-Wechsel", level: 2 },
     { id: "faq", title: "Häufig gestellte Fragen", level: 2 },
@@ -29,11 +29,11 @@ const CopilotPagesLoopNotebooksSharepointWorkflows = () => {
   const faqs = [
     {
       name: "Wie überzeuge ich mein Team, von Word und E-Mail auf Loop umzusteigen?",
-      answer: "Argumente überzeugen hier weniger als Anlässe. Wir starten in Trainings nie mit einer Generalumstellung, sondern mit einem konkreten wiederkehrenden Termin – meist einem Wochenmeeting –, in dem das Protokoll künftig direkt als Loop-Komponente entsteht. Sobald die Teilnehmer einmal erleben, dass es kein Nachsenden mehr gibt und die Aufgaben mit Verantwortlichem in derselben Komponente leben, kippt die Akzeptanz von selbst. Genau diese geführten Umstellungen begleiten wir in unseren Praxistrainings."
+      answer: "Argumente überzeugen hier weniger als Anlässe. Wir starten in Trainings nie mit einer Generalumstellung, sondern mit einem wiederkehrenden Termin – meist einem Wochenmeeting –, in dem das Protokoll künftig direkt als Loop-Komponente entsteht. Sobald die Teilnehmer einmal erleben, dass es kein Nachsenden mehr gibt und die Aufgaben mit Verantwortlichem in derselben Komponente leben, kippt die Akzeptanz von selbst. Genau diese geführten Umstellungen begleiten wir in unseren Praxistrainings."
     },
     {
       name: "Brauchen wir das Copilot-Add-on, um diese vier Tools sinnvoll zu nutzen?",
-      answer: "Loop und SharePoint funktionieren in den meisten Microsoft-365-Tarifen ohne Add-on. Pages und das Copilot Notebook in vollem Funktionsumfang sind an die Copilot-Lizenz gebunden. Vor einer Investitionsentscheidung lohnt sich ein ehrlicher Use-Case-Schnitt: Welche Rollen brauchen die KI-Funktionen tatsächlich, und welche kommen mit den Bordmitteln aus. Wir beraten dazu in Workshops, in denen die Lizenzfrage gemeinsam mit der konkreten Arbeitspraxis diskutiert wird."
+      answer: "Loop und SharePoint funktionieren in den meisten Microsoft-365-Tarifen ohne Add-on. Pages und das Copilot Notebook in vollem Funktionsumfang sind an die Copilot-Lizenz gebunden. Vor einer Investitionsentscheidung lohnt sich ein nüchterner Use-Case-Schnitt: Welche Rollen brauchen die KI-Funktionen tatsächlich, und welche kommen mit den Bordmitteln aus. Wir beraten dazu in Workshops, in denen die Lizenzfrage gemeinsam mit der täglichen Arbeitspraxis diskutiert wird."
     },
     {
       name: "Was passiert mit unseren bestehenden SharePoint-Seiten und Dateiablagen?",
@@ -41,7 +41,7 @@ const CopilotPagesLoopNotebooksSharepointWorkflows = () => {
     },
     {
       name: "Wie verhindern wir, dass Copilot in Notebooks falsche Antworten gibt?",
-      answer: "Die wichtigste Stellschraube ist die Qualität der Quellen, die Sie in den Notebook-Kontext aufnehmen. Halluzinationen entstehen vor allem dann, wenn das Notebook Lücken im Material überbrücken muss. Wir trainieren in unseren Sessions konkrete Strategien, wie Sie Quellen auswählen, strukturieren und mit präzisen Anweisungen arbeiten, damit das Notebook seine Stärken ausspielt."
+      answer: "Die wichtigste Stellschraube ist die Qualität der Quellen, die Sie in den Notebook-Kontext aufnehmen. Halluzinationen entstehen vor allem dann, wenn das Notebook Lücken im Material überbrücken muss. Wir trainieren in unseren Sessions Strategien, wie Sie Quellen auswählen, strukturieren und mit präzisen Anweisungen arbeiten, damit das Notebook seine Stärken ausspielt."
     },
     {
       name: "Wer pflegt eigentlich die Inhalte, die in Loop oder Pages entstehen?",
@@ -223,13 +223,16 @@ const CopilotPagesLoopNotebooksSharepointWorkflows = () => {
 
         {/* Pages */}
         <section id="pages" className="mb-6">
-          <h2 className="text-2xl md:text-3xl font-bold mb-3">Copilot Pages: der persönliche Denkraum mit der KI</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Copilot Pages: der unterschätzte Pairing-Modus mit der KI</h2>
           <div className="prose prose-lg max-w-none dark:prose-invert mb-6">
             <p>
-              Pages ist das jüngste der vier Werkzeuge und in seiner Funktion am leichtesten zu unterschätzen. Wer Copilot regelmäßig im Chat verwendet, kennt das Problem: Eine richtig gute Antwort entsteht, wird vielleicht kopiert, verschwindet im nächsten Thread, und am nächsten Tag ist die Idee weg. Pages ist die Antwort darauf, gedacht als persönlicher Arbeitsbereich, in dem Sie Antworten der KI sammeln, weiterentwickeln, umstellen und verfeinern, ohne sie sofort an ein Team weiterreichen zu müssen.
+              Pages ist das Werkzeug, das ich selbst am intensivsten nutze – und gleichzeitig das, das auch erfahrene Anwenderinnen und Anwender in unseren Trainings am meisten überrascht. Wer mit Copilot Texte oder Ergebnisse entwickelt, kennt die Reibung: Eine gute Antwort steht im Chat, man kopiert sie in Word, ändert dort eine Stelle, lässt Copilot eine neue Variante generieren – und verliert beim Hin- und Herkopieren regelmäßig die Abschnitte, die längst gut waren.
             </p>
             <p>
-              Das Tool zeigt seine Stärke vor allem in der frühen Phase eines Konzepts, in der ein Gedanke noch nicht teilbar ist, weil er sich gerade erst formt. Genau für diese Phase fehlte in Microsoft 365 lange ein passender Ort. Word ist zu schwerfällig, OneNote zu unstrukturiert, Loop zu sehr auf Kollaboration getrimmt, der Chat zu flüchtig. Pages schließt diese Lücke und gibt dem iterativen Arbeiten mit der KI eine eigene Bühne.
+              Genau diese Reibung verschwindet mit der Funktion „in Pages bearbeiten". Aus dem Chat heraus übernehmen Sie das Ergebnis in eine Page und arbeiten dort im Pairing-Modus weiter: Sie schreiben direkt in den Text hinein, markieren einzelne Passagen und lassen Copilot an genau dieser Stelle umformulieren, kürzen oder ergänzen – ohne dass die übrigen Abschnitte beim nächsten Generieren verschwinden. Das ist kein Chat mehr und kein klassisches Dokument, sondern ein gemeinsamer Arbeitsraum, in dem Mensch und KI an demselben Text bleiben. ChatGPT hat dafür übrigens eine fast identische Funktion namens „Canvas".
+            </p>
+            <p>
+              Was im Training regelmäßig für den größten Aha-Moment sorgt: Selbst Teilnehmende, die seit über einem Jahr täglich mit Copilot arbeiten, haben diese Funktion oft noch nie genutzt. Sobald sie einmal erlebt haben, wie viel ruhiger und präziser das Schreiben damit wird, stellen sie ihren Workflow innerhalb weniger Tage komplett um. Genau deshalb ist Pages für mich der unterschätzteste Hebel unter den vier Werkzeugen – und in vielen Fällen der erste, den ich in einer Session zeige, weil sich danach das Verhältnis zur KI verändert.
             </p>
           </div>
         </section>
@@ -239,7 +242,7 @@ const CopilotPagesLoopNotebooksSharepointWorkflows = () => {
           <h2 className="text-2xl md:text-3xl font-bold mb-3">So greifen die vier Werkzeuge ineinander</h2>
           <div className="prose prose-lg max-w-none dark:prose-invert mb-6">
             <p>
-              Die häufigste Frage in Workshops lautet, welches Tool man jetzt nehmen soll. Die ehrliche Antwort ist, dass sich die Frage in der Praxis selten als Entweder-oder stellt, weil ein typisches Projekt fast immer alle vier durchläuft, nur in unterschiedlicher Intensität. Eine Recherche beginnt im Notebook, wo das vorhandene Material gesichtet und mit Copilot ausgewertet wird. Aus den Erkenntnissen entsteht in Pages ein erstes Konzept, das eine einzelne Person mit der KI durchspielt, verwirft und neu schreibt. Sobald das Konzept tragfähig ist, wandert es in eine Loop-Seite, in der das Team es gemeinsam zur Umsetzung bringt. Was am Ende stabil ist und für andere gelten soll, wird auf einer SharePoint-Seite veröffentlicht und damit Teil des organisationalen Gedächtnisses.
+              In Workshops kommt fast immer dieselbe Frage: welches Tool man jetzt nehmen soll. Die Antwort enttäuscht zunächst – sie stellt sich in der Praxis selten als Entweder-oder, weil ein typisches Projekt fast immer alle vier durchläuft, nur in unterschiedlicher Intensität. Eine Recherche beginnt im Notebook, wo das vorhandene Material gesichtet und mit Copilot ausgewertet wird. Aus den Erkenntnissen entsteht in Pages ein erstes Konzept, das eine einzelne Person mit der KI durchspielt, verwirft und neu schreibt. Sobald das Konzept tragfähig ist, wandert es in eine Loop-Seite, in der das Team es gemeinsam zur Umsetzung bringt. Was am Ende stabil ist und für andere gelten soll, wird auf einer SharePoint-Seite veröffentlicht und damit Teil des organisationalen Gedächtnisses.
             </p>
             <p>
               Wer diese Sequenz einmal bewusst durchgespielt hat, merkt, dass sich der Charakter der eigenen Arbeit verschiebt. Weniger Datei-Versionen, weniger Mails mit Anhängen, weniger Suchen nach dem aktuellen Stand. Stattdessen klare Übergänge zwischen Phasen, in denen die KI jeweils auf andere Weise hilfreich wird.
@@ -255,7 +258,7 @@ const CopilotPagesLoopNotebooksSharepointWorkflows = () => {
               Es wäre zu einfach zu sagen, dass diese vier Werkzeuge die Probleme der Zusammenarbeit von selbst lösen. In den meisten Unternehmen scheitert die Umstellung nicht an den Tools, sondern an der Gewohnheit. Wer zwanzig Jahre Word und Outlook gelebt hat, greift in Stresssituationen zu dem, was vertraut ist, nicht zu dem, was passt. Die neuen Werkzeuge bleiben in Trainings sympathisch und im Alltag ungenutzt.
             </p>
             <p>
-              Ein Workflow-Update gelingt nicht durch eine Mitteilung im Intranet. Es gelingt, wenn Teams gemeinsam an konkreten Anlässen umstellen, wenn Führungskräfte vorleben, dass das Protokoll künftig in Loop entsteht und nicht im Mail-Anhang, und wenn jemand benennt, welche Inhalte bewusst auf SharePoint wandern und damit verbindlich werden. Das ist Arbeit, die sich auszahlt, aber sie passiert nicht nebenbei.
+              Ein Workflow-Update gelingt nicht durch eine Mitteilung im Intranet. Es gelingt, wenn Teams gemeinsam an einem realen Anlass umstellen, wenn Führungskräfte vorleben, dass das Protokoll künftig in Loop entsteht und nicht im Mail-Anhang, und wenn jemand benennt, welche Inhalte bewusst auf SharePoint wandern und damit verbindlich werden. Das ist Arbeit, die sich auszahlt, aber sie passiert nicht nebenbei.
             </p>
             <p>
               Genau an diesem Punkt setzen die Trainings der Copilotenschule an. Wir reden in den Sessions wenig über die Oberflächen und viel über die Frage, welcher Workflow zu welchem Anlass passt – und wie Sie Ihre Teams dorthin bekommen, dass die neuen Reflexe nicht nur im Schulungsraum funktionieren, sondern in der nächsten Projektsitzung. Wer die Umstellung strukturiert angehen will, findet in unserer{" "}
@@ -269,7 +272,7 @@ const CopilotPagesLoopNotebooksSharepointWorkflows = () => {
           <Card className="bg-amber-50 dark:bg-amber-950/30 border-amber-200 dark:border-amber-800 mb-6">
             <CardContent className="pt-6">
               <p className="text-amber-900 dark:text-amber-200 leading-relaxed text-sm">
-                <strong>Ein konkreter erster Schritt:</strong> Wählen Sie aus Ihrem Kalender ein wiederkehrendes Meeting aus und vereinbaren Sie für die nächsten vier Termine, dass das Protokoll als Loop-Komponente in der Einladung entsteht – gemeinsam, in Echtzeit, mit Aufgaben direkt im Dokument. Nach vier Wochen entscheiden Sie, ob es zurück in die alte Welt geht oder ob die neue Mechanik zum Standard wird.
+                <strong>Ein erster Schritt zum Ausprobieren:</strong> Wählen Sie aus Ihrem Kalender ein wiederkehrendes Meeting aus und vereinbaren Sie für die nächsten vier Termine, dass das Protokoll als Loop-Komponente in der Einladung entsteht – gemeinsam, in Echtzeit, mit Aufgaben direkt im Dokument. Nach vier Wochen entscheiden Sie, ob es zurück in die alte Welt geht oder ob die neue Mechanik zum Standard wird.
               </p>
             </CardContent>
           </Card>
