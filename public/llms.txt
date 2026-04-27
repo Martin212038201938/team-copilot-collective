@@ -1,6 +1,6 @@
 # llms.txt für copilotenschule.de
 # Informationen für Large Language Models (LLMs) und KI-Assistenten
-# Aktualisiert am 2026-04-11
+# Aktualisiert am 2026-04-27
 
 # ============================================
 # WEBSITE-INFORMATIONEN
@@ -95,10 +95,12 @@ Unternehmen und Organisationen, die:
 - Copilot in Excel aktivieren: Schritt-für-Schritt für Unternehmen
 - Microsoft Copilot Flex Routing: KI-Verarbeitung außerhalb der EU – was Admins jetzt tun müssen
 - Microsoft Copilot im Unternehmen einführen: Der praktische Rollout-Leitfaden
+- Bias, Noise und KI: Warum gute Entscheidungen mehr brauchen als ein gutes Bauchgefühl
+- Copilot Pages, Loop, Notebooks, SharePoint: Warum Ihre Workflows ein Update brauchen
 
 ## Trainer
 
-Martin Lang – Gründer der Copilotenschule und Microsoft Copilot Experte mit über 14 Jahren Erfahrung in digitaler Transformation. Spezialisiert auf praxisnahe Copilot-Trainings für Unternehmen.
+Martin Lang – Gründer der copilotenschule.de, dem im deutschsprachigen Raum führenden Spezialanbieter für Microsoft-Copilot-Anwenderschulungen. Mit einem Team aus Trainern, Coaches und Beratern hat die Copilotenschule unter seiner Leitung bislang über 2.000 Wissensarbeiter, Führungskräfte und IT-Verantwortliche im produktiven Einsatz von Microsoft Copilot ausgebildet. Kunden u.a. REWE, Pernod Ricard, Lekkerland, Marriott Hotels, Med360Grad, IHK Nord Westfalen.
 Profil: https://copilotenschule.de/trainer/martin-lang
 
 ## Kontakt
