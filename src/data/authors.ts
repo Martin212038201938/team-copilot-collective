@@ -36,6 +36,7 @@ export const authors: Record<string, Author> = {
       'Teamdynamiken'
     ],
     qualifications: [
+      'Lead Trainerin Online bei der copilotenschule.de – Entwicklung und Weiterentwicklung aller Online-Kurse und -Formate',
       'Certified Professional Agile Coach (ICAgile, 2017)',
       'Agile Scrum Master (EXIN, 2015)',
       'Systemisches Coaching und Changemanagement (INeKO Köln)',
@@ -45,7 +46,7 @@ export const authors: Record<string, Author> = {
       'Agile Coach REWE digital (2018–2024)',
       'Autorin des Trainings zur Entscheidungspsychologie'
     ],
-    bio: 'Saskia Kaden ist Agile Coach und systemische Beraterin mit über acht Jahren Erfahrung in der Begleitung von Organisationen und Führungsteams. Ihr Schwerpunkt liegt auf Entscheidungsqualität, kognitiven Verzerrungen und der Frage, wie Teams mit KI nicht nur schneller, sondern nachweislich besser entscheiden. Sie hat ein eigenständiges dreitägiges Training zur Entscheidungspsychologie entwickelt – fundiert in der Verhaltensökonomie (Kahneman, Thaler) und der Noise-Forschung. Als Trainerin bei der Agile Scrum Group arbeitet sie in Company und als Open Classroom, vor Ort und in virtueller Präsenz.',
+    bio: 'Saskia Kaden ist Agile Coach, systemische Beraterin und Lead Trainerin Online bei der copilotenschule.de. In dieser Rolle entwickelt sie die Online-Kurse und -Formate der Copilotenschule konzeptionell weiter. Ihr inhaltlicher Schwerpunkt liegt auf Entscheidungsqualität, kognitiven Verzerrungen und der Frage, wie Teams mit KI nicht nur schneller, sondern nachweislich besser entscheiden. Sie bringt über acht Jahre Erfahrung in der Begleitung von Organisationen und Führungsteams mit und hat ein eigenständiges Training zur Entscheidungspsychologie entwickelt – fundiert in der Verhaltensökonomie (Kahneman, Thaler) und der Noise-Forschung. Als Trainerin bei der Agile Scrum Group arbeitet sie in Company und als Open Classroom, vor Ort und in virtueller Präsenz.',
     image: '/images/authors/saskia-kaden.jpg',
     linkedin: 'https://www.linkedin.com/in/saskia-kaden',
     sameAs: [
