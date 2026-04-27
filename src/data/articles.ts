@@ -30,6 +30,17 @@ export interface ArticleData {
 // Alle Artikel - sortiert nach Veröffentlichungsdatum (neueste zuerst)
 export const ALL_ARTICLES: ArticleData[] = [
   {
+    id: "copilot-pages-loop-notebooks-sharepoint-workflows",
+    title: "Copilot Pages, Loop, Notebooks, SharePoint: Warum Ihre Workflows ein Update brauchen",
+    description: "Welches Microsoft-365-Tool ist wofür gemacht – und warum Ihre Workflows aus 2023 in 2026 nicht mehr funktionieren.",
+    link: "/wissen/copilot-pages-loop-notebooks-sharepoint-workflows",
+    badge: "Microsoft 365 Copilot",
+    icon: "§",
+    lastUpdated: "27. Apr. 2026",
+    publishDate: "2026-04-27",
+    publishTime: "09:00"
+  },
+  {
     id: "bessere-entscheidungen-mit-ki",
     title: "Bias, Noise und KI: Warum gute Entscheidungen mehr brauchen als ein gutes Bauchgefühl",
     description: "Was die Entscheidungsforschung wirklich sagt – und warum Copilot ohne das richtige Handwerk die eigenen Denkfehler automatisiert.",

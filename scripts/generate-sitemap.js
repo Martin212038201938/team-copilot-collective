@@ -71,6 +71,8 @@ const knowledgePages = [
   { loc: '/wissen/copilot-in-excel-aktivieren', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
   { loc: '/wissen/copilot-flex-routing-eu-verarbeitung', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
   { loc: '/wissen/copilot-im-unternehmen-einfuehren-leitfaden', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
+  { loc: '/wissen/bessere-entscheidungen-mit-ki', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
+  { loc: '/wissen/copilot-pages-loop-notebooks-sharepoint-workflows', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
 ];
 
 // Trainingsseiten - Slugs aus trainings.ts
