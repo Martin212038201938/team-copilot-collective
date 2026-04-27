@@ -221,7 +221,8 @@ export const generateArticleSchema = (
 export interface CourseSchemaConfig {
   title: string;
   description: string;
-  duration: string;
+  duration: string;         // Human-readable (e.g., "Halbtag | Ganztag")
+  durationISO?: string;     // ISO 8601 (e.g., "PT4H", "PT7H", "P2D")
   features: string[];
   tiers: string[];
 }
@@ -253,8 +254,22 @@ export const generateTrainingCourseSchema = (
     "hasCourseInstance": {
       "@type": "CourseInstance",
       "courseMode": ["onsite", "online"],
-      "duration": config.duration,
+      "duration": config.durationISO || "PT7H",
       "inLanguage": "de-DE"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "1800",
+      "priceCurrency": "EUR",
+      "priceSpecification": {
+        "@type": "UnitPriceSpecification",
+        "price": "1800",
+        "priceCurrency": "EUR",
+        "description": "Ab 1.800 € für Halbtag (4h), ab 2.800 € für Ganztag (7h)"
+      },
+      "url": pageUrl,
+      "availability": "https://schema.org/InStock",
+      "validFrom": "2025-01-01"
     },
     "teaches": config.features.slice(0, 5).join(", "),
     "coursePrerequisites": "Keine Vorkenntnisse erforderlich",

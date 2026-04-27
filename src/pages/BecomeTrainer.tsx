@@ -170,6 +170,87 @@ const BecomeTrainer = () => {
           </div>
         </section>
 
+        {/* SEO Content Section - Copilot Trainer werden */}
+        <section className="py-20 bg-muted/20">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                Microsoft Copilot Trainer werden – Nebenerwerb oder Lehrauftrag
+              </h2>
+              <p className="text-lg text-muted-foreground mb-6">
+                Sie nutzen Microsoft Copilot täglich und kennen die praktischen Stolpersteine,
+                die Kollegen und Teams beim Einstieg bremsen? Dann bringen Sie genau das mit,
+                was Unternehmen suchen: echte Praxiserfahrung statt Theoriewissen von der Stange.
+                Als Copilot Trainer bei der Copilotenschule geben Sie Ihr Know-how weiter – als
+                Nebenerwerb, auf Freelance-Basis oder im Lehrauftrag.
+              </p>
+
+              <div className="grid md:grid-cols-2 gap-8 mb-10">
+                <div className="bg-background rounded-xl p-6 border">
+                  <h3 className="text-xl font-bold mb-4">Was Sie als Copilot Trainer verdienen</h3>
+                  <p className="text-muted-foreground mb-4">
+                    Erfahrene Microsoft Copilot Trainer erzielen als Freelancer typischerweise
+                    <strong className="text-foreground"> 800 bis 1.200 € pro Trainingstag</strong>.
+                    Die genaue Vergütung richtet sich nach Erfahrung, Zielgruppe und Trainingsformat –
+                    Inhouse-Trainings, Online-Sessions und Intensiv-Workshops werden unterschiedlich
+                    bewertet.
+                  </p>
+                  <p className="text-muted-foreground">
+                    Wir übernehmen Akquise, Organisation und Abrechnung. Sie konzentrieren sich auf
+                    das Training. Kein Exklusivvertrag, keine Mindestbuchungen.
+                  </p>
+                </div>
+
+                <div className="bg-background rounded-xl p-6 border">
+                  <h3 className="text-xl font-bold mb-4">Was Sie mitbringen sollten</h3>
+                  <ul className="space-y-3 text-muted-foreground">
+                    <li className="flex items-start gap-2">
+                      <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                      <span><strong className="text-foreground">Copilot Daily User:</strong> Sie arbeiten selbst täglich mit Microsoft 365 Copilot und kennen typische Prompts, Workflows und Grenzen aus eigener Erfahrung.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                      <span><strong className="text-foreground">Microsoft 365 Kenntnisse:</strong> Solides Verständnis von Teams, Outlook, Word, Excel und SharePoint als Arbeitsumgebung Ihrer Teilnehmer.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                      <span><strong className="text-foreground">Präsentationserfahrung:</strong> Sie stehen gerne vor Gruppen, erklären komplexe Zusammenhänge verständlich und holen auch skeptische Teilnehmer ab.</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="bg-primary/5 border border-primary/20 rounded-xl p-6 mb-8">
+                <h3 className="text-xl font-bold mb-3">Keine Trainer-Erfahrung? Kein Problem.</h3>
+                <p className="text-muted-foreground">
+                  Wer KI-Praktiker ist, aber noch nie einen Workshop geleitet hat, bekommt von uns eine
+                  kostenfreie Train-the-Trainer-Ausbildung: praxisorientiert, kompakt und direkt auf
+                  Microsoft Copilot Trainings zugeschnitten. Wir stellen alle Kursmaterialien bereit
+                  und begleiten Sie bei den ersten Trainings. Viele unserer erfolgreichsten Trainer
+                  haben bei null angefangen – mit Copilot-Expertise, aber ohne Bühne.
+                </p>
+              </div>
+
+              <div className="prose prose-lg max-w-none text-muted-foreground">
+                <h3 className="text-xl font-bold text-foreground mb-3">Für wen ist der Copilot Trainer-Nebenerwerb geeignet?</h3>
+                <p>
+                  Typische Copilot Trainer bei uns sind Power User aus dem Controlling, Marketing,
+                  HR oder der IT, die Copilot schon produktiv im Alltag einsetzen und ihr Wissen
+                  strukturiert weitergeben möchten. Aber auch Consultants, die KI-Projekte begleiten,
+                  oder Change Manager, die Adoption-Prozesse kennen, bringen wertvolle Perspektiven mit.
+                  Entscheidend ist nicht der Lebenslauf – sondern die Fähigkeit, Menschen mitzunehmen.
+                </p>
+                <p className="mt-4">
+                  Als Microsoft Copilot Trainer bei der Copilotenschule arbeiten Sie mit Unternehmen
+                  aus dem Mittelstand und Konzernen zusammen, die ihre Teams gezielt auf den
+                  produktiven Einsatz von Copilot vorbereiten wollen. Die Trainings finden inhouse,
+                  online oder in Kombination statt – bundesweit und flexibel planbar.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Job Description Section for Festanstellung - Collapsible */}
         {showJobDescription && (
           <section className="py-20 bg-muted/30">

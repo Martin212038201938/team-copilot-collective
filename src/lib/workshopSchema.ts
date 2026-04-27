@@ -133,7 +133,7 @@ export const generateWorkshopMainSchema = (
     "hasCourseInstance": {
       "@type": "CourseInstance",
       "courseMode": ["onsite", "online", "blended"],
-      "duration": workshop.duration,
+      "duration": (workshop as any).durationISO || "PT7H",
       "inLanguage": "de-DE",
       "instructor": {
         "@id": instructorId,
@@ -146,8 +146,16 @@ export const generateWorkshopMainSchema = (
     },
     "offers": {
       "@type": "Offer",
-      "category": "Professional Training",
+      "price": "1800",
+      "priceCurrency": "EUR",
+      "priceSpecification": {
+        "@type": "UnitPriceSpecification",
+        "price": "1800",
+        "priceCurrency": "EUR",
+        "description": "Ab 1.800 € für Halbtag (4h), ab 2.800 € für Ganztag (7h)"
+      },
       "availability": "https://schema.org/InStock",
+      "validFrom": "2025-01-01",
       "availableDeliveryMethod": [
         "OnlineEventAttendanceMode",
         "OfflineEventAttendanceMode",

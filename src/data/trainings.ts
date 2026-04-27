@@ -13,6 +13,7 @@ export interface Training {
   icon: LucideIcon;
   title: string;
   duration: string;
+  durationISO?: string;  // ISO 8601 duration for schema.org
   description: string;
   features: string[];
   tiers: CopilotTier[];
@@ -40,6 +41,7 @@ export const trainings: Training[] = [
     icon: Brain,
     title: "Copilot Grundlagen: Prompt Design & KI-Kompetenz",
     duration: "Halbtag | Ganztag | 3×2h Lernreise",
+    durationISO: "PT4H",
     description: "Fundiertes Einsteiger-Training in die Arbeit mit KI-Assistenten: Sie lernen, wie Sie effektive Prompts formulieren, KI-Outputs kritisch bewerten und Microsoft Copilot Chat strategisch für Recherche, Textarbeit und kreative Aufgaben einsetzen. Ideal für alle, die noch keine Copilot-Lizenz haben oder zunächst die Grundlagen beherrschen wollen.",
     features: [
       "Prompt Engineering Grundlagen: Struktur, Kontext, Beispiele – wie Sie Copilot präzise Anweisungen geben",
@@ -100,6 +102,7 @@ export const trainings: Training[] = [
     icon: Brain,
     title: "Microsoft 365 Copilot in der Praxis: Word, Excel, PowerPoint, Outlook & Teams",
     duration: "Halbtag | Ganztag | 2-tägig | Lernreise (4×, 6× oder 8×2h online)",
+    durationISO: "PT4H",
     description: "Praxisorientiertes Training für Copilot-Lizenzinhaber: Sie lernen, wie Sie Microsoft 365 Copilot direkt in Ihren Office-Anwendungen einsetzen – von der Dokumenterstellung in Word über Datenanalyse in Excel bis zur Meeting-Zusammenfassung in Teams. Mit echten Arbeitsszenarien und direkt anwendbaren Workflows.",
     features: [
       "Copilot in Word: Projektpläne, Angebote und Entscheidungsvorlagen in Minuten statt Stunden erstellen – inklusive Struktur, Formatierung und Zusammenfassungen für die Geschäftsleitung",
@@ -162,6 +165,7 @@ export const trainings: Training[] = [
     icon: GraduationCap,
     title: "Ausbildung zum KI-unterstützten Wissensarbeiter",
     duration: "2 Tage | 8×2h Lernreise",
+    durationISO: "P2D",
     description: "Umfassende Ausbildung für alle, die KI-Assistenten professionell in ihren Arbeitsalltag integrieren wollen – von den Grundlagen bis zum Expertenniveau. In diesem intensiven Programm lernen Sie nicht nur die Tools, sondern entwickeln eine neue Art zu arbeiten: schneller, präziser, kreativer. Mit über 20 praktischen Übungen und realen Use Cases aus verschiedenen Unternehmensbereichen.",
     features: [
       "Grundlagen-Modul: KI verstehen – wie LLMs funktionieren, Möglichkeiten und Grenzen, Erwartungsmanagement",
@@ -221,6 +225,7 @@ export const trainings: Training[] = [
     icon: Laptop,
     title: "GitHub Copilot für Softwareentwickler",
     duration: "1 Tag (7 Stunden)",
+    durationISO: "PT7H",
     description: "Hands-on Entwickler-Training: Maximieren Sie Ihre Coding-Produktivität mit GitHub Copilot. Sie lernen, KI-gestützt Code zu generieren, zu testen, zu debuggen und zu dokumentieren. Das Training umfasst praktische Übungen mit echten Projekten, optimierte Entwickler-Workflows und die perfekte Stack-Konfiguration für Ihr Team.",
     features: [
       "Stack Setup & Konfiguration: IDE-Einrichtung (VS Code, JetBrains), Extensions, Copilot-Einstellungen optimieren, Team-Policies",
@@ -283,6 +288,7 @@ export const trainings: Training[] = [
     icon: Shield,
     title: "Microsoft Copilot & Compliance - Rechtssichere KI-Nutzung",
     duration: "4 Stunden (Halbtag)",
+    durationISO: "PT4H",
     description: "Kompakt-Schulung zur rechtssicheren und datenschutzkonformen Nutzung von Microsoft Copilot im Unternehmen. Sie erhalten praktische Checklisten, Templates und Guidelines für DSGVO-konforme KI-Anwendung, verstehen die Anforderungen des EU AI Act und können Compliance-Risiken proaktiv managen.",
     features: [
       "DSGVO-konforme Copilot-Nutzung: Datenverarbeitung verstehen, Rechtsgrundlagen kennen, Dokumentationspflichten erfüllen",
@@ -340,6 +346,7 @@ export const trainings: Training[] = [
     icon: GraduationCap,
     title: "Copilot Lernreise: Von 0 auf 100 in 8 Wochen",
     duration: "8 × 2 Stunden (16 Stunden gesamt)",
+    durationISO: "PT16H",
     description: "Begleitete Lernreise für nachhaltigen Kompetenzaufbau: In 8 wöchentlichen Sessions à 2 Stunden lernen Sie Microsoft Copilot von Grund auf – mit Theorie, Live-Demos und jede Woche einem neuen praktischen Use Case, den Sie direkt in Ihrem Arbeitsalltag umsetzen. Ideal für Teams, die Copilot schrittweise und nachhaltig in ihre Arbeit integrieren wollen.",
     features: [
       "Woche 1: Copilot Grundlagen – Interface, erste Prompts, Erwartungsmanagement + Use Case: E-Mail-Zusammenfassungen",
@@ -401,6 +408,7 @@ export const trainings: Training[] = [
     icon: Brain,
     title: "KI-Agenten und Automatisierung mit Microsoft Copilot Studio",
     duration: "1 Tag (7 Stunden)",
+    durationISO: "PT7H",
     description: "Fortgeschrittenes Training zur Entwicklung intelligenter KI-Agenten und Automatisierungs-Workflows mit Microsoft Copilot Studio. Sie lernen, wie Sie benutzerdefinierte Copilot-Agenten für spezifische Geschäftsprozesse erstellen, diese mit Unternehmensdaten verbinden und in Microsoft Teams sowie andere Anwendungen integrieren.",
     features: [
       "Copilot Studio Grundlagen: Plattform-Überblick, Architektur verstehen, Entwicklungsumgebung einrichten",
@@ -458,6 +466,7 @@ export const trainings: Training[] = [
     icon: Zap,
     title: "Low-Code Entwicklung mit Microsoft Copilot - Flow Coding im Unternehmen",
     duration: "1 Tag (7 Stunden)",
+    durationISO: "PT7H",
     description: "Praxistraining für Citizen Developer und Business User: Lernen Sie, wie Sie mit Microsoft Power Platform und Copilot-Unterstützung geschäftliche Anwendungen ohne traditionelle Programmierung entwickeln. Sie erstellen Apps, automatisieren Workflows und bauen Datenintegration – alles mit Low-Code und KI-Support.",
     features: [
       "Low-Code Entwicklung mit Power Apps und Copilot: Apps per natürlicher Sprache erstellen, UI designen, Logik implementieren",
@@ -515,6 +524,7 @@ export const trainings: Training[] = [
     icon: Scale,
     title: "EU AI Act Pflichtschulung – Rechtssichere KI-Nutzung im Unternehmen",
     duration: "4 Stunden (Halbtag)",
+    durationISO: "PT4H",
     description: "Pflichtschulung zur Erfüllung der EU AI Act Anforderungen: Alle Mitarbeiter, die mit KI-Systemen arbeiten, müssen nachweislich geschult werden. Dieses Training vermittelt das erforderliche Wissen zu KI-Kompetenz, Risikobewusstsein und verantwortungsvollem Umgang mit KI-Systemen gemäß Artikel 4 EU AI Act.",
     features: [
       "EU AI Act Grundlagen: Anwendungsbereich, Risikoklassifizierung, Pflichten für Unternehmen und Mitarbeiter",
@@ -572,6 +582,7 @@ export const trainings: Training[] = [
     icon: Wrench,
     title: "Individuelle Copilot-Schulungen nach Maß",
     duration: "Flexibel (nach Bedarf)",
+    durationISO: "PT4H",
     description: "Maßgeschneiderte Microsoft Copilot Trainings, die exakt auf Ihre Unternehmenssituation, Branche und spezifischen Anforderungen zugeschnitten sind. Ob Sales, Marketing, HR, Finance, Produktion oder Verwaltung – wir entwickeln Use Cases mit Ihren realen Daten und Prozessen und trainieren Ihre Teams abteilungsspezifisch.",
     features: [
       "Abteilungsspezifische Schulungskonzepte: Vertrieb, Marketing, HR, Finanzen, Einkauf, Produktion, IT",

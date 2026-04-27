@@ -4,7 +4,7 @@
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <!-- Automatisch generiert am 2026-04-27 -->
-  <!-- 64 URLs insgesamt -->
+  <!-- 63 URLs insgesamt -->
   <url>
     <loc>https://copilotenschule.de/</loc>
     <lastmod>2026-04-27</lastmod>
@@ -46,12 +46,6 @@
     <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://copilotenschule.de/impressum</loc>
-    <lastmod>2026-04-27</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
   </url>
   <url>
     <loc>https://copilotenschule.de/wissen/github-copilot</loc>

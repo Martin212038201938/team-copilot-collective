@@ -29,7 +29,6 @@ const staticPages = [
   { loc: '/ueber-uns', lastmod: TODAY, changefreq: 'monthly', priority: 0.7 },
   { loc: '/trainer-werden', lastmod: TODAY, changefreq: 'monthly', priority: 0.6 },
   { loc: '/training-konfigurator', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
-  { loc: '/impressum', lastmod: TODAY, changefreq: 'yearly', priority: 0.3 },
 ];
 
 // Alle Wissensseiten unter /wissen/ (konsolidiert)

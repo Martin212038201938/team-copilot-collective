@@ -78,8 +78,22 @@ const TrainingDetail = () => {
     "hasCourseInstance": {
       "@type": "CourseInstance",
       "courseMode": ["onsite", "online"],
-      "duration": training.duration,
+      "duration": training.durationISO || "PT7H",
       "inLanguage": "de-DE"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "1800",
+      "priceCurrency": "EUR",
+      "priceSpecification": {
+        "@type": "UnitPriceSpecification",
+        "price": "1800",
+        "priceCurrency": "EUR",
+        "description": "Ab 1.800 € für Halbtag (4h), ab 2.800 € für Ganztag (7h)"
+      },
+      "url": pageUrl,
+      "availability": "https://schema.org/InStock",
+      "validFrom": "2025-01-01"
     },
     "teaches": training.learningOutcomes
       ? training.learningOutcomes.join(", ")
