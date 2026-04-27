@@ -1,6 +1,7 @@
 import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
+import AuthorBio from "@/components/AuthorBio";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 import { Zap, Quote, Building2, Factory, Package, Users, ExternalLink, CheckCircle2, AlertTriangle, Target, Lightbulb } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -711,6 +712,7 @@ const CopilotROIErfolgsgeschichten = () => {
             Unsere Copilot-Angebote
           </a>
         </div>
+              <AuthorBio author={author} />
       </ContentLayout>
     </>
   );

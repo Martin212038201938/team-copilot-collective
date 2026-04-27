@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { Users } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
+import AuthorBio from "@/components/AuthorBio";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 
 const SLUG = "copilot-hr-use-cases";
@@ -575,6 +576,7 @@ const CopilotHRUseCases = () => {
           </CardContent>
         </Card>
 
+              <AuthorBio author={martinLang} />
       </ContentLayout>
     </>
   );

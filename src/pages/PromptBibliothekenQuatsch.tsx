@@ -3,6 +3,7 @@ import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Zap, AlertTriangle, BookOpen, Wand2, XCircle, CheckCircle2, ExternalLink, Lightbulb, Users, Bot } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
+import AuthorBio from "@/components/AuthorBio";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
@@ -613,6 +614,7 @@ const PromptBibliothekenQuatsch = () => {
             Training anfragen
           </a>
         </div>
+              <AuthorBio author={author} />
       </ContentLayout>
     </>
   );

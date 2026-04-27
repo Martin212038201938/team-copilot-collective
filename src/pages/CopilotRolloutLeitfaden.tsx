@@ -3,6 +3,7 @@ import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
+import AuthorBio from "@/components/AuthorBio";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 
 const SLUG = "copilot-im-unternehmen-einfuehren-leitfaden";
@@ -371,6 +372,7 @@ const CopilotRolloutLeitfaden = () => {
           </Card>
         </section>
 
+              <AuthorBio author={martinLang} />
       </ContentLayout>
     </>
   );

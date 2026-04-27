@@ -2,6 +2,7 @@ import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
+import AuthorBio from "@/components/AuthorBio";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 import { Link } from "react-router-dom";
 
@@ -576,6 +577,7 @@ const CopilotAdoption2026 = () => {
             </div>
           </CardContent>
         </Card>
+              <AuthorBio author={martinLang} />
       </ContentLayout>
     </>
   );

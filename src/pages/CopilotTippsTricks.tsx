@@ -1,6 +1,7 @@
 import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
+import AuthorBio from "@/components/AuthorBio";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 import { Zap, FileText, Table2, Presentation, Mail, Users, AlertTriangle, CheckCircle2, ExternalLink } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -934,6 +935,7 @@ const CopilotTippsTricks = () => {
             Workshop anfragen
           </a>
         </div>
+              <AuthorBio author={author} />
       </ContentLayout>
     </>
   );

@@ -3,6 +3,7 @@ import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Zap, AlertTriangle, TrendingUp, TrendingDown, Target, ExternalLink, CheckCircle2, XCircle, Euro, Clock, PieChart, Scale, Users, Brain } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
+import AuthorBio from "@/components/AuthorBio";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 import { Link } from "react-router-dom";
 
@@ -989,6 +990,7 @@ const KiRealitaet2026 = () => {
             Jetzt Beratungsgespräch vereinbaren
           </a>
         </div>
+              <AuthorBio author={martinLang} />
       </ContentLayout>
     </>
   );

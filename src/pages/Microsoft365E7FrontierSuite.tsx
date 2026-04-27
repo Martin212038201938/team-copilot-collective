@@ -3,6 +3,7 @@ import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
+import AuthorBio from "@/components/AuthorBio";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 
 const SLUG = "microsoft-365-e7-frontier-suite";
@@ -435,6 +436,7 @@ const Microsoft365E7FrontierSuite = () => {
           </ul>
         </section>
 
+              <AuthorBio author={martinLang} />
       </ContentLayout>
     </>
   );

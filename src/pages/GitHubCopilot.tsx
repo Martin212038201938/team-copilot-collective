@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Check, Code, Terminal, MessageSquare, Zap, ExternalLink } from "lucide-react";
 import { Link } from "react-router-dom";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
+import AuthorBio from "@/components/AuthorBio";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 
 const SLUG = "github-copilot";
@@ -609,6 +610,7 @@ const GitHubCopilot = () => {
             </div>
           </CardContent>
         </Card>
+              <AuthorBio author={martinLang} />
       </ContentLayout>
     </>
   );

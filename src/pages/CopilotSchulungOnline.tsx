@@ -3,6 +3,7 @@ import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
+import AuthorBio from "@/components/AuthorBio";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 
 const SLUG = "microsoft-copilot-schulung-online";
@@ -381,6 +382,7 @@ const CopilotSchulungOnline = () => {
           </div>
         </section>
 
+              <AuthorBio author={martinLang} />
       </ContentLayout>
     </>
   );

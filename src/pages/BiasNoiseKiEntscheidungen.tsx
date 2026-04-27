@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle2, Linkedin } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
+import AuthorBio from "@/components/AuthorBio";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 import { Link } from "react-router-dom";
 
@@ -356,72 +357,7 @@ const BiasNoiseKiEntscheidungen = () => {
           </div>
         </section>
 
-        {/* Autorin */}
-        <section className="mb-4">
-          <h2 className="text-2xl md:text-3xl font-bold mb-3">Über die Autorin</h2>
-          <div className="flex flex-col sm:flex-row gap-6 items-start p-6 bg-card border rounded-2xl shadow-sm">
-            {/* Profilbild */}
-            <div className="flex-shrink-0">
-              <div className="w-24 h-24 rounded-full overflow-hidden bg-muted border-2 border-border">
-                <img
-                  src={saskiaKaden.image}
-                  alt={`Porträtfoto ${saskiaKaden.name}`}
-                  className="w-full h-full object-cover"
-                  onError={(e) => { e.currentTarget.style.display = "none"; }}
-                />
-              </div>
-            </div>
-
-            {/* Text */}
-            <div className="flex-1">
-              <div className="flex flex-wrap items-center gap-3 mb-1">
-                <h3 className="text-xl font-bold">{saskiaKaden.name}</h3>
-                {saskiaKaden.linkedin && (
-                  <a
-                    href={saskiaKaden.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-sm text-primary hover:underline"
-                    aria-label={`LinkedIn-Profil von ${saskiaKaden.name}`}
-                  >
-                    <Linkedin className="w-4 h-4" />
-                    LinkedIn
-                  </a>
-                )}
-              </div>
-              <p className="text-sm text-muted-foreground font-medium mb-3">
-                {saskiaKaden.role}
-              </p>
-              <p className="text-sm leading-relaxed mb-4">
-                {saskiaKaden.bio}
-              </p>
-
-              {/* Qualifikationen */}
-              <div className="mb-4">
-                <p className="text-xs font-semibold text-foreground mb-2 uppercase tracking-wide">
-                  Qualifikationen & Erfahrung
-                </p>
-                <ul className="space-y-1">
-                  {saskiaKaden.qualifications.map((q, i) => (
-                    <li key={i} className="flex items-start gap-2 text-xs text-muted-foreground">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-primary flex-shrink-0 mt-0.5" />
-                      {q}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Expertise-Badges */}
-              <div className="flex flex-wrap gap-1.5">
-                {saskiaKaden.expertise.map((topic, i) => (
-                  <Badge key={i} variant="secondary" className="text-xs font-medium">
-                    {topic}
-                  </Badge>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
+        <AuthorBio author={saskiaKaden} />
       </ContentLayout>
     </>
   );

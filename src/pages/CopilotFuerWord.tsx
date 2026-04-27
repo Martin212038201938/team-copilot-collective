@@ -1,6 +1,7 @@
 import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
+import AuthorBio from "@/components/AuthorBio";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 import { ExternalLink, Zap } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -1411,6 +1412,7 @@ Format: Markdown mit klarer Hierarchie, Emojis für Kategorien."`}</code></pre>
         </section>
 
         {/* Autor Bio */}
+              <AuthorBio author={author} />
       </ContentLayout>
     </>
   );

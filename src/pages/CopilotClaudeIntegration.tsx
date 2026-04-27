@@ -3,6 +3,7 @@ import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
+import AuthorBio from "@/components/AuthorBio";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 
 const SLUG = "claude-in-microsoft-copilot";
@@ -466,6 +467,7 @@ const CopilotClaudeIntegration = () => {
           </Card>
         </section>
 
+              <AuthorBio author={martinLang} />
       </ContentLayout>
     </>
   );

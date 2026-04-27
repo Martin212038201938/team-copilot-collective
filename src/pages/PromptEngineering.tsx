@@ -3,6 +3,7 @@ import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Zap, Lightbulb, Target, BookOpen, ExternalLink, CheckCircle2, AlertTriangle, Code, Wand2 } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
+import AuthorBio from "@/components/AuthorBio";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 import { Link } from "react-router-dom";
 
@@ -742,6 +743,7 @@ const PromptEngineering = () => {
             Workshop anfragen
           </a>
         </div>
+              <AuthorBio author={author} />
       </ContentLayout>
     </>
   );
