@@ -40,7 +40,7 @@ export const trainings: Training[] = [
     slug: "copilot-grundlagen-prompt-design",
     icon: Brain,
     title: "Copilot Grundlagen: Prompt Design & KI-Kompetenz",
-    duration: "Halbtag | Ganztag | 3×2h Lernreise",
+    duration: "Halbtag | Ganztag | 4-8×2h Lernreise",
     durationISO: "PT4H",
     description: "Fundiertes Einsteiger-Training in die Arbeit mit KI-Assistenten: Sie lernen, wie Sie effektive Prompts formulieren, KI-Outputs kritisch bewerten und Microsoft Copilot Chat strategisch für Recherche, Textarbeit und kreative Aufgaben einsetzen. Ideal für alle, die noch keine Copilot-Lizenz haben oder zunächst die Grundlagen beherrschen wollen.",
     features: [
@@ -52,7 +52,7 @@ export const trainings: Training[] = [
       "Kreative Anwendungen: Brainstorming, Ideengenerierung, Perspektivwechsel",
       "KI-Output kritisch bewerten: Halluzinationen erkennen, Quellen prüfen, Grenzen verstehen",
       "Eigene Prompt-Bibliothek aufbauen: Templates für wiederkehrende Aufgaben entwickeln",
-      "Buchbar als: Halbtag (4h), Ganztag (7h) oder Lernreise (3×2h über 3 Wochen)"
+      "Buchbar als: Halbtag (4h), Ganztag (7h) oder Lernreise (4-8×2h über 4-8 Wochen)"
     ],
     tiers: ["free"],
     popular: true,
@@ -164,7 +164,7 @@ export const trainings: Training[] = [
     slug: "ausbildung-ki-wissensarbeiter",
     icon: GraduationCap,
     title: "Ausbildung zum KI-unterstützten Wissensarbeiter",
-    duration: "2 Tage | 8×2h Lernreise",
+    duration: "2 Tage | 4-8×2h Lernreise",
     durationISO: "P2D",
     description: "Umfassende Ausbildung für alle, die KI-Assistenten professionell in ihren Arbeitsalltag integrieren wollen – von den Grundlagen bis zum Expertenniveau. In diesem intensiven Programm lernen Sie nicht nur die Tools, sondern entwickeln eine neue Art zu arbeiten: schneller, präziser, kreativer. Mit über 20 praktischen Übungen und realen Use Cases aus verschiedenen Unternehmensbereichen.",
     features: [
@@ -178,7 +178,7 @@ export const trainings: Training[] = [
       "Use Case Workshop: 10+ reale Anwendungsszenarien aus Vertrieb, Marketing, HR, Finance, Projektmanagement",
       "Persönliche Prompt-Bibliothek: Templates für Ihre wiederkehrenden Aufgaben entwickeln und dokumentieren",
       "Peer Learning & Gruppenarbeit: Voneinander lernen, Best Practices teilen, gemeinsam Probleme lösen",
-      "Buchbar als: 2 Tage intensiv (14h) oder Lernreise (8×2h über 8 Wochen mit Praxisaufgaben)"
+      "Buchbar als: 2 Tage intensiv (14h) oder Lernreise (4-8×2h über 4-8 Wochen mit Praxisaufgaben)"
     ],
     tiers: ["paid"],
     questionLead: "Gibt es eine umfassende KI-Ausbildung für Büromitarbeiter?",
@@ -345,8 +345,8 @@ export const trainings: Training[] = [
     slug: "copilot-lernreise-8-wochen",
     icon: GraduationCap,
     title: "Copilot Lernreise: Von 0 auf 100 in 8 Wochen",
-    duration: "8 × 2 Stunden (16 Stunden gesamt)",
-    durationISO: "PT16H",
+    duration: "4-8 × 2 Stunden (8-16 Stunden gesamt)",
+    durationISO: "PT8H",
     description: "Begleitete Lernreise für nachhaltigen Kompetenzaufbau: In 8 wöchentlichen Sessions à 2 Stunden lernen Sie Microsoft Copilot von Grund auf – mit Theorie, Live-Demos und jede Woche einem neuen praktischen Use Case, den Sie direkt in Ihrem Arbeitsalltag umsetzen. Ideal für Teams, die Copilot schrittweise und nachhaltig in ihre Arbeit integrieren wollen.",
     features: [
       "Woche 1: Copilot Grundlagen – Interface, erste Prompts, Erwartungsmanagement + Use Case: E-Mail-Zusammenfassungen",
