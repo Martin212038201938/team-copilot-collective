@@ -31,8 +31,8 @@ export interface ArticleData {
 export const ALL_ARTICLES: ArticleData[] = [
   {
     id: "interne-copilot-trainer-ausbilden",
-    title: "Interne Copilot-Trainer ausbilden: Warum vier Tage und eine ehrliche Begleitung mehr bewegen als jeder Crashkurs",
-    description: "Warum interne Multiplikatoren ein Copilot-Rollout entscheidender prägen als jede externe Schulungswelle – und wie eine ehrlich dimensionierte Train-the-Trainer-Ausbildung wirkt.",
+    title: "Interne Copilot-Multiplikatoren ausbilden: Warum Change-Begleitung im Alltag den Unterschied macht",
+    description: "Multiplikatoren tragen den Change im Arbeitsalltag und schlagen die Brücke zwischen Trainings und Anwenderpraxis. Wie eine Train-the-Trainer-Ausbildung in vier Tagen plus Begleitung wirkt.",
     link: "/wissen/interne-copilot-trainer-ausbilden",
     badge: "Train-the-Trainer",
     icon: "🎓",
