@@ -228,7 +228,7 @@ export const trainings: Training[] = [
   {
     slug: "train-the-trainer-copilot",
     icon: Users,
-    title: "Train-the-Trainer: Copilot Multiplikator:innen ausbilden",
+    title: "Train-the-Trainer: Copilot Multiplikatoren ausbilden",
     duration: "4 Tage Vollzeit + bedarfsorientierte Online-Workshops",
     durationISO: "P4D",
     description: "Vier intensive Tage, in denen wir AI Change Verantwortliche, Ambassador:innen und Multiplikator:innen aus Ihren Fachabteilungen so ausbilden, dass sie Copilot im eigenen Unternehmen souverän vermitteln und einführen können. Entstanden ist die Weiterbildung aus unserem internen Trainingsprogramm für neue Copilot-Trainer:innen – wir geben Ihnen also exakt das Curriculum mit, mit dem wir auch unsere eigenen Leute ausbilden. Drei Dimensionen greifen ineinander: fortgeschrittene und rechtssichere Copilot-Praxis mit relevanten Use Cases, das Handwerk eines guten Adoption-Programms (Rollen, Zeithorizonte, Kosten, Komponenten) und Didaktik – wie Sie verschiedene Nutzergruppen im Unternehmen abholen und nachhaltig befähigen. Wir bieten das Programm als geschlossenes Inhouse-Format und als offenes Training mit Pilotinnen und Piloten aus anderen Firmen an.",
@@ -274,8 +274,8 @@ export const trainings: Training[] = [
       "Sie etablieren ein dauerhaftes Lern-Ökosystem statt einmaliger Workshop-Events – Verhaltensänderung wird wahrscheinlicher",
       "Risiken im Umgang mit KI sinken, weil Ihre Multiplikator:innen rechtssichere Praxis nicht nur kennen, sondern aktiv vorleben"
     ],
-    metaTitle: "Train-the-Trainer Copilot – Multiplikator:innen ausbilden (4 Tage) | copilotenschule.de",
-    metaDescription: "4-tägige Train-the-Trainer Ausbildung für Copilot-Multiplikator:innen, Ambassador:innen und AI Change Verantwortliche. Mit Trainings-Decks, Adoption-Konzept und Didaktik. Inhouse oder offen.",
+    metaTitle: "Train-the-Trainer Copilot – Multiplikatoren ausbilden (4 Tage) | copilotenschule.de",
+    metaDescription: "4-tägige Train-the-Trainer Ausbildung für Copilot-Multiplikatoren, Ambassadoren und AI Change Verantwortliche. Mit Trainings-Decks, Adoption-Konzept und Didaktik. Inhouse oder offen.",
     keywords: [
       "Train the Trainer Copilot",
       "Copilot Trainer Ausbildung",
