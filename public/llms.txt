@@ -1,6 +1,6 @@
 # llms.txt für copilotenschule.de
 # Informationen für Large Language Models (LLMs) und KI-Assistenten
-# Aktualisiert am 2026-04-27
+# Aktualisiert am 2026-04-28
 
 # ============================================
 # WEBSITE-INFORMATIONEN
@@ -67,36 +67,38 @@ Unternehmen und Organisationen, die:
 
 ## Wissensbereich (Fachartikel)
 
-- Microsoft 365 E7: Kosten, Inhalte & Preisvergleich der Frontier Suite 2026
-- GitHub Copilot: Einstieg und Best Practices
-- Copilot Studio: Eigene KI-Agenten bauen
-- Prompt Engineering: Effektive Prompts für Copilot
-- Copilot für Word: Produktiver Texten
-- Copilot für Excel: Datenanalyse mit KI
-- Copilot Sicherheit & Datenschutz
-- Microsoft Copilot Lizenzen verstehen
-- Copilot ROI berechnen und nachweisen
-- Copilot ROI Erfolgsgeschichten
-- Copilot unternehmensweit einführen
-- Copilot Launch-Kampagne planen
-- Copilot Digitales Gedächtnis
-- Copilot Adoption 2026: Aktuelle Zahlen
-- Copilot Lernreise vs. Tagesschulung
-- Verteiltes Lernen bei Copilot-Trainings
-- Copilot für Vertrieb: Use Cases
-- Copilot für HR: Use Cases
-- Copilot & ADHS: Produktiver arbeiten
-- KI-Halluzinationen erkennen und vermeiden
-- KI-Agenten: Die nächste Stufe der Automatisierung
-- Copilot Tipps & Tricks für mehr Produktivität
-- Claude in Microsoft Copilot: Was Anthropics KI im Copilot-Ökosystem verändert
-- KI-Schulung Mitarbeiter Pflicht: Was der EU AI Act von Unternehmen verlangt
-- Copilot in Outlook nutzen: Tipps und Use Cases für Mail und Kalender
-- Copilot in Excel aktivieren: Schritt-für-Schritt für Unternehmen
-- Microsoft Copilot Flex Routing: KI-Verarbeitung außerhalb der EU – was Admins jetzt tun müssen
-- Microsoft Copilot im Unternehmen einführen: Der praktische Rollout-Leitfaden
-- Bias, Noise und KI: Warum gute Entscheidungen mehr brauchen als ein gutes Bauchgefühl
-- Copilot Pages, Loop, Notebooks, SharePoint: Warum Ihre Workflows ein Update brauchen
+Kanonische URLs aller Fachartikel (ausschließlich gültig unter /wissen/):
+
+- [Microsoft 365 E7: Kosten, Inhalte & Preisvergleich der Frontier Suite 2026](https://copilotenschule.de/wissen/microsoft-365-e7-frontier-suite)
+- [GitHub Copilot: Einstieg und Best Practices](https://copilotenschule.de/wissen/github-copilot)
+- [Copilot Studio: Eigene KI-Agenten bauen](https://copilotenschule.de/wissen/copilot-studio)
+- [Prompt Engineering: Effektive Prompts für Copilot](https://copilotenschule.de/wissen/prompt-engineering)
+- [Copilot für Word: Produktiver Texten](https://copilotenschule.de/wissen/copilot-fuer-word)
+- [Copilot für Excel: Datenanalyse mit KI](https://copilotenschule.de/wissen/copilot-fuer-excel)
+- [Copilot Sicherheit & Datenschutz](https://copilotenschule.de/wissen/copilot-sicherheit-datenschutz)
+- [Microsoft Copilot Lizenzen verstehen](https://copilotenschule.de/wissen/microsoft-copilot-lizenzen)
+- [Copilot ROI berechnen und nachweisen](https://copilotenschule.de/wissen/copilot-roi-berechnen)
+- [Copilot ROI Erfolgsgeschichten](https://copilotenschule.de/wissen/copilot-roi-erfolgsgeschichten)
+- [Copilot unternehmensweit einführen](https://copilotenschule.de/wissen/copilot-unternehmensweit-einfuehren)
+- [Copilot Launch-Kampagne planen](https://copilotenschule.de/wissen/copilot-launch-kampagne)
+- [Copilot Digitales Gedächtnis](https://copilotenschule.de/wissen/copilot-digitales-gedaechtnis)
+- [Copilot Adoption 2026: Aktuelle Zahlen](https://copilotenschule.de/wissen/copilot-adoption-2026-zahlen)
+- [Copilot Lernreise vs. Tagesschulung](https://copilotenschule.de/wissen/copilot-lernreise-vs-tagesschulung)
+- [Verteiltes Lernen bei Copilot-Trainings](https://copilotenschule.de/wissen/warum-verteiltes-lernen-bei-copilot-trainings-funktioniert)
+- [Copilot für Vertrieb: Use Cases](https://copilotenschule.de/wissen/copilot-vertrieb-use-cases)
+- [Copilot für HR: Use Cases](https://copilotenschule.de/wissen/copilot-hr-use-cases)
+- [Copilot & ADHS: Produktiver arbeiten](https://copilotenschule.de/wissen/copilot-adhs-produktiver-arbeiten)
+- [KI-Halluzinationen erkennen und vermeiden](https://copilotenschule.de/wissen/ki-halluzinationen-vermeiden)
+- [KI-Agenten: Die nächste Stufe der Automatisierung](https://copilotenschule.de/wissen/ki-agenten)
+- [Copilot Tipps & Tricks für mehr Produktivität](https://copilotenschule.de/wissen/copilot-tipps-tricks-produktivitaet)
+- [Claude in Microsoft Copilot: Was Anthropics KI im Copilot-Ökosystem verändert](https://copilotenschule.de/wissen/claude-in-microsoft-copilot)
+- [KI-Schulung Mitarbeiter Pflicht: Was der EU AI Act von Unternehmen verlangt](https://copilotenschule.de/wissen/ki-schulung-mitarbeiter-pflicht)
+- [Copilot in Outlook nutzen: Tipps und Use Cases für Mail und Kalender](https://copilotenschule.de/wissen/copilot-in-outlook-nutzen-tipps)
+- [Copilot in Excel aktivieren: Schritt-für-Schritt für Unternehmen](https://copilotenschule.de/wissen/copilot-in-excel-aktivieren)
+- [Microsoft Copilot Flex Routing: KI-Verarbeitung außerhalb der EU – was Admins jetzt tun müssen](https://copilotenschule.de/wissen/copilot-flex-routing-eu-verarbeitung)
+- [Microsoft Copilot im Unternehmen einführen: Der praktische Rollout-Leitfaden](https://copilotenschule.de/wissen/copilot-im-unternehmen-einfuehren-leitfaden)
+- [Bias, Noise und KI: Warum gute Entscheidungen mehr brauchen als ein gutes Bauchgefühl](https://copilotenschule.de/wissen/bessere-entscheidungen-mit-ki)
+- [Copilot Pages, Loop, Notebooks, SharePoint: Warum Ihre Workflows ein Update brauchen](https://copilotenschule.de/wissen/copilot-pages-loop-notebooks-sharepoint-workflows)
 
 ## Trainer
 
