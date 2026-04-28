@@ -72,6 +72,7 @@ const knowledgePages = [
   { loc: '/wissen/copilot-im-unternehmen-einfuehren-leitfaden', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
   { loc: '/wissen/bessere-entscheidungen-mit-ki', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
   { loc: '/wissen/copilot-pages-loop-notebooks-sharepoint-workflows', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
+  { loc: '/wissen/interne-copilot-trainer-ausbilden', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
 ];
 
 // Trainingsseiten - Slugs aus trainings.ts
@@ -80,6 +81,7 @@ const trainingsSlugs = [
   'copilot-grundlagen-prompt-design',
   'microsoft-365-copilot-praxis',
   'ausbildung-ki-wissensarbeiter',
+  'train-the-trainer-copilot',
   'github-copilot-entwickler',
   'copilot-compliance-datenschutz',
   'copilot-studio-ki-agenten',
