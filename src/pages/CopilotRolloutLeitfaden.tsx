@@ -251,6 +251,9 @@ const CopilotRolloutLeitfaden = () => {
             <p>
               Die Copilotenschule bietet genau dieses Format: <Link to="/wissen/copilot-lernreise-vs-tagesschulung" className="text-blue-600 dark:text-blue-400 hover:underline">modulare Lernreisen</Link>, die flexibel an den Rollout-Rhythmus des Unternehmens angepasst werden – ob als Online-Programm über mehrere Wochen, als hybrides Format mit festen Gruppen oder als kontinuierliche Begleitung parallel zum laufenden Betrieb. Dabei werden Inhalte abteilungsspezifisch aufgebaut, damit Teilnehmer im Training nicht mit abstrakten Beispielen konfrontiert werden, sondern mit Szenarien, die sie am nächsten Tag sofort einsetzen können.
             </p>
+            <p>
+              Wer die Trainings perspektivisch nicht dauerhaft extern einkaufen, sondern intern skalieren möchte, findet in unserer <Link to="/trainings/train-the-trainer-copilot" className="text-blue-600 dark:text-blue-400 hover:underline">Train-the-Trainer-Ausbildung</Link> den passenden Hebel: Vier Tage, in denen wir Ihre Multiplikator:innen, Ambassador:innen und AI Change Verantwortlichen für genau diese Lernreisen-Logik ausbilden – inklusive der kompletten Trainings-Decks, FAQ-Sammlungen und Change-Templates zur freien internen Nutzung.
+            </p>
           </div>
         </section>
 

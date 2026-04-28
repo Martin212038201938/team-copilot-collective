@@ -601,6 +601,10 @@ const CopilotLaunchKampagne = () => {
                     <ArrowRight className="w-4 h-4 text-blue-500" />
                     <strong>App-Trainings</strong>: Word, Excel, PowerPoint, Outlook, Teams
                   </li>
+                  <li className="flex items-center gap-2">
+                    <ArrowRight className="w-4 h-4 text-blue-500" />
+                    <strong><Link to="/trainings/train-the-trainer-copilot" className="text-primary hover:underline">Train-the-Trainer</Link></strong>: Eigene Multiplikator:innen ausbilden – inkl. aller Trainingsunterlagen
+                  </li>
                 </ul>
               </CardContent>
             </Card>

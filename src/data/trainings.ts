@@ -231,7 +231,7 @@ export const trainings: Training[] = [
     title: "Train-the-Trainer: Copilot Multiplikator:innen ausbilden",
     duration: "4 Tage Vollzeit + bedarfsorientierte Online-Workshops",
     durationISO: "P4D",
-    description: "Vier intensive Tage, in denen wir AI Change Verantwortliche, Ambassador:innen und Multiplikator:innen aus Ihren Fachabteilungen so ausbilden, dass sie Copilot im eigenen Unternehmen souverän vermitteln und einführen können. Drei Dimensionen greifen ineinander: fortgeschrittene und rechtssichere Copilot-Praxis mit relevanten Use Cases, das Handwerk eines guten Adoption-Programms (Rollen, Zeithorizonte, Kosten, Komponenten) und Didaktik – wie Sie verschiedene Nutzergruppen im Unternehmen abholen und nachhaltig befähigen. Entstanden ist das Programm aus unserer eigenen Trainerausbildung; wir bieten es als geschlossenes Inhouse-Format und als offenes Training mit Pilotinnen und Piloten aus anderen Firmen an.",
+    description: "Vier intensive Tage, in denen wir AI Change Verantwortliche, Ambassador:innen und Multiplikator:innen aus Ihren Fachabteilungen so ausbilden, dass sie Copilot im eigenen Unternehmen souverän vermitteln und einführen können. Entstanden ist die Weiterbildung aus unserem internen Trainingsprogramm für neue Copilot-Trainer:innen – wir geben Ihnen also exakt das Curriculum mit, mit dem wir auch unsere eigenen Leute ausbilden. Drei Dimensionen greifen ineinander: fortgeschrittene und rechtssichere Copilot-Praxis mit relevanten Use Cases, das Handwerk eines guten Adoption-Programms (Rollen, Zeithorizonte, Kosten, Komponenten) und Didaktik – wie Sie verschiedene Nutzergruppen im Unternehmen abholen und nachhaltig befähigen. Wir bieten das Programm als geschlossenes Inhouse-Format und als offenes Training mit Pilotinnen und Piloten aus anderen Firmen an.",
     features: [
       "Dimension 1 – Eigene Praxis vertiefen: Fortgeschrittenes Prompting, Cross-App-Workflows, Datenanalyse, Agenten und Automatisierungen sicher beherrschen – auch erfahrene Nutzer:innen finden hier viel Neues",
       "Dimension 1 – Rechtssicher arbeiten: DSGVO, EU AI Act Artikel 4, Urheberrecht, Datenklassifizierung, sensible Daten und typische Fallstricke im Alltag",
@@ -251,7 +251,7 @@ export const trainings: Training[] = [
     isNew: true,
     pricePerPerson: 2990,
     pricePerPersonLabel: "Ab 2.990 € pro Person für 4 Tage Vollzeit (offenes Training, inkl. Trainings-Decks, Templates und FAQ-Sammlungen). Inhouse-Konditionen auf Anfrage.",
-    questionLead: "Wie bilden wir interne Copilot-Trainer:innen, Ambassador:innen und Change-Verantwortliche aus, die unser Unternehmen wirklich mitnehmen?",
+    questionLead: "Wir bilden Ihre internen Copilot-Trainer:innen, Ambassador:innen und Change-Verantwortliche aus, damit Sie Ihre Mitarbeitenden begeistern und befähigen können.",
     targetAudience: [
       "AI Change Verantwortliche und Ambassador:innen, die einen Copilot-Rollout in ihrem Unternehmen orchestrieren",
       "Copilot Trainer & Multiplikator:innen aus Fachabteilungen, die Kolleginnen und Kollegen befähigen wollen",
@@ -268,9 +268,9 @@ export const trainings: Training[] = [
       "Sie bekommen ab Tag 1 eine direkte Linie zu unseren Trainer:innen für Rückfragen und bedarfsorientierte Begleit-Workshops"
     ],
     businessImpact: [
-      "Adoption-Programme werden plan- und steuerbar: Sie wissen, welche Hebel wann wirken und welche Investitionen lohnen",
-      "Die Kosten für externe Schulungen sinken deutlich, weil Sie intern kompetent skalieren – wir liefern dafür die Materialien",
-      "Mitarbeiter:innen sehen vertraute Gesichter in Trainings statt austauschbarer Externer – Akzeptanz und Transferquote steigen",
+      "Adoption-Programme werden plan- und steuerbar: Sie wissen, welche Hebel wann wirken und welche Investitionen lohnen – aufbauend auf unserem [Leitfaden für die Copilot-Einführung im Unternehmen](/wissen/copilot-im-unternehmen-einfuehren-leitfaden)",
+      "Die Kosten für externe Schulungen sinken deutlich, weil Sie intern kompetent skalieren – wir liefern dafür die Materialien und das didaktische Fundament aus unserem [Training- und Schulungsangebot](/wissen/copilot-training-schulung)",
+      "Mitarbeiter:innen sehen vertraute Gesichter in Trainings statt austauschbarer Externer – Akzeptanz und Transferquote steigen, gerade wenn Sie eine [interne Launch-Kampagne](/wissen/copilot-launch-kampagne) als Rahmen nutzen",
       "Sie etablieren ein dauerhaftes Lern-Ökosystem statt einmaliger Workshop-Events – Verhaltensänderung wird wahrscheinlicher",
       "Risiken im Umgang mit KI sinken, weil Ihre Multiplikator:innen rechtssichere Praxis nicht nur kennen, sondern aktiv vorleben"
     ],
