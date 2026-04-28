@@ -83,13 +83,14 @@ const TrainingDetail = () => {
     },
     "offers": {
       "@type": "Offer",
-      "price": "1800",
+      "price": training.pricePerPerson ? String(training.pricePerPerson) : "1800",
       "priceCurrency": "EUR",
       "priceSpecification": {
         "@type": "UnitPriceSpecification",
-        "price": "1800",
+        "price": training.pricePerPerson ? String(training.pricePerPerson) : "1800",
         "priceCurrency": "EUR",
-        "description": "Ab 1.800 € für Halbtag (4h), ab 2.800 € für Ganztag (7h)"
+        "description": training.pricePerPersonLabel
+          ?? "Ab 1.800 € für Halbtag (4h), ab 2.800 € für Ganztag (7h)"
       },
       "url": pageUrl,
       "availability": "https://schema.org/InStock",

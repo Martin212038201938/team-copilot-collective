@@ -212,9 +212,14 @@ const UnsereAngebote = () => {
                   to={`/trainings/${module.slug}`}
                   className="block group"
                 >
-                  <Card className={`h-full min-h-[280px] flex flex-col cursor-pointer hover:shadow-2xl transition-all duration-300 border-2 hover:border-primary/50 bg-card/50 backdrop-blur-sm ${module.popular ? 'border-amber-300 shadow-md ring-1 ring-amber-200/50' : ''}`}>
+                  <Card className={`h-full min-h-[280px] flex flex-col cursor-pointer hover:shadow-2xl transition-all duration-300 border-2 hover:border-primary/50 bg-card/50 backdrop-blur-sm ${module.isNew ? 'border-rose-400 shadow-md ring-1 ring-rose-200/50' : module.popular ? 'border-amber-300 shadow-md ring-1 ring-amber-200/50' : ''}`}>
                     <CardHeader className="flex-1 py-4">
                       <div className="flex flex-wrap gap-1.5 mb-2">
+                        {module.isNew && (
+                          <Badge className="bg-rose-100 text-rose-800 border-rose-300 hover:bg-rose-100 text-[11px] px-2 py-0.5 font-semibold">
+                            NEU
+                          </Badge>
+                        )}
                         {module.popular && (
                           <Badge className="bg-amber-100 text-amber-800 border-amber-300 hover:bg-amber-100 text-[11px] px-2 py-0.5 font-semibold">
                             ★ Häufig gebucht
