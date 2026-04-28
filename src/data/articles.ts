@@ -30,6 +30,17 @@ export interface ArticleData {
 // Alle Artikel - sortiert nach Veröffentlichungsdatum (neueste zuerst)
 export const ALL_ARTICLES: ArticleData[] = [
   {
+    id: "interne-copilot-trainer-ausbilden",
+    title: "Interne Copilot-Trainer ausbilden: Warum vier Tage und eine ehrliche Begleitung mehr bewegen als jeder Crashkurs",
+    description: "Warum interne Multiplikatoren ein Copilot-Rollout entscheidender prägen als jede externe Schulungswelle – und wie eine ehrlich dimensionierte Train-the-Trainer-Ausbildung wirkt.",
+    link: "/wissen/interne-copilot-trainer-ausbilden",
+    badge: "Train-the-Trainer",
+    icon: "🎓",
+    lastUpdated: "28. Apr. 2026",
+    publishDate: "2026-04-28",
+    publishTime: "10:00"
+  },
+  {
     id: "copilot-pages-loop-notebooks-sharepoint-workflows",
     title: "Copilot Pages, Loop, Notebooks, SharePoint: Warum Ihre Workflows ein Update brauchen",
     description: "Welches Microsoft-365-Tool ist wofür gemacht – und warum Ihre Workflows aus 2023 in 2026 nicht mehr funktionieren.",

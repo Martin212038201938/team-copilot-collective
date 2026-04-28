@@ -56,6 +56,7 @@ import CopilotFlexRoutingEU from "./pages/CopilotFlexRoutingEU";
 import CopilotRolloutLeitfaden from "./pages/CopilotRolloutLeitfaden";
 import BiasNoiseKiEntscheidungen from "./pages/BiasNoiseKiEntscheidungen";
 import CopilotPagesLoopNotebooksSharepointWorkflows from "./pages/CopilotPagesLoopNotebooksSharepointWorkflows";
+import InterneCopilotTrainerAusbilden from "./pages/InterneCopilotTrainerAusbilden";
 
 const queryClient = new QueryClient();
 
@@ -108,6 +109,7 @@ const App = () => (
           <Route path="/wissen/copilot-im-unternehmen-einfuehren-leitfaden" element={<CopilotRolloutLeitfaden />} />
           <Route path="/wissen/bessere-entscheidungen-mit-ki" element={<BiasNoiseKiEntscheidungen />} />
           <Route path="/wissen/copilot-pages-loop-notebooks-sharepoint-workflows" element={<CopilotPagesLoopNotebooksSharepointWorkflows />} />
+          <Route path="/wissen/interne-copilot-trainer-ausbilden" element={<InterneCopilotTrainerAusbilden />} />
           <Route path="/impressum" element={<Impressum />} />
           <Route path="/ueber-uns" element={<UeberUns />} />
           <Route path="/trainings" element={<UnsereAngebote />} />
