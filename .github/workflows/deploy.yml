@@ -38,6 +38,9 @@ jobs:
           google-chrome-stable --version
           which google-chrome-stable
 
+      - name: Validate SEO + generate sitemap (prebuild)
+        run: npm run prebuild
+
       - name: Vite Build
         run: npx vite build
         env:
@@ -64,7 +67,8 @@ jobs:
         run: |
           echo "Starting IndexNow notification..."
           SITEMAP_URL="https://copilotenschule.de/sitemap.xml"
-          INDEXNOW_KEY="695afc50b8ee44729593fd861c4e96e9"
+          # Key MUST match a *.txt file in /public/ — see public/02184b6b954d4a158c75668dbf809161.txt
+          INDEXNOW_KEY="02184b6b954d4a158c75668dbf809161"
           sleep 10
           echo "Fetching sitemap from $SITEMAP_URL"
           URLS=$(curl -s "$SITEMAP_URL" | grep -oP '(?<=<loc>)[^<]+' | head -100)

@@ -10,10 +10,18 @@
     <link rel="apple-touch-icon" href="/images/copilotenschule_flugzeug.png?v=2" />
 
     <!--
-      WICHTIG: Title, Description, Keywords, OG- und Twitter-Tags
-      werden von SEOHead.tsx pro Seite gesetzt (react-helmet-async).
-      KEINE statischen Meta-Tags hier, um Duplikate zu vermeiden!
+      Title und Description: SEOHead.tsx setzt seitenspezifische Werte zur Laufzeit
+      (react-helmet-async) und überschreibt diese Defaults. Diese statischen Defaults
+      sind nur Fallback für den Fall, dass react-snap den Helmet-Flush beim
+      Pre-Render verpasst — dann hat Google wenigstens einen sinnvollen Eintrag,
+      statt nichts.
+
+      WICHTIG: Hier KEIN Canonical-Tag — sonst würde der SPA-Fallback (für unbekannte
+      Pfade liefert Apache index.html aus) für jede unbekannte URL die Homepage
+      als Canonical melden. Das Canonical kommt ausschließlich pro Seite via SEOHead.
     -->
+    <title>copilotenschule.de — Microsoft Copilot Schulungen für Unternehmen</title>
+    <meta name="description" content="Praxisorientierte Microsoft Copilot Trainings, Schulungen und Workshops für Unternehmen. Microsoft 365 Copilot, GitHub Copilot, Copilot Studio, KI-Agenten." />
 
     <!-- Globales OG-Locale (wird nicht von SEOHead überschrieben) -->
     <meta property="og:locale" content="de_DE" />
