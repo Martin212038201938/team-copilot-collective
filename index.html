@@ -10,18 +10,22 @@
     <link rel="apple-touch-icon" href="/images/copilotenschule_flugzeug.png?v=2" />
 
     <!--
-      Title und Description: SEOHead.tsx setzt seitenspezifische Werte zur Laufzeit
-      (react-helmet-async) und überschreibt diese Defaults. Diese statischen Defaults
-      sind nur Fallback für den Fall, dass react-snap den Helmet-Flush beim
-      Pre-Render verpasst — dann hat Google wenigstens einen sinnvollen Eintrag,
-      statt nichts.
+      Title-Default: SEOHead.tsx setzt seitenspezifische Werte zur Laufzeit
+      (react-helmet-async). React-Helmet ersetzt den <title> per DOM-Replace
+      (HTML erlaubt nur einen Title), daher entstehen keine Duplikate.
+      Wenn react-snap den Helmet-Flush beim Pre-Render verpasst, bleibt der
+      Default-Title — besser als gar kein Title (Stand vor 04.05.2026).
 
-      WICHTIG: Hier KEIN Canonical-Tag — sonst würde der SPA-Fallback (für unbekannte
-      Pfade liefert Apache index.html aus) für jede unbekannte URL die Homepage
+      KEINE statische <meta name="description"> — react-helmet-async hängt
+      seinen description-Tag ZUSÄTZLICH an, statt zu ersetzen. Das würde
+      bei pre-gerenderten Seiten zu doppelten description-Tags führen.
+      Die seiten-spezifische Description kommt ausschließlich via SEOHead.
+
+      KEIN Canonical-Tag — sonst würde der SPA-Fallback (für unbekannte Pfade
+      liefert Apache index.html aus) für jede unbekannte URL die Homepage
       als Canonical melden. Das Canonical kommt ausschließlich pro Seite via SEOHead.
     -->
     <title>copilotenschule.de — Microsoft Copilot Schulungen für Unternehmen</title>
-    <meta name="description" content="Praxisorientierte Microsoft Copilot Trainings, Schulungen und Workshops für Unternehmen. Microsoft 365 Copilot, GitHub Copilot, Copilot Studio, KI-Agenten." />
 
     <!-- Globales OG-Locale (wird nicht von SEOHead überschrieben) -->
     <meta property="og:locale" content="de_DE" />
