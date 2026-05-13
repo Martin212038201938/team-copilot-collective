@@ -354,11 +354,11 @@ export const ALL_ARTICLES: ArticleData[] = [
   {
     id: "microsoft-copilot-lizenzen",
     title: "Microsoft Copilot Lizenzen 2026: Preise & Vergleich",
-    description: "Welche Microsoft Copilot Lizenz benötigen Sie? Umfassender Vergleich aller Lizenzmodelle für Microsoft 365 Copilot, GitHub Copilot und Copilot Studio mit aktuellen Preisen.",
+    description: "Welche Copilot-Lizenz lohnt sich? M365 Copilot Business (ab 15,60 €/User) und Enterprise (26 €), GitHub Copilot & Copilot Studio im Vergleich – Stand Mai 2026.",
     link: "/wissen/microsoft-copilot-lizenzen",
     badge: "Lizenzierung",
     icon: "📋",
-    lastUpdated: "09. März 2026",
+    lastUpdated: "13. Mai 2026",
     publishDate: "2026-01-15",
     publishTime: "09:00"
   },

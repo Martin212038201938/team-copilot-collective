@@ -34,11 +34,11 @@ const CopilotLicenses = () => {
   const faqs = [
     {
       name: "Welche Microsoft Copilot Lizenz brauchen wir für unser Unternehmen?",
-      answer: "Das hängt von Ihrem Use Case ab: Für Office-Produktivität brauchen Sie Microsoft 365 Copilot (26 €/Nutzer/Monat zzgl. MwSt.), für Entwickler GitHub Copilot (19–39 USD/Nutzer/Monat), für eigene KI-Agenten Copilot Studio (ab 26 €/Nutzer/Monat zzgl. MwSt.). Die Copilotenschule berät Sie bei der optimalen Lizenzstrategie für Ihre Anforderungen."
+      answer: "Das hängt von Ihrem Use Case und Ihrer Unternehmensgröße ab: Für Office-Produktivität bei bis zu 300 Nutzern empfiehlt sich Microsoft 365 Copilot Business (ab 15,60 €/Nutzer/Monat, Aktionspreis bis Juni 2026), für größere Unternehmen Microsoft 365 Copilot (26 €/Nutzer/Monat). Für Entwickler ist GitHub Copilot Business (19 USD/Nutzer/Monat) die richtige Wahl. Die Copilotenschule berät Sie bei der optimalen Lizenzstrategie für Ihre Anforderungen."
     },
     {
       name: "Lohnt sich Microsoft Copilot auch für kleine Teams unter 50 Mitarbeitern?",
-      answer: "Ja, es gibt keine Mindestabnahmemenge mehr. Auch kleine Teams profitieren von Copilot – entscheidend ist die Nutzungsintensität, nicht die Teamgröße. Starten Sie mit einem Pilot für die Mitarbeiter mit den meisten repetitiven Aufgaben. Die Copilotenschule bietet auch Trainings für kleine Teams mit maßgeschneiderten Formaten."
+      answer: "Ja, es gibt keine Mindestabnahmemenge. Auch kleine Teams profitieren von Copilot – entscheidend ist die Nutzungsintensität, nicht die Teamgröße. Mit dem Microsoft 365 Copilot Business-Plan (Aktionspreis bis 30. Juni 2026) gibt es zudem einen besonders günstigen Einstieg für KMU. Starten Sie mit einem Pilot für die Mitarbeiter mit den meisten repetitiven Aufgaben. Die Copilotenschule bietet auch Trainings für kleine Teams mit maßgeschneiderten Formaten."
     },
     {
       name: "Können wir Copilot-Lizenzen zunächst nur für eine Abteilung pilotieren?",
@@ -58,13 +58,13 @@ const CopilotLicenses = () => {
         "@type": "Article",
         "@id": ids.article,
         "headline": "Microsoft Copilot Lizenzen: Preisvergleich 2026",
-        "description": "Welche Copilot-Lizenz lohnt sich? M365 Copilot (ab 15,60 €/User), GitHub Copilot & Copilot Studio im direkten Vergleich – mit allen Infos für Ihre Entscheidung.",
+        "description": "Welche Copilot-Lizenz lohnt sich? M365 Copilot Business (ab 15,60 €/User) und Enterprise (26 €), GitHub Copilot & Copilot Studio im Vergleich – Stand Mai 2026.",
         "author": getAuthorSchemaMarkup(martinLang),
         "publisher": {
           "@id": "https://copilotenschule.de/#organization"
         },
         "datePublished": "2025-01-06",
-        "dateModified": "2026-03-09T10:00:00+01:00",
+        "dateModified": "2026-05-13T09:00:00+02:00",
         "mainEntityOfPage": {
           "@type": "WebPage",
           "@id": pageUrl
@@ -99,7 +99,7 @@ const CopilotLicenses = () => {
     <>
       <SEOHead
         title="Microsoft Copilot Lizenzen: Preisvergleich 2026"
-        description="Welche Copilot-Lizenz lohnt sich? M365 Copilot (ab 15,60 €/User), GitHub Copilot & Copilot Studio im direkten Vergleich – mit allen Infos für Ihre Entscheidung."
+        description="Welche Copilot-Lizenz lohnt sich? M365 Copilot Business (ab 15,60 €/User) und Enterprise (26 €), GitHub Copilot & Copilot Studio im Vergleich – Stand Mai 2026."
         keywords={[
           "Microsoft Copilot Lizenz",
           "Microsoft 365 Copilot Preis",
@@ -118,7 +118,7 @@ const CopilotLicenses = () => {
         schema={schema}
         author={martinLang}
         publishedTime="2025-01-06T09:00:00+01:00"
-        modifiedTime="2026-03-09T10:00:00+01:00"
+        modifiedTime="2026-05-13T09:00:00+02:00"
       />
 
       <ContentLayout
@@ -128,11 +128,18 @@ const CopilotLicenses = () => {
         ]}
         title="Microsoft Copilot Lizenzen: Preisvergleich 2026"
         description="Welche Copilot-Lizenz lohnt sich? M365 Copilot, GitHub Copilot und Copilot Studio im direkten Vergleich – mit allen Infos für Ihre Entscheidung."
-        lastUpdated="09. März 2026"
+        lastUpdated="13. Mai 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
         relatedContent={["wissen:microsoft-365-e7-frontier-suite", "wissen:claude-in-microsoft-copilot", "wissen:copilot-roi-berechnen", "wissen:copilot-studio", "wissen:github-copilot"]}
       >
+        {/* Stand Mai 2026 Sticker */}
+        <div className="flex justify-end mb-2">
+          <span className="inline-flex items-center gap-1.5 bg-orange-500 text-white text-sm font-bold px-3 py-1.5 rounded-full shadow-md">
+            ✓ Stand Mai 2026
+          </span>
+        </div>
+
         {/* Quick Answer Section für AIO-Optimierung */}
         <section id="quick-answer" className="mb-6">
           <Card className="border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-amber-500/5">
@@ -144,29 +151,35 @@ const CopilotLicenses = () => {
             </CardHeader>
             <CardContent className="space-y-3">
               <p className="text-base leading-relaxed">
-                <strong>Microsoft bietet drei Hauptlizenzmodelle:</strong> Microsoft 365 Copilot (26 €/Monat zzgl. MwSt. für Office-Produktivität),
-                GitHub Copilot (10–39 USD/Monat für Entwickler) und Copilot Studio (ab 26 €/Nutzer/Monat zzgl. MwSt. für eigene KI-Agenten).
+                <strong>Microsoft bietet drei Hauptlizenzmodelle:</strong> Microsoft 365 Copilot (ab 15,60 €/Monat zzgl. MwSt. für Office-Produktivität),
+                GitHub Copilot (kostenlos bis 19 USD/Monat für Entwickler-Teams) und Copilot Studio (173,30 €/Monat für 25.000 Copilot Credits für eigene KI-Agenten).
                 Die richtige Wahl hängt von Ihrem Anwendungsfall ab: Business User benötigen Microsoft 365 Copilot,
                 Entwicklerteams GitHub Copilot Business, und für Custom AI-Lösungen ist Copilot Studio die beste Option.
                 Alle Lizenzen sind DSGVO-konform und nutzen Unternehmensdaten nicht für öffentliches KI-Training.
               </p>
-              <div className="grid md:grid-cols-3 gap-4 mt-4">
+              <div className="grid md:grid-cols-4 gap-3 mt-4">
+                <div className="p-3 bg-white dark:bg-gray-900 rounded-lg border">
+                  <div className="font-bold text-primary mb-1">M365 Copilot Business</div>
+                  <div className="text-sm text-muted-foreground">Bis 300 Nutzer (SMB)</div>
+                  <div className="text-lg font-semibold mt-2">15,60 €/Monat</div>
+                  <div className="text-xs text-muted-foreground">zzgl. MwSt. (Aktionspreis)</div>
+                </div>
                 <div className="p-3 bg-white dark:bg-gray-900 rounded-lg border">
                   <div className="font-bold text-primary mb-1">M365 Copilot</div>
-                  <div className="text-sm text-muted-foreground">Office-Produktivität</div>
+                  <div className="text-sm text-muted-foreground">Enterprise</div>
                   <div className="text-lg font-semibold mt-2">26 €/Monat</div>
                   <div className="text-xs text-muted-foreground">zzgl. MwSt.</div>
                 </div>
                 <div className="p-3 bg-white dark:bg-gray-900 rounded-lg border">
                   <div className="font-bold text-primary mb-1">GitHub Copilot</div>
                   <div className="text-sm text-muted-foreground">Code-Entwicklung</div>
-                  <div className="text-lg font-semibold mt-2">10–39 USD/Monat</div>
+                  <div className="text-lg font-semibold mt-2">kostenlos – 19 USD/Monat</div>
                 </div>
                 <div className="p-3 bg-white dark:bg-gray-900 rounded-lg border">
                   <div className="font-bold text-primary mb-1">Copilot Studio</div>
                   <div className="text-sm text-muted-foreground">Custom AI-Agents</div>
-                  <div className="text-lg font-semibold mt-2">ab 26 €/Nutzer/Monat</div>
-                  <div className="text-xs text-muted-foreground">zzgl. MwSt.</div>
+                  <div className="text-lg font-semibold mt-2">173,30 €/Monat</div>
+                  <div className="text-xs text-muted-foreground">25.000 Copilot Credits, zzgl. MwSt.</div>
                 </div>
               </div>
             </CardContent>
@@ -184,166 +197,271 @@ const CopilotLicenses = () => {
             Die drei Hauptprodukte sind:
           </p>
           <ul>
-            <li><strong>Microsoft 365 Copilot</strong> – KI-Assistent für Word, Excel, PowerPoint, Outlook, Teams</li>
-            <li><strong>GitHub Copilot</strong> – KI-Coding-Assistent für Softwareentwickler</li>
+            <li><strong>Microsoft 365 Copilot</strong> – KI-Assistent für Word, Excel, PowerPoint, Outlook, Teams (zwei Varianten: Business für KMU, Enterprise für Großunternehmen)</li>
+            <li><strong>GitHub Copilot</strong> – KI-Coding-Assistent für Softwareentwickler (ab sofort auch kostenlos verfügbar)</li>
             <li><strong><Link to="/wissen/copilot-studio" className="text-primary hover:underline">Microsoft Copilot Studio</Link></strong> – Plattform zur Entwicklung eigener <Link to="/wissen/ki-agenten" className="text-primary hover:underline">KI-Agenten</Link></li>
           </ul>
+
+          <div className="mt-6 bg-amber-50 dark:bg-amber-950 border-l-4 border-amber-500 rounded-r-lg p-4">
+            <p className="font-bold text-amber-900 dark:text-amber-100 mb-2">Aktuelle Änderung: Copilot Chat verliert Office-Integration (Mai 2026)</p>
+            <p className="text-sm text-amber-800 dark:text-amber-200">
+              Ab 16. Mai 2026 ist Copilot in Word, Excel, PowerPoint und OneNote ausschließlich für bezahlte Microsoft 365 Copilot-Lizenzinhaber verfügbar. Der kostenlose <strong>Microsoft 365 Copilot Chat</strong> bleibt als webbasierter KI-Chat erhalten, verliert aber die tief integrierte Dokumentenbearbeitung in den Office-Apps. Für Unternehmen mit mehr als 2.000 Nutzern erfolgt die Abschaltung vollständig; bei kleineren Organisationen gelten zunächst Nutzungseinschränkungen. Dies ist ein wichtiger Grund, jetzt den ROI einer bezahlten Copilot-Lizenz zu bewerten.
+            </p>
+          </div>
         </section>
 
         <section id="microsoft-365-copilot" className="mt-12">
           <h2 className="text-2xl md:text-3xl font-bold mb-3">Microsoft 365 Copilot</h2>
+          <p className="mb-4">
+            Seit Ende 2025 unterscheidet Microsoft zwischen zwei Varianten: <strong>Microsoft 365 Copilot Business</strong> für kleine und mittlere Unternehmen (bis 300 Nutzer) und <strong>Microsoft 365 Copilot</strong> für Enterprise-Kunden. Die Features sind weitgehend identisch – der Unterschied liegt vor allem in der Preisgestaltung und der Nutzergrenze.
+          </p>
+          <p className="mb-6">
+            Zusätzlich steht allen Nutzern mit einem berechtigenden Microsoft 365-Abonnement kostenlos <strong>Microsoft 365 Copilot Chat</strong> zur Verfügung – ein sicherer, unternehmenstauglicher KI-Chat. Wichtig: Copilot in Word, Excel, PowerPoint und OneNote ist seit April/Mai 2026 ausschließlich bezahlten Copilot-Lizenznehmern vorbehalten.
+          </p>
 
-          <Card className="my-6 border-2 border-primary/20 hover:shadow-xl transition-shadow">
-            <CardHeader className="bg-gradient-to-r from-primary/10 to-accent/10">
-              <CardTitle className="flex items-center gap-2">
-                <span className="text-2xl">💼</span>
-                Microsoft 365 Copilot Lizenz
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="pt-6 space-y-4">
-              <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-6 my-6">
+            {/* Business-Tier */}
+            <Card className="border-2 border-primary/20 hover:shadow-xl transition-shadow">
+              <CardHeader className="bg-gradient-to-r from-primary/10 to-accent/10">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  Microsoft 365 Copilot Business
+                  <span className="text-xs bg-orange-500 text-white px-2 py-0.5 rounded-full font-normal ml-auto">Aktionspreis</span>
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="pt-4 space-y-4">
                 <div>
-                  <h3 className="font-bold text-lg mb-2">Preis</h3>
-                  <p className="text-3xl font-bold text-primary">26 €</p>
+                  <p className="text-3xl font-bold text-primary">15,60 €</p>
                   <p className="text-sm text-muted-foreground">pro Nutzer / Monat (jährlich, zzgl. MwSt.)</p>
+                  <p className="text-xs text-muted-foreground mt-1">Regulärpreis: 18,20 €/Nutzer/Monat · Aktionspreis gültig bis 30. Juni 2026</p>
                 </div>
                 <div>
-                  <h3 className="font-bold text-lg mb-2">Voraussetzungen</h3>
-                  <p>Erfordert eine der folgenden Lizenzen:</p>
-                  <ul className="text-sm mt-2 space-y-1">
-                    <li>✓ Microsoft 365 E3 oder E5</li>
-                    <li>✓ Microsoft 365 Business Standard</li>
-                    <li>✓ Microsoft 365 Business Premium</li>
-                  </ul>
+                  <p className="text-sm font-medium mb-1">Für wen geeignet:</p>
+                  <p className="text-sm text-muted-foreground">KMU bis zu 300 Nutzer · erfordert Microsoft 365 Business Standard oder Business Premium</p>
                 </div>
-              </div>
-
-              <div className="border-t pt-4">
-                <h3 className="font-bold mb-3">Enthaltene Features</h3>
-                <div className="grid md:grid-cols-2 gap-3">
+                <div className="space-y-2">
                   {[
-                    "Copilot in Word, Excel, PowerPoint",
+                    "Copilot in Word, Excel, PowerPoint, OneNote",
                     "Copilot in Outlook und Teams",
-                    "Microsoft Copilot Chat (früher Bing Chat Enterprise)",
-                    "Business Chat für teamübergreifende Zusammenarbeit",
-                    "Graph-Grounded Chat über Ihre Microsoft 365 Daten",
-                    "Copilot Studio (begrenzt auf 25 Nachrichten/Monat)"
+                    "Microsoft 365 Copilot Chat",
+                    "Copilot Studio für interne Agenten",
+                    "Work IQ – kontextbewusstes KI-Grounding"
                   ].map((feature, idx) => (
                     <div key={idx} className="flex items-start gap-2">
-                      <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                      <Check className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" />
                       <span className="text-sm">{feature}</span>
                     </div>
                   ))}
                 </div>
-              </div>
+              </CardContent>
+            </Card>
 
-              <div className="bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 rounded-lg p-4 flex gap-3">
-                <Info className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
-                <div className="text-sm">
-                  <p className="font-medium text-blue-900 dark:text-blue-100 mb-1">Wichtig:</p>
-                  <p className="text-blue-800 dark:text-blue-200">
-                    Microsoft 365 Copilot kann nur für Nutzer aktiviert werden, die bereits eine der erforderlichen
-                    Grundlizenzen besitzen. Die Mindestabnahme beträgt 1 Lizenz (früher 300 Lizenzen).
-                  </p>
+            {/* Enterprise-Tier */}
+            <Card className="border-2 border-primary/20 hover:shadow-xl transition-shadow">
+              <CardHeader className="bg-gradient-to-r from-primary/10 to-accent/10">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  Microsoft 365 Copilot
+                  <span className="text-xs bg-gray-500 text-white px-2 py-0.5 rounded-full font-normal ml-auto">Enterprise</span>
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="pt-4 space-y-4">
+                <div>
+                  <p className="text-3xl font-bold text-primary">26,00 €</p>
+                  <p className="text-sm text-muted-foreground">pro Nutzer / Monat (jährlich, zzgl. MwSt.)</p>
                 </div>
-              </div>
-            </CardContent>
-          </Card>
+                <div>
+                  <p className="text-sm font-medium mb-1">Für wen geeignet:</p>
+                  <p className="text-sm text-muted-foreground">Großunternehmen · erfordert Microsoft 365 E3, E5 oder F3</p>
+                </div>
+                <div className="space-y-2">
+                  {[
+                    "Copilot in Word, Excel, PowerPoint, OneNote",
+                    "Copilot in Outlook und Teams",
+                    "Microsoft 365 Copilot Chat",
+                    "Copilot Studio für interne Agenten",
+                    "Work IQ – kontextbewusstes KI-Grounding",
+                    "Enterprise-Compliance und erweiterte Analysefunktionen"
+                  ].map((feature, idx) => (
+                    <div key={idx} className="flex items-start gap-2">
+                      <Check className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" />
+                      <span className="text-sm">{feature}</span>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 rounded-lg p-4 flex gap-3 mb-4">
+            <Info className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+            <div className="text-sm">
+              <p className="font-medium text-blue-900 dark:text-blue-100 mb-1">Preiserhöhung ab Juli 2026:</p>
+              <p className="text-blue-800 dark:text-blue-200">
+                Microsoft passt zum 1. Juli 2026 die Listenpreise aller kommerziellen Microsoft 365-Basispläne um ca. 8–17 % an. Copilot-Add-on-Preise bleiben davon vorerst unberührt. Bestehende Jahresabonnements, die vor dem 1. Juli 2026 verlängert werden, profitieren noch von den aktuellen Konditionen.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 rounded-lg p-4 flex gap-3">
+            <Info className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+            <div className="text-sm">
+              <p className="font-medium text-blue-900 dark:text-blue-100 mb-1">Wichtig:</p>
+              <p className="text-blue-800 dark:text-blue-200">
+                Microsoft 365 Copilot kann nur für Nutzer aktiviert werden, die bereits eine der erforderlichen
+                Grundlizenzen besitzen. Die Mindestabnahme beträgt 1 Lizenz – eine unternehmensweite Lizenzierung ist nicht erforderlich.
+              </p>
+            </div>
+          </div>
         </section>
 
         <section id="github-copilot" className="mt-12">
           <h2 className="text-2xl md:text-3xl font-bold mb-3">GitHub Copilot</h2>
-          <p>
-            GitHub Copilot ist in drei Editionen verfügbar, jeweils mit unterschiedlichen Features für
-            individuelle Entwickler und Teams.
+          <p className="mb-3">
+            GitHub Copilot ist 2026 in fünf Editionen verfügbar – darunter seit Ende 2024 ein kostenloser Einstiegs-Tier. Für Unternehmen sind weiterhin die Pläne Business und Enterprise relevant. Ab Juni 2026 stellt GitHub zudem schrittweise auf usage-basiertes Billing um: Statt fester Request-Limits gilt dann ein monatliches KI-Credit-Budget.
           </p>
 
-          <div className="grid md:grid-cols-3 gap-6 my-6">
-            {[
-              {
-                name: "Pro",
-                price: "10 USD",
-                period: "pro Monat",
-                description: "Für einzelne Entwickler",
-                features: [
-                  "Code-Vervollständigung",
-                  "Chat im Editor",
-                  "CLI-Integration",
-                  "Mobile Unterstützung",
-                  "Einzelnutzer-Lizenz"
-                ],
-                notIncluded: [
-                  "Keine Unternehmens-Policies",
-                  "Keine zentrale Verwaltung",
-                  "Kein IP-Indemnity"
-                ]
-              },
-              {
-                name: "Business",
-                price: "19 USD",
-                period: "pro Nutzer / Monat",
-                description: "Für Entwickler-Teams",
-                features: [
-                  "Alle Individual Features",
-                  "Organization-wide Policies",
-                  "Zentrale Lizenz-Verwaltung",
-                  "IP-Indemnity (Haftungsschutz)",
-                  "Audit Logs"
-                ],
-                notIncluded: [
-                  "Keine erweiterten Security-Features"
-                ]
-              },
-              {
-                name: "Enterprise",
-                price: "39 USD",
-                period: "pro Nutzer / Monat",
-                description: "Für große Unternehmen",
-                features: [
-                  "Alle Business Features",
-                  "Fine-tuned Models möglich",
-                  "Erweiterte Security",
-                  "SAML SSO",
-                  "Compliance-Tools",
-                  "Priority Support"
-                ],
-                notIncluded: []
-              }
-            ].map((plan, idx) => (
-              <Card
-                key={idx}
-                className="hover:shadow-xl transition-all duration-300 border-2 border-border"
-              >
-                <CardHeader>
-                  <CardTitle className="text-xl">
-                    GitHub Copilot {plan.name}
-                  </CardTitle>
-                  <div className="mt-4">
-                    <div className="text-3xl font-bold text-primary">{plan.price}</div>
-                    <div className="text-sm text-muted-foreground">{plan.period}</div>
-                    <p className="text-sm mt-2">{plan.description}</p>
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-6 space-y-4">
-                  <div>
-                    <div className="space-y-2">
-                      {plan.features.map((feature, fidx) => (
-                        <div key={fidx} className="flex items-start gap-2">
-                          <Check className="w-4 h-4 text-green-600 flex-shrink-0 mt-1" />
-                          <span className="text-sm">{feature}</span>
-                        </div>
-                      ))}
-                      {plan.notIncluded.map((feature, fidx) => (
-                        <div key={fidx} className="flex items-start gap-2 opacity-50">
-                          <X className="w-4 h-4 text-gray-400 flex-shrink-0 mt-1" />
-                          <span className="text-sm">{feature}</span>
+          <div className="grid md:grid-cols-2 gap-6 my-6">
+            {/* Individual-Pläne */}
+            <div className="space-y-4">
+              <h3 className="font-bold text-lg">Für Einzelentwickler</h3>
+              {[
+                {
+                  name: "Free",
+                  price: "Kostenlos",
+                  period: "",
+                  badge: "Neu",
+                  badgeColor: "bg-green-500",
+                  description: "Einstieg ohne Kosten",
+                  features: [
+                    "50 Premium-Requests / Monat",
+                    "2.000 Code-Completions / Monat",
+                    "Chat im Editor",
+                    "Keine zentrale Verwaltung"
+                  ]
+                },
+                {
+                  name: "Pro",
+                  price: "10 USD",
+                  period: "pro Monat",
+                  badge: "",
+                  badgeColor: "",
+                  description: "Für aktive Einzelentwickler",
+                  features: [
+                    "300 Premium-Requests / Monat",
+                    "Unbegrenzte Code-Completions",
+                    "Chat im Editor & CLI-Integration",
+                    "Mobile Unterstützung"
+                  ]
+                },
+                {
+                  name: "Pro+",
+                  price: "39 USD",
+                  period: "pro Monat",
+                  badge: "Neu",
+                  badgeColor: "bg-purple-500",
+                  description: "Für Power-User und Vielnutzer",
+                  features: [
+                    "1.500 Premium-Requests / Monat",
+                    "Zugang zu neuesten KI-Modellen",
+                    "Alle Pro-Features enthalten"
+                  ]
+                }
+              ].map((plan, idx) => (
+                <Card key={idx} className="border border-border hover:shadow-md transition-shadow">
+                  <CardContent className="pt-4 pb-4">
+                    <div className="flex items-start justify-between mb-2">
+                      <div>
+                        <span className="font-bold">GitHub Copilot {plan.name}</span>
+                        {plan.badge && (
+                          <span className={`ml-2 text-xs ${plan.badgeColor} text-white px-1.5 py-0.5 rounded-full`}>{plan.badge}</span>
+                        )}
+                      </div>
+                      <div className="text-right">
+                        <div className="font-bold text-primary">{plan.price}</div>
+                        {plan.period && <div className="text-xs text-muted-foreground">{plan.period}</div>}
+                      </div>
+                    </div>
+                    <p className="text-xs text-muted-foreground mb-2">{plan.description}</p>
+                    <div className="space-y-1">
+                      {plan.features.map((f, fidx) => (
+                        <div key={fidx} className="flex items-start gap-1.5">
+                          <Check className="w-3.5 h-3.5 text-green-600 flex-shrink-0 mt-0.5" />
+                          <span className="text-xs">{f}</span>
                         </div>
                       ))}
                     </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+
+            {/* Team/Enterprise-Pläne */}
+            <div className="space-y-4">
+              <h3 className="font-bold text-lg">Für Teams und Unternehmen</h3>
+              {[
+                {
+                  name: "Business",
+                  price: "19 USD",
+                  period: "pro Nutzer / Monat",
+                  description: "Für Entwickler-Teams",
+                  features: [
+                    "300 Premium-Requests / Nutzer / Monat",
+                    "Organization-wide Policies",
+                    "Zentrale Lizenz-Verwaltung",
+                    "IP-Indemnity (Haftungsschutz)",
+                    "Audit Logs"
+                  ],
+                  notIncluded: [
+                    "Keine erweiterten Security-Features"
+                  ]
+                },
+                {
+                  name: "Enterprise",
+                  price: "39 USD",
+                  period: "pro Nutzer / Monat",
+                  description: "Für große Unternehmen",
+                  features: [
+                    "1.000 Premium-Requests / Nutzer / Monat",
+                    "Alle Business-Features",
+                    "Erweiterte Security & SAML SSO",
+                    "Fine-tuned Models möglich",
+                    "Compliance-Tools & Priority Support"
+                  ],
+                  notIncluded: []
+                }
+              ].map((plan, idx) => (
+                <Card key={idx} className="hover:shadow-xl transition-all duration-300 border-2 border-border">
+                  <CardHeader>
+                    <CardTitle className="text-lg">GitHub Copilot {plan.name}</CardTitle>
+                    <div className="mt-2">
+                      <div className="text-2xl font-bold text-primary">{plan.price}</div>
+                      <div className="text-sm text-muted-foreground">{plan.period}</div>
+                      <p className="text-sm mt-1">{plan.description}</p>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="pt-2 space-y-1">
+                    {plan.features.map((feature, fidx) => (
+                      <div key={fidx} className="flex items-start gap-2">
+                        <Check className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" />
+                        <span className="text-sm">{feature}</span>
+                      </div>
+                    ))}
+                    {plan.notIncluded.map((feature, fidx) => (
+                      <div key={fidx} className="flex items-start gap-2 opacity-50">
+                        <X className="w-4 h-4 text-gray-400 flex-shrink-0 mt-0.5" />
+                        <span className="text-sm">{feature}</span>
+                      </div>
+                    ))}
+                  </CardContent>
+                </Card>
+              ))}
+
+              <div className="bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-lg p-3">
+                <p className="text-xs font-medium text-amber-900 dark:text-amber-100 mb-1">Hinweis: Usage-based Billing ab Juni 2026</p>
+                <p className="text-xs text-amber-800 dark:text-amber-200">
+                  Ab 1. Juni 2026 stellt GitHub auf ein KI-Credit-System um. Business-Kunden erhalten dann monatlich $19 an Credits, Enterprise-Kunden $39. Während einer Übergangsphase (Juni–August 2026) gelten erhöhte Kontingente.
+                </p>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -380,7 +498,7 @@ const CopilotLicenses = () => {
                     </div>
                     <div className="flex items-start gap-2">
                       <Check className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" />
-                      <span className="text-sm">Einfache Workflows mit Power Automate-Aktionen</span>
+                      <span className="text-sm">Interne Workflows ohne Nutzungslimits</span>
                     </div>
                     <div className="flex items-start gap-2 opacity-50">
                       <X className="w-4 h-4 text-gray-400 flex-shrink-0 mt-0.5" />
@@ -388,7 +506,7 @@ const CopilotLicenses = () => {
                     </div>
                     <div className="flex items-start gap-2 opacity-50">
                       <X className="w-4 h-4 text-gray-400 flex-shrink-0 mt-0.5" />
-                      <span className="text-sm">Keine Custom AI Models oder Knowledge-Anbindung</span>
+                      <span className="text-sm">Für externe Kanäle: eigenständige Copilot Studio Lizenz erforderlich</span>
                     </div>
                   </div>
                 </div>
@@ -424,15 +542,16 @@ const CopilotLicenses = () => {
               </div>
 
               <div className="bg-purple-50 dark:bg-purple-950 border border-purple-200 dark:border-purple-800 rounded-lg p-4">
-                <h4 className="font-bold mb-2 text-purple-900 dark:text-purple-100">Nutzungsbasierte Kosten</h4>
+                <h4 className="font-bold mb-2 text-purple-900 dark:text-purple-100">Copilot Credits (früher: Message Credits)</h4>
                 <p className="text-sm text-purple-800 dark:text-purple-200 mb-3">
-                  Copilot Studio berechnet zusätzlich nutzungsbasierte "Message Credits":
+                  Seit September 2025 heißt die Verbrauchseinheit in Copilot Studio <strong>Copilot Credits</strong> (vorher: Message Credits). Preislich hat sich nichts geändert:
                 </p>
                 <ul className="text-sm space-y-1 text-purple-800 dark:text-purple-200">
-                  <li>• Kosten variieren je nach Nachrichtenkomplexität</li>
-                  <li>• Generative AI-Antworten verbrauchen mehr Credits</li>
-                  <li>• 25.000 Message Credits im Paket für 173,30 €/Monat (zzgl. MwSt.)</li>
-                  <li>• Alternativ: 26 €/Nutzer/Monat als Per-User-Lizenz (zzgl. MwSt.)</li>
+                  <li>• Verbrauch variiert je nach Agentenaktion und Komplexität</li>
+                  <li>• Generative AI-Antworten verbrauchen mehr Credits als einfache Flows</li>
+                  <li>• Kapazitätspaket: 25.000 Copilot Credits für 173,30 €/Monat (zzgl. MwSt.)</li>
+                  <li>• Nutzungsbasierte Zahlung: Pay-as-you-go ohne Vorabbindung</li>
+                  <li>• Vorabkaufplan (Pre-Purchase): bis zu 20 % Rabatt bei jährlicher Vorauszahlung</li>
                 </ul>
               </div>
             </CardContent>
@@ -454,9 +573,9 @@ const CopilotLicenses = () => {
               <tbody>
                 <tr>
                   <td className="border p-3 font-medium">Preis pro Nutzer/Monat</td>
-                  <td className="border p-3 text-center">26 € zzgl. MwSt.</td>
-                  <td className="border p-3 text-center">10–39 USD</td>
-                  <td className="border p-3 text-center">ab 26 € zzgl. MwSt.</td>
+                  <td className="border p-3 text-center">15,60 € (Business, SMB) / 26 € (Enterprise) zzgl. MwSt.</td>
+                  <td className="border p-3 text-center">kostenlos – 19 USD (Teams)</td>
+                  <td className="border p-3 text-center">173,30 €/25.000 Credits zzgl. MwSt.</td>
                 </tr>
                 <tr className="bg-muted/30">
                   <td className="border p-3 font-medium">Hauptanwendungsgebiet</td>
@@ -472,8 +591,8 @@ const CopilotLicenses = () => {
                 </tr>
                 <tr className="bg-muted/30">
                   <td className="border p-3 font-medium">Voraussetzungen</td>
-                  <td className="border p-3 text-center">M365 E3/E5/Business</td>
-                  <td className="border p-3 text-center">GitHub Account</td>
+                  <td className="border p-3 text-center">M365 E3/E5/Business Standard oder Premium</td>
+                  <td className="border p-3 text-center">GitHub Account (Free: kostenlos)</td>
                   <td className="border p-3 text-center">Optional M365 Copilot</td>
                 </tr>
                 <tr>
@@ -515,11 +634,10 @@ const CopilotLicenses = () => {
               </CardHeader>
               <CardContent>
                 <p className="mb-3">
-                  <strong>Passende Lizenz: Microsoft 365 Copilot</strong>
+                  <strong>Passende Lizenz: Microsoft 365 Copilot Business oder Microsoft 365 Copilot</strong>
                 </p>
                 <p className="text-sm text-muted-foreground">
-                  Konzipiert für Business User, die täglich mit Microsoft Office arbeiten. Benötigt eine Microsoft 365 E3, E5,
-                  Business Standard oder Business Premium Lizenz als Grundlage.
+                  Für KMU bis 300 Nutzer empfiehlt sich Microsoft 365 Copilot Business (ab 15,60 €/Nutzer/Monat Aktionspreis bis Juni 2026, regulär 18,20 €). Größere Unternehmen lizenzieren über Microsoft 365 Copilot (26 €/Nutzer/Monat). Beides erfordert eine bestehende Microsoft 365-Grundlizenz (Business Standard, Business Premium, E3 oder E5).
                 </p>
               </CardContent>
             </Card>
@@ -533,8 +651,8 @@ const CopilotLicenses = () => {
                   <strong>Passende Lizenz: GitHub Copilot Business oder Enterprise</strong>
                 </p>
                 <p className="text-sm text-muted-foreground">
-                  GitHub Copilot Business (19 USD) bietet zentrale Verwaltung und IP-Indemnity für Teams.
-                  Große Unternehmen mit hohen Compliance-Anforderungen greifen auf Enterprise (39 USD) zurück.
+                  GitHub Copilot Business (19 USD/Nutzer/Monat) bietet zentrale Verwaltung und IP-Indemnity für Teams.
+                  Große Unternehmen mit hohen Compliance-Anforderungen nutzen Enterprise (39 USD/Nutzer/Monat). Einzelentwickler können mit dem kostenlosen Free-Plan einsteigen oder auf Pro (10 USD/Monat) upgraden. Ab Juni 2026 gilt usage-basiertes Billing mit KI-Credits.
                 </p>
               </CardContent>
             </Card>
@@ -548,8 +666,8 @@ const CopilotLicenses = () => {
                   <strong>Passende Lizenz: Microsoft Copilot Studio</strong>
                 </p>
                 <p className="text-sm text-muted-foreground">
-                  Wenn Sie bereits Microsoft 365 Copilot haben, ist Copilot Studio (begrenzt) enthalten.
-                  Für umfangreichere Projekte benötigen Sie die Standalone-Lizenz ab 26 €/Nutzer/Monat zzgl. MwSt.
+                  Wenn Sie bereits Microsoft 365 Copilot haben, ist Copilot Studio für interne Agenten ohne zusätzliche Kosten und ohne Nutzungslimit enthalten.
+                  Für Agenten auf externen Kanälen (Websites, Apps) benötigen Sie ein eigenständiges Copilot Studio Kapazitätspaket: 173,30 €/Monat für 25.000 Copilot Credits (zzgl. MwSt.) oder nutzungsbasierte Abrechnung.
                 </p>
               </CardContent>
             </Card>
@@ -582,7 +700,7 @@ const CopilotLicenses = () => {
               },
               {
                 question: "Muss ich für alle Mitarbeiter Microsoft 365 Copilot kaufen?",
-                answer: "Nein, Sie können Copilot selektiv für einzelne Nutzer oder Teams lizenzieren. Seit 2024 ist die Mindestabnahme von 300 Lizenzen entfallen."
+                answer: "Nein, Sie können Copilot selektiv für einzelne Nutzer oder Teams lizenzieren. Es gibt keine Mindestabnahmemenge – schon eine einzelne Lizenz ist möglich. Ein schrittweiser Rollout, beginnend mit Pilot-Gruppen, ist der empfohlene Ansatz."
               },
               {
                 question: "Kann ich GitHub Copilot und Microsoft 365 Copilot gleichzeitig nutzen?",
