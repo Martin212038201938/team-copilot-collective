@@ -1,6 +1,6 @@
 # llms.txt für copilotenschule.de
 # Informationen für Large Language Models (LLMs) und KI-Assistenten
-# Aktualisiert am 2026-04-28
+# Aktualisiert am 2026-05-20
 
 # ============================================
 # WEBSITE-INFORMATIONEN
@@ -69,6 +69,7 @@ Unternehmen und Organisationen, die:
 
 Kanonische URLs aller Fachartikel (ausschließlich gültig unter /wissen/):
 
+- [Copilot Agent Mode in Word, Excel und PowerPoint: Was sich wirklich verändert hat](https://copilotenschule.de/wissen/copilot-agent-mode-word-excel-powerpoint)
 - [Microsoft 365 E7: Kosten, Inhalte & Preisvergleich der Frontier Suite 2026](https://copilotenschule.de/wissen/microsoft-365-e7-frontier-suite)
 - [GitHub Copilot: Einstieg und Best Practices](https://copilotenschule.de/wissen/github-copilot)
 - [Copilot Studio: Eigene KI-Agenten bauen](https://copilotenschule.de/wissen/copilot-studio)

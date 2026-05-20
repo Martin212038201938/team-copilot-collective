@@ -74,6 +74,7 @@ const knowledgePages = [
   { loc: '/wissen/bessere-entscheidungen-mit-ki', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
   { loc: '/wissen/copilot-pages-loop-notebooks-sharepoint-workflows', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
   { loc: '/wissen/interne-copilot-trainer-ausbilden', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
+  { loc: '/wissen/copilot-agent-mode-word-excel-powerpoint', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
 ];
 
 // Trainingsseiten - Slugs aus trainings.ts

@@ -30,6 +30,17 @@ export interface ArticleData {
 // Alle Artikel - sortiert nach Veröffentlichungsdatum (neueste zuerst)
 export const ALL_ARTICLES: ArticleData[] = [
   {
+    id: "copilot-agent-mode-word-excel-powerpoint",
+    title: "Copilot Agent Mode in Word, Excel und PowerPoint: Was sich wirklich verändert hat",
+    description: "Seit dem 22. April 2026 ist Copilot Agent Mode GA. Was das konkret bedeutet – und wie sich der Wettbewerb mit Claude für Office entwickelt.",
+    link: "/wissen/copilot-agent-mode-word-excel-powerpoint",
+    badge: "Microsoft 365 Copilot",
+    icon: "⚙",
+    lastUpdated: "21. Mai 2026",
+    publishDate: "2026-05-21",
+    publishTime: "09:00"
+  },
+  {
     id: "copilot-in-teams-zeit-gewinnen",
     title: "Copilot in Teams – So gewinnt man in der Praxis wirklich Zeit",
     description: "Welche Copilot-Funktionen in Teams den größten ROI bringen – mit Tipps, die die meisten noch nicht kennen: Facilitator per Handy, Researcher, Stories-Modus, Custom Agents.",

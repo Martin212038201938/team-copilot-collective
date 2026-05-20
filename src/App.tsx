@@ -36,6 +36,7 @@ import CopilotDigitalesGedaechtnis from "./pages/CopilotDigitalesGedaechtnis";
 import CopilotLaunchKampagne from "./pages/CopilotLaunchKampagne";
 import CopilotROIErfolgsgeschichten from "./pages/CopilotROIErfolgsgeschichten";
 import CopilotAdoption2026 from "./pages/CopilotAdoption2026";
+import CopilotAgentModeOffice from "./pages/CopilotAgentModeOffice";
 import CopilotLernreisen from "./pages/CopilotLernreisen";
 import WarumVerteiltesLernen from "./pages/WarumVerteiltesLernen";
 import CopilotADHS from "./pages/CopilotADHS";
@@ -90,6 +91,7 @@ const App = () => (
           <Route path="/wissen/copilot-launch-kampagne" element={<CopilotLaunchKampagne />} />
           <Route path="/wissen/copilot-roi-erfolgsgeschichten" element={<CopilotROIErfolgsgeschichten />} />
           <Route path="/wissen/copilot-adoption-2026-zahlen" element={<CopilotAdoption2026 />} />
+          <Route path="/wissen/copilot-agent-mode-word-excel-powerpoint" element={<CopilotAgentModeOffice />} />
           <Route path="/wissen/copilot-lernreise-vs-tagesschulung" element={<CopilotLernreisen />} />
           <Route path="/wissen/warum-verteiltes-lernen-bei-copilot-trainings-funktioniert" element={<WarumVerteiltesLernen />} />
           <Route path="/wissen/copilot-adhs-produktiver-arbeiten" element={<CopilotADHS />} />
