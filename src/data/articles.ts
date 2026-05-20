@@ -30,6 +30,17 @@ export interface ArticleData {
 // Alle Artikel - sortiert nach Veröffentlichungsdatum (neueste zuerst)
 export const ALL_ARTICLES: ArticleData[] = [
   {
+    id: "copilot-in-teams-zeit-gewinnen",
+    title: "Copilot in Teams – So gewinnt man in der Praxis wirklich Zeit",
+    description: "Welche Copilot-Funktionen in Teams den größten ROI bringen – mit Tipps, die die meisten noch nicht kennen: Facilitator per Handy, Researcher, Stories-Modus, Custom Agents.",
+    link: "/wissen/copilot-in-teams-zeit-gewinnen",
+    badge: "Microsoft Teams",
+    icon: "⚡",
+    lastUpdated: "19. Mai 2026",
+    publishDate: "2026-05-19",
+    publishTime: "09:00"
+  },
+  {
     id: "interne-copilot-trainer-ausbilden",
     title: "Wir bilden Ihre internen Copilot-Multiplikatoren aus. Wie gute Inhouse-Change-Begleitung im Alltag den Unterschied macht",
     description: "Interne Copilot-Multiplikatoren tragen den Change im Alltag und schlagen die Brücke zwischen Trainings und Anwenderpraxis. Was die Copilotenschule-Train-the-Trainer-Ausbildung in vier Tagen plus Begleitung bewirkt.",

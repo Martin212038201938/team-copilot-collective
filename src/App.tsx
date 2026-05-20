@@ -49,6 +49,7 @@ import KiSchulungMitarbeiterPflicht from "./pages/KiSchulungMitarbeiterPflicht";
 import Microsoft365E7FrontierSuite from "./pages/Microsoft365E7FrontierSuite";
 import CopilotClaudeIntegration from "./pages/CopilotClaudeIntegration";
 import CopilotInOutlook from "./pages/CopilotInOutlook";
+import CopilotInTeamsZeitGewinnen from "./pages/CopilotInTeamsZeitGewinnen";
 import CopilotSchulungOnline from "./pages/CopilotSchulungOnline";
 import CopilotBetriebsrat from "./pages/CopilotBetriebsrat";
 import CopilotInExcelAktivieren from "./pages/CopilotInExcelAktivieren";
@@ -102,6 +103,7 @@ const App = () => (
           <Route path="/wissen/microsoft-365-e7-frontier-suite" element={<Microsoft365E7FrontierSuite />} />
           <Route path="/wissen/claude-in-microsoft-copilot" element={<CopilotClaudeIntegration />} />
           <Route path="/wissen/copilot-in-outlook-nutzen-tipps" element={<CopilotInOutlook />} />
+          <Route path="/wissen/copilot-in-teams-zeit-gewinnen" element={<CopilotInTeamsZeitGewinnen />} />
           <Route path="/wissen/microsoft-copilot-schulung-online" element={<CopilotSchulungOnline />} />
           <Route path="/wissen/copilot-betriebsrat" element={<CopilotBetriebsrat />} />
           <Route path="/wissen/copilot-in-excel-aktivieren" element={<CopilotInExcelAktivieren />} />
