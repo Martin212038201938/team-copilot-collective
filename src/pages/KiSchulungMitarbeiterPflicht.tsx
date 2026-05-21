@@ -63,7 +63,7 @@ const KiSchulungMitarbeiterPflicht = () => {
           "@id": "https://copilotenschule.de/#organization"
         },
         "datePublished": "2026-03-13",
-        "dateModified": "2026-03-13",
+        "dateModified": "2026-05-21",
         "mainEntityOfPage": {
           "@type": "WebPage",
           "@id": pageUrl
@@ -389,7 +389,9 @@ const KiSchulungMitarbeiterPflicht = () => {
               Das klingt trivial, ist es aber selten, weil Shadow-IT gerade bei generativer KI weit
               verbreitet ist. Zweitens: Priorisierung. Nicht jeder Mitarbeiter braucht dasselbe
               Schulungsniveau. Ein Entwickler, der <Link to="/wissen/github-copilot" className="text-primary hover:underline">GitHub Copilot</Link> nutzt, braucht andere Inhalte als
-              eine Sachbearbeiterin, die Copilot in Outlook verwendet. Die Tiefe der Schulung sollte sich
+              eine Sachbearbeiterin, die Copilot in Outlook verwendet – auf Entwickler ausgerichtete Kursprogramme,
+              wie sie etwa <a href="https://ki-entwickler-kurse.de" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">ki-entwickler-kurse.de</a> anbietet,
+              unterscheiden sich grundlegend von klassischen KI-Anwender-Schulungen. Die Tiefe der Schulung sollte sich
               am Risikoprofil der jeweiligen KI-Nutzung orientieren. Drittens: Umsetzung mit
               dokumentiertem Nachweis. Die beste Schulung bringt wenig, wenn bei einem Audit niemand
               belegen kann, wer wann was gelernt hat.

@@ -65,7 +65,7 @@ const GitHubCopilot = () => {
           "@id": "https://copilotenschule.de/#organization"
         },
         "datePublished": "2025-11-07",
-        "dateModified": "2026-02-03",
+        "dateModified": "2026-05-21",
         "mainEntityOfPage": {
           "@type": "WebPage",
           "@id": pageUrl
@@ -520,6 +520,19 @@ const GitHubCopilot = () => {
               <div>
                 <div className="font-semibold group-hover:text-primary transition-colors">GitHub Research: Produktivitätsstudie</div>
                 <div className="text-sm text-muted-foreground">Studie zur Produktivitätssteigerung durch GitHub Copilot (September 2022)</div>
+              </div>
+            </a>
+
+            <a
+              href="https://ki-entwickler-kurse.de"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-3 p-4 border rounded-lg hover:border-primary/50 hover:bg-muted/50 transition-colors group"
+            >
+              <ExternalLink className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+              <div>
+                <div className="font-semibold group-hover:text-primary transition-colors">KI-Kurse für Softwareentwickler</div>
+                <div className="text-sm text-muted-foreground">Spezialisierte Weiterbildung für Entwickler: KI-Tools systematisch in den Entwickleralltag integrieren – von GitHub Copilot bis zu KI-gestützten Workflows</div>
               </div>
             </a>
           </div>
