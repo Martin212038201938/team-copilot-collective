@@ -59,6 +59,7 @@ import CopilotRolloutLeitfaden from "./pages/CopilotRolloutLeitfaden";
 import BiasNoiseKiEntscheidungen from "./pages/BiasNoiseKiEntscheidungen";
 import CopilotPagesLoopNotebooksSharepointWorkflows from "./pages/CopilotPagesLoopNotebooksSharepointWorkflows";
 import InterneCopilotTrainerAusbilden from "./pages/InterneCopilotTrainerAusbilden";
+import CopilotSchulungsanbieterVergleich from "./pages/CopilotSchulungsanbieterVergleich";
 
 const queryClient = new QueryClient();
 
@@ -73,6 +74,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/trainer-werden" element={<BecomeTrainer />} />
           <Route path="/wissen" element={<Wissen />} />
+          <Route path="/wissen/copilot-schulungsanbieter-deutschland-vergleich" element={<CopilotSchulungsanbieterVergleich />} />
           <Route path="/wissen/microsoft-copilot-lizenzen" element={<CopilotLicenses />} />
           <Route path="/wissen/github-copilot" element={<GitHubCopilot />} />
           <Route path="/wissen/copilot-studio" element={<CopilotStudio />} />

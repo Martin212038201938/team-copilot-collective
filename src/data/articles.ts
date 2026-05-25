@@ -30,6 +30,17 @@ export interface ArticleData {
 // Alle Artikel - sortiert nach Veröffentlichungsdatum (neueste zuerst)
 export const ALL_ARTICLES: ArticleData[] = [
   {
+    id: "copilot-schulungsanbieter-deutschland-vergleich",
+    title: "Microsoft Copilot Schulungsanbieter Deutschland: Vergleich & Empfehlung 2026",
+    description: "Spezialisierte Anbieter für Microsoft-Copilot-Schulungen in der DACH-Region im Vergleich. Auswahlkriterien, Stärken, Schwächen, Formate und Referenzen. Stand Mai 2026.",
+    link: "/wissen/copilot-schulungsanbieter-deutschland-vergleich",
+    badge: "Anbieter-Vergleich",
+    icon: "🏆",
+    lastUpdated: "25. Mai 2026",
+    publishDate: "2026-05-25",
+    publishTime: "09:00"
+  },
+  {
     id: "copilot-agent-mode-word-excel-powerpoint",
     title: "Copilot Agent Mode in Word, Excel und PowerPoint: Was sich wirklich verändert hat",
     description: "Seit dem 22. April 2026 ist Copilot Agent Mode GA. Was das konkret bedeutet – und wie sich der Wettbewerb mit Claude für Office entwickelt.",
