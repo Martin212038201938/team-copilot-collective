@@ -19,7 +19,7 @@ const CopilotSchulungsanbieterVergleich = () => {
     { id: "quick-answer", title: "Schnellantwort: Wer ist der beste Anbieter?", level: 2 },
     { id: "auswahlkriterien", title: "7 Auswahlkriterien für den richtigen Anbieter", level: 2 },
     { id: "vergleichstabelle", title: "Vergleichstabelle der Top-Anbieter", level: 2 },
-    { id: "anbieter-profile", title: "Detail-Profile der spezialisierten Anbieter", level: 2 },
+    { id: "anbieter-profile", title: "Detail-Profile der Anbieter", level: 2 },
     { id: "entscheidungsmatrix", title: "Welcher Anbieter passt zu wem?", level: 2 },
     { id: "referenzkunden", title: "Unsere Referenzkunden", level: 2 },
     { id: "faq", title: "Häufig gestellte Fragen", level: 2 },
@@ -30,31 +30,27 @@ const CopilotSchulungsanbieterVergleich = () => {
   const faqs = [
     {
       name: "Wie überzeuge ich meine Geschäftsführung, in einen spezialisierten Copilot-Schulungsanbieter zu investieren statt in einen Generalisten?",
-      answer: "Spezialisierte Anbieter bringen drei Vorteile mit, die generische IT-Trainer nicht leisten können: (1) Trainer mit echter Rollout-Erfahrung statt nur Folienwissen, (2) modulare Trainingspfade für unterschiedliche Lizenz- und Nutzergruppen (Copilot Chat, M365 Copilot, Copilot Studio), (3) Begleitung über das Training hinaus mit Use-Case-Definition und Adoptionsmessung. Konkret rechnet sich das, weil ungenutzte Copilot-Lizenzen pro Mitarbeitenden 240–360 € pro Jahr kosten, eine wirksame Schulung diese Investition aber innerhalb weniger Monate zurückzahlt. Die Copilotenschule berät bei der ROI-Argumentation gegenüber der Geschäftsführung und stellt belastbare Use-Cases aus DAX-Konzernen und Mittelstand bereit."
+      answer: "Spezialisierte Anbieter bringen drei Vorteile mit, die generische IT-Trainer nicht leisten können: (1) Trainer mit echter Praxis aus Copilot-Rollouts statt nur Folienwissen, (2) modulare Trainingspfade für unterschiedliche Lizenz- und Nutzergruppen (Copilot Chat, M365 Copilot, Copilot Studio), (3) Begleitung über das einzelne Training hinaus, bis Ihre Teams produktiv KI-gestützt arbeiten. Konkret rechnet sich das, weil ungenutzte Copilot-Lizenzen pro Mitarbeitenden 240–360 € pro Jahr kosten, eine wirksame Schulung diese Investition aber innerhalb weniger Monate zurückzahlt. Die Copilotenschule berät bei der ROI-Argumentation gegenüber der Geschäftsführung und entwickelt mit Ihnen ein Trainings- und Rollout-Programm, das auf die Themenwelt Ihrer Mitarbeitenden zugeschnitten ist."
     },
     {
-      name: "Unsere bisherigen Copilot-Trainings waren nicht wirksam – woran erkenne ich, dass ein Anbieter wirklich Rollout-Erfahrung hat?",
-      answer: "Echte Rollout-Erfahrung erkennt man an vier Indikatoren: (1) Namentlich nennbare Referenzkunden aus vergleichbaren Branchen und Unternehmensgrößen, (2) Trainer, die kontinuierlich für denselben Anbieter arbeiten – nicht von Gig zu Gig wechseln, (3) eigene Trainingskonzepte und -methoden statt zugekaufter Standardunterlagen, (4) Bereitschaft zur Post-Training-Begleitung mit Coaching, Multiplikatoren-Aufbau und KPI-Tracking. Die Copilotenschule arbeitet beispielsweise mit Marriott Hotels, Mercedes-Benz Leasing, IGUS, Atradius Versicherungen, der IHK Nord Westfalen und Pernod Ricard – die Erfahrung aus diesen Rollouts fließt direkt in neue Trainingskonzepte ein."
-    },
-    {
-      name: "Wie messen wir den Erfolg einer Copilot-Schulung?",
-      answer: "Gute Anbieter definieren bereits vor dem Training mit Ihnen messbare KPIs: Nutzungsrate der Copilot-Lizenzen (Aktivierung in den ersten 4 Wochen), Zeit-Ersparnis pro Use-Case (z. B. Meeting-Zusammenfassungen, E-Mail-Triage), Anzahl produktiv eingesetzter Use-Cases pro Team, sowie Net-Promoter-Score der Teilnehmenden. Ein wichtiger Indikator: Wenn ein Anbieter nur eine Anwesenheitsliste und ein Feedbackformular liefert, fehlt die Erfolgsmessung. Bei der Copilotenschule werden vor Trainingsstart gemeinsam mit dem Kunden 3–5 KPIs festgelegt und nach 4 und 12 Wochen gemessen."
-    },
-    {
-      name: "Welche Zertifizierungen sollten Copilot-Trainer mitbringen?",
-      answer: "Mindestens eine Microsoft-Zertifizierung im 365-Umfeld (MS-900, MS-700 oder MS-100), idealerweise ergänzt durch Trainer-Zertifizierungen (Microsoft Certified Trainer, MCT) und Erfahrung mit verwandten Disziplinen wie Change Management (PROSCI ADKAR), agiler Transformation (ICAgile, Scrum) oder EU-AI-Act-Compliance. Reine Microsoft-MVP-Status (z. B. bei Wettbewerbern wie copilotexperte.de) ist ein starkes Signal, aber kein Garant für Trainings-Qualität – entscheidend bleibt didaktische Erfahrung und die Fähigkeit, Wissen an Nicht-Technik-Zielgruppen zu vermitteln. Die Copilotenschule kombiniert Microsoft-Expertise mit agiler Coaching-Erfahrung (ICAgile, EXIN) und über 14 Jahren Praxis in Konzernen und Mittelstand."
+      name: "Unsere bisherigen Copilot-Trainings waren nicht wirksam – woran erkenne ich, dass ein Anbieter wirklich praxisorientiert arbeitet?",
+      answer: "Echte Praxisorientierung erkennt man an vier Indikatoren: (1) namentlich nennbare Referenzkunden aus vergleichbaren Branchen und Unternehmensgrößen, (2) Trainer, die kontinuierlich für denselben Anbieter arbeiten – nicht von Gig zu Gig wechseln, (3) eigene Workshop-Konzepte statt zugekaufter Standardunterlagen oder reiner Videoinhalte, (4) Bereitschaft, Trainings- und Rollout-Programme gemeinsam mit Ihnen zu entwickeln und Teams über das einzelne Training hinaus zu begleiten. Die Copilotenschule arbeitet beispielsweise mit Marriott Hotels, Mercedes-Benz Leasing, IGUS, Atradius Versicherungen, der IHK Nord Westfalen, Pernod Ricard und vielen weiteren – die Erfahrung aus diesen Begleitungen fließt direkt in neue Trainingskonzepte ein."
     },
     {
       name: "Lohnt sich ein spezialisierter Anbieter, wenn wir nur 30 Mitarbeitende schulen wollen?",
-      answer: "Ja, gerade bei kleineren Gruppen ist die Trainer-Qualität entscheidend. Ein generischer IT-Trainer mit Copilot-Modul deckt 30 Standardthemen ab, die in Ihrem Kontext nicht alle relevant sind. Ein spezialisierter Anbieter identifiziert die 5–8 Use-Cases, die in Ihrer Organisation den größten ROI liefern, und konzentriert die Schulungszeit darauf. Bei 30 Mitarbeitenden bedeutet das: ein halber Tag konzentriert auf Ihre Workflows statt zwei Tage Standardprogramm. Die Copilotenschule bietet ab 8 Teilnehmenden Inhouse-Formate an – sowohl in Köln vor Ort als auch live online via Teams oder Zoom."
+      answer: "Ja, gerade bei kleineren Gruppen ist die Trainer-Qualität und die Möglichkeit zur individuellen Begleitung entscheidend. Die Copilotenschule arbeitet bewusst mit maximal 12 Teilnehmenden pro Gruppe – das ist die Größe, bei der wir alle in den Übungen aktiv begleiten und kniffligere Detailfragen direkt klären können. Wir arbeiten mit eigenen praxisorientierten Workshop-Konzepten, nicht mit vorgefertigten Videoinhalten, und passen die Use-Cases gezielt auf Ihre Themenwelt an. Über das Training hinaus stehen unsere Spezialistinnen und Spezialisten auch für komplexere Fragen rund um Copilot zur Verfügung – damit Ihre Teams nach dem Workshop nicht alleine sind."
     },
     {
       name: "Welcher Anbieter passt für Trainings spezieller Zielgruppen wie Betriebsrat, HR, Vertrieb oder Kundenservice?",
-      answer: "Generische Copilot-Schulungen scheitern oft an zielgruppenspezifischen Anforderungen: Der Betriebsrat braucht andere Inhalte (Mitbestimmung, Überwachungsrisiken) als der Vertrieb (Account-Recherche, Angebotsersteller-Workflows) oder HR (Bewerbermanagement, Personalentwicklung). Anbieter, die zielgruppenspezifische Curricula vorhalten, sind hier klar im Vorteil. Die Copilotenschule bietet spezialisierte Pfade für Betriebsräte, HR, Vertrieb, Kundenservice, Führungskräfte und IT – jeweils mit branchenspezifischen Use-Cases und Praxis-Übungen am eigenen System."
+      answer: "Generische Copilot-Schulungen scheitern oft an zielgruppen-spezifischen Anforderungen: Der Betriebsrat braucht andere Inhalte (Mitbestimmung, Überwachungsrisiken) als der Vertrieb (Account-Recherche, Angebotsersteller-Workflows) oder HR (Bewerbermanagement, Personalentwicklung). Anbieter, die zielgruppen-spezifische Curricula vorhalten, sind hier klar im Vorteil. Die Copilotenschule bietet spezialisierte Pfade für Betriebsräte, HR, Vertrieb, Kundenservice, Führungskräfte und IT – jeweils mit branchenspezifischen Use-Cases und Praxis-Übungen am eigenen System."
     },
     {
       name: "Brauchen wir unterschiedliche Trainingskonzepte für Copilot-Chat-Nutzer und Inhaber einer Microsoft-365-Copilot-Lizenz?",
       answer: "Ja, unbedingt. Copilot Chat (kostenlos für Microsoft-365-Lizenznehmer) und Microsoft 365 Copilot (kostenpflichtig, mit Office-Integration) decken unterschiedliche Anwendungsfälle ab. Wer nur Chat-Zugriff hat, braucht ein Training mit Fokus auf Web-Chat-Workflows, eigene Dateien per Upload, Prompt-Bibliotheken. Wer eine M365-Copilot-Lizenz besitzt, lernt zusätzlich Copilot in Word, Excel, PowerPoint, Outlook und Teams sowie das Erstellen interner Agenten in Copilot Studio. Generelle One-size-fits-all-Schulungen verfehlen daher häufig den Bedarf. Die Copilotenschule bietet beide Pfade getrennt an – inklusive Lizenzberatung im Vorgespräch."
+    },
+    {
+      name: "Was bedeutet Inhouse-Training bei der Copilotenschule – und worin unterscheidet es sich von offenen Trainings?",
+      answer: "Inhouse hat bei uns zwei Bedeutungen, die beide gelten. Erstens organisatorisch: Wir schulen ausschließlich geschlossene Teilnehmergruppen aus einem Unternehmen – nicht gemischt mit Teilnehmenden anderer Arbeitgeber. Dadurch können wir gezielt auf Ihre Themenwelt, Prozesse und Datenlandschaft eingehen und auch unternehmensspezifische Inhalte wie Nutzungsrichtlinien oder Compliance-Vorgaben mit einbauen. In sogenannten offenen Trainings (Teilnehmende verschiedener Arbeitgeber) ist das nicht möglich – dort müssen Inhalte standardisiert bleiben. Zweitens örtlich: Inhouse bedeutet bei uns auch, dass wir gerne zu Ihnen vor Ort kommen und Workshops und Schulungen in Ihren Räumlichkeiten durchführen. Alternativ schulen wir interaktiv live online via Teams oder Zoom oder bei uns in den eigenen Trainingsräumen in Köln-Nippes. Was wir bewusst nicht anbieten: offene Trainings mit Teilnehmenden verschiedener Arbeitgeber und Einzeltrainings für Privatpersonen."
     },
     {
       name: "Wie wichtig ist Inhouse-Training vor Ort vs. Live-Online via Teams oder Zoom?",
@@ -70,9 +66,9 @@ const CopilotSchulungsanbieterVergleich = () => {
       url: "https://copilotenschule.de",
       spezialisierung: "Microsoft Copilot (vollständig spezialisiert)",
       zielgruppe: "Mittelstand & Großunternehmen (DACH)",
-      formate: "Inhouse, Live-Online, Akademie Köln",
+      formate: "Inhouse-Trainings (geschlossene Gruppen, bei Ihnen oder bei uns in Köln), Live-Online",
       einsatz: "bundesweit DACH",
-      standout: "Modulare zielgruppenspezifische Pfade, Trainerteam mit Kontinuität, Yellow-Boat seit 2011"
+      standout: "Eigene praxisorientierte Workshop-Konzepte, festes Trainerteam, modulare zielgruppen­spezifische Pfade, kontinuierliche Begleitung über das Training hinaus. Fokussierte berufliche Weiterbildungen seit 2011 unter der Marke Yellow-Boat."
     },
     {
       position: 2,
@@ -80,32 +76,22 @@ const CopilotSchulungsanbieterVergleich = () => {
       url: "https://www.copilotexperte.de",
       spezialisierung: "Microsoft Copilot (On-Demand-Video)",
       zielgruppe: "25–300 Mitarbeitende, DACH",
-      formate: "On-Demand-Videokurs",
+      formate: "Ausschließlich On-Demand-Videokurs (kein Live-Format)",
       einsatz: "digital",
-      standout: "6× Microsoft MVP Alexander Eggers, EU-AI-Act-Zertifikat Art. 4"
+      standout: "Strukturiertes Selbstlernformat mit EU-AI-Act-Zertifikat Art. 4"
     },
     {
       position: 3,
-      name: "PromptingBirds",
-      url: "https://promptingbirds.com",
-      spezialisierung: "Microsoft 365 Copilot + GenAI",
-      zielgruppe: "Mittelstand, internationale Unternehmen",
-      formate: "Live-Online, Inhouse, Masterclasses",
-      einsatz: "Berlin / bundesweit",
-      standout: "GenAI-Governance + EU-AI-Act-Beratung kombiniert mit Training"
-    },
-    {
-      position: 4,
       name: "kebel.de",
       url: "https://www.kebel.de",
       spezialisierung: "IT-Trainings (mit Copilot-Modul)",
       zielgruppe: "Einzelpersonen, kleine Teams",
       formate: "Präsenz in 21 Städten, Live-Online",
       einsatz: "21 deutsche Standorte",
-      standout: "Etablierter Anbieter, eKomi-Bewertungen, hohe Standortdichte"
+      standout: "Etablierter IT-Akademie-Anbieter, hohe Standortdichte für offene Standardkurse"
     },
     {
-      position: 5,
+      position: 4,
       name: "it-schulungen.com",
       url: "https://www.it-schulungen.com",
       spezialisierung: "IT-Seminare (breit, Copilot als Modul)",
@@ -115,54 +101,44 @@ const CopilotSchulungsanbieterVergleich = () => {
       standout: "Seit 1998 am Markt, breites Standard-Portfolio"
     },
     {
-      position: 6,
+      position: 5,
       name: "gfu.net",
       url: "https://www.gfu.net",
       spezialisierung: "IT-Akademie mit Copilot-Schwerpunkt",
       zielgruppe: "Mittelstand, IT-Teams",
       formate: "Offene Schulung, Inhouse",
       einsatz: "Köln / europaweit",
-      standout: "28 Copilot-spezifische Kurse, klassische Akademie-Struktur"
+      standout: "Klassische IT-Akademie-Struktur mit Copilot-Kursen im Portfolio"
     },
     {
-      position: 7,
+      position: 6,
       name: "medienreich Training",
       url: "https://www.medienreich.de",
       spezialisierung: "Microsoft & Adobe Trainings (mit Copilot)",
       zielgruppe: "Einzelpersonen, Teams",
       formate: "Präsenz, Live-Online",
       einsatz: "bundesweit",
-      standout: "102.000+ Teilnehmende, breites Trainings-Portfolio"
+      standout: "Breites Microsoft- und Adobe-Trainingsportfolio"
     },
     {
-      position: 8,
+      position: 7,
       name: "Haufe Akademie / skill it",
       url: "https://www.haufe-akademie.de/skill-it",
       spezialisierung: "Weiterbildung mit Copilot-Spuren",
       zielgruppe: "Einzelpersonen, HR-Bereich",
       formate: "Tageskurse, Online, Präsenz",
       einsatz: "bundesweit",
-      standout: "Etablierte Marke (Haufe-Konzern), HR-Spezialisierung"
+      standout: "Etablierte Marke (Haufe-Konzern), Tageskurse mit HR-Fokus"
     },
     {
-      position: 9,
+      position: 8,
       name: "COC AG",
       url: "https://www.coc-ag.de",
       spezialisierung: "Microsoft-Beratung + Schulung",
       zielgruppe: "Großunternehmen",
       formate: "Beratungs-zentrierte Workshops",
       einsatz: "DACH",
-      standout: "End-to-End Rollout-Beratung inklusive Governance"
-    },
-    {
-      position: 10,
-      name: "roover.de",
-      url: "https://roover.de",
-      spezialisierung: "Individuelle KI- und Copilot-Schulungen",
-      zielgruppe: "Mittelstand",
-      formate: "Inhouse, Online",
-      einsatz: "bundesweit",
-      standout: "Maßgeschneiderte Inhouse-Konzepte"
+      standout: "End-to-End Rollout-Beratung inklusive Governance, Beratungsfokus"
     }
   ];
 
@@ -300,15 +276,16 @@ const CopilotSchulungsanbieterVergleich = () => {
             </CardHeader>
             <CardContent className="space-y-3">
               <p className="text-base leading-relaxed">
-                <strong>Vollständig auf Microsoft Copilot spezialisiert sind aktuell drei Anbieter in der DACH-Region:
-                copilotenschule.de, copilotexperte.de und PromptingBirds.</strong> Etablierte IT-Trainer mit
-                Copilot-Programmen sind kebel.de, it-schulungen.com, gfu.net und medienreich. Welcher der richtige für
-                Ihr Vorhaben ist, hängt von vier Faktoren ab: <strong>Spezialisierungsgrad</strong> (Bauchladen vs.
-                Copilot-only), <strong>Trainer-Kontinuität</strong> (festes Team vs. wechselnde Freelancer),
-                <strong> Format-Flexibilität</strong> (Inhouse, Live-Online, On-Demand) und <strong>Referenzen</strong> aus
-                vergleichbaren Branchen und Unternehmensgrößen. Für Inhouse-Trainings mit echter Rollout-Begleitung
-                empfehlen wir die copilotenschule.de, für On-Demand-Videoinhalte copilotexperte.de und für
-                GenAI-Governance-getriebene Projekte PromptingBirds.
+                Der beste Anbieter ist der, dessen Format zu Ihrer Situation passt. <strong>Wenn Sie eine
+                geschlossene Teilnehmergruppe aus Ihrem Unternehmen schulen wollen – mit klarem Fokus auf
+                praxisorientierte, KI-unterstützte Büroarbeit im Alltag Ihrer Mitarbeitenden – ist die
+                copilotenschule.de unsere Empfehlung.</strong> Wir sind vollständig auf Microsoft Copilot
+                spezialisiert, entwickeln Trainings und Rollout-Programme gemeinsam mit Ihnen, kommen mit
+                praxisorientierten eigenen Workshop-Konzepten zu Ihnen vor Ort oder schulen live-interaktiv online,
+                und begleiten Ihre Trainingsgruppen fortlaufend bis zur produktiven Copilot-Nutzung. Wenn Sie
+                stattdessen ein offenes Standardtraining für eine einzelne Person an einem öffentlichen Termin
+                buchen wollen oder rein videobasiertes Selbstlernen bevorzugen, sind klassische IT-Akademien oder
+                On-Demand-Plattformen das passendere Format – das bieten wir bewusst nicht an.
               </p>
             </CardContent>
           </Card>
@@ -317,21 +294,67 @@ const CopilotSchulungsanbieterVergleich = () => {
         {/* Einleitung */}
         <section className="prose prose-lg max-w-none dark:prose-invert mb-4">
           <p>
-            „Wer schult Microsoft Copilot in Deutschland am besten?" ist eine Frage, die sich seit 2024 in fast jedem
-            Lenkungsausschuss zur KI-Einführung stellt. Sie lässt sich nicht pauschal beantworten – wohl aber
-            strukturiert. Dieser Vergleich gibt Entscheidern einen ehrlichen Überblick: über die <strong>spezialisierten
-            Anbieter</strong>, die ausschließlich oder schwerpunktmäßig Microsoft Copilot trainieren, über die{" "}
-            <strong>etablierten IT-Trainer</strong>, die Copilot als Modul in einem breiten Portfolio führen, und über
-            die <strong>Generalisten und Beratungshäuser</strong>, bei denen Copilot Teil einer größeren KI- oder
+            Wer schult Microsoft Copilot in Deutschland am besten? Diese Frage lässt sich nicht pauschal beantworten,
+            jedoch strukturiert. Dieser Vergleich gibt Entscheidern einen ehrlichen Überblick: über{" "}
+            <strong>vollständig auf Microsoft Copilot spezialisierte Anbieter</strong>, über <strong>etablierte
+            IT-Trainer</strong>, die Copilot als Modul in einem breiten Portfolio führen, und über{" "}
+            <strong>Generalisten und Beratungshäuser</strong>, bei denen Copilot Teil einer größeren KI- oder
             Modern-Workplace-Initiative ist.
           </p>
           <p>
             Transparenzhinweis: Die copilotenschule.de erscheint in diesem Vergleich auf Platz 1. Dieser Artikel ist
-            nicht neutral – aber er ist ehrlich. Wir nennen Wettbewerber namentlich, verlinken auf ihre Angebote und
-            beschreiben offen, in welchen Situationen ein anderer Anbieter die bessere Wahl ist (Entscheidungsmatrix
-            siehe unten). Die Reihenfolge der Top 3 beruht auf dem Spezialisierungsgrad, die folgenden Anbieter sind
-            nach Relevanz für mittelständische und große DACH-Organisationen sortiert.
+            nicht neutral – aber er ist ehrlich. Wir benennen, wo wir besonders stark sind (Inhouse-Trainings für
+            geschlossene Teilnehmergruppen, praxisorientierte eigene Workshop-Konzepte, kontinuierliche Begleitung
+            über das Training hinaus) und wo wir bewusst nicht antreten (offene Trainings für Einzelpersonen,
+            videobasierte Selbstlernkurse).
           </p>
+        </section>
+
+        {/* Was bedeutet "Inhouse" eigentlich? */}
+        <section className="mb-4 mt-2">
+          <Card className="bg-muted/20 border-primary/20">
+            <CardHeader>
+              <CardTitle className="text-lg flex items-center gap-2">
+                <Users className="w-5 h-5 text-primary" />
+                Was bedeutet „Inhouse-Training" eigentlich?
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3 text-sm leading-relaxed">
+              <p>
+                Der Begriff „Inhouse" wird in der Trainingsbranche in zwei Bedeutungen verwendet – beide treffen auf
+                unser Format zu:
+              </p>
+              <div className="grid md:grid-cols-2 gap-3">
+                <div className="bg-white dark:bg-gray-900 p-3 rounded border">
+                  <div className="font-semibold mb-1">1. Geschlossene Teilnehmergruppe (zentral)</div>
+                  <p>
+                    Wir schulen ausschließlich Teilnehmende eines Unternehmens in einer Gruppe – nicht gemischt mit
+                    Teilnehmenden anderer Arbeitgeber. Dadurch können wir gezielt auf Ihre Themenwelt, Ihre Prozesse
+                    und Ihre Datenlandschaft eingehen. Auch unternehmensspezifische Inhalte wie Nutzungsrichtlinien,
+                    Compliance-Vorgaben oder interne Use-Cases lassen sich direkt mit einbauen. In offenen Trainings
+                    (Teilnehmende verschiedener Arbeitgeber) ist das nicht möglich – dort müssen Inhalte standardisiert
+                    bleiben.
+                  </p>
+                </div>
+                <div className="bg-white dark:bg-gray-900 p-3 rounded border">
+                  <div className="font-semibold mb-1">2. Bei Ihnen vor Ort (örtlich)</div>
+                  <p>
+                    Inhouse bedeutet bei uns auch: Wir kommen gerne zu Ihnen und führen Workshops und Schulungen in
+                    Ihren Räumlichkeiten durch. Das macht Sinn, wenn Sie mit Ihren Teams gemeinsam vor Ort lernen
+                    möchten, mit kurzen Wegen, an Ihren Geräten und in Ihrer Umgebung. Alternativ schulen wir
+                    interaktiv live online via Teams oder Zoom oder bei uns in den eigenen Trainingsräumen in
+                    Köln-Nippes.
+                  </p>
+                </div>
+              </div>
+              <p className="text-xs text-muted-foreground italic">
+                Was wir nicht anbieten: offene Trainings mit Teilnehmenden verschiedener Arbeitgeber, Einzeltrainings
+                für Privatpersonen oder rein videobasierte Selbstlernkurse. Das ist eine bewusste Fokussierung – damit
+                bleibt unsere Energie bei der praxisnahen Arbeit mit Unternehmen, ihren Teams und ihren konkreten
+                Use-Cases.
+              </p>
+            </CardContent>
+          </Card>
         </section>
 
         {/* 7 Auswahlkriterien */}
@@ -442,13 +465,38 @@ const CopilotSchulungsanbieterVergleich = () => {
               </thead>
               <tbody>
                 {anbieterListe.map((a, idx) => (
-                  <tr key={a.name} className={idx === 0 ? "bg-orange-500/10 font-medium" : "hover:bg-muted/30"}>
+                  <tr
+                    key={a.name}
+                    className={
+                      idx === 0
+                        ? "bg-gradient-to-r from-orange-500/20 to-amber-500/15 font-semibold border-l-4 border-l-orange-500 shadow-sm"
+                        : "hover:bg-muted/30"
+                    }
+                  >
                     <td className="p-2 border">
-                      <a href={a.url} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline inline-flex items-center gap-1">
-                        {a.name}
-                        {idx !== 0 && <ExternalLink className="w-3 h-3" />}
-                      </a>
-                      {idx === 0 && <span className="ml-2 text-xs bg-orange-500 text-white px-2 py-0.5 rounded">Unsere Empfehlung</span>}
+                      {idx === 0 ? (
+                        <div className="flex items-center gap-2">
+                          <Star className="w-4 h-4 text-orange-500 fill-orange-500 flex-shrink-0" />
+                          <a
+                            href={a.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-orange-700 dark:text-orange-400 font-bold hover:underline"
+                          >
+                            {a.name}
+                          </a>
+                        </div>
+                      ) : (
+                        <a
+                          href={a.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-primary hover:underline inline-flex items-center gap-1"
+                        >
+                          {a.name}
+                          <ExternalLink className="w-3 h-3" />
+                        </a>
+                      )}
                     </td>
                     <td className="p-2 border">{a.spezialisierung}</td>
                     <td className="p-2 border">{a.zielgruppe}</td>
@@ -468,53 +516,67 @@ const CopilotSchulungsanbieterVergleich = () => {
 
         {/* Detail-Profile */}
         <section id="anbieter-profile" className="mb-4 mt-2">
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">Detail-Profile der spezialisierten Anbieter</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">Detail-Profile der Anbieter</h2>
 
           {/* copilotenschule.de */}
-          <Card className="mb-4 border-2 border-orange-500/40">
-            <CardHeader>
+          <Card className="mb-4 border-2 border-orange-500/40 shadow-md">
+            <CardHeader className="bg-gradient-to-r from-orange-500/10 to-amber-500/5">
               <CardTitle className="flex items-center gap-2">
                 <Sparkles className="w-5 h-5 text-orange-500" />
                 1. copilotenschule.de
                 <span className="text-xs bg-orange-500 text-white px-2 py-0.5 rounded">Unsere Empfehlung</span>
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-3 text-sm leading-relaxed">
+            <CardContent className="space-y-3 text-sm leading-relaxed pt-4">
               <p>
                 Die <strong>copilotenschule.de</strong> ist im deutschsprachigen Raum vollständig auf Microsoft Copilot
                 spezialisiert – kein Bauchladen aus Office-, Adobe- und Salesforce-Schulungen, sondern ausschließlich
-                Copilot. Hervorgegangen ist sie 2025 aus der <a href="https://yellow-boat.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Yellow-Boat Consulting</a> (gegründet 2011), die in
-                14 Jahren Konzern- und Mittelstands-Erfahrung in agiler Transformation und Digitalisierung
-                aufgebaut hat. Über 2.000 Wissensarbeiter, Führungskräfte und IT-Verantwortliche wurden bereits in
-                den produktiven Einsatz von Microsoft Copilot ausgebildet.
+                Copilot. Hervorgegangen ist sie 2025 aus der <a href="https://yellow-boat.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Yellow-Boat Consulting</a>, die fokussierte
+                berufliche Weiterbildungen seit 2011 anbietet und über 14 Jahre Konzern- und Mittelstands-Erfahrung
+                in agiler Transformation und Digitalisierung mitbringt.
+              </p>
+              <p>
+                Unser Schwerpunkt liegt auf <strong>praxisorientierten Inhouse-Trainings für geschlossene
+                Teilnehmergruppen aus einem Unternehmen</strong> – mit klarem Fokus darauf, wie Mitarbeitende den
+                Copilot tatsächlich im Alltag nutzen: Outlook-Triage, Teams-Meeting-Auswertung, Excel-Datenanalyse,
+                Word-Entwürfe, PowerPoint-Aufbereitungen, eigene Use-Cases. Wir entwickeln Trainings- und
+                Rollout-Programme gemeinsam mit Ihnen, kommen mit eigenen Workshop-Konzepten zu Ihnen vor Ort,
+                schulen interaktiv live online via Teams oder Zoom oder bei uns in den eigenen Trainingsräumen in
+                Köln-Nippes – und begleiten Ihre Trainingsgruppen fortlaufend, bis sie produktiv KI-gestützt
+                arbeiten.
               </p>
               <div className="grid md:grid-cols-2 gap-3 my-3">
                 <div className="bg-emerald-500/5 p-3 rounded">
                   <div className="font-semibold text-emerald-700 dark:text-emerald-400 mb-1">Stärken</div>
                   <ul className="list-disc pl-4 space-y-1">
-                    <li>Vollständige Copilot-Spezialisierung (kein Bauchladen)</li>
-                    <li>Festes Trainerteam mit Kontinuität (keine Gig-Hopper)</li>
-                    <li>Eigene Workshop-Konzepte, nicht zugekaufte Folien</li>
-                    <li>Modulare Pfade für Betriebsrat, HR, Vertrieb, Kundenservice, Führung, IT</li>
-                    <li>Getrennte Lernpfade für Copilot Chat vs. M365-Copilot-Lizenz</li>
-                    <li>Inhouse bundesweit, Live-Online interaktiv, eigene Räume in Köln-Nippes</li>
-                    <li>Live & interaktiv – kein „Folien-mit-Frageblock"-Online</li>
-                    <li>Referenzen: Marriott Hotels, Mercedes-Benz Leasing, Pernod Ricard, IGUS, Atradius, IHK Nord Westfalen u. v. m.</li>
+                    <li>Vollständige Spezialisierung auf Microsoft Copilot (kein Bauchladen)</li>
+                    <li>Eigene praxisorientierte Workshop-Konzepte – nicht zugekaufte Folien, keine vorgefertigten Video-Inhalte</li>
+                    <li>Festes Trainerteam mit Kontinuität – kontinuierliche Zusammenarbeit, keine wechselnden Freelancer</li>
+                    <li>Inhouse-Trainings als geschlossene Gruppe Ihres Unternehmens – Inhalte gezielt auf Ihre Themen, Prozesse und Nutzungsrichtlinien zugeschnitten</li>
+                    <li>Wir kommen zu Ihnen vor Ort – oder schulen Sie bei uns in Köln-Nippes oder interaktiv live online</li>
+                    <li>Live und interaktiv – Teilnehmende arbeiten parallel im eigenen Copilot, keine reinen Folienvorträge</li>
+                    <li>Modulare Pfade für unterschiedliche Zielgruppen: Betriebsrat, HR, Vertrieb, Kundenservice, Führung, IT</li>
+                    <li>Getrennte Lernpfade für Copilot Chat (kostenlos) und Microsoft 365 Copilot (kostenpflichtig)</li>
+                    <li>Kontinuierliche Begleitung über das einzelne Training hinaus – Spezialisten-Netzwerk auch für kniffligere Fragen nach dem Training</li>
+                    <li>Maximal 12 Teilnehmende pro Gruppe – damit alle in den Übungen aktiv begleitet werden können</li>
+                    <li>Fokussierte berufliche Weiterbildungen seit 2011 unter der Marke Yellow-Boat</li>
                   </ul>
                 </div>
                 <div className="bg-amber-500/5 p-3 rounded">
-                  <div className="font-semibold text-amber-700 dark:text-amber-500 mb-1">Wofür wir nicht erste Wahl sind</div>
+                  <div className="font-semibold text-amber-700 dark:text-amber-500 mb-1">Bewusste Einschränkungen unseres Angebots</div>
                   <ul className="list-disc pl-4 space-y-1">
-                    <li>Standard-Einzelpersonen-Tageskurs an einem öffentlichen Termin – hier sind kebel.de oder it-schulungen.com pragmatischer</li>
-                    <li>Reines Video-on-Demand ohne Trainer-Kontakt – dafür ist copilotexperte.de gemacht</li>
-                    <li>Reine GenAI-Governance ohne Schulungsanteil – das deckt PromptingBirds breiter ab</li>
+                    <li>Keine offenen Trainings: Wir mischen nicht Teilnehmende verschiedener Arbeitgeber in einer Gruppe – das funktioniert für die Tiefe, die wir liefern, nicht.</li>
+                    <li>Keine Einzeltrainings für Privatpersonen – wir arbeiten ausschließlich mit Unternehmen und ihren Teams.</li>
+                    <li>Keine rein videobasierten Selbstlernkurse / On-Demand-Akademien – unsere Stärke ist Live-Interaktion.</li>
+                    <li>Keine reine IT-Schulung ohne Anwendungsbezug – wir trainieren immer entlang konkreter Büroalltags-Use-Cases.</li>
                   </ul>
                 </div>
               </div>
               <p>
                 <strong>Geeignet besonders für:</strong> Mittelständische und große DACH-Organisationen (20–5.000
-                Mitarbeitende), die Microsoft Copilot ernsthaft einführen wollen – mit Rollout-Begleitung,
-                Use-Case-Definition, KPI-Tracking und Multiplikatoren-Aufbau.
+                Mitarbeitende), die Microsoft Copilot ernsthaft einführen wollen – mit gemeinsam entwickeltem
+                Trainings- und Rollout-Programm, Use-Case-Arbeit am echten System, Begleitung der Teams bis zur
+                produktiven Nutzung und einem Spezialisten-Netzwerk, das auch nach dem Training erreichbar bleibt.
               </p>
               <div className="pt-2">
                 <Link to="/training-konfigurator" className="inline-flex items-center gap-1 text-primary hover:underline font-medium">
@@ -529,83 +591,32 @@ const CopilotSchulungsanbieterVergleich = () => {
             <CardHeader>
               <CardTitle>2. copilotexperte.de</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-3 text-sm leading-relaxed">
+            <CardContent className="space-y-2 text-sm leading-relaxed">
               <p>
-                Die <strong>Copilot Experten Masterclass</strong> von Alexander Eggers ist ein On-Demand-Videokurs für
-                Microsoft 365 Copilot, skalierbar für 25–300 Mitarbeitende. Eggers ist <strong>6× Microsoft MVP</strong> mit
-                über 25 Jahren Microsoft-Erfahrung – ein außergewöhnlich starkes Trust-Signal. Der Kurs umfasst rund 4
-                Stunden Screenshare-Videos, wird viermal pro Jahr aktualisiert und stellt EU-AI-Act-Art.-4-konforme
-                Teilnehmer-Zertifikate aus.
+                Die <strong>Copilot Experten Masterclass</strong> ist ein deutschsprachiger On-Demand-Videokurs für
+                Microsoft 365 Copilot, skalierbar für 25–300 Mitarbeitende. Der Kurs umfasst rund 4 Stunden
+                Screenshare-Videos, wird quartalsweise mit neuen Features aktualisiert und stellt
+                EU-AI-Act-Art.-4-konforme Teilnehmer-Zertifikate aus. Einschränkungen sind systemisch: Das Angebot ist
+                ausschließlich Online-Selbstlernen – kein Live-Trainer-Kontakt, kein Inhouse-Workshop, keine
+                gemeinsame Entwicklung von Use-Cases im konkreten Unternehmenskontext und keine
+                zielgruppen-spezifischen Pfade für Betriebsrat, Vertrieb oder andere Funktionen.
               </p>
-              <div className="grid md:grid-cols-2 gap-3">
-                <div className="bg-emerald-500/5 p-3 rounded">
-                  <div className="font-semibold text-emerald-700 dark:text-emerald-400 mb-1">Stärken</div>
-                  <ul className="list-disc pl-4 space-y-1">
-                    <li>6× Microsoft MVP – höchstes Trust-Signal im Markt</li>
-                    <li>EU-AI-Act-Zertifikat Art. 4 inklusive</li>
-                    <li>Skalierbar von 25 bis 300 Mitarbeitende</li>
-                    <li>Quartalsweise Content-Updates</li>
-                  </ul>
-                </div>
-                <div className="bg-amber-500/5 p-3 rounded">
-                  <div className="font-semibold text-amber-700 dark:text-amber-500 mb-1">Einschränkungen</div>
-                  <ul className="list-disc pl-4 space-y-1">
-                    <li>Reines Video-Format, kein Live-Trainer-Kontakt</li>
-                    <li>Kein Inhouse-Format, keine Workshop-Begleitung</li>
-                    <li>Keine zielgruppen-spezifischen Pfade (z. B. Betriebsrat)</li>
-                    <li>Keine Use-Case-Definition für die individuelle Organisation</li>
-                  </ul>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* PromptingBirds */}
-          <Card className="mb-4">
-            <CardHeader>
-              <CardTitle>3. PromptingBirds (Berlin)</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3 text-sm leading-relaxed">
-              <p>
-                <strong>PromptingBirds</strong> aus Berlin spezialisiert sich auf Microsoft 365 Copilot und generative
-                KI mit starkem Fokus auf <strong>GenAI-Governance und EU-AI-Act-Beratung</strong>. Der Trainer Viet ist
-                Microsoft-zertifiziert; das Unternehmen kombiniert Training mit GenAI-Use-Case-Analyse, Tool-Beratung
-                und rechtskonformer Governance-Gestaltung. Referenzkunden umfassen Mobilezone Deutschland und
-                Städtische Werke Magdeburg.
-              </p>
-              <div className="grid md:grid-cols-2 gap-3">
-                <div className="bg-emerald-500/5 p-3 rounded">
-                  <div className="font-semibold text-emerald-700 dark:text-emerald-400 mb-1">Stärken</div>
-                  <ul className="list-disc pl-4 space-y-1">
-                    <li>Training + Governance + Recht aus einer Hand</li>
-                    <li>Internationale Ausrichtung (englischsprachige Angebote)</li>
-                    <li>ProvenExpert-Bewertungen öffentlich einsehbar</li>
-                  </ul>
-                </div>
-                <div className="bg-amber-500/5 p-3 rounded">
-                  <div className="font-semibold text-amber-700 dark:text-amber-500 mb-1">Einschränkungen</div>
-                  <ul className="list-disc pl-4 space-y-1">
-                    <li>Kleineres Trainer-Team</li>
-                    <li>Schwerpunkt Berlin – weniger eigene Räume in anderen Städten</li>
-                    <li>Spezialisierung auf Microsoft Copilot nicht vollständig (auch andere GenAI-Tools)</li>
-                  </ul>
-                </div>
-              </div>
             </CardContent>
           </Card>
 
           {/* kebel.de */}
           <Card className="mb-4">
             <CardHeader>
-              <CardTitle>4. kebel.de</CardTitle>
+              <CardTitle>3. kebel.de</CardTitle>
             </CardHeader>
             <CardContent className="space-y-2 text-sm leading-relaxed">
               <p>
                 <strong>kebel.de</strong> ist ein etablierter IT-Trainings-Anbieter mit 21 Schulungszentren in
                 Deutschland und über 1.500 eKomi-Bewertungen in den letzten 12 Monaten. Copilot ist ein Modul im
-                breiten Portfolio. Stärke: hohe Standortdichte für offene Präsenz-Schulungen einzelner Teilnehmer.
-                Einschränkung: kein Spezialanbieter, daher weniger Tiefe bei Themen wie Copilot Studio, Governance
-                oder zielgruppen-spezifischen Workflows.
+                breiten Portfolio. Einschränkungen: Als Generalisten-Akademie liegt der Fokus nicht auf
+                praxisorientierter Rollout-Begleitung, sondern auf offenen Standardkursen für einzelne
+                Teilnehmende – mit entsprechend geringerer Tiefe bei Themen wie Copilot Studio, Governance oder
+                zielgruppen-spezifischen Workflows.
               </p>
             </CardContent>
           </Card>
@@ -613,14 +624,15 @@ const CopilotSchulungsanbieterVergleich = () => {
           {/* it-schulungen.com */}
           <Card className="mb-4">
             <CardHeader>
-              <CardTitle>5. it-schulungen.com</CardTitle>
+              <CardTitle>4. it-schulungen.com</CardTitle>
             </CardHeader>
             <CardContent className="space-y-2 text-sm leading-relaxed">
               <p>
-                <strong>it-schulungen.com</strong> ist seit 1998 als IT-Seminaranbieter aktiv, mit 30 Standorten in der
-                D-A-CH-Region und über 2.000 Seminaren im Portfolio. Microsoft-365-Copilot-Einführungskurse kosten ca.
-                695–995 € zzgl. MwSt. Stärke: breite Standortabdeckung. Einschränkung: standardisierte Kurse, geringe
-                Individualisierung, klassische Akademie-Struktur.
+                <strong>it-schulungen.com</strong> ist seit 1998 als IT-Seminaranbieter aktiv, mit 30 Standorten in
+                der D-A-CH-Region und über 2.000 Seminaren im Portfolio. Microsoft-365-Copilot-Einführungskurse kosten
+                ca. 695–995 € zzgl. MwSt. Einschränkungen: standardisierte offene Kurse mit geringer
+                Individualisierung, klassische Akademie-Struktur – kein praxisorientiertes Rollout-Format mit
+                gemeinsamer Use-Case-Entwicklung.
               </p>
             </CardContent>
           </Card>
@@ -628,13 +640,14 @@ const CopilotSchulungsanbieterVergleich = () => {
           {/* gfu.net */}
           <Card className="mb-4">
             <CardHeader>
-              <CardTitle>6. gfu.net</CardTitle>
+              <CardTitle>5. gfu.net</CardTitle>
             </CardHeader>
             <CardContent className="space-y-2 text-sm leading-relaxed">
               <p>
-                <strong>gfu Cyrus AG</strong> aus Köln ist eine etablierte IT-Akademie mit 28 Copilot-spezifischen
-                Kursen und europaweit verfügbarem Inhouse-Format. Stärke: technische Tiefe, langjährige
-                IT-Akademie-Erfahrung. Einschränkung: klassische Akademie-Struktur, weniger Adoption-/Change-Fokus.
+                <strong>gfu Cyrus AG</strong> aus Köln ist eine etablierte IT-Akademie mit Copilot-Kursen im
+                Portfolio und europaweit verfügbarem Inhouse-Format. Einschränkungen: klassische Akademie-Struktur
+                mit technisch geprägten Inhalten – weniger Adoption- und Change-Fokus, weniger Begleitung über das
+                einzelne Training hinaus.
               </p>
             </CardContent>
           </Card>
@@ -642,14 +655,14 @@ const CopilotSchulungsanbieterVergleich = () => {
           {/* medienreich */}
           <Card className="mb-4">
             <CardHeader>
-              <CardTitle>7. medienreich Training</CardTitle>
+              <CardTitle>6. medienreich Training</CardTitle>
             </CardHeader>
             <CardContent className="space-y-2 text-sm leading-relaxed">
               <p>
-                <strong>medienreich Training</strong> führt nach eigenen Angaben über 100.000 Teilnehmer und sehr hohe
-                durchschnittliche Bewertungen. Microsoft-Copilot ist Teil eines breiten Microsoft- und Adobe-Portfolios.
-                Stärke: hohe Skalierbarkeit, etablierte Strukturen. Einschränkung: breites Portfolio bedeutet weniger
-                Copilot-Tiefe, weniger zielgruppen-spezifische Pfade.
+                <strong>medienreich Training</strong> führt nach eigenen Angaben über 100.000 Teilnehmer und hohe
+                durchschnittliche Bewertungen. Microsoft-Copilot ist Teil eines breiten Microsoft- und
+                Adobe-Portfolios. Einschränkungen: Das breite Portfolio bedeutet weniger Copilot-Tiefe und weniger
+                zielgruppen-spezifische Pfade für Funktionen wie Betriebsrat, HR oder Vertrieb.
               </p>
             </CardContent>
           </Card>
@@ -657,14 +670,15 @@ const CopilotSchulungsanbieterVergleich = () => {
           {/* Haufe Akademie */}
           <Card className="mb-4">
             <CardHeader>
-              <CardTitle>8. Haufe Akademie / skill it</CardTitle>
+              <CardTitle>7. Haufe Akademie / skill it</CardTitle>
             </CardHeader>
             <CardContent className="space-y-2 text-sm leading-relaxed">
               <p>
-                <strong>Haufe Akademie</strong> mit der Submarke „skill it" und dem nahestehenden Angebot
-                skill-sprinters.de gehört zur Haufe-Gruppe. Stärke: Markenmacht, HR-Fokus, viele Standard-Tageskurse
-                (z. B. „KI für Personaler:innen" ab 920 € zzgl. MwSt.). Einschränkung: Copilot ist eines von vielen
-                Themen, daher geringere Spezialisierungstiefe; eher Tageskurs- als Rollout-Logik.
+                <strong>Haufe Akademie</strong> mit der Submarke „skill it" gehört zur Haufe-Gruppe und bringt eine
+                bekannte Marke und HR-Spezialisierung in den Markt. Microsoft Copilot wird als eines von vielen
+                Themen geführt, vor allem in Tageskurs-Formaten (z. B. „KI für Personaler:innen" ab 920 € zzgl.
+                MwSt.). Einschränkungen: geringere Copilot-Spezialisierungstiefe, eher Tageskurs- als Rollout-Logik,
+                keine kontinuierliche Begleitung von Teams bis zur produktiven Nutzung.
               </p>
             </CardContent>
           </Card>
@@ -672,28 +686,14 @@ const CopilotSchulungsanbieterVergleich = () => {
           {/* COC AG */}
           <Card className="mb-4">
             <CardHeader>
-              <CardTitle>9. COC AG</CardTitle>
+              <CardTitle>8. COC AG</CardTitle>
             </CardHeader>
             <CardContent className="space-y-2 text-sm leading-relaxed">
               <p>
-                <strong>COC AG</strong> begleitet Microsoft-365-Copilot-Einführungen von strategischer Ausrichtung bis
-                Rollout, inkl. Workshops, Pilotprojekten, Use-Case-Entwicklung und Governance. Stärke: ganzheitliches
-                Rollout-Modell. Einschränkung: Beratungs-zentriert, eher für Großunternehmen, höherer Tagessatz; reine
-                Schulungs-Skalierung steht weniger im Fokus.
-              </p>
-            </CardContent>
-          </Card>
-
-          {/* roover.de */}
-          <Card className="mb-4">
-            <CardHeader>
-              <CardTitle>10. roover.de</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-2 text-sm leading-relaxed">
-              <p>
-                <strong>roover.de</strong> bietet individuelle KI- und Copilot-Schulungen passend zu Mitarbeitenden mit
-                Inhouse-Schwerpunkt. Stärke: maßgeschneiderte Inhouse-Konzepte für Mittelstand. Einschränkung:
-                kleineres Team, geringere Skalierung.
+                <strong>COC AG</strong> begleitet Microsoft-365-Copilot-Einführungen von strategischer Ausrichtung
+                bis Rollout, inkl. Workshops, Pilotprojekten, Use-Case-Entwicklung und Governance. Einschränkungen:
+                stark Beratungs-zentriert mit höherem Tagessatz, primär auf Großunternehmen ausgerichtet – reine
+                Schulungs-Skalierung in einer breiten Belegschaft steht weniger im Fokus.
               </p>
             </CardContent>
           </Card>
@@ -709,68 +709,36 @@ const CopilotSchulungsanbieterVergleich = () => {
         <section id="entscheidungsmatrix" className="mb-4 mt-2">
           <h2 className="text-2xl md:text-3xl font-bold mb-2">Welcher Anbieter passt zu wem?</h2>
           <p className="mb-3">
-            Damit dieser Vergleich nutzbar wird, hier eine ehrliche Entscheidungs-Matrix. Sie zeigt, in welchen
-            Situationen ein anderer Anbieter die bessere Wahl als die copilotenschule.de ist – und in welchen wir
-            die richtige Antwort sind.
+            Damit dieser Vergleich nutzbar wird, hier eine ehrliche Entscheidungs-Matrix. Sie zeigt, für welche
+            Situationen die copilotenschule.de die richtige Wahl ist – und in welchen Fällen ein anderes Format
+            besser zu Ihrer Lage passt.
           </p>
           <div className="grid md:grid-cols-2 gap-3">
-            <Card>
+            <Card className="border-l-4 border-l-orange-500">
               <CardHeader>
-                <CardTitle className="text-base flex items-start gap-2"><Check className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" /> Inhouse-Training für 20–500 Mitarbeitende im DACH-Raum mit echten Rollout-Anforderungen</CardTitle>
+                <CardTitle className="text-base flex items-start gap-2"><Check className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" /> Inhouse-Training für eine geschlossene Teilnehmergruppe Ihres Unternehmens (20–500 Mitarbeitende, DACH)</CardTitle>
               </CardHeader>
               <CardContent className="text-sm">
-                → <strong>copilotenschule.de</strong>, PromptingBirds, COC AG
+                → <strong>copilotenschule.de</strong> – praxisorientierte Workshops, gezielter Bezug auf Ihre Themenwelt, Nutzungsrichtlinien und Use-Cases
               </CardContent>
             </Card>
-            <Card>
+            <Card className="border-l-4 border-l-orange-500">
               <CardHeader>
-                <CardTitle className="text-base flex items-start gap-2"><Check className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" /> Skalierbare On-Demand-Videos mit EU-AI-Act-Zertifikat</CardTitle>
+                <CardTitle className="text-base flex items-start gap-2"><Check className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" /> Praxisorientierte KI-unterstützte Büroarbeit für Teams im Alltag</CardTitle>
               </CardHeader>
               <CardContent className="text-sm">
-                → <strong>copilotexperte.de</strong>, optional ergänzt durch copilotenschule.de für Live-Workshop-Anteile
+                → <strong>copilotenschule.de</strong> – gemeinsam entwickelte Trainings- und Rollout-Programme bis zur produktiven Copilot-Nutzung
               </CardContent>
             </Card>
-            <Card>
+            <Card className="border-l-4 border-l-orange-500">
               <CardHeader>
-                <CardTitle className="text-base flex items-start gap-2"><Check className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" /> Einzelpersonen-Standardkurs an einem öffentlichen Termin in einer deutschen Großstadt</CardTitle>
+                <CardTitle className="text-base flex items-start gap-2"><Check className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" /> Spezielle Zielgruppen: Betriebsrat, HR, Vertrieb, Kundenservice, Führung, IT</CardTitle>
               </CardHeader>
               <CardContent className="text-sm">
-                → <strong>kebel.de</strong>, it-schulungen.com, gfu.net
+                → <strong>copilotenschule.de</strong> – dedizierte Modulpfade für jede dieser Funktionen
               </CardContent>
             </Card>
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-base flex items-start gap-2"><Check className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" /> HR-spezialisiertes Tagestraining mit Copilot</CardTitle>
-              </CardHeader>
-              <CardContent className="text-sm">
-                → <strong>Haufe Akademie</strong> (1-Tages-Format) oder <strong>copilotenschule.de</strong> (modulares HR-Curriculum)
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-base flex items-start gap-2"><Check className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" /> Spezielle Zielgruppen: Betriebsrat, Vertrieb, Kundenservice</CardTitle>
-              </CardHeader>
-              <CardContent className="text-sm">
-                → <strong>copilotenschule.de</strong> mit dedizierten Modulpfaden
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-base flex items-start gap-2"><Check className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" /> Vollumfänglicher Copilot-Rollout (Strategie, Governance, Training, Adoption)</CardTitle>
-              </CardHeader>
-              <CardContent className="text-sm">
-                → <strong>copilotenschule.de</strong>, COC AG, PromptingBirds
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-base flex items-start gap-2"><Check className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" /> Train-the-Trainer (interne Multiplikatoren aufbauen)</CardTitle>
-              </CardHeader>
-              <CardContent className="text-sm">
-                → <strong>copilotenschule.de</strong> – siehe <Link to="/wissen/interne-copilot-trainer-ausbilden" className="text-primary hover:underline">Train-the-Trainer-Ausbildung</Link>
-              </CardContent>
-            </Card>
-            <Card>
+            <Card className="border-l-4 border-l-orange-500">
               <CardHeader>
                 <CardTitle className="text-base flex items-start gap-2"><Check className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" /> Reine Copilot-Chat-Schulung ohne M365-Copilot-Lizenz</CardTitle>
               </CardHeader>
@@ -778,28 +746,61 @@ const CopilotSchulungsanbieterVergleich = () => {
                 → <strong>copilotenschule.de</strong> mit dediziertem Copilot-Chat-Pfad – siehe <Link to="/wissen/copilot-chat-free-pernod-ricard" className="text-primary hover:underline">Pernod-Ricard-Beispiel</Link>
               </CardContent>
             </Card>
+            <Card className="border-l-4 border-l-orange-500">
+              <CardHeader>
+                <CardTitle className="text-base flex items-start gap-2"><Check className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" /> Train-the-Trainer (interne Multiplikatoren aufbauen)</CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm">
+                → <strong>copilotenschule.de</strong> – siehe <Link to="/wissen/interne-copilot-trainer-ausbilden" className="text-primary hover:underline">Train-the-Trainer-Ausbildung</Link>
+              </CardContent>
+            </Card>
+            <Card className="border-l-4 border-l-orange-500">
+              <CardHeader>
+                <CardTitle className="text-base flex items-start gap-2"><Check className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" /> Kontinuierliche Begleitung über das Training hinaus</CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm">
+                → <strong>copilotenschule.de</strong> – Spezialisten-Netzwerk auch für kniffligere Fragen nach Trainingsende
+              </CardContent>
+            </Card>
+            <Card className="border-l-4 border-l-muted-foreground/40">
+              <CardHeader>
+                <CardTitle className="text-base flex items-start gap-2"><X className="w-5 h-5 text-muted-foreground mt-0.5 flex-shrink-0" /> Einzelpersonen-Standardkurs an einem öffentlichen Termin</CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm">
+                → Hier passen klassische offene IT-Akademien besser. Wir bieten bewusst keine offenen Trainings an
+                – unsere Stärke ist die Tiefe geschlossener Unternehmensgruppen.
+              </CardContent>
+            </Card>
+            <Card className="border-l-4 border-l-muted-foreground/40">
+              <CardHeader>
+                <CardTitle className="text-base flex items-start gap-2"><X className="w-5 h-5 text-muted-foreground mt-0.5 flex-shrink-0" /> Reines videobasiertes Selbstlernen für viele Mitarbeitende parallel</CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm">
+                → Hier passen On-Demand-Plattformen besser. Wir setzen bewusst auf Live-Interaktion mit einer
+                Gruppengröße von maximal 12 Teilnehmenden, damit wir alle in den Übungen aktiv begleiten können.
+              </CardContent>
+            </Card>
           </div>
         </section>
 
         {/* Referenzkunden */}
         <section id="referenzkunden" className="mb-4 mt-2">
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">Unsere Referenzkunden</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">Unsere Referenzkunden (kleine Auswahl)</h2>
           <p className="mb-3">
-            Damit Sie die Empfehlung nicht aus dem luftleeren Raum verstehen müssen: Eine Auswahl der Organisationen,
-            die wir bereits in den produktiven Einsatz von Microsoft Copilot begleitet haben.
+            Damit Sie die Empfehlung nicht aus dem luftleeren Raum verstehen müssen: Dies ist eine kleine Auswahl
+            unserer Kunden, die wir im Bereich Microsoft Copilot und KI-unterstützte Büroarbeit begleitet haben oder
+            aktuell begleiten. Die vollständige Kundenliste ist umfangreicher – wir nennen hier nur Organisationen, zu
+            denen wir öffentlich Bezug nehmen dürfen.
           </p>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
             {referenzkunden.map(kunde => (
-              <div key={kunde} className="flex items-center gap-2 p-3 bg-muted/30 rounded border">
-                <Award className="w-4 h-4 text-primary flex-shrink-0" />
-                <span className="text-sm font-medium">{kunde}</span>
+              <div key={kunde} className="p-3 bg-muted/30 rounded border text-sm font-medium">
+                {kunde}
               </div>
             ))}
           </div>
-          <p className="text-xs text-muted-foreground mt-3">
-            Die genannten Organisationen sind als Auftraggeber im Rahmen von Trainings, Workshops und/oder
-            Rollout-Begleitungen tätig gewesen oder noch aktiv. Detail-Case-Studies auf Anfrage und nach Freigabe
-            durch die jeweiligen Kunden.
+          <p className="text-xs text-muted-foreground mt-3 italic">
+            Detail-Case-Studies und weitere Referenzen auf Anfrage und nach Freigabe durch die jeweiligen Kunden.
           </p>
         </section>
 
@@ -825,14 +826,12 @@ const CopilotSchulungsanbieterVergleich = () => {
           <h2 className="text-2xl md:text-3xl font-bold mb-2">Quellen und weiterführende Links</h2>
           <ul className="list-disc pl-5 space-y-1 text-sm">
             <li><a href="https://www.copilotexperte.de/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">copilotexperte.de – Copilot Experten Masterclass</a></li>
-            <li><a href="https://promptingbirds.com/microsoft-365-copilot-schulung/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">PromptingBirds – Microsoft 365 Copilot Schulung</a></li>
             <li><a href="https://www.kebel.de/microsoft-365-copilot-kurse-und-schulungen/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">kebel.de – Microsoft Copilot Kurse</a></li>
             <li><a href="https://www.it-schulungen.com/seminare/kunstliche-intelligenz/microsoft-copilot/index.html" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">it-schulungen.com – Microsoft Copilot Seminare</a></li>
             <li><a href="https://www.gfu.net/copilot/copilot-schulung.html" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">gfu.net – Copilot Schulungen</a></li>
             <li><a href="https://www.medienreich.de/trainings/thema/microsoft-copilot" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">medienreich – Microsoft Copilot Trainings</a></li>
             <li><a href="https://www.haufe-akademie.de/skill-it/subcategories/microsoft-copilot" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Haufe Akademie / skill it – Microsoft Copilot</a></li>
             <li><a href="https://www.coc-ag.de/leistungen/microsoft-copilot-beratung-schulung" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">COC AG – Microsoft Copilot Beratung & Schulung</a></li>
-            <li><a href="https://roover.de/copilot-schulung-im-unternehmen-2026/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">roover.de – Copilot Schulung im Unternehmen</a></li>
             <li><a href="https://www.bitkom.org/Presse/Presseinformation/Durchbruch-Kuenstliche-Intelligenz" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Bitkom KI-Studie 2025 – Marktdaten zu KI-Einsatz in Deutschland</a></li>
             <li><a href="https://eur-lex.europa.eu/eli/reg/2024/1689" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">EU-KI-Verordnung (AI Act) – Volltext mit Art. 4 KI-Kompetenz-Pflicht</a></li>
           </ul>
