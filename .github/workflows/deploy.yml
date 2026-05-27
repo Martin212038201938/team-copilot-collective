@@ -9,6 +9,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Volle git-History laden, damit scripts/generate-sitemap.js die echten
+          # Datei-Änderungs-Daten via `git log` ermitteln kann (lastmod pro URL).
+          # Ohne diesen Parameter wäre fetch-depth:1 (Shallow Clone) der Default —
+          # dann liefert `git log` immer das HEAD-Commit-Datum (= heute) für jede
+          # Datei, was die Sitemap zu einem Massen-Update-Signal macht.
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4

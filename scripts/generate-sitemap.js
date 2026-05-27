@@ -33,28 +33,61 @@ const TODAY = new Date().toISOString().split('T')[0];
 // Konservatives Fallback-Datum für Seiten, deren Update-Zeitpunkt nicht ermittelbar ist
 const SITE_BASELINE_DATE = '2026-01-15';
 
+// Hardcoded Fallback-lastmod, falls git history nicht verfügbar ist (Shallow Clone in CI).
+// Diese Daten sollten manuell aktualisiert werden, wenn die jeweilige Datei
+// strukturell überarbeitet wird. Stand: ermittelt aus `git log` am 2026-05-27.
+const FALLBACK_LASTMOD = {
+  'src/data/trainings.ts':   '2026-04-28',
+  'src/data/workshops.ts':   '2026-04-27',
+  'src/data/authors.ts':     '2026-04-27',
+  'src/data/articles.ts':    '2026-05-25',
+  'src/App.tsx':             '2026-05-25',
+  'src/pages/Index.tsx':              '2026-02-04',
+  'src/pages/UnsereAngebote.tsx':     '2026-04-28',
+  'src/pages/UeberUns.tsx':           '2026-04-01',
+  'src/pages/BecomeTrainer.tsx':      '2026-04-27',
+  'src/pages/TrainingKonfigurator.tsx': '2026-04-23',
+  'src/pages/Impressum.tsx':          '2026-02-18',
+};
+
 // ──────────────────────────────────────────────────────────────
 // Hilfsfunktionen für individuelles lastmod
 // ──────────────────────────────────────────────────────────────
 
 /**
  * Holt das letzte git-commit-Datum einer Datei (ISO YYYY-MM-DD).
- * Liefert SITE_BASELINE_DATE, wenn die Datei nicht im git-history ist
- * oder git im Build-Umfeld nicht verfügbar ist.
+ *
+ * Vorrang-Reihenfolge:
+ *   1. `git log` mit echtem Datum (wenn != TODAY und git history vorhanden)
+ *   2. Hardcoded FALLBACK_LASTMOD-Map (für Shallow-Clone-Umgebungen wie GitHub Actions)
+ *   3. SITE_BASELINE_DATE als letzter Notnagel
+ *
+ * Warum die Sonderbehandlung für TODAY?
+ * Wenn `git log` in einem Shallow Clone aufgerufen wird, liefert es für jede Datei
+ * das HEAD-Commit-Datum (= heute) zurück, weil ältere Commits nicht im lokalen
+ * .git-Repo sind. Wenn wir das blind übernehmen, deklariert die Sitemap alle URLs
+ * als "heute geändert" — Massen-Update-Signal an Google. Stattdessen erkennen wir
+ * dieses Muster und fallen auf die hardcoded Map zurück.
  */
 function gitLastModified(relPath) {
+  let gitDate = null;
   try {
     const abs = path.join(ROOT, relPath);
-    if (!fs.existsSync(abs)) return SITE_BASELINE_DATE;
+    if (!fs.existsSync(abs)) return FALLBACK_LASTMOD[relPath] || SITE_BASELINE_DATE;
     const out = execSync(
       `git log -1 --format=%cd --date=short -- "${relPath}"`,
       { cwd: ROOT, encoding: 'utf-8', stdio: ['ignore', 'pipe', 'ignore'] }
     ).trim();
-    if (out && /^\d{4}-\d{2}-\d{2}$/.test(out)) return out;
-    return SITE_BASELINE_DATE;
+    if (out && /^\d{4}-\d{2}-\d{2}$/.test(out)) gitDate = out;
   } catch {
-    return SITE_BASELINE_DATE;
+    // git nicht verfügbar oder Fehler
   }
+
+  // Wenn git ein Datum liefert, das != TODAY ist, ist es vertrauenswürdig
+  if (gitDate && gitDate !== TODAY) return gitDate;
+
+  // Sonst: hardcoded Fallback verwenden
+  return FALLBACK_LASTMOD[relPath] || SITE_BASELINE_DATE;
 }
 
 /**
