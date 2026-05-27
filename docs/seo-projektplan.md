@@ -169,6 +169,33 @@ Pro Hub-Artikel: vorher CLAUDE.md-Pflichtcheckliste ausführen (Route + reactSna
 
 ---
 
+## Aktive Cron-Jobs (Autopilot)
+
+Diese Cron-Jobs erledigen die Roadmap weitgehend autonom. Jeder einmalige Cron prüft beim Lauf seine Vorbedingung — wenn die noch nicht erfüllt ist, schiebt er sich um 14 Tage. Alle Drafts landen in `docs/drafts/` oder `docs/outreach/` — Pushen + Versenden bleibt User-Aufgabe.
+
+| Cron-ID | Schedule | Maßnahme | Auto-Aktion bei Lauf |
+|---|---|---|---|
+| `copilotenschule-seo-weekly-audit` | jeden Mo 10:00 (wiederkehrend) | Monitoring | Audit + Status-Log + if/then aus Plan |
+| `copilotenschule-seo-monthly-review` | 2. Mi 10:30 (wiederkehrend) | Großer Review | Definition-of-Done-Tabelle + Plan-Anpassung |
+| `copilotenschule-seo-phase-conductor` | 1.+3. Mi 11:00 (wiederkehrend) | Orchestrierung | Prüft alle Maßnahmen, schiebt fehlende Crons nach, schließt Roadmap ab |
+| `copilotenschule-seo-d1-provenexpert-reminder` | Mi 10.06. 14:00 | D1 ProvenExpert | Reminder + Anleitung |
+| `copilotenschule-seo-a2-iteration-prep` | Do 11.06. 10:30 | A2 concurrency:1 | Code-Diff in `docs/drafts/a2-iteration-diff.md`, wenn nötig |
+| `copilotenschule-seo-b3a-eu-ai-act-draft` | Mo 15.06. 10:30 | B3a EU AI Act Hub | TSX-Entwurf in `docs/drafts/` |
+| `copilotenschule-seo-d3-listicle-outreach` | Mo 22.06. 10:30 | D3 Listicle-Outreach | 3 Mail-Entwürfe in `docs/outreach/` |
+| `copilotenschule-seo-b3b-b3c-hubs-draft` | Mo 06.07. 10:30 | B3b QCG + B3c Inhouse | 2 TSX-Entwürfe |
+| `copilotenschule-seo-b4-trust-signals-prep` | Mo 20.07. 10:30 | B4 Trust-Signal Block | Logo-Freigabe-Workflow oder Code-Entwurf |
+| `websiten-health-check` | täglich 09:53 (vorhanden) | Tägliches Monitoring | GSC-Snapshot, Indexierung, Tracking-Keywords |
+
+**Wenn Cron-Job läuft, aber Vorbedingung nicht erfüllt:** Er schiebt sich um 14 Tage auf einen Retry-Cron mit `-retry`-Suffix, deaktiviert sich selbst. Conductor erkennt das beim nächsten Lauf und entscheidet weiter.
+
+**Conductor-Sicherheitsnetz:** Falls eine Maßnahme aus der Tabelle keinen aktiven Cron mehr hat (z. B. weil ein Cron sich nach 3 Retries ohne Erfolg deaktiviert), legt der Conductor beim nächsten Lauf einen neuen für 7 Tage in der Zukunft an.
+
+## Plan-Abschluss-Bedingungen
+
+Der Conductor deaktiviert sich selbst, sobald **alle 8 Definition-of-Done-Kriterien** aus dem Zielbild erreicht sind. Bis dahin läuft das System weiter, ohne dass du daran denken musst.
+
+Wenn der Conductor sich deaktiviert: ein letzter „Abschluss-Review"-Bericht wird in `docs/seo-abschluss-review.md` geschrieben.
+
 ## Update-Konvention
 
 Wenn dieser Plan aktualisiert wird:
@@ -176,5 +203,6 @@ Wenn dieser Plan aktualisiert wird:
 - Eintrag in der Maßnahmen-Tabelle (Status auf ✅/⚠️/⏳/🔵 ändern)
 - Bei Phasen-Wechsel: aktive Phase oben hervorheben
 - Bei strukturellen Plan-Änderungen: Notiz im `seo-status-log.md`
+- Bei Cron-Anlage/Deaktivierung: Cron-Tabelle oben aktualisieren
 
 Aktuelle Phase: **Phase 1 — Stabilisierung & Beobachtung**

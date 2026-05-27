@@ -23,6 +23,7 @@
   },
   "reactSnap": {
     "source": "dist",
+    "concurrency": 1,
     "minifyHtml": {
       "collapseWhitespace": true,
       "removeComments": true
