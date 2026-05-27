@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import AuthorBio from "@/components/AuthorBio";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
+import { trackConversion } from "@/lib/analytics";
 
 const SLUG = "copilot-betriebsrat";
 const PAGE_TITLE = "Microsoft Copilot und der Betriebsrat: Was Arbeitnehmervertreter wirklich wissen müssen";
@@ -664,6 +665,7 @@ const CopilotBetriebsrat = () => {
               <a
                 href="/downloads/checkliste-copilot-betriebsrat.pdf"
                 download
+                onClick={() => trackConversion("pdf_download", "betriebsrat-checkliste")}
                 className="inline-flex items-center gap-2 text-primary font-semibold hover:underline"
               >
                 Checkliste als PDF herunterladen &rarr;
@@ -753,6 +755,7 @@ const CopilotBetriebsrat = () => {
               <a
                 href="/downloads/begruendungshilfe-betriebsrat-ki-schulung.pdf"
                 download
+                onClick={() => trackConversion("pdf_download", "betriebsrat-begruendungshilfe")}
                 className="inline-flex items-center gap-2 text-primary font-semibold hover:underline"
               >
                 Begründungshilfe als PDF herunterladen &rarr;

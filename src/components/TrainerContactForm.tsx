@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Upload, FileText, Linkedin, Globe, X, Calendar } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { trackConversion, markConvertedSession } from "@/lib/analytics";
 
 const TrainerContactForm = () => {
   const { toast } = useToast();
@@ -74,6 +75,9 @@ const TrainerContactForm = () => {
         title: "Bewerbung gesendet!",
         description: "Vielen Dank für Ihr Interesse. Wir melden uns innerhalb von 48 Stunden bei Ihnen.",
       });
+      // Conversion tracking — Trainer-Bewerbung
+      trackConversion("trainer_application_submit", formData.path || "general");
+      markConvertedSession("trainer_application");
       setFormData({
         firstName: "",
         lastName: "",

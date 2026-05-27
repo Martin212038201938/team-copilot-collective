@@ -254,7 +254,7 @@ function checkStaticPages() {
   const staticRoutes = [
     '/', '/trainings', '/workshops', '/wissen',
     '/unsere-angebote', '/ueber-uns', '/trainer-werden',
-    '/training-konfigurator', '/impressum'
+    '/training-konfigurator', '/impressum', '/datenschutz'
   ];
   for (const route of staticRoutes) {
     checkRouteConsistency(route, 'statische Seite');

@@ -48,6 +48,7 @@ const FALLBACK_LASTMOD = {
   'src/pages/BecomeTrainer.tsx':      '2026-04-27',
   'src/pages/TrainingKonfigurator.tsx': '2026-04-23',
   'src/pages/Impressum.tsx':          '2026-02-18',
+  'src/pages/Datenschutz.tsx':        '2026-05-27',
 };
 
 // ──────────────────────────────────────────────────────────────
@@ -159,6 +160,7 @@ const staticPages = [
   { loc: '/trainer-werden',         lastmod: gitLastModified('src/pages/BecomeTrainer.tsx'),        changefreq: 'monthly', priority: 0.6 },
   { loc: '/training-konfigurator',  lastmod: gitLastModified('src/pages/TrainingKonfigurator.tsx'), changefreq: 'monthly', priority: 0.8 },
   { loc: '/impressum',              lastmod: gitLastModified('src/pages/Impressum.tsx'),            changefreq: 'yearly',  priority: 0.3 },
+  { loc: '/datenschutz',            lastmod: gitLastModified('src/pages/Datenschutz.tsx'),          changefreq: 'yearly',  priority: 0.3 },
 ];
 
 // Wissensseiten — lastmod aus articles.ts publishDate (echtes Veröffentlichungsdatum)

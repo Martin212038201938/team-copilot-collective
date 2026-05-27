@@ -5,6 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Mail, Phone, MapPin, Calendar, MessageSquare } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { trackConversion, markConvertedSession } from "@/lib/analytics";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -87,6 +88,9 @@ const Contact = () => {
         title: "Anfrage gesendet!",
         description: "Wir melden uns innerhalb von 24 Stunden bei Ihnen.",
       });
+      // Conversion tracking
+      trackConversion("contact_form_submit", trainingSource || "direct");
+      markConvertedSession("contact_form");
       setFormData({ firstName: "", lastName: "", email: "", company: "", phone: "", message: "" });
     } catch (error) {
       console.error('Error submitting form:', error);
@@ -281,7 +285,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold mb-1">E-Mail</h3>
-                  <a href="mailto:info@copilotenschule.de" className="text-muted-foreground hover:text-primary transition-colors">
+                  <a href="mailto:info@copilotenschule.de" onClick={() => trackConversion("mail_click", "contact_section")} className="text-muted-foreground hover:text-primary transition-colors">
                     info@copilotenschule.de
                   </a>
                 </div>
@@ -295,7 +299,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold mb-1">Telefon</h3>
-                  <a href="tel:+4922195018774" className="text-muted-foreground hover:text-primary transition-colors">
+                  <a href="tel:+4922195018774" onClick={() => trackConversion("phone_click", "contact_section")} className="text-muted-foreground hover:text-primary transition-colors">
                     +49 221 950 187 74
                   </a>
                 </div>

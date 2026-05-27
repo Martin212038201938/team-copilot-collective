@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { trackConversion } from "@/lib/analytics";
 
 const Footer = () => {
   return (
@@ -45,8 +46,8 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4">Kontakt</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><a href="mailto:info@copilotenschule.de" className="hover:text-primary transition-colors">info@copilotenschule.de</a></li>
-              <li><a href="tel:+4922195018774" className="hover:text-primary transition-colors">+49 221 950 187 74</a></li>
+              <li><a href="mailto:info@copilotenschule.de" onClick={() => trackConversion("mail_click", "footer")} className="hover:text-primary transition-colors">info@copilotenschule.de</a></li>
+              <li><a href="tel:+4922195018774" onClick={() => trackConversion("phone_click", "footer")} className="hover:text-primary transition-colors">+49 221 950 187 74</a></li>
               <li>
                 <a
                   href="https://teams.microsoft.com/l/chat/0/0?users=martin@yellow-boat.com"
@@ -71,7 +72,7 @@ const Footer = () => {
           <div className="flex gap-6 text-sm text-muted-foreground">
             <Link to="/ueber-uns" className="hover:text-primary transition-colors">Über uns</Link>
             <Link to="/impressum" className="hover:text-primary transition-colors">Impressum</Link>
-            <Link to="/impressum" className="hover:text-primary transition-colors">Datenschutz</Link>
+            <Link to="/datenschutz" className="hover:text-primary transition-colors">Datenschutz</Link>
             <Link to="/admin" className="hover:text-primary transition-colors">Admin Login</Link>
           </div>
         </div>

@@ -14,6 +14,7 @@ import PromptEngineering from "./pages/PromptEngineering";
 import KIAgenten from "./pages/KIAgenten";
 import CopilotFehler from "./pages/CopilotFehler";
 import Impressum from "./pages/Impressum";
+import Datenschutz from "./pages/Datenschutz";
 import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
 import CopilotRoiBerechnen from "./pages/CopilotRoiBerechnen";
@@ -117,6 +118,7 @@ const App = () => (
           <Route path="/wissen/copilot-pages-loop-notebooks-sharepoint-workflows" element={<CopilotPagesLoopNotebooksSharepointWorkflows />} />
           <Route path="/wissen/interne-copilot-trainer-ausbilden" element={<InterneCopilotTrainerAusbilden />} />
           <Route path="/impressum" element={<Impressum />} />
+          <Route path="/datenschutz" element={<Datenschutz />} />
           <Route path="/ueber-uns" element={<UeberUns />} />
           <Route path="/trainings" element={<UnsereAngebote />} />
           <Route path="/unsere-angebote" element={<Navigate to="/trainings" replace />} />

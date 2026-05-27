@@ -11,6 +11,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import { useToast } from "@/hooks/use-toast";
+import { trackConversion, markConvertedSession } from "@/lib/analytics";
 
 // Kategorien für die Module
 interface ModuleCategory {
@@ -456,6 +457,9 @@ ${formData.additionalInfo ? `---\nINFORMATIONEN UND WEITERE BENÖTIGTE INHALTE:\
         title: "Anfrage gesendet!",
         description: "Wir melden uns innerhalb von 24 Stunden bei Ihnen.",
       });
+      // Conversion tracking — Training-Konfigurator-Submit
+      trackConversion("konfigurator_submit", `${selectedModules.length}_modules`);
+      markConvertedSession("konfigurator");
       setStep(1);
       setSelectedModules([]);
       setCustomModules([]);
