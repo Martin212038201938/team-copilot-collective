@@ -8,123 +8,184 @@
  * - Trainer-Profile
  *
  * Wird im Build-Prozess ausgeführt: npm run generate-sitemap
+ *
+ * Lastmod-Strategie (wichtig für SEO!):
+ * - Wissens-Artikel: publishDate aus src/data/articles.ts (echtes Veröffentlichungsdatum)
+ * - Trainings/Workshops/Trainer/Static: letzte Änderung der entsprechenden Quelldatei
+ *   (ermittelt via `git log -1 --pretty=format:%ai`)
+ * - Fallback (falls git fehlt oder unbekannt): SITE_BASELINE_DATE als evergreen-Marker
+ *
+ * Warum nicht TODAY für alle? Sitemap mit lastmod=heute für 70 Seiten signalisiert Google
+ * "Massen-Update" — schädlich für SEO. Echte Daten zeigen: strukturelle Pflege, kein Spam.
  */
 
 import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
+import { execSync } from 'child_process';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const ROOT = path.resolve(__dirname, '..');
 
 const BASE_URL = 'https://copilotenschule.de';
 const TODAY = new Date().toISOString().split('T')[0];
+// Konservatives Fallback-Datum für Seiten, deren Update-Zeitpunkt nicht ermittelbar ist
+const SITE_BASELINE_DATE = '2026-01-15';
 
-// Statische Seiten
+// ──────────────────────────────────────────────────────────────
+// Hilfsfunktionen für individuelles lastmod
+// ──────────────────────────────────────────────────────────────
+
+/**
+ * Holt das letzte git-commit-Datum einer Datei (ISO YYYY-MM-DD).
+ * Liefert SITE_BASELINE_DATE, wenn die Datei nicht im git-history ist
+ * oder git im Build-Umfeld nicht verfügbar ist.
+ */
+function gitLastModified(relPath) {
+  try {
+    const abs = path.join(ROOT, relPath);
+    if (!fs.existsSync(abs)) return SITE_BASELINE_DATE;
+    const out = execSync(
+      `git log -1 --format=%cd --date=short -- "${relPath}"`,
+      { cwd: ROOT, encoding: 'utf-8', stdio: ['ignore', 'pipe', 'ignore'] }
+    ).trim();
+    if (out && /^\d{4}-\d{2}-\d{2}$/.test(out)) return out;
+    return SITE_BASELINE_DATE;
+  } catch {
+    return SITE_BASELINE_DATE;
+  }
+}
+
+/**
+ * Liest src/data/articles.ts und extrahiert für jede id das publishDate.
+ * Gibt eine Map slug → "YYYY-MM-DD" zurück.
+ */
+function readArticlePublishDates() {
+  const file = path.join(ROOT, 'src', 'data', 'articles.ts');
+  if (!fs.existsSync(file)) return new Map();
+  const content = fs.readFileSync(file, 'utf-8');
+  const map = new Map();
+  // Match Blöcke: { ... id: "slug", ... publishDate: "YYYY-MM-DD" ... }
+  const re = /\{\s*[^}]*?id:\s*["']([^"']+)["'][^}]*?publishDate:\s*["'](\d{4}-\d{2}-\d{2})["'][^}]*?\}/gs;
+  let m;
+  while ((m = re.exec(content)) !== null) {
+    map.set(m[1], m[2]);
+  }
+  return map;
+}
+
+/**
+ * Gibt einen lastmod-Wert für eine /wissen/-URL zurück:
+ * Erst aus articles.ts publishDate, sonst aus git log auf die TSX-Datei,
+ * sonst SITE_BASELINE_DATE.
+ */
+function wissenLastmod(slug, articleDates) {
+  if (articleDates.has(slug)) return articleDates.get(slug);
+  // Fallback: TSX-Datei finden (heuristisch über slug-Match)
+  const pagesDir = path.join(ROOT, 'src', 'pages');
+  if (fs.existsSync(pagesDir)) {
+    const files = fs.readdirSync(pagesDir).filter(f => f.endsWith('.tsx'));
+    for (const f of files) {
+      const c = fs.readFileSync(path.join(pagesDir, f), 'utf-8');
+      if (c.includes(`const SLUG = "${slug}"`) || c.includes(`const SLUG = '${slug}'`)) {
+        return gitLastModified(`src/pages/${f}`);
+      }
+    }
+  }
+  return SITE_BASELINE_DATE;
+}
+
+// ──────────────────────────────────────────────────────────────
+// Aufgelöste lastmod-Quellen
+// ──────────────────────────────────────────────────────────────
+
+const articleDates = readArticlePublishDates();
+
+// Für Trainings/Workshops verwenden wir das letzte Update der jeweiligen Datenquelle.
+// Das ist konsistent und nachvollziehbar — eine Änderung an trainings.ts spiegelt sich
+// in allen Trainings-Einträgen wider. (Wenn das später feiner pro Slug nötig wird,
+// kann man ein lastUpdated-Feld in trainings.ts ergänzen.)
+const TRAININGS_LASTMOD = gitLastModified('src/data/trainings.ts');
+const WORKSHOPS_LASTMOD = gitLastModified('src/data/workshops.ts');
+const AUTHORS_LASTMOD = gitLastModified('src/data/authors.ts');
+const APP_LASTMOD = gitLastModified('src/App.tsx');
+
+// ──────────────────────────────────────────────────────────────
+// Page-Listen mit echten lastmod-Werten
+// ──────────────────────────────────────────────────────────────
+
+// Statische Seiten — lastmod aus der jeweiligen TSX-Datei
 const staticPages = [
-  { loc: '/', lastmod: TODAY, changefreq: 'weekly', priority: 1.0 },
-  { loc: '/trainings', lastmod: TODAY, changefreq: 'weekly', priority: 0.9 },
-  { loc: '/workshops', lastmod: TODAY, changefreq: 'weekly', priority: 0.9 },
-  { loc: '/wissen', lastmod: TODAY, changefreq: 'weekly', priority: 0.9 },
-  { loc: '/unsere-angebote', lastmod: TODAY, changefreq: 'weekly', priority: 0.85 },
-  { loc: '/ueber-uns', lastmod: TODAY, changefreq: 'monthly', priority: 0.7 },
-  { loc: '/trainer-werden', lastmod: TODAY, changefreq: 'monthly', priority: 0.6 },
-  { loc: '/training-konfigurator', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
-  { loc: '/impressum', lastmod: TODAY, changefreq: 'yearly', priority: 0.3 },
+  { loc: '/',                       lastmod: gitLastModified('src/pages/Index.tsx'),                changefreq: 'weekly',  priority: 1.0 },
+  { loc: '/trainings',              lastmod: TRAININGS_LASTMOD,                                     changefreq: 'weekly',  priority: 0.9 },
+  { loc: '/workshops',              lastmod: WORKSHOPS_LASTMOD,                                     changefreq: 'weekly',  priority: 0.9 },
+  { loc: '/wissen',                 lastmod: gitLastModified('src/data/articles.ts'),               changefreq: 'weekly',  priority: 0.9 },
+  { loc: '/unsere-angebote',        lastmod: gitLastModified('src/pages/UnsereAngebote.tsx'),       changefreq: 'weekly',  priority: 0.85 },
+  { loc: '/ueber-uns',              lastmod: gitLastModified('src/pages/UeberUns.tsx'),             changefreq: 'monthly', priority: 0.7 },
+  { loc: '/trainer-werden',         lastmod: gitLastModified('src/pages/BecomeTrainer.tsx'),        changefreq: 'monthly', priority: 0.6 },
+  { loc: '/training-konfigurator',  lastmod: gitLastModified('src/pages/TrainingKonfigurator.tsx'), changefreq: 'monthly', priority: 0.8 },
+  { loc: '/impressum',              lastmod: gitLastModified('src/pages/Impressum.tsx'),            changefreq: 'yearly',  priority: 0.3 },
 ];
 
-// Alle Wissensseiten unter /wissen/ (konsolidiert)
-// WICHTIG: Bei neuen Artikeln hier den Pfad hinzufügen!
-const knowledgePages = [
-  { loc: '/wissen/github-copilot', lastmod: TODAY, changefreq: 'monthly', priority: 0.9 },
-  { loc: '/wissen/copilot-studio', lastmod: TODAY, changefreq: 'monthly', priority: 0.9 },
-  { loc: '/wissen/prompt-engineering', lastmod: TODAY, changefreq: 'monthly', priority: 0.9 },
-  { loc: '/wissen/copilot-fehler-vermeiden', lastmod: TODAY, changefreq: 'monthly', priority: 0.9 },
-  { loc: '/wissen/ki-agenten', lastmod: TODAY, changefreq: 'monthly', priority: 0.9 },
-  { loc: '/wissen/microsoft-copilot-lizenzen', lastmod: TODAY, changefreq: 'monthly', priority: 0.9 },
-  { loc: '/wissen/copilot-roi-berechnen', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
-  { loc: '/wissen/copilot-fuer-word', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
-  { loc: '/wissen/copilot-sicherheit-datenschutz', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
-  { loc: '/wissen/copilot-tipps-tricks-produktivitaet', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
-  { loc: '/wissen/copilot-training-schulung', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
-  { loc: '/wissen/ki-realitaet-beratungsfirmen-2026', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
-  { loc: '/wissen/copilot-unternehmensweit-einfuehren', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
-  { loc: '/wissen/prompt-bibliotheken-vs-training', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
-  { loc: '/wissen/copilot-digitales-gedaechtnis', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
-  { loc: '/wissen/copilot-launch-kampagne', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
-  { loc: '/wissen/copilot-roi-erfolgsgeschichten', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
-  { loc: '/wissen/copilot-adoption-2026-zahlen', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
-  { loc: '/wissen/copilot-lernreise-vs-tagesschulung', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
-  { loc: '/wissen/warum-verteiltes-lernen-bei-copilot-trainings-funktioniert', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
-  { loc: '/wissen/copilot-adhs-produktiver-arbeiten', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
-  { loc: '/wissen/copilot-vertrieb-use-cases', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
-  { loc: '/wissen/copilot-hr-use-cases', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
-  { loc: '/wissen/ki-halluzinationen-vermeiden', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
-  { loc: '/wissen/copilot-chat-free-pernod-ricard', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
-  { loc: '/wissen/copilot-agent-digitales-gedaechtnis', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
-  { loc: '/wissen/copilot-fuer-excel', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
-  { loc: '/wissen/ki-schulung-mitarbeiter-pflicht', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
-  { loc: '/wissen/microsoft-365-e7-frontier-suite', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
-  { loc: '/wissen/claude-in-microsoft-copilot', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
-  { loc: '/wissen/copilot-in-teams-zeit-gewinnen', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
-  { loc: '/wissen/copilot-in-outlook-nutzen-tipps', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
-  { loc: '/wissen/microsoft-copilot-schulung-online', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
-  { loc: '/wissen/copilot-betriebsrat', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
-  { loc: '/wissen/copilot-in-excel-aktivieren', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
-  { loc: '/wissen/copilot-flex-routing-eu-verarbeitung', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
-  { loc: '/wissen/copilot-im-unternehmen-einfuehren-leitfaden', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
-  { loc: '/wissen/bessere-entscheidungen-mit-ki', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
-  { loc: '/wissen/copilot-pages-loop-notebooks-sharepoint-workflows', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
-  { loc: '/wissen/interne-copilot-trainer-ausbilden', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
-  { loc: '/wissen/copilot-agent-mode-word-excel-powerpoint', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
-  { loc: '/wissen/copilot-schulungsanbieter-deutschland-vergleich', lastmod: TODAY, changefreq: 'monthly', priority: 0.9 },
+// Wissensseiten — lastmod aus articles.ts publishDate (echtes Veröffentlichungsdatum)
+const knowledgeSlugs = [
+  'github-copilot', 'copilot-studio', 'prompt-engineering', 'copilot-fehler-vermeiden',
+  'ki-agenten', 'microsoft-copilot-lizenzen', 'copilot-roi-berechnen', 'copilot-fuer-word',
+  'copilot-sicherheit-datenschutz', 'copilot-tipps-tricks-produktivitaet', 'copilot-training-schulung',
+  'ki-realitaet-beratungsfirmen-2026', 'copilot-unternehmensweit-einfuehren',
+  'prompt-bibliotheken-vs-training', 'copilot-digitales-gedaechtnis', 'copilot-launch-kampagne',
+  'copilot-roi-erfolgsgeschichten', 'copilot-adoption-2026-zahlen', 'copilot-lernreise-vs-tagesschulung',
+  'warum-verteiltes-lernen-bei-copilot-trainings-funktioniert', 'copilot-adhs-produktiver-arbeiten',
+  'copilot-vertrieb-use-cases', 'copilot-hr-use-cases', 'ki-halluzinationen-vermeiden',
+  'copilot-chat-free-pernod-ricard', 'copilot-agent-digitales-gedaechtnis', 'copilot-fuer-excel',
+  'ki-schulung-mitarbeiter-pflicht', 'microsoft-365-e7-frontier-suite', 'claude-in-microsoft-copilot',
+  'copilot-in-teams-zeit-gewinnen', 'copilot-in-outlook-nutzen-tipps', 'microsoft-copilot-schulung-online',
+  'copilot-betriebsrat', 'copilot-in-excel-aktivieren', 'copilot-flex-routing-eu-verarbeitung',
+  'copilot-im-unternehmen-einfuehren-leitfaden', 'bessere-entscheidungen-mit-ki',
+  'copilot-pages-loop-notebooks-sharepoint-workflows', 'interne-copilot-trainer-ausbilden',
+  'copilot-agent-mode-word-excel-powerpoint', 'copilot-schulungsanbieter-deutschland-vergleich',
 ];
 
-// Trainingsseiten - Slugs aus trainings.ts
-// Hinweis: Die 6 Workshops-Slugs wurden nach /workshops/ migriert (siehe unten).
+const knowledgePages = knowledgeSlugs.map(slug => ({
+  loc: `/wissen/${slug}`,
+  lastmod: wissenLastmod(slug, articleDates),
+  changefreq: 'monthly',
+  priority: slug === 'copilot-schulungsanbieter-deutschland-vergleich' ? 0.9 : 0.8,
+}));
+
+// Trainings — lastmod aus dem letzten Update der trainings.ts (konsistent für alle)
 const trainingsSlugs = [
-  'copilot-grundlagen-prompt-design',
-  'microsoft-365-copilot-praxis',
-  'ausbildung-ki-wissensarbeiter',
-  'train-the-trainer-copilot',
-  'github-copilot-entwickler',
-  'copilot-compliance-datenschutz',
-  'copilot-studio-ki-agenten',
-  'low-code-power-platform',
-  'eu-ai-act-pflichtschulung',
-  'copilot-lernreise-8-wochen',
-  'individuelle-copilot-schulung',
+  'copilot-grundlagen-prompt-design', 'microsoft-365-copilot-praxis', 'ausbildung-ki-wissensarbeiter',
+  'train-the-trainer-copilot', 'github-copilot-entwickler', 'copilot-compliance-datenschutz',
+  'copilot-studio-ki-agenten', 'low-code-power-platform', 'eu-ai-act-pflichtschulung',
+  'copilot-lernreise-8-wochen', 'individuelle-copilot-schulung',
 ];
 
 const trainingPages = trainingsSlugs.map(slug => ({
   loc: `/trainings/${slug}`,
-  lastmod: TODAY,
+  lastmod: TRAININGS_LASTMOD,
   changefreq: 'monthly',
   priority: 0.8,
 }));
 
-// Workshops & Events - Slugs aus workshops.ts (eigene Kategorie parallel zu Trainings)
+// Workshops — lastmod aus dem letzten Update der workshops.ts
 const workshopsSlugs = [
-  'copilot-change-programm',
-  'copilot-strategie-change-management',
-  'chatbot-workshop',
-  'betriebsrat-ki-workshop',
-  'copilot-hackathon',
-  'keynote-copilot-arbeitswelt',
-  'copilot-launch-eventtag',
-  'bessere-entscheidungen-mit-copilot',
+  'copilot-change-programm', 'copilot-strategie-change-management', 'chatbot-workshop',
+  'betriebsrat-ki-workshop', 'copilot-hackathon', 'keynote-copilot-arbeitswelt',
+  'copilot-launch-eventtag', 'bessere-entscheidungen-mit-copilot',
 ];
 
 const workshopPages = workshopsSlugs.map(slug => ({
   loc: `/workshops/${slug}`,
-  lastmod: TODAY,
+  lastmod: WORKSHOPS_LASTMOD,
   changefreq: 'monthly',
   priority: 0.8,
 }));
 
-// Trainer-Profile
+// Trainer-Profile — lastmod aus authors.ts
 const trainerProfiles = [
-  { loc: '/trainer/martin-lang', lastmod: TODAY, changefreq: 'monthly', priority: 0.7 },
+  { loc: '/trainer/martin-lang', lastmod: AUTHORS_LASTMOD, changefreq: 'monthly', priority: 0.7 },
 ];
 
 // Alle Seiten zusammenführen
@@ -151,7 +212,7 @@ function generateSitemapXML(entries) {
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <!-- Automatisch generiert am ${TODAY} -->
-  <!-- ${entries.length} URLs insgesamt -->
+  <!-- ${entries.length} URLs insgesamt | lastmod aus echten Update-Daten (articles.ts publishDate, git log) -->
 ${urlEntries}
 </urlset>
 `;
@@ -162,12 +223,20 @@ function main() {
   const sitemap = generateSitemapXML(allPages);
 
   // Schreibe in public/ für den Build
-  const publicPath = path.join(__dirname, '..', 'public', 'sitemap.xml');
+  const publicPath = path.join(ROOT, 'public', 'sitemap.xml');
   fs.writeFileSync(publicPath, sitemap, 'utf-8');
+
+  // Verteilung der lastmod-Daten zur Selbstkontrolle
+  const distribution = {};
+  for (const e of allPages) distribution[e.lastmod] = (distribution[e.lastmod] || 0) + 1;
+  const sortedDates = Object.keys(distribution).sort();
 
   console.log(`✅ Sitemap generiert: ${publicPath}`);
   console.log(`   ${allPages.length} URLs enthalten`);
-  console.log(`   Letzte Aktualisierung: ${TODAY}`);
+  console.log(`   lastmod-Verteilung (echte Update-Daten):`);
+  for (const d of sortedDates) {
+    console.log(`     ${d}: ${distribution[d]} URLs`);
+  }
 }
 
 main();
