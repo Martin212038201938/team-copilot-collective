@@ -129,12 +129,17 @@ function checkReactSnap(wissenPages) {
     }
   }
 
-  // Check ob alte Root-Level-URLs noch drin sind
+  // Check ob alte Root-Level-URLs noch drin sind, die NICHT zu den erlaubten
+  // statischen Seiten gehören.
+  const allowedRootRoutes = [
+    '/', '/trainings', '/workshops', '/wissen',
+    '/unsere-angebote', '/impressum', '/datenschutz',
+    '/ueber-uns', '/kontakt', '/trainer-werden', '/training-konfigurator'
+  ];
   for (const inc of includes) {
     if (inc.startsWith('/') && !inc.startsWith('/wissen/') && !inc.startsWith('/trainings/') &&
         !inc.startsWith('/workshops/') && !inc.startsWith('/trainer/') &&
-        !['/', '/trainings', '/workshops', '/wissen', '/impressum',
-        '/ueber-uns', '/kontakt', '/trainer-werden', '/training-konfigurator'].includes(inc)) {
+        !allowedRootRoutes.includes(inc)) {
       warnings.push(`[package.json] Verdächtiger Root-Level-Eintrag in reactSnap.include: "${inc}" → sollte unter /wissen/, /trainings/ oder /workshops/ sein`);
     }
   }
@@ -158,17 +163,129 @@ function checkSitemapGenerator(wissenPages) {
 }
 
 // ──────────────────────────────────────────────
+// 5. Trainings, Workshops, Trainer, statische Seiten
+// ──────────────────────────────────────────────
+//
+// Im Gegensatz zu Wissensartikeln werden diese Seiten über Datenquellen
+// (trainings.ts, workshops.ts, authors.ts) und Catch-All-Routes
+// (/trainings/:slug, /workshops/:slug) erzeugt. Hier prüfen wir, dass jede
+// dieser URLs in BEIDEM enthalten ist: reactSnap.include UND
+// generate-sitemap.js. Bei Inkonsistenz wird sie nicht pre-gerendert
+// oder nicht indexiert.
+
+function extractSlugs(filePath, regex) {
+  if (!fs.existsSync(filePath)) return [];
+  const content = fs.readFileSync(filePath, 'utf-8');
+  const slugs = new Set();
+  let match;
+  while ((match = regex.exec(content)) !== null) {
+    slugs.add(match[1]);
+  }
+  return Array.from(slugs);
+}
+
+/**
+ * Prüft, ob eine Route in reactSnap.include UND in generate-sitemap.js auftaucht.
+ *
+ * `searchInSitemap` ist konfigurierbar, weil der Sitemap-Generator unterschiedliche
+ * Strukturen verwendet:
+ *   - Statische Seiten und Wissensartikel: vollständiger Pfad wörtlich (z.B. "/wissen/foo")
+ *   - Trainings/Workshops: nur der Slug in einem Slug-Array (z.B. "'copilot-grundlagen-prompt-design'")
+ *   - Trainer: vollständiger Pfad als Objekt-Wert
+ * Wir suchen also einen "Findbarkeits-Token" — der Caller weiß, was das ist.
+ */
+function checkRouteConsistency(routePath, label, sitemapToken) {
+  const pkg = JSON.parse(fs.readFileSync(path.join(ROOT, 'package.json'), 'utf-8'));
+  const includes = pkg.reactSnap?.include || [];
+  if (!includes.includes(routePath)) {
+    errors.push(`[package.json] "${routePath}" (${label}) fehlt in reactSnap.include → Seite wird NICHT pre-gerendert`);
+  }
+
+  const sitemapFile = path.join(ROOT, 'scripts', 'generate-sitemap.js');
+  if (fs.existsSync(sitemapFile)) {
+    const sitemap = fs.readFileSync(sitemapFile, 'utf-8');
+    const token = sitemapToken ?? routePath;
+    if (!sitemap.includes(token)) {
+      warnings.push(`[generate-sitemap.js] "${routePath}" (${label}) fehlt im Sitemap-Generator (Token: "${token}") → Seite fehlt in sitemap.xml`);
+    }
+  }
+}
+
+function checkTrainings() {
+  const slugs = extractSlugs(
+    path.join(ROOT, 'src', 'data', 'trainings.ts'),
+    /slug:\s*["']([^"']+)["']/g
+  );
+  for (const slug of slugs) {
+    // Sitemap-Generator hält Trainings als Slug-Array; suche nach `'<slug>'`
+    checkRouteConsistency(`/trainings/${slug}`, 'Training', `'${slug}'`);
+  }
+  return slugs.length;
+}
+
+function checkWorkshops() {
+  const slugs = extractSlugs(
+    path.join(ROOT, 'src', 'data', 'workshops.ts'),
+    /slug:\s*["']([^"']+)["']/g
+  );
+  for (const slug of slugs) {
+    checkRouteConsistency(`/workshops/${slug}`, 'Workshop', `'${slug}'`);
+  }
+  return slugs.length;
+}
+
+function checkTrainerProfiles() {
+  // Trainer-Profile haben in App.tsx nur die Catch-All-Route /trainer/:id (TrainerProfil).
+  // Die konkreten "öffentlichen" Trainer-Pfade leiten wir aus reactSnap.include ab —
+  // alles, was unter /trainer/ steht (außer Catch-All).
+  const pkg = JSON.parse(fs.readFileSync(path.join(ROOT, 'package.json'), 'utf-8'));
+  const includes = pkg.reactSnap?.include || [];
+  const trainerRoutes = includes.filter(
+    p => p.startsWith('/trainer/') && !p.includes(':')
+  );
+  for (const route of trainerRoutes) {
+    checkRouteConsistency(route, 'Trainer-Profil');
+  }
+  return trainerRoutes.length;
+}
+
+function checkStaticPages() {
+  // Pflichtseiten, die in reactSnap und Sitemap sein MÜSSEN
+  const staticRoutes = [
+    '/', '/trainings', '/workshops', '/wissen',
+    '/unsere-angebote', '/ueber-uns', '/trainer-werden',
+    '/training-konfigurator', '/impressum'
+  ];
+  for (const route of staticRoutes) {
+    checkRouteConsistency(route, 'statische Seite');
+  }
+  return staticRoutes.length;
+}
+
+// ──────────────────────────────────────────────
 // MAIN
 // ──────────────────────────────────────────────
 
-console.log('\n🔍 SEO Validation: Prüfe Wissensseiten...\n');
+console.log('\n🔍 SEO Validation: Prüfe alle Routentypen...\n');
 
 const wissenPages = findWissenPages();
-console.log(`   Gefunden: ${wissenPages.length} Wissensartikel\n`);
+console.log(`   Wissensartikel:   ${wissenPages.length}`);
 
 checkRoutes(wissenPages);
 checkReactSnap(wissenPages);
 checkSitemapGenerator(wissenPages);
+
+const trainingsCount = checkTrainings();
+console.log(`   Trainings:        ${trainingsCount}`);
+
+const workshopsCount = checkWorkshops();
+console.log(`   Workshops:        ${workshopsCount}`);
+
+const trainerCount = checkTrainerProfiles();
+console.log(`   Trainer-Profile:  ${trainerCount}`);
+
+const staticCount = checkStaticPages();
+console.log(`   Statische Seiten: ${staticCount}\n`);
 
 // Ergebnis
 if (errors.length === 0 && warnings.length === 0) {

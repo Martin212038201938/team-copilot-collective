@@ -26,9 +26,11 @@ const staticPages = [
   { loc: '/trainings', lastmod: TODAY, changefreq: 'weekly', priority: 0.9 },
   { loc: '/workshops', lastmod: TODAY, changefreq: 'weekly', priority: 0.9 },
   { loc: '/wissen', lastmod: TODAY, changefreq: 'weekly', priority: 0.9 },
+  { loc: '/unsere-angebote', lastmod: TODAY, changefreq: 'weekly', priority: 0.85 },
   { loc: '/ueber-uns', lastmod: TODAY, changefreq: 'monthly', priority: 0.7 },
   { loc: '/trainer-werden', lastmod: TODAY, changefreq: 'monthly', priority: 0.6 },
   { loc: '/training-konfigurator', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
+  { loc: '/impressum', lastmod: TODAY, changefreq: 'yearly', priority: 0.3 },
 ];
 
 // Alle Wissensseiten unter /wissen/ (konsolidiert)
@@ -75,6 +77,7 @@ const knowledgePages = [
   { loc: '/wissen/copilot-pages-loop-notebooks-sharepoint-workflows', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
   { loc: '/wissen/interne-copilot-trainer-ausbilden', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
   { loc: '/wissen/copilot-agent-mode-word-excel-powerpoint', lastmod: TODAY, changefreq: 'monthly', priority: 0.8 },
+  { loc: '/wissen/copilot-schulungsanbieter-deutschland-vergleich', lastmod: TODAY, changefreq: 'monthly', priority: 0.9 },
 ];
 
 // Trainingsseiten - Slugs aus trainings.ts
@@ -109,6 +112,7 @@ const workshopsSlugs = [
   'copilot-hackathon',
   'keynote-copilot-arbeitswelt',
   'copilot-launch-eventtag',
+  'bessere-entscheidungen-mit-copilot',
 ];
 
 const workshopPages = workshopsSlugs.map(slug => ({

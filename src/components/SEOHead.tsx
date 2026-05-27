@@ -15,7 +15,18 @@ interface SEOHeadProps {
 }
 
 const SITE_URL = "https://copilotenschule.de";
+const SITE_SUFFIX = " | copilotenschule.de";
 const DEFAULT_OG_IMAGE = "/images/copilotenschule_flugzeug.png";
+
+/**
+ * Hängt den Site-Suffix " | copilotenschule.de" defensiv an einen Titel an —
+ * aber nur, wenn er nicht bereits enthalten ist. Das verhindert den
+ * doppelten Suffix-Bug (z.B. "X | copilotenschule.de | copilotenschule.de"),
+ * der entstanden ist, weil manche Aufrufer (TrainingDetail, Workshop-Aliase)
+ * `metaTitle`-Werte mit bereits enthaltenem Suffix übergeben haben.
+ */
+const withSiteSuffix = (title: string): string =>
+  title.endsWith(SITE_SUFFIX) ? title : `${title}${SITE_SUFFIX}`;
 
 const SEOHead = ({
   title,
@@ -38,9 +49,12 @@ const SEOHead = ({
   // Structured Data (Schema.org) - immer mit globalem Organization/Person Schema
   const combinedSchema = combineWithGlobalSchema(schema);
 
+  // Einheitlicher Titel mit defensivem Suffix-Handling
+  const finalTitle = withSiteSuffix(title);
+
   return (
     <Helmet>
-      <title>{`${title} | copilotenschule.de`}</title>
+      <title>{finalTitle}</title>
 
       {/* Basic meta tags */}
       <meta name="description" content={description} />
@@ -48,7 +62,7 @@ const SEOHead = ({
       {authorName && <meta name="author" content={authorName} />}
 
       {/* Open Graph tags */}
-      <meta property="og:title" content={`${title} | copilotenschule.de`} />
+      <meta property="og:title" content={finalTitle} />
       <meta property="og:description" content={description} />
       <meta property="og:type" content="website" />
       {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
@@ -57,7 +71,7 @@ const SEOHead = ({
 
       {/* Twitter Card tags */}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={`${title} | copilotenschule.de`} />
+      <meta name="twitter:title" content={finalTitle} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={absoluteOgImage} />
 

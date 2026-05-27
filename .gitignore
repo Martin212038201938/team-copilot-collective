@@ -34,6 +34,13 @@ api/db-config-local.php
 # LibreOffice / OpenOffice Lockfiles (entstehen beim Öffnen von xlsx/docx)
 .~lock.*#
 
+# Microsoft Office temporäre Lock-Dateien (entstehen beim Öffnen von .docx/.xlsx)
+~$*
+
+# Puppeteer / Chromium-Downloads (gehören niemals ins Repo)
+chrome/
+.cache/puppeteer/
+
 # Vite build-Timestamps (temporär, werden bei jedem build neu erzeugt)
 vite.config.ts.timestamp-*.mjs
 vite.config.*.timestamp-*.mjs
