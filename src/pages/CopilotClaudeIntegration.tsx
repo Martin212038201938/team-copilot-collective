@@ -95,8 +95,8 @@ const CopilotClaudeIntegration = () => {
   return (
     <>
       <SEOHead
-        title="Claude in Microsoft Copilot: Was Anthropics KI verändert"
-        description="Microsoft integriert Anthropics Claude-KI in Copilot – inklusive Copilot Cowork für agentenbasierte Aufgaben. Use Cases, Datenschutz und was sich für Copilot-Nutzer ändert."
+        title="Claude in Microsoft Copilot: Was das konkret bedeutet [2026]"
+        description="Microsoft integriert Anthropics Claude-KI in Copilot. Was das bringt: neue KI-Agents, Use Cases für Word & Teams sowie EU-Datenschutz-Hinweise für Unternehmen."
         keywords={[
           "Claude in Microsoft Copilot",
           "Copilot Cowork",

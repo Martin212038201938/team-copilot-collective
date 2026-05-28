@@ -100,8 +100,8 @@ const KiRealitaet2026 = () => {
   return (
     <>
       <SEOHead
-        title="KI in deutschen Unternehmen 2026: Was die großen Beratungsfirmen wirklich sehen"
-        description="Umfassende Analyse der KI-Realität: McKinsey, BCG, Deloitte, PwC, KPMG zeigen aktuelle Investitionen, ROI und Implementierungserfolg in deutschen Unternehmen 2026."
+        title="KI-Trends 2026 in Beratungsunternehmen: McKinsey, BCG & PwC"
+        description="Was zeigen McKinsey, BCG & Deloitte zu KI-Trends 2026? Aktuelle Daten zu Investitionen, ROI und Implementierungserfolg in deutschen Unternehmen."
         keywords={[
           "KI Deutschland 2026",
           "künstliche Intelligenz Unternehmen",

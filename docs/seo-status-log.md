@@ -8,6 +8,110 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 
 ## Logs
 
+### 2026-05-28 — Clarity Data Export API angebunden + Hybrid-Strategie (manuell)
+
+**Status:** Token in `~/Documents/Cowork Bereich/website-health-check/.env`, Helper-Skript `scripts/fetch-clarity-data.sh` mit Counter (max. 10 Calls/Tag), jq verifiziert (1.7.1-apple).
+
+**Erster Live-Test:** Sessions 9 (davon 2 Bots), Scrolltiefe 47,56%, Aktive Zeit 140s, **Dead-Click-Rate 11,11%** (⚠️ UX-Issue), Rage-Click 0%, Edge 6/9, Deutschland 9/9, Top-Page `/` (3 Visits).
+
+**Wichtige Erkenntnis zur API:**
+Der Endpoint `project-live-insights` liefert **Standard-Metriken**: Sessions, Traffic, Frustration-Signals, Browser/Device/OS/Country, PageTitles, ReferrerUrl, PopularPages, EngagementTime, ScrollDepth.
+ABER: **Conversion-Events (Custom-Tags) kommen NICHT in dieser API-Antwort**, selbst mit `dimension1=CustomTag` ist die Response identisch zum Call ohne Dimension. Custom-Tags müssen via Chrome aus dem Dashboard geholt werden.
+
+**Cron-Strategie ist jetzt Hybrid:**
+- **API (1 Call/Lauf, ~52 Calls/Jahr):** Sessions, Frustration-Signals, Top-Pages, Referrer, Browser/Device — alles was Standard ist
+- **Chrome:** nur noch Conversion-Events (Smart-Events-Filter) + Heatmaps + Recordings
+
+Spart ~80% Chrome-Zeit pro Cron-Lauf, hält API-Budget komfortabel unter Limit (10/Tag).
+
+**Beide Cron-Prompts (weekly + monthly) aktualisiert** mit:
+- Schritt 5a (Clarity Standard via API mit jq-Expressions)
+- Schritt 5b (Conversion-Events via Chrome)
+- Defekt-Warnung bei API-Errors / Token fehlt
+- Top-Browser-Anteil im Log (Edge-Anteil = B2B-Indikator für Zielgruppen-Verifikation)
+- Cross-Korrelation GSC×Clarity bleibt zentraler Analyse-Schritt
+
+---
+
+### 2026-05-27 — Clarity-Insights handlungsfähig in Cron-Reports (manuell)
+
+**Was war nicht gut genug:** Die Cron-Prompts haben Clarity-Daten zwar EINGESAMMELT, aber die Aktionsableitung war zu vage („Conversion < 0,5% = Funnel-Issue"). Für „dauerhafte Verbesserung" reichte das nicht.
+
+**Was jetzt drin ist:**
+
+1. **`docs/clarity-insights.md`** — lebendes Pattern-Doku mit Schemata für Pattern-/Issue-/Trend-Einträge. Cron-Jobs hängen ihre Befunde an.
+
+2. **Weekly-Audit-Cron erweitert um Schritt 7 (KONKRETE Aktionen):**
+   - Pattern-Erkennung: Pages mit ≥ 5% Conversion-Rate + ≥ 50 Sessions → Pattern-Eintrag + Übertragungs-Empfehlung
+   - Anti-Pattern: Pages mit ≥ 100 Sessions ABER < 0,5% Conv → Issue-Eintrag + automatische Anlage eines fireAt-Cron-Jobs `copilotenschule-clarity-fix-<slug>` für +7 Tage
+   - UX-Probleme: ≥ 5 Rage-Clicks oder ≥ 10 Dead-Clicks → Issue-Eintrag + Notification
+   - Trends über 3 Wochen: ≥ +25% wöchentlich → Trend-Eintrag Status „Verstärken"
+   - Defekt-Warnung: Conv-Event von ≥ 3 auf 0 in Folgewoche → ⚠️ KRITISCH
+
+3. **Monthly-Review-Cron erweitert um Schritt 5 (5 konkrete Erkenntnis-Ableitungen):**
+   - **a)** Best-Practice-Übertragung (Top vs. Bottom Pages bei gleichem Thema vergleichen, Pattern identifizieren, Transfer-Cron anlegen)
+   - **b)** Anti-Pattern-Fix mit Heatmap-Hypothese und konkreter Fix-Empfehlung
+   - **c)** Funnel-Analyse Page-View → Klick → Submit
+   - **d)** Trend-Verstärkung (welche Events wachsen?)
+   - **e)** Cross-Korrelation GSC × Clarity × AlwaysData → „Goldene Pages" vs. „Bremsen"
+
+4. **Monatsreview-Bericht-Struktur** um Abschnitt „Goldene Pages" und „Bremsen" erweitert + Funnel-Visualisierung verpflichtend.
+
+5. **Folge-Cron-Generierung:** Beide Crons können jetzt autonom neue fireAt-Crons anlegen, die in 7-14 Tagen konkrete Optimierungs-Drafts in `docs/drafts/` schreiben.
+
+**Erwartete Wirkung über Zeit:**
+- Mit jedem Cron-Lauf wächst `clarity-insights.md` um konkrete Pattern und Issues
+- Aus Issues werden Folge-Crons → aus Folge-Crons werden Drafts → aus Drafts werden gepushte Verbesserungen → die Conversion-Rate dauerhaft hebeln
+- Cross-Korrelation zeigt, welche SEO-Investitionen sich auszahlen UND welche zwar Traffic bringen aber nicht konvertieren
+
+---
+
+### 2026-05-27 — 🎯 End-to-End-Test nach Clarity-Deploy: VOLLER ERFOLG
+
+**SSR-Audit:**
+```
+Heute morgen:           ✅ 22 / 🔴 40
+Nach Helmet-Downgrade:  ✅ 31 / 🔴 38
+Nach concurrency:1:     ✅ 47 / 🔴 23
+JETZT (nach #383):      ✅ 71 / 🔴 0   ← KOMPLETT GEHEILT
+```
+
+Definition-of-Done-Kriterium „🔴 ≤ 5" → **erreicht** (0 von 72).
+
+**Clarity live verifiziert über Network-Tab:**
+- `clarity.ms/tag/wxppg5394j?ref=npm` → HTTP 200 (Tag-Load mit Projekt-ID, `ref=npm` bestätigt Package-Usage)
+- `scripts.clarity.ms/0.8.64/clarity.js` → HTTP 200 (Tracking-Skript geladen)
+- `q.clarity.ms/collect` → HTTP 204 (Session-Daten werden gesendet)
+- Phone-Click-Test: zusätzlicher Collect-Request → Conversion-Event funktioniert ✅
+
+**Code-Verification im Live-Bundle:**
+- Clarity-ID `wxppg5394j` exakt 1× im JS-Bundle
+- Alle 6 Conversion-Event-Strings im Bundle: contact_form_submit, trainer_application_submit, konfigurator_submit, mail_click, phone_click, pdf_download
+- /datenschutz HTTP 200, Title „Datenschutzerklärung | copilotenschule.de"
+
+**Bedeutung für den Plan:**
+- **Phase 1 vollständig abgeschlossen** — alle SSR-Probleme gelöst
+- **Phase 2 (A2-Iteration) übererfüllt** — alle 71 URLs pre-rendern korrekt
+- Bei nächstem Phase-Conductor-Lauf: Wechsel zu **Phase 3 (Content-Block)** vorgeschlagen
+- Analytics + Conversion-Tracking läuft → ab jetzt sichtbar: welche Seiten konvertieren
+- A5 (IndexNow) war eh schon im deploy.yml → automatischer Massenping nach jedem Deploy
+
+**Definition of Done — aktueller Stand:**
+| # | Kriterium | Stand | Ziel |
+|---|---|---|---|
+| 1 | Indexierungsquote GSC ≥ 90% | 44% (heute morgen) | beobachten — Re-Crawl läuft |
+| 2 | 🔴 ≤ 5 URLs | **0** ✅ | erfüllt |
+| 3 | SEO-Score ≥ 75 | 42 (Stand 27.05.) | nächster Health-Check |
+| 4 | GEO-Score ≥ 80 | 82 ✅ | gewahrt |
+| 5 | Top-3-Klick-Bringer ≥ 5 URLs | 12 Queries | OK |
+| 6 | „beste Anbieter Deutschland 2026" Top 3 | ~#7 | offen, Hub-Artikel B2 live |
+| 7 | Externe Listicle-Erwähnung ≥ 1 | 0 | D3-Cron Mo 22.06. |
+| 8 | ProvenExpert ≥ 15 Bewertungen | 0 | D1-Cron Mi 10.06. |
+
+**3 von 8 Kriterien erfüllt heute, 5 in Arbeit.** Plus die zugrundeliegende SSR-Wurzel: **gelöst**.
+
+---
+
 ### 2026-05-27 — Clarity npm-Package + GitHub-Secret-Plumbing (manuell)
 
 **Update zum Vorgängereintrag:** Statt Inline-Script in `index.html` nutzen wir jetzt das offizielle **`@microsoft/clarity` npm-Package**. Sauberere Lösung.

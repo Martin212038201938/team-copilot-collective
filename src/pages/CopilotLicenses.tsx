@@ -98,8 +98,8 @@ const CopilotLicenses = () => {
   return (
     <>
       <SEOHead
-        title="Microsoft Copilot Lizenzen: Preisvergleich 2026"
-        description="Welche Copilot-Lizenz lohnt sich? M365 Copilot Business (ab 15,60 €/User) und Enterprise (26 €), GitHub Copilot & Copilot Studio im Vergleich – Stand Mai 2026."
+        title="Microsoft 365 Copilot Preis 2026: ab 15,60 € – alle Lizenzen"
+        description="Copilot-Preise 2026 für Deutschland: M365 Business ab 15,60 €/User, Enterprise ab 26 €. Vergleich mit GitHub Copilot & Copilot Studio – Stand Mai 2026."
         keywords={[
           "Microsoft Copilot Lizenz",
           "Microsoft 365 Copilot Preis",
