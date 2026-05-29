@@ -74,26 +74,59 @@ Clarity zeigt uns drei Arten von Erkenntnissen, die ohne dieses Dokument nach je
 
 ---
 
-## Aktive Funnels in Clarity
+## Aktive Funnels in Clarity (5 Stück, Stand 29.05.2026)
 
-### Lead-Reise: SEO → Angebot → Kontakt
-**Angelegt:** 27. Mai 2026 (Clarity-Trichter)
-**Zweck:** Klassischer SEO-zu-Anfrage-Funnel für copilotenschule.de
-**Steps:**
-1. **Wissens-Artikel besucht (SEO-Einstieg)** — URL enthält `/wissen/`
-   - Hypothese: Lead findet uns über Google-Suche auf einem Fachartikel
-2. **Angebot angeschaut (Trainings/Konfigurator)** — URL enthält `/trainings`
-   - Hypothese: Lead interessiert sich für unsere Leistungen
-3. **Kontakt-Anfrage (Lead-Conversion)** — URL enthält `/kontakt`
-   - Hypothese: Lead bewegt sich auf die Kontaktseite, um anzufragen
+Vier Pfade, die parallel laufen — jeder beleuchtet einen anderen Conversion-Weg:
 
-**Auswertungs-Fragen für Cron-Jobs:**
-- Wo bricht die Mehrheit ab? Step 1→2 oder Step 2→3?
-- Welche Wissens-Artikel führen am häufigsten in Step 2 (Conversion-Power)?
-- Welche /trainings-Variante (CopilotCockpit, GitHubCopilot, …) konvertiert am besten in Step 3?
-- Drop-off-Quote vs. Branchenschnitt SaaS-B2B: 2-5% E2E ist normal
+### 1. Lead-Reise: SEO → Angebot → Kontakt (3-Step)
+**Angelegt:** 27. Mai 2026
+**Pfad:** `/wissen/` (enthält) → `/trainings` (enthält) → `/kontakt` (enthält)
+**Hypothese:** Klassischer SEO-Funnel — Lead findet uns über Google auf einem Fachartikel, schaut sich Angebot an, fragt an.
 
-**Wichtig:** Funnel-Auswertung NUR möglich, wenn ein Wissensartikel besucht wurde. Direkt-Traffic auf `/` ist NICHT im Funnel — das ist Absicht (SEO-Pfad isolieren).
+### 2. Direkt-Conversion: Homepage → /kontakt (2-Step)
+**Angelegt:** 29. Mai 2026 (umgewidmet aus Default-Trichter „Homepage direkt")
+**Pfad:** Homepage (Seitenbesuch) → `/kontakt` (enthält)
+**Hypothese:** Lead kennt die Marke (Direct-Type, Empfehlung, Visitenkarte), springt direkt zur Anfrage. Kurzer Pfad, hohe Intent.
+
+### 3. Direkt-Reise: Homepage → Trainings → Kontakt (3-Step)
+**Angelegt:** 29. Mai 2026
+**Pfad:** `https://copilotenschule.de/` (ist genau) → `/trainings` (enthält) → `/kontakt` (enthält)
+**Hypothese:** Direkter Einstieg, Lead informiert sich über Angebot vor Anfrage. Vergleich mit Lead-Reise (Funnel #1) zeigt, ob SEO-Traffic anders konvertiert als Direct-Type-Traffic.
+
+### 4. HR-Tipps → Kontakt (2-Step)
+**Angelegt:** 29. Mai 2026
+**Pfad:** `https://copilotenschule.de/sml/hr-tipps_2026` (ist genau) → `/kontakt` (enthält)
+**Hypothese:** Lead-Magnet für HR-Zielgruppe → führt zu Anfrage-Intent über die Kontaktseite.
+
+### 5. HR-Tipps → Kontakt-Klick (Smart-Event-Conversion, 2-Step)
+**Angelegt:** 29. Mai 2026
+**Pfad:** `https://copilotenschule.de/sml/hr-tipps_2026` (ist genau) → Smart Event „Kontaktieren Sie uns" (Button-/Link-Klick)
+**Hypothese:** Misst eine andere Conversion-Stufe als Funnel #4 — der direkte Klick auf einen Kontakt-/Termin-Element auf der HR-Seite, ohne dass /kontakt zwingend aufgerufen werden muss (z.B. wenn der Button auf mailto:, Calendly oder Anker führt).
+
+---
+
+## Auswertungs-Fragen für Cron-Jobs (Monthly-Review)
+
+**Funnel-Vergleich Lead-Reise vs. Direkt-Reise (#1 vs. #3):**
+- Wer konvertiert besser? SEO-Lead oder Direct-Type-Lead?
+- Wenn SEO besser → Content-Investment lohnt, Wissensartikel ausbauen
+- Wenn Direkt besser → Markenbekanntheit ist der Hebel, Performance/Trust-Signale stärken
+
+**Funnel-Vergleich Direct kurz vs. Direct lang (#2 vs. #3):**
+- Wer kürzer konvertiert (`/` → `/kontakt`) hat höhere Intent
+- Wer länger braucht (`/` → `/trainings` → `/kontakt`) ist evaluierender — braucht stärkere Trust-Signale auf /trainings
+
+**HR-Funnel-Vergleich (#4 vs. #5):**
+- Wenn #4 (Kontaktseite) deutlich konvertiert, #5 (Klick) aber nicht → HR-Leads bevorzugen Formular
+- Wenn #5 (Klick) konvertiert, #4 nicht → HR-Leads bevorzugen direkte Aktion (Terminbuchung), Formular wirkt als Friction
+
+**Wo bricht die Mehrheit ab? (gilt für alle Funnels):**
+- Step 1→2: Schwaches Angebot-Signal? Schwacher CTA? Visitor versteht nicht, was wir machen?
+- Step 2→3: Schwaches Trust-Signal? Preise/Bedingungen abschreckend? CTA fehlt?
+
+**Branchenschnitt:** SaaS-B2B 2-5% End-to-End-Conversion ist üblich.
+
+**Hinweis Smart-Event-Conversion (#5):** Funktioniert erst, wenn der "Kontaktieren Sie uns"-Button auf der HR-Seite tatsächlich angeklickt wird. Auto-detected Smart Event greift bei deutschsprachigen Button-Texten "Kontaktieren Sie uns" zuverlässig. Falls auf /sml/hr-tipps_2026 ein Calendly- oder Termin-Link existiert, der NICHT "Kontaktieren" heißt, müsste ein separates Custom-Smart-Event angelegt werden (Setting → Intelligente Ereignisse → „Neues intelligentes Ereignis").
 
 ---
 
