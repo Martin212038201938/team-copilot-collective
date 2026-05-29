@@ -61,6 +61,7 @@ import BiasNoiseKiEntscheidungen from "./pages/BiasNoiseKiEntscheidungen";
 import CopilotPagesLoopNotebooksSharepointWorkflows from "./pages/CopilotPagesLoopNotebooksSharepointWorkflows";
 import InterneCopilotTrainerAusbilden from "./pages/InterneCopilotTrainerAusbilden";
 import CopilotSchulungsanbieterVergleich from "./pages/CopilotSchulungsanbieterVergleich";
+import SmlHrTipps2026 from "./pages/SmlHrTipps2026";
 
 const queryClient = new QueryClient();
 
@@ -157,6 +158,9 @@ const App = () => (
           <Route path="/trainer/:id" element={<TrainerProfil />} />
           <Route path="/training-konfigurator" element={<TrainingKonfigurator />} />
           <Route path="/admin" element={<Admin />} />
+          {/* Smartlead Kampagnen-Landingpages — noindex, nicht in articles.ts */}
+          <Route path="/sml/hr-tipps_2026" element={<SmlHrTipps2026 />} />
+
           {/* Dynamic route for all published knowledge articles */}
           <Route path="/wissen/:slug" element={<DynamicKnowledgePage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

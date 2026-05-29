@@ -97,6 +97,72 @@ Clarity zeigt uns drei Arten von Erkenntnissen, die ohne dieses Dokument nach je
 
 ---
 
+### Smartlead HR-Kampagne 2026: E-Mail → Landingpage → Buchung
+**Angelegt:** 29. Mai 2026 (manuell — vor Kampagnenstart)
+**Zweck:** Misst ob und wie Smartlead-E-Mail-Empfänger auf der Landingpage konvertieren.
+Dieser Funnel ist bewusst von SEO-Traffic isoliert: Nur `/sml/`-Traffic wird erfasst.
+So kann die Performance der ersten Smartlead-Kampagne sauber bewertet werden.
+
+**Funnel-Steps (in Clarity Dashboard anlegen):**
+1. **Landingpage besucht** — URL ist `/sml/hr-tipps_2026`
+   - Clarity-Event: `sml_landing_page_visit`
+   - Hier ankommen = E-Mail wurde geöffnet und Link geklickt
+2. **Conversion-Absicht signalisiert** — Clarity-Event `sml_booking_click` ODER `sml_contact_click`
+   - Hier ankommen = Besucher wollte aktiv werden
+3. **Buchung abgeschlossen** — URL enthält `outlook.office.com/book` oder `/kontakt`
+   - Entspricht einer tatsächlichen Conversion-Handlung
+
+**Alternative: Funnel mit Session-Tag-Filter**
+Clarity erlaubt auch Funnel-Auswertung mit Custom-Tag-Filter:
+- Filter: `visitor_type = "smartlead_campaign"`
+- Dann normaler Funnel: `/sml/hr-tipps_2026` → `/kontakt` oder Booking-URL
+
+**Clarity-Dashboard-Setup (einmalig manuell):**
+```
+Clarity → Funnels → Neuer Funnel "Smartlead HR 2026"
+Step 1: URL contains "/sml/hr-tipps_2026"
+Step 2: Custom Event "sml_booking_click" OR "sml_contact_click"
+Step 3: URL contains "outlook.office.com/book" OR URL contains "/kontakt"
+```
+
+**Sekundäre Conversion-Events (für Tag-Filter-Auswertung):**
+| Event                  | Bedeutung                                        |
+|------------------------|--------------------------------------------------|
+| `sml_landing_page_visit` | Seite geladen (UTM-Source = smartlead)         |
+| `sml_booking_click`    | Termin-Buchen-Button geklickt (prim. Conversion) |
+| `sml_contact_click`    | Kontaktformular-Link geklickt (prim. Conversion) |
+| `sml_offers_click`     | Angebote-Seite besucht (sek. Conversion)         |
+| `sml_article_click`    | HR-Wissensartikel geklickt (sek. Conversion)     |
+| `sml_home_click`       | Startseite geklickt (nachrangig)                 |
+
+**Session Tags für Filter:**
+| Tag                  | Wert                   | Wozu                            |
+|----------------------|------------------------|---------------------------------|
+| `visitor_type`       | `smartlead_campaign`   | Gesamten Kampagnen-Traffic trennen |
+| `campaign_name`      | `hr-tipps-2026`        | Kampagnen-ID                    |
+| `campaign_mail`      | `mail1`…`mail4`        | Welche Mail hat konvertiert?    |
+
+**Auswertungs-Fragen nach Kampagnenstart:**
+- Wie hoch ist die E2E-Conversion-Rate (Step 1 → Step 3)?
+- Welche Mail (mail1–mail4) bringt die meisten Klicks auf die LP?
+- Welche Mail (mail1–mail4) konvertiert am stärksten (Buchung/Kontakt)?
+- Wie lange verweilen Besucher auf der Seite? (Session-Dauer in Clarity-Recordings)
+- Wo scrollen Besucher ab / brechen ab? (Scroll-Heatmap)
+- Gibt es Rage-Clicks oder Dead-Clicks auf CTAs?
+
+**Benchmark-Erwartungen (erste Kampagne, kalt):**
+- E-Mail Open Rate: ~30–40% (Zielwert B2B kalt DE)
+- Klick-auf-LP-Rate: ~5–15% der Öffner
+- LP-zu-Conversion: ~5–15% (Ziel: mindestens 1 Buchung pro 50 LP-Besuche)
+- E2E-Rate (Mail → Buchung): ~0,5–2% ist für Kalt-B2B realistisch
+
+**Hinweis für Cron-Jobs:**
+Dieser Funnel kann nicht automatisch aus der Clarity-API ausgewertet werden,
+da Clarity keine Funnel-Export-API hat. Manuelle Auswertung im Clarity-Dashboard
+nach ca. 2 Wochen Laufzeit empfohlen.
+
+---
+
 ## Logs (neueste oben — automatisch von Cron-Jobs gepflegt)
 
 <!-- ab hier ergänzen Cron-Jobs ihre Befunde -->
