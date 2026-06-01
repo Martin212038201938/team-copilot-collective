@@ -30,6 +30,17 @@ export interface ArticleData {
 // Alle Artikel - sortiert nach Veröffentlichungsdatum (neueste zuerst)
 export const ALL_ARTICLES: ArticleData[] = [
   {
+    id: "microsoft-copilot-varianten-unterschiede",
+    title: "Microsoft Copilot: Die Unterschiede zwischen Copilot Chat, 365-Lizenz und Claude-Modellen",
+    description: "Copilot Chat, die Microsoft 365 Copilot-Lizenz mit OpenAI-Modellen oder Copilot mit Claude – welche Variante was kann und welche sich für wen lohnt.",
+    link: "/wissen/microsoft-copilot-varianten-unterschiede",
+    badge: "Grundlagen & Vergleich",
+    icon: "≠",
+    lastUpdated: "1. Juni 2026",
+    publishDate: "2026-06-01",
+    publishTime: "09:00"
+  },
+  {
     id: "copilot-schulungsanbieter-deutschland-vergleich",
     title: "Microsoft Copilot Schulungsanbieter Deutschland: Vergleich & Empfehlung 2026",
     description: "Spezialisierte Anbieter für Microsoft-Copilot-Schulungen in der DACH-Region im Vergleich. Auswahlkriterien, Stärken, Schwächen, Formate und Referenzen. Stand Mai 2026.",

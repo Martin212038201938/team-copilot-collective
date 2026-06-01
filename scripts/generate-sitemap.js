@@ -180,6 +180,7 @@ const knowledgeSlugs = [
   'copilot-im-unternehmen-einfuehren-leitfaden', 'bessere-entscheidungen-mit-ki',
   'copilot-pages-loop-notebooks-sharepoint-workflows', 'interne-copilot-trainer-ausbilden',
   'copilot-agent-mode-word-excel-powerpoint', 'copilot-schulungsanbieter-deutschland-vergleich',
+  'microsoft-copilot-varianten-unterschiede',
 ];
 
 const knowledgePages = knowledgeSlugs.map(slug => ({
