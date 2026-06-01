@@ -199,3 +199,24 @@ nach ca. 2 Wochen Laufzeit empfohlen.
 ## Logs (neueste oben — automatisch von Cron-Jobs gepflegt)
 
 <!-- ab hier ergänzen Cron-Jobs ihre Befunde -->
+
+---
+
+### 2026-06-01 — Issue: Dead-Click-Rate 11 % (persistent)
+**Quelle:** Cron-Lauf 2026-06-01 (weekly)
+**Betroffene Page:** Hauptsächlich Top-3-Pages (/, /wissen, /wissen/bessere-entscheidungen-mit-ki — zusammen 47 von 100 Sessions)
+**Symptom:** Dead-Click-Rate 11 % (3T-Durschnitt via API) — liegt über Schwelle ≥ 10 %. Bereits am 28.05.2026 erste Messung: 11,11 %. Persistentes Problem, nicht einmalig.
+**Hypothese:** Wahrscheinlichste Ursachen: (1) Navigationselemente die wie Links aussehen, aber keine sind (z.B. nicht-verlinkte Logos/Icons). (2) CTAs die optisch klickbar wirken, aber Dead-Zones haben (Padding außerhalb des `<a>`-Tags). (3) Scrollbar-Elemente die für klickbar gehalten werden. Top-Pages mit 15-16 Sessions sind `/` und `/wissen` — hier zuerst prüfen.
+**Empfohlene Maßnahme:** Clarity Heatmap für `/` und `/wissen/bessere-entscheidungen-mit-ki` öffnen, Dead-Click-Clustering identifizieren. Dann: betroffenes Element in TSX-Datei finden, Klick-Zone vergrößern oder Non-Link-Element als `cursor-default` markieren.
+**Status:** identifiziert
+
+---
+
+### 2026-06-01 — Trend: DuckDuckGo überholt Google als Top-Referrer
+**Quelle:** Cron-Lauf 2026-06-01 (weekly), Clarity API 3T-Daten
+**Beobachtungs-Zeitraum:** 29.05. – 01.06.2026 (erste Clarity-Langmessung)
+**Event:** Organischer Suchmaschinen-Traffic
+**Trend:** DuckDuckGo: 40 Sessions | Google: 18 Sessions | Direct: 23 Sessions
+DuckDuckGo liefert 2,2× mehr Traffic als Google im gemessenen Zeitraum.
+**Ursache (vermutet):** DuckDuckGo nutzt Bing-Index. IndexNow (bereits im Deploy aktiv per A5) hat Bing schneller gecrawlt als Google. Zielgruppe (B2B, IT-affin, datenschutzbewusst) bevorzugt möglicherweise DuckDuckGo/Edge. EdgeMobile mit 47 % ist dominanter Browser — passt zu Microsoft-Unternehmensumgebung.
+**Handlung:** Verstärken — IndexNow-Pings weiterhin nach jedem Deploy. Bing Webmaster Tools beobachten. Google Indexierung bleibt strategisch wichtig (GSC Maßnahmen weiterführen).

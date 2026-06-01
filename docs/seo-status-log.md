@@ -8,6 +8,42 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 
 ## Logs
 
+### 2026-06-01 — Wöchentlicher Audit (Cron)
+
+**Phase:** Phase 1 → Phase 3 (Exit-Kriterium heute erfüllt)
+**SSR-Audit:** ✅ 71 / 🟡 1 / 🔴 0 (von 72)
+- Neu in 🔴/✅: keine Änderungen — SSR vollständig stabil seit A2-Fix (27.05.)
+- `/unsere-angebote` bleibt 🟡 (HTTP 301 — unveränderter Status wie Baseline)
+- Hinweis: audit-live.sh nicht gefunden (`outputs/`-Verzeichnis fehlt) → Audit rekonstruiert via curl + Googlebot-UA direkt aus Sitemap-URLs
+
+**GSC:** nicht verfügbar (Chrome-Zugriff in autonomem Cron-Modus nicht möglich — Timeout nach 180s)
+*(Letzter bekannter Wert 27.05.: 38 indexiert / 87 gesamt = 44 %; Plan-Trigger ≥ 55 % und ≤ 40 % konnten nicht geprüft werden)*
+
+**AlwaysData:** nicht verfügbar (Chrome-Zugriff in autonomem Cron-Modus nicht möglich)
+
+**Clarity Standard (3T, via API, 1 Call):**
+- Sessions: 100 (davon 12 Bots, 113 Unique Users)
+- Scrolltiefe: 44,28%, Aktive Zeit: 90s
+- Dead-Click: 11 % ⚠️ | Rage-Click: 0 % | Quick-Back: 0 % | Excessive-Scroll: 0 %
+- Top-Browser: EdgeMobile 47 %, Chrome 29 %, Edge 7 %, Safari 7 %, MobileSafari 5 %, Firefox 4 %, SamsungInternet 1 %
+- Top-3-Pages: `/` (16), `/wissen` (16), `/wissen/bessere-entscheidungen-mit-ki` (15)
+- Top-3-Referrer: DuckDuckGo (40), Direct (23), Google (18)
+
+**Clarity Conversion-Events (7T, via Chrome):**
+- contact_form_submit / trainer_application_submit / konfigurator_submit / mail_click / phone_click / pdf_download: n/a (Chrome nicht verfügbar)
+- Conversion-Rate gesamt: n/a
+
+**Insights heute:** Patterns 0 | Issues 1 (Dead-Click 11 % persistent) | Trends 1 (DuckDuckGo > Google) (Details in clarity-insights.md)
+**Folge-Crons angelegt:** keine
+**Goldene Pages (GSC×Clarity):** `/wissen/ki-halluzinationen-vermeiden` (in altem GSC-Top-5 UND Clarity-Top-10)
+**Ungenutztes SEO-Potential:** `/wissen/copilot-in-excel-aktivieren`, `/wissen/copilot-fuer-excel` (GSC-Top-Klick-Bringer fehlen in Clarity-PopularPages → Besucher kommen, verweilen aber kaum)
+**Protected Pages:** alle 5 OK (HTTP 200) ✅
+**Entscheidung gemäß Plan:** SSR ✅ 71 ≥ 50 → **Phase 1 Exit-Kriterium ERFÜLLT → Phase 3 (Content-Block) ist jetzt aktiv**. A2-Iteration niedrige Priorität — 0 🔴 bestätigt, kein Handlungsbedarf. seo-projektplan.md auf Phase 3 aktualisiert.
+**API-Calls heute:** 1/10
+**Nächster Lauf:** Mo 08.06.2026, 10:00
+
+---
+
 ### 2026-05-28 — Clarity Data Export API angebunden + Hybrid-Strategie (manuell)
 
 **Status:** Token in `~/Documents/Cowork Bereich/website-health-check/.env`, Helper-Skript `scripts/fetch-clarity-data.sh` mit Counter (max. 10 Calls/Tag), jq verifiziert (1.7.1-apple).

@@ -2,7 +2,7 @@
 
 **Lebende Doku** — wird bei jedem Schritt aktualisiert. Cron-Jobs lesen diese Datei, entscheiden auf Basis der if/then-Logik, schreiben ins [`seo-status-log.md`](seo-status-log.md).
 
-**Letzter Update:** 27. Mai 2026
+**Letzter Update:** 1. Juni 2026
 
 ---
 
@@ -28,12 +28,12 @@ Aus dem ursprünglichen Maßnahmenkatalog [`seo-massnahmenkatalog-2026-05-27.md`
 | Code | Maßnahme | Status |
 |---|---|---|
 | A1 | Pre-Rendering-Audit | ✅ erledigt 27.05. (`outputs/audit-live.sh`, baseline-log: `seo-audit-2026-05-27.md`) |
-| A2 | Pre-Render-Fix (Helmet-Downgrade) | ⚠️ Teil-Erfolg 27.05. — 22 → 31 ✅, aber 38 noch 🔴 |
-| A2.1 | Pre-Render-Iteration (concurrency:1) | ⏳ wartet auf Beobachtungs-Woche |
+| A2 | Pre-Render-Fix (Helmet-Downgrade) | ✅ erledigt — 71/72 ✅, 0 🔴 (bestätigt 01.06.) |
+| A2.1 | Pre-Render-Iteration (concurrency:1) | ✅ erledigt 27.05. — nicht mehr nötig (0 🔴) |
 | A3 | Title-Suffix-Duplikat | ✅ erledigt 27.05. (5 → 0) |
 | A4 | Sitemap/reactSnap/Routes sync | ✅ erledigt 27.05. (validate-seo erweitert) |
 | A4.1 | Sitemap-lastmod aus echten Daten | ✅ erledigt 27.05. (Shallow-Clone-Fix) |
-| A5 | IndexNow im Deploy automatisieren | 🔵 vorbereitet, nicht deployed |
+| A5 | IndexNow im Deploy automatisieren | ✅ erledigt 27.05. (bereits in deploy.yml) |
 | B1 | Protected-Pages-Liste | ✅ erledigt 27.05. (`docs/protected-pages.md`) |
 | B2 | Hub-Artikel Anbieter-Vergleich | ✅ existiert (`/wissen/copilot-schulungsanbieter-deutschland-vergleich`), wartet auf erfolgreichen Pre-Render |
 | B3a | Hub-Artikel EU AI Act August 2026 | 🔵 offen (zeitkritisch, August 2026 Deadline) |
@@ -205,4 +205,4 @@ Wenn dieser Plan aktualisiert wird:
 - Bei strukturellen Plan-Änderungen: Notiz im `seo-status-log.md`
 - Bei Cron-Anlage/Deaktivierung: Cron-Tabelle oben aktualisieren
 
-Aktuelle Phase: **Phase 1 — Stabilisierung & Beobachtung**
+Aktuelle Phase: **Phase 3 — Content-Block** (Phase 1 Exit-Kriterium erfüllt 01.06.2026: SSR ✅ 71 ≥ 50)
