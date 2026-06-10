@@ -23,7 +23,7 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 **Re-Indexing-Push (DoD #1, Indexierung):**
 - Anlass: SSR jetzt vollständig geheilt (72 ✅ / 0 🔴); die 44 %-Indexierungsquote wurde gemessen, als SSR noch kaputt war.
 - IndexNow-**Massenping aller 73 Sitemap-URLs**: **HTTP 200** (Bing/Yandex/Seznam-Re-Crawl-Signal).
-- **Offen (User-Aktion):** GSC-Sitemap-Neueinreichung über `sc-domain:copilotenschule.de` — braucht Google-Login, nicht autonom möglich. Empfehlung: Sitemap in der Search Console erneut einreichen, um Googles Re-Crawl zu beschleunigen (Google nutzt IndexNow nicht).
+- **GSC-Sitemap-Neueinreichung: ✅ erledigt (09.06. via Chrome).** `https://copilotenschule.de/sitemap.xml` über `sc-domain:copilotenschule.de` erneut eingereicht — Status „Erfolgreich", Eingereicht-Datum aktualisiert von 27.05. auf **10.06.2026**, 73 erkannte Seiten. Google re-crawlt jetzt; Google nutzt IndexNow nicht, daher dieser separate Schritt.
 
 **Hinweis:** Die zwei internen Links wirken erst nach dem nächsten Deploy. Bis dahin reviewt der User die src/-Änderungen (CopilotSchulungOnline.tsx, CopilotTraining.tsx) via GitHub Desktop.
 
