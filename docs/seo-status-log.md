@@ -8,6 +8,28 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 
 ## Logs
 
+### 2026-06-09 — Indexierungs-Offensive: Diagnose + interne Verlinkung + Schema + Off-Page + GSC (manuell)
+
+**Auslöser:** User-Auftrag „alles für Indexierung, Ranking und Nennungs-Häufigkeit". 4 Tracks parallel.
+
+**GSC-Diagnose (Seitenindexierung, via Chrome):** 43 indexiert / 48 nicht indexiert (~47%).
+- 12 unkritisch: 8 Redirects (Trailing-Slash/Legacy-URLs `/github-copilot/`, `/ki-agenten/`, `/prompt-engineering/`, `/trainings/.../` → alle saubere 301), 3 korrekte Canonicals, 1 robots-Block. `/microsoft-copilot-lizenzen/` 301 ist inzwischen gesetzt (DONT-TOUCH-Notiz veraltet).
+- 16 „gefunden – noch nicht gecrawlt" → adressiert durch heutige IndexNow- + Sitemap-Signale.
+- 20 „gecrawlt – nicht indexiert" = Kern-Hebel: ~14 echte /wissen/-Artikel (HTTP 200, technisch sauber), diskretionär nicht indexiert. Mehrere sind LLM-Top-Performer bei Bing (copilot-studio 1.0K Citations, tipps-tricks 416, github-copilot 351).
+
+**Track 1 — Interne Verlinkung (9 kontextuelle Links über 7 Quell-Seiten):**
+ki-realitaet-beratungsfirmen-2026 (war 0) ← Adoption2026; warum-verteiltes-lernen ← Lernreisen + CopilotTraining (jetzt 2 distinct); copilot-roi-erfolgsgeschichten ← Adoption2026; copilot-launch-kampagne ← UnternehmensweitEinfuehren; copilot-agent-digitales-gedaechtnis ← AgentModeOffice; github-copilot + copilot-studio ← VariantenUnterschiede; copilot-tipps-tricks ← FuerExcel. DONT-TOUCH-LIST beachtet (nur additive Links). `vite build` Exit 0.
+
+**Track 2 — C4 Schema-Konsolidierung:** Bug — `copilotenschule.de/logo.png` liefert HTML statt Bild (existiert nicht). Drei `#organization`-Definitionen (index.html, organizationSchema.ts, authors.ts getPublisherSchema) hatten inkonsistente/kaputte Logos → alle auf gültiges `images/copilotenschule_flugzeug.png` (512×512) vereinheitlicht. Logo-Rich-Result repariert, Entität konsistent. `vite build` Exit 0.
+
+**Track 3 — Off-Page-Entwürfe:** `docs/outreach/listicle-outreach-entwuerfe.md` (3 Mails: mod-education, ki-trainingszentrum, cmt) + `docs/outreach/dach-verzeichnisse-d2-d4.md` (Verzeichnis-Zielliste + Copy-Paste-Eintragsdaten). Versand/Eintragung bleibt User.
+
+**Track 4 — GSC-Indexierung beantragt (via Chrome):** copilot-studio ✅ + github-copilot ✅ (bevorzugte Crawling-Warteschlange). Rest bewusst zurückgestellt → besser nach Push (Google crawlt dann MIT neuen Links + Schema-Fix). GSC-Tageslimit geschont.
+
+**Offen (User):** Review + Push der src-Änderungen (7 Artikel-Verlinkungen + organizationSchema.ts + authors.ts + B3a-Seite). Nach Deploy: weitere GSC-Anfragen für gestärkte Seiten + B3a.
+
+---
+
 ### 2026-06-09 — B3a EU AI Act Hub live-fertig verdrahtet (manuell)
 
 **Aus Draft → src/ überführt (alle Pflicht-Stellen):**

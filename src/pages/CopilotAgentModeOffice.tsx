@@ -468,6 +468,18 @@ const CopilotAgentModeOffice = () => {
                 Was Anthropics Claude und Microsoft Copilot unterscheidet – und wann welches Tool sinnvoller ist.
               </CardContent>
             </Card>
+            <Card className="hover:shadow-md transition-shadow">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-base">
+                  <Link to="/wissen/copilot-agent-digitales-gedaechtnis" className="text-blue-700 dark:text-blue-400 hover:underline">
+                    Copilot-Agent als digitales Gedächtnis
+                  </Link>
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-gray-600 dark:text-gray-400">
+                Wie ein Copilot-Agent Wissen dauerhaft verfügbar macht – über einzelne Dokumente hinaus.
+              </CardContent>
+            </Card>
           </div>
         </section>
 

@@ -526,6 +526,21 @@ const CopilotAdoption2026 = () => {
               </p>
             </CardContent>
           </Card>
+
+          <div className="prose prose-lg max-w-none dark:prose-invert mt-6">
+            <p>
+              Wie sich diese Zahlen in der Praxis niederschlagen, zeigen unsere{" "}
+              <Link to="/wissen/copilot-roi-erfolgsgeschichten" className="text-primary font-semibold hover:underline">
+                Copilot-ROI-Erfolgsgeschichten
+              </Link>
+              . Und warum hinter mancher KI-Euphorie weniger steckt als versprochen, ordnen wir
+              in{" "}
+              <Link to="/wissen/ki-realitaet-beratungsfirmen-2026" className="text-primary font-semibold hover:underline">
+                KI-Realität in Beratungsfirmen 2026
+              </Link>{" "}
+              ein.
+            </p>
+          </div>
         </section>
 
 

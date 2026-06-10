@@ -466,7 +466,7 @@ const CopilotTraining = () => {
 
           <p className="mb-6">
             Erfolgreiches Copilot-Training folgt einem erprobten 4-Phasen-Modell, das über 8-12 Wochen verteilt ist. Dies wird auch als <Link to="/wissen/copilot-lernreise-vs-tagesschulung" className="text-primary hover:underline">"Lernreise"</Link> bezeichnet und verankert Wissen nachhaltig
-            mit kontinuierlicher Verbesserung.
+            mit kontinuierlicher Verbesserung. Die lernpsychologische Grundlage dazu – <Link to="/wissen/warum-verteiltes-lernen-bei-copilot-trainings-funktioniert" className="text-primary hover:underline">warum verteiltes Lernen funktioniert</Link> – erklären wir im Detail.
           </p>
 
           <div className="space-y-6 my-6">

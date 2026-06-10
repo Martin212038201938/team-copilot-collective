@@ -558,6 +558,13 @@ const CopilotVariantenUnterschiede = () => {
               </Link>; bei Unsicherheit klären wir vorab gemeinsam, welche Variante in Ihrem Haus tatsächlich im
               Einsatz ist.
             </p>
+            <p className="mt-4">
+              Für einzelne Varianten lohnt ein eigener Blick: die Eigenheiten von{" "}
+              <Link to="/wissen/github-copilot" className="text-primary hover:underline">GitHub Copilot</Link>{" "}
+              für Entwicklungsteams und die No-Code-Agentenplattform{" "}
+              <Link to="/wissen/copilot-studio" className="text-primary hover:underline">Copilot Studio</Link>{" "}
+              behandeln wir jeweils in eigenen Beiträgen.
+            </p>
           </div>
         </section>
 

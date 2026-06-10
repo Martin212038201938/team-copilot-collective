@@ -1123,6 +1123,17 @@ const CopilotUnternehmensweitEinfuehren = () => {
               </div>
             </CardContent>
           </Card>
+
+          <div className="prose prose-lg max-w-none dark:prose-invert mt-6">
+            <p>
+              Wie Sie den Rollout kommunikativ begleiten und intern Aufmerksamkeit erzeugen,
+              zeigen wir am Beispiel einer{" "}
+              <Link to="/wissen/copilot-launch-kampagne" className="text-primary font-semibold hover:underline">
+                Copilot-Launch-Kampagne
+              </Link>
+              .
+            </p>
+          </div>
         </section>
 
         {/* FAQ */}

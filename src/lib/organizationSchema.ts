@@ -81,7 +81,9 @@ export const organizationSchema = {
   "url": "https://copilotenschule.de",
   "logo": {
     "@type": "ImageObject",
-    "url": "https://copilotenschule.de/logo.png"
+    "url": "https://copilotenschule.de/images/copilotenschule_flugzeug.png",
+    "width": 512,
+    "height": 512
   },
   "description": "copilotenschule.de bietet spezialisierte Microsoft Copilot Schulungen und Trainings für Unternehmen im DACH-Raum. Eine Marke der Yellow-Boat Consulting (gegründet 2011).",
   "foundingDate": "2025",

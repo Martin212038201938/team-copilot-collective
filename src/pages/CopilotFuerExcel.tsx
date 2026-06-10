@@ -708,6 +708,10 @@ const CopilotFuerExcel = () => {
           <p className="mb-4 text-gray-700 leading-relaxed">
             Und prüfen Sie die Ergebnisse – vor allem bei komplexen Berechnungen. Copilot ist ein Assistent, kein Buchhalter.
           </p>
+          <p className="mb-4 text-gray-700 leading-relaxed">
+            Weitere Kniffe für den produktiven Alltag sammeln wir in unseren{" "}
+            <Link to="/wissen/copilot-tipps-tricks-produktivitaet" className="text-primary hover:underline">Copilot-Tipps &amp; Tricks für mehr Produktivität</Link>.
+          </p>
         </section>
 
         {/* FAQ-Bereich */}

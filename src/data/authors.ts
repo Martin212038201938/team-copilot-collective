@@ -139,9 +139,9 @@ export const getPublisherSchema = () => {
     'url': 'https://copilotenschule.de',
     'logo': {
       '@type': 'ImageObject',
-      'url': 'https://copilotenschule.de/logo.png',
-      'width': 600,
-      'height': 60
+      'url': 'https://copilotenschule.de/images/copilotenschule_flugzeug.png',
+      'width': 512,
+      'height': 512
     }
   };
 };

@@ -744,6 +744,17 @@ const CopilotLernreisen = () => {
               </div>
             </CardContent>
           </Card>
+
+          <div className="prose prose-lg max-w-none dark:prose-invert mt-6">
+            <p>
+              Die wissenschaftliche Grundlage dahinter – warum verteiltes Lernen die
+              Vergessenskurve schlägt – vertiefen wir im Beitrag{" "}
+              <Link to="/wissen/warum-verteiltes-lernen-bei-copilot-trainings-funktioniert" className="text-primary font-semibold hover:underline">
+                Warum verteiltes Lernen bei Copilot-Trainings funktioniert
+              </Link>
+              .
+            </p>
+          </div>
         </section>
 
 
