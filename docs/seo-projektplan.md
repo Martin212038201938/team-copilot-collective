@@ -2,7 +2,7 @@
 
 **Lebende Doku** — wird bei jedem Schritt aktualisiert. Cron-Jobs lesen diese Datei, entscheiden auf Basis der if/then-Logik, schreiben ins [`seo-status-log.md`](seo-status-log.md).
 
-**Letzter Update:** 1. Juni 2026
+**Letzter Update:** 10. Juni 2026 (Monatsreview — Bericht: `seo-monatsreview-2026-06.md`)
 
 ---
 
@@ -185,6 +185,8 @@ Diese Cron-Jobs erledigen die Roadmap weitgehend autonom. Jeder einmalige Cron p
 | `copilotenschule-seo-b3b-b3c-hubs-draft` | Mo 06.07. 10:30 | B3b QCG + B3c Inhouse | 2 TSX-Entwürfe |
 | `copilotenschule-seo-b4-trust-signals-prep` | Mo 20.07. 10:30 | B4 Trust-Signal Block | Logo-Freigabe-Workflow oder Code-Entwurf |
 | `websiten-health-check` | täglich 09:53 (vorhanden) | Tägliches Monitoring | GSC-Snapshot, Indexierung, Tracking-Keywords |
+| `copilotenschule-seo-clarity-fix-copilot-in-outlook-nutzen-tipps` | Di 17.06. 10:30 | Anti-Pattern-Fix | Dead-Click-Fix-Diff (lucide-x + backdrop-blur) in `docs/drafts/` |
+| `copilotenschule-seo-pattern-transfer-2026-06-24` | Mi 24.06. 10:30 | Best-Practice-Transfer | Content→Angebot-CTA-Brücke als Code-Diff in `docs/drafts/` |
 
 **Wenn Cron-Job läuft, aber Vorbedingung nicht erfüllt:** Er schiebt sich um 14 Tage auf einen Retry-Cron mit `-retry`-Suffix, deaktiviert sich selbst. Conductor erkennt das beim nächsten Lauf und entscheidet weiter.
 
@@ -206,3 +208,5 @@ Wenn dieser Plan aktualisiert wird:
 - Bei Cron-Anlage/Deaktivierung: Cron-Tabelle oben aktualisieren
 
 Aktuelle Phase: **Phase 3 — Content-Block** (Phase 1 Exit-Kriterium erfüllt 01.06.2026: SSR ✅ 71 ≥ 50)
+
+**Monatsreview-Update 10.06.2026:** Phase 3 bleibt aktiv, kein Wechsel. DoD-Score 4/8 (von 2–3). Wichtigster neuer Befund: Funnel-Totalbruch Content→Angebot (Stufe 1→2 = 0 %) → Issue „Funnel-Optimierung gesamtsystemisch" eröffnet, Pattern-Transfer-Cron 24.06. adressiert ihn. B2-Hub rankt #1 für die Strategie-Abfrage (DoD #6 wahrscheinlich erfüllt). Dead-Click eskaliert (21,4 %), Fix-Cron 17.06. **Hinweis an Phase-Conductor (17.06.):** C4 (Schema-Konsolidierung) jetzt vorziehen — zahlt auf die größte DoD-Lücke #3 (SEO-Score 42) und auf den Indexierungs-Stau (#1) ein.

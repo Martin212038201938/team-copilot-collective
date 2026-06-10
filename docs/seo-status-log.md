@@ -8,6 +8,126 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 
 ## Logs
 
+### 2026-06-10 — Monatsreview (Cron)
+
+**Bericht:** docs/seo-monatsreview-2026-06.md
+**Phase:** Phase 3 — Content-Block (kein Wechsel)
+**Definition-of-Done-Score:** 4 von 8 erfüllt (fest: #2 SSR 🔴 0, #4 GEO 82; neu/wahrscheinlich: #5 ≥5 Klick-URLs, #6 B2-Hub #1)
+
+**Top-Zahlen:**
+- AlwaysData 24h: 374 (+16 / +4,5 % vs. 09.06.) · Monats-/Jahreswerte aus Highcharts nicht sauber auslesbar (siehe Bericht §5)
+- GSC: 43/91 indexiert (47 %) · 28T 182 Klicks/17.600 Impr · 3M 404 Klicks/39.824 Impr · CTR 1 % · Pos. 11,7 (28T) / 10,3 (3M)
+- Clarity Sessions: 117/3T (API) · 480/30T (Dashboard) · Conv-Rate 1,25 % (Kontakt) / 2,9 % (inkl. ausgehend)
+- Dead-Click: 21,4 % (3T) ⚠️ eskaliert — Heatmap-lokalisiert
+- SSR: ✅ 72 / 🟡 1 / 🔴 0 (fortgeschrieben, kein Deploy seit A2-Fix; frischer Sweep umgebungsbedingt nicht möglich)
+
+**Goldene Pages:** /wissen/copilot-in-excel-aktivieren · /wissen/ki-halluzinationen-vermeiden · /wissen/claude-in-microsoft-copilot
+**Bremsen:** dieselben + /wissen/copilot-in-outlook-nutzen-tipps (73 Visits, 0 Conv, Dead-Clicks) — alle konvertieren ~0 %
+**Hauptbefund:** Funnel bricht zu 100 % zwischen Content und Angebot (Stufe 1→2 = 0 %, Seiten/Sitzung 1,0). SEO bringt Besucher, es fehlt die Content→Angebot-Brücke. Parallel: B2-Hub rankt #1 für die Strategie-Abfrage (DoD #6 wahrscheinlich erfüllt).
+**Empfehlung:** (1) In-Content-CTA-Brücke in alle Top-Wissensartikel, (2) Snippet-Fix der Seite-1-Schläfer (copilot lizenz Pos 8,2 / ki halluzinationen Pos 4,6, je 0 Klicks), (3) Dead-Click-Fix Outlook-Seite.
+**Folge-Crons angelegt:** `copilotenschule-clarity-fix-copilot-in-outlook-nutzen-tipps` (17.06.), `copilotenschule-pattern-transfer-2026-06-24` (24.06.)
+**Offene User-Aktionen:** Custom-Conversion-Tags verifizieren · Clarity „AI-Sichtbarkeit" aktivieren (GSC/Bing-Verknüpfung) · AlwaysData Monats-/Jahreswerte gegenchecken
+**API-Calls heute:** 1/10
+**Nächster Monatsreview:** Mi 08.07.2026
+
+---
+
+### 2026-06-10 — B3b + B3c Retry #2 übersprungen (Cron)
+
+**Ergebnis:** B3b+B3c Retry #2 übersprungen – B3a noch nicht live. Manuelle Prüfung empfohlen.
+
+**Vorbedingungs-Prüfung (alle 3 negativ):**
+1. B3a-Draft in `docs/drafts/` (`eu-ai-act-*.tsx.md`)? → **Nein** — Verzeichnis `docs/drafts/` existiert noch nicht.
+2. `/wissen/eu-ai-act-*` Route in `src/App.tsx`? → **Nein** — keine Treffer.
+3. GSC-Impressionen für eine B3a/EU-AI-Act-URL im Log? → **Nein** — kein Eintrag.
+
+**Kontext:** B3a-Draft-Cron (`copilotenschule-seo-b3a-eu-ai-act-draft`) ist regulär für **Mo 15.06.2026 10:30** geplant und noch nicht gelaufen. Damit war dieser Skip wie im Eintrag vom 09.06. vorhergesagt erwartbar.
+
+**Aktion:** Kein Draft erstellt (gemäß Task-Regel). Kein neuer Retry-Cron angelegt — der reguläre `copilotenschule-seo-b3b-b3c-hubs-draft` läuft am 06.07.2026 und prüft die Vorbedingung erneut, dann ist B3a (Draft ab 15.06.) realistisch live + erste Impressionen denkbar.
+
+**Empfehlung an User:** Nach Go-Live von B3a (frühestens nach 15.06.) und ~2 Wochen GSC-Impressionen kann B3b+B3c manuell oder über den 06.07.-Cron angestoßen werden.
+
+---
+
+### 2026-06-09 — Wöchentlicher Audit (Cron)
+
+**Phase:** Phase 3 — Content-Block
+**SSR-Audit:** ✅ 72 / 🟡 1 / 🔴 0 (von 73)
+- Neu in 🔴/✅: keine neuen Rote. Sitemap +1 URL (jetzt 73) → direkt ✅. `/unsere-angebote` bleibt 🟡 (HTTP 301, unverändert wie Baseline).
+- Hinweis: `outputs/audit-live.sh` weiterhin nicht im Repo → Audit rekonstruiert via curl + Googlebot-UA über alle 73 Sitemap-URLs (Title + Meta-Description + Canonical im initialen HTML geprüft).
+
+**GSC:** 43/91 indexiert (47 %), Klicks 404/3M, Impr. 39.800, CTR 1 %, Pos. Ø 10,3
+- Top-Klick-Bringer: „copilot in excel aktivieren" (12 Klicks/1.105 Impr.), „excel copilot aktivieren" (9/424), „microsoft copilot in excel aktivieren" (2/52), „prompt damit chatgpt nicht halluziniert" (2/43), „ki-halluzinationen vermeiden" (2/22)
+- Nicht indexiert (48): Weiterleitung 8 · alt. kanonische Seite 3 · robots.txt 1 · gecrawlt-nicht-indexiert 20 · gefunden-nicht-indexiert 16
+- Trend: Indexierungsquote ↑ 44 % (27.05. Baseline) → 47 %. Unter 55 %-Positiv-Trigger, aber kein Indexierungs-Risiko (kein ≥5 pp Drop).
+
+**AlwaysData:** 24h 358 · Juni (Teilmonat Stand 09.) 2.633 · Mai komplett 12.456 (+65 % vs. Apr) · Jahres-Total 2026: 34.242
+
+**Clarity Standard (3T, via API, 1 Call):**
+- Sessions: 93 (davon 6 Bots, 105 Unique Users)
+- Scrolltiefe: 53,35 % (↑ von 44,28 %), Aktive Zeit: 99 s (↑ von 90 s)
+- Dead-Click: 19,35 % ⚠️ (↑ von 11 % — fast verdoppelt) | Rage-Click: 0 % | Quick-Back: 0 % | Excessive-Scroll: 0 %
+- Top-Browser: Chrome 44 %, Edge 37 %, MobileSafari 12 %, Firefox 3 %, EdgeMobile 2 % (EdgeMobile-Anteil von 47 % → 2 % gefallen — Verschiebung Mobile→Desktop, kleine Stichprobe)
+- Top-3-Pages: `/` (16), `/wissen/copilot-in-outlook-nutzen-tipps` (15), `/wissen/ki-halluzinationen-vermeiden` (9)
+- Top-3-Referrer: Direct (45), Google (40), Teams-CDN (3)
+
+**Clarity Conversion-Events (7T, via Chrome — 227 Sessions, 14 Bots):**
+- contact_form_submit / trainer_application_submit / konfigurator_submit / mail_click / phone_click / pdf_download: 0\* / 1 / 0 / 0 / 0 / 0
+- \*Custom-Tags feuern nicht unter techn. Namen; Clarity-Auto-Smart-Events zeigen „Kontaktieren Sie uns" 4, „Formular absenden" 1, „Ausgehender Klick" 6
+- Conversion-Rate (nur Custom-Tags): 0,44 % (1/227) · inkl. auto-detected Kontakt-Conversions: 2,6 % (6/227, im B2B-Benchmark 2–5 %)
+- Core Web Vitals (49 Seitenansichten): 88/100 — LCP 2,1 s · INP 160 ms · CLS 0 (alle gut)
+
+**Insights heute:** Patterns 0 | Issues 1 (Dead-Click eskaliert auf 19,4 %) | Trends 1 (Google holt Referrer-Spitze zurück, DuckDuckGo-These der Vorwoche entkräftet) + 1 Beobachtung (LLM-Referrer aktiv / Custom-Tag-Conversion-Lücke) — Details in clarity-insights.md
+**Folge-Crons angelegt:** keine (kein Page ≥100 Sessions/3T mit <0,5 % Conv → kein Anti-Pattern-Cron; UX-Issue erfordert keinen eigenen Cron)
+**Goldene Pages (GSC×Clarity):** `/wissen/ki-halluzinationen-vermeiden` (GSC 4 Klicks + Clarity 17 Visits/7T), `/wissen/copilot-in-excel-aktivieren` (GSC 12 Klicks + Clarity 12 Visits/7T — letzte Woche noch „ungenutztes Potential", jetzt auch in Clarity-Top → aufgewertet)
+**Ungenutztes SEO-Potential:** Excel-Query-Cluster bringt die meisten GSC-Klicks, aber CTR gesamt nur 1 % bei Pos. 10,3 → Snippet-/Title-Optimierung der Excel-Pages könnte Klicks heben
+**Protected Pages:** alle 5 OK (HTTP 200) ✅
+**Entscheidung gemäß Plan:** Phase 3 bleibt aktiv. SSR stabil (0 🔴 seit A2-Fix). Keine Eskalation, kein Phasen-Wechsel. Content-Block-Crons laufen planmäßig (B3a EU AI Act Draft Mo 15.06.). Einzige Handlungs-Empfehlung an User: (1) Dead-Click-Heatmap prüfen, (2) Custom-Conversion-Tags verifizieren.
+**API-Calls heute:** 1/10
+**Nächster Lauf:** Mo 15.06.2026, 10:00
+
+---
+
+### 2026-06-09 — Phase-Conductor-Lauf (Cron)
+
+**Aktive Phase:** Phase 3 — Content-Block (aktiv seit 01.06.2026, Phase-1-Exit erfüllt: SSR ✅ 71 ≥ 50)
+**Nächste Maßnahme:** B3a — Hub-Artikel EU AI Act August 2026 (zeitkritisch, Deadline 02.08.2026). Geplant: Mo 15.06.2026 10:30 via Cron `copilotenschule-seo-b3a-eu-ai-act-draft` (enabled ✅).
+**Definition of Done:** 2 von 8 sicher erfüllt (#2 🔴 ≤ 5 = 0 ✅; #4 GEO-Score 82 ≥ 80 ✅). #5 (Top-3-Klick-Bringer ≥ 5 URLs) grenzwertig — 12 Queries, aber auf wenige Pages konzentriert. Größte Lücken: #1 Indexierung 44 % (Ziel 90 %), #3 SEO-Score 42 (Ziel 75).
+**Risiko-Status:** 🟡 gelb
+**Aktion in diesem Lauf:** keine (Roadmap im Soll — nächste Maßnahme B3a hat Cron, Vorbedingung erfüllt).
+
+**5 Status-Fragen:**
+
+1. **Aktive Phase:** Phase 3 — Content-Block.
+2. **Nächste konkrete Maßnahme:** B3a (kleinste offene Code-Nr. in der Phase-3-Reihenfolge). Daneben: B2 (Anbieter-Vergleich-Hub) existiert bereits und war auf erfolgreichen Pre-Render blockiert — Blocker ist mit SSR 71 ✅ / 0 🔴 jetzt aufgelöst (relevant für DoD #6).
+3. **Cron für B3a vorhanden?** Ja — `copilotenschule-seo-b3a-eu-ai-act-draft`, fireAt 15.06.2026, enabled.
+4. **Vorbedingung B3a erfüllt?** Ja — Phase 3 aktiv + Pre-Render ≥ 50 ✅ (aktuell 71 ✅). Cron ist noch nicht gelaufen, Lauf liegt regulär in der Zukunft.
+5. **🔵 offen > 14 Tage ohne Cron?** Noch keine. Ohne dedizierten Cron sind C1 (PageSpeed-Quota), C2 (Cache-Control), C4 (Schema.org-Konsolidierung), D2 (DACH-Verzeichnisse), D4 (IHK), D5 (Yellow-Boat-Gastartikel) — registriert am 27.05., heute also 13 Tage alt, knapp unter Schwelle. C/D liegen in der Plan-Sequenz bewusst später (C parkiert/technisch, D2 = Phase-3-Schluss, D4/D5 = Phase 4 ab 25.06.). **Beim nächsten Conductor-Lauf (17.06.) überschreiten C1/C2/C4 die 14-Tage-Grenze → dann Draft-Crons anlegen, falls weiter unadressiert.** Hinweis: C4 (Schema) zahlt auf die größte DoD-Lücke #3 (SEO-Score) ein — Monthly-Review am 10.06. sollte das aufgreifen.
+
+**Cron-Check (Maßnahme → aktiver Cron):**
+
+| Maßnahme | Cron | Nächster Lauf | Status |
+|---|---|---|---|
+| B3a EU AI Act Hub | `…-b3a-eu-ai-act-draft` | 15.06. | ✅ on track |
+| B3b/B3c QCG+Inhouse | `…-b3b-b3c-hubs-draft` (06.07.) + `…-b3b-b3c-retry` (10.06.) | 10.06./06.07. | ✅ (Retry prüft, ob B3a live — wird voraussichtlich erneut skippen, da B3a-Draft erst 15.06.) |
+| B4 Trust-Signals | `…-b4-trust-signals-prep` (20.07.) + `…-b4-trust-signals-retry` (10.06.) | 10.06./20.07. | ✅ Vorbedingung ≥ 60 ✅ jetzt erfüllt (71 ✅) → Retry erzeugt morgen voraussichtlich Draft |
+| D1 ProvenExpert | `…-d1-provenexpert-reminder` | 10.06. | ✅ |
+| D3 Listicle-Outreach | `…-d3-listicle-outreach` | 22.06. | ✅ |
+| A2-Iteration | `…-a2-iteration-prep` | 11.06. | ✅ (überspringt sich — 0 🔴 bereits erreicht) |
+| C1/C2/C4, D2/D4/D5 | — | — | 🔵 kein Cron (siehe Frage 5) |
+
+**Risiko-Check (> 7 Tage ungelöst):**
+- Dead-Click-Rate 11 % persistent seit 28.05. (⚠️ UX-Issue, ~12 Tage). Gehört in den Zuständigkeitsbereich des Weekly-Audit (Clarity-Fix-Cron-Logik); Lauf vom 09.06. hat keinen Fix-Cron angelegt. Kein SEO-Roadmap-Blocker, aber als gelbes Signal vermerkt.
+- GSC-Indexierungsquote: letzter belastbarer Wert 44 % (27.05.); Weekly-Audit 01.06. konnte GSC im autonomen Modus nicht abrufen (Chrome-Timeout). Datenlücke bei DoD-Kriterium #1 → Monthly-Review 10.06. sollte GSC-Wert frisch holen.
+- Keine roten Flags in der SEO-Roadmap selbst.
+
+**Definition of Done — Selbst-Abschluss-Check:** 2 (ggf. 3) von 8 erfüllt → weit unter der 7/8-Schwelle. Conductor bleibt aktiv, keine Selbst-Deaktivierung.
+
+**Aktion:** Keine Cron-Anlage, keine Plan-Änderung (Bestand erhalten). Nächster Conductor-Lauf: Mi 17.06.2026 — dann C1/C2/C4 auf 14-Tage-Schwelle prüfen.
+**Brauche ich etwas vom User?** Nein — keine Notification nötig.
+
+---
+
 ### 2026-06-01 — Wöchentlicher Audit (Cron)
 
 **Phase:** Phase 1 → Phase 3 (Exit-Kriterium heute erfüllt)

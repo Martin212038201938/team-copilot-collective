@@ -2,7 +2,7 @@
 
 **Lebendes Dokument** — Cron-Jobs pflegen dieses File. Hier sammeln sich die Pattern-Erkenntnisse aus Microsoft Clarity, die wir auf andere Seiten übertragen oder gegen UX-Probleme einsetzen können.
 
-**Letzter automatischer Update:** noch nie (Datei initial angelegt 27. Mai 2026)
+**Letzter automatischer Update:** 10. Juni 2026 (monthly Cron)
 
 ---
 
@@ -199,6 +199,64 @@ nach ca. 2 Wochen Laufzeit empfohlen.
 ## Logs (neueste oben — automatisch von Cron-Jobs gepflegt)
 
 <!-- ab hier ergänzen Cron-Jobs ihre Befunde -->
+
+---
+
+### 2026-06-10 — Issue: Funnel-Bruch Content→Angebot (gesamtsystemisch)
+**Quelle:** Cron-Lauf 2026-06-10 (monthly) — Clarity Dashboard 30T, Funnel „Lead-Reise: SEO → Angebot → Kontakt"
+**Betroffene Pages:** alle High-Traffic-Wissensartikel (Top: `/wissen/copilot-in-outlook-nutzen-tipps` 73, `/wissen` 50, `/` 48, `/wissen/claude-in-microsoft-copilot` 36, `/wissen/ki-halluzinationen-vermeiden` 33)
+**Symptom:** 297 Sessions (61,9 % von 480) erreichen Funnel-Stufe 1 (Wissensartikel), **0 %** gehen weiter zu Stufe 2 (Trainings/Konfigurator). Seiten/Sitzung = 1,0. Konversionsrate des Funnels 0 %. Funnel-Rate < 2 %-Schwelle massiv unterschritten.
+**Hypothese:** SEO bringt Besucher auf einzelne Wissensartikel, aber es fehlt die kontextuelle Brücke zum Angebot — kein In-Content-CTA, kein „Passendes Training"-Block, schwache interne Verlinkung Artikel→Angebot. Besucher lesen genau einen Artikel und verlassen die Seite.
+**Empfohlene Maßnahme:** Wiederverwendbare TSX-CTA-Komponente („Passendes Training zu diesem Thema") mittig + am Ende jedes Top-Wissensartikels. Pattern-Transfer.
+**Status:** identifiziert — Folge-Cron `copilotenschule-pattern-transfer-2026-06-24` (+14 Tage) angelegt, schreibt Code-Diff in `docs/drafts/`.
+
+---
+
+### 2026-06-10 — Issue-Update: Dead-Click 21,4 % — Heatmap lokalisiert die Treiber
+**Quelle:** Cron-Lauf 2026-06-10 (monthly) — Clarity API 3T (21,37 %) + Dashboard 30T (15,42 %, 74 Sess.) + Heatmap-Drilldown
+**Betroffene Page:** `/wissen/copilot-in-outlook-nutzen-tipps` (Top-Seite, 73 Visits/30T; Heatmap 48 Pageviews / 35 Klicks)
+**Symptom:** Dead-Click-Rate eskaliert weiter (11,1 → 11 → 19,4 → **21,4 %** 3T). Heatmap-Klickverteilung: **#1 `svg.lucide.lucide-x[1]` = 8 Klicks (22,86 %)**, #2 Textlink „Für die Basic-Funktionen…" 2 (5,71 %), **#3 `DIV.absolute.backdrop-blur-sm[1]` 2 (5,71 %)**.
+**Hypothese (jetzt belegt):** Das meistgeklickte Element der Seite ist ein `lucide-x` (Schließen-Icon) ohne sinnvolle Funktion + ein `backdrop-blur`-Overlay-Div, das Klicks abfängt. Beides klassische Nicht-Navigations-Ziele. Eskalation korreliert zeitlich mit dem Aufstieg dieser Seite auf #1.
+**Empfohlene Maßnahme:** TSX prüfen — X-Icon funktional machen/entfernen, Backdrop dismissibel machen oder `cursor-default`/`pointer-events-none`.
+**Status:** identifiziert — Folge-Cron `copilotenschule-clarity-fix-copilot-in-outlook-nutzen-tipps` (+7 Tage) angelegt.
+
+---
+
+### 2026-06-10 — Trend (verstärken): Zwei neue organische Cluster
+**Beobachtungs-Zeitraum:** 27.05. – 10.06.2026
+**Event:** Organischer Traffic auf neu aufgestiegene Themen-Seiten
+**Trend:** `/wissen/copilot-in-outlook-nutzen-tipps` von ~0 auf **73 Visits/30T (Top-Seite)** · `/wissen/claude-in-microsoft-copilot` auf **36 Visits/30T (#4)**. GSC bestätigt einen breiten „Claude in Copilot"-Long-Tail (Dutzende Varianten) + „Copilot in Outlook"-Queries. Clarity-LLM-Referrer aktiv (ChatGPT 1/3T; Vorwoche 9/7T).
+**Ursache (vermutet):** GEO-/Content-Sog — Schnellantwort-Blöcke + kundenorientierte FAQ + aktuelle Themen (Claude-in-Copilot, Outlook-Praxis) werden organisch und von LLMs aufgegriffen.
+**Handlung:** Verstärken — diese Cluster im Content-Block (B3) priorisieren UND zuerst die Conversion-Brücke einbauen (sonst verpufft der Traffic, siehe Funnel-Issue oben).
+
+---
+
+### 2026-06-09 — Issue-Update: Dead-Click-Rate eskaliert auf 19,4 %
+**Quelle:** Cron-Lauf 2026-06-09 (weekly) — Clarity API 3T (19,35 %) + Dashboard 7T (19,38 %, 44 Sessions)
+**Betroffene Page:** Top-Pages 7T — `/wissen/copilot-in-outlook-nutzen-tipps` (45 Visits, neu #1), `/` (21), `/wissen/ki-halluzinationen-vermeiden` (17)
+**Symptom:** Dead-Click-Rate von 11 % (01.06.) auf 19,4 % gestiegen — fast verdoppelt, deutlich über Schwelle ≥ 10 %. In beiden Messquellen konsistent (API 3T = 19,35 %, Dashboard 7T = 19,38 %), also kein Messartefakt.
+**Hypothese:** Die neu aufgestiegene Top-Page `/wissen/copilot-in-outlook-nutzen-tipps` (von ~0 auf 45 Visits) ist wahrscheinlicher Treiber des Anstiegs — vermutlich ein Element, das wie ein Link/Button aussieht, aber keiner ist (Icon, nicht-verlinktes Bild, CTA-Padding außerhalb des `<a>`-Tags). Bestehende Hypothese vom 01.06. (nicht-verlinkte Logos/Icons auf `/`) gilt weiter.
+**Empfohlene Maßnahme:** Clarity-Heatmap für `/wissen/copilot-in-outlook-nutzen-tipps` und `/` öffnen, Dead-Click-Cluster lokalisieren, betroffenes TSX-Element fixen (Klick-Zone vergrößern oder Non-Link-Element als `cursor-default` markieren). Priorität erhöht — Wert nähert sich 20 %.
+**Status:** identifiziert — eskaliert
+
+---
+
+### 2026-06-09 — Trend-Reversal: Google holt Top-Referrer-Position zurück
+**Beobachtungs-Zeitraum:** 02.06. – 09.06.2026
+**Event:** Organischer Suchmaschinen-Traffic (Referrer)
+**Trend:** 7T-Referrer (Clarity): Google 120 (+ google.de 2 = 122), interner Traffic 30, Perplexity 6, NortonSafeSearch 4, Teams-CDN 3, ChatGPT 2, Bing 2, google.de 2, Claude.ai 1, Ecosia 1. **DuckDuckGo komplett aus der Top-Liste verschwunden** (Vorwoche noch #1 mit 40 Sessions). Google dominiert jetzt klar.
+**Ursache (vermutet):** Der DuckDuckGo-Spike der Vorwoche war wahrscheinlich ein einmaliger Bing/IndexNow-Crawl-Effekt, kein Strukturtrend. Die DuckDuckGo-These vom 01.06. ist damit entkräftet. Google-Indexierung steigt langsam (44 % → 47 %) und liefert wieder den Großteil des organischen Traffics.
+**Handlung:** Beobachten — keine Überreaktion auf einzelne Wochenwerte. Google bleibt strategischer Fokus, IndexNow weiter nach jedem Deploy.
+
+---
+
+### 2026-06-09 — Beobachtung: LLM-Referrer aktiv + Custom-Tag-Conversion-Lücke
+**Quelle:** Cron-Lauf 2026-06-09 (weekly), Clarity Dashboard 7T
+**Beobachtung 1 (positiv — GEO):** Erstmals messbarer LLM-Referrer-Traffic: Perplexity 6, ChatGPT 2, Claude.ai 1 = **9 Sessions/7T aus KI-Suchmaschinen**. Bestätigt die LLM-Sichtbarkeit (GEO-Score 82). → Verstärken: GEO-freundliche Bausteine (Schnellantwort-Blöcke, kundenorientierte FAQs) zahlen sich aus, beim Content-Block weiter einsetzen.
+**Beobachtung 2 (Issue — Tracking):** Von 6 definierten Custom-Conversion-Tags feuert nur `trainer_application_submit` (1 Session). `contact_form_submit`, `konfigurator_submit`, `mail_click`, `phone_click`, `pdf_download` erscheinen NICHT unter ihrem technischen Namen im Dashboard. Clarity-Auto-Smart-Events zeigen dagegen „Kontaktieren Sie uns" (4) + „Formular absenden" (1) → Kontakt-Conversions passieren real, werden aber von den Custom-Tags nicht erfasst.
+**Hypothese:** Custom-Event-Tags (außer `trainer_application_submit`) sind evtl. nicht korrekt deployt oder feuern nicht. KEIN automatischer Defekt-Alarm möglich, da dies die erste vollständige Conversion-Event-Messung ist (kein ≥ 3 → 0-Baseline vorhanden).
+**Empfohlene Maßnahme:** User-Verifikation — Custom-Tag-Code auf `/kontakt` (Formular), Trainings-Konfigurator, `mailto:`/`tel:`-Links und PDF-Downloads prüfen. Tag-Implementierung ggf. nachziehen, damit künftige Conversion-Raten valide gemessen werden.
+**Status:** identifiziert — User-Verifikation empfohlen
 
 ---
 
