@@ -8,6 +8,16 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 
 ## Logs
 
+### 2026-06-10 — D1 ProvenExpert Reminder (Cron)
+
+**Check-Ergebnis:** `https://www.provenexpert.com/copilotenschule` → kein Profil vorhanden (web_fetch leer; vorheriger Lauf 27.05. = HTTP 410). `src/components/Footer.tsx` enthält kein ProvenExpert-Badge → Integration noch nicht erfolgt.
+**Status:** Reminder an User geschickt — wartet auf Account-Anlage
+**Ziel:** ≥ 15 Bewertungen innerhalb 4 Wochen
+**Selbst-Deaktivierung:** ja (fireAt-Cron)
+**Hinweis:** Account-Anlage erfordert User-Aktion (Privacy + Captcha) — wird nicht autonom durchgeführt.
+
+---
+
 ### 2026-06-10 — Monatsreview (Cron)
 
 **Bericht:** docs/seo-monatsreview-2026-06.md
