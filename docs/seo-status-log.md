@@ -8,6 +8,29 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 
 ## Logs
 
+### 2026-06-09 — B3a EU AI Act Hub-Entwurf erstellt (vorgezogen, manuell)
+
+**Auslöser:** User-Entscheidung, eine Maßnahme vorzuziehen statt auf Cron-Termine zu warten. Gewählt: B3a (höchster strategischer Wert, zeitkritisch, null Deploy-Risiko da nur Draft).
+**Drafts:** `docs/drafts/eu-ai-act-mitarbeiter-schulung-august-2026.tsx.md` (vollständige TSX nach CLAUDE.md-Template: Quick-Answer, 6 Abschnitte, 5 entscheiderorientierte FAQs, Article+FAQPage+BreadcrumbList-Schema, Quellen)
+**Checklist:** `docs/drafts/eu-ai-act-deployment-checklist.md` (8 Schritte + inhaltliche Review-Punkte)
+**Recherche (09.06.):** Art. 4 EU-KI-VO gilt seit 02.02.2025; Durchsetzung durch nationale Marktüberwachungsbehörden ab 02.08.2026; in DE Aufsicht durch BSI; Pflicht gilt für Anbieter UND Betreiber, alle Risikoklassen. Quellen: EU-Kommission (AI Literacy FAQ), artificialintelligenceact.eu (Art. 4), IHK Schleswig-Holstein, Bitkom Consult.
+**Faktenkorrektur ggü. Plan-Label:** Im Plan als „High-Risk-Compliance Deadline" geführt — präziser: Die KI-Kompetenz-Pflicht ist nicht an Hochrisiko gekoppelt, 02.08.2026 = Start der Durchsetzung. Im Artikel korrekt dargestellt.
+**Cron angepasst:** `copilotenschule-seo-b3a-eu-ai-act-draft` (15.06.) hat jetzt einen Guard (Schritt 0): prüft, ob der Draft existiert → wenn ja, nur noch Live-Check + Status-Log, keine Doppelerstellung. Regenerier-Sicherheit bleibt erhalten, falls der Draft je fehlt.
+**Wartend auf:** User-Review + Pflicht-Checkliste-Ausführung (TSX nach src/pages, Route, articles.ts, package.json, sitemap, Build-Test, Push, IndexNow).
+**Deadline relevant:** 02.08.2026.
+**Maßnahmen-Status B3a:** 🔵 offen → ⏳ Entwurf erstellt (live nach User-Push).
+
+---
+
+### 2026-06-10 — A2-Iteration übersprungen (Cron)
+
+**Bedingungs-Prüfung (Schritt 1):** Jüngster Weekly-Audit (09.06.2026) zeigt **✅ 72 / 🟡 1 / 🔴 0 (von 73)** → ✅ 72 ≥ 50 → Helmet-Downgrade + `concurrency: 1` (bereits am 27.05. deployt) haben die Race-Condition vollständig behoben.
+**Aktion:** A2-Iteration NICHT nötig — keine Code-Änderung. Hinweis: `"concurrency": 1` ist ohnehin bereits seit 27.05. im reactSnap-Block von package.json enthalten (Run #382/#383).
+**Status:** Phase 1 erfolgreich abgeschlossen, Phase 3 (Content-Block) läuft bereits seit 01.06.
+**Selbst-Deaktivierung:** ja (fireAt-Cron, einmaliger Lauf)
+
+---
+
 ### 2026-06-10 — D1 ProvenExpert Reminder (Cron)
 
 **Check-Ergebnis:** `https://www.provenexpert.com/copilotenschule` → kein Profil vorhanden (web_fetch leer; vorheriger Lauf 27.05. = HTTP 410). `src/components/Footer.tsx` enthält kein ProvenExpert-Badge → Integration noch nicht erfolgt.
