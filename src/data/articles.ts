@@ -179,7 +179,7 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/claude-in-microsoft-copilot",
     badge: "Microsoft 365 Copilot",
     icon: "§",
-    lastUpdated: "13. März 2026",
+    lastUpdated: "10. Juni 2026",
     publishDate: "2026-03-13",
     publishTime: "11:00",
     isDraft: false

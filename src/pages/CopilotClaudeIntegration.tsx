@@ -61,7 +61,7 @@ const CopilotClaudeIntegration = () => {
           "@id": "https://copilotenschule.de/#organization"
         },
         "datePublished": "2026-03-13",
-        "dateModified": "2026-03-13",
+        "dateModified": "2026-06-10",
         "mainEntityOfPage": {
           "@type": "WebPage",
           "@id": pageUrl
@@ -95,8 +95,8 @@ const CopilotClaudeIntegration = () => {
   return (
     <>
       <SEOHead
-        title="Claude in Microsoft Copilot: Was das konkret bedeutet [2026]"
-        description="Microsoft integriert Anthropics Claude-KI in Copilot. Was das bringt: neue KI-Agents, Use Cases für Word & Teams sowie EU-Datenschutz-Hinweise für Unternehmen."
+        title="Claude in Microsoft Copilot: Funktionen, DSGVO & Aktivierung"
+        description="Claude treibt jetzt Copilot Cowork an. Was das für Ihr Unternehmen heißt, warum die Funktion in der EU deaktiviert ist – und wie Sie sie sicher aktivieren."
         keywords={[
           "Claude in Microsoft Copilot",
           "Copilot Cowork",
@@ -124,7 +124,7 @@ const CopilotClaudeIntegration = () => {
         schema={schema}
         author={martinLang}
         publishedTime="2026-03-13T11:00:00+01:00"
-        modifiedTime="2026-03-13T11:00:00+01:00"
+        modifiedTime="2026-06-10T09:00:00+02:00"
       />
 
       <ContentLayout
@@ -134,7 +134,7 @@ const CopilotClaudeIntegration = () => {
         ]}
         title={PAGE_TITLE}
         description="Microsoft integriert Anthropics Claude-KI in Copilot – inklusive Copilot Cowork für agentenbasierte Aufgaben. Was das für Unternehmen bedeutet."
-        lastUpdated="13. März 2026"
+        lastUpdated="10. Juni 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
         relatedContent={[
