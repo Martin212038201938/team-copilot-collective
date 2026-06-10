@@ -1052,6 +1052,15 @@ const CopilotTraining = () => {
               </div>
             </CardContent>
           </Card>
+
+          <div className="prose prose-lg max-w-none dark:prose-invert mt-6">
+            <p className="leading-relaxed">
+              Sie wollen das Training nicht komplett selbst aufsetzen, sondern einen passenden Partner wählen?
+              Unser{" "}
+              <Link to="/wissen/copilot-schulungsanbieter-deutschland-vergleich" className="text-primary font-semibold hover:underline">Vergleich der Copilot-Schulungsanbieter in Deutschland</Link>{" "}
+              ordnet die wichtigsten Anbieter nach Auswahlkriterien ein und hilft bei der Entscheidung.
+            </p>
+          </div>
         </section>
 
 

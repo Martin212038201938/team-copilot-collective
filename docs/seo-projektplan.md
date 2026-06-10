@@ -35,7 +35,7 @@ Aus dem ursprünglichen Maßnahmenkatalog [`seo-massnahmenkatalog-2026-05-27.md`
 | A4.1 | Sitemap-lastmod aus echten Daten | ✅ erledigt 27.05. (Shallow-Clone-Fix) |
 | A5 | IndexNow im Deploy automatisieren | ✅ erledigt 27.05. (bereits in deploy.yml) |
 | B1 | Protected-Pages-Liste | ✅ erledigt 27.05. (`docs/protected-pages.md`) |
-| B2 | Hub-Artikel Anbieter-Vergleich | ✅ existiert (`/wissen/copilot-schulungsanbieter-deutschland-vergleich`), wartet auf erfolgreichen Pre-Render |
+| B2 | Hub-Artikel Anbieter-Vergleich | ✅ aktiviert 09.06. — Pre-Render bestätigt (HTTP 200, volles Schema), 2 interne Links ergänzt, IndexNow-Ping (`/wissen/copilot-schulungsanbieter-deutschland-vergleich`) |
 | B3a | Hub-Artikel EU AI Act August 2026 | ⏳ Entwurf erstellt 09.06. (`docs/drafts/eu-ai-act-mitarbeiter-schulung-august-2026.tsx.md`) — wartet auf User-Review + Live-Schaltung |
 | B3b | Hub-Artikel QCG-Förderung | 🔵 offen |
 | B3c | Hub-Artikel Inhouse-Schulung | 🔵 offen |

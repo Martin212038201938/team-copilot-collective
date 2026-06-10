@@ -344,6 +344,11 @@ const CopilotSchulungOnline = () => {
               jedem Unternehmen anders eingesetzt wird – und ein Training, das diesen Unterschied ignoriert,
               wird wenig bewirken.
             </p>
+            <p className="leading-relaxed">
+              Einen strukturierten Überblick über die wichtigsten Anbieter im deutschsprachigen Raum – mit
+              Auswahlkriterien und Empfehlung – finden Sie in unserem{" "}
+              <Link to="/wissen/copilot-schulungsanbieter-deutschland-vergleich" className="text-primary font-semibold hover:underline">Vergleich der Copilot-Schulungsanbieter in Deutschland</Link>.
+            </p>
           </div>
 
           {/* Link zur Trainings-Übersicht */}

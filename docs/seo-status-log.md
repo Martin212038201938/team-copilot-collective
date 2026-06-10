@@ -8,6 +8,27 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 
 ## Logs
 
+### 2026-06-09 — B2-Hub aktiviert + Re-Indexing-Push (manuell)
+
+**B2 (Anbieter-Vergleich-Hub) — Blocker aufgelöst:**
+- Verdrahtung vollständig: Route (App.tsx), articles.ts, package.json `reactSnap.include`, sitemap.xml, generate-sitemap.js (Priorität 0.9) — alles vorhanden.
+- Live-Render-Check (`/wissen/copilot-schulungsanbieter-deutschland-vergleich`, Googlebot-UA): **HTTP 200**, Title + Canonical + og:tags + reiches Schema (Article, FAQPage, BreadcrumbList, ItemList, Course, Offer, Organization) + H1, 125 KB pre-gerendertes HTML. **Pre-Render bestätigt funktionsfähig** — der ehemalige Blocker („wartet auf erfolgreichen Pre-Render") ist endgültig weg.
+- **Lücke gefunden + behoben:** Kein einziger interner Link zeigte auf den Hub (nur die Route-Definition). Zwei kontextuelle Links ergänzt (src/, kein Push):
+  - `CopilotSchulungOnline.tsx` → Sektion „Woran Sie eine gute Online-Schulung erkennen"
+  - `CopilotTraining.tsx` → nach der Trainings-Checkliste
+  - Beide Dateien via esbuild syntaktisch verifiziert (TSX sauber).
+- IndexNow-Einzelping für B2-URL: **HTTP 200**.
+- **Maßnahmen-Status B2:** ✅ existiert → ✅ aktiviert (interne Verlinkung verbessert, Re-Crawl angestoßen). Zahlt auf DoD #6 ein.
+
+**Re-Indexing-Push (DoD #1, Indexierung):**
+- Anlass: SSR jetzt vollständig geheilt (72 ✅ / 0 🔴); die 44 %-Indexierungsquote wurde gemessen, als SSR noch kaputt war.
+- IndexNow-**Massenping aller 73 Sitemap-URLs**: **HTTP 200** (Bing/Yandex/Seznam-Re-Crawl-Signal).
+- **Offen (User-Aktion):** GSC-Sitemap-Neueinreichung über `sc-domain:copilotenschule.de` — braucht Google-Login, nicht autonom möglich. Empfehlung: Sitemap in der Search Console erneut einreichen, um Googles Re-Crawl zu beschleunigen (Google nutzt IndexNow nicht).
+
+**Hinweis:** Die zwei internen Links wirken erst nach dem nächsten Deploy. Bis dahin reviewt der User die src/-Änderungen (CopilotSchulungOnline.tsx, CopilotTraining.tsx) via GitHub Desktop.
+
+---
+
 ### 2026-06-09 — B3a EU AI Act Hub-Entwurf erstellt (vorgezogen, manuell)
 
 **Auslöser:** User-Entscheidung, eine Maßnahme vorzuziehen statt auf Cron-Termine zu warten. Gewählt: B3a (höchster strategischer Wert, zeitkritisch, null Deploy-Risiko da nur Draft).
