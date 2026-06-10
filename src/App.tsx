@@ -62,6 +62,7 @@ import BiasNoiseKiEntscheidungen from "./pages/BiasNoiseKiEntscheidungen";
 import CopilotPagesLoopNotebooksSharepointWorkflows from "./pages/CopilotPagesLoopNotebooksSharepointWorkflows";
 import InterneCopilotTrainerAusbilden from "./pages/InterneCopilotTrainerAusbilden";
 import CopilotSchulungsanbieterVergleich from "./pages/CopilotSchulungsanbieterVergleich";
+import EuAiActMitarbeiterSchulung from "./pages/EuAiActMitarbeiterSchulung";
 import SmlHrTipps2026 from "./pages/SmlHrTipps2026";
 
 const queryClient = new QueryClient();
@@ -97,6 +98,7 @@ const App = () => (
           <Route path="/wissen/copilot-roi-erfolgsgeschichten" element={<CopilotROIErfolgsgeschichten />} />
           <Route path="/wissen/copilot-adoption-2026-zahlen" element={<CopilotAdoption2026 />} />
           <Route path="/wissen/copilot-agent-mode-word-excel-powerpoint" element={<CopilotAgentModeOffice />} />
+          <Route path="/wissen/eu-ai-act-mitarbeiter-schulung-august-2026" element={<EuAiActMitarbeiterSchulung />} />
           <Route path="/wissen/copilot-lernreise-vs-tagesschulung" element={<CopilotLernreisen />} />
           <Route path="/wissen/warum-verteiltes-lernen-bei-copilot-trainings-funktioniert" element={<WarumVerteiltesLernen />} />
           <Route path="/wissen/copilot-adhs-produktiver-arbeiten" element={<CopilotADHS />} />

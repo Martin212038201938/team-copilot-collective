@@ -8,6 +8,26 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 
 ## Logs
 
+### 2026-06-09 — B3a EU AI Act Hub live-fertig verdrahtet (manuell)
+
+**Aus Draft → src/ überführt (alle Pflicht-Stellen):**
+- `src/pages/EuAiActMitarbeiterSchulung.tsx` erstellt (Komponente `EuAiActMitarbeiterSchulung`, Imports identisch zur erprobten Vorlage CopilotAgentModeOffice.tsx).
+- Import + Route in `src/App.tsx` (`/wissen/eu-ai-act-mitarbeiter-schulung-august-2026`).
+- Eintrag am Anfang von `src/data/articles.ts` (Badge „KI-Recht & Compliance", publishDate 2026-06-10).
+- `package.json` → `reactSnap.include` ergänzt.
+- `scripts/generate-sitemap.js` → `knowledgeSlugs` ergänzt; `public/sitemap.xml` URL-Block ergänzt (lastmod 2026-06-10).
+
+**Verifikation:**
+- `validate-seo.js`: Exit 0, 39 Wissensartikel erkannt, **mein Slug in keiner Warnung** → besteht alle strikten Checks (cleaner SLUG, canonicalUrl-Variable, Breadcrumb `/wissen/`, Route, reactSnap-include, Sitemap-Generator). Die 40 Warnungen sind Vorbestand (etablierte Artikel).
+- esbuild TSX-Syntaxcheck: sauber.
+- `vite build`: **Exit 0** — gesamte App kompiliert inkl. neuer Seite/Route/Daten. Nur Vorbestands-Warnungen (react-helmet-async PURE-Annotation, Chunk-Größe).
+- Voller react-snap-Prerender (28 Min) läuft erst in CI nach Push.
+
+**Offen (User-Aktion):** Review der src-Änderungen + Commit/Push via GitHub Desktop. Nach Deploy: IndexNow-Ping erfolgt automatisch via deploy.yml (optional manueller Einzelping für die neue URL möglich).
+**B3a-Status:** ⏳ Entwurf → ⏳ in src/ verdrahtet, build-verifiziert, wartet auf Push.
+
+---
+
 ### 2026-06-09 — B2-Hub aktiviert + Re-Indexing-Push (manuell)
 
 **B2 (Anbieter-Vergleich-Hub) — Blocker aufgelöst:**
