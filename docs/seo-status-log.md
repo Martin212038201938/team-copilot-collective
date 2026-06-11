@@ -8,9 +8,26 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 
 ## Logs
 
+### 2026-06-11 — GSC-Indexierung Welle 2 (3 weitere) + Cron für Rest (manuell)
+
+**Heute zusätzlich beantragt (via Chrome URL-Prüfung, alle ✅ „in bevorzugte Crawling-Warteschlange"):**
+- `/wissen/ki-agenten` (145 LLM-Citations)
+- `/wissen/copilot-training-schulung`
+- `/wissen/prompt-engineering`
+
+**Tagesbilanz GSC-Anfragen: 9** (6 in Welle 1 + 3 jetzt) → Tageslimit (~10) erreicht, daher Stopp.
+
+**Cron für Rest angelegt:** `gsc-index-request-rest-2026-06-12`, fireAt **Fr 12.06.2026 10:00**, einmalig, deaktiviert sich nach Lauf. Meldet automatisch die verbleibenden 6 Seiten an:
+copilot-adoption-2026-zahlen, copilot-unternehmensweit-einfuehren, copilot-launch-kampagne, copilot-roi-erfolgsgeschichten, warum-verteiltes-lernen-bei-copilot-trainings-funktioniert, copilot-lernreise-vs-tagesschulung.
+Voraussetzung: Cowork-App offen + verbundener Chrome mit GSC-Login. Bei Quota-Stop legt der Cron selbst einen Retry für den Folgetag an.
+
+**Damit sind ALLE ~14 „gecrawlt-nicht-indexiert"-Seiten + B3a abgedeckt** (8 heute manuell, 6 morgen via Cron). Wirkung in 1–2 Wochen im GSC-Indexierungsbericht prüfen.
+
+---
+
 ### 2026-06-09 — Deploy live + 6 GSC-Indexierungs-Anfragen (manuell)
 
-**Deploy-Status geprüft:** Artikel-Verlinkungen + B3a sind **live** (B3a HTTP 200, interne Links im Live-HTML). ⚠️ ABER: Die zwei Schema-Dateien (`organizationSchema.ts`, `authors.ts`) sind noch NICHT committet — das Live-Org-Logo zeigt weiter das kaputte `logo.png`. **Offen beim User: diese 2 Dateien noch committen/pushen**, damit der Logo-Fix live geht.
+**Deploy-Status geprüft:** Artikel-Verlinkungen + B3a sind **live** (B3a HTTP 200, interne Links im Live-HTML). **Update (nach vollständigem User-Push): Logo-Fix ist jetzt ebenfalls live** — Live-HTML (Homepage + Artikel) zeigt überall `images/copilotenschule_flugzeug.png` (512×512), kein `logo.png` mehr. Org-Schema konsolidiert & live. (Die URL `/logo.png` liefert zwar weiter HTML, wird aber nirgends mehr referenziert → irrelevant.)
 
 **GSC-Indexierung beantragt (6 URLs, via Chrome URL-Prüfung — alle „in bevorzugte Crawling-Warteschlange aufgenommen"):**
 1. `/wissen/copilot-studio` ✅ (1.0K LLM-Citations)
