@@ -14,6 +14,7 @@
  */
 
 import Clarity from "@microsoft/clarity";
+import { trackAdsConversionForEvent } from "./ads";
 
 /**
  * Trackt ein benanntes Conversion-Event in Clarity.
@@ -27,6 +28,9 @@ import Clarity from "@microsoft/clarity";
  *   trackConversion("pdf_download", "betriebsrat-checkliste");
  */
 export function trackConversion(eventName: string, value?: string): void {
+  // Google-Ads-Conversion (No-Op ohne VITE_GOOGLE_ADS_ID, Mapping in ads.ts) —
+  // zentral hier, damit die Aufrufstellen in den Komponenten unverändert bleiben.
+  trackAdsConversionForEvent(eventName);
   try {
     Clarity.event(eventName);
     if (value !== undefined) {

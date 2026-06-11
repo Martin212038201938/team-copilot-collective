@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import AuthorBio from "@/components/AuthorBio";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
+import TrainingCTA from "@/components/TrainingCTA";
 
 const SLUG = "copilot-in-excel-aktivieren";
 const PAGE_TITLE = "Copilot in Excel aktivieren: Schritt-für-Schritt für Unternehmen";
@@ -221,6 +222,13 @@ const CopilotInExcelAktivieren = () => {
           </div>
         </section>
 
+        <TrainingCTA
+          topic="Copilot in Excel produktiv einsetzen"
+          benefit="Aktivieren ist der erste Schritt – im Praxis-Training lernt Ihr Team an echten Dateien, wie Copilot Auswertungen, Formeln und Berichte übernimmt."
+          href="/trainings/microsoft-365-copilot-praxis"
+          label="Zum Praxis-Training"
+        />
+
         {/* Was beachten */}
         <section id="was-beachten" className="mb-6 mt-2">
           <h2 className="text-2xl md:text-3xl font-bold mb-3">
@@ -284,6 +292,13 @@ const CopilotInExcelAktivieren = () => {
             </p>
           </div>
         </section>
+
+        <TrainingCTA
+          topic="Vom aktivierten Copilot zum produktiven Team"
+          benefit="Die Lizenz ist da, jetzt zählt die Nutzung: Im Praxis-Training machen wir aus Excel-Anwendern Copilot-Profis."
+          href="/trainings/microsoft-365-copilot-praxis"
+          label="Training ansehen"
+        />
 
         {/* FAQ */}
         <section id="faq" className="mb-6 mt-2">

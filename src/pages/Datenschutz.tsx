@@ -226,6 +226,44 @@ const Datenschutz = () => {
 
             {/* ====================================================== */}
             <section>
+              <h2 className="text-2xl font-bold mb-3">6a. Google Ads Conversion-Tracking (einwilligungsbasiert)</h2>
+              <p>
+                Wir schalten Werbeanzeigen über Google Ads (Google Ireland Limited, Gordon House,
+                Barrow Street, Dublin 4, Irland). Um zu messen, ob unsere Anzeigen zu Anfragen führen,
+                setzen wir das Google-Ads-Conversion-Tracking mit dem sogenannten
+                <strong> Consent Mode v2</strong> ein.
+              </p>
+              <p>
+                <strong>Ohne Ihre Einwilligung</strong> werden keine Werbe-Cookies gesetzt und keine
+                gerätebezogenen Kennungen gespeichert. Google erhält in diesem Fall lediglich
+                cookielose, aggregierte Signale ohne Personenbezug (Conversion-Modellierung).
+              </p>
+              <p>
+                <strong>Mit Ihrer Einwilligung</strong> (über den Cookie-Banner) setzt Google Cookies,
+                um Anzeigenklicks mit Aktionen auf unserer Website (z.&nbsp;B. dem Versand eines
+                Kontaktformulars) zu verknüpfen. Rechtsgrundlage ist Ihre Einwilligung nach
+                Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;a DSGVO sowie §&nbsp;25 Abs.&nbsp;1 TDDDG. Dabei kann
+                eine Übermittlung von Daten in die USA stattfinden; Google ist unter dem
+                EU-US Data Privacy Framework zertifiziert.
+              </p>
+              <p>
+                <strong>Widerruf:</strong> Sie können Ihre Entscheidung jederzeit ändern, indem Sie die
+                im Browser gespeicherte Auswahl löschen (Website-Daten/localStorage dieser Domain
+                entfernen) — beim nächsten Besuch erscheint der Banner erneut. Ihre Einwilligung wird
+                lokal in Ihrem Browser gespeichert (Schlüssel <code>consent-ads-v1</code>), nicht auf
+                unseren Servern.
+              </p>
+              <p>
+                Weitere Informationen: {" "}
+                <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary">
+                  Google-Datenschutzerklärung
+                </a>
+                .
+              </p>
+            </section>
+
+            {/* ====================================================== */}
+            <section>
               <h2 className="text-2xl font-bold mb-3">7. Kontaktformulare</h2>
               <p>
                 Auf dieser Website befinden sich mehrere Kontaktformulare (Hauptkontakt,

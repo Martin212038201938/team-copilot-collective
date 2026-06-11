@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import CustomerLogos from "@/components/CustomerLogos";
 import SEOHead from "@/components/SEOHead";
 import KoelnTraining from "@/components/KoelnTraining";
 import { Card } from "@/components/ui/card";
@@ -155,6 +156,10 @@ const UeberUns = () => {
               sicher und wertschöpfend im Arbeitsalltag einzusetzen. Unser praxisorientierter
               Trainingsansatz verbindet reale Arbeitsprozesse mit direkt anwendbaren Workflows.
             </p>
+          </div>
+
+          <div className="max-w-6xl mx-auto mb-16 -mx-4">
+            <CustomerLogos />
           </div>
 
           {/* Mission, Vision, Werte */}

@@ -2,6 +2,7 @@ import { createRoot, hydrateRoot } from "react-dom/client";
 import { HelmetProvider } from "react-helmet-async";
 import Clarity from "@microsoft/clarity";
 import App from "./App.tsx";
+import { initGoogleAds } from "./lib/ads";
 import "./index.css";
 
 // Microsoft Clarity initialisieren — Heatmaps, Session-Recordings, Conversion-Events.
@@ -16,6 +17,10 @@ if (clarityId && typeof navigator !== "undefined" && !/ReactSnap/i.test(navigato
     console.debug("[clarity] Init-Fehler (ignoriert):", err);
   }
 }
+
+// Google Ads (Conversion-Tracking, Consent Mode v2) — No-Op ohne VITE_GOOGLE_ADS_ID.
+// Eigener ReactSnap-Guard in initGoogleAds().
+initGoogleAds();
 
 const container = document.getElementById("root")!;
 const app = (

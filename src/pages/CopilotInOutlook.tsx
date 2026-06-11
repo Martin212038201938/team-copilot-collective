@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import AuthorBio from "@/components/AuthorBio";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
+import TrainingCTA from "@/components/TrainingCTA";
 
 const SLUG = "copilot-in-outlook-nutzen-tipps";
 const PAGE_TITLE = "Copilot in Outlook nutzen: Tipps und Use Cases für Mail und Kalender";
@@ -367,6 +368,13 @@ const CopilotInOutlook = () => {
             </p>
           </div>
         </section>
+
+        <TrainingCTA
+          topic="Microsoft 365 Copilot in der Praxis"
+          benefit="Im Praxis-Training lernt Ihr Team an echten Postfächern und Dokumenten, wie Copilot in Outlook, Teams und Word den Arbeitsalltag wirklich beschleunigt."
+          href="/trainings/microsoft-365-copilot-praxis"
+          label="Zum Praxis-Training"
+        />
 
         {/* Termine vorbereiten */}
         <section id="termine-vorbereiten" className="mb-2 mt-1">
@@ -855,6 +863,13 @@ const CopilotInOutlook = () => {
         </section>
 
         {/* FAQ */}
+        <TrainingCTA
+          topic="Copilot im Team produktiv machen"
+          benefit="Vom Lesen zum Können: Im Praxis-Training üben Ihre Mitarbeitenden die Outlook-Workflows aus diesem Artikel an den eigenen Postfächern."
+          href="/trainings/microsoft-365-copilot-praxis"
+          label="Training ansehen"
+        />
+
         <section id="faq" className="mb-2 mt-1">
           <h2 className="text-2xl md:text-3xl font-bold mb-1">
             Häufig gestellte Fragen

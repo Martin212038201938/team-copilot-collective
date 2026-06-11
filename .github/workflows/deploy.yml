@@ -56,6 +56,12 @@ jobs:
           # Wenn das Secret nicht gesetzt ist, ist die Variable leer → main.tsx
           # überspringt die Clarity-Initialisierung still.
           VITE_CLARITY_ID: ${{ secrets.VITE_CLARITY_ID }}
+          # Google Ads Conversion-Tracking (Consent Mode v2) — Secrets erst nach
+          # Anlage des Google-Ads-Kontos setzen. Ohne sie: komplettes No-Op,
+          # kein gtag-Load, kein Consent-Banner.
+          VITE_GOOGLE_ADS_ID: ${{ secrets.VITE_GOOGLE_ADS_ID }}
+          VITE_ADS_LABEL_LEAD: ${{ secrets.VITE_ADS_LABEL_LEAD }}
+          VITE_ADS_LABEL_CONTACT: ${{ secrets.VITE_ADS_LABEL_CONTACT }}
 
       - name: Copy API files
         run: npm run copy-api

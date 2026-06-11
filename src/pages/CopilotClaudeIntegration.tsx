@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import AuthorBio from "@/components/AuthorBio";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
+import TrainingCTA from "@/components/TrainingCTA";
 
 const SLUG = "claude-in-microsoft-copilot";
 const PAGE_TITLE = "Claude in Microsoft Copilot: Was Anthropics KI im Copilot-Ökosystem verändert";
@@ -306,6 +307,13 @@ const CopilotClaudeIntegration = () => {
           </div>
         </section>
 
+        <TrainingCTA
+          topic="Copilot-Grundlagen & Prompt-Design"
+          benefit="Egal welches Modell unter der Haube läuft – wer gut promptet, bekommt bessere Ergebnisse. Im Grundlagen-Training lernt Ihr Team den souveränen Umgang mit Copilot."
+          href="/trainings/copilot-grundlagen-prompt-design"
+          label="Training ansehen"
+        />
+
         {/* Warum nicht einfach weiter OpenAI? */}
         <section id="warum-nicht-openai" className="mb-6">
           <h2 className="!mt-10 !mb-2 text-2xl md:text-3xl font-bold">
@@ -423,6 +431,13 @@ const CopilotClaudeIntegration = () => {
             </p>
           </div>
         </section>
+
+        <TrainingCTA
+          topic="Ihr Team fit für das neue Copilot-Ökosystem machen"
+          benefit="Von GPT bis Claude: Im Grundlagen-Training lernen Ihre Mitarbeitenden, die Stärken der Modelle im Arbeitsalltag gezielt zu nutzen."
+          href="/trainings/copilot-grundlagen-prompt-design"
+          label="Zum Grundlagen-Training"
+        />
 
         {/* FAQ */}
         <section id="faq" className="mb-6">

@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
+import ConsentBanner from "./components/ConsentBanner";
 import Index from "./pages/Index";
 import BecomeTrainer from "./pages/BecomeTrainer";
 import Wissen from "./pages/Wissen";
@@ -170,6 +171,7 @@ const App = () => (
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <ConsentBanner />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

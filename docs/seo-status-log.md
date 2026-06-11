@@ -8,6 +8,44 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 
 ## Logs
 
+### 2026-06-11 — B4 Trust-Block + Google-Ads-Tracking (Consent Mode v2) in src/ umgesetzt (manuell)
+
+**B4 Trust-Block (User-Entscheidung: ohne Logo-Freigabe-Mails):**
+- NEU `src/components/CustomerLogos.tsx`: Logo-Strip (REWE, Pernod Ricard, Lekkerland, Marriott, Med360Grad, IHK Nord Westfalen) + KPI „2.000+ ausgebildete Wissensarbeiter". Grayscale, keine Links.
+- Automatischer Text-Fallback solange Logo-Dateien fehlen → sofort deploybar. Logo-Dateien später nach `public/images/customer-logos/` legen: `rewe.svg, pernod-ricard.svg, lekkerland.svg, marriott.svg, med360grad.svg, ihk-nord-westfalen.svg`.
+- Einbau: `Index.tsx` (nach Hero) + `UeberUns.tsx` (nach Hero-Block). B4-Cron 20.07. wird zum Verifikationslauf degradiert.
+
+**Google-Ads-Conversion-Tracking, Variante A (Consent Mode v2):**
+- NEU `src/lib/ads.ts`: gtag-Init mit Consent-Default „denied", Conversion-Mapping (Lead: contact_form/konfigurator/trainer/sml_booking · Contact: mail/phone). Komplettes No-Op ohne `VITE_GOOGLE_ADS_ID` → gefahrlos deploybar BEVOR das Ads-Konto existiert.
+- NEU `src/components/ConsentBanner.tsx`: schlanker Banner (nur sichtbar wenn Ads konfiguriert + keine Entscheidung gespeichert; rendert nicht im Pre-Render-HTML).
+- `analytics.ts`: trackConversion() meldet gemappte Events zusätzlich an Google Ads — null Änderungen an Aufrufstellen.
+- `main.tsx` initGoogleAds() · `App.tsx` <ConsentBanner /> · `Datenschutz.tsx` neue Sektion 6a (Google Ads, Einwilligung, Widerruf) · `deploy.yml` 3 neue Secrets-Envs.
+- **User-To-do nach Anlage des Google-Ads-Kontos:** Conversions anlegen („Lead" primär, „Kontakt-Intent" sekundär) → GitHub-Secrets setzen: `VITE_GOOGLE_ADS_ID` (AW-…), `VITE_ADS_LABEL_LEAD`, `VITE_ADS_LABEL_CONTACT` (Labels aus Tag-Details). Bis dahin: Banner & gtag inaktiv.
+- Hinweis im Code dokumentiert: Clarity bleibt unverändert (berechtigtes Interesse lt. bestehender Datenschutzerklärung); Anwalts-Check der neuen 6a-Sektion empfohlen.
+
+Syntax-Checks OK, validate-seo OK. **Alles wartet auf User-Review + lokalen `npm run build:prerender` + Push.**
+
+---
+
+### 2026-06-11 — CTA-Brücke Welle 1 in src/ umgesetzt + Kannibalisierungs-Fix live (manuell)
+
+**Kannibalisierungs-Fix:** User-Push erfolgt, live verifiziert (B3a-Live-HTML enthält Querverlink auf `/wissen/ki-schulung-mitarbeiter-pflicht`). ✅
+
+**CTA-Brücke Welle 1 (aus Draft `pattern-transfer-content-to-offer-cta.md`):**
+- NEU: `src/components/TrainingCTA.tsx` (kontextueller „Passendes Training"-Block, Clarity-Tag `content_cta_click`, bewusst ohne X-Icon/Overlay)
+- Einbau je 2 Touchpoints (mittig + vor FAQ) in die 3 Nicht-Protected-Top-Seiten:
+  - `CopilotInOutlook.tsx` → `/trainings/microsoft-365-copilot-praxis`
+  - `CopilotClaudeIntegration.tsx` → `/trainings/copilot-grundlagen-prompt-design`
+  - `CopilotInExcelAktivieren.tsx` → `/trainings/microsoft-365-copilot-praxis`
+- Syntax-Check + validate-seo: OK. **Wartet auf User-Review + Push** (lokal `npm run build:prerender` empfohlen).
+- Welle 2 (restliche 5 Artikel inkl. 2 Protected Pages) erst nach Daten-Check — Verifikations-Cron 24.06.
+- KPI: Funnel Stufe 1→2 ≥ 5 %/30T, Seiten/Sitzung > 1,2.
+
+**B4-Entscheidung User:** Logos werden OHNE vorherige Freigabe-Mails verwendet (Risiko dokumentiert: Markennutzung/Referenzklauseln — Berater-Hinweis ausgesprochen). B4-Cron-Logik dadurch obsolet in Teil 3a.
+**Outbound-Versanddomain:** läuft über separate Domain copiloten-schule.de (✅ Reputationsschutz-Pattern). SPF/DKIM/DMARC dort prüfen.
+
+---
+
 ### 2026-06-11 — Externer Berater-Review + Campaign-Readiness-Maßnahmen (manuell)
 
 **Bericht:** `docs/seo-berater-review-2026-06-11.md` — vollständiger Review von Plan, Wirkung, allen 12 SEO-Crons. Neuer Kontext: SEA-Start KW 25 + Outbound-Mailkampagne.

@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import CustomerLogos from "@/components/CustomerLogos";
 import TrustBadges from "@/components/TrustBadges";
 import TrainingModules from "@/components/TrainingModules";
 import Benefits from "@/components/Benefits";
@@ -161,6 +162,7 @@ const Index = () => {
       <Header />
       <main>
         <Hero />
+        <CustomerLogos />
         <Benefits />
         <TrainingModules />
         <TrustBadges />
