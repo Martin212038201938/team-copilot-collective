@@ -8,6 +8,24 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 
 ## Logs
 
+### 2026-06-09 — Deploy live + 6 GSC-Indexierungs-Anfragen (manuell)
+
+**Deploy-Status geprüft:** Artikel-Verlinkungen + B3a sind **live** (B3a HTTP 200, interne Links im Live-HTML). ⚠️ ABER: Die zwei Schema-Dateien (`organizationSchema.ts`, `authors.ts`) sind noch NICHT committet — das Live-Org-Logo zeigt weiter das kaputte `logo.png`. **Offen beim User: diese 2 Dateien noch committen/pushen**, damit der Logo-Fix live geht.
+
+**GSC-Indexierung beantragt (6 URLs, via Chrome URL-Prüfung — alle „in bevorzugte Crawling-Warteschlange aufgenommen"):**
+1. `/wissen/copilot-studio` ✅ (1.0K LLM-Citations)
+2. `/wissen/github-copilot` ✅ (351)
+3. `/wissen/eu-ai-act-mitarbeiter-schulung-august-2026` ✅ (B3a, brandneu — war Google unbekannt)
+4. `/wissen/copilot-tipps-tricks-produktivitaet` ✅ (416)
+5. `/wissen/copilot-agent-digitales-gedaechtnis` ✅ (88)
+6. `/wissen/ki-realitaet-beratungsfirmen-2026` ✅ (ehem. 0-Link-Waise, 50)
+
+Alle 6 technisch sauber (crawlbar, indexierbar, Canonical konsistent) — „gecrawlt/unbekannt, nicht indexiert" war diskretionär. GSC-Tageslimit (~10) eingehalten.
+
+**Noch offen für Folge-Sitzung (nach Schema-Push):** weitere „gecrawlt-nicht-indexiert"-Seiten anmelden (copilot-training-schulung, prompt-engineering, ki-agenten, copilot-adoption-2026-zahlen, copilot-unternehmensweit-einfuehren, copilot-launch-kampagne, copilot-roi-erfolgsgeschichten, warum-verteiltes-lernen, copilot-lernreise-vs-tagesschulung). Wirkung der heutigen Maßnahmen in ~1-2 Wochen im GSC-Indexierungsbericht prüfen.
+
+---
+
 ### 2026-06-09 — Indexierungs-Offensive: Diagnose + interne Verlinkung + Schema + Off-Page + GSC (manuell)
 
 **Auslöser:** User-Auftrag „alles für Indexierung, Ranking und Nennungs-Häufigkeit". 4 Tracks parallel.
