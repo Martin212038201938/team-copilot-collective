@@ -8,6 +8,23 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 
 ## Logs
 
+### 2026-06-11 — Externer Berater-Review + Campaign-Readiness-Maßnahmen (manuell)
+
+**Bericht:** `docs/seo-berater-review-2026-06-11.md` — vollständiger Review von Plan, Wirkung, allen 12 SEO-Crons. Neuer Kontext: SEA-Start KW 25 + Outbound-Mailkampagne.
+
+**Kern-Befunde:**
+1. 🔴 SEA ohne Conversion-Tracking (kein gtag/AW- im Code) + Consent-Frage offen → Konzept-Draft: `docs/drafts/sea-tracking-konzept-2026-06.md`. **Blockierende User-Entscheidung: Consent-Variante A/B/C.**
+2. 🔴 CTA-Brücke (Funnel 1→2 = 0 %) muss VOR SEA wirken → vorgezogen, Draft: `docs/drafts/pattern-transfer-content-to-offer-cta.md` (Komponente TrainingCTA + Mapping 8 Artikel, 2-Wellen-Rollout). Cron 24.06. zu Verifikationslauf umgewidmet.
+3. 🟠 Keyword-Kannibalisierung B3a ↔ `/wissen/ki-schulung-mitarbeiter-pflicht` (Protected, Pos 8) — beide ohne Querverlinkung → **FIX in src/ umgesetzt** (additive Querverlinkung + Intent-Trennung in beiden TSX, Syntax geprüft, validate-seo Exit 0). Wartet auf User-Review + Push. Lokaler `npm run build:prerender` vor Push empfohlen.
+4. 🟠 Kaltakquise: separate Versanddomain empfohlen (Reputationsschutz); D3-Outreach getrennt davon versenden.
+5. Clarity-Custom-Tag-„Lücke" vermutlich KEIN Code-Bug: trainer_application_submit kommt an, Code aller 6 Events identisch — wahrscheinlich 0 echte Conversions + falscher Dashboard-Filter (Smart statt Custom). 10-Min-Verifikationstest im Tracking-Draft beschrieben.
+
+**Cron-Änderungen (4):** d3-listicle-outreach → Guard ergänzt (Drafts existieren seit 09.06., keine Duplikate) + Kaltakquise-Koordination; pattern-transfer-2026-06-24 → Verifikationslauf; weekly-audit + monthly-review → Paid/Organic-Trennung via UTM (sonst sind Trends ab KW 25 unbrauchbar), Custom-Tag-Filter-Korrektur, SEA-/Outbound-Wirkungs-Sektion.
+
+**Offene User-Aktionen (priorisiert):** (1) Consent-Entscheidung SEA-Tracking, (2) Review+Push Kannibalisierungs-Fix, (3) CTA-Brücke Welle 1 aus Draft umsetzen, (4) B4-Logo-Freigabe-Mails versenden (liegen seit 10.06. fertig), (5) D1 ProvenExpert anlegen, (6) 10-Min-Clarity-Tag-Test, (7) UTM-Konvention an Mailkampagne geben.
+
+---
+
 ### 2026-06-11 — GSC-Indexierung Welle 2 (3 weitere) + Cron für Rest (manuell)
 
 **Heute zusätzlich beantragt (via Chrome URL-Prüfung, alle ✅ „in bevorzugte Crawling-Warteschlange"):**

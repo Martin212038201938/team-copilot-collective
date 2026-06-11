@@ -2,7 +2,7 @@
 
 **Lebende Doku** — wird bei jedem Schritt aktualisiert. Cron-Jobs lesen diese Datei, entscheiden auf Basis der if/then-Logik, schreiben ins [`seo-status-log.md`](seo-status-log.md).
 
-**Letzter Update:** 10. Juni 2026 (Monatsreview — Bericht: `seo-monatsreview-2026-06.md`)
+**Letzter Update:** 11. Juni 2026 (Externer Berater-Review — Bericht: `seo-berater-review-2026-06-11.md`. Neuer Kontext: **SEA-Start KW 25 + Outbound-Mailkampagne** — Campaign-Readiness-Maßnahmen vorgezogen, 4 Crons angepasst, Kannibalisierungs-Fix B3a in src/)
 
 ---
 
@@ -36,7 +36,7 @@ Aus dem ursprünglichen Maßnahmenkatalog [`seo-massnahmenkatalog-2026-05-27.md`
 | A5 | IndexNow im Deploy automatisieren | ✅ erledigt 27.05. (bereits in deploy.yml) |
 | B1 | Protected-Pages-Liste | ✅ erledigt 27.05. (`docs/protected-pages.md`) |
 | B2 | Hub-Artikel Anbieter-Vergleich | ✅ aktiviert 09.06. — Pre-Render bestätigt (HTTP 200, volles Schema), 2 interne Links ergänzt, IndexNow-Ping (`/wissen/copilot-schulungsanbieter-deutschland-vergleich`) |
-| B3a | Hub-Artikel EU AI Act August 2026 | ⏳ in src/ verdrahtet 09.06. (`EuAiActMitarbeiterSchulung.tsx` + Route + articles.ts + reactSnap + sitemap), `vite build` Exit 0 — wartet nur noch auf User-Push |
+| B3a | Hub-Artikel EU AI Act August 2026 | ✅ LIVE seit 10.06. (HTTP 200, GSC-Indexierung beantragt). 11.06.: Kannibalisierungs-Fix ggü. `/wissen/ki-schulung-mitarbeiter-pflicht` in src/ (Querverlinkung + Intent-Trennung) — wartet auf Push |
 | B3b | Hub-Artikel QCG-Förderung | 🔵 offen |
 | B3c | Hub-Artikel Inhouse-Schulung | 🔵 offen |
 | B4 | Trust-Signal-Block Homepage | 🔵 offen (Logo-Freigaben Kunden) |
@@ -181,12 +181,12 @@ Diese Cron-Jobs erledigen die Roadmap weitgehend autonom. Jeder einmalige Cron p
 | `copilotenschule-seo-d1-provenexpert-reminder` | Mi 10.06. 14:00 | D1 ProvenExpert | Reminder + Anleitung |
 | `copilotenschule-seo-a2-iteration-prep` | Do 11.06. 10:30 | A2 concurrency:1 | Code-Diff in `docs/drafts/a2-iteration-diff.md`, wenn nötig |
 | `copilotenschule-seo-b3a-eu-ai-act-draft` | Mo 15.06. 10:30 | B3a EU AI Act Hub | TSX-Entwurf in `docs/drafts/` |
-| `copilotenschule-seo-d3-listicle-outreach` | Mo 22.06. 10:30 | D3 Listicle-Outreach | 3 Mail-Entwürfe in `docs/outreach/` |
+| `copilotenschule-seo-d3-listicle-outreach` | Mo 22.06. 10:30 | D3 Listicle-Outreach | Guard (11.06.): Drafts existieren seit 09.06. → prüft nur Versand-Status + Kaltakquise-Koordination |
 | `copilotenschule-seo-b3b-b3c-hubs-draft` | Mo 06.07. 10:30 | B3b QCG + B3c Inhouse | 2 TSX-Entwürfe |
 | `copilotenschule-seo-b4-trust-signals-prep` | Mo 20.07. 10:30 | B4 Trust-Signal Block | Logo-Freigabe-Workflow oder Code-Entwurf |
 | `websiten-health-check` | täglich 09:53 (vorhanden) | Tägliches Monitoring | GSC-Snapshot, Indexierung, Tracking-Keywords |
 | `copilotenschule-seo-clarity-fix-copilot-in-outlook-nutzen-tipps` | Di 17.06. 10:30 | Anti-Pattern-Fix | Dead-Click-Fix-Diff (lucide-x + backdrop-blur) in `docs/drafts/` |
-| `copilotenschule-seo-pattern-transfer-2026-06-24` | Mi 24.06. 10:30 | Best-Practice-Transfer | Content→Angebot-CTA-Brücke als Code-Diff in `docs/drafts/` |
+| `copilotenschule-seo-pattern-transfer-2026-06-24` | Mi 24.06. 10:30 | Best-Practice-Transfer | Umgewidmet (11.06.): Verifikationslauf — CTA-Brücke-Draft wurde vorgezogen (`docs/drafts/pattern-transfer-content-to-offer-cta.md`), Cron prüft Einbau + erste Klick-Daten |
 
 **Wenn Cron-Job läuft, aber Vorbedingung nicht erfüllt:** Er schiebt sich um 14 Tage auf einen Retry-Cron mit `-retry`-Suffix, deaktiviert sich selbst. Conductor erkennt das beim nächsten Lauf und entscheidet weiter.
 

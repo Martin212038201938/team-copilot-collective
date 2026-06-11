@@ -285,6 +285,15 @@ const KiSchulungMitarbeiterPflicht = () => {
               Argument, das Aufsichtsbehörden gegen Sie verwenden können, wenn etwas schiefgeht. Der
               Schulungsnachweis ist dann nicht mehr nur eine schöne Dokumentation, sondern ein Schutzschild.
             </p>
+            <p>
+              Was genau ab dem 2. August 2026 durch die Marktüberwachungsbehörden kontrolliert wird und
+              welche Nachweise ein Schulungsprogramm bis dahin liefern muss, haben wir in einem eigenen
+              Beitrag vertieft:{" "}
+              <Link to="/wissen/eu-ai-act-mitarbeiter-schulung-august-2026" className="text-blue-700 dark:text-blue-400 hover:underline">
+                EU AI Act: Die KI-Schulungspflicht ab August 2026 – was Unternehmen jetzt nachweisen müssen
+              </Link>
+              .
+            </p>
           </div>
         </section>
 

@@ -233,7 +233,14 @@ const EuAiActMitarbeiterSchulung = () => {
               Praktisch heißt das: Wenn Sie in Ihrem Unternehmen KI in irgendeiner Form
               einsetzen – und die genannten 56 Prozent Nutzungsquote legen nahe, dass das auf
               die Mehrheit zutrifft – fällt die Frage nicht mehr unter „betrifft uns das?“,
-              sondern unter „wie weisen wir es nach?“.
+              sondern unter „wie weisen wir es nach?“. Falls Sie die Grundlagen der Pflicht
+              selbst noch einordnen möchten – was Artikel 4 fordert, wen er trifft und welche
+              typischen Fehler Unternehmen machen – finden Sie diese im Beitrag{" "}
+              <Link to="/wissen/ki-schulung-mitarbeiter-pflicht" className="text-blue-700 dark:text-blue-400 hover:underline">
+                KI-Schulung für Mitarbeiter ist Pflicht: Was der EU AI Act verlangt
+              </Link>
+              ; der vorliegende Artikel konzentriert sich auf die Durchsetzung ab August 2026
+              und den konkreten Nachweis.
             </p>
           </div>
         </section>
@@ -442,6 +449,18 @@ const EuAiActMitarbeiterSchulung = () => {
               </CardHeader>
               <CardContent className="text-sm text-gray-600 dark:text-gray-400">
                 Wie wirksame Copilot-Schulungen aufgebaut sind – und woran man gute von schlechten unterscheidet.
+              </CardContent>
+            </Card>
+            <Card className="hover:shadow-md transition-shadow">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-base">
+                  <Link to="/wissen/ki-schulung-mitarbeiter-pflicht" className="text-blue-700 dark:text-blue-400 hover:underline">
+                    KI-Schulung für Mitarbeiter ist Pflicht: Die Grundlagen
+                  </Link>
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-gray-600 dark:text-gray-400">
+                Was Artikel 4 fordert, wen die Pflicht trifft und welche typischen Fehler Unternehmen bei der Umsetzung machen.
               </CardContent>
             </Card>
           </div>
