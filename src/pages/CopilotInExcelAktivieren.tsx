@@ -319,24 +319,6 @@ const CopilotInExcelAktivieren = () => {
           </div>
         </section>
 
-        {/* Autor */}
-        <section className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
-          <div className="flex items-start gap-4">
-            <img
-              src={martinLang.image}
-              alt={martinLang.name}
-              className="w-16 h-16 rounded-full object-cover flex-shrink-0"
-            />
-            <div>
-              <p className="font-semibold text-gray-900 dark:text-gray-100">{martinLang.name}</p>
-              <p className="text-sm text-gray-600 dark:text-gray-400">{martinLang.role}</p>
-              <p className="text-sm text-gray-700 dark:text-gray-300 mt-2">{martinLang.bio}</p>
-              <p className="text-xs text-gray-500 dark:text-gray-500 mt-1">
-                {martinLang.qualifications.join(" · ")}
-              </p>
-            </div>
-          </div>
-        </section>
               <AuthorBio author={martinLang} />
       </ContentLayout>
     </>

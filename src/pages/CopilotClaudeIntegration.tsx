@@ -458,30 +458,6 @@ const CopilotClaudeIntegration = () => {
           </div>
         </section>
 
-        {/* Autor-Card */}
-        <section className="mt-12 mb-6">
-          <Card className="bg-muted/30">
-            <CardContent className="flex flex-col sm:flex-row gap-6 pt-6">
-              <img
-                src={martinLang.image}
-                alt={martinLang.name}
-                className="w-24 h-24 rounded-full object-cover"
-                loading="lazy"
-              />
-              <div>
-                <h3 className="text-lg font-semibold">{martinLang.name}</h3>
-                <p className="text-sm text-muted-foreground mb-2">{martinLang.role}</p>
-                <p className="text-sm leading-relaxed">{martinLang.bio}</p>
-                {martinLang.qualifications && martinLang.qualifications.length > 0 && (
-                  <p className="text-sm text-muted-foreground mt-2">
-                    <strong>Qualifikationen:</strong> {martinLang.qualifications.join(", ")}
-                  </p>
-                )}
-              </div>
-            </CardContent>
-          </Card>
-        </section>
-
               <AuthorBio author={martinLang} />
       </ContentLayout>
     </>

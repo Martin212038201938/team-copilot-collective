@@ -888,24 +888,6 @@ const CopilotInOutlook = () => {
           </div>
         </section>
 
-        {/* Author */}
-        <Card className="mt-8 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800/50 dark:to-gray-900/50">
-          <CardContent className="pt-6">
-            <div className="flex items-start gap-4">
-              <img
-                src={martinLang.image}
-                alt={martinLang.name}
-                className="w-16 h-16 rounded-full object-cover"
-              />
-              <div>
-                <p className="font-semibold text-lg">{martinLang.name}</p>
-                <p className="text-sm text-muted-foreground mb-2">{martinLang.role}</p>
-                <p className="text-sm leading-relaxed">{martinLang.bio}</p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
               <AuthorBio author={martinLang} />
       </ContentLayout>
     </>

@@ -837,62 +837,6 @@ const KIAgenten = () => {
           </a>
         </div>
 
-        {/* Autor-Bio Section */}
-        <section className="mt-16 pt-8 border-t-2 border-gray-200 dark:border-gray-800">
-          <div className="bg-gradient-to-r from-slate-50 to-gray-50 dark:from-slate-950 dark:to-gray-950 rounded-lg p-8">
-            <div className="flex flex-col md:flex-row gap-6 items-center">
-              {martinLang.image && (
-                <div className="flex-shrink-0">
-                  <img
-                    src={martinLang.image}
-                    alt={martinLang.name}
-                    className="w-24 h-24 rounded-full object-cover border-2 border-primary"
-                  />
-                </div>
-              )}
-              <div className="flex-1">
-                <h3 className="text-xl font-bold mb-1">{martinLang.name}</h3>
-                {martinLang.role && (
-                  <p className="text-primary font-semibold mb-3">{martinLang.role}</p>
-                )}
-                {martinLang.bio && (
-                  <p className="text-muted-foreground mb-4">{martinLang.bio}</p>
-                )}
-                {martinLang.expertise && martinLang.expertise.length > 0 && (
-                  <div className="mb-4">
-                    <p className="text-sm font-semibold mb-2">Expertise:</p>
-                    <div className="flex flex-wrap gap-2">
-                      {martinLang.expertise.map((skill) => (
-                        <span
-                          key={skill}
-                          className="px-3 py-1 bg-primary/10 text-primary rounded-full text-xs font-medium"
-                        >
-                          {skill}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                )}
-                {(martinLang.social || []).length > 0 && (
-                  <div className="flex gap-3 mt-4">
-                    {martinLang.social?.map((link) => (
-                      <a
-                        key={link.name}
-                        href={link.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors"
-                        title={link.name}
-                      >
-                        <ExternalLink className="w-4 h-4 text-primary" />
-                      </a>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-        </section>
               <AuthorBio author={martinLang} />
       </ContentLayout>
     </>

@@ -728,35 +728,6 @@ const CopilotFuerExcel = () => {
         </section>
 
         {/* Autor-Bio */}
-        {author && (
-          <section className="mt-12 pt-8 border-t-2 border-gray-200">
-            <div className="flex flex-col sm:flex-row gap-6 items-start">
-              <img
-                src={author.image}
-                alt={author.name}
-                className="w-20 h-20 rounded-full object-cover flex-shrink-0"
-              />
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-1">{author.name}</h3>
-                <p className="text-sm text-primary mb-2">{author.role}</p>
-                <p className="text-gray-700 text-sm leading-relaxed mb-3">{author.bio}</p>
-                <div className="flex gap-3">
-                  {author.sameAs?.filter(url => url.includes('linkedin')).map((url, i) => (
-                    <a key={i} href={url} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-blue-600 transition-colors">
-                      <Linkedin className="w-5 h-5" />
-                    </a>
-                  ))}
-                  {author.sameAs?.filter(url => url.includes('twitter') || url.includes('x.com')).map((url, i) => (
-                    <a key={i} href={url} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-blue-400 transition-colors">
-                      <Twitter className="w-5 h-5" />
-                    </a>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </section>
-        )}
-
               <AuthorBio author={author} />
       </ContentLayout>
     </>

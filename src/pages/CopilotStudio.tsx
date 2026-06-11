@@ -560,50 +560,6 @@ const CopilotStudio = () => {
           </a>
         </div>
 
-        <section className="mt-16 pt-12 border-t border-gray-200">
-          <div className="grid md:grid-cols-4 gap-6 items-start">
-            <div className="md:col-span-1">
-              <img
-                src={martinLang.image}
-                alt={martinLang.name}
-                className="w-32 h-32 rounded-full object-cover border-4 border-blue-500/30 mx-auto mb-4"
-              />
-            </div>
-            <div className="md:col-span-3">
-              <div className="border-l-4 border-l-blue-500 pl-6">
-                <h3 className="text-2xl font-bold mb-1">{martinLang.name}</h3>
-                <div className="text-sm font-semibold text-blue-600 mb-3">{martinLang.role}</div>
-                <p className="text-muted-foreground mb-4 leading-relaxed">
-                  {martinLang.bio}
-                </p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {martinLang.expertise?.map((skill, idx) => (
-                    <span key={idx} className="px-3 py-1 bg-blue-500/10 text-blue-700 rounded-full text-xs font-medium">
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-                <div className="flex gap-4">
-                  {martinLang.website && (
-                    <a href={martinLang.website} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-700 text-sm font-medium">
-                      Website
-                    </a>
-                  )}
-                  {martinLang.linkedin && (
-                    <a href={martinLang.linkedin} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-700 text-sm font-medium">
-                      LinkedIn
-                    </a>
-                  )}
-                  {martinLang.twitter && (
-                    <a href={martinLang.twitter} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-700 text-sm font-medium">
-                      Twitter/X
-                    </a>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
               <AuthorBio author={martinLang} />
       </ContentLayout>
     </>

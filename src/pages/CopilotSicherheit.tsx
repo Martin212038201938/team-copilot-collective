@@ -413,32 +413,6 @@ const CopilotSicherheit = () => {
         </section>
 
 
-        {/* Autor-Info */}
-        <Card className="mt-12 border-2">
-          <CardContent className="pt-6">
-            <div className="flex items-start gap-4">
-              <img
-                src={martinLang.image}
-                alt={martinLang.name}
-                className="w-16 h-16 rounded-full object-cover"
-              />
-              <div>
-                <h3 className="font-bold text-lg">{martinLang.name}</h3>
-                <p className="text-sm text-muted-foreground mb-2">{martinLang.role}</p>
-                <p className="text-sm leading-relaxed">{martinLang.bio}</p>
-                <div className="flex gap-3 mt-3">
-                  {martinLang.sameAs?.filter(url => url.includes('linkedin')).map((url, i) => (
-                    <a key={i} href={url} target="_blank" rel="noopener noreferrer"
-                       className="text-primary hover:underline text-sm inline-flex items-center gap-1">
-                      LinkedIn-Profil <ExternalLink className="w-3 h-3" />
-                    </a>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
               <AuthorBio author={martinLang} />
       </ContentLayout>
     </>
