@@ -8,6 +8,22 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 
 ## Logs
 
+### 2026-06-12 — GSC-Indexierung Rest-Seiten (Cron)
+**Beantragt (3/6):**
+- https://copilotenschule.de/wissen/copilot-adoption-2026-zahlen ✅ (war bereits indexiert, Re-Request)
+- https://copilotenschule.de/wissen/copilot-unternehmensweit-einfuehren ✅ (war bereits indexiert, Live-Test bestätigt)
+- https://copilotenschule.de/wissen/copilot-launch-kampagne ✅ (war bereits indexiert, Live-Test bestätigt)
+
+**Offen/übertragen auf 13.06. (Quota erschöpft):**
+- https://copilotenschule.de/wissen/copilot-roi-erfolgsgeschichten ⏳
+- https://copilotenschule.de/wissen/warum-verteiltes-lernen-bei-copilot-trainings-funktioniert ⏳
+- https://copilotenschule.de/wissen/copilot-lernreise-vs-tagesschulung ⏳ (Quota-Fehler bei Live-Test)
+
+**Retry-Cron:** `gsc-index-request-rest-retry` — läuft am 13.06.2026 um 10:00 Uhr automatisch.
+**Hinweis:** URLs 1–3 waren bereits von Google indexiert. Wirkung der Neu-Anmeldungen in 1–2 Wochen im GSC-Indexierungsbericht prüfen.
+
+---
+
 ### 2026-06-11 — B4 Trust-Block + Google-Ads-Tracking (Consent Mode v2) in src/ umgesetzt (manuell)
 
 **B4 Trust-Block (User-Entscheidung: ohne Logo-Freigabe-Mails):**

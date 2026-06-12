@@ -1,7 +1,7 @@
 import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Check, X, Zap, Star, MapPin, Users, Award, Sparkles, ExternalLink } from "lucide-react";
+import { Check, X, Zap, Star, MapPin, Users, Award, Sparkles } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 import { Link } from "react-router-dom";
@@ -171,7 +171,7 @@ const CopilotSchulungsanbieterVergleich = () => {
           "item": {
             "@type": "Organization",
             "name": a.name,
-            "url": a.url,
+            ...(a.position === 1 ? { "url": a.url } : {}),
             "description": `${a.spezialisierung} – ${a.standout}`
           }
         }))
@@ -487,15 +487,7 @@ const CopilotSchulungsanbieterVergleich = () => {
                           </a>
                         </div>
                       ) : (
-                        <a
-                          href={a.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-primary hover:underline inline-flex items-center gap-1"
-                        >
-                          {a.name}
-                          <ExternalLink className="w-3 h-3" />
-                        </a>
+                        <span>{a.name}</span>
                       )}
                     </td>
                     <td className="p-2 border">{a.spezialisierung}</td>
@@ -825,13 +817,6 @@ const CopilotSchulungsanbieterVergleich = () => {
         <section id="quellen" className="mb-4 mt-2">
           <h2 className="text-2xl md:text-3xl font-bold mb-2">Quellen und weiterführende Links</h2>
           <ul className="list-disc pl-5 space-y-1 text-sm">
-            <li><a href="https://www.copilotexperte.de/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">copilotexperte.de – Copilot Experten Masterclass</a></li>
-            <li><a href="https://www.kebel.de/microsoft-365-copilot-kurse-und-schulungen/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">kebel.de – Microsoft Copilot Kurse</a></li>
-            <li><a href="https://www.it-schulungen.com/seminare/kunstliche-intelligenz/microsoft-copilot/index.html" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">it-schulungen.com – Microsoft Copilot Seminare</a></li>
-            <li><a href="https://www.gfu.net/copilot/copilot-schulung.html" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">gfu.net – Copilot Schulungen</a></li>
-            <li><a href="https://www.medienreich.de/trainings/thema/microsoft-copilot" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">medienreich – Microsoft Copilot Trainings</a></li>
-            <li><a href="https://www.haufe-akademie.de/skill-it/subcategories/microsoft-copilot" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Haufe Akademie / skill it – Microsoft Copilot</a></li>
-            <li><a href="https://www.coc-ag.de/leistungen/microsoft-copilot-beratung-schulung" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">COC AG – Microsoft Copilot Beratung & Schulung</a></li>
             <li><a href="https://www.bitkom.org/Presse/Presseinformation/Durchbruch-Kuenstliche-Intelligenz" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Bitkom KI-Studie 2025 – Marktdaten zu KI-Einsatz in Deutschland</a></li>
             <li><a href="https://eur-lex.europa.eu/eli/reg/2024/1689" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">EU-KI-Verordnung (AI Act) – Volltext mit Art. 4 KI-Kompetenz-Pflicht</a></li>
           </ul>
