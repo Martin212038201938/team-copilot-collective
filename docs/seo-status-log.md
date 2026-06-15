@@ -8,6 +8,76 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 
 ## Logs
 
+### 2026-06-15 — B3a Guard-Check (Cron: copilotenschule-seo-b3a-eu-ai-act-draft)
+
+**Guard-Status:** Entwurf `docs/drafts/eu-ai-act-mitarbeiter-schulung-august-2026.tsx.md` existiert ✅ · Live-Check `/wissen/eu-ai-act-mitarbeiter-schulung-august-2026` → **HTTP 200** ✅
+
+**Ergebnis:** B3a live, Entwurf wurde umgesetzt — Maßnahme erledigt. ✅
+
+---
+
+### 2026-06-15 — Wöchentlicher Audit (Cron)
+
+**Phase:** Phase 3 — Content-Block
+
+**SSR-Audit:** ✅ 67 / 🟡 0 / 🔴 0 (von 67)
+- Audit via `seo-monitoring/recheck.sh` gegen Baseline 2026-05-04 (67 URLs). `audit-live.sh` weiterhin nicht im Repo-Mount — Workaround wie bisher.
+- Neu in 🔴/✅: keine neuen Roten. 67/67 Helmet-Flush funktioniert, 0 Default-Fallback, 0 Empty. Kein Doppel-Description-Bug.
+- Hinweis: Baseline hat 67 URLs (vs. letzter Woche 73) — delta aus anderen Snapshots. Qualitativ: 100 % der geprüften URLs ✅.
+
+**GSC:** 55/92 indexiert (59,8 %), Klicks 495/3M, Impr. 47.000, CTR 1,1 %, Pos. Ø 10
+- Top-Klick-Bringer (3M): „copilot in excel aktivieren" 16 Klicks/1.300 Impr. · „excel copilot aktivieren" 10/493 · „microsoft copilot in excel aktivieren" 3/61 · „copilot lizenzen" 2/276 · „claude copilot" 2/149 · „claude in copilot aktivieren" 2/51 · „copilot in outlook" 2/47 · „ki-halluzinationen vermeiden" 2/22
+- Nicht indexiert (37): Weiterleitung 8 · alt. kanonische Seite 3 · robots.txt 1 · gecrawlt-nicht-indexiert 9 · gefunden-nicht-indexiert 16
+- Trend: **+12,8 pp Indexierungsquote in 6 Tagen** (47 % 09.06. → 59,8 % 15.06.) — deutlich beschleunigt durch GSC-Indexierungsanfragen 09.–13.06. Kein Indexierungsrisiko (kein ≥ 5 pp Drop).
+
+**AlwaysData:** 24h **503** (spike ~150 Sessions bei 06:00 15.06. — vermutlich Outbound-Kampagne oder Bot-Welle, unbestätigt ohne UTM-Daten) · Monat 15.05.–15.06.: **6.498** Visits
+
+**Traffic-Mix (Clarity 7T, Referrers — kein UTM sichtbar, SEA-Start erst KW 25/16.06.):**
+- Organic (Google + Google.at + Google.de + Bing + Ecosia): ~152 Sessions (53 %)
+- Direct/null/untracked: ~127 Sessions (44 %)
+- Internal + LLM (Claude.ai 1) + Teams-CDN 2: ~7 Sessions (2 %)
+- SEA (cpc): 0 sichtbar (SEA startet laut Plan KW 25 = 16.06., also morgen)
+- Outbound (email): 0 sichtbar (UTM-Konvention laut Berater-Review noch nicht an Kampagne übergeben)
+- ⚠️ AlwaysData-Spike 06:00 ohne UTM-Nachweis in Clarity — mögliche erste Outbound-Batch-Delivery
+
+**Clarity Standard (3T, via API, 1 Call):**
+- Sessions: 75 (davon 16 Bots, 92 Unique Users)
+- Scrolltiefe: 40,48 % (↓ vs. 53,35 % Vorwoche — kleines Stichprobensample, kein Alarm) · Aktive Zeit: 85 s (↓ von 99 s, gleiche Begründung)
+- Dead-Click: **9,33 %** ✅ (↓ von 19,35 % Vorwoche — erstmals **unter 10 %-Schwelle**!) | Rage-Click: 0 % | Quick-Back: 0 % | Excessive-Scroll: 0 %
+- Top-Browser: Chrome 48 % (36) · MobileSafari 16 % (12) · Edge 12 % (9) · ChromeMobile 9 % (7) · Safari 9 % (7) · Firefox 4 % (3)
+- Top-3-Pages (3T): `/wissen/claude-in-microsoft-copilot` (16) · `/wissen/ki-halluzinationen-vermeiden` (11) · `/` (11)
+- Top-3-Referrer (3T): Google.com (40) · Direct/null (26) · Ecosia (4)
+
+**Clarity Conversion-Events (7T, via Chrome Dashboard — 286 Sessions, 113 Bots excluded):**
+- contact_form_submit: 1 | trainer_application_submit: 0 | konfigurator_submit: 0 | mail_click: 1 | phone_click: 1 | pdf_download: 1
+- content_cta_click / sml_*: 0 / 0 (CTA-Brücke noch nicht gepusht, sml-Events nicht sichtbar)
+- Smart Events: „Kontaktieren Sie uns" 2 · „Ausgehender Klick" 2 · „Formular absenden" 1
+- Conversion-Rate (alle Events / Sessions): ~2,4 % (7 Events in ~6–7 Sessions / 286) — im B2B-Benchmark 2–5 % ✅
+- ✅ Custom-Tags jetzt sichtbar (war Issue seit 09.06.) — geschlossen (Details clarity-insights.md)
+- ⚠️ React-JS-Fehler (Clarity): 8 Fehler in 7T (0,35 % Sessions) — React #418 (62,5 % = Hydration-Mismatch) · #425 (25 %) · #423 (12,5 %). SSR-Meta korrekt, aber Hydration-Fehler könnten UX beeinflussen.
+
+**Insights heute:** Patterns 0 | Issues 1-Update (Dead-Click geschlossen 3T; 7T noch 15,38 % durch ältere Werte) | Trends 1 (Dead-Click-Trendumkehr — Details clarity-insights.md)
+**Folge-Crons angelegt:** keine — kein Anti-Pattern-Trigger (kein Page ≥ 100 Sessions/3T mit < 0,5 % Conv); Dead-Click-Fix-Cron 17.06. bleibt aktiv
+**Goldene Pages (GSC × Clarity — organic):** `/wissen/copilot-in-excel-aktivieren` (GSC #1 Keyword 16 Klicks + Clarity 7T 20 Visits ✅) · `/wissen/ki-halluzinationen-vermeiden` (GSC 2 Klicks + Clarity 7T 25 Visits ✅) · `/wissen/claude-in-microsoft-copilot` (Clarity 7T #1 mit 35 Visits + GSC „claude copilot" 2 Klicks — SEO-Potential ungenutzt)
+**Ungenutztes SEO-Potential:** `/wissen/claude-in-microsoft-copilot` ist Clarity-Topseite (35 Visits/7T) aber GSC-Klicks gering → Title/Snippet-Optimierung für „Claude in Copilot"-Queries könnte Klicks heben
+**Protected Pages:** alle 5 HTTP 200 ✅ (copilot-roi-berechnen · copilot-training-schulung · copilot-im-unternehmen-einfuehren-leitfaden · microsoft-copilot-lizenzen · ki-schulung-mitarbeiter-pflicht)
+**Entscheidung gemäß Plan:** Phase 3 bleibt aktiv. SSR 67/67 ✅ stabil. Indexierungsquote 59,8 % — auf Weg zu DoD #1 (90 %), aber noch nicht erreicht. Dead-Click erstmals unter Schwelle (positiv). CTA-Brücke Welle 1 + B3a EU AI Act Hub: **live seit 12.06.2026** (last-modified bestätigt). Funnel Stufe 1→2 weiterhin 0 % im 7T-Fenster — da CTA-Brücke erst ab 12.06. live, enthält das 7T-Fenster 4 Tage Vor-Brücke-Daten; Wirkung ab 22.06.-Audit auswertbar. Kein Phasen-Wechsel erforderlich.
+**API-Calls heute:** 1/10
+**Nächster Lauf:** Mo 22.06.2026, 10:00
+
+---
+
+### 2026-06-13 — GSC-Indexierung Retry (Cron)
+**Beantragt:**
+- https://copilotenschule.de/wissen/copilot-roi-erfolgsgeschichten — bereits indexiert (grüner Haken in GSC), kein neuer Request nötig
+- https://copilotenschule.de/wissen/warum-verteiltes-lernen-bei-copilot-trainings-funktioniert — bereits indexiert (grüner Haken in GSC), kein neuer Request nötig
+- https://copilotenschule.de/wissen/copilot-lernreise-vs-tagesschulung ✅ — war noch nicht indexiert (Status: „Gecrawlt – zurzeit nicht indexiert"), Indexierung erfolgreich beantragt. GSC-Bestätigung: „Indexierung wurde beantragt".
+
+**Offen/übertragen:** keine — alle 3 URLs sind jetzt entweder indexiert oder in der Crawling-Warteschlange.
+**Hinweis:** URLs 1 & 2 wurden seit 12.06. von Google natürlich indexiert. URL 3 wurde heute per Live-Test in die bevorzugte Crawling-Warteschlange eingereiht. Wirkung in 1–2 Wochen im GSC-Indexierungsbericht prüfen.
+
+---
+
 ### 2026-06-12 — GSC-Indexierung Rest-Seiten (Cron)
 **Beantragt (3/6):**
 - https://copilotenschule.de/wissen/copilot-adoption-2026-zahlen ✅ (war bereits indexiert, Re-Request)

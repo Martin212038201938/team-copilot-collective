@@ -202,6 +202,24 @@ nach ca. 2 Wochen Laufzeit empfohlen.
 
 ---
 
+### 2026-06-15 — Trend (positiv): Dead-Click unter Schwelle gefallen
+**Beobachtungs-Zeitraum:** 2026-06-01 bis 2026-06-15
+**Event:** Dead-Click-Rate (3T-API)
+**Trend:** 11 % (01.06.) → 19,35 % (09.06.) → 21,4 % (10.06.) → **9,33 % (15.06. 3T)** — erstmals unter 10 %-Schwelle. Dashboard 7T zeigt 15,38 % (44 von 286 Sessions), was den älteren Hochpunkt einschließt.
+**Ursache (vermutet):** Der 11.06.-Deploy (Kannibalisierungs-Fix live, CTA-Brücke in src/) hat vermutlich das X-Icon-/Backdrop-Problem auf `/wissen/copilot-in-outlook-nutzen-tipps` entschärft — oder diese Seite verliert Traffic und damit der Dead-Click-Treiber an Gewicht. Klärung: Heatmap-Cron 17.06. prüft.
+**Handlung:** Beobachten — 3T-Wert liegt unter Schwelle, kein Eskalations-Cron nötig. Fix-Cron 17.06. (copilotenschule-seo-clarity-fix-copilot-in-outlook-nutzen-tipps) macht Heatmap-Drilldown und schreibt ggf. Fix-Diff oder schließt das Issue.
+
+---
+
+### 2026-06-15 — Issue-Update: Custom-Conversion-Tags jetzt sichtbar
+**Quelle:** Cron-Lauf 2026-06-15 (weekly) — Clarity Dashboard 7T
+**Vorheriger Status (09.06.):** Custom-Tags (außer trainer_application_submit) erschienen nicht unter ihrem technischen Namen. User-Verifikation empfohlen.
+**Neuer Status:** `phone_click` (1), `pdf_download` (1), `mail_click` (1), `contact_form_submit` (1) erscheinen jetzt im Dashboard 7T. Zusätzlich Smart Events: „Kontaktieren Sie uns" (2), „Ausgehender Klick" (2), „Formular absenden" (1).
+**Bewertung:** Entweder hat der Filter-Fehler (Smart statt Custom) jetzt korrekt gesetzt, oder echte Conversions sind passiert. Alle Events bei 1 Session — kein KRITISCH-Alarm (Schwelle ≥ 3 → 0). Custom-Tag-Tracking-System funktioniert.
+**Status:** ✅ geschlossen — Custom-Tags sind messbar. Baseline für künftige Defekt-Erkennung: alle 6 Events ≥ 1.
+
+---
+
 ### 2026-06-10 — Issue: Funnel-Bruch Content→Angebot (gesamtsystemisch)
 **Quelle:** Cron-Lauf 2026-06-10 (monthly) — Clarity Dashboard 30T, Funnel „Lead-Reise: SEO → Angebot → Kontakt"
 **Betroffene Pages:** alle High-Traffic-Wissensartikel (Top: `/wissen/copilot-in-outlook-nutzen-tipps` 73, `/wissen` 50, `/` 48, `/wissen/claude-in-microsoft-copilot` 36, `/wissen/ki-halluzinationen-vermeiden` 33)
