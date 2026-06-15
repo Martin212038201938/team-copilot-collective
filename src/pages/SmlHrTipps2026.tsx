@@ -41,7 +41,7 @@ function tagClarityFromUTM(): void {
 
   setSessionTag("campaign_source", source);
   setSessionTag("campaign_name", campaign);
-  setSessionTag("campaign_mail", content);   // mail1 / mail2 / mail3 / mail4
+  setSessionTag("campaign_mail", content);   // mail1 / mail2 / mail3 / mail4 / mail5
   setSessionTag("campaign_medium", medium);
 
   // Besondere Session-Markierung damit Smartlead-Traffic leicht filterbar ist

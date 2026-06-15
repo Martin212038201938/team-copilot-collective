@@ -30,15 +30,15 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 - Nicht indexiert (37): Weiterleitung 8 · alt. kanonische Seite 3 · robots.txt 1 · gecrawlt-nicht-indexiert 9 · gefunden-nicht-indexiert 16
 - Trend: **+12,8 pp Indexierungsquote in 6 Tagen** (47 % 09.06. → 59,8 % 15.06.) — deutlich beschleunigt durch GSC-Indexierungsanfragen 09.–13.06. Kein Indexierungsrisiko (kein ≥ 5 pp Drop).
 
-**AlwaysData:** 24h **503** (spike ~150 Sessions bei 06:00 15.06. — vermutlich Outbound-Kampagne oder Bot-Welle, unbestätigt ohne UTM-Daten) · Monat 15.05.–15.06.: **6.498** Visits
+**AlwaysData:** 24h **503** (spike ~150 Sessions bei 06:00 15.06. — vermutlich Crawler-/Bot-Surge als Reaktion auf IndexNow-Pings + GSC-Indexierungsanfragen 09.–13.06.; Outbound-Kampagne noch nicht gestartet; Clarity filtert Bots heraus, daher kein Pendant im Clarity-Dashboard) · Monat 15.05.–15.06.: **6.498** Visits
 
 **Traffic-Mix (Clarity 7T, Referrers — kein UTM sichtbar, SEA-Start erst KW 25/16.06.):**
 - Organic (Google + Google.at + Google.de + Bing + Ecosia): ~152 Sessions (53 %)
 - Direct/null/untracked: ~127 Sessions (44 %)
 - Internal + LLM (Claude.ai 1) + Teams-CDN 2: ~7 Sessions (2 %)
 - SEA (cpc): 0 sichtbar (SEA startet laut Plan KW 25 = 16.06., also morgen)
-- Outbound (email): 0 sichtbar (UTM-Konvention laut Berater-Review noch nicht an Kampagne übergeben)
-- ⚠️ AlwaysData-Spike 06:00 ohne UTM-Nachweis in Clarity — mögliche erste Outbound-Batch-Delivery
+- Outbound (email): nicht gestartet (noch in Vorbereitung)
+- AlwaysData-Spike 06:00 = Crawler-/Bot-Surge (Folge der IndexNow-Pings + GSC-Anfragen letzte Woche), kein echter User-Traffic
 
 **Clarity Standard (3T, via API, 1 Call):**
 - Sessions: 75 (davon 16 Bots, 92 Unique Users)
