@@ -6,6 +6,7 @@ import { Mail, Phone, MapPin, Calendar, MessageSquare } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { trackConversion, markConvertedSession } from "@/lib/analytics";
+import { bookingClickToThankYou } from "@/lib/booking";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -242,6 +243,7 @@ const Contact = () => {
                     href="https://outlook.office.com/book/CopilotErstgesprch@yellow-boat.com/?ismsaljsauthenabled"
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => bookingClickToThankYou("contact")}
                     className="block"
                   >
                     <Button variant="secondary" className="w-full font-semibold">

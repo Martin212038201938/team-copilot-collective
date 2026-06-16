@@ -51,6 +51,7 @@ import {
 import { getTrainingBySlug } from "@/data/trainings";
 import { getAuthor } from "@/data/authors";
 import { generateWorkshopPageSchema } from "@/lib/workshopSchema";
+import { bookingClickToThankYou } from "@/lib/booking";
 
 // Typ-spezifische Farb-/Badge-Darstellung
 const TYPE_BADGE_CLASS: Record<WorkshopType, string> = {
@@ -506,6 +507,7 @@ const WorkshopDetail = () => {
                         href="https://outlook.office.com/book/CopilotErstgesprch@yellow-boat.com/?ismsaljsauthenabled"
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={() => bookingClickToThankYou("workshop-detail")}
                       >
                         <Button
                           variant="secondary"

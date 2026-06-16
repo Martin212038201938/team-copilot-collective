@@ -306,17 +306,14 @@ const TrainingKonfigurator = () => {
 
   // E-Mail beim Termin buchen senden und Bookings öffnen
   const handleBookingClick = () => {
-    const bookingWindow = window.open('https://outlook.office.com/book/CopilotErstgesprch@yellow-boat.com/', '_blank');
-
-    if (!bookingWindow) {
-      toast({
-        title: "Popup blockiert",
-        description: "Bitte erlauben Sie Popups für diese Seite oder öffnen Sie den Booking-Link manuell.",
-        variant: "destructive"
-      });
-    }
-
     setIsBookingSubmitting(true);
+    // Conversion-Tracking (Clarity) für den Buchungs-Klick
+    trackConversion("booking_click", "konfigurator");
+    markConvertedSession("booking");
+
+    // Buchung im neuen Tab öffnen. Falls ein Popup-Blocker das verhindert,
+    // greift der Buchungs-Button auf der /danke-Seite als Fallback.
+    window.open('https://outlook.office.com/book/CopilotErstgesprch@yellow-boat.com/', '_blank', 'noopener,noreferrer');
 
     const messageWithModules = `
 KONFIGURATION FÜR TERMIN-BUCHUNG
@@ -348,8 +345,11 @@ ${formData.groupCount ? `Anzahl Gruppen: ${formData.groupCount}` : ''}
 ${formData.additionalInfo ? `---\nINFORMATIONEN UND WEITERE BENÖTIGTE INHALTE:\n${formData.additionalInfo}` : ''}
     `.trim();
 
+    // Konfiguration per E-Mail übermitteln. keepalive sorgt dafür, dass der
+    // Request die anschließende Navigation zu /danke überlebt.
     fetch('/api/send-contact-email.php', {
       method: 'POST',
+      keepalive: true,
       headers: {
         'Content-Type': 'application/json',
       },
@@ -363,31 +363,15 @@ ${formData.additionalInfo ? `---\nINFORMATIONEN UND WEITERE BENÖTIGTE INHALTE:\
         message: messageWithModules,
         subject: `Konfiguration für Kunde (${formData.company}, ${formData.firstName}, ${formData.lastName})`
       }),
-    })
-    .then(async (response) => {
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.error || `HTTP ${response.status}`);
-      }
-      const result = await response.json();
-      if (!result.success) {
-        throw new Error(result.error || 'Unbekannter Fehler');
-      }
-      toast({
-        title: "Konfiguration gesendet!",
-        description: "Ihre Auswahl wurde übermittelt.",
-      });
-    })
-    .catch((error) => {
+    }).catch((error) => {
       console.error('Konfigurator E-Mail Fehler:', error);
-      toast({
-        title: "Hinweis",
-        description: "Terminbuchung geöffnet. E-Mail-Übermittlung wird nachgeholt.",
-      });
-    })
-    .finally(() => {
-      setIsBookingSubmitting(false);
     });
+
+    // Immer auf die zentrale Danke-Seite leiten (Conversion-Tracking + Fallback,
+    // falls die Buchung im neuen Tab vom Popup-Blocker verhindert wurde).
+    window.setTimeout(() => {
+      window.location.href = "/danke";
+    }, 250);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {

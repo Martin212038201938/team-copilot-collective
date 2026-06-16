@@ -37,6 +37,7 @@ import {
   type WorkshopType,
 } from "@/data/workshops";
 import { generateWorkshopsOverviewSchema } from "@/lib/workshopSchema";
+import { bookingClickToThankYou } from "@/lib/booking";
 
 // -----------------------------------------------------------------
 // Meta-FAQs – kundenorientiert, aus Entscheider-Perspektive
@@ -360,6 +361,7 @@ const Workshops = () => {
                         href="https://outlook.office.com/book/CopilotErstgesprch@yellow-boat.com/?ismsaljsauthenabled"
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={() => bookingClickToThankYou("workshops")}
                       >
                         <Button
                           variant="secondary"

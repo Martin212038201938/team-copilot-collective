@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { X, GraduationCap, Users, Headphones, Calendar } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { bookingClickToThankYou } from "@/lib/booking";
 
 const POPUP_DELAY_MS = 20_000;
 
@@ -210,6 +211,7 @@ const ArticlePopup = () => {
                 href="https://outlook.office.com/book/CopilotErstgesprch@yellow-boat.com/?ismsaljsauthenabled"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => bookingClickToThankYou("article-popup")}
                 className="flex items-center gap-1.5 text-xs text-primary hover:underline"
               >
                 <Calendar className="w-3.5 h-3.5" />
