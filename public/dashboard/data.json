@@ -10,7 +10,7 @@
   "sources": {
     "gsc":         { "connected": true,  "label": "Google Search Console", "note": "Verbunden über Supermetrics (yellowboatschulung@gmail.com)" },
     "google_ads":  { "connected": true,  "label": "Google Ads",            "note": "Verbunden. Kampagne aktiv, in den letzten 7 Tagen noch keine Klicks/Conversions." },
-    "bing":        { "connected": false, "label": "Bing Webmaster",        "note": "Letzter Login fehlt noch (Autorisierung in Supermetrics)" },
+    "bing":        { "connected": true,  "label": "Bing Webmaster",        "note": "Verbunden. Aktuell sehr wenig Bing-Traffic (0 Klicks/Impressionen in 7 Tagen)." },
     "clarity":     { "connected": false, "label": "Microsoft Clarity",     "note": "Data-Export-Token noch einzurichten" },
     "pagespeed":   { "connected": false, "label": "PageSpeed Insights",    "note": "Kostenloser API-Key noch einzurichten" },
     "llm":         { "connected": false, "label": "LLM-Sichtbarkeit",      "note": "Wird automatisch per Websuche ermittelt, sobald der tägliche Job läuft" }
@@ -22,7 +22,7 @@
     "ads_clicks_7d":        { "value": 0,    "delta_pct": null, "source": "google_ads" },
     "ads_cost_7d_eur":      { "value": 0,    "delta_pct": null, "source": "google_ads" },
     "ads_conversions_7d":   { "value": 0,    "delta_pct": null, "source": "google_ads" },
-    "bing_clicks_7d":       { "value": null, "delta_pct": null, "source": "bing" },
+    "bing_clicks_7d":       { "value": 0, "delta_pct": null, "source": "bing" },
     "clarity_sessions_7d":  { "value": null, "delta_pct": null, "source": "clarity" }
   },
   "performance": {
@@ -32,7 +32,7 @@
   },
   "indexing": {
     "google": { "indexed_pages": null, "crawl_errors": null, "clicks_7d": 124, "impressions_7d": 9114, "avg_position_7d": 9.0 },
-    "bing":   { "indexed_pages": null, "crawl_errors": null, "clicks_7d": null, "impressions_7d": null },
+    "bing":   { "indexed_pages": null, "crawl_errors": null, "clicks_7d": 0, "impressions_7d": 0 },
     "sitemap": { "total_urls": 74, "index_coverage_pct": null }
   },
   "seo": {
@@ -64,7 +64,7 @@
   "report_highlights": [
     { "severity": "info", "text": "Organische Google-Klicks: 124 in den letzten 7 Tagen — +63 % gegenüber der Vorwoche (76). Impressionen +49 % (9.114). Ø Position auf ~9 verbessert." },
     { "severity": "action", "text": "Google-Ads-Kampagne ist aktiv und die /danke-Conversion verdrahtet, aber es gab in den letzten 7 Tagen noch keine Klicks — sobald Anzeigen ausgeliefert werden, erscheinen Kosten/Conversions hier." },
-    { "severity": "action", "text": "Bing Webmaster ist noch nicht autorisiert (ein Login in Supermetrics fehlt) — danach erscheinen auch die Bing-Zahlen." },
+    { "severity": "info", "text": "Bing Webmaster ist jetzt verbunden — aktuell nur sehr wenig Bing-Traffic (0 Klicks in 7 Tagen). Fokus bleibt klar auf Google." },
     { "severity": "info", "text": "Top-Suchbegriff mit Klicks: „copilot in excel aktivieren\" (13 Klicks, Position 4,4). Auffällig viele Suchanfragen rund um „Claude in Copilot/Cowork\" — klare Content-Chance." }
   ],
   "availability": {
