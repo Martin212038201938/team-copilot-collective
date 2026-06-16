@@ -147,8 +147,8 @@
   // ---- Init / Render ----
   async function init(){
     let data={}, hist={};
-    try{ data = await (await fetch("./data.json?_="+Date.now())).json(); }catch(e){ el("app").innerHTML='<p style="color:#ef4444">data.json konnte nicht geladen werden.</p>'; return; }
-    try{ hist = await (await fetch("./history.json?_="+Date.now())).json(); }catch(e){ hist={series:{}}; }
+    try{ data = await (await fetch("/dashboard/data.json?_="+Date.now())).json(); }catch(e){ el("app").innerHTML='<p style="color:#ef4444">data.json konnte nicht geladen werden.</p>'; return; }
+    try{ hist = await (await fetch("/dashboard/history.json?_="+Date.now())).json(); }catch(e){ hist={series:{}}; }
 
     // Header
     const h = data.meta?.overall_health || "yellow";
