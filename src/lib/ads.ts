@@ -27,13 +27,23 @@
 const ADS_ID = "AW-18244137495";
 // Conversion-Labels weiterhin aus Build-Env — sie kommen aus Google Ads, sobald
 // die jeweilige Conversion-Aktion angelegt ist. Ohne Label feuert kein Event.
-const LABEL_LEAD = import.meta.env.VITE_ADS_LABEL_LEAD as string | undefined;
+// Label der Lead-Conversion-Aktion aus Google Ads (kein Geheimnis). Fest
+// verdrahtet als Fallback, Env-Override bleibt möglich.
+const LABEL_LEAD = (import.meta.env.VITE_ADS_LABEL_LEAD as string | undefined) || "Eat5CMXjm8AcEJfkvftD";
 const LABEL_CONTACT = import.meta.env.VITE_ADS_LABEL_CONTACT as string | undefined;
 
 export const CONSENT_STORAGE_KEY = "consent-ads-v1";
 
-/** Events, die als primäre Lead-Conversion an Google Ads gemeldet werden. */
-const LEAD_EVENTS = ["contact_form_submit", "konfigurator_submit", "trainer_application_submit", "sml_booking_click"];
+/**
+ * Events, die als primäre Lead-Conversion an Google Ads gemeldet werden.
+ *
+ * Die /danke-Seite ist der zentrale Conversion-Punkt: Kontaktformular,
+ * Konfigurator UND alle "Termin buchen"-Klicks leiten nach Erfolg dorthin.
+ * Deshalb feuert die Lead-Conversion GENAU EINMAL beim Aufruf von /danke
+ * (Event "danke_page_view") — das vermeidet Doppelzählung (Formular-Submit
+ * UND Danke-Seite würden sonst je eine Conversion melden).
+ */
+const LEAD_EVENTS = ["danke_page_view"];
 /** Events, die als sekundäre Kontakt-Intent-Conversion gemeldet werden. */
 const CONTACT_EVENTS = ["mail_click", "phone_click"];
 
