@@ -2,7 +2,7 @@
 
 **Lebende Doku** — wird bei jedem Schritt aktualisiert. Cron-Jobs lesen diese Datei, entscheiden auf Basis der if/then-Logik, schreiben ins [`seo-status-log.md`](seo-status-log.md).
 
-**Letzter Update:** 11. Juni 2026 (Externer Berater-Review — Bericht: `seo-berater-review-2026-06-11.md`. Neuer Kontext: **SEA-Start KW 25 + Outbound-Mailkampagne** — Campaign-Readiness-Maßnahmen vorgezogen, 4 Crons angepasst, Kannibalisierungs-Fix B3a in src/)
+**Letzter Update:** 16. Juni 2026 (Manuelle Status-Aufnahme „Anschluss-Session": der im Health-Check vom 15.06. gemeldete SSR-Restbug auf 3 /wissen/-Seiten wurde **live verifiziert → Fehlalarm**. `microsoft-copilot-lizenzen` und `copilot-sicherheit-datenschutz` sind vollständig pre-gerendert (Title, Meta, Canonical, Schema, voller Body im Initial-HTML); deckt sich mit Weekly-Audit 15.06. (67/67 ✅, 0 🔴). Konsequenz: **kein Eingriff an gut rankenden Seiten**, stattdessen Pivot zum sicheren additiven Hebel **Index-Coverage** (interne Verlinkung) → neue Maßnahme A6 + Recheck-Cron. Vorher: 11. Juni 2026 — Externer Berater-Review (`seo-berater-review-2026-06-11.md`), SEA-Start KW 25 + Outbound-Mailkampagne.)
 
 ---
 
@@ -11,11 +11,11 @@
 Diese 8 Messwerte gelten als „erfüllt" für den Block aus dem ursprünglichen Maßnahmenkatalog:
 
 1. Indexierungsquote (GSC) ≥ **90 %** (Stand 27.05.: 44 %)
-2. SSR-Audit „vollständig kaputt" 🔴 ≤ **5** URLs (Stand: 38)
+2. SSR-Audit „vollständig kaputt" 🔴 ≤ **5** URLs (Stand 27.05.: 38 → **0 🔴 am 15.+16.06., live verifiziert → ✅ ERFÜLLT**)
 3. SEO-Score laut Health Check ≥ **75 / 100** (Stand: 42)
 4. GEO-Score stabil ≥ **80 / 100** (Stand: 82 — gewahrt)
 5. Top-3-Klick-Bringer aus GSC: ≥ **5 verschiedene URLs** (Stand: 12 Queries, aber konzentriert auf wenige Pages)
-6. „Microsoft Copilot Training Empfehlung beste Anbieter Deutschland 2026" in Top 3 (Stand: ~#7, Hub-Artikel B2 wartet auf Pre-Render-Fix)
+6. „Microsoft Copilot Training Empfehlung beste Anbieter Deutschland 2026" in Top 3 (Hub-Artikel B2 live + pre-gerendert, rankt lt. Monatsreview 10.06. #1 → **wahrscheinlich erfüllt**, GSC-Bestätigung ausstehend)
 7. Externer Listicle-Erwähnung (mod-education / ki-trainingszentrum / cmt) ≥ **1**
 8. ProvenExpert-Profil mit ≥ **15 Bewertungen**
 
@@ -34,6 +34,7 @@ Aus dem ursprünglichen Maßnahmenkatalog [`seo-massnahmenkatalog-2026-05-27.md`
 | A4 | Sitemap/reactSnap/Routes sync | ✅ erledigt 27.05. (validate-seo erweitert) |
 | A4.1 | Sitemap-lastmod aus echten Daten | ✅ erledigt 27.05. (Shallow-Clone-Fix) |
 | A5 | IndexNow im Deploy automatisieren | ✅ erledigt 27.05. (bereits in deploy.yml) |
+| A6 | Interne Verlinkung für Index-Coverage (rein additiv, kein Eingriff in Bestandsinhalte) | ⏳ Entwurf 16.06. (`docs/drafts/index-coverage-interne-verlinkung-2026-06-16.md`) — baut auf „Track 1" (09.06.) auf, adressiert „gecrawlt/gefunden – nicht indexiert"; Recheck via Cron 30.06. |
 | B1 | Protected-Pages-Liste | ✅ erledigt 27.05. (`docs/protected-pages.md`) |
 | B2 | Hub-Artikel Anbieter-Vergleich | ✅ aktiviert 09.06. — Pre-Render bestätigt (HTTP 200, volles Schema), 2 interne Links ergänzt, IndexNow-Ping (`/wissen/copilot-schulungsanbieter-deutschland-vergleich`) |
 | B3a | Hub-Artikel EU AI Act August 2026 | ✅ LIVE seit 10.06. (HTTP 200, GSC-Indexierung beantragt). 11.06.: Kannibalisierungs-Fix ggü. `/wissen/ki-schulung-mitarbeiter-pflicht` in src/ (Querverlinkung + Intent-Trennung) — wartet auf Push |
@@ -187,6 +188,7 @@ Diese Cron-Jobs erledigen die Roadmap weitgehend autonom. Jeder einmalige Cron p
 | `websiten-health-check` | täglich 09:53 (vorhanden) | Tägliches Monitoring | GSC-Snapshot, Indexierung, Tracking-Keywords |
 | `copilotenschule-seo-clarity-fix-copilot-in-outlook-nutzen-tipps` | Di 17.06. 10:30 | Anti-Pattern-Fix | Dead-Click-Fix-Diff (lucide-x + backdrop-blur) in `docs/drafts/` |
 | `copilotenschule-seo-pattern-transfer-2026-06-24` | Mi 24.06. 10:30 | Best-Practice-Transfer | Umgewidmet (11.06.): Verifikationslauf — CTA-Brücke-Draft wurde vorgezogen (`docs/drafts/pattern-transfer-content-to-offer-cta.md`), Cron prüft Einbau + erste Klick-Daten |
+| `copilotenschule-seo-index-coverage-recheck` | Mo 30.06. 10:30 | A6 Index-Coverage | Prüft, ob die A6-Zielseiten inzwischen indexiert sind; re-pingt IndexNow + stellt GSC-Indexierungsanfrage für Nachzügler. Nur Doku/Drafts, kein Push |
 
 **Wenn Cron-Job läuft, aber Vorbedingung nicht erfüllt:** Er schiebt sich um 14 Tage auf einen Retry-Cron mit `-retry`-Suffix, deaktiviert sich selbst. Conductor erkennt das beim nächsten Lauf und entscheidet weiter.
 
@@ -210,3 +212,8 @@ Wenn dieser Plan aktualisiert wird:
 Aktuelle Phase: **Phase 3 — Content-Block** (Phase 1 Exit-Kriterium erfüllt 01.06.2026: SSR ✅ 71 ≥ 50)
 
 **Monatsreview-Update 10.06.2026:** Phase 3 bleibt aktiv, kein Wechsel. DoD-Score 4/8 (von 2–3). Wichtigster neuer Befund: Funnel-Totalbruch Content→Angebot (Stufe 1→2 = 0 %) → Issue „Funnel-Optimierung gesamtsystemisch" eröffnet, Pattern-Transfer-Cron 24.06. adressiert ihn. B2-Hub rankt #1 für die Strategie-Abfrage (DoD #6 wahrscheinlich erfüllt). Dead-Click eskaliert (21,4 %), Fix-Cron 17.06. **Hinweis an Phase-Conductor (17.06.):** C4 (Schema-Konsolidierung) jetzt vorziehen — zahlt auf die größte DoD-Lücke #3 (SEO-Score 42) und auf den Indexierungs-Stau (#1) ein.
+
+**Anschluss-Session-Update 16.06.2026:** Phase 3 bleibt aktiv. Leitprämissen ab jetzt explizit: **(1) Sicherheit** — keine Eingriffe an gut rankenden/indexierten Seiten (Protected Pages + LLM-Top-Performer wie `microsoft-copilot-lizenzen` mit 13,6K Bing-Citations / 6,7K GSC-Impressionen). **(2) Performance** — nur additive, nicht-deployende Hebel.
+- **SSR-Restbug = Fehlalarm** (live verifiziert 16.06., DoD #2 erfüllt). Phase 1/2/2b (Pre-Render) sind damit historisch abgeschlossen — Conductor soll sie nicht wieder öffnen.
+- **Aktiver Hebel: A6 Index-Coverage** statt SSR. Echtes offenes Thema laut Status-Log = „gecrawlt/gefunden – nicht indexiert" (15.06.: 9 + 16 von 92). Maßnahme: rein additive interne Verlinkung auf die betroffenen Seiten + IndexNow/GSC-Resubmit. Entwurf: `docs/drafts/index-coverage-interne-verlinkung-2026-06-16.md`. Verifikation via neuem Cron `copilotenschule-seo-index-coverage-recheck` (30.06.).
+- **C4 (Schema-Konsolidierung)** bleibt vorgemerkt, ist aber das einzige „Live-Seiten"-Thema → nur auf Branch, mit `validate-seo`, Protected Pages im ersten Durchlauf ausgespart.

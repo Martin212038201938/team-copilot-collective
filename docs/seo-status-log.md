@@ -8,6 +8,30 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 
 ## Logs
 
+### 2026-06-16 — Manuelle Status-Aufnahme „Anschluss-Session" (kein Cron)
+
+**Anlass:** Vorgänger-Chat („SEO Phase Conductor", lief auf abgekündigtem Modell) nicht fortsetzbar. Übergabe-Notiz aus Health-Check 15.06.: „SSR-Bug partiell gefixt — 3 /wissen/-Seiten noch offen (copilot-datenschutz, copilot-lizenzen, microsoft-365-copilot-preis), priorisieren". Aufgabe: anschließen + neue Erkenntnisse einarbeiten.
+
+**Befund — SSR-Restbug = FEHLALARM (live verifiziert):**
+- Slug-Abgleich: die Übergabe-Slugs stimmen nicht mit dem Repo überein. Real: `/wissen/microsoft-copilot-lizenzen` (= „copilot-lizenzen"), `/wissen/copilot-sicherheit-datenschutz` (= „copilot-datenschutz"). Eine Seite `microsoft-365-copilot-preis` existiert nicht (Preis-Thema steckt in der Lizenzen-Seite + `/wissen/microsoft-365-e7-frontier-suite`).
+- Live-Fetch (ohne JS) beider real existierender Seiten: vollständiges Initial-HTML mit korrektem `<title>`, `meta description`, Canonical, OG/Twitter, Article-Schema (Autor + Daten) und komplettem Body inkl. FAQ/Autor-Bio. → **Pre-Rendering funktioniert, kein SSR-Bug.**
+- Deckt sich mit Weekly-Audit 15.06. (67/67 ✅, 0 🔴). Die „3 SSR-Seiten" waren vermutlich eine Verwechslung mit GSC-Status „gecrawlt – nicht indexiert" (Indexierungs-, kein Pre-Render-Problem).
+- `/wissen/microsoft-copilot-lizenzen` ist zudem LLM-Top-Performer (13,6K Bing-Citations, 6.763 GSC-Impressionen) → strikt Protected, kein Eingriff.
+
+**Entscheidung (Prämissen Sicherheit + Performance):**
+- Keine Code-Änderung an gut rankenden Seiten. SSR-Thema (Phase 1/2/2b) als erledigt abgeschlossen, DoD #2 erfüllt.
+- Pivot auf **A6 — Index-Coverage über rein additive interne Verlinkung** (echter offener Hebel: 15.06. noch 9 „gecrawlt-nicht-indexiert" + 16 „gefunden-nicht-indexiert" von 92). Baut auf „Track 1" (09.06., 9 kontextuelle Links) auf, DONT-TOUCH-LIST beachtet.
+
+**Durchgeführte Änderungen:**
+- `seo-projektplan.md`: Header-Datum 16.06.; DoD #2 ✅ + #6 aktualisiert; Maßnahme **A6** ergänzt; Cron-Tabelle um Recheck-Cron erweitert; „Anschluss-Session-Update 16.06." als aktive-Phase-Notiz.
+- Neuer Entwurf: `docs/drafts/index-coverage-interne-verlinkung-2026-06-16.md` (additiver Verlinkungsplan + IndexNow/GSC-Resubmit-Liste).
+- Neuer Cron `copilotenschule-seo-index-coverage-recheck` (one-time 30.06., Drafts/Doku only, kein Push).
+- git unverändert sauber (main), keine src/-Änderungen, kein Push.
+
+**Risiko-Status:** grün. **Nächster Schritt:** Cron-Läufe 17.06. (Conductor + Clarity-Dead-Click-Fix) abwarten + A6-Entwurf reviewen; bei Freigabe additive Links einbauen.
+
+---
+
 ### 2026-06-15 — B3a Guard-Check (Cron: copilotenschule-seo-b3a-eu-ai-act-draft)
 
 **Guard-Status:** Entwurf `docs/drafts/eu-ai-act-mitarbeiter-schulung-august-2026.tsx.md` existiert ✅ · Live-Check `/wissen/eu-ai-act-mitarbeiter-schulung-august-2026` → **HTTP 200** ✅

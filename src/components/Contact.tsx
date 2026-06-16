@@ -84,14 +84,14 @@ const Contact = () => {
         throw new Error(data.error || 'Unbekannter Fehler beim Versenden');
       }
 
-      toast({
-        title: "Anfrage gesendet!",
-        description: "Wir melden uns innerhalb von 24 Stunden bei Ihnen.",
-      });
-      // Conversion tracking
+      // Conversion tracking (Clarity + event-basierte Ads-Conversion)
       trackConversion("contact_form_submit", trainingSource || "direct");
       markConvertedSession("contact_form");
       setFormData({ firstName: "", lastName: "", email: "", company: "", phone: "", message: "" });
+      // Weiterleitung auf die zentrale Danke-Seite (Google-Ads-Conversion-Ziel).
+      // Full-Page-Load, damit das Google-Tag einen frischen page_view für /danke auslöst.
+      window.location.href = "/danke";
+      return;
     } catch (error) {
       console.error('Error submitting form:', error);
       toast({

@@ -65,6 +65,7 @@ import InterneCopilotTrainerAusbilden from "./pages/InterneCopilotTrainerAusbild
 import CopilotSchulungsanbieterVergleich from "./pages/CopilotSchulungsanbieterVergleich";
 import EuAiActMitarbeiterSchulung from "./pages/EuAiActMitarbeiterSchulung";
 import SmlHrTipps2026 from "./pages/SmlHrTipps2026";
+import Danke from "./pages/Danke";
 
 const queryClient = new QueryClient();
 
@@ -165,6 +166,8 @@ const App = () => (
           <Route path="/admin" element={<Admin />} />
           {/* Smartlead Kampagnen-Landingpages — noindex, nicht in articles.ts */}
           <Route path="/sml/hr-tipps_2026" element={<SmlHrTipps2026 />} />
+          {/* Danke-Seite — Conversion-Ziel für Google Ads, noindex */}
+          <Route path="/danke" element={<Danke />} />
 
           {/* Dynamic route for all published knowledge articles */}
           <Route path="/wissen/:slug" element={<DynamicKnowledgePage />} />

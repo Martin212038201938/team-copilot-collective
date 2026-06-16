@@ -453,30 +453,13 @@ ${formData.additionalInfo ? `---\nINFORMATIONEN UND WEITERE BENÖTIGTE INHALTE:\
         throw new Error(result.error || 'Unbekannter Fehler');
       }
 
-      toast({
-        title: "Anfrage gesendet!",
-        description: "Wir melden uns innerhalb von 24 Stunden bei Ihnen.",
-      });
-      // Conversion tracking — Training-Konfigurator-Submit
+      // Conversion tracking — Training-Konfigurator-Submit (Clarity + Ads-Event)
       trackConversion("konfigurator_submit", `${selectedModules.length}_modules`);
       markConvertedSession("konfigurator");
-      setStep(1);
-      setSelectedModules([]);
-      setCustomModules([]);
-      setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        company: "",
-        phone: "",
-        licenseType: "",
-        employeeCount: "",
-        trainingCount: "",
-        locationType: "",
-        trainingLocation: "",
-        groupCount: "",
-        additionalInfo: ""
-      });
+      // Weiterleitung auf die zentrale Danke-Seite (Google-Ads-Conversion-Ziel).
+      // Full-Page-Load, damit das Google-Tag einen frischen page_view für /danke auslöst.
+      window.location.href = "/danke";
+      return;
     } catch (error) {
       toast({
         title: "Fehler beim Senden",
