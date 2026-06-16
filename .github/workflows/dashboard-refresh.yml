@@ -1,0 +1,56 @@
+name: Dashboard-Daten aktualisieren (täglich)
+
+# Holt täglich GSC/Ads/Bing über die Supermetrics-API, schreibt die
+# Dashboard-JSONs, committet sie zurück (Historie) und lädt sie per FTP
+# direkt auf den Server. Vollautomatisch — kein manueller Push nötig.
+
+on:
+  schedule:
+    - cron: "0 5 * * *"   # täglich 05:00 UTC (~07:00 Berlin)
+  workflow_dispatch: {}     # zusätzlich manuell auslösbar (Actions-Tab → Run workflow)
+
+permissions:
+  contents: write           # erlaubt das Zurück-Committen der JSON-Dateien
+
+concurrency:
+  group: dashboard-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Dashboard-Daten generieren
+        env:
+          SUPERMETRICS_API_KEY: ${{ secrets.SUPERMETRICS_API_KEY }}
+          SUPERMETRICS_DS_USER: ${{ secrets.SUPERMETRICS_DS_USER }}
+        run: node scripts/build-dashboard-data.js
+
+      - name: JSON zurück-committen (Historie persistieren)
+        run: |
+          git config user.name "dashboard-bot"
+          git config user.email "actions@github.com"
+          git add public/dashboard/data.json public/dashboard/history.json
+          if git diff --cached --quiet; then
+            echo "Keine Änderungen."
+          else
+            git commit -m "Dashboard-Daten Update $(date -u +%Y-%m-%d) [skip ci]"
+            git push
+          fi
+
+      - name: Auf Server hochladen (FTP)
+        run: |
+          sudo apt-get update && sudo apt-get install -y lftp
+          lftp -e "set ssl:verify-certificate no; set ftp:ssl-allow yes; set ftp:ssl-protect-data yes; \
+            mkdir -p /www/copilotenschule.de/dashboard/; \
+            cd /www/copilotenschule.de/dashboard/; \
+            put public/dashboard/data.json -o data.json; \
+            put public/dashboard/history.json -o history.json; \
+            quit" \
+            -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}

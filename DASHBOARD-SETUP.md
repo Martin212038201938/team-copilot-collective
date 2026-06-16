@@ -67,22 +67,35 @@ Ziel: 1× täglich automatisch echte Werte. Reihenfolge nach Aufwand/Nutzen.
 
 ---
 
-## 3. Tägliche Automatik (Aktualisierung + Historisierung)
+## 3. Tägliche Automatik — VOLLAUTOMATISCH via GitHub Action
 
-**Empfohlen: Cowork Scheduled Task (nutzt die verbundenen Connectors).**
-Ein täglicher Task (z. B. 6:00 Uhr) macht:
-1. Health-Check-Skill ausführen + Supermetrics/Ahrefs/Clarity abfragen
-2. `public/dashboard/data.json` neu schreiben
-3. neuen Punkt an `public/dashboard/history.json` anhängen (Verlauf)
-4. die beiden JSON-Dateien auf den Server hochladen (lftp) **oder** ins Repo
-   schreiben → Deploy
+Aktiv über die **Supermetrics REST-API + GitHub Action** — läuft auf GitHubs
+Servern, ohne Cowork, ohne manuellen Push.
 
-Ich kann diesen Task einrichten, sobald die Connectors (Schritt 2) verbunden sind.
+**Bausteine (bereits im Repo):**
+- `scripts/build-dashboard-data.js` — ruft die Supermetrics-API (GSC, Google Ads,
+  Bing), baut `data.json` und mergt `history.json` (bis 90 Tage Verlauf).
+- `.github/workflows/dashboard-refresh.yml` — läuft **täglich ~07:00 Uhr**
+  (`cron: 0 5 * * *`), generiert die Daten, committet die JSONs zurück
+  (Historie bleibt erhalten) und lädt sie per FTP direkt auf den Server.
 
-**Alternative: geplante GitHub Action (cron, täglich).** Vollständig auf dem
-Server, ohne manuellen Push — erfordert aber, dass die Quellen über reine APIs
-(inkl. Google-Ads-Developer-Token) angebunden werden. Mehr Einrichtungsaufwand,
-daher nur falls bewusst gewünscht.
+**EINMALIG nötig: 2 GitHub-Secrets eintragen** (GitHub → Repo → Settings →
+Secrets and variables → Actions → „New repository secret"):
+
+| Secret | Wert |
+|--------|------|
+| `SUPERMETRICS_API_KEY` | dein API-Key aus dem Supermetrics Query Manager (beginnt mit `api_…`) |
+| `SUPERMETRICS_DS_USER` | die `ds_user`-ID aus derselben Query-Manager-URL |
+
+> Die FTP-Secrets (`FTP_SERVER`, `FTP_USERNAME`, `FTP_PASSWORD`) existieren bereits
+> aus dem Deploy-Workflow und werden wiederverwendet. Keine Zugangsdaten liegen
+> im Code oder auf dem öffentlichen Server.
+
+**Testen:** GitHub → Actions → „Dashboard-Daten aktualisieren" → „Run workflow".
+Danach zeigt `copilotenschule.de/dashboard` die frischen Werte.
+
+> Der frühere Cowork-Task „dashboard-daily-refresh" wurde deaktiviert (durch
+> diese Action ersetzt) und dient nur noch als manueller Fallback.
 
 ---
 
