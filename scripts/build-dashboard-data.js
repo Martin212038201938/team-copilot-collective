@@ -50,9 +50,13 @@ async function smQuery(params) {
   const res = await fetch(url);
   if (!res.ok) throw new Error(`Supermetrics HTTP ${res.status} für ds_id=${params.ds_id}`);
   const body = await res.json();
+  if (body?.error) {
+    const e = body.error;
+    throw new Error(`Supermetrics-Fehler (ds_id=${params.ds_id}): ${e.code || ""} ${e.description || e.message || ""}`.trim());
+  }
   const rows = body?.data;
   if (!Array.isArray(rows)) {
-    const msg = body?.meta?.error_message || body?.error || "unbekannt";
+    const msg = body?.meta?.error_message || "unbekannt";
     throw new Error(`Supermetrics-Antwort ohne data (ds_id=${params.ds_id}): ${msg}`);
   }
   return rows; // rows[0] = Header, rows[1..] = Daten
@@ -86,6 +90,13 @@ async function main() {
     .filter((r) => r.date)
     .map((r) => ({ date: String(r.date).slice(0, 10), clicks: num(r.clicks), impressions: num(r.impressions), position: round2(num(r.position)) }))
     .sort((a, b) => a.date.localeCompare(b.date));
+
+  // Schutz: Wenn GSC keine Daten liefert (z. B. ungültige/abgelaufene Supermetrics-
+  // Auth), NICHT mit Nullwerten weiterschreiben — lieber abbrechen, damit die
+  // bestehenden guten Daten erhalten bleiben.
+  if (gscDaily.length === 0) {
+    throw new Error("GSC lieferte keine Daten — vermutlich ungültige/abgelaufene Supermetrics-Auth (SUPERMETRICS_API_KEY / SUPERMETRICS_DS_USER). Abbruch ohne Überschreiben.");
+  }
 
   // 7-Tage-Summen + Vorwoche aus der Tagesreihe (für KPIs + Deltas)
   const last7 = gscDaily.slice(-7);
