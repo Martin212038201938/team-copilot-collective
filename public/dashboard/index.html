@@ -106,8 +106,8 @@
 
     <h2 class="sec">Verlauf &amp; Trends</h2>
     <div class="grid cards">
-      <div class="card"><h3>Organische Klicks (Google)</h3><div id="chart-clicks-wrap"><canvas id="chart-clicks" height="160"></canvas></div></div>
-      <div class="card"><h3>Ads-Conversions</h3><div id="chart-conv-wrap"><canvas id="chart-conv" height="160"></canvas></div></div>
+      <div class="card"><h3>Organische Klicks (Google, täglich)</h3><div id="chart-clicks-wrap"><canvas id="chart-clicks" height="160"></canvas></div></div>
+      <div class="card"><h3>Impressionen (Google, täglich)</h3><div id="chart-conv-wrap"><canvas id="chart-conv" height="160"></canvas></div></div>
     </div>
 
     <h2 class="sec">Sichtbarkeit &amp; Technik</h2>
@@ -130,7 +130,7 @@
 
   <script>
   // ---- Passwort-Gate (clientseitig; volle Absicherung via Server-Basic-Auth, siehe Setup-Guide) ----
-  const PW_HASH = "ea0ca90d188b83e0891eb7935c70874a8af07994212d876b5bd2d2065f8ce147"; // SHA-256, hier änderbar
+  const PW_HASH = "1e186550335efe47001950222be0d6b1aece73dd9acbdfb8f4c8e67cb9a6132e"; // SHA-256 von "Alaaf4711!", hier änderbar
   async function sha256(s){const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("")}
   async function tryUnlock(pw){ if(await sha256(pw)===PW_HASH){ sessionStorage.setItem("dash_ok","1"); open_app(); return true } return false }
   function open_app(){ document.getElementById("gate").style.display="none"; document.getElementById("app").style.display="block"; init() }
@@ -182,8 +182,8 @@
     }).join("");
 
     // Trend-Charts
-    drawTrend("chart-clicks", hist.series?.dates, hist.series?.gsc_clicks_7d, "Klicks", "#3b82f6");
-    drawTrend("chart-conv", hist.series?.dates, hist.series?.ads_conversions_7d, "Conversions", "#6366f1");
+    drawTrend("chart-clicks", hist.series?.dates, hist.series?.gsc_clicks, "Klicks", "#3b82f6");
+    drawTrend("chart-conv", hist.series?.dates, hist.series?.gsc_impressions, "Impressionen", "#6366f1");
 
     // Indexierung
     const idx=data.indexing||{};

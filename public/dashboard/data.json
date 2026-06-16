@@ -2,26 +2,26 @@
   "meta": {
     "domain": "copilotenschule.de",
     "generated_at": "2026-06-16T09:00:00+02:00",
-    "generated_by": "seed",
-    "overall_health": "yellow",
+    "generated_by": "supermetrics (GSC + Google Ads), manuell verdrahtet",
+    "overall_health": "green",
     "update_frequency": "täglich",
     "schema_version": "1.0"
   },
   "sources": {
-    "gsc":         { "connected": false, "label": "Google Search Console", "note": "API-Zugang noch einzurichten (siehe Setup-Guide)" },
-    "google_ads":  { "connected": false, "label": "Google Ads",            "note": "Kampagne aktiv, Conversion /danke verdrahtet. API-Zugang für Live-Kennzahlen noch einzurichten." },
-    "bing":        { "connected": false, "label": "Bing Webmaster",        "note": "API-Key noch einzurichten" },
+    "gsc":         { "connected": true,  "label": "Google Search Console", "note": "Verbunden über Supermetrics (yellowboatschulung@gmail.com)" },
+    "google_ads":  { "connected": true,  "label": "Google Ads",            "note": "Verbunden. Kampagne aktiv, in den letzten 7 Tagen noch keine Klicks/Conversions." },
+    "bing":        { "connected": false, "label": "Bing Webmaster",        "note": "Letzter Login fehlt noch (Autorisierung in Supermetrics)" },
     "clarity":     { "connected": false, "label": "Microsoft Clarity",     "note": "Data-Export-Token noch einzurichten" },
     "pagespeed":   { "connected": false, "label": "PageSpeed Insights",    "note": "Kostenloser API-Key noch einzurichten" },
     "llm":         { "connected": false, "label": "LLM-Sichtbarkeit",      "note": "Wird automatisch per Websuche ermittelt, sobald der tägliche Job läuft" }
   },
   "kpis": {
-    "gsc_clicks_7d":        { "value": null, "delta_pct": null, "source": "gsc" },
-    "gsc_impressions_7d":   { "value": null, "delta_pct": null, "source": "gsc" },
-    "gsc_avg_position_7d":  { "value": null, "delta_pct": null, "source": "gsc" },
-    "ads_clicks_7d":        { "value": null, "delta_pct": null, "source": "google_ads" },
-    "ads_cost_7d_eur":      { "value": null, "delta_pct": null, "source": "google_ads" },
-    "ads_conversions_7d":   { "value": null, "delta_pct": null, "source": "google_ads" },
+    "gsc_clicks_7d":        { "value": 124,  "delta_pct": 63,  "source": "gsc" },
+    "gsc_impressions_7d":   { "value": 9114, "delta_pct": 49,  "source": "gsc" },
+    "gsc_avg_position_7d":  { "value": 9.0,  "delta_pct": null, "source": "gsc" },
+    "ads_clicks_7d":        { "value": 0,    "delta_pct": null, "source": "google_ads" },
+    "ads_cost_7d_eur":      { "value": 0,    "delta_pct": null, "source": "google_ads" },
+    "ads_conversions_7d":   { "value": 0,    "delta_pct": null, "source": "google_ads" },
     "bing_clicks_7d":       { "value": null, "delta_pct": null, "source": "bing" },
     "clarity_sessions_7d":  { "value": null, "delta_pct": null, "source": "clarity" }
   },
@@ -31,7 +31,7 @@
     "pages": []
   },
   "indexing": {
-    "google": { "indexed_pages": null, "crawl_errors": null, "clicks_7d": null, "impressions_7d": null, "avg_position_7d": null },
+    "google": { "indexed_pages": null, "crawl_errors": null, "clicks_7d": 124, "impressions_7d": 9114, "avg_position_7d": 9.0 },
     "bing":   { "indexed_pages": null, "crawl_errors": null, "clicks_7d": null, "impressions_7d": null },
     "sitemap": { "total_urls": 74, "index_coverage_pct": null }
   },
@@ -42,13 +42,19 @@
   },
   "keywords": {
     "tracked": [
-      { "keyword": "Microsoft Copilot Schulung", "google_position": null, "bing_position": null },
-      { "keyword": "Copilot Training Unternehmen", "google_position": null, "bing_position": null },
-      { "keyword": "Copilot Schulung Mitarbeiter", "google_position": null, "bing_position": null },
-      { "keyword": "Microsoft 365 Copilot Training", "google_position": null, "bing_position": null }
+      { "keyword": "copilot in excel aktivieren", "google_position": 4.4, "bing_position": null },
+      { "keyword": "ki halluzinationen vermeiden", "google_position": 4.2, "bing_position": null },
+      { "keyword": "copilot lizenzen", "google_position": 8.6, "bing_position": null },
+      { "keyword": "copilot claude / claude copilot", "google_position": 8.0, "bing_position": null },
+      { "keyword": "copilot in outlook", "google_position": 11.6, "bing_position": null },
+      { "keyword": "copilot datenschutz", "google_position": 25.0, "bing_position": null }
     ],
     "recommendations": [
-      "Sobald die GSC angebunden ist, erscheinen hier die Suchbegriffe mit den meisten Impressionen aber niedriger Position (Quick-Win-Keywords)."
+      "Quick-Win: „copilot lizenzen\"/„copilot lizenz\" (zusammen ~470 Impressionen, Position 7–9) — mit gezielter On-Page-Optimierung in die Top 5 schiebbar.",
+      "Quick-Win: „claude copilot\"/„copilot claude\" (~150 Impressionen, Position 8–10) — knapp vor Top 5, kleine Optimierung lohnt.",
+      "Großes Potenzial: „copilot datenschutz\" (64 Impressionen, Position ~25) — eigener, stärkerer Inhalt könnte viele Klicks bringen.",
+      "Content-Chance: starkes Suchcluster rund um „Claude in Copilot / Claude Cowork\" (dutzende Varianten) — ein dedizierter Artikel würde mehrere Long-Tails gleichzeitig bedienen.",
+      "Beratungs-/Workshop-Begriffe („beratung copilot\", „chatbot workshop\") ranken noch auf Position 40+ — Angebotsseiten gezielt darauf optimieren."
     ]
   },
   "llm_visibility": {
@@ -56,9 +62,10 @@
     "checks": []
   },
   "report_highlights": [
-    { "severity": "info", "text": "Google-Ads-Conversion auf /danke ist verdrahtet (AW-18244137495). Erste Conversions erscheinen nach dem ersten Lead mit etwas Verzögerung im Google-Ads-Konto." },
-    { "severity": "info", "text": "Sitemap umfasst aktuell 74 URLs. Website ist erreichbar (HTTPS, 200)." },
-    { "severity": "action", "text": "Nächster Schritt: Datenquellen anbinden (PageSpeed, GSC, Bing, Clarity), damit hier echte Live-Werte und Trends erscheinen — siehe Setup-Guide." }
+    { "severity": "info", "text": "Organische Google-Klicks: 124 in den letzten 7 Tagen — +63 % gegenüber der Vorwoche (76). Impressionen +49 % (9.114). Ø Position auf ~9 verbessert." },
+    { "severity": "action", "text": "Google-Ads-Kampagne ist aktiv und die /danke-Conversion verdrahtet, aber es gab in den letzten 7 Tagen noch keine Klicks — sobald Anzeigen ausgeliefert werden, erscheinen Kosten/Conversions hier." },
+    { "severity": "action", "text": "Bing Webmaster ist noch nicht autorisiert (ein Login in Supermetrics fehlt) — danach erscheinen auch die Bing-Zahlen." },
+    { "severity": "info", "text": "Top-Suchbegriff mit Klicks: „copilot in excel aktivieren\" (13 Klicks, Position 4,4). Auffällig viele Suchanfragen rund um „Claude in Copilot/Cowork\" — klare Content-Chance." }
   ],
   "availability": {
     "https_ok": true,

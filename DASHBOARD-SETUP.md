@@ -21,7 +21,7 @@ Es gibt zwei Ebenen — Ebene B ist die eigentliche Absicherung:
 
 **A) Client-seitiges Passwort (sofort aktiv).**
 In `public/dashboard/index.html` ist ein Passwort-Gate eingebaut.
-- Aktuelles Passwort: **`copilot-dash-2026`**
+- Das Passwort ist gesetzt (Martin/Chris bekannt). Der **Klartext wird bewusst NICHT im Repo gespeichert** — nur der SHA-256-Hash steht in `index.html`.
 - Ändern: neuen SHA-256-Hash erzeugen und in der Zeile `const PW_HASH = "…"` ersetzen.
   Hash erzeugen z. B. mit: `node -e "console.log(require('crypto').createHash('sha256').update('DEIN-PASSWORT').digest('hex'))"`
 - Hinweis: schützt nur die Anzeige, nicht die JSON-Dateien direkt. Da das
