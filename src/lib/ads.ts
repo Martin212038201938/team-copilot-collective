@@ -20,7 +20,13 @@
  * wie analytics.ts).
  */
 
-const ADS_ID = import.meta.env.VITE_GOOGLE_ADS_ID as string | undefined;
+// Google-Ads-Conversion-ID — fest verdrahtet. Die ID ist KEIN Geheimnis
+// (sie steht im Seitenquelltext ohnehin öffentlich). Bewusst NICHT mehr aus
+// einem Env-/GitHub-Secret gelesen, damit kein veraltetes Secret (altes
+// Google-Ads-Konto) versehentlich greift. Single Source of Truth = diese Datei.
+const ADS_ID = "AW-18244137495";
+// Conversion-Labels weiterhin aus Build-Env — sie kommen aus Google Ads, sobald
+// die jeweilige Conversion-Aktion angelegt ist. Ohne Label feuert kein Event.
 const LABEL_LEAD = import.meta.env.VITE_ADS_LABEL_LEAD as string | undefined;
 const LABEL_CONTACT = import.meta.env.VITE_ADS_LABEL_CONTACT as string | undefined;
 
@@ -60,6 +66,9 @@ export function getStoredAdsConsent(): "granted" | "denied" | null {
 export function initGoogleAds(): void {
   if (!ADS_ID || typeof window === "undefined") return;
   if (typeof navigator !== "undefined" && /ReactSnap/i.test(navigator.userAgent)) return;
+  // Nur auf der Live-Domain laden — verhindert Tracking aus Dev/Preview (localhost).
+  const host = window.location.hostname;
+  if (host !== "copilotenschule.de" && !host.endsWith(".copilotenschule.de")) return;
   try {
     window.dataLayer = window.dataLayer || [];
     // gtag MUSS die arguments-Objekte pushen (kein Array) — Google-Konvention.
