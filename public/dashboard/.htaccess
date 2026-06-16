@@ -1,0 +1,28 @@
+# ============================================
+# /dashboard — geschützter Marketing-Bereich
+# ============================================
+
+# Nicht indexieren (zusätzlich zum <meta robots> in der HTML)
+<IfModule mod_headers.c>
+    Header set X-Robots-Tag "noindex, nofollow"
+    # data.json/history.json sollen nicht gecacht werden (täglich frisch)
+    <FilesMatch "\.json$">
+        Header set Cache-Control "no-store"
+    </FilesMatch>
+</IfModule>
+
+# ============================================
+# PASSWORTSCHUTZ (Server-seitig, schützt AUCH die JSON-Daten)
+# ============================================
+# Empfohlen: In AlwaysData einfacher über das Panel aktivierbar
+#   (Web → Sites → Bearbeiten → "Schutz" / Protection: Benutzer + Passwort).
+#   Dann ist KEINE der folgenden Zeilen nötig.
+#
+# Alternativ Basic Auth per .htaccess — dafür den ABSOLUTEN Serverpfad zur
+# .htpasswd eintragen (in AlwaysData z. B. /home/<KONTO>/www/copilotenschule.de/dashboard/.htpasswd)
+# und unten einkommentieren:
+#
+# AuthType Basic
+# AuthName "Marketing-Dashboard"
+# AuthUserFile /home/<KONTO>/www/copilotenschule.de/dashboard/.htpasswd
+# Require valid-user

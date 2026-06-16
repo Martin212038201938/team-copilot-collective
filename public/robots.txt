@@ -5,8 +5,9 @@
 User-agent: *
 Allow: /
 
-# Nur Admin-Bereich blockieren
+# Nur Admin- und Dashboard-Bereich blockieren
 Disallow: /admin
+Disallow: /dashboard
 
 # Sitemap
 Sitemap: https://copilotenschule.de/sitemap.xml

@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Marketing-Dashboard · copilotenschule.de</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <style>
+    :root{
+      --bg:#0f172a; --card:#1e293b; --card2:#243349; --line:#334155;
+      --txt:#e2e8f0; --muted:#94a3b8; --accent:#3b82f6; --accent2:#6366f1;
+      --green:#22c55e; --yellow:#eab308; --red:#ef4444; --radius:14px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--txt);line-height:1.5}
+    a{color:var(--accent)}
+    .wrap{max-width:1180px;margin:0 auto;padding:24px 18px 64px}
+
+    /* ---- Login Gate ---- */
+    #gate{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:50;padding:20px}
+    #gate .box{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:32px;max-width:380px;width:100%;text-align:center}
+    #gate h1{font-size:20px;margin-bottom:6px}
+    #gate p{color:var(--muted);font-size:14px;margin-bottom:18px}
+    #gate input{width:100%;padding:12px 14px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--txt);font-size:15px;margin-bottom:12px}
+    #gate button{width:100%;padding:12px;border:0;border-radius:10px;background:var(--accent);color:#fff;font-size:15px;font-weight:600;cursor:pointer}
+    #gate .err{color:var(--red);font-size:13px;min-height:18px;margin-top:8px}
+
+    /* ---- Header ---- */
+    header.top{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-bottom:22px}
+    header.top h1{font-size:22px;font-weight:700}
+    header.top .sub{color:var(--muted);font-size:13px}
+    .badge{padding:4px 11px;border-radius:999px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.03em}
+    .badge.green{background:rgba(34,197,94,.15);color:var(--green)}
+    .badge.yellow{background:rgba(234,179,8,.15);color:var(--yellow)}
+    .badge.red{background:rgba(239,68,68,.15);color:var(--red)}
+    .spacer{flex:1}
+
+    /* ---- Source chips ---- */
+    .sources{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}
+    .chip{display:flex;align-items:center;gap:7px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:12.5px}
+    .dot{width:8px;height:8px;border-radius:50%}
+    .dot.on{background:var(--green)} .dot.off{background:var(--muted)}
+    .chip.off{opacity:.7}
+
+    h2.sec{font-size:14px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin:30px 0 12px}
+
+    /* ---- KPI grid ---- */
+    .grid{display:grid;gap:14px}
+    .kpis{grid-template-columns:repeat(4,1fr)}
+    @media(max-width:880px){.kpis{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:480px){.kpis{grid-template-columns:1fr}}
+    .kpi{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px}
+    .kpi .label{font-size:12.5px;color:var(--muted);margin-bottom:6px}
+    .kpi .val{font-size:26px;font-weight:700}
+    .kpi .val.pending{font-size:14px;font-weight:500;color:var(--muted)}
+    .kpi .delta{font-size:12px;margin-top:4px}
+    .delta.up{color:var(--green)} .delta.down{color:var(--red)} .delta.flat{color:var(--muted)}
+
+    /* ---- Cards ---- */
+    .cards{grid-template-columns:1fr 1fr}
+    @media(max-width:880px){.cards{grid-template-columns:1fr}}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px}
+    .card h3{font-size:15px;margin-bottom:12px}
+    .pending-note{color:var(--muted);font-size:13px;background:var(--card2);border:1px dashed var(--line);border-radius:10px;padding:12px}
+    canvas{max-width:100%}
+
+    table{width:100%;border-collapse:collapse;font-size:13.5px}
+    th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line)}
+    th{color:var(--muted);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.03em}
+    td.num{text-align:right;font-variant-numeric:tabular-nums}
+
+    .issue{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);font-size:13.5px}
+    .issue:last-child{border-bottom:0}
+    .sev{flex-shrink:0;width:7px;border-radius:4px}
+    .sev.critical{background:var(--red)} .sev.warning{background:var(--yellow)} .sev.info{background:var(--accent)} .sev.action{background:var(--accent2)}
+
+    footer{margin-top:40px;color:var(--muted);font-size:12.5px;border-top:1px solid var(--line);padding-top:16px}
+  </style>
+</head>
+<body>
+
+  <!-- ============ PASSWORT-GATE (clientseitig) ============ -->
+  <div id="gate">
+    <div class="box">
+      <h1>🔒 Marketing-Dashboard</h1>
+      <p>copilotenschule.de — bitte Passwort eingeben.</p>
+      <input id="pw" type="password" placeholder="Passwort" autocomplete="current-password" />
+      <button id="go">Anzeigen</button>
+      <div class="err" id="err"></div>
+    </div>
+  </div>
+
+  <div class="wrap" id="app" style="display:none">
+    <header class="top">
+      <h1>📊 Marketing-Dashboard</h1>
+      <span id="health" class="badge yellow">–</span>
+      <div class="spacer"></div>
+      <div class="sub" id="stand">Stand: –</div>
+    </header>
+
+    <div class="sources" id="sources"></div>
+
+    <h2 class="sec">Kernkennzahlen (letzte 7 Tage)</h2>
+    <div class="grid kpis" id="kpis"></div>
+
+    <h2 class="sec">Verlauf &amp; Trends</h2>
+    <div class="grid cards">
+      <div class="card"><h3>Organische Klicks (Google)</h3><div id="chart-clicks-wrap"><canvas id="chart-clicks" height="160"></canvas></div></div>
+      <div class="card"><h3>Ads-Conversions</h3><div id="chart-conv-wrap"><canvas id="chart-conv" height="160"></canvas></div></div>
+    </div>
+
+    <h2 class="sec">Sichtbarkeit &amp; Technik</h2>
+    <div class="grid cards">
+      <div class="card"><h3>Indexierung</h3><div id="indexing"></div></div>
+      <div class="card"><h3>Core Web Vitals</h3><div id="performance"></div></div>
+    </div>
+
+    <h2 class="sec">SEO &amp; Keywords (GEO-Fokus)</h2>
+    <div class="grid cards">
+      <div class="card"><h3>Ziel-Keywords &amp; Positionen</h3><div id="keywords"></div></div>
+      <div class="card"><h3>SEO-Befunde</h3><div id="seo"></div></div>
+    </div>
+
+    <h2 class="sec">Empfehlungen aus dem Daily Report</h2>
+    <div class="card"><div id="report"></div></div>
+
+    <footer id="foot"></footer>
+  </div>
+
+  <script>
+  // ---- Passwort-Gate (clientseitig; volle Absicherung via Server-Basic-Auth, siehe Setup-Guide) ----
+  const PW_HASH = "ea0ca90d188b83e0891eb7935c70874a8af07994212d876b5bd2d2065f8ce147"; // SHA-256, hier änderbar
+  async function sha256(s){const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("")}
+  async function tryUnlock(pw){ if(await sha256(pw)===PW_HASH){ sessionStorage.setItem("dash_ok","1"); open_app(); return true } return false }
+  function open_app(){ document.getElementById("gate").style.display="none"; document.getElementById("app").style.display="block"; init() }
+  document.getElementById("go").onclick=async()=>{ const v=document.getElementById("pw").value; if(!await tryUnlock(v)){ document.getElementById("err").textContent="Falsches Passwort." } };
+  document.getElementById("pw").addEventListener("keydown",e=>{ if(e.key==="Enter")document.getElementById("go").click() });
+  if(sessionStorage.getItem("dash_ok")==="1") open_app();
+
+  // ---- Helpers ----
+  const nf = new Intl.NumberFormat("de-DE");
+  const fmt = v => (v===null||v===undefined) ? "–" : nf.format(v);
+  const el = id => document.getElementById(id);
+  function pendingBox(note){ return '<div class="pending-note">⚙️ '+note+'</div>'; }
+
+  // ---- Init / Render ----
+  async function init(){
+    let data={}, hist={};
+    try{ data = await (await fetch("./data.json?_="+Date.now())).json(); }catch(e){ el("app").innerHTML='<p style="color:#ef4444">data.json konnte nicht geladen werden.</p>'; return; }
+    try{ hist = await (await fetch("./history.json?_="+Date.now())).json(); }catch(e){ hist={series:{}}; }
+
+    // Header
+    const h = data.meta?.overall_health || "yellow";
+    const hb = el("health"); hb.className = "badge "+(h==="green"?"green":h==="red"?"red":"yellow");
+    hb.textContent = h==="green"?"Gesund":h==="red"?"Achtung":"In Aufbau";
+    el("stand").textContent = "Stand: " + (data.meta?.generated_at? new Date(data.meta.generated_at).toLocaleString("de-DE") : "–") + " · Aktualisierung: " + (data.meta?.update_frequency||"täglich");
+
+    // Quellen-Status
+    const src = data.sources||{};
+    el("sources").innerHTML = Object.values(src).map(s =>
+      '<span class="chip '+(s.connected?'':'off')+'" title="'+(s.note||'')+'"><span class="dot '+(s.connected?'on':'off')+'"></span>'+s.label+(s.connected?'':' · zu verbinden')+'</span>'
+    ).join("");
+
+    // KPIs
+    const K = data.kpis||{};
+    const kpiDefs = [
+      ["Organische Klicks","gsc_clicks_7d"],["Impressionen","gsc_impressions_7d"],
+      ["Ø Position Google","gsc_avg_position_7d"],["Ads-Klicks","ads_clicks_7d"],
+      ["Ads-Kosten (€)","ads_cost_7d_eur"],["Ads-Conversions","ads_conversions_7d"],
+      ["Bing-Klicks","bing_clicks_7d"],["Clarity-Sessions","clarity_sessions_7d"]
+    ];
+    el("kpis").innerHTML = kpiDefs.map(([lbl,key])=>{
+      const k=K[key]||{}; const has=k.value!==null&&k.value!==undefined;
+      let d="";
+      if(has && k.delta_pct!==null && k.delta_pct!==undefined){
+        const cls=k.delta_pct>0?"up":k.delta_pct<0?"down":"flat";
+        const arr=k.delta_pct>0?"▲":k.delta_pct<0?"▼":"→";
+        d='<div class="delta '+cls+'">'+arr+" "+Math.abs(k.delta_pct)+"% ggü. Vorwoche</div>";
+      }
+      return '<div class="kpi"><div class="label">'+lbl+'</div><div class="val'+(has?'':' pending')+'">'+(has?fmt(k.value):"noch nicht verbunden")+'</div>'+d+'</div>';
+    }).join("");
+
+    // Trend-Charts
+    drawTrend("chart-clicks", hist.series?.dates, hist.series?.gsc_clicks_7d, "Klicks", "#3b82f6");
+    drawTrend("chart-conv", hist.series?.dates, hist.series?.ads_conversions_7d, "Conversions", "#6366f1");
+
+    // Indexierung
+    const idx=data.indexing||{};
+    if(idx.google?.indexed_pages!=null || idx.bing?.indexed_pages!=null){
+      el("indexing").innerHTML='<table><tr><th>Suchmaschine</th><th class="num">Indexiert</th><th class="num">Crawl-Fehler</th></tr>'+
+        '<tr><td>Google</td><td class="num">'+fmt(idx.google?.indexed_pages)+'</td><td class="num">'+fmt(idx.google?.crawl_errors)+'</td></tr>'+
+        '<tr><td>Bing</td><td class="num">'+fmt(idx.bing?.indexed_pages)+'</td><td class="num">'+fmt(idx.bing?.crawl_errors)+'</td></tr>'+
+        '<tr><td>Sitemap-URLs</td><td class="num">'+fmt(idx.sitemap?.total_urls)+'</td><td class="num">–</td></tr></table>';
+    } else {
+      el("indexing").innerHTML='<table><tr><td>Sitemap-URLs</td><td class="num">'+fmt(idx.sitemap?.total_urls)+'</td></tr></table>'+
+        pendingBox("Indexierungszahlen erscheinen, sobald GSC &amp; Bing angebunden sind.");
+    }
+
+    // Performance
+    const perf=data.performance||{};
+    if(perf.pages && perf.pages.length){
+      el("performance").innerHTML='<table><tr><th>Seite</th><th class="num">Score</th><th class="num">LCP</th><th class="num">INP</th><th class="num">CLS</th></tr>'+
+        perf.pages.map(p=>'<tr><td>'+(p.url||"").replace("https://copilotenschule.de","")+'</td><td class="num">'+fmt(p.performance_score)+'</td><td class="num">'+fmt(p.lcp_ms)+'ms</td><td class="num">'+fmt(p.inp_ms)+'ms</td><td class="num">'+fmt(p.cls)+'</td></tr>').join("")+'</table>';
+    } else { el("performance").innerHTML=pendingBox("Core Web Vitals erscheinen, sobald der PageSpeed-API-Key eingerichtet ist."); }
+
+    // Keywords
+    const kw=data.keywords||{};
+    let kwHtml="";
+    if(kw.tracked && kw.tracked.length){
+      kwHtml+='<table><tr><th>Keyword</th><th class="num">Google</th><th class="num">Bing</th></tr>'+
+        kw.tracked.map(k=>'<tr><td>'+k.keyword+'</td><td class="num">'+(k.google_position!=null?"#"+k.google_position:"–")+'</td><td class="num">'+(k.bing_position!=null?"#"+k.bing_position:"–")+'</td></tr>').join("")+'</table>';
+    }
+    if(kw.recommendations && kw.recommendations.length){ kwHtml+='<div style="margin-top:12px">'+kw.recommendations.map(r=>'<div class="issue"><div class="sev info"></div><div>'+r+'</div></div>').join("")+'</div>'; }
+    el("keywords").innerHTML=kwHtml||pendingBox("Keyword-Daten folgen mit der GSC-Anbindung.");
+
+    // SEO Issues
+    const seo=data.seo||{};
+    if(seo.issues && seo.issues.length){
+      el("seo").innerHTML=seo.issues.map(i=>'<div class="issue"><div class="sev '+(i.severity||"info")+'"></div><div><strong>'+(i.url||"")+'</strong> — '+(i.detail||i.type||"")+(i.recommendation?'<br><span style="color:var(--muted)">→ '+i.recommendation+'</span>':'')+'</div></div>').join("");
+    } else { el("seo").innerHTML=pendingBox("Keine offenen SEO-Befunde erfasst (oder Analyse noch nicht gelaufen)."); }
+
+    // Report Highlights
+    const rep=data.report_highlights||[];
+    el("report").innerHTML = rep.length ? rep.map(r=>'<div class="issue"><div class="sev '+(r.severity||"info")+'"></div><div>'+r.text+'</div></div>').join("") : pendingBox("Noch keine Empfehlungen.");
+
+    // Footer
+    el("foot").innerHTML="Daten werden "+(data.meta?.update_frequency||"täglich")+" automatisch aktualisiert und historisiert (Verlauf bis 90 Tage). Quelle: Website-Health-Check + Google/Bing/Clarity. Diese Seite ist auf <em>noindex</em> gesetzt und nicht öffentlich verlinkt.";
+  }
+
+  function drawTrend(canvasId, dates, values, label, color){
+    const ctx=document.getElementById(canvasId);
+    const hasData = Array.isArray(values) && values.some(v=>v!==null&&v!==undefined);
+    if(!hasData){ ctx.parentElement.innerHTML=pendingBox("Trend erscheint, sobald die Quelle verbunden ist und mehrere Tage Daten vorliegen."); return; }
+    new Chart(ctx,{type:"line",data:{labels:dates,datasets:[{label,data:values,borderColor:color,backgroundColor:color+"33",fill:true,tension:.3,pointRadius:2}]},
+      options:{plugins:{legend:{display:false}},scales:{x:{ticks:{color:"#94a3b8"},grid:{color:"#33415544"}},y:{ticks:{color:"#94a3b8"},grid:{color:"#33415544"}}}}});
+  }
+  </script>
+</body>
+</html>

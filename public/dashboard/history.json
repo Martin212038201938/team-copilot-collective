@@ -1,0 +1,19 @@
+{
+  "domain": "copilotenschule.de",
+  "retention_days": 90,
+  "series": {
+    "dates":              ["2026-06-16"],
+    "gsc_clicks_7d":       [null],
+    "gsc_impressions_7d":  [null],
+    "gsc_avg_position_7d": [null],
+    "ads_clicks_7d":       [null],
+    "ads_cost_7d_eur":     [null],
+    "ads_conversions_7d":  [null],
+    "bing_clicks_7d":      [null],
+    "clarity_sessions_7d": [null],
+    "performance_score":   [null]
+  },
+  "marketing_actions": [
+    { "date": "2026-06-16", "action": "Danke-Seite + /danke-Conversion eingerichtet (Google Ads)", "category": "tracking" }
+  ]
+}
