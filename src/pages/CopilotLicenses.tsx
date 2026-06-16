@@ -232,7 +232,7 @@ const CopilotLicenses = () => {
                 <div>
                   <p className="text-3xl font-bold text-primary">15,60 €</p>
                   <p className="text-sm text-muted-foreground">pro Nutzer / Monat (jährlich, zzgl. MwSt.)</p>
-                  <p className="text-xs text-muted-foreground mt-1">Regulärpreis: 18,20 €/Nutzer/Monat · Aktionspreis gültig bis 30. Juni 2026</p>
+                  <p className="text-xs text-muted-foreground mt-1">Regulärpreis: 18,20 €/Nutzer/Monat · Aktionspreis nur für Neukunden und nur im 1. Jahr, gültig bis 30. Juni 2026</p>
                 </div>
                 <div>
                   <p className="text-sm font-medium mb-1">Für wen geeignet:</p>
