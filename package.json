@@ -10,7 +10,7 @@
     "validate-seo": "node scripts/validate-seo.js",
     "prebuild": "npm run validate-seo && npm run generate-sitemap",
     "build": "vite build && npm run copy-api",
-    "build:prerender": "vite build && npm run copy-api && npm run snap",
+    "build:prerender": "vite build && npm run copy-api && npm run snap && node scripts/validate-prerender.js",
     "snap": "node scripts/snap.cjs",
     "copy-api": "mkdir -p dist/api && cp -r api/*.php api/*.js api/*.md dist/api/ 2>/dev/null || true",
     "build:dev": "vite build --mode development",
