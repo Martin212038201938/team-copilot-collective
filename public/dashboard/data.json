@@ -1,27 +1,27 @@
 {
   "meta": {
     "domain": "copilotenschule.de",
-    "generated_at": "2026-06-16T19:37:36.298Z",
-    "generated_by": "github-action: build-dashboard-data.js (Supermetrics API)",
+    "generated_at": "2026-06-16T21:34:00.000Z",
+    "generated_by": "Cowork + Supermetrics MCP (GSC/Bing direkt abgefragt)",
     "overall_health": "green",
     "update_frequency": "täglich",
     "schema_version": "1.0"
   },
   "sources": {
     "gsc": {
-      "connected": false,
+      "connected": true,
       "label": "Google Search Console",
-      "note": "Supermetrics REST-API"
+      "note": "Verbunden über yellowboatschulung@gmail.com (Supermetrics)"
     },
     "google_ads": {
       "connected": true,
       "label": "Google Ads",
-      "note": "Verbunden, in den letzten 7 Tagen keine Klicks/Conversions"
+      "note": "Neues Konto Copilotenschule (480-547-8290), Kampagne pausiert – noch keine Klicks/Conversions"
     },
     "bing": {
-      "connected": false,
+      "connected": true,
       "label": "Bing Webmaster",
-      "note": "Verbunden, sehr wenig Bing-Traffic"
+      "note": "Verbunden, seit Ende Mai praktisch kein Bing-Traffic"
     },
     "clarity": {
       "connected": false,
@@ -41,17 +41,17 @@
   },
   "kpis": {
     "gsc_clicks_7d": {
-      "value": 0,
-      "delta_pct": null,
+      "value": 126,
+      "delta_pct": 66,
       "source": "gsc"
     },
     "gsc_impressions_7d": {
-      "value": 0,
-      "delta_pct": null,
+      "value": 9161,
+      "delta_pct": 49,
       "source": "gsc"
     },
     "gsc_avg_position_7d": {
-      "value": null,
+      "value": 9.0,
       "delta_pct": null,
       "source": "gsc"
     },
@@ -71,7 +71,7 @@
       "source": "google_ads"
     },
     "bing_clicks_7d": {
-      "value": null,
+      "value": 0,
       "delta_pct": null,
       "source": "bing"
     },
@@ -90,15 +90,15 @@
     "google": {
       "indexed_pages": null,
       "crawl_errors": null,
-      "clicks_7d": 0,
-      "impressions_7d": 0,
-      "avg_position_7d": null
+      "clicks_7d": 126,
+      "impressions_7d": 9161,
+      "avg_position_7d": 9.0
     },
     "bing": {
       "indexed_pages": null,
       "crawl_errors": null,
-      "clicks_7d": null,
-      "impressions_7d": null
+      "clicks_7d": 0,
+      "impressions_7d": 0
     },
     "sitemap": {
       "total_urls": 74,
@@ -113,7 +113,7 @@
   "keywords": {
     "tracked": [],
     "recommendations": [
-      "Sobald mehr GSC-Daten vorliegen, erscheinen hier die aussichtsreichsten Quick-Win-Keywords."
+      "Ø Position liegt bei ~9 – über die GSC-Suchanfragen gezielt die Keywords auf Seite 1 (Pos. 4–10) nach oben schieben (Quick Wins)."
     ]
   },
   "llm_visibility": {
@@ -123,15 +123,15 @@
   "report_highlights": [
     {
       "severity": "info",
-      "text": "Organische Google-Klicks: 0 in 7 Tagen, 0 Impressionen, Ø Position –."
+      "text": "Organische Google-Klicks: 126 in 7 Tagen (+66% ggü. Vorwoche), 9.161 Impressionen (+49%), Ø Position 9,0 – klar steigender Trend."
     },
     {
       "severity": "action",
-      "text": "Google-Ads-Kampagne aktiv, aber in den letzten 7 Tagen noch keine Klicks/Conversions."
+      "text": "Google Ads: neues Konto Copilotenschule aktiv, Kampagne pausiert – für das 400-€-Startguthaben fehlt noch der Spend."
     },
     {
       "severity": "info",
-      "text": "Bing-Traffic aktuell sehr gering — Fokus bleibt Google."
+      "text": "Bing: verbunden, aber seit Ende Mai praktisch kein Traffic – Fokus bleibt Google."
     }
   ],
   "availability": {

@@ -58,13 +58,13 @@ const CopilotLicenses = () => {
         "@type": "Article",
         "@id": ids.article,
         "headline": "Microsoft Copilot Lizenzen: Preisvergleich 2026",
-        "description": "Welche Copilot-Lizenz lohnt sich? M365 Copilot Business (ab 15,60 €/User) und Enterprise (26 €), GitHub Copilot & Copilot Studio im Vergleich – Stand Mai 2026.",
+        "description": "Welche Copilot-Lizenz lohnt sich? M365 Copilot Business (ab 15,60 €/User) und Enterprise (26 €), GitHub Copilot & Copilot Studio im Vergleich – Stand Juni 2026.",
         "author": getAuthorSchemaMarkup(martinLang),
         "publisher": {
           "@id": "https://copilotenschule.de/#organization"
         },
         "datePublished": "2025-01-06",
-        "dateModified": "2026-05-13T09:00:00+02:00",
+        "dateModified": "2026-06-16T09:00:00+02:00",
         "mainEntityOfPage": {
           "@type": "WebPage",
           "@id": pageUrl
@@ -99,7 +99,7 @@ const CopilotLicenses = () => {
     <>
       <SEOHead
         title="Microsoft 365 Copilot Preis 2026: ab 15,60 € – alle Lizenzen"
-        description="Copilot-Preise 2026 für Deutschland: M365 Business ab 15,60 €/User, Enterprise ab 26 €. Vergleich mit GitHub Copilot & Copilot Studio – Stand Mai 2026."
+        description="Copilot-Preise 2026 für Deutschland: M365 Business ab 15,60 €/User, Enterprise ab 26 €. Vergleich mit GitHub Copilot & Copilot Studio – Stand Juni 2026."
         keywords={[
           "Microsoft Copilot Lizenz",
           "Microsoft 365 Copilot Preis",
@@ -118,7 +118,7 @@ const CopilotLicenses = () => {
         schema={schema}
         author={martinLang}
         publishedTime="2025-01-06T09:00:00+01:00"
-        modifiedTime="2026-05-13T09:00:00+02:00"
+        modifiedTime="2026-06-16T09:00:00+02:00"
       />
 
       <ContentLayout
@@ -128,15 +128,15 @@ const CopilotLicenses = () => {
         ]}
         title="Microsoft Copilot Lizenzen: Preisvergleich 2026"
         description="Welche Copilot-Lizenz lohnt sich? M365 Copilot, GitHub Copilot und Copilot Studio im direkten Vergleich – mit allen Infos für Ihre Entscheidung."
-        lastUpdated="13. Mai 2026"
+        lastUpdated="16. Juni 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
         relatedContent={["wissen:microsoft-365-e7-frontier-suite", "wissen:claude-in-microsoft-copilot", "wissen:copilot-roi-berechnen", "wissen:copilot-studio", "wissen:github-copilot"]}
       >
-        {/* Stand Mai 2026 Sticker */}
+        {/* Stand Juni 2026 Sticker */}
         <div className="flex justify-end mb-2">
           <span className="inline-flex items-center gap-1.5 bg-orange-500 text-white text-sm font-bold px-3 py-1.5 rounded-full shadow-md">
-            ✓ Stand Mai 2026
+            ✓ Stand Juni 2026
           </span>
         </div>
 
@@ -316,7 +316,7 @@ const CopilotLicenses = () => {
         <section id="github-copilot" className="mt-12">
           <h2 className="text-2xl md:text-3xl font-bold mb-3">GitHub Copilot</h2>
           <p className="mb-3">
-            GitHub Copilot ist 2026 in fünf Editionen verfügbar – darunter seit Ende 2024 ein kostenloser Einstiegs-Tier. Für Unternehmen sind weiterhin die Pläne Business und Enterprise relevant. Ab Juni 2026 stellt GitHub zudem schrittweise auf usage-basiertes Billing um: Statt fester Request-Limits gilt dann ein monatliches KI-Credit-Budget.
+            GitHub Copilot ist 2026 in mehreren Editionen verfügbar – vom kostenlosen Einstiegs-Tier bis Enterprise. Für Unternehmen sind weiterhin die Pläne Business und Enterprise relevant. Seit dem 1. Juni 2026 ist die Umstellung von festen „Premium-Requests" auf ein monatliches Budget aus GitHub AI Credits aktiv; die unten genannten Request-Kontingente entsprechen dem bisherigen Modell und werden schrittweise in Credit-Budgets überführt. Neu ist zudem der Plan Copilot Max (nur als Upgrade für bestehende Abos) – Neuanmeldungen für Pro, Pro+ und Max sind seit dem 20. April 2026 vorübergehend pausiert.
           </p>
 
           <div className="grid md:grid-cols-2 gap-6 my-6">
@@ -456,9 +456,9 @@ const CopilotLicenses = () => {
               ))}
 
               <div className="bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-lg p-3">
-                <p className="text-xs font-medium text-amber-900 dark:text-amber-100 mb-1">Hinweis: Usage-based Billing ab Juni 2026</p>
+                <p className="text-xs font-medium text-amber-900 dark:text-amber-100 mb-1">Hinweis: Umstellung auf GitHub AI Credits (seit Juni 2026)</p>
                 <p className="text-xs text-amber-800 dark:text-amber-200">
-                  Ab 1. Juni 2026 stellt GitHub auf ein KI-Credit-System um. Business-Kunden erhalten dann monatlich $19 an Credits, Enterprise-Kunden $39. Während einer Übergangsphase (Juni–August 2026) gelten erhöhte Kontingente.
+                  Seit dem 1. Juni 2026 rechnet GitHub nutzungsbasiert über GitHub AI Credits ab. Business-Kunden erhalten rund 1.900, Enterprise-Kunden rund 3.900 AI Credits pro Nutzer und Monat (statt der bisherigen festen Premium-Requests). Während der Übergangsphase (Juni–August 2026) gelten erhöhte Kontingente.
                 </p>
               </div>
             </div>
@@ -513,12 +513,12 @@ const CopilotLicenses = () => {
 
                 <div className="border rounded-lg p-4 bg-primary/5">
                   <h3 className="font-bold text-lg mb-2">Standalone Copilot Studio Lizenz</h3>
-                  <p className="text-2xl font-bold text-primary mb-1">26 €</p>
+                  <p className="text-2xl font-bold text-primary mb-1">ab 173,30 €</p>
                   <p className="text-sm text-muted-foreground mb-1">
-                    pro Nutzer / Monat (zzgl. MwSt.)
+                    für 25.000 Copilot Credits / Monat (zzgl. MwSt.)
                   </p>
                   <p className="text-xs text-muted-foreground mb-3">
-                    oder 173,30 €/Monat für 25.000 Message Credits
+                    verbrauchsbasiert: Pay-as-you-go oder Vorabkauf (bis zu 20 % Rabatt) – kein fester Pro-Nutzer-Preis
                   </p>
                   <div className="space-y-2">
                     <div className="flex items-start gap-2">
