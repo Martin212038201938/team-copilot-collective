@@ -45,7 +45,7 @@ export const trainings: Training[] = [
     slug: "copilot-grundlagen-prompt-design",
     icon: Brain,
     title: "Copilot Grundlagen: Prompt Design & KI-Kompetenz",
-    duration: "Halbtag | Ganztag | 4-8×2h Lernreise",
+    duration: "Halbtag",
     durationISO: "PT4H",
     description: "Fundiertes Einsteiger-Training in die Arbeit mit KI-Assistenten: Sie lernen, wie Sie effektive Prompts formulieren, KI-Outputs kritisch bewerten und Microsoft Copilot Chat strategisch für Recherche, Textarbeit und kreative Aufgaben einsetzen. Ideal für alle, die noch keine Copilot-Lizenz haben oder zunächst die Grundlagen beherrschen wollen.",
     features: [
@@ -57,7 +57,7 @@ export const trainings: Training[] = [
       "Kreative Anwendungen: Brainstorming, Ideengenerierung, Perspektivwechsel",
       "KI-Output kritisch bewerten: Halluzinationen erkennen, Quellen prüfen, Grenzen verstehen",
       "Eigene Prompt-Bibliothek aufbauen: Templates für wiederkehrende Aufgaben entwickeln",
-      "Buchbar als: Halbtag (4h), Ganztag (7h) oder Lernreise (4-8×2h über 4-8 Wochen)"
+      "Buchbar als: Halbtag (4 Stunden)"
     ],
     tiers: ["free"],
     popular: true,
@@ -106,8 +106,8 @@ export const trainings: Training[] = [
     slug: "microsoft-365-copilot-praxis",
     icon: Brain,
     title: "Microsoft 365 Copilot in der Praxis: Word, Excel, PowerPoint, Outlook & Teams",
-    duration: "Halbtag | Ganztag | 2-tägig | Lernreise (4×, 6× oder 8×2h online)",
-    durationISO: "PT4H",
+    duration: "Ganztag | 2-tägig | Lernreise (4× oder 6×2h online) | Präsenz-Kickoff + Lernreise",
+    durationISO: "PT7H",
     description: "Praxisorientiertes Training für Copilot-Lizenzinhaber: Sie lernen, wie Sie Microsoft 365 Copilot direkt in Ihren Office-Anwendungen einsetzen – von der Dokumenterstellung in Word über Datenanalyse in Excel bis zur Meeting-Zusammenfassung in Teams. Mit echten Arbeitsszenarien und direkt anwendbaren Workflows.",
     features: [
       "Copilot in Word: Projektpläne, Angebote und Entscheidungsvorlagen in Minuten statt Stunden erstellen – inklusive Struktur, Formatierung und Zusammenfassungen für die Geschäftsleitung",
@@ -118,7 +118,7 @@ export const trainings: Training[] = [
       "Cross-App-Workflows: Aus einer E-Mail-Kette wird ein strukturiertes Word-Dokument, aus dem Word-Text eine Präsentation – nahtlos zwischen den Apps arbeiten",
       "Prompt Engineering für Office: App-spezifische Prompt-Techniken, die in Word anders funktionieren als in Excel oder PowerPoint – mit sofort einsetzbaren Vorlagen",
       "Eigene Use Cases aus Ihrem Arbeitsalltag praktisch umsetzen",
-      "Buchbar als: Halbtag (4h), Ganztag (7h), 2-tägig oder Online-Lernreise (4×, 6× oder 8×2h)"
+      "Buchbar als: Ganztag (7h), 2-tägig, Online-Lernreise (4× oder 6×2h) oder als Kombination aus Präsenz-Kickoff und weiterführender Online-Lernreise"
     ],
     tiers: ["paid"],
     popular: true,
