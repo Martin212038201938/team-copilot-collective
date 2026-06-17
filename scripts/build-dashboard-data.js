@@ -33,6 +33,8 @@ if (!API_KEY || !DS_USER) {
 const GSC_ACCOUNT = "sc-domain:copilotenschule.de";
 const ADS_ACCOUNT = "4805478290";
 const BING_ACCOUNT = "https://www.copilotenschule.de/";
+const CLARITY_TOKEN = process.env.CLARITY_API_TOKEN;             // Data-Export-API Token (GitHub Secret / .env lokal)
+const CLARITY_API = "https://www.clarity.ms/export-data/api/v1/project-live-insights"; // max. 3 Tage, 10 Calls/Tag
 
 const num = (v) => {
   const n = parseFloat(String(v).replace(",", "."));
@@ -75,6 +77,38 @@ async function safe(label, fn, fallback) {
     console.warn(`WARN ${label}: ${e.message}`);
     return fallback;
   }
+}
+
+/**
+ * Microsoft Clarity Data-Export-API (project-live-insights, letzte 3 Tage).
+ * Liefert Sessions, Nutzer, Scrolltiefe, Dead-/Rage-Clicks und Top-Seiten.
+ * Ohne CLARITY_API_TOKEN: gibt null zurück (Clarity bleibt "nicht verbunden").
+ */
+async function fetchClarity() {
+  if (!CLARITY_TOKEN) return null;
+  const res = await fetch(`${CLARITY_API}?numOfDays=3`, { headers: { Authorization: `Bearer ${CLARITY_TOKEN}` } });
+  if (!res.ok) throw new Error(`Clarity HTTP ${res.status}`);
+  const arr = await res.json();
+  if (!Array.isArray(arr)) throw new Error("Clarity-Antwort ohne Array");
+  const info = (name) => { const m = arr.find((x) => x.metricName === name); return m && Array.isArray(m.information) ? m.information : []; };
+  const t = info("Traffic")[0] || {};
+  const scroll = info("ScrollDepth")[0] || {};
+  const engage = info("EngagementTime")[0] || {};
+  const dead = info("DeadClickCount")[0] || {};
+  const rage = info("RageClickCount")[0] || {};
+  const topPages = info("PopularPages").slice(0, 6).map((p) => ({ url: p.url, visits: num(p.visitsCount) }));
+  return {
+    sessions: num(t.totalSessionCount),
+    bot_sessions: num(t.totalBotSessionCount),
+    users: num(t.distinctUserCount),
+    pages_per_session: t.pagesPerSessionPercentage != null ? round2(num(t.pagesPerSessionPercentage)) : null,
+    avg_scroll_depth: scroll.averageScrollDepth != null ? round2(num(scroll.averageScrollDepth)) : null,
+    engagement_active_sec: engage.activeTime != null ? num(engage.activeTime) : null,
+    engagement_total_sec: engage.totalTime != null ? num(engage.totalTime) : null,
+    dead_click_pct: dead.sessionsWithMetricPercentage != null ? round2(num(dead.sessionsWithMetricPercentage)) : null,
+    rage_click_pct: rage.sessionsWithMetricPercentage != null ? round2(num(rage.sessionsWithMetricPercentage)) : null,
+    top_pages: topPages,
+  };
 }
 
 async function main() {
@@ -151,6 +185,9 @@ async function main() {
   const bingImpr7 = num(bingObj.impressions);
   const bingConnected = bingRows.length > 0;
 
+  // ---- Microsoft Clarity: Verhaltensdaten (letzte 3 Tage) ----
+  const clarity = await safe("Clarity", fetchClarity, null);
+
   // ================= data.json bauen =================
   const data = {
     meta: {
@@ -165,7 +202,7 @@ async function main() {
       gsc: { connected: gscDaily.length > 0, label: "Google Search Console", note: "Supermetrics REST-API" },
       google_ads: { connected: true, label: "Google Ads", note: adsClicks7 > 0 ? "Aktiv" : "Verbunden, in den letzten 7 Tagen keine Klicks/Conversions" },
       bing: { connected: bingConnected, label: "Bing Webmaster", note: bingClicks7 > 0 ? "Verbunden" : "Verbunden, sehr wenig Bing-Traffic" },
-      clarity: { connected: false, label: "Microsoft Clarity", note: "Optional, noch nicht angebunden" },
+      clarity: { connected: !!clarity, label: "Microsoft Clarity", note: clarity ? "Verbunden (Data-Export-API, letzte 3 Tage)" : "Optional, noch nicht angebunden" },
       pagespeed: { connected: false, label: "PageSpeed Insights", note: "Optional, noch nicht angebunden" },
       llm: { connected: false, label: "LLM-Sichtbarkeit", note: "Optional" },
     },
@@ -177,7 +214,7 @@ async function main() {
       ads_cost_7d_eur: { value: adsCost7, delta_pct: null, source: "google_ads" },
       ads_conversions_7d: { value: adsConv7, delta_pct: null, source: "google_ads" },
       bing_clicks_7d: { value: bingConnected ? bingClicks7 : null, delta_pct: null, source: "bing" },
-      clarity_sessions_7d: { value: null, delta_pct: null, source: "clarity" },
+      clarity_sessions_7d: { value: clarity ? clarity.sessions : null, delta_pct: null, source: "clarity" },
     },
     performance: { average_performance_score: null, core_web_vitals_status: null, pages: [] },
     indexing: {
@@ -193,7 +230,18 @@ async function main() {
         : ["Sobald mehr GSC-Daten vorliegen, erscheinen hier die aussichtsreichsten Quick-Win-Keywords."],
     },
     llm_visibility: { status: null, checks: [] },
-    report_highlights: buildHighlights({ gscClicks7, gscClicksPrev7, gscImpr7, gscPos7, adsClicks7, adsConv7, bingConnected, bingClicks7, topByClicks }),
+    clarity: clarity ? {
+      sessions_3d: clarity.sessions,
+      users_3d: clarity.users,
+      bot_sessions_3d: clarity.bot_sessions,
+      pages_per_session: clarity.pages_per_session,
+      avg_scroll_depth: clarity.avg_scroll_depth,
+      engagement_active_sec: clarity.engagement_active_sec,
+      dead_click_pct: clarity.dead_click_pct,
+      rage_click_pct: clarity.rage_click_pct,
+      top_pages: clarity.top_pages,
+    } : null,
+    report_highlights: buildHighlights({ gscClicks7, gscClicksPrev7, gscImpr7, gscPos7, adsClicks7, adsConv7, bingConnected, bingClicks7, topByClicks, clarity }),
     availability: { https_ok: true, homepage_status: 200, checked_pages: 1 },
   };
 
@@ -249,6 +297,7 @@ function buildHighlights(x) {
   else h.push({ severity: "action", text: "Google-Ads-Kampagne aktiv, aber in den letzten 7 Tagen noch keine Klicks/Conversions." });
   if (!x.bingConnected || x.bingClicks7 === 0) h.push({ severity: "info", text: "Bing-Traffic aktuell sehr gering — Fokus bleibt Google." });
   if (x.topByClicks[0]) h.push({ severity: "info", text: `Top-Suchbegriff: „${x.topByClicks[0].query}“ (${x.topByClicks[0].clicks} Klicks, Position ${x.topByClicks[0].position}).` });
+  if (x.clarity) h.push({ severity: "info", text: `Clarity: ${x.clarity.sessions} Sessions in 3 Tagen, Ø Scrolltiefe ${x.clarity.avg_scroll_depth ?? "–"}%, Dead-Clicks ${x.clarity.dead_click_pct ?? "–"}% der Sitzungen.` });
   return h;
 }
 

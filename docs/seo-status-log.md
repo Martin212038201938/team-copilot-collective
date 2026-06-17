@@ -8,6 +8,24 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 
 ## Logs
 
+### 2026-06-17 — Clarity Dead-Click-Fix `/wissen/copilot-in-outlook-nutzen-tipps` (Cron, Draft-only)
+
+**Cron:** `copilotenschule-seo-clarity-fix-copilot-in-outlook-nutzen-tipps` (Folge aus SEO-Monatsreview 10.06.). Ziel: Dead-Click-Anti-Pattern auf der Top-Traffic-Seite beheben — **kein Push, nur Draft**.
+
+**Befund:** Die Heatmap-Treiber `svg.lucide.lucide-x[1]` (8 Klicks / 22,86 %) und `DIV.absolute.backdrop-blur-sm[1]` liegen **nicht** im Artikel-TSX, sondern in der **globalen Komponente `src/components/ArticlePopup.tsx`** (Lead-Gen-Popup nach 20 s, eingehängt via `ContentLayout.tsx:238` → auf allen Wissensseiten).
+
+**Diagnose-Korrektur:** Entgegen der Hypothese vom 10.06. sind X-Icon **und** Backdrop **nicht** funktionslos — beide haben `onClick={handleClose}` und schließen korrekt. Reale Ursachen: SVG ohne `pointer-events-none` (Klick wird auf dem SVG statt dem Button protokolliert), 300-ms-Fade als Pseudo-Nicht-Reaktion, ~32-px-Hit-Area, und das eigentliche Anti-Pattern (Top-Seite: #1-Aktion = Popup wegklicken).
+
+**Vorgeschlagener Fix (Draft):** `docs/drafts/clarity-fix-copilot-in-outlook-nutzen-tipps.md` — 3 risikoarme Klassen-/Markup-Änderungen in `ArticlePopup.tsx` (A: Wrapper im Closing `pointer-events-none`; B: Backdrop dismissibel lassen + `cursor-pointer`/`aria-hidden`; C: X-Button 44×44 px + `<X pointer-events-none>`) + optionale strategische Maßnahmen (sessionStorage-Frequency-Cap, sanfterer Trigger). **Scope-Warnung:** Fix wirkt site-weit (geteilte Komponente).
+
+**Verifikation:** Gedanklicher Build-Check (nur Tailwind-Klassen + 1 Zeile in `handleClose`, keine neuen Imports/Typen; alle Utilities bereits im Repo in Verwendung) → baubar. Voller Prerender-Build bewusst nicht gelaufen (Draft-only, kein src/ verändert). Title/H1/Meta/Canonical unverändert; Seite nicht in `docs/protected-pages.md`.
+
+**Hinweis:** `git status` zeigt fremde, vorbestehende uncommittete Änderungen (`D public/images/copilot-cowork-credits-timeline.png`, `M src/pages/CopilotCoworkAbrechnungCredits.tsx`) — **nicht** von diesem Cron, **nicht** angefasst. User sollte vor Anwenden des Fixes klären (committen/verwerfen).
+
+**Risiko-Status:** grün. **Clarity-Issue** in `docs/clarity-insights.md` auf „fix vorgeschlagen" gesetzt. **Nächster Schritt:** User-Review des Drafts → bei Freigabe Diff anwenden + via GitHub Desktop committen.
+
+---
+
 ### 2026-06-16 — Manuelle Status-Aufnahme „Anschluss-Session" (kein Cron)
 
 **Anlass:** Vorgänger-Chat („SEO Phase Conductor", lief auf abgekündigtem Modell) nicht fortsetzbar. Übergabe-Notiz aus Health-Check 15.06.: „SSR-Bug partiell gefixt — 3 /wissen/-Seiten noch offen (copilot-datenschutz, copilot-lizenzen, microsoft-365-copilot-preis), priorisieren". Aufgabe: anschließen + neue Erkenntnisse einarbeiten.

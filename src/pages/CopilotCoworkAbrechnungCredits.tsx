@@ -18,7 +18,6 @@ const CopilotCoworkAbrechnungCredits = () => {
 
   const tableOfContents = [
     { id: "was-sich-aendert", title: "Was sich am 16. Juni geändert hat", level: 2 },
-    { id: "kein-standalone", title: "Cowork bleibt an die Copilot-Lizenz gebunden", level: 2 },
     { id: "credits", title: "Wie Copilot Credits abgerechnet werden", level: 2 },
     { id: "planbarkeit", title: "Warum die Kosten planbar bleiben", level: 2 },
     { id: "dach", title: "Was DACH-Unternehmen zusätzlich beachten müssen", level: 2 },
@@ -171,7 +170,7 @@ const CopilotCoworkAbrechnungCredits = () => {
         <div className="prose prose-lg max-w-none dark:prose-invert mb-6">
           <p className="text-lg leading-relaxed">
             Seit Ende vergangenen Jahres nutze ich Claude Cowork sehr intensiv, und seit Anfang 2026 arbeite ich
-            nicht mehr nur AI-first, sondern agentic-first. Damit meine ich etwas Konkretes: Wiederkehrende
+            nicht mehr nur AI-first, sondern agentic-first. Was bedeutet das? Wiederkehrende
             Aufgaben, komplexe Aufgaben, große Fleißarbeiten und alles, was meine eigenen Fähigkeiten an
             irgendeinem Punkt übersteigt, gebe ich an Agenten ab und prüfe das Ergebnis, statt es Schritt für
             Schritt selbst zu erledigen. Als ich gelesen habe, dass Microsoft die agentischen Fähigkeiten seines
@@ -180,7 +179,7 @@ const CopilotCoworkAbrechnungCredits = () => {
             Arbeitsprozessen, die man in einer sicheren Umgebung gestalten kann.
           </p>
           <p>
-            Im Frontier-Programm, an dem ich teilnehme, ist Copilot Cowork seit ein paar Wochen freigeschaltet,
+            Im Frontier-Programm, an dem wir mit der Copilotenschule natürlich teilnehmen, ist Copilot Cowork seit ein paar Wochen freigeschaltet,
             und ich nutze es parallel zu meinen anderen KI-Modellen. Dass das nicht dauerhaft als Gratis-Beigabe
             laufen würde, war absehbar. Eine Mitgliedschaft, mit der man bei Anthropic wirklich produktiv
             arbeiten kann, kostet rund 100 Euro im Monat – mit der 20-Euro-Variante kommt man nicht weit. Ein
@@ -241,45 +240,6 @@ const CopilotCoworkAbrechnungCredits = () => {
                 </ul>
               </CardContent>
             </Card>
-          </div>
-
-          {/* Timeline */}
-          <figure className="my-8">
-            <img
-              src="/images/copilot-cowork-credits-timeline.png"
-              alt="Zeitleiste der Copilot-Cowork-Abrechnung: Frontier-Vorschau ab 30. März 2026, General Availability am 16. Juni 2026, Abrechnungsbeginn für Frontier-Tenants am 1. Juli 2026"
-              className="w-full rounded-lg border shadow-sm"
-              loading="lazy"
-            />
-            <figcaption className="mt-2 text-sm text-muted-foreground text-center">
-              Vom kostenlosen Frontier-Test zur Abrechnung: Für bestehende Frontier-Tenants beginnt die
-              Credits-Abrechnung am 1. Juli 2026.
-            </figcaption>
-          </figure>
-        </section>
-
-        {/* Kein Standalone */}
-        <section id="kein-standalone" className="mb-6">
-          <h2 className="!mt-10 !mb-2 text-2xl md:text-3xl font-bold">
-            Cowork bleibt an die Copilot-Lizenz gebunden
-          </h2>
-          <div className="prose prose-lg max-w-none dark:prose-invert">
-            <p>
-              Diesen Punkt verstehen in den Diskussionen, die ich gerade führe, die wenigsten richtig: Copilot
-              Cowork ist kein Standalone-Produkt, das man separat und günstig dazukaufen kann. Microsoft setzt
-              eine aktive Microsoft 365 Copilot-Lizenz voraus, um Cowork überhaupt zu öffnen. Die Credits-Abrechnung
-              kommt zusätzlich obendrauf, sie ersetzt die Lizenz nicht. Wer also auf eine billige Einzellösung
-              gehofft hat, rechnet falsch.
-            </p>
-            <p>
-              Für die Planung heißt das: Die Frage lautet nicht „Cowork oder Copilot", sondern „Welche unserer
-              bereits lizenzierten Teams holen aus agentenbasierten Abläufen den größten Nutzen?". Wer die{" "}
-              <Link to="/wissen/microsoft-copilot-lizenzen" className="text-primary hover:underline">
-                Copilot-Lizenzlandschaft
-              </Link>{" "}
-              ohnehin gerade sortiert, sollte Cowork als zusätzlichen, verbrauchsabhängigen Baustein darauf
-              mitdenken – nicht als Ersatz.
-            </p>
           </div>
         </section>
 

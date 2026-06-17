@@ -24,9 +24,9 @@
       "note": "Verbunden, seit Ende Mai praktisch kein Bing-Traffic"
     },
     "clarity": {
-      "connected": false,
+      "connected": true,
       "label": "Microsoft Clarity",
-      "note": "Optional, noch nicht angebunden"
+      "note": "Verbunden (Data-Export-API, letzte 3 Tage)"
     },
     "pagespeed": {
       "connected": false,
@@ -76,7 +76,7 @@
       "source": "bing"
     },
     "clarity_sessions_7d": {
-      "value": null,
+      "value": 185,
       "delta_pct": null,
       "source": "clarity"
     }
@@ -120,6 +120,24 @@
     "status": null,
     "checks": []
   },
+  "clarity": {
+    "sessions_3d": 185,
+    "users_3d": 220,
+    "bot_sessions_3d": 32,
+    "pages_per_session": 1.03,
+    "avg_scroll_depth": 49.21,
+    "engagement_active_sec": 101,
+    "dead_click_pct": 15.14,
+    "rage_click_pct": 0.54,
+    "top_pages": [
+      { "url": "https://copilotenschule.de/", "visits": 43 },
+      { "url": "https://copilotenschule.de/wissen/claude-in-microsoft-copilot", "visits": 28 },
+      { "url": "https://copilotenschule.de/wissen/copilot-in-excel-aktivieren", "visits": 17 },
+      { "url": "https://copilotenschule.de/wissen/copilot-in-outlook-nutzen-tipps", "visits": 13 },
+      { "url": "https://copilotenschule.de/wissen/ki-halluzinationen-vermeiden", "visits": 13 },
+      { "url": "https://copilotenschule.de/ueber-uns", "visits": 12 }
+    ]
+  },
   "report_highlights": [
     {
       "severity": "info",
@@ -132,6 +150,10 @@
     {
       "severity": "info",
       "text": "Bing: verbunden, aber seit Ende Mai praktisch kein Traffic – Fokus bleibt Google."
+    },
+    {
+      "severity": "info",
+      "text": "Clarity: 185 Sessions in 3 Tagen, Ø Scrolltiefe 49% – stärkste Einstiege über Startseite und Wissensartikel (Claude in Copilot, Excel aktivieren)."
     }
   ],
   "availability": {

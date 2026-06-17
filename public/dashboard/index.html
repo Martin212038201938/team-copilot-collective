@@ -122,6 +122,12 @@
       <div class="card"><h3>SEO-Befunde</h3><div id="seo"></div></div>
     </div>
 
+    <h2 class="sec">Nutzerverhalten (Microsoft Clarity, letzte 3 Tage)</h2>
+    <div class="grid cards">
+      <div class="card"><h3>Verhalten &amp; Qualität</h3><div id="clarity"></div></div>
+      <div class="card"><h3>Top-Seiten (Clarity)</h3><div id="clarity-pages"></div></div>
+    </div>
+
     <h2 class="sec">Empfehlungen aus dem Daily Report</h2>
     <div class="card"><div id="report"></div></div>
 
@@ -168,7 +174,7 @@
       ["Organische Klicks","gsc_clicks_7d"],["Impressionen","gsc_impressions_7d"],
       ["Ø Position Google","gsc_avg_position_7d"],["Ads-Klicks","ads_clicks_7d"],
       ["Ads-Kosten (€)","ads_cost_7d_eur"],["Ads-Conversions","ads_conversions_7d"],
-      ["Bing-Klicks","bing_clicks_7d"],["Clarity-Sessions","clarity_sessions_7d"]
+      ["Bing-Klicks","bing_clicks_7d"],["Clarity-Sessions (3T)","clarity_sessions_7d"]
     ];
     el("kpis").innerHTML = kpiDefs.map(([lbl,key])=>{
       const k=K[key]||{}; const has=k.value!==null&&k.value!==undefined;
@@ -219,6 +225,26 @@
     if(seo.issues && seo.issues.length){
       el("seo").innerHTML=seo.issues.map(i=>'<div class="issue"><div class="sev '+(i.severity||"info")+'"></div><div><strong>'+(i.url||"")+'</strong> — '+(i.detail||i.type||"")+(i.recommendation?'<br><span style="color:var(--muted)">→ '+i.recommendation+'</span>':'')+'</div></div>').join("");
     } else { el("seo").innerHTML=pendingBox("Keine offenen SEO-Befunde erfasst (oder Analyse noch nicht gelaufen)."); }
+
+    // Microsoft Clarity (Verhalten)
+    const cl=data.clarity;
+    if(cl){
+      el("clarity").innerHTML='<table>'+
+        '<tr><td>Sessions (3 Tage)</td><td class="num">'+fmt(cl.sessions_3d)+'</td></tr>'+
+        '<tr><td>Eindeutige Nutzer</td><td class="num">'+fmt(cl.users_3d)+'</td></tr>'+
+        '<tr><td>Bot-Sessions</td><td class="num">'+fmt(cl.bot_sessions_3d)+'</td></tr>'+
+        '<tr><td>Ø Scrolltiefe</td><td class="num">'+(cl.avg_scroll_depth!=null?cl.avg_scroll_depth+' %':'–')+'</td></tr>'+
+        '<tr><td>Ø aktive Zeit/Session</td><td class="num">'+(cl.engagement_active_sec!=null?cl.engagement_active_sec+' s':'–')+'</td></tr>'+
+        '<tr><td>Dead-Clicks (Sitzungen)</td><td class="num">'+(cl.dead_click_pct!=null?cl.dead_click_pct+' %':'–')+'</td></tr>'+
+        '<tr><td>Rage-Clicks (Sitzungen)</td><td class="num">'+(cl.rage_click_pct!=null?cl.rage_click_pct+' %':'–')+'</td></tr>'+
+        '</table>';
+      el("clarity-pages").innerHTML=(cl.top_pages&&cl.top_pages.length)
+        ? '<table><tr><th>Seite</th><th class="num">Besuche</th></tr>'+cl.top_pages.map(p=>'<tr><td>'+(p.url||"").replace("https://copilotenschule.de","")+'</td><td class="num">'+fmt(p.visits)+'</td></tr>').join("")+'</table>'
+        : pendingBox("Keine Seiten-Daten.");
+    } else {
+      el("clarity").innerHTML=pendingBox("Clarity wird angebunden, sobald der API-Token gesetzt ist.");
+      el("clarity-pages").innerHTML=pendingBox("—");
+    }
 
     // Report Highlights
     const rep=data.report_highlights||[];

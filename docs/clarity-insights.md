@@ -202,6 +202,17 @@ nach ca. 2 Wochen Laufzeit empfohlen.
 
 ---
 
+### 2026-06-17 — Issue-Update: Dead-Click-Treiber lokalisiert → Fix vorgeschlagen
+**Quelle:** Cron-Lauf 2026-06-17 (`copilotenschule-seo-clarity-fix-copilot-in-outlook-nutzen-tipps`) — Code-Diagnose im Repo (kein Push)
+**Betroffene Page:** `/wissen/copilot-in-outlook-nutzen-tipps` (Treiber-Element ist aber **global**)
+**Befund:** Die Elemente `svg.lucide.lucide-x[1]` und `DIV.absolute.backdrop-blur-sm[1]` stammen **nicht** aus dem Artikel-TSX, sondern aus der globalen Komponente `src/components/ArticlePopup.tsx` (Lead-Gen-Popup, nach 20 s, via `ContentLayout.tsx:238` auf allen Wissensseiten).
+**Korrektur der Hypothese vom 10.06.:** X-Icon **und** Backdrop haben einen funktionierenden `onClick={handleClose}` — das Popup schließt korrekt. Sie sind also **keine** funktionslosen Dead-Ends. Reale Ursachen: (1) das `<X>`-SVG hat kein `pointer-events-none` → Clarity protokolliert den Klick auf dem SVG statt auf dem Button-mit-Handler; (2) 300-ms-Fade in `handleClose` wirkt wie Nicht-Reaktion → Dead-Click-Heuristik + Mehrfachklicks; (3) ~32-px-Hit-Area (unter 44 px); (4) eigentliches Anti-Pattern: auf der Top-Seite ist „Popup schließen" die #1-Aktion (22,86 %).
+**Empfohlene Maßnahme:** Code-Diff in `docs/drafts/clarity-fix-copilot-in-outlook-nutzen-tipps.md` — (A) Overlay-Wrapper im Closing `pointer-events-none`; (B) Backdrop dismissibel lassen + `cursor-pointer`/`aria-hidden` (NICHT `pointer-events-none`); (C) X-Button 44×44 px + `<X pointer-events-none>`. Strategisch (separat): sessionStorage-Frequency-Cap + sanfterer Trigger.
+**Scope-Warnung:** `ArticlePopup` ist geteilt → Fix wirkt site-weit. Bewusst freigeben.
+**Status:** **fix vorgeschlagen** (Draft erstellt, kein Push) — wartet auf User-Review/Umsetzung via GitHub Desktop.
+
+---
+
 ### 2026-06-15 — Trend (positiv): Dead-Click unter Schwelle gefallen
 **Beobachtungs-Zeitraum:** 2026-06-01 bis 2026-06-15
 **Event:** Dead-Click-Rate (3T-API)

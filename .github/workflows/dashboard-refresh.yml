@@ -30,6 +30,7 @@ jobs:
         env:
           SUPERMETRICS_API_KEY: ${{ secrets.SUPERMETRICS_API_KEY }}
           SUPERMETRICS_DS_USER: ${{ secrets.SUPERMETRICS_DS_USER }}
+          CLARITY_API_TOKEN: ${{ secrets.CLARITY_API_TOKEN }}
         run: node scripts/build-dashboard-data.js
 
       - name: JSON zurück-committen (Historie persistieren)
