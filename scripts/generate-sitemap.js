@@ -181,6 +181,7 @@ const knowledgeSlugs = [
   'copilot-pages-loop-notebooks-sharepoint-workflows', 'interne-copilot-trainer-ausbilden',
   'copilot-agent-mode-word-excel-powerpoint', 'copilot-schulungsanbieter-deutschland-vergleich',
   'microsoft-copilot-varianten-unterschiede', 'eu-ai-act-mitarbeiter-schulung-august-2026',
+  'copilot-cowork-abrechnung-copilot-credits',
 ];
 
 const knowledgePages = knowledgeSlugs.map(slug => ({

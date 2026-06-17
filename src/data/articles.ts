@@ -30,6 +30,17 @@ export interface ArticleData {
 // Alle Artikel - sortiert nach Veröffentlichungsdatum (neueste zuerst)
 export const ALL_ARTICLES: ArticleData[] = [
   {
+    id: "copilot-cowork-abrechnung-copilot-credits",
+    title: "Copilot Cowork wird abgerechnet: Was die Copilot-Credits-Abrechnung ab Juli 2026 bedeutet",
+    description: "Copilot Cowork ist seit 16. Juni 2026 GA und wird über Copilot Credits abgerechnet. Was das kostet, warum die Copilot-Lizenz Pflicht bleibt und was DACH-Firmen tun müssen.",
+    link: "/wissen/copilot-cowork-abrechnung-copilot-credits",
+    badge: "Lizenzen & Kosten",
+    icon: "€",
+    lastUpdated: "17. Juni 2026",
+    publishDate: "2026-06-17",
+    publishTime: "09:00"
+  },
+  {
     id: "eu-ai-act-mitarbeiter-schulung-august-2026",
     title: "EU AI Act: Die KI-Schulungspflicht ab August 2026 – was Unternehmen jetzt nachweisen müssen",
     description: "Artikel 4 EU AI Act verpflichtet zu KI-Kompetenz der Mitarbeitenden. Ab 2. August 2026 wird durchgesetzt – was Sie nachweisen müssen.",

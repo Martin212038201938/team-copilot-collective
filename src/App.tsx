@@ -51,6 +51,7 @@ import CopilotFuerExcel from "./pages/CopilotFuerExcel";
 import KiSchulungMitarbeiterPflicht from "./pages/KiSchulungMitarbeiterPflicht";
 import Microsoft365E7FrontierSuite from "./pages/Microsoft365E7FrontierSuite";
 import CopilotClaudeIntegration from "./pages/CopilotClaudeIntegration";
+import CopilotCoworkAbrechnungCredits from "./pages/CopilotCoworkAbrechnungCredits";
 import CopilotVariantenUnterschiede from "./pages/CopilotVariantenUnterschiede";
 import CopilotInOutlook from "./pages/CopilotInOutlook";
 import CopilotInTeamsZeitGewinnen from "./pages/CopilotInTeamsZeitGewinnen";
@@ -113,6 +114,7 @@ const App = () => (
           <Route path="/wissen/ki-schulung-mitarbeiter-pflicht" element={<KiSchulungMitarbeiterPflicht />} />
           <Route path="/wissen/microsoft-365-e7-frontier-suite" element={<Microsoft365E7FrontierSuite />} />
           <Route path="/wissen/claude-in-microsoft-copilot" element={<CopilotClaudeIntegration />} />
+          <Route path="/wissen/copilot-cowork-abrechnung-copilot-credits" element={<CopilotCoworkAbrechnungCredits />} />
           <Route path="/wissen/microsoft-copilot-varianten-unterschiede" element={<CopilotVariantenUnterschiede />} />
           <Route path="/wissen/copilot-in-outlook-nutzen-tipps" element={<CopilotInOutlook />} />
           <Route path="/wissen/copilot-in-teams-zeit-gewinnen" element={<CopilotInTeamsZeitGewinnen />} />
