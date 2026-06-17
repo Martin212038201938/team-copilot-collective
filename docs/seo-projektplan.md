@@ -2,7 +2,7 @@
 
 **Lebende Doku** — wird bei jedem Schritt aktualisiert. Cron-Jobs lesen diese Datei, entscheiden auf Basis der if/then-Logik, schreiben ins [`seo-status-log.md`](seo-status-log.md).
 
-**Letzter Update:** 16. Juni 2026 (Manuelle Status-Aufnahme „Anschluss-Session": der im Health-Check vom 15.06. gemeldete SSR-Restbug auf 3 /wissen/-Seiten wurde **live verifiziert → Fehlalarm**. `microsoft-copilot-lizenzen` und `copilot-sicherheit-datenschutz` sind vollständig pre-gerendert (Title, Meta, Canonical, Schema, voller Body im Initial-HTML); deckt sich mit Weekly-Audit 15.06. (67/67 ✅, 0 🔴). Konsequenz: **kein Eingriff an gut rankenden Seiten**, stattdessen Pivot zum sicheren additiven Hebel **Index-Coverage** (interne Verlinkung) → neue Maßnahme A6 + Recheck-Cron. Vorher: 11. Juni 2026 — Externer Berater-Review (`seo-berater-review-2026-06-11.md`), SEA-Start KW 25 + Outbound-Mailkampagne.)
+**Letzter Update:** 17. Juni 2026 (Phase-Conductor-Lauf: C1/C2/C4 haben heute die 14-Tage-„vergessen"-Schwelle überschritten (registriert 27.05., ohne Cron). Conductor-Sicherheitsnetz greift → 2 Draft-Crons angelegt: `copilotenschule-seo-c4-schema-konsolidierung-draft` (24.06., Priorität, zahlt auf DoD #1+#3) und `copilotenschule-seo-c1-c2-technik-draft` (09.07., parkiert-technisch). C4/C1/C2 auf „⏳ scheduled". Phase 3 bleibt aktiv, DoD 4/8, Risiko 🟡 (Funnel-Fix + mehrere SEO-src/-Änderungen seit 11.06. unverpusht). Vorher: 16. Juni 2026 — Manuelle Status-Aufnahme „Anschluss-Session": der im Health-Check vom 15.06. gemeldete SSR-Restbug auf 3 /wissen/-Seiten wurde **live verifiziert → Fehlalarm**. `microsoft-copilot-lizenzen` und `copilot-sicherheit-datenschutz` sind vollständig pre-gerendert (Title, Meta, Canonical, Schema, voller Body im Initial-HTML); deckt sich mit Weekly-Audit 15.06. (67/67 ✅, 0 🔴). Konsequenz: **kein Eingriff an gut rankenden Seiten**, stattdessen Pivot zum sicheren additiven Hebel **Index-Coverage** (interne Verlinkung) → neue Maßnahme A6 + Recheck-Cron. Vorher: 11. Juni 2026 — Externer Berater-Review (`seo-berater-review-2026-06-11.md`), SEA-Start KW 25 + Outbound-Mailkampagne.)
 
 ---
 
@@ -40,11 +40,11 @@ Aus dem ursprünglichen Maßnahmenkatalog [`seo-massnahmenkatalog-2026-05-27.md`
 | B3a | Hub-Artikel EU AI Act August 2026 | ✅ LIVE seit 10.06. (HTTP 200, GSC-Indexierung beantragt). 11.06.: Kannibalisierungs-Fix ggü. `/wissen/ki-schulung-mitarbeiter-pflicht` in src/ (Querverlinkung + Intent-Trennung) — wartet auf Push |
 | B3b | Hub-Artikel QCG-Förderung | 🔵 offen |
 | B3c | Hub-Artikel Inhouse-Schulung | 🔵 offen |
-| B4 | Trust-Signal-Block Homepage | 🔵 offen (Logo-Freigaben Kunden) |
-| C1 | PageSpeed-API-Quota lösen | 🔵 offen |
-| C2 | Cache-Control für Assets | 🔵 offen |
+| B4 | Trust-Signal-Block Homepage | ✅ in src/ umgesetzt 11.06. (`CustomerLogos.tsx`, Text-Fallback ohne Logo-Freigaben — User-Entscheidung; eingebaut in Index.tsx + UeberUns.tsx). Wartet auf User-Push. B4-Cron 20.07. = Verifikationslauf |
+| C1 | PageSpeed-API-Quota lösen | ⏳ scheduled — Draft-Cron `copilotenschule-seo-c1-c2-technik-draft` (09.07.) |
+| C2 | Cache-Control für Assets | ⏳ scheduled — Draft-Cron `copilotenschule-seo-c1-c2-technik-draft` (09.07.) |
 | C3 | Sitemap-Generator erweitern | ✅ erledigt 27.05. (Teil von A4) |
-| C4 | Schema.org-Konsolidierung | 🔵 offen |
+| C4 | Schema.org-Konsolidierung | ⏳ scheduled 17.06. — Draft-Cron `copilotenschule-seo-c4-schema-konsolidierung-draft` (24.06.). Teil (logo/#organization) bereits 09.06. erledigt; offen: breitere Konsolidierung. Zahlt auf DoD #1+#3 |
 | D1 | ProvenExpert-Profil | 🔵 offen (lange Aufholzeit) |
 | D2 | DACH-Weiterbildungsverzeichnisse | 🔵 offen |
 | D3 | Listicle-Outreach | 🔵 offen |
@@ -189,6 +189,8 @@ Diese Cron-Jobs erledigen die Roadmap weitgehend autonom. Jeder einmalige Cron p
 | `copilotenschule-seo-clarity-fix-copilot-in-outlook-nutzen-tipps` | Di 17.06. 10:30 | Anti-Pattern-Fix | Dead-Click-Fix-Diff (lucide-x + backdrop-blur) in `docs/drafts/` |
 | `copilotenschule-seo-pattern-transfer-2026-06-24` | Mi 24.06. 10:30 | Best-Practice-Transfer | Umgewidmet (11.06.): Verifikationslauf — CTA-Brücke-Draft wurde vorgezogen (`docs/drafts/pattern-transfer-content-to-offer-cta.md`), Cron prüft Einbau + erste Klick-Daten |
 | `copilotenschule-seo-index-coverage-recheck` | Mo 30.06. 10:30 | A6 Index-Coverage | Prüft, ob die A6-Zielseiten inzwischen indexiert sind; re-pingt IndexNow + stellt GSC-Indexierungsanfrage für Nachzügler. Nur Doku/Drafts, kein Push |
+| `copilotenschule-seo-c4-schema-konsolidierung-draft` | Mi 24.06. 10:30 | C4 Schema-Konsolidierung | Befund + Diff-Entwurf in `docs/drafts/`; Protected Pages ausgespart, kein Push. Angelegt 17.06. via Conductor-Sicherheitsnetz (DoD #1+#3) |
+| `copilotenschule-seo-c1-c2-technik-draft` | Do 09.07. 10:30 | C1 PageSpeed-Quota + C2 Cache-Control | Technischer Befund + Lösungs-Entwurf in `docs/drafts/`, kein Push. Angelegt 17.06. via Conductor-Sicherheitsnetz (parkiert-technisch) |
 
 **Wenn Cron-Job läuft, aber Vorbedingung nicht erfüllt:** Er schiebt sich um 14 Tage auf einen Retry-Cron mit `-retry`-Suffix, deaktiviert sich selbst. Conductor erkennt das beim nächsten Lauf und entscheidet weiter.
 
@@ -217,3 +219,5 @@ Aktuelle Phase: **Phase 3 — Content-Block** (Phase 1 Exit-Kriterium erfüllt 0
 - **SSR-Restbug = Fehlalarm** (live verifiziert 16.06., DoD #2 erfüllt). Phase 1/2/2b (Pre-Render) sind damit historisch abgeschlossen — Conductor soll sie nicht wieder öffnen.
 - **Aktiver Hebel: A6 Index-Coverage** statt SSR. Echtes offenes Thema laut Status-Log = „gecrawlt/gefunden – nicht indexiert" (15.06.: 9 + 16 von 92). Maßnahme: rein additive interne Verlinkung auf die betroffenen Seiten + IndexNow/GSC-Resubmit. Entwurf: `docs/drafts/index-coverage-interne-verlinkung-2026-06-16.md`. Verifikation via neuem Cron `copilotenschule-seo-index-coverage-recheck` (30.06.).
 - **C4 (Schema-Konsolidierung)** bleibt vorgemerkt, ist aber das einzige „Live-Seiten"-Thema → nur auf Branch, mit `validate-seo`, Protected Pages im ersten Durchlauf ausgespart.
+
+**Phase-Conductor-Lauf 17.06.2026:** Phase 3 bleibt aktiv (kein Wechsel, DoD 4/8). Sicherheitsnetz ausgelöst: C1, C2, C4 hatten heute die 14-Tage-„vergessen"-Schwelle ohne Cron überschritten (registriert 27.05.). Wie vom Conductor-Lauf 09.06. angekündigt → Draft-Crons angelegt: **C4** (24.06., vorgezogen wg. DoD #1 Indexierung + #3 SEO-Score) und **C1/C2** kombiniert (09.07., parkiert-technisch). D2/D4/D5 bleiben unberührt (Phase-4-Maßnahmen, Vorbedingung „ab 25.06." noch nicht erreicht). D1 (ProvenExpert) bleibt ohne neuen Cron — erfordert User-Account-Anlage (Captcha), Reminder lief bereits 10.06.; in Notification gespiegelt. Risiko 🟡: Funnel Stufe 1→2 weiterhin 0 % und mehrere SEO-src/-Änderungen (CTA-Brücke Welle 1, B4 Trust-Block, Google-Ads-Tracking) seit 11.06. unverpusht — echter Engpass ist User-Review+Push, nicht die Roadmap.
