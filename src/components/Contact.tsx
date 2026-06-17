@@ -116,14 +116,11 @@ const Contact = () => {
     <section id="contact" className="py-24 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium">
-            Kontakt
-          </span>
-          <h2 className="text-4xl font-bold mt-6 mb-4">
-            Copilot nutzen und nicht nur damit spielen
+          <h2 className="text-4xl font-bold mb-4">
+            Copilot Team Enablement
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Lassen Sie uns gemeinsam das passende Training für Ihr Team entwickeln.
+            Lassen Sie uns gemeinsam das passende Training für Ihr Team finden.
           </p>
         </div>
 

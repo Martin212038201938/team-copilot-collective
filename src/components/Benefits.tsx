@@ -115,10 +115,12 @@ const Benefits = () => {
   };
 
   return (
-    <section id="benefits" className="py-12 sm:py-24 bg-gradient-to-b from-background to-secondary/20 relative overflow-hidden">
-      {/* Decorative background elements - kleiner auf Mobile */}
-      <div className="absolute top-0 right-0 w-48 sm:w-96 h-48 sm:h-96 bg-primary/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-48 sm:w-96 h-48 sm:h-96 bg-accent/5 rounded-full blur-3xl" />
+    <section id="benefits" className="py-12 sm:py-24 bg-gradient-to-b from-background to-secondary/20 relative">
+      {/* Decorative background elements - kleiner auf Mobile (eigener Clipping-Wrapper, damit aufgeklappte Karten nicht abgeschnitten werden) */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 right-0 w-48 sm:w-96 h-48 sm:h-96 bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-48 sm:w-96 h-48 sm:h-96 bg-accent/5 rounded-full blur-3xl" />
+      </div>
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-8 sm:mb-16 animate-fade-in">

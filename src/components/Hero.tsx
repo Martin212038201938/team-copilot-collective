@@ -77,22 +77,18 @@ const Hero = () => {
           </div>
 
           <div className="relative animate-fade-in-delayed-2 mt-8 lg:mt-0">
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 group hover:scale-[1.02]">
+            <Link
+              to="/trainings"
+              aria-label="Zu unseren Trainings"
+              className="block relative rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 group hover:scale-[1.02]"
+            >
               <img
                 src={heroImage}
                 alt="Microsoft Copilot Training Team"
                 className="w-full h-auto transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/30 via-transparent to-transparent group-hover:from-primary/40 transition-all duration-500" />
-
-              {/* Floating badge - kleiner auf Mobile */}
-              <div className="absolute top-3 right-3 sm:top-6 sm:right-6 bg-white/95 backdrop-blur-sm rounded-full px-3 py-1.5 sm:px-4 sm:py-2 shadow-lg animate-float">
-                <div className="flex items-center gap-1.5 sm:gap-2">
-                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-500 rounded-full animate-pulse" />
-                  <span className="text-xs sm:text-sm font-semibold text-gray-900">Live Training</span>
-                </div>
-              </div>
-            </div>
+            </Link>
 
             {/* Decorative elements - versteckt auf sehr kleinen Screens */}
             <div className="hidden sm:block absolute -bottom-6 -right-6 w-32 h-32 bg-accent/20 rounded-full blur-2xl animate-pulse-slow" />
