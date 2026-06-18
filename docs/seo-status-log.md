@@ -8,6 +8,37 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 
 ## Logs
 
+### 2026-06-17 — Phase-Conductor-Lauf (Cron)
+
+**Aktive Phase:** Phase 3 — Content-Block (aktiv seit 01.06.2026, kein Wechsel)
+**Nächste Maßnahme:** kleinste offene Code-Nr. = A6 Index-Coverage → hat bereits Cron `copilotenschule-seo-index-coverage-recheck` (30.06.), Vorbedingung erfüllt (Draft 16.06. existiert). Im Soll, keine Aktion nötig.
+**Definition of Done:** 4 von 8 erfüllt (fest: #2 SSR 🔴=0 ✅, #4 GEO 82 ✅; wahrscheinlich: #5 ≥5 Klick-URLs, #6 B2-Hub #1). Größte Lücken: #1 Indexierung 59,8 % (Ziel 90 %, aber +12,8 pp in 6 Tagen), #3 SEO-Score 42 (Ziel 75), #7 Listicle-Erwähnung (Drafts da, nicht versendet), #8 ProvenExpert (Profil nicht angelegt).
+**Risiko-Status:** 🟡 gelb
+**Aktion in diesem Lauf:** 2 Draft-Crons angelegt (Sicherheitsnetz): `copilotenschule-seo-c4-schema-konsolidierung-draft` (fireAt 24.06.) für Maßnahme C4 + `copilotenschule-seo-c1-c2-technik-draft` (fireAt 09.07.) für C1+C2. Plan-Tabelle: C4/C1/C2 → ⏳ scheduled; Cron-Tabelle + Header aktualisiert; B4-Zeile korrigiert (war fälschlich 🔵 offen, ist seit 11.06. in src/ umgesetzt, wartet auf Push).
+
+**5 Status-Fragen:**
+
+1. **Aktive Phase:** Phase 3 — Content-Block. Phase 1/2/2b (Pre-Render/SSR) historisch abgeschlossen (DoD #2 erfüllt, 16.06. live verifiziert) — nicht wieder öffnen.
+2. **Nächste konkrete Maßnahme (kleinste offene Code-Nr.):** A6 (⏳ Entwurf 16.06.). Hat Cron (30.06.), Vorbedingung (additive Verlinkung + Draft) erfüllt → kein Eingriff.
+3. **Cron für A6 vorhanden?** Ja — `copilotenschule-seo-index-coverage-recheck` (30.06., enabled). Für die nächsten Maßnahmen B3b/B3c: Cron `…-b3b-b3c-hubs-draft` (06.07.) vorhanden.
+4. **Vorbedingung A6 erfüllt?** Ja — Phase 3 aktiv, A6-Entwurf existiert (`docs/drafts/index-coverage-interne-verlinkung-2026-06-16.md`), IndexNow/GSC-Resubmit-Liste liegt vor.
+5. **🔵 offen > 14 Tage ohne Cron?** Ja: **C1, C2, C4** (registriert 27.05. = 21 Tage). Vom Conductor-Lauf 09.06. genau für heute (17.06.) als „dann Draft-Crons anlegen" vorgemerkt → **erledigt** (siehe Aktion). Außerdem D2/D4/D5 (Phase-4-Maßnahmen, Vorbedingung „ab 25.06." noch nicht erreicht → Bestand erhalten, kein Cron) und D1 (ProvenExpert; Reminder-Cron lief 10.06. + self-disabled; erfordert User-Account-Anlage mit Captcha → kein autonom sinnvoller Cron, in Notification gespiegelt statt Nag-Cron).
+
+**Cron-Anlage-Begründung (Schritt 3 der Aktionstabelle):** C4 wurde von drei Quellen priorisiert (Monatsreview 10.06., Anschluss-Session 16.06., Conductor 09.06.) — zahlt auf die zwei größten DoD-Lücken (#1 Indexierung, #3 SEO-Score) ein → fireAt +7 Tage (24.06.). C1/C2 sind parkiert-technisch (niedrigere Priorität) → bewusst später (09.07.), aber jetzt getrackt statt vergessen. Beide STRIKT Draft-only (kein Push, kein src/).
+
+**Risiko-Check (> 7 Tage ungelöst):**
+- **Funnel Stufe 1→2 = 0 %** (Content→Angebot-Bruch, offen seit Monatsreview 10.06. = 7 Tage). Fix (CTA-Brücke Welle 1) ist seit 11.06. in src/ umgesetzt, aber **unverpusht** → blockiert auf User-Review+Push. Verifikations-Cron 24.06. (`…-pattern-transfer-2026-06-24`) kann erst greifen, wenn live. → gelbes Signal.
+- **Unverpushte SEO-src/-Änderungen seit 11.06.** (CTA-Brücke Welle 1, B4 Trust-Block/CustomerLogos.tsx, Google-Ads-Consent-Tracking): liegen review-fertig, warten auf User-Push via GitHub Desktop. Echter Engpass der Roadmap = nicht die Maßnahmenplanung, sondern der Push-Stau.
+- Dead-Click: war ⚠️, am 15.06. erstmals unter 10 %-Schwelle (9,33 %) → entspannt; zusätzlicher Fix-Draft 17.06. vorgeschlagen. Kein roter Flag mehr.
+- Vorbestehende fremde uncommittete git-Änderungen (`D public/images/copilot-cowork-credits-timeline.png`, `M src/pages/CopilotCoworkAbrechnungCredits.tsx`, gemeldet 17.06. morgens) — nicht vom Conductor, nicht angefasst; User sollte committen/verwerfen.
+
+**Definition of Done — Selbst-Abschluss-Check:** 4 von 8 → weit unter 7/8-Schwelle. Conductor bleibt aktiv, keine Selbst-Deaktivierung.
+
+**Brauche ich etwas vom User?** Ja — der Maßnahmen-Push-Stau seit 11.06. ist der eigentliche Engpass (Funnel-Fix wirkt erst nach Push). Knappe Notification gesendet.
+**Nächster Conductor-Lauf:** Mi 01.07.2026, 11:00.
+
+---
+
 ### 2026-06-17 — Clarity Dead-Click-Fix `/wissen/copilot-in-outlook-nutzen-tipps` (Cron, Draft-only)
 
 **Cron:** `copilotenschule-seo-clarity-fix-copilot-in-outlook-nutzen-tipps` (Folge aus SEO-Monatsreview 10.06.). Ziel: Dead-Click-Anti-Pattern auf der Top-Traffic-Seite beheben — **kein Push, nur Draft**.
