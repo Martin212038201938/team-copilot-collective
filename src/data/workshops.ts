@@ -62,11 +62,11 @@ export const workshops: Workshop[] = [
     type: "change-program",
     icon: Rocket,
     title: "Change Programm Copilot Einführung",
-    subtitle: "Das komplette Programm für eine erfolgreiche Microsoft Copilot Einführung – von der Strategie bis zum gelebten Alltag.",
+    subtitle: "Begleitung der Microsoft-Copilot-Einführung – von der Strategie über den Rollout bis zur Nutzung im Arbeitsalltag.",
     duration: "Individuell nach Reifegrad (typisch 3-9 Monate)",
     participants: "Gesamte Organisation, Rollouts in Wellen von 50-500 Personen",
     format: "Hybrid: Strategie-Workshops + Launch-Events + Kommunikation + Schulungsbegleitung",
-    description: "Ein ganzheitliches Change-Programm begleitet Ihre Copilot-Einführung vom ersten Strategie-Workshop bis zum gelebten KI-Alltag. Enthalten sind Launch-Events, Handouts, Poster, Desktop-Drop-Materialien, Intranet-Content, Texte für die interne Change-Kommunikation und die Begleitung durch Ihre erste Adoption-Welle. Zuschnitt und Tempo richten sich nach Ihrem Reifegrad – vom pragmatischen Quick-Launch bis zum 9-monatigen Konzern-Rollout.",
+    description: "Ein Change-Programm begleitet Ihre Copilot-Einführung vom ersten Strategie-Workshop bis zur Nutzung im Arbeitsalltag. Enthalten sind Launch-Events, Handouts, Poster, Desktop-Materialien, Intranet-Inhalte, Texte für die interne Kommunikation und die Begleitung der ersten Adoptionsphase. Zuschnitt und Tempo richten sich nach Ihrem Reifegrad – vom kompakten Start bis zum mehrmonatigen Konzern-Rollout.",
     questionLead: "Wie setzen wir eine Microsoft-Copilot-Einführung nicht nur technisch, sondern auch kulturell und kommunikativ erfolgreich um?",
     framework: {
       name: "6-Bausteine-Change-Programm der Copilotenschule",
@@ -131,7 +131,7 @@ export const workshops: Workshop[] = [
       "keynote-copilot-arbeitswelt",
     ],
     metaTitle: "Change Programm Copilot Einführung – Rollout, Kommunikation & Adoption | copilotenschule.de",
-    metaDescription: "Komplettes Change-Programm für die Microsoft Copilot Einführung: Strategie, Launch-Events, Handouts, Poster, Intranet-Content, Change-Kommunikation und Adoption-Begleitung.",
+    metaDescription: "Change-Programm für die Microsoft Copilot Einführung: Strategie, Launch-Events, Handouts, Poster, Intranet-Inhalte, interne Kommunikation und Begleitung der Adoption.",
     keywords: [
       "Copilot Change Programm",
       "Copilot Einführung begleiten",
@@ -179,11 +179,11 @@ export const workshops: Workshop[] = [
     type: "workshop",
     icon: TrendingUp,
     title: "Copilot Strategie & Change Management Workshop",
-    subtitle: "Vom Pilotprojekt zum flächendeckenden Erfolg: Strategie, Rollout-Roadmap und Change-Plan an einem Tag.",
+    subtitle: "Vom Pilotprojekt zur breiten Einführung: Strategie, Rollout-Roadmap und Change-Plan an einem Tag.",
     duration: "1 Tag (7 Stunden) | optional 1,5 Tage mit Business-Case-Vertiefung",
     participants: "8-16 Teilnehmende (Entscheidungsgremium + Projektteam)",
     format: "Vor Ort oder Remote, moderierter Arbeits-Workshop mit Canvas-Arbeit",
-    description: "Strategischer Workshop zur erfolgreichen Einführung und Skalierung von Microsoft Copilot. In einem intensiven Tag entwickeln Sie Ihre Copilot-Strategie, priorisieren High-Impact-Use-Cases, bauen einen belastbaren Business Case auf und erstellen einen phasenweisen Rollout- und Change-Plan. Ergebnis: ein umsetzungsreifes Strategie-Paket, das Sie direkt dem Management vorstellen können.",
+    description: "Strategie-Workshop zur Einführung und Skalierung von Microsoft Copilot. An einem Tag entwickeln Sie Ihre Copilot-Strategie, priorisieren Use Cases nach Wirkung und Aufwand, erstellen einen Business Case und einen phasenweisen Rollout- und Change-Plan. Ergebnis: ein Strategie-Paket, das Sie direkt im Management vorstellen können.",
     questionLead: "Wie führe ich Microsoft Copilot strategisch erfolgreich ein – und wie überzeuge ich Vorstand und Betriebsrat mit Zahlen?",
     features: [
       "Prozessanalyse und Potenzialidentifikation: Wo generiert Copilot den größten Mehrwert in Ihrer Organisation?",
@@ -232,7 +232,7 @@ export const workshops: Workshop[] = [
       "copilot-launch-eventtag",
     ],
     metaTitle: "Copilot Strategie Workshop – Rollout & Change Management | copilotenschule.de",
-    metaDescription: "Strategischer Copilot-Workshop: ROI berechnen, Rollout priorisieren, Change Management gestalten. Ergebnis: umsetzungsreifes Strategie-Paket für Ihre Geschäftsführung.",
+    metaDescription: "Strategie-Workshop zu Microsoft Copilot: Use Cases priorisieren, Business Case und ROI, Rollout-Roadmap und Change Management. Ergebnis: ein Strategie-Paket für Ihre Geschäftsführung.",
     keywords: [
       "Copilot Strategie",
       "Copilot Rollout Workshop",
@@ -263,94 +263,6 @@ export const workshops: Workshop[] = [
   },
 
   // -----------------------------------------------------------------
-  // 3) CHATBOT-WORKSHOP
-  // -----------------------------------------------------------------
-  {
-    slug: "chatbot-workshop",
-    type: "workshop",
-    icon: Sparkles,
-    title: "Chatbot-Workshop: Ihr erster KI-Assistent in einem Tag",
-    subtitle: "Hands-on Tag: Konzept, Bau und Deployment eines eigenen Microsoft-Copilot-Studio-Agenten.",
-    duration: "1 Tag (7 Stunden) | optional 2 Tage mit Daten-Integration und Qualitätssicherung",
-    participants: "6-12 Teilnehmende pro Workshop (typisch ein Fachbereichs-Team)",
-    format: "Hands-on Build-Workshop – vor Ort oder Remote mit geteilten Environments",
-    description: "Sie lernen nicht in der Theorie, sondern bauen gemeinsam mit erfahrenen Trainern Ihren ersten funktionsfähigen Unternehmens-Chatbot mit Microsoft Copilot Studio. Am Ende des Tages läuft Ihr Bot in Microsoft Teams, greift auf Ihre internen Wissensquellen zu und ist für die Produktivnutzung vorbereitet. Der Fokus liegt konsequent auf Umsetzung – kein Konzeptpapier, sondern ein lauffähiges System.",
-    questionLead: "Kann mein Team an einem einzigen Tag einen produktiv nutzbaren KI-Chatbot für unser Unternehmen bauen – auch ohne Programmierkenntnisse?",
-    features: [
-      "Copilot Studio Grundlagen: Plattform verstehen, Entwicklungsumgebung einrichten, erste Schritte",
-      "Use-Case-Definition: Welcher konkrete Bot soll heute entstehen, welche Probleme löst er?",
-      "Conversation-Flow-Design: Intents, Antworten, Eskalationspfade und Höflichkeits-Fallbacks",
-      "Datenanbindung: SharePoint, FAQ-Dokumente, internes Wiki oder CRM als Wissensquelle",
-      "Prompt Engineering für Agenten: Systemanweisungen, Kontextmanagement, Guardrails",
-      "Testing und Qualitätssicherung: Edge Cases, Halluzinations-Prüfung, Eskalation zum Menschen",
-      "Deployment in Microsoft Teams: Live ausrollen, Berechtigungen konfigurieren, Nutzergruppen steuern",
-      "Übergabe-Paket: Dokumentation der Architektur und Wartungs-Anleitung für das Team",
-    ],
-    targetAudience: [
-      "Fachabteilungen (HR, IT-Support, Kundenservice), die wiederkehrende Fragen automatisieren möchten",
-      "Innovationsteams, die einen schnellen Proof of Concept für KI-Agenten erleben wollen",
-      "Wissensmanager, die interne Dokumente und FAQs per Chatbot durchsuchbar machen wollen",
-      "Entscheider, die Möglichkeiten und Grenzen von KI-Agenten am konkreten Beispiel erleben wollen",
-    ],
-    learningOutcomes: [
-      "Am Ende des Tages läuft ein funktionsfähiger Bot in Microsoft Teams – kein Mock-up",
-      "Sie beherrschen den kompletten Zyklus: Konzept, Bau, Datenanbindung, Qualitätssicherung, Deployment",
-      "Sie können Ihren Bot selbstständig warten, erweitern und die Antwortqualität iterativ verbessern",
-      "Sie wissen, welche Use Cases sich wirklich für Agenten eignen – und wo die Grenzen liegen",
-    ],
-    businessImpact: [
-      "Sofortiger Proof of Concept statt monatelanger Konzeptphase – der Bot läuft am Abend",
-      "Wiederkehrende Fragen (HR-Policies, IT-Anleitungen, Onboarding) werden automatisiert beantwortet",
-      "Das Team entwickelt Ownership und kann eigenständig weiterentwickeln – keine externe Abhängigkeit",
-      "Interne Dokumentation wird erstmals konsequent durchsuchbar und für alle nutzbar",
-    ],
-    deliverables: [
-      "Lauffähiger Custom-Agent in Microsoft Copilot Studio, deployed in Teams",
-      "Dokumentierter Conversation Flow und Prompt-Stack",
-      "Datenanbindungs-Konfiguration (SharePoint / Wiki / FAQ)",
-      "Wartungs-Anleitung und Erweiterungs-Leitfaden",
-      "Qualitätssicherungs-Checkliste mit Edge-Case-Katalog",
-    ],
-    relatedTrainings: [
-      "copilot-studio-ki-agenten",
-      "low-code-power-platform",
-      "microsoft-365-copilot-praxis",
-    ],
-    relatedWorkshops: [
-      "copilot-hackathon",
-      "copilot-change-programm",
-    ],
-    metaTitle: "Chatbot-Workshop – KI-Assistent in einem Tag bauen | copilotenschule.de",
-    metaDescription: "Hands-on Chatbot-Workshop mit Microsoft Copilot Studio: eigener Unternehmens-Bot in einem Tag. Lauffähig in Teams, auf Ihre Datenquellen zugeschnitten.",
-    keywords: [
-      "Chatbot Workshop",
-      "Copilot Studio Chatbot",
-      "KI-Assistent entwickeln",
-      "Unternehmens-Chatbot",
-      "Teams Bot erstellen",
-      "Copilot Agent Workshop",
-    ],
-    faqs: [
-      {
-        question: "Ist das realistisch – ein lauffähiger Chatbot an einem Tag?",
-        answer: "Ja, mit klarer Vorbereitung: Use Case vorab geklärt, Datenquellen zugänglich, Environment vorbereitet. Der Workshop selbst ist darauf getrimmt, in Phasen zu arbeiten (Discovery, Design, Build, Deploy). Wir liefern nicht den Bot, der alle Fragen Ihres Unternehmens beantwortet – aber einen lauffähigen, produktiv nutzbaren Bot für einen klar umrissenen Use Case. Das ist realistisch und belastbar.",
-      },
-      {
-        question: "Können wir einen FAQ-Bot bauen, der auf unsere internen Dokumente zugreift?",
-        answer: "Ja, das ist der häufigste Use Case. Microsoft Copilot Studio verbindet sich mit SharePoint, internen Wikis oder FAQ-Ablagen. Wichtig: Je besser Ihre Dokumente strukturiert sind, desto präziser die Antworten. Im Workshop prüfen wir gemeinsam die Datenqualität und zeigen Stellschrauben, mit denen Sie die Antwort-Qualität zielgerichtet verbessern.",
-      },
-      {
-        question: "Was brauchen wir nach dem Workshop, um den Bot weiterzuentwickeln?",
-        answer: "Nach dem Workshop haben Sie: einen funktionierenden Bot, eine dokumentierte Architektur, Wartungs-Anleitung und Know-how für Erweiterungen. Die laufende Pflege ist Low-Code – Inhalte ergänzen, Edge Cases nachbessern, Fallbacks verfeinern. Für größere Erweiterungen (neue Datenquellen, Integrationen mit Power Automate) bauen Sie auf dem Workshop-Fundament auf oder buchen eine Follow-up-Session.",
-      },
-      {
-        question: "Für welche Abteilungen lohnt sich ein Chatbot am meisten?",
-        answer: "Die Wirkung ist dort am größten, wo viele wiederkehrende, halbwegs standardisierbare Fragen auftreten: HR (Urlaub, Benefits, Onboarding), IT-Support (First-Level, Standardprobleme), Kundenservice (FAQs, Produktinformationen) und Wissensmanagement (interne Richtlinien, Prozesse). Je höher das Frageaufkommen und je klarer die Antworten, desto größer der Nutzen.",
-      },
-    ],
-  },
-
-  // -----------------------------------------------------------------
   // 4) BETRIEBSRAT & KI WORKSHOP
   // -----------------------------------------------------------------
   {
@@ -358,11 +270,11 @@ export const workshops: Workshop[] = [
     type: "workshop",
     icon: Scale,
     title: "Betriebsrat & KI: Workshop zur Copilot-Mitbestimmung",
-    subtitle: "Von der Rechtsgrundlage bis zur Betriebsvereinbarung – an einem Tag, mit Option auf ein Intensiv-Training an Tag 2.",
+    subtitle: "Von der Rechtsgrundlage bis zur Betriebsvereinbarung – an einem Tag, optional mit einem zweiten Tag als Praxistraining.",
     duration: "Ganztag (1 Tag) | Optional: 2. Tag Intensivtraining für den BR",
     participants: "Betriebsratsgremium (typisch 8-20 Personen) + optional HR/IT als Gast",
     format: "Classroom oder Live-Online, arbeitnehmerorientiert moderiert",
-    description: "Der Workshop speziell für Betriebsräte und Personalvertretungen: Vormittags erarbeiten Sie rechtliche Grundlagen, Mitbestimmungsrechte, Betriebsvereinbarungs-Textbausteine und einen konkreten Maßnahmenplan. Nachmittags erleben Sie Microsoft Copilot live aus Sicht der Belegschaft – Übersetzung, Protokolle, Admin-Sicht. Optional buchbar: ein zweiter Tag als Hands-on-Training, damit das Gremium Copilot selbst für seine Arbeit nutzen lernt.",
+    description: "Der Workshop für Betriebsräte und Personalvertretungen: Vormittags erarbeiten Sie rechtliche Grundlagen, Mitbestimmungsrechte, Textbausteine für die Betriebsvereinbarung und einen Maßnahmenplan. Nachmittags sehen Sie Microsoft Copilot in der Praxis aus Sicht der Belegschaft – Übersetzung, Protokolle, Admin-Sicht. Optional: ein zweiter Tag als Praxistraining, in dem das Gremium Copilot selbst für seine Arbeit nutzen lernt.",
     questionLead: "Unser Betriebsrat steht vor der Copilot-Einführung – wie gestalten wir den Prozess aktiv und verhandeln eine fundierte Betriebsvereinbarung?",
     features: [
       "Recht und Mitbestimmung: §87, §80, §90, §97 BetrVG, aktuelle Rechtsprechung und Sachverständigenrecht – verständlich für das Gremium",
@@ -408,8 +320,8 @@ export const workshops: Workshop[] = [
       "copilot-strategie-change-management",
       "copilot-change-programm",
     ],
-    metaTitle: "Betriebsrat & KI Workshop – Copilot-Mitbestimmung aktiv gestalten | copilotenschule.de",
-    metaDescription: "Workshop für Betriebsräte: Mitbestimmung bei Copilot-Einführung, Betriebsvereinbarung, Praxis-Demo. Optional Tag 2 als Intensivtraining. Kosten trägt der Arbeitgeber (§37.6 BetrVG).",
+    metaTitle: "Betriebsrat & KI Workshop – Copilot-Mitbestimmung & Betriebsvereinbarung | copilotenschule.de",
+    metaDescription: "Workshop für Betriebsräte: Mitbestimmung bei der Copilot-Einführung, Betriebsvereinbarung, Praxis-Demo. Optional Tag 2 als Praxistraining. Kosten trägt der Arbeitgeber (§37 Abs. 6 BetrVG).",
     keywords: [
       "Betriebsrat KI Workshop",
       "Copilot Betriebsrat Schulung",
@@ -450,11 +362,11 @@ export const workshops: Workshop[] = [
     type: "workshop",
     icon: Lightbulb,
     title: "Copilot Hackathon für Nicht-Entwickler",
-    subtitle: "Ein Tag, gemischte Teams, echte Business-Probleme – und am Ende konkrete Copilot-Lösungen.",
+    subtitle: "Ein Tag, gemischte Teams, konkrete Aufgaben aus dem eigenen Arbeitsalltag.",
     duration: "1 Tag (7-8 Stunden) | optional 2 Tage mit Umsetzungsphase",
     participants: "20-80 Teilnehmende in Teams von 4-6 Personen",
     format: "Vor Ort (ideal) oder Remote mit virtuellen Breakout-Rooms",
-    description: "Ein Innovations-Workshop im Hackathon-Format: Teams aus unterschiedlichen Abteilungen entwickeln in einem Tag Copilot-Lösungen für echte Geschäftsprobleme. Keine Programmierkenntnisse nötig – Neugier, Kreativität und der Wille, Arbeit neu zu denken, reichen. Am Ende stehen Pitches, Preise und eine Sammlung implementierbarer Use Cases für Ihren Arbeitsalltag.",
+    description: "Ein Workshop im Hackathon-Format: Teams aus verschiedenen Abteilungen erarbeiten an einem Tag Copilot-Lösungen für konkrete Aufgaben aus ihrem Arbeitsalltag. Programmierkenntnisse sind nicht erforderlich. Am Ende stehen kurze Präsentationen und eine dokumentierte Sammlung von Use Cases, die sich direkt weiterverwenden lassen.",
     questionLead: "Wie erzeuge ich in meinem Unternehmen Begeisterung und konkrete Ergebnisse für Microsoft Copilot – mit einem Event statt klassischer Schulung?",
     features: [
       "Hackathon-Format: Teambildung, Challenge-Briefing, intensive Build-Phase, Pitch vor Jury",
@@ -496,12 +408,11 @@ export const workshops: Workshop[] = [
       "copilot-studio-ki-agenten",
     ],
     relatedWorkshops: [
-      "chatbot-workshop",
       "copilot-launch-eventtag",
       "copilot-change-programm",
     ],
-    metaTitle: "Copilot Hackathon – Innovation mit KI ohne Code | copilotenschule.de",
-    metaDescription: "Copilot Hackathon für Business-Anwender: Kreative KI-Lösungen in Teams entwickeln – ohne Programmierkenntnisse. Team-Event mit Pitch, Preisen und konkreten Ergebnissen.",
+    metaTitle: "Copilot Hackathon – KI-Lösungen ohne Programmierkenntnisse | copilotenschule.de",
+    metaDescription: "Copilot Hackathon für Fachanwender: in Teams KI-Lösungen für eigene Aufgaben entwickeln – ohne Programmierkenntnisse. Mit kurzen Präsentationen und dokumentierten Ergebnissen.",
     keywords: [
       "Copilot Hackathon",
       "KI Innovation Workshop",
@@ -538,11 +449,11 @@ export const workshops: Workshop[] = [
     type: "keynote",
     icon: Mic,
     title: "Keynote: Wie Microsoft Copilot die Arbeitswelt verändert",
-    subtitle: "Die Bühne für den ehrlichen, inspirierenden Blick auf KI – Live-Demos statt Folien.",
+    subtitle: "Ein sachlicher Blick auf Microsoft Copilot und die Arbeitswelt – mit Live-Demonstrationen statt nur Folien.",
     duration: "45-90 Minuten inkl. Q&A",
     participants: "50 bis mehrere Tausend Zuhörende (Bühne, Townhall, Hybrid-Event)",
     format: "Bühnen-Keynote, Townhall, Kick-off, Hybrid-Event oder Executive-Workshop-Eröffnung",
-    description: "Eine Keynote für Führungskräfte, All-Hands-Meetings und Kick-off-Veranstaltungen: Wie verändert KI die Wissensarbeit, welche Chancen bietet Microsoft Copilot, und wie gestalten erfolgreiche Unternehmen die Transformation? Live-Demos und konkrete Praxisbeispiele machen das Abstrakte greifbar – ohne PR-Folklore und ohne KI-Hype, sondern mit einer ehrlichen Einschätzung von Potenzial und Grenzen.",
+    description: "Eine Keynote für Führungskräfte, All-Hands-Meetings und Kick-off-Veranstaltungen: Wie verändert KI die Wissensarbeit, welche Möglichkeiten bietet Microsoft Copilot und worauf kommt es bei der Einführung an? Live-Demonstrationen und Praxisbeispiele machen das Thema greifbar – mit einer sachlichen Einschätzung von Potenzial und Grenzen statt KI-Hype.",
     questionLead: "Wer kann bei uns eine inspirierende, fundierte KI-Keynote für Führungskräfte oder ein All-Hands-Meeting halten?",
     features: [
       "Vision: Die Zukunft der Wissensarbeit mit KI – nüchtern und anschlussfähig",
@@ -588,7 +499,7 @@ export const workshops: Workshop[] = [
       "copilot-change-programm",
     ],
     metaTitle: "Copilot Keynote – KI-Vortrag für Führungskräfte & All-Hands | copilotenschule.de",
-    metaDescription: "Inspirierende, fundierte Keynote zu Microsoft Copilot: Vision, Live-Demos, Praxisbeispiele. Für All-Hands, Kick-offs und Führungskräfte-Events – ehrlich und anschlussfähig.",
+    metaDescription: "Keynote zu Microsoft Copilot: Einordnung, Live-Demonstrationen und Praxisbeispiele. Für All-Hands, Kick-offs und Führungskräfte-Events – sachlich und anschlussfähig.",
     keywords: [
       "Copilot Keynote",
       "KI Vortrag",
@@ -625,11 +536,11 @@ export const workshops: Workshop[] = [
     type: "event",
     icon: PartyPopper,
     title: "Copilot Launch Eventtag",
-    subtitle: "Der Kick-off, der aus Ihrer Copilot-Einführung ein Highlight macht.",
+    subtitle: "Ein Aktionstag, der den Copilot-Start für die Belegschaft sichtbar und greifbar macht.",
     duration: "1 Tag (ganztägig) | skalierbar auf mehrere Tage oder Standorte",
     participants: "50 bis mehrere Hundert Mitarbeitende, Flow-Teilnahme über den Tag verteilt",
     format: "Vor Ort mit Infostand, Demo-Inseln, Gamification und Beratung – ggf. Hybrid mit Remote-Dock",
-    description: "Der perfekte Kick-off für Ihre Copilot-Einführung: Ein energiegeladener Eventtag mit Infostand, Live-Demos, Hands-on-Stationen, KI-Challenges, Gamification und kompetenter Beratung vor Ort. Mitarbeitende kommen über den Tag verteilt, erleben Copilot zum ersten Mal unter Anleitung und nehmen Quick-Start-Guides, Cheat Sheets und echte Erfolgserlebnisse mit. Das Gegenteil einer stillen Einführung per E-Mail.",
+    description: "Ein Aktionstag zum Start Ihrer Copilot-Einführung: mit Infostand, Live-Demonstrationen, Hands-on-Stationen und Ansprechpartnern vor Ort. Mitarbeitende kommen über den Tag verteilt, probieren Copilot unter Anleitung zum ersten Mal aus und nehmen Quick-Start-Guides und Cheat Sheets mit. So wird die Einführung wahrgenommen – statt nur per E-Mail angekündigt.",
     questionLead: "Wie machen wir den Copilot-Launch zu einem echten Highlight für unsere Mitarbeitenden – mit einem Event statt einer E-Mail.",
     features: [
       "Ausstellungs-Zone mit Postern und Displays: Weckt Neugier und vermittelt auf einen Blick, was mit Copilot möglich ist",
@@ -673,7 +584,7 @@ export const workshops: Workshop[] = [
       "copilot-change-programm",
     ],
     metaTitle: "Copilot Launch Eventtag – Kick-off für die Copilot-Einführung | copilotenschule.de",
-    metaDescription: "Copilot-Launch als Highlight: Eventtag mit Live-Demos, Challenges, Gamification und Beratung. Der Kick-off, der aus der Einführung ein Gesprächsthema macht.",
+    metaDescription: "Copilot Launch Eventtag: Aktionstag mit Live-Demonstrationen, Hands-on-Stationen und Beratung vor Ort. Macht den Start der Copilot-Einführung für die Belegschaft sichtbar.",
     keywords: [
       "Copilot Launch Event",
       "KI Kick-off Event",

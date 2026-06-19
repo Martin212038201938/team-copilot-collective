@@ -22,14 +22,15 @@ const EuAiActMitarbeiterSchulung = () => {
     { id: "was-ist-ki-kompetenz", title: "Was „ausreichende KI-Kompetenz“ konkret bedeutet", level: 2 },
     { id: "deadline", title: "2. August 2026: Was bis dahin nachweisbar sein muss", level: 2 },
     { id: "schulung-praktisch", title: "Wie sich die Schulung praktisch strukturieren lässt (3 Phasen)", level: 2 },
+    { id: "warum-schulung", title: "Warum sich Training ab vier Stunden rechnet", level: 2 },
     { id: "anbieter", title: "Welche Anbieter die Anforderungen erfüllen", level: 2 },
     { id: "faq", title: "Häufig gestellte Fragen", level: 2 },
   ];
 
   const faqs = [
     {
-      name: "Wir setzen nur ChatGPT und Copilot ein, entwickeln aber selbst keine KI. Betrifft uns die Schulungspflicht überhaupt?",
-      answer: "Ja. Artikel 4 unterscheidet nicht zwischen Entwicklern und reinen Anwendern – die Pflicht trifft sowohl Anbieter als auch Betreiber von KI-Systemen. Sobald Ihre Mitarbeitenden Werkzeuge wie ChatGPT, Microsoft Copilot oder vergleichbare Assistenten im Arbeitsalltag nutzen, gelten Sie als Betreiber und müssen für ausreichende KI-Kompetenz sorgen. Genau für diese Konstellation – Unternehmen, die KI nutzen, aber nicht bauen – sind die Programme der Copilotenschule zugeschnitten: anwendungsnah, mit nachweisbarem Schulungsumfang."
+      name: "Wir setzen nur ChatGPT und Copilot ein, entwickeln aber selbst keine KI. Betrifft uns die KI-Kompetenz-Anforderung überhaupt?",
+      answer: "Ja, Sie sind angesprochen. Artikel 4 unterscheidet nicht zwischen Entwicklern und reinen Anwendern – er adressiert ausdrücklich auch Betreiber, also jedes Unternehmen, das KI-Systeme unter eigener Verantwortung einsetzt. Mit dem Digital Omnibus (Stand Juni 2026, formal noch nicht in Kraft) wird aus der unmittelbaren Pflicht der Unternehmen zwar eine Förderpflicht von Kommission und Mitgliedstaaten; die praktische Verantwortung und das Haftungsrisiko bleiben aber bei Ihnen, sobald Mitarbeitende ChatGPT, Microsoft Copilot oder vergleichbare Assistenten im Arbeitsalltag nutzen. Genau für diese Konstellation – Unternehmen, die KI nutzen, aber nicht bauen – sind die Programme der Copilotenschule zugeschnitten: anwendungsnah, mit nachweisbarem Schulungsumfang."
     },
     {
       name: "Wie überzeuge ich unsere Geschäftsführung, jetzt in KI-Schulungen zu investieren, statt bis kurz vor der Frist zu warten?",
@@ -41,11 +42,19 @@ const EuAiActMitarbeiterSchulung = () => {
     },
     {
       name: "Was passiert konkret, wenn wir bis August 2026 nichts vorweisen können?",
-      answer: "Die Durchsetzung liegt bei den nationalen Marktüberwachungsbehörden – in Deutschland beim BSI. Fehlt ein dokumentierter Kompetenz-Nachweis, drohen im Eskalationsfall behördliche Anordnungen und Bußgelder; schwerer wiegt oft das Haftungsrisiko, wenn ein KI-bedingter Fehler auf fehlende Schulung zurückführbar ist. Wichtiger als Panik ist ein nachvollziehbarer Plan: Wer dokumentiert begonnen hat, steht deutlich besser da als wer gar nichts vorweist. Die Copilotenschule hilft, diesen Nachweis-Pfad sauber aufzusetzen."
+      answer: "Die Aufsicht liegt ab dem 2. August 2026 bei den nationalen Marktüberwachungsbehörden – in Deutschland unter anderem beim BSI. Nach dem Digital Omnibus wird eine isolierte Schulungslücke voraussichtlich nicht mehr direkt mit einem Bußgeld belegt; entscheidend bleiben aber zwei Dinge: das Haftungsrisiko, wenn ein KI-bedingter Fehler auf fehlende Kompetenz zurückführbar ist, und die Tatsache, dass fehlende Schulung bei der Prüfung anderer Pflichten als belastender Faktor wirkt. Wichtiger als Panik ist deshalb ein nachvollziehbarer Plan: Wer dokumentiert begonnen hat, steht deutlich besser da als wer gar nichts vorweist – rechtlich wie betrieblich. Die Copilotenschule hilft, diesen Nachweis-Pfad sauber aufzusetzen."
     },
     {
       name: "Wie messen wir, ob die Schulung tatsächlich gewirkt hat – und nicht nur ein abgehakter Pflichttermin war?",
       answer: "Der Act fordert nicht nur Teilnahme, sondern Wirkung: kritisches Verständnis von Fähigkeiten, Grenzen und Risiken. Belastbar wird das über kurze Wissens-Checks, dokumentierte Anwendungsfälle aus dem echten Arbeitsalltag und eine Wiederholung in Intervallen statt einer Einmal-Veranstaltung. Die Copilotenschule arbeitet mit Assessment-Elementen und Use-Case-Reflexion, sodass am Ende sowohl ein Compliance-Nachweis als auch messbar bessere KI-Nutzung steht – beides aus demselben Programm."
+    },
+    {
+      name: "Der Digital Omnibus entschärft Artikel 4 – können wir das Thema KI-Schulung also abhaken?",
+      answer: "Nicht ganz. Die politische Einigung zum Digital Omnibus vom Mai 2026 wandelt Artikel 4 um: Aus der harten Pflicht für Unternehmen wird eine Förderpflicht für Kommission und Mitgliedstaaten – und rechtskräftig ist das erst mit der Veröffentlichung im Amtsblatt. Was bleibt: Ab dem 2. August 2026 sind die Marktüberwachungsbehörden zuständig, der Bußgeldrahmen der Verordnung greift, und ein KI-bedingter Fehler, der auf fehlende Schulung zurückführbar ist, bleibt ein Haftungsrisiko. Vor allem aber ist der betriebswirtschaftliche Grund für Schulung – Mitarbeitende, die KI sicher und produktiv nutzen – von der Gesetzesänderung völlig unberührt. Die Copilotenschule deckt beides in einem Programm ab und ordnet den jeweils aktuellen Regulierungsstand für Ihren Fall ein."
+    },
+    {
+      name: "Reicht ein vierstündiges Training wirklich, oder ist das nur ein Feigenblatt?",
+      answer: "Vier Stunden sind kein Endpunkt, aber ein wirksamer Anfang. Ein strukturierter Halbtag genügt, um eine Gruppe von zaghaftem Ausprobieren zu konkreten Anwendungsfällen zu bringen und gleichzeitig einen belastbaren Teilnahmenachweis zu erzeugen. Für nachhaltige Kompetenz empfehlen wir, darauf aufzubauen – etwa mit rollengerechter Vertiefung oder einer begleiteten Lernreise. Entscheidend ist, dass das Training an echten Aufgaben ansetzt statt an abstrakten Folien; nur dann entsteht die Urteilskompetenz, die sowohl der AI Act meint als auch den Produktivitätsgewinn bringt. Welche Tiefe für Ihre Teams sinnvoll ist, stimmen wir in der Beratung auf Ihre Ausgangslage ab."
     },
   ];
 
@@ -57,13 +66,13 @@ const EuAiActMitarbeiterSchulung = () => {
         "@id": ids.article,
         "headline": PAGE_TITLE,
         "description":
-          "Artikel 4 des EU AI Act verpflichtet Unternehmen zu ausreichender KI-Kompetenz ihrer Mitarbeitenden. Ab 2. August 2026 setzen Marktüberwachungsbehörden die Regel durch. Was das konkret bedeutet – und wie ein nachweisbares Schulungsprogramm aussieht.",
+          "Artikel 4 des EU AI Act verlangt ausreichende KI-Kompetenz der Mitarbeitenden; mit dem Digital Omnibus wird diese Pflicht der Unternehmen zur Förderpflicht von Kommission und Mitgliedstaaten umgewandelt (Stand Juni 2026). Ab 2. August 2026 greifen Aufsicht und Bußgeldrahmen der Verordnung. Was das für Unternehmen bedeutet – und wie ein nachweisbares Schulungsprogramm aussieht.",
         "author": getAuthorSchemaMarkup(martinLang),
         "publisher": {
           "@id": "https://copilotenschule.de/#organization",
         },
         "datePublished": "2026-06-10",
-        "dateModified": "2026-06-10",
+        "dateModified": "2026-06-19",
         "keywords": [
           "EU AI Act Schulungspflicht",
           "KI-Kompetenz Artikel 4",
@@ -106,7 +115,7 @@ const EuAiActMitarbeiterSchulung = () => {
     <>
       <SEOHead
         title="EU AI Act: KI-Schulungspflicht ab August 2026 | copilotenschule.de"
-        description="Artikel 4 EU AI Act verpflichtet Unternehmen zu KI-Kompetenz der Mitarbeitenden. Ab 2. August 2026 wird durchgesetzt. Was Sie nachweisen müssen – und wie ein praxistaugliches Schulungsprogramm aussieht."
+        description="Artikel 4 EU AI Act, KI-Kompetenz & Digital Omnibus (Stand Juni 2026). Ab 2. August 2026 greifen Aufsicht und Bußgeldrahmen – was Unternehmen jetzt tun sollten."
         keywords={[
           "EU AI Act Schulungspflicht",
           "KI-Kompetenz Artikel 4",
@@ -119,7 +128,7 @@ const EuAiActMitarbeiterSchulung = () => {
         schema={schema}
         author={martinLang}
         publishedTime="2026-06-10T09:00:00+01:00"
-        modifiedTime="2026-06-10T09:00:00+01:00"
+        modifiedTime="2026-06-19T09:00:00+01:00"
       />
       <ContentLayout
         breadcrumbs={[
@@ -127,8 +136,8 @@ const EuAiActMitarbeiterSchulung = () => {
           { label: "EU AI Act Schulungspflicht", href: `/wissen/${SLUG}` },
         ]}
         title={PAGE_TITLE}
-        description="Die KI-Kompetenz-Pflicht gilt seit Februar 2025 – ab August 2026 wird sie kontrolliert. Eine nüchterne Einordnung, was Unternehmen wirklich tun müssen."
-        lastUpdated="10. Juni 2026"
+        description="Stand Juni 2026: Was zum 2. August 2026 wirklich gilt – auch nach dem Digital Omnibus. Eine nüchterne Einordnung für Unternehmen, die KI nutzen."
+        lastUpdated="19. Juni 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
       >
@@ -141,14 +150,59 @@ const EuAiActMitarbeiterSchulung = () => {
           </CardHeader>
           <CardContent className="text-orange-900 dark:text-orange-200">
             <p>
-              Artikel 4 des EU AI Act verpflichtet jedes Unternehmen, das KI einsetzt,
-              für ausreichende KI-Kompetenz seiner Mitarbeitenden zu sorgen. Diese Pflicht
-              gilt bereits seit dem 2. Februar 2025 – ab dem 2. August 2026 wird sie von den
-              nationalen Marktüberwachungsbehörden aktiv durchgesetzt, in Deutschland durch
-              das BSI. Betroffen sind nicht nur KI-Entwickler, sondern ausdrücklich auch reine
-              Anwender von Tools wie ChatGPT oder Microsoft Copilot. Entscheidend ist ein
-              nachweisbares, rollengerechtes Schulungsprogramm – und das entsteht nicht
-              rückwirkend, sondern nur, wenn man jetzt damit beginnt.
+              Artikel 4 des EU AI Act verlangt von Unternehmen, die KI einsetzen, für
+              ausreichende KI-Kompetenz ihrer Mitarbeitenden zu sorgen. Diese Anforderung gilt
+              seit dem 2. Februar 2025 und wird mit dem Digital Omnibus voraussichtlich zu einer
+              Förderpflicht von Kommission und Mitgliedstaaten umgewandelt (Stand Juni 2026,
+              formal noch nicht in Kraft). Was sich dadurch nicht entschärft: Ab dem 2. August 2026
+              sind die nationalen Marktüberwachungsbehörden zuständig, der Bußgeldrahmen der
+              Verordnung greift, und ein KI-Fehler, der auf fehlende Schulung zurückführbar ist,
+              bleibt ein Haftungsrisiko. Betroffen sind nicht nur KI-Entwickler, sondern
+              ausdrücklich auch reine Anwender von Tools wie ChatGPT oder Microsoft Copilot.
+              Entscheidend bleibt ein nachweisbares, rollengerechtes Schulungsprogramm – und das
+              entsteht nicht rückwirkend, sondern nur, wenn man jetzt damit beginnt.
+            </p>
+          </CardContent>
+        </Card>
+
+        {/* Stand Juni 2026 – Aktualisierungs-Störer */}
+        <Card className="mb-8 border-2 border-blue-300 bg-blue-50 dark:bg-blue-950/20 dark:border-blue-800">
+          <CardHeader className="pb-2">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="inline-block rounded-full bg-blue-600 px-3 py-1 text-xs font-bold uppercase tracking-wide text-white">
+                Stand Juni 2026
+              </span>
+              <CardTitle className="text-lg text-blue-900 dark:text-blue-200">
+                Was sich zum August 2026 ändert – und was nicht
+              </CardTitle>
+            </div>
+          </CardHeader>
+          <CardContent className="text-blue-900 dark:text-blue-100 space-y-3">
+            <p>
+              Der 2. August 2026 bleibt das Datum, an dem der AI Act seine Zähne bekommt: Ab
+              dann sind die nationalen Marktüberwachungsbehörden formal zuständig, und der
+              Sanktionsrahmen der Verordnung greift – von bis zu 15 Millionen Euro oder
+              3 Prozent des weltweiten Jahresumsatzes für Pflichtverstöße bis zu 35 Millionen
+              Euro oder 7 Prozent bei verbotenen Praktiken. Dieser Termin wurde durch den
+              sogenannten Digital Omnibus <em>nicht</em> verschoben.
+            </p>
+            <p>
+              Verschoben und entschärft wurde anderes. Die politische Einigung zum Digital
+              Omnibus vom 7. Mai 2026 schiebt die Pflichten für Hochrisiko-KI (Annex III) auf
+              Dezember 2027 und formuliert Artikel 4 um: Aus der harten Pflicht von Anbietern
+              und Betreibern, für KI-Kompetenz ihres Personals zu sorgen, soll eine Aufgabe von
+              Kommission und Mitgliedstaaten werden, solche Kompetenz zu fördern. Rechtskräftig
+              wird diese Änderung allerdings erst mit der Veröffentlichung im Amtsblatt, die vor
+              dem 2. August 2026 erwartet wird.
+            </p>
+            <p>
+              Für Unternehmen heißt das nicht „Thema erledigt". Der regulatorische Druck speziell
+              auf den Wortlaut der Schulungspflicht lässt etwas nach, doch Durchsetzungsarchitektur,
+              Bußgeldrahmen und Haftungsfragen bleiben bestehen – und der eigentliche Grund, Mitarbeitende
+              zu schulen, hängt ohnehin nicht an der Formulierung eines Artikels. Wer jetzt einen
+              dokumentierten Nachweis aufbaut, senkt sein Risiko und nimmt den Produktivitätsgewinn als
+              Nebeneffekt mit. Die folgende Einordnung bleibt gültig; sie ist um diesen aktuellen Stand
+              ergänzt.
             </p>
           </CardContent>
         </Card>
@@ -157,12 +211,13 @@ const EuAiActMitarbeiterSchulung = () => {
         <div className="prose prose-lg max-w-none dark:prose-invert mb-4">
           <p>
             Es gibt eine Sorte Compliance-Frist, die Unternehmen gern verdrängen, weil sie
-            sich abstrakt anfühlt – bis sie plötzlich konkret wird. Die KI-Schulungspflicht
-            aus dem EU AI Act gehört dazu. Sie steht seit Februar 2025 im Gesetz, aber weil
-            zunächst niemand kontrolliert hat, ist sie bei vielen schlicht nicht angekommen.
-            Das ändert sich im August 2026. Und die Zahlen zeigen, dass der Handlungsbedarf
-            erheblich ist: 64 Prozent der deutschen Unternehmen bezeichnen sich selbst als
-            „KI-Nachzügler“, 43 Prozent bieten bislang überhaupt keine KI-Schulungen an –
+            sich abstrakt anfühlt – bis sie plötzlich konkret wird. Die KI-Kompetenz-Anforderung
+            aus dem EU AI Act gehört dazu. Sie steht seit Februar 2025 im Gesetz und wird mit dem
+            Digital Omnibus gerade entschärft – erledigt ist sie damit trotzdem nicht, weil die
+            Durchsetzungs- und Sanktionsarchitektur der Verordnung im August 2026 unabhängig davon
+            scharf gestellt wird. Und die Zahlen zeigen, dass der Handlungsbedarf erheblich ist:
+            64 Prozent der deutschen Unternehmen bezeichnen sich selbst als
+            „KI-Nachzügler”, 43 Prozent bieten bislang überhaupt keine KI-Schulungen an –
             während 56 Prozent KI im Arbeitsalltag bereits aktiv nutzen.
           </p>
           <p>
@@ -198,11 +253,14 @@ const EuAiActMitarbeiterSchulung = () => {
               Lerneffekt wird dieser Anforderung kaum gerecht.
             </p>
             <p>
-              Wichtig ist außerdem das Zusammenspiel der Daten: Die Kompetenz-Pflicht gilt
-              seit dem 2. Februar 2025. Die Befugnis der Behörden, ihre Einhaltung zu
-              überwachen und durchzusetzen, greift ab dem 2. August 2026. Zwischen diesen
-              beiden Daten liegt das Zeitfenster, das viele Unternehmen gerade ungenutzt
-              verstreichen lassen.
+              Wichtig ist außerdem der zeitliche Rahmen – und der ist seit dem Digital Omnibus
+              vom Mai 2026 in Bewegung. Die KI-Kompetenz-Anforderung gilt seit dem 2. Februar 2025;
+              mit dem Omnibus wird die unmittelbare Pflicht der Unternehmen voraussichtlich zu einer
+              Förderpflicht von Kommission und Mitgliedstaaten umgewandelt, rechtskräftig erst mit
+              der Veröffentlichung im Amtsblatt. Was davon unberührt bleibt, ist der 2. August 2026:
+              Ab diesem Datum sind die Marktüberwachungsbehörden zuständig und der Sanktionsrahmen
+              der Verordnung greift. Genau dieses Zeitfenster lassen viele Unternehmen gerade
+              ungenutzt verstreichen – obwohl ein belastbarer Nachweis Zeit braucht.
             </p>
           </div>
         </section>
@@ -214,9 +272,10 @@ const EuAiActMitarbeiterSchulung = () => {
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
-              Hier liegt das häufigste Missverständnis. Viele gehen davon aus, die Pflicht
-              treffe nur Firmen, die KI entwickeln oder Hochrisiko-Anwendungen betreiben. Das
-              ist falsch. Artikel 4 nennt ausdrücklich Anbieter <em>und</em> Betreiber – und
+              Hier liegt das häufigste Missverständnis. Viele gehen davon aus, die
+              KI-Kompetenz-Anforderung treffe nur Firmen, die KI entwickeln oder
+              Hochrisiko-Anwendungen betreiben. Das ist falsch. Artikel 4 nennt ausdrücklich
+              Anbieter <em>und</em> Betreiber – und
               „Betreiber“ ist jedes Unternehmen, das ein KI-System unter eigener Verantwortung
               einsetzt. Die Schwelle ist niedrig: Sobald Mitarbeitende ChatGPT für E-Mails,
               Copilot für Excel-Auswertungen oder einen KI-Übersetzer im Arbeitsalltag nutzen,
@@ -286,11 +345,14 @@ const EuAiActMitarbeiterSchulung = () => {
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
               Ab dem 2. August 2026 übernehmen die nationalen Marktüberwachungsbehörden die
-              Durchsetzung – in Deutschland das Bundesamt für Sicherheit in der
-              Informationstechnik. Das verändert die Lage in einem Punkt fundamental: Bisher
-              war die Pflicht eine Selbstverpflichtung ohne Kontrolle, ab diesem Datum kann
-              ihre Einhaltung überprüft werden. Und Kompetenz, die man nicht dokumentiert hat,
-              existiert für eine Behörde nicht.
+              Durchsetzung des AI Act – in Deutschland unter anderem das Bundesamt für Sicherheit
+              in der Informationstechnik. Das verändert die Lage: Bis dahin war die Verordnung in
+              weiten Teilen eine Ankündigung ohne Kontrolle, ab diesem Datum stehen Aufsicht und
+              Bußgeldrahmen. Für die KI-Kompetenz heißt das nach dem Digital Omnibus zwar nicht
+              mehr, dass eine isolierte Schulungslücke unmittelbar sanktioniert wird – wohl aber,
+              dass fehlende Kompetenz im Schadensfall und bei der Prüfung anderer Pflichten zum
+              belastenden Faktor wird. Und Kompetenz, die man nicht dokumentiert hat, existiert für
+              eine Behörde nicht.
             </p>
             <p>
               Was im Ernstfall trägt, ist kein einzelnes Zertifikat, sondern ein
@@ -347,6 +409,95 @@ const EuAiActMitarbeiterSchulung = () => {
           </div>
         </section>
 
+        {/* Sektion: Warum sich Training rechnet */}
+        <section id="warum-schulung" className="mb-4 mt-2">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">
+            Warum sich Training ab vier Stunden rechnet
+          </h2>
+          <div className="prose prose-lg max-w-none dark:prose-invert">
+            <p>
+              Selbst wenn man den AI Act für einen Moment beiseitelässt, bleibt ein nüchternes
+              betriebswirtschaftliches Argument, das stärker trägt als jede Frist. Copilot-Lizenzen
+              werden in vielen Unternehmen breit ausgerollt – genutzt werden sie nur von einem
+              Bruchteil. Branchenauswertungen zeigen, dass weniger als vier von zehn Beschäftigten
+              mit Copilot-Zugang das Werkzeug tatsächlich regelmäßig verwenden. Der Engpass ist
+              selten die Technik, sondern fehlende Befähigung: Wer nie gelernt hat, wofür Copilot
+              taugt und wofür nicht, probiert es zweimal aus und kehrt zur gewohnten Arbeitsweise
+              zurück.
+            </p>
+          </div>
+
+          {/* Vergleich trainiert vs. untrainiert */}
+          <div className="my-6 rounded-xl border border-gray-200 dark:border-gray-700 p-5 bg-gray-50 dark:bg-gray-900/40">
+            <p className="text-sm font-semibold mb-4 text-gray-900 dark:text-gray-100">
+              Regelmäßige Copilot-Nutzung: untrainiert vs. trainiert
+            </p>
+            <div className="space-y-4">
+              <div>
+                <div className="flex justify-between text-sm mb-1">
+                  <span className="text-gray-700 dark:text-gray-300">Ohne strukturiertes Training (Branchenschnitt)</span>
+                  <span className="font-bold text-gray-700 dark:text-gray-300">≈ 36 %</span>
+                </div>
+                <div className="h-3 w-full rounded-full bg-gray-200 dark:bg-gray-700">
+                  <div className="h-3 rounded-full bg-gray-400 dark:bg-gray-500" style={{ width: "36%" }} />
+                </div>
+              </div>
+              <div>
+                <div className="flex justify-between text-sm mb-1">
+                  <span className="text-gray-900 dark:text-gray-100">Mit gezieltem Training &amp; Enablement (dokumentierte Fälle)</span>
+                  <span className="font-bold text-emerald-700 dark:text-emerald-400">bis ~80 %</span>
+                </div>
+                <div className="h-3 w-full rounded-full bg-gray-200 dark:bg-gray-700">
+                  <div className="h-3 rounded-full bg-emerald-500" style={{ width: "80%" }} />
+                </div>
+              </div>
+            </div>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-3">
+              Branchenschnitt: weniger als vier von zehn lizenzierten Nutzern verwenden Copilot
+              regelmäßig. Dokumentierte Praxisfälle erreichen nach gezieltem Training 60–80 % aktive
+              Nutzung; Microsoft beziffert die Wahrscheinlichkeit intensiver Nutzung in einem
+              unterstützenden Enablement-Umfeld auf das 1,4-Fache (Work Trend Index 2026).
+            </p>
+          </div>
+
+          <div className="prose prose-lg max-w-none dark:prose-invert">
+            <p>
+              Der Unterschied zwischen geschulten und ungeschulten Teams ist also keine
+              Geschmacksfrage, sondern messbar. Die am häufigsten genannte Ursache für gescheiterte
+              Copilot-Einführungen ist auch keine technische, sondern eine schlichte: Man hat das
+              Training weggelassen und gehofft, die Belegschaft finde sich von selbst zurecht. Wie
+              groß der Hebel ist, zeigt unser{" "}
+              <Link to="/wissen/copilot-chat-free-pernod-ricard" className="text-blue-700 dark:text-blue-400 hover:underline">
+                dokumentierter Fall bei Pernod Ricard
+              </Link>
+              , wo die aktive Nutzung nach gezieltem Training deutlich gestiegen ist.
+            </p>
+            <p>
+              Die gute Nachricht für Verantwortliche, die den Aufwand fürchten: Der Einstieg braucht
+              keine Großoffensive. Schon ein strukturierter Halbtag von vier Stunden verschiebt eine
+              Gruppe spürbar – weg vom zaghaften Ausprobieren, hin zu konkreten Anwendungsfällen aus
+              dem eigenen Arbeitsalltag. Für die reine Compliance-Seite deckt unsere{" "}
+              <Link to="/trainings/eu-ai-act-pflichtschulung" className="text-blue-700 dark:text-blue-400 hover:underline">
+                EU AI Act Pflichtschulung
+              </Link>{" "}
+              in vier Stunden Grundlagen, Risikobewusstsein und den dokumentierten Nachweis ab. Für
+              den produktiven Teil unterscheiden wir nach Ihrer Lizenz: Teams auf Copilot Chat (Free)
+              starten mit den{" "}
+              <Link to="/trainings/copilot-grundlagen-prompt-design" className="text-blue-700 dark:text-blue-400 hover:underline">
+                Copilot-Grundlagen: Prompt Design &amp; KI-Kompetenz
+              </Link>
+              , Teams mit Microsoft 365 Copilot-Lizenz (Paid) vertiefen den Alltag in Word, Excel,
+              PowerPoint, Outlook und Teams in{" "}
+              <Link to="/trainings/microsoft-365-copilot-praxis" className="text-blue-700 dark:text-blue-400 hover:underline">
+                Microsoft 365 Copilot in der Praxis
+              </Link>
+              . In allen drei Fällen entsteht aus denselben vier bis sieben Stunden zugleich der
+              Kompetenznachweis und ein realer Produktivitätssprung – die Pflichterfüllung trägt sich
+              über den Nutzen praktisch selbst.
+            </p>
+          </div>
+        </section>
+
         {/* Sektion 6 */}
         <section id="anbieter" className="mb-4 mt-2">
           <h2 className="text-2xl md:text-3xl font-bold mb-2">
@@ -397,6 +548,33 @@ const EuAiActMitarbeiterSchulung = () => {
               .
             </p>
           </div>
+        </section>
+
+        {/* CTA – Gespräch */}
+        <section id="gespraech" className="mb-8">
+          <Card className="border-2 border-blue-500/30 bg-gradient-to-br from-blue-500/5 to-cyan-500/5">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-xl md:text-2xl font-bold text-gray-900 dark:text-gray-100">
+                Unsicher, was für Ihr Unternehmen jetzt zählt?
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="text-gray-700 dark:text-gray-300 space-y-4">
+              <p>
+                Ob Sie nur den Nachweis brauchen oder die Nutzung wirklich in die Breite bringen
+                wollen, hängt von Ihrer Ausgangslage ab: welche KI-Systeme im Einsatz sind, welche
+                Copilot-Lizenz Ihre Teams haben und wie weit die Adoption schon ist. Genau das klären
+                wir am schnellsten im direkten Gespräch. Wir schauen mit Ihnen auf Ihre Situation,
+                ordnen den aktuellen Stand der Regulierung für Ihren Fall ein und schlagen einen
+                Schulungspfad vor, der zu Aufwand und Zielen passt.
+              </p>
+              <a
+                href="/#contact"
+                className="inline-block rounded-lg bg-blue-600 px-5 py-2.5 font-semibold text-white transition-colors hover:bg-blue-700"
+              >
+                Sprechen Sie mit uns →
+              </a>
+            </CardContent>
+          </Card>
         </section>
 
         {/* Weiterführende Links */}
@@ -538,6 +716,42 @@ const EuAiActMitarbeiterSchulung = () => {
                   className="text-blue-700 dark:text-blue-400 hover:underline break-all"
                 >
                   bitkom-consult.de
+                </a>
+              </li>
+              <li>
+                Europäische Kommission – Shaping Europe’s digital future: „AI Act" (Anwendungs- und
+                Durchsetzungsdaten, Digital Omnibus on AI).{" "}
+                <a
+                  href="https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-700 dark:text-blue-400 hover:underline break-all"
+                >
+                  digital-strategy.ec.europa.eu
+                </a>
+              </li>
+              <li>
+                EU Artificial Intelligence Act – Artikel 99 „Penalties" (Bußgeldrahmen der
+                Verordnung).{" "}
+                <a
+                  href="https://artificialintelligenceact.eu/article/99/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-700 dark:text-blue-400 hover:underline break-all"
+                >
+                  artificialintelligenceact.eu
+                </a>
+              </li>
+              <li>
+                Microsoft WorkLab – Work Trend Index 2026: Daten zu KI-Nutzung, Enablement und
+                Adoption.{" "}
+                <a
+                  href="https://www.microsoft.com/en-us/worklab/work-trend-index/agents-human-agency-and-the-opportunity-for-every-organization"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-700 dark:text-blue-400 hover:underline break-all"
+                >
+                  microsoft.com/worklab
                 </a>
               </li>
             </ul>

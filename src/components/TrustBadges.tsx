@@ -35,10 +35,10 @@ const TrustBadges = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-12 animate-fade-in">
           <h2 className="text-3xl font-bold mb-4">
-            Ihre Garantie für exzellente Trainings
+            Erfahrung aus über einem Jahrzehnt Praxis
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Vertrauen Sie auf geprüfte Qualität, langjährige Erfahrung und höchste Sicherheitsstandards
+            Yellow-Boat Consulting realisiert seit 2011 agile Trainings und Digitalisierungsprojekte.
           </p>
         </div>
 

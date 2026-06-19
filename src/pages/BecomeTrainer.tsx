@@ -281,7 +281,7 @@ const BecomeTrainer = () => {
                       <h3 className="text-xl font-bold mb-3">Über uns</h3>
                       <p className="text-muted-foreground">
                         Die Copilotenschule ist spezialisiert auf die Einführung und Weiterqualifizierungen
-                        im Umfeld der Microsoft Copiloten. Im Gegensatz zu anderen Anbietern bieten wir den
+                        im Umfeld des Microsoft Copiloten. Im Gegensatz zu anderen Anbietern bieten wir den
                         Teilnehmern keinen Bauchladen an Tools an, die in ihrem Umfeld nicht compliant oder
                         wertschöpfend sind.
                       </p>

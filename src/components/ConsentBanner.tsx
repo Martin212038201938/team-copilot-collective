@@ -33,12 +33,12 @@ const ConsentBanner = () => {
       aria-label="Cookie-Einwilligung"
       className="fixed bottom-4 left-4 right-4 sm:left-auto sm:max-w-md z-50 rounded-xl border border-border bg-background shadow-2xl p-4"
     >
-      <p className="text-sm font-semibold mb-1">Cookies für Werbemessung?</p>
+      <p className="text-sm font-semibold mb-1">Cookie-Einstellungen</p>
       <p className="text-xs text-muted-foreground mb-3">
-        Wir möchten mit Google-Ads-Cookies messen, ob unsere Anzeigen zu Anfragen führen.
-        Ohne Einwilligung bleibt die Messung anonym und cookielos. Details in der{" "}
-        <a href="/datenschutz" className="underline hover:text-primary">Datenschutzerklärung</a>.
-        Sie können Ihre Wahl dort jederzeit ändern.
+        Wir verwenden Cookies, um die Wirksamkeit unserer Werbung zu messen. Diese Cookies
+        werden nur mit Ihrer Einwilligung gesetzt. Weitere Informationen finden Sie in unserer{" "}
+        <a href="/datenschutz" className="underline hover:text-primary">Datenschutzerklärung</a>,
+        dort können Sie Ihre Auswahl jederzeit ändern.
       </p>
       <div className="flex gap-2 justify-end">
         <button

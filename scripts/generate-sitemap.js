@@ -208,7 +208,7 @@ const trainingPages = trainingsSlugs.map(slug => ({
 
 // Workshops — lastmod aus dem letzten Update der workshops.ts
 const workshopsSlugs = [
-  'copilot-change-programm', 'copilot-strategie-change-management', 'chatbot-workshop',
+  'copilot-change-programm', 'copilot-strategie-change-management',
   'betriebsrat-ki-workshop', 'copilot-hackathon', 'keynote-copilot-arbeitswelt',
   'copilot-launch-eventtag', 'bessere-entscheidungen-mit-copilot',
 ];

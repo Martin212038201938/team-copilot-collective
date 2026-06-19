@@ -33,7 +33,6 @@ import SEOHead from "@/components/SEOHead";
 import {
   workshops,
   WORKSHOP_TYPE_LABELS,
-  WORKSHOP_TYPE_ORDER,
   type WorkshopType,
 } from "@/data/workshops";
 import { generateWorkshopsOverviewSchema } from "@/lib/workshopSchema";
@@ -53,7 +52,7 @@ const workshopsFAQs = [
     question:
       "Welche Veranstaltung ist richtig für unseren Copilot-Launch?",
     answer:
-      "Wenn Sie Copilot neu einführen oder skalieren, hängt die richtige Veranstaltung vom Ziel ab. Für Entscheidungsvorbereitung und Roadmap: Copilot Strategie & Change Management Workshop. Für einen sichtbaren Start mit Sogwirkung: Copilot Launch Eventtag. Für Inspiration und Führungskräfte-Alignment: Keynote Copilot & Arbeitswelt. Für schnelle, greifbare Ergebnisse im Fachbereich: Chatbot-Workshop oder Copilot Hackathon. Für den Rundum-Rollout mit Kommunikation und Materialien: das Change Programm Copilot Einführung. Die Copilotenschule unterstützt Sie dabei, die passende Sequenz zusammenzustellen.",
+      "Wenn Sie Copilot neu einführen oder skalieren, hängt die richtige Veranstaltung vom Ziel ab. Für Entscheidungsvorbereitung und Roadmap: Copilot Strategie & Change Management Workshop. Für einen sichtbaren Start mit Sogwirkung: Copilot Launch Eventtag. Für Inspiration und Führungskräfte-Alignment: Keynote Copilot & Arbeitswelt. Für schnelle, greifbare Ergebnisse im Fachbereich: ein Copilot Hackathon. Für den Rundum-Rollout mit Kommunikation und Materialien: das Change Programm Copilot Einführung. Die Copilotenschule unterstützt Sie dabei, die passende Sequenz zusammenzustellen.",
   },
   {
     question:
@@ -84,16 +83,6 @@ const workshopsFAQs = [
 // -----------------------------------------------------------------
 // UI-Helpers
 // -----------------------------------------------------------------
-type TypeFilter = WorkshopType | "all";
-
-const typeFilterOptions: { value: TypeFilter; label: string }[] = [
-  { value: "all", label: "Alle Formate" },
-  ...WORKSHOP_TYPE_ORDER.map((t) => ({
-    value: t as TypeFilter,
-    label: WORKSHOP_TYPE_LABELS[t] + (t === "change-program" ? "e" : t === "workshop" || t === "event" || t === "keynote" ? "s" : ""),
-  })),
-];
-
 // Saubere Labels für die Typ-Badge auf der Karte
 const TYPE_BADGE_CLASS: Record<WorkshopType, string> = {
   "change-program":
@@ -104,20 +93,20 @@ const TYPE_BADGE_CLASS: Record<WorkshopType, string> = {
 };
 
 const Workshops = () => {
-  const [typeFilter, setTypeFilter] = useState<TypeFilter>("all");
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
-
-  const filteredWorkshops =
-    typeFilter === "all"
-      ? workshops
-      : workshops.filter((w) => w.type === typeFilter);
 
   // Featured (Change Programm) immer hervorheben, aber nicht doppelt rendern
   const featured = workshops.find((w) => w.featured);
-  const nonFeatured =
-    typeFilter === "all"
-      ? filteredWorkshops.filter((w) => !w.featured)
-      : filteredWorkshops;
+
+  // "Bessere Entscheidungen mit Copilot" wird als erste Karte angezeigt
+  const PRIORITY_SLUG = "bessere-entscheidungen-mit-copilot";
+  const nonFeatured = workshops
+    .filter((w) => !w.featured)
+    .sort((a, b) => {
+      if (a.slug === PRIORITY_SLUG) return -1;
+      if (b.slug === PRIORITY_SLUG) return 1;
+      return 0;
+    });
 
   const schema = generateWorkshopsOverviewSchema(
     {
@@ -168,17 +157,17 @@ const Workshops = () => {
                 Copilot Workshops und Events
               </h1>
               <p className="mt-6 text-xl text-muted-foreground max-w-3xl mx-auto">
-                Orchestrierte Formate für die Microsoft-Copilot-Einführung: Strategie-Workshops, Chatbot-Hackathons, Keynotes, Launch-Events und das komplette Change-Programm – für Entscheider, Change-Verantwortliche und Fachbereiche.
+                Formate rund um die Einführung von Microsoft Copilot: Strategie-Workshops, Hackathons, Keynotes, Launch-Events und ein begleitendes Change-Programm – für Entscheider, Change-Verantwortliche und Fachbereiche.
               </p>
               <p className="mt-3 text-base text-muted-foreground max-w-3xl mx-auto">
-                Anders als <Link to="/trainings" className="text-primary hover:underline font-medium">Trainings</Link>, die einzelne Teams auf konkrete Copilot-Kompetenzen bringen, begleiten diese Formate strategische Entscheidungen, kulturelle Verankerung und sichtbare Rollouts.
+                Während <Link to="/trainings" className="text-primary hover:underline font-medium">Trainings</Link> einzelne Teams auf konkrete Copilot-Kompetenzen bringen, unterstützen diese Formate strategische Entscheidungen, die organisatorische Verankerung und den Rollout.
               </p>
             </div>
 
             {/* -------------------------------------------------------
              *  FEATURED: Change Programm
              * ------------------------------------------------------- */}
-            {featured && typeFilter === "all" && (
+            {featured && (
               <div className="max-w-5xl mx-auto mb-14">
                 <Link to={`/workshops/${featured.slug}`} className="block group">
                   <div className="relative overflow-hidden rounded-2xl border-2 border-amber-300 bg-gradient-to-br from-amber-50 via-orange-50 to-amber-50 p-8 md:p-10 shadow-lg hover:shadow-2xl transition-all">
@@ -223,27 +212,6 @@ const Workshops = () => {
                 </Link>
               </div>
             )}
-
-            {/* -------------------------------------------------------
-             *  TYP-FILTER
-             * ------------------------------------------------------- */}
-            <div className="flex justify-center mb-10">
-              <div className="inline-flex flex-wrap items-center gap-1 p-1 bg-muted/60 rounded-lg border">
-                {typeFilterOptions.map((option) => (
-                  <button
-                    key={option.value}
-                    onClick={() => setTypeFilter(option.value)}
-                    className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
-                      typeFilter === option.value
-                        ? "bg-primary text-primary-foreground shadow-sm"
-                        : "text-muted-foreground hover:text-foreground hover:bg-muted"
-                    }`}
-                  >
-                    {option.label}
-                  </button>
-                ))}
-              </div>
-            </div>
 
             {/* -------------------------------------------------------
              *  KARTEN-GRID

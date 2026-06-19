@@ -20,7 +20,7 @@ const UeberUns = () => {
         "alternateName": "Copilotenschule",
         "url": "https://copilotenschule.de",
         "logo": "https://copilotenschule.de/og-image.jpg",
-        "description": "Die Copilotenschule ist spezialisiert auf die Einführung und Weiterqualifizierungen im Umfeld der Microsoft Copiloten. Im Gegensatz zu anderen Anbietern bieten wir den Teilnehmern keinen Bauchladen an Tools an, die in ihrem Umfeld nicht compliant oder wertschöpfend sind.",
+        "description": "Die Copilotenschule ist spezialisiert auf die Einführung und Weiterqualifizierungen im Umfeld des Microsoft Copiloten. Im Gegensatz zu anderen Anbietern bieten wir den Teilnehmern keinen Bauchladen an Tools an, die in ihrem Umfeld nicht compliant oder wertschöpfend sind.",
         "foundingDate": "2025",
         "founder": {
           "@type": "Person",
@@ -122,7 +122,7 @@ const UeberUns = () => {
     <div className="min-h-screen">
       <SEOHead
         title="Über uns – Microsoft Copilot Trainings"
-        description="Die Copilotenschule ist spezialisiert auf die Einführung und Weiterqualifizierungen im Umfeld der Microsoft Copiloten. Im Gegensatz zu anderen Anbietern bieten wir den Teilnehmern keinen Bauchladen an Tools an, die in ihrem Umfeld nicht compliant oder wertschöpfend sind."
+        description="Die Copilotenschule ist spezialisiert auf die Einführung und Weiterqualifizierungen im Umfeld des Microsoft Copiloten. Im Gegensatz zu anderen Anbietern bieten wir den Teilnehmern keinen Bauchladen an Tools an, die in ihrem Umfeld nicht compliant oder wertschöpfend sind."
         keywords={[
           "copilotenschule",
           "Microsoft Copilot Training Anbieter",
@@ -148,7 +148,7 @@ const UeberUns = () => {
             </h1>
             <p className="mt-6 text-xl text-muted-foreground leading-relaxed mb-4 animate-slide-up-delayed">
               <strong>Die Copilotenschule</strong> ist spezialisiert auf die Einführung und Weiterqualifizierungen
-              im Umfeld der Microsoft Copiloten. Im Gegensatz zu anderen Anbietern bieten wir den Teilnehmern
+              im Umfeld des Microsoft Copiloten. Im Gegensatz zu anderen Anbietern bieten wir den Teilnehmern
               keinen Bauchladen an Tools an, die in ihrem Umfeld nicht compliant oder wertschöpfend sind.
             </p>
             <p className="text-lg text-muted-foreground leading-relaxed">

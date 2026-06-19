@@ -30,6 +30,17 @@ export interface ArticleData {
 // Alle Artikel - sortiert nach Veröffentlichungsdatum (neueste zuerst)
 export const ALL_ARTICLES: ArticleData[] = [
   {
+    id: "eu-ai-act-mitarbeiter-schulung-august-2026",
+    title: "EU AI Act: Die KI-Schulungspflicht ab August 2026 – was Unternehmen jetzt nachweisen müssen",
+    description: "Stand Juni 2026: Was zum 2. August 2026 wirklich gilt – nach dem Digital Omnibus. Bußgeldrahmen, Nachweis und warum sich Training ab 4 Stunden rechnet.",
+    link: "/wissen/eu-ai-act-mitarbeiter-schulung-august-2026",
+    badge: "KI-Recht & Compliance",
+    icon: "§",
+    lastUpdated: "19. Juni 2026",
+    publishDate: "2026-06-19",
+    publishTime: "09:00"
+  },
+  {
     id: "copilot-cowork-abrechnung-copilot-credits",
     title: "Copilot Cowork wird abgerechnet: Was die Copilot-Credits-Abrechnung ab Juli 2026 bedeutet",
     description: "Copilot Cowork ist seit 16. Juni 2026 GA und wird über Copilot Credits abgerechnet. Was das kostet, warum die Copilot-Lizenz Pflicht bleibt und was DACH-Firmen tun müssen.",
@@ -38,17 +49,6 @@ export const ALL_ARTICLES: ArticleData[] = [
     icon: "€",
     lastUpdated: "17. Juni 2026",
     publishDate: "2026-06-17",
-    publishTime: "09:00"
-  },
-  {
-    id: "eu-ai-act-mitarbeiter-schulung-august-2026",
-    title: "EU AI Act: Die KI-Schulungspflicht ab August 2026 – was Unternehmen jetzt nachweisen müssen",
-    description: "Artikel 4 EU AI Act verpflichtet zu KI-Kompetenz der Mitarbeitenden. Ab 2. August 2026 wird durchgesetzt – was Sie nachweisen müssen.",
-    link: "/wissen/eu-ai-act-mitarbeiter-schulung-august-2026",
-    badge: "KI-Recht & Compliance",
-    icon: "§",
-    lastUpdated: "10. Juni 2026",
-    publishDate: "2026-06-10",
     publishTime: "09:00"
   },
   {

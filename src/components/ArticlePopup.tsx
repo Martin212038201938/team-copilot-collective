@@ -192,7 +192,8 @@ const ArticlePopup = () => {
                 name="contactPerson"
                 value={formData.contactPerson}
                 onChange={handleChange}
-                placeholder="Ihr Name (optional)"
+                placeholder="Ihr Name *"
+                required
                 className="h-11"
               />
             </div>

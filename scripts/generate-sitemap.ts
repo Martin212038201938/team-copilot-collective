@@ -67,7 +67,6 @@ const trainingsSlugs = [
   'copilot-compliance-datenschutz',
   'copilot-strategie-change-management',
   'copilot-studio-ki-agenten',
-  'chatbot-workshop',
   'low-code-power-platform',
   'eu-ai-act-pflichtschulung',
   'copilot-hackathon',
