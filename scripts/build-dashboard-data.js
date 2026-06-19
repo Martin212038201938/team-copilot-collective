@@ -129,7 +129,12 @@ async function main() {
   // Auth), NICHT mit Nullwerten weiterschreiben — lieber abbrechen, damit die
   // bestehenden guten Daten erhalten bleiben.
   if (gscDaily.length === 0) {
-    throw new Error("GSC lieferte keine Daten — vermutlich ungültige/abgelaufene Supermetrics-Auth (SUPERMETRICS_API_KEY / SUPERMETRICS_DS_USER). Abbruch ohne Überschreiben.");
+    // Kein harter Fehler mehr: Wenn der Supermetrics-Zugang (SUPERMETRICS_API_KEY /
+    // SUPERMETRICS_DS_USER) ungültig/abgelaufen ist, liefert GSC 0 Zeilen. Dann das
+    // Update sauber ÜBERSPRINGEN (Lauf bleibt grün), damit keine Fehl-Läufe entstehen
+    // und die bestehenden, korrekten Dashboard-Daten erhalten bleiben.
+    console.warn("WARN: GSC lieferte keine Daten — vermutlich Supermetrics-Auth (SUPERMETRICS_API_KEY / SUPERMETRICS_DS_USER) ungültig/abgelaufen. Update wird übersprungen, bestehende Daten bleiben unverändert. Secrets aktualisieren, dann läuft die Aktualisierung automatisch wieder.");
+    process.exit(0);
   }
 
   // 7-Tage-Summen + Vorwoche aus der Tagesreihe (für KPIs + Deltas)
