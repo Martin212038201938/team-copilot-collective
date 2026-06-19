@@ -1,8 +1,8 @@
 {
   "meta": {
     "domain": "copilotenschule.de",
-    "generated_at": "2026-06-16T21:34:00.000Z",
-    "generated_by": "Cowork + Supermetrics MCP (GSC/Bing direkt abgefragt)",
+    "generated_at": "2026-06-18T08:27:51.826Z",
+    "generated_by": "Cowork + Supermetrics MCP (manuelle Zwischenaktualisierung)",
     "overall_health": "green",
     "update_frequency": "täglich",
     "schema_version": "1.0"
@@ -21,7 +21,7 @@
     "bing": {
       "connected": true,
       "label": "Bing Webmaster",
-      "note": "Verbunden, seit Ende Mai praktisch kein Bing-Traffic"
+      "note": "Verbunden, aktuell ~0 Bing-Traffic"
     },
     "clarity": {
       "connected": true,
@@ -41,17 +41,17 @@
   },
   "kpis": {
     "gsc_clicks_7d": {
-      "value": 126,
-      "delta_pct": 66,
+      "value": 142,
+      "delta_pct": 80,
       "source": "gsc"
     },
     "gsc_impressions_7d": {
-      "value": 9161,
-      "delta_pct": 49,
+      "value": 9227,
+      "delta_pct": 27,
       "source": "gsc"
     },
     "gsc_avg_position_7d": {
-      "value": 9.0,
+      "value": 9.08,
       "delta_pct": null,
       "source": "gsc"
     },
@@ -76,7 +76,7 @@
       "source": "bing"
     },
     "clarity_sessions_7d": {
-      "value": 185,
+      "value": 340,
       "delta_pct": null,
       "source": "clarity"
     }
@@ -90,9 +90,9 @@
     "google": {
       "indexed_pages": null,
       "crawl_errors": null,
-      "clicks_7d": 126,
-      "impressions_7d": 9161,
-      "avg_position_7d": 9.0
+      "clicks_7d": 142,
+      "impressions_7d": 9227,
+      "avg_position_7d": 9.08
     },
     "bing": {
       "indexed_pages": null,
@@ -121,27 +121,45 @@
     "checks": []
   },
   "clarity": {
-    "sessions_3d": 185,
-    "users_3d": 220,
-    "bot_sessions_3d": 32,
-    "pages_per_session": 1.03,
-    "avg_scroll_depth": 49.21,
-    "engagement_active_sec": 101,
-    "dead_click_pct": 15.14,
-    "rage_click_pct": 0.54,
+    "sessions_3d": 340,
+    "users_3d": 378,
+    "bot_sessions_3d": 35,
+    "pages_per_session": 1.04,
+    "avg_scroll_depth": 48.78,
+    "engagement_active_sec": 98,
+    "dead_click_pct": 15.59,
+    "rage_click_pct": 0.29,
     "top_pages": [
-      { "url": "https://copilotenschule.de/", "visits": 43 },
-      { "url": "https://copilotenschule.de/wissen/claude-in-microsoft-copilot", "visits": 28 },
-      { "url": "https://copilotenschule.de/wissen/copilot-in-excel-aktivieren", "visits": 17 },
-      { "url": "https://copilotenschule.de/wissen/copilot-in-outlook-nutzen-tipps", "visits": 13 },
-      { "url": "https://copilotenschule.de/wissen/ki-halluzinationen-vermeiden", "visits": 13 },
-      { "url": "https://copilotenschule.de/ueber-uns", "visits": 12 }
+      {
+        "url": "https://copilotenschule.de/",
+        "visits": 55
+      },
+      {
+        "url": "https://copilotenschule.de/trainings",
+        "visits": 40
+      },
+      {
+        "url": "https://copilotenschule.de/wissen/claude-in-microsoft-copilot",
+        "visits": 32
+      },
+      {
+        "url": "https://copilotenschule.de/wissen/copilot-cowork-abrechnung-copilot-credits",
+        "visits": 21
+      },
+      {
+        "url": "https://copilotenschule.de/wissen/copilot-in-excel-aktivieren",
+        "visits": 18
+      },
+      {
+        "url": "https://copilotenschule.de/ueber-uns",
+        "visits": 16
+      }
     ]
   },
   "report_highlights": [
     {
       "severity": "info",
-      "text": "Organische Google-Klicks: 126 in 7 Tagen (+66% ggü. Vorwoche), 9.161 Impressionen (+49%), Ø Position 9,0 – klar steigender Trend."
+      "text": "Organische Google-Klicks: 142 in 7 Tagen (+80% ggü. Vorwoche), 9227 Impressionen, Ø Position 9.08 – steigender Trend."
     },
     {
       "severity": "action",
@@ -149,11 +167,11 @@
     },
     {
       "severity": "info",
-      "text": "Bing: verbunden, aber seit Ende Mai praktisch kein Traffic – Fokus bleibt Google."
+      "text": "Bing: verbunden, aber aktuell praktisch kein Traffic – Fokus bleibt Google."
     },
     {
       "severity": "info",
-      "text": "Clarity: 185 Sessions in 3 Tagen, Ø Scrolltiefe 49% – stärkste Einstiege über Startseite und Wissensartikel (Claude in Copilot, Excel aktivieren)."
+      "text": "Clarity: 340 Sessions in 3 Tagen, Ø Scrolltiefe 48.78% – Top-Einstiege über Startseite und Wissensartikel."
     }
   ],
   "availability": {
