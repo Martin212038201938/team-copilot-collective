@@ -311,10 +311,9 @@ const Contact = () => {
                   <MapPin className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-1">Standort</h3>
+                  <h3 className="font-semibold mb-1">Trainingsorte</h3>
                   <p className="text-muted-foreground">
-                    Köln, Deutschland,<br />
-                    Österreich, Schweiz oder Remote
+                    In unserem Trainingsraum in Köln, via Teams/Zoom oder bei Ihnen in Deutschland, Österreich und der Schweiz.
                   </p>
                 </div>
               </div>
