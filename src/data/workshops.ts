@@ -50,6 +50,7 @@ export interface Workshop {
 
   // UI
   popular?: boolean;
+  isNew?: boolean;           // "NEU"-Badge in Übersicht und auf der Detailseite
   featured?: boolean;        // auf Landingpage oben hervorgehoben
 }
 
@@ -621,6 +622,8 @@ export const workshops: Workshop[] = [
     type: "workshop",
     icon: Brain,
     instructor: "saskia-kaden",
+    popular: true,
+    isNew: true,
     title: "Bessere Entscheidungen mit Copilot",
     subtitle: "Verzerrungen und Noise verstehen – und Copilot gezielt dagegen einsetzen.",
     duration: "4 Stunden · 7 Stunden",

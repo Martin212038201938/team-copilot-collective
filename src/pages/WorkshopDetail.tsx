@@ -138,6 +138,11 @@ const WorkshopDetail = () => {
                 >
                   {typeLabel}
                 </Badge>
+                {workshop.isNew && (
+                  <Badge className="bg-emerald-100 text-emerald-800 border-emerald-300 hover:bg-emerald-100 text-xs px-2.5 py-0.5 font-semibold">
+                    NEU
+                  </Badge>
+                )}
                 {workshop.featured && (
                   <Badge className="bg-amber-100 text-amber-900 border-amber-300 hover:bg-amber-100 text-xs px-2.5 py-0.5 font-semibold">
                     ★ Flaggschiff-Programm
