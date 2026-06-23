@@ -2,7 +2,7 @@
 
 **Lebendes Dokument** — Cron-Jobs pflegen dieses File. Hier sammeln sich die Pattern-Erkenntnisse aus Microsoft Clarity, die wir auf andere Seiten übertragen oder gegen UX-Probleme einsetzen können.
 
-**Letzter automatischer Update:** 10. Juni 2026 (monthly Cron)
+**Letzter automatischer Update:** 22. Juni 2026 (weekly Cron)
 
 ---
 
@@ -199,6 +199,32 @@ nach ca. 2 Wochen Laufzeit empfohlen.
 ## Logs (neueste oben — automatisch von Cron-Jobs gepflegt)
 
 <!-- ab hier ergänzen Cron-Jobs ihre Befunde -->
+
+---
+
+### 2026-06-22 — Trend (verstärken): Neuer organischer Cluster „Copilot Cowork Abrechnung / Credits"
+**Beobachtungs-Zeitraum:** 19.06. – 22.06.2026 (3T-API)
+**Event:** Organischer/interner Traffic auf neu aufgestiegene Themen-Seite
+**Trend:** `/wissen/copilot-cowork-abrechnung-copilot-credits` ist erstmals **#2 der Top-Pages (16 Visits/3T)** — direkt hinter der Homepage (21) und vor `/workshops` (8), `microsoft-copilot-lizenzen` (7) und `ki-halluzinationen-vermeiden` (7). Die Seite taucht zugleich als **stärkster interner Referrer (13)** auf — sie verteilt also auch Traffic weiter. PageTitle „Copilot Cowork Abrechnung: Copilot Credits ab Juli 2026" bestätigt die Zuordnung.
+**Ursache (vermutet):** Aktuelles, zeitgebundenes Thema (Copilot-Credits-Abrechnung ab Juli 2026) trifft Suchintention kurz vor Inkrafttreten. Passt ins GEO-/Aktualitäts-Muster (vgl. Outlook-Tipps- und Claude-in-Copilot-Cluster). **GSC bestätigt** (3M, frisch 22.06.): Query „copilot cowork kosten" ist mit **7 Klicks / 28 Impr.** neu auf Platz #3 der Klick-Bringer — d. h. die Seite zieht echten organischen Such-Traffic, nicht nur internen. CTR auffällig hoch (7/28 = 25 %), aber niedrige Impressionen → Keyword-Set noch ausbaufähig. **Hinweis:** Genau diese TSX (`CopilotCoworkAbrechnungCredits.tsx`) hatte am 17.06. uncommittete lokale Änderungen — Traffic läuft auf der Live-Version.
+**Handlung:** Verstärken — (1) Keyword-Breite erhöhen (verwandte Fragen rund um Copilot-Credits/Abrechnung/Preis ab Juli 2026, um die niedrigen Impressionen zu heben); (2) CTA-Brücke (TrainingCTA) auf dieser Seite ergänzen, sobald sie Teil der nächsten Welle wird — sie ist bereits stärkster interner Referrer (13) und damit ein guter Funnel-Einstieg.
+
+---
+
+### 2026-06-22 — Trend (positiv): Dead-Click bleibt unter Schwelle, weiter sinkend
+**Beobachtungs-Zeitraum:** 2026-06-15 bis 2026-06-22
+**Event:** Dead-Click-Rate (3T-API)
+**Trend:** 21,4 % (10.06.) → 9,33 % (15.06.) → **8,65 % (22.06. 3T)** — zweite Woche in Folge unter der 10 %-Eskalationsschwelle, leicht weiter gefallen. Rage-Click, Quick-Back, Excessive-Scroll alle **0 %**. ScriptError-Rate **0 %** (Vorwoche 0,35 % React-Hydration-Fehler) → ebenfalls entspannt.
+**Ursache (vermutet):** Der 11.06.-Deploy (CTA-Brücke ohne X-Icon/Overlay) + abnehmendes Gewicht der alten Dead-Click-Treiber-Seite. Der site-weite ArticlePopup-Fix (Draft 17.06.) ist noch **nicht** gepusht — die Entspannung kommt also (noch) nicht von dort.
+**Handlung:** Beobachten — kein Eskalations-Cron nötig. ArticlePopup-Fix-Draft bleibt für User-Review offen (kann Dead-Click weiter senken, ist aber nicht mehr dringend).
+
+---
+
+### 2026-06-22 — Beobachtung: Browser-Mix verschiebt sich Richtung Edge (mögliches B2B-/SEA-Signal)
+**Quelle:** Cron-Lauf 2026-06-22 (weekly) — Clarity API 3T (104 Sessions)
+**Beobachtung:** Edge steigt auf **25 Sessions (~24 %)** — Vorwoche 12 % (9 Sess.). Chrome fällt auf ~40 % (42), Safari 21 % (22). Device PC 91 / Mobile 12, OS Windows 59 / macOS 31. Länder: Deutschland 90 von 104.
+**Bewertung:** Edge-Anstieg ist **unter** der 20-pp-Alarmschwelle (Schritt 7d), aber auffällig. Microsoft-Enterprise-Umgebungen nutzen überdurchschnittlich Edge — passt zur B2B-Copilot-Zielgruppe. **Rein organisch:** SEA/Outbound sind (Stand 22.06., lt. User) noch **nicht** gestartet (verzögert), also kein Paid-Effekt. Wahrscheinlich ein organischer B2B-Mix-Shift.
+**Handlung:** Beobachten. Sobald SEA tatsächlich startet, gegen die UTM-cpc-Verteilung gegenprüfen — bis dahin als organisches Signal werten.
 
 ---
 

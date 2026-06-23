@@ -8,6 +8,75 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 
 ## Logs
 
+### 2026-06-22 — D3 Listicle-Outreach-Entwürfe (Cron)
+
+**Guard ausgelöst:** Drafts existieren bereits → KEINE Neuerstellung (Schritte 1–4 übersprungen, wie im Skill vorgesehen).
+
+**Drafts:** `docs/outreach/listicle-outreach-entwuerfe.md` (konsolidiert, 3 Mails: mod-education, ki-trainingszentrum, cmt; erstellt 09.06.2026) + ergänzend `docs/outreach/dach-verzeichnisse-d2-d4.md`.
+
+**Aktualitätsprüfung:**
+- B2-Hub-URL `https://copilotenschule.de/wissen/copilot-schulungsanbieter-deutschland-vergleich` in allen 3 Mails korrekt verlinkt ✅
+- Referenzkunden (REWE, Pernod Ricard, Lekkerland, Marriott, Med360Grad, IHK Nord Westfalen) werden in den Mails **bewusst NICHT namentlich genannt** — sicherere Wahl, da vor Versand geklärt werden muss, welche öffentlich genannt werden dürfen. Falls gewünscht, kann Martin pro Empfänger 1–2 Referenzen ergänzen.
+- Platzhalter `[Name]` in allen Mails → vor Versand individuell ersetzen.
+
+**Versandstatus:** noch NICHT versendet (vgl. Eintrag Wochenaudit: „#7 Listicle-Erwähnung — Drafts da, nicht versendet"). DoD #7 weiterhin offen.
+
+**Wartend auf:** User-Review + Versand — gestaffelt Mo/Di/Do (mod-education → ki-trainingszentrum → cmt), persönlicher Absender, **NICHT** über die Kaltakquise-Versanddomain (copiloten-schule.de) und zeitlich nicht mit Kaltakquise-Wellen kollidierend. Referenzkundenliste vorab freigeben.
+
+---
+
+### 2026-06-22 — Wöchentlicher Audit (Cron)
+
+**Phase:** Phase 3 — Content-Block (aktiv seit 01.06.2026, kein Wechsel)
+
+> ℹ️ **Lauf-Hinweis:** Chrome-Extension war zum 10:00-Cron-Start nicht verbunden; API-/curl-Schritte (SSR, Clarity-Standard, Protected Pages) liefen sofort, die Chrome-Schritte (GSC, AlwaysData, Conversion-Events) wurden nach manuellem Chrome-Start im selben Tag nachgeholt → **Lauf vollständig.** Kampagnen-Kontext aktualisiert: **SEA & Outbound sind noch NICHT gestartet** (verzögert, lt. User) → Traffic rein organisch/direct, Trend-Vergleiche diese Woche sauber.
+
+**SSR-Audit:** ✅ 67 / 🟡 0 / 🔴 0 (von 67) — via `seo-monitoring/recheck.sh` gegen Baseline 2026-05-04 (`audit-live.sh` weiterhin nicht im Mount, Workaround wie bisher)
+- Neu in 🔴/✅: keine. Helmet-Flush 67/67, 0 Default-Fallback, 0 Empty, 0 Doppel-Description. Δ zur Baseline: Helmet 31→67. Stabil ggü. 15.06.
+- Regressions-Wächter (Schritt 8): 0 🔴 → keine Eskalation (Schwelle ≥ 5).
+
+**GSC:** **55/92 indexiert (59,8 %)** — unverändert ggü. 15.06. (Index-Bericht-Daten Stand 12.06.26, von Google noch nicht neu gecrawlt). Nicht indexiert (37): Weiterleitung 8 · alt. kanonisch 3 · robots.txt 1 · **gecrawlt – nicht indexiert 9 · gefunden – nicht indexiert 16**.
+- Leistung 3M (frisch, vor 5 Std): **Klicks 618** (15.06.: 495 → **+25 %**), **Impr. 54.800** (47.000 → +17 %), CTR 1,1 %, **Pos. Ø 9,8** (von 10). Chart klar steigend Richtung Mitte Juni.
+- Top-Klick-Bringer (3M): „copilot in excel aktivieren" 25/1.496 · „excel copilot aktivieren" 12/574 · **„copilot cowork kosten" 7/28 (neu #3)** · „microsoft copilot in excel aktivieren" 6/70 · „copilot excel aktivieren" 4/416 · „claude copilot" 3/171 · „copilot lizenzen" 2/329 · „ki halluzinationen vermeiden" 2/243 · „copilot claude" 2/182 · „copilot in outlook" 2/67
+- **DoD #5 (≥5 verschiedene Klick-Bringer-URLs):** erfüllt — ≥6 distinkte URLs (excel-aktivieren, cowork-credits, lizenzen, halluzinationen, claude-in-copilot, outlook).
+
+**AlwaysData:** 24h **458** (Spike ~110 um 09:00–10:00 22.06. = Crawler-/Bot-Surge, gleiches Muster wie 15.06.) · Monat (22.05.–22.06.): **4.176** Visits (roh inkl. Bots, verrauscht; Chart-Peaks ~11.–12. + 17.–18.06.). Hinweis: niedriger als 15.06.-Wert (6.498 für 15.05.–15.06.), da das frühere Fenster die IndexNow-Crawl-Surge enthielt; saubere Signale (GSC organisch +25 %, Clarity Sessions +38 %) zeigen klar nach oben.
+
+**Traffic-Mix (Clarity 3T, API — referrer-basiert, KEIN UTM):**
+- Organic Search: ~39 (38 %) — Google.com 28 · Bing 5 · Google.de 4 · DuckDuckGo 1 · **Gemini 1 (neu, LLM-Referrer)**
+- Direct/null: 43 (41 %)
+- Internal: 21 (20 %) — davon `/wissen/copilot-cowork-abrechnung-copilot-credits` 13 (stärkster interner Referrer)
+- Teams-CDN: 1
+- **SEA (cpc) / Outbound (email):** **noch nicht gestartet** (verzögert — Stand 22.06. lt. User-Korrektur). Aktueller Traffic ist damit **rein organisch/direct**, kein UTM-Split nötig. Der Total-Anstieg (s. u.) ist deshalb ein **sauberer organischer Vergleich** — keine Paid-/Outbound-Konfundierung.
+
+**Clarity Standard (3T, via API, 1 Call):**
+- Sessions: 104 (davon 11 Bots, 123 Unique Users) — **+38 % vs. 75/3T (15.06.), rein organisch** (SEA/Outbound noch nicht live). Einzelwoche über der +25 %-Marke, aber **kein 3-Wochen-Streak** (01.06. ~100 → 15.06. 75 → 22.06. 104) → noch kein formaler „verstärken"-Trigger (Schritt 7d), aber positives organisches Signal
+- Scrolltiefe: 45,64 % (↑ von 40,48 %) · Aktive Zeit: 94 s (↑ von 85 s)
+- Dead-Click: **8,65 %** ✅ (↓ von 9,33 %, 2. Woche unter Schwelle) | Rage-Click: 0 % | Quick-Back: 0 % | Excessive-Scroll: 0 % | ScriptError: 0 % (↓ von 0,35 %)
+- Top-Browser: Chrome ~40 % (42) · Edge ~24 % (25, ↑ von 12 %) · Safari ~21 % (22) · MobileSafari 9 % · ChromeMobile 2 % · Firefox 2 %
+- Geräte: PC 91 / Mobile 12 / Tablet 1 · OS: Windows 59 / macOS 31 / iOS 10 · Land: DE 90/104
+- Top-Pages (3T): `/` (21) · **`/wissen/copilot-cowork-abrechnung-copilot-credits` (16, neu #2)** · `/workshops` (8) · `microsoft-copilot-lizenzen` (7) · `ki-halluzinationen-vermeiden` (7) · `copilot-in-outlook-nutzen-tipps` (6)
+- Top-Referrer (3T): Direct/null (43) · Google.com (28) · intern copilot-cowork-abrechnung (13) · Bing (5) · intern / (5)
+
+**Clarity Conversion-Events (7T, via Chrome-Dashboard — 480 Sessions, 51 Bots excl.):**
+- contact_form_submit: **1** | trainer_application_submit: **0** | konfigurator_submit: **1** | mail_click: **0** | phone_click: **0** | pdf_download: **0**
+- content_cta_click / sml_*: **0 / 0** (CTA-Brücke noch nicht gepusht; Outbound-LP nicht gestartet) — beide erwartungsgemäß nicht im Smart-Events-Dropdown
+- Smart-Events/Intent (Union aller 10 Intent-Ereignisse inkl. „Ausgehender Klick", „Kontaktieren Sie uns", „Formular absenden", danke_page_view, booking_click): **20 Sessions = 4,17 %** (15.06.: ~2,4 %) — im B2B-Benchmark 2–5 % ✅
+- Direkte Custom-Conversions eng gefasst (contact_form_submit + konfigurator_submit): 2 Events / 480 = 0,42 %
+- **Defekt-Check (Schritt 5e):** kein Event von ≥3 auf 0 gefallen (15.06.-Baseline war ~1 je Event) → **kein KRITISCH-Alarm**. mail/phone/pdf/trainer = 0 ist Low-Volume, kein Defekt.
+- Dead-Click Dashboard 7T: **12,92 %** (62 Sess.) — ↓ von 15,38 % (15.06.); API-3T-Referenzwert 8,65 % bleibt unter Schwelle.
+
+**Insights heute:** Patterns 0 | Issues 0 (keine neuen; Dead-Click weiter entspannt) | Trends 3 (neuer Cluster copilot-cowork-abrechnung „verstärken"; Dead-Click-Sinkflug positiv; Edge-Browser-Shift beobachten — Details in clarity-insights.md)
+**Folge-Crons angelegt:** keine — kein Anti-Pattern-Trigger (keine Page ≥ 100 Sessions/3T; Top-Page 21), kein UX-Eskalations-Trigger (Dead-Click 8,65 % < 10 %, Rage 0)
+**Goldene Pages (GSC×Clarity, organic):** 4 Seiten in beiden Top-Listen — **`copilot-cowork-abrechnung-copilot-credits`** (GSC „copilot cowork kosten" 7 Klicks + Clarity 16 Visits — neu & stark) · `microsoft-copilot-lizenzen` (GSC „copilot lizenzen" 2 + Clarity 7) · `ki-halluzinationen-vermeiden` (GSC 2 + Clarity 7) · `copilot-in-outlook-nutzen-tipps` (GSC „copilot in outlook" 2 + Clarity 6).
+**Ungenutztes SEO-Potential:** `/wissen/copilot-in-excel-aktivieren` ist GSC-Klick-Bringer #1 (25 Klicks/1.496 Impr.), taucht aber NICHT in den Clarity-Top-Pages des 3T-Fensters auf → entweder außerhalb des 3T-Samples oder Conversion-/Verweil-Potential ungenutzt; bei nächster CTA-Welle priorisieren.
+**Protected Pages:** alle 5 HTTP 200 ✅ (copilot-roi-berechnen · copilot-training-schulung · copilot-im-unternehmen-einfuehren-leitfaden · microsoft-copilot-lizenzen · ki-schulung-mitarbeiter-pflicht)
+**Entscheidung gemäß Plan:** Phase 3 bleibt aktiv. SSR 67/67 ✅ stabil (DoD #2 weiter erfüllt, keine Regression). Dead-Click 2. Woche unter Schwelle → kein Handlungsdruck. **Index-Coverage (A6, aktiver Hebel):** Indexierungsquote 59,8 % unverändert (GSC-Index-Daten noch vom 12.06., kein neuer Crawl), gecrawlt/gefunden-nicht-indexiert konstant 9+16=25 → **keine Verschlechterung** (kein ≥3-W/W-Anstieg → keine Eskalation), aber auch keine Verbesserung; Recheck-Cron 30.06. wird re-pingen. **Positiv & sauber organisch (SEA/Outbound noch nicht live):** GSC-Klicks +25 %, Impr. +17 %, Pos. 10→9,8; Clarity Sessions +38 %; neue organische/golden Page `copilot-cowork-abrechnung-copilot-credits`. Kein Phasen-Wechsel.
+**API-Calls heute:** 1/10 (Clarity); GSC/AlwaysData/Clarity-Dashboard via Chrome (kein API-Verbrauch)
+**Nächster Lauf:** Mo 29.06.2026, 10:00 (Hinweis: Cron `copilotenschule-seo-index-coverage-recheck` läuft Mo 30.06.)
+
+---
+
 ### 2026-06-17 — Phase-Conductor-Lauf (Cron)
 
 **Aktive Phase:** Phase 3 — Content-Block (aktiv seit 01.06.2026, kein Wechsel)
