@@ -44,11 +44,27 @@ Die Site ist bewusst schlank gebaut: kein Cookie-Banner, Clarity läuft cookieba
 
 ```
 SEA:      ?utm_source=google&utm_medium=cpc&utm_campaign=<kampagne>&utm_term=<keyword>
-Outbound: ?utm_source=outbound&utm_medium=email&utm_campaign=sml-hr-2026
+Outbound: ?utm_source=outbound&utm_medium=email&utm_campaign=sml-hr-2026&utm_content=mail1
 LinkedIn: ?utm_source=linkedin&utm_medium=social&utm_campaign=<post>
 ```
 
 Zweck: (a) Clarity/AlwaysData können Paid/Outbound von Organic trennen, (b) Weekly-/Monthly-Crons vergleichen sonst ab KW 25 Äpfel mit Birnen, (c) GSC bleibt davon unberührt (misst eh nur organisch). Die Outbound-Mails sollten die LP `/sml/hr-tipps_2026` NUR mit UTM verlinken.
+
+**utm_content:** Für die Sequenz-Schritte `mail1` bis `mail5` verwenden — so ist im Clarity-Dashboard erkennbar, aus welchem Schritt der Klick kam.
+
+> ⚠️ **Bugfix 23.06.2026:** `SmlHrTipps2026.tsx` prüfte bisher `utm_source === "smartlead"` statt `"outbound"`. Wurde korrigiert. Mail-Templates MÜSSEN `utm_source=outbound` verwenden.
+
+---
+
+## 3a. Smartlead Custom Click-Tracking Domain ✅ ERLEDIGT (23.06.2026)
+
+Click-Links in Smartlead-Mails laufen über eine eigene Domain statt Smartleads Standard-Domain:
+
+- **Domain:** `emailtracking.copiloten-schule.de`
+- **CNAME-Ziel:** `open.sleadtrack.com`
+- **Verifiziert:** DNS-Lookup bestätigt + Smartlead zeigt "CNAME Verified"
+- **Wo eingestellt:** Smartlead → Email Accounts → [Account] → General → Custom tracking domain
+- **Vorteil:** Verbesserte Deliverability, kein Shared-Domain-Reputationsrisiko
 
 ## 4. SEA-Kampagnen-Leitplanken (Budget-Schutz)
 

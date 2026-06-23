@@ -45,7 +45,8 @@ function tagClarityFromUTM(): void {
   setSessionTag("campaign_medium", medium);
 
   // Besondere Session-Markierung damit Smartlead-Traffic leicht filterbar ist
-  if (source === "smartlead") {
+  // utm_source=outbound gemäß UTM-Konvention (sea-tracking-konzept-2026-06.md)
+  if (source === "outbound") {
     setSessionTag("visitor_type", "smartlead_campaign");
     trackConversion("sml_landing_page_visit", campaign);
   }
