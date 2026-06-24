@@ -8,6 +8,50 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 
 ## Logs
 
+### 2026-06-24 — C4 Schema.org-Konsolidierung (Cron, Draft-only)
+
+**Cron:** `copilotenschule-seo-c4-schema-konsolidierung-draft`. STRIKT Draft-only — kein Push, keine `src/`-Änderung, nur `docs/`.
+
+**Guard:** Phase 3 aktiv ✅. C4 in Plan-Tabelle = „⏳ scheduled 17.06." (nicht erledigt) ✅. Kein bestehender C4-Draft (`docs/drafts/c4-schema-konsolidierung-*.md`) ✅. git-Working-Tree sauber. → regulärer Lauf, Draft erstellt.
+
+**Befund (Kurzfassung):** Kernproblem = doppelte/konfligierende `@id`-Knoten, weil `combineWithGlobalSchema` auf jeder Seite `#organization` + `#martin-lang` voranstellt, einzelne Seiten diese `@id`s aber erneut (mit anderen Properties) definieren.
+- **F1 🔴** Doppelter, widersprüchlicher `#martin-lang`-Person-Knoten auf ~46 Artikelseiten (global `founderSchema` vs. inline `getAuthorSchemaMarkup(martinLang)`).
+- **F2 🟠** `www` vs. non-`www` bei `yellow-boat.com/#organization` → dangling `parentOrganization` auf Home, `/unsere-angebote`, `/ueber-uns` (`schema.ts:583/635`, `UeberUns.tsx:31/90`).
+- **F3 🔴** Doppelter `#organization` mit **veraltetem, nicht existierendem** Logo `og-image.jpg` (`schema.ts:552`, `UeberUns.tsx:22`, B2-Hub `:159`) — **24.06. verifiziert: `og-image.jpg` existiert nirgends im Repo → 404-Asset.** Korrekt = `copilotenschule_flugzeug.png`. Das ist der noch offene „breitere Konsolidierungs"-Rest aus der 09.06.-Teilerledigung.
+- **F4/F5/F6 🟡** redundante Org-Repräsentationen, tote Schema-Generator-Pfade, `logo` String vs. ImageObject.
+
+**Draft-Pfad:** `docs/drafts/c4-schema-konsolidierung-2026-06-24.md` — Befundliste, konkrete Diffs (Branch `seo/c4-schema-konsolidierung`), Anwendungsreihenfolge (Pass 1a Org-Ebene nicht-geschützt → Pass 1b F1-Dedup nicht-geschützt → beobachten → Pass 2 Protected + Single-Source → Pass 3 Aufräumen), DoD-Effekt #1/#3.
+
+**Protected Pages ausgespart (Pass 1):** `copilot-roi-berechnen`, `copilot-training-schulung` (Hypothese), `copilot-im-unternehmen-einfuehren-leitfaden` (= `CopilotRolloutLeitfaden.tsx`, **nicht** `CopilotUnternehmensweitEinfuehren.tsx`), `microsoft-copilot-lizenzen`, `ki-schulung-mitarbeiter-pflicht` — sowie die globalen Knoten in `organizationSchema.ts` (treffen jede Seite).
+
+**Risiko-Status:** 🟢 niedrig für Pass 1 (keine Protected Page, keine Title/Meta/Canonical-Änderung, nur JSON-LD-Bereinigung auf nicht-geschützten Seiten). 🟡 für Pass 2 (Protected). Hinweis: `validate-seo.js` prüft KEINE Schema-`@id`-Konsistenz → manuelle Rich-Results-Gegenprüfung nötig.
+
+**Nächster Schritt:** User-Review des Drafts → Branch `seo/c4-schema-konsolidierung` → lokal `npm run build:prerender` + Schema-Validator gegen `dist/<route>.html`. Kein autonomer Push.
+
+---
+
+### 2026-06-24 — CTA-Brücke Verifikationslauf (Cron)
+
+**Guard:** `docs/drafts/pattern-transfer-content-to-offer-cta.md` existiert (Stand 11.06.) → keine Neuerstellung, reiner Verifikationslauf wie umgewidmet.
+
+**Einbau-Status:** **Welle 1 live.** `src/components/TrainingCTA.tsx` vorhanden + committet (git-tracked, Arbeitsverzeichnis sauber). Eingebaut an je 2 Touchpoints (mittig + vor FAQ) in den 3 Welle-1-Seiten:
+- `/wissen/copilot-in-outlook-nutzen-tipps` — **live verifiziert** (SSR-HTML enthält 2× „Passendes Training"; Title/H1/Meta/Canonical unverändert ✅, CTA rein additiv).
+- `/wissen/copilot-in-excel-aktivieren` — Komponente im Quellcode (Zeile 225 + 296). Live-Fetch durch Provenance-Regel blockiert; identischer committeter Deploy-Stand wie Outlook.
+- `/wissen/claude-in-microsoft-copilot` — Komponente im Quellcode (Zeile 310 + 435).
+- **Bonus (nicht im Draft-Mapping):** `/wissen/copilot-cowork-abrechnung-credits` hat den CTA ebenfalls (aktuell stärkste Einzelseite, 27 Sess./3T).
+- Welle 2 (5 Artikel inkl. 2 Protected Pages `microsoft-copilot-lizenzen`, `ki-halluzinationen-vermeiden`): noch NICHT umgesetzt.
+
+**Erste Wirkung (Clarity API, 1 Call, numOfDays=3 — 198 Sess./15 Bot, 215 Users):**
+- **Seiten/Sitzung = 1,12** (Baseline 11.06.: 1,0) → erste echte Bewegung; KPI-Ziel > 1,2 noch nicht erreicht.
+- Angebotsseiten bekommen Traffic: Trainings-Übersicht 26 Sess., Strategie-Workshop 9 Sess. → Funnel-Stufe 2 ist nicht mehr leer.
+- Welle-1-Seiten mit Traffic: Outlook 17 · Claude 16 · Excel 13 (= 46 Sess./3T).
+- Custom-Tag `content_cta_click`: **über die Clarity-Export-API NICHT abfragbar** (nur im Dashboard-UI/Filter sichtbar). Klick-Zahl + exakte Funnel-Rate Stufe 1→2 daher diesen Lauf **nicht direkt messbar** — nur indirekt (Seiten/Sitzung ↑, Angebotsseiten erhalten Sessions).
+- Keine UX-Regression durch den CTA: Rage-Click 1,01 %, Dead-Click 18,18 % (separater Alt-Treiber lucide-x/Backdrop, nicht der additive CTA-Block), Excessive-Scroll/ScriptError 0 %.
+
+**Nächster Schritt:** **Welle 2 freigeben** — Daten directional positiv, kein SEO-/UX-Schaden erkennbar. Vorab/parallel 1× Clarity-Dashboard-UI-Check des Tags `content_cta_click` zur exakten Funnel-Bestätigung (Stufe 1→2 %). Bei den 2 Protected Pages: CTA strikt additiv ab Artikelmitte, Title/H1/Meta/erste 100 Wörter unangetastet lassen. → Notification an Martin gesendet (Welle-2-Empfehlung).
+
+---
+
 ### 2026-06-22 — D3 Listicle-Outreach-Entwürfe (Cron)
 
 **Guard ausgelöst:** Drafts existieren bereits → KEINE Neuerstellung (Schritte 1–4 übersprungen, wie im Skill vorgesehen).

@@ -2,7 +2,7 @@
 
 **Lebendes Dokument** — Cron-Jobs pflegen dieses File. Hier sammeln sich die Pattern-Erkenntnisse aus Microsoft Clarity, die wir auf andere Seiten übertragen oder gegen UX-Probleme einsetzen können.
 
-**Letzter automatischer Update:** 22. Juni 2026 (weekly Cron)
+**Letzter automatischer Update:** 24. Juni 2026 (CTA-Brücke Verifikations-Cron)
 
 ---
 
@@ -263,7 +263,15 @@ nach ca. 2 Wochen Laufzeit empfohlen.
 **Symptom:** 297 Sessions (61,9 % von 480) erreichen Funnel-Stufe 1 (Wissensartikel), **0 %** gehen weiter zu Stufe 2 (Trainings/Konfigurator). Seiten/Sitzung = 1,0. Konversionsrate des Funnels 0 %. Funnel-Rate < 2 %-Schwelle massiv unterschritten.
 **Hypothese:** SEO bringt Besucher auf einzelne Wissensartikel, aber es fehlt die kontextuelle Brücke zum Angebot — kein In-Content-CTA, kein „Passendes Training"-Block, schwache interne Verlinkung Artikel→Angebot. Besucher lesen genau einen Artikel und verlassen die Seite.
 **Empfohlene Maßnahme:** Wiederverwendbare TSX-CTA-Komponente („Passendes Training zu diesem Thema") mittig + am Ende jedes Top-Wissensartikels. Pattern-Transfer.
-**Status:** identifiziert — Folge-Cron `copilotenschule-pattern-transfer-2026-06-24` (+14 Tage) angelegt, schreibt Code-Diff in `docs/drafts/`.
+**Status:** in Umsetzung — **Welle 1 live (24.06.)**, siehe Update unten.
+
+---
+
+### 2026-06-24 — Issue-Update: Funnel-Bruch Content→Angebot — Welle 1 live, erste Bewegung
+**Quelle:** Verifikations-Cron `copilotenschule-seo-pattern-transfer-2026-06-24` — Clarity API 3T (198 Sess.) + SSR-Live-Check (Outlook) + Quellcode-Prüfung.
+**Maßnahme umgesetzt:** `src/components/TrainingCTA.tsx` live auf den 3 Welle-1-Seiten (Outlook live verifiziert: 2× „Passendes Training" im SSR-HTML, Meta/H1/Canonical unverändert; Excel + Claude im committeten Quellcode an je 2 Touchpoints), zusätzlich auf `/wissen/copilot-cowork-abrechnung-credits`. Rein additiv (Protected-Pages-Regel eingehalten).
+**Erste Wirkung:** Seiten/Sitzung **1,0 → 1,12**; Angebotsseiten erhalten Sessions (Trainings-Übersicht 26, Strategie-Workshop 9) → Funnel-Stufe 2 nicht mehr leer. **Custom-Tag `content_cta_click` ist über die Clarity-Export-API nicht abfragbar** → exakte Stufe-1→2-Rate nur im Dashboard-UI prüfbar; dort vor dem Welle-2-Push einmal verifizieren. Keine UX-Regression (Rage 1,01 %, Excessive-Scroll/ScriptError 0 %).
+**Status:** beobachten — Welle 2 (5 Artikel inkl. 2 Protected Pages) freigeben; KPI-Ziele Seiten/Sitzung > 1,2 und Stufe 1→2 ≥ 5 % noch offen.
 
 ---
 
