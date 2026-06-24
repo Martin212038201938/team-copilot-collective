@@ -1,7 +1,7 @@
 {
   "meta": {
     "domain": "copilotenschule.de",
-    "generated_at": "2026-06-24T19:31:22.896Z",
+    "generated_at": "2026-06-24T19:38:28.550Z",
     "generated_by": "github-action: build-dashboard-data.js (GSC/Bing direkt)",
     "overall_health": "green",
     "update_frequency": "täglich",
@@ -29,9 +29,9 @@
       "note": "Verbunden (Data-Export-API, letzte 3 Tage)"
     },
     "pagespeed": {
-      "connected": false,
+      "connected": true,
       "label": "PageSpeed Insights",
-      "note": "Optional, noch nicht angebunden"
+      "note": "Verbunden (Lab, mobil) – Ø Performance-Score 76"
     },
     "llm": {
       "connected": false,
@@ -76,15 +76,37 @@
       "source": "bing"
     },
     "clarity_sessions_7d": {
-      "value": 251,
+      "value": 253,
       "delta_pct": null,
       "source": "clarity"
     }
   },
   "performance": {
-    "average_performance_score": null,
-    "core_web_vitals_status": null,
-    "pages": []
+    "average_performance_score": 76,
+    "core_web_vitals_status": "Labordaten (mobil); INP-Spalte = TBT-Proxy",
+    "pages": [
+      {
+        "url": "https://copilotenschule.de/",
+        "performance_score": 68,
+        "lcp_ms": 19517,
+        "inp_ms": 106,
+        "cls": 0
+      },
+      {
+        "url": "https://copilotenschule.de/trainings",
+        "performance_score": 93,
+        "lcp_ms": 1681,
+        "inp_ms": 201,
+        "cls": 0
+      },
+      {
+        "url": "https://copilotenschule.de/wissen/claude-in-microsoft-copilot",
+        "performance_score": 66,
+        "lcp_ms": 4201,
+        "inp_ms": 747,
+        "cls": 0
+      }
+    ]
   },
   "indexing": {
     "google": {
@@ -156,22 +178,22 @@
     "checks": []
   },
   "clarity": {
-    "sessions_3d": 251,
-    "users_3d": 276,
+    "sessions_3d": 253,
+    "users_3d": 278,
     "bot_sessions_3d": 22,
     "pages_per_session": 1.13,
-    "avg_scroll_depth": 43.28,
-    "engagement_active_sec": 118,
-    "dead_click_pct": 17.53,
-    "rage_click_pct": 0.8,
+    "avg_scroll_depth": 43.33,
+    "engagement_active_sec": 117,
+    "dead_click_pct": 17.79,
+    "rage_click_pct": 0.79,
     "top_pages": [
       {
-        "url": "https://copilotenschule.de/wissen/claude-in-microsoft-copilot",
+        "url": "https://copilotenschule.de/wissen/copilot-cowork-abrechnung-copilot-credits",
         "visits": 33
       },
       {
-        "url": "https://copilotenschule.de/wissen/copilot-cowork-abrechnung-copilot-credits",
-        "visits": 32
+        "url": "https://copilotenschule.de/wissen/claude-in-microsoft-copilot",
+        "visits": 33
       },
       {
         "url": "https://copilotenschule.de/",
@@ -210,7 +232,7 @@
     },
     {
       "severity": "info",
-      "text": "Clarity: 251 Sessions in 3 Tagen, Ø Scrolltiefe 43.28%, Dead-Clicks 17.53% der Sitzungen."
+      "text": "Clarity: 253 Sessions in 3 Tagen, Ø Scrolltiefe 43.33%, Dead-Clicks 17.79% der Sitzungen."
     }
   ],
   "availability": {
