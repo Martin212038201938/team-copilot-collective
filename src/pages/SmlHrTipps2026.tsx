@@ -117,27 +117,6 @@ Maßnahme 1: Verbindliche Entwicklungsgespräche alle sechs Monate, getrennt vom
   },
   {
     nr: "02",
-    title: "Vorauswahl mit einer Bewertungsmatrix, die man verteidigen kann",
-    lead: `Lebensläufe nacheinander zu lesen und „nach Gefühl“ zu sortieren ist nicht nur langsam, es ist auch angreifbar – spätestens wenn ein abgelehnter Bewerber nachfragt, warum. Eine konsistente, gewichtete Matrix ist fairer und schneller zugleich, und Copilot Chat baut sie Ihnen aus Rohdaten, selbst wenn die Tabelle unsauber ist.`,
-    workflow: [
-      "Die Bewerberübersicht als Excel hochladen, auch mit uneinheitlichen Spalten und Freitextnotizen. Copilot kommt mit unstrukturierten Tabellen besser zurecht, als man denkt.",
-      "Die Stellenausschreibung als zweite Datei hochladen oder per Schrägstrich-Befehl aus einem offenen Dokument einfügen.",
-      "Im Prompt das Anforderungsprofil gewichten lassen und ausdrücklich einen Bias-Check verlangen – das ist der Teil, den fast alle weglassen.",
-    ],
-    prompt: `Ich habe dir zwei Dateien gegeben: eine Excel-Liste mit 28 Bewerbern (Spalten teils uneinheitlich, mit Freitextnotizen) und unsere Stellenausschreibung für eine Teamleitung Kundenservice. Erstelle erstens aus der Ausschreibung ein Anforderungsprofil mit gewichteten Kriterien (Muss/Soll, Gewichtung in Prozent, zusammen 100). Bewerte zweitens jeden Bewerber anhand der vorhandenen Angaben pro Kriterium auf einer Skala von 1 bis 5 und berechne einen gewichteten Gesamtscore. Wo Angaben fehlen, schreib „unbekannt“, statt zu raten. Gib drittens eine Shortlist der besten sechs mit je zwei Sätzen Begründung aus. Prüfe viertens deine eigene Bewertung kritisch auf Verzerrungen: Sind Kriterien eingeflossen, die nichts mit der Eignung zu tun haben – etwa Lücken im Lebenslauf, Alter, die Herkunft des Namens oder der Studienort? Wenn ja, sag mir konkret, an welcher Stelle.`,
-    followups: [
-      "Formuliere für die sechs Shortlist-Kandidaten je drei kompetenzbasierte Interviewfragen, die genau auf die Lücken in ihrem Profil zielen.",
-      "Erstelle eine Absagevorlage für die nicht berücksichtigten Bewerber mit Platzhaltern für einen konkreten, persönlichen Bezug, den ich je Person ausfülle.",
-    ],
-    output: `Anforderungsprofil (Auszug): Führungserfahrung im Service (Muss, 25 %) · Eskalationskompetenz (Muss, 20 %) · Branchennähe (Soll, 10 %) …
-
-Bewertung (Auszug):
-Kandidat C – Gesamtscore 4,3. Stark in Führung (5) und Eskalation (4), Branchennähe unbekannt. Begründung: Sieben Jahre Teamleitung im Service, klare Beispiele für Deeskalation in den Notizen.
-
-Bias-Hinweis: In zwei Fällen war in den Freitextnotizen eine Beschäftigungslücke vermerkt. Lücken sagen nichts über die Eignung für diese Rolle aus – ich habe sie nicht in den Score einfließen lassen und empfehle, sie im Gespräch neutral anzusprechen, statt sie vorab zu werten.`,
-  },
-  {
-    nr: "03",
     title: "Eine Betriebsvereinbarung lesbar machen und konkrete Fälle prüfen",
     lead: `Niemand schlägt für jede Rückfrage die komplette Betriebsvereinbarung auf, und genau deshalb kursieren im Unternehmen halb richtige Auskünfte. Copilot Chat kann ein hochgeladenes Dokument genau lesen und Ihnen die relevante Stelle wörtlich zeigen. Wichtig ist die Disziplin im Prompt: Er soll ausschließlich aus dem Dokument antworten und nicht frei interpretieren. Eine arbeitsrechtliche Prüfung ersetzt das nicht – als Vorklärung spart es trotzdem viel Zeit.`,
     workflow: [
@@ -156,7 +135,7 @@ Bias-Hinweis: In zwei Fällen war in den Freitextnotizen eine Beschäftigungslü
 Einordnung: Eine fest vorgeschriebene Kernarbeitszeit greift in die in 3.2 zugesicherte eigenverantwortliche Lage ein. Nach 4.1 wäre sie nicht ausgeschlossen, aber zustimmungspflichtig durch den Betriebsrat. Eindeutig „erlaubt ohne Weiteres“ gibt das Dokument nicht her – diese Lücke sollten Sie nicht durch eigene Auslegung schließen.`,
   },
   {
-    nr: "04",
+    nr: "03",
     title: "Eine neue Richtlinie zielgruppengerecht kommunizieren",
     lead: `Eine neue Regelung scheitert selten am Inhalt, sondern an der Kommunikation. Die Geschäftsführung liest etwas anderes als das Team, und die Führungskräfte brauchen Argumente für den Moment, in dem jemand im Meeting die Augen verdreht. Aus einem Dokument lassen sich diese drei Fassungen in einem Durchgang erzeugen – inklusive abgestimmter Tonalität, wenn Sie ein gutes Beispiel mitliefern.`,
     workflow: [
@@ -174,7 +153,7 @@ Einordnung: Eine fest vorgeschriebene Kernarbeitszeit greift in die in 3.2 zuges
 Führungskräfte-Leitfaden (Auszug): Typischer Einwand im Meeting – „Dann ist ja nie jemand da.“ Mögliche Antwort: Die Regelung schreibt keine festen Bürotage vor, aber das Team legt gemeinsam eine verlässliche Mindestpräsenz fest. Diese Entscheidung treffen Sie im Team, nicht ich für Sie.`,
   },
   {
-    nr: "05",
+    nr: "04",
     title: "Employer-Branding-Lücken finden, die Sie wirklich füllen können",
     lead: `Die meisten Karriereseiten versprechen dieselben fünf Benefits, und genau deshalb glaubt sie niemand mehr. Spannend wird es, wenn Sie Ihre echten Stärken aus den Mitarbeiterbewertungen gegen die Versprechen der Wettbewerber legen. Copilot Chat kann beides verbinden: hochgeladene eigene Bewertungen und live gelesene Karriereseiten der Konkurrenz.`,
     workflow: [
@@ -425,6 +404,67 @@ const SmlHrTipps2026 = () => {
                   </div>
                 </article>
               ))}
+
+              {/* ── WARNFALL: Was man NICHT tun darf (EU AI Act) ── */}
+              <article className="border-2 border-red-300 bg-red-50/40 rounded-xl p-6">
+                <div className="flex items-baseline gap-3 mb-3">
+                  <span className="text-2xl font-bold text-red-300 tabular-nums">05</span>
+                  <h3 className="text-lg md:text-xl font-bold text-slate-900">
+                    Vorauswahl mit einer Bewertungsmatrix und einer KI, die das für mich übernimmt?
+                  </h3>
+                </div>
+
+                <p className="text-red-700 font-bold text-[15px] leading-relaxed mb-5">
+                  Bitte auf keinen Fall so umsetzen. Nach dem EU AI Act handelt es sich dabei um ein
+                  Hochrisiko-System – eine KI, die Bewerbungen automatisch bewertet, filtert oder in eine
+                  Rangfolge bringt, gehört zu den am strengsten regulierten Anwendungen überhaupt.
+                </p>
+
+                <div className="space-y-4 text-[15px] text-slate-700 leading-relaxed">
+                  <p>
+                    Der naheliegende nächste Schritt nach den Beispielen oben wäre, Copilot gleich die
+                    Kandidaten bewerten und eine Shortlist erstellen zu lassen. Genau das ist der Punkt, an
+                    dem aus einer Arbeitserleichterung ein rechtliches Problem wird. Der EU AI Act führt im
+                    Anhang III ausdrücklich KI-Systeme auf, die „für die Einstellung oder Auswahl natürlicher
+                    Personen, insbesondere um Bewerbungen zu sichten und zu filtern und Bewerber zu bewerten“
+                    eingesetzt werden. Solche Systeme sind als hochriskant eingestuft – nicht, weil die EU
+                    KI im Personalwesen verbieten will, sondern weil eine fehlerhafte oder verzerrte
+                    Auswahllogik Menschen unmittelbar benachteiligt und ihnen Chancen nimmt, ohne dass sie es
+                    je erfahren.
+                  </p>
+                  <p>
+                    Hochriskant bedeutet: Wer ein solches System einsetzt, muss ein Risikomanagement
+                    nachweisen, die Datenqualität und Verzerrungsfreiheit dokumentieren, eine echte
+                    menschliche Aufsicht sicherstellen, betroffene Bewerber transparent informieren und das
+                    Ganze protokollieren und prüfen lassen. Ein allgemeiner Chat-Assistent wie Copilot Chat
+                    ist dafür nicht gebaut und erfüllt keine dieser Pflichten. Ihn die Bewerberauswahl
+                    treffen zu lassen, ist deshalb in der Praxis nicht rechtskonform umsetzbar.
+                  </p>
+                  <p>
+                    Unabhängig vom AI Act greift schon heute Artikel 22 der DSGVO: Niemand muss eine
+                    Entscheidung hinnehmen, die ausschließlich auf einer automatisierten Verarbeitung beruht
+                    und ihn erheblich betrifft. Eine automatische Absage oder ein Ranking, das darüber
+                    entscheidet, welche Bewerbung ein Mensch überhaupt zu sehen bekommt, fällt genau darunter
+                    – und das gilt jetzt, nicht erst in zwei Jahren. Die Hochrisiko-Pflichten des AI Act
+                    waren ursprünglich ab dem 2. August 2026 vorgesehen; nach einer politischen Einigung
+                    (AI Digital Omnibus) verschiebt sich ihre Anwendung voraussichtlich auf den 2. Dezember
+                    2027. Am Kern ändert das nichts: Die DSGVO-Schranke besteht heute schon.
+                  </p>
+                  <p>
+                    Was erlaubt und sinnvoll bleibt: KI als Zuarbeit, solange Bewertung und Entscheidung beim
+                    Menschen liegen. Copilot darf Ihnen helfen, ein Anforderungsprofil zu strukturieren,
+                    Interviewfragen vorzubereiten oder Ihre eigenen Notizen zu ordnen. Was es nicht tun darf,
+                    ist, Bewerber eigenständig zu punkten, zu sortieren oder auszusortieren. Die Grenze
+                    verläuft nicht zwischen „mit KI“ und „ohne KI“, sondern zwischen Unterstützung und
+                    selbsttätiger Entscheidung – und genau diese Grenze sauber zu ziehen, ist einer der
+                    Punkte, die wir in unseren Trainings mit HR-Teams durchgehen.
+                  </p>
+                  <p className="text-sm text-slate-500">
+                    Das ist eine fachliche Einordnung, keine Rechtsberatung – bei konkreten Vorhaben gehört
+                    der Fall auf den Tisch von Datenschutz und Arbeitsrecht.
+                  </p>
+                </div>
+              </article>
             </div>
           </section>
 
