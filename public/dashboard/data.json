@@ -1,11 +1,7 @@
 {
   "meta": {
     "domain": "copilotenschule.de",
-<<<<<<< HEAD
-    "generated_at": "2026-06-24T19:23:05.748Z",
-=======
-    "generated_at": "2026-06-24T19:11:27.453Z",
->>>>>>> 7f37fe0bf6837c041075ed6b6c5f86ac653e9397
+    "generated_at": "2026-06-24T19:31:22.896Z",
     "generated_by": "github-action: build-dashboard-data.js (GSC/Bing direkt)",
     "overall_health": "green",
     "update_frequency": "täglich",
@@ -80,7 +76,7 @@
       "source": "bing"
     },
     "clarity_sessions_7d": {
-      "value": 250,
+      "value": 251,
       "delta_pct": null,
       "source": "clarity"
     }
@@ -160,13 +156,13 @@
     "checks": []
   },
   "clarity": {
-    "sessions_3d": 250,
-    "users_3d": 275,
+    "sessions_3d": 251,
+    "users_3d": 276,
     "bot_sessions_3d": 22,
     "pages_per_session": 1.13,
-    "avg_scroll_depth": 43.08,
-    "engagement_active_sec": 116,
-    "dead_click_pct": 17.2,
+    "avg_scroll_depth": 43.28,
+    "engagement_active_sec": 118,
+    "dead_click_pct": 17.53,
     "rage_click_pct": 0.8,
     "top_pages": [
       {
@@ -214,7 +210,7 @@
     },
     {
       "severity": "info",
-      "text": "Clarity: 250 Sessions in 3 Tagen, Ø Scrolltiefe 43.08%, Dead-Clicks 17.2% der Sitzungen."
+      "text": "Clarity: 251 Sessions in 3 Tagen, Ø Scrolltiefe 43.28%, Dead-Clicks 17.53% der Sitzungen."
     }
   ],
   "availability": {
