@@ -441,16 +441,6 @@ const SmlHrTipps2026 = () => {
                     treffen zu lassen, ist deshalb in der Praxis nicht rechtskonform umsetzbar.
                   </p>
                   <p>
-                    Unabhängig vom AI Act greift schon heute Artikel 22 der DSGVO: Niemand muss eine
-                    Entscheidung hinnehmen, die ausschließlich auf einer automatisierten Verarbeitung beruht
-                    und ihn erheblich betrifft. Eine automatische Absage oder ein Ranking, das darüber
-                    entscheidet, welche Bewerbung ein Mensch überhaupt zu sehen bekommt, fällt genau darunter
-                    – und das gilt jetzt, nicht erst in zwei Jahren. Die Hochrisiko-Pflichten des AI Act
-                    waren ursprünglich ab dem 2. August 2026 vorgesehen; nach einer politischen Einigung
-                    (AI Digital Omnibus) verschiebt sich ihre Anwendung voraussichtlich auf den 2. Dezember
-                    2027. Am Kern ändert das nichts: Die DSGVO-Schranke besteht heute schon.
-                  </p>
-                  <p>
                     Was erlaubt und sinnvoll bleibt: KI als Zuarbeit, solange Bewertung und Entscheidung beim
                     Menschen liegen. Copilot darf Ihnen helfen, ein Anforderungsprofil zu strukturieren,
                     Interviewfragen vorzubereiten oder Ihre eigenen Notizen zu ordnen. Was es nicht tun darf,
