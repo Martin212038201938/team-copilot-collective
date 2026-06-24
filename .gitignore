@@ -19,6 +19,12 @@ dist-ssr
 .usage.json
 .openai-usage.json
 
+# Google Service Account Keys – NIEMALS committen (Google deaktiviert sie sonst automatisch)
+gsc-key.json
+*service-account*.json
+*-iam.gserviceaccount.com.json
+bubbly-observer-*.json
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

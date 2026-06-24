@@ -2,88 +2,94 @@
 /**
  * build-dashboard-data.js
  *
- * Holt die Marketing-Kennzahlen für copilotenschule.de über die Supermetrics
- * REST-API und schreibt:
- *   - public/dashboard/data.json   (aktueller Tages-Snapshot)
- *   - public/dashboard/history.json (Zeitreihe, bis 90 Tage, wird gemergt)
+ * Holt die Marketing-Kennzahlen für copilotenschule.de DIREKT von den jeweiligen
+ * APIs (ohne Supermetrics) und schreibt:
+ *   - public/dashboard/data.json    (aktueller Tages-Snapshot)
+ *   - public/dashboard/history.json (Zeitreihe bis 90 Tage, wird gemergt)
  *
  * Läuft serverseitig (GitHub Action). Zugangsdaten kommen AUSSCHLIESSLICH aus
  * Umgebungsvariablen (GitHub Secrets) — niemals hartcodieren:
- *   SUPERMETRICS_API_KEY  – API-Key aus dem Supermetrics Query Manager
- *   SUPERMETRICS_DS_USER  – ds_user-ID der Supermetrics-Verbindung
+ *   GSC_SERVICE_ACCOUNT_JSON – JSON-Key eines Google-Service-Accounts, der in der
+ *                              Search Console als Nutzer der Property hinterlegt ist
+ *   BING_API_KEY             – API-Key aus den Bing Webmaster Tools (Einstellungen → API-Zugriff)
+ *   CLARITY_API_TOKEN        – Microsoft Clarity Data-Export-API Token
  *
+ * Dependency-frei (nur Node-Bordmittel), damit die Action ohne `npm install` läuft.
  * Quellen ohne Daten bleiben null/0 — es werden KEINE Platzhalter erfunden.
  */
 
 import { readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, resolve } from "node:path";
+import crypto from "node:crypto";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DASH = resolve(__dirname, "..", "public", "dashboard");
-const API = "https://api.supermetrics.com/enterprise/v2/query/data/json";
 
-const API_KEY = process.env.SUPERMETRICS_API_KEY;
-const DS_USER = process.env.SUPERMETRICS_DS_USER;
-if (!API_KEY || !DS_USER) {
-  console.error("FEHLT: SUPERMETRICS_API_KEY und/oder SUPERMETRICS_DS_USER (Env/Secrets).");
-  process.exit(1);
-}
-
-const GSC_ACCOUNT = "sc-domain:copilotenschule.de";
-const ADS_ACCOUNT = "4805478290";
-const BING_ACCOUNT = "https://www.copilotenschule.de/";
-const CLARITY_TOKEN = process.env.CLARITY_API_TOKEN;             // Data-Export-API Token (GitHub Secret / .env lokal)
+const GSC_SITE = "sc-domain:copilotenschule.de";
+const BING_SITE = "https://www.copilotenschule.de/";
 const CLARITY_API = "https://www.clarity.ms/export-data/api/v1/project-live-insights"; // max. 3 Tage, 10 Calls/Tag
 
-const num = (v) => {
-  const n = parseFloat(String(v).replace(",", "."));
-  return Number.isFinite(n) ? n : 0;
-};
+const GSC_SA = process.env.GSC_SERVICE_ACCOUNT_JSON;
+const BING_KEY = process.env.BING_API_KEY;
+const CLARITY_TOKEN = process.env.CLARITY_API_TOKEN;
+
+const num = (v) => { const n = parseFloat(String(v).replace(",", ".")); return Number.isFinite(n) ? n : 0; };
 const round2 = (n) => Math.round(n * 100) / 100;
 const pct = (cur, prev) => (prev > 0 ? Math.round(((cur - prev) / prev) * 100) : null);
-const berlinToday = () =>
-  new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Berlin" }).format(new Date()); // YYYY-MM-DD
-
-/** Ruft die Supermetrics-API und liefert die data-Zeilen (inkl. Headerzeile [0]). */
-async function smQuery(params) {
-  const json = JSON.stringify({ ds_user: DS_USER, api_key: API_KEY, max_rows: 1000, ...params });
-  const url = `${API}?json=${encodeURIComponent(json)}`;
-  const res = await fetch(url);
-  if (!res.ok) throw new Error(`Supermetrics HTTP ${res.status} für ds_id=${params.ds_id}`);
-  const body = await res.json();
-  if (body?.error) {
-    const e = body.error;
-    throw new Error(`Supermetrics-Fehler (ds_id=${params.ds_id}): ${e.code || ""} ${e.description || e.message || ""}`.trim());
-  }
-  const rows = body?.data;
-  if (!Array.isArray(rows)) {
-    const msg = body?.meta?.error_message || "unbekannt";
-    throw new Error(`Supermetrics-Antwort ohne data (ds_id=${params.ds_id}): ${msg}`);
-  }
-  return rows; // rows[0] = Header, rows[1..] = Daten
-}
-
-/** Wandelt data-Zeilen in Objekte um (Header → Feld-IDs in Reihenfolge der fields). */
-function toObjects(rows, fieldIds) {
-  if (rows.length <= 1) return [];
-  return rows.slice(1).map((r) => Object.fromEntries(fieldIds.map((f, i) => [f, r[i]])));
-}
+const berlinToday = () => new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Berlin" }).format(new Date());
+const ymd = (d) => d.toISOString().slice(0, 10);
+const daysAgo = (n) => new Date(Date.now() - n * 86400000);
+const sum = (arr, k) => arr.reduce((s, r) => s + r[k], 0);
 
 async function safe(label, fn, fallback) {
-  try {
-    return await fn();
-  } catch (e) {
-    console.warn(`WARN ${label}: ${e.message}`);
-    return fallback;
-  }
+  try { return await fn(); } catch (e) { console.warn(`WARN ${label}: ${e.message}`); return fallback; }
 }
 
-/**
- * Microsoft Clarity Data-Export-API (project-live-insights, letzte 3 Tage).
- * Liefert Sessions, Nutzer, Scrolltiefe, Dead-/Rage-Clicks und Top-Seiten.
- * Ohne CLARITY_API_TOKEN: gibt null zurück (Clarity bleibt "nicht verbunden").
- */
+// ---------- Google Search Console (Service Account → JWT → Access Token) ----------
+const b64url = (o) => Buffer.from(typeof o === "string" ? o : JSON.stringify(o)).toString("base64url");
+
+async function gscToken(sa) {
+  const now = Math.floor(Date.now() / 1000);
+  const head = b64url({ alg: "RS256", typ: "JWT" });
+  const claim = b64url({ iss: sa.client_email, scope: "https://www.googleapis.com/auth/webmasters.readonly", aud: sa.token_uri, exp: now + 3600, iat: now });
+  const sig = crypto.createSign("RSA-SHA256").update(`${head}.${claim}`).sign(sa.private_key).toString("base64url");
+  const res = await fetch(sa.token_uri, {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams({ grant_type: "urn:ietf:params:oauth:grant-type:jwt-bearer", assertion: `${head}.${claim}.${sig}` }),
+  });
+  const j = await res.json();
+  if (!j.access_token) throw new Error(`GSC-Token-Fehler: ${JSON.stringify(j).slice(0, 200)}`);
+  return j.access_token;
+}
+
+async function gscQuery(token, body) {
+  const url = `https://www.googleapis.com/webmasters/v3/sites/${encodeURIComponent(GSC_SITE)}/searchAnalytics/query`;
+  const res = await fetch(url, { method: "POST", headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" }, body: JSON.stringify(body) });
+  const j = await res.json();
+  if (j.error) throw new Error(`GSC-API-Fehler: ${JSON.stringify(j.error).slice(0, 200)}`);
+  return j.rows || [];
+}
+
+// ---------- Bing Webmaster Tools (GetRankAndTrafficStats, apikey) ----------
+async function fetchBing() {
+  if (!BING_KEY) return null;
+  const url = `https://ssl.bing.com/webmaster/api.svc/json/GetRankAndTrafficStats?apikey=${encodeURIComponent(BING_KEY)}&siteUrl=${encodeURIComponent(BING_SITE)}`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`Bing HTTP ${res.status}`);
+  const j = await res.json();
+  const rows = Array.isArray(j?.d) ? j.d : (Array.isArray(j) ? j : []);
+  const parseDate = (s) => { const m = /\/Date\((\d+)/.exec(String(s)); return m ? ymd(new Date(Number(m[1]))) : null; };
+  const daily = rows
+    .map((r) => ({ date: parseDate(r.Date), clicks: num(r.Clicks), impressions: num(r.Impressions) }))
+    .filter((r) => r.date)
+    .sort((a, b) => a.date.localeCompare(b.date));
+  const last7 = daily.slice(-7);
+  return { clicks7: sum(last7, "clicks"), impr7: sum(last7, "impressions"), days: daily.length };
+}
+
+// ---------- Microsoft Clarity (Data-Export-API, letzte 3 Tage) ----------
 async function fetchClarity() {
   if (!CLARITY_TOKEN) return null;
   const res = await fetch(`${CLARITY_API}?numOfDays=3`, { headers: { Authorization: `Bearer ${CLARITY_TOKEN}` } });
@@ -114,49 +120,41 @@ async function fetchClarity() {
 async function main() {
   const today = berlinToday();
 
-  // ---- Google Search Console: 30 Tage Tagesreihe ----
-  const gscDailyRows = await safe(
-    "GSC daily",
-    () => smQuery({ ds_id: "GW", ds_accounts: GSC_ACCOUNT, fields: "Date,clicks,impressions,position", date_range_type: "last_30_days" }),
-    []
-  );
-  const gscDaily = toObjects(gscDailyRows, ["date", "clicks", "impressions", "position"])
-    .filter((r) => r.date)
-    .map((r) => ({ date: String(r.date).slice(0, 10), clicks: num(r.clicks), impressions: num(r.impressions), position: round2(num(r.position)) }))
-    .sort((a, b) => a.date.localeCompare(b.date));
-
-  // Schutz: Wenn GSC keine Daten liefert (z. B. ungültige/abgelaufene Supermetrics-
-  // Auth), NICHT mit Nullwerten weiterschreiben — lieber abbrechen, damit die
-  // bestehenden guten Daten erhalten bleiben.
-  if (gscDaily.length === 0) {
-    // Kein harter Fehler mehr: Wenn der Supermetrics-Zugang (SUPERMETRICS_API_KEY /
-    // SUPERMETRICS_DS_USER) ungültig/abgelaufen ist, liefert GSC 0 Zeilen. Dann das
-    // Update sauber ÜBERSPRINGEN (Lauf bleibt grün), damit keine Fehl-Läufe entstehen
-    // und die bestehenden, korrekten Dashboard-Daten erhalten bleiben.
-    console.warn("WARN: GSC lieferte keine Daten — vermutlich Supermetrics-Auth (SUPERMETRICS_API_KEY / SUPERMETRICS_DS_USER) ungültig/abgelaufen. Update wird übersprungen, bestehende Daten bleiben unverändert. Secrets aktualisieren, dann läuft die Aktualisierung automatisch wieder.");
+  if (!GSC_SA) {
+    console.warn("WARN: GSC_SERVICE_ACCOUNT_JSON fehlt — Update wird übersprungen, bestehende Daten bleiben unverändert.");
     process.exit(0);
   }
 
-  // 7-Tage-Summen + Vorwoche aus der Tagesreihe (für KPIs + Deltas)
+  // ---- Google Search Console: 30-Tage-Tagesreihe + Top-Suchbegriffe (28 Tage) ----
+  const gsc = await safe("GSC", async () => {
+    const token = await gscToken(JSON.parse(GSC_SA));
+    const dayRows = await gscQuery(token, { startDate: ymd(daysAgo(31)), endDate: ymd(new Date()), dimensions: ["date"], rowLimit: 90 });
+    const qRows = await gscQuery(token, { startDate: ymd(daysAgo(29)), endDate: ymd(new Date()), dimensions: ["query"], rowLimit: 200 });
+    return { dayRows, qRows };
+  }, null);
+
+  // Schutz: Wenn GSC keine Daten liefert (z. B. Key ungültig/Zugriff fehlt), NICHT mit
+  // Nullwerten weiterschreiben — Update sauber überspringen (Lauf bleibt grün), damit
+  // die bestehenden, korrekten Dashboard-Daten erhalten bleiben.
+  if (!gsc || !gsc.dayRows.length) {
+    console.warn("WARN: GSC lieferte keine Daten — Update wird übersprungen, bestehende Daten bleiben unverändert. (Service-Account-Key / GSC-Zugriff prüfen.)");
+    process.exit(0);
+  }
+
+  const gscDaily = gsc.dayRows
+    .map((r) => ({ date: r.keys[0], clicks: num(r.clicks), impressions: num(r.impressions), position: round2(num(r.position)) }))
+    .sort((a, b) => a.date.localeCompare(b.date));
+  const queries = gsc.qRows
+    .map((r) => ({ query: String(r.keys[0] || ""), clicks: num(r.clicks), impressions: num(r.impressions), position: round2(num(r.position)) }))
+    .filter((r) => r.query);
+
   const last7 = gscDaily.slice(-7);
   const prev7 = gscDaily.slice(-14, -7);
-  const sum = (arr, k) => arr.reduce((s, r) => s + r[k], 0);
   const gscClicks7 = sum(last7, "clicks");
   const gscImpr7 = sum(last7, "impressions");
   const gscClicksPrev7 = sum(prev7, "clicks");
   const gscImprPrev7 = sum(prev7, "impressions");
-  // impressionsgewichtete Ø-Position der letzten 7 Tage
   const gscPos7 = gscImpr7 > 0 ? round2(last7.reduce((s, r) => s + r.position * r.impressions, 0) / gscImpr7) : null;
-
-  // ---- GSC: Top-Suchbegriffe (28 Tage) → Quick-Win-Empfehlungen ----
-  const gscQueryRows = await safe(
-    "GSC queries",
-    () => smQuery({ ds_id: "GW", ds_accounts: GSC_ACCOUNT, fields: "query,clicks,impressions,position", date_range_type: "last_28_days", max_rows: 200 }),
-    []
-  );
-  const queries = toObjects(gscQueryRows, ["query", "clicks", "impressions", "position"])
-    .map((r) => ({ query: String(r.query || ""), clicks: num(r.clicks), impressions: num(r.impressions), position: round2(num(r.position)) }))
-    .filter((r) => r.query && r.query.toLowerCase() !== "(unknown)");
 
   const topByClicks = [...queries].sort((a, b) => b.clicks - a.clicks).slice(0, 6);
   const quickWins = queries
@@ -164,33 +162,16 @@ async function main() {
     .sort((a, b) => b.impressions - a.impressions)
     .slice(0, 5);
 
-  // ---- Google Ads: 30 Tage Tagesreihe ----
-  const adsDailyRows = await safe(
-    "Ads daily",
-    () => smQuery({ ds_id: "AW", ds_accounts: ADS_ACCOUNT, fields: "Date,Clicks,Cost_eur,Conversions", date_range_type: "last_30_days" }),
-    []
-  );
-  const adsDaily = toObjects(adsDailyRows, ["date", "clicks", "cost", "conversions"])
-    .filter((r) => r.date)
-    .map((r) => ({ date: String(r.date).slice(0, 10), clicks: num(r.clicks), cost: round2(num(r.cost)), conversions: num(r.conversions) }))
-    .sort((a, b) => a.date.localeCompare(b.date));
-  const adsLast7 = adsDaily.slice(-7);
-  const adsClicks7 = sum(adsLast7, "clicks");
-  const adsCost7 = round2(adsLast7.reduce((s, r) => s + r.cost, 0));
-  const adsConv7 = sum(adsLast7, "conversions");
+  // ---- Google Ads: neues Konto (480-547-8290), noch kein Spend → 0. Direkte Ads-API folgt später. ----
+  const adsClicks7 = 0, adsCost7 = 0, adsConv7 = 0;
 
-  // ---- Bing Webmaster: 7-Tage-Aggregat (keine Tagesdimension verfügbar) ----
-  const bingRows = await safe(
-    "Bing 7d",
-    () => smQuery({ ds_id: "BW", ds_accounts: BING_ACCOUNT, fields: "clicks,impressions", date_range_type: "last_7_days" }),
-    []
-  );
-  const bingObj = toObjects(bingRows, ["clicks", "impressions"])[0] || { clicks: 0, impressions: 0 };
-  const bingClicks7 = num(bingObj.clicks);
-  const bingImpr7 = num(bingObj.impressions);
-  const bingConnected = bingRows.length > 0;
+  // ---- Bing Webmaster Tools ----
+  const bing = await safe("Bing", fetchBing, null);
+  const bingConnected = !!bing;
+  const bingClicks7 = bing ? bing.clicks7 : 0;
+  const bingImpr7 = bing ? bing.impr7 : 0;
 
-  // ---- Microsoft Clarity: Verhaltensdaten (letzte 3 Tage) ----
+  // ---- Microsoft Clarity ----
   const clarity = await safe("Clarity", fetchClarity, null);
 
   // ================= data.json bauen =================
@@ -198,15 +179,15 @@ async function main() {
     meta: {
       domain: "copilotenschule.de",
       generated_at: new Date().toISOString(),
-      generated_by: "github-action: build-dashboard-data.js (Supermetrics API)",
+      generated_by: "github-action: build-dashboard-data.js (GSC/Bing direkt)",
       overall_health: gscClicks7 >= gscClicksPrev7 ? "green" : "yellow",
       update_frequency: "täglich",
       schema_version: "1.0",
     },
     sources: {
-      gsc: { connected: gscDaily.length > 0, label: "Google Search Console", note: "Supermetrics REST-API" },
-      google_ads: { connected: true, label: "Google Ads", note: adsClicks7 > 0 ? "Aktiv" : "Verbunden, in den letzten 7 Tagen keine Klicks/Conversions" },
-      bing: { connected: bingConnected, label: "Bing Webmaster", note: bingClicks7 > 0 ? "Verbunden" : "Verbunden, sehr wenig Bing-Traffic" },
+      gsc: { connected: true, label: "Google Search Console", note: "Verbunden (Service Account, direkte API)" },
+      google_ads: { connected: true, label: "Google Ads", note: "Neues Konto Copilotenschule (480-547-8290), Kampagne pausiert – noch kein Spend" },
+      bing: { connected: bingConnected, label: "Bing Webmaster", note: bingConnected ? (bingClicks7 > 0 ? "Verbunden (direkte API)" : "Verbunden, sehr wenig Bing-Traffic") : "Optional, noch nicht angebunden" },
       clarity: { connected: !!clarity, label: "Microsoft Clarity", note: clarity ? "Verbunden (Data-Export-API, letzte 3 Tage)" : "Optional, noch nicht angebunden" },
       pagespeed: { connected: false, label: "PageSpeed Insights", note: "Optional, noch nicht angebunden" },
       llm: { connected: false, label: "LLM-Sichtbarkeit", note: "Optional" },
@@ -246,15 +227,13 @@ async function main() {
       rage_click_pct: clarity.rage_click_pct,
       top_pages: clarity.top_pages,
     } : null,
-    report_highlights: buildHighlights({ gscClicks7, gscClicksPrev7, gscImpr7, gscPos7, adsClicks7, adsConv7, bingConnected, bingClicks7, topByClicks, clarity }),
+    report_highlights: buildHighlights({ gscClicks7, gscClicksPrev7, gscImpr7, gscPos7, bingConnected, bingClicks7, bingImpr7, topByClicks, clarity }),
     availability: { https_ok: true, homepage_status: 200, checked_pages: 1 },
   };
 
   // ================= history.json mergen =================
   let hist = { domain: "copilotenschule.de", retention_days: 90, series: {}, marketing_actions: [] };
-  try {
-    hist = JSON.parse(readFileSync(resolve(DASH, "history.json"), "utf8"));
-  } catch { /* erste Ausführung */ }
+  try { hist = JSON.parse(readFileSync(resolve(DASH, "history.json"), "utf8")); } catch { /* erste Ausführung */ }
 
   const byDate = new Map();
   const s = hist.series || {};
@@ -272,10 +251,6 @@ async function main() {
     const e = byDate.get(r.date) || {};
     byDate.set(r.date, { ...e, gsc_clicks: r.clicks, gsc_impressions: r.impressions, gsc_position: r.position });
   });
-  adsDaily.forEach((r) => {
-    const e = byDate.get(r.date) || {};
-    byDate.set(r.date, { ...e, ads_clicks: r.clicks, ads_conversions: r.conversions });
-  });
 
   const dates = [...byDate.keys()].sort((a, b) => a.localeCompare(b)).slice(-90);
   hist.series = {
@@ -291,16 +266,16 @@ async function main() {
 
   writeFileSync(resolve(DASH, "data.json"), JSON.stringify(data, null, 2) + "\n");
   writeFileSync(resolve(DASH, "history.json"), JSON.stringify(hist, null, 2) + "\n");
-  console.log(`OK ${today}: GSC ${gscClicks7} Klicks (Δ ${pct(gscClicks7, gscClicksPrev7)}%), ${gscImpr7} Impr, Pos ${gscPos7}; Ads ${adsClicks7} Klicks/${adsConv7} Conv; Bing ${bingConnected ? bingClicks7 : "n/v"}. History-Tage: ${dates.length}.`);
+  console.log(`OK ${today}: GSC ${gscClicks7} Klicks (Δ ${pct(gscClicks7, gscClicksPrev7)}%), ${gscImpr7} Impr, Pos ${gscPos7}; Bing ${bingConnected ? bingClicks7 : "n/v"}; Clarity ${clarity ? clarity.sessions : "n/v"}. History-Tage: ${dates.length} (bis ${dates[dates.length - 1]}).`);
 }
 
 function buildHighlights(x) {
   const h = [];
   const d = pct(x.gscClicks7, x.gscClicksPrev7);
   h.push({ severity: "info", text: `Organische Google-Klicks: ${x.gscClicks7} in 7 Tagen${d !== null ? ` (${d >= 0 ? "+" : ""}${d}% ggü. Vorwoche)` : ""}, ${x.gscImpr7} Impressionen, Ø Position ${x.gscPos7 ?? "–"}.` });
-  if (x.adsClicks7 > 0) h.push({ severity: "info", text: `Google Ads: ${x.adsClicks7} Klicks, ${x.adsConv7} Conversions (7 Tage).` });
-  else h.push({ severity: "action", text: "Google-Ads-Kampagne aktiv, aber in den letzten 7 Tagen noch keine Klicks/Conversions." });
-  if (!x.bingConnected || x.bingClicks7 === 0) h.push({ severity: "info", text: "Bing-Traffic aktuell sehr gering — Fokus bleibt Google." });
+  h.push({ severity: "action", text: "Google Ads: neues Konto Copilotenschule, Kampagne pausiert – für das 400-€-Startguthaben fehlt noch der Spend." });
+  if (x.bingConnected && x.bingClicks7 > 0) h.push({ severity: "info", text: `Bing: ${x.bingClicks7} Klicks / ${x.bingImpr7} Impressionen (7 Tage).` });
+  else h.push({ severity: "info", text: "Bing-Traffic aktuell sehr gering — Fokus bleibt Google." });
   if (x.topByClicks[0]) h.push({ severity: "info", text: `Top-Suchbegriff: „${x.topByClicks[0].query}“ (${x.topByClicks[0].clicks} Klicks, Position ${x.topByClicks[0].position}).` });
   if (x.clarity) h.push({ severity: "info", text: `Clarity: ${x.clarity.sessions} Sessions in 3 Tagen, Ø Scrolltiefe ${x.clarity.avg_scroll_depth ?? "–"}%, Dead-Clicks ${x.clarity.dead_click_pct ?? "–"}% der Sitzungen.` });
   return h;

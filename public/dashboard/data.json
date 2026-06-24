@@ -1,8 +1,8 @@
 {
   "meta": {
     "domain": "copilotenschule.de",
-    "generated_at": "2026-06-18T08:27:51.826Z",
-    "generated_by": "Cowork + Supermetrics MCP (manuelle Zwischenaktualisierung)",
+    "generated_at": "2026-06-24T19:05:22.367Z",
+    "generated_by": "github-action: build-dashboard-data.js (GSC/Bing direkt)",
     "overall_health": "green",
     "update_frequency": "täglich",
     "schema_version": "1.0"
@@ -11,17 +11,17 @@
     "gsc": {
       "connected": true,
       "label": "Google Search Console",
-      "note": "Verbunden über yellowboatschulung@gmail.com (Supermetrics)"
+      "note": "Verbunden (Service Account, direkte API)"
     },
     "google_ads": {
       "connected": true,
       "label": "Google Ads",
-      "note": "Neues Konto Copilotenschule (480-547-8290), Kampagne pausiert – noch keine Klicks/Conversions"
+      "note": "Neues Konto Copilotenschule (480-547-8290), Kampagne pausiert – noch kein Spend"
     },
     "bing": {
       "connected": true,
       "label": "Bing Webmaster",
-      "note": "Verbunden, aktuell ~0 Bing-Traffic"
+      "note": "Verbunden (direkte API)"
     },
     "clarity": {
       "connected": true,
@@ -41,17 +41,17 @@
   },
   "kpis": {
     "gsc_clicks_7d": {
-      "value": 142,
-      "delta_pct": 80,
+      "value": 150,
+      "delta_pct": 19,
       "source": "gsc"
     },
     "gsc_impressions_7d": {
-      "value": 9227,
-      "delta_pct": 27,
+      "value": 10450,
+      "delta_pct": 14,
       "source": "gsc"
     },
     "gsc_avg_position_7d": {
-      "value": 9.08,
+      "value": 8.99,
       "delta_pct": null,
       "source": "gsc"
     },
@@ -71,12 +71,12 @@
       "source": "google_ads"
     },
     "bing_clicks_7d": {
-      "value": 0,
+      "value": 7,
       "delta_pct": null,
       "source": "bing"
     },
     "clarity_sessions_7d": {
-      "value": 340,
+      "value": 250,
       "delta_pct": null,
       "source": "clarity"
     }
@@ -90,15 +90,15 @@
     "google": {
       "indexed_pages": null,
       "crawl_errors": null,
-      "clicks_7d": 142,
-      "impressions_7d": 9227,
-      "avg_position_7d": 9.08
+      "clicks_7d": 150,
+      "impressions_7d": 10450,
+      "avg_position_7d": 8.99
     },
     "bing": {
       "indexed_pages": null,
       "crawl_errors": null,
-      "clicks_7d": 0,
-      "impressions_7d": 0
+      "clicks_7d": 7,
+      "impressions_7d": 618
     },
     "sitemap": {
       "total_urls": 74,
@@ -111,9 +111,44 @@
     "issues": []
   },
   "keywords": {
-    "tracked": [],
+    "tracked": [
+      {
+        "keyword": "copilot in excel aktivieren",
+        "google_position": 3.18,
+        "bing_position": null
+      },
+      {
+        "keyword": "copilot cowork kosten",
+        "google_position": 5.88,
+        "bing_position": null
+      },
+      {
+        "keyword": "excel copilot aktivieren",
+        "google_position": 2.83,
+        "bing_position": null
+      },
+      {
+        "keyword": "microsoft copilot in excel aktivieren",
+        "google_position": 2.37,
+        "bing_position": null
+      },
+      {
+        "keyword": "copilot claude",
+        "google_position": 6.19,
+        "bing_position": null
+      },
+      {
+        "keyword": "copilot excel aktivieren",
+        "google_position": 3.45,
+        "bing_position": null
+      }
+    ],
     "recommendations": [
-      "Ø Position liegt bei ~9 – über die GSC-Suchanfragen gezielt die Keywords auf Seite 1 (Pos. 4–10) nach oben schieben (Quick Wins)."
+      "Quick-Win: „copilot lizenz“ — 311 Impressionen, Position 5.25. Mit gezielter On-Page-Optimierung nach oben schiebbar.",
+      "Quick-Win: „copilot lizenzen“ — 261 Impressionen, Position 7.5. Mit gezielter On-Page-Optimierung nach oben schiebbar.",
+      "Quick-Win: „copilot claude“ — 148 Impressionen, Position 6.19. Mit gezielter On-Page-Optimierung nach oben schiebbar.",
+      "Quick-Win: „claude copilot“ — 125 Impressionen, Position 7.22. Mit gezielter On-Page-Optimierung nach oben schiebbar.",
+      "Quick-Win: „copilot outlook“ — 79 Impressionen, Position 10.96. Mit gezielter On-Page-Optimierung nach oben schiebbar."
     ]
   },
   "llm_visibility": {
@@ -121,57 +156,61 @@
     "checks": []
   },
   "clarity": {
-    "sessions_3d": 340,
-    "users_3d": 378,
-    "bot_sessions_3d": 35,
-    "pages_per_session": 1.04,
-    "avg_scroll_depth": 48.78,
-    "engagement_active_sec": 98,
-    "dead_click_pct": 15.59,
-    "rage_click_pct": 0.29,
+    "sessions_3d": 250,
+    "users_3d": 275,
+    "bot_sessions_3d": 22,
+    "pages_per_session": 1.13,
+    "avg_scroll_depth": 43.08,
+    "engagement_active_sec": 116,
+    "dead_click_pct": 17.2,
+    "rage_click_pct": 0.8,
     "top_pages": [
       {
-        "url": "https://copilotenschule.de/",
-        "visits": 55
-      },
-      {
-        "url": "https://copilotenschule.de/trainings",
-        "visits": 40
-      },
-      {
         "url": "https://copilotenschule.de/wissen/claude-in-microsoft-copilot",
-        "visits": 32
+        "visits": 33
       },
       {
         "url": "https://copilotenschule.de/wissen/copilot-cowork-abrechnung-copilot-credits",
-        "visits": 21
+        "visits": 32
+      },
+      {
+        "url": "https://copilotenschule.de/",
+        "visits": 30
+      },
+      {
+        "url": "https://copilotenschule.de/wissen/microsoft-copilot-lizenzen",
+        "visits": 23
+      },
+      {
+        "url": "https://copilotenschule.de/wissen/copilot-in-outlook-nutzen-tipps",
+        "visits": 22
       },
       {
         "url": "https://copilotenschule.de/wissen/copilot-in-excel-aktivieren",
-        "visits": 18
-      },
-      {
-        "url": "https://copilotenschule.de/ueber-uns",
-        "visits": 16
+        "visits": 14
       }
     ]
   },
   "report_highlights": [
     {
       "severity": "info",
-      "text": "Organische Google-Klicks: 142 in 7 Tagen (+80% ggü. Vorwoche), 9227 Impressionen, Ø Position 9.08 – steigender Trend."
+      "text": "Organische Google-Klicks: 150 in 7 Tagen (+19% ggü. Vorwoche), 10450 Impressionen, Ø Position 8.99."
     },
     {
       "severity": "action",
-      "text": "Google Ads: neues Konto Copilotenschule aktiv, Kampagne pausiert – für das 400-€-Startguthaben fehlt noch der Spend."
+      "text": "Google Ads: neues Konto Copilotenschule, Kampagne pausiert – für das 400-€-Startguthaben fehlt noch der Spend."
     },
     {
       "severity": "info",
-      "text": "Bing: verbunden, aber aktuell praktisch kein Traffic – Fokus bleibt Google."
+      "text": "Bing: 7 Klicks / 618 Impressionen (7 Tage)."
     },
     {
       "severity": "info",
-      "text": "Clarity: 340 Sessions in 3 Tagen, Ø Scrolltiefe 48.78% – Top-Einstiege über Startseite und Wissensartikel."
+      "text": "Top-Suchbegriff: „copilot in excel aktivieren“ (20 Klicks, Position 3.18)."
+    },
+    {
+      "severity": "info",
+      "text": "Clarity: 250 Sessions in 3 Tagen, Ø Scrolltiefe 43.08%, Dead-Clicks 17.2% der Sitzungen."
     }
   ],
   "availability": {
