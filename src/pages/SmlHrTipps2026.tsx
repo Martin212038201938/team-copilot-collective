@@ -73,6 +73,14 @@ function handleArticleClick(): void {
 function handleHomeClick(): void {
   trackConversion("sml_home_click");
 }
+function handleJumpToPaidClick(): void {
+  trackConversion("sml_jump_paid_click");
+  if (typeof document !== "undefined") {
+    document
+      .getElementById("vollizenz-tipps")
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+}
 
 // ─── Daten: Teil 1 — kostenloser Copilot Chat ──────────────────────────────
 type ChatCase = {
@@ -317,6 +325,16 @@ const SmlHrTipps2026 = () => {
                 Unsere Trainings ansehen
               </Link>
             </div>
+
+            {/* ── Shortcut für Lizenz-Inhaber: springt zu Teil 2 ── */}
+            <button
+              type="button"
+              onClick={handleJumpToPaidClick}
+              className="group mt-6 w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-amber-400 hover:bg-amber-300 text-slate-900 font-semibold px-7 py-4 rounded-xl text-base md:text-lg shadow-lg shadow-amber-500/20 transition-colors"
+            >
+              Sie haben bereits die Copilot-Lizenz? Hier geht&rsquo;s zu den Tipps
+              <span className="transition-transform group-hover:translate-y-0.5" aria-hidden="true">↓</span>
+            </button>
           </div>
         </header>
 
@@ -430,7 +448,7 @@ const SmlHrTipps2026 = () => {
           </div>
 
           {/* ── SECTION B: VOLLIZENZ-WORKFLOWS ────────────────────────── */}
-          <section className="mb-12">
+          <section id="vollizenz-tipps" className="mb-12 scroll-mt-6">
             <div className="mb-2">
               <span className="bg-blue-100 text-blue-700 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full">
                 Teil 2 von 2 · mit Vollizenz
