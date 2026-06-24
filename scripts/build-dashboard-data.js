@@ -33,6 +33,12 @@ const CLARITY_API = "https://www.clarity.ms/export-data/api/v1/project-live-insi
 const GSC_SA = process.env.GSC_SERVICE_ACCOUNT_JSON;
 const BING_KEY = process.env.BING_API_KEY;
 const CLARITY_TOKEN = process.env.CLARITY_API_TOKEN;
+const PAGESPEED_KEY = process.env.PAGESPEED_API_KEY;
+const PSI_PAGES = [
+  "https://copilotenschule.de/",
+  "https://copilotenschule.de/trainings",
+  "https://copilotenschule.de/wissen/claude-in-microsoft-copilot",
+];
 
 const num = (v) => { const n = parseFloat(String(v).replace(",", ".")); return Number.isFinite(n) ? n : 0; };
 const round2 = (n) => Math.round(n * 100) / 100;
@@ -117,6 +123,32 @@ async function fetchClarity() {
   };
 }
 
+// ---------- Google PageSpeed Insights (Lab-Daten, mobil) ----------
+async function psiOne(url) {
+  const api = `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${encodeURIComponent(url)}&strategy=mobile&category=performance${PAGESPEED_KEY ? `&key=${PAGESPEED_KEY}` : ""}`;
+  const r = await fetch(api);
+  const j = await r.json();
+  if (j.error) throw new Error(`PSI ${j.error.code || ""}: ${(j.error.message || "").slice(0, 80)}`);
+  const a = j.lighthouseResult?.audits || {};
+  const numv = (k) => (a[k]?.numericValue != null ? a[k].numericValue : null);
+  return {
+    url,
+    performance_score: Math.round((j.lighthouseResult?.categories?.performance?.score ?? 0) * 100),
+    lcp_ms: numv("largest-contentful-paint") != null ? Math.round(numv("largest-contentful-paint")) : null,
+    inp_ms: numv("total-blocking-time") != null ? Math.round(numv("total-blocking-time")) : null, // TBT als Lab-Proxy für Interaktivität
+    cls: numv("cumulative-layout-shift") != null ? round2(numv("cumulative-layout-shift")) : null,
+  };
+}
+async function fetchPageSpeed() {
+  if (!PAGESPEED_KEY) return null;
+  const pages = [];
+  for (const u of PSI_PAGES) {
+    try { pages.push(await psiOne(u)); } catch (e) { console.warn(`WARN PSI ${u}: ${e.message}`); }
+  }
+  if (!pages.length) return null;
+  return { pages, average: Math.round(pages.reduce((s, p) => s + p.performance_score, 0) / pages.length) };
+}
+
 async function main() {
   const today = berlinToday();
 
@@ -174,6 +206,9 @@ async function main() {
   // ---- Microsoft Clarity ----
   const clarity = await safe("Clarity", fetchClarity, null);
 
+  // ---- Google PageSpeed Insights (Lab, mobil) ----
+  const psi = await safe("PageSpeed", fetchPageSpeed, null);
+
   // ================= data.json bauen =================
   const data = {
     meta: {
@@ -189,7 +224,7 @@ async function main() {
       google_ads: { connected: true, label: "Google Ads", note: "Neues Konto Copilotenschule (480-547-8290), Kampagne pausiert – noch kein Spend" },
       bing: { connected: bingConnected, label: "Bing Webmaster", note: bingConnected ? (bingClicks7 > 0 ? "Verbunden (direkte API)" : "Verbunden, sehr wenig Bing-Traffic") : "Optional, noch nicht angebunden" },
       clarity: { connected: !!clarity, label: "Microsoft Clarity", note: clarity ? "Verbunden (Data-Export-API, letzte 3 Tage)" : "Optional, noch nicht angebunden" },
-      pagespeed: { connected: false, label: "PageSpeed Insights", note: "Optional, noch nicht angebunden" },
+      pagespeed: { connected: !!psi, label: "PageSpeed Insights", note: psi ? `Verbunden (Lab, mobil) – Ø Performance-Score ${psi.average}` : "Optional, noch nicht angebunden" },
       llm: { connected: false, label: "LLM-Sichtbarkeit", note: "Optional" },
     },
     kpis: {
@@ -202,7 +237,9 @@ async function main() {
       bing_clicks_7d: { value: bingConnected ? bingClicks7 : null, delta_pct: null, source: "bing" },
       clarity_sessions_7d: { value: clarity ? clarity.sessions : null, delta_pct: null, source: "clarity" },
     },
-    performance: { average_performance_score: null, core_web_vitals_status: null, pages: [] },
+    performance: psi
+      ? { average_performance_score: psi.average, core_web_vitals_status: "Labordaten (mobil); INP-Spalte = TBT-Proxy", pages: psi.pages }
+      : { average_performance_score: null, core_web_vitals_status: null, pages: [] },
     indexing: {
       google: { indexed_pages: null, crawl_errors: null, clicks_7d: gscClicks7, impressions_7d: gscImpr7, avg_position_7d: gscPos7 },
       bing: { indexed_pages: null, crawl_errors: null, clicks_7d: bingConnected ? bingClicks7 : null, impressions_7d: bingConnected ? bingImpr7 : null },
