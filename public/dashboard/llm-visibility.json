@@ -1,0 +1,16 @@
+{
+  "meta": {
+    "domain": "copilotenschule.de",
+    "generated_at": null,
+    "generated_by": "github-action: build-llm-visibility.js",
+    "engine": "openai/gpt-4o",
+    "mode": "web_search",
+    "update_frequency": "wöchentlich",
+    "prompts_count": 0
+  },
+  "status": "no_data",
+  "score": { "mention_rate_pct": 0, "citation_rate_pct": 0, "mentioned": 0, "cited": 0, "total": 0 },
+  "checks": [],
+  "competitor_domains": [],
+  "history": []
+}

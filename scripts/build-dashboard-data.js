@@ -225,7 +225,7 @@ async function main() {
       bing: { connected: bingConnected, label: "Bing Webmaster", note: bingConnected ? (bingClicks7 > 0 ? "Verbunden (direkte API)" : "Verbunden, sehr wenig Bing-Traffic") : "Optional, noch nicht angebunden" },
       clarity: { connected: !!clarity, label: "Microsoft Clarity", note: clarity ? "Verbunden (Data-Export-API, letzte 3 Tage)" : "Optional, noch nicht angebunden" },
       pagespeed: { connected: !!psi, label: "PageSpeed Insights", note: psi ? `Verbunden (Lab, mobil) – Ø Performance-Score ${psi.average}` : "Optional, noch nicht angebunden" },
-      llm: { connected: false, label: "LLM-Sichtbarkeit", note: "Optional" },
+      llm: { connected: true, label: "LLM-Sichtbarkeit", note: "Wöchentlicher GEO-Check (OpenAI, separater Job) – siehe eigene Sektion" },
     },
     kpis: {
       gsc_clicks_7d: { value: gscClicks7, delta_pct: pct(gscClicks7, gscClicksPrev7), source: "gsc" },

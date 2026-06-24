@@ -1,0 +1,55 @@
+name: LLM-Sichtbarkeit (wöchentlich)
+
+# Wöchentlicher GEO-Check: fragt OpenAI (mit Websuche) typische Entscheider-Fragen
+# und prüft, ob copilotenschule.de genannt/zitiert wird. Schreibt
+# public/dashboard/llm-visibility.json, committet sie (Wochen-Historie) und lädt
+# sie per FTP auf den Server. Bewusst getrennt vom täglichen Dashboard-Job.
+
+on:
+  schedule:
+    - cron: "0 6 * * 1"   # montags 06:00 UTC (~08:00 Berlin)
+  workflow_dispatch: {}     # zusätzlich manuell auslösbar (Actions-Tab → Run workflow)
+
+permissions:
+  contents: write
+
+concurrency:
+  group: llm-visibility
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: LLM-Sichtbarkeit prüfen
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: node scripts/build-llm-visibility.js
+
+      - name: JSON zurück-committen (Wochen-Historie persistieren)
+        run: |
+          git config user.name "dashboard-bot"
+          git config user.email "actions@github.com"
+          git add public/dashboard/llm-visibility.json
+          if git diff --cached --quiet; then
+            echo "Keine Änderungen."
+          else
+            git commit -m "LLM-Sichtbarkeit Update $(date -u +%Y-%m-%d) [skip ci]"
+            git push
+          fi
+
+      - name: Auf Server hochladen (FTP)
+        run: |
+          sudo apt-get update && sudo apt-get install -y lftp
+          lftp -e "set ssl:verify-certificate no; set ftp:ssl-allow yes; set ftp:ssl-protect-data yes; \
+            mkdir -p /www/copilotenschule.de/dashboard/; \
+            cd /www/copilotenschule.de/dashboard/; \
+            put public/dashboard/llm-visibility.json -o llm-visibility.json; \
+            quit" \
+            -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}

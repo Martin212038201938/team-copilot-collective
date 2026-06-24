@@ -128,6 +128,13 @@
       <div class="card"><h3>Top-Seiten (Clarity)</h3><div id="clarity-pages"></div></div>
     </div>
 
+    <h2 class="sec">GEO / LLM-Sichtbarkeit (wöchentlich)</h2>
+    <div class="grid cards">
+      <div class="card"><h3>Werde ich von der KI genannt?</h3><div id="llm-score"></div></div>
+      <div class="card"><h3>Wer wird sonst zitiert?</h3><div id="llm-competitors"></div></div>
+    </div>
+    <div class="card"><h3>Einzel-Checks (Entscheider-Fragen an ChatGPT)</h3><div id="llm-checks"></div></div>
+
     <h2 class="sec">Empfehlungen aus dem Daily Report</h2>
     <div class="card"><div id="report"></div></div>
 
@@ -155,6 +162,8 @@
     let data={}, hist={};
     try{ data = await (await fetch("/dashboard/data.json?_="+Date.now())).json(); }catch(e){ el("app").innerHTML='<p style="color:#ef4444">data.json konnte nicht geladen werden.</p>'; return; }
     try{ hist = await (await fetch("/dashboard/history.json?_="+Date.now())).json(); }catch(e){ hist={series:{}}; }
+    let llm=null;
+    try{ llm = await (await fetch("/dashboard/llm-visibility.json?_="+Date.now())).json(); }catch(e){ llm=null; }
 
     // Header
     const h = data.meta?.overall_health || "yellow";
@@ -244,6 +253,38 @@
     } else {
       el("clarity").innerHTML=pendingBox("Clarity wird angebunden, sobald der API-Token gesetzt ist.");
       el("clarity-pages").innerHTML=pendingBox("—");
+    }
+
+    // GEO / LLM-Sichtbarkeit (wöchentlich, separate Datei)
+    if(llm && llm.score && llm.status==="ok"){
+      const sc=llm.score;
+      const modeLbl = llm.meta?.mode==="web_search" ? "mit Live-Websuche &amp; Zitaten" : "Modellwissen (ohne Live-Websuche)";
+      const ts = llm.meta?.generated_at ? new Date(llm.meta.generated_at).toLocaleDateString("de-DE") : "–";
+      el("llm-score").innerHTML =
+        '<table>'+
+        '<tr><td>Nennungsrate</td><td class="num"><strong>'+sc.mention_rate_pct+' %</strong> ('+sc.mentioned+'/'+sc.total+')</td></tr>'+
+        '<tr><td>Zitatrate (als Quelle)</td><td class="num"><strong>'+sc.citation_rate_pct+' %</strong> ('+sc.cited+'/'+sc.total+')</td></tr>'+
+        '<tr><td>Engine</td><td class="num">'+(llm.meta?.engine||'–')+'</td></tr>'+
+        '<tr><td>Modus</td><td class="num">'+modeLbl+'</td></tr>'+
+        '<tr><td>Letzter Lauf</td><td class="num">'+ts+'</td></tr>'+
+        '</table>';
+      const comp = llm.competitor_domains||[];
+      el("llm-competitors").innerHTML = comp.length
+        ? '<table><tr><th>Domain</th><th class="num">Zitate</th></tr>'+comp.map(c=>'<tr><td>'+c.domain+'</td><td class="num">'+fmt(c.count)+'</td></tr>').join("")+'</table>'
+        : pendingBox(llm.meta?.mode==="web_search" ? "Keine Fremd-Domains zitiert." : "Wettbewerber-Quellen erscheinen nur im Websuche-Modus.");
+      const checks = llm.checks||[];
+      el("llm-checks").innerHTML = checks.length
+        ? checks.map(c=>{
+            const m = c.mentioned ? '<span style="color:var(--green)">✓ genannt</span>' : '<span style="color:var(--red)">✗ nicht genannt</span>';
+            const z = c.cited ? ' · <span style="color:var(--green)">✓ als Quelle zitiert</span>' : '';
+            const urls = (c.citation_urls&&c.citation_urls.length) ? '<br><span style="color:var(--muted);font-size:12px">Quellen: '+c.citation_urls.join(" · ")+'</span>' : '';
+            return '<div class="issue"><div class="sev '+(c.mentioned?'info':'warning')+'"></div><div><strong>'+c.prompt+'</strong><br>'+m+z+'<br><span style="color:var(--muted)">'+(c.snippet||'')+'</span>'+urls+'</div></div>';
+          }).join("")
+        : pendingBox("Noch keine Einzel-Checks.");
+    } else {
+      el("llm-score").innerHTML=pendingBox("Wöchentlicher LLM-Check läuft erstmals montags — danach erscheinen hier Nennungs- und Zitatrate für copilotenschule.de.");
+      el("llm-competitors").innerHTML=pendingBox("—");
+      el("llm-checks").innerHTML=pendingBox("Sobald der Check gelaufen ist, stehen hier die geprüften Entscheider-Fragen mit Ergebnis.");
     }
 
     // Report Highlights
