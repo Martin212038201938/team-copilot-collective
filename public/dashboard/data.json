@@ -1,7 +1,11 @@
 {
   "meta": {
     "domain": "copilotenschule.de",
+<<<<<<< HEAD
     "generated_at": "2026-06-24T19:23:05.748Z",
+=======
+    "generated_at": "2026-06-24T19:11:27.453Z",
+>>>>>>> 7f37fe0bf6837c041075ed6b6c5f86ac653e9397
     "generated_by": "github-action: build-dashboard-data.js (GSC/Bing direkt)",
     "overall_health": "green",
     "update_frequency": "täglich",
