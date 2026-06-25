@@ -76,6 +76,10 @@ Alle Google-/Marketing-Aktivitäten laufen künftig über den neuen Account.
   bestehende Daten bleiben erhalten).
 - **Service-Account-Key:** liegt nur als GitHub-Secret + lokal als gitignorete Datei
   (`bubbly-observer-*.json`). **Niemals committen** (Google deaktiviert geleakte Keys automatisch).
+- **Haupt-Deploy (`deploy.yml`)** spiegelt `dist/` per FTP, schließt aber
+  `dashboard/{data,history,llm-visibility}.json` per `--exclude` aus. Diese drei Dateien
+  gehören allein den Dashboard-Jobs — sonst würde ein normaler Seiten-Push die täglich
+  frischen Live-Daten mit eingefrorenen Repo-Kopien überschreiben.
 
 ---
 

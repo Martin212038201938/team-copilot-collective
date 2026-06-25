@@ -76,8 +76,13 @@ jobs:
         run: sudo apt-get install -y lftp
 
       - name: Deploy via LFTP
+        # WICHTIG: dashboard/data.json, history.json und llm-visibility.json werden
+        # NICHT mitgespiegelt (--exclude). Diese Dateien verwalten ausschließlich die
+        # täglichen/wöchentlichen Dashboard-Jobs per FTP. Ohne diesen Ausschluss würde
+        # der Haupt-Deploy die täglich frischen Live-Daten mit eingefrorenen Repo-Kopien
+        # überschreiben (Historie ginge verloren).
         run: |
-          lftp -e "set ssl:verify-certificate no; set ftp:ssl-allow yes; set ftp:ssl-protect-data yes; mirror -R --delete dist/ /www/copilotenschule.de/ ; quit" -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}
+          lftp -e "set ssl:verify-certificate no; set ftp:ssl-allow yes; set ftp:ssl-protect-data yes; mirror -R --delete --exclude 'dashboard/(data|history|llm-visibility)\.json$' dist/ /www/copilotenschule.de/ ; quit" -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}
 
 
       - name: Notify Bing IndexNow about updated pages
