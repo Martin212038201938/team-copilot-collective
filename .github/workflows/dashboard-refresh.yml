@@ -1,8 +1,9 @@
 name: Dashboard-Daten aktualisieren (täglich)
 
-# Holt täglich GSC/Ads/Bing über die Supermetrics-API, schreibt die
-# Dashboard-JSONs, committet sie zurück (Historie) und lädt sie per FTP
-# direkt auf den Server. Vollautomatisch — kein manueller Push nötig.
+# Holt täglich GSC/Bing/Clarity/PageSpeed DIREKT von den APIs, schreibt die
+# Dashboard-JSONs und lädt sie per FTP direkt auf den Server. Die Historie wird
+# von der Live-Seite gelesen (history.json), NICHT aus dem Repo — deshalb wird
+# nichts mehr ins Git zurück-committet (verhindert tägliche Merge-Konflikte).
 
 on:
   schedule:
@@ -10,7 +11,7 @@ on:
   workflow_dispatch: {}     # zusätzlich manuell auslösbar (Actions-Tab → Run workflow)
 
 permissions:
-  contents: write           # erlaubt das Zurück-Committen der JSON-Dateien
+  contents: read            # kein Zurück-Committen mehr nötig
 
 concurrency:
   group: dashboard-refresh
@@ -33,18 +34,6 @@ jobs:
           CLARITY_API_TOKEN: ${{ secrets.CLARITY_API_TOKEN }}
           PAGESPEED_API_KEY: ${{ secrets.PAGESPEED_API_KEY }}
         run: node scripts/build-dashboard-data.js
-
-      - name: JSON zurück-committen (Historie persistieren)
-        run: |
-          git config user.name "dashboard-bot"
-          git config user.email "actions@github.com"
-          git add public/dashboard/data.json public/dashboard/history.json
-          if git diff --cached --quiet; then
-            echo "Keine Änderungen."
-          else
-            git commit -m "Dashboard-Daten Update $(date -u +%Y-%m-%d) [skip ci]"
-            git push
-          fi
 
       - name: Auf Server hochladen (FTP)
         run: |

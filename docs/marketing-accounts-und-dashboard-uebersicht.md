@@ -62,13 +62,16 @@ Alle Google-/Marketing-Aktivitäten laufen künftig über den neuen Account.
 - **Script (täglich):** `scripts/build-dashboard-data.js` – dependency-frei (nur Node-Bordmittel),
   holt GSC (Service-Account-JWT → Search-Console-API), Bing, Clarity, PageSpeed; schreibt
   `public/dashboard/data.json` + `public/dashboard/history.json` (90 Tage Verlauf).
-- **Workflow (täglich):** `.github/workflows/dashboard-refresh.yml` – täglicher Cron, commit + FTP-Deploy.
+- **Workflow (täglich):** `.github/workflows/dashboard-refresh.yml` – täglicher Cron, **nur FTP-Deploy**
+  (kein Git-Commit mehr). Die Historie wird zu Beginn von der Live-Seite (`history.json`) geladen,
+  ergänzt und wieder hochgeladen → **keine täglichen Merge-Konflikte mehr**.
 - **Script (wöchentlich):** `scripts/build-llm-visibility.js` – fragt OpenAI (mit Websuche) 8 typische
   Entscheider-Fragen und prüft, ob copilotenschule.de **genannt** und/oder **als Quelle zitiert** wird;
   schreibt `public/dashboard/llm-visibility.json` (Score, Einzel-Checks, Wettbewerber-Domains, 26-Wochen-Historie).
   Fällt automatisch auf reines Modellwissen zurück, falls die Websuche nicht verfügbar ist.
-- **Workflow (wöchentlich):** `.github/workflows/llm-visibility.yml` – Cron montags 06:00 UTC, commit + FTP-Deploy
-  von `llm-visibility.json`. Bewusst getrennt vom täglichen Job, damit dieser die LLM-Daten nicht überschreibt.
+- **Workflow (wöchentlich):** `.github/workflows/llm-visibility.yml` – Cron montags 06:00 UTC, **nur FTP-Deploy**
+  von `llm-visibility.json` (kein Git-Commit; Wochen-Historie wird von der Live-Seite geladen).
+  Bewusst getrennt vom täglichen Job, damit dieser die LLM-Daten nicht überschreibt.
 - **Schutz:** Liefert GSC keine Daten, wird das Update sauber übersprungen (Lauf bleibt grün,
   bestehende Daten bleiben erhalten).
 - **Service-Account-Key:** liegt nur als GitHub-Secret + lokal als gitignorete Datei
@@ -93,8 +96,10 @@ Aktiv genutzt: `GSC_SERVICE_ACCOUNT_JSON`, `BING_API_KEY`, `CLARITY_API_TOKEN`,
 - **Dashboard zeigt altes Datum:** Action prüfen (Actions → „Dashboard-Daten aktualisieren").
   Läuft sie grün, schreibt aber nichts → eine Quelle liefert keine Daten (Log ansehen).
 - **GSC 403:** Service-Account-E-Mail muss in der Search Console als Nutzer (Vollständig) hinterlegt sein.
-- **Merge-Konflikt bei `data.json`:** entsteht, wenn lokal UND der dashboard-bot dieselbe Datei ändern.
-  Lösung: `data.json` ist generiert – einfach neu erzeugen lassen bzw. eine Version übernehmen, dann pushen.
+- **Merge-Konflikt bei `data.json`/`history.json`:** sollte nicht mehr auftreten, seit die Actions
+  nichts mehr ins Git committen (Historie kommt von der Live-Seite, Deploy nur per FTP). Falls doch noch
+  eine hängengebliebene `.git/index.lock` blockiert: im Terminal `rm -f .git/index.lock`, dann in
+  GitHub Desktop Pull/Push. `data.json` ist generiert – im Zweifel neu erzeugen lassen.
 - **Service-Account-Key verloren:** in der GCP-Console (`bubbly-observer-500418-b8` → IAM → Dienstkonten →
   dashboard-gsc-reader → Schlüssel) neuen JSON-Key erzeugen und als Secret hinterlegen.
 

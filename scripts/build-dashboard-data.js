@@ -269,8 +269,17 @@ async function main() {
   };
 
   // ================= history.json mergen =================
-  let hist = { domain: "copilotenschule.de", retention_days: 90, series: {}, marketing_actions: [] };
-  try { hist = JSON.parse(readFileSync(resolve(DASH, "history.json"), "utf8")); } catch { /* erste Ausführung */ }
+  // Vorherige Historie wird NICHT mehr aus dem Repo gelesen (das verursachte tägliche
+  // Merge-Konflikte), sondern von der Live-Seite geholt. Fallback: lokale Datei, dann leer.
+  const emptyHist = { domain: "copilotenschule.de", retention_days: 90, series: {}, marketing_actions: [] };
+  let hist = await safe("history-live", async () => {
+    const r = await fetch(`https://copilotenschule.de/dashboard/history.json?_=${Date.now()}`);
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    return await r.json();
+  }, null);
+  if (!hist || !hist.series) {
+    try { hist = JSON.parse(readFileSync(resolve(DASH, "history.json"), "utf8")); } catch { hist = emptyHist; }
+  }
 
   const byDate = new Map();
   const s = hist.series || {};

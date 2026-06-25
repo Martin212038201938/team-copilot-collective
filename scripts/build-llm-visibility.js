@@ -161,8 +161,15 @@ async function main() {
     .map(([domain, count]) => ({ domain, count }));
 
   // ---------- Wochen-Historie mergen ----------
-  let prev = {};
-  try { prev = JSON.parse(readFileSync(OUT, "utf8")); } catch { /* erste Ausführung */ }
+  // Vorherige Historie von der Live-Seite holen (kein Repo-Read → keine Merge-Konflikte).
+  // Fallback: lokale Datei, dann leer.
+  let prev = await (async () => {
+    try {
+      const r = await fetch(`https://${DOMAIN}/dashboard/llm-visibility.json?_=${Date.now()}`);
+      if (r.ok) return await r.json();
+    } catch { /* Live noch nicht vorhanden */ }
+    try { return JSON.parse(readFileSync(OUT, "utf8")); } catch { return {}; }
+  })();
   const week = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Berlin" }).format(new Date());
   const history = Array.isArray(prev.history) ? prev.history.filter((h) => h.date !== week) : [];
   history.push({ date: week, mention_rate_pct: mentionRate, citation_rate_pct: citationRate });

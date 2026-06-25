@@ -2,8 +2,10 @@ name: LLM-Sichtbarkeit (wöchentlich)
 
 # Wöchentlicher GEO-Check: fragt OpenAI (mit Websuche) typische Entscheider-Fragen
 # und prüft, ob copilotenschule.de genannt/zitiert wird. Schreibt
-# public/dashboard/llm-visibility.json, committet sie (Wochen-Historie) und lädt
-# sie per FTP auf den Server. Bewusst getrennt vom täglichen Dashboard-Job.
+# public/dashboard/llm-visibility.json und lädt sie per FTP auf den Server.
+# Die Wochen-Historie wird von der Live-Seite gelesen, NICHT aus dem Repo —
+# deshalb wird nichts ins Git zurück-committet (verhindert Merge-Konflikte).
+# Bewusst getrennt vom täglichen Dashboard-Job.
 
 on:
   schedule:
@@ -11,7 +13,7 @@ on:
   workflow_dispatch: {}     # zusätzlich manuell auslösbar (Actions-Tab → Run workflow)
 
 permissions:
-  contents: write
+  contents: read            # kein Zurück-Committen mehr nötig
 
 concurrency:
   group: llm-visibility
@@ -31,18 +33,6 @@ jobs:
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: node scripts/build-llm-visibility.js
-
-      - name: JSON zurück-committen (Wochen-Historie persistieren)
-        run: |
-          git config user.name "dashboard-bot"
-          git config user.email "actions@github.com"
-          git add public/dashboard/llm-visibility.json
-          if git diff --cached --quiet; then
-            echo "Keine Änderungen."
-          else
-            git commit -m "LLM-Sichtbarkeit Update $(date -u +%Y-%m-%d) [skip ci]"
-            git push
-          fi
 
       - name: Auf Server hochladen (FTP)
         run: |
