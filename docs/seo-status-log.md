@@ -8,6 +8,71 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 
 ## Logs
 
+### 2026-06-29 — Wöchentlicher Audit (Cron)
+
+**Phase:** Phase 3 — Content-Block (aktiv seit 01.06.2026, kein Wechsel)
+
+> ℹ️ **Erstes Audit mit 5c-Segmentierung.** Outbound-Cold-Mail seit 25.06. live (wochentags), Versanddomain copiloten-schule.de, LP `/sml/`. SEA (Google Ads) weiterhin NICHT gestartet (kein `utm_medium=cpc` / kein cpc-Wert in `campaign_medium`). → Trend-Vergleiche auf Organic bezogen; Outbound (`campaign_medium=email`) separat ausgewiesen. GSC bleibt rein organisch.
+
+**SSR-Audit:** ✅ 67 / 🟡 0 / 🔴 0 (von 67) — via `seo-monitoring/recheck.sh` gegen Baseline 2026-05-04 (`audit-live.sh` weiterhin nicht im Mount, Workaround wie bisher)
+- Neu in 🔴/✅: keine. Helmet-Flush 67/67, Δ Baseline 31→67. Stabil ggü. 22.06.
+- Regressions-Wächter (Schritt 8): 0 🔴 → keine Eskalation (Schwelle ≥ 5). DoD #2 weiter erfüllt.
+
+**GSC:** **55/92 indexiert (59,8 %)** — unverändert ggü. 22.06./15.06. (Index-Bericht Stand 12.06.26, von Google weiterhin nicht neu gecrawlt). Nicht indexiert (37): Weiterleitung 8 · alt. kanonisch 3 · robots.txt 1 · **gecrawlt – nicht indexiert 9 · gefunden – nicht indexiert 16**.
+- Leistung 3M (frisch, vor 4 Std): **Klicks 762** (22.06.: 618 → **+23 %**), **Impr. 64.600** (54.800 → **+18 %**), CTR 1,2 %, **Pos. Ø 9,7** (von 9,8). Chart klar steigend. Rein organisch (kampagnen-unbeeinflusst).
+- Top-5-Klick-Bringer (3M, Query): „copilot in excel aktivieren" 30/1.669 · „excel copilot aktivieren" 13/637 · „copilot cowork kosten" 8/80 · „copilot excel aktivieren" 6/448 · „microsoft copilot in excel aktivieren" 6/72.
+- Top-Klick-Bringer (3M, URL): claude-in-microsoft-copilot 156 · ki-halluzinationen-vermeiden 127 · copilot-in-excel-aktivieren 105 · copilot-in-outlook-nutzen-tipps 73 · copilot-cowork-abrechnung-copilot-credits 50 · copilot-sicherheit-datenschutz 46 · microsoft-copilot-lizenzen 42 · / 35.
+- **DoD #5 (≥5 verschiedene Klick-Bringer-URLs):** erfüllt (>10 distinkte URLs mit Klicks).
+
+**AlwaysData:** 24h **506** (erhöht — Outbound-Kampagne live seit 25.06., heute Mo) · rollend 30T (29.05.–29.06.): **6.483** Visits (roh inkl. Bots/Outbound, verrauscht). Hinweis: 24h-Wert nicht mehr rein organisch (Outbound-Konfundierung) — saubere organische Signale via GSC (s.o.).
+
+**Traffic-Mix (Clarity, 5c):** 7T-Gesamt **446** | Organic/Direct/Rest **~425** | **SEA (cpc) 0** | **Outbound (email) 21** (~4,7 %). Outbound sehr geringe Tiefe (13 s aktive Zeit, 10,4 % Scroll, 1,0 Seiten/Sitzung, 0 % Dead-Click) → typische Kalt-Mail-Bounces. Referrer 3T (API): Google.com 51 · Direct/null 39 · Bing 4 · Ecosia 2 · ChatGPT 1.
+
+**Clarity Standard (3T, via API, 1 Call):**
+- Sessions: 100 (davon 28 Bots, 133 Unique Users) — non-bot ~72; 7T-Dashboard 446 vs. 480 (22.06.) ~ **-7 %**. Kein +25 %-Streak (7d) → kein „verstärken"; kein -25 %-Drop → kein „gegensteuern". Organisch stabil.
+- Scrolltiefe: 36,56 % (↓ von 45,64 %) · Aktive Zeit: 82 s (↓ von 94 s) — leicht gesunken, vermutlich Outbound-Bounces im Mix.
+- **Dead-Click: 17 % ⚠️** (API 3T; ↑ von 8,65 %) | Rage-Click: 1 % | Quick-Back: 0 % | Excessive-Scroll: 0 % | ScriptError: 0 %. Dashboard 7T: **15,02 %** (67 Sess.), Dashboard 3T: 10,29 % (7 Sess.). **Über 10 %-Schwelle → Issue (7c).** 5c-Check: Outbound-Segment **0 %** Dead-Click → Treiber organisch (globales `ArticlePopup`), NICHT die Kampagne.
+- Top-Browser: Chrome 55 · **Edge 14** · ChromeMobile 11 · MobileSafari 11 · Firefox 3 · Safari 3. (Edge ~14 %, ↓ von ~24 % am 22.06. — Edge-Shift hat sich zurückgebildet.)
+- Geräte: PC 76 / Mobile 19 / Tablet 5 · OS: Windows 67 / iOS 15 / Android 9 · Land: DE 76 / NL 10 / AT 4 / JP 4.
+- Top-3-Pages (3T): ki-halluzinationen-vermeiden (21) · **/sml/hr-tipps_2026 (17, Outbound-LP)** · / (14) · [copilot-cowork-abrechnung-credits 13 · claude-in-microsoft-copilot 8].
+- Top-3-Referrer (3T): Google.com (51) · Direct/null (39) · Bing (4).
+
+**Clarity Conversion-Events (7T, via Chrome — Custom-Tags-Filter + Smart-Events-Liste geprüft; 446 Sess.):**
+- contact_form_submit: **1** (Wert „direct") | trainer_application_submit: **0** | konfigurator_submit: **0** | mail_click: **0** | phone_click: **0** | pdf_download: **0**
+- content_cta_click: **0** Firings (weiter keine echten CTA-Klicks → Funnel-Hebel, kein Bug; vgl. 26.06.). sml_landing_page_visit: vorhanden (Outbound-LP-Besuche, Teil der 21 email-Sessions); sml_booking_click/sml_contact_click/sml_offers_click NICHT in Custom-Tags-mit-Daten → **0 Outbound-Conversions** bisher.
+- **Conversion-Rate (direkte Custom-Conversions): 1/446 = 0,22 %.**
+- Defekt-Check (5e): kein Event von ≥3 auf 0 (konfigurator_submit 1→0, contact_form_submit 1→1 — Low-Volume) → **kein KRITISCH-Alarm**.
+
+**Insights heute:** Patterns 0 | Issues 1 (Dead-Click re-eskaliert ≥10 %) | Trends 2 (Edge-Shift zurückgebildet; Outbound-Segment-Erstmessung) — Details in clarity-insights.md
+**Folge-Crons angelegt:** keine — Dead-Click = UX-Issue (7c, kein Cron); ArticlePopup-Fix-Draft existiert bereits (17.06.), wartet auf Push. Kein Anti-Pattern (keine Page ≥100 Sess./3T; Top-Page 21).
+**Goldene Pages (GSC×Clarity, organic):** ki-halluzinationen-vermeiden (GSC 127 + Clarity 21) · claude-in-microsoft-copilot (GSC 156 + Clarity 8) · copilot-cowork-abrechnung-credits (GSC 50 + Clarity 13) · microsoft-copilot-lizenzen (GSC 42 + Clarity 7) · / (GSC 35 + Clarity 14).
+**Ungenutztes SEO-Potential:** copilot-in-excel-aktivieren (GSC 105 Klicks, weiter nicht in Clarity-Top-Pages) und copilot-in-outlook-nutzen-tipps (GSC 73, aus Clarity-Top gefallen) → CTA-Welle 2 hier priorisieren.
+**Protected Pages:** alle 5 HTTP 200 ✅ (copilot-roi-berechnen · copilot-training-schulung · copilot-im-unternehmen-einfuehren-leitfaden · microsoft-copilot-lizenzen · ki-schulung-mitarbeiter-pflicht).
+**Entscheidung gemäß Plan:** Phase 3 bleibt aktiv. SSR stabil (DoD #2). **A6 Index-Coverage:** gecrawlt/gefunden-nicht-indexiert konstant 9+16=25 — dritte Messung in Folge unverändert (15.06./22.06./29.06.), aber GSC-Index-Report seit 12.06. nicht neu gecrawlt → Stagnation teils Artefakt. Issue-Hinweis gesetzt; Recheck-Cron **30.06. (morgen)** re-pingt + GSC-Resubmit. Keine Protected-Page-Eingriffe. **Positiv:** GSC organisch Klicks +23 %, Impr. +18 %, Pos. 9,8→9,7. **Achtung:** Dead-Click zurück über Schwelle (organisch, ArticlePopup) → Notification.
+**API-Calls heute:** 1/10 (Clarity); GSC/AlwaysData/Clarity-Dashboard via Chrome (kein API-Verbrauch).
+**Nächster Lauf:** Mo 06.07.2026, 10:00 (morgen 30.06. läuft `copilotenschule-seo-index-coverage-recheck`).
+
+---
+
+### 2026-06-26 — Verifikation `content_cta_click` + Custom-Tag-Mess-Lücke behoben (manuell, User-Auftrag)
+
+**Anlass:** Im Wochenaudit 22.06. stand `content_cta_click`/`sml_*` = 0 — zunächst falsch als „nicht deployt" gedeutet. User bat um den 10-Min-Verifikationstest.
+
+**1) Code:** `TrainingCTA.tsx` setzt beim Klick `setSessionTag("content_cta_click", href)` → `Clarity.setTag(...)` (`@microsoft/clarity`). Also ein **Custom Tag**, kein Smart Event. Korrekt verdrahtet.
+
+**2) Laufzeit-Test (Chrome, Live-Site `/wissen/copilot-in-outlook-nutzen-tipps`):** `window.clarity` geladen ✅. `window.clarity` instrumentiert, realen CTA-Button („Zum Praxis-Training") geklickt → erfasster Call: **`["set","content_cta_click","/trainings/microsoft-365-copilot-praxis"]`** ✅. **Tracking feuert korrekt — kein Bug.** (Mein Testklick erzeugt die erste content_cta_click-Session; erscheint nach Clarity-Verarbeitung.)
+
+**3) Dashboard (Custom-Tags-Filter, 7T) — Mess-Lücke gefunden & behoben:** Custom-Tags liegen unter **Filter → „Benutzerdefinierte Filter" → „Benutzerdefinierte Kategorien" → „Tag auswählen"**, NICHT unter „Intelligente Ereignisse" (Smart Events). Frühere Läufe (und mein erster Lauf 26.06.) prüften nur Smart Events → systematische Untererfassung der Custom-Tags. Vorhandene Custom-Tags mit Daten (7T): `booking_click`, **`campaign_mail`, `campaign_medium`, `campaign_name`, `campaign_source`**, `claude_verify_tag`, `contact_form_submit`, `danke_page_view`, **`sml_landing_page_visit`**, `visitor_type`. **`content_cta_click` NICHT in der Liste** → 0 Firings durch echte Nutzer in 7T.
+
+**Schlussfolgerungen:**
+- `content_cta_click` = 0 ist **kein Tracking-Defekt**, sondern **fehlende echte Klicks** auf die In-Content-CTA → deckt sich mit Funnel Stufe 1→2 = 0 %. Hebel = CTA sichtbarer/attraktiver, nicht Tracking-Fix.
+- **Outbound IS live & getrackt:** `sml_landing_page_visit` + `campaign_*`-Tags feuern → ab nächstem Audit (29.06.) Outbound-Segment über diese Custom-Tags (`campaign_medium`/`campaign_source`) sauber trennen (Schritt 5c).
+- **Prozess-Fix für künftige Audits:** Schritt 5b MUSS den Custom-Tags-Filter (Benutzerdefinierte Filter) prüfen, nicht nur Smart Events. In `clarity-insights.md` als How-To hinterlegt.
+
+**Risiko-Status:** grün. Keine Code-Änderung, kein Push.
+
+---
+
 ### 2026-06-24 — C4 Schema.org-Konsolidierung (Cron, Draft-only)
 
 **Cron:** `copilotenschule-seo-c4-schema-konsolidierung-draft`. STRIKT Draft-only — kein Push, keine `src/`-Änderung, nur `docs/`.
@@ -73,7 +138,9 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 
 **Phase:** Phase 3 — Content-Block (aktiv seit 01.06.2026, kein Wechsel)
 
-> ℹ️ **Lauf-Hinweis:** Chrome-Extension war zum 10:00-Cron-Start nicht verbunden; API-/curl-Schritte (SSR, Clarity-Standard, Protected Pages) liefen sofort, die Chrome-Schritte (GSC, AlwaysData, Conversion-Events) wurden nach manuellem Chrome-Start im selben Tag nachgeholt → **Lauf vollständig.** Kampagnen-Kontext aktualisiert: **SEA & Outbound sind noch NICHT gestartet** (verzögert, lt. User) → Traffic rein organisch/direct, Trend-Vergleiche diese Woche sauber.
+> ℹ️ **Lauf-Hinweis:** Chrome-Extension war zum 10:00-Cron-Start nicht verbunden; API-/curl-Schritte (SSR, Clarity-Standard, Protected Pages) liefen sofort, die Chrome-Schritte (GSC, AlwaysData, Conversion-Events) wurden nach manuellem Chrome-Start im selben Tag nachgeholt → **Lauf vollständig.** Kampagnen-Kontext: Für das Audit-Fenster (Woche bis 22.06.) waren SEA & Outbound noch nicht live → Traffic rein organisch/direct, Trend-Vergleiche sauber.
+>
+> **Nachtrag 26.06.:** Outbound-Cold-Mail-Kampagne **seit 25.06. live, läuft wochentags** (lt. User). SEA (Google Ads) weiterhin nicht gestartet. → **Ab nächstem Audit (29.06.) gilt 5c-Segmentierung**: Outbound (utm_medium=email / Referrer der Versanddomain) vom Organic-Segment trennen; Trend-Vergleiche nur auf Organic ziehen. CTA-Brücke + sml-Tracking sind live (Live-Check bestätigt) — `content_cta_click`/`sml_*`-Firings ab jetzt aktiv beobachten.
 
 **SSR-Audit:** ✅ 67 / 🟡 0 / 🔴 0 (von 67) — via `seo-monitoring/recheck.sh` gegen Baseline 2026-05-04 (`audit-live.sh` weiterhin nicht im Mount, Workaround wie bisher)
 - Neu in 🔴/✅: keine. Helmet-Flush 67/67, 0 Default-Fallback, 0 Empty, 0 Doppel-Description. Δ zur Baseline: Helmet 31→67. Stabil ggü. 15.06.
@@ -104,7 +171,7 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 
 **Clarity Conversion-Events (7T, via Chrome-Dashboard — 480 Sessions, 51 Bots excl.):**
 - contact_form_submit: **1** | trainer_application_submit: **0** | konfigurator_submit: **1** | mail_click: **0** | phone_click: **0** | pdf_download: **0**
-- content_cta_click / sml_*: **0 / 0** (CTA-Brücke noch nicht gepusht; Outbound-LP nicht gestartet) — beide erwartungsgemäß nicht im Smart-Events-Dropdown
+- content_cta_click / sml_*: **VERIFIZIERT 26.06.** (10-Min-Test, Details unten im Nachtrag). Kurz: `content_cta_click` **0 Firings durch echte Nutzer** in 7T (= keine Klicks → Funnel-Problem, KEIN Tracking-Bug; Runtime-Test beweist korrektes Feuern). `sml_landing_page_visit` + `campaign_mail/medium/name/source` **SIND** vorhanden (Outbound läuft & wird getrackt). **Mess-Lücke behoben:** Custom-Tags liegen unter „Benutzerdefinierte Filter → Benutzerdefinierte Kategorien (Tag auswählen)", NICHT unter Smart Events — frühere Läufe (und mein erster Lauf heute) prüften nur Smart Events.
 - Smart-Events/Intent (Union aller 10 Intent-Ereignisse inkl. „Ausgehender Klick", „Kontaktieren Sie uns", „Formular absenden", danke_page_view, booking_click): **20 Sessions = 4,17 %** (15.06.: ~2,4 %) — im B2B-Benchmark 2–5 % ✅
 - Direkte Custom-Conversions eng gefasst (contact_form_submit + konfigurator_submit): 2 Events / 480 = 0,42 %
 - **Defekt-Check (Schritt 5e):** kein Event von ≥3 auf 0 gefallen (15.06.-Baseline war ~1 je Event) → **kein KRITISCH-Alarm**. mail/phone/pdf/trainer = 0 ist Low-Volume, kein Defekt.

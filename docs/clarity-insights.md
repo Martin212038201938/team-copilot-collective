@@ -2,7 +2,7 @@
 
 **Lebendes Dokument** — Cron-Jobs pflegen dieses File. Hier sammeln sich die Pattern-Erkenntnisse aus Microsoft Clarity, die wir auf andere Seiten übertragen oder gegen UX-Probleme einsetzen können.
 
-**Letzter automatischer Update:** 24. Juni 2026 (CTA-Brücke Verifikations-Cron)
+**Letzter automatischer Update:** 29. Juni 2026 (Wöchentlicher Audit — Dead-Click re-eskaliert ≥10 %, Outbound-Segment-Erstmessung, Edge-Shift zurückgebildet)
 
 ---
 
@@ -199,6 +199,46 @@ nach ca. 2 Wochen Laufzeit empfohlen.
 ## Logs (neueste oben — automatisch von Cron-Jobs gepflegt)
 
 <!-- ab hier ergänzen Cron-Jobs ihre Befunde -->
+
+---
+
+### 📌 KAMPAGNEN-STATUS (persistent — für Schritt 5c jeden Lauf prüfen)
+**Stand 26.06.2026:**
+- **Outbound-Cold-Mail:** ✅ **LIVE seit 25.06.2026**, läuft **wochentags**. Versanddomain `copiloten-schule.de` (separat, Reputationsschutz). Landingpages unter `/sml/` (z. B. `/sml/hr-tipps_2026`). → Ab Audit 29.06.: Outbound-Traffic (utm_medium=email bzw. Referrer/Direct aus Mailklicks) vom Organic-Segment **trennen**; `sml_*`-Events + Funnel „Smartlead HR 2026" auswerten.
+- **SEA (Google Ads):** ❌ noch **nicht gestartet** (Stand 26.06.). gtag/Consent-Mode-Code liegt deploybar in src/ (`ads.ts`), aktiv erst nach `VITE_GOOGLE_ADS_ID`. Sobald live: utm_medium=cpc separat segmentieren; SEA-Zielseiten sollen Trainings/Konfigurator/LPs sein, NICHT /wissen/.
+- **CTA-Brücke (`TrainingCTA`, Custom-Tag `content_cta_click`):** ✅ live seit 12.06. **Tracking am 26.06. verifiziert** (Runtime-Test: Klick feuert `clarity('set','content_cta_click',href)` korrekt). 0 Firings in 7T = **keine echten Klicks** (Funnel-Problem), KEIN Bug. Hebel = CTA sichtbarer/attraktiver machen.
+
+> ⚠️ **METHODEN-FIX für Schritt 5b (wichtig):** Die Conversion-Events sind **Custom Tags** (`Clarity.setTag`), NICHT Smart Events. Sie erscheinen NUR unter **Filter → „Benutzerdefinierte Filter" → „Benutzerdefinierte Kategorien" → Dropdown „Tag auswählen"** — NICHT im „Intelligente Ereignisse"-Dropdown. Frühere Läufe prüften nur Smart Events → systematische Untererfassung. **Ab sofort beide Filter prüfen.** Verfügbare Custom-Tags (Stand 26.06.): `booking_click, campaign_mail, campaign_medium, campaign_name, campaign_source, claude_verify_tag, contact_form_submit, danke_page_view, sml_landing_page_visit, visitor_type`. (`content_cta_click`, `mail_click`, `phone_click`, `pdf_download`, `trainer_application_submit` = 0 Firings → tauchen nicht auf, bis sie gefeuert werden.) Outbound-Segmentierung (5c) über `campaign_medium`/`campaign_source`.
+
+*Hinweis: Der ursprüngliche Skill-Kontext „SEA + Outbound ab KW 25" war verfrüht. Maßgeblich ist dieser Status-Block.*
+
+---
+
+### 2026-06-29 — Issue (Re-Eskalation): Dead-Click zurück über 10 %-Schwelle
+**Quelle:** Cron-Lauf 2026-06-29 (weekly) — Clarity API 3T (17 %) + Dashboard 7T (15,02 %, 67 Sess.) + Dashboard 3T (10,29 %, 7 Sess.)
+**Betroffene Page (Ableitung aus PopularPages):** organische /wissen-Seiten via globales `ArticlePopup` (über `ContentLayout.tsx`). Top-organische Page 3T: `/wissen/ki-halluzinationen-vermeiden` (21), dann `/` (14), `copilot-cowork-abrechnung-credits` (13), `claude-in-microsoft-copilot` (8).
+**Symptom:** Dead-Click-Rate API 3T springt von 8,65 % (22.06.) auf **17 %** — fast verdoppelt, klar über der 10 %-Schwelle (Schritt 7c). Dashboard 7T 15,02 %. Rage 1 %, Quick-Back/Excessive-Scroll/ScriptError 0 % (sonst alles ruhig).
+**5c-Gegenprüfung (Kampagnen-Segment):** Outbound-Segment (`campaign_medium=email`, 21 Sess.) zeigt **0 % Dead-Click** → die Eskalation kommt **nicht** aus der Outbound-Kampagne, sondern aus dem organischen Traffic. SEA ist nicht live. Damit ist der bekannte Treiber bestätigt: `ArticlePopup` (lucide-x-Icon ohne `pointer-events-none` + 300-ms-Fade + ~32-px-Hit-Area), site-weit auf Wissensseiten.
+**Hypothese (Schwankungs-Ursache):** Der 3T-Wert reagiert stark auf die Page-Mischung. In Wochen mit hohem Anteil Wissensartikel-Traffic (Popup feuert nach 20 s) steigt Dead-Click; sinkt der Anteil, fällt er (vgl. 21,4 % → 8,65 % → 17 % Zickzack). Der niedrige Wert der Vorwochen war also kein nachhaltiger Fix, nur Mix-Effekt — der eigentliche Code-Treiber besteht weiter.
+**Empfohlene Maßnahme:** Den **bereits erstellten** Fix-Draft pushen — `docs/drafts/clarity-fix-copilot-in-outlook-nutzen-tipps.md` (Overlay-Wrapper im Closing `pointer-events-none`, Backdrop dismissibel + `cursor-pointer`, X-Button 44×44 px + `<X pointer-events-none>`), plus optional sessionStorage-Frequency-Cap. Scope: `ArticlePopup` ist geteilt → wirkt site-weit (bewusst freigeben). Kein neuer Cron — Fix liegt vor, Engpass ist der Push.
+**Status:** identifiziert — re-eskaliert (Fix-Draft seit 17.06. unverpusht; an User gespiegelt)
+
+---
+
+### 2026-06-29 — Beobachtung (Erstmessung): Outbound-Segment klein & sehr niedrig-engagiert
+**Quelle:** Cron-Lauf 2026-06-29 (weekly) — Clarity Dashboard 7T, Filter `campaign_medium=email`
+**Beobachtung:** Outbound-Cold-Mail (seit 25.06. live) erzeugt **21 Sessions/7T (~4,7 % von 446)**. Engagement extrem niedrig: **13 s aktive Zeit, 10,4 % Scrolltiefe, 1,0 Seiten/Sitzung, 0 % Dead-Click**. Conversion-seitig: `sml_landing_page_visit` feuert (LP-Besuche), aber **`sml_booking_click`/`sml_contact_click`/`sml_offers_click` tauchen NICHT in den Custom-Tags-mit-Daten auf → 0 Outbound-Conversions** bisher. Die eine echte Conversion der Woche (`contact_form_submit`, Wert „direct") stammt **nicht** aus dem email-Segment.
+**Bewertung:** Für eine erste Kalt-B2B-Woche erwartbar (Benchmark E2E 0,5–2 %, hier noch 0). Die LP `/sml/hr-tipps_2026` ist bereits #2 der Top-Pages (17 Visits/3T), aber Besucher bouncen sofort (13 s, 1 Seite). Hebel liegt auf der LP selbst (sofortiger Wert/CTA above the fold), nicht im Tracking.
+**Handlung:** Beobachten — 2 Wochen Laufzeit abwarten, dann LP-Scroll-Heatmap + Recording von `/sml/hr-tipps_2026` prüfen (manuell). Bei weiterhin 0 `sml_booking_click`/`sml_contact_click` trotz ≥50 LP-Sessions: LP-CTA/Above-the-fold überarbeiten.
+
+---
+
+### 2026-06-29 — Trend (Reversal): Edge-Browser-Shift zurückgebildet
+**Beobachtungs-Zeitraum:** 22.06. – 29.06.2026 (Clarity API 3T, 100 Sessions)
+**Event:** Browser-Verteilung
+**Trend:** Edge fällt auf **14 Sessions (~14 %)** — Vorwoche 25 (~24 %). Chrome 55 (~55 %), ChromeMobile 11, MobileSafari 11. Der am 22.06. notierte Edge-Anstieg (mögliches B2B-Signal) hat sich damit **zurückgebildet** (~ -10 pp, unter der 20-pp-Alarmschwelle).
+**Ursache (vermutet):** Der Edge-Peak der Vorwoche war wahrscheinlich Wochen-Rauschen, kein struktureller B2B-Shift. Outbound-Traffic (seit 25.06.) bringt eher Mobile/Chrome-Mix (mehr Mobile diese Woche: 19 vs. 12).
+**Handlung:** Beobachten — kein Handlungsbedarf. Edge-Anteil als normales Schwanken werten; nur bei erneutem, anhaltendem Anstieg > 20 pp neu bewerten.
 
 ---
 
