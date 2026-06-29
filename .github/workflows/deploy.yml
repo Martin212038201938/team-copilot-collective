@@ -8,7 +8,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           # Volle git-History laden, damit scripts/generate-sitemap.js die echten
           # Datei-Änderungs-Daten via `git log` ermitteln kann (lastmod pro URL).
@@ -18,7 +18,7 @@ jobs:
           fetch-depth: 0
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: '18'
 
