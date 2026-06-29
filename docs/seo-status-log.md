@@ -207,14 +207,14 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 **Cron-Anlage-Begründung (Schritt 3 der Aktionstabelle):** C4 wurde von drei Quellen priorisiert (Monatsreview 10.06., Anschluss-Session 16.06., Conductor 09.06.) — zahlt auf die zwei größten DoD-Lücken (#1 Indexierung, #3 SEO-Score) ein → fireAt +7 Tage (24.06.). C1/C2 sind parkiert-technisch (niedrigere Priorität) → bewusst später (09.07.), aber jetzt getrackt statt vergessen. Beide STRIKT Draft-only (kein Push, kein src/).
 
 **Risiko-Check (> 7 Tage ungelöst):**
-- **Funnel Stufe 1→2 = 0 %** (Content→Angebot-Bruch, offen seit Monatsreview 10.06. = 7 Tage). Fix (CTA-Brücke Welle 1) ist seit 11.06. in src/ umgesetzt, aber **unverpusht** → blockiert auf User-Review+Push. Verifikations-Cron 24.06. (`…-pattern-transfer-2026-06-24`) kann erst greifen, wenn live. → gelbes Signal.
-- **Unverpushte SEO-src/-Änderungen seit 11.06.** (CTA-Brücke Welle 1, B4 Trust-Block/CustomerLogos.tsx, Google-Ads-Consent-Tracking): liegen review-fertig, warten auf User-Push via GitHub Desktop. Echter Engpass der Roadmap = nicht die Maßnahmenplanung, sondern der Push-Stau.
+- **Funnel Stufe 1→2 = 0 %** (Content→Angebot-Bruch, offen seit Monatsreview 10.06.). Fix (CTA-Brücke Welle 1) in src/ umgesetzt. ~~unverpusht~~ → **Korrektur 29.06.: live.** Verifikations-Cron 24.06. (`…-pattern-transfer-2026-06-24`) misst die Wirkung.
+- ~~**Unverpushte SEO-src/-Änderungen seit 11.06.**~~ → **KORREKTUR 2026-06-29:** Diese Aussage war falsch (übernommene Stale-Narrative aus dem Log, analog zum SSR-Fehlalarm). Git-Verifikation: `main` = `origin/main` (0/0), Arbeitsverzeichnis sauber, alle Dateien committet & gepusht (`TrainingCTA.tsx`, `CustomerLogos.tsx`, `ads.ts`, `ConsentBanner.tsx`; Commits bis 24.06.). CTA-Brücke, B4-Trust-Block und Google-Ads-Tracking sind **live**. Kein Push-Stau, kein Roadmap-Engpass.
 - Dead-Click: war ⚠️, am 15.06. erstmals unter 10 %-Schwelle (9,33 %) → entspannt; zusätzlicher Fix-Draft 17.06. vorgeschlagen. Kein roter Flag mehr.
 - Vorbestehende fremde uncommittete git-Änderungen (`D public/images/copilot-cowork-credits-timeline.png`, `M src/pages/CopilotCoworkAbrechnungCredits.tsx`, gemeldet 17.06. morgens) — nicht vom Conductor, nicht angefasst; User sollte committen/verwerfen.
 
 **Definition of Done — Selbst-Abschluss-Check:** 4 von 8 → weit unter 7/8-Schwelle. Conductor bleibt aktiv, keine Selbst-Deaktivierung.
 
-**Brauche ich etwas vom User?** Ja — der Maßnahmen-Push-Stau seit 11.06. ist der eigentliche Engpass (Funnel-Fix wirkt erst nach Push). Knappe Notification gesendet.
+**Brauche ich etwas vom User?** ~~Ja — Push-Stau~~ → **Korrektur 2026-06-29: Nein.** Die src/-Änderungen sind committet & gepusht (live). Kein offener User-Push nötig. Risiko-Status damit von 🟡 auf 🟢 für diesen Punkt; verbleibende DoD-Lücken (#1 Indexierung, #3 SEO-Score) bleiben inhaltlich offen, aber ohne Blocker.
 **Nächster Conductor-Lauf:** Mi 01.07.2026, 11:00.
 
 ---
