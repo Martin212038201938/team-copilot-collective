@@ -8,6 +8,31 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 
 ## Logs
 
+### 2026-06-30 — A6 Index-Coverage-Recheck (Cron)
+
+**Indexierungsquote:** 55/92 (59,8 %) · gecrawlt-nicht-indexiert 9 · gefunden-nicht-indexiert 16 (Δ vs. 15.06.: 0 / 0 / 0 — unverändert). GSC-Index-Report weiterhin Stand **12.06.26**, von Google nicht neu gecrawlt → Aggregat-Bericht spiegelt keine Bewegung; per-Seite-Wahrheit daher über Live-URL-Prüfung geholt.
+
+**A6-Zielseiten (13 aus Draft 16.06.): 7 / 13 jetzt indexiert.**
+- ✅ indexiert (nicht in den Nicht-indexiert-Listen, Report-Stand 12.06.): `microsoft-copilot-varianten-unterschiede`, `copilot-in-teams-zeit-gewinnen`, `copilot-fuer-word`, `copilot-agent-mode-word-excel-powerpoint`, `interne-copilot-trainer-ausbilden`, `copilot-hr-use-cases`, `eu-ai-act-mitarbeiter-schulung-august-2026`.
+- ❌ nicht indexiert (6, je per Live-URL-Prüfung 30.06. bestätigt): `copilot-betriebsrat` (Gefunden – nicht indexiert, in Sitemap) · `copilot-chat-free-pernod-ricard` (Gefunden – nicht indexiert, in Sitemap) · `bessere-entscheidungen-mit-ki` (URL Google nicht bekannt, „keine verweisenden Sitemaps") · `copilot-flex-routing-eu-verarbeitung` (dito) · `copilot-pages-loop-notebooks-sharepoint-workflows` (dito) · `microsoft-copilot-schulung-online` (dito).
+- Alle 6 = **„Letztes Crawling: Nicht zutreffend"** → **noch nie gecrawlt** (Discovery-/Crawl-Budget-Defizit, KEINE Qualitäts-/Content-Ablehnung).
+
+**⚠️ Kernbefund: A6-Verlinkung wurde NIE umgesetzt.** Repo-Prüfung (`grep` über `src/`): die 13 A6-Zielslugs erscheinen ausschließlich in `App.tsx` (Route) + `data/articles.ts` (Registry) — KEIN einziger der im Draft 16.06. geplanten additiven In-Body-Links existiert in einer Quellseite. Der Draft blieb auf „Entwurf zur Freigabe" stehen, die Umsetzung wurde nie freigegeben/committet. Git-Working-Tree sauber, `main`. Damit ist die A6-Hypothese (interne Verlinkung → Indexierung) **nie getestet worden**; die 6 Nachzügler sind „Nachzügler OHNE A6", nicht „trotz A6".
+
+**Technische Sauberkeit der 6 Nachzügler:** alle in `public/sitemap.xml` ✅ + in `reactSnap.include` ✅ (pre-gerendert, Canonical = pageUrl gemäß CLAUDE.md-Regeln); kein robots-Block, keine alt-kanonisch-Flags. Auffällig: 4 der 6 melden in der Live-Prüfung „Keine verweisenden Sitemaps gefunden", obwohl sie in der Sitemap stehen → Googles gecachte Sitemap-Assoziation hinkt/Seiten ohne jedes Entdeckungssignal außer Sitemap. Passt exakt zum Link-Waisen-Profil des A6-Drafts.
+
+**Nachgefasst (rein additiv):** IndexNow **6 URLs (HTTP 200)** · GSC-Indexierungsanfragen **6/10** (je „URL einer bevorzugten Crawling-Warteschlange hinzugefügt"): copilot-betriebsrat, copilot-chat-free-pernod-ricard, bessere-entscheidungen-mit-ki, copilot-flex-routing-eu-verarbeitung, copilot-pages-loop-notebooks-sharepoint-workflows, microsoft-copilot-schulung-online. Tageslimit eingehalten.
+
+**Hartnäckige Nachzügler (> 3 Wo nicht indexiert):** keine im Sinne der Eskalationsregel — kein A6-Ziel steht „gecrawlt – nicht indexiert" (das wäre das Qualitäts-Signal für inhaltliche Aufwertung). Die 6 sind „gefunden/unbekannt – nicht gecrawlt". → **Kein Kandidat für inhaltliche Aufwertung/Konsolidierung.** Richtiger Hebel bleibt Discovery: A6-Verlinkung umsetzen.
+
+**Aktion:** IndexNow-Re-Ping + 6 GSC-Requests (s.o.). **Keine src/-Änderung, kein Push.** Empfehlung an User (Notification): A6-Draft `docs/drafts/index-coverage-interne-verlinkung-2026-06-16.md` freigeben, damit die additiven In-Body-Links endlich gebaut werden — das ist die eigentliche, noch offene Maßnahme hinter den 6 Nachzüglern.
+
+**A6-Status:** bleibt ⏳ (nicht ✅ — nicht alle Zielseiten indexiert, Verlinkung nie umgesetzt). Projektplan-Header + A6-Zeile entsprechend ergänzt.
+
+**API-Calls heute:** 0 (GSC via Chrome, IndexNow via curl). **Nächster regulärer Lauf:** Wochenaudit Mo 06.07.2026, 10:00.
+
+---
+
 ### 2026-06-29 — Wöchentlicher Audit (Cron)
 
 **Phase:** Phase 3 — Content-Block (aktiv seit 01.06.2026, kein Wechsel)
