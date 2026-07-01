@@ -177,7 +177,7 @@ const CopilotHRUseCases = () => {
             textlastigen Routineaufgaben so stark beschleunigt, dass Personalern wieder Raum entsteht für
             das, was sie gut können und was die Organisation wirklich weiterbringt. Der Hebel ist dabei
             doppelt: weniger Zeit für Verwaltung und gleichzeitig bessere Qualität in der Kommunikation
-            mit Bewerbern, Mitarbeitenden und Führungskräften. Ähnliche Effekte zeigen sich auch im <Link to="/wissen/copilot-vertrieb-use-cases" className="text-primary hover:underline">Vertrieb</Link>.
+            mit Bewerbern, Mitarbeitenden und Führungskräften. Ähnliche Effekte zeigen sich auch im <Link to="/wissen/copilot-vertrieb-use-cases" className="text-primary hover:underline">Vertrieb</Link>. Gerade in den vielen Abstimmungsterminen im HR-Alltag hilft es, mit Copilot <Link to="/wissen/copilot-in-teams-zeit-gewinnen" className="text-primary hover:underline">in Teams gezielt Zeit zu gewinnen</Link>.
           </p>
         </div>
 

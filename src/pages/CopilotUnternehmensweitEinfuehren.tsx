@@ -293,7 +293,7 @@ const CopilotUnternehmensweitEinfuehren = () => {
                 <p className="font-semibold mb-2">Praktische Konsequenz</p>
                 <p className="text-muted-foreground mb-3">
                   Erfolgreiche Einführung erfordert strukturiertes Training und <Link to="/workshops/copilot-strategie-change-management" className="text-primary hover:underline">Change Management</Link> –
-                  nicht nur die technische Bereitstellung von Lizenzen.
+                  nicht nur die technische Bereitstellung von Lizenzen. In mitbestimmten Betrieben gehört dazu auch, frühzeitig <Link to="/wissen/copilot-betriebsrat" className="text-primary hover:underline">den Betriebsrat einzubinden</Link>.
                 </p>
                 <p className="font-semibold mb-2">Typischer Fehler</p>
                 <p className="text-muted-foreground">

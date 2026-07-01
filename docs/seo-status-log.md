@@ -8,6 +8,57 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 
 ## Logs
 
+### 2026-07-01 — A6 Interne Verlinkung UMGESETZT (User-Auftrag „Mache A6")
+
+**Was:** Die seit 16.06. offene A6-Maßnahme (additive interne Verlinkung für Index-Coverage) wurde auf ausdrücklichen User-Auftrag gebaut — nicht mehr nur als Draft. **16 additive In-Body-Links in 13 Quellseiten** ergänzt. Alle **10 Link-Waisen-Zielseiten haben jetzt je 2 kontextuelle Inbound-Links** (vorher 0–1).
+
+**Zielseiten → jetzt 2 Inbound (verifiziert per grep):** microsoft-copilot-varianten-unterschiede, copilot-pages-loop-notebooks-sharepoint-workflows, copilot-in-teams-zeit-gewinnen, microsoft-copilot-schulung-online, bessere-entscheidungen-mit-ki, copilot-betriebsrat, copilot-fuer-word, copilot-agent-mode-word-excel-powerpoint, interne-copilot-trainer-ausbilden, eu-ai-act-mitarbeiter-schulung-august-2026.
+
+**Quelle→Ziel (13 editierte Dateien, je 1 additiver Satz, bestehende Inhalte unangetastet):** ClaudeIntegration→varianten · ChatPernodRicard→varianten · FuerWord→pages-loop + agent-mode · TippsTricks→in-teams + pages-loop · HRUseCases→in-teams · Lernreisen→schulung-online · WarumVerteiltesLernen→schulung-online + interne-trainer · Adoption2026→bessere-entscheidungen · SalesUseCases→bessere-entscheidungen · Sicherheit→betriebsrat (im vorhandenen Betriebsrats-Abschnitt) · UnternehmensweitEinfuehren→betriebsrat · PagesLoop→fuer-word (reziprok) · Betriebsrat→eu-ai-act.
+
+**Sicherheits-Abweichung vom Draft:** Protected Pages `copilot-training-schulung` + `ki-schulung-mitarbeiter-pflicht` bewusst NICHT als Quelle genutzt → nicht-geschützte thematische Alternativen (`copilot-lernreise-vs-tagesschulung`, `warum-verteiltes-lernen`, `copilot-betriebsrat`). Keine Protected Page angefasst. Keine Title/Meta/Canonical/Breadcrumb/Routen-Änderung → `validate-seo`-Regeln nicht berührt. Max. 2 neue ausgehende Links pro Quellseite eingehalten.
+
+**Übersprungen** (bereits ausreichend verlinkt, kein Waisen-Profil): `copilot-flex-routing-eu-verarbeitung` (2 inbound), `copilot-chat-free-pernod-ricard` (3), `copilot-hr-use-cases` (2).
+
+**Build-Verifikation:** `npx vite build` sauber — **✓ built in 4.66s, 2146 Module transformiert**, 0 TS/JSX/Import-Fehler. (Der vollständige `build:prerender` scheiterte nur an einem Sandbox-`EPERM` beim Löschen einer macOS-`.DS_Store` im alten `dist/` — Umgebungsartefakt, kein Code-Problem; lokal auf Martins Rechner läuft `npm run build:prerender` normal durch.)
+
+**Git:** nur Datei-Änderungen im lokalen Ordner, **KEIN Push** (CLAUDE.md-Regel). 13 `src/pages/*.tsx` + Doku geändert.
+
+**Offene User-Schritte:**
+1. Änderungen in GitHub Desktop reviewen + committen + pushen (13 TSX-Dateien).
+2. Nach Deploy: IndexNow-Ping für die 10 Zielseiten senden (curl-Block im A6-Draft, Abschnitt „IndexNow + GSC-Resubmit").
+3. Optional: für die 6 hartnäckigen Nachzügler zusätzlich GSC-Indexierungsanfrage.
+
+**Messung:** A6-Recheck-Cron `copilotenschule-seo-index-coverage-recheck` (15.07.) prüft, ob die neuen Links + die 30.06-Submissions zur Indexierung geführt haben. **A6-Hypothese (interne Verlinkung → Indexierung) wird damit erstmals real getestet.**
+
+---
+
+### 2026-07-01 — Phase-Conductor-Lauf (Cron)
+
+**Aktive Phase:** Phase 3 — Content-Block (aktiv seit 01.06.2026, kein Wechsel). Phase 4 (Off-Page) läuft seit 25.06. parallel — Vorbedingung „ab 25.06." jetzt erreicht.
+**Nächste Maßnahme:** kleinste offene Code-Nr. = **A6 Index-Coverage** (⏳). Recheck-Cron `copilotenschule-seo-index-coverage-recheck` re-armed auf **15.07.2026 10:30** (2. Lauf). Danach B3b/B3c-Draft via `…-b3b-b3c-hubs-draft` (06.07.), C1/C2 via `…-c1-c2-technik-draft` (09.07.).
+**Definition of Done:** **4 von 8** erfüllt (fest: #2 SSR 🔴=0 ✅, #4 GEO 82 ✅; wahrscheinlich: #5 ≥5 Klick-URLs ✅, #6 B2-Hub #1). Offen: #1 Indexierung 59,8 % (Ziel 90 %), #3 SEO-Score 42 (Ziel 75), #7 Listicle-Erwähnung (Drafts da, nicht versendet), #8 ProvenExpert (Profil nicht angelegt). Weit unter 7/8-Schwelle → Conductor bleibt aktiv.
+**Risiko-Status:** 🟡 gelb — Kernmetriken organisch klar steigend (GSC Klicks +23 % W/W, Impr. +18 %, Pos. 9,8→9,7), aber zwei user-gebundene Drafts stagnieren: A6-Verlinkung (nie gebaut, Draft seit 16.06.) und ArticlePopup-Dead-Click-Fix (Draft seit 17.06., Dead-Click 15–17 % über 10 %-Schwelle).
+**Aktion in diesem Lauf:** A6-Recheck-Cron re-armed (15.07.) — Sicherheitsnetz, da der 30.06-Lauf sich als one-time selbst deaktiviert hatte und A6 damit ohne aktiven Cron dastand. Kein neuer Cron sonst, kein Push, keine src/-Änderung.
+
+**5 Status-Fragen:**
+1. **Aktive Phase:** Phase 3 (Content). Phase 1/2/2b historisch abgeschlossen (DoD #2 live verifiziert) — nicht wieder öffnen. Phase 4 parallel offen.
+2. **Nächste konkrete Maßnahme:** A6 (⏳). Blocker = additive In-Body-Links wurden NIE gebaut (Repo-Grep 30.06.: Zielslugs nur in App.tsx + articles.ts). Draft `docs/drafts/index-coverage-interne-verlinkung-2026-06-16.md` liegt seit 16.06. vor, wartet auf User-Freigabe.
+3. **Cron für A6 vorhanden?** War nach dem 30.06-Lauf auf `enabled:false` (one-time). → **in diesem Lauf re-armed auf 15.07.** (Sicherheitsnetz). B3b/B3c + C1/C2 haben aktive Crons (06.07./09.07.).
+4. **Vorbedingung A6 erfüllt?** Teilweise: die 6 Nachzügler sind technisch sauber (Sitemap ✅, reactSnap ✅, Canonical ✅, kein robots-Block) und wurden am 30.06. via IndexNow (HTTP 200) + 6 GSC-Requests re-submitted. ABER der eigentliche Discovery-Hebel (interne Verlinkung) ist nicht umgesetzt → Vorbedingung „Links gebaut" NICHT erfüllt. Kein „gecrawlt-nicht-indexiert"-Ziel → keine inhaltliche Aufwertung nötig, reines Discovery-Problem.
+5. **🔵 offen > 14 Tage ohne Cron?** B3b/B3c (Cron 06.07. ✅). D1 ProvenExpert (user-gebunden, Captcha → kein autonom-sinnvoller Cron; Reminder lief 10.06.). D2/D4/D5 (Phase-4-Off-Page): Vorbedingung „ab 25.06." jetzt erreicht — D2/D4-Outreach-Drafts existieren (`docs/outreach/dach-verzeichnisse-d2-d4.md`), D3-Mails existieren (`docs/outreach/listicle-outreach-entwuerfe.md`), alle **warten auf User-Versand**. D5 (Yellow-Boat-Gastartikel) noch ohne Draft → Kandidat für nächsten Conductor-Lauf, falls Outreach-Backlog abgearbeitet ist. **Kein neuer Draft-Cron in diesem Lauf, um den bereits vorhandenen, unversendeten Draft-Stau nicht weiter aufzublähen.**
+
+**Risiko-Check (> 7 Tage ungelöst):**
+- **A6-Links nie gebaut** (seit 16.06. = 15 Tage) — Discovery-Blocker der 6 Nicht-indexierten. Blocker = User-Freigabe des Drafts. → in Notification.
+- **Dead-Click 15–17 %** (organisch, globales `ArticlePopup`), Fix-Draft `docs/drafts/clarity-fix-copilot-in-outlook-nutzen-tipps.md` seit 17.06. unverpusht. UX-Issue, kein SEO-Blocker, aber > 7 Tage offen. → in Notification.
+- Kein roter SEO-Flag: SSR 67/67, Protected Pages alle HTTP 200, Indexierungsquote stabil (nicht fallend).
+
+**Grund-Muster:** Der Engpass ist NICHT fehlende Automatisierung, sondern ein Backlog fertiger Drafts, die auf User-Aktion warten (A6-Links, C4-Schema-Push, D3-Outreach-Versand, ArticlePopup-Fix). Der Conductor kann diese nicht selbst pushen/versenden (Regel: kein Push, kein src/). → Wert dieses Laufs = den Stau sichtbar machen.
+
+**Nächster Conductor-Lauf:** Mi 15.07.2026, 11:00.
+
+---
+
 ### 2026-06-30 — A6 Index-Coverage-Recheck (Cron)
 
 **Indexierungsquote:** 55/92 (59,8 %) · gecrawlt-nicht-indexiert 9 · gefunden-nicht-indexiert 16 (Δ vs. 15.06.: 0 / 0 / 0 — unverändert). GSC-Index-Report weiterhin Stand **12.06.26**, von Google nicht neu gecrawlt → Aggregat-Bericht spiegelt keine Bewegung; per-Seite-Wahrheit daher über Live-URL-Prüfung geholt.

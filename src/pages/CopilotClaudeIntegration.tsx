@@ -397,7 +397,10 @@ const CopilotClaudeIntegration = () => {
               Anfragen an das jeweils passende Modell – Nutzer merken das nicht und müssen sich nicht
               aktiv für ein Modell entscheiden. Wer den Researcher in Copilot Chat nutzt, kann dort
               allerdings explizit Claude als Modell auswählen, was sich bei Rechercheaufgaben mit langen
-              Dokumenten lohnt.
+              Dokumenten lohnt. Einen Überblick, welche Ausprägungen es überhaupt gibt und wie sie sich unterscheiden, liefert der Artikel zu den{" "}
+              <Link to="/wissen/microsoft-copilot-varianten-unterschiede" className="text-primary hover:underline">
+                Unterschieden der Copilot-Varianten
+              </Link>.
             </p>
             <p>
               Die eigentliche Veränderung liegt in Copilot Cowork – und das ist derzeit noch im „Research

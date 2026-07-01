@@ -196,7 +196,7 @@ const CopilotLernreisen = () => {
           </Card>
 
           <p className="mb-6">
-            Was bedeutet das für eine 8-stündige Copilot-Tagesschulung? Am nächsten Morgen erinnern sich Ihre Mitarbeitenden an etwa ein Drittel der Inhalte. Nach einer Woche an weniger als ein Viertel. Nach einem Monat an nur noch 10-15 %. Die restlichen 6–7 Stunden Schulung? Verpufft. Nicht weil die Teilnehmenden nicht aufgepasst haben – sondern weil das menschliche Gehirn schlicht nicht dafür gebaut ist, 8 Stunden am Stück neues Wissen aufzunehmen und dauerhaft zu speichern.
+            Was bedeutet das für eine 8-stündige Copilot-Tagesschulung? Am nächsten Morgen erinnern sich Ihre Mitarbeitenden an etwa ein Drittel der Inhalte. Nach einer Woche an weniger als ein Viertel. Nach einem Monat an nur noch 10-15 %. Die restlichen 6–7 Stunden Schulung? Verpufft. Nicht weil die Teilnehmenden nicht aufgepasst haben – sondern weil das menschliche Gehirn schlicht nicht dafür gebaut ist, 8 Stunden am Stück neues Wissen aufzunehmen und dauerhaft zu speichern. Verteilte Einheiten lassen sich übrigens gut ortsunabhängig umsetzen – etwa als <Link to="/wissen/microsoft-copilot-schulung-online" className="text-primary hover:underline">Online-Copilot-Schulung</Link>.
           </p>
 
           <blockquote className="my-6 border-l-4 border-primary bg-primary/5 p-6 rounded-r-lg italic text-lg">

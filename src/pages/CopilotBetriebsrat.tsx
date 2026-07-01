@@ -685,7 +685,7 @@ const CopilotBetriebsrat = () => {
               für Betriebsräte und Personalvertretungen entwickelt wurde. Es ist kein
               umfunktioniertes Standard-Training – es stellt die Perspektive der
               Arbeitnehmervertretung in den Mittelpunkt. Format: eintägig, mit
-              optionalem zweitem Intensivtag.
+              optionalem zweitem Intensivtag. Warum das Thema an Dringlichkeit gewinnt, erklärt der Beitrag zur <Link to="/wissen/eu-ai-act-mitarbeiter-schulung-august-2026" className="text-primary hover:underline">KI-Schulungspflicht ab August 2026</Link>.
             </p>
           </div>
 

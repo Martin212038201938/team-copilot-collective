@@ -167,7 +167,7 @@ const CopilotAdoption2026 = () => {
           </h2>
 
           <p className="text-muted-foreground mb-6">
-            Am 28. Januar 2026 veröffentlichte Microsoft seine Quartalszahlen. Die Copilot-Metriken im Überblick. Für konkrete Erfolgsbeispiele aus dem deutschsprachigen Raum, siehe unsere <Link to="/wissen/copilot-roi-erfolgsgeschichten" className="text-primary hover:underline">Copilot ROI Erfolgsgeschichten</Link>.
+            Am 28. Januar 2026 veröffentlichte Microsoft seine Quartalszahlen. Die Copilot-Metriken im Überblick. Für konkrete Erfolgsbeispiele aus dem deutschsprachigen Raum, siehe unsere <Link to="/wissen/copilot-roi-erfolgsgeschichten" className="text-primary hover:underline">Copilot ROI Erfolgsgeschichten</Link>. Jenseits reiner Nutzungszahlen zeigt sich der Mehrwert vor allem dort, wo Teams mit KI-Unterstützung <Link to="/wissen/bessere-entscheidungen-mit-ki" className="text-primary hover:underline">bessere Entscheidungen treffen</Link>.
           </p>
 
           <div className="grid md:grid-cols-2 gap-6 mb-8">

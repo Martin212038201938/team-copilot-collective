@@ -1138,7 +1138,7 @@ Format: Markdown mit klarer Hierarchie, Emojis für Kategorien."`}</code></pre>
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg mb-4">
             <pre className="text-sm whitespace-pre-wrap break-words"><code>Prompt: "Erstelle Quarterly Report basierend auf\nVerkaufszahlen aus [Excel-Datei], mit Trend-Analyse\nund Visualisierung-Beschreibungen"</code></pre>
           </div>
-          <p className="mb-4 text-gray-700 leading-relaxed">Mehr dazu, was Copilot direkt in <Link to="/wissen/copilot-fuer-excel" className="text-primary hover:underline">Excel</Link> kann.</p>
+          <p className="mb-4 text-gray-700 leading-relaxed">Mehr dazu, was Copilot direkt in <Link to="/wissen/copilot-fuer-excel" className="text-primary hover:underline">Excel</Link> kann. Wenn Copilot solche Schritte nicht mehr nur vorschlägt, sondern selbst ausführt, spricht man vom <Link to="/wissen/copilot-agent-mode-word-excel-powerpoint" className="text-primary hover:underline">Agent Mode in Word, Excel und PowerPoint</Link>. Und für dokumentübergreifendes Arbeiten lohnt der Blick auf <Link to="/wissen/copilot-pages-loop-notebooks-sharepoint-workflows" className="text-primary hover:underline">Pages, Loop und Notebooks</Link>.</p>
         </section>
 
         <section id="sicherheit-und-compliance" className="mb-6">

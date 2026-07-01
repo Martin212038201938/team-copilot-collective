@@ -165,7 +165,7 @@ const CopilotSalesUseCases = () => {
             Pipeline-Reports für das Montagsmeeting. Sales dürfte in vielen Organisationen der Bereich sein, in dem
             Copilot die Lizenzkosten am schnellsten marginalisiert – durch Zeitersparnis pro Kopf und durch eine
             spürbare Qualitätsverbesserung im gesamten Pipeline-Prozess, die sich direkt auf die Abschlussquote auswirkt.
-            Ähnliche Effekte zeigen sich auch in <Link to="/wissen/copilot-hr-use-cases" className="text-primary hover:underline">HR und Personalabteilungen</Link>.
+            Ähnliche Effekte zeigen sich auch in <Link to="/wissen/copilot-hr-use-cases" className="text-primary hover:underline">HR und Personalabteilungen</Link>. Wo es um Forecasts und Priorisierung geht, unterstützt Copilot Vertriebsteams dabei, <Link to="/wissen/bessere-entscheidungen-mit-ki" className="text-primary hover:underline">bessere Entscheidungen mit KI</Link> zu treffen.
           </p>
           <p className="leading-relaxed">
             Genau an dieser Stelle wird Copilot zum stärksten Produktivitätshebel, den Sales-Teams seit der

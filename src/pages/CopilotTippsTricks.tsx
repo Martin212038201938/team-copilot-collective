@@ -140,7 +140,7 @@ const CopilotTippsTricks = () => {
               <strong>Die drei wichtigsten Copilot-Prinzipien:</strong> 1) <strong>Kontext geben</strong> – je mehr Hintergrund, desto besser das Ergebnis.
               2) <strong>Spezifisch sein</strong> – "Erstelle einen 2-seitigen Report für das Management" statt "Schreib was".
               3) <strong>Iterieren</strong> – verfeinern Sie das erste Ergebnis mit Folgefragen.
-              Diese 22 Tipps zeigen Ihnen, wie Sie das in Word, Excel, PowerPoint, Outlook und Teams konkret umsetzen. Vertiefen Sie Ihr Wissen mit <Link to="/wissen/prompt-engineering" className="text-primary hover:underline">Prompt Engineering</Link>.
+              Diese 22 Tipps zeigen Ihnen, wie Sie das in Word, Excel, PowerPoint, Outlook und Teams konkret umsetzen. Vertiefen Sie Ihr Wissen mit <Link to="/wissen/prompt-engineering" className="text-primary hover:underline">Prompt Engineering</Link>. Speziell für Besprechungen hilft der Artikel <Link to="/wissen/copilot-in-teams-zeit-gewinnen" className="text-primary hover:underline">in Teams gezielt Zeit gewinnen</Link>, und für dokumentübergreifendes Arbeiten der Überblick zu <Link to="/wissen/copilot-pages-loop-notebooks-sharepoint-workflows" className="text-primary hover:underline">Pages, Loop und Notebooks</Link>.
             </p>
           </CardContent>
         </Card>

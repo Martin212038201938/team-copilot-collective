@@ -1,6 +1,12 @@
 # A6 — Index-Coverage über interne Verlinkung (Entwurf, 16.06.2026)
 
-**Status:** Entwurf zur Freigabe. Kein Code geändert, kein Push. Umsetzung erst nach Review.
+**Status:** ✅ **UMGESETZT am 01.07.2026** (auf User-Auftrag „Mache A6"). 16 additive In-Body-Links in 13 Quellseiten eingebaut; 10 Link-Waisen-Zielseiten haben jetzt je 2 kontextuelle Inbound-Links. Vite-Build sauber (`✓ built in 4.66s`, 2146 Module transformiert). **Abweichung vom Entwurf (Sicherheit):** Protected Pages `copilot-training-schulung` und `ki-schulung-mitarbeiter-pflicht` wurden NICHT als Quelle verwendet — stattdessen nicht-geschützte thematische Alternativen (`copilot-lernreise-vs-tagesschulung`, `warum-verteiltes-lernen`, `copilot-betriebsrat`). **Übersprungen** (bereits ausreichend verlinkt): `copilot-flex-routing-eu-verarbeitung` (2 inbound), `copilot-chat-free-pernod-ricard` (3), `copilot-hr-use-cases` (2). **Offen (User):** Push via GitHub Desktop + IndexNow-Ping nach Deploy (curl-Block unten). Kein eigenständiger Push durch Claude.
+
+**Umgesetztes Quelle→Ziel-Mapping (01.07.):** ClaudeIntegration→varianten · ChatPernodRicard→varianten · FuerWord→pages-loop + agent-mode · TippsTricks→in-teams + pages-loop · HRUseCases→in-teams · Lernreisen→schulung-online · WarumVerteiltesLernen→schulung-online + interne-trainer · Adoption2026→bessere-entscheidungen · SalesUseCases→bessere-entscheidungen · Sicherheit→betriebsrat · UnternehmensweitEinfuehren→betriebsrat · PagesLoop→fuer-word (reziprok) · Betriebsrat→eu-ai-act.
+
+---
+
+**Ursprünglicher Entwurf (16.06.2026):** Entwurf zur Freigabe. Kein Code geändert, kein Push. Umsetzung erst nach Review.
 **Maßnahme:** A6 im `seo-projektplan.md`. Verifikation via Cron `copilotenschule-seo-index-coverage-recheck` (30.06.).
 
 ## Ziel & Prämissen

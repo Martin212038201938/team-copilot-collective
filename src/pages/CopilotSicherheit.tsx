@@ -325,6 +325,8 @@ const CopilotSicherheit = () => {
               sondern als strategischen Partner. Klären Sie gemeinsam, welche Nutzungsdaten erhoben werden,
               wer darauf Zugriff hat, und wie mit den Daten umgegangen wird. Eine Betriebsvereinbarung zur
               Copilot-Nutzung schafft Klarheit für alle Beteiligten und vermeidet Konflikte nach dem Rollout.
+              Wie das konkret abläuft, welche Punkte in die Betriebsvereinbarung gehören und wie Sie den
+              Betriebsrat überzeugen, lesen Sie im Leitfaden <Link to="/wissen/copilot-betriebsrat" className="text-primary hover:underline">Copilot und der Betriebsrat</Link>.
             </p>
             <p>
               Viele Betriebsräte haben weniger Bedenken, wenn sie verstehen, wie Copilot tatsächlich

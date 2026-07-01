@@ -162,7 +162,7 @@ const CopilotChatPernodRicard = () => {
             das E-Mails und Anrufe beantwortet. Eine Geschäftsführung, die zwischen Strategie-Decks und
             Quartalsberichten jongliert. Für jede dieser Gruppen liefert der kostenlose Copilot Chat
             einen anderen Hebel – und keiner davon erfordert eine zusätzliche Lizenz. Für weitere Anwendungsideen
-            schau dir unsere <Link to="/wissen/copilot-tipps-tricks-produktivitaet" className="text-primary hover:underline">Copilot Tipps & Tricks</Link> an.
+            schau dir unsere <Link to="/wissen/copilot-tipps-tricks-produktivitaet" className="text-primary hover:underline">Copilot Tipps & Tricks</Link> an. Welche Copilot-Variante dabei zu welcher Rolle passt, zeigt der Überblick zu den <Link to="/wissen/microsoft-copilot-varianten-unterschiede" className="text-primary hover:underline">Unterschieden der Copilot-Varianten</Link>.
           </p>
         </div>
 
