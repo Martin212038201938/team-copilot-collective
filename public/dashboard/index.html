@@ -256,17 +256,25 @@
     }
 
     // GEO / LLM-Sichtbarkeit (wöchentlich, separate Datei)
-    if(llm && llm.score && llm.status==="ok"){
+    const llmTs = (llm && llm.meta?.generated_at) ? new Date(llm.meta.generated_at).toLocaleDateString("de-DE") : "–";
+    if(llm && llm.status==="error"){
+      el("llm-score").innerHTML='<div class="issue"><div class="sev critical"></div><div><strong>Letzter Lauf fehlgeschlagen</strong> ('+llmTs+')<br><span style="color:var(--muted)">'+(llm.error_hint||"Es kam keine Antwort vom LLM zurück.")+'</span><br><span style="color:var(--muted)">→ „0 %" heißt hier <strong>nicht</strong> „nicht genannt", sondern „nicht abgefragt". Gültigen OPENAI_API_KEY als GitHub-Secret setzen und den Workflow neu starten.</span></div></div>';
+      el("llm-competitors").innerHTML=pendingBox("—");
+      el("llm-checks").innerHTML=pendingBox("Keine Checks — der Lauf ist vor der eigentlichen Abfrage gescheitert.");
+    } else if(llm && llm.score && (llm.status==="ok"||llm.status==="partial")){
       const sc=llm.score;
+      const denom = (sc.answered!==undefined && sc.answered!==null) ? sc.answered : sc.total;
+      const rate = v => (v===null||v===undefined) ? "n/v" : v+" %";
       const modeLbl = llm.meta?.mode==="web_search" ? "mit Live-Websuche &amp; Zitaten" : "Modellwissen (ohne Live-Websuche)";
-      const ts = llm.meta?.generated_at ? new Date(llm.meta.generated_at).toLocaleDateString("de-DE") : "–";
+      const partial = llm.status==="partial" ? '<tr><td>Hinweis</td><td class="num" style="color:var(--yellow)">'+sc.errored+' von '+sc.total+' Fragen fehlerhaft</td></tr>' : '';
       el("llm-score").innerHTML =
         '<table>'+
-        '<tr><td>Nennungsrate</td><td class="num"><strong>'+sc.mention_rate_pct+' %</strong> ('+sc.mentioned+'/'+sc.total+')</td></tr>'+
-        '<tr><td>Zitatrate (als Quelle)</td><td class="num"><strong>'+sc.citation_rate_pct+' %</strong> ('+sc.cited+'/'+sc.total+')</td></tr>'+
+        '<tr><td>Nennungsrate</td><td class="num"><strong>'+rate(sc.mention_rate_pct)+'</strong> ('+sc.mentioned+'/'+denom+')</td></tr>'+
+        '<tr><td>Zitatrate (als Quelle)</td><td class="num"><strong>'+rate(sc.citation_rate_pct)+'</strong> ('+sc.cited+'/'+denom+')</td></tr>'+
         '<tr><td>Engine</td><td class="num">'+(llm.meta?.engine||'–')+'</td></tr>'+
         '<tr><td>Modus</td><td class="num">'+modeLbl+'</td></tr>'+
-        '<tr><td>Letzter Lauf</td><td class="num">'+ts+'</td></tr>'+
+        partial+
+        '<tr><td>Letzter Lauf</td><td class="num">'+llmTs+'</td></tr>'+
         '</table>';
       const comp = llm.competitor_domains||[];
       el("llm-competitors").innerHTML = comp.length

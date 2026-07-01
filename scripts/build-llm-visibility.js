@@ -93,6 +93,26 @@ function snippetAround(text, needle) {
   return ("…" + text.slice(start, i + 120) + "…").replace(/\s+/g, " ").trim();
 }
 
+const cleanErr = (m) => String(m).replace(/sk-[A-Za-z0-9*_-]+/g, "sk-***").slice(0, 160);
+const isAuthErr = (m) => /invalid_api_key|incorrect api key|401|unauthorized|invalid_request_error.*api key/i.test(String(m));
+
+// Schreibt einen ehrlichen Fehler-Snapshot (ohne die bestehende Historie zu verfälschen) und beendet.
+async function writeError(hint) {
+  let prev = {};
+  try { const r = await fetch(`https://${DOMAIN}/dashboard/llm-visibility.json?_=${Date.now()}`); if (r.ok) prev = await r.json(); } catch { /* egal */ }
+  const out = {
+    meta: { domain: DOMAIN, generated_at: new Date().toISOString(), generated_by: "github-action: build-llm-visibility.js", engine: `openai/${MODEL}`, mode: "web_search", update_frequency: "wöchentlich", prompts_count: 0 },
+    status: "error",
+    error_hint: cleanErr(hint),
+    score: { mention_rate_pct: null, citation_rate_pct: null, mentioned: 0, cited: 0, answered: 0, errored: 0, total: 0 },
+    checks: [],
+    competitor_domains: [],
+    history: Array.isArray(prev.history) ? prev.history : [],
+  };
+  writeFileSync(OUT, JSON.stringify(out, null, 2) + "\n");
+  console.error(`FEHLER: LLM-Check nicht durchgeführt — ${cleanErr(hint)}`);
+}
+
 async function main() {
   if (!API_KEY) {
     console.warn("WARN: OPENAI_API_KEY fehlt — LLM-Check übersprungen, vorhandene Datei bleibt erhalten.");
@@ -100,15 +120,18 @@ async function main() {
   }
 
   // Tool-Typ ermitteln: neuere API nutzt "web_search", ältere "web_search_preview".
+  // Fällt der Probe-Call auf einen Auth-Fehler (ungültiger Key), sofort ehrlich abbrechen —
+  // KEINE 8 sinnlosen Anfragen, KEIN irreführendes "0 %".
   let mode = "web_search";
   let toolType = "web_search";
   try {
     await askWithWebSearch("Test", "web_search");
   } catch (e) {
+    if (isAuthErr(e.message)) { await writeError(e.message); process.exit(1); }
     if (/web_search/i.test(e.message) && /(unknown|invalid|not|unsupported)/i.test(e.message)) {
       toolType = "web_search_preview";
       try { await askWithWebSearch("Test", "web_search_preview"); }
-      catch (e2) { mode = "knowledge"; }
+      catch (e2) { if (isAuthErr(e2.message)) { await writeError(e2.message); process.exit(1); } mode = "knowledge"; }
     } else if (/web_search/i.test(e.message)) {
       toolType = "web_search_preview";
     }
@@ -125,7 +148,7 @@ async function main() {
       // Wenn Websuche bei einer Frage scheitert: einmal auf Wissen zurückfallen.
       console.warn(`WARN Frage scheitert (${e.message}) — Fallback auf Modellwissen.`);
       try { r = await askKnowledge(prompt); mode = "knowledge"; }
-      catch (e2) { checks.push({ prompt, error: e2.message, mentioned: false, cited: false }); continue; }
+      catch (e2) { checks.push({ prompt, error: cleanErr(e2.message), mentioned: false, cited: false }); continue; }
     }
 
     const text = r.text || "";
@@ -150,10 +173,16 @@ async function main() {
   }
 
   const total = checks.length;
+  const errored = checks.filter((c) => c.error).length;
+  const answered = total - errored;
   const mentioned = checks.filter((c) => c.mentioned).length;
   const cited = checks.filter((c) => c.cited).length;
-  const mentionRate = total ? Math.round((mentioned / total) * 100) : 0;
-  const citationRate = total ? Math.round((cited / total) * 100) : 0;
+  // Raten NUR auf tatsächlich beantwortete Fragen beziehen — sonst wäre ein
+  // Fehlschlag fälschlich "0 %".
+  const mentionRate = answered ? Math.round((mentioned / answered) * 100) : null;
+  const citationRate = answered ? Math.round((cited / answered) * 100) : null;
+  const status = answered === 0 ? "error" : (errored > 0 ? "partial" : "ok");
+  const errorHint = answered === 0 ? cleanErr(checks.find((c) => c.error)?.error || "Keine Antworten erhalten") : null;
 
   const competitorDomains = [...competitorCount.entries()]
     .sort((a, b) => b[1] - a[1])
@@ -172,7 +201,8 @@ async function main() {
   })();
   const week = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Berlin" }).format(new Date());
   const history = Array.isArray(prev.history) ? prev.history.filter((h) => h.date !== week) : [];
-  history.push({ date: week, mention_rate_pct: mentionRate, citation_rate_pct: citationRate });
+  // Nur echte Ergebnisse historisieren — ein Fehlschlag darf den Trend nicht verfälschen.
+  if (answered > 0) history.push({ date: week, mention_rate_pct: mentionRate, citation_rate_pct: citationRate });
   history.sort((a, b) => a.date.localeCompare(b.date));
   const trimmed = history.slice(-26);
 
@@ -185,13 +215,17 @@ async function main() {
       mode, // "web_search" = mit Live-Websuche/Zitaten, "knowledge" = reines Modellwissen
       update_frequency: "wöchentlich",
       prompts_count: total,
+      answered,
     },
-    status: total ? "ok" : "no_data",
+    status, // "ok" | "partial" | "error"
+    error_hint: errorHint,
     score: {
       mention_rate_pct: mentionRate,
       citation_rate_pct: citationRate,
       mentioned,
       cited,
+      answered,
+      errored,
       total,
     },
     checks,
@@ -200,7 +234,8 @@ async function main() {
   };
 
   writeFileSync(OUT, JSON.stringify(out, null, 2) + "\n");
-  console.log(`OK LLM-Sichtbarkeit (${mode}): ${mentioned}/${total} Nennungen (${mentionRate}%), ${cited}/${total} Zitate (${citationRate}%). Wettbewerber-Domains: ${competitorDomains.length}.`);
+  console.log(`LLM-Sichtbarkeit [${status}] (${mode}): ${answered}/${total} beantwortet, ${errored} Fehler; ${mentioned} Nennungen (${mentionRate ?? "n/v"}%), ${cited} Zitate (${citationRate ?? "n/v"}%). Wettbewerber-Domains: ${competitorDomains.length}.`);
+  if (status === "error") process.exit(1);
 }
 
 main().catch((e) => { console.error("FEHLER:", e.message); process.exit(1); });

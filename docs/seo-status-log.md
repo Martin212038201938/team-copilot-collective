@@ -25,9 +25,13 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 **Git:** nur Datei-Änderungen im lokalen Ordner, **KEIN Push** (CLAUDE.md-Regel). 13 `src/pages/*.tsx` + Doku geändert.
 
 **Offene User-Schritte:**
-1. Änderungen in GitHub Desktop reviewen + committen + pushen (13 TSX-Dateien).
-2. Nach Deploy: IndexNow-Ping für die 10 Zielseiten senden (curl-Block im A6-Draft, Abschnitt „IndexNow + GSC-Resubmit").
-3. Optional: für die 6 hartnäckigen Nachzügler zusätzlich GSC-Indexierungsanfrage.
+1. ✅ **ERLEDIGT (User, 01.07.):** Änderungen via GitHub Desktop committet + gepusht.
+2. ✅ **ERLEDIGT (Claude, 01.07.):** IndexNow-Ping gesendet → **HTTP 200** (Erfolg, alle URLs gültig empfangen). Gemeldet: **20 URLs** = 10 neu-verlinkte Zielseiten + 13 Quellseiten (damit Bing beim Re-Crawl die neuen ausgehenden Links erfasst; deduped auf 20).
+3. ✅ **ERLEDIGT (Claude via Chrome/GSC, 01.07.):** URL-Prüfung + Indexierungsanfrage für die 6 Nachzügler durchgeführt. **Ergebnis:** 3 sind bereits indexiert (A6-Links/30.06-Submissions haben gegriffen) → **copilot-betriebsrat, bessere-entscheidungen-mit-ki, copilot-flex-routing-eu-verarbeitung = „Seite ist indexiert" ✅**. 3 noch nicht indexiert → **Indexierung beantragt** für copilot-chat-free-pernod-ricard („URL ist Google nicht bekannt"), copilot-pages-loop-notebooks-sharepoint-workflows + microsoft-copilot-schulung-online (beide „Gefunden – zurzeit nicht indexiert"). 3 von ~10 GSC-Tagesanfragen genutzt.
+
+**Zwischenstand A6-Wirkung:** Von den ursprünglich 6 „gefunden/unbekannt – nicht gecrawlt"-Seiten (Stand 30.06.) sind jetzt bereits **3 indexiert** — erstes positives Signal, dass die interne Verlinkung + Submissions wirken.
+
+**Nächste Messung:** A6-Recheck-Cron 15.07. prüft die verbleibenden 3 (pernod-ricard, pages-loop, schulung-online).
 
 **Messung:** A6-Recheck-Cron `copilotenschule-seo-index-coverage-recheck` (15.07.) prüft, ob die neuen Links + die 30.06-Submissions zur Indexierung geführt haben. **A6-Hypothese (interne Verlinkung → Indexierung) wird damit erstmals real getestet.**
 

@@ -100,6 +100,11 @@ Aktiv genutzt: `GSC_SERVICE_ACCOUNT_JSON`, `BING_API_KEY`, `CLARITY_API_TOKEN`,
 - **Dashboard zeigt altes Datum:** Action prüfen (Actions → „Dashboard-Daten aktualisieren").
   Läuft sie grün, schreibt aber nichts → eine Quelle liefert keine Daten (Log ansehen).
 - **GSC 403:** Service-Account-E-Mail muss in der Search Console als Nutzer (Vollständig) hinterlegt sein.
+- **LLM-Sichtbarkeit „Lauf fehlgeschlagen" / 0 %:** fast immer ein **ungültiger `OPENAI_API_KEY`**
+  (OpenAI antwortet `invalid_api_key`). Das Skript bricht dann ehrlich mit `status: "error"` ab –
+  „0 %" heißt hier NICHT „nicht genannt", sondern „nicht abgefragt". Lösung: gültigen Key als
+  GitHub-Secret setzen, dann Workflow „LLM-Sichtbarkeit" manuell neu starten. (Lauf am 2026-06-29
+  scheiterte genau daran.)
 - **Merge-Konflikt bei `data.json`/`history.json`:** sollte nicht mehr auftreten, seit die Actions
   nichts mehr ins Git committen (Historie kommt von der Live-Seite, Deploy nur per FTP). Falls doch noch
   eine hängengebliebene `.git/index.lock` blockiert: im Terminal `rm -f .git/index.lock`, dann in
