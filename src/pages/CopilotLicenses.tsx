@@ -35,11 +35,11 @@ const CopilotLicenses = () => {
   const faqs = [
     {
       name: "Welche Microsoft Copilot Lizenz brauchen wir für unser Unternehmen?",
-      answer: "Das hängt von Ihrem Use Case und Ihrer Unternehmensgröße ab: Für Office-Produktivität bei bis zu 300 Nutzern empfiehlt sich Microsoft 365 Copilot Business (ab 15,60 €/Nutzer/Monat, Aktionspreis bis Juni 2026), für größere Unternehmen Microsoft 365 Copilot (26 €/Nutzer/Monat). Für Entwickler ist GitHub Copilot Business (19 USD/Nutzer/Monat) die richtige Wahl. Die Copilotenschule berät Sie bei der optimalen Lizenzstrategie für Ihre Anforderungen."
+      answer: "Das hängt von Ihrem Use Case und Ihrer Unternehmensgröße ab: Für Office-Produktivität bei bis zu 300 Nutzern empfiehlt sich Microsoft 365 Copilot Business (ab 15,60 €/Nutzer/Monat, Aktionspreis bis September 2026), für größere Unternehmen Microsoft 365 Copilot (26 €/Nutzer/Monat). Für Entwickler ist GitHub Copilot Business (19 USD/Nutzer/Monat) die richtige Wahl. Die Copilotenschule berät Sie bei der optimalen Lizenzstrategie für Ihre Anforderungen."
     },
     {
       name: "Lohnt sich Microsoft Copilot auch für kleine Teams unter 50 Mitarbeitern?",
-      answer: "Ja, es gibt keine Mindestabnahmemenge. Auch kleine Teams profitieren von Copilot – entscheidend ist die Nutzungsintensität, nicht die Teamgröße. Mit dem Microsoft 365 Copilot Business-Plan (Aktionspreis bis 30. Juni 2026) gibt es zudem einen besonders günstigen Einstieg für KMU. Starten Sie mit einem Pilot für die Mitarbeiter mit den meisten repetitiven Aufgaben. Die Copilotenschule bietet auch Trainings für kleine Teams mit maßgeschneiderten Formaten."
+      answer: "Ja, es gibt keine Mindestabnahmemenge. Auch kleine Teams profitieren von Copilot – entscheidend ist die Nutzungsintensität, nicht die Teamgröße. Mit dem Microsoft 365 Copilot Business-Plan (Aktionspreis bis 30. September 2026) gibt es zudem einen besonders günstigen Einstieg für KMU. Starten Sie mit einem Pilot für die Mitarbeiter mit den meisten repetitiven Aufgaben. Die Copilotenschule bietet auch Trainings für kleine Teams mit maßgeschneiderten Formaten."
     },
     {
       name: "Können wir Copilot-Lizenzen zunächst nur für eine Abteilung pilotieren?",
@@ -51,7 +51,7 @@ const CopilotLicenses = () => {
     },
     {
       name: "Was kostet Microsoft Copilot für ein Unternehmen insgesamt?",
-      answer: "Für die Gesamtkosten pro Mitarbeiter zählen Sie drei Posten zusammen: die Microsoft 365-Grundlizenz, das Copilot-Add-on und die Einführungskosten. Beispiel (Stand Juni 2026, zzgl. MwSt.): Ein KMU mit Microsoft 365 Business Standard (ca. 10,80 €) plus Microsoft 365 Copilot Business (15,60 € Aktionspreis bis 30. Juni 2026, regulär 18,20 €) liegt bei rund 26–29 € pro Nutzer und Monat. Ein Enterprise-Arbeitsplatz mit Microsoft 365 E3 (ca. 34,90 €) plus Microsoft 365 Copilot (26,00 €) kostet rund 61 € pro Nutzer und Monat. Hinzu kommen Schulung und Governance, die bis zu 50 % der Gesamtinvestition ausmachen können. Die Copilotenschule hilft Ihnen, die Microsoft Copilot Kosten für Ihr Unternehmen realistisch zu planen und über gezieltes Training in messbaren ROI zu überführen."
+      answer: "Für die Gesamtkosten pro Mitarbeiter zählen Sie drei Posten zusammen: die Microsoft 365-Grundlizenz, das Copilot-Add-on und die Einführungskosten. Beispiel (Stand Juli 2026, zzgl. MwSt.): Ein KMU mit Microsoft 365 Business Standard (ca. 12,13 €) plus Microsoft 365 Copilot Business (15,60 € Aktionspreis bis 30. September 2026, regulär 18,20 €) liegt bei rund 27–31 € pro Nutzer und Monat. Ein Enterprise-Arbeitsplatz mit Microsoft 365 E3 (ca. 37,78 €) plus Microsoft 365 Copilot (26,00 €) kostet rund 64 € pro Nutzer und Monat. Hinzu kommen Schulung und Governance, die bis zu 50 % der Gesamtinvestition ausmachen können. Die Copilotenschule hilft Ihnen, die Microsoft Copilot Kosten für Ihr Unternehmen realistisch zu planen und über gezieltes Training in messbaren ROI zu überführen."
     }
   ];
 
@@ -63,13 +63,13 @@ const CopilotLicenses = () => {
         "@type": "Article",
         "@id": ids.article,
         "headline": "Microsoft Copilot Lizenzen: Preisvergleich 2026",
-        "description": "Welche Copilot-Lizenz lohnt sich? M365 Copilot Business (ab 15,60 €/User) und Enterprise (26 €), GitHub Copilot & Copilot Studio im Vergleich – Stand Juni 2026.",
+        "description": "Welche Copilot-Lizenz lohnt sich? M365 Copilot Business (ab 15,60 €/User, Aktionspreis bis Sept. 2026) und Enterprise (26 €), GitHub Copilot & Copilot Studio im Vergleich – Stand Juli 2026.",
         "author": getAuthorSchemaMarkup(martinLang),
         "publisher": {
           "@id": "https://copilotenschule.de/#organization"
         },
         "datePublished": "2025-01-06",
-        "dateModified": "2026-06-23T09:00:00+02:00",
+        "dateModified": "2026-07-01T09:00:00+02:00",
         "mainEntityOfPage": {
           "@type": "WebPage",
           "@id": pageUrl
@@ -104,7 +104,7 @@ const CopilotLicenses = () => {
     <>
       <SEOHead
         title="Microsoft 365 Copilot Preis 2026: ab 15,60 € – alle Lizenzen"
-        description="Copilot-Preise 2026 für Deutschland: M365 Business ab 15,60 €/User, Enterprise ab 26 €. Vergleich mit GitHub Copilot & Copilot Studio – Stand Juni 2026."
+        description="Copilot-Preise 2026 für Deutschland: M365 Business ab 15,60 €/User (Aktionspreis bis Sept. 2026), Enterprise ab 26 €. Vergleich mit GitHub Copilot & Copilot Studio – Stand Juli 2026."
         keywords={[
           "Microsoft Copilot Lizenz",
           "Microsoft 365 Copilot Preis",
@@ -124,7 +124,7 @@ const CopilotLicenses = () => {
         schema={schema}
         author={martinLang}
         publishedTime="2025-01-06T09:00:00+01:00"
-        modifiedTime="2026-06-23T09:00:00+02:00"
+        modifiedTime="2026-07-01T09:00:00+02:00"
       />
 
       <ContentLayout
@@ -134,7 +134,7 @@ const CopilotLicenses = () => {
         ]}
         title="Microsoft Copilot Lizenzen: Preisvergleich 2026"
         description="Welche Copilot-Lizenz lohnt sich? M365 Copilot, GitHub Copilot und Copilot Studio im direkten Vergleich – mit allen Infos für Ihre Entscheidung."
-        lastUpdated="23. Juni 2026"
+        lastUpdated="1. Juli 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
         relatedContent={["wissen:microsoft-365-e7-frontier-suite", "wissen:claude-in-microsoft-copilot", "wissen:copilot-roi-berechnen", "wissen:copilot-studio", "wissen:github-copilot"]}
@@ -142,7 +142,7 @@ const CopilotLicenses = () => {
         {/* Stand Juni 2026 Sticker */}
         <div className="flex justify-end mb-2">
           <span className="inline-flex items-center gap-1.5 bg-orange-500 text-white text-sm font-bold px-3 py-1.5 rounded-full shadow-md">
-            ✓ Stand Juni 2026
+            ✓ Stand Juli 2026
           </span>
         </div>
 
@@ -238,7 +238,7 @@ const CopilotLicenses = () => {
                 <div>
                   <p className="text-3xl font-bold text-primary">15,60 €</p>
                   <p className="text-sm text-muted-foreground">pro Nutzer / Monat (jährlich, zzgl. MwSt.)</p>
-                  <p className="text-xs text-muted-foreground mt-1">Regulärpreis: 18,20 €/Nutzer/Monat · Rabattangebot gilt im 1. Jahr (Jahresabo), vom 1. Dezember 2025 bis 30. Juni 2026</p>
+                  <p className="text-xs text-muted-foreground mt-1">Regulärpreis: 18,20 €/Nutzer/Monat · Rabattangebot gilt im 1. Jahr (Jahresabo), vom 1. Juli 2026 bis 30. September 2026</p>
                 </div>
                 <div>
                   <p className="text-sm font-medium mb-1">Für wen geeignet:</p>
@@ -300,9 +300,9 @@ const CopilotLicenses = () => {
           <div className="bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 rounded-lg p-4 flex gap-3 mb-4">
             <Info className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
             <div className="text-sm">
-              <p className="font-medium text-blue-900 dark:text-blue-100 mb-1">Preiserhöhung ab Juli 2026:</p>
+              <p className="font-medium text-blue-900 dark:text-blue-100 mb-1">Preiserhöhung seit Juli 2026:</p>
               <p className="text-blue-800 dark:text-blue-200">
-                Microsoft passt zum 1. Juli 2026 die Listenpreise aller kommerziellen Microsoft 365-Basispläne um ca. 8–17 % an. Copilot-Add-on-Preise bleiben davon vorerst unberührt. Bestehende Jahresabonnements, die vor dem 1. Juli 2026 verlängert werden, profitieren noch von den aktuellen Konditionen.
+                Microsoft hat zum 1. Juli 2026 die Listenpreise aller kommerziellen Microsoft 365-Basispläne um ca. 8–17 % angehoben (z. B. Business Standard: 12,13 €, Business Premium: 19,06 €, M365 E3: 37,78 €). Copilot-Add-on-Preise sind davon nicht betroffen. Bestehende Jahresabonnements behalten ihre Konditionen bis zur nächsten Verlängerung.
               </p>
             </div>
           </div>
@@ -338,9 +338,9 @@ const CopilotLicenses = () => {
                   badgeColor: "bg-green-500",
                   description: "Einstieg ohne Kosten",
                   features: [
-                    "50 Premium-Requests / Monat",
                     "2.000 Code-Completions / Monat",
-                    "Chat im Editor",
+                    "Eingeschränkte KI-Credits für Chat & Agenten",
+                    "GitHub Copilot CLI",
                     "Keine zentrale Verwaltung"
                   ]
                 },
@@ -352,10 +352,10 @@ const CopilotLicenses = () => {
                   badgeColor: "",
                   description: "Für aktive Einzelentwickler",
                   features: [
-                    "300 Premium-Requests / Monat",
+                    "15 USD GitHub KI-Credits / Monat",
                     "Unbegrenzte Code-Completions",
-                    "Chat im Editor & CLI-Integration",
-                    "Mobile Unterstützung"
+                    "Cloud-Agenten & Code Review",
+                    "CLI-Integration & Drittanbieter-Agenten"
                   ]
                 },
                 {
@@ -366,9 +366,24 @@ const CopilotLicenses = () => {
                   badgeColor: "bg-purple-500",
                   description: "Für Power-User und Vielnutzer",
                   features: [
-                    "1.500 Premium-Requests / Monat",
-                    "Zugang zu neuesten KI-Modellen",
-                    "Alle Pro-Features enthalten"
+                    "70 USD GitHub KI-Credits / Monat",
+                    "Zugang zu Premium-Modellen inkl. Opus",
+                    "Alle Pro-Features enthalten",
+                    "4× mehr Funktionen als Pro"
+                  ]
+                },
+                {
+                  name: "Max",
+                  price: "100 USD",
+                  period: "pro Monat",
+                  badge: "Neu",
+                  badgeColor: "bg-red-600",
+                  description: "Für hochvolumige Agentenworkflows",
+                  features: [
+                    "200 USD GitHub KI-Credits / Monat",
+                    "Vorrangiger Zugang zu neuen Modellen",
+                    "2,9× mehr Funktionen als Pro+",
+                    "Alle Pro+-Features enthalten"
                   ]
                 }
               ].map((plan, idx) => (
@@ -410,15 +425,13 @@ const CopilotLicenses = () => {
                   period: "pro Nutzer / Monat",
                   description: "Für Entwickler-Teams",
                   features: [
-                    "300 Premium-Requests / Nutzer / Monat",
-                    "Organization-wide Policies",
+                    "Unbegrenzte Code-Completions",
+                    "Cloud-Agenten & Code Review",
+                    "Zugriffskontrolle & Budgetkontrolle",
                     "Zentrale Lizenz-Verwaltung",
-                    "IP-Indemnity (Haftungsschutz)",
-                    "Audit Logs"
+                    "IP-Indemnity (Haftungsschutz) & Audit Logs"
                   ],
-                  notIncluded: [
-                    "Keine erweiterten Security-Features"
-                  ]
+                  notIncluded: []
                 },
                 {
                   name: "Enterprise",
@@ -426,11 +439,11 @@ const CopilotLicenses = () => {
                   period: "pro Nutzer / Monat",
                   description: "Für große Unternehmen",
                   features: [
-                    "1.000 Premium-Requests / Nutzer / Monat",
                     "Alle Business-Features",
-                    "Erweiterte Security & SAML SSO",
-                    "Fine-tuned Models möglich",
-                    "Compliance-Tools & Priority Support"
+                    "2× mehr GitHub KI-Credits als Business",
+                    "Vorrangiger Zugang zu neuen Modellen",
+                    "SAML SSO & Compliance-Tools",
+                    "Priority Support"
                   ],
                   notIncluded: []
                 }
@@ -462,9 +475,9 @@ const CopilotLicenses = () => {
               ))}
 
               <div className="bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-lg p-3">
-                <p className="text-xs font-medium text-amber-900 dark:text-amber-100 mb-1">Hinweis: Umstellung auf GitHub AI Credits (seit Juni 2026)</p>
+                <p className="text-xs font-medium text-amber-900 dark:text-amber-100 mb-1">Hinweis: GitHub AI Credits (seit Juni 2026)</p>
                 <p className="text-xs text-amber-800 dark:text-amber-200">
-                  Seit dem 1. Juni 2026 rechnet GitHub nutzungsbasiert über GitHub AI Credits ab. Business-Kunden erhalten rund 1.900, Enterprise-Kunden rund 3.900 AI Credits pro Nutzer und Monat (statt der bisherigen festen Premium-Requests). Während der Übergangsphase (Juni–August 2026) gelten erhöhte Kontingente.
+                  Seit dem 1. Juni 2026 rechnet GitHub nutzungsbasiert über GitHub KI-Credits ab. Business-Kunden erhalten gemeinsam genutzte Org-Credits, Enterprise-Kunden das Doppelte davon. Die Übergangsphase (Juni–August 2026) läuft noch mit erhöhten Kontingenten.
                 </p>
               </div>
             </div>
@@ -567,7 +580,7 @@ const CopilotLicenses = () => {
         <section id="kosten-unternehmen" className="mt-12">
           <h2 className="text-2xl md:text-3xl font-bold mb-3">Microsoft Copilot Kosten für Unternehmen: Was zahlt man wirklich?</h2>
           <p className="mb-4">
-            Die Lizenzgebühr ist nur ein Teil der Microsoft Copilot Kosten für Unternehmen. Wer ein Budget seriös plant, rechnet pro Mitarbeiter mit drei Bausteinen: der <strong>Microsoft 365-Grundlizenz</strong>, dem <strong>Copilot-Add-on</strong> und den laufenden <strong>Einführungskosten</strong> für Schulung und Governance. Die folgende Übersicht zeigt, welche Gesamtkosten pro Nutzer und Monat tatsächlich anfallen – Stand Juni 2026, alle Preise zzgl. MwSt.
+            Die Lizenzgebühr ist nur ein Teil der Microsoft Copilot Kosten für Unternehmen. Wer ein Budget seriös plant, rechnet pro Mitarbeiter mit drei Bausteinen: der <strong>Microsoft 365-Grundlizenz</strong>, dem <strong>Copilot-Add-on</strong> und den laufenden <strong>Einführungskosten</strong> für Schulung und Governance. Die folgende Übersicht zeigt, welche Gesamtkosten pro Nutzer und Monat tatsächlich anfallen – Stand Juli 2026, alle Preise zzgl. MwSt.
           </p>
 
           <div className="overflow-x-auto my-6">
@@ -583,27 +596,27 @@ const CopilotLicenses = () => {
               <tbody>
                 <tr>
                   <td className="border p-3 font-medium">KMU-Einstieg (bis 300 Nutzer)</td>
-                  <td className="border p-3 text-center">Business Standard ~10,80 €</td>
+                  <td className="border p-3 text-center">Business Standard 12,13 €</td>
                   <td className="border p-3 text-center">Copilot Business 15,60 €*</td>
-                  <td className="border p-3 text-center font-semibold">ca. 26,40 €*</td>
+                  <td className="border p-3 text-center font-semibold">ca. 27,73 €*</td>
                 </tr>
                 <tr className="bg-muted/30">
                   <td className="border p-3 font-medium">KMU mit erhöhter Sicherheit</td>
-                  <td className="border p-3 text-center">Business Premium ~21,60 €</td>
+                  <td className="border p-3 text-center">Business Premium 19,06 €</td>
                   <td className="border p-3 text-center">Copilot Business 15,60 €*</td>
-                  <td className="border p-3 text-center font-semibold">ca. 37,20 €*</td>
+                  <td className="border p-3 text-center font-semibold">ca. 34,66 €*</td>
                 </tr>
                 <tr>
                   <td className="border p-3 font-medium">Großunternehmen (Enterprise)</td>
-                  <td className="border p-3 text-center">Microsoft 365 E3 ~34,90 €</td>
+                  <td className="border p-3 text-center">Microsoft 365 E3 37,78 €</td>
                   <td className="border p-3 text-center">Copilot 26,00 €</td>
-                  <td className="border p-3 text-center font-semibold">ca. 60,90 €</td>
+                  <td className="border p-3 text-center font-semibold">ca. 63,78 €</td>
                 </tr>
               </tbody>
             </table>
           </div>
           <p className="text-sm text-muted-foreground mb-4">
-            * Aktionspreis für Microsoft 365 Copilot Business (regulär 18,20 €), gültig bis 30. Juni 2026. Die Microsoft 365-Grundpreise steigen zum 1. Juli 2026 um ca. 8–17 %; bestehende Jahresabonnements behalten ihre Konditionen bis zur nächsten Verlängerung.
+            * Aktionspreis für Microsoft 365 Copilot Business (regulär 18,20 €), gültig vom 1. Juli bis 30. September 2026. Die Microsoft 365-Grundpreise wurden zum 1. Juli 2026 um ca. 8–17 % angehoben; die obigen Werte entsprechen dem aktuellen Stand. Bestehende Jahresabonnements behalten ihre Konditionen bis zur nächsten Verlängerung.
           </p>
 
           <h3 className="font-bold text-lg mb-2 mt-6">Versteckte Kosten: Schulung und Governance einplanen</h3>
@@ -640,7 +653,7 @@ const CopilotLicenses = () => {
               <tbody>
                 <tr>
                   <td className="border p-3 font-medium">Preis pro Nutzer/Monat</td>
-                  <td className="border p-3 text-center">15,60 € (Business, SMB) / 26 € (Enterprise) zzgl. MwSt.</td>
+                  <td className="border p-3 text-center">15,60 €* (Business, SMB) / 26 € (Enterprise) zzgl. MwSt.</td>
                   <td className="border p-3 text-center">kostenlos – 19 USD (Teams)</td>
                   <td className="border p-3 text-center">173,30 €/25.000 Credits zzgl. MwSt.</td>
                 </tr>
@@ -704,7 +717,7 @@ const CopilotLicenses = () => {
                   <strong>Passende Lizenz: Microsoft 365 Copilot Business oder Microsoft 365 Copilot</strong>
                 </p>
                 <p className="text-sm text-muted-foreground">
-                  Für KMU bis 300 Nutzer empfiehlt sich Microsoft 365 Copilot Business (ab 15,60 €/Nutzer/Monat Aktionspreis bis Juni 2026, regulär 18,20 €). Größere Unternehmen lizenzieren über Microsoft 365 Copilot (26 €/Nutzer/Monat). Beides erfordert eine bestehende Microsoft 365-Grundlizenz (Business Standard, Business Premium, E3 oder E5).
+                  Für KMU bis 300 Nutzer empfiehlt sich Microsoft 365 Copilot Business (ab 15,60 €/Nutzer/Monat Aktionspreis bis September 2026, regulär 18,20 €). Größere Unternehmen lizenzieren über Microsoft 365 Copilot (26 €/Nutzer/Monat). Beides erfordert eine bestehende Microsoft 365-Grundlizenz (Business Standard, Business Premium, E3 oder E5).
                 </p>
               </CardContent>
             </Card>
@@ -763,7 +776,7 @@ const CopilotLicenses = () => {
             {[
               {
                 question: "Mit welchen Gesamtkosten muss ein Unternehmen bei Microsoft Copilot rechnen?",
-                answer: "Neben dem Copilot-Add-on (15,60 € für Business im Aktionspreis bis 30. Juni 2026, 26,00 € für Enterprise) fällt die Microsoft 365-Grundlizenz an. In der Praxis liegen die Gesamtkosten pro Arbeitsplatz bei rund 26 € (KMU mit Business Standard) bis über 60 € (Enterprise mit E3) pro Nutzer und Monat – zzgl. MwSt. Der wichtigste Hebel für die Wirtschaftlichkeit ist aber nicht der Preis, sondern die Nutzung: Schulung und saubere Daten-Governance entscheiden über den ROI."
+                answer: "Neben dem Copilot-Add-on (15,60 € für Business im Aktionspreis bis 30. September 2026, 26,00 € für Enterprise) fällt die Microsoft 365-Grundlizenz an. In der Praxis liegen die Gesamtkosten pro Arbeitsplatz bei rund 28 € (KMU mit Business Standard) bis über 64 € (Enterprise mit E3) pro Nutzer und Monat – zzgl. MwSt. Der wichtigste Hebel für die Wirtschaftlichkeit ist aber nicht der Preis, sondern die Nutzung: Schulung und saubere Daten-Governance entscheiden über den ROI."
               },
               {
                 question: "Kann ich Microsoft 365 Copilot testen, bevor ich kaufe?",
