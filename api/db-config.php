@@ -45,6 +45,18 @@ function generateToken() {
 }
 
 /**
+ * Entfernt CR/LF/Nullbytes aus Werten, die in E-Mail-Headern verwendet werden
+ * (Subject, From, Reply-To, Content-Disposition-filename usw.).
+ * Verhindert E-Mail-Header-Injection (SEC-04).
+ *
+ * WICHTIG: NUR auf Header-Werte anwenden, NICHT auf den Mail-Body – dort sind
+ * Zeilenumbrüche gewollt.
+ */
+function mailHeaderSafe($value) {
+    return trim(str_replace(["\r", "\n", "\0"], '', (string)$value));
+}
+
+/**
  * Save newsletter subscription to database
  */
 function saveNewsletterSubscription($email, $name, $source, $token, $ipAddress = null, $userAgent = null, $consentText = null) {

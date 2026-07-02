@@ -93,7 +93,9 @@ if (isset($_FILES['cv']) && is_array($_FILES['cv']['name'])) {
 
         // Read file content for email attachment
         $cvFileContent = file_get_contents($fileTmpPath);
-        $cvFileName = basename($fileName);
+        // SEC-04: Dateiname landet in Content-Type/Content-Disposition-Headern ->
+        // Pfadanteile, CR/LF und Anführungszeichen entfernen (verhindert Header-Injection)
+        $cvFileName = str_replace('"', '', mailHeaderSafe(basename($fileName)));
 
         $cvFiles[] = [
             'content' => $cvFileContent,
@@ -133,7 +135,8 @@ $saved = saveNewsletterSubscription($email, $name, 'trainer', $confirmationToken
 // 1. Send notification email to Martin
 // ============================================
 $to = 'martin@yellow-boat.com';
-$subject = 'Neue Trainer-Bewerbung von ' . $name . ' - ' . $pathLabel;
+// SEC-04: Subject ist ein Header -> CR/LF entfernen
+$subject = mailHeaderSafe('Neue Trainer-Bewerbung von ' . $name . ' - ' . $pathLabel);
 
 // Build CV file list for email
 $cvFileListHtml = '';
@@ -214,9 +217,10 @@ if (count($cvFiles) > 0) {
 }
 
 $headers[] = 'From: Copilotenschule Trainer-Bewerbung <y-b@alwaysdata.net>';
-$headers[] = 'Reply-To: ' . $name . ' <' . $email . '>';
+// SEC-04: Name/E-Mail sind Header-Werte -> CR/LF entfernen (verhindert Header-Injection)
+$headers[] = 'Reply-To: ' . mailHeaderSafe($name) . ' <' . mailHeaderSafe($email) . '>';
 $headers[] = 'X-Mailer: PHP/' . phpversion();
-$headers[] = 'X-Originating-IP: ' . $ipAddress;
+$headers[] = 'X-Originating-IP: ' . mailHeaderSafe($ipAddress);
 $headers[] = 'X-Contact-Form: copilotenschule.de';
 
 // Build email body

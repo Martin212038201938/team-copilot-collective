@@ -9,13 +9,14 @@ Diese Liste wird Punkt für Punkt abgearbeitet. Jeder Punkt: Beschreibung → be
 
 ## 🔴 KRITISCH
 
-### [~] SEC-01 – Admin-Login wirkungslos, Zugangsdaten im öffentlichen JS-Bundle
+### [x] SEC-01 – Admin-Login wirkungslos, Zugangsdaten im öffentlichen JS-Bundle  ✅ ERLEDIGT & LIVE-GETESTET (2026-07-02)
 
-> **Umsetzung 2026-07-02 (Code erledigt, 1 manueller Serverschritt offen):**
+> **Umsetzung & Verifikation 2026-07-02:**
 > - `src/components/AdminAuth.tsx`: clientseitige Credentials & Username-Feld entfernt; Login geht jetzt gegen `api/admin-login.php`, Login-Status hängt an einem signierten, ablaufenden Server-Token (verifiziert via `api/admin-verify.php`). Ein manuell gesetztes `localStorage`-Flag genügt nicht mehr.
 > - Neu: `api/admin-login.php` (bcrypt-Prüfung + IP-Rate-Limit 10/15min + HMAC-Token 12h), `api/admin-verify.php`.
-> - Passwort-Hash liegt **nur** als Server-ENV `ADMIN_PASSWORD_HASH` vor – nicht in Git, nicht im Bundle.
-> - **NOCH ZU TUN (Martin, auf AlwaysData):** Umgebungsvariable setzen, dann deployen. Ohne die ENV-Variable ist der Login serverseitig gesperrt (fail-safe). Anleitung siehe Chat / unten.
+> - Passwort-Hash liegt **nur** als Server-ENV `ADMIN_PASSWORD_HASH` vor (gesetzt im AlwaysData-Panel am PHP-Site `copilotenschule.de/api` #1020643, Feld „Environment variables") – nicht in Git, nicht im Bundle.
+> - Deployt und live getestet: falsches Passwort → abgewiesen; `Alaaf4711!` → Zugriff. ✅
+> - **Ort der ENV-Variable (für später):** AlwaysData → Web → Sites → `copilotenschule.de/api` (PHP-Eintrag) → Zahnrad → Configuration → „Environment variables" (Format `KEY=value`).
 
 
 **Beschreibung**
@@ -87,7 +88,15 @@ Der Proxy hängt den serverseitigen OpenAI-Key an jeden eingehenden POST-Request
 
 ## 🟡 MITTEL
 
-### [ ] SEC-04 – E-Mail-Header-Injection in Kontakt- und Trainer-Formular
+### [x] SEC-04 – E-Mail-Header-Injection in Kontakt- und Trainer-Formular  ✅ CODE ERLEDIGT (2026-07-02), Deploy ausstehend
+
+> **Umsetzung 2026-07-02:**
+> - Neue Helper-Funktion `mailHeaderSafe()` in `api/db-config.php` (entfernt CR/LF/Nullbytes, wird von beiden Mail-Skripten inkludiert).
+> - `api/send-contact-email.php`: `Subject` und `Reply-To` (Name + E-Mail) sowie `X-Originating-IP` bereinigt.
+> - `api/send-trainer-email.php`: `Subject`, `Reply-To`, `X-Originating-IP` bereinigt; CV-Upload-Dateiname zusätzlich um Pfadanteile/Anführungszeichen bereinigt (`Content-Type`/`Content-Disposition`).
+> - Mail-Body bleibt unverändert (Zeilenumbrüche dort gewollt). Empfänger-Adressen sind bereits per `FILTER_VALIDATE_EMAIL` abgesichert.
+> - **NOCH ZU TUN:** commit + push → Deploy (PHP-Dateien gehen per `copy-api` mit). Danach optional Live-Test über das Kontaktformular.
+
 
 **Beschreibung**
 Das Feld `$name` fließt in den `Reply-To`-Mailheader. `htmlspecialchars()` entfernt **keine** Zeilenumbrüche (`\r`, `\n`), daher kann ein Name mit eingebetteten Umbrüchen zusätzliche Header (z. B. `Bcc:`) einschleusen und das Formular zum Spam-Versand missbrauchen. Auch der Dateiname des CV-Uploads geht ungefiltert in den `Content-Disposition`-Header.

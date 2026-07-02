@@ -63,7 +63,8 @@ $saved = saveNewsletterSubscription($email, $name, 'contact', $confirmationToken
 // 1. Send notification email to Martin
 // ============================================
 $to = 'martin@yellow-boat.com';
-$subject = $customSubject ? $customSubject : 'Neue Kontaktanfrage von ' . $name;
+// SEC-04: Subject ist ein Header -> CR/LF entfernen
+$subject = mailHeaderSafe($customSubject ? $customSubject : 'Neue Kontaktanfrage von ' . $name);
 
 // Erstelle Trainings-Quellen-Info für die interne E-Mail
 $trainingSourceHtml = '';
@@ -126,9 +127,10 @@ $headers = array();
 $headers[] = 'MIME-Version: 1.0';
 $headers[] = 'Content-Type: multipart/alternative; boundary="' . $boundary . '"';
 $headers[] = 'From: Copilotenschule Kontaktformular <y-b@alwaysdata.net>';
-$headers[] = 'Reply-To: ' . $name . ' <' . $email . '>';
+// SEC-04: Name/E-Mail sind Header-Werte -> CR/LF entfernen (verhindert Header-Injection)
+$headers[] = 'Reply-To: ' . mailHeaderSafe($name) . ' <' . mailHeaderSafe($email) . '>';
 $headers[] = 'X-Mailer: PHP/' . phpversion();
-$headers[] = 'X-Originating-IP: ' . $ipAddress;
+$headers[] = 'X-Originating-IP: ' . mailHeaderSafe($ipAddress);
 $headers[] = 'X-Contact-Form: copilotenschule.de';
 
 $body = "--{$boundary}\r\n";
