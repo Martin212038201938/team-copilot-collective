@@ -248,6 +248,7 @@ export const trainings: Training[] = [
     ],
     tiers: ["free", "paid"],
     isNew: true,
+    popular: true,
     pricePerPerson: 1495,
     pricePerPersonLabel: "Ab 1.495 € pro Person für 2 Tage (2 x 7 Stunden, offenes Training, inkl. Trainings-Decks, Templates und FAQ-Sammlungen). Inhouse-Konditionen auf Anfrage.",
     questionLead: "Wir bilden Ihre internen Copilot-Multiplikatoren, Ambassadoren und AI Change Verantwortlichen in 2 x 7 Stunden aus, damit Sie Ihre Mitarbeitenden im Alltag begeistern und befähigen können.",
@@ -327,127 +328,6 @@ export const trainings: Training[] = [
       }
     ],
     relatedWorkshops: ["copilot-strategie-change-management", "copilot-launch-eventtag"],
-  },
-  {
-    slug: "github-copilot-entwickler",
-    icon: Laptop,
-    title: "GitHub Copilot für Softwareentwickler",
-    duration: "1 Tag (7 Stunden)",
-    durationISO: "PT7H",
-    description: "Hands-on Entwickler-Training: Maximieren Sie Ihre Coding-Produktivität mit GitHub Copilot. Sie lernen, KI-gestützt Code zu generieren, zu testen, zu debuggen und zu dokumentieren. Das Training umfasst praktische Übungen mit echten Projekten, optimierte Entwickler-Workflows und die perfekte Stack-Konfiguration für Ihr Team.",
-    features: [
-      "Stack Setup & Konfiguration: IDE-Einrichtung (VS Code, JetBrains), Extensions, Copilot-Einstellungen optimieren, Team-Policies",
-      "Effiziente Code-Generierung: Funktionen, Klassen, APIs und Algorithmen mit Copilot entwickeln – sprachunabhängig",
-      "Intelligentes Debugging und Refactoring: Fehler identifizieren, Code optimieren, Legacy-Code modernisieren",
-      "Automatisierte Code-Dokumentation: Inline-Kommentare, README-Dateien, API-Dokumentation, Changelogs generieren",
-      "Unit Tests schreiben mit Copilot: Test-Cases generieren, Code-Coverage erhöhen, Test-Driven Development beschleunigen",
-      "Copilot Chat & Agent Mode: Kontextbezogene Fragen, Code erklären lassen, Multi-File-Refactoring, Workspace-Verständnis",
-      "Optimierte Developer Workflows: Git-Workflows beschleunigen, PR-Beschreibungen, Commit Messages, Code Reviews",
-      "Prompt Engineering für Entwickler: Präzise Anfragen formulieren, Kontext bereitstellen, projektspezifische Instructions",
-      "Security und Code Quality: Sicherheitslücken identifizieren, Code-Standards einhalten, SAST-Integration",
-      "CI/CD Integration: Copilot in Pipelines, automatisierte Code-Analyse, GitHub Actions mit Copilot-Support",
-      "Team-Konfiguration: Copilot Business/Enterprise Features, Policies, Content Exclusions, Audit Logs"
-    ],
-    tiers: ["free", "paid"],
-    questionLead: "Wie kann unser Entwicklerteam GitHub Copilot optimal nutzen – und wie konfigurieren wir es sicher?",
-    targetAudience: [
-      "Softwareentwickler, die ihre Coding-Produktivität mit KI-Unterstützung signifikant steigern wollen",
-      "Engineering Manager, die GitHub Copilot für ihr Team ausrollen und Best Practices etablieren möchten",
-      "DevOps-Engineers, die Copilot in CI/CD-Pipelines und Entwickler-Workflows integrieren wollen",
-      "Tech Leads, die Code-Qualität und Security Standards trotz KI-Einsatz sicherstellen müssen"
-    ],
-    learningOutcomes: [
-      "Sie konfigurieren GitHub Copilot optimal für Ihr Team: IDE-Setup, Policies, Content Exclusions, Audit Logs",
-      "Sie generieren, debuggen, refactoren und dokumentieren Code effizient mit Copilot – sprachunabhängig",
-      "Sie schreiben Unit Tests mit Copilot und erhöhen Ihre Code-Coverage systematisch",
-      "Sie nutzen Copilot Chat und Agent Mode für Multi-File-Refactoring und komplexe Code-Erklärungen",
-      "Sie identifizieren Security-Vulnerabilities und halten Code-Standards automatisiert ein"
-    ],
-    businessImpact: [
-      "Code-Completion wird 30-55% schneller – besonders bei Boilerplate, Tests und Dokumentation",
-      "Onboarding neuer Entwickler beschleunigt sich erheblich, weil Copilot Legacy-Code erklärt und kontextualisiert",
-      "Die Code-Dokumentation verbessert sich drastisch, weil Copilot Inline-Kommentare und READMEs generiert",
-      "Security-Findings werden früher erkannt, weil Copilot proaktiv auf Schwachstellen hinweist"
-    ],
-    metaTitle: "GitHub Copilot Training für Entwickler – Coding-Produktivität steigern | copilotenschule.de",
-    metaDescription: "Hands-on GitHub Copilot Training: Code generieren, testen, debuggen und dokumentieren. Für Entwickler-Teams. Mit VS Code, JetBrains, CI/CD-Integration.",
-    keywords: ["GitHub Copilot Training", "Entwickler Schulung", "AI Coding", "Copilot VS Code", "GitHub Copilot Unternehmen"],
-    faqs: [
-      {
-        question: "Lohnt sich GitHub Copilot für unser Entwicklerteam – was bringt es wirklich?",
-        answer: "Studien zeigen 30-55% schnellere Code-Completion und bis zu 46% weniger Zeit für repetitive Coding-Tasks. Der größte Nutzen liegt bei Boilerplate-Code, Unit Tests, Dokumentation und dem Verstehen von Legacy-Code. Ob sich die Investition lohnt, hängt von Ihrem Tech-Stack und den typischen Aufgaben ab – erfahrungsgemäß ist der ROI bei Teams, die viel testen, dokumentieren oder in mehreren Sprachen arbeiten, am höchsten."
-      },
-      {
-        question: "Können unsere Entwickler mit KI auch Code debuggen und refactoren – nicht nur generieren?",
-        answer: "Ja, GitHub Copilot ist weit mehr als Code-Completion. Der Copilot Chat erklärt komplexen Code, identifiziert Bugs, schlägt Refactorings vor und kann sogar Security-Vulnerabilities erkennen. Besonders wertvoll: Legacy-Code verstehen und modernisieren, ohne stundenlang Dokumentation zu wälzen."
-      },
-      {
-        question: "Ist es sicher, GitHub Copilot im Unternehmen einzusetzen – was passiert mit unserem Code?",
-        answer: "Bei GitHub Copilot Business und Enterprise wird Ihr Code nicht für das Training des Modells verwendet und nicht gespeichert. Sie können Content Exclusions konfigurieren, um sensible Repositories auszuschließen. Audit Logs dokumentieren die Nutzung, und Sie behalten volle Kontrolle über die Policies. Damit ist DSGVO-konformer Einsatz möglich."
-      },
-      {
-        question: "Wie konfiguriere ich GitHub Copilot optimal für mein Entwicklerteam?",
-        answer: "Die richtige Konfiguration macht den Unterschied: IDE-spezifische Einstellungen (VS Code, JetBrains), Team-Policies für Code-Suggestions, Content Exclusions für sensible Bereiche, und projektspezifische Instructions in .github/copilot-instructions.md. Dazu kommen Workflows für PR-Beschreibungen, Commit Messages und Code Reviews. Ohne gute Einrichtung nutzen Teams nur 30% des Potenzials."
-      }
-    ]
-  },
-  {
-    slug: "copilot-compliance-datenschutz",
-    icon: Shield,
-    title: "Microsoft Copilot & Compliance - Rechtssichere KI-Nutzung",
-    duration: "4 Stunden (Halbtag)",
-    durationISO: "PT4H",
-    description: "Kompakt-Schulung zur rechtssicheren und datenschutzkonformen Nutzung von Microsoft Copilot im Unternehmen. Sie erhalten praktische Checklisten, Templates und Guidelines für DSGVO-konforme KI-Anwendung, verstehen die Anforderungen des EU AI Act und können Compliance-Risiken proaktiv managen.",
-    features: [
-      "DSGVO-konforme Copilot-Nutzung: Datenverarbeitung verstehen, Rechtsgrundlagen kennen, Dokumentationspflichten erfüllen",
-      "EU AI Act Anforderungen im Unternehmenskontext: Risikoklassifizierung, Compliance-Anforderungen, Transparenzpflichten",
-      "Datenschutz-Impact-Assessment durchführen: Risiken identifizieren, Maßnahmen definieren, Dokumentation erstellen",
-      "Microsoft 365 Sicherheitsarchitektur: Datenflüsse verstehen, Verschlüsselung, Zugriffskontrolle, Audit-Logs",
-      "Compliance-Checkliste für Ihr Unternehmen: Praktische Templates, Prozesse etablieren, Team schulen",
-      "Umgang mit sensiblen Daten: Klassifizierung, Information Protection, DLP-Richtlinien",
-      "Rechtliche Fallstricke vermeiden: Urheberrecht, Haftungsfragen, Vertragsgestaltung mit Microsoft"
-    ],
-    tiers: ["free", "paid"],
-    questionLead: "Ist Microsoft Copilot DSGVO-konform – und was müssen wir als Unternehmen beachten?",
-    targetAudience: [
-      "Datenschutzbeauftragte, die eine Bewertung von Microsoft Copilot für ihr Verarbeitungsverzeichnis brauchen",
-      "IT-Sicherheitsverantwortliche, die Copilot technisch absichern und Policies konfigurieren müssen",
-      "Geschäftsführer und Compliance-Officer, die regulatorische Risiken bei der KI-Einführung minimieren wollen",
-      "Betriebsräte, die eine fundierte Einschätzung zu Mitarbeiterüberwachung und Datenschutz benötigen"
-    ],
-    learningOutcomes: [
-      "Sie verstehen die Microsoft 365 Sicherheitsarchitektur: Datenflüsse, Verschlüsselung, Zugriffskontrolle",
-      "Sie führen ein Datenschutz-Impact-Assessment für Microsoft Copilot eigenständig durch",
-      "Sie kennen die EU AI Act Anforderungen und können die Compliance-Pflichten für Ihr Unternehmen ableiten",
-      "Sie erstellen praktische Guidelines und Policies für die DSGVO-konforme Copilot-Nutzung"
-    ],
-    businessImpact: [
-      "Rechtssicherheit: Ihr Unternehmen erfüllt nachweisbar DSGVO- und EU AI Act-Anforderungen",
-      "Risikominimierung: Compliance-Verstöße und Bußgelder durch ungeschulten KI-Einsatz werden vermieden",
-      "Beschleunigter Rollout: Datenschutz-Freigabe kommt schneller, weil alle Fragen proaktiv geklärt sind",
-      "Betriebsrat-Akzeptanz: Transparente Dokumentation schafft Vertrauen bei der Arbeitnehmervertretung"
-    ],
-    metaTitle: "Copilot Compliance Training – DSGVO & EU AI Act | copilotenschule.de",
-    metaDescription: "Rechtssichere KI-Nutzung mit Microsoft Copilot: DSGVO-Compliance, EU AI Act, Datenschutz-Assessment. Mit Checklisten und Templates.",
-    keywords: ["Copilot DSGVO", "KI Compliance Training", "EU AI Act Schulung", "Copilot Datenschutz", "rechtssichere KI-Nutzung"],
-    faqs: [
-      {
-        question: "Dürfen meine Mitarbeiter Firmendaten in Microsoft Copilot eingeben?",
-        answer: "Bei Microsoft 365 Copilot (der kostenpflichtigen Version) bleiben Ihre Daten innerhalb Ihres Microsoft-Tenants und werden nicht für Modelltraining verwendet. Trotzdem gelten Regeln: Keine personenbezogenen Daten ohne Rechtsgrundlage, keine Betriebsgeheimnisse in Prompts, die intern geteilt werden könnten. Ein klares Datenklassifizierungs-Konzept und Mitarbeiter-Guidelines sind essenziell."
-      },
-      {
-        question: "Ist Microsoft Copilot DSGVO-konform – und wie dokumentiere ich das?",
-        answer: "Microsoft 365 Copilot kann DSGVO-konform eingesetzt werden, da die Datenverarbeitung innerhalb der EU erfolgt und Microsoft als Auftragsverarbeiter agiert. Sie benötigen jedoch: eine Rechtsgrundlage für die Verarbeitung, eine Aktualisierung Ihres Verarbeitungsverzeichnisses, ggf. eine Datenschutz-Folgenabschätzung, und geschulte Mitarbeiter. Die Dokumentationspflichten sind konkret – Checklisten und Templates beschleunigen die Compliance."
-      },
-      {
-        question: "Was muss ich beim EU AI Act beachten, wenn wir Copilot einsetzen?",
-        answer: "Microsoft Copilot fällt als 'KI-System mit geringem Risiko' unter die Transparenzpflichten des EU AI Act. Für Sie als Unternehmen bedeutet das: Mitarbeiter müssen wissen, dass sie mit KI interagieren, KI-generierte Inhalte sollten als solche erkennbar sein, und Ihre Mitarbeiter brauchen nachweisbare KI-Kompetenz (Artikel 4). Die konkreten Anforderungen variieren je nach Anwendungsfall."
-      },
-      {
-        question: "Welche Risiken gibt es bei der KI-Nutzung im Unternehmen?",
-        answer: "Die größten Risiken: Unbeabsichtigte Weitergabe sensibler Daten, Urheberrechtsverletzungen durch KI-generierte Inhalte, Haftungsfragen bei falschen KI-Outputs, und Compliance-Verstöße durch ungeschulte Mitarbeiter. All diese Risiken sind managebar – mit klaren Policies, technischen Guardrails (DLP, Information Protection) und regelmäßigen Schulungen."
-      }
-    ]
   },
   {
     slug: "copilot-lernreise-8-wochen",
@@ -570,64 +450,6 @@ export const trainings: Training[] = [
     ]
   },
   {
-    slug: "low-code-power-platform",
-    icon: Zap,
-    title: "Low-Code Entwicklung mit Microsoft Copilot - Flow Coding im Unternehmen",
-    duration: "1 Tag (7 Stunden)",
-    durationISO: "PT7H",
-    description: "Praxistraining für Citizen Developer und Business User: Lernen Sie, wie Sie mit Microsoft Power Platform und Copilot-Unterstützung geschäftliche Anwendungen ohne traditionelle Programmierung entwickeln. Sie erstellen Apps, automatisieren Workflows und bauen Datenintegration – alles mit Low-Code und KI-Support.",
-    features: [
-      "Low-Code Entwicklung mit Power Apps und Copilot: Apps per natürlicher Sprache erstellen, UI designen, Logik implementieren",
-      "Geschäftsprozess-Automatisierung mit Power Automate: Workflows erstellen, Genehmigungen automatisieren, Integrationen bauen",
-      "Copilot als Entwicklungs-Assistent: Code-Generierung für Formeln, Fehlersuche, Optimierungsvorschläge",
-      "Datenmodellierung mit Dataverse: Tabellen erstellen, Beziehungen definieren, Business Rules implementieren",
-      "Integration mit Microsoft 365: SharePoint, Teams, Outlook, Excel nahtlos verbinden",
-      "Best Practices für Citizen Development: Governance beachten, Wartbarkeit sicherstellen, Sicherheitsaspekte berücksichtigen",
-      "Praktische Projekte: Von der Idee zur fertigen App – Teilnehmer entwickeln eigene Anwendungen"
-    ],
-    tiers: ["paid"],
-    questionLead: "Wie können Fachabteilungen eigene Apps und Automations bauen – ohne auf die IT warten zu müssen?",
-    targetAudience: [
-      "Citizen Developer in Fachabteilungen, die eigene digitale Lösungen für ihre Prozesse bauen wollen",
-      "IT-Abteilungen, die Citizen Development ermöglichen möchten, ohne die Governance zu verlieren",
-      "Prozessverantwortliche, die manuelle Genehmigungsprozesse und Excel-Workarounds automatisieren wollen",
-      "Digitalisierungsbeauftragte, die die Microsoft Power Platform als strategische Plattform evaluieren"
-    ],
-    learningOutcomes: [
-      "Sie erstellen funktionsfähige Business-Apps mit Power Apps – per Drag-and-Drop und natürlicher Sprache",
-      "Sie automatisieren Geschäftsprozesse mit Power Automate: Genehmigungen, Benachrichtigungen, Datensynchronisation",
-      "Sie nutzen Copilot als Entwicklungsassistenten für Formeln, Logik und Fehlersuche",
-      "Sie verstehen Governance-Best-Practices: Wann ist Citizen Development erwünscht, wann braucht es die IT?"
-    ],
-    businessImpact: [
-      "Fachabteilungen lösen eigene Digitalisierungsprobleme in Tagen statt Monaten – ohne IT-Backlog",
-      "Manuelle Prozesse (Genehmigungen, Reportings, Dateneingabe) werden automatisiert und fehlerresistent",
-      "Die IT-Abteilung wird entlastet, weil Standardanforderungen von den Fachbereichen selbst umgesetzt werden",
-      "Schatten-IT wird durch eine governierte Plattform ersetzt – mehr Innovation bei weniger Risiko"
-    ],
-    metaTitle: "Low-Code Training – Power Platform mit Copilot | copilotenschule.de",
-    metaDescription: "Low-Code Entwicklung mit Microsoft Power Platform und Copilot: Power Apps, Power Automate, Dataverse. Training für Citizen Developer.",
-    keywords: ["Low-Code Training", "Power Platform Schulung", "Citizen Developer", "Power Apps Copilot", "Power Automate Training"],
-    faqs: [
-      {
-        question: "Können meine Fachabteilungen eigene Apps bauen – ohne auf die IT warten zu müssen?",
-        answer: "Ja, das ist die Idee von Citizen Development mit der Microsoft Power Platform. Business-User können mit Power Apps eigene Anwendungen erstellen, mit Power Automate Workflows automatisieren – und Copilot hilft dabei mit natürlicher Sprache. Wichtig: Ein Governance-Framework stellt sicher, dass keine Schatten-IT entsteht und Sicherheitsstandards eingehalten werden."
-      },
-      {
-        question: "Wie kann ich Geschäftsprozesse automatisieren, ohne programmieren zu können?",
-        answer: "Power Automate ermöglicht Workflow-Automatisierung per Drag-and-Drop und natürlicher Sprache. Genehmigungsprozesse, E-Mail-Benachrichtigungen, Datensynchronisation zwischen Systemen – alles ohne Code. Mit Copilot beschreiben Sie einfach, was passieren soll ('Wenn eine neue Rechnung in SharePoint landet, benachrichtige den Abteilungsleiter und erstelle einen Eintrag in Excel'), und der Flow wird generiert."
-      },
-      {
-        question: "Wie verhindere ich, dass Citizen Development zur Schatten-IT wird?",
-        answer: "Governance ist der Schlüssel: Environment-Strategie (wer darf wo entwickeln), DLP-Policies (welche Daten dürfen wohin fließen), Approval-Prozesse für produktive Apps, und regelmäßige Reviews. Das Power Platform Admin Center gibt IT-Abteilungen volle Kontrolle und Transparenz, während Fachabteilungen trotzdem eigenständig arbeiten können."
-      },
-      {
-        question: "Kann Copilot mir wirklich helfen, Apps und Flows zu erstellen?",
-        answer: "Ja, Copilot in Power Apps und Power Automate ist erstaunlich leistungsfähig. Sie beschreiben Ihre App oder Ihren Workflow in natürlicher Sprache, und Copilot generiert den ersten Entwurf. Für Formeln und Logik können Sie Copilot fragen, was Sie erreichen wollen – er schlägt die passende Syntax vor. Das beschleunigt die Entwicklung enorm, ersetzt aber nicht das Verständnis der Plattform."
-      }
-    ]
-  },
-  {
     slug: "eu-ai-act-pflichtschulung",
     icon: Scale,
     title: "EU AI Act Pflichtschulung – Rechtssichere KI-Nutzung im Unternehmen",
@@ -682,64 +504,6 @@ export const trainings: Training[] = [
       {
         question: "Wie dokumentiere ich die KI-Schulung meiner Mitarbeiter für Audits?",
         answer: "Für die Nachweisführung brauchen Sie: Teilnahmebestätigungen pro Mitarbeiter, Dokumentation der Schulungsinhalte (welche KI-Kompetenzen wurden vermittelt), Datum und Dauer der Schulung, und idealerweise eine Anwesenheitsliste. Ein professioneller Schulungsnachweis mit konkreten Lerninhalten erfüllt die Anforderungen und gibt Sicherheit bei Behördenanfragen."
-      }
-    ]
-  },
-  {
-    slug: "individuelle-copilot-schulung",
-    icon: Wrench,
-    title: "Individuelle Copilot-Schulungen nach Maß",
-    duration: "Flexibel (nach Bedarf)",
-    durationISO: "PT4H",
-    description: "Maßgeschneiderte Microsoft Copilot Trainings, die exakt auf Ihre Unternehmenssituation, Branche und spezifischen Anforderungen zugeschnitten sind. Ob Sales, Marketing, HR, Finance, Produktion oder Verwaltung – wir entwickeln Use Cases mit Ihren realen Daten und Prozessen und trainieren Ihre Teams abteilungsspezifisch.",
-    features: [
-      "Abteilungsspezifische Schulungskonzepte: Vertrieb, Marketing, HR, Finanzen, Einkauf, Produktion, IT",
-      "Training mit Ihren echten Unternehmensdaten und -prozessen: Realistische Szenarien, direkt übertragbare Ergebnisse",
-      "Branchenspezifische Use Cases: Fertigung, Gesundheitswesen, Finanzdienstleistungen, Öffentlicher Sektor, Handel",
-      "Individuelle Prompt-Bibliothek entwickeln: Abteilungsspezifische Templates, Best-Practice-Prompts dokumentieren",
-      "Follow-up Sessions und kontinuierliche Begleitung: Refresher-Trainings, Coaching, Support nach dem Training",
-      "Schulungsformate nach Wunsch: Workshops, Webinare, Train-the-Trainer, Einzelcoaching, Team-Sessions",
-      "Flexible Durchführung: Vor Ort, Remote oder Hybrid – passend zu Ihren Rahmenbedingungen"
-    ],
-    tiers: ["free", "paid"],
-    questionLead: "Gibt es Copilot-Schulungen, die speziell auf unsere Branche und unsere Unternehmensprozesse zugeschnitten sind?",
-    targetAudience: [
-      "Unternehmen mit branchenspezifischen Anforderungen, die kein Standardtraining von der Stange wollen",
-      "L&D-Verantwortliche, die ein Schulungskonzept brauchen, das sich in bestehende Programme integriert",
-      "Abteilungsleiter, die rollenspezifische Copilot-Trainings für Sales, HR, Finance oder Marketing suchen",
-      "Konzerne und Großunternehmen, die Copilot in mehreren Wellen an verschiedene Zielgruppen ausrollen"
-    ],
-    learningOutcomes: [
-      "Teilnehmer arbeiten mit ihren eigenen Unternehmensdaten und -dokumenten – kein fiktives Übungsmaterial",
-      "Jede Abteilung bekommt Use Cases, die zu ihren tatsächlichen Aufgaben und Prozessen passen",
-      "Teams entwickeln eine abteilungsspezifische Prompt-Bibliothek, die sofort im Alltag einsetzbar ist",
-      "Follow-up Sessions und Support sichern den nachhaltigen Transfer in die Praxis"
-    ],
-    businessImpact: [
-      "Der ROI des Trainings ist höher als bei Standardkursen, weil jede Minute auf reale Geschäftsprozesse fokussiert ist",
-      "Mitarbeiter setzen das Gelernte sofort um, weil sie bereits während des Trainings mit echten Aufgaben arbeiten",
-      "Die Trainings skalieren über Abteilungen und Standorte hinweg, weil sie modular aufgebaut sind",
-      "Branchenspezifische Compliance-Anforderungen werden direkt im Training berücksichtigt"
-    ],
-    metaTitle: "Individuelle Copilot-Schulung – Maßgeschneidert für Ihr Unternehmen | copilotenschule.de",
-    metaDescription: "Maßgeschneiderte Copilot-Trainings für Ihre Branche und Abteilung. Mit echten Unternehmensdaten, individuellen Use Cases, flexibler Durchführung.",
-    keywords: ["individuelle Copilot Schulung", "maßgeschneidertes KI-Training", "Copilot Inhouse", "branchenspezifisches Copilot Training", "Copilot nach Maß"],
-    faqs: [
-      {
-        question: "Gibt es Copilot-Schulungen speziell für unsere Branche?",
-        answer: "Ja, maßgeschneiderte Trainings mit branchenspezifischen Use Cases sind möglich – ob Fertigung, Gesundheitswesen, Finanzdienstleistungen, öffentlicher Sektor oder Handel. Der Unterschied zu Standardtrainings: Wir arbeiten mit Ihren echten Prozessen, Ihren Dokumententypen, Ihren typischen Aufgaben. So ist der Transfer in den Arbeitsalltag sofort gegeben."
-      },
-      {
-        question: "Können wir Copilot-Training mit unseren echten Firmendaten durchführen?",
-        answer: "Ja, bei Inhouse-Trainings arbeiten wir mit Ihren realen Unternehmensdaten und -prozessen. Das macht den entscheidenden Unterschied: Statt fiktiver Beispiele lernen Mitarbeiter direkt an ihren eigenen E-Mails, Dokumenten und Tabellen. Die Übungen sind sofort übertragbar, weil sie bereits im echten Arbeitskontext stattfinden."
-      },
-      {
-        question: "Wie unterscheidet sich ein maßgeschneidertes Training von einem Standardkurs?",
-        answer: "Standard: Allgemeine Beispiele, vorgegebene Inhalte, one-size-fits-all. Maßgeschneidert: Vorab-Analyse Ihrer Prozesse und Use Cases, Training mit Ihren Daten, abteilungsspezifische Schwerpunkte, und eine individuelle Prompt-Bibliothek für Ihre wiederkehrenden Aufgaben. Der Aufwand ist höher, aber der ROI deutlich besser."
-      },
-      {
-        question: "Können verschiedene Abteilungen unterschiedliche Copilot-Trainings bekommen?",
-        answer: "Absolut sinnvoll: Der Vertrieb braucht andere Copilot-Fähigkeiten als HR oder Finance. Abteilungsspezifische Schulungen fokussieren auf die relevanten Apps und Use Cases: E-Mail-Produktivität für Sales, Dokumentenarbeit für Legal, Datenanalyse für Controlling. So ist jede Minute Trainingszeit optimal investiert."
       }
     ]
   },

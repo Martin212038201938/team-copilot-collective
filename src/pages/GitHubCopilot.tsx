@@ -127,7 +127,7 @@ const GitHubCopilot = () => {
         lastUpdated="07. November 2025"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
-        relatedContent={["training:github-copilot-entwickler", "wissen:copilot-studio", "wissen:microsoft-copilot-lizenzen", "wissen:ki-agenten", "wissen:prompt-engineering"]}
+        relatedContent={["wissen:copilot-studio", "wissen:microsoft-copilot-lizenzen", "wissen:ki-agenten", "wissen:prompt-engineering"]}
       >
         {/* Quick Answer */}
         <Card className="mb-8 border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-amber-500/5">

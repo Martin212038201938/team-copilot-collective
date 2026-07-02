@@ -123,7 +123,7 @@ const CopilotFlexRoutingEU = () => {
         tableOfContents={tableOfContents}
         relatedContent={[
           "wissen:copilot-sicherheit-datenschutz",
-          "training:copilot-compliance-datenschutz",
+          "training:eu-ai-act-pflichtschulung",
           "wissen:copilot-betriebsrat",
           "wissen:ki-schulung-mitarbeiter-pflicht",
           "workshop:betriebsrat-ki-workshop"

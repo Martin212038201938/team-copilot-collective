@@ -131,7 +131,7 @@ const CopilotSchulungOnline = () => {
           "wissen:warum-verteiltes-lernen",
           "training:copilot-lernreise-8-wochen",
           "wissen:copilot-training-schulung",
-          "training:individuelle-copilot-schulung"
+          "training:microsoft-365-copilot-praxis"
         ]}
       >
         {/* Schnellantwort */}

@@ -134,7 +134,7 @@ const KiSchulungMitarbeiterPflicht = () => {
           "training:eu-ai-act-pflichtschulung",
           "wissen:copilot-sicherheit-datenschutz",
           "wissen:copilot-betriebsrat",
-          "training:copilot-compliance-datenschutz",
+          "training:train-the-trainer-copilot",
           "wissen:copilot-flex-routing-eu-verarbeitung"
         ]}
       >

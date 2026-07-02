@@ -125,7 +125,7 @@ const CopilotSicherheit = () => {
         lastUpdated="28. Februar 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
-        relatedContent={["wissen:copilot-flex-routing-eu-verarbeitung", "wissen:copilot-betriebsrat", "training:copilot-compliance-datenschutz", "wissen:ki-schulung-mitarbeiter-pflicht", "wissen:copilot-unternehmensweit-einfuehren"]}
+        relatedContent={["wissen:copilot-flex-routing-eu-verarbeitung", "wissen:copilot-betriebsrat", "training:eu-ai-act-pflichtschulung", "wissen:ki-schulung-mitarbeiter-pflicht", "wissen:copilot-unternehmensweit-einfuehren"]}
       >
         {/* Schnellantwort */}
         <Card className="mb-8 border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-red-500/5">

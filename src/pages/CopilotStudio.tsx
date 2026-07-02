@@ -127,7 +127,7 @@ const CopilotStudio = () => {
         lastUpdated="03. Februar 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
-        relatedContent={["wissen:ki-agenten", "wissen:copilot-agent-digitales-gedaechtnis", "training:copilot-studio-ki-agenten", "workshop:chatbot-workshop", "training:low-code-power-platform"]}
+        relatedContent={["wissen:ki-agenten", "wissen:copilot-agent-digitales-gedaechtnis", "training:copilot-studio-ki-agenten", "workshop:chatbot-workshop"]}
       >
         <Card className="mb-8 border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-amber-500/5">
           <CardHeader>

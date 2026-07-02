@@ -93,34 +93,12 @@ const moduleCategories: ModuleCategory[] = [
     ]
   },
   {
-    id: "github",
-    title: "GitHub Copilot für Entwickler",
-    description: "KI-gestützte Softwareentwicklung mit GitHub Copilot",
-    modules: [
-      { id: "stack-setup", title: "Stack Setup & Konfiguration: IDE-Einrichtung, Extensions, Team-Policies", tiers: ["free", "paid"], category: "github" },
-      { id: "code-gen", title: "Effiziente Code-Generierung: Funktionen, Klassen, APIs – sprachunabhängig", tiers: ["free", "paid"], category: "github" },
-      { id: "debugging", title: "Intelligentes Debugging und Refactoring: Fehler identifizieren, Legacy-Code modernisieren", tiers: ["free", "paid"], category: "github" },
-      { id: "documentation", title: "Automatisierte Code-Dokumentation: Kommentare, README, API-Docs, Changelogs", tiers: ["free", "paid"], category: "github" },
-      { id: "testing", title: "Unit Tests schreiben mit Copilot: Test-Cases, Code-Coverage, TDD", tiers: ["free", "paid"], category: "github" },
-      { id: "copilot-chat-agent", title: "Copilot Chat & Agent Mode: Multi-File-Refactoring, Workspace-Verständnis", tiers: ["free", "paid"], category: "github" },
-      { id: "dev-workflows", title: "Optimierte Developer Workflows: Git, PR-Beschreibungen, Commit Messages, Code Reviews", tiers: ["free", "paid"], category: "github" },
-      { id: "security", title: "Security und Code Quality: Sicherheitslücken identifizieren, SAST-Integration", tiers: ["free", "paid"], category: "github" },
-      { id: "cicd", title: "CI/CD Integration: Copilot in Pipelines, GitHub Actions mit Copilot-Support", tiers: ["free", "paid"], category: "github" },
-      { id: "team-config", title: "Team-Konfiguration: Business/Enterprise Features, Policies, Content Exclusions", tiers: ["paid"], category: "github" },
-    ]
-  },
-  {
     id: "compliance",
-    title: "Compliance, Recht & EU AI Act",
-    description: "DSGVO-konforme und rechtssichere KI-Nutzung im Unternehmen",
+    title: "EU AI Act & KI-Kompetenz",
+    description: "Gesetzliche Anforderungen an Artikel 4 EU AI Act und nachweisbare KI-Kompetenz erfüllen",
     modules: [
-      { id: "dsgvo", title: "DSGVO-konforme Copilot-Nutzung: Rechtsgrundlagen, Dokumentationspflichten", tiers: ["free", "paid"], category: "compliance" },
       { id: "eu-ai-act", title: "EU AI Act Grundlagen: Anwendungsbereich, Risikoklassifizierung, Pflichten", tiers: ["free", "paid"], category: "compliance" },
       { id: "ai-kompetenz", title: "Artikel 4 KI-Kompetenz: Was der Gesetzgeber fordert, Anforderungen erfüllen", tiers: ["free", "paid"], category: "compliance" },
-      { id: "dpia", title: "Datenschutz-Impact-Assessment: Risiken identifizieren, Maßnahmen definieren", tiers: ["free", "paid"], category: "compliance" },
-      { id: "security-arch", title: "Microsoft 365 Sicherheitsarchitektur: Datenflüsse, Verschlüsselung, Audit-Logs", tiers: ["paid"], category: "compliance" },
-      { id: "sensitive-data", title: "Umgang mit sensiblen Daten: Klassifizierung, Information Protection, DLP", tiers: ["paid"], category: "compliance" },
-      { id: "legal", title: "Rechtliche Aspekte: Urheberrecht, Haftungsfragen, Vertragsgestaltung", tiers: ["free", "paid"], category: "compliance" },
     ]
   },
   {
@@ -135,6 +113,23 @@ const moduleCategories: ModuleCategory[] = [
       { id: "governance", title: "Governance Framework: Policies definieren, Verantwortlichkeiten klären", tiers: ["free", "paid"], category: "strategy" },
       { id: "kpis", title: "Success Metrics und KPIs: Nutzung messen, Produktivität tracken", tiers: ["free", "paid"], category: "strategy" },
       { id: "best-practices", title: "Best Practices aus erfolgreichen Copilot-Rollouts: Lessons Learned", tiers: ["free", "paid"], category: "strategy" },
+    ]
+  },
+  {
+    id: "train-the-trainer",
+    title: "Train-the-Trainer: Multiplikatoren ausbilden",
+    description: "Zweitägiges Curriculum (2 x 7 Stunden), um interne Multiplikatoren und Ambassadoren auszubilden",
+    modules: [
+      { id: "tt-chatbot-zu-ki-arbeit", title: "Herleitung: Von Chatbot-Nutzung zu echter KI-unterstützter Arbeit", tiers: ["free", "paid"], category: "train-the-trainer" },
+      { id: "tt-fortgeschrittene-praxis", title: "Fortgeschrittene Copilot-Praxis: Funktionalität, Workflows, Einstellungsmöglichkeiten", tiers: ["free", "paid"], category: "train-the-trainer" },
+      { id: "tt-agenten-automatisierung", title: "Agenten, Copilot Studio und Teilautomatisierung von Prozessen", tiers: ["free", "paid"], category: "train-the-trainer" },
+      { id: "tt-admin-einstellungen", title: "Admin-Einstellungen im Copilot Admin Center (optionales Zusatzmodul)", tiers: ["paid"], category: "train-the-trainer" },
+      { id: "tt-didaktik-lehrprobe", title: "Didaktische Reflexion und Lehrprobe mit strukturiertem Feedback", tiers: ["free", "paid"], category: "train-the-trainer" },
+      { id: "tt-recht", title: "Datenschutz, Urheberrecht und EU AI Act im Bezug auf die Copilot-Nutzung", tiers: ["free", "paid"], category: "train-the-trainer" },
+      { id: "tt-stakeholder", title: "Stakeholder-Simulationen: Betriebsrat, Datenschutz, Fachabteilung", tiers: ["free", "paid"], category: "train-the-trainer" },
+      { id: "tt-use-case-schema", title: "Use-Case-Identifikation und -Bewertung anhand eines festen Schemas", tiers: ["free", "paid"], category: "train-the-trainer" },
+      { id: "tt-adoption-programm", title: "Adoption-Programm entwickeln: Kennzahlen und Roadmap", tiers: ["free", "paid"], category: "train-the-trainer" },
+      { id: "tt-materialbibliothek", title: "Materialbibliothek: Trainings-Decks, Templates, FAQ-Sammlungen, Schulungsunterlagen", tiers: ["free", "paid"], category: "train-the-trainer" },
     ]
   },
   {
@@ -153,19 +148,6 @@ const moduleCategories: ModuleCategory[] = [
     ]
   },
   {
-    id: "lowcode",
-    title: "Low-Code & Power Platform",
-    description: "Apps und Workflows ohne traditionelle Programmierung",
-    modules: [
-      { id: "power-apps", title: "Low-Code mit Power Apps: Apps per natürlicher Sprache erstellen", tiers: ["paid"], category: "lowcode" },
-      { id: "process-automation", title: "Geschäftsprozess-Automatisierung: Workflows, Genehmigungsprozesse", tiers: ["paid"], category: "lowcode" },
-      { id: "copilot-assistant", title: "Copilot als Entwicklungs-Assistent: Code-Generierung, Fehlersuche", tiers: ["paid"], category: "lowcode" },
-      { id: "dataverse", title: "Datenmodellierung mit Dataverse: Tabellen, Beziehungen, Business Rules", tiers: ["paid"], category: "lowcode" },
-      { id: "m365-integration", title: "Integration mit Microsoft 365: SharePoint, Teams, Outlook, Excel verbinden", tiers: ["paid"], category: "lowcode" },
-      { id: "citizen-dev", title: "Best Practices für Citizen Development: Governance, Wartbarkeit, Sicherheit", tiers: ["paid"], category: "lowcode" },
-    ]
-  },
-  {
     id: "events-workshops",
     title: "Events, Workshops & Keynotes",
     description: "Hackathons, Keynotes, Eventtage – für maximales Engagement",
@@ -180,21 +162,6 @@ const moduleCategories: ModuleCategory[] = [
       { id: "launch-challenges", title: "Eventtag: Interaktive KI-Challenges und Gamification mit Preisen", tiers: ["free", "paid"], category: "events-workshops" },
       { id: "launch-handson", title: "Eventtag: Hands-on Stationen zum Ausprobieren unter Anleitung", tiers: ["free", "paid"], category: "events-workshops" },
       { id: "launch-materials", title: "Eventtag: Hochwertige Infomaterialien, Cheat Sheets, Quick Guides", tiers: ["free", "paid"], category: "events-workshops" },
-    ]
-  },
-  {
-    id: "individual",
-    title: "Individuelle Schulungen nach Maß",
-    description: "Maßgeschneiderte Trainings für Ihre Branche und Anforderungen",
-    modules: [
-      { id: "dept-sales", title: "Abteilungsspezifisch: Vertrieb – Angebote, Proposals, CRM-Integration", tiers: ["free", "paid"], category: "individual" },
-      { id: "dept-marketing", title: "Abteilungsspezifisch: Marketing – Content, Kampagnen, Social Media", tiers: ["free", "paid"], category: "individual" },
-      { id: "dept-hr", title: "Abteilungsspezifisch: HR – Recruiting, Onboarding, Personalentwicklung", tiers: ["free", "paid"], category: "individual" },
-      { id: "dept-finance", title: "Abteilungsspezifisch: Finance – Reporting, Analyse, Budgetierung", tiers: ["free", "paid"], category: "individual" },
-      { id: "industry-specific", title: "Branchenspezifische Use Cases: Fertigung, Healthcare, Finance, Handel", tiers: ["free", "paid"], category: "individual" },
-      { id: "real-data", title: "Training mit Ihren echten Unternehmensdaten und -prozessen", tiers: ["free", "paid"], category: "individual" },
-      { id: "train-trainer", title: "Train-the-Trainer: Interne Multiplikatoren ausbilden", tiers: ["free", "paid"], category: "individual" },
-      { id: "follow-up", title: "Follow-up Sessions: Refresher-Trainings, Coaching, kontinuierliche Begleitung", tiers: ["free", "paid"], category: "individual" },
     ]
   },
 ];

@@ -225,7 +225,7 @@ export const workshops: Workshop[] = [
     relatedTrainings: [
       "copilot-grundlagen-prompt-design",
       "microsoft-365-copilot-praxis",
-      "copilot-compliance-datenschutz",
+      "eu-ai-act-pflichtschulung",
     ],
     relatedWorkshops: [
       "copilot-change-programm",
@@ -313,7 +313,7 @@ export const workshops: Workshop[] = [
       "Optional Tag 2: persönliche Prompt-Bibliothek für BR-Arbeit",
     ],
     relatedTrainings: [
-      "copilot-compliance-datenschutz",
+      "train-the-trainer-copilot",
       "eu-ai-act-pflichtschulung",
       "copilot-grundlagen-prompt-design",
     ],

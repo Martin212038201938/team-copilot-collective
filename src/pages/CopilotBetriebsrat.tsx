@@ -159,7 +159,7 @@ const CopilotBetriebsrat = () => {
           "wissen:copilot-sicherheit-datenschutz",
           "wissen:ki-schulung-mitarbeiter-pflicht",
           "wissen:copilot-flex-routing-eu-verarbeitung",
-          "training:copilot-compliance-datenschutz"
+          "training:eu-ai-act-pflichtschulung"
         ]}
       >
         {/* Schnellantwort */}

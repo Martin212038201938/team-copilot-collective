@@ -31,7 +31,7 @@ interface ContentLayoutProps {
    * Liste von Content-IDs (siehe src/lib/contentRegistry.ts) im Format
    * "<kind>:<slug>", die am Seitenende als "Das könnte Sie auch interessieren"
    * gerendert werden. Mischung aus wissen / training / workshop ist gewollt.
-   * Beispiel: ["wissen:copilot-sicherheit-datenschutz", "training:copilot-compliance-datenschutz"]
+   * Beispiel: ["wissen:copilot-sicherheit-datenschutz", "training:eu-ai-act-pflichtschulung"]
    */
   relatedContent?: string[];
 }

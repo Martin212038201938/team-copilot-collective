@@ -144,7 +144,7 @@ const CopilotTraining = () => {
         lastUpdated="02. Juli 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
-        relatedContent={["wissen:microsoft-copilot-schulung-online", "wissen:copilot-lernreise-vs-tagesschulung", "wissen:warum-verteiltes-lernen", "training:copilot-lernreise-8-wochen", "training:individuelle-copilot-schulung"]}
+        relatedContent={["wissen:microsoft-copilot-schulung-online", "wissen:copilot-lernreise-vs-tagesschulung", "wissen:warum-verteiltes-lernen", "training:copilot-lernreise-8-wochen", "training:train-the-trainer-copilot"]}
       >
         {/* Schnellantwort */}
         <Card className="mb-8 border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-amber-500/5">
@@ -210,7 +210,7 @@ const CopilotTraining = () => {
             </table>
           </div>
           <p className="mt-4">
-            Für einen maßgeschneiderten Mix ist die <Link to="/trainings/individuelle-copilot-schulung" className="text-primary hover:underline">individuelle Copilot-Schulung</Link> der richtige Einstieg.
+            Für einen maßgeschneiderten Mix ist der <Link to="/training-konfigurator" className="text-primary hover:underline">Training-Konfigurator</Link> der richtige Einstieg – dort stellen Sie Ihr Training aus einzelnen Modulen selbst zusammen.
           </p>
         </section>
 

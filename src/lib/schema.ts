@@ -98,7 +98,7 @@ export interface BreadcrumbItem {
  * generateBreadcrumbSchema([
  *   { name: "Startseite", url: "https://copilotenschule.de/" },
  *   { name: "Unsere Angebote", url: "https://copilotenschule.de/unsere-angebote" },
- *   { name: "GitHub Copilot Training", url: "https://copilotenschule.de/trainings/github-copilot-entwickler" }
+ *   { name: "Train-the-Trainer Training", url: "https://copilotenschule.de/trainings/train-the-trainer-copilot" }
  * ])
  */
 export const generateBreadcrumbSchema = (items: BreadcrumbItem[]) => {
