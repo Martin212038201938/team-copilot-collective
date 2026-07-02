@@ -134,7 +134,14 @@ Das Feld `$name` fließt in den `Reply-To`-Mailheader. `htmlspecialchars()` entf
 2. Upload-Dateinamen bereinigen (`basename()` + Whitelist erlaubter Zeichen, Länge begrenzen).
 3. Optional: `mail()` durch eine Bibliothek (PHPMailer) mit sauberer Header-Behandlung ersetzen.
 
-### [ ] SEC-05 – `api/config.php` öffentlich erreichbar (Information Disclosure)
+### [x] SEC-05 – `api/config.php` öffentlich erreichbar (Information Disclosure)  ✅ CODE ERLEDIGT (2026-07-02), Deploy ausstehend
+
+> **Umsetzung 2026-07-02:**
+> - Status-Ausgabe in `api/config.php` läuft nur noch bei **direktem** Aufruf (`SCRIPT_FILENAME === __FILE__`) und dann nur mit gültigem Admin-Token (`requireAdminToken()`), sonst 401. Öffentliche Preisgabe von Modell/Token-Konfiguration ist damit geschlossen.
+> - Nebeneffekt/Bugfix: Beim **Include** (durch `openai-proxy.php` / `generate-content-api.php`) gibt `config.php` jetzt kein JSON mehr aus (vorher unbedingtes `echo`, im Proxy nur per Output-Buffer verworfen). Beide Proxies instanziieren `$config` ohnehin selbst → keine Regression.
+> - `config.php` wird vom Frontend nicht aufgerufen; kein legitimer Public-Use betroffen.
+> - Verifiziert: PHP-Klammern balanciert; `echo` nur noch innerhalb des Direktzugriff-Guards.
+> - **NOCH ZU TUN:** commit + push → Deploy. Danach: direkter GET auf `/api/config.php` muss 401 liefern (statt vorher Konfig-JSON).
 
 **Beschreibung**
 Der Endpunkt ist ungeschützt aufrufbar und gibt Konfigurationsstatus, Modellnamen und Token-Limits als JSON aus. Kein Key-Leak, aber unnötige Preisgabe interner Konfiguration.

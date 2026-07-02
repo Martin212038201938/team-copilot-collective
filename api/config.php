@@ -128,15 +128,28 @@ class SecureConfig {
     }
 }
 
-// Endpoint-Handling
-$config = SecureConfig::getInstance();
+// SEC-05: Status-Ausgabe NUR bei direktem Aufruf dieser Datei – nicht, wenn sie von
+// anderen Skripten (openai-proxy.php, generate-content-api.php) inkludiert wird.
+// So wird a) die Info-Preisgabe geschlossen und b) verhindert, dass ein Include
+// ungewollt JSON in die Antwort schreibt.
+$isDirectAccess = isset($_SERVER['SCRIPT_FILENAME'])
+    && realpath($_SERVER['SCRIPT_FILENAME']) === realpath(__FILE__);
 
-// Nur Status zurückgeben, NIEMALS den Key selbst!
-echo json_encode([
-    'success' => true,
-    'configured' => $config->hasOpenAIKey(),
-    'config' => $config->getPublicConfig(),
-    'message' => $config->hasOpenAIKey()
-        ? 'OpenAI API Key ist konfiguriert'
-        : 'OpenAI API Key fehlt - bitte in .env.local oder als Umgebungsvariable setzen'
-]);
+if ($isDirectAccess) {
+    // Zusätzlich: Status nur für eingeloggte Admins (verhindert öffentliche Preisgabe
+    // von Modell/Token-Konfiguration). Ohne gültiges Token -> 401.
+    require_once __DIR__ . '/admin-auth-lib.php';
+    requireAdminToken();
+
+    $config = SecureConfig::getInstance();
+
+    // Nur Status zurückgeben, NIEMALS den Key selbst!
+    echo json_encode([
+        'success' => true,
+        'configured' => $config->hasOpenAIKey(),
+        'config' => $config->getPublicConfig(),
+        'message' => $config->hasOpenAIKey()
+            ? 'OpenAI API Key ist konfiguriert'
+            : 'OpenAI API Key fehlt - bitte in .env.local oder als Umgebungsvariable setzen'
+    ]);
+}
