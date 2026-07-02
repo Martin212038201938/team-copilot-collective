@@ -10,51 +10,90 @@ interface AdminAuthProps {
   children: React.ReactNode;
 }
 
-const ADMIN_CREDENTIALS = {
-  username: "Martin",
-  password: "Hoschi88!"
-};
+// SICHERHEIT (SEC-01): Es gibt hier KEINE Zugangsdaten mehr im Client-Code.
+// Das Passwort wird ausschliesslich server-seitig gegen einen bcrypt-Hash geprueft
+// (api/admin-login.php, Hash in Server-ENV ADMIN_PASSWORD_HASH). Der Login-Status
+// haengt an einem signierten, ablaufenden Token, das der Server ausstellt und prueft
+// (api/admin-verify.php) – ein manuell gesetztes localStorage-Flag genuegt nicht mehr.
+const TOKEN_KEY = "admin_token";
 
 const AdminAuth = ({ children }: AdminAuthProps) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
   useEffect(() => {
-    // Check if user is already logged in
-    const authToken = localStorage.getItem("admin_auth");
-    if (authToken === "authenticated") {
-      setIsAuthenticated(true);
-    }
-    setIsLoading(false);
+    // Beim Laden: gespeichertes Token server-seitig verifizieren
+    const verify = async () => {
+      const token = localStorage.getItem(TOKEN_KEY);
+      if (!token) {
+        setIsLoading(false);
+        return;
+      }
+      try {
+        const res = await fetch("/api/admin-verify.php", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ token }),
+        });
+        const data = await res.json();
+        if (data?.valid) {
+          setIsAuthenticated(true);
+        } else {
+          localStorage.removeItem(TOKEN_KEY);
+        }
+      } catch {
+        // Bei Netzwerkfehler nicht einloggen; Token bleibt fuer spaeteren Versuch
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    verify();
   }, []);
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    if (username === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
-      localStorage.setItem("admin_auth", "authenticated");
-      setIsAuthenticated(true);
-      toast({
-        title: "Erfolgreich angemeldet",
-        description: `Willkommen zurück, ${username}!`,
+    if (isSubmitting) return;
+    setIsSubmitting(true);
+    try {
+      const res = await fetch("/api/admin-login.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ password }),
       });
-    } else {
+      const data = await res.json();
+      if (res.ok && data?.success && data?.token) {
+        localStorage.setItem(TOKEN_KEY, data.token);
+        setIsAuthenticated(true);
+        setPassword("");
+        toast({
+          title: "Erfolgreich angemeldet",
+          description: "Willkommen zurück!",
+        });
+      } else {
+        toast({
+          title: "Anmeldung fehlgeschlagen",
+          description: data?.error || "Passwort ist falsch.",
+          variant: "destructive",
+        });
+        setPassword("");
+      }
+    } catch {
       toast({
         title: "Anmeldung fehlgeschlagen",
-        description: "Benutzername oder Passwort ist falsch.",
+        description: "Server nicht erreichbar. Bitte später erneut versuchen.",
         variant: "destructive",
       });
-      setPassword("");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("admin_auth");
+    localStorage.removeItem(TOKEN_KEY);
     setIsAuthenticated(false);
-    setUsername("");
     setPassword("");
     toast({
       title: "Abgemeldet",
@@ -86,18 +125,6 @@ const AdminAuth = ({ children }: AdminAuthProps) => {
           <CardContent>
             <form onSubmit={handleLogin} className="space-y-4">
               <div>
-                <Label htmlFor="username">Benutzername</Label>
-                <Input
-                  id="username"
-                  type="text"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  placeholder="Benutzername eingeben"
-                  required
-                  autoComplete="username"
-                />
-              </div>
-              <div>
                 <Label htmlFor="password">Passwort</Label>
                 <Input
                   id="password"
@@ -109,8 +136,8 @@ const AdminAuth = ({ children }: AdminAuthProps) => {
                   autoComplete="current-password"
                 />
               </div>
-              <Button type="submit" className="w-full" size="lg">
-                Anmelden
+              <Button type="submit" className="w-full" size="lg" disabled={isSubmitting}>
+                {isSubmitting ? "Anmelden…" : "Anmelden"}
               </Button>
             </form>
           </CardContent>
