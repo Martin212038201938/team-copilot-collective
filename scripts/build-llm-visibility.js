@@ -31,6 +31,12 @@ const API_KEY = process.env.OPENAI_API_KEY;
 const MODEL = process.env.LLM_VIS_MODEL || "gpt-4o";
 const BRAND = "copilotenschule";
 const DOMAIN = "copilotenschule.de";
+// Wie oft jede Frage in EINER EIGENEN, unabhängigen Session gefragt wird.
+// LLM-Antworten streuen (Nicht-Determinismus + wechselnde Live-Suchergebnisse) —
+// mehrere unabhängige Samples + Mittelung ergeben eine belastbare, rauschärmere Kennzahl.
+const SAMPLES = Math.max(1, Number(process.env.LLM_VIS_SAMPLES || 3));
+// Alte Fehllauf-Datenpunkte, die einmalig aus der Historie entfernt werden sollen.
+const HISTORY_DROP_DATES = new Set(["2026-06-29"]); // 29.06. = gescheiterter Lauf (invalid_api_key)
 
 // GEO-relevante Fragen, wie sie Entscheider (GF, L&D, HR, IT) einem LLM stellen würden.
 const PROMPTS = [
@@ -52,7 +58,9 @@ async function askWithWebSearch(prompt, toolType) {
   const res = await fetch("https://api.openai.com/v1/responses", {
     method: "POST",
     headers: { Authorization: `Bearer ${API_KEY}`, "Content-Type": "application/json" },
-    body: JSON.stringify({ model: MODEL, tools: [{ type: toolType }], input: prompt }),
+    // store:false + kein previous_response_id ⇒ jede Anfrage ist eine komplett
+    // eigenständige Session ohne geteilten Kontext (valides, unabhängiges Sampling).
+    body: JSON.stringify({ model: MODEL, tools: [{ type: toolType }], input: prompt, store: false }),
   });
   const j = await res.json();
   if (j.error) throw new Error(`${j.error.code || res.status}: ${j.error.message || ""}`.slice(0, 200));
@@ -78,7 +86,8 @@ async function askKnowledge(prompt) {
   const res = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
     headers: { Authorization: `Bearer ${API_KEY}`, "Content-Type": "application/json" },
-    body: JSON.stringify({ model: MODEL, messages: [{ role: "user", content: prompt }], temperature: 0 }),
+    // Default-Temperatur (kein temperature:0), damit die Samples real streuen wie beim Nutzer.
+    body: JSON.stringify({ model: MODEL, messages: [{ role: "user", content: prompt }], store: false }),
   });
   const j = await res.json();
   if (j.error) throw new Error(`${j.error.code || res.status}: ${j.error.message || ""}`.slice(0, 200));
@@ -141,48 +150,67 @@ async function main() {
   const competitorCount = new Map();
 
   for (const prompt of PROMPTS) {
-    let r;
-    try {
-      r = mode === "knowledge" ? await askKnowledge(prompt) : await askWithWebSearch(prompt, toolType);
-    } catch (e) {
-      // Wenn Websuche bei einer Frage scheitert: einmal auf Wissen zurückfallen.
-      console.warn(`WARN Frage scheitert (${e.message}) — Fallback auf Modellwissen.`);
-      try { r = await askKnowledge(prompt); mode = "knowledge"; }
-      catch (e2) { checks.push({ prompt, error: cleanErr(e2.message), mentioned: false, cited: false }); continue; }
+    let mentionedCount = 0, citedCount = 0, sampleCount = 0, lastErr = "";
+    const citationUrls = new Set();
+    let snippet = "";
+
+    // Jede Frage SAMPLES-mal in einer eigenen, unabhängigen Session (getrennte Requests).
+    for (let s = 0; s < SAMPLES; s++) {
+      let r;
+      try {
+        r = mode === "knowledge" ? await askKnowledge(prompt) : await askWithWebSearch(prompt, toolType);
+      } catch (e) {
+        try { r = await askKnowledge(prompt); mode = "knowledge"; }
+        catch (e2) { lastErr = cleanErr(e2.message); await sleep(500); continue; }
+      }
+
+      sampleCount++;
+      const text = r.text || "";
+      const isMentioned = text.toLowerCase().includes(BRAND);
+      const citedForUrls = (r.urls || []).filter((u) => (domainOf(u) || "").includes(DOMAIN));
+      if (isMentioned) mentionedCount++;
+      if (citedForUrls.length) citedCount++;
+      citedForUrls.forEach((u) => citationUrls.add(u));
+      // Repräsentativen Snippet bevorzugt aus einem Sample MIT Nennung wählen.
+      if (!snippet || (isMentioned && !snippet.includes(BRAND))) snippet = snippetAround(text, BRAND);
+      // Wettbewerber-/Quellen-Domains über ALLE Samples zählen.
+      for (const u of r.urls || []) {
+        const d = domainOf(u);
+        if (d && !d.includes(DOMAIN)) competitorCount.set(d, (competitorCount.get(d) || 0) + 1);
+      }
+      await sleep(700); // Rate-Limit schonen
     }
 
-    const text = r.text || "";
-    const mentioned = text.toLowerCase().includes(BRAND);
-    const citedUrls = (r.urls || []).filter((u) => (domainOf(u) || "").includes(DOMAIN));
-    const cited = citedUrls.length > 0;
-
-    // Wettbewerber-/Quellen-Domains zählen (nur bei Websuche vorhanden)
-    for (const u of r.urls || []) {
-      const d = domainOf(u);
-      if (d && !d.includes(DOMAIN)) competitorCount.set(d, (competitorCount.get(d) || 0) + 1);
+    if (sampleCount === 0) {
+      checks.push({ prompt, error: lastErr || "Keine Antwort", mentioned: false, cited: false, mentioned_count: 0, cited_count: 0, sample_count: 0 });
+    } else {
+      checks.push({
+        prompt,
+        mentioned: mentionedCount > 0,
+        cited: citedCount > 0,
+        mentioned_count: mentionedCount,
+        cited_count: citedCount,
+        sample_count: sampleCount,
+        citation_urls: [...citationUrls].slice(0, 5),
+        snippet,
+      });
     }
-
-    checks.push({
-      prompt,
-      mentioned,
-      cited,
-      citation_urls: [...new Set(citedUrls)].slice(0, 5),
-      snippet: snippetAround(text, BRAND),
-    });
-    await sleep(800); // Rate-Limit schonen
   }
 
-  const total = checks.length;
-  const errored = checks.filter((c) => c.error).length;
-  const answered = total - errored;
-  const mentioned = checks.filter((c) => c.mentioned).length;
-  const cited = checks.filter((c) => c.cited).length;
-  // Raten NUR auf tatsächlich beantwortete Fragen beziehen — sonst wäre ein
-  // Fehlschlag fälschlich "0 %".
-  const mentionRate = answered ? Math.round((mentioned / answered) * 100) : null;
-  const citationRate = answered ? Math.round((cited / answered) * 100) : null;
-  const status = answered === 0 ? "error" : (errored > 0 ? "partial" : "ok");
-  const errorHint = answered === 0 ? cleanErr(checks.find((c) => c.error)?.error || "Keine Antworten erhalten") : null;
+  // ---------- Aggregation (Sample-basiert) ----------
+  const promptsTotal = checks.length;
+  const promptsErrored = checks.filter((c) => (c.sample_count || 0) === 0).length;
+  const answeredSamples = checks.reduce((n, c) => n + (c.sample_count || 0), 0);
+  const totalSamples = promptsTotal * SAMPLES;
+  const erroredSamples = totalSamples - answeredSamples;
+  const mentionsTotal = checks.reduce((n, c) => n + (c.mentioned_count || 0), 0);
+  const citationsTotal = checks.reduce((n, c) => n + (c.cited_count || 0), 0);
+  const promptsWithMention = checks.filter((c) => (c.mentioned_count || 0) > 0).length;
+  // Rate = Nennungen über ALLE beantworteten Samples (glatte, rauschärmere Kennzahl).
+  const mentionRate = answeredSamples ? Math.round((mentionsTotal / answeredSamples) * 100) : null;
+  const citationRate = answeredSamples ? Math.round((citationsTotal / answeredSamples) * 100) : null;
+  const status = answeredSamples === 0 ? "error" : ((promptsErrored > 0 || erroredSamples > 0) ? "partial" : "ok");
+  const errorHint = answeredSamples === 0 ? cleanErr(checks.find((c) => c.error)?.error || "Keine Antworten erhalten") : null;
 
   const competitorDomains = [...competitorCount.entries()]
     .sort((a, b) => b[1] - a[1])
@@ -191,7 +219,6 @@ async function main() {
 
   // ---------- Wochen-Historie mergen ----------
   // Vorherige Historie von der Live-Seite holen (kein Repo-Read → keine Merge-Konflikte).
-  // Fallback: lokale Datei, dann leer.
   let prev = await (async () => {
     try {
       const r = await fetch(`https://${DOMAIN}/dashboard/llm-visibility.json?_=${Date.now()}`);
@@ -200,9 +227,10 @@ async function main() {
     try { return JSON.parse(readFileSync(OUT, "utf8")); } catch { return {}; }
   })();
   const week = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Berlin" }).format(new Date());
-  const history = Array.isArray(prev.history) ? prev.history.filter((h) => h.date !== week) : [];
-  // Nur echte Ergebnisse historisieren — ein Fehlschlag darf den Trend nicht verfälschen.
-  if (answered > 0) history.push({ date: week, mention_rate_pct: mentionRate, citation_rate_pct: citationRate });
+  // Aktuelle Woche neu setzen + bekannte Fehllauf-Tage dauerhaft entfernen.
+  const history = (Array.isArray(prev.history) ? prev.history : [])
+    .filter((h) => h.date !== week && !HISTORY_DROP_DATES.has(h.date));
+  if (answeredSamples > 0) history.push({ date: week, mention_rate_pct: mentionRate, citation_rate_pct: citationRate });
   history.sort((a, b) => a.date.localeCompare(b.date));
   const trimmed = history.slice(-26);
 
@@ -214,19 +242,23 @@ async function main() {
       engine: `openai/${MODEL}`,
       mode, // "web_search" = mit Live-Websuche/Zitaten, "knowledge" = reines Modellwissen
       update_frequency: "wöchentlich",
-      prompts_count: total,
-      answered,
+      prompts_count: promptsTotal,
+      samples_per_prompt: SAMPLES,
+      answered_samples: answeredSamples,
+      total_samples: totalSamples,
     },
     status, // "ok" | "partial" | "error"
     error_hint: errorHint,
     score: {
       mention_rate_pct: mentionRate,
       citation_rate_pct: citationRate,
-      mentioned,
-      cited,
-      answered,
-      errored,
-      total,
+      prompts_with_mention: promptsWithMention,
+      prompts_total: promptsTotal,
+      mentions_total: mentionsTotal,
+      citations_total: citationsTotal,
+      answered_samples: answeredSamples,
+      errored_samples: erroredSamples,
+      total_samples: totalSamples,
     },
     checks,
     competitor_domains: competitorDomains,
@@ -234,7 +266,7 @@ async function main() {
   };
 
   writeFileSync(OUT, JSON.stringify(out, null, 2) + "\n");
-  console.log(`LLM-Sichtbarkeit [${status}] (${mode}): ${answered}/${total} beantwortet, ${errored} Fehler; ${mentioned} Nennungen (${mentionRate ?? "n/v"}%), ${cited} Zitate (${citationRate ?? "n/v"}%). Wettbewerber-Domains: ${competitorDomains.length}.`);
+  console.log(`LLM-Sichtbarkeit [${status}] (${mode}, ${SAMPLES}x): ${answeredSamples}/${totalSamples} Samples ok; Nennungen ${mentionsTotal} (${mentionRate ?? "n/v"}%), Zitate ${citationsTotal} (${citationRate ?? "n/v"}%); Fragen mit ≥1 Nennung ${promptsWithMention}/${promptsTotal}. Wettbewerber-Domains: ${competitorDomains.length}.`);
   if (status === "error") process.exit(1);
 }
 

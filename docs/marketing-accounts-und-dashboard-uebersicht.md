@@ -69,6 +69,10 @@ Alle Google-/Marketing-Aktivitäten laufen künftig über den neuen Account.
   Entscheider-Fragen und prüft, ob copilotenschule.de **genannt** und/oder **als Quelle zitiert** wird;
   schreibt `public/dashboard/llm-visibility.json` (Score, Einzel-Checks, Wettbewerber-Domains, 26-Wochen-Historie).
   Fällt automatisch auf reines Modellwissen zurück, falls die Websuche nicht verfügbar ist.
+  **Validität:** Jede Frage wird **3× in getrennten, unabhängigen Sessions** gestellt (`store:false`,
+  kein `previous_response_id`, Default-Temperatur) → 24 Samples/Woche. Die Rate ist der Anteil der Nennungen
+  über alle beantworteten Samples (glatt, rauschärmer); pro Frage wird „genannt in x/3 Läufen" ausgewiesen.
+  Sample-Zahl per Env `LLM_VIS_SAMPLES` änderbar. Der Fehllauf vom 29.06. wurde aus der Historie entfernt.
 - **Workflow (wöchentlich):** `.github/workflows/llm-visibility.yml` – Cron montags 06:00 UTC, **nur FTP-Deploy**
   von `llm-visibility.json` (kein Git-Commit; Wochen-Historie wird von der Live-Seite geladen).
   Bewusst getrennt vom täglichen Job, damit dieser die LLM-Daten nicht überschreibt.

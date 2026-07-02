@@ -263,14 +263,22 @@
       el("llm-checks").innerHTML=pendingBox("Keine Checks — der Lauf ist vor der eigentlichen Abfrage gescheitert.");
     } else if(llm && llm.score && (llm.status==="ok"||llm.status==="partial")){
       const sc=llm.score;
-      const denom = (sc.answered!==undefined && sc.answered!==null) ? sc.answered : sc.total;
       const rate = v => (v===null||v===undefined) ? "n/v" : v+" %";
       const modeLbl = llm.meta?.mode==="web_search" ? "mit Live-Websuche &amp; Zitaten" : "Modellwissen (ohne Live-Websuche)";
-      const partial = llm.status==="partial" ? '<tr><td>Hinweis</td><td class="num" style="color:var(--yellow)">'+sc.errored+' von '+sc.total+' Fragen fehlerhaft</td></tr>' : '';
+      // Sample-basiertes Schema (mit Fallback auf altes fragen-basiertes Schema).
+      const spp = llm.meta?.samples_per_prompt;
+      const mDenom = sc.answered_samples ?? sc.answered ?? sc.total;
+      const mCount = sc.mentions_total ?? sc.mentioned;
+      const cCount = sc.citations_total ?? sc.cited;
+      const rowsExtra =
+        (sc.prompts_with_mention!==undefined ? '<tr><td>Fragen mit ≥1 Nennung</td><td class="num"><strong>'+sc.prompts_with_mention+'/'+(sc.prompts_total??'–')+'</strong></td></tr>' : '') +
+        (spp ? '<tr><td>Samples</td><td class="num">'+(sc.answered_samples??'–')+'/'+(sc.total_samples??'–')+' ('+spp+'× je Frage)</td></tr>' : '');
+      const partial = llm.status==="partial" ? '<tr><td>Hinweis</td><td class="num" style="color:var(--yellow)">'+(sc.errored_samples ?? sc.errored ?? 0)+' Sample(s) fehlerhaft</td></tr>' : '';
       el("llm-score").innerHTML =
         '<table>'+
-        '<tr><td>Nennungsrate</td><td class="num"><strong>'+rate(sc.mention_rate_pct)+'</strong> ('+sc.mentioned+'/'+denom+')</td></tr>'+
-        '<tr><td>Zitatrate (als Quelle)</td><td class="num"><strong>'+rate(sc.citation_rate_pct)+'</strong> ('+sc.cited+'/'+denom+')</td></tr>'+
+        '<tr><td>Nennungsrate</td><td class="num"><strong>'+rate(sc.mention_rate_pct)+'</strong> ('+mCount+'/'+mDenom+')</td></tr>'+
+        '<tr><td>Zitatrate (als Quelle)</td><td class="num"><strong>'+rate(sc.citation_rate_pct)+'</strong> ('+cCount+'/'+mDenom+')</td></tr>'+
+        rowsExtra+
         '<tr><td>Engine</td><td class="num">'+(llm.meta?.engine||'–')+'</td></tr>'+
         '<tr><td>Modus</td><td class="num">'+modeLbl+'</td></tr>'+
         partial+
@@ -283,10 +291,17 @@
       const checks = llm.checks||[];
       el("llm-checks").innerHTML = checks.length
         ? checks.map(c=>{
-            const m = c.mentioned ? '<span style="color:var(--green)">✓ genannt</span>' : '<span style="color:var(--red)">✗ nicht genannt</span>';
-            const z = c.cited ? ' · <span style="color:var(--green)">✓ als Quelle zitiert</span>' : '';
+            const sn = (c.sample_count!==undefined && c.sample_count>0);
+            const m = sn
+              ? (c.mentioned_count>0
+                  ? '<span style="color:var(--green)">✓ genannt in '+c.mentioned_count+'/'+c.sample_count+' Läufen</span>'
+                  : '<span style="color:var(--red)">✗ in 0/'+c.sample_count+' Läufen genannt</span>')
+              : (c.mentioned ? '<span style="color:var(--green)">✓ genannt</span>' : '<span style="color:var(--red)">✗ nicht genannt</span>');
+            const isCited = sn ? (c.cited_count>0) : c.cited;
+            const z = isCited ? ' · <span style="color:var(--green)">✓ als Quelle zitiert'+(sn?(' ('+c.cited_count+'/'+c.sample_count+')'):'')+'</span>' : '';
+            const err = c.error ? ' · <span style="color:var(--yellow)">Fehler: '+c.error+'</span>' : '';
             const urls = (c.citation_urls&&c.citation_urls.length) ? '<br><span style="color:var(--muted);font-size:12px">Quellen: '+c.citation_urls.join(" · ")+'</span>' : '';
-            return '<div class="issue"><div class="sev '+(c.mentioned?'info':'warning')+'"></div><div><strong>'+c.prompt+'</strong><br>'+m+z+'<br><span style="color:var(--muted)">'+(c.snippet||'')+'</span>'+urls+'</div></div>';
+            return '<div class="issue"><div class="sev '+((c.mentioned_count>0||c.mentioned)?'info':'warning')+'"></div><div><strong>'+c.prompt+'</strong><br>'+m+z+err+'<br><span style="color:var(--muted)">'+(c.snippet||'')+'</span>'+urls+'</div></div>';
           }).join("")
         : pendingBox("Noch keine Einzel-Checks.");
     } else {
