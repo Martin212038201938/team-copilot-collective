@@ -62,7 +62,16 @@ Der Proxy hängt den serverseitigen OpenAI-Key an jeden eingehenden POST-Request
 2. Rate-Limit analog zu `generate-content-api.php` ergänzen.
 3. Modell, `max_tokens` und erlaubte Endpunkte serverseitig erzwingen statt beliebigen Request-Body durchzureichen.
 
-### [ ] SEC-03 – npm-Dependencies: 35 Schwachstellen (3 kritisch, 20 hoch, 9 moderat, 3 low)
+### [x] SEC-03 – npm-Dependencies: 35 Schwachstellen  ✅ SO WEIT WIE SINNVOLL BEHOBEN (2026-07-02)
+
+> **Umsetzung 2026-07-02:**
+> - `npm audit fix` (ohne `--force`) ausgeführt → **35 → 20** Schwachstellen. Client-relevante Lücke `react-router` Open-Redirect ist behoben (jetzt 6.30.4); ebenso `ws`, `postcss`, `yaml`, `picomatch`.
+> - Die verbleibenden 20 (inkl. 3 kritisch) hängen ausschließlich an der **Build-Zeit-devDependency `react-snap`** (Kette: `html-minifier`, `minimist`, `qs`, `send`, `body-parser`, `cookie`, `path-to-regexp`, `node-fetch`, `nth-check`) plus `esbuild` unter Vite (nur Dev-Server). **Keine davon landet im Produktions-Bundle.**
+> - `npm audit fix --force` bewusst **nicht** ausgeführt: es würde `react-snap` auf 1.13.1 **downgraden** und die SEO-kritische Prerender-Pipeline brechen. Die Lücken sind nur zur Build-Zeit auf eigenem, vertrauenswürdigem Content erreichbar → real nicht ausnutzbar.
+> - Verifiziert: `npx vite build` läuft fehlerfrei (exit 0); `react-snap` unverändert 1.23.0.
+> - Geänderte Datei: `package-lock.json` (+ ggf. `package.json`). **NOCH ZU TUN:** commit + push.
+> - Optional später: `react-snap` durch eine gepflegte Alternative ersetzen (z. B. eigenes Puppeteer-Prerender-Script), um die Build-Kette zu bereinigen.
+
 
 **Beschreibung**
 `npm audit` meldet zahlreiche verwundbare Pakete. Die meisten sind Build-Time-Devabhängigkeiten, einige aber clientrelevant.

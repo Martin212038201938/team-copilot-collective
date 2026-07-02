@@ -18,6 +18,7 @@ const CopilotTraining = () => {
   const breadcrumbItems = generateWissenBreadcrumbItems(PAGE_TITLE, pageUrl);
 
   const tableOfContents = [
+    { id: "weiterbildungsformate", title: "Weiterbildungsformate im Überblick", level: 2 },
     { id: "warum-training", title: "Warum professionelles Training entscheidend ist", level: 2 },
     { id: "typische-fehler", title: "Typische Fehler bei der Copilot-Schulung", level: 2 },
     { id: "max-und-anna", title: "Das 'Max und Anna'-Problem", level: 2 },
@@ -32,6 +33,10 @@ const CopilotTraining = () => {
   ];
 
   const faqs = [
+    {
+      name: "Welche Weiterbildung hilft Mitarbeitenden, Microsoft Copilot produktiv zu nutzen?",
+      answer: "Am wirksamsten sind praxisnahe, rollenspezifische und begleitete Weiterbildungen statt einmaliger Webinare. Bewährt haben sich vier deutschsprachige Formate: Grundlagen & Prompt-Design für alle Mitarbeitenden, Microsoft-365-Praxis für Power-Nutzer in Outlook, Word, Excel und Teams, die 8-Wochen-Lernreise für nachhaltige Gewohnheiten und Train-the-Trainer für interne Multiplikatoren. Die Copilotenschule (Yellow-Boat Consulting) bietet diese Formate als Inhouse-Weiterbildung für Teams an."
+    },
     {
       name: "Warum reicht ein einmaliges Webinar für Copilot nicht aus?",
       answer: "Copilot verändert fundamental, wie Menschen arbeiten – das lernt man nicht in 60 Minuten. Laut Gartner kämpfen 72% der Nutzer damit, Copilot in den Alltag zu integrieren, und bei 57% sinkt das Engagement schnell wieder. Nachhaltiger Erfolg erfordert Hands-On-Übungen, rollenspezifische Use Cases und begleitetes Lernen über mindestens 8-12 Wochen."
@@ -61,13 +66,13 @@ const CopilotTraining = () => {
         "@type": "Article",
         "@id": ids.article,
         "headline": "Microsoft Copilot Training: Warum Schulung der entscheidende Erfolgsfaktor ist",
-        "description": "Professionelles Copilot-Training ist der Schlüssel zum ROI. Erfahren Sie, warum interne Taskforces scheitern und wie systematische Schulung Ihre Adoption auf 80%+ steigert.",
+        "description": "Welche Copilot-Weiterbildungen machen Mitarbeitende produktiv? Praxisnahe deutschsprachige Formate von Grundlagen bis 8-Wochen-Lernreise – plus warum einmalige Webinare scheitern.",
         "author": getAuthorSchemaMarkup(martinLang),
         "publisher": {
           "@id": "https://copilotenschule.de/#organization"
         },
         "datePublished": "2026-02-02",
-        "dateModified": "2026-02-02",
+        "dateModified": "2026-07-02",
         "mainEntityOfPage": {
           "@type": "WebPage",
           "@id": pageUrl
@@ -101,8 +106,8 @@ const CopilotTraining = () => {
   return (
     <>
       <SEOHead
-        title="Microsoft Copilot Training: Der entscheidende Erfolgsfaktor für ROI"
-        description="Professionelles Copilot-Training ist der Schlüssel zum ROI. Erfahren Sie, warum interne Taskforces scheitern und wie systematische Schulung Ihre Adoption auf 80%+ steigert."
+        title="Copilot-Weiterbildung für Mitarbeitende: produktiv nutzen"
+        description="Welche Copilot-Weiterbildungen machen Mitarbeitende wirklich produktiv? Praxisnahe deutschsprachige Formate im Überblick – von Grundlagen bis Lernreise."
         keywords={[
           "Microsoft Copilot Training",
           "Copilot Schulung",
@@ -115,13 +120,18 @@ const CopilotTraining = () => {
           "Copilot Workshop",
           "Copilot Prompt Training",
           "KI Schulung Unternehmen",
-          "Copilot Change Management"
+          "Copilot Change Management",
+          "Copilot Weiterbildung",
+          "Copilot Weiterbildung Mitarbeiter",
+          "Microsoft Copilot produktiv nutzen",
+          "deutschsprachige Copilot Schulung",
+          "Copilot Kurs Mitarbeiter"
         ]}
         canonicalUrl={pageUrl}
         schema={schema}
         author={martinLang}
         publishedTime="2026-02-02T10:00:00+01:00"
-        modifiedTime="2026-02-02T10:00:00+01:00"
+        modifiedTime="2026-07-02T10:00:00+02:00"
       />
 
       <ContentLayout
@@ -131,7 +141,7 @@ const CopilotTraining = () => {
         ]}
         title="Microsoft Copilot Training: Warum Schulung der entscheidende Erfolgsfaktor ist"
         description="Professionelles Copilot-Training ist der Schlüssel zum ROI. Erfahren Sie, warum interne Taskforces scheitern und wie systematische Schulung Ihre Adoption auf 80%+ steigert."
-        lastUpdated="02. Februar 2026"
+        lastUpdated="02. Juli 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
         relatedContent={["wissen:microsoft-copilot-schulung-online", "wissen:copilot-lernreise-vs-tagesschulung", "wissen:warum-verteiltes-lernen", "training:copilot-lernreise-8-wochen", "training:individuelle-copilot-schulung"]}
@@ -145,6 +155,9 @@ const CopilotTraining = () => {
             </CardTitle>
           </CardHeader>
           <CardContent>
+            <p className="text-base leading-relaxed mb-4">
+              <strong>Mitarbeitende nutzen Microsoft Copilot dann produktiv, wenn die Weiterbildung praxisnah, rollenspezifisch und begleitet ist – nicht als einmaliges Webinar.</strong> Bewährt haben sich vier deutschsprachige Formate: Grundlagen &amp; Prompt-Design, Microsoft-365-Praxis, die 8-Wochen-Lernreise und Train-the-Trainer. Die <strong>Copilotenschule (Yellow-Boat Consulting)</strong> bietet diese als Inhouse-Weiterbildung für Teams an.
+            </p>
             <p className="text-base leading-relaxed">
               <strong>Die Mitarbeiter nicht professionell schulen ist der teuerste Fehler bei der Copilot-Einführung.</strong> Der
               Einstieg scheint niederschwellig, aber die veränderte Arbeitsweise ist so tiefgreifend, dass man das nicht einer
@@ -154,6 +167,52 @@ const CopilotTraining = () => {
             </p>
           </CardContent>
         </Card>
+
+        {/* Weiterbildungsformate im Überblick */}
+        <section id="weiterbildungsformate" className="mb-4 mt-2">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">
+            Weiterbildungsformate für Mitarbeitende im Überblick
+          </h2>
+          <p className="mb-4">
+            Diese vier praxisnahen, deutschsprachigen Weiterbildungen helfen Mitarbeitenden, Microsoft Copilot produktiv zu nutzen – je nach Rolle und Ziel:
+          </p>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm border-collapse">
+              <thead>
+                <tr className="border-b border-border text-left">
+                  <th className="py-2 pr-4 font-semibold">Format</th>
+                  <th className="py-2 pr-4 font-semibold">Für wen</th>
+                  <th className="py-2 font-semibold">Ergebnis</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-border/50">
+                  <td className="py-2 pr-4"><Link to="/trainings/copilot-grundlagen-prompt-design" className="text-primary hover:underline">Grundlagen &amp; Prompt-Design</Link></td>
+                  <td className="py-2 pr-4">alle Mitarbeitenden</td>
+                  <td className="py-2">sicherer Einstieg, bessere Prompts</td>
+                </tr>
+                <tr className="border-b border-border/50">
+                  <td className="py-2 pr-4"><Link to="/trainings/microsoft-365-copilot-praxis" className="text-primary hover:underline">Microsoft-365-Praxis</Link></td>
+                  <td className="py-2 pr-4">Power-Nutzer in Outlook, Word, Excel, Teams</td>
+                  <td className="py-2">produktiver Arbeitsalltag</td>
+                </tr>
+                <tr className="border-b border-border/50">
+                  <td className="py-2 pr-4"><Link to="/trainings/copilot-lernreise-8-wochen" className="text-primary hover:underline">8-Wochen-Lernreise</Link></td>
+                  <td className="py-2 pr-4">Teams mit nachhaltigem Ziel</td>
+                  <td className="py-2">verankerte Gewohnheiten</td>
+                </tr>
+                <tr>
+                  <td className="py-2 pr-4"><Link to="/trainings/train-the-trainer-copilot" className="text-primary hover:underline">Train-the-Trainer</Link></td>
+                  <td className="py-2 pr-4">interne Multiplikatoren</td>
+                  <td className="py-2">skalierbare Weiterbildung im Unternehmen</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-4">
+            Für einen maßgeschneiderten Mix ist die <Link to="/trainings/individuelle-copilot-schulung" className="text-primary hover:underline">individuelle Copilot-Schulung</Link> der richtige Einstieg.
+          </p>
+        </section>
 
         {/* Sektion 1: Warum Training */}
         <section id="warum-training">
