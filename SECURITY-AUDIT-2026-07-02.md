@@ -44,7 +44,17 @@ Die Admin-Authentifizierung läuft rein clientseitig. Benutzername und Passwort 
 
 ## 🟠 HOCH
 
-### [ ] SEC-02 – `api/openai-proxy.php` ist offenes Relay ohne Auth & Rate-Limit
+### [x] SEC-02 – `api/openai-proxy.php` ist offenes Relay ohne Auth & Rate-Limit  ✅ CODE ERLEDIGT (2026-07-02), Deploy ausstehend
+
+> **Umsetzung 2026-07-02:**
+> - Neu: `api/admin-auth-lib.php` mit `verifyAdminToken()`, `getAdminTokenFromRequest()` (Header `X-Admin-Token` oder `Authorization: Bearer`) und `requireAdminToken()` (401 bei ungültig).
+> - `api/openai-proxy.php`: ruft `requireAdminToken()` vor dem OpenAI-Call → nur eingeloggte Admins; zusätzlich IP-Rate-Limit 30/Stunde; CORS erlaubt jetzt `X-Admin-Token`.
+> - `api/generate-content-api.php`: ebenfalls `requireAdminToken()` (war zuvor nur rate-limitiert, keine Auth). Wird vom Frontend nicht genutzt, aber hatte Key-Zugriff.
+> - `api/admin-verify.php`: nutzt jetzt die zentrale `verifyAdminToken()` (DRY, identische Logik).
+> - Frontend `src/components/DraftEditor.tsx`: neue Helper `proxyHeaders()` sendet das Admin-Token (aus `localStorage`) bei allen 4 Proxy-Aufrufen mit.
+> - Verifiziert: `tsc --noEmit` fehlerfrei; PHP-Klammern balanciert.
+> - Absicherung greift doppelt: Auf Prod ist aktuell ohnehin kein OpenAI-Key gesetzt (`openai_configured: false`), und der Proxy verlangt nun ein gültiges Admin-Token (das nur nach Login via SEC-01 existiert).
+> - **NOCH ZU TUN:** commit + push → Deploy. Danach: als eingeloggter Admin einen AI-Generierungslauf im Redaktionssystem testen (Token wird automatisch mitgesendet); ein Aufruf ohne Token muss 401 liefern.
 
 **Beschreibung**
 Der Proxy hängt den serverseitigen OpenAI-Key an jeden eingehenden POST-Request und leitet ihn an die OpenAI-API weiter. Einziger „Schutz" ist eine CORS-Origin-Prüfung – CORS wirkt aber ausschließlich im Browser und verhindert keine direkten Requests (curl, Skripte). Anders als `generate-content-api.php` (10 Requests/h pro IP) hat der Proxy **kein** Rate-Limit und **keine** Authentifizierung.
@@ -106,7 +116,7 @@ Der Proxy hängt den serverseitigen OpenAI-Key an jeden eingehenden POST-Request
 > - Mail-Body bleibt unverändert (Zeilenumbrüche dort gewollt). Empfänger-Adressen sind bereits per `FILTER_VALIDATE_EMAIL` abgesichert.
 > - Gepusht & deployt; Endpunkt live erreichbar (GET → 405, kein Fallback auf SPA).
 > - **Verifiziert 2026-07-02:** Logik von `mailHeaderSafe()` gegen CRLF-Payloads getestet — vorher entstehen eigene `Bcc:`/`Cc:`-Header (Injection gelingt), nachher bleibt alles in einer Zeile → keine zusätzlichen Header injizierbar; Upload-Dateiname wird von CRLF & Anführungszeichen befreit. ✅
-> - Optional (Belt-and-Suspenders): echter End-to-End-Test per direktem API-POST mit Newline im Namen → Empfänger-Postfach (martin@) auf fehlende Bcc/Cc prüfen.
+> - **End-to-End live bestätigt 2026-07-02:** same-origin POST mit Name-Payload `SEC04 Test\r\nBcc: injection-probe@example.com` gesendet. Empfangene Mail hat Betreff „Neue Kontaktanfrage von SEC04 **TestBcc: injection-probe@example.com**" → CRLF entfernt, kein separater Bcc-Header. Injection neutralisiert. ✅ (Test-DB-Eintrag `sec04-test@example.com` pending → kann gelöscht werden.)
 
 
 **Beschreibung**

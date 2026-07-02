@@ -34,8 +34,9 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-$hash = getenv('ADMIN_PASSWORD_HASH') ?: '';
-if ($hash === '') {
+require_once __DIR__ . '/admin-auth-lib.php';
+
+if ((getenv('ADMIN_PASSWORD_HASH') ?: '') === '') {
     http_response_code(500);
     echo json_encode(['valid' => false, 'error' => 'Server nicht konfiguriert.']);
     exit;
@@ -44,14 +45,5 @@ if ($hash === '') {
 $input = json_decode(file_get_contents('php://input'), true);
 $token = is_array($input) ? (string)($input['token'] ?? '') : '';
 
-$valid = false;
-$parts = explode('.', $token, 2);
-if (count($parts) === 2) {
-    [$exp, $sig] = $parts;
-    if (ctype_digit($exp) && (int)$exp > time()) {
-        $expected = hash_hmac('sha256', (string)$exp, $hash);
-        $valid = hash_equals($expected, $sig);
-    }
-}
-
-echo json_encode(['valid' => $valid]);
+// SEC-02: Zentrale Token-Prüfung (gleiche Logik wie openai-proxy & generate-content-api)
+echo json_encode(['valid' => verifyAdminToken($token)]);

@@ -7,6 +7,11 @@
  */
 
 require_once __DIR__ . '/config.php';
+require_once __DIR__ . '/admin-auth-lib.php';
+
+// SEC-02: Nur eingeloggte Admins dürfen Content generieren (schützt den OpenAI-Key
+// vor Missbrauch als offenes Relay). Muss vor allem Weiteren stehen.
+requireAdminToken();
 
 // Rate Limiting und Sicherheit
 session_start();

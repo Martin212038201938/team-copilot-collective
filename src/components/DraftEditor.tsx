@@ -35,6 +35,16 @@ interface DraftEditorProps {
   initialTab?: string;
 }
 
+// SEC-02: Der OpenAI-Proxy verlangt jetzt ein gültiges Admin-Token. Es wird beim
+// Login (AdminAuth) in localStorage abgelegt und bei jedem Proxy-Aufruf mitgesendet.
+const proxyHeaders = (): Record<string, string> => {
+  const token = localStorage.getItem("admin_token");
+  return {
+    "Content-Type": "application/json",
+    ...(token ? { "X-Admin-Token": token } : {}),
+  };
+};
+
 type GeneratorStep = 'transcript' | 'topics' | 'focus' | 'metadata' | 'content-generation' | 'content-review' | 'page-design' | 'completed';
 
 interface GeneratedMetadata {
@@ -644,9 +654,7 @@ const DraftEditor = ({ draft, onSave, onCancel, initialTab }: DraftEditorProps) 
       // Use secure backend proxy instead of direct OpenAI access
       const response = await fetch('/api/openai-proxy.php', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
+        headers: proxyHeaders(),
         body: JSON.stringify({
           model: 'gpt-4.1-2025-04-14',
           messages: [
@@ -797,9 +805,7 @@ Schreibe einen vollständigen, praxisorientierten Artikel für copilotenschule.d
       // Use secure backend proxy instead of direct OpenAI access
       const response = await fetch('/api/openai-proxy.php', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
+        headers: proxyHeaders(),
         body: JSON.stringify({
           model: 'gpt-4.1-2025-04-14',
           messages: [
@@ -926,9 +932,7 @@ Analysiere dieses Transkript und extrahiere alle strukturierten Daten im JSON-Fo
       // Use secure backend proxy instead of direct OpenAI access
       const response = await fetch('/api/openai-proxy.php', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
+        headers: proxyHeaders(),
         body: JSON.stringify({
           model: 'gpt-4.1-2025-04-14',
           messages: [
@@ -1139,9 +1143,7 @@ Schreibe jetzt den vollständigen, praxisorientierten Artikel für copilotenschu
       // Use secure backend proxy instead of direct OpenAI access
       const response = await fetch('/api/openai-proxy.php', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
+        headers: proxyHeaders(),
         body: JSON.stringify({
           model: 'gpt-4.1-2025-04-14',
           messages: [

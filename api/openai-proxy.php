@@ -10,11 +10,13 @@
 ob_start();
 
 require_once __DIR__ . '/config.php';
+require_once __DIR__ . '/admin-auth-lib.php';
 
 // CORS Headers
 $allowed_origins = [
     'http://localhost:5173',
     'http://localhost:4173',
+    'http://localhost:8080',
     'https://copilotenschule.de',
     'https://www.copilotenschule.de',
     'https://y-b.alwaysdata.net'
@@ -24,7 +26,7 @@ $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
 if (in_array($origin, $allowed_origins)) {
     header("Access-Control-Allow-Origin: $origin");
     header("Access-Control-Allow-Methods: POST, OPTIONS");
-    header("Access-Control-Allow-Headers: Content-Type, Authorization");
+    header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Admin-Token");
     header("Access-Control-Allow-Credentials: true");
 }
 
@@ -44,6 +46,30 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     echo json_encode(['error' => 'Nur POST-Requests erlaubt']);
     exit;
 }
+
+// SEC-02: Nur eingeloggte Admins dürfen den Proxy (und damit den OpenAI-Key) nutzen.
+// Verhindert, dass der Endpunkt als offenes Relay auf Kosten des Kontos missbraucht wird.
+requireAdminToken();
+
+// SEC-02: Zusätzliches Rate-Limit pro IP (max 30 Aufrufe / Stunde)
+$rlKey  = 'openai_proxy_' . ($_SERVER['REMOTE_ADDR'] ?? 'unknown');
+$rlFile = sys_get_temp_dir() . '/' . md5($rlKey) . '.txt';
+$rlNow  = time();
+$rlData = ['timestamp' => $rlNow, 'count' => 0];
+if (file_exists($rlFile)) {
+    $dec = json_decode(@file_get_contents($rlFile), true);
+    if (is_array($dec) && ($dec['timestamp'] ?? 0) > $rlNow - 3600) {
+        $rlData = $dec;
+    }
+}
+if ($rlData['count'] >= 30) {
+    header('Content-Type: application/json');
+    http_response_code(429);
+    echo json_encode(['error' => ['message' => 'Rate limit überschritten. Bitte später erneut versuchen.', 'type' => 'rate_limit']]);
+    exit;
+}
+$rlData['count']++;
+@file_put_contents($rlFile, json_encode($rlData));
 
 // Konfiguration laden
 $config = SecureConfig::getInstance();
