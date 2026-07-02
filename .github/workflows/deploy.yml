@@ -51,7 +51,11 @@ jobs:
       - name: Vite Build
         run: npx vite build
         env:
-          VITE_OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          # ⚠️ NIEMALS den OpenAI-Key hier als VITE_-Variable setzen! VITE_-Werte werden
+          # ins ÖFFENTLICHE JS-Bundle eingebacken und wären auf der Live-Seite abgreifbar
+          # (so wurde der Key 07/2026 geleakt und von OpenAI deaktiviert). Der Key gehört
+          # ausschließlich server-seitig: als GitHub-Secret für die LLM-Action und als
+          # Server-ENV/​.env.local für den PHP-Proxy (api/openai-proxy.php).
           # Microsoft Clarity Projekt-ID — bei jedem Build ins JS-Bundle eingewoben.
           # Wenn das Secret nicht gesetzt ist, ist die Variable leer → main.tsx
           # überspringt die Clarity-Initialisierung still.

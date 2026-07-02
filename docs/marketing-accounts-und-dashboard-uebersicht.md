@@ -93,6 +93,12 @@ Aktiv genutzt: `GSC_SERVICE_ACCOUNT_JSON`, `BING_API_KEY`, `CLARITY_API_TOKEN`,
 > **Wichtig:** `OPENAI_API_KEY` muss als GitHub-Secret ein **gültiger** Key sein (der lokale
 > `.env`-Key war zuletzt abgelaufen → 401). Prüfbar per manuellem Lauf des Workflows „LLM-Sichtbarkeit".
 
+> 🔐 **Sicherheitsregel (nach Key-Leak 07/2026):** Der OpenAI-Key gehört AUSSCHLIESSLICH
+> server-seitig — als GitHub-Secret `OPENAI_API_KEY` (LLM-Action) und als Server-ENV/`.env.local`
+> für den PHP-Proxy. **NIEMALS als `VITE_...`-Variable** (Vite backt die ins öffentliche Bundle ein).
+> Der frühere `VITE_OPENAI_API_KEY` in `deploy.yml`/`DraftEditor.tsx` hat den Key auf die Live-Seite
+> gebracht → OpenAI hat ihn deaktiviert. Beides ist jetzt entfernt.
+
 ---
 
 ## 5. Notfall / Troubleshooting

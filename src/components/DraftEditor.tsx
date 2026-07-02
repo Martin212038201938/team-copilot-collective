@@ -89,10 +89,12 @@ const DraftEditor = ({ draft, onSave, onCancel, initialTab }: DraftEditorProps) 
   );
   const [isGenerating, setIsGenerating] = useState(false);
   const [openAIKey, setOpenAIKey] = useState<string>(() => {
-    // Try to get key from: 1) env variable, 2) localStorage, 3) empty string
-    return import.meta.env.VITE_OPENAI_API_KEY ||
-           localStorage.getItem('openai_api_key') ||
-           "";
+    // SICHERHEIT: NIEMALS import.meta.env.VITE_* für den OpenAI-Key verwenden!
+    // VITE_-Variablen werden von Vite fest ins ÖFFENTLICHE JS-Bundle eingebacken
+    // → der Key wäre auf der Live-Seite abgreifbar (genau so wurde er 07/2026 geleakt).
+    // Die Authentifizierung läuft server-seitig im PHP-Proxy (api/openai-proxy.php).
+    // Hier nur ein optional im Browser manuell hinterlegter Key als Fallback.
+    return localStorage.getItem('openai_api_key') || "";
   });
   const [showResumePrompt, setShowResumePrompt] = useState(false);
   const [contentAnalysis, setContentAnalysis] = useState<ContentAnalysisResult | null>(null);

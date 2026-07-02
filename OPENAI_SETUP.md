@@ -11,7 +11,7 @@ Der Key in diesem Commit wurde öffentlich gepostet und sollte **NIEMALS** in Gi
 ### 1. Alten Key widerrufen
 1. Gehe zu https://platform.openai.com/api-keys
 2. Melde dich mit deinem OpenAI Account an
-3. Finde den Key der mit `sk-proj-MGB8VimG...` beginnt
+3. Finde den zuletzt geleakten/deaktivierten Key (Name z.B. „SEO Dashboard key")
 4. Klicke auf "Revoke" um ihn zu deaktivieren
 
 ### 2. Neuen Key erstellen
@@ -19,13 +19,23 @@ Der Key in diesem Commit wurde öffentlich gepostet und sollte **NIEMALS** in Gi
 2. Gib dem Key einen Namen (z.B. "copilotenschule-generator")
 3. Kopiere den Key (er wird nur einmal angezeigt!)
 
-### 3. Key in .env.local eintragen
-1. Öffne die Datei `.env.local` im Projekt-Root
-2. Ersetze den alten Key mit deinem neuen:
-   ```
-   VITE_OPENAI_API_KEY=sk-proj-DEIN_NEUER_KEY_HIER
-   ```
-3. Speichern
+### 3. Key SERVER-SEITIG hinterlegen (NIEMALS als VITE_-Variable!)
+> ⚠️ **Wichtig:** Der Key darf NIE in eine `VITE_...`-Variable. Vite backt die ins
+> öffentliche JS-Bundle ein → der Key wäre auf der Live-Seite abgreifbar (genau so
+> wurde er 07/2026 geleakt). Der PHP-Proxy (`api/openai-proxy.php`) authentifiziert
+> server-seitig – der Browser braucht den Key nicht.
+
+Der Key gehört an genau zwei server-seitige Orte:
+
+**a) Für die LLM-Sichtbarkeits-Action:** als GitHub-Secret `OPENAI_API_KEY`
+(Repo → Settings → Secrets and variables → Actions).
+
+**b) Für den Content-Generator-Proxy (AlwaysData):** als Server-ENV oder in
+`.env.local` auf dem Server (ohne `VITE_`-Präfix), z.B. per SSH:
+```bash
+echo 'export OPENAI_API_KEY="sk-proj-DEIN_NEUER_KEY"' >> ~/.bashrc
+```
+`api/config.php` liest den Key dann via `getenv('OPENAI_API_KEY')`.
 
 ### 4. Dev-Server neu starten
 ```bash
