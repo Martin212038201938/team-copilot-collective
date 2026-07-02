@@ -104,7 +104,9 @@ Der Proxy hängt den serverseitigen OpenAI-Key an jeden eingehenden POST-Request
 > - `api/send-contact-email.php`: `Subject` und `Reply-To` (Name + E-Mail) sowie `X-Originating-IP` bereinigt.
 > - `api/send-trainer-email.php`: `Subject`, `Reply-To`, `X-Originating-IP` bereinigt; CV-Upload-Dateiname zusätzlich um Pfadanteile/Anführungszeichen bereinigt (`Content-Type`/`Content-Disposition`).
 > - Mail-Body bleibt unverändert (Zeilenumbrüche dort gewollt). Empfänger-Adressen sind bereits per `FILTER_VALIDATE_EMAIL` abgesichert.
-> - **NOCH ZU TUN:** commit + push → Deploy (PHP-Dateien gehen per `copy-api` mit). Danach optional Live-Test über das Kontaktformular.
+> - Gepusht & deployt; Endpunkt live erreichbar (GET → 405, kein Fallback auf SPA).
+> - **Verifiziert 2026-07-02:** Logik von `mailHeaderSafe()` gegen CRLF-Payloads getestet — vorher entstehen eigene `Bcc:`/`Cc:`-Header (Injection gelingt), nachher bleibt alles in einer Zeile → keine zusätzlichen Header injizierbar; Upload-Dateiname wird von CRLF & Anführungszeichen befreit. ✅
+> - Optional (Belt-and-Suspenders): echter End-to-End-Test per direktem API-POST mit Newline im Namen → Empfänger-Postfach (martin@) auf fehlende Bcc/Cc prüfen.
 
 
 **Beschreibung**
