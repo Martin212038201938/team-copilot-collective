@@ -98,11 +98,11 @@ export const ALL_ARTICLES: ArticleData[] = [
   {
     id: "interne-copilot-trainer-ausbilden",
     title: "Wir bilden Ihre internen Copilot-Multiplikatoren aus. Wie gute Inhouse-Change-Begleitung im Alltag den Unterschied macht",
-    description: "Interne Copilot-Multiplikatoren tragen den Change im Alltag und schlagen die Brücke zwischen Trainings und Anwenderpraxis. Was die Copilotenschule-Train-the-Trainer-Ausbildung in vier Tagen plus Begleitung bewirkt.",
+    description: "Interne Copilot-Multiplikatoren tragen den Change im Alltag und schlagen die Brücke zwischen Trainings und Anwenderpraxis. Was die Copilotenschule-Train-the-Trainer-Ausbildung in zwei Tagen (2 x 7 Stunden) plus Begleitung bewirkt.",
     link: "/wissen/interne-copilot-trainer-ausbilden",
     badge: "Train-the-Trainer",
     icon: "🎓",
-    lastUpdated: "28. Apr. 2026",
+    lastUpdated: "2. Jul. 2026",
     publishDate: "2026-04-28",
     publishTime: "10:00"
   },

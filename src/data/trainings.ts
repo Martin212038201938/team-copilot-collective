@@ -229,27 +229,28 @@ export const trainings: Training[] = [
     slug: "train-the-trainer-copilot",
     icon: Users,
     title: "Train-the-Trainer: Copilot Multiplikatoren ausbilden",
-    duration: "4 Tage Vollzeit + bedarfsorientierte Online-Workshops",
-    durationISO: "P4D",
-    description: "Vier intensive Tage, in denen wir AI Change Verantwortliche, Ambassadoren und Multiplikatoren aus Ihren Fachabteilungen so ausbilden, dass sie Copilot im eigenen Unternehmen souverän vermitteln und einführen können. Entstanden ist die Weiterbildung aus unserem internen Trainingsprogramm für neue Copilot-Trainer – wir geben Ihnen also exakt das Curriculum mit, mit dem wir auch unsere eigenen Leute ausbilden. Drei Kompetenzfelder verzahnen wir an jedem der vier Tage statt sie in getrennte Blöcke zu sortieren: fortgeschrittene und rechtssichere Copilot-Praxis, das Handwerk eines tragfähigen Adoption-Programms und Didaktik für unterschiedliche Nutzergruppen. Nach den vier Tagen bleibt die Verbindung – über eine Community of Practice mit Multiplikatoren aus anderen Unternehmen und einen laufend gepflegten Material- und Update-Pool. Buchbar als geschlossenes Inhouse-Format oder als offenes Training in Köln, in dem Pilotinnen und Piloten aus unterschiedlichen Branchen aufeinandertreffen.",
+    duration: "2 Tage (2 x 7 Stunden) + bedarfsorientierte Online-Workshops",
+    durationISO: "P2D",
+    description: "Zwei intensive Tage à 7 Stunden, in denen wir AI Change Verantwortliche, Ambassadoren und Multiplikatoren aus Ihren Fachabteilungen so ausbilden, dass sie Copilot im eigenen Unternehmen souverän vermitteln und einführen können. Entstanden ist die Weiterbildung aus unserem internen Trainingsprogramm für neue Copilot-Trainer – wir geben Ihnen also exakt das Curriculum mit, mit dem wir auch unsere eigenen Leute ausbilden, verdichtet auf zwei fokussierte Tage. Wir starten mit der Herleitung von reiner Chatbot-Nutzung hin zu echter KI-unterstützter Arbeit – dem gedanklichen Fundament, das Multiplikatoren später selbst vermitteln müssen. Darauf bauen drei Kompetenzfelder auf, die wir an beiden Tagen verzahnen statt sie in getrennte Blöcke zu sortieren: fortgeschrittene und rechtssichere Copilot-Praxis, das Handwerk eines tragfähigen Adoption-Programms und Didaktik für unterschiedliche Nutzergruppen. Nach den zwei Tagen bleibt die Verbindung – über eine Community of Practice mit Multiplikatoren aus anderen Unternehmen und einen laufend gepflegten Material- und Update-Pool. Buchbar als geschlossenes Inhouse-Format oder als offenes Training in Köln, in dem Pilotinnen und Piloten aus unterschiedlichen Branchen aufeinandertreffen.",
     features: [
-      "Tag 1 – Eigene Praxis: Selbst erfahrene Nutzer entdecken Funktionen, Nutzungsszenarien und blinde Flecken im Microsoft-365- und Copilot-Ökosystem; parallel reflektieren wir didaktisch, wie sich diese Inhalte vermitteln lassen. Der Tag endet mit einer kurzen Lehrprobe.",
-      "Tag 2 – Workflows, Use Cases und Teilautomatisierung: Agenten und Copilot Studio, sichere Verbreitungsprozesse sowie die Anbindung statischer und dynamischer Quellen – verständlich für technisch interessierte Büroanwender, nicht nur für die IT.",
-      "Tag 3 – Rechtssichere Praxis und Konfliktzonen: DSGVO, EU AI Act, Urheberrecht, Datenklassifizierung und sensible Daten. Plus realistische Stakeholder-Simulationen (Betriebsrat, Datenschutz, Fachabteilung) und Umgang mit Widerständen. Teilnehmende erarbeiten eigene Workshops und Checklisten für den Einsatz im Rollout.",
-      "Tag 4 – Adoption- und Change-Prozess: Use Cases identifizieren und bewerten, ein eigenes Programm entwickeln, relevante Kennzahlen definieren und eine erste Roadmap mit konkreten To-dos erstellen – mit echten Zahlen Ihres Unternehmens.",
-      "Verzahnt statt getrennt: Praxis, Adoption-Architektur und Didaktik laufen jeden Tag parallel – so wie Multiplikatoren später auch im Alltag zwischen einem komplexen Prompt, einer Rechtsfrage und einem Skeptiker-Argument wechseln.",
+      "Tag 1 – Von der Chatbot-Nutzung zur KI-unterstützten Arbeit: Wir leiten her, warum „einfach mal etwas in den Chat tippen” zu kurz greift, und was echte KI-unterstützte Arbeit ausmacht. Darauf folgt die eigene Praxis: Selbst erfahrene Nutzer entdecken Funktionalität, Workflows, Einstellungsmöglichkeiten und blinde Flecken im Microsoft-365- und Copilot-Ökosystem, inklusive Workflows, Use Cases, Teilautomatisierung, Agenten und Copilot Studio – verständlich für technisch interessierte Büroanwender, nicht nur für die IT. Auf Wunsch vertiefen wir zusätzlich die Admin-Einstellungen im Copilot Admin Center. Parallel reflektieren wir didaktisch, wie sich diese Inhalte vermitteln lassen. Der Tag endet mit einer kurzen Lehrprobe.",
+      "Tag 2 – Rechtssichere Praxis, Adoption und Rollout: Kompakter Überblick über Datenschutz, Urheberrecht und EU AI Act im Bezug auf die Copilot-Nutzung, inklusive Datenklassifizierung und sensibler Daten. Plus realistische Stakeholder-Simulationen (Betriebsrat, Datenschutz, Fachabteilung) und Umgang mit Widerständen. Im zweiten Teil identifizieren und bewerten Teilnehmende Use Cases anhand eines festen Bewertungsschemas, entwickeln daraus Best Practices für den eigenen Rollout, definieren relevante Kennzahlen und erstellen eine erste Roadmap mit konkreten To-dos – mit echten Zahlen Ihres Unternehmens.",
+      "Verzahnt statt getrennt: Praxis, Rechtssicherheit, Adoption-Architektur und Didaktik laufen an beiden Tagen parallel – so wie Multiplikatoren später auch im Alltag zwischen einem komplexen Prompt, einer Rechtsfrage und einem Skeptiker-Argument wechseln.",
       "Lehrproben mit ehrlichem Feedback: Jede Teilnehmerin und jeder Teilnehmer übt das eigene Erklären unter Echt-Bedingungen und bekommt strukturiertes Feedback aus der Gruppe und vom Coach.",
+      "Use-Case-Schema: Ein wiederverwendbares Bewertungsraster, mit dem Multiplikatoren im eigenen Haus eigenständig Use Cases identifizieren, priorisieren und in die Umsetzung bringen können – statt einer einmaligen Liste.",
+      "Optionales Zusatzmodul Admin-Einstellungen: Auf Wunsch vertiefte Einweisung in Copilot-Administration (Rollen, Policies, Tenant-Konfiguration) für Multiplikatoren mit IT-nahem Profil.",
       "Begleitung danach – Baustein 1: Community of Practice der ausgebildeten Multiplikatoren über Unternehmensgrenzen hinweg. Geteilte Use Cases, Sparring vor wichtigen internen Vorhaben, Erfahrungsaustausch unter Kolleginnen und Kollegen, die vor denselben Fragen stehen.",
       "Begleitung danach – Baustein 2: Laufend gepflegter Material- und Update-Pool. Microsoft entwickelt Copilot dynamisch weiter – über den Pool bleiben unsere Multiplikatoren auf einem Stand, den ein einmaliges Zertifikat strukturell nicht halten könnte.",
       "Optionale Online-Workshops: Bedarfsorientiert, dort wo Sie auf Ihrer Reise stehen – Vorbereitung der ersten internen Trainings, knifflige Use Cases, Stakeholder-Workshops, Umgang mit Widerstand. Auf Wunsch begleiten wir Sie auch beim eigentlichen Rollout.",
-      "Komplette Materialbibliothek zur freien internen Nutzung: Trainings-Decks (PPTX), fertige Übungsaufgaben, Kommunikations- und Change-Templates (Mail-Vorlagen, Kickoff-Decks), FAQ-Sammlungen und Infomaterialien fürs Intranet. Eine Prompt-Bibliothek bauen Sie im Training mit eigenen Use Cases – das ist mehr wert als jede vorgefertigte Liste.",
+      "Komplette Materialbibliothek zur freien internen Nutzung: Trainings-Decks (PPTX), fertige Übungsaufgaben, Kommunikations- und Change-Templates (Mail-Vorlagen, Kickoff-Decks), FAQ-Sammlungen für das Intranet und Schulungsunterlagen für Endanwender. Eine Prompt-Bibliothek bauen Sie im Training mit eigenen Use Cases – das ist mehr wert als jede vorgefertigte Liste.",
+      "Weitere Inhalte nach Absprache: Das Curriculum lässt sich um Ihre spezifischen Anforderungen ergänzen.",
       "Buchbar als: Geschlossene Inhouse-Gruppe (vor Ort oder online) oder offenes Training in Köln mit Multiplikatoren aus anderen Unternehmen – der branchenübergreifende Austausch ist im offenen Format ein eigener Wert."
     ],
     tiers: ["free", "paid"],
     isNew: true,
-    pricePerPerson: 2990,
-    pricePerPersonLabel: "Ab 2.990 € pro Person für 4 Tage Vollzeit (offenes Training, inkl. Trainings-Decks, Templates und FAQ-Sammlungen). Inhouse-Konditionen auf Anfrage.",
-    questionLead: "Wir bilden Ihre internen Copilot-Multiplikatoren, Ambassadoren und AI Change Verantwortlichen aus, damit Sie Ihre Mitarbeitenden im Alltag begeistern und befähigen können.",
+    pricePerPerson: 1495,
+    pricePerPersonLabel: "Ab 1.495 € pro Person für 2 Tage (2 x 7 Stunden, offenes Training, inkl. Trainings-Decks, Templates und FAQ-Sammlungen). Inhouse-Konditionen auf Anfrage.",
+    questionLead: "Wir bilden Ihre internen Copilot-Multiplikatoren, Ambassadoren und AI Change Verantwortlichen in 2 x 7 Stunden aus, damit Sie Ihre Mitarbeitenden im Alltag begeistern und befähigen können.",
     targetAudience: [
       "AI Change Verantwortliche und Ambassadoren, die einen Copilot-Rollout in ihrem Unternehmen orchestrieren",
       "Copilot-Multiplikatoren aus Fachabteilungen, die Kolleginnen und Kollegen im Alltag begleiten und befähigen wollen",
@@ -258,12 +259,14 @@ export const trainings: Training[] = [
       "Erfahrene Copilot-Anwender, die zur internen Anlaufstelle werden – auch ohne klassischen Trainer-Hintergrund"
     ],
     learningOutcomes: [
-      "Sie nutzen Microsoft 365 Copilot fortgeschritten und rechtssicher – inklusive Cross-App-Workflows, Agenten, Copilot Studio und sensiblen Datenklassen",
+      "Sie vollziehen die Herleitung von reiner Chatbot-Nutzung zu echter KI-unterstützter Arbeit nach – und können diesen gedanklichen Sprung selbst vermitteln",
+      "Sie nutzen Microsoft 365 Copilot fortgeschritten und rechtssicher – inklusive Workflows, Einstellungsmöglichkeiten, Agenten, Copilot Studio und sensiblen Datenklassen; auf Wunsch inklusive Admin-Einstellungen",
+      "Sie identifizieren, bewerten und priorisieren Use Cases anhand eines festen Schemas – und leiten daraus Best Practices für den eigenen Rollout ab",
       "Sie planen ein eigenes Copilot-Adoption-Programm: Rollen, Komponenten, Zeithorizont, Budget und Erfolgsmetriken – mit echten Zahlen Ihres Unternehmens",
       "Sie holen Skeptiker, Pragmatiker und Power User mit jeweils passender Argumentation und Didaktik ab und führen interne Trainings, Lernreisen und Office Hours souverän",
-      "Sie meistern realistische Stakeholder-Gespräche mit Betriebsrat, Datenschutz und Fachabteilungen – aus den Simulationen am dritten Tag",
-      "Sie verfügen über die komplette Materialbibliothek (Decks, Übungen, Templates, FAQs, Intranet-Texte) zur freien internen Nutzung",
-      "Sie sind nach den vier Tagen weiter angebunden: Community of Practice, Material- und Update-Pool und bedarfsorientierte Online-Workshops halten Ihren Wissensstand auch in Monat 6 und 12"
+      "Sie meistern realistische Stakeholder-Gespräche mit Betriebsrat, Datenschutz und Fachabteilungen – aus den Simulationen am zweiten Tag",
+      "Sie verfügen über die komplette Materialbibliothek (Decks, Übungen, Templates, FAQs für das Intranet, Schulungsunterlagen für Endanwender) zur freien internen Nutzung",
+      "Sie sind nach den zwei Tagen weiter angebunden: Community of Practice, Material- und Update-Pool und bedarfsorientierte Online-Workshops halten Ihren Wissensstand auch in Monat 6 und 12"
     ],
     businessImpact: [
       "Adoption-Programme werden plan- und steuerbar: Sie wissen, welche Hebel wann wirken und welche Investitionen lohnen – aufbauend auf unserem [Leitfaden für die Copilot-Einführung im Unternehmen](/wissen/copilot-im-unternehmen-einfuehren-leitfaden)",
@@ -272,8 +275,8 @@ export const trainings: Training[] = [
       "Multiplikatoren tragen den Change im Alltag: in der Kaffeeküche, im Teams-Chat, in der Übersetzung neuer Features in den eigenen Prozess – die Wirkungen, die [unser Fachartikel zur Inhouse-Change-Begleitung](/wissen/interne-copilot-trainer-ausbilden) ausführlich beschreibt",
       "Sie etablieren ein dauerhaftes Lern-Ökosystem statt einmaliger Workshop-Events – Verhaltensänderung wird wahrscheinlicher, Risiken im Umgang mit KI sinken sichtbar"
     ],
-    metaTitle: "Train-the-Trainer Copilot – Multiplikatoren ausbilden (4 Tage) | copilotenschule.de",
-    metaDescription: "4-tägige Train-the-Trainer Ausbildung für Copilot-Multiplikatoren, Ambassadoren und AI Change Verantwortliche. Mit Trainings-Decks, Adoption-Konzept und Didaktik. Inhouse oder offen.",
+    metaTitle: "Train-the-Trainer Copilot – Multiplikatoren ausbilden (2 Tage) | copilotenschule.de",
+    metaDescription: "2-tägige Train-the-Trainer Ausbildung (2 x 7 Stunden) für Copilot-Multiplikatoren, Ambassadoren und AI Change Verantwortliche. Mit Trainings-Decks, Adoption-Konzept und Didaktik. Inhouse oder offen.",
     keywords: [
       "Train the Trainer Copilot",
       "Copilot Trainer Ausbildung",
@@ -282,27 +285,32 @@ export const trainings: Training[] = [
       "AI Change Manager Schulung",
       "Copilot Adoption Programm aufbauen",
       "interne Copilot Trainer schulen",
-      "Microsoft Copilot Train the Trainer"
+      "Microsoft Copilot Train the Trainer",
+      "Copilot Train the Trainer 2 Tage"
     ],
     faqs: [
       {
         question: "Wir wollen Copilot intern selbst trainieren – wie bauen wir dafür kompetente Multiplikatoren auf?",
-        answer: "Multiplikatoren brauchen drei Dinge gleichzeitig: eigene fortgeschrittene Praxis mit Copilot, ein klares Bild davon wie ein Adoption-Programm funktioniert, und didaktische Werkzeuge für unterschiedliche Zielgruppen. Diese drei Kompetenzfelder verzahnen wir an jedem der vier Tage – statt sie in getrennte Blöcke zu sortieren. Sie verlassen das Training mit echtem Können, einem Adoption-Plan für Ihr Unternehmen und einer kompletten Materialbibliothek (Decks, Übungen, FAQs), die Sie intern frei einsetzen dürfen. Ein ausführliches Bild der Inhouse-Multiplikator-Logik finden Sie in unserem Beitrag zu [interne Copilot-Trainer ausbilden](/wissen/interne-copilot-trainer-ausbilden)."
+        answer: "Multiplikatoren brauchen drei Dinge gleichzeitig: eigene fortgeschrittene Praxis mit Copilot, ein klares Bild davon wie ein Adoption-Programm funktioniert, und didaktische Werkzeuge für unterschiedliche Zielgruppen. Diese drei Kompetenzfelder verzahnen wir an beiden Tagen – statt sie in getrennte Blöcke zu sortieren. Sie verlassen das Training mit echtem Können, einem Adoption-Plan für Ihr Unternehmen und einer kompletten Materialbibliothek (Decks, Übungen, FAQs), die Sie intern frei einsetzen dürfen. Ein ausführliches Bild der Inhouse-Multiplikator-Logik finden Sie in unserem Beitrag zu [interne Copilot-Trainer ausbilden](/wissen/interne-copilot-trainer-ausbilden)."
+      },
+      {
+        question: "Warum reichen zwei Tage, wenn es doch um so viele Themen geht?",
+        answer: "Weil wir Inhalte verdichten statt streichen. Statt Praxis, Recht, Didaktik und Adoption in getrennte Blöcke zu sortieren, verzahnen wir sie an beiden Tagen eng miteinander – ganz so, wie Multiplikatoren später auch im Alltag zwischen einem komplexen Prompt, einer Rechtsfrage und einem Skeptiker-Argument wechseln müssen. Ergänzt wird das kompakte Präsenzformat durch die Materialbibliothek zum Selbststudium, die Community of Practice und bedarfsorientierte Online-Workshops danach – so bleibt kein Inhalt auf der Strecke, nur der Kalenderaufwand sinkt."
       },
       {
         question: "Was ist der Unterschied zur Ausbildung zum KI-unterstützten Wissensarbeiter?",
         answer: "Die Wissensarbeiter-Ausbildung macht Sie zum Power User. Train-the-Trainer geht eine Stufe weiter: Hier lernen Sie, andere zu Power Usern zu machen. Sie vertiefen die eigene Praxis, lernen aber zusätzlich Adoption-Architektur, Change Management und Didaktik – und bekommen die kompletten Trainingsunterlagen, die wir selbst nutzen, zur freien internen Verwendung."
       },
       {
-        question: "Was passiert konkret an Tag 1 bis Tag 4?",
-        answer: "Tag 1 fokussiert die eigene Copilot-Praxis im Microsoft-365-Ökosystem mit didaktischer Reflexion und einer kurzen Lehrprobe. Tag 2 vertieft Workflows, Use Cases, Teilautomatisierung sowie Agenten und Copilot Studio. Tag 3 widmet sich rechtssicherer Praxis (DSGVO, EU AI Act, Datenklassifizierung) und realistischen Stakeholder-Simulationen. Tag 4 entwickelt mit echten Zahlen Ihres Unternehmens das eigene Adoption-Programm, definiert Kennzahlen und erstellt eine Roadmap mit konkreten To-dos."
+        question: "Was passiert konkret an Tag 1 und Tag 2?",
+        answer: "Tag 1 startet mit der Herleitung von reiner Chatbot-Nutzung zu echter KI-unterstützter Arbeit und vertieft danach die eigene Copilot-Praxis: Funktionalität, Workflows, Einstellungsmöglichkeiten, Use Cases, Teilautomatisierung sowie Agenten und Copilot Studio, mit didaktischer Reflexion und einer kurzen Lehrprobe – auf Wunsch inklusive Admin-Einstellungen. Tag 2 widmet sich rechtssicherer Praxis (Datenschutz, Urheberrecht, EU AI Act, Datenklassifizierung) und realistischen Stakeholder-Simulationen. Im zweiten Teil identifizieren und bewerten Teilnehmende Use Cases anhand eines festen Schemas, leiten Best Practices für den Rollout ab und entwickeln mit echten Zahlen Ihres Unternehmens das eigene Adoption-Programm inklusive Kennzahlen und Roadmap."
       },
       {
         question: "Bekommen wir wirklich die kompletten Trainings-Decks und Materialien zur freien Nutzung?",
-        answer: "Ja. Wir möchten, dass Ihre Copilot-Einführung erfolgreich wird – und das gelingt am besten, wenn Sie nach dem Training nicht alles neu erfinden müssen. Sie erhalten unsere Trainings-Decks (PPTX), Übungsaufgaben, Kommunikations- und Change-Templates, fertige FAQ-Sammlungen und Infomaterialien fürs Intranet. Diese Materialien dürfen Sie intern beliebig anpassen und einsetzen. Eine Prompt-Bibliothek bauen Sie im Training mit Ihren echten Anwendungsfällen selbst – das ist mehr wert als jede vorgefertigte Sammlung."
+        answer: "Ja. Wir möchten, dass Ihre Copilot-Einführung erfolgreich wird – und das gelingt am besten, wenn Sie nach dem Training nicht alles neu erfinden müssen. Sie erhalten unsere Trainings-Decks (PPTX), Übungsaufgaben, Kommunikations- und Change-Templates, fertige FAQ-Sammlungen fürs Intranet und Schulungsunterlagen für Endanwender. Diese Materialien dürfen Sie intern beliebig anpassen und einsetzen. Eine Prompt-Bibliothek bauen Sie im Training mit Ihren echten Anwendungsfällen selbst – das ist mehr wert als jede vorgefertigte Sammlung."
       },
       {
-        question: "Was passiert nach den vier Tagen – und wie bleiben unsere Multiplikatoren auf Stand?",
+        question: "Was passiert nach den zwei Tagen – und wie bleiben unsere Multiplikatoren auf Stand?",
         answer: "Zwei Bausteine tragen die Begleitung. Erstens eine Community of Practice, in der ausgebildete Multiplikatoren aus unterschiedlichen Unternehmen Use Cases teilen, sich vor wichtigen internen Vorhaben Sparring holen und Erfahrungsaustausch betreiben, der zwischen Wettbewerbern selten entsteht. Zweitens ein laufend gepflegter Material- und Update-Pool: Microsoft entwickelt Copilot dynamisch weiter; über den Pool bleiben Ihre Multiplikatoren auf einem Stand, den ein einmaliges Zertifikat strukturell nicht halten könnte. Ergänzend bieten wir bedarfsorientierte Online-Workshops und auf Wunsch Begleitung beim eigentlichen Rollout."
       },
       {
@@ -315,7 +323,7 @@ export const trainings: Training[] = [
       },
       {
         question: "Wie überzeuge ich die Geschäftsleitung, in eine Train-the-Trainer-Ausbildung zu investieren?",
-        answer: "Das stärkste Argument ist Skalierung: Wenn Sie 1.000 Mitarbeitende zu Copilot-Profis machen wollen, sind externe Schulungen für jeden schlicht zu teuer und zu zähflüssig. Mit zwei bis fünf intern ausgebildeten Multiplikatoren können Sie den Großteil der Trainings selbst stemmen – und behalten zusätzlich Adoption-Steuerung, Use-Case-Pflege und Anwender-Support im Haus. Verhaltensänderung gelingt mit vertrauten Gesichtern aus dem eigenen Unternehmen messbar besser als mit Externen, gerade in der entscheidenden Phase nach dem Training."
+        answer: "Das stärkste Argument ist Skalierung: Wenn Sie 1.000 Mitarbeitende zu Copilot-Profis machen wollen, sind externe Schulungen für jeden schlicht zu teuer und zu zähflüssig. Mit zwei bis fünf intern ausgebildeten Multiplikatoren können Sie den Großteil der Trainings selbst stemmen – und behalten zusätzlich Adoption-Steuerung, Use-Case-Pflege und Anwender-Support im Haus. Verhaltensänderung gelingt mit vertrauten Gesichtern aus dem eigenen Unternehmen messbar besser als mit Externen, gerade in der entscheidenden Phase nach dem Training. Da das kompakte Format nur zwei Arbeitstage bindet, sinkt zusätzlich die Hürde, gute Multiplikatoren überhaupt aus dem Tagesgeschäft freizustellen."
       }
     ],
     relatedWorkshops: ["copilot-strategie-change-management", "copilot-launch-eventtag"],

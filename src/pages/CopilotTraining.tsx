@@ -941,7 +941,7 @@ const CopilotTraining = () => {
             </CardHeader>
             <CardContent>
               <p className="text-sm">
-                Champions brauchen mehr als Copilot-Praxis – sie müssen auch Adoption-Programme planen und unterschiedliche Zielgruppen didaktisch abholen können. Genau dafür haben wir unsere <Link to="/trainings/train-the-trainer-copilot" className="text-primary font-semibold hover:underline">Train-the-Trainer Ausbildung</Link> aufgesetzt: vier Tage Vollzeit, drei Dimensionen (eigene Praxis, Adoption-Architektur, Didaktik) und das vollständige Material-Kit zur freien internen Nutzung. Buchbar als geschlossene Inhouse-Gruppe oder als offenes Training mit Multiplikator:innen aus anderen Firmen.
+                Champions brauchen mehr als Copilot-Praxis – sie müssen auch Adoption-Programme planen und unterschiedliche Zielgruppen didaktisch abholen können. Genau dafür haben wir unsere <Link to="/trainings/train-the-trainer-copilot" className="text-primary font-semibold hover:underline">Train-the-Trainer Ausbildung</Link> aufgesetzt: zwei Tage (2 x 7 Stunden), drei Dimensionen (eigene Praxis, Adoption-Architektur, Didaktik) und das vollständige Material-Kit zur freien internen Nutzung. Buchbar als geschlossene Inhouse-Gruppe oder als offenes Training mit Multiplikator:innen aus anderen Firmen.
               </p>
             </CardContent>
           </Card>

@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 const SLUG = "interne-copilot-trainer-ausbilden";
 const PAGE_TITLE = "Wir bilden Ihre internen Copilot-Multiplikatoren aus. Wie gute Inhouse-Change-Begleitung im Alltag den Unterschied macht";
-const PAGE_DESCRIPTION = "Interne Copilot-Multiplikatoren tragen den Change im Alltag und schlagen die Brücke zwischen Trainings und Anwenderpraxis. Was die Copilotenschule-Train-the-Trainer-Ausbildung in vier Tagen plus Begleitung bewirkt.";
+const PAGE_DESCRIPTION = "Interne Copilot-Multiplikatoren tragen den Change im Alltag und schlagen die Brücke zwischen Trainings und Anwenderpraxis. Was die Copilotenschule-Train-the-Trainer-Ausbildung in zwei Tagen (2 x 7 Stunden) plus Begleitung bewirkt.";
 
 const InterneCopilotTrainerAusbilden = () => {
   const martinLang = getAuthor("martin-lang")!;
@@ -21,10 +21,10 @@ const InterneCopilotTrainerAusbilden = () => {
   const tableOfContents = [
     { id: "was-multiplikatoren-tun", title: "Was Multiplikatoren im Rollout wirklich tun", level: 2 },
     { id: "budget-realismus", title: "Multiplikatoren aus Budget-Realismus", level: 2 },
-    { id: "warum-vier-tage", title: "Warum die Ausbildung vier Tage braucht – und verzahnt ist", level: 2 },
-    { id: "curriculum", title: "Was an Tag 1 bis 4 passiert", level: 2 },
+    { id: "warum-zwei-tage", title: "Warum die Ausbildung zwei Tage braucht – und verzahnt ist", level: 2 },
+    { id: "curriculum", title: "Was an Tag 1 und Tag 2 passiert", level: 2 },
     { id: "wen-schicken", title: "Wen Sie ins Training schicken sollten", level: 2 },
-    { id: "begleitung", title: "Was nach den vier Tagen kommt – die fortlaufende Begleitung", level: 2 },
+    { id: "begleitung", title: "Was nach den zwei Tagen kommt – die fortlaufende Begleitung", level: 2 },
     { id: "zusammenspiel", title: "Wie Multiplikatoren und externe Trainings ineinandergreifen", level: 2 },
     { id: "naechster-schritt", title: "Der nächste Schritt", level: 2 },
     { id: "faq", title: "Häufig gestellte Fragen", level: 2 },
@@ -36,8 +36,8 @@ const InterneCopilotTrainerAusbilden = () => {
       answer: "Sie sorgen dafür, dass das Gelernte nicht verblasst, sondern im Arbeitsalltag ankommt. Sie treiben die Adoption in den Abteilungen voran und unterstützen dort, wo Trainingsbudgets nicht ausreichen."
     },
     {
-      name: "Vier Tage wirken lang – warum nicht kürzer?",
-      answer: "Weil drei Kompetenzfelder parallel aufgebaut werden müssen: Praxis, Adoption-Verständnis und Didaktik."
+      name: "Zwei Tage wirken kompakt – reicht das für so viele Themen?",
+      answer: "Ja, weil wir Praxis, Adoption-Verständnis, Rechtssicherheit und Didaktik an beiden Tagen eng verzahnen, statt sie in isolierte Blöcke zu sortieren – ergänzt durch die Materialbibliothek, die Community of Practice und bedarfsorientierte Online-Workshops danach."
     },
     {
       name: "Wie greifen interne Multiplikatoren und externe Trainings ineinander?",
@@ -70,7 +70,7 @@ const InterneCopilotTrainerAusbilden = () => {
           "@id": "https://copilotenschule.de/#organization"
         },
         "datePublished": "2026-04-28",
-        "dateModified": "2026-04-28",
+        "dateModified": "2026-07-02",
         "keywords": ["Train the Trainer Copilot", "Copilot Multiplikatoren ausbilden", "Copilot Ambassador Programm", "AI Change Begleitung", "Copilot Adoption Multiplikatoren", "Copilot Rollout Begleitung", "Microsoft Copilot Multiplikator"],
         "articleSection": "Enablement & Adoption",
         "mainEntityOfPage": {
@@ -113,7 +113,7 @@ const InterneCopilotTrainerAusbilden = () => {
         schema={schema}
         author={martinLang}
         publishedTime="2026-04-28T10:00:00+02:00"
-        modifiedTime="2026-04-28T10:00:00+02:00"
+        modifiedTime="2026-07-02T10:00:00+02:00"
       />
 
       <ContentLayout
@@ -123,7 +123,7 @@ const InterneCopilotTrainerAusbilden = () => {
         ]}
         title={PAGE_TITLE}
         description={PAGE_DESCRIPTION}
-        lastUpdated="28. April 2026"
+        lastUpdated="2. Juli 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
         relatedContent={[
@@ -142,7 +142,7 @@ const InterneCopilotTrainerAusbilden = () => {
           </CardHeader>
           <CardContent>
             <p className="text-base leading-relaxed">
-              Ein Copilot-Rollout lebt von zwei Pfeilern: starken Trainings, die fachliche Tiefe und Begeisterung schaffen, und internen Multiplikatoren, die den Change im Arbeitsalltag begleiten. Idealerweise ersetzen Inhouse-Multiplikatoren keine Trainings – sie sind der Anker dazwischen. Sie sind in der Kaffeeküche greifbar, übersetzen neue Funktionen in die eigene Sprache und tragen den Pulsschlag des Rollouts auch in den Wochen zwischen Lernanlässen. Wer Multiplikatoren aufbauen möchte, sollte das mit derselben Sorgfalt tun wie ein gutes Training. Wir bilden seit Jahren unsere eigenen Trainerinnen und Trainer in vier Tagen Vollzeit plus Online-Begleitung aus – mit verzahnter Didaktik und Fachlichkeit, mit Lehrproben, mit einer kompletten Materialbibliothek und einer fortlaufenden Begleitung über Community of Practice und Update-Pool. Genau dieses Programm öffnen wir jetzt auch für Firmenkunden, die ihre eigenen Copilot-Multiplikatoren mit derselben Sorgfalt aufbauen wollen.
+              Ein Copilot-Rollout lebt von zwei Pfeilern: starken Trainings, die fachliche Tiefe und Begeisterung schaffen, und internen Multiplikatoren, die den Change im Arbeitsalltag begleiten. Idealerweise ersetzen Inhouse-Multiplikatoren keine Trainings – sie sind der Anker dazwischen. Sie sind in der Kaffeeküche greifbar, übersetzen neue Funktionen in die eigene Sprache und tragen den Pulsschlag des Rollouts auch in den Wochen zwischen Lernanlässen. Wer Multiplikatoren aufbauen möchte, sollte das mit derselben Sorgfalt tun wie ein gutes Training. Wir bilden seit Jahren unsere eigenen Trainerinnen und Trainer in zwei Tagen à 7 Stunden plus Online-Begleitung aus – mit verzahnter Didaktik und Fachlichkeit, mit Lehrproben, mit einer kompletten Materialbibliothek und einer fortlaufenden Begleitung über Community of Practice und Update-Pool. Genau dieses Programm öffnen wir jetzt auch für Firmenkunden, die ihre eigenen Copilot-Multiplikatoren mit derselben Sorgfalt aufbauen wollen.
             </p>
           </CardContent>
         </Card>
@@ -186,34 +186,28 @@ const InterneCopilotTrainerAusbilden = () => {
           </div>
         </section>
 
-        {/* Warum vier Tage */}
-        <section id="warum-vier-tage" className="mb-4 mt-2">
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">Warum die Ausbildung vier Tage braucht – und verzahnt ist</h2>
+        {/* Warum zwei Tage */}
+        <section id="warum-zwei-tage" className="mb-4 mt-2">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">Warum die Ausbildung zwei Tage braucht – und verzahnt ist</h2>
           <div className="prose prose-lg max-w-none dark:prose-invert mb-4">
             <p>
-              Wer am Tag nach der Ausbildung im eigenen Haus zwischen einer Skeptikerrunde, einem Power User und einem Adoption-Gespräch mit der Geschäftsleitung wechselt, benötigt drei Kompetenzfelder gleichzeitig: fortgeschrittene Copilot-Praxis, ein belastbares Verständnis von Adoption-Programmen und didaktisches Werkzeug für unterschiedliche Zielgruppen. Diese drei Dimensionen lassen sich seriös nicht in einem Tag aufbauen.
+              Wer am Tag nach der Ausbildung im eigenen Haus zwischen einer Skeptikerrunde, einem Power User und einem Adoption-Gespräch mit der Geschäftsleitung wechselt, benötigt mehrere Kompetenzfelder gleichzeitig: fortgeschrittene Copilot-Praxis, rechtssicheres Grundwissen, ein belastbares Verständnis von Adoption-Programmen und didaktisches Werkzeug für unterschiedliche Zielgruppen. Diese Kompetenzfelder lassen sich in einem einzigen Tag nicht seriös aufbauen – zwei fokussierte Tage à 7 Stunden reichen dafür aus, wenn die Inhalte konsequent verzahnt statt in isolierte Blöcke sortiert werden.
             </p>
             <p>
-              Deshalb verzahnen wir diese Dimensionen täglich, statt sie zu trennen. Ein typischer Vormittag bewegt sich zwischen fachlicher Vertiefung, didaktischer Reflexion und Elementen der Adoption-Architektur. Am Ende der vier Tage entsteht ein integriertes Bild davon, wie Lernen, Werkzeug und Programmlogik zusammenwirken.
+              Deshalb verzahnen wir diese Dimensionen an beiden Tagen, statt sie zu trennen: Jeder Tag bewegt sich zwischen fachlicher Vertiefung, didaktischer Reflexion und Elementen der Adoption-Architektur beziehungsweise Rechtssicherheit. Ergänzt wird das kompakte Präsenzformat durch die Materialbibliothek zum Selbststudium, die Community of Practice und bedarfsorientierte Online-Workshops im Nachgang. Am Ende der zwei Tage entsteht ein integriertes Bild davon, wie Lernen, Werkzeug und Programmlogik zusammenwirken.
             </p>
           </div>
         </section>
 
         {/* Curriculum */}
         <section id="curriculum" className="mb-4 mt-2">
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">Was an Tag 1 bis 4 passiert</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">Was an Tag 1 und Tag 2 passiert</h2>
           <div className="prose prose-lg max-w-none dark:prose-invert mb-4">
             <p>
-              Der erste Tag fokussiert die eigene Praxis. Selbst erfahrene Nutzer entdecken Funktionen, Nutzungsszenarien und Wissenslücken im Microsoft-365- und Copilot-Ökosystem. Parallel reflektieren wir didaktisch, wie diese Inhalte vermittelt werden können. Der Tag endet mit einer kurzen Lehrprobe.
+              Der erste Tag beginnt mit der Herleitung: Warum reines „etwas in den Chat tippen" zu kurz greift und was echte KI-unterstützte Arbeit stattdessen ausmacht – das gedankliche Fundament, das Multiplikatoren später selbst weitergeben müssen. Darauf folgt die eigene Praxis. Selbst erfahrene Nutzer entdecken Funktionalität, Workflows und Einstellungsmöglichkeiten im Microsoft-365- und Copilot-Ökosystem, vertiefen Use Cases und Teilautomatisierung von Prozessen und behandeln Agenten und Copilot Studio sowie die Anbindung statischer und dynamischer Quellen – verständlich für technisch interessierte Büroanwender. Auf Wunsch bauen wir zusätzlich ein Modul zu den Admin-Einstellungen im Copilot Admin Center ein. Parallel reflektieren wir didaktisch, wie diese Inhalte vermittelt werden können. Der Tag endet mit einer kurzen Lehrprobe.
             </p>
             <p>
-              Der zweite Tag vertieft Workflows, Use Cases und Teilautomatisierung von Prozessen. Wir behandeln Agenten und Copilot Studio, sichere Verbreitungsprozesse sowie die Anbindung statischer und dynamischer Quellen – verständlich für technisch interessierte Büroanwender.
-            </p>
-            <p>
-              Der dritte Tag fokussiert rechtssichere Praxis und typische Konfliktzonen: DSGVO, EU AI Act, Datenklassifizierung und sensible Daten. Zudem bearbeiten wir den Umgang mit Widerständen und führen realistische Stakeholder-Simulationen durch. Teilnehmende erarbeiten Workshops und Checklisten für den praktischen Einsatz im Rollout.
-            </p>
-            <p>
-              Der vierte Tag widmet sich dem Adoption- und Change-Prozess. Wir zeigen, wie Use Cases identifiziert und bewertet werden und wie diese Fähigkeit in die Organisation getragen wird. Die Teilnehmenden entwickeln ihr eigenes Programm, definieren relevante Kennzahlen und erstellen eine erste Roadmap mit konkreten To-dos. Wer einen methodischen Hintergrund zur didaktischen Architektur sucht, findet in unserem Beitrag zum{" "}
+              Der zweite Tag startet mit einem kompakten Überblick über Datenschutz, Urheberrecht und EU AI Act im Bezug auf die Copilot-Nutzung, inklusive Datenklassifizierung und sensibler Daten. Zudem bearbeiten wir den Umgang mit Widerständen und führen realistische Stakeholder-Simulationen durch. Im zweiten Teil identifizieren und bewerten Teilnehmende Use Cases anhand eines festen Bewertungsschemas und leiten daraus Best Practices für den eigenen Rollout ab. Darauf aufbauend entwickeln sie ihr eigenes Adoption-Programm, definieren relevante Kennzahlen und erstellen eine erste Roadmap mit konkreten To-dos. Wer einen methodischen Hintergrund zur didaktischen Architektur sucht, findet in unserem Beitrag zum{" "}
               <Link to="/wissen/copilot-lernreise-vs-tagesschulung" className="text-primary hover:underline font-medium">
                 Vergleich zwischen Lernreise und Tagesschulung
               </Link>{" "}
@@ -228,7 +222,7 @@ const InterneCopilotTrainerAusbilden = () => {
           <Card className="bg-amber-50 dark:bg-amber-950/30 border-amber-200 dark:border-amber-800 mb-4">
             <CardContent className="pt-6">
               <p className="text-amber-900 dark:text-amber-200 leading-relaxed text-sm">
-                <strong>Was Teilnehmende mitnehmen:</strong> Unsere kompletten Trainings-Decks (PPTX) zur freien internen Nutzung, fertige Übungsaufgaben, Kommunikations- und Change-Templates, FAQ-Sammlungen sowie Infomaterialien fürs Intranet. Eine Prompt-Bibliothek bauen Sie im Training mit echten Anwendungsfällen aus Ihrer Organisation – das ist mehr wert als jede vorgefertigte Liste.
+                <strong>Was Teilnehmende mitnehmen:</strong> Unsere kompletten Trainings-Decks (PPTX) zur freien internen Nutzung, fertige Übungsaufgaben, Kommunikations- und Change-Templates, FAQ-Sammlungen fürs Intranet sowie Schulungsunterlagen für Endanwender. Eine Prompt-Bibliothek bauen Sie im Training mit echten Anwendungsfällen aus Ihrer Organisation – das ist mehr wert als jede vorgefertigte Liste.
               </p>
             </CardContent>
           </Card>
@@ -286,7 +280,7 @@ const InterneCopilotTrainerAusbilden = () => {
 
         {/* Begleitung */}
         <section id="begleitung" className="mb-4 mt-2">
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">Was nach den vier Tagen kommt – die fortlaufende Begleitung</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">Was nach den zwei Tagen kommt – die fortlaufende Begleitung</h2>
           <div className="prose prose-lg max-w-none dark:prose-invert mb-4">
             <p>
               Der erste Baustein ist eine Community of Practice der ausgebildeten Multiplikatoren.
@@ -329,7 +323,7 @@ const InterneCopilotTrainerAusbilden = () => {
             <CardContent className="pt-6">
               <h3 className="text-xl font-bold mb-3">Train-the-Trainer Copilot: Multiplikator:innen mit Tiefe ausbilden</h3>
               <p className="text-base leading-relaxed mb-4">
-                Vier Tage Vollzeit, drei verzahnte Dimensionen, komplette Materialbibliothek zur internen Nutzung – ergänzt durch fortlaufende Begleitung.
+                Zwei Tage (2 x 7 Stunden), drei verzahnte Dimensionen, komplette Materialbibliothek zur internen Nutzung – ergänzt durch fortlaufende Begleitung.
               </p>
               <Link
                 to="/trainings/train-the-trainer-copilot"
