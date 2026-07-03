@@ -73,7 +73,7 @@ const moduleCategories: ModuleCategory[] = [
       { id: "usecase-workshop", title: "Use Case Workshop: 10+ reale Szenarien aus Vertrieb, Marketing, HR, Finance", tiers: ["paid"], category: "m365-advanced" },
       { id: "peer-learning", title: "Peer Learning & Gruppenarbeit: Best Practices teilen, gemeinsam Probleme lösen", tiers: ["paid"], category: "m365-advanced" },
       { id: "certificate", title: "Zertifikat: Nachweis Ihrer KI-Kompetenz für HR und Personalentwicklung", tiers: ["paid"], category: "m365-advanced" },
-      { id: "bessere-entscheidungen", title: "Bessere Entscheidungen mit Copilot: Bias, Noise und Entscheidungsqualität", tiers: ["paid"], category: "m365-advanced", note: "Dozentin: Saskia Kaden, Agile Coach & systemische Beraterin" },
+      { id: "bessere-entscheidungen", title: "Bessere Entscheidungen mit Copilot: Bias, Noise und Entscheidungsqualität", tiers: ["paid"], category: "m365-advanced", note: "Dozentin: Saskia Kaden, Lead Trainerin Online" },
     ]
   },
   {
@@ -89,7 +89,7 @@ const moduleCategories: ModuleCategory[] = [
       { id: "woche6", title: "Copilot in Teams + Use Case: Meeting-Follow-ups automatisieren", tiers: ["paid"], category: "lernreise" },
       { id: "woche7", title: "Advanced Prompting + Use Case: Persönliche Prompt-Bibliothek", tiers: ["paid"], category: "lernreise" },
       { id: "woche8", title: "Integration & Workflow + Use Case: End-to-End-Workflow entwickeln", tiers: ["paid"], category: "lernreise" },
-      { id: "bessere-entscheidungen-lernreise", title: "Bessere Entscheidungen mit Copilot: Bias, Noise und Entscheidungsqualität (auch als 4h-Workshop buchbar)", tiers: ["paid"], category: "lernreise", note: "Dozentin: Saskia Kaden, Agile Coach & systemische Beraterin" },
+      { id: "bessere-entscheidungen-lernreise", title: "Bessere Entscheidungen mit Copilot: Bias, Noise und Entscheidungsqualität (auch als 4h-Workshop buchbar)", tiers: ["paid"], category: "lernreise", note: "Dozentin: Saskia Kaden, Lead Trainerin Online" },
     ]
   },
   {
