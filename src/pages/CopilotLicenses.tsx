@@ -192,6 +192,16 @@ const CopilotLicenses = () => {
           </Card>
         </section>
 
+        {/* Kontextueller Hinweis: Trainings */}
+        <div className="mb-6 p-4 bg-muted/40 border rounded-lg text-sm">
+          <p className="text-muted-foreground">
+            <strong className="text-foreground">Lizenzen gekauft, aber nur 20 % nutzen Copilot aktiv?</strong>{" "}
+            Der ROI entsteht erst durch Befähigung: praxisnahe{" "}
+            <Link to="/trainings" className="text-primary hover:underline font-medium">Microsoft Copilot Trainings für Unternehmen</Link>{" "}
+            machen aus Lizenzkosten produktive Teams.
+          </p>
+        </div>
+
         <section id="overview">
           <h2 className="text-2xl md:text-3xl font-bold mb-3">Überblick Microsoft Copilot Lizenzen</h2>
           <p>

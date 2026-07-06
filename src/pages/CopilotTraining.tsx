@@ -212,6 +212,13 @@ const CopilotTraining = () => {
           <p className="mt-4">
             Für einen maßgeschneiderten Mix ist der <Link to="/training-konfigurator" className="text-primary hover:underline">Training-Konfigurator</Link> der richtige Einstieg – dort stellen Sie Ihr Training aus einzelnen Modulen selbst zusammen.
           </p>
+          <div className="mt-4 p-4 bg-muted/40 border rounded-lg text-sm">
+            <p className="text-muted-foreground">
+              <strong className="text-foreground">Sie suchen ein passendes Format für Ihr Team?</strong>{" "}
+              Alle <Link to="/trainings" className="text-primary hover:underline font-medium">Microsoft Copilot Trainings für Unternehmen</Link>{" "}
+              im Überblick – oder <Link to="/trainings#contact" className="text-primary hover:underline font-medium">direkt unverbindlich anfragen</Link>.
+            </p>
+          </div>
         </section>
 
         {/* Sektion 1: Warum Training */}

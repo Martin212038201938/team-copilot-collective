@@ -147,6 +147,16 @@ const CopilotInExcelAktivieren = () => {
           </CardContent>
         </Card>
 
+        {/* Kontextueller Hinweis: Trainings */}
+        <div className="mb-6 p-4 bg-muted/40 border rounded-lg text-sm">
+          <p className="text-muted-foreground">
+            <strong className="text-foreground">Aktiviert ist Copilot schnell – produktiv genutzt wird er selten von allein.</strong>{" "}
+            Damit Ihr Team nach der Freischaltung nicht bei leeren Prompts hängen bleibt: praxisnahe{" "}
+            <Link to="/trainings" className="text-primary hover:underline font-medium">Microsoft Copilot Trainings für Unternehmen</Link>{" "}
+            – inhouse, online oder als Lernreise.
+          </p>
+        </div>
+
         {/* Einleitung */}
         <div className="prose prose-lg max-w-none dark:prose-invert mb-6">
           <p>

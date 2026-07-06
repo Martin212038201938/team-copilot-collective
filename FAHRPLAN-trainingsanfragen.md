@@ -8,6 +8,12 @@ Stand: 06.07.2026 · Verantwortlich: Claude (Umsetzung) + Martin (Review/Freigab
 
 **Ahrefs (Site Explorer):** Domain rankt für kein transaktionales Trainings-Keyword in den Top 100. Stärken sind rein informational: copilot lizenz (Pos. 1), copilot word / word copilot / outlook copilot (Pos. 1), copilot in excel (Pos. 10, Vol. 500), copilot kosten (Pos. 13, Vol. 800).
 
+**Clarity-Baseline (30 Tage, erhoben 06.07.2026):**
+- Trichter "Lead-Reise SEO → Angebot → Kontakt": 1.163 Sitzungen auf Wissensartikeln (55 % des Traffics), **0 %** erreichen Schritt 2 (Trainings/Konfigurator) — die Brücke Wissen→Angebot existiert faktisch nicht.
+- Formular-Anfragen: ~6/Monat ("Formular absenden": 6, "Kontaktieren Sie uns": 8 Sitzungen).
+- Ø-Scrolltiefe ~38 % → CTAs am Artikelende werden von der Mehrheit nie gesehen; CTAs gehören ins obere Drittel.
+- Referrer dominiert von google.com (956 Sitzungen).
+
 **Repo-Befunde:**
 - `/trainings` (UnsereAngebote.tsx) enthält **kein Kontakt-/Anfrage-Element** — die wichtigste transaktionale Seite hat keinen Conversion-Pfad außer Konfigurator/Workshops.
 - 5 interne Links zeigen auf `/unsere-angebote`, das nur per clientseitigem `<Navigate>` auf `/trainings` umleitet — für Crawler ein schwaches Signal, Linkkraft geht verloren.

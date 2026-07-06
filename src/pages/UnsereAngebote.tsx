@@ -6,6 +6,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Contact from "@/components/Contact";
 import SEOHead from "@/components/SEOHead";
 import { generateTrainingSchemas } from "@/lib/schema";
 import { trainings, type Training, type CopilotTier } from "@/data/trainings";
@@ -315,6 +316,9 @@ const UnsereAngebote = () => {
             </div>
           </div>
         </section>
+
+        {/* Anfrage-Sektion: direkter Conversion-Pfad auf der Angebotsseite */}
+        <Contact />
       </main>
 
       <Footer />
