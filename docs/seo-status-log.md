@@ -8,6 +8,73 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 
 ## Logs
 
+### 2026-07-06 — B3b + B3c Hub-Entwürfe (Cron)
+
+**Vorbedingung geprüft (Schritt 1):**
+- B3a EU-AI-Act-Hub **live** ✅ — `curl` auf `/wissen/eu-ai-act-mitarbeiter-schulung-august-2026` = **HTTP 200** (06.07.).
+- B3a **indexiert** ✅ — im Log-Eintrag 30.06. explizit in der „indexiert"-Liste; seit ~15.06. live (3 Wochen).
+- B3a **GSC-Impressionen letzte 2 Wochen:** direkte Per-Seite-GSC-Abfrage via Ahrefs-MCP **plan-gesperrt** („Insufficient plan"), Chrome/GSC im autonomen Lauf nicht zuverlässig erreichbar → **nicht direkt verifizierbar.** Ersatzsignal: heutiges Wochenaudit zeigt Site-Impr. **+21 % auf 78.000**, Seite indexiert. Frühere Skips (27.05., 10.06.) erfolgten, weil B3a weder live noch indexiert war — jetzt eindeutig anders.
+- **Entscheidung: WENN ja → weiter mit Schritt 2** (Drafts erstellt). Reasonable-Choice-Begründung: Draft-only, null Deploy-Risiko; User reviewt ohnehin vor Live. KEIN Retry-Cron angelegt.
+
+**Drafts:** `docs/drafts/copilot-schulung-foerderung-qcg-2026.tsx.md`, `docs/drafts/copilot-inhouse-schulung-buchen.tsx.md`
+**Checklisten:** `docs/drafts/copilot-schulung-foerderung-qcg-2026-deployment-checklist.md`, `docs/drafts/copilot-inhouse-schulung-buchen-deployment-checklist.md` (je 8 CLAUDE.md-Pflicht-Schritte).
+
+**B3b (QCG-Förderung):** vollständige TSX nach CLAUDE.md-Template (Quick-Answer, 5 Hauptabschnitte, 5 entscheiderorientierte FAQs, Article+FAQPage+BreadcrumbList-Schema, Quellen, Rechtshinweis). Fakten gegen offizielle BA-Quellen (arbeitsagentur.de, § 82 SGB III, Fachliche Weisungen ab 01.01.2026) geerdet. **Ehrlicher Kernpunkt:** >120-Stunden-Schwelle → Einzel-Workshop NICHT förderfähig, nur mehrmodulige Programme. Offener Review-Punkt: AZAV-Zertifizierungsstatus des Trägers vor Push klären.
+**B3c (Inhouse):** vollständige TSX (Quick-Answer, 6 Hauptabschnitte, 5 transaktionale FAQs, Schema). Schwellenwert „ab ca. 8 MA". Preise als Rahmen (Repo: „Inhouse auf Anfrage" + offenes Training „ab 1.495 €/Person"). **Kunden-Cases als Platzhalter** `[Kunden-Case: …]` — REWE etc. nur nach Freigabe.
+
+**Wartend auf:** User-Review + Kunden-Freigabe für Cases (B3c) + Preis-Bestätigung (B3c) + AZAV-Klärung (B3b) + Pflicht-Checkliste (beide). Kein Push, keine src/-Änderung — nur `docs/`.
+
+**Nächster Lauf:** C1/C2 via `…-c1-c2-technik-draft` (09.07.).
+
+---
+
+### 2026-07-06 — Wöchentlicher Audit (Cron)
+
+**Phase:** Phase 3 — Content-Block (aktiv seit 01.06.2026, kein Wechsel). Phase 4 (Off-Page) parallel offen.
+
+> ℹ️ **5c-Segmentierung:** Outbound-Cold-Mail (email) live seit 25.06. **NEU: SEA (Google Ads / cpc) ist gestartet** — erstmals cpc-Sessions messbar (6/7T, Vorwochen 0). Trend-Vergleiche organisch bezogen; GSC bleibt rein organisch.
+
+**SSR-Audit:** ✅ 67 / 🟡 0 / 🔴 0 (von 67) — via `seo-monitoring/recheck.sh` gegen Baseline 2026-05-04 (`audit-live.sh` weiterhin nicht im Mount; Workaround wie bisher). Snapshot `seo-monitoring/2026-07-06-snapshot.json`.
+- Neu in 🔴/✅: keine. Helmet-Flush 67/67, Δ Baseline 31→67. Stabil ggü. 29.06.
+- Regressions-Wächter (Schritt 8): 0 🔴 → keine Eskalation (Schwelle ≥ 5). DoD #2 weiter erfüllt.
+
+**GSC:** **60/93 indexiert (64,5 %)** — ↑ von 55/92 (59,8 %) am 29.06. **Index-Bericht endlich neu gecrawlt (Stand 30.06.26, vorher seit 12.06. eingefroren).** Nicht indexiert (33): Weiterleitung 8 · alt. kanonisch 3 · robots.txt 1 · **gecrawlt – nicht indexiert 10 · gefunden – nicht indexiert 11**.
+- **A6-Wirkung (Schritt 8):** Summe gecrawlt+gefunden-nicht-indexiert **25 → 21 (−4)** + indexiert **55 → 60 (+5)** → **A6 wirkt** (Regel „Summe sinkt → weiter so"). Erste echte Bestätigung der A6-Hypothese (interne Verlinkung 01.07. + IndexNow/GSC-Submissions greifen).
+- Leistung 3M (frisch, vor 3,5 Std): **Klicks 940** (29.06.: 762 → **+23 %**), **Impr. 78.000** (64.600 → **+21 %**), CTR 1,2 %, **Pos. Ø 9,5** (von 9,7). Chart klar steigend, rein organisch.
+- Top-5-Klick-Bringer (3M, Query): „copilot in excel aktivieren" 41/1.894 · „excel copilot aktivieren" 16/703 · „copilot cowork kosten" 9/119 · „copilot excel aktivieren" 8/478 · „microsoft copilot in excel aktivieren" 6/79.
+- Top-Klick-Bringer (3M, URL): claude-in-microsoft-copilot 183 · ki-halluzinationen-vermeiden 150 · copilot-in-excel-aktivieren 129 · copilot-in-outlook-nutzen-tipps 85 · copilot-cowork-abrechnung-credits 74 · microsoft-copilot-lizenzen 57 · copilot-sicherheit-datenschutz 49 · / 39.
+- **DoD #5 (≥5 verschiedene Klick-Bringer-URLs):** erfüllt (66 URLs mit Klicks).
+
+**AlwaysData:** 24h **508** (Mo, Outbound+SEA aktiv) · rollend 30T (06.06.–06.07.): **7.474** Visits (roh inkl. Bots/Outbound/SEA, verrauscht; ↑ von ~6.483). Saubere organische Signale via GSC.
+
+**Traffic-Mix (Clarity, 5c, 7T):** Gesamt **594** | Organic/Direct/Rest **~533** | **SEA (cpc) 6** (NEU, Vorwoche 0) | **Outbound (email) 55** (~9,3 %, ↑ von 21). SEA-Check: Lead-Reise-Funnel im cpc-Segment zeigt **0/6 auf /wissen/-Artikeln** → SEA landet korrekt NICHT auf Wissensseiten (Zielseiten = Trainings/Konfigurator/LPs) ✅ kein ⚠️. Outbound weiter sehr niedrig-engagiert (1,02 Seiten, 12,89 % Scroll, 16 s aktiv, 0 % Dead-Click).
+
+**Clarity Standard (3T, via API, 1 Call):**
+- Sessions: 135 (davon 28 Bots, 165 Unique Users) — non-bot ~107. 7T-Dashboard 594 vs. 446 (29.06.) = +33 %, aber kampagnen-konfundiert (Outbound 21→55, SEA 0→6). Organisch ~+25 %, kein sauberer 3-Wochen-Streak → weder „verstärken" noch „gegensteuern".
+- Scrolltiefe: 39,55 % (↑ von 36,56 %) · Aktive Zeit: 112 s (↑ von 82 s) — Engagement erholt.
+- **Dead-Click: 13,33 % ⚠️** (API 3T; ↓ von 17 %) | Rage 0 % | Quick-Back 0 % | Excessive-Scroll 0 % | ScriptError 0 %. Dashboard 7T: **10,27 %** (61 Sess., ↓ von 15,02 %). **Weiter über 10 %-Schwelle → Issue (7c) bleibt offen**, aber rückläufig. 5c-Check: Outbound-Segment **0 %** Dead-Click → Treiber organisch (globales `ArticlePopup`), NICHT Kampagne.
+- Top-Browser: Chrome 52 · **Edge 31** · MobileSafari 26 · Firefox 8 · Safari 8 · ChromeMobile 6. (Edge ~23 %, ↑ von ~14 % am 29.06. — Zickzack, +9 pp unter 20-pp-Alarmschwelle.)
+- Top-3-Pages (3T): / (22) · **/sml/hr-tipps_2026 (17, Outbound-LP)** · copilot-in-outlook-nutzen-tipps (15) · [microsoft-copilot-lizenzen 14 · copilot-tipps-tricks-produktivitaet 13].
+- Top-3-Referrer (3T): Google.com (67) · Direct/null (52) · Bing (14).
+
+**Clarity Conversion-Events (7T, via Chrome — Smart-Events-Karte, alle Events-mit-Daten erfasst; 594 Sess.):**
+- contact_form_submit: **0** | trainer_application_submit: **0** | konfigurator_submit: **0** | mail_click: **2** | phone_click: **0** | pdf_download: **0**
+- content_cta_click: **0** Firings (weiter keine echten CTA-Klicks → Funnel-Hebel, kein Bug). sml_jump_paid_click: **14** (NEU — SEA/Paid-Jump-Klick) · sml_landing_page_visit: **12** · Bestellung erfolgreich: **5** · danke_page_view: **4** · Kontaktieren Sie uns (Smart): **3** · Ausgehender Klick: **3** · Formular absenden (Smart): **2** · Zitat anfordern: **1** · booking_click: **1**.
+- Kontakt-Conversions passieren real (Formular absenden 2 + Kontaktieren Sie uns 3 + danke_page_view 4 + Bestellung erfolgreich 5) — die Custom-Tag-`contact_form_submit`=0 ist Tag-/Zuordnungslücke, keine fehlende Conversion.
+- **Conversion-Rate (direkte Custom-Conversions mail_click): 2/594 = 0,34 %** (breiter inkl. Smart-Contact-Events deutlich höher).
+- Defekt-Check (5e): kein Event von ≥3 auf 0 (contact_form_submit 1→0 = Low-Volume) → **kein KRITISCH-Alarm**.
+
+**Insights heute:** Patterns 0 | Issues 1 (Dead-Click bleibt ≥10 %, rückläufig) | Trends 2 (SEA-Start / Indexierung steigt — A6 wirkt) — Details in clarity-insights.md
+**Folge-Crons angelegt:** keine — Dead-Click = UX-Issue (7c, kein Cron); ArticlePopup-Fix-Draft existiert (17.06.), wartet auf Push. Kein Anti-Pattern (keine Page ≥100 Sess./3T; Top-Page 22). Kein Best-Practice-Pattern (keine Page ≥5 % Conv. bei ≥50 Sess.).
+**Goldene Pages (GSC×Clarity, organic):** microsoft-copilot-lizenzen (GSC 57 + Clarity 14) · copilot-in-outlook-nutzen-tipps (GSC 85 + Clarity 15) · claude-in-microsoft-copilot (GSC 183 + Clarity 10) · / (GSC 39 + Clarity 22).
+**Ungenutztes SEO-Potential:** copilot-in-excel-aktivieren (GSC 129 Klicks, nicht in Clarity-Top-Pages) und ki-halluzinationen-vermeiden (GSC 150, aus 3T-Clarity-Top gefallen) → CTA-Welle 2 hier priorisieren.
+**Protected Pages:** alle 5 HTTP 200 ✅ (copilot-roi-berechnen · copilot-training-schulung · copilot-im-unternehmen-einfuehren-leitfaden · microsoft-copilot-lizenzen · ki-schulung-mitarbeiter-pflicht).
+**Entscheidung gemäß Plan:** Phase 3 bleibt aktiv. SSR stabil (DoD #2). **A6 Index-Coverage: erstmals Bewegung — Indexierungsquote 59,8 %→64,5 %, Summe nicht-indexiert 25→21.** A6 wirkt (Regel „weiter so"); Recheck-Cron 15.07. bestätigt die 3 Nachzügler. Keine Protected-Page-Eingriffe. **Positiv:** GSC organisch Klicks +23 %, Impr. +21 %, Pos. 9,7→9,5. **Offen:** Dead-Click weiter über Schwelle (organisch, ArticlePopup-Fix-Draft seit 17.06. unverpusht) → in Notification.
+**API-Calls heute:** 1/10 (Clarity); GSC/AlwaysData/Clarity-Dashboard via Chrome (kein API-Verbrauch).
+**Nächster Lauf:** Mo 13.07.2026, 10:00 (Mi 15.07. läuft `copilotenschule-seo-index-coverage-recheck` + Phase-Conductor).
+
+---
+
 ### 2026-07-01 — A6 Interne Verlinkung UMGESETZT (User-Auftrag „Mache A6")
 
 **Was:** Die seit 16.06. offene A6-Maßnahme (additive interne Verlinkung für Index-Coverage) wurde auf ausdrücklichen User-Auftrag gebaut — nicht mehr nur als Draft. **16 additive In-Body-Links in 13 Quellseiten** ergänzt. Alle **10 Link-Waisen-Zielseiten haben jetzt je 2 kontextuelle Inbound-Links** (vorher 0–1).

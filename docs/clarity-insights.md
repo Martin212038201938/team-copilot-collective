@@ -205,12 +205,39 @@ nach ca. 2 Wochen Laufzeit empfohlen.
 ### 📌 KAMPAGNEN-STATUS (persistent — für Schritt 5c jeden Lauf prüfen)
 **Stand 26.06.2026:**
 - **Outbound-Cold-Mail:** ✅ **LIVE seit 25.06.2026**, läuft **wochentags**. Versanddomain `copiloten-schule.de` (separat, Reputationsschutz). Landingpages unter `/sml/` (z. B. `/sml/hr-tipps_2026`). → Ab Audit 29.06.: Outbound-Traffic (utm_medium=email bzw. Referrer/Direct aus Mailklicks) vom Organic-Segment **trennen**; `sml_*`-Events + Funnel „Smartlead HR 2026" auswerten.
-- **SEA (Google Ads):** ❌ noch **nicht gestartet** (Stand 26.06.). gtag/Consent-Mode-Code liegt deploybar in src/ (`ads.ts`), aktiv erst nach `VITE_GOOGLE_ADS_ID`. Sobald live: utm_medium=cpc separat segmentieren; SEA-Zielseiten sollen Trainings/Konfigurator/LPs sein, NICHT /wissen/.
+- **SEA (Google Ads):** ✅ **LIVE (erstmals gemessen 06.07.2026)** — 6 cpc-Sessions/7T + `sml_jump_paid_click` 14. Zielseiten-Check 06.07.: 0/6 auf /wissen/ → korrekt auf Trainings/Konfigurator/LPs. Ab jetzt utm_medium=cpc jede Woche separat segmentieren + Zielseiten-Drift-Check (SEA darf nicht auf /wissen/ landen).
 - **CTA-Brücke (`TrainingCTA`, Custom-Tag `content_cta_click`):** ✅ live seit 12.06. **Tracking am 26.06. verifiziert** (Runtime-Test: Klick feuert `clarity('set','content_cta_click',href)` korrekt). 0 Firings in 7T = **keine echten Klicks** (Funnel-Problem), KEIN Bug. Hebel = CTA sichtbarer/attraktiver machen.
 
 > ⚠️ **METHODEN-FIX für Schritt 5b (wichtig):** Die Conversion-Events sind **Custom Tags** (`Clarity.setTag`), NICHT Smart Events. Sie erscheinen NUR unter **Filter → „Benutzerdefinierte Filter" → „Benutzerdefinierte Kategorien" → Dropdown „Tag auswählen"** — NICHT im „Intelligente Ereignisse"-Dropdown. Frühere Läufe prüften nur Smart Events → systematische Untererfassung. **Ab sofort beide Filter prüfen.** Verfügbare Custom-Tags (Stand 26.06.): `booking_click, campaign_mail, campaign_medium, campaign_name, campaign_source, claude_verify_tag, contact_form_submit, danke_page_view, sml_landing_page_visit, visitor_type`. (`content_cta_click`, `mail_click`, `phone_click`, `pdf_download`, `trainer_application_submit` = 0 Firings → tauchen nicht auf, bis sie gefeuert werden.) Outbound-Segmentierung (5c) über `campaign_medium`/`campaign_source`.
 
 *Hinweis: Der ursprüngliche Skill-Kontext „SEA + Outbound ab KW 25" war verfrüht. Maßgeblich ist dieser Status-Block.*
+
+---
+
+### 2026-07-06 — Trend (NEU): SEA (Google Ads / cpc) gestartet — erste Messung
+**Beobachtungs-Zeitraum:** 29.06. – 06.07.2026 (Clarity Dashboard 7T, Filter `Mittel=cpc`)
+**Event:** Bezahlter Suchtraffic (utm_medium=cpc)
+**Trend:** Erstmals cpc-Sessions messbar: **6/7T** (Vorwochen 0). Zusätzlich neues Smart-Event `sml_jump_paid_click` mit **14 Sessions** (Paid-Jump-Klick). Engagement des cpc-Segments: 1,0 Seiten/Sitzung, 41,83 % Scroll, 9 s aktiv — noch sehr klein, Anlaufphase.
+**5c-Zielseiten-Check:** Lead-Reise-Funnel im cpc-Segment: **0 von 6 Sessions** erreichen Stufe 1 „/wissen/-Artikel besucht" → SEA landet **korrekt NICHT** auf Wissensseiten, sondern auf Trainings/Konfigurator/LPs. Kein ⚠️ (Regel Schritt 5c erfüllt).
+**Ursache:** SEA-Kampagne live geschaltet (Stand 26.06. noch „nicht gestartet"; `VITE_GOOGLE_ADS_ID` inzwischen aktiv).
+**Handlung:** Beobachten — Volumen noch zu klein für Bewertung. Ab nächstem Lauf cpc-Segment separat auf Conversion prüfen (sml_jump_paid_click → booking/contact). Zielseiten-Check jede Woche wiederholen (SEA darf nicht auf /wissen/ driften).
+
+---
+
+### 2026-07-06 — Issue-Update: Dead-Click weiter ≥10 %, aber rückläufig
+**Quelle:** Cron-Lauf 2026-07-06 (weekly) — Clarity API 3T (13,33 %) + Dashboard 7T (10,27 %, 61 Sess.)
+**Symptom:** Dead-Click API 3T **13,33 %** (↓ von 17 % am 29.06.), Dashboard 7T **10,27 %** (↓ von 15,02 %). Zweiter Wert nur knapp über der 10 %-Schwelle. Rage/Quick-Back/Excessive-Scroll/ScriptError alle 0 %.
+**5c-Gegenprüfung:** Outbound-Segment (email, 55 Sess.) = **0 % Dead-Click**; cpc = 0 %. → Treiber unverändert **organisch** (globales `ArticlePopup` via `ContentLayout.tsx`), NICHT Kampagne.
+**Bewertung:** Klarer Rückgang zweite Woche, aber weiter über Schwelle → Issue bleibt formal offen. Bekannter Fix-Draft `docs/drafts/clarity-fix-copilot-in-outlook-nutzen-tipps.md` (seit 17.06.) unverpusht. Kein neuer Cron.
+**Status:** identifiziert — rückläufig, Fix-Draft wartet auf User-Push (in Notification gespiegelt).
+
+---
+
+### 2026-07-06 — Beobachtung: Outbound-Segment skaliert (21 → 55 Sessions), weiter 0 Conversions
+**Quelle:** Cron-Lauf 2026-07-06 (weekly) — Clarity Dashboard 7T, Filter `Mittel=email`
+**Beobachtung:** Outbound-Cold-Mail wächst auf **55 Sessions/7T (~9,3 % von 594)** — mehr als verdoppelt ggü. 21 (29.06.). Engagement bleibt Kalt-Mail-typisch niedrig: 1,02 Seiten/Sitzung, 12,89 % Scrolltiefe, 16 s aktive Zeit. `sml_landing_page_visit` feuert (12), aber weiter **keine `sml_booking_click`/`sml_contact_click` mit Daten → 0 Outbound-Conversions**.
+**Bewertung:** Volumen steigt (mehr Versand), Qualität/Engagement unverändert schwach. LP `/sml/hr-tipps_2026` ist #2 der Top-Pages (17/3T), aber sofortiger Bounce. Nach 2 Wochen Laufzeit (ab 25.06.) nähert sich das Fenster für die LP-Heatmap-Prüfung.
+**Handlung:** Beobachten — bei anhaltend 0 `sml_booking_click`/`sml_contact_click` trotz jetzt >50 LP-Sessions: LP-Above-the-fold/CTA von `/sml/hr-tipps_2026` überarbeiten (manuelle Scroll-Heatmap + Recording).
 
 ---
 
