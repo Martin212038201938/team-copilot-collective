@@ -12,10 +12,10 @@ import { useRef } from "react";
 
 const reviews = [
   {
-    name: "Lydia Möcklinghoff",
+    name: "Kai Opladen",
     rating: 5,
-    date: "vor einem Monat",
-    text: "Das KI Training war super. Angenehmer Trainer. Sehr hands-on und genau zugeschnitten auf die jeweiligen Bedürfnisse der Teilnehmenden! Ich wende bereits vieles an und merke einen deutlichen Effizienzgewinn. Vielen Dank nochmal!",
+    date: "vor 4 Monaten",
+    text: "Das Training zu den Basic von Copilot im Arbeitsalltag war super! Ich dachte ich wüsste schon viel rund um das Thema KI und Anwedungen, aber tatsächlich wurde ich von Copilot überzeugt und werde zukünftig weniger mit ChatGPT arbeiten. Sondern eher mit Copilot.",
   },
   {
     name: "Judi Ju",
@@ -58,6 +58,12 @@ const reviews = [
     rating: 5,
     date: "vor 5 Monaten",
     text: "Ich habe an einem ausgezeichneten KI-Training bei Martin teilgenommen und kann ihn sowohl fachlich als auch menschlich wärmstens empfehlen. Mit seiner sympathischen und zugleich sehr kompetenten Art gelang es ihm, eine angenehme Lernatmosphäre zu schaffen, in der sich alle Teilnehmenden abgeholt und motiviert fühlten. Das Training war inhaltlich fundiert und praxisnah sowie didaktisch hervorragend aufgebaut. Im Vorfeld wurden die individuellen Bedürfnisse und Vorkenntnisse abgefragt, darauf aufbauend setzte Martin sein Training mit anschaulichen Beispielen und praxisrelevanten Übungen um. Eine rundum gelungene Schulung!",
+  },
+  {
+    name: "Lydia Möcklinghoff",
+    rating: 5,
+    date: "vor einem Monat",
+    text: "Das KI Training war super. Angenehmer Trainer. Sehr hands-on und genau zugeschnitten auf die jeweiligen Bedürfnisse der Teilnehmenden! Ich wende bereits vieles an und merke einen deutlichen Effizienzgewinn. Vielen Dank nochmal!",
   },
   {
     name: "Julian",
