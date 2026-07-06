@@ -73,9 +73,10 @@ const UnsereAngebote = () => {
   return (
     <div className="min-h-screen">
       <SEOHead
-        title="Microsoft Copilot Trainings und Schulungen für Unternehmen"
-        description="Microsoft Copilot Trainings und Schulungen: Inhouse, online oder als Lernreise. Von M365-Grundlagen bis KI-Agenten – jetzt passendes Training finden."
+        title="Microsoft Copilot Training & Schulung für Unternehmen"
+        description="Microsoft Copilot Training für Ihr Unternehmen: inhouse, online oder als Lernreise. 11 praxisnahe Formate von M365-Grundlagen bis KI-Agenten – jetzt anfragen."
         keywords={[
+          "Microsoft Copilot Training",
           "Microsoft Copilot Schulung",
           "Copilot Schulung für Unternehmen",
           "Microsoft 365 Copilot Training",
