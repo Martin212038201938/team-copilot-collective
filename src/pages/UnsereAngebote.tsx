@@ -53,6 +53,18 @@ const trainingsFAQs = [
   {
     question: "Was unterscheidet die Copilotenschule von anderen Trainingsanbietern?",
     answer: "Drei Dinge: Erstens sind wir auf Microsoft Copilot spezialisiert – kein breiter IT-Schulungskatalog, sondern ausschließlich Copilot-Expertise. Zweitens trainieren wir gezielt auf das Copilot-Tier, das Ihre Teilnehmer tatsächlich nutzen (Free oder Paid), statt generische Inhalte zu vermitteln. Drittens begleiten wir den gesamten Enablement-Prozess – von der Pilotgruppe über den Rollout bis zur nachhaltigen Verankerung im Arbeitsalltag. Unsere Trainer sind zertifizierte Copilot-Experten mit Erfahrung aus über hundert Unternehmensschulungen."
+  },
+  {
+    question: "Was kostet ein Microsoft Copilot Training für Unternehmen?",
+    answer: "Die Kosten hängen von Format, Dauer und Gruppengröße ab: Inhouse-Gruppentrainings werden pauschal pro Gruppe kalkuliert, nicht pro Person – dadurch sinken die Kosten pro Teilnehmendem deutlich gegenüber offenen Seminaren. Ein Halbtagestraining ist die günstigste Einstiegsvariante, Lernreisen über 8 Wochen verteilen die Investition über mehrere Monate. Zur Einordnung: Laut Forrester amortisiert sich professionelles Copilot-Training in wenigen Wochen, weil geschulte Nutzer rund 9 Stunden pro Monat einsparen. Die Copilotenschule erstellt Ihnen nach einem kurzen Gespräch ein konkretes Angebot – über den Training-Konfigurator oder das Kontaktformular auf dieser Seite."
+  },
+  {
+    question: "Unsere Mitarbeitenden nutzen Copilot kaum, obwohl Lizenzen vorhanden sind – was können wir tun?",
+    answer: "Das ist das häufigste Problem bei Copilot-Einführungen: Lizenzen werden verteilt, aber ohne strukturiertes Enablement bleibt die Nutzung bei 15–25 %. Die Ursache ist selten mangelndes Interesse, sondern fehlende rollenspezifische Use Cases und schlechte erste Erfahrungen mit unpräzisen Prompts. Wirksam ist eine Kombination aus praxisnahem Training mit echten Arbeitsszenarien, internen Champions und begleiteter Praxisphase. Die Copilotenschule hat dafür die 8-Wochen-Lernreise und das Train-the-Trainer-Programm entwickelt – beide zielen genau auf nachhaltige Adoption statt einmaliger Wissensvermittlung."
+  },
+  {
+    question: "Wie messen wir, ob sich die Copilot-Schulung gelohnt hat?",
+    answer: "Definieren Sie vor dem Training eine Baseline: aktive Nutzerquote (Microsoft Copilot Dashboard), Nutzungsfrequenz pro App und selbstberichtete Zeitersparnis. Nach dem Training sollten Sie drei Effekte sehen: steigende aktive Nutzung (Ziel: 70 %+ nach 3 Monaten), Nutzung in mehreren Apps statt nur im Chat und messbare Zeitersparnis bei Routineaufgaben. Die Copilotenschule integriert diese Erfolgsmessung in ihre Trainingsprogramme und liefert Ihnen die Kennzahlen, mit denen Sie den ROI gegenüber der Geschäftsführung belegen können."
   }
 ];
 
