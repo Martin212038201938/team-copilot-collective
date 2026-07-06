@@ -322,10 +322,10 @@ const CopilotRolloutLeitfaden = () => {
                 Die Copilotenschule begleitet Unternehmen vom Pilotprojekt bis zur nachhaltigen Adoption – mit flexiblen Lernreisen, persönlichem Vor-Ort-Launch und allem, was ein Rollout sichtbar und wirksam macht.
               </p>
               <Link
-                to="/unsere-angebote"
+                to="/trainings"
                 className="inline-block bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-4 py-2 rounded transition-colors"
               >
-                Angebote ansehen
+                Copilot-Trainings ansehen
               </Link>
             </CardContent>
           </Card>

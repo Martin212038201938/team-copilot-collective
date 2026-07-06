@@ -295,7 +295,7 @@ const CopilotInExcelAktivieren = () => {
 
             <p>
               Wenn Sie unsicher sind, welche Datenschutzkonfiguration für Ihre Organisation passt, bietet die{" "}
-              <Link to="/unsere-angebote" className="text-blue-600 hover:text-blue-800 dark:text-blue-400">
+              <Link to="/trainings" className="text-blue-600 hover:text-blue-800 dark:text-blue-400">
                 Copilotenschule eine Beratung zur Copilot-Einführung
               </Link>{" "}
               an, in der diese Fragen systematisch für Ihre spezifische Umgebung geklärt werden.

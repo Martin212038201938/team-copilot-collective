@@ -553,8 +553,8 @@ const CopilotVariantenUnterschiede = () => {
               funktioniert dann am besten, wenn das Gezeigte exakt dem entspricht, was die Teilnehmer hinterher auch
               vor sich haben. Deshalb sortieren wir nach tatsächlicher Lizenz- und Nutzungssituation und passen
               Inhalte, Beispiele und Übungen daran an. Welche Formate dafür zur Verfügung stehen, sehen Sie in{" "}
-              <Link to="/unsere-angebote" className="text-primary hover:underline">
-                unseren Angeboten
+              <Link to="/trainings" className="text-primary hover:underline">
+                unseren Copilot-Trainings
               </Link>; bei Unsicherheit klären wir vorab gemeinsam, welche Variante in Ihrem Haus tatsächlich im
               Einsatz ist.
             </p>

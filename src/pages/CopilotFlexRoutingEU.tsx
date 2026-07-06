@@ -259,7 +259,7 @@ const CopilotFlexRoutingEU = () => {
             </p>
             <p>
               Wenn Sie dabei Unterstützung suchen – beim Aufbau eines Copilot-Governance-Prozesses, bei der Prüfung bestehender Datenschutzdokumentation oder bei der Schulung interner Administratoren – sprechen Sie uns an. Die{" "}
-              <Link to="/unsere-angebote" className="text-blue-600 hover:text-blue-800 dark:text-blue-400">
+              <Link to="/trainings" className="text-blue-600 hover:text-blue-800 dark:text-blue-400">
                 Copilotenschule unterstützt Unternehmen beim verantwortungsvollen Betrieb von Microsoft Copilot
               </Link>
               {" "}– technisch und organisatorisch.

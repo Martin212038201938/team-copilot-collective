@@ -553,8 +553,8 @@ const CopilotInTeamsZeitGewinnen = () => {
             <CardContent className="pt-4 pb-4">
               <p className="text-base leading-relaxed">
                 Interesse an der Lernreise für Ihr Team?{" "}
-                <Link to="/unsere-angebote" className="text-primary underline hover:no-underline font-medium">
-                  Zu unseren Angeboten
+                <Link to="/trainings" className="text-primary underline hover:no-underline font-medium">
+                  Zu unseren Copilot-Trainings
                 </Link>{" "}
                 – oder direkt{" "}
                 <Link to="/#kontakt" className="text-primary underline hover:no-underline font-medium">
