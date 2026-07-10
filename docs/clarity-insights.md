@@ -2,7 +2,7 @@
 
 **Lebendes Dokument** — Cron-Jobs pflegen dieses File. Hier sammeln sich die Pattern-Erkenntnisse aus Microsoft Clarity, die wir auf andere Seiten übertragen oder gegen UX-Probleme einsetzen können.
 
-**Letzter automatischer Update:** 29. Juni 2026 (Wöchentlicher Audit — Dead-Click re-eskaliert ≥10 %, Outbound-Segment-Erstmessung, Edge-Shift zurückgebildet)
+**Letzter automatischer Update:** 10. Juli 2026 (Wöchentlicher Audit — SEA skaliert 6→59 Sess., Outbound 55→38, Dead-Click weiter grenzwertig 12,48 %, Edge zurück auf ~29 %, Goldene Pages Lizenzen + Claude-in-Copilot)
 
 ---
 
@@ -211,6 +211,48 @@ nach ca. 2 Wochen Laufzeit empfohlen.
 > ⚠️ **METHODEN-FIX für Schritt 5b (wichtig):** Die Conversion-Events sind **Custom Tags** (`Clarity.setTag`), NICHT Smart Events. Sie erscheinen NUR unter **Filter → „Benutzerdefinierte Filter" → „Benutzerdefinierte Kategorien" → Dropdown „Tag auswählen"** — NICHT im „Intelligente Ereignisse"-Dropdown. Frühere Läufe prüften nur Smart Events → systematische Untererfassung. **Ab sofort beide Filter prüfen.** Verfügbare Custom-Tags (Stand 26.06.): `booking_click, campaign_mail, campaign_medium, campaign_name, campaign_source, claude_verify_tag, contact_form_submit, danke_page_view, sml_landing_page_visit, visitor_type`. (`content_cta_click`, `mail_click`, `phone_click`, `pdf_download`, `trainer_application_submit` = 0 Firings → tauchen nicht auf, bis sie gefeuert werden.) Outbound-Segmentierung (5c) über `campaign_medium`/`campaign_source`.
 
 *Hinweis: Der ursprüngliche Skill-Kontext „SEA + Outbound ab KW 25" war verfrüht. Maßgeblich ist dieser Status-Block.*
+
+---
+
+### 2026-07-10 — Trend (verstärken): SEA (cpc) skaliert 6 → 59 Sessions/7T (~10×)
+**Beobachtungs-Zeitraum:** 03.07. – 10.07.2026 (Clarity Dashboard 7T, Filter `Mittel=cpc`)
+**Event:** Bezahlter Suchtraffic (utm_medium=cpc)
+**Trend:** cpc-Segment springt von **6 (06.07.) auf 59 Sessions/7T** — ~10×, jetzt ~9,1 % des Gesamt-Traffics (649). Engagement Anlaufphase-typisch niedrig: 1,0 Seiten/Sitzung, 31,75 % Scroll, 19 s aktiv. `sml_jump_paid_click` feuert 6× (Paid-Jump). Dead-Click im cpc-Segment nur 5,08 % (3 Sess.) → SEA-Traffic ist NICHT der Dead-Click-Treiber.
+**5c-Zielseiten-Check:** Keine Hinweise auf /wissen/-Drift — Paid-Jump-Event + Top-Pages (Trainings/Konfigurator/LP) konsistent mit korrekter Zielseiten-Steuerung (wie 06.07. 0/6). Vollständige cpc-Funnel-Neuverifikation diesen Lauf nicht gezogen; kein ⚠️.
+**Handlung:** Verstärken/Beobachten — Volumen jetzt bewertbar. Nächster Lauf: cpc-Segment auf echte Conversion prüfen (sml_jump_paid_click → booking/contact) und Zielseiten-Drift erneut gegenprüfen. Noch 0 direkte Conversions aus cpc.
+
+---
+
+### 2026-07-10 — Beobachtung: Outbound (email) 55 → 38 Sessions/7T, weiter 0 Conversions
+**Quelle:** Cron-Lauf 2026-07-10 (weekly) — Clarity Dashboard 7T, Filter `Mittel=email`
+**Beobachtung:** Outbound-Segment fällt von **55 (06.07.) auf 38 Sessions/7T (~5,9 %)** — Rückgang im rollierenden 7T-Fenster (weniger Versand/Klicks in der Woche). Engagement unverändert Kalt-Mail-schwach: 14,79 % Scroll, 21 s aktiv, 1,0 Seiten/Sitzung, Dead-Click 2,63 %. `sml_landing_page_visit` feuert 11×, aber weiter **kein `sml_booking_click`/`sml_contact_click` mit Daten → 0 Outbound-Conversions**.
+**Bewertung:** LP `/sml/hr-tipps_2026` bleibt #2 der Top-Pages (38 Visits/3T), aber sofortiger Bounce. Nach >2 Wochen Laufzeit ist das Fenster für die LP-Heatmap-Prüfung erreicht.
+**Handlung:** Beobachten — bei anhaltend 0 `sml_booking_click`/`sml_contact_click` trotz kumuliert >100 LP-Sessions: Above-the-fold/CTA von `/sml/hr-tipps_2026` per Scroll-Heatmap + Recording überarbeiten (manuell).
+
+---
+
+### 2026-07-10 — Issue-Update: Dead-Click weiter ≥10 % (12,48 % 7T / 11,11 % API 3T), Treiber organisch
+**Quelle:** Cron-Lauf 2026-07-10 (weekly) — Clarity API 3T (11,11 %, 513 Sess.) + Dashboard 7T (12,48 %, 81 Sess.)
+**Symptom:** Dead-Click API 3T **11,11 %** (Vorwoche 13,33 %, leicht rückläufig), Dashboard 7T **12,48 %** (Vorwoche 10,27 %, leicht gestiegen). Beide über der 10 %-Schwelle. Rage 0,39 % (2–3 Sess., < 5-Schwelle), Quick-Back 0 %, Excessive-Scroll 0 % / 0,46 % — sonst ruhig.
+**5c-Gegenprüfung:** cpc-Segment 5,08 %, email-Segment 2,63 % → beide klar unter Gesamtwert. Der Treiber bleibt eindeutig **organisch** (globales `ArticlePopup` via `ContentLayout.tsx`), NICHT Kampagne.
+**Bewertung:** Seit Wochen im Zickzack um die Schwelle (Mix-Effekt: Anteil Wissensartikel-Traffic). Kein Code-Defekt, bekannter Fix-Draft `docs/drafts/clarity-fix-copilot-in-outlook-nutzen-tipps.md` (seit 17.06.) unverpusht. Kein neuer Cron.
+**Status:** identifiziert — dauerhaft grenzwertig, Fix-Draft wartet auf User-Push (in Notification gespiegelt).
+
+---
+
+### 2026-07-10 — Beobachtung: Edge-Browser-Anteil zurück auf ~29 % (mögliches B2B-/SEA-Signal)
+**Quelle:** Cron-Lauf 2026-07-10 (weekly) — Clarity API 3T (513 Sess.)
+**Beobachtung:** Edge steigt auf **149 Sess. (~29 %)** — Vorwochen 14 % (29.06.) bzw. 24 % (22.06.). Chrome 226 (~44 %), MobileSafari 59, ChromeMobile 33, Firefox 18. Anstieg ~+15 pp W/W — **unter** der 20-pp-Alarmschwelle, aber auffällig.
+**Bewertung:** Passt zur B2B-Copilot-Zielgruppe (Microsoft-Enterprise nutzt überdurchschnittlich Edge) und zum Hochlauf von SEA (59 cpc-Sess.) + Outbound. Wahrscheinlich Mix aus organischem B2B-Shift und Paid-Zufluss.
+**Handlung:** Beobachten — kein Handlungsbedarf. Bei erneutem Anstieg > 20 pp neu bewerten und gegen cpc-Browserverteilung gegenprüfen.
+
+---
+
+### 2026-07-10 — Cross-Korrelation: Goldene Pages (GSC × Clarity, überwiegend organic)
+**Quelle:** Cron-Lauf 2026-07-10 (weekly) — GSC Top-Klick-Bringer 3M × Clarity PopularPages 3T
+**Goldene Pages (in beiden stark):** `/wissen/microsoft-copilot-lizenzen` (GSC: rankt für „copilot kosten"/Lizenz-Cluster; Clarity #4 mit 34 Visits) und `/wissen/claude-in-microsoft-copilot` (GSC: „claude in microsoft copilot" 3 Kl./„copilot claude" 4 Kl.; Clarity #6 mit 32 Visits). Beide ziehen organischen Such-Traffic UND werden real besucht → ideale CTA-Brücke-Kandidaten (falls noch nicht Welle 1/2).
+**Ungenutztes Potential:** Der GSC-#1-Klick-Bringer `/wissen/copilot-in-excel-aktivieren` (Excel-aktivieren-Cluster: 44+18+9+6 Kl./3M) taucht **nicht** in den Clarity-Top-6 auf — hohe Such-Sichtbarkeit, aber geringe On-Site-Sichtbarkeit/Verweil. Kandidat für interne Verlinkung + CTA-Brücke, um den Such-Traffic zu aktivieren.
+**Handlung:** Beobachten/Verstärken — beim nächsten CTA-Welle-Schritt Excel-Aktivieren-Seite priorisieren.
 
 ---
 

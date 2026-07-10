@@ -8,6 +8,54 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 
 ## Logs
 
+### 2026-07-10 — Wöchentlicher Audit (Cron)
+
+**Phase:** Phase 3 — Content-Block (aktiv, kein Wechsel), DoD 4/8
+**SSR-Audit:** ✅ 67 / 🟡 0 / 🔴 0 (von 67)
+- Neu in 🔴/✅: keine (stabil, DoD #2 gewahrt; nur Regressions-Wächter)
+
+**GSC:** 60/93 indexiert (64,5 %, unverändert — Report weiter Stand 30.06.), Klicks 1030/3M (+9,6 % W/W), Impr. 84.600 (+8,5 %), CTR 1,2 %, Pos. 9,4 (↑ von 9,5). A6-Bewegung: gecrawlt (10) + gefunden (11) = 21 nicht-indexiert, **unverändert** ggü. Vorwoche (GSC-Index-Report seit 30.06. nicht neu gecrawlt → keine echte Stagnation, Recheck-Cron 15.07.). Top-Klick-Bringer: copilot in excel aktivieren (44), excel copilot aktivieren (18), copilot excel aktivieren (9), copilot cowork kosten (9), microsoft copilot in excel aktivieren (6).
+
+**AlwaysData:** 24h 1085, rollierend 30T 8594 (enthält Paid/Outbound — nicht organisch-vergleichbar)
+
+**Traffic-Mix (Clarity 7T, 649 Sess.):** Organic/Direct ~552 | SEA (cpc) 59 | Outbound (email) 38
+
+**Clarity Standard (3T, via API, 1 Call):**
+- Sessions: 513 (davon 27 Bots, 542 Unique Users), Seiten/Sitzung 1,03
+- Scrolltiefe: 37,98 %, Aktive Zeit: 65 s (von 160 s)
+- Dead-Click: 11,11 % | Rage-Click: 0,39 % | Quick-Back: 0 % | Excessive-Scroll: 0 %
+- Top-Browser: Chrome 226 (~44 %), Edge 149 (~29 %), MobileSafari 59, ChromeMobile 33, Firefox 18
+- Top-3-Pages: `/` (114), `/sml/hr-tipps_2026` (38), `/trainings` (34) [dann microsoft-copilot-lizenzen 34, training-konfigurator 33]
+- Top-3-Referrer: google.com (275), direct/(none) (172), bing.com (27)
+
+**Clarity Conversion-Events (7T, via Chrome — Smart Events + Custom Tags):**
+- contact_form_submit / trainer_application_submit / konfigurator_submit / mail_click / phone_click / pdf_download: 0 / 0 / 0 / 0 / 0 / 1
+- content_cta_click / sml_*: 0 / sml_landing_page_visit 11, sml_jump_paid_click 6
+- Kontakt-Smart-Event „Kontaktieren Sie uns": 2
+- Conversion-Rate gesamt: ~0,46 % (≈3 direkte Kontakt/Download-Conversions / 649)
+
+**Insights heute:** Patterns 1 (Goldene Pages) | Issues 1 (Dead-Click ≥10 %, fortlaufend) | Trends 2 (SEA-Skalierung, Edge-Shift) + 1 Beobachtung (Outbound-Rückgang) — Details in clarity-insights.md
+**Folge-Crons angelegt:** keine (Dead-Click-Fix-Draft existiert seit 17.06., Engpass = User-Push; kein neuer Cron)
+**Goldene Pages (GSC×Clarity, organic):** `/wissen/microsoft-copilot-lizenzen`, `/wissen/claude-in-microsoft-copilot`; ungenutzt: `/wissen/copilot-in-excel-aktivieren` (GSC-#1, fehlt in Clarity-Top-6)
+**Protected Pages:** alle OK (5/5 HTTP 200)
+**Entscheidung gemäß Plan:** Phase 3 bleibt aktiv, DoD 4/8. SSR stabil (kein Eingriff). A6 unverändert (Report frozen) → Recheck 15.07. SEA-Skalierung positiv beobachten, Zielseiten weiter organic-getrennt.
+**API-Calls heute:** 1/10
+**Nächster Lauf:** Mo 13.07.2026, 10:00
+
+### 2026-07-09 — C1 + C2 Technik-Draft (Cron)
+
+**Guard (Schritt 0):** Kein bestehender C1/C2-Draft, kein Konflikt mit aktiver Phase 3. Weiter mit Analyse.
+
+**C2 (Cache-Control für Assets) — Überraschungsbefund: bereits erledigt.** `public/.htaccess` enthält seit Commit `bfcff62` (03.02.2026) einen vollständigen `CACHE-CONTROL`-Block (gehashte Vite-Assets 1 Jahr immutable, ungehashte Bilder 30 Tage, HTML no-cache, txt/xml 1h, favicon 1 Tag). Heute live verifiziert per `curl -I`: `/` → `cache-control: no-cache`, `/assets/index-*.js` → `max-age=31536000, immutable`. Der Plan-Eintrag war ein reiner Dokumentations-Nachzügler aus der 27.05.-Neuaufnahme, keine echte Lücke. **→ C2 auf ✅ erledigt gesetzt, kein weiterer Schritt.**
+
+**C1 (PageSpeed-API-Quota) — real offen, aber anders als angenommen.** Die tägliche Health-Check-Prüfung ruft PageSpeed Insights **seit der 27.05.-Überarbeitung des Prompts gar nicht mehr auf** (Modul komplett aus `SCHEDULED-TASK-PROMPT.md` entfernt) — alle 7 geprüften Juli-Reports (01.–07.07.) haben keine PageSpeed-/CWV-Erwähnung mehr. Das Quota-Problem (belegt in den Reports vom 23.06. und 30.06.: „Tagesquota überschritten") wurde damit umgangen statt gelöst; Core-Web-Vitals-/Accessibility-/SEO-Scores fehlen seither dauerhaft im Dashboard. Lösungsvorschlag im Draft: eigener PageSpeed-API-Key (25.000 Requests/Tag statt anonymem Mini-Kontingent, Ablage als `PAGESPEED_API_KEY` in `.env` nach `CLARITY_API_TOKEN`-Muster) + Frequenz-Reduktion (1×/Woche, 3 Kernseiten/Domain statt täglich 10). Betrifft ausschließlich das `website-health-check`-Tooling (außerhalb dieses Repos), kein Deploy von copilotenschule.de nötig. **→ C1 auf ⏳ Entwurf 09.07. gesetzt**, Umsetzung erfordert User-Setup (API-Key-Erstellung).
+
+**Draft:** `docs/drafts/c1-c2-technik-2026-07-09.md`. Kein Push, keine `src/`-Änderung — nur `docs/`.
+
+**Nächster Lauf:** Phase-Conductor 15.07.
+
+---
+
 ### 2026-07-06 — B3b + B3c Hub-Entwürfe (Cron)
 
 **Vorbedingung geprüft (Schritt 1):**
