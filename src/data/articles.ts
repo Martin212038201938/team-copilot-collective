@@ -30,6 +30,17 @@ export interface ArticleData {
 // Alle Artikel - sortiert nach Veröffentlichungsdatum (neueste zuerst)
 export const ALL_ARTICLES: ArticleData[] = [
   {
+    id: "welche-daten-sieht-microsoft-365-copilot",
+    title: "Welche Daten sieht Microsoft 365 Copilot? Grounding, Zugriffsberechtigungen und Freigabe-Altlasten verständlich erklärt",
+    description: "Wann sieht Copilot eine geteilte Datei? Grounding, Freigabe-Links, EEEU, Gastnutzer und Tenant-Grenze erklärt – plus Sanierungsfahrplan für Altlasten.",
+    link: "/wissen/welche-daten-sieht-microsoft-365-copilot",
+    badge: "Sicherheit & Datenschutz",
+    icon: "⊘",
+    lastUpdated: "10. Juli 2026",
+    publishDate: "2026-07-10",
+    publishTime: "09:00"
+  },
+  {
     id: "eu-ai-act-mitarbeiter-schulung-august-2026",
     title: "EU AI Act: Die KI-Schulungspflicht ab August 2026 – was Unternehmen jetzt nachweisen müssen",
     description: "Stand Juni 2026: Was zum 2. August 2026 wirklich gilt – nach dem Digital Omnibus. Bußgeldrahmen, Nachweis und warum sich Training ab 4 Stunden rechnet.",

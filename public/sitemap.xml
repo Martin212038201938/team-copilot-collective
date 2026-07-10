@@ -3,7 +3,7 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-  <!-- Automatisch generiert am 2026-06-17 -->
+  <!-- Automatisch generiert am 2026-07-10 -->
   <!-- 75 URLs insgesamt | lastmod aus echten Update-Daten (articles.ts publishDate, git log) -->
   <url>
     <loc>https://copilotenschule.de/</loc>
@@ -13,49 +13,49 @@
   </url>
   <url>
     <loc>https://copilotenschule.de/trainings</loc>
-    <lastmod>2026-04-28</lastmod>
+    <lastmod>2026-07-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://copilotenschule.de/workshops</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-07-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://copilotenschule.de/wissen</loc>
-    <lastmod>2026-06-10</lastmod>
+    <lastmod>2026-07-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://copilotenschule.de/unsere-angebote</loc>
-    <lastmod>2026-04-28</lastmod>
+    <lastmod>2026-07-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://copilotenschule.de/ueber-uns</loc>
-    <lastmod>2026-06-11</lastmod>
+    <lastmod>2026-06-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://copilotenschule.de/trainer-werden</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-06-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://copilotenschule.de/training-konfigurator</loc>
-    <lastmod>2026-06-16</lastmod>
+    <lastmod>2026-07-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://copilotenschule.de/impressum</loc>
-    <lastmod>2026-02-18</lastmod>
+    <lastmod>2026-06-19</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
@@ -181,7 +181,7 @@
   </url>
   <url>
     <loc>https://copilotenschule.de/wissen/warum-verteiltes-lernen-bei-copilot-trainings-funktioniert</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-07-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -301,7 +301,7 @@
   </url>
   <url>
     <loc>https://copilotenschule.de/wissen/interne-copilot-trainer-ausbilden</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-04-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -336,20 +336,26 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://copilotenschule.de/wissen/welche-daten-sieht-microsoft-365-copilot</loc>
+    <lastmod>2026-07-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://copilotenschule.de/trainings/copilot-grundlagen-prompt-design</loc>
-    <lastmod>2026-04-28</lastmod>
+    <lastmod>2026-07-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://copilotenschule.de/trainings/microsoft-365-copilot-praxis</loc>
-    <lastmod>2026-04-28</lastmod>
+    <lastmod>2026-07-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://copilotenschule.de/trainings/ausbildung-ki-wissensarbeiter</loc>
-    <lastmod>2026-04-28</lastmod>
+    <lastmod>2026-07-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -360,68 +366,92 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://copilotenschule.de/trainings/github-copilot-entwickler</loc>
+    <lastmod>2026-07-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://copilotenschule.de/trainings/copilot-compliance-datenschutz</loc>
+    <lastmod>2026-07-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://copilotenschule.de/trainings/copilot-studio-ki-agenten</loc>
-    <lastmod>2026-04-28</lastmod>
+    <lastmod>2026-07-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://copilotenschule.de/trainings/low-code-power-platform</loc>
+    <lastmod>2026-07-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://copilotenschule.de/trainings/eu-ai-act-pflichtschulung</loc>
-    <lastmod>2026-04-28</lastmod>
+    <lastmod>2026-07-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://copilotenschule.de/trainings/copilot-lernreise-8-wochen</loc>
-    <lastmod>2026-04-28</lastmod>
+    <lastmod>2026-07-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://copilotenschule.de/trainings/individuelle-copilot-schulung</loc>
+    <lastmod>2026-07-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://copilotenschule.de/workshops/copilot-change-programm</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-07-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://copilotenschule.de/workshops/copilot-strategie-change-management</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-07-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://copilotenschule.de/workshops/betriebsrat-ki-workshop</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-07-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://copilotenschule.de/workshops/copilot-hackathon</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-07-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://copilotenschule.de/workshops/keynote-copilot-arbeitswelt</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-07-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://copilotenschule.de/workshops/copilot-launch-eventtag</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-07-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://copilotenschule.de/workshops/bessere-entscheidungen-mit-copilot</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-07-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://copilotenschule.de/trainer/martin-lang</loc>
-    <lastmod>2026-06-11</lastmod>
+    <lastmod>2026-07-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
