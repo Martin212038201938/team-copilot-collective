@@ -377,7 +377,11 @@ const CopilotRolloutLeitfaden = () => {
         </section>
 
               <HoneypotCTA
-                guideIds={["copilot-grounding-admin-leitfaden", "copilot-grounding-management-leitfaden"]}
+                guideIds={[
+                  "copilot-grounding-admin-leitfaden",
+                  "copilot-grounding-management-leitfaden",
+                  "copilot-grounding-betriebsrat-leitfaden",
+                ]}
                 heading="Passende Leitfäden zum kostenlosen Download"
               />
 

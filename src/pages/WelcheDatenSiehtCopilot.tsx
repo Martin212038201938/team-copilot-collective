@@ -922,7 +922,11 @@ const WelcheDatenSiehtCopilot = () => {
         </section>
 
         <HoneypotCTA
-          guideIds={["copilot-grounding-admin-leitfaden", "copilot-grounding-management-leitfaden"]}
+          guideIds={[
+            "copilot-grounding-admin-leitfaden",
+            "copilot-grounding-management-leitfaden",
+            "copilot-grounding-betriebsrat-leitfaden",
+          ]}
           heading="Grounding-Leitfäden zum kostenlosen Download"
         />
 

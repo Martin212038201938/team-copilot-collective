@@ -232,6 +232,7 @@ const guidelinePages = [
   { loc: '/guidelines',                                        lastmod: '2026-07-13', changefreq: 'monthly', priority: 0.7 },
   { loc: '/guidelines/copilot-grounding-admin-leitfaden',      lastmod: '2026-07-13', changefreq: 'monthly', priority: 0.8 },
   { loc: '/guidelines/copilot-grounding-management-leitfaden', lastmod: '2026-07-13', changefreq: 'monthly', priority: 0.8 },
+  { loc: '/guidelines/copilot-grounding-betriebsrat-leitfaden', lastmod: '2026-07-13', changefreq: 'monthly', priority: 0.8 },
 ];
 
 // Alle Seiten zusammenführen

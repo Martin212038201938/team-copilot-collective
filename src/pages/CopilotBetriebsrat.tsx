@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import AuthorBio from "@/components/AuthorBio";
+import HoneypotCTA from "@/components/HoneypotCTA";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 import { trackConversion } from "@/lib/analytics";
 
@@ -673,6 +674,11 @@ const CopilotBetriebsrat = () => {
             </CardContent>
           </Card>
         </section>
+
+        <HoneypotCTA
+          guideId="copilot-grounding-betriebsrat-leitfaden"
+          intro="Grounding, Teams-Transkripte und § 87 BetrVG kompakt für die Gremienarbeit – mit Checkliste und Regelungspunkten für die Betriebsvereinbarung, als kostenloses PDF."
+        />
 
         {/* Sektion: Training */}
         <section id="training-betriebsrat" className="mb-6">

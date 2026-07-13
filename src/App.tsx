@@ -89,6 +89,7 @@ const App = () => (
           <Route path="/guidelines" element={<GuidelinesUebersicht />} />
           <Route path="/guidelines/copilot-grounding-admin-leitfaden" element={<GuideLandingPage guideId="copilot-grounding-admin-leitfaden" />} />
           <Route path="/guidelines/copilot-grounding-management-leitfaden" element={<GuideLandingPage guideId="copilot-grounding-management-leitfaden" />} />
+          <Route path="/guidelines/copilot-grounding-betriebsrat-leitfaden" element={<GuideLandingPage guideId="copilot-grounding-betriebsrat-leitfaden" />} />
           <Route path="/wissen/copilot-schulungsanbieter-deutschland-vergleich" element={<CopilotSchulungsanbieterVergleich />} />
           <Route path="/wissen/microsoft-copilot-lizenzen" element={<CopilotLicenses />} />
           <Route path="/wissen/github-copilot" element={<GitHubCopilot />} />

@@ -136,6 +136,43 @@ export const ALL_GUIDES: GuideData[] = [
     lastUpdated: "13. Juli 2026",
     status: "available",
   },
+  {
+    id: "copilot-grounding-betriebsrat-leitfaden",
+    shortTitle: "Copilot Grounding: Leitfaden für Betriebsräte",
+    title: "Microsoft 365 Copilot Grounding – der Leitfaden für Betriebsräte",
+    description:
+      "Was Copilots Datenzugriff für die Beschäftigten bedeutet – und wie der Betriebsrat Grounding, Meeting-Transkripte und die Überwachungseignung mitbestimmt.",
+    badge: "Guidelines und Checklisten",
+    icon: "🤝",
+    audience: "Betriebsräte, Personalvertretungen, JAV & Datenschutzbeauftragte",
+    pdfPath: "/downloads/Copilot-Grounding-Betriebsrat-Leitfaden.pdf",
+    fileMeta: "PDF-Leitfaden",
+    bullets: [
+      "Warum Copilot berechtigungstreu ist – und trotzdem Freigabe-Altlasten mit Personaldaten sichtbar macht",
+      "Teams-Transkripte und Aufzeichnungen als dauerhaft auswertbare Daten – die eigentliche Mitbestimmungsfrage",
+      "Wann Copilot der Mitbestimmung unterliegt: § 87 Abs. 1 Nr. 6 BetrVG und die Eignung zur Überwachung",
+      "Weitere Hebel: Unterrichtung (§ 90), Sachverstand (§ 80 Abs. 3), Qualifizierung (§ 97 Abs. 2), Schulung (§ 37 Abs. 6)",
+      "Was in die Betriebsvereinbarung gehört: Zweckbindung, Kontroll-Ausschluss, Transkript- und Purview-Regeln",
+      "Fragenkatalog an IT und Arbeitgeber plus eine Checkliste vom ersten Gespräch bis zur unterschriebenen BV",
+    ],
+    seo: {
+      metaTitle: "Copilot & Betriebsrat: Grounding-Leitfaden (PDF) – Mitbestimmung sichern",
+      metaDescription:
+        "Kostenloser Leitfaden für Betriebsräte: Was Microsoft 365 Copilot und Grounding für die Beschäftigten bedeuten, wo die Mitbestimmung greift (§ 87 BetrVG) und was in die Betriebsvereinbarung gehört.",
+      keywords: [
+        "Copilot Betriebsrat",
+        "Copilot Mitbestimmung",
+        "Microsoft 365 Copilot BetrVG",
+        "Copilot Betriebsvereinbarung",
+        "Copilot Überwachung § 87",
+        "Copilot Grounding Datenschutz",
+        "Teams Transkripte Betriebsrat",
+      ],
+    },
+    publishDate: "2026-07-13",
+    lastUpdated: "13. Juli 2026",
+    status: "available",
+  },
 ];
 
 export const getGuide = (id: string): GuideData | undefined =>
