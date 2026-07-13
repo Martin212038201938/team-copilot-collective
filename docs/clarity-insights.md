@@ -2,7 +2,7 @@
 
 **Lebendes Dokument** — Cron-Jobs pflegen dieses File. Hier sammeln sich die Pattern-Erkenntnisse aus Microsoft Clarity, die wir auf andere Seiten übertragen oder gegen UX-Probleme einsetzen können.
 
-**Letzter automatischer Update:** 10. Juli 2026 (Wöchentlicher Audit — SEA skaliert 6→59 Sess., Outbound 55→38, Dead-Click weiter grenzwertig 12,48 %, Edge zurück auf ~29 %, Goldene Pages Lizenzen + Claude-in-Copilot)
+**Letzter automatischer Update:** 13. Juli 2026 (Wöchentlicher Audit — SEA skaliert 59→82 Sess. (+39 %), Outbound 38→36 (flat, weiter 0 Conv.), Dead-Click entspannt: API 3T 8,62 % unter Schwelle / Dashboard 7T 10,97 % knapp drüber, Organic +9 % W/W, Edge stabil ~30 %, Goldene Pages Lizenzen + Claude-in-Copilot)
 
 ---
 
@@ -214,7 +214,47 @@ nach ca. 2 Wochen Laufzeit empfohlen.
 
 ---
 
-### 2026-07-10 — Trend (verstärken): SEA (cpc) skaliert 6 → 59 Sessions/7T (~10×)
+### 2026-07-13 — Trend (verstärken/beobachten): SEA (cpc) skaliert 59 → 82 Sessions/7T (+39 %)
+**Beobachtungs-Zeitraum:** 06.07. – 13.07.2026 (Clarity Dashboard 7T, Filter `Mittel=cpc`)
+**Event:** Bezahlter Suchtraffic (utm_medium=cpc)
+**Trend:** cpc-Segment wächst weiter: **59 (10.07.) → 82 Sessions/7T** (+39 %), jetzt ~11,4 % des Gesamt-Traffics (720). Engagement Anlaufphase-typisch: 1,0 Seiten/Sitzung, 35,11 % Scroll, 32 s aktiv. Dead-Click im cpc-Segment nur **4,88 %** (4 Sess.) → SEA weiterhin NICHT der Dead-Click-Treiber.
+**5c-Zielseiten-Check:** Lead-Reise-Funnel im cpc-Segment: **0 von 82 Sessions** erreichen Stufe 1 „/wissen/-Artikel" → SEA landet **korrekt NICHT** auf Wissensartikeln. Top-Einstiegsseiten cpc: `/` (76), `/wissen`-Übersicht (5), `/trainings` (1) — kein `/wissen/`-Artikel-Drift. Kein ⚠️.
+**Handlung:** Verstärken/Beobachten — Volumen wächst gesund, aber weiter **0 direkte Conversions** aus cpc (Smart Events im cpc-Segment: „Keine Daten"). Nächster Lauf: cpc auf echte Conversion (booking/contact) prüfen.
+
+---
+
+### 2026-07-13 — Beobachtung: Outbound (email) 38 → 36 Sessions/7T (flat), weiter 0 Conversions
+**Quelle:** Cron-Lauf 2026-07-13 (weekly) — Clarity Dashboard 7T, Filter `Mittel=email`
+**Beobachtung:** Outbound-Segment praktisch unverändert: **38 (10.07.) → 36 Sessions/7T** (~5,0 %). Engagement Kalt-Mail-schwach: 12,56 % Scroll, 15 s aktiv, 1,0 Seiten/Sitzung, Dead-Click 0 %. `sml_landing_page_visit` feuert 10×, aber weiter **kein `sml_booking_click`/`sml_contact_click` mit Daten → 0 Outbound-Conversions**. Alle 36 Einstiege auf `/sml/hr-tipps_2026`, sofortiger Bounce.
+**Bewertung:** Jetzt >3 Wochen Laufzeit, kumuliert deutlich >100 LP-Sessions bei 0 Buchungs-/Kontaktklicks. Das Fenster für die manuelle LP-Überarbeitung ist überfällig.
+**Handlung:** Gegensteuern (manuell, User) — Above-the-fold/CTA von `/sml/hr-tipps_2026` per Scroll-Heatmap + Recording überarbeiten. Sofortiger Wert/Terminbuchung above the fold. Tracking ist intakt (LP-Visit feuert), Hebel liegt auf der LP selbst.
+
+---
+
+### 2026-07-13 — Issue-Update: Dead-Click entspannt — API 3T 8,62 % (unter Schwelle), Dashboard 7T 10,97 %
+**Quelle:** Cron-Lauf 2026-07-13 (weekly) — Clarity API 3T (8,62 %, 174 Sess.) + Dashboard 7T (10,97 %, 79 Sess.)
+**Symptom:** Dead-Click API 3T **8,62 %** (Vorwoche 11,11 %) → **erstmals seit Wochen wieder unter der 10 %-Schwelle**. Dashboard 7T **10,97 %** (Vorwoche 12,48 %) → gefallen, aber knapp über 10 %. Rage 0 %, Quick-Back 0 %, Excessive-Scroll 0,14 %, JS-Fehler 0 % — sonst ruhig.
+**Caveat (Messfenster):** Die API-3T-Fenster endet Mo-früh = Fr/Sa/So (Wochenende, weniger B2B-/Wissensartikel-Traffic → weniger ArticlePopup-Exposition). Der Rückgang ist teils Mix-Effekt, nicht zwingend struktureller Fix. Dashboard 7T (stabileres Fenster) bleibt grenzwertig.
+**5c-Gegenprüfung:** cpc 4,88 %, email 0 % → Treiber bleibt eindeutig **organisch** (globales `ArticlePopup` via `ContentLayout.tsx`), NICHT Kampagne.
+**Bewertung:** Keine neue Eskalation (API-3T-Leitwert unter Schwelle), kein neuer Cron. Bekannter Fix-Draft `docs/drafts/clarity-fix-copilot-in-outlook-nutzen-tipps.md` (seit 17.06.) weiter unverpusst.
+**Status:** identifiziert — entspannt, aber grenzwertig; Fix-Draft wartet auf User-Push.
+
+---
+
+### 2026-07-13 — Cross-Korrelation: Goldene Pages (GSC × Clarity, organic)
+**Quelle:** Cron-Lauf 2026-07-13 (weekly) — GSC Top-Klick-Bringer 3M × Clarity Top-Pages 7T
+**Goldene Pages (in beiden stark):** `/wissen/microsoft-copilot-lizenzen` (GSC: „copilot kosten"/„copilot lizenz"/„copilot lizenz kosten"-Cluster ~10 Kl.; Clarity Top-Page #3 mit 42 Visits/7T) und `/wissen/claude-in-microsoft-copilot` (GSC: „copilot claude" 5 + „copilot claude aktivieren" 4; Clarity #2 mit 48 Visits/7T). Beide ziehen organischen Such-Traffic UND werden real besucht → ideale CTA-Brücke-Kandidaten.
+**Ungenutztes Potential (unverändert):** GSC-#1-Klick-Bringer `/wissen/copilot-in-excel-aktivieren` (Excel-aktivieren-Cluster **46+19+11+6 = 82 Kl./3M**) ist in Clarity nur **#12 (23 Visits/7T)** — hohe Such-Sichtbarkeit, geringe On-Site-Präsenz. Weiter Top-Kandidat für interne Verlinkung + CTA-Brücke, um den Such-Traffic zu aktivieren.
+**Handlung:** Beim nächsten CTA-Welle-Schritt Excel-Aktivieren-Seite priorisieren.
+
+---
+
+### 2026-07-13 — Trend (positiv): Organic wächst weiter (+9 % W/W Clarity, GSC 3M Klicks/Impr +7-8 %)
+**Beobachtungs-Zeitraum:** 06.07. – 13.07.2026
+**Event:** Organischer Traffic (5c-Segment = Gesamt minus cpc minus email)
+**Trend:** Organic/Direct-Segment ~552 → **~602 Sessions/7T (+9 %)** — unter der +25 %-„Verstärken"-Schwelle, aber stetig. GSC 3M rein organisch weiter stark: Klicks **1030 → 1110** (+7,8 %), Impr. **84.600 → 90.600** (+7,1 %), Pos. **9,4 → 9,3**. Neue Referrer-Notiz: LinkedIn erstmals sichtbar (8 Sess./7T), LLM-Referrer aktiv (ChatGPT 2, Copilot 2, DuckDuckGo 4).
+**Caveat:** AlwaysData-Gesamt (24h 445, 30T rollierend 5.713) liegt deutlich unter Vorwoche (1085 / 8594) — **nicht organisch-vergleichbar** (enthält Paid/Outbound + Wochenend-Messfenster). GSC (rein organisch) und Clarity-Organic-Segment steigen beide → der AlwaysData-Rückgang ist Kampagnen-Pacing/Messfenster, kein Organic-Problem.
+**Handlung:** Beobachten — organischer Kern gesund, GEO-/Content-Sog hält an.
 **Beobachtungs-Zeitraum:** 03.07. – 10.07.2026 (Clarity Dashboard 7T, Filter `Mittel=cpc`)
 **Event:** Bezahlter Suchtraffic (utm_medium=cpc)
 **Trend:** cpc-Segment springt von **6 (06.07.) auf 59 Sessions/7T** — ~10×, jetzt ~9,1 % des Gesamt-Traffics (649). Engagement Anlaufphase-typisch niedrig: 1,0 Seiten/Sitzung, 31,75 % Scroll, 19 s aktiv. `sml_jump_paid_click` feuert 6× (Paid-Jump). Dead-Click im cpc-Segment nur 5,08 % (3 Sess.) → SEA-Traffic ist NICHT der Dead-Click-Treiber.

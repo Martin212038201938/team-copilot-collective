@@ -8,6 +8,40 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 
 ## Logs
 
+### 2026-07-13 — Wöchentlicher Audit (Cron)
+
+**Phase:** Phase 3 — Content-Block (aktiv, kein Wechsel), DoD 4/8
+**SSR-Audit:** ✅ 67 / 🟡 0 / 🔴 0 (von 67)
+- Neu in 🔴/✅: keine (stabil, DoD #2 gewahrt; nur Regressions-Wächter, 🔴 < 5 → keine Eskalation)
+
+**GSC:** 60/93 indexiert (64,5 %, unverändert — Report weiter Stand 30.06.), Klicks **1110/3M (+7,8 % W/W)**, Impr. **90.600 (+7,1 %)**, CTR 1,2 %, Pos. **9,3 (↑ von 9,4)**. A6-Bewegung: gecrawlt (10) + gefunden (11) = **21 nicht-indexiert, unverändert** ggü. Vorwoche (GSC-Index-Report seit 30.06. eingefroren = keine echte Stagnation, Recheck-Cron 15.07.). Top-Klick-Bringer: copilot in excel aktivieren (46), excel copilot aktivieren (19), copilot excel aktivieren (11), copilot cowork kosten (9), microsoft copilot in excel aktivieren (6), copilot claude (5), copilot kosten (4).
+
+**AlwaysData:** 24h 445, rollierend 30T 5.713 (deutlich unter Vorwoche 1085 / 8594 — enthält Paid/Outbound + Wochenend-Messfenster, **nicht organisch-vergleichbar**; GSC+Clarity-Organic steigen → Kampagnen-Pacing, kein Organic-Problem)
+
+**Traffic-Mix (Clarity 7T, 720 Sess.):** Organic/Direct ~602 (+9 % W/W) | SEA (cpc) 82 (+39 %) | Outbound (email) 36 (flat)
+
+**Clarity Standard (3T, via API, 1 Call):**
+- Sessions: 174 (davon 84 Bots, 263 Unique Users), Seiten/Sitzung 1,03 — ⚠️ 3T-Fenster = Fr/Sa/So (Wochenende, niedriger als Vorwochen-Werktagsfenster von 513)
+- Scrolltiefe: 33,46 %, Aktive Zeit: 71 s
+- Dead-Click: 8,62 % (unter Schwelle) | Rage-Click: 0 % | Quick-Back: 0 % | Excessive-Scroll: 0 %
+- Top-Browser (7T Dashboard): Chrome 268 (37,2 %), Edge 215 (29,9 %), MobileSafari 112 (15,6 %), Safari 43, ChromeMobile 41
+- Top-3-Pages (7T): `/` (141), `/wissen/claude-in-microsoft-copilot` (48), `/wissen/microsoft-copilot-lizenzen` (42) [dann copilot-tipps-tricks 41, sml/hr-tipps 37, /trainings 37]
+- Top-3-Referrer (7T): google.com (368), bing.com (50), copilotenschule.de intern (26) [+ LinkedIn 8 neu, ChatGPT 2, Copilot 2]
+
+**Clarity Conversion-Events (7T, via Chrome — Smart Events + Custom Tags):**
+- contact_form_submit / trainer_application_submit / konfigurator_submit / mail_click / phone_click / pdf_download: 0 / 0 / 0 / 0 / 0 / 1
+- content_cta_click / sml_*: 0 / sml_landing_page_visit 10, sml_jump_paid_click 4
+- Kontakt-Smart-Event „Kontaktieren Sie uns": 2
+- Conversion-Rate gesamt: ~0,42 % (≈3 direkte Kontakt/Download-Conversions / 720). Kein Event ≥3→0 → kein Defekt-Alarm (7e).
+
+**Insights heute:** Patterns 1 (Goldene Pages) | Issues 1 (Dead-Click grenzwertig, entspannt) | Trends 3 (SEA +39 %, Organic +9 %, Outbound flat) — Details in clarity-insights.md
+**Folge-Crons angelegt:** keine (Dead-Click API-3T unter Schwelle → keine neue Eskalation; Fix-Draft existiert seit 17.06., Engpass = User-Push)
+**Goldene Pages (GSC×Clarity, organic):** `/wissen/microsoft-copilot-lizenzen` (Clarity #3), `/wissen/claude-in-microsoft-copilot` (Clarity #2); ungenutzt: `/wissen/copilot-in-excel-aktivieren` (GSC-#1 mit 82 Kl./3M, nur Clarity #12)
+**Protected Pages:** alle OK (5/5 HTTP 200)
+**Entscheidung gemäß Plan:** Phase 3 bleibt aktiv, DoD 4/8. SSR stabil (kein Eingriff). A6 unverändert (Report frozen) → Recheck 15.07. SEA-Skalierung + korrekte Zielseiten (0/82 auf /wissen/) positiv. Organic-Kern wächst. Offene User-Handlungspunkte (unverändert): Dead-Click-Fix-Draft pushen, `/sml/hr-tipps_2026` LP-CTA überarbeiten (>3 Wochen 0 Outbound-Conv.).
+**API-Calls heute:** 1/10
+**Nächster Lauf:** Mo 20.07.2026, 10:00
+
 ### 2026-07-10 — Wöchentlicher Audit (Cron)
 
 **Phase:** Phase 3 — Content-Block (aktiv, kein Wechsel), DoD 4/8

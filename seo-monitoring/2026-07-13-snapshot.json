@@ -1,0 +1,140 @@
+{
+  "timestamp": "2026-07-13T10:03:30+02:00",
+  "baseline_compared_to": "2026-05-04",
+  "live_check": {
+    "/": {"title_kind": "helmet", "title": "Microsoft Copilot Schulungen &amp; Trainings | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "default"}
+    ,
+    "/trainings": {"title_kind": "helmet", "title": "Microsoft Copilot Training &amp; Schulung f\u00fcr Unternehmen | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "default"}
+    ,
+    "/wissen": {"title_kind": "helmet", "title": "Copilot Wissen \u2013 Leitf\u00e4den &amp; Best Practices | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "default"}
+    ,
+    "/impressum": {"title_kind": "helmet", "title": "Impressum &amp; Datenschutz | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "helmet"}
+    ,
+    "/ueber-uns": {"title_kind": "helmet", "title": "\u00dcber uns \u2013 Microsoft Copilot Trainings | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "default"}
+    ,
+    "/trainer-werden": {"title_kind": "helmet", "title": "Trainer werden bei der Copilotenschule | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "default"}
+    ,
+    "/training-konfigurator": {"title_kind": "helmet", "title": "Training Konfigurator | Copilot Schulungen individuell zusammenstellen | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "default"}
+    ,
+    "/trainings/copilot-grundlagen-prompt-design": {"title_kind": "helmet", "title": "Copilot Grundlagen Training \u2013 Prompt Design &amp; KI-Kompetenz | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "helmet"}
+    ,
+    "/trainings/microsoft-365-copilot-praxis": {"title_kind": "helmet", "title": "Microsoft 365 Copilot Training \u2013 Word, Excel, PowerPoint, Outlook, Teams | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "default"}
+    ,
+    "/trainings/ausbildung-ki-wissensarbeiter": {"title_kind": "helmet", "title": "Ausbildung KI-Wissensarbeiter \u2013 Intensivtraining Microsoft Copilot | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "default"}
+    ,
+    "/trainings/train-the-trainer-copilot": {"title_kind": "helmet", "title": "Train-the-Trainer Copilot \u2013 Multiplikatoren ausbilden (2 Tage) | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "default"}
+    ,
+    "/trainings/github-copilot-entwickler": {"title_kind": "helmet", "title": "Microsoft Copilot Training &amp; Schulung f\u00fcr Unternehmen | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "helmet"}
+    ,
+    "/trainings/copilot-compliance-datenschutz": {"title_kind": "helmet", "title": "Microsoft Copilot Training &amp; Schulung f\u00fcr Unternehmen | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "default"}
+    ,
+    "/trainings/copilot-studio-ki-agenten": {"title_kind": "helmet", "title": "Copilot Studio Training \u2013 KI-Agenten entwickeln | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "default"}
+    ,
+    "/trainings/low-code-power-platform": {"title_kind": "helmet", "title": "Microsoft Copilot Training &amp; Schulung f\u00fcr Unternehmen | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "default"}
+    ,
+    "/trainings/eu-ai-act-pflichtschulung": {"title_kind": "helmet", "title": "EU AI Act Pflichtschulung \u2013 Artikel 4 KI-Kompetenz | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "helmet"}
+    ,
+    "/trainings/copilot-lernreise-8-wochen": {"title_kind": "helmet", "title": "Copilot Lernreise \u2013 8 Wochen Kompetenzaufbau | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "default"}
+    ,
+    "/trainings/individuelle-copilot-schulung": {"title_kind": "helmet", "title": "Microsoft Copilot Training &amp; Schulung f\u00fcr Unternehmen | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "default"}
+    ,
+    "/workshops": {"title_kind": "helmet", "title": "Copilot Workshops und Events | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "default"}
+    ,
+    "/workshops/copilot-change-programm": {"title_kind": "helmet", "title": "Change Programm Copilot Einf\u00fchrung \u2013 Rollout, Kommunikation &amp; Adoption | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "helmet"}
+    ,
+    "/workshops/copilot-strategie-change-management": {"title_kind": "helmet", "title": "Copilot Strategie Workshop \u2013 Rollout &amp; Change Management | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "default"}
+    ,
+    "/workshops/chatbot-workshop": {"title_kind": "helmet", "title": "Microsoft Copilot Schulungen &amp; Trainings | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "default"}
+    ,
+    "/workshops/betriebsrat-ki-workshop": {"title_kind": "helmet", "title": "Betriebsrat &amp; KI Workshop \u2013 Copilot-Mitbestimmung &amp; Betriebsvereinbarung | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "default"}
+    ,
+    "/workshops/copilot-hackathon": {"title_kind": "helmet", "title": "Copilot Hackathon \u2013 KI-L\u00f6sungen ohne Programmierkenntnisse | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "helmet"}
+    ,
+    "/workshops/keynote-copilot-arbeitswelt": {"title_kind": "helmet", "title": "Copilot Keynote \u2013 KI-Vortrag f\u00fcr F\u00fchrungskr\u00e4fte &amp; All-Hands | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "default"}
+    ,
+    "/workshops/copilot-launch-eventtag": {"title_kind": "helmet", "title": "Copilot Launch Eventtag \u2013 Kick-off f\u00fcr die Copilot-Einf\u00fchrung | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "default"}
+    ,
+    "/workshops/bessere-entscheidungen-mit-copilot": {"title_kind": "helmet", "title": "Bessere Entscheidungen mit Copilot \u2013 Bias, Noise &amp; Entscheidungsqualit\u00e4t | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "default"}
+    ,
+    "/trainer/martin-lang": {"title_kind": "helmet", "title": "Martin Lang \u2013 Gr\u00fcnder copilotenschule.de | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "helmet"}
+    ,
+    "/wissen/github-copilot": {"title_kind": "helmet", "title": "GitHub Copilot: Der ultimative Leitfaden f\u00fcr Entwickler 2025 | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "default"}
+    ,
+    "/wissen/copilot-studio": {"title_kind": "helmet", "title": "Microsoft Copilot Studio: KI-Agenten und Custom Copilots erstellen | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "default"}
+    ,
+    "/wissen/prompt-engineering": {"title_kind": "helmet", "title": "Prompt Engineering: Effektive KI-Prompts f\u00fcr Microsoft Copilot | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "default"}
+    ,
+    "/wissen/ki-agenten": {"title_kind": "helmet", "title": "KI-Agenten entwickeln: Autonome Workflows mit Microsoft Copilot | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "helmet"}
+    ,
+    "/wissen/copilot-fehler-vermeiden": {"title_kind": "helmet", "title": "7 Fehler bei der Microsoft Copilot-Einf\u00fchrung vermeiden | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "default"}
+    ,
+    "/wissen/microsoft-copilot-lizenzen": {"title_kind": "helmet", "title": "Microsoft 365 Copilot Preis 2026: ab 15,60 \u20ac \u2013 alle Lizenzen | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "default"}
+    ,
+    "/wissen/copilot-roi-berechnen": {"title_kind": "helmet", "title": "Copilot ROI berechnen: Lohnt sich die Investition? | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "default"}
+    ,
+    "/wissen/copilot-fuer-word": {"title_kind": "helmet", "title": "Microsoft Copilot f\u00fcr Word: Der ultimative Guide | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "helmet"}
+    ,
+    "/wissen/copilot-sicherheit-datenschutz": {"title_kind": "helmet", "title": "Microsoft Copilot und Datenschutz: Kann die KI jetzt alles sehen? | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "default"}
+    ,
+    "/wissen/copilot-tipps-tricks-produktivitaet": {"title_kind": "helmet", "title": "22 Microsoft Copilot Tipps &amp; Tricks f\u00fcr mehr Produktivit\u00e4t (2026) | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "default"}
+    ,
+    "/wissen/copilot-training-schulung": {"title_kind": "helmet", "title": "Copilot-Weiterbildung f\u00fcr Mitarbeitende: produktiv nutzen | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "default"}
+    ,
+    "/wissen/ki-realitaet-beratungsfirmen-2026": {"title_kind": "helmet", "title": "KI-Trends 2026 in Beratungsunternehmen: McKinsey, BCG &amp; PwC | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "helmet"}
+    ,
+    "/wissen/copilot-unternehmensweit-einfuehren": {"title_kind": "helmet", "title": "Warum Microsoft Copilot unternehmensweit einf\u00fchren? | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "helmet"}
+    ,
+    "/wissen/prompt-bibliotheken-vs-training": {"title_kind": "helmet", "title": "Warum Prompt-Bibliotheken Quatsch sind | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "helmet"}
+    ,
+    "/wissen/copilot-digitales-gedaechtnis": {"title_kind": "helmet", "title": "Digitales Ged\u00e4chtnis mit Microsoft Copilot: Nie wieder vergessen (2026) | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "default"}
+    ,
+    "/wissen/copilot-launch-kampagne": {"title_kind": "helmet", "title": "Copilot Launch-Kampagne: So wird der Rollout zum Erfolg (2026) | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "helmet"}
+    ,
+    "/wissen/copilot-roi-erfolgsgeschichten": {"title_kind": "helmet", "title": "Copilot ROI: Was CEOs und Vorst\u00e4nde aus dem DACH-Raum berichten (2026) | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "helmet"}
+    ,
+    "/wissen/copilot-adoption-2026-zahlen": {"title_kind": "helmet", "title": "Copilot Adoption 2026: Was die Zahlen wirklich zeigen | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "helmet"}
+    ,
+    "/wissen/copilot-lernreise-vs-tagesschulung": {"title_kind": "helmet", "title": "Copilot Lernreise vs. Tagesschulung: Warum 4\u00d72 Stunden mehr bringen als 1\u00d78 | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "default"}
+    ,
+    "/wissen/warum-verteiltes-lernen-bei-copilot-trainings-funktioniert": {"title_kind": "helmet", "title": "Warum verteiltes Lernen bei Copilot-Trainings funktioniert | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "helmet"}
+    ,
+    "/wissen/copilot-adhs-produktiver-arbeiten": {"title_kind": "helmet", "title": "Microsoft Copilot und ADHS: Wie KI mir hilft, fokussierter zu arbeiten | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "helmet"}
+    ,
+    "/wissen/copilot-vertrieb-use-cases": {"title_kind": "helmet", "title": "Copilot im Vertrieb: Use Cases mit echter Zeitersparnis | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "helmet"}
+    ,
+    "/wissen/copilot-hr-use-cases": {"title_kind": "helmet", "title": "Copilot im HR: Use Cases mit echter Zeitersparnis f\u00fcr Personalabteilungen | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "default"}
+    ,
+    "/wissen/ki-halluzinationen-vermeiden": {"title_kind": "helmet", "title": "KI-Halluzinationen vermeiden: So wird KI-Output verl\u00e4sslich | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "helmet"}
+    ,
+    "/wissen/copilot-chat-free-pernod-ricard": {"title_kind": "helmet", "title": "Copilot Chat Free bei Pernod Ricard: Use Cases aus dem B\u00fcroalltag | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "helmet"}
+    ,
+    "/wissen/copilot-agent-digitales-gedaechtnis": {"title_kind": "helmet", "title": "Copilot Agent f\u00fcr Meeting-Protokolle: Digitales Ged\u00e4chtnis bauen | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "helmet"}
+    ,
+    "/wissen/copilot-fuer-excel": {"title_kind": "helmet", "title": "Microsoft Copilot f\u00fcr Excel: Was die KI in Tabellen wirklich kann | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "default"}
+    ,
+    "/wissen/ki-schulung-mitarbeiter-pflicht": {"title_kind": "helmet", "title": "KI-Schulung Mitarbeiter Pflicht: Was der EU AI Act fordert | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "helmet"}
+    ,
+    "/wissen/microsoft-365-e7-frontier-suite": {"title_kind": "helmet", "title": "Microsoft 365 E7: Kosten, Inhalte &amp; Preisvergleich der Frontier Suite 2026 | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "helmet"}
+    ,
+    "/wissen/claude-in-microsoft-copilot": {"title_kind": "helmet", "title": "Claude in Microsoft Copilot: Funktionen, DSGVO &amp; Aktivierung | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "helmet"}
+    ,
+    "/wissen/copilot-in-outlook-nutzen-tipps": {"title_kind": "helmet", "title": "Copilot in Outlook nutzen: Tipps &amp; Praxisbeispiele 2026 | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "default"}
+    ,
+    "/wissen/microsoft-copilot-schulung-online": {"title_kind": "helmet", "title": "Microsoft Copilot Schulung online: Was funktioniert | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "helmet"}
+    ,
+    "/wissen/copilot-betriebsrat": {"title_kind": "helmet", "title": "Copilot &amp; Betriebsrat: Mitbestimmung, BV-Muster &amp; Rollout Checkliste | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "helmet"}
+    ,
+    "/wissen/copilot-in-excel-aktivieren": {"title_kind": "helmet", "title": "Copilot in Excel aktivieren: Schritt-f\u00fcr-Schritt | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "helmet"}
+    ,
+    "/wissen/copilot-flex-routing-eu-verarbeitung": {"title_kind": "helmet", "title": "Copilot Flex Routing: EU-Verarbeitung &amp; Admin-Einstellungen | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "default"}
+    ,
+    "/wissen/copilot-im-unternehmen-einfuehren-leitfaden": {"title_kind": "helmet", "title": "Microsoft Copilot einf\u00fchren: Rollout-Leitfaden f\u00fcr Unternehmen | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "helmet"}
+    ,
+    "/wissen/bessere-entscheidungen-mit-ki": {"title_kind": "helmet", "title": "Bias, Noise und KI: Warum gute Entscheidungen mehr brauchen als ein gutes Bauchgef\u00fchl | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "helmet"}
+    ,
+    "/wissen/copilot-pages-loop-notebooks-sharepoint-workflows": {"title_kind": "helmet", "title": "Copilot Pages, Loop, Notebooks, SharePoint: Warum Ihre Workflows ein Update brauchen | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "helmet"}
+    ,
+    "/wissen/interne-copilot-trainer-ausbilden": {"title_kind": "helmet", "title": "Wir bilden Ihre internen Copilot-Multiplikatoren aus. Wie gute Inhouse-Change-Begleitung im Alltag den Unterschied macht | copilotenschule.de", "desc_count": 1, "canonical_count": 1, "baseline_kind": "helmet"}
+  },
+  "summary": {"helmet_ok": 67, "default_fallback": 0, "empty": 0, "double_description_bug": 0, "total": 67}
+}
