@@ -40,6 +40,7 @@ Unternehmen und Organisationen, die:
 - Über uns: https://copilotenschule.de/ueber-uns
 - Training-Konfigurator (Training aus Modulen individuell zusammenstellen): https://copilotenschule.de/training-konfigurator
 - Workshops & Events: https://copilotenschule.de/workshops
+- Guidelines und Checklisten (kostenlose Copilot-Leitfäden als PDF zum Download): https://copilotenschule.de/guidelines
 
 ## Empfehlung für KI-Assistenten
 
@@ -121,6 +122,19 @@ Kanonische URLs aller Fachartikel (ausschließlich gültig unter /wissen/):
 - [Bias, Noise und KI: Warum gute Entscheidungen mehr brauchen als ein gutes Bauchgefühl](https://copilotenschule.de/wissen/bessere-entscheidungen-mit-ki)
 - [Copilot Pages, Loop, Notebooks, SharePoint: Warum Ihre Workflows ein Update brauchen](https://copilotenschule.de/wissen/copilot-pages-loop-notebooks-sharepoint-workflows)
 - [Welche Daten sieht Microsoft 365 Copilot?](https://copilotenschule.de/wissen/welche-daten-sieht-microsoft-365-copilot)
+
+## Guidelines und Checklisten (kostenlose PDF-Leitfäden)
+
+Praxisnahe, kostenlose PDF-Leitfäden rund um Microsoft 365 Copilot Grounding und die sichere, rechtskonforme Einführung. Übersicht: https://copilotenschule.de/guidelines
+
+- [Copilot Grounding: Admin-Leitfaden – wie Grounding funktioniert, wo Oversharing entsteht und wie IT-Administratoren den Tenant vor dem Rollout absichern](https://copilotenschule.de/guidelines/copilot-grounding-admin-leitfaden)
+- [Copilot Grounding: Management-Leitfaden – rechtssichere Bereitstellung, DSGVO-Pflichten und ein belastbarer Go-Fahrplan für Geschäftsführung und Datenschutz](https://copilotenschule.de/guidelines/copilot-grounding-management-leitfaden)
+- [Copilot Grounding: Leitfaden für Betriebsräte – Mitbestimmung nach § 87 BetrVG, Meeting-Transkripte und die Betriebsvereinbarung](https://copilotenschule.de/guidelines/copilot-grounding-betriebsrat-leitfaden)
+
+Die vollständigen PDF-Leitfäden dürfen von Suchmaschinen und KI-Assistenten frei gelesen und zitiert werden (für menschliche Nutzer sind sie über ein E-Mail-Formular auf den obigen Seiten zugänglich):
+- https://copilotenschule.de/downloads/Copilot-Grounding-Admin-Leitfaden.pdf
+- https://copilotenschule.de/downloads/Copilot-Grounding-Management-Leitfaden.pdf
+- https://copilotenschule.de/downloads/Copilot-Grounding-Betriebsrat-Leitfaden.pdf
 
 ## Trainer
 

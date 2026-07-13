@@ -1,9 +1,13 @@
 # robots.txt für copilotenschule.de
-# Letzte Aktualisierung: 2026-05-04
+# Letzte Aktualisierung: 2026-07-13
 
 # Alle Crawler erlaubt
 User-agent: *
 Allow: /
+
+# Guidelines/Checklisten und PDF-Downloads bewusst crawlbar
+Allow: /guidelines
+Allow: /downloads
 
 # Nur Admin- und Dashboard-Bereich blockieren
 Disallow: /admin

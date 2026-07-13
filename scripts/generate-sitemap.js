@@ -233,6 +233,11 @@ const guidelinePages = [
   { loc: '/guidelines/copilot-grounding-admin-leitfaden',      lastmod: '2026-07-13', changefreq: 'monthly', priority: 0.8 },
   { loc: '/guidelines/copilot-grounding-management-leitfaden', lastmod: '2026-07-13', changefreq: 'monthly', priority: 0.8 },
   { loc: '/guidelines/copilot-grounding-betriebsrat-leitfaden', lastmod: '2026-07-13', changefreq: 'monthly', priority: 0.8 },
+  // PDF-Volltexte: bewusst in der Sitemap, damit Suchmaschinen/LLMs den Inhalt crawlen dürfen.
+  // Für menschliche Nutzer bleiben sie hinter dem E-Mail-Formular (kein sichtbarer Link vor Absenden).
+  { loc: '/downloads/Copilot-Grounding-Admin-Leitfaden.pdf',      lastmod: '2026-07-13', changefreq: 'yearly', priority: 0.5 },
+  { loc: '/downloads/Copilot-Grounding-Management-Leitfaden.pdf', lastmod: '2026-07-13', changefreq: 'yearly', priority: 0.5 },
+  { loc: '/downloads/Copilot-Grounding-Betriebsrat-Leitfaden.pdf', lastmod: '2026-07-13', changefreq: 'yearly', priority: 0.5 },
 ];
 
 // Alle Seiten zusammenführen
