@@ -182,6 +182,7 @@ const knowledgeSlugs = [
   'copilot-agent-mode-word-excel-powerpoint', 'copilot-schulungsanbieter-deutschland-vergleich',
   'microsoft-copilot-varianten-unterschiede', 'eu-ai-act-mitarbeiter-schulung-august-2026',
   'copilot-cowork-abrechnung-copilot-credits', 'welche-daten-sieht-microsoft-365-copilot',
+  'copilot-update-juni-2026',
 ];
 
 const knowledgePages = knowledgeSlugs.map(slug => ({

@@ -30,6 +30,17 @@ export interface ArticleData {
 // Alle Artikel - sortiert nach Veröffentlichungsdatum (neueste zuerst)
 export const ALL_ARTICLES: ArticleData[] = [
   {
+    id: "copilot-update-juni-2026",
+    title: "Copilot Update Juni 2026",
+    description: "Cowork wird GA, Claude kommt in den Copilot Chat, Work IQ liest Geschäftsdaten – plus Admin- & Datenschutz-Themen und die Lizenzumstellung zum 1. Juli.",
+    link: "/wissen/copilot-update-juni-2026",
+    badge: "Copilot News",
+    icon: "§",
+    lastUpdated: "13. Juli 2026",
+    publishDate: "2026-07-13",
+    publishTime: "09:00"
+  },
+  {
     id: "welche-daten-sieht-microsoft-365-copilot",
     title: "Welche Daten sieht Microsoft 365 Copilot? Grounding, Zugriffsberechtigungen und Freigabe-Altlasten verständlich erklärt",
     description: "Wann sieht Copilot eine geteilte Datei? Grounding, Freigabe-Links, EEEU, Gastnutzer und Tenant-Grenze erklärt – plus Sanierungsfahrplan für Altlasten.",
