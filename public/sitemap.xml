@@ -4,7 +4,7 @@
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <!-- Automatisch generiert am 2026-07-13 -->
-  <!-- 80 URLs insgesamt | lastmod aus echten Update-Daten (articles.ts publishDate, git log) -->
+  <!-- 83 URLs insgesamt | lastmod aus echten Update-Daten (articles.ts publishDate, git log) -->
   <url>
     <loc>https://copilotenschule.de/</loc>
     <lastmod>2026-06-11</lastmod>
@@ -484,5 +484,23 @@
     <lastmod>2026-07-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://copilotenschule.de/downloads/Copilot-Grounding-Admin-Leitfaden.pdf</loc>
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://copilotenschule.de/downloads/Copilot-Grounding-Management-Leitfaden.pdf</loc>
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://copilotenschule.de/downloads/Copilot-Grounding-Betriebsrat-Leitfaden.pdf</loc>
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
   </url>
 </urlset>
