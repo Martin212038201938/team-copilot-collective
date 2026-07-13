@@ -69,6 +69,8 @@ import WelcheDatenSiehtCopilot from "./pages/WelcheDatenSiehtCopilot";
 import CopilotUpdateJuni2026 from "./pages/CopilotUpdateJuni2026";
 import SmlHrTipps2026 from "./pages/SmlHrTipps2026";
 import Danke from "./pages/Danke";
+import GuidelinesUebersicht from "./pages/GuidelinesUebersicht";
+import GuideLandingPage from "./pages/GuideLandingPage";
 
 const queryClient = new QueryClient();
 
@@ -83,6 +85,9 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/trainer-werden" element={<BecomeTrainer />} />
           <Route path="/wissen" element={<Wissen />} />
+          {/* Kategorie "Guidelines und Checklisten" – Gated Downloads / Honeypots */}
+          <Route path="/guidelines" element={<GuidelinesUebersicht />} />
+          <Route path="/guidelines/copilot-grounding-admin-leitfaden" element={<GuideLandingPage guideId="copilot-grounding-admin-leitfaden" />} />
           <Route path="/wissen/copilot-schulungsanbieter-deutschland-vergleich" element={<CopilotSchulungsanbieterVergleich />} />
           <Route path="/wissen/microsoft-copilot-lizenzen" element={<CopilotLicenses />} />
           <Route path="/wissen/github-copilot" element={<GitHubCopilot />} />

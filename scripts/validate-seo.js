@@ -132,13 +132,14 @@ function checkReactSnap(wissenPages) {
   // Check ob alte Root-Level-URLs noch drin sind, die NICHT zu den erlaubten
   // statischen Seiten gehören.
   const allowedRootRoutes = [
-    '/', '/trainings', '/workshops', '/wissen',
+    '/', '/trainings', '/workshops', '/wissen', '/guidelines',
     '/unsere-angebote', '/impressum', '/datenschutz',
     '/ueber-uns', '/kontakt', '/trainer-werden', '/training-konfigurator'
   ];
   for (const inc of includes) {
     if (inc.startsWith('/') && !inc.startsWith('/wissen/') && !inc.startsWith('/trainings/') &&
         !inc.startsWith('/workshops/') && !inc.startsWith('/trainer/') &&
+        !inc.startsWith('/guidelines/') &&
         !allowedRootRoutes.includes(inc)) {
       warnings.push(`[package.json] Verdächtiger Root-Level-Eintrag in reactSnap.include: "${inc}" → sollte unter /wissen/, /trainings/ oder /workshops/ sein`);
     }

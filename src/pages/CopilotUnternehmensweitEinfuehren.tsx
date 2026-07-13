@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { Zap, AlertTriangle, Shield, Database, Users, TrendingUp, ExternalLink, Mail, CheckCircle2, XCircle, Building2, Network, BookOpen, Scale, BrainCircuit, AlertCircle } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import AuthorBio from "@/components/AuthorBio";
+import HoneypotCTA from "@/components/HoneypotCTA";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 
 const SLUG = "copilot-unternehmensweit-einfuehren";
@@ -1229,6 +1230,11 @@ const CopilotUnternehmensweitEinfuehren = () => {
             Kostenlose Erstberatung anfragen
           </a>
         </div>
+              <HoneypotCTA
+                guideId="copilot-grounding-admin-leitfaden"
+                intro="Vor dem unternehmensweiten Rollout: Grounding verstehen und Oversharing beseitigen – der Admin-Leitfaden als kostenloses PDF."
+              />
+
               <AuthorBio author={martinLang} />
       </ContentLayout>
     </>

@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ExternalLink } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import AuthorBio from "@/components/AuthorBio";
+import HoneypotCTA from "@/components/HoneypotCTA";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 import { Link } from "react-router-dom";
 
@@ -414,6 +415,11 @@ const CopilotSicherheit = () => {
           </div>
         </section>
 
+
+              <HoneypotCTA
+                guideId="copilot-grounding-admin-leitfaden"
+                intro="Copilot-Berechtigungen, Grounding und Oversharing sauber absichern – der praktische Admin-Leitfaden als kostenloses PDF."
+              />
 
               <AuthorBio author={martinLang} />
       </ContentLayout>

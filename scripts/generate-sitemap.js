@@ -226,6 +226,13 @@ const trainerProfiles = [
   { loc: '/trainer/martin-lang', lastmod: AUTHORS_LASTMOD, changefreq: 'monthly', priority: 0.7 },
 ];
 
+// Guidelines und Checklisten (Gated Downloads / Honeypots) — /guidelines/<slug>
+// lastmod = publishDate des jeweiligen Leitfadens (siehe src/data/guides.ts)
+const guidelinePages = [
+  { loc: '/guidelines',                                   lastmod: '2026-07-13', changefreq: 'monthly', priority: 0.7 },
+  { loc: '/guidelines/copilot-grounding-admin-leitfaden', lastmod: '2026-07-13', changefreq: 'monthly', priority: 0.8 },
+];
+
 // Alle Seiten zusammenführen
 const allPages = [
   ...staticPages,
@@ -233,6 +240,7 @@ const allPages = [
   ...trainingPages,
   ...workshopPages,
   ...trainerProfiles,
+  ...guidelinePages,
 ];
 
 // XML generieren

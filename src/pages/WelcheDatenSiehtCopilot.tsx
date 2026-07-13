@@ -3,6 +3,7 @@ import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import AuthorBio from "@/components/AuthorBio";
+import HoneypotCTA from "@/components/HoneypotCTA";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 import { Link } from "react-router-dom";
 
@@ -919,6 +920,11 @@ const WelcheDatenSiehtCopilot = () => {
             </p>
           </div>
         </section>
+
+        <HoneypotCTA
+          guideId="copilot-grounding-admin-leitfaden"
+          intro="Alle Schritte aus diesem Artikel – Grounding verstehen, Oversharing finden, Berechtigungen sanieren – kompakt als PDF-Leitfaden für Admins."
+        />
 
         <section id="faq" className="mb-4 mt-2">
           <h2 className="text-2xl md:text-3xl font-bold mb-2">Häufige Fragen aus der Praxis</h2>

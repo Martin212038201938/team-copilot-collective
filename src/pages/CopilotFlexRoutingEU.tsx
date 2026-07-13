@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import AuthorBio from "@/components/AuthorBio";
+import HoneypotCTA from "@/components/HoneypotCTA";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 
 const SLUG = "copilot-flex-routing-eu-verarbeitung";
@@ -285,6 +286,11 @@ const CopilotFlexRoutingEU = () => {
             ))}
           </div>
         </section>
+
+              <HoneypotCTA
+                guideId="copilot-grounding-admin-leitfaden"
+                intro="Bevor Copilot live geht: Grounding, Berechtigungen und Oversharing im Griff – kompakt als Admin-Leitfaden (PDF)."
+              />
 
               <AuthorBio author={martinLang} />
       </ContentLayout>

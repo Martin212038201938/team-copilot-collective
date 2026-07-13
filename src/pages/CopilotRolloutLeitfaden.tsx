@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import AuthorBio from "@/components/AuthorBio";
+import HoneypotCTA from "@/components/HoneypotCTA";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 
 const SLUG = "copilot-im-unternehmen-einfuehren-leitfaden";
@@ -374,6 +375,11 @@ const CopilotRolloutLeitfaden = () => {
             </CardContent>
           </Card>
         </section>
+
+              <HoneypotCTA
+                guideId="copilot-grounding-admin-leitfaden"
+                intro="Teil jeder sauberen Copilot-Einführung: den Tenant vor dem Grounding absichern – Schritt-für-Schritt-Leitfaden für Admins (PDF)."
+              />
 
               <AuthorBio author={martinLang} />
       </ContentLayout>

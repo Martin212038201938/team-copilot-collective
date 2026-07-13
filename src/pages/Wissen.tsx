@@ -4,10 +4,11 @@ import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { BookOpen } from "lucide-react";
+import { BookOpen, Download, ArrowRight } from "lucide-react";
 import { getPublishedAsKnowledgeTopics, isArticlePublished } from "@/utils/publishedArticles";
 import { useState, useEffect } from "react";
 import { ALL_ARTICLES } from "@/data/articles";
+import { getAvailableGuides, CATEGORY_LABEL } from "@/data/guides";
 
 const Wissen = () => {
   const [dynamicTopics, setDynamicTopics] = useState<any[]>([]);
@@ -33,6 +34,8 @@ const Wissen = () => {
     const dateB = b.publishDate ? new Date(b.publishDate).getTime() : 0;
     return dateB - dateA; // Neueste zuerst
   });
+
+  const guides = getAvailableGuides();
 
   return (
     <div className="min-h-screen">
@@ -70,6 +73,41 @@ const Wissen = () => {
             </div>
           </div>
         </section>
+
+        {/* Kategorie: Guidelines und Checklisten (Gated Downloads) */}
+        {guides.length > 0 && (
+          <section className="pt-10 pb-2 bg-background">
+            <div className="container mx-auto px-4">
+              <div className="max-w-6xl mx-auto">
+                <Link
+                  to="/guidelines"
+                  className="group block rounded-2xl border-2 border-primary/30 bg-gradient-to-br from-primary/5 to-primary/10 p-6 md:p-8 hover:border-primary/50 transition-colors"
+                >
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-5">
+                    <div className="flex-shrink-0 text-4xl" aria-hidden="true">📥</div>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-1 text-sm font-semibold text-primary">
+                        <Download className="w-4 h-4" />
+                        Kostenlose Downloads
+                      </div>
+                      <h2 className="text-2xl md:text-3xl font-bold mb-1 group-hover:text-primary transition-colors">
+                        {CATEGORY_LABEL}
+                      </h2>
+                      <p className="text-muted-foreground leading-relaxed">
+                        Praxis-Leitfäden und Checklisten zu Microsoft 365 Copilot – direkt als PDF.
+                        Für Admins, Datenschutz- und Projektverantwortliche.
+                      </p>
+                    </div>
+                    <div className="flex-shrink-0 inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-3 font-semibold text-primary-foreground group-hover:opacity-90 transition-opacity whitespace-nowrap">
+                      Alle ansehen
+                      <ArrowRight className="w-4 h-4" />
+                    </div>
+                  </div>
+                </Link>
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* Knowledge Topics Grid */}
         <section className="pt-8 pb-16 bg-background">

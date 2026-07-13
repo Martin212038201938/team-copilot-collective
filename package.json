@@ -107,7 +107,9 @@
       "/wissen/interne-copilot-trainer-ausbilden",
       "/wissen/copilot-schulungsanbieter-deutschland-vergleich",
       "/sml/hr-tipps_2026",
-      "/danke"
+      "/danke",
+      "/guidelines",
+      "/guidelines/copilot-grounding-admin-leitfaden"
     ],
     "skipThirdPartyRequests": true,
     "crawl": false
