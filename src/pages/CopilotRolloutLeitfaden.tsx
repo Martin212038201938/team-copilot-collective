@@ -377,8 +377,8 @@ const CopilotRolloutLeitfaden = () => {
         </section>
 
               <HoneypotCTA
-                guideId="copilot-grounding-admin-leitfaden"
-                intro="Teil jeder sauberen Copilot-Einführung: den Tenant vor dem Grounding absichern – Schritt-für-Schritt-Leitfaden für Admins (PDF)."
+                guideIds={["copilot-grounding-admin-leitfaden", "copilot-grounding-management-leitfaden"]}
+                heading="Passende Leitfäden zum kostenlosen Download"
               />
 
               <AuthorBio author={martinLang} />

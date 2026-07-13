@@ -99,6 +99,43 @@ export const ALL_GUIDES: GuideData[] = [
     lastUpdated: "13. Juli 2026",
     status: "available",
   },
+  {
+    id: "copilot-grounding-management-leitfaden",
+    shortTitle: "Copilot Grounding: Management-Leitfaden",
+    title: "Microsoft 365 Copilot Grounding – der Leitfaden für Management & Datenschutz",
+    description:
+      "Entscheidungsgrundlage für die rechtssichere Copilot-Bereitstellung: Grounding-Risiken, DSGVO-Pflichten und ein belastbarer Go-Fahrplan – ohne Technik-Kauderwelsch.",
+    badge: "Guidelines und Checklisten",
+    icon: "⚖️",
+    audience: "Geschäftsführung, Datenschutzbeauftragte & Projektverantwortliche",
+    pdfPath: "/downloads/Copilot-Grounding-Management-Leitfaden.pdf",
+    fileMeta: "PDF-Leitfaden",
+    bullets: [
+      "Was Grounding für die rechtssichere Bereitstellung von Copilot bedeutet – verständlich erklärt, ohne Technik-Kauderwelsch",
+      "Welche DSGVO- und Compliance-Risiken durch Oversharing entstehen und wie sie realistisch einzuschätzen sind",
+      "Welche Nachweise und Governance-Bausteine Datenschutzbeauftragte vor der Freigabe brauchen",
+      "Wie ein Risiko-Assessment zur belastbaren Entscheidungsgrundlage wird – statt Bauchgefühl",
+      "Rollen und Verantwortlichkeiten: was IT, Datenschutz und Geschäftsführung jeweils beitragen müssen",
+      "Argumentationshilfe für die Budget- und Go-Entscheidung plus ein gestufter, rechtssicherer Rollout-Fahrplan",
+    ],
+    seo: {
+      metaTitle: "Copilot Grounding: Management-Leitfaden (PDF) – rechtssicher bereitstellen",
+      metaDescription:
+        "Kostenloser Leitfaden für Management & Datenschutz: Copilot rechtssicher bereitstellen. Grounding-Risiken, DSGVO-Pflichten, Rollen und ein belastbarer Go-Fahrplan als PDF.",
+      keywords: [
+        "Copilot Grounding",
+        "Copilot rechtssicher bereitstellen",
+        "Microsoft 365 Copilot DSGVO",
+        "Copilot Datenschutz",
+        "Copilot Management Entscheidung",
+        "Copilot Risiko Assessment",
+        "Copilot Compliance",
+      ],
+    },
+    publishDate: "2026-07-13",
+    lastUpdated: "13. Juli 2026",
+    status: "available",
+  },
 ];
 
 export const getGuide = (id: string): GuideData | undefined =>

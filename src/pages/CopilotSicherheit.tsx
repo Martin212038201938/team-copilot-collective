@@ -417,8 +417,8 @@ const CopilotSicherheit = () => {
 
 
               <HoneypotCTA
-                guideId="copilot-grounding-admin-leitfaden"
-                intro="Copilot-Berechtigungen, Grounding und Oversharing sauber absichern – der praktische Admin-Leitfaden als kostenloses PDF."
+                guideIds={["copilot-grounding-admin-leitfaden", "copilot-grounding-management-leitfaden"]}
+                heading="Passende Leitfäden zum kostenlosen Download"
               />
 
               <AuthorBio author={martinLang} />

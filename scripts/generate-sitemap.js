@@ -229,8 +229,9 @@ const trainerProfiles = [
 // Guidelines und Checklisten (Gated Downloads / Honeypots) — /guidelines/<slug>
 // lastmod = publishDate des jeweiligen Leitfadens (siehe src/data/guides.ts)
 const guidelinePages = [
-  { loc: '/guidelines',                                   lastmod: '2026-07-13', changefreq: 'monthly', priority: 0.7 },
-  { loc: '/guidelines/copilot-grounding-admin-leitfaden', lastmod: '2026-07-13', changefreq: 'monthly', priority: 0.8 },
+  { loc: '/guidelines',                                        lastmod: '2026-07-13', changefreq: 'monthly', priority: 0.7 },
+  { loc: '/guidelines/copilot-grounding-admin-leitfaden',      lastmod: '2026-07-13', changefreq: 'monthly', priority: 0.8 },
+  { loc: '/guidelines/copilot-grounding-management-leitfaden', lastmod: '2026-07-13', changefreq: 'monthly', priority: 0.8 },
 ];
 
 // Alle Seiten zusammenführen

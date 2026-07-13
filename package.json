@@ -109,7 +109,8 @@
       "/sml/hr-tipps_2026",
       "/danke",
       "/guidelines",
-      "/guidelines/copilot-grounding-admin-leitfaden"
+      "/guidelines/copilot-grounding-admin-leitfaden",
+      "/guidelines/copilot-grounding-management-leitfaden"
     ],
     "skipThirdPartyRequests": true,
     "crawl": false

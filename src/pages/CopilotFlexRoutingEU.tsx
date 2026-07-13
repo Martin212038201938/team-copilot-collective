@@ -288,8 +288,8 @@ const CopilotFlexRoutingEU = () => {
         </section>
 
               <HoneypotCTA
-                guideId="copilot-grounding-admin-leitfaden"
-                intro="Bevor Copilot live geht: Grounding, Berechtigungen und Oversharing im Griff – kompakt als Admin-Leitfaden (PDF)."
+                guideIds={["copilot-grounding-admin-leitfaden", "copilot-grounding-management-leitfaden"]}
+                heading="Passende Leitfäden zum kostenlosen Download"
               />
 
               <AuthorBio author={martinLang} />

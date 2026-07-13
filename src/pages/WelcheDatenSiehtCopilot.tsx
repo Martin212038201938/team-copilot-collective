@@ -922,8 +922,8 @@ const WelcheDatenSiehtCopilot = () => {
         </section>
 
         <HoneypotCTA
-          guideId="copilot-grounding-admin-leitfaden"
-          intro="Alle Schritte aus diesem Artikel – Grounding verstehen, Oversharing finden, Berechtigungen sanieren – kompakt als PDF-Leitfaden für Admins."
+          guideIds={["copilot-grounding-admin-leitfaden", "copilot-grounding-management-leitfaden"]}
+          heading="Grounding-Leitfäden zum kostenlosen Download"
         />
 
         <section id="faq" className="mb-4 mt-2">

@@ -1231,8 +1231,8 @@ const CopilotUnternehmensweitEinfuehren = () => {
           </a>
         </div>
               <HoneypotCTA
-                guideId="copilot-grounding-admin-leitfaden"
-                intro="Vor dem unternehmensweiten Rollout: Grounding verstehen und Oversharing beseitigen – der Admin-Leitfaden als kostenloses PDF."
+                guideIds={["copilot-grounding-admin-leitfaden", "copilot-grounding-management-leitfaden"]}
+                heading="Passende Leitfäden zum kostenlosen Download"
               />
 
               <AuthorBio author={martinLang} />
