@@ -2,6 +2,7 @@ import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import AuthorBio from "@/components/AuthorBio";
+import HoneypotCTA from "@/components/HoneypotCTA";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 import { Zap, Rocket, PartyPopper, Megaphone, Users, Calendar, TrendingUp, Target, CheckCircle2, AlertTriangle, ExternalLink, Sparkles, Trophy, ArrowRight } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -777,6 +778,11 @@ const CopilotLaunchKampagne = () => {
             Launch-Pakete entdecken
           </a>
         </div>
+              <HoneypotCTA
+                guideId="copilot-einfuehren-management-leitfaden"
+                intro="Der komplette Einführungs-Fahrplan für Entscheider – vier Phasen, Change & Adoption, Governance und die häufigsten Fehler, kompakt als PDF."
+              />
+
               <AuthorBio author={author} />
       </ContentLayout>
     </>

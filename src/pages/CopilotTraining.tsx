@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Zap, AlertTriangle, GraduationCap, Target, TrendingUp, Clock, CheckCircle2, XCircle, ArrowRight, Building2, UserCheck, Calendar, ExternalLink, BookOpen, Brain, Lightbulb, Users } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import AuthorBio from "@/components/AuthorBio";
+import HoneypotCTA from "@/components/HoneypotCTA";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 import { Link } from "react-router-dom";
 
@@ -1234,6 +1235,11 @@ const CopilotTraining = () => {
             </a>
           </div>
         </div>
+              <HoneypotCTA
+                guideId="copilot-einfuehren-management-leitfaden"
+                intro="Training ist der stärkste Adoptions-Hebel – der komplette Einführungs-Fahrplan für Entscheider (vier Phasen, Change, Governance) kompakt als PDF."
+              />
+
               <AuthorBio author={martinLang} />
       </ContentLayout>
     </>

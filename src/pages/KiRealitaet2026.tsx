@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Zap, AlertTriangle, TrendingUp, TrendingDown, Target, ExternalLink, CheckCircle2, XCircle, Euro, Clock, PieChart, Scale, Users, Brain } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import AuthorBio from "@/components/AuthorBio";
+import HoneypotCTA from "@/components/HoneypotCTA";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 import { Link } from "react-router-dom";
 
@@ -990,6 +991,11 @@ const KiRealitaet2026 = () => {
             Jetzt Beratungsgespräch vereinbaren
           </a>
         </div>
+              <HoneypotCTA
+                guideId="copilot-einfuehren-management-leitfaden"
+                intro="Von der Investition zur Wirkung: der Einführungs-Fahrplan für Entscheider – vier Phasen, Change & Adoption, Governance und die häufigsten Fehler, kompakt als PDF."
+              />
+
               <AuthorBio author={martinLang} />
       </ContentLayout>
     </>

@@ -1231,7 +1231,11 @@ const CopilotUnternehmensweitEinfuehren = () => {
           </a>
         </div>
               <HoneypotCTA
-                guideIds={["copilot-grounding-admin-leitfaden", "copilot-grounding-management-leitfaden"]}
+                guideIds={[
+                  "copilot-einfuehren-management-leitfaden",
+                  "copilot-grounding-management-leitfaden",
+                  "copilot-grounding-admin-leitfaden",
+                ]}
                 heading="Passende Leitfäden zum kostenlosen Download"
               />
 

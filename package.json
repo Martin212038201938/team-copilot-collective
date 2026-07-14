@@ -111,7 +111,8 @@
       "/guidelines",
       "/guidelines/copilot-grounding-admin-leitfaden",
       "/guidelines/copilot-grounding-management-leitfaden",
-      "/guidelines/copilot-grounding-betriebsrat-leitfaden"
+      "/guidelines/copilot-grounding-betriebsrat-leitfaden",
+      "/guidelines/copilot-einfuehren-management-leitfaden"
     ],
     "skipThirdPartyRequests": true,
     "crawl": false

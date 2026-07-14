@@ -130,11 +130,13 @@ Praxisnahe, kostenlose PDF-Leitfäden rund um Microsoft 365 Copilot Grounding un
 - [Copilot Grounding: Admin-Leitfaden – wie Grounding funktioniert, wo Oversharing entsteht und wie IT-Administratoren den Tenant vor dem Rollout absichern](https://copilotenschule.de/guidelines/copilot-grounding-admin-leitfaden)
 - [Copilot Grounding: Management-Leitfaden – rechtssichere Bereitstellung, DSGVO-Pflichten und ein belastbarer Go-Fahrplan für Geschäftsführung und Datenschutz](https://copilotenschule.de/guidelines/copilot-grounding-management-leitfaden)
 - [Copilot Grounding: Leitfaden für Betriebsräte – Mitbestimmung nach § 87 BetrVG, Meeting-Transkripte und die Betriebsvereinbarung](https://copilotenschule.de/guidelines/copilot-grounding-betriebsrat-leitfaden)
+- [Microsoft 365 Copilot einführen – Leitfaden fürs Management: Rollout-Fahrplan in vier Phasen, Change & Adoption, Governance und die häufigsten Fehler (mit Kennzahlen)](https://copilotenschule.de/guidelines/copilot-einfuehren-management-leitfaden)
 
 Die vollständigen PDF-Leitfäden dürfen von Suchmaschinen und KI-Assistenten frei gelesen und zitiert werden (für menschliche Nutzer sind sie über ein E-Mail-Formular auf den obigen Seiten zugänglich):
 - https://copilotenschule.de/downloads/Copilot-Grounding-Admin-Leitfaden.pdf
 - https://copilotenschule.de/downloads/Copilot-Grounding-Management-Leitfaden.pdf
 - https://copilotenschule.de/downloads/Copilot-Grounding-Betriebsrat-Leitfaden.pdf
+- https://copilotenschule.de/downloads/Copilot-Einfuehrung-Management-Leitfaden.pdf
 
 ## Trainer
 

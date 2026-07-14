@@ -173,6 +173,43 @@ export const ALL_GUIDES: GuideData[] = [
     lastUpdated: "13. Juli 2026",
     status: "available",
   },
+  {
+    id: "copilot-einfuehren-management-leitfaden",
+    shortTitle: "Copilot einführen: Leitfaden fürs Management",
+    title: "Microsoft 365 Copilot einführen – der Leitfaden fürs Management",
+    description:
+      "High-Level-Leitfaden für Entscheider: Warum die meisten Rollouts unter Wert bleiben und wie aus Lizenzen messbare Produktivität wird – Vorgehen, Change und Governance auf den Punkt.",
+    badge: "Guidelines und Checklisten",
+    icon: "🚀",
+    audience: "Geschäftsführung & C-Level, L&D/HR sowie IT- & Projektverantwortliche",
+    pdfPath: "/downloads/Copilot-Einfuehrung-Management-Leitfaden.pdf",
+    fileMeta: "PDF-Leitfaden",
+    bullets: [
+      "Die Skalierungslücke: nur ~6 % schaffen den Rollout, 80 % sehen keinen messbaren Effekt – und warum das selten an der Technik liegt",
+      "Was Nutzung wirklich bringt und was fehlende Begleitung kostet (Adoptions-Lücke, Zeitersparnis, ROI)",
+      "Der Rollout-Fahrplan in vier Phasen: Vorbereitung, Pilot & Training, Rollout, Optimierung",
+      "Champions & Multiplikatoren als wirksamster Adoptions-Hebel",
+      "Governance, Datenschutz & Compliance im Überblick (Grounding, EU AI Act, Betriebsrat) – mit Verweis auf die Detail-Leitfäden",
+      "Die häufigsten Fehler bei der Copilot-Einführung und wie Sie sie vermeiden",
+    ],
+    seo: {
+      metaTitle: "Copilot einführen: Leitfaden fürs Management (PDF) – Rollout ohne Fehlstart",
+      metaDescription:
+        "Kostenloser Management-Leitfaden zur Microsoft-365-Copilot-Einführung: Rollout-Fahrplan in vier Phasen, Change & Adoption, Governance und die häufigsten Fehler – mit Kennzahlen.",
+      keywords: [
+        "Copilot einführen",
+        "Microsoft 365 Copilot Rollout",
+        "Copilot Change Management",
+        "Copilot Adoption",
+        "Copilot Einführung Management",
+        "Copilot Champions",
+        "Copilot Governance",
+      ],
+    },
+    publishDate: "2026-07-14",
+    lastUpdated: "14. Juli 2026",
+    status: "available",
+  },
 ];
 
 export const getGuide = (id: string): GuideData | undefined =>
