@@ -8,6 +8,49 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 
 ## Logs
 
+### 2026-07-15 — A6 Index-Coverage-Recheck (Cron)
+
+**Indexierungsquote:** 59/94 (62,8 %) · gecrawlt-nicht-indexiert 12 (Validierung: Fehlgeschlagen) · gefunden-nicht-indexiert 11 (Validierung: Bestanden) · Weiterleitung 8 · alt. kanonisch 3 · robots.txt 1 — Summe nicht-indexiert 35. Δ vs. 13.07. (60/93, gecrawlt 10 + gefunden 11 = 21): Quote −1,7 pp, Summe 21→23 (+2), Gesamt-URL-Zahl 93→94 (neue Seite in Sitemap). GSC-Report ist nicht mehr eingefroren (letzter Datenpunkt jetzt 02.07., vorher 30.06.) — echte, wenn auch leicht negative Bewegung, keine Artefakt-Stagnation mehr.
+
+**A6-Zielseiten (13 aus Draft 16.06.):** **9/13 jetzt indexiert** (↑ von 7/13 am 30.06.) — Einzelprüfung per URL-Inspektion:
+- ✅ indexiert: microsoft-copilot-varianten-unterschiede, copilot-in-teams-zeit-gewinnen, bessere-entscheidungen-mit-ki, copilot-betriebsrat, copilot-flex-routing-eu-verarbeitung, copilot-fuer-word, interne-copilot-trainer-ausbilden, copilot-hr-use-cases, eu-ai-act-mitarbeiter-schulung-august-2026
+- ❌ nicht indexiert: copilot-pages-loop-notebooks-sharepoint-workflows (gefunden, nie gecrawlt), microsoft-copilot-schulung-online (zu Sessionbeginn „Google nicht bekannt", nach IndexNow-Ping im selben Lauf bereits „gefunden – nicht indexiert" mit Sitemap-Referenz), copilot-agent-mode-word-excel-powerpoint (gecrawlt 03.07., noch nicht indexiert), copilot-chat-free-pernod-ricard (weiterhin „Google nicht bekannt", keine Sitemap-Referenz/verweisende Seite von Google gemeldet, obwohl technisch sauber und in Sitemap + 3 Inbound-Links laut Draft)
+- A6-Umsetzung bestätigt live: Commit `e5902c8` („interne verlinkung", 01.07.) ist auf `main`/`origin/main`, Stichproben auf 4 Quellseiten zeigen die additiven Links live im HTML.
+
+**Nachgefasst:** IndexNow 4 URLs (HTTP 202) für die 4 offenen Zielseiten · GSC-Indexierungsanfragen 4/10 (eine URL doppelt beantragt durch Bedienfehler beim Navigieren, kein Problem — Google wertet Mehrfachversand laut eigenem Hinweis nicht neu). Alle 4 vorab technisch geprüft: HTTP 200, korrektes Self-Canonical, in `sitemap.xml` vorhanden.
+
+**Hartnäckige Nachzügler (> 3 Wo nicht indexiert):** keine — der einzige Kandidat mit Crawl-Historie (copilot-agent-mode-word-excel-powerpoint) ist erst 12 Tage alt (03.07.); die anderen 3 wurden noch nie gecrawlt. Kein Fall für inhaltliche Aufwertung.
+
+**Auffälligkeit:** `copilot-chat-free-pernod-ricard` bleibt trotz technischer Sauberkeit und bestehender Inbound-Links „Google nicht bekannt" — Beobachten, ob IndexNow-Ping + GSC-Request aus diesem Lauf greifen; falls in 3 Wochen weiterhin unbekannt, Kandidat für Prüfung (z. B. robots-Meta, JS-Rendering-Timing).
+
+**Aktion:** A6 bleibt ⏳ offen (9/13, nicht 13/13) — kein Status-Wechsel auf ✅. Plan-Eintrag unverändert. Kein Push, keine `src/`-Änderung, Protected Pages nicht angefasst.
+
+**Nächster Lauf:** nächster A6-Recheck nach Bedarf (Conductor entscheidet).
+
+---
+
+### 2026-07-15 — Phase-Conductor-Lauf (Cron)
+**Aktive Phase:** Phase 3 — Content-Block (aktiv seit 01.06.2026, kein Wechsel). Phase 4 (Off-Page) läuft seit 25.06. parallel.
+**Nächste Maßnahme:** kleinste offene Code-Nr. = **A6 Index-Coverage** (⏳). A6-Recheck-Cron `copilotenschule-seo-index-coverage-recheck` ist **heute 15.07. gefeuert** (lastRunAt 2026-07-15T09:49) und hat sich als one-time wieder deaktiviert — läuft zeitgleich mit diesem Conductor-Lauf, schreibt seinen eigenen Recheck-Eintrag. Danach: B3b/B3c-Hub-Review (Drafts seit 06.07.), C4-Schema-Push, C1-PageSpeed-Setup — alle user-gebunden.
+**Definition of Done:** **4 von 8** erfüllt (fest: #2 SSR 🔴=0 ✅, #4 GEO 82 ✅; wahrscheinlich: #5 ≥5 Klick-URLs ✅, #6 B2-Hub #1). Offen: #1 Indexierung 64,5 % (Ziel 90 %), #3 SEO-Score 42 (Ziel 75), #7 Listicle-Erwähnung (Drafts da, nicht versendet), #8 ProvenExpert (Profil nicht angelegt). Weit unter 7/8 → Conductor bleibt aktiv.
+**Risiko-Status:** 🟡 gelb — Organik klar steigend (GSC Klicks 1030→1110 = +7,8 % W/W, Impr. +7,1 %, Pos. 9,4→9,3; SSR 67/67; Protected Pages 5/5 = 200). Dead-Click hat sich **entspannt** (13.07.: 8,62 % API-3T, erstmals wieder unter 10 %-Schwelle) → kein roter Flag mehr. Einziger gelber Dauerpunkt: Outbound (email) seit >3 Wochen 0 Conversions → LP-CTA `/sml/hr-tipps_2026` überfällig (User-Content-Entscheidung).
+**Aktion in diesem Lauf:** **keine** (Roadmap im Soll). Nächste Maßnahme A6 hat heute ihren Recheck-Cron gefeuert; Vorbedingung erfüllt (A6-Links am 01.07. gebaut + vom User gepusht + IndexNow HTTP 200; 3 der 6 Nachzügler bereits indexiert). Kein neuer Cron: der Engpass ist weiterhin **kein Automatisierungs-Loch, sondern ein Backlog user-gebundener Drafts** (C4-Schema-Push, D2/D3/D4-Outreach-Versand, B3b/B3c-Review, D1-ProvenExpert-Account, C1-API-Key). Der Conductor darf diese regelkonform nicht selbst pushen/versenden. **D5 (Yellow-Boat-Gastartikel)** bleibt ohne Draft-Cron — Grund unverändert wie 01.07.: den bereits vorhandenen, unversendeten Outreach-Stau (D2/D3/D4) nicht weiter aufblähen.
+
+**5 Status-Fragen:**
+1. **Aktive Phase:** Phase 3 (Content). Phase 1/2/2b historisch abgeschlossen (DoD #2 live verifiziert) — nicht wieder öffnen. Phase 4 parallel offen.
+2. **Nächste konkrete Maßnahme:** A6 (⏳). Recheck heute gelaufen — Ergebnis im parallelen A6-Eintrag, nicht hier vorwegnehmen.
+3. **Cron für A6 vorhanden?** Ja, ist **heute gefeuert** (danach self-disabled, one-time). Ob ein 3. Recheck-Cron nötig ist, entscheidet das A6-Recheck-Ergebnis von heute — im nächsten Conductor-Lauf (05.08.) prüfbar. B3b/B3c/C1/C4-Crons sind gelaufen; Maßnahmen jetzt user-gebunden.
+4. **Vorbedingung A6 erfüllt?** Ja — Links gebaut + gepusht (01.07.), IndexNow HTTP 200, 3/6 Nachzügler indexiert. Recheck heute misst die restlichen 3.
+5. **🔵 offen > 14 Tage ohne Cron?** B3b/B3c: Drafts existieren (06.07.), kein Loch. D1: user-gebunden (Captcha), kein autonomer Cron sinnvoll (Reminder lief 10.06.). D2/D3/D4: Outreach-Drafts existieren (`docs/outreach/`), warten auf User-Versand. D5: ohne Draft — bewusst kein Cron (Backlog-Schutz). Kein vergessenes, cron-loses Item mit erfüllter Vorbedingung.
+
+**Risiko-Check (> 7 Tage ungelöst):** Kein roter Flag. Dead-Click (früher ⚠️) seit 13.07. unter Schwelle → gelöst/entspannt. Outbound-0-Conversions bleibt gelber Content-Punkt (User-Entscheidung, kein SEO-Blocker). SSR/Protected/Indexierung sauber.
+
+**Grund-Muster (unverändert):** Engpass = Backlog fertiger, user-gebundener Drafts, nicht fehlende Automatisierung. Wert dieses Laufs = Stau sichtbar halten, Bestand bewahren, keine Cron-Inflation.
+
+**Nächster Conductor-Lauf:** Mi 05.08.2026, 11:00.
+
+---
+
 ### 2026-07-13 — Wöchentlicher Audit (Cron)
 
 **Phase:** Phase 3 — Content-Block (aktiv, kein Wechsel), DoD 4/8
