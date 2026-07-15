@@ -288,7 +288,11 @@ const CopilotFlexRoutingEU = () => {
         </section>
 
               <HoneypotCTA
-                guideIds={["copilot-grounding-admin-leitfaden", "copilot-grounding-management-leitfaden"]}
+                guideIds={[
+                  "copilot-grounding-admin-leitfaden",
+                  "copilot-einfuehren-admin-leitfaden",
+                  "copilot-grounding-management-leitfaden",
+                ]}
                 heading="Passende Leitfäden zum kostenlosen Download"
               />
 

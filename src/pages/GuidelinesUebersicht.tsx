@@ -119,6 +119,9 @@ const GuidelinesUebersicht = () => {
                         <CardTitle className="text-xl group-hover:text-primary transition-colors">
                           {guide.shortTitle}
                         </CardTitle>
+                        <p className="mt-1.5 text-xs font-medium text-muted-foreground">
+                          PDF · {guide.pages} Seiten
+                        </p>
                       </CardHeader>
                       <CardContent className="space-y-4">
                         <CardDescription className="text-sm leading-relaxed">

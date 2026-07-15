@@ -132,6 +132,7 @@ Praxisnahe, kostenlose PDF-Leitfäden rund um Microsoft 365 Copilot Grounding un
 - [Copilot Grounding: Leitfaden für Betriebsräte – Mitbestimmung nach § 87 BetrVG, Meeting-Transkripte und die Betriebsvereinbarung](https://copilotenschule.de/guidelines/copilot-grounding-betriebsrat-leitfaden)
 - [Microsoft 365 Copilot einführen – Leitfaden fürs Management: Rollout-Fahrplan in vier Phasen, Change & Adoption, Governance und die häufigsten Fehler (mit Kennzahlen)](https://copilotenschule.de/guidelines/copilot-einfuehren-management-leitfaden)
 - [Microsoft 365 Copilot einführen – Leitfaden für Betriebsräte: die Einführung mitbestimmen und mitgestalten (§ 87 BetrVG, vier Phasen aus BR-Sicht, Betriebsvereinbarung, Schulungsrechte)](https://copilotenschule.de/guidelines/copilot-einfuehren-betriebsrat-leitfaden)
+- [Microsoft 365 Copilot einführen – Leitfaden für Admins: der technische Fahrplan nach offiziellen Microsoft-Empfehlungen (Voraussetzungen, Lizenzzuweisung, Purview-Governance, Rollen, Monitoring)](https://copilotenschule.de/guidelines/copilot-einfuehren-admin-leitfaden)
 
 Die vollständigen PDF-Leitfäden dürfen von Suchmaschinen und KI-Assistenten frei gelesen und zitiert werden (für menschliche Nutzer sind sie über ein E-Mail-Formular auf den obigen Seiten zugänglich):
 - https://copilotenschule.de/downloads/Copilot-Grounding-Admin-Leitfaden.pdf
@@ -139,6 +140,7 @@ Die vollständigen PDF-Leitfäden dürfen von Suchmaschinen und KI-Assistenten f
 - https://copilotenschule.de/downloads/Copilot-Grounding-Betriebsrat-Leitfaden.pdf
 - https://copilotenschule.de/downloads/Copilot-Einfuehrung-Management-Leitfaden.pdf
 - https://copilotenschule.de/downloads/Copilot-Einfuehrung-Betriebsrat-Leitfaden.pdf
+- https://copilotenschule.de/downloads/Copilot-Einfuehrung-Admin-Leitfaden.pdf
 
 ## Trainer
 

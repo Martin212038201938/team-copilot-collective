@@ -134,6 +134,33 @@ const GuideLandingPage = ({ guideId }: GuideLandingPageProps) => {
                     E-Mail steht der Download sofort bereit.
                   </p>
                 </div>
+
+                {/* Vollständiges Inhaltsverzeichnis */}
+                <div className="mt-10">
+                  <div className="flex items-baseline justify-between gap-4 mb-5">
+                    <h2 className="text-2xl md:text-3xl font-bold">Inhaltsverzeichnis</h2>
+                    <span className="flex-shrink-0 text-sm font-medium text-muted-foreground">
+                      PDF · {guide.pages} Seiten
+                    </span>
+                  </div>
+                  <ol className="space-y-1.5 border-l-2 border-primary/20 pl-5">
+                    {guide.toc.map((entry, i) => {
+                      const isSection = /^Teil\s/i.test(entry);
+                      return (
+                        <li
+                          key={i}
+                          className={
+                            isSection
+                              ? "mt-4 first:mt-0 text-xs font-semibold uppercase tracking-wide text-primary"
+                              : "text-muted-foreground leading-relaxed"
+                          }
+                        >
+                          {entry}
+                        </li>
+                      );
+                    })}
+                  </ol>
+                </div>
               </div>
 
               {/* Formular (sticky) */}
