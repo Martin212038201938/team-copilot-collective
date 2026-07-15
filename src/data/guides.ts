@@ -210,6 +210,43 @@ export const ALL_GUIDES: GuideData[] = [
     lastUpdated: "14. Juli 2026",
     status: "available",
   },
+  {
+    id: "copilot-einfuehren-betriebsrat-leitfaden",
+    shortTitle: "Copilot einführen: Leitfaden für Betriebsräte",
+    title: "Microsoft 365 Copilot einführen – der Leitfaden für Betriebsräte",
+    description:
+      "Wie der Betriebsrat die Copilot-Einführung aktiv mitbestimmt und mitgestaltet – Rechte, Vorgehen entlang der Einführungsphasen und die Betriebsvereinbarung auf den Punkt.",
+    badge: "Guidelines und Checklisten",
+    icon: "🧭",
+    audience: "Betriebsräte, Personalvertretungen, JAV & Datenschutzbeauftragte",
+    pdfPath: "/downloads/Copilot-Einfuehrung-Betriebsrat-Leitfaden.pdf",
+    fileMeta: "PDF-Leitfaden",
+    bullets: [
+      "Warum Copilot mitbestimmungspflichtig ist (§ 87 Abs. 1 Nr. 6 BetrVG) – und warum frühe Beteiligung die Beschäftigten schützt",
+      "Die vier Einführungsphasen aus BR-Sicht: Unterrichtung, Betriebsvereinbarung & Schulung, Begleitung, Evaluation",
+      "Die Betriebsvereinbarung als zentrales Instrument – die wichtigsten Regelungspunkte",
+      "Ihre Mitbestimmungs- und Beteiligungsrechte im Überblick (§ 90, § 97 Abs. 2, § 37 Abs. 6 BetrVG)",
+      "Kompetenz des Gremiums sichern und mit belastbaren Zahlen argumentieren (Adoption, Training, Rollout-Realität)",
+      "Vom Bedenkenträger zum Gestalter – plus Verweis auf den Grounding-Detail-Leitfaden für Betriebsräte",
+    ],
+    seo: {
+      metaTitle: "Copilot einführen: Leitfaden für Betriebsräte (PDF) – Einführung mitgestalten",
+      metaDescription:
+        "Kostenloser Leitfaden für Betriebsräte zur Microsoft-365-Copilot-Einführung: Mitbestimmung (§ 87 BetrVG), die vier Phasen aus BR-Sicht, Betriebsvereinbarung und Schulungsrechte.",
+      keywords: [
+        "Copilot Betriebsrat Einführung",
+        "Copilot Mitbestimmung",
+        "Betriebsvereinbarung Copilot",
+        "§ 87 BetrVG Copilot",
+        "Copilot Rollout Betriebsrat",
+        "Betriebsrat Schulung Copilot",
+        "Copilot Personalvertretung",
+      ],
+    },
+    publishDate: "2026-07-14",
+    lastUpdated: "14. Juli 2026",
+    status: "available",
+  },
 ];
 
 export const getGuide = (id: string): GuideData | undefined =>

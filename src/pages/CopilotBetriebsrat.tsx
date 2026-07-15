@@ -676,8 +676,11 @@ const CopilotBetriebsrat = () => {
         </section>
 
         <HoneypotCTA
-          guideId="copilot-grounding-betriebsrat-leitfaden"
-          intro="Grounding, Teams-Transkripte und § 87 BetrVG kompakt für die Gremienarbeit – mit Checkliste und Regelungspunkten für die Betriebsvereinbarung, als kostenloses PDF."
+          guideIds={[
+            "copilot-einfuehren-betriebsrat-leitfaden",
+            "copilot-grounding-betriebsrat-leitfaden",
+          ]}
+          heading="Leitfäden für Betriebsräte zum kostenlosen Download"
         />
 
         {/* Sektion: Training */}
