@@ -143,7 +143,7 @@ const GuideLandingPage = ({ guideId }: GuideLandingPageProps) => {
                       PDF · {guide.pages} Seiten
                     </span>
                   </div>
-                  <ol className="space-y-1.5 border-l-2 border-primary/20 pl-5">
+                  <ul className="list-none space-y-1.5 border-l-2 border-primary/20 pl-5">
                     {guide.toc.map((entry, i) => {
                       const isSection = /^Teil\s/i.test(entry);
                       return (
@@ -159,7 +159,7 @@ const GuideLandingPage = ({ guideId }: GuideLandingPageProps) => {
                         </li>
                       );
                     })}
-                  </ol>
+                  </ul>
                 </div>
               </div>
 
