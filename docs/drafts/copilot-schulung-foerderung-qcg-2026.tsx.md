@@ -1,21 +1,21 @@
-# B3b Hub-Artikel-Entwurf — Copilot-Schulung fördern lassen: Die Förderprogramme 2026 im Überblick
+# B3b Hub-Artikel-Entwurf — Copilot-Schulung fördern lassen: Landesförderungen 2026
 
-> **Status:** Entwurf zum Review (überarbeitet 21.07.2026). NICHT deployen, bis Martin freigibt. Zum Aktivieren die Schritte in `copilot-schulung-foerderung-qcg-2026-deployment-checklist.md` ausführen.
+> **Status:** Entwurf zum Review (überarbeitet 21.07.2026, v3). NICHT deployen, bis Martin freigibt.
 > **Zieldatei:** `src/pages/CopilotSchulungFoerderungQcg.tsx`
 > **Slug:** `/wissen/copilot-schulung-foerderung-qcg-2026`
 > **Autor:** Martin Lang
-> **Erstellt:** 06.07.2026 · **Überarbeitet:** 21.07.2026 (von QCG-Einzelartikel zu Multi-Programm-Überblick, DE-Fokus, ehrliche AZAV-Einordnung)
+> **Ausrichtung (mit Martin abgestimmt):** KEIN neutraler Förder-Ratgeber. Fokus AUSSCHLIESSLICH auf Landesförderungen, die sich direkt für Copilotenschule-Trainings nutzen lassen — **ohne AZAV-/zertifizierten Träger**. Bundesprogramme (QCG § 82, Qualifizierungsgeld § 82a, Bildungsgutschein § 81) und die 120-Stunden-Thematik wurden ersatzlos gestrichen. AZAV-Hinweise auf ein Minimum reduziert, AZAV-FAQ entfernt.
 >
-> **⚠️ Redaktioneller Hinweis zur AZAV-Einordnung (wichtig, mit Martin abgestimmt):**
-> Die Copilotenschule ist **NICHT** AZAV-zertifiziert. Der Artikel darf daher NICHT den Eindruck erwecken, wir seien zugelassener Träger für QCG/Qualifizierungsgeld/Bildungsgutschein. Diese drei Wege setzen zwingend einen AZAV-zertifizierten Träger + zugelassene Maßnahme voraus. Ehrliche Linie: Für diese Wege liefern wir Fachinhalte in ein zertifiziertes Programm ein bzw. arbeiten mit AZAV-Partnern; **direkt und ohne AZAV** bedienbar sind über die Copilotenschule die **Länderprogramme** (Bildungsscheck NRW 2.0 & Co.). Das ist der ehrliche USP dieses Artikels.
->
-> **Faktencheck (verifiziert 21.07.2026, Quellen unten):**
-> - **QCG · § 82 SGB III** (Weiterbildung Beschäftigter). Lehrgangskosten-Förderung nach Betriebsgröße (aus AG-Kostenbeteiligung, § 82 Abs. 2, direkt am Gesetzestext geprüft): **< 50 Beschäftigte → bis 100 %** (keine AG-Beteiligung nötig) · **50 bis < 500 → 50 %** · **≥ 500 → 25 %**. Mit Betriebsvereinbarung/Tarifvertrag zur Weiterbildung je **+5 Prozentpunkte** (§ 82 Abs. 4) → 55 % bzw. 30 %. Arbeitsentgeltzuschuss (§ 82 Abs. 3): **75 % / 50 % / 25 %**. Bei Betrieben < 500: keine AG-Kostenbeteiligung, wenn AN **≥ 45 Jahre** oder **schwerbehindert**. Maßnahme muss **> 120 Stunden** dauern (§ 82 Abs. 1 Nr. 4); Träger + Maßnahme **AZAV-zugelassen** (Nr. 5); Berufsabschluss i.d.R. ≥ 2 Jahre her (Nr. 2); keine § 82-Förderung in den letzten 2 Jahren (Nr. 3). Antrag VOR Beginn; Arbeitgeber kann Sammelantrag stellen (§ 82 Abs. 5). Seit 01.01.2026 neue Fachliche Weisungen der BA: Arbeitsentgeltzuschuss strikter an tatsächlichen weiterbildungsbedingten Ausfall gekoppelt.
-> - **Qualifizierungsgeld · § 82a SGB III** (neu seit 01.04.2024, Weiterbildungsgesetz). **Lohnersatz 60 % / 67 %** (mit Kind) der Nettoentgeltdifferenz während der Weiterbildung — deckt **NICHT** die Lehrgangskosten (die trägt der Arbeitgeber selbst). Für **strukturwandelbedingten** Qualifizierungsbedarf; mind. **10 %** der Belegschaft betroffen (Betriebe < 250) bzw. **20 %** (ab 250); Maßnahme **> 120 Stunden**, AZAV-zugelassen; i.d.R. Betriebsvereinbarung/Tarifvertrag nötig.
-> - **Bildungsgutschein · § 81 SGB III**: v.a. für Arbeitslose und von Arbeitslosigkeit Bedrohte; übernimmt Lehrgangskosten (bis 100 %); Träger + Maßnahme **AZAV**-zugelassen. Für Beschäftigte nur in Sonderfällen (drohender Arbeitsplatzverlust durch Strukturwandel, fehlender Berufsabschluss).
-> - **Länderprogramme (KEIN AZAV nötig, individuell):** **Bildungsscheck NRW 2.0** — seit **01.02.2026**, ESF-kofinanziert: **50 % bis max. 500 €** der berufsbezogenen Weiterbildung, Wohnsitz NRW, zvE **≤ 50.000 €** (Ehepaare 100.000 €), 1×/Kalenderjahr; Anmeldung online im ESF-Portal **mind. 1 Tag vor** Kursbeginn; nur Rechnung + Teilnahmebestätigung nötig, keine AZAV-/Trägerzulassung. Weitere Länder analog: **Hamburg Weiterbildungsbonus** (bis 40 %, max. 1.500 €), **Rheinland-Pfalz QualiScheck**, **Sachsen Weiterbildungsscheck** (aktuell haushaltsbedingt pausiert — vor Verweis prüfen). Programme je Land unterschiedlich, teils befristet/pausiert.
-> - **Bildungsprämie (Bund):** Ende 2021 ausgelaufen, **kein** direkter Nachfolger — NICHT mehr als gültig darstellen. Alter Bildungsscheck NRW (individuell/betrieblich) 2023/2024 eingestellt; Restabwicklung bis 31.03.2029.
-> - Rechtsstand kann sich ändern — Artikel enthält Rechtshinweis (keine Rechts-/Förderberatung). Verbindliche Auskunft nur über Agentur für Arbeit bzw. die jeweilige Landesstelle.
+> **Faktencheck (verifiziert 21.07.2026, Quellen unten). Entscheidendes Kriterium = Anbieter-Voraussetzung:**
+> - **NRW – Bildungsscheck 2.0:** 50 %, max. **500 €**, 1×/Jahr. Wohnsitz NRW, zu verst. Einkommen ≤ 50.000 € (Ehepaare 100.000 €). **Keine Anbieter-Zertifizierung** — Teilnehmende beantragen selbst, wir liefern Rechnung + Teilnahmebestätigung. Aktiv seit 01.02.2026. → **direkt nutzbar** (offiziell: mags.nrw).
+> - **Brandenburg – Bildungsscheck (Weiterbildungsrichtlinie 2026):** **60 %**, min. 500 €, **keine Obergrenze** mehr. Erstwohnsitz ODER Arbeitsort Brandenburg. **Keine Anbieter-Zertifizierung.** Anträge jederzeit bis 30.06.2027 an die ILB. → **direkt nutzbar** (offiziell: ilb.de, esf.brandenburg.de).
+> - **Sachsen-Anhalt – WEITERBILDUNG (individueller Zugang):** **60–90 %** je Einkommen (90 % < 2.000 €/Monat brutto; 80 % < 3.000 € bzw. ab 45 J./Teilzeit u. a.; sonst 60 %), max. **25.000 €**/Maßnahme. Wohnsitz Sachsen-Anhalt, Einkommen ≤ 77.400 € brutto/Jahr (2026). **Keine allgemeine Anbieter-Zertifizierung** (nur Fernlehrgänge → ZFU). → **direkt nutzbar, großzügigstes Programm** (offiziell: ib-sachsen-anhalt.de, foerderdatenbank.de).
+> - **Baden-Württemberg – Fachkurse (ESF Plus):** 30 % (Regel) / 70 % (ab 55 J. oder ohne Berufsabschluss); ab 01.09.2026 laut ESF-BW einheitlich **45 %** angekündigt (Übergang – vor Go-Live final prüfen). Wohn-/Arbeitsort BW. Keine AZAV/ISO nötig, ABER **der Anbieter selbst muss Antragsteller sein und ≥ 3 Jahre am Weiterbildungsmarkt** — nur nutzbar, wenn Copilotenschule diese Trägerrolle erfüllt (Alter der GmbH prüfen!). → **bedingt nutzbar** (offiziell: esf-bw.de).
+> - **Mecklenburg-Vorpommern – Bildungsschecks (GSA):** 50 %, max. 3.000 €. Zugang über das Unternehmen. Keine Zertifizierung, aber betriebsvermittelt. → **bedingt nutzbar** (gsa-schwerin.de).
+> - **Hamburg – Weiterbildungsbonus PLUS:** ~40–50 % (Angabe schwankt je Quelle — prüfen), max. 750–1.000 €. Zielgruppe eingeschränkt (v. a. Geringqualifizierte / max. Ausbildungsabschluss) — passt selten zu Copilot-Zielgruppen (Wissensarbeiter/Führungskräfte). Zertifizierung Standard, Einzelfallprüfung möglich. → **randständig** (weiterbildung-hamburg.de).
+> - **Anbieter-Zertifizierung ZWINGEND (daher NICHT für uns nutzbar):** Rheinland-Pfalz QualiScheck (akkreditierter Träger: ISO 9001/AZAV/VHS-Hochschule), Schleswig-Holstein Weiterbildungsbonus (ISO 9001/AZAV), Bremen Weiterbildungsscheck (Bindung an gelistete Träger).
+> - **Aktuell KEIN nutzbares individuelles Programm:** Sachsen (ausgesetzt, kein Budget 2025/26), Thüringen (pausiert, evtl. ab Herbst 2026), Niedersachsen (ausgelaufen), Hessen (Qualifizierungsscheck 2021 beendet), Bayern (Bildungsscheck 2021 beendet), Berlin (kein Kurskosten-Zuschuss).
+> - Rechtsstand kann sich ändern; Länderprogramme werden pausiert/neu aufgelegt. Artikel enthält Rechtshinweis. Verbindliche Auskunft nur über die jeweilige Landesstelle.
 
 ---
 
@@ -29,7 +29,7 @@ import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 import { Link } from "react-router-dom";
 
 const SLUG = "copilot-schulung-foerderung-qcg-2026";
-const PAGE_TITLE = "Copilot-Schulung fördern lassen: Die Förderprogramme 2026 im Überblick";
+const PAGE_TITLE = "Copilot-Schulung fördern lassen: Landesförderungen 2026 im Überblick";
 
 const CopilotSchulungFoerderungQcg = () => {
   const martinLang = getAuthor("martin-lang")!;
@@ -39,40 +39,35 @@ const CopilotSchulungFoerderungQcg = () => {
   const breadcrumbItems = generateWissenBreadcrumbItems(PAGE_TITLE, pageUrl);
 
   const tableOfContents = [
-    { id: "ueberblick", title: "Die Förderwege 2026 im Überblick", level: 2 },
-    { id: "qcg", title: "Qualifizierungschancengesetz (§ 82 SGB III)", level: 2 },
-    { id: "qualifizierungsgeld", title: "Qualifizierungsgeld (§ 82a SGB III)", level: 2 },
-    { id: "bildungsgutschein", title: "Bildungsgutschein (§ 81 SGB III)", level: 2 },
-    { id: "laenderprogramme", title: "Länderprogramme: Bildungsscheck & Co.", level: 2 },
-    { id: "azav", title: "Die AZAV-Voraussetzung – ehrlich erklärt", level: 2 },
-    { id: "copilotenschule", title: "Wie die Copilotenschule bei der Förderung unterstützt", level: 2 },
+    { id: "ueberblick", title: "Landesförderungen für Copilot-Trainings im Überblick", level: 2 },
+    { id: "nrw", title: "Nordrhein-Westfalen: Bildungsscheck 2.0", level: 2 },
+    { id: "brandenburg", title: "Brandenburg: Bildungsscheck", level: 2 },
+    { id: "sachsen-anhalt", title: "Sachsen-Anhalt: WEITERBILDUNG individuell", level: 2 },
+    { id: "weitere", title: "Weitere Länder: Baden-Württemberg, MV, Hamburg", level: 2 },
+    { id: "copilotenschule", title: "So nutzen Sie die Förderung mit der Copilotenschule", level: 2 },
     { id: "faq", title: "Häufig gestellte Fragen", level: 2 },
   ];
 
   const faqs = [
     {
-      name: "Wie finanziere ich eine flächendeckende Copilot-Qualifizierung, ohne mein Weiterbildungsbudget zu sprengen?",
-      answer: "Es gibt 2026 mehrere Wege, die sich kombinieren lassen. Der größte Hebel ist das Qualifizierungschancengesetz (§ 82 SGB III): Es übernimmt je nach Betriebsgröße einen erheblichen Teil der Lehrgangskosten – bei Betrieben unter 50 Beschäftigten bis zu 100 Prozent, bei 50 bis unter 500 die Hälfte – plus einen Zuschuss zum Arbeitsentgelt für die Ausfallzeiten. Voraussetzung: Die Maßnahme muss insgesamt mehr als 120 Stunden umfassen und über einen AZAV-zertifizierten Träger laufen, ein einzelner Workshop reicht nicht. Für kleinere Teams oder einzelne Mitarbeitende in NRW ist zusätzlich der Bildungsscheck 2.0 interessant (50 Prozent, bis 500 Euro) – der kommt ohne AZAV aus und lässt sich direkt auf unsere Trainings anwenden. Die Copilotenschule hilft, das passende Programm zuzuschneiden."
+      name: "Wie kann ich eine Copilot-Weiterbildung bezuschussen lassen, ohne ein aufwändiges Förderverfahren zu durchlaufen?",
+      answer: "Der unkomplizierteste Weg führt über die individuellen Landesförderungen. Programme wie der Bildungsscheck in NRW und Brandenburg oder die WEITERBILDUNG individuell in Sachsen-Anhalt bezuschussen berufsbezogene Weiterbildung direkt – die oder der Beschäftigte meldet die Weiterbildung online bei der Landesstelle an, nimmt teil und reicht danach Rechnung und Teilnahmebestätigung ein. Kein monatelanges Antragsverfahren, keine besondere Trägerzulassung. Da Copilot-Kompetenz eindeutig berufsbezogen ist, sind unsere Trainings über diese Schecks anrechenbar. Die Copilotenschule liefert die nötigen Unterlagen und sagt Ihnen, welches Landesprogramm zu Ihrem Standort passt."
     },
     {
-      name: "Ist die Copilotenschule ein zugelassener Träger, über den ich die Förderung bekomme?",
-      answer: "Ehrliche Antwort: Für die AZAV-gebundenen Wege (Qualifizierungschancengesetz, Qualifizierungsgeld, Bildungsgutschein) sind wir nicht der zertifizierte Träger – wir sind auf praxisnahe Copilot- und KI-Qualifizierung spezialisiert, nicht auf das AZAV-Zulassungsverfahren. Für diese Programme liefern wir die Fachinhalte in ein zertifiziertes Programm ein oder arbeiten mit AZAV-Partnern zusammen. Ohne AZAV direkt förderfähig über die Copilotenschule sind dagegen die Länderprogramme wie der Bildungsscheck NRW 2.0: Dort brauchen Teilnehmende nur eine Rechnung und eine Teilnahmebestätigung von uns. Wir sagen Ihnen offen, welcher Weg zu Ihrer Situation passt."
+      name: "Wir sitzen in einem bestimmten Bundesland – gibt es dort überhaupt eine passende Förderung?",
+      answer: "Das hängt stark vom Bundesland ab, und die Programme ändern sich häufig. Besonders attraktiv sind aktuell Sachsen-Anhalt (bis zu 90 Prozent, maximal 25.000 Euro), Brandenburg (60 Prozent ohne Obergrenze) und Nordrhein-Westfalen (50 Prozent, bis 500 Euro). In Baden-Württemberg, Mecklenburg-Vorpommern und Hamburg gibt es Programme mit besonderen Bedingungen. Einige Länder haben ihre Förderung dagegen pausiert oder eingestellt. Nennen Sie uns Ihren Standort, dann prüfen wir mit Ihnen, welches Programm aktuell offen ist und ob Ihre Copilot-Qualifizierung dort hineinpasst."
     },
     {
-      name: "Woher weiß ich, ob mein Unternehmen die Förderung überhaupt bekommt?",
-      answer: "Verbindlich entscheidet das die zuständige Agentur für Arbeit bzw. die Landesstelle – aber die groben Leitplanken lassen sich vorab prüfen. Für das Qualifizierungschancengesetz gilt: sozialversicherungspflichtig Beschäftigte, ein Maßnahmenumfang über 120 Stunden, ein AZAV-zugelassener Träger und Inhalte, die über die reine Anpassung an den aktuellen Arbeitsplatz hinausgehen. KI- und Copilot-Kompetenz fällt klar in diese Kategorie. Für den Bildungsscheck NRW 2.0 sind es Wohnsitz in NRW und ein zu versteuerndes Jahreseinkommen bis 50.000 Euro. Wir empfehlen, früh den Arbeitgeber-Service der Agentur bzw. die G.I.B.-Beratung einzubinden; die Unterlagen zum Programm liefern wir."
+      name: "Reicht ein einzelnes Copilot-Training für die Förderung, oder muss es ein umfangreiches Programm sein?",
+      answer: "Über die individuellen Landesschecks ist auch ein einzelnes, berufsbezogenes Training förderfähig – Sie müssen also nicht erst ein monatelanges Großprogramm aufsetzen, um überhaupt eine Förderung zu bekommen. Das macht diese Programme so praktisch für Copilot-Schulungen: Ein gezieltes Praxistraining für ein Team oder eine Fachabteilung lässt sich direkt bezuschussen. Wenn Sie ohnehin breiter qualifizieren wollen, kombinieren wir die Trainings zu einem stimmigen Lernpfad – aber der Einstieg ist bewusst niedrigschwellig."
     },
     {
-      name: "Können wir die EU-AI-Act-Schulungspflicht und die Weiterbildungsförderung sinnvoll kombinieren?",
-      answer: "Ja, und das ist einer der stärksten Gründe, jetzt zu handeln. Die KI-Kompetenz-Pflicht aus dem EU AI Act verlangt ohnehin ein nachweisbares Schulungsprogramm – wenn dieses Programm groß genug angelegt wird, um die 120-Stunden-Schwelle zu erreichen, lässt sich derselbe Pflichtaufwand teilweise über das Qualifizierungschancengesetz refinanzieren. Aus einer regulatorischen Pflicht wird so eine geförderte Investition. Die Copilotenschule denkt beide Anforderungen von Anfang an zusammen."
+      name: "Wie überzeuge ich unsere Geschäftsführung, in Copilot-Schulungen zu investieren, wenn das Budget knapp ist?",
+      answer: "Die Förderung verändert die Rechnung spürbar: Wenn ein Landesprogramm 50 bis 90 Prozent der Kurskosten übernimmt, sinkt die Netto-Investition oft auf einen Bruchteil – während der Produktivitätsgewinn durch kompetente Copilot-Nutzung voll beim Unternehmen bleibt. Genau diese Kombination aus geförderten Kosten und messbarem Nutzen ist das stärkste Argument gegenüber der Geschäftsführung. Die Copilotenschule hilft Ihnen, beides zu belegen: den passenden Förderweg und den erwartbaren Nutzen eines strukturierten Trainings."
     },
     {
-      name: "Wir sitzen nicht in NRW – gibt es den Bildungsscheck auch in anderen Bundesländern?",
-      answer: "Der Bildungsscheck 2.0 ist ein NRW-Programm, aber viele Länder haben vergleichbare individuelle Zuschüsse: Hamburg etwa den Weiterbildungsbonus (bis 40 Prozent, maximal 1.500 Euro), Rheinland-Pfalz den QualiScheck, Sachsen den Weiterbildungsscheck (der allerdings zeitweise haushaltsbedingt pausiert). Diese Programme ändern sich häufiger als die Bundesförderung – manche werden pausiert oder neu aufgelegt. Es lohnt sich, vor der Anmeldung die aktuelle Landesstelle zu prüfen. Da diese Zuschüsse keine AZAV-Zulassung verlangen, sind unsere Trainings dort in der Regel direkt anrechenbar."
-    },
-    {
-      name: "Unsere Belegschaft hat sehr unterschiedliche Vorkenntnisse – lässt sich das trotzdem als ein förderfähiges Programm abbilden?",
-      answer: "Gerade das ist ein Vorteil eines mehrmoduligen Programms. Statt alle durch dieselbe Schulung zu schicken, lassen sich rollengerechte Lernpfade – Einsteiger, Power-User, Führungskräfte, Administratoren – zu einem zusammenhängenden Qualifizierungsprogramm bündeln, das in Summe die geforderten 120 Stunden überschreitet und trotzdem für jede Gruppe passt. Die Copilotenschule baut solche gestuften Lernreisen und dokumentiert sie so, dass sie als ein förderfähiges Ganzes darstellbar sind – gegenüber der Agentur für Arbeit ebenso wie gegenüber einem AZAV-Partner, der die Maßnahme zertifiziert durchführt."
+      name: "Wie läuft die Beantragung praktisch ab, und was müssen wir dabei beachten?",
+      answer: "In der Regel meldet die oder der Beschäftigte die Weiterbildung VOR Kursbeginn online bei der zuständigen Landesstelle bzw. Förderbank an – das ist der wichtigste Punkt, denn eine nachträgliche Förderung ist meist ausgeschlossen. Nach der Teilnahme werden Rechnung und Teilnahmebestätigung eingereicht, danach wird der Zuschuss ausgezahlt. Die maßnahmenbezogenen Unterlagen liefern wir passgenau. Sie kümmern sich um die Anmeldung im Landesportal, wir um alles rund um das Training – so bleibt der Aufwand gering."
     },
   ];
 
@@ -84,7 +79,7 @@ const CopilotSchulungFoerderungQcg = () => {
         "@id": ids.article,
         "headline": PAGE_TITLE,
         "description":
-          "Welche Förderprogramme 2026 Copilot- und KI-Weiterbildung finanzieren: Qualifizierungschancengesetz (§ 82 SGB III), Qualifizierungsgeld (§ 82a), Bildungsgutschein (§ 81) und Länderprogramme wie der Bildungsscheck NRW 2.0 – mit Förderquoten, Voraussetzungen und dem AZAV-Faktor.",
+          "Welche Landesförderungen 2026 Copilot- und KI-Weiterbildung direkt bezuschussen – ohne zertifizierten Träger: Bildungsscheck NRW 2.0, Bildungsscheck Brandenburg und WEITERBILDUNG individuell Sachsen-Anhalt (bis 90 %), plus Baden-Württemberg, MV und Hamburg. Förderhöhen, Bedingungen und praktische Nutzung.",
         "author": getAuthorSchemaMarkup(martinLang),
         "publisher": {
           "@id": "https://copilotenschule.de/#organization",
@@ -93,14 +88,13 @@ const CopilotSchulungFoerderungQcg = () => {
         "dateModified": "2026-07-21",
         "keywords": [
           "Copilot Schulung Förderung",
-          "Qualifizierungschancengesetz Copilot",
-          "QCG Förderung KI-Schulung",
-          "§ 82 SGB III Weiterbildung",
-          "Qualifizierungsgeld § 82a SGB III",
-          "Bildungsgutschein KI-Weiterbildung",
+          "Landesförderung Weiterbildung 2026",
           "Bildungsscheck NRW 2.0",
-          "Weiterbildungsförderung Beschäftigte 2026",
+          "Bildungsscheck Brandenburg",
+          "WEITERBILDUNG individuell Sachsen-Anhalt",
+          "Fachkurse Baden-Württemberg",
           "geförderte Microsoft-Copilot-Schulung",
+          "KI-Weiterbildung Zuschuss Bundesländer",
         ],
         "articleSection": "Förderung & Finanzierung",
         "mainEntityOfPage": {
@@ -133,14 +127,14 @@ const CopilotSchulungFoerderungQcg = () => {
   return (
     <>
       <SEOHead
-        title="Copilot-Schulung fördern lassen 2026: QCG, Qualifizierungsgeld & Bildungsscheck | copilotenschule.de"
-        description="Welche Förderprogramme 2026 KI- und Copilot-Weiterbildung finanzieren: § 82 SGB III (bis 100 % Lehrgangskosten), Qualifizierungsgeld, Bildungsgutschein und Bildungsscheck NRW 2.0. Quoten, Voraussetzungen und der AZAV-Faktor – ehrlich erklärt."
+        title="Copilot-Schulung fördern lassen 2026: Landesförderungen im Überblick | copilotenschule.de"
+        description="Welche Landesförderungen 2026 Copilot- und KI-Weiterbildung direkt bezuschussen: Bildungsscheck NRW & Brandenburg, WEITERBILDUNG Sachsen-Anhalt (bis 90 %) u. a. Förderhöhen, Bedingungen und wie Sie sie für ein Copilotenschule-Training nutzen."
         keywords={[
           "Copilot Schulung Förderung",
-          "Qualifizierungschancengesetz Copilot",
-          "Qualifizierungsgeld § 82a SGB III",
+          "Landesförderung Weiterbildung 2026",
           "Bildungsscheck NRW 2.0",
-          "Weiterbildungsförderung Beschäftigte 2026",
+          "Bildungsscheck Brandenburg",
+          "WEITERBILDUNG individuell Sachsen-Anhalt",
           "geförderte Microsoft-Copilot-Schulung",
         ]}
         canonicalUrl={pageUrl}
@@ -155,7 +149,7 @@ const CopilotSchulungFoerderungQcg = () => {
           { label: "Förderung für Copilot-Schulungen", href: `/wissen/${SLUG}` },
         ]}
         title={PAGE_TITLE}
-        description="Vier Förderwege finanzieren 2026 KI- und Copilot-Weiterbildung – vom Qualifizierungschancengesetz bis zum Bildungsscheck. Welcher zu Ihrem Unternehmen passt und worauf es bei der Anbieterwahl ankommt."
+        description="Mehrere Bundesländer bezuschussen berufsbezogene Weiterbildung direkt – ohne besondere Trägerzulassung. Welche Programme sich 2026 für ein Copilot-Training nutzen lassen und wie viel sie übernehmen."
         lastUpdated="21. Juli 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
@@ -169,18 +163,16 @@ const CopilotSchulungFoerderungQcg = () => {
           </CardHeader>
           <CardContent className="text-green-900 dark:text-green-200">
             <p>
-              2026 finanzieren gleich mehrere Programme KI- und Copilot-Weiterbildung. Der größte
-              Hebel ist das <strong>Qualifizierungschancengesetz (§ 82 SGB III)</strong>: bis zu
-              100 Prozent der Lehrgangskosten plus Entgeltzuschuss, aber nur für Programme über{" "}
-              <strong>120 Stunden</strong> und über einen <strong>AZAV-zertifizierten Träger</strong>.
-              Das <strong>Qualifizierungsgeld (§ 82a)</strong> ersetzt bei Strukturwandel den Lohn
-              während der Weiterbildung, der <strong>Bildungsgutschein (§ 81)</strong> zielt auf
-              von Arbeitslosigkeit bedrohte Beschäftigte. Ohne AZAV auskommen die{" "}
-              <strong>Länderprogramme</strong> – etwa der <strong>Bildungsscheck NRW 2.0</strong>{" "}
-              (50 Prozent, bis 500 Euro pro Person und Jahr). Wichtig zur Einordnung: Die
-              Copilotenschule ist kein AZAV-Träger; über uns direkt förderfähig sind die
-              Länderprogramme, für die großen Bundesprogramme liefern wir die Inhalte in ein
-              zertifiziertes Programm ein.
+              Mehrere Bundesländer bezuschussen berufsbezogene Weiterbildung direkt – und weil
+              Copilot-Kompetenz berufsbezogen ist, lassen sich unsere Trainings darüber fördern,
+              <strong> ohne dass ein besonders zertifizierter Bildungsträger nötig ist</strong>. Am
+              stärksten sind aktuell <strong>Sachsen-Anhalt</strong> (bis zu 90 Prozent, maximal
+              25.000 Euro), <strong>Brandenburg</strong> (60 Prozent, keine Obergrenze mehr) und{" "}
+              <strong>Nordrhein-Westfalen</strong> (50 Prozent, bis 500 Euro). In Baden-Württemberg,
+              Mecklenburg-Vorpommern und Hamburg gelten besondere Bedingungen. Die oder der
+              Beschäftigte meldet die Weiterbildung vor Kursbeginn bei der Landesstelle an; wir
+              liefern Rechnung und Teilnahmebestätigung. Welches Programm für Ihren Standort offen
+              ist, prüfen wir mit Ihnen.
             </p>
           </CardContent>
         </Card>
@@ -189,287 +181,224 @@ const CopilotSchulungFoerderungQcg = () => {
         <div className="prose prose-lg max-w-none dark:prose-invert mb-4">
           <p>
             Über Copilot-Schulungen wird meistens unter dem Gesichtspunkt Nutzen und Produktivität
-            gesprochen, seltener unter dem der Finanzierung. Dabei gibt es in Deutschland gleich
-            mehrere Förderinstrumente, die für genau diese Art von Weiterbildung gemacht sind – und
-            die viele Unternehmen nicht auf dem Schirm haben, weil sie sie mit klassischer
-            Arbeitslosen-Förderung verwechseln. Die wichtigsten davon fördern die Weiterbildung von
-            Menschen, die in fester Beschäftigung sind, und zielen auf genau die Kompetenzlücke, die
-            Digitalisierung und KI gerade in nahezu jedem Betrieb aufreißen.
+            gesprochen, seltener unter dem der Finanzierung. Dabei fördern mehrere Bundesländer
+            genau diese Art von Weiterbildung – schlank, individuell und ohne aufwändiges Verfahren.
+            Der Clou: Diese Landesprogramme verlangen keine besondere Trägerzulassung, sondern nur,
+            dass es sich um eine berufsbezogene Weiterbildung handelt. Ein Copilot-Training erfüllt
+            das zweifelsfrei.
           </p>
           <p>
-            Dieser Text ordnet die vier relevanten Wege nüchtern ein: was sie leisten, für wen sie
-            gelten, welche Voraussetzungen daran hängen – und, das ist der Punkt, den die meisten
-            Ratgeber verschweigen, welche Rolle die AZAV-Zertifizierung des Anbieters spielt. Denn
-            manche Programme setzen sie zwingend voraus, andere nicht. Wer das früh weiß, wählt den
-            passenden Weg und den passenden Anbieter, statt am Ende an einer Formalie zu scheitern.
+            Dieser Überblick zeigt, welche Länder 2026 wie viel übernehmen, für wen die Förderung
+            gilt und wie Sie sie konkret für ein Training der Copilotenschule nutzen. Er konzentriert
+            sich bewusst auf die Programme, die Sie unmittelbar einsetzen können – nicht auf jene, die
+            an zusätzliche formale Hürden geknüpft sind.
           </p>
         </div>
 
-        {/* Sektion 0: Überblick */}
+        {/* Sektion 0: Überblickstabelle */}
         <section id="ueberblick" className="mb-4 mt-2">
           <h2 className="text-2xl md:text-3xl font-bold mb-2">
-            Die Förderwege 2026 im Überblick
+            Landesförderungen für Copilot-Trainings im Überblick
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
-              Vier Wege sind für eine Copilot-Qualifizierung praktisch relevant. Drei davon sind
-              Bundesprogramme im Sozialgesetzbuch III und an eine AZAV-Zulassung gebunden, der
-              vierte umfasst die individuellen Länderzuschüsse, die ohne AZAV auskommen. Die
-              folgende Tabelle zeigt die Unterschiede auf einen Blick; die Abschnitte danach gehen
-              ins Detail.
+              Die folgende Tabelle listet die Landesförderungen, die sich für ein Copilot-Training
+              der Copilotenschule eignen – mit Förderhöhe, Zielgruppe und dem Hinweis, ob das
+              Programm direkt oder nur unter Bedingungen nutzbar ist.
             </p>
           </div>
           <div className="overflow-x-auto my-4">
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b-2 border-border text-left">
+                  <th className="py-2 pr-4 font-semibold">Bundesland</th>
                   <th className="py-2 pr-4 font-semibold">Programm</th>
-                  <th className="py-2 pr-4 font-semibold">Was wird gefördert</th>
+                  <th className="py-2 pr-4 font-semibold">Förderung</th>
                   <th className="py-2 pr-4 font-semibold">Für wen</th>
-                  <th className="py-2 pr-4 font-semibold">AZAV nötig?</th>
+                  <th className="py-2 pr-4 font-semibold">Nutzbar</th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border align-top">
-                  <td className="py-2 pr-4 font-medium">Qualifizierungschancengesetz<br /><span className="text-muted-foreground">§ 82 SGB III</span></td>
-                  <td className="py-2 pr-4">Lehrgangskosten (bis 100 %) + Entgeltzuschuss</td>
-                  <td className="py-2 pr-4">Beschäftigte, alle Betriebsgrößen</td>
-                  <td className="py-2 pr-4">Ja</td>
+                  <td className="py-2 pr-4 font-medium">Sachsen-Anhalt</td>
+                  <td className="py-2 pr-4">WEITERBILDUNG (individueller Zugang)</td>
+                  <td className="py-2 pr-4">60–90 %, max. 25.000 €</td>
+                  <td className="py-2 pr-4">Beschäftigte mit Wohnsitz in S-A, Einkommen ≤ 77.400 €/Jahr</td>
+                  <td className="py-2 pr-4 font-medium text-green-700 dark:text-green-400">direkt</td>
                 </tr>
                 <tr className="border-b border-border align-top">
-                  <td className="py-2 pr-4 font-medium">Qualifizierungsgeld<br /><span className="text-muted-foreground">§ 82a SGB III</span></td>
-                  <td className="py-2 pr-4">Lohnersatz (60/67 %), <em>nicht</em> die Lehrgangskosten</td>
-                  <td className="py-2 pr-4">Betriebe im Strukturwandel</td>
-                  <td className="py-2 pr-4">Ja</td>
+                  <td className="py-2 pr-4 font-medium">Brandenburg</td>
+                  <td className="py-2 pr-4">Bildungsscheck (Weiterbildungsrichtlinie 2026)</td>
+                  <td className="py-2 pr-4">60 %, min. 500 €, keine Obergrenze</td>
+                  <td className="py-2 pr-4">Wohnsitz oder Arbeitsort in Brandenburg</td>
+                  <td className="py-2 pr-4 font-medium text-green-700 dark:text-green-400">direkt</td>
                 </tr>
                 <tr className="border-b border-border align-top">
-                  <td className="py-2 pr-4 font-medium">Bildungsgutschein<br /><span className="text-muted-foreground">§ 81 SGB III</span></td>
-                  <td className="py-2 pr-4">Lehrgangskosten (bis 100 %)</td>
-                  <td className="py-2 pr-4">Arbeitslose / von Arbeitslosigkeit Bedrohte</td>
-                  <td className="py-2 pr-4">Ja</td>
+                  <td className="py-2 pr-4 font-medium">Nordrhein-Westfalen</td>
+                  <td className="py-2 pr-4">Bildungsscheck 2.0</td>
+                  <td className="py-2 pr-4">50 %, max. 500 € (1×/Jahr)</td>
+                  <td className="py-2 pr-4">Wohnsitz NRW, Einkommen ≤ 50.000 € (Ehepaare 100.000 €)</td>
+                  <td className="py-2 pr-4 font-medium text-green-700 dark:text-green-400">direkt</td>
+                </tr>
+                <tr className="border-b border-border align-top">
+                  <td className="py-2 pr-4 font-medium">Baden-Württemberg</td>
+                  <td className="py-2 pr-4">Fachkurse (ESF Plus)</td>
+                  <td className="py-2 pr-4">30 % / 70 %; ab 09/2026 einheitlich 45 %</td>
+                  <td className="py-2 pr-4">Wohn-/Arbeitsort BW</td>
+                  <td className="py-2 pr-4">bedingt<sup>1</sup></td>
+                </tr>
+                <tr className="border-b border-border align-top">
+                  <td className="py-2 pr-4 font-medium">Mecklenburg-Vorpommern</td>
+                  <td className="py-2 pr-4">Bildungsschecks</td>
+                  <td className="py-2 pr-4">50 %, max. 3.000 €</td>
+                  <td className="py-2 pr-4">Beschäftigte, Zugang über das Unternehmen</td>
+                  <td className="py-2 pr-4">bedingt<sup>2</sup></td>
                 </tr>
                 <tr className="align-top">
-                  <td className="py-2 pr-4 font-medium">Länderprogramme<br /><span className="text-muted-foreground">z. B. Bildungsscheck NRW 2.0</span></td>
-                  <td className="py-2 pr-4">50 % bis 500 € (NRW) bzw. je Land verschieden</td>
-                  <td className="py-2 pr-4">Einzelpersonen, teils Einkommensgrenze</td>
-                  <td className="py-2 pr-4">Nein</td>
+                  <td className="py-2 pr-4 font-medium">Hamburg</td>
+                  <td className="py-2 pr-4">Weiterbildungsbonus PLUS</td>
+                  <td className="py-2 pr-4">bis ~50 %, max. 750–1.000 €</td>
+                  <td className="py-2 pr-4">v. a. Geringqualifizierte, KMU ≤ 250</td>
+                  <td className="py-2 pr-4">bedingt<sup>3</sup></td>
                 </tr>
               </tbody>
             </table>
           </div>
-        </section>
-
-        {/* Sektion 1: QCG */}
-        <section id="qcg" className="mb-4 mt-2">
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">
-            Qualifizierungschancengesetz (§ 82 SGB III)
-          </h2>
-          <div className="prose prose-lg max-w-none dark:prose-invert">
-            <p>
-              Das Qualifizierungschancengesetz ist kein eigenes Gesetzbuch, sondern eine Erweiterung
-              des Sozialgesetzbuchs III. Der zentrale Paragraf ist § 82 SGB III – „Förderung der
-              beruflichen Weiterbildung Beschäftigter“. Seit dem 1. Januar 2019 können Arbeitgeber
-              darüber Zuschüsse zur Weiterbildung ihrer eigenen Belegschaft erhalten, unabhängig von
-              Alter, Qualifikation und Betriebsgröße. Der Grundgedanke: Wer heute qualifiziert wird,
-              muss morgen nicht arbeitslos werden – Prävention statt Reparatur.
-            </p>
-            <p>
-              Gefördert werden zwei Dinge: die <strong>Lehrgangskosten</strong> und – als Ausgleich
-              für die Zeit, in der geschult statt gearbeitet wird – ein{" "}
-              <strong>Arbeitsentgeltzuschuss</strong>. Die Höhe hängt an der Betriebsgröße. Bei den
-              Lehrgangskosten gilt: Betriebe mit unter 50 Beschäftigten können bis zu 100 Prozent
-              erstattet bekommen, Betriebe mit 50 bis unter 500 Beschäftigten die Hälfte, Betriebe
-              ab 500 ein Viertel. Wer eine Betriebsvereinbarung oder einen Tarifvertrag zur
-              beruflichen Weiterbildung hat, erhält jeweils fünf Prozentpunkte obendrauf (also 55
-              bzw. 30 Prozent). Der Arbeitsentgeltzuschuss folgt derselben Logik: bis zu 75 Prozent
-              bei den Kleinsten, 50 Prozent im Mittelfeld, 25 Prozent bei den Großen.
-            </p>
-            <p>
-              Zwei Details heben die Quote im Einzelfall an: In Betrieben mit weniger als 500
-              Beschäftigten entfällt der Eigenanteil an den Lehrgangskosten ganz, wenn die
-              betreffende Person <strong>mindestens 45 Jahre</strong> alt oder{" "}
-              <strong>schwerbehindert</strong> ist. Wer eine gemischte Belegschaft qualifiziert,
-              sollte diese Konstellationen kennen.
-            </p>
-            <p>
-              Der entscheidende Haken, an dem die meisten Anfragen scheitern: § 82 verlangt, dass
-              die Maßnahme insgesamt <strong>mehr als 120 Stunden</strong> umfasst – nicht am Stück,
-              aber in Summe. Ein ein- oder zweitägiger Copilot-Workshop mit 7 bis 14 Stunden liegt
-              weit darunter und ist damit <em>nicht</em> förderfähig. Förderfähig wird eine
-              Copilot-Qualifizierung erst als längeres, zusammenhängendes Programm: mehrere Module
-              über Wochen oder Monate, die Grundlagen, rollenspezifische Vertiefung, begleitete
-              Praxisphasen und Lernkontrollen kombinieren. Genau diese Form – oft „Lernreise“
-              genannt – erfüllt nicht nur die Stundenschwelle, sondern ist didaktisch ohnehin
-              wirksamer als ein einmaliger Frontal-Termin. Dass KI- und Copilot-Kompetenz
-              „zukunftsrelevante Kompetenzen“ vermittelt und über eine kurzfristige
-              Arbeitsplatzanpassung hinausgeht, erfüllt die inhaltliche Anforderung problemlos.
-            </p>
-            <p>
-              Die zweite harte Bedingung: Sowohl der Träger als auch die konkrete Maßnahme müssen
-              nach der <strong>AZAV</strong> (Akkreditierungs- und Zulassungsverordnung
-              Arbeitsförderung) zugelassen sein. Das ist der Prüfstein, an dem die Agentur für
-              Arbeit die Förderung festmacht – mehr dazu weiter unten. Den Antrag stellt der
-              Arbeitgeber (bei mehreren vergleichbaren Beschäftigten als Sammelantrag), und zwar{" "}
-              <strong>vor Beginn</strong> der Maßnahme. Seit Januar 2026 koppeln die Fachlichen
-              Weisungen der Bundesagentur den Entgeltzuschuss strikter an den tatsächlichen,
-              weiterbildungsbedingten Arbeitsausfall.
+          <div className="prose prose-sm max-w-none dark:prose-invert">
+            <p className="text-muted-foreground">
+              <sup>1</sup> Baden-Württemberg: Der Zuschuss läuft über den Bildungsanbieter als
+              Antragsteller, der seit mindestens drei Jahren am Markt sein muss.{" "}
+              <sup>2</sup> Mecklenburg-Vorpommern: Antrag über das beschäftigende Unternehmen.{" "}
+              <sup>3</sup> Hamburg: Zielgruppe vorwiegend gering qualifizierte Beschäftigte – passt
+              nur eingeschränkt zu typischen Copilot-Zielgruppen. Nicht in dieser Übersicht: einige
+              Länder (u. a. Rheinland-Pfalz, Schleswig-Holstein, Bremen) fördern nur über besonders
+              zugelassene Träger; andere Programme sind derzeit pausiert oder ausgelaufen (u. a.
+              Sachsen, Thüringen, Niedersachsen, Hessen, Bayern, Berlin). Stand: Juli 2026.
             </p>
           </div>
         </section>
 
-        {/* Sektion 2: Qualifizierungsgeld */}
-        <section id="qualifizierungsgeld" className="mb-4 mt-2">
+        {/* Sektion 1: NRW */}
+        <section id="nrw" className="mb-4 mt-2">
           <h2 className="text-2xl md:text-3xl font-bold mb-2">
-            Qualifizierungsgeld (§ 82a SGB III)
+            Nordrhein-Westfalen: Bildungsscheck 2.0
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
-              Das Qualifizierungsgeld ist das jüngste Instrument: Es existiert seit dem 1. April
-              2024 und wurde mit dem Gesetz zur Stärkung der Aus- und Weiterbildungsförderung
-              eingeführt. Es setzt an einer anderen Stelle an als das Qualifizierungschancengesetz.
-              Nicht die Lehrgangskosten werden bezuschusst, sondern der <strong>Lohn</strong>: Wer
-              sich weiterbildet, erhält für die weiterbildungsbedingte Ausfallzeit einen Lohnersatz
-              von <strong>60 Prozent</strong> – oder 67 Prozent, wenn ein Kind im Haushalt lebt –
-              der Nettoentgeltdifferenz, finanziert von der Agentur für Arbeit. Die Kosten der
-              Weiterbildung selbst trägt in diesem Modell der Arbeitgeber.
+              Seit dem 1. Februar 2026 ist in NRW der Bildungsscheck 2.0 verfügbar, finanziert aus
+              Landes- und ESF-Mitteln. Er übernimmt 50 Prozent der Weiterbildungsausgaben, maximal
+              500 Euro, einmal pro Kalenderjahr. Anspruch haben Personen mit Wohnsitz in NRW und
+              einem zu versteuernden Jahreseinkommen bis 50.000 Euro (bei zusammen veranlagten
+              Ehepaaren 100.000 Euro).
             </p>
             <p>
-              Das Qualifizierungsgeld ist gezielt auf den <strong>Strukturwandel</strong>
-              zugeschnitten. Es greift, wenn in einem Betrieb ein nachweisbarer, strukturwandel­
-              bedingter Qualifizierungsbedarf besteht – etwa weil Technologien, Märkte oder
-              Produktionsweisen sich verändern. Betroffen sein muss ein relevanter Teil der
-              Belegschaft: mindestens 10 Prozent in Betrieben unter 250 Beschäftigten, mindestens
-              20 Prozent in größeren. Auch hier gilt die 120-Stunden-Schwelle und die
-              AZAV-Zulassung der Maßnahme; in der Regel braucht es zudem eine Betriebsvereinbarung
-              oder tarifvertragliche Grundlage. Für Unternehmen, die ganze Abteilungen durch die
-              KI-Transformation führen, kann das Qualifizierungsgeld die Lohnkosten einer breit
-              angelegten Copilot-Lernreise spürbar abfedern.
+              Der Ablauf ist schlank: Man meldet die Weiterbildung online im Landesportal an –
+              spätestens einen Tag vor Kursbeginn –, nimmt teil und reicht danach Rechnung,
+              Teilnahmebestätigung und Einkommensteuerbescheid ein. Eine besondere Trägerzulassung
+              ist nicht erforderlich; es genügt, dass es sich um berufsbezogene Weiterbildung
+              handelt. Damit sind Copilot-Trainings der Copilotenschule für NRW-Beschäftigte
+              innerhalb der Einkommensgrenze direkt anrechenbar – ideal für einzelne Mitarbeitende
+              oder kleine Teams.
             </p>
           </div>
         </section>
 
-        {/* Sektion 3: Bildungsgutschein */}
-        <section id="bildungsgutschein" className="mb-4 mt-2">
+        {/* Sektion 2: Brandenburg */}
+        <section id="brandenburg" className="mb-4 mt-2">
           <h2 className="text-2xl md:text-3xl font-bold mb-2">
-            Bildungsgutschein (§ 81 SGB III)
+            Brandenburg: Bildungsscheck
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
-              Der Bildungsgutschein nach § 81 SGB III ist das bekannteste, aber am engsten
-              zugeschnittene Instrument. Er richtet sich primär an <strong>Arbeitslose</strong> und
-              an Menschen, deren Arbeitsplatz konkret bedroht ist, und übernimmt bei Bewilligung die
-              Lehrgangskosten in der Regel vollständig. Für fest Beschäftigte ist er nur in
-              Sonderfällen zugänglich – etwa wenn der Arbeitsplatz durch den Strukturwandel
-              wegzufallen droht oder ein Berufsabschluss fehlt.
+              Brandenburg hat seine Förderung Anfang 2026 mit der neuen Weiterbildungsrichtlinie
+              deutlich verbessert. Der Bildungsscheck übernimmt 60 Prozent der zuwendungsfähigen
+              Ausgaben, mindestens 500 Euro – und die frühere Obergrenze von 3.000 Euro ist
+              ersatzlos weggefallen. Das macht Brandenburg gerade für umfangreichere
+              Copilot-Qualifizierungen interessant.
             </p>
             <p>
-              Für die breite Copilot-Qualifizierung einer bestehenden Belegschaft ist der
-              Bildungsgutschein deshalb selten der richtige Hebel – dafür ist das
-              Qualifizierungschancengesetz gemacht. Relevant wird er dort, wo einzelne Personen aus
-              gefährdeten Tätigkeitsfeldern (etwa klassisches Marketing, Verwaltung, Druck) sich
-              gezielt in Richtung KI-Kompetenz umqualifizieren. Auch hier gilt: Nur AZAV-zugelassene
-              Träger und Maßnahmen werden über den Bildungsgutschein gefördert.
+              Antragsberechtigt sind Beschäftigte mit Erstwohnsitz in Brandenburg sowie – neu seit
+              2026 – Personen, die in Brandenburg arbeiten, aber anderswo wohnen. Der Bildungsscheck
+              ist ausdrücklich für individuelle, arbeitgeberunabhängige Weiterbildungsbedarfe
+              gedacht; beantragt wird jederzeit bis zum 30. Juni 2027 bei der Investitionsbank des
+              Landes Brandenburg. Eine gesonderte Trägerzulassung verlangt das Programm nicht, sodass
+              unsere Trainings direkt genutzt werden können.
             </p>
           </div>
         </section>
 
-        {/* Sektion 4: Länderprogramme */}
-        <section id="laenderprogramme" className="mb-4 mt-2">
+        {/* Sektion 3: Sachsen-Anhalt */}
+        <section id="sachsen-anhalt" className="mb-4 mt-2">
           <h2 className="text-2xl md:text-3xl font-bold mb-2">
-            Länderprogramme: Bildungsscheck &amp; Co.
+            Sachsen-Anhalt: WEITERBILDUNG individuell
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
-              Neben den Bundesprogrammen unterhalten die Länder eigene, individuelle Zuschüsse – und
-              die sind für Copilot-Schulungen oft der unkomplizierteste Weg, weil sie{" "}
-              <strong>keine AZAV-Zulassung</strong> verlangen. Das prominenteste Beispiel ist der{" "}
-              <strong>Bildungsscheck NRW 2.0</strong>, der seit dem 1. Februar 2026 wieder verfügbar
-              ist und aus Landes- und ESF-Mitteln finanziert wird. Er übernimmt{" "}
-              <strong>50 Prozent</strong> der Weiterbildungsausgaben, maximal 500 Euro, einmal pro
-              Kalenderjahr. Anspruch haben Personen mit Wohnsitz in NRW und einem zu versteuernden
-              Jahreseinkommen bis 50.000 Euro (bei zusammen veranlagten Ehepaaren 100.000 Euro).
+              Das großzügigste Programm im Vergleich kommt aus Sachsen-Anhalt. Die WEITERBILDUNG im
+              individuellen Zugang bezuschusst berufsbezogene Weiterbildung mit 60 bis 90 Prozent der
+              Kosten – gestaffelt nach Einkommen: 90 Prozent bei einem Bruttomonatseinkommen unter
+              2.000 Euro, 80 Prozent unter 3.000 Euro oder für bestimmte Gruppen (etwa ab 45 Jahren,
+              Teilzeit, Alleinerziehende), 60 Prozent für alle übrigen. Der Höchstbetrag liegt bei
+              beachtlichen 25.000 Euro je Maßnahme.
             </p>
             <p>
-              Der Ablauf ist bewusst schlank: Man meldet die Weiterbildung online im ESF-Portal des
-              Landes an – spätestens einen Tag vor Kursbeginn –, nimmt teil und reicht danach
-              Rechnung, Teilnahmebestätigung und Einkommensteuerbescheid ein. Eine Trägerzulassung
-              oder AZAV-Zertifizierung ist nicht erforderlich; es genügt, dass es sich um
-              berufsbezogene Weiterbildung handelt. Damit sind Copilot-Trainings der Copilotenschule
-              für NRW-Beschäftigte innerhalb der Einkommensgrenze direkt anrechenbar.
-            </p>
-            <p>
-              Andere Länder haben vergleichbare Programme mit eigenen Konditionen: der{" "}
-              <strong>Hamburger Weiterbildungsbonus</strong> (bis zu 40 Prozent, maximal 1.500 Euro),
-              der <strong>QualiScheck in Rheinland-Pfalz</strong> oder der{" "}
-              <strong>Weiterbildungsscheck in Sachsen</strong> (der zeitweise haushaltsbedingt
-              pausiert). Diese Programme ändern sich häufiger als die Bundesförderung und werden
-              gelegentlich pausiert oder neu aufgelegt – ein Blick auf die aktuelle Landesstelle vor
-              der Anmeldung lohnt sich. Für einzelne Mitarbeitende und kleine Teams sind sie oft der
-              schnellste Einstieg in eine geförderte Copilot-Weiterbildung.
+              Antragsberechtigt sind Beschäftigte mit Wohnsitz in Sachsen-Anhalt bis zu einem
+              Bruttojahreseinkommen von 77.400 Euro (2026). Eine allgemeine Trägerzertifizierung ist
+              nicht nötig – nur reine Fernlehrgänge benötigen eine ZFU-Zulassung. Für Unternehmen in
+              Sachsen-Anhalt, die breit in Copilot qualifizieren wollen, ist das der mit Abstand
+              stärkste Hebel.
             </p>
           </div>
         </section>
 
-        {/* Sektion 5: AZAV ehrlich */}
-        <section id="azav" className="mb-4 mt-2">
+        {/* Sektion 4: Weitere Länder */}
+        <section id="weitere" className="mb-4 mt-2">
           <h2 className="text-2xl md:text-3xl font-bold mb-2">
-            Die AZAV-Voraussetzung – ehrlich erklärt
+            Weitere Länder: Baden-Württemberg, MV, Hamburg
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
-              Ein Punkt entscheidet bei den drei Bundesprogrammen über alles andere: die
-              AZAV-Zulassung. Qualifizierungschancengesetz, Qualifizierungsgeld und
-              Bildungsgutschein fördern ausschließlich Maßnahmen, bei denen sowohl der Bildungsträger
-              als auch die konkrete Maßnahme nach der Akkreditierungs- und Zulassungsverordnung
-              Arbeitsförderung zugelassen sind. Ohne diese Zulassung gibt es kein Geld von der
-              Agentur für Arbeit – unabhängig davon, wie gut die Schulung inhaltlich ist.
+              Drei weitere Länder fördern Copilot-Weiterbildung, allerdings mit besonderen
+              Bedingungen. In <strong>Baden-Württemberg</strong> bezuschusst das Programm Fachkurse
+              berufliche Weiterbildung – regulär mit 30 Prozent, für Ältere (ab 55) und Personen ohne
+              Berufsabschluss mit 70 Prozent; ab September 2026 ist ein einheitlicher Satz von 45
+              Prozent angekündigt. Hier läuft die Förderung nicht über die teilnehmende Person,
+              sondern über den Bildungsanbieter, der den Zuschuss als Rabatt weitergibt und dafür
+              seit mindestens drei Jahren am Weiterbildungsmarkt sein muss.
             </p>
             <p>
-              Dazu gehört Transparenz: Die <strong>Copilotenschule ist selbst kein
-              AZAV-zertifizierter Träger</strong>. Wir sind auf die inhaltliche und didaktische
-              Qualität praxisnaher Copilot- und KI-Qualifizierung spezialisiert, nicht auf das
-              formale AZAV-Zulassungsverfahren. Für die AZAV-gebundenen Programme heißt das: Wir
-              liefern die Fachinhalte und das didaktische Konzept in ein zertifiziertes Programm ein
-              oder arbeiten mit AZAV-zugelassenen Partnern zusammen, die die Maßnahme förderfähig
-              durchführen. Die <strong>Länderprogramme</strong> hingegen – Bildungsscheck NRW 2.0
-              und Verwandte – verlangen keine AZAV-Zulassung; hier sind unsere Trainings direkt
-              anrechenbar.
-            </p>
-            <p>
-              Für Sie als Entscheider bedeutet das eine einfache Faustregel: Geht es um die breite,
-              geförderte Qualifizierung über ein Bundesprogramm, muss ein AZAV-Träger im Spiel sein –
-              wir bringen die Copilot-Kompetenz in dieses Konstrukt ein. Geht es um einzelne
-              Mitarbeitende oder kleinere Teams, ist der Weg über ein Länderprogramm meist direkter
-              und schneller.
+              In <strong>Mecklenburg-Vorpommern</strong> fördern Bildungsschecks bis zu 50 Prozent
+              (maximal 3.000 Euro), wobei der Zugang über das beschäftigende Unternehmen läuft. In{" "}
+              <strong>Hamburg</strong> existiert der Weiterbildungsbonus PLUS mit bis zu rund 50
+              Prozent Zuschuss – dieser richtet sich allerdings vorrangig an gering qualifizierte
+              Beschäftigte und passt damit nur eingeschränkt zu den typischen Zielgruppen einer
+              Copilot-Schulung. Für alle drei Länder gilt: Wir prüfen die aktuellen Konditionen
+              gemeinsam mit Ihnen, bevor Sie planen.
             </p>
           </div>
         </section>
 
-        {/* Sektion 6: Copilotenschule */}
+        {/* Sektion 5: Copilotenschule */}
         <section id="copilotenschule" className="mb-4 mt-2">
           <h2 className="text-2xl md:text-3xl font-bold mb-2">
-            Wie die Copilotenschule bei der Förderung unterstützt
+            So nutzen Sie die Förderung mit der Copilotenschule
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
-              Die Copilotenschule ist auf genau die Konstellation spezialisiert, in der sich
-              Weiterbildungsförderung lohnt: Unternehmen, die ihre Belegschaft breit und nachhaltig
-              in Microsoft Copilot und KI-Werkzeugen qualifizieren wollen – nicht in einem einmaligen
-              Termin, sondern als strukturiertes Programm. Unsere mehrmoduligen Lernreisen bündeln
-              rollengerechte Lernpfade für Einsteiger, Power-User, Führungskräfte und Administratoren
-              zu einem zusammenhängenden Ganzen – die Form, die didaktisch wirkt und zugleich die
-              120-Stunden-Schwelle erreichbar macht.
+              Weil die individuellen Landesförderungen keine besondere Trägerzulassung verlangen,
+              lassen sich unsere Copilot-Trainings direkt darüber bezuschussen. In der Praxis
+              unterstützen wir an drei Stellen: Wir sagen Ihnen, welches Landesprogramm für Ihren
+              Standort aktuell offen ist und zu Ihrer Situation passt. Wir gestalten das Training so,
+              dass es klar als berufsbezogene Weiterbildung dokumentiert ist. Und wir liefern die
+              maßnahmenbezogenen Unterlagen – Rechnung, Teilnahmebestätigung, bei Bedarf eine
+              Inhaltsbeschreibung –, die Sie für die Abrechnung mit der Landesstelle brauchen.
             </p>
             <p>
-              Konkret unterstützen wir an drei Stellen: Wir gestalten das Programm so, dass es die
-              inhaltlichen und formalen Anforderungen erfüllt – ob für ein Länderprogramm oder als
-              Baustein in einer AZAV-zertifizierten Maßnahme. Wir liefern die maßnahmenbezogenen
-              Unterlagen (Curriculum, Stundennachweis, Teilnahmebestätigung), die Ihre
-              Personalabteilung oder ein AZAV-Partner für den Antrag braucht. Und wir denken die
-              EU-AI-Act-Schulungspflicht von Anfang an mit, sodass aus einer regulatorischen Pflicht
-              eine geförderte Investition wird. Ob eine Förderung im Einzelfall bewilligt wird,
-              entscheidet immer die zuständige Stelle – aber wir sorgen dafür, dass Ihr Programm die
-              besten Voraussetzungen mitbringt und Sie den richtigen Weg wählen.
+              Ob als einzelnes Praxistraining für ein Team oder als gestufter Lernpfad für die
+              gesamte Belegschaft: Der Einstieg bleibt niedrigschwellig, und ein erheblicher Teil der
+              Kosten wandert auf die Förderung. Die Bewilligung im Einzelfall entscheidet immer die
+              zuständige Landesstelle – aber wir sorgen dafür, dass Ihr Training die Voraussetzungen
+              sauber erfüllt.
             </p>
           </div>
         </section>
@@ -478,15 +407,14 @@ const CopilotSchulungFoerderungQcg = () => {
         <Card className="mb-8 border-primary/30 bg-primary/5">
           <CardHeader className="pb-2">
             <CardTitle className="text-lg">
-              Förderfähiges Copilot-Programm planen
+              Geförderte Copilot-Schulung planen
             </CardTitle>
           </CardHeader>
           <CardContent className="prose prose-lg max-w-none dark:prose-invert">
             <p>
-              Sie möchten prüfen, welcher Förderweg zu Ihrer Copilot-Qualifizierung passt? Wir
-              strukturieren mit Ihnen ein Programm, das die Anforderungen erfüllt – von der
-              120-Stunden-Lernreise bis zum anrechenbaren Einzeltraining über ein Länderprogramm.
-              Sehen Sie sich unsere{" "}
+              Sie möchten wissen, welche Landesförderung sich für Ihre Copilot-Qualifizierung nutzen
+              lässt? Nennen Sie uns Ihren Standort – wir prüfen das passende Programm und strukturieren
+              ein förderfähiges Training. Sehen Sie sich unsere{" "}
               <Link to="/trainings/microsoft-365-copilot-praxis" className="underline">
                 Copilot-Trainings
               </Link>{" "}
@@ -494,11 +422,7 @@ const CopilotSchulungFoerderungQcg = () => {
               <Link to="/wissen/copilot-lernreise-vs-tagesschulung" className="underline">
                 Lernreise mehr bewirkt als eine Tagesschulung
               </Link>
-              . Hintergrund zur gesetzlichen Pflicht liefert unser Beitrag zur{" "}
-              <Link to="/wissen/ki-schulung-mitarbeiter-pflicht" className="underline">
-                KI-Schulungspflicht für Mitarbeitende
-              </Link>
-              , den Rollout-Rahmen unser{" "}
+              . Den Rahmen zur Einführung liefert unser{" "}
               <Link to="/wissen/copilot-im-unternehmen-einfuehren-leitfaden" className="underline">
                 Leitfaden zur Copilot-Einführung
               </Link>
@@ -527,12 +451,11 @@ const CopilotSchulungFoerderungQcg = () => {
         {/* Rechtshinweis */}
         <div className="prose prose-sm max-w-none dark:prose-invert mb-8 text-muted-foreground">
           <p>
-            <strong>Rechtshinweis:</strong> Dieser Beitrag gibt den Rechts- und Förderstand zum
-            Zeitpunkt der Veröffentlichung (Juli 2026) wieder und dient der allgemeinen Information.
-            Er stellt keine Rechts-, Steuer- oder Förderberatung dar. Förderquoten, Voraussetzungen,
-            Einkommensgrenzen und Zuständigkeiten können sich ändern; einzelne Länderprogramme
-            werden pausiert oder neu aufgelegt. Eine verbindliche Auskunft erteilt ausschließlich die
-            zuständige Agentur für Arbeit bzw. die jeweilige Landesstelle.
+            <strong>Rechtshinweis:</strong> Dieser Beitrag gibt den Förderstand zum Zeitpunkt der
+            Veröffentlichung (Juli 2026) wieder und dient der allgemeinen Information. Er stellt keine
+            Förder- oder Rechtsberatung dar. Förderhöhen, Einkommensgrenzen und Voraussetzungen können
+            sich ändern; einzelne Länderprogramme werden pausiert oder neu aufgelegt. Eine verbindliche
+            Auskunft erteilt ausschließlich die zuständige Landesstelle bzw. Förderbank.
           </p>
         </div>
 
@@ -540,12 +463,12 @@ const CopilotSchulungFoerderungQcg = () => {
         <div className="prose prose-sm max-w-none dark:prose-invert mb-8">
           <h3 className="font-semibold">Quellen</h3>
           <ul>
-            <li>§ 82 SGB III – Förderung der beruflichen Weiterbildung Beschäftigter (gesetze-im-internet.de)</li>
-            <li>§ 82a SGB III – Qualifizierungsgeld (gesetze-im-internet.de; eingeführt durch das Gesetz zur Stärkung der Aus- und Weiterbildungsförderung, in Kraft seit 01.04.2024)</li>
-            <li>§ 81 SGB III – Grundsatz der Weiterbildungsförderung / Bildungsgutschein (gesetze-im-internet.de)</li>
-            <li>Bundesagentur für Arbeit – Förderung von Weiterbildung: Informationen für Unternehmen; Fachliche Weisungen zu § 82 SGB III (gültig ab 01.01.2026) (arbeitsagentur.de)</li>
-            <li>Ministerium für Arbeit, Gesundheit und Soziales NRW – Bildungsscheck 2.0 (mags.nrw/bildungsscheck; Stand 2026)</li>
-            <li>Bundesministerium für Arbeit und Soziales – Förderung der beruflichen Weiterbildung (bmas.de)</li>
+            <li>Ministerium für Arbeit, Gesundheit und Soziales NRW – Bildungsscheck 2.0 (mags.nrw/bildungsscheck)</li>
+            <li>Investitionsbank des Landes Brandenburg (ILB) / ESF Brandenburg – Weiterbildungsrichtlinie 2026, Bildungsscheck (ilb.de, esf.brandenburg.de)</li>
+            <li>Investitionsbank Sachsen-Anhalt – Sachsen-Anhalt WEITERBILDUNG (individueller Zugang) (ib-sachsen-anhalt.de); foerderdatenbank.de</li>
+            <li>ESF Baden-Württemberg – Förderprogramm Fachkurse (esf-bw.de)</li>
+            <li>Gesellschaft für Struktur- und Arbeitsmarktentwicklung MV – Bildungsschecks (gsa-schwerin.de)</li>
+            <li>W.H.S.B. Weiterbildung Hamburg – Weiterbildungsbonus PLUS (weiterbildung-hamburg.de)</li>
           </ul>
         </div>
 
@@ -565,8 +488,8 @@ export default CopilotSchulungFoerderungQcg;
 ```typescript
 {
   id: "copilot-schulung-foerderung-qcg-2026",
-  title: "Copilot-Schulung fördern lassen: Die Förderprogramme 2026 im Überblick",
-  description: "QCG (§ 82 SGB III), Qualifizierungsgeld, Bildungsgutschein und Bildungsscheck NRW 2.0: Welche Programme KI- und Copilot-Weiterbildung 2026 finanzieren – mit dem AZAV-Faktor.",
+  title: "Copilot-Schulung fördern lassen: Landesförderungen 2026 im Überblick",
+  description: "Welche Bundesländer Copilot- und KI-Weiterbildung direkt bezuschussen – ohne zertifizierten Träger: Bildungsscheck NRW & Brandenburg, WEITERBILDUNG Sachsen-Anhalt (bis 90 %) u. a.",
   link: "/wissen/copilot-schulung-foerderung-qcg-2026",
   badge: "Förderung & Finanzierung",
   icon: "€",
@@ -577,13 +500,14 @@ export default CopilotSchulungFoerderungQcg;
 ```
 
 ## Interne Verlinkung (verifiziert vorhandene Slugs, Stand 21.07.2026)
-- `/trainings/microsoft-365-copilot-praxis` (Trainings-CTA)
+- `/trainings/microsoft-365-copilot-praxis` ✅ (Trainings-CTA, im Code verwendet)
 - `/wissen/copilot-lernreise-vs-tagesschulung` ✅
-- `/wissen/ki-schulung-mitarbeiter-pflicht` ✅ (Protected Page – nur additiv verlinken, nicht bearbeiten)
 - `/wissen/copilot-im-unternehmen-einfuehren-leitfaden` ✅
-- Optional zusätzlich: `/wissen/eu-ai-act-mitarbeiter-schulung-august-2026`, `/wissen/copilot-training-schulung`
+- Optional zusätzlich: `/wissen/ki-schulung-mitarbeiter-pflicht` (Protected Page – nur additiv verlinken)
 
-## Offene Punkte für Martin (vor Deployment entscheiden)
-1. **Slug:** Bleibt aktuell `copilot-schulung-foerderung-qcg-2026`, obwohl der Artikel jetzt breiter ist. Für einen Multi-Programm-Hub wäre `copilot-schulung-foerderung` sauberer. Slug-Änderung = Datei umbenennen + articles.ts + App.tsx + sitemap + react-snap anpassen. Sag Bescheid, ob ich das umstellen soll.
-2. **AZAV-Formulierung:** Ist die ehrliche Linie („wir sind kein AZAV-Träger, liefern Inhalte / Partner") so für dich ok, oder möchtest du das anders positionieren (z. B. konkreten AZAV-Partner benennen)?
-3. **Trainings-Link-Slug** `/trainings/microsoft-365-copilot-praxis` bitte gegen aktuelle Route gegenchecken.
+## Offene Punkte für Martin (vor Deployment entscheiden / prüfen)
+1. **Slug** heißt weiterhin `copilot-schulung-foerderung-qcg-2026`, obwohl QCG jetzt gar nicht mehr Thema ist. Sauberer wäre `copilot-schulung-landesfoerderung` o. Ä. Umbenennen = Datei + articles.ts + App.tsx + sitemap + react-snap. Sag Bescheid.
+2. **Baden-Württemberg:** Ist die Copilotenschule GmbH **≥ 3 Jahre** am Markt und bereit, als Antragsteller/Träger im Fachkurse-Programm aufzutreten? Nur dann stimmt „bedingt nutzbar". Sonst BW aus der Tabelle nehmen.
+3. **Zahlen mit Rest-Unsicherheit vor Go-Live final gegenchecken:** Hamburg-Fördersatz (40 % vs. 50 %), BW-Übergang auf 45 % ab 09/2026. NRW/Brandenburg/Sachsen-Anhalt sind offiziell verifiziert.
+4. **Hamburg** überhaupt aufnehmen? Zielgruppe (Geringqualifizierte) passt kaum zu euren Kunden – ggf. streichen.
+5. **DACH:** Aktuell nur Deutschland. Österreich/Schweiz bewusst außen vor (wie besprochen).
