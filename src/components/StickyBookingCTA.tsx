@@ -12,12 +12,13 @@ const BOOKING_URL =
  * jederzeit einen Klick vom Erstgespräch entfernt halten, ohne aufdringlich zu wirken.
  *
  * Design-Entscheidungen für "nicht störend / deckt keine Elemente ab":
- *  - Fixiert unten rechts (bottom-right FAB-Pattern), im Rand-/Gutter-Bereich —
+ *  - Fixiert oben rechts, direkt unter dem Header, im Rand-/Gutter-Bereich —
  *    überlagert keine Lese-Inhalte in der Seitenmitte.
  *  - Erscheint erst nach dem Hero (Scroll > 200px), damit der erste Eindruck ruhig bleibt.
  *  - Blendet sich am Seitenende wieder aus (Nähe Footer/Kontakt-Sektion), damit es die
  *    dortigen Elemente und den ohnehin vorhandenen Kontakt-CTA nicht verdeckt.
  *  - Sanfte Ein-/Ausblende-Transition statt hartem Aufpoppen.
+ *  - Zweizeilig: Haupt-Label + erklärender Zusatz ("15-minütiges Beratungsgespräch buchen").
  *
  * Tracking: bookingClickToThankYou("sticky-cta") → booking_click + /danke-Redirect.
  * SSR/react-snap-sicher: initial ausgeblendet (window-Zugriff nur im Effect).
@@ -49,21 +50,28 @@ const StickyBookingCTA = () => {
       target="_blank"
       rel="noopener noreferrer"
       onClick={() => bookingClickToThankYou("sticky-cta")}
-      aria-label="Kostenloses Erstgespräch vereinbaren"
-      className={`fixed bottom-5 right-4 sm:right-6 z-40 inline-flex items-center gap-2.5
-        rounded-full bg-primary text-primary-foreground font-semibold
-        px-4 py-3 sm:px-5 shadow-lg ring-1 ring-black/5
+      aria-label="Kostenloses 15-minütiges Erstgespräch vereinbaren"
+      className={`fixed top-24 right-4 sm:right-6 z-40 inline-flex items-center gap-2.5
+        rounded-2xl bg-primary text-primary-foreground
+        px-4 py-2.5 sm:px-5 shadow-lg ring-1 ring-black/5
         hover:bg-primary/90 hover:shadow-xl focus-visible:outline-none
         focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2
         transition-all duration-300 ease-out motion-reduce:transition-none
         ${
           visible
             ? "opacity-100 translate-y-0 pointer-events-auto"
-            : "opacity-0 translate-y-3 pointer-events-none"
+            : "opacity-0 -translate-y-3 pointer-events-none"
         }`}
     >
       <Calendar className="w-5 h-5 flex-shrink-0" aria-hidden="true" />
-      <span className="text-sm whitespace-nowrap">Erstgespräch vereinbaren</span>
+      <span className="flex flex-col text-left leading-tight">
+        <span className="text-sm font-semibold whitespace-nowrap">
+          Erstgespräch vereinbaren
+        </span>
+        <span className="text-xs font-normal opacity-90 whitespace-nowrap">
+          15-minütiges Beratungsgespräch buchen
+        </span>
+      </span>
     </a>
   );
 };
