@@ -234,6 +234,9 @@ const Header = () => {
                 </Link>
               )
             )}
+            <Button asChild variant="outline">
+              <Link to="/kontakt">Kontakt</Link>
+            </Button>
             <Button asChild>
               <Link to="/training-konfigurator">Training konfigurieren</Link>
             </Button>
@@ -388,6 +391,14 @@ const Header = () => {
                 : "0ms",
             }}
           >
+            <Button asChild variant="outline" className="w-full mb-3" size="lg">
+              <Link
+                to="/kontakt"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Kontakt
+              </Link>
+            </Button>
             <Button asChild className="w-full" size="lg">
               <Link
                 to="/training-konfigurator"

@@ -25,6 +25,7 @@ import CopilotSicherheit from "./pages/CopilotSicherheit";
 import CopilotTippsTricks from "./pages/CopilotTippsTricks";
 import CopilotTraining from "./pages/CopilotTraining";
 import UeberUns from "./pages/UeberUns";
+import Kontakt from "./pages/Kontakt";
 import TrainingKonfigurator from "./pages/TrainingKonfigurator";
 import UnsereAngebote from "./pages/UnsereAngebote";
 import TrainingDetail from "./pages/TrainingDetail";
@@ -143,6 +144,7 @@ const App = () => (
           <Route path="/impressum" element={<Impressum />} />
           <Route path="/datenschutz" element={<Datenschutz />} />
           <Route path="/ueber-uns" element={<UeberUns />} />
+          <Route path="/kontakt" element={<Kontakt />} />
           <Route path="/trainings" element={<UnsereAngebote />} />
           <Route path="/unsere-angebote" element={<Navigate to="/trainings" replace />} />
 
