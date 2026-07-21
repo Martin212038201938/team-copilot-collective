@@ -39,6 +39,7 @@ import {
 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import StickyBookingCTA from "@/components/StickyBookingCTA";
 import SEOHead from "@/components/SEOHead";
 import { TrustBadge } from "@/components/TrustBadge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -733,6 +734,7 @@ const WorkshopDetail = () => {
         )}
       </main>
 
+      <StickyBookingCTA />
       <Footer />
     </div>
   );

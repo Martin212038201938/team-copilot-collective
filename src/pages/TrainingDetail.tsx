@@ -5,6 +5,7 @@ import { Clock, ArrowLeft, CheckCircle2, ArrowRight, Linkedin, Mail, HelpCircle,
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
+import StickyBookingCTA from "@/components/StickyBookingCTA";
 import SEOHead from "@/components/SEOHead";
 import { TrustBadge } from "@/components/TrustBadge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -466,6 +467,7 @@ const TrainingDetail = () => {
         <Contact />
       </main>
 
+      <StickyBookingCTA />
       <Footer />
     </div>
   );
