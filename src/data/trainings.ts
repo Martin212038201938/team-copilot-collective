@@ -35,6 +35,10 @@ export interface Training {
   // Optionaler Preis pro Person (für schema.org Course/Offer); falls leer, greift Default
   pricePerPerson?: number;
   pricePerPersonLabel?: string; // optional: angezeigte Preisbeschreibung im Schema
+  // A/B-Test "Preise auszeichnen": sichtbarer "ab"-Preis-Störer NUR auf der B-Route
+  // (/trainings/preis/:slug). Werte in EUR, Basis Gruppengröße 12 Teilnehmer.
+  abPreisProPerson?: number;   // z.B. 133  -> "ab 133 €* pro Teilnehmer"
+  abPreisProGruppe?: number;   // z.B. 1600 -> "oder ab 1.600 €* pro geschlossene Gruppe"
   // Verknüpfte Workshops (Slugs) – werden als optionale Erweiterungsmodule angezeigt
   relatedWorkshops?: string[];
 }
@@ -47,8 +51,13 @@ export const trainings: Training[] = [
     title: "Copilot Grundlagen: Prompt Design & KI-Kompetenz",
     duration: "Halbtag",
     durationISO: "PT4H",
-    description: "Fundiertes Einsteiger-Training in die Arbeit mit KI-Assistenten: Sie lernen, wie Sie effektive Prompts formulieren, KI-Outputs kritisch bewerten und Microsoft Copilot Chat strategisch für Recherche, Textarbeit und kreative Aufgaben einsetzen. Ideal für alle, die noch keine Copilot-Lizenz haben oder zunächst die Grundlagen beherrschen wollen.",
+    description: "Fundiertes Einsteiger-Training in die Arbeit mit KI-Assistenten: Sie lernen, wie Sie effektive Prompts formulieren, KI-Outputs kritisch bewerten und Microsoft Copilot Chat strategisch für Recherche, Textarbeit und kreative Aufgaben einsetzen. Dieses 4-stündige Kick-Off ist zugleich das Pflichttraining nach EU AI Act: Es erfüllt die KI-Einweisungspflicht (AI Literacy, Artikel 4), die jeder Arbeitgeber seit Februar 2025 jedem Mitarbeitenden geben muss, der mit KI arbeitet. Über die reine Pflichtunterweisung hinaus erhalten Ihre Teilnehmer eine echte, praxisnahe Einweisung in Microsoft Copilot Chat – inklusive vieler Tipps und Tricks auch für bereits erfahrene Copilot-Nutzer. Jeder Teilnehmer erhält ein Zertifikat „Schulung gemäß EU AI-Act“. Ideal für alle, die noch keine Copilot-Lizenz haben oder zunächst die Grundlagen beherrschen wollen.",
     features: [
+      "Pflichtunterweisung erfüllt: Dieses Training ist die nach EU AI Act vorgeschriebene KI-Einweisung, die ein Arbeitgeber jedem Mitarbeitenden geben muss, der mit KI arbeitet",
+      "EU AI Act kompakt: Was das KI-Gesetz von Ihnen und Ihren Mitarbeitenden verlangt (KI-Kompetenz-/Einweisungspflicht nach Artikel 4)",
+      "Risikogruppen nach EU AI-Act: Welche KI-Anwendungen als minimales, begrenztes oder hohes Risiko gelten – und was das für die tägliche Arbeit bedeutet",
+      "Echte Copilot-Chat-Einweisung statt trockener Theorie – mit vielen Tipps & Tricks auch für bereits erfahrene Copilot-Nutzer",
+      "Teilnehmer-Zertifikat „Schulung gemäß EU AI-Act“ zum Nachweis der erfüllten Schulungspflicht",
       "Prompt Engineering Grundlagen: Struktur, Kontext, Beispiele – wie Sie Copilot präzise Anweisungen geben",
       "Die Kunst der richtigen Frage: Von vagen Anfragen zu punktgenauen Ergebnissen",
       "Iteratives Prompting: Ergebnisse verfeinern, nachfragen, in die Tiefe gehen",
@@ -61,6 +70,8 @@ export const trainings: Training[] = [
     ],
     tiers: ["free"],
     popular: true,
+    abPreisProPerson: 133,
+    abPreisProGruppe: 1600,
     questionLead: "Welches Training eignet sich am besten, um Microsoft Copilot von Grund auf zu lernen – auch ohne Lizenz?",
     targetAudience: [
       "Büromitarbeiter, die zum ersten Mal mit KI-Assistenten arbeiten und einen strukturierten Einstieg suchen",
@@ -69,6 +80,7 @@ export const trainings: Training[] = [
       "Assistenzen und Office Manager, die Routineaufgaben mit KI beschleunigen möchten"
     ],
     learningOutcomes: [
+      "Sie erfüllen die KI-Einweisungspflicht nach EU AI Act (Artikel 4) und kennen die Risikogruppen des KI-Gesetzes – dokumentiert per Teilnehmer-Zertifikat „Schulung gemäß EU AI-Act“",
       "Sie formulieren präzise Prompts mit klarer Struktur, Kontext und Beispielen – und erhalten deutlich bessere KI-Antworten",
       "Sie bewerten KI-Outputs kritisch: Halluzinationen erkennen, Fakten prüfen, Grenzen einschätzen",
       "Sie nutzen Copilot Chat produktiv für Recherche, Texterstellung, Zusammenfassungen und kreative Aufgaben",
@@ -84,6 +96,10 @@ export const trainings: Training[] = [
     metaDescription: "Lernen Sie effektives Prompt Engineering für Microsoft Copilot. Einsteiger-Training für KI-Assistenten: Prompts formulieren, Outputs bewerten, produktiv arbeiten.",
     keywords: ["Copilot Grundlagen", "Prompt Engineering Training", "KI-Kompetenz Schulung", "Microsoft Copilot Einsteiger", "Prompt Design lernen"],
     faqs: [
+      {
+        question: "Müssen wir unsere Mitarbeitenden nach dem EU AI Act zu KI schulen – und deckt dieses Training das ab?",
+        answer: "Ja. Der EU AI Act verpflichtet Arbeitgeber (Art. 4, wirksam seit Februar 2025) dazu, für ausreichende KI-Kompetenz aller Mitarbeitenden zu sorgen, die KI-Systeme wie Microsoft Copilot einsetzen. Dieses 4-stündige Kick-Off ist genau diese Pflichtunterweisung: Es vermittelt die verlangte KI-Kompetenz, erklärt die Risikogruppen des KI-Gesetzes und schließt mit einem Teilnehmer-Zertifikat „Schulung gemäß EU AI-Act“ ab. Gleichzeitig ist es eine echte, praxisnahe Copilot-Chat-Einweisung mit vielen Tipps und Tricks – also Pflichterfüllung und produktiver Mehrwert in einem. Hinweis: Die konkrete Auslegung des EU AI Act sollten Sie im Zweifel rechtlich prüfen lassen."
+      },
       {
         question: "Warum bekomme ich von Copilot oft unbrauchbare oder zu allgemeine Antworten?",
         answer: "Die Qualität der KI-Antworten hängt direkt von der Qualität Ihrer Anfrage ab. Ohne klare Struktur, Kontext und konkrete Beispiele in Ihren Prompts liefert Copilot generische Ergebnisse. Mit gezieltem Prompt Engineering lernen Ihre Mitarbeiter, präzise Anfragen zu formulieren – und erhalten damit deutlich bessere, sofort nutzbare Ergebnisse."
@@ -104,6 +120,8 @@ export const trainings: Training[] = [
   },
   {
     slug: "microsoft-365-copilot-praxis",
+    abPreisProPerson: 383,
+    abPreisProGruppe: 4600,
     icon: Brain,
     title: "Microsoft 365 Copilot in der Praxis: Word, Excel, PowerPoint, Outlook & Teams",
     duration: "Ganztag | 2-tägig | Lernreise (4× oder 6×2h online) | Präsenz-Kickoff + Lernreise",
@@ -227,6 +245,7 @@ export const trainings: Training[] = [
   },
   {
     slug: "train-the-trainer-copilot",
+    abPreisProPerson: 840,
     icon: Users,
     title: "Train-the-Trainer: Copilot Multiplikatoren ausbilden",
     duration: "2 Tage (2 x 7 Stunden) + bedarfsorientierte Online-Workshops",
@@ -393,6 +412,7 @@ export const trainings: Training[] = [
   },
   {
     slug: "copilot-studio-ki-agenten",
+    abPreisProPerson: 283,
     icon: Brain,
     title: "KI-Agenten und Automatisierung mit Microsoft Copilot Studio",
     duration: "1 Tag (7 Stunden)",

@@ -1,4 +1,6 @@
-import { useParams, Link, Navigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useParams, Link, Navigate, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Clock, ArrowLeft, CheckCircle2, ArrowRight, Linkedin, Mail, HelpCircle, Users, GraduationCap, TrendingUp } from "lucide-react";
@@ -13,6 +15,9 @@ import { getTrainingBySlug, trainings } from "@/data/trainings";
 import { getWorkshopBySlug } from "@/data/workshops";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateTrainingBreadcrumbItems } from "@/lib/schema";
+import PriceStoerer from "@/components/PriceStoerer";
+import { setSessionTag } from "@/lib/analytics";
+import { assignVariantIfNeeded, isAbPricingTestSlug, isPrerender, setVariant } from "@/lib/abPricing";
 
 /** Renders a string that may contain markdown-style links [text](/path) as React Router Links */
 const RichText = ({ text }: { text: string }) => {
@@ -34,9 +39,33 @@ const RichText = ({ text }: { text: string }) => {
   );
 };
 
-const TrainingDetail = () => {
+const TrainingDetail = ({ showPricing = false }: { showPricing?: boolean }) => {
   const { slug } = useParams<{ slug: string }>();
+  const navigate = useNavigate();
   const training = slug ? getTrainingBySlug(slug) : undefined;
+
+  // A/B-Test "Preise auszeichnen": Bucket-Zuweisung, Journey-Redirect und
+  // Clarity-Messpunkte. Nur clientseitig (nie im react-snap-Prerender), nur für
+  // die 4 Testtrainings. Muss VOR dem Early-Return stehen (Rules of Hooks).
+  useEffect(() => {
+    if (isPrerender() || !slug || !isAbPricingTestSlug(slug)) return;
+
+    if (showPricing) {
+      // B-Route: Nutzer ist (bzw. wird) Variante B; Session taggen.
+      setVariant("B");
+      setSessionTag("ab_pricing", "B");
+      setSessionTag("ab_pricing_product", slug);
+    } else {
+      // A-Route: beim ersten Kontakt 50/50 zuweisen, Session taggen.
+      const variant = assignVariantIfNeeded();
+      setSessionTag("ab_pricing", variant);
+      setSessionTag("ab_pricing_product", slug);
+      // B-User dauerhaft auf die Preis-Route ihrer Journey umleiten.
+      if (variant === "B") {
+        navigate(`/trainings/preis/${slug}`, { replace: true });
+      }
+    }
+  }, [slug, showPricing, navigate]);
 
   // 404 wenn Training nicht gefunden
   if (!training) {
@@ -159,6 +188,12 @@ const TrainingDetail = () => {
         canonicalUrl={`https://copilotenschule.de/trainings/${training.slug}`}
         schema={schema}
       />
+      {/* B-Variante (Preis-Route) nicht indexieren; Canonical zeigt bereits auf die A-URL */}
+      {showPricing && (
+        <Helmet>
+          <meta name="robots" content="noindex" />
+        </Helmet>
+      )}
       <Header />
 
       <main className="pt-24">
@@ -181,29 +216,43 @@ const TrainingDetail = () => {
 
             {/* Header */}
             <div className="max-w-4xl">
-              {/* Tier Badges */}
-              <div className="flex flex-wrap gap-2 mb-4">
-                {training.tiers.includes("free") && (
-                  <Badge className="bg-emerald-100 text-emerald-700 border-emerald-200 hover:bg-emerald-100">
-                    Copilot Free
-                  </Badge>
-                )}
-                {training.tiers.includes("paid") && (
-                  <Badge className="bg-blue-100 text-blue-700 border-blue-200 hover:bg-blue-100">
-                    Copilot Paid
-                  </Badge>
-                )}
-              </div>
+              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 md:gap-8">
+                <div className="min-w-0">
+                  {/* Tier Badges */}
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {training.tiers.includes("free") && (
+                      <Badge className="bg-emerald-100 text-emerald-700 border-emerald-200 hover:bg-emerald-100">
+                        Copilot Free
+                      </Badge>
+                    )}
+                    {training.tiers.includes("paid") && (
+                      <Badge className="bg-blue-100 text-blue-700 border-blue-200 hover:bg-blue-100">
+                        Copilot Paid
+                      </Badge>
+                    )}
+                  </div>
 
-              {/* h1 - Hauptüberschrift */}
-              <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
-                {training.title}
-              </h1>
+                  {/* h1 - Hauptüberschrift */}
+                  <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
+                    {training.title}
+                  </h1>
 
-              {/* Dauer */}
-              <div className="flex items-center gap-2 text-lg text-muted-foreground mb-8">
-                <Clock className="w-5 h-5" />
-                <span>{training.duration}</span>
+                  {/* Dauer */}
+                  <div className="flex items-center gap-2 text-lg text-muted-foreground mb-8">
+                    <Clock className="w-5 h-5" />
+                    <span>{training.duration}</span>
+                  </div>
+                </div>
+
+                {/* Preis-Störer nur in der B-Variante des A/B-Tests */}
+                {showPricing && typeof training.abPreisProPerson === "number" && (
+                  <div className="shrink-0 md:pt-1">
+                    <PriceStoerer
+                      perPerson={training.abPreisProPerson}
+                      perGroup={training.abPreisProGruppe}
+                    />
+                  </div>
+                )}
               </div>
 
               {/* Kursive LLM-Frage als Teaser */}
