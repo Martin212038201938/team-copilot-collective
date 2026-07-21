@@ -5,25 +5,38 @@ import { bookingClickToThankYou } from "@/lib/booking";
 const BOOKING_URL =
   "https://outlook.office.com/book/CopilotErstgesprch@yellow-boat.com/?ismsaljsauthenabled";
 
+interface StickyBookingCTAProps {
+  /** Vertikale Verankerung: "top" (Produktseiten, unter dem Header) oder "bottom" (Fachartikel). */
+  placement?: "top" | "bottom";
+  /** Tracking-Kontext für Clarity/Analytics (z.B. "sticky-cta-article"). */
+  source?: string;
+}
+
 /**
- * StickyBookingCTA — permanent sichtbarer, mitscrollender Erstgespräch-CTA für Produktseiten.
+ * StickyBookingCTA — permanent sichtbarer, mitscrollender Erstgespräch-CTA.
  *
- * Ziel (Conversion-Analyse 07/2026): kaufbereite Besucher auf Trainings-/Workshop-Seiten
- * jederzeit einen Klick vom Erstgespräch entfernt halten, ohne aufdringlich zu wirken.
+ * Ziel (Conversion-Analyse 07/2026): kaufbereite Besucher jederzeit einen Klick
+ * vom Erstgespräch entfernt halten, ohne aufdringlich zu wirken.
+ *
+ * Eingesetzt auf Produktseiten (placement="top") und allen Fachartikeln
+ * (placement="bottom", zentral über ContentLayout).
  *
  * Design-Entscheidungen für "nicht störend / deckt keine Elemente ab":
- *  - Fixiert oben rechts, direkt unter dem Header, im Rand-/Gutter-Bereich —
- *    überlagert keine Lese-Inhalte in der Seitenmitte.
+ *  - Fixiert im Rand-/Gutter-Bereich rechts — überlagert keine Lese-Inhalte in der Mitte.
+ *    Auf Artikelseiten unten rechts, um die rechte Sidebar nicht zu verdecken.
  *  - Erscheint erst nach dem Hero (Scroll > 200px), damit der erste Eindruck ruhig bleibt.
  *  - Blendet sich am Seitenende wieder aus (Nähe Footer/Kontakt-Sektion), damit es die
- *    dortigen Elemente und den ohnehin vorhandenen Kontakt-CTA nicht verdeckt.
+ *    dortigen Elemente nicht verdeckt.
  *  - Sanfte Ein-/Ausblende-Transition statt hartem Aufpoppen.
  *  - Zweizeilig: Haupt-Label + erklärender Zusatz ("15-minütiges Beratungsgespräch buchen").
  *
- * Tracking: bookingClickToThankYou("sticky-cta") → booking_click + /danke-Redirect.
+ * Tracking: bookingClickToThankYou(source) → booking_click + /danke-Redirect.
  * SSR/react-snap-sicher: initial ausgeblendet (window-Zugriff nur im Effect).
  */
-const StickyBookingCTA = () => {
+const StickyBookingCTA = ({
+  placement = "top",
+  source = "sticky-cta",
+}: StickyBookingCTAProps) => {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -44,14 +57,18 @@ const StickyBookingCTA = () => {
     };
   }, []);
 
+  const posClass = placement === "bottom" ? "bottom-5" : "top-24";
+  const hiddenTransform =
+    placement === "bottom" ? "translate-y-3" : "-translate-y-3";
+
   return (
     <a
       href={BOOKING_URL}
       target="_blank"
       rel="noopener noreferrer"
-      onClick={() => bookingClickToThankYou("sticky-cta")}
-      aria-label="Kostenloses 15-minütiges Erstgespräch vereinbaren"
-      className={`fixed top-24 right-4 sm:right-6 z-40 inline-flex items-center gap-2.5
+      onClick={() => bookingClickToThankYou(source)}
+      aria-label="Kostenloses 15-minütiges Beratungsgespräch buchen"
+      className={`fixed ${posClass} right-4 sm:right-6 z-40 inline-flex items-center gap-2.5
         rounded-2xl bg-primary text-primary-foreground
         px-4 py-2.5 sm:px-5 shadow-lg ring-1 ring-black/5
         hover:bg-primary/90 hover:shadow-xl focus-visible:outline-none
@@ -60,13 +77,13 @@ const StickyBookingCTA = () => {
         ${
           visible
             ? "opacity-100 translate-y-0 pointer-events-auto"
-            : "opacity-0 -translate-y-3 pointer-events-none"
+            : `opacity-0 ${hiddenTransform} pointer-events-none`
         }`}
     >
       <Calendar className="w-5 h-5 flex-shrink-0" aria-hidden="true" />
       <span className="flex flex-col text-left leading-tight">
         <span className="text-sm font-semibold whitespace-nowrap">
-          Erstgespräch vereinbaren
+          Lassen Sie uns reden
         </span>
         <span className="text-xs font-normal opacity-90 whitespace-nowrap">
           15-minütiges Beratungsgespräch buchen

@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import ArticlePopup from "./ArticlePopup";
+import StickyBookingCTA from "./StickyBookingCTA";
 import RelatedContent from "./RelatedContent";
 import { ChevronRight, Home, MessageSquare } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -236,6 +237,7 @@ const ContentLayout = ({
       </main>
       <Footer />
       <ArticlePopup />
+      <StickyBookingCTA placement="bottom" source="sticky-cta-article" />
     </div>
   );
 };

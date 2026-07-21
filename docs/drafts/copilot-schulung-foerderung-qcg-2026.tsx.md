@@ -1,6 +1,6 @@
 # B3b Hub-Artikel-Entwurf — Copilot-Schulung fördern lassen: Landesförderungen 2026
 
-> **Status:** Entwurf zum Review (überarbeitet 21.07.2026, v3). NICHT deployen, bis Martin freigibt.
+> **Status:** Entwurf zum Review (überarbeitet 21.07.2026, v4 – BW & Hamburg entfernt). NICHT deployen, bis Martin freigibt.
 > **Zieldatei:** `src/pages/CopilotSchulungFoerderungQcg.tsx`
 > **Slug:** `/wissen/copilot-schulung-foerderung-qcg-2026`
 > **Autor:** Martin Lang
@@ -10,9 +10,8 @@
 > - **NRW – Bildungsscheck 2.0:** 50 %, max. **500 €**, 1×/Jahr. Wohnsitz NRW, zu verst. Einkommen ≤ 50.000 € (Ehepaare 100.000 €). **Keine Anbieter-Zertifizierung** — Teilnehmende beantragen selbst, wir liefern Rechnung + Teilnahmebestätigung. Aktiv seit 01.02.2026. → **direkt nutzbar** (offiziell: mags.nrw).
 > - **Brandenburg – Bildungsscheck (Weiterbildungsrichtlinie 2026):** **60 %**, min. 500 €, **keine Obergrenze** mehr. Erstwohnsitz ODER Arbeitsort Brandenburg. **Keine Anbieter-Zertifizierung.** Anträge jederzeit bis 30.06.2027 an die ILB. → **direkt nutzbar** (offiziell: ilb.de, esf.brandenburg.de).
 > - **Sachsen-Anhalt – WEITERBILDUNG (individueller Zugang):** **60–90 %** je Einkommen (90 % < 2.000 €/Monat brutto; 80 % < 3.000 € bzw. ab 45 J./Teilzeit u. a.; sonst 60 %), max. **25.000 €**/Maßnahme. Wohnsitz Sachsen-Anhalt, Einkommen ≤ 77.400 € brutto/Jahr (2026). **Keine allgemeine Anbieter-Zertifizierung** (nur Fernlehrgänge → ZFU). → **direkt nutzbar, großzügigstes Programm** (offiziell: ib-sachsen-anhalt.de, foerderdatenbank.de).
-> - **Baden-Württemberg – Fachkurse (ESF Plus):** 30 % (Regel) / 70 % (ab 55 J. oder ohne Berufsabschluss); ab 01.09.2026 laut ESF-BW einheitlich **45 %** angekündigt (Übergang – vor Go-Live final prüfen). Wohn-/Arbeitsort BW. Keine AZAV/ISO nötig, ABER **der Anbieter selbst muss Antragsteller sein und ≥ 3 Jahre am Weiterbildungsmarkt** — nur nutzbar, wenn Copilotenschule diese Trägerrolle erfüllt (Alter der GmbH prüfen!). → **bedingt nutzbar** (offiziell: esf-bw.de).
 > - **Mecklenburg-Vorpommern – Bildungsschecks (GSA):** 50 %, max. 3.000 €. Zugang über das Unternehmen. Keine Zertifizierung, aber betriebsvermittelt. → **bedingt nutzbar** (gsa-schwerin.de).
-> - **Hamburg – Weiterbildungsbonus PLUS:** ~40–50 % (Angabe schwankt je Quelle — prüfen), max. 750–1.000 €. Zielgruppe eingeschränkt (v. a. Geringqualifizierte / max. Ausbildungsabschluss) — passt selten zu Copilot-Zielgruppen (Wissensarbeiter/Führungskräfte). Zertifizierung Standard, Einzelfallprüfung möglich. → **randständig** (weiterbildung-hamburg.de).
+> - **Auf Martins Wunsch entfernt (21.07.2026):** Baden-Württemberg (Fachkurse) und Hamburg (Weiterbildungsbonus PLUS).
 > - **Anbieter-Zertifizierung ZWINGEND (daher NICHT für uns nutzbar):** Rheinland-Pfalz QualiScheck (akkreditierter Träger: ISO 9001/AZAV/VHS-Hochschule), Schleswig-Holstein Weiterbildungsbonus (ISO 9001/AZAV), Bremen Weiterbildungsscheck (Bindung an gelistete Träger).
 > - **Aktuell KEIN nutzbares individuelles Programm:** Sachsen (ausgesetzt, kein Budget 2025/26), Thüringen (pausiert, evtl. ab Herbst 2026), Niedersachsen (ausgelaufen), Hessen (Qualifizierungsscheck 2021 beendet), Bayern (Bildungsscheck 2021 beendet), Berlin (kein Kurskosten-Zuschuss).
 > - Rechtsstand kann sich ändern; Länderprogramme werden pausiert/neu aufgelegt. Artikel enthält Rechtshinweis. Verbindliche Auskunft nur über die jeweilige Landesstelle.
@@ -43,7 +42,7 @@ const CopilotSchulungFoerderungQcg = () => {
     { id: "nrw", title: "Nordrhein-Westfalen: Bildungsscheck 2.0", level: 2 },
     { id: "brandenburg", title: "Brandenburg: Bildungsscheck", level: 2 },
     { id: "sachsen-anhalt", title: "Sachsen-Anhalt: WEITERBILDUNG individuell", level: 2 },
-    { id: "weitere", title: "Weitere Länder: Baden-Württemberg, MV, Hamburg", level: 2 },
+    { id: "mv", title: "Mecklenburg-Vorpommern: Bildungsschecks", level: 2 },
     { id: "copilotenschule", title: "So nutzen Sie die Förderung mit der Copilotenschule", level: 2 },
     { id: "faq", title: "Häufig gestellte Fragen", level: 2 },
   ];
@@ -55,7 +54,7 @@ const CopilotSchulungFoerderungQcg = () => {
     },
     {
       name: "Wir sitzen in einem bestimmten Bundesland – gibt es dort überhaupt eine passende Förderung?",
-      answer: "Das hängt stark vom Bundesland ab, und die Programme ändern sich häufig. Besonders attraktiv sind aktuell Sachsen-Anhalt (bis zu 90 Prozent, maximal 25.000 Euro), Brandenburg (60 Prozent ohne Obergrenze) und Nordrhein-Westfalen (50 Prozent, bis 500 Euro). In Baden-Württemberg, Mecklenburg-Vorpommern und Hamburg gibt es Programme mit besonderen Bedingungen. Einige Länder haben ihre Förderung dagegen pausiert oder eingestellt. Nennen Sie uns Ihren Standort, dann prüfen wir mit Ihnen, welches Programm aktuell offen ist und ob Ihre Copilot-Qualifizierung dort hineinpasst."
+      answer: "Das hängt stark vom Bundesland ab, und die Programme ändern sich häufig. Besonders attraktiv sind aktuell Sachsen-Anhalt (bis zu 90 Prozent, maximal 25.000 Euro), Brandenburg (60 Prozent ohne Obergrenze) und Nordrhein-Westfalen (50 Prozent, bis 500 Euro). In Mecklenburg-Vorpommern gibt es ein Programm mit besonderen Bedingungen (Zugang über das Unternehmen). Einige Länder haben ihre Förderung dagegen pausiert oder eingestellt. Nennen Sie uns Ihren Standort, dann prüfen wir mit Ihnen, welches Programm aktuell offen ist und ob Ihre Copilot-Qualifizierung dort hineinpasst."
     },
     {
       name: "Reicht ein einzelnes Copilot-Training für die Förderung, oder muss es ein umfangreiches Programm sein?",
@@ -79,7 +78,7 @@ const CopilotSchulungFoerderungQcg = () => {
         "@id": ids.article,
         "headline": PAGE_TITLE,
         "description":
-          "Welche Landesförderungen 2026 Copilot- und KI-Weiterbildung direkt bezuschussen – ohne zertifizierten Träger: Bildungsscheck NRW 2.0, Bildungsscheck Brandenburg und WEITERBILDUNG individuell Sachsen-Anhalt (bis 90 %), plus Baden-Württemberg, MV und Hamburg. Förderhöhen, Bedingungen und praktische Nutzung.",
+          "Welche Landesförderungen 2026 Copilot- und KI-Weiterbildung direkt bezuschussen – ohne zertifizierten Träger: Bildungsscheck NRW 2.0, Bildungsscheck Brandenburg und WEITERBILDUNG individuell Sachsen-Anhalt (bis 90 %), plus Mecklenburg-Vorpommern. Förderhöhen, Bedingungen und praktische Nutzung.",
         "author": getAuthorSchemaMarkup(martinLang),
         "publisher": {
           "@id": "https://copilotenschule.de/#organization",
@@ -92,7 +91,6 @@ const CopilotSchulungFoerderungQcg = () => {
           "Bildungsscheck NRW 2.0",
           "Bildungsscheck Brandenburg",
           "WEITERBILDUNG individuell Sachsen-Anhalt",
-          "Fachkurse Baden-Württemberg",
           "geförderte Microsoft-Copilot-Schulung",
           "KI-Weiterbildung Zuschuss Bundesländer",
         ],
@@ -168,8 +166,8 @@ const CopilotSchulungFoerderungQcg = () => {
               <strong> ohne dass ein besonders zertifizierter Bildungsträger nötig ist</strong>. Am
               stärksten sind aktuell <strong>Sachsen-Anhalt</strong> (bis zu 90 Prozent, maximal
               25.000 Euro), <strong>Brandenburg</strong> (60 Prozent, keine Obergrenze mehr) und{" "}
-              <strong>Nordrhein-Westfalen</strong> (50 Prozent, bis 500 Euro). In Baden-Württemberg,
-              Mecklenburg-Vorpommern und Hamburg gelten besondere Bedingungen. Die oder der
+              <strong>Nordrhein-Westfalen</strong> (50 Prozent, bis 500 Euro). In
+              Mecklenburg-Vorpommern gelten besondere Bedingungen. Die oder der
               Beschäftigte meldet die Weiterbildung vor Kursbeginn bei der Landesstelle an; wir
               liefern Rechnung und Teilnahmebestätigung. Welches Programm für Ihren Standort offen
               ist, prüfen wir mit Ihnen.
@@ -240,40 +238,23 @@ const CopilotSchulungFoerderungQcg = () => {
                   <td className="py-2 pr-4">Wohnsitz NRW, Einkommen ≤ 50.000 € (Ehepaare 100.000 €)</td>
                   <td className="py-2 pr-4 font-medium text-green-700 dark:text-green-400">direkt</td>
                 </tr>
-                <tr className="border-b border-border align-top">
-                  <td className="py-2 pr-4 font-medium">Baden-Württemberg</td>
-                  <td className="py-2 pr-4">Fachkurse (ESF Plus)</td>
-                  <td className="py-2 pr-4">30 % / 70 %; ab 09/2026 einheitlich 45 %</td>
-                  <td className="py-2 pr-4">Wohn-/Arbeitsort BW</td>
-                  <td className="py-2 pr-4">bedingt<sup>1</sup></td>
-                </tr>
-                <tr className="border-b border-border align-top">
+                <tr className="align-top">
                   <td className="py-2 pr-4 font-medium">Mecklenburg-Vorpommern</td>
                   <td className="py-2 pr-4">Bildungsschecks</td>
                   <td className="py-2 pr-4">50 %, max. 3.000 €</td>
                   <td className="py-2 pr-4">Beschäftigte, Zugang über das Unternehmen</td>
-                  <td className="py-2 pr-4">bedingt<sup>2</sup></td>
-                </tr>
-                <tr className="align-top">
-                  <td className="py-2 pr-4 font-medium">Hamburg</td>
-                  <td className="py-2 pr-4">Weiterbildungsbonus PLUS</td>
-                  <td className="py-2 pr-4">bis ~50 %, max. 750–1.000 €</td>
-                  <td className="py-2 pr-4">v. a. Geringqualifizierte, KMU ≤ 250</td>
-                  <td className="py-2 pr-4">bedingt<sup>3</sup></td>
+                  <td className="py-2 pr-4">bedingt<sup>1</sup></td>
                 </tr>
               </tbody>
             </table>
           </div>
           <div className="prose prose-sm max-w-none dark:prose-invert">
             <p className="text-muted-foreground">
-              <sup>1</sup> Baden-Württemberg: Der Zuschuss läuft über den Bildungsanbieter als
-              Antragsteller, der seit mindestens drei Jahren am Markt sein muss.{" "}
-              <sup>2</sup> Mecklenburg-Vorpommern: Antrag über das beschäftigende Unternehmen.{" "}
-              <sup>3</sup> Hamburg: Zielgruppe vorwiegend gering qualifizierte Beschäftigte – passt
-              nur eingeschränkt zu typischen Copilot-Zielgruppen. Nicht in dieser Übersicht: einige
-              Länder (u. a. Rheinland-Pfalz, Schleswig-Holstein, Bremen) fördern nur über besonders
-              zugelassene Träger; andere Programme sind derzeit pausiert oder ausgelaufen (u. a.
-              Sachsen, Thüringen, Niedersachsen, Hessen, Bayern, Berlin). Stand: Juli 2026.
+              <sup>1</sup> Mecklenburg-Vorpommern: Antrag über das beschäftigende Unternehmen. Nicht
+              in dieser Übersicht: einige Länder (u. a. Rheinland-Pfalz, Schleswig-Holstein, Bremen)
+              fördern nur über besonders zugelassene Träger; andere Programme sind derzeit pausiert
+              oder ausgelaufen (u. a. Sachsen, Thüringen, Niedersachsen, Hessen, Bayern, Berlin).
+              Stand: Juli 2026.
             </p>
           </div>
         </section>
@@ -351,29 +332,20 @@ const CopilotSchulungFoerderungQcg = () => {
           </div>
         </section>
 
-        {/* Sektion 4: Weitere Länder */}
-        <section id="weitere" className="mb-4 mt-2">
+        {/* Sektion 4: Mecklenburg-Vorpommern */}
+        <section id="mv" className="mb-4 mt-2">
           <h2 className="text-2xl md:text-3xl font-bold mb-2">
-            Weitere Länder: Baden-Württemberg, MV, Hamburg
+            Mecklenburg-Vorpommern: Bildungsschecks
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
-              Drei weitere Länder fördern Copilot-Weiterbildung, allerdings mit besonderen
-              Bedingungen. In <strong>Baden-Württemberg</strong> bezuschusst das Programm Fachkurse
-              berufliche Weiterbildung – regulär mit 30 Prozent, für Ältere (ab 55) und Personen ohne
-              Berufsabschluss mit 70 Prozent; ab September 2026 ist ein einheitlicher Satz von 45
-              Prozent angekündigt. Hier läuft die Förderung nicht über die teilnehmende Person,
-              sondern über den Bildungsanbieter, der den Zuschuss als Rabatt weitergibt und dafür
-              seit mindestens drei Jahren am Weiterbildungsmarkt sein muss.
-            </p>
-            <p>
-              In <strong>Mecklenburg-Vorpommern</strong> fördern Bildungsschecks bis zu 50 Prozent
-              (maximal 3.000 Euro), wobei der Zugang über das beschäftigende Unternehmen läuft. In{" "}
-              <strong>Hamburg</strong> existiert der Weiterbildungsbonus PLUS mit bis zu rund 50
-              Prozent Zuschuss – dieser richtet sich allerdings vorrangig an gering qualifizierte
-              Beschäftigte und passt damit nur eingeschränkt zu den typischen Zielgruppen einer
-              Copilot-Schulung. Für alle drei Länder gilt: Wir prüfen die aktuellen Konditionen
-              gemeinsam mit Ihnen, bevor Sie planen.
+              In Mecklenburg-Vorpommern fördern Bildungsschecks bis zu 50 Prozent der Kosten,
+              maximal 3.000 Euro. Anders als in NRW, Brandenburg oder Sachsen-Anhalt läuft der Zugang
+              hier über das beschäftigende Unternehmen und nicht über die einzelne Person – der
+              Betrieb stellt den Antrag und wählt die Weiterbildung. Eine besondere Trägerzulassung
+              ist nicht erforderlich, sodass unsere Copilot-Trainings als förderfähige Weiterbildung
+              infrage kommen. Die aktuellen Konditionen prüfen wir gemeinsam mit Ihnen, bevor Sie
+              planen.
             </p>
           </div>
         </section>
@@ -466,9 +438,7 @@ const CopilotSchulungFoerderungQcg = () => {
             <li>Ministerium für Arbeit, Gesundheit und Soziales NRW – Bildungsscheck 2.0 (mags.nrw/bildungsscheck)</li>
             <li>Investitionsbank des Landes Brandenburg (ILB) / ESF Brandenburg – Weiterbildungsrichtlinie 2026, Bildungsscheck (ilb.de, esf.brandenburg.de)</li>
             <li>Investitionsbank Sachsen-Anhalt – Sachsen-Anhalt WEITERBILDUNG (individueller Zugang) (ib-sachsen-anhalt.de); foerderdatenbank.de</li>
-            <li>ESF Baden-Württemberg – Förderprogramm Fachkurse (esf-bw.de)</li>
             <li>Gesellschaft für Struktur- und Arbeitsmarktentwicklung MV – Bildungsschecks (gsa-schwerin.de)</li>
-            <li>W.H.S.B. Weiterbildung Hamburg – Weiterbildungsbonus PLUS (weiterbildung-hamburg.de)</li>
           </ul>
         </div>
 
@@ -507,7 +477,6 @@ export default CopilotSchulungFoerderungQcg;
 
 ## Offene Punkte für Martin (vor Deployment entscheiden / prüfen)
 1. **Slug** heißt weiterhin `copilot-schulung-foerderung-qcg-2026`, obwohl QCG jetzt gar nicht mehr Thema ist. Sauberer wäre `copilot-schulung-landesfoerderung` o. Ä. Umbenennen = Datei + articles.ts + App.tsx + sitemap + react-snap. Sag Bescheid.
-2. **Baden-Württemberg:** Ist die Copilotenschule GmbH **≥ 3 Jahre** am Markt und bereit, als Antragsteller/Träger im Fachkurse-Programm aufzutreten? Nur dann stimmt „bedingt nutzbar". Sonst BW aus der Tabelle nehmen.
-3. **Zahlen mit Rest-Unsicherheit vor Go-Live final gegenchecken:** Hamburg-Fördersatz (40 % vs. 50 %), BW-Übergang auf 45 % ab 09/2026. NRW/Brandenburg/Sachsen-Anhalt sind offiziell verifiziert.
-4. **Hamburg** überhaupt aufnehmen? Zielgruppe (Geringqualifizierte) passt kaum zu euren Kunden – ggf. streichen.
-5. **DACH:** Aktuell nur Deutschland. Österreich/Schweiz bewusst außen vor (wie besprochen).
+2. **Baden-Württemberg und Hamburg auf deinen Wunsch entfernt** (21.07.2026). Verbleibend: Sachsen-Anhalt, Brandenburg, NRW (direkt) und Mecklenburg-Vorpommern (betriebsvermittelt).
+3. **MV-Konditionen** vor Go-Live final gegenchecken. NRW/Brandenburg/Sachsen-Anhalt sind offiziell verifiziert.
+4. **DACH:** Aktuell nur Deutschland. Österreich/Schweiz bewusst außen vor (wie besprochen).
