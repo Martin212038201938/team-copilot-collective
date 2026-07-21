@@ -833,7 +833,7 @@ const CopilotSchulungsanbieterVergleich = () => {
               Vorhaben passt – auch wenn das am Ende nicht die copilotenschule.de ist. Wir helfen ehrlich bei der
               Entscheidung.
             </p>
-            <a href="https://copilotenschule.de/#contact" className="inline-block bg-primary text-primary-foreground px-4 py-2 rounded font-medium hover:bg-primary/90">
+            <a href="https://copilotenschule.de/kontakt" className="inline-block bg-primary text-primary-foreground px-4 py-2 rounded font-medium hover:bg-primary/90">
               Kontakt aufnehmen
             </a>
           </CardContent>

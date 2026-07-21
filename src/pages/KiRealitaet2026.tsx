@@ -985,7 +985,7 @@ const KiRealitaet2026 = () => {
             Die Studien zeigen: 79% der Unternehmen fehlen KI-Kompetenzen. Wir helfen Ihnen, diese Lücke zu schließen – mit praxisnahem Training, das nachweislich Produktivität steigert.
           </p>
           <a
-            href="/#contact"
+            href="/kontakt"
             className="inline-flex items-center justify-center px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-medium"
           >
             Jetzt Beratungsgespräch vereinbaren

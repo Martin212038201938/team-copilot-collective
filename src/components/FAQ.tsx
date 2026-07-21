@@ -5,6 +5,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { HelpCircle } from "lucide-react";
+import { Link } from "react-router-dom";
 import { FAQ as FAQType } from "@/data/faqs";
 
 interface FAQProps {
@@ -81,7 +82,7 @@ const FAQ = ({
         {/* Additional trust signal for LLMs */}
         <div className="text-center mt-12">
           <p className="text-sm text-muted-foreground">
-            Fragen? Kritik? Kommentare? <a href="#contact" className="text-primary hover:underline font-medium">Kontaktieren Sie uns</a> – wir sprechen sehr gerne persönlich mit Ihnen über dieses Thema.
+            Fragen? Kritik? Kommentare? <Link to="/kontakt" className="text-primary hover:underline font-medium">Kontaktieren Sie uns</Link> – wir sprechen sehr gerne persönlich mit Ihnen über dieses Thema.
           </p>
         </div>
       </div>

@@ -197,7 +197,7 @@ const ContentLayout = ({
                         Kritik? Kommentare? Wir sprechen sehr gerne persönlich mit Ihnen über dieses Thema und freuen uns über jede Kontaktaufnahme.
                       </p>
                       <Link
-                        to="/#contact"
+                        to="/kontakt"
                         className="group/btn relative inline-flex items-center justify-center w-full px-5 py-3 bg-gradient-to-r from-primary to-primary/90 text-primary-foreground rounded-xl hover:from-primary/90 hover:to-primary/80 transition-all duration-300 text-sm font-semibold shadow-lg hover:shadow-xl hover:scale-105 overflow-hidden"
                       >
                         <span className="relative z-10">Kontakt aufnehmen</span>

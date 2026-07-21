@@ -553,7 +553,7 @@ const CopilotStudio = () => {
             Wir unterstützen Sie bei der Entwicklung maßgeschneiderter KI-Lösungen mit Copilot Studio.
           </p>
           <a
-            href="/#contact"
+            href="/kontakt"
             className="inline-flex items-center justify-center px-6 py-3 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors font-medium"
           >
             Beratung anfragen

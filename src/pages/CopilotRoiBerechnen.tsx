@@ -909,7 +909,7 @@ const CopilotRoiBerechnen = () => {
 
           <p className="mt-8 text-center">
             <strong>Benötigen Sie Unterstützung bei Ihrer ROI-Berechnung?</strong><br />
-            <a href="/#contact" className="text-primary hover:underline">Kontaktieren Sie uns für individuelle Beratung →</a>
+            <a href="/kontakt" className="text-primary hover:underline">Kontaktieren Sie uns für individuelle Beratung →</a>
           </p>
         </section>
 

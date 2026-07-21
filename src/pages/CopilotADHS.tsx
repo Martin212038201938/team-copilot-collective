@@ -567,7 +567,7 @@ const CopilotADHS = () => {
             Sie wollen, dass Ihr Team Copilot wirklich nutzt - nicht nur die Lizenz bezahlt? Unsere Trainings zeigen praktische Workflows, die im Alltag funktionieren. Auch für Teams mit unterschiedlichen Arbeitsweisen.
           </p>
           <a
-            href="/#contact"
+            href="/kontakt"
             className="inline-flex items-center justify-center px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-medium"
           >
             Training anfragen

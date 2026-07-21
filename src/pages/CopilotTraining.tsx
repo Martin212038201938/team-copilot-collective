@@ -1221,7 +1221,7 @@ const CopilotTraining = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="/#contact"
+              href="/kontakt"
               className="inline-flex items-center justify-center px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-medium"
             >
               <BookOpen className="w-5 h-5 mr-2" />

@@ -568,7 +568,7 @@ const EuAiActMitarbeiterSchulung = () => {
                 Schulungspfad vor, der zu Aufwand und Zielen passt.
               </p>
               <a
-                href="/#contact"
+                href="/kontakt"
                 className="inline-block rounded-lg bg-blue-600 px-5 py-2.5 font-semibold text-white transition-colors hover:bg-blue-700"
               >
                 Sprechen Sie mit uns →
