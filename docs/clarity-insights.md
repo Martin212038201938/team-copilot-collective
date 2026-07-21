@@ -2,7 +2,7 @@
 
 **Lebendes Dokument** — Cron-Jobs pflegen dieses File. Hier sammeln sich die Pattern-Erkenntnisse aus Microsoft Clarity, die wir auf andere Seiten übertragen oder gegen UX-Probleme einsetzen können.
 
-**Letzter automatischer Update:** 13. Juli 2026 (Wöchentlicher Audit — SEA skaliert 59→82 Sess. (+39 %), Outbound 38→36 (flat, weiter 0 Conv.), Dead-Click entspannt: API 3T 8,62 % unter Schwelle / Dashboard 7T 10,97 % knapp drüber, Organic +9 % W/W, Edge stabil ~30 %, Goldene Pages Lizenzen + Claude-in-Copilot)
+**Letzter automatischer Update:** 20. Juli 2026 (Wöchentlicher Audit — Chrome-Extension offline → Conversion-Events (5b) + Paid/Outbound-Split (5c) + AlwaysData diesen Lauf NICHT erfasst; Standard-Clarity via API OK. Dead-Click **re-eskaliert auf 13,95 % API-3T** (Vorwoche 8,62 %) — zurück über 10 %-Schwelle, 5c-Segment-Gegenprüfung mangels Chrome nicht möglich, Treiber weiter präsumtiv organisch (ArticlePopup). GSC organisch stark: Klicks 1110→1250 (+12,6 % W/W), Impr. 90,6k→101k (+11,5 %), Pos. 9,3→9,1. Goldene Pages: Lizenzen + Claude-in-Copilot + KI-Halluzinationen. Vorwoche: SEA skaliert 59→82 Sess. (+39 %), Outbound 38→36 (flat, 0 Conv.))
 
 ---
 
@@ -211,6 +211,44 @@ nach ca. 2 Wochen Laufzeit empfohlen.
 > ⚠️ **METHODEN-FIX für Schritt 5b (wichtig):** Die Conversion-Events sind **Custom Tags** (`Clarity.setTag`), NICHT Smart Events. Sie erscheinen NUR unter **Filter → „Benutzerdefinierte Filter" → „Benutzerdefinierte Kategorien" → Dropdown „Tag auswählen"** — NICHT im „Intelligente Ereignisse"-Dropdown. Frühere Läufe prüften nur Smart Events → systematische Untererfassung. **Ab sofort beide Filter prüfen.** Verfügbare Custom-Tags (Stand 26.06.): `booking_click, campaign_mail, campaign_medium, campaign_name, campaign_source, claude_verify_tag, contact_form_submit, danke_page_view, sml_landing_page_visit, visitor_type`. (`content_cta_click`, `mail_click`, `phone_click`, `pdf_download`, `trainer_application_submit` = 0 Firings → tauchen nicht auf, bis sie gefeuert werden.) Outbound-Segmentierung (5c) über `campaign_medium`/`campaign_source`.
 
 *Hinweis: Der ursprüngliche Skill-Kontext „SEA + Outbound ab KW 25" war verfrüht. Maßgeblich ist dieser Status-Block.*
+
+---
+
+### 2026-07-20 — Issue-Update (Re-Eskalation): Dead-Click zurück über 10 % — API 3T 13,95 %
+**Quelle:** Cron-Lauf 2026-07-20 (weekly) — Clarity API 3T (13,95 %, 129 Sess., 16 Bots, 147 Unique)
+**Symptom:** Dead-Click API 3T **13,95 %** (Vorwoche 8,62 %) → **wieder klar über der 10 %-Schwelle** (Schritt 7c). Rage-Click 0,78 % (< 5-Sessions-Schwelle), Quick-Back 0 %, Excessive-Scroll 0 % — sonst ruhig. Scrolltiefe 36,79 %, aktive Zeit 90 s.
+**5c-Gegenprüfung NICHT möglich:** Die Chrome-Extension war diesen Lauf offline → cpc-/email-Segment-Dead-Click konnte nicht gegengeprüft werden. Der Treiber bleibt **präsumtiv organisch** (globales `ArticlePopup` via `ContentLayout.tsx`) — konsistent mit dem dokumentierten Zickzack-Muster (21,4 % → 8,65 % → 17 % → 8,62 % → 13,95 %), das stark von der Wochen-Mischung Wissensartikel-Traffic abhängt. Kein Code-Defekt-Indiz (keine JS-Fehler, Rage/Quick-Back ruhig).
+**Bewertung:** Bekanntes, mix-getriebenes Grenzwert-Issue. Kein neuer Cron — Fix-Draft `docs/drafts/clarity-fix-copilot-in-outlook-nutzen-tipps.md` (seit 17.06.) liegt vor, Engpass ist der User-Push. Top-Page-Ableitung (PopularPages 3T): `microsoft-copilot-lizenzen` (20), `claude-in-microsoft-copilot` (17), `ki-halluzinationen-vermeiden` (14), `copilot-in-outlook-nutzen-tipps` (12) — alle Wissensseiten mit ArticlePopup.
+**Status:** identifiziert — re-eskaliert (Mix-Effekt), Fix-Draft wartet auf User-Push. 5c-Bestätigung im nächsten Lauf mit funktionierender Chrome-Extension nachholen.
+
+---
+
+### 2026-07-20 — Trend (positiv): Organik wächst weiter — GSC 3M Klicks +12,6 % W/W
+**Beobachtungs-Zeitraum:** 13.07. – 20.07.2026 (GSC 3M, rein organisch, Stand 19.07. aus Daily-Health-Check)
+**Event:** Organischer Suchtraffic (GSC, kampagnen-unberührt)
+**Trend:** GSC 3M Klicks **1110 → 1250 (+12,6 %)**, Impr. **90.600 → 101.000 (+11,5 %)**, Pos. **9,3 → 9,1** (verbessert). Unter der +25 %-„Verstärken"-Schwelle, aber die stärkste W/W-Bewegung seit Wochen und stetig. Clarity-API-3T-Referrer bestätigen organische Dominanz: Google 69, Direct 39, Bing 11, Ecosia 2.
+**Caveat:** Clarity-Organic-Segment und AlwaysData konnten diesen Lauf mangels Chrome nicht sauber segmentiert werden (5c). GSC ist rein organisch und unberührt → der Organik-Trend ist valide.
+**Handlung:** Beobachten — organischer Kern gesund, GEO-/Content-Sog hält an. Excel-Aktivieren-Cluster bleibt stärkster Klick-Bringer (copilot in excel aktivieren 53 Kl./3M).
+
+---
+
+### 2026-07-20 — Cross-Korrelation: Goldene Pages (GSC × Clarity, präsumtiv organic)
+**Quelle:** Cron-Lauf 2026-07-20 (weekly) — GSC Top-Klick-Bringer-Pages 3M (Stand 19.07.) × Clarity Top-Pages 3T (API)
+**Goldene Pages (in beiden stark):** drei statt zwei diese Woche —
+- `/wissen/microsoft-copilot-lizenzen` (GSC 116 Kl./3M; Clarity Top-Page **#1**, 20 Visits)
+- `/wissen/claude-in-microsoft-copilot` (GSC **#1-Page** mit 224 Kl./3M; Clarity **#2**, 17 Visits)
+- `/wissen/ki-halluzinationen-vermeiden` (GSC 161 Kl./3M; Clarity **#3**, 14 Visits) — neu wieder in beiden Top-3
+→ alle drei ziehen organischen Such-Traffic UND werden real besucht → ideale CTA-Brücke-Kandidaten.
+**Ungenutztes Potential (unverändert):** GSC-#2-Page `/wissen/copilot-in-excel-aktivieren` (165 Kl./3M, stärkster Query-Cluster „copilot … excel aktivieren" 53+19+11 Kl.) taucht **nicht** in den Clarity-Top-5 auf — hohe Such-Sichtbarkeit, geringe On-Site-Präsenz. Weiter Top-Kandidat für interne Verlinkung + CTA-Brücke.
+**Handlung:** Beim nächsten CTA-Welle-Schritt Excel-Aktivieren-Seite priorisieren.
+
+---
+
+### 2026-07-20 — Methoden-Notiz: Chrome-Extension offline → 5b/5c/AlwaysData nicht erfasst
+**Quelle:** Cron-Lauf 2026-07-20 (weekly)
+**Beobachtung:** Die Claude-in-Chrome-Extension war während des Laufs nicht verbunden. Betroffen: **Schritt 4 (AlwaysData-Visits)**, **5b (Conversion-Events / Custom Tags)** und **5c (Paid/Outbound-Segmentierung cpc/email)** — alle drei benötigen das Clarity-/AlwaysData-Dashboard via Chrome. Standard-Clarity-Metriken (5a, API) und GSC (Fallback über Daily-Health-Check-Snapshot 19.07.) sowie SSR + Protected Pages liefen normal.
+**Konsequenz für Trends:** Conversion-Rate + cpc/email-Split diese Woche nicht messbar → Defekt-Erkennung (7e) und Zielseiten-Drift-Check (5c) ausgesetzt. Kein Datenverlust für organische Kern-KPIs (GSC/SSR unberührt).
+**Handlung:** In Notification an User gespiegelt (Extension bei nächstem Lauf verbinden). Fehlende Segmente im Lauf 27.07. nachholen.
 
 ---
 

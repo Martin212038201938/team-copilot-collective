@@ -8,6 +8,63 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 
 ## Logs
 
+### 2026-07-20 — B4 Trust-Signal-Block Verifikationslauf (Cron)
+
+**Schritt 1 (Vorbedingung):** Pre-Render-Schwelle geprüft — SSR-Audit **67/67 ✅ (0 🔴)**, weit über der geforderten ≥60/71-Schwelle (Quelle: Wochenaudit 20.07., dieselbe Datei weiter unten). Vorbedingung erfüllt → weiter.
+
+**Schritt 2 (Logo-Freigabe-Status) — Kontext-Korrektur:** Die Skill-Vorlage geht von zwei Zuständen aus (keine Freigaben → Mail-Templates; ≥3 Freigaben → Code-Entwurf). Beide passen nicht mehr: laut `seo-status-log.md` (Eintrag 11.06.2026, „B4 Trust-Block + Google-Ads-Tracking … umgesetzt") hat der User bereits am 11.06. **explizit entschieden, den Trust-Block OHNE vorherige Logo-Freigabe-Mails zu bauen** (Risiko dokumentiert: Markennutzung/Referenzklauseln, Berater-Hinweis ausgesprochen). Der Projektplan degradiert diesen Cron seither ausdrücklich zum „Verifikationslauf" (`seo-projektplan.md`, B4-Zeile). Schritt 3a (Freigabe-Mails) und 3b (Code-Entwurf) entfallen daher — beides ist bereits erledigt bzw. hinfällig.
+
+**Verifikation (statt 3a/3b):**
+- `src/components/CustomerLogos.tsx` existiert, ist Teil von `main` = `origin/main` (kein offener Push-Stau; letzte Berührung im Commit „cta und tracking").
+- Eingebaut in `src/pages/Index.tsx` (Zeile 165, nach Hero) und `src/pages/UeberUns.tsx` (Zeile 162, nach Hero) — beide bestätigt.
+- **Live-Check (curl):** `https://copilotenschule.de/` und `/ueber-uns` liefern den Block vollständig im initial ausgelieferten (pre-gerenderten) HTML — KPI-Zeile „2.000+ ausgebildete Wissensarbeiter — Unternehmen, die mit uns trainieren:" + alle 6 Referenzkunden als Text-Badges: REWE, Pernod Ricard, Lekkerland, Marriott Hotels, Med360Grad, IHK Nord Westfalen.
+- **Logo-Bilddateien:** `public/images/customer-logos/` existiert lokal weiterhin nicht. Live liefert jede angefragte `.svg`-URL zwar HTTP 200, aber `content-type: text/html` (SPA-Catch-all auf `index.html`, kein echtes Bild) — die Komponente fängt das korrekt per `onError` ab, daher rendern zuverlässig die Text-Badges statt kaputter Bilder. Kein optischer Fehler, kein Broken-Image.
+- Rechtlicher Rahmen unverändert wie am 11.06. dokumentiert: reine Klarnamen-Nennung ohne Markenlogos, kein Backlink, Grayscale-Optik entfällt naturgemäß bei Text.
+
+**Bewertung:** B4 ist **live, technisch sauber und pre-gerendert korrekt** — Status wechselt von „wartet auf User-Push" auf **✅ erledigt (verifiziert 20.07.2026)**.
+
+**Aktion:** `seo-projektplan.md` aktualisiert — Maßnahmen-Tabelle B4 → ✅, Cron-Tabelle-Zeile → „gelaufen", „Letzter Update"-Kopfzeile ergänzt. Kein neuer Draft, kein Freigabe-Mail-Versand (Skill-Schritt 3a durch User-Entscheidung vom 11.06. hinfällig). Kein Push, keine `src/`-Änderung (nur `docs/`).
+
+**Optionaler, nicht-blockierender Folgeschritt für Martin:** Falls echte Kundenlogos gewünscht sind, weiterhin nur nach individueller Freigabe pro Kunde — dann einfach die 6 SVGs unter `public/images/customer-logos/{rewe,pernod-ricard,lekkerland,marriott,med360grad,ihk-nord-westfalen}.svg` ablegen; die Komponente wechselt automatisch von Text- auf Bild-Darstellung, kein Code-Update nötig.
+
+**Nächster Lauf:** keiner — B4 abgeschlossen, kein Retry-Cron. Nächste reguläre Prüfung im Phase-Conductor-Lauf 05.08.2026.
+
+---
+
+### 2026-07-20 — Wöchentlicher Audit (Cron)
+
+**Phase:** Phase 3 — Content-Block (aktiv, kein Wechsel), DoD 4/8
+**SSR-Audit:** ✅ 67 / 🟡 0 / 🔴 0 (von 67)
+- Neu in 🔴/✅: keine (stabil, DoD #2 gewahrt; Regressions-Wächter, 🔴 < 5 → keine Eskalation)
+
+**GSC** (Fallback über Daily-Health-Check-Snapshot 19.07., rein organisch — Chrome-Extension offline): 59/89 indexiert (**62,8 %**), Klicks **1250/3M (+12,6 % W/W)**, Impr. **101.000 (+11,5 %)**, CTR 1,2 %, Pos. **9,1 (↑ von 9,3)**. A6-Bewegung: gecrawlt (12) + gefunden (11) = **23 nicht-indexiert** (Vorwoche 21, +2 — unter 3-W/W-Schwelle; entspricht dem am 15.07. bereits gemessenen Stand, seither stabil). Top-Klick-Bringer-Queries: copilot in excel aktivieren (53), excel copilot aktivieren (19), copilot excel aktivieren (11), copilot cowork kosten (9), copilot kosten (7), copilot claude (5). Top-Klick-Bringer-Pages: claude-in-microsoft-copilot (224), copilot-in-excel-aktivieren (165), ki-halluzinationen-vermeiden (161), microsoft-copilot-lizenzen (116), copilot-cowork-abrechnung-credits (100).
+
+**AlwaysData:** ⚠️ diesen Lauf nicht erfasst (Chrome-Extension offline; Dashboard nur via Chrome).
+
+**Traffic-Mix (Clarity):** ⚠️ Segmentierung (cpc/email/organic) diesen Lauf nicht möglich (Chrome offline, 5c). API-3T-Referrer rein-organisch dominiert: Google 69, Direct 39, Bing 11, Ecosia 2, google.de 2.
+
+**Clarity Standard (3T, via API, 1 Call):**
+- Sessions: 129 (davon 16 Bots, 147 Unique Users)
+- Scrolltiefe: 36,79 %, Aktive Zeit: 90 s
+- Dead-Click: **13,95 %** | Rage-Click: 0,78 % | Quick-Back: 0 % | Excessive-Scroll: 0 %
+- Top-Browser: Chrome 28, Edge 27, MobileSafari 26, Firefox 18, ChromeMobile 16
+- Top-3-Pages: microsoft-copilot-lizenzen (20), claude-in-microsoft-copilot (17), ki-halluzinationen-vermeiden (14)
+- Top-3-Referrer: google.com (69), Direct (39), bing.com (11)
+
+**Clarity Conversion-Events (7T, via Chrome):** ⚠️ diesen Lauf NICHT erfasst — Chrome-Extension offline. Custom-Tags/Smart-Events sind nur über das Clarity-Dashboard (Chrome) verfügbar. Conversion-Rate + Defekt-Check (7e) diese Woche ausgesetzt; im Lauf 27.07. nachholen.
+
+**Insights heute:** Patterns 0 | Issues 1 (Dead-Click re-eskaliert 13,95 %) | Trends 1 (Organik +12,6 % W/W) + Cross-Korrelation (3 Goldene Pages) + Methoden-Notiz (Chrome offline) — Details in clarity-insights.md
+**Folge-Crons angelegt:** keine (Dead-Click = bekanntes Mix-Issue mit vorliegendem Fix-Draft; kein neuer Cron laut 7c-Praxis)
+**Goldene Pages (GSC×Clarity, präsumtiv organic):** `/wissen/microsoft-copilot-lizenzen`, `/wissen/claude-in-microsoft-copilot`, `/wissen/ki-halluzinationen-vermeiden`. Ungenutzt: `/wissen/copilot-in-excel-aktivieren` (GSC-Top, Clarity-schwach).
+**Protected Pages:** alle 5/5 = HTTP 200 (roi-berechnen, training-schulung, im-unternehmen-einfuehren-leitfaden, microsoft-copilot-lizenzen, ki-schulung-mitarbeiter-pflicht).
+**Entscheidung gemäß Plan:** Phase 3 bleibt aktiv, kein Wechsel. SSR-Regressions-Wächter grün (0 🔴). A6-Index-Coverage stagniert bei ~62,8 % / Summe 23 (−1,7 pp bzw. +2 ggü. 13.07., beide unter Eskalationsschwelle; kein neues Issue, aber weiter zu beobachten — Ziel 90 % fern). Kein Push, keine `src/`-Änderung.
+**Offene User-Handlungspunkte:** (1) Chrome-Extension für vollständige Audits verbinden; (2) ArticlePopup-Dead-Click-Fix pushen (Draft seit 17.06.); (3) Outbound-LP `/sml/hr-tipps_2026` überarbeiten (>4 Wo 0 Conversions).
+**API-Calls heute:** 1/10 (Clarity)
+**Teams-Post:** ❌ HTTP 401 `DirectApiAuthorizationRequired` (Exit 3) — der Workflows-Webhook verlangt jetzt ein OAuth-Auth-Schema; die gespeicherte URL ist unbrauchbar geworden. Audit NICHT als fehlgeschlagen gewertet (Reporting lief vollständig, nur der Versand scheiterte). User muss den Teams-Webhook neu anlegen/autorisieren.
+**Nächster Lauf:** Mo 27.07.2026, 10:00
+
+---
+
 ### 2026-07-15 — A6 Index-Coverage-Recheck (Cron)
 
 **Indexierungsquote:** 59/94 (62,8 %) · gecrawlt-nicht-indexiert 12 (Validierung: Fehlgeschlagen) · gefunden-nicht-indexiert 11 (Validierung: Bestanden) · Weiterleitung 8 · alt. kanonisch 3 · robots.txt 1 — Summe nicht-indexiert 35. Δ vs. 13.07. (60/93, gecrawlt 10 + gefunden 11 = 21): Quote −1,7 pp, Summe 21→23 (+2), Gesamt-URL-Zahl 93→94 (neue Seite in Sitemap). GSC-Report ist nicht mehr eingefroren (letzter Datenpunkt jetzt 02.07., vorher 30.06.) — echte, wenn auch leicht negative Bewegung, keine Artefakt-Stagnation mehr.
