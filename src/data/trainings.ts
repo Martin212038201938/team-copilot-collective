@@ -3,6 +3,25 @@ import type { LucideIcon } from "lucide-react";
 
 export type CopilotTier = "free" | "paid";
 
+// Buchungsvarianten (B7, 2026-07-22): ersetzen die früheren "Buchbar als:"-Feature-Bullets.
+// Sichtbar als Abschnitt "Formate und Buchungsvarianten"; im Schema wird je Variante
+// eine eigene CourseInstance ausgegeben.
+export type BookingMode = "onsite" | "online" | "blended";
+
+export const BOOKING_MODE_LABELS: Record<BookingMode, string> = {
+  onsite: "Inhouse / vor Ort",
+  online: "Live-Online",
+  blended: "Kombiniert (Präsenz + Online)",
+};
+
+export interface BookingFormat {
+  name: string;         // z.B. "Ganztag (7 Stunden)"
+  modes: BookingMode[];
+  durationISO?: string; // ISO 8601 für schema.org CourseInstance.duration
+  workload?: string;    // sichtbarer Umfang, z.B. "2 Stunden pro Woche über 4–6 Wochen"
+  description?: string; // 1 Satz Einordnung der Variante
+}
+
 export interface TrainingFAQ {
   question: string;
   answer: string;
@@ -35,6 +54,13 @@ export interface Training {
   // Voraussetzungen je Training (Lizenz, Vorkenntnisse) – wird im Course-Schema
   // als coursePrerequisites ausgegeben (B2, 2026-07-22)
   prerequisites?: string;
+  // "Auf einen Blick"-Faktenbox (B7, 2026-07-22): sichtbare Kernfakten im Hero
+  format?: string;        // z.B. "Inhouse vor Ort oder Live-Online"
+  level?: string;         // z.B. "Einsteiger", "Fortgeschrittene"
+  audienceShort?: string; // Kurzform der Zielgruppe für die Faktenbox
+  groupSize?: string;     // z.B. "bis 12 Teilnehmende"
+  certificate?: string;   // sichtbarer Nachweis; geht zusätzlich als educationalCredentialAwarded ins Schema
+  bookingFormats?: BookingFormat[]; // Varianten für Abschnitt "Formate und Buchungsvarianten" + Schema
   // Optionaler Preis pro Person. ACHTUNG (B1, 2026-07-22): Wird derzeit NICHT
   // ins Schema ausgegeben, solange der A/B-Test "Preise auszeichnen" läuft –
   // Preise erst nach Testentscheid wieder maschinenlesbar machen.
@@ -70,8 +96,7 @@ export const trainings: Training[] = [
       "Textarbeit mit KI: Schreiben, Umformulieren, Kürzen, Übersetzen, Tonalität anpassen",
       "Kreative Anwendungen: Brainstorming, Ideengenerierung, Perspektivwechsel",
       "KI-Output kritisch bewerten: Halluzinationen erkennen, Quellen prüfen, Grenzen verstehen",
-      "Eigene Prompt-Bibliothek aufbauen: Templates für wiederkehrende Aufgaben entwickeln",
-      "Buchbar als: Halbtag (4 Stunden)"
+      "Eigene Prompt-Bibliothek aufbauen: Templates für wiederkehrende Aufgaben entwickeln"
     ],
     tiers: ["free"],
     popular: true,
@@ -79,6 +104,19 @@ export const trainings: Training[] = [
     abPreisProGruppe: 1600,
     questionLead: "Welches Training eignet sich am besten, um Microsoft Copilot von Grund auf zu lernen – auch ohne Lizenz?",
     prerequisites: "Keine Vorkenntnisse erforderlich. Eine Copilot-Lizenz wird nicht benötigt – der kostenlose Microsoft Copilot Chat genügt.",
+    format: "Inhouse bei Ihnen vor Ort oder Live-Online",
+    level: "Einsteiger",
+    audienceShort: "Alle Mitarbeitenden – auch ohne Copilot-Lizenz",
+    groupSize: "bis 12 Teilnehmende",
+    certificate: "Teilnehmer-Zertifikat „Schulung gemäß EU AI-Act“",
+    bookingFormats: [
+      {
+        name: "Halbtag (4 Stunden)",
+        modes: ["onsite", "online"],
+        durationISO: "PT4H",
+        description: "Kompaktes Kick-off für ganze Teams – erfüllt zugleich die KI-Einweisungspflicht nach EU AI Act."
+      }
+    ],
     targetAudience: [
       "Büromitarbeiter, die zum ersten Mal mit KI-Assistenten arbeiten und einen strukturierten Einstieg suchen",
       "Teamleiter, die ihr Team auf die Copilot-Einführung vorbereiten wollen, bevor Lizenzen beschafft werden",
@@ -141,13 +179,41 @@ export const trainings: Training[] = [
       "Copilot in Teams: Meetings automatisch protokollieren lassen, verpasste Besprechungen in 30 Sekunden nachlesen und offene Aufgaben direkt extrahieren",
       "Cross-App-Workflows: Aus einer E-Mail-Kette wird ein strukturiertes Word-Dokument, aus dem Word-Text eine Präsentation – nahtlos zwischen den Apps arbeiten",
       "Prompt Engineering für Office: App-spezifische Prompt-Techniken, die in Word anders funktionieren als in Excel oder PowerPoint – mit sofort einsetzbaren Vorlagen",
-      "Eigene Use Cases aus Ihrem Arbeitsalltag praktisch umsetzen",
-      "Buchbar als: Ganztag (7h), 2-tägig, Online-Lernreise (4× oder 6×2h) oder als Kombination aus Präsenz-Kickoff und weiterführender Online-Lernreise"
+      "Eigene Use Cases aus Ihrem Arbeitsalltag praktisch umsetzen"
     ],
     tiers: ["paid"],
     popular: true,
     questionLead: "Wie nutze ich Microsoft 365 Copilot in Word, Excel, PowerPoint, Outlook und Teams produktiv?",
     prerequisites: "Microsoft 365 Copilot-Lizenz erforderlich. Sicherer Umgang mit den Office-Anwendungen wird vorausgesetzt; KI-Vorkenntnisse sind nicht nötig.",
+    format: "Inhouse vor Ort oder Live-Online",
+    level: "Einsteiger bis Fortgeschrittene (mit Lizenz)",
+    audienceShort: "Wissensarbeiter mit Microsoft 365 Copilot-Lizenz",
+    groupSize: "bis 12 Teilnehmende",
+    bookingFormats: [
+      {
+        name: "Ganztag (7 Stunden)",
+        modes: ["onsite", "online"],
+        durationISO: "PT7H",
+        description: "Der Klassiker: alle Kern-Apps an einem Tag, mit Übungen an echten Arbeitsszenarien."
+      },
+      {
+        name: "2-tägig (2 × 7 Stunden)",
+        modes: ["onsite", "online"],
+        durationISO: "P2D",
+        description: "Mehr Tiefe und mehr eigene Use Cases – ideal, wenn das Team Copilot intensiv verankern soll."
+      },
+      {
+        name: "Online-Lernreise (4× oder 6× 2 Stunden)",
+        modes: ["online"],
+        workload: "2 Stunden pro Woche über 4–6 Wochen",
+        description: "Wöchentliche Sessions mit Praxisphasen dazwischen – für nachhaltigen Transfer in den Alltag."
+      },
+      {
+        name: "Präsenz-Kickoff + Online-Lernreise",
+        modes: ["blended"],
+        description: "Gemeinsamer Auftakt vor Ort, danach weiterführende Online-Sessions – kombiniert Momentum und Nachhaltigkeit."
+      }
+    ],
     targetAudience: [
       "Wissensarbeiter mit bestehender Copilot-Lizenz, die das volle Potenzial der Office-Integration ausschöpfen wollen",
       "Führungskräfte, die Meetings effizienter gestalten und Entscheidungsvorlagen schneller erstellen möchten",
@@ -207,12 +273,30 @@ export const trainings: Training[] = [
       "Kreative KI-Nutzung: Brainstorming, Ideation, Texte schreiben, Konzepte entwickeln, Perspektivwechsel",
       "Use Case Workshop: 10+ reale Anwendungsszenarien aus Vertrieb, Marketing, HR, Finance, Projektmanagement",
       "Persönliche Prompt-Bibliothek: Templates für Ihre wiederkehrenden Aufgaben entwickeln und dokumentieren",
-      "Peer Learning & Gruppenarbeit: Voneinander lernen, Best Practices teilen, gemeinsam Probleme lösen",
-      "Buchbar als: 2 Tage intensiv (14h) oder Lernreise (4-8×2h über 4-8 Wochen mit Praxisaufgaben)"
+      "Peer Learning & Gruppenarbeit: Voneinander lernen, Best Practices teilen, gemeinsam Probleme lösen"
     ],
     tiers: ["paid"],
     questionLead: "Gibt es eine umfassende KI-Ausbildung für Büromitarbeiter?",
     prerequisites: "Microsoft 365 Copilot-Lizenz erforderlich. KI-Vorkenntnisse sind nicht nötig – die Ausbildung führt von den Grundlagen bis zum Expertenniveau.",
+    format: "Inhouse vor Ort oder Live-Online",
+    level: "Grundlagen bis Expertenniveau",
+    audienceShort: "Mitarbeitende, die KI-Experten ihres Teams werden sollen",
+    groupSize: "bis 12 Teilnehmende",
+    certificate: "Teilnahmebestätigung für HR- und Compliance-Zwecke",
+    bookingFormats: [
+      {
+        name: "2 Tage intensiv (14 Stunden)",
+        modes: ["onsite", "online"],
+        durationISO: "P2D",
+        description: "Kompakte Intensiv-Ausbildung mit über 20 praktischen Übungen und realen Use Cases."
+      },
+      {
+        name: "Lernreise (4–8 × 2 Stunden über 4–8 Wochen)",
+        modes: ["online"],
+        workload: "2 Stunden pro Woche plus Praxisaufgaben",
+        description: "Gestreckter Kompetenzaufbau mit Praxisaufgaben zwischen den Sessions."
+      }
+    ],
     targetAudience: [
       "Unternehmen, die eine systematische KI-Qualifizierung ihrer gesamten Belegschaft brauchen",
       "Personalentwickler, die ein nachweisbares KI-Kompetenzprogramm gemäß EU AI Act aufbauen müssen",
@@ -270,8 +354,7 @@ export const trainings: Training[] = [
       "Begleitung danach – Baustein 2: Laufend gepflegter Material- und Update-Pool. Microsoft entwickelt Copilot dynamisch weiter – über den Pool bleiben unsere Multiplikatoren auf einem Stand, den ein einmaliges Zertifikat strukturell nicht halten könnte.",
       "Optionale Online-Workshops: Bedarfsorientiert, dort wo Sie auf Ihrer Reise stehen – Vorbereitung der ersten internen Trainings, knifflige Use Cases, Stakeholder-Workshops, Umgang mit Widerstand. Auf Wunsch begleiten wir Sie auch beim eigentlichen Rollout.",
       "Komplette Materialbibliothek zur freien internen Nutzung: Trainings-Decks (PPTX), fertige Übungsaufgaben, Kommunikations- und Change-Templates (Mail-Vorlagen, Kickoff-Decks), FAQ-Sammlungen für das Intranet und Schulungsunterlagen für Endanwender. Eine Prompt-Bibliothek bauen Sie im Training mit eigenen Use Cases – das ist mehr wert als jede vorgefertigte Liste.",
-      "Weitere Inhalte nach Absprache: Das Curriculum lässt sich um Ihre spezifischen Anforderungen ergänzen.",
-      "Buchbar als: Geschlossene Inhouse-Gruppe (vor Ort oder online) oder offenes Training in Köln mit Multiplikatoren aus anderen Unternehmen – der branchenübergreifende Austausch ist im offenen Format ein eigener Wert."
+      "Weitere Inhalte nach Absprache: Das Curriculum lässt sich um Ihre spezifischen Anforderungen ergänzen."
     ],
     tiers: ["free", "paid"],
     isNew: true,
@@ -280,6 +363,24 @@ export const trainings: Training[] = [
     pricePerPersonLabel: "Ab 1.495 € pro Person für 2 Tage (2 x 7 Stunden, offenes Training, inkl. Trainings-Decks, Templates und FAQ-Sammlungen). Inhouse-Konditionen auf Anfrage.",
     questionLead: "Wir bilden Ihre internen Copilot-Multiplikatoren, Ambassadoren und AI Change Verantwortlichen in 2 x 7 Stunden aus, damit Sie Ihre Mitarbeitenden im Alltag begeistern und befähigen können.",
     prerequisites: "Keine formalen Voraussetzungen. Empfohlen sind eigene Copilot-Praxis, gute Kommunikationsfähigkeiten und ein Grundgefühl für Prozesse im eigenen Unternehmen.",
+    format: "Geschlossene Inhouse-Gruppe (vor Ort oder online) oder offenes Training in Köln",
+    level: "Fortgeschrittene",
+    audienceShort: "Interne Multiplikatoren, Ambassadoren und AI-Change-Verantwortliche",
+    groupSize: "bis 12 Teilnehmende",
+    bookingFormats: [
+      {
+        name: "Geschlossene Inhouse-Gruppe (2 × 7 Stunden)",
+        modes: ["onsite", "online"],
+        durationISO: "P2D",
+        description: "Ihre komplette Multiplikatoren-Mannschaft in einem Durchgang – vor Ort bei Ihnen oder online."
+      },
+      {
+        name: "Offenes Training in Köln (2 × 7 Stunden)",
+        modes: ["onsite"],
+        durationISO: "P2D",
+        description: "Multiplikatoren aus verschiedenen Unternehmen – der branchenübergreifende Austausch ist ein eigener Wert."
+      }
+    ],
     targetAudience: [
       "AI Change Verantwortliche und Ambassadoren, die einen Copilot-Rollout in ihrem Unternehmen orchestrieren",
       "Copilot-Multiplikatoren aus Fachabteilungen, die Kolleginnen und Kollegen im Alltag begleiten und befähigen wollen",
@@ -379,6 +480,18 @@ export const trainings: Training[] = [
     popular: true,
     questionLead: "Gibt es ein Copilot-Training, das über mehrere Wochen geht – für nachhaltigen Kompetenzaufbau statt Tagesschulung?",
     prerequisites: "Microsoft 365 Copilot-Lizenz erforderlich. Keine Vorkenntnisse nötig – die Lernreise startet bei den Grundlagen.",
+    format: "Live-Online, auf Wunsch kombiniert mit Präsenz-Bausteinen",
+    level: "Einsteiger – von 0 auf 100",
+    audienceShort: "Teams, die Copilot nachhaltig im Arbeitsalltag verankern wollen",
+    groupSize: "bis 12 Teilnehmende",
+    bookingFormats: [
+      {
+        name: "Lernreise (4–8 wöchentliche Sessions à 2 Stunden)",
+        modes: ["online", "blended"],
+        workload: "2 Stunden pro Woche plus 30–60 Minuten Praxisaufgabe",
+        description: "Jede Woche ein Schwerpunkt und ein Use Case für den eigenen Arbeitsalltag – mit Support-Kanal zwischen den Sessions."
+      }
+    ],
     targetAudience: [
       "Unternehmen, die nachhaltige KI-Kompetenz aufbauen wollen statt einmaliger Workshop-Events",
       "L&D-Verantwortliche, die eine begleitete Lernreise in bestehende Weiterbildungsprogramme integrieren möchten",
@@ -440,6 +553,18 @@ export const trainings: Training[] = [
     tiers: ["paid"],
     questionLead: "Wie entwickle ich einen KI-Agenten mit Microsoft Copilot Studio – und welche Geschäftsprozesse kann ich automatisieren?",
     prerequisites: "Keine Programmierkenntnisse erforderlich – Copilot Studio ist eine Low-Code-Plattform. Sicherer Umgang mit Microsoft 365 wird vorausgesetzt; Power-Automate-Kenntnisse sind hilfreich, aber keine Bedingung.",
+    format: "Inhouse vor Ort oder Live-Online",
+    level: "Fortgeschrittene",
+    audienceShort: "Power User, Citizen Developer und Prozessverantwortliche",
+    groupSize: "bis 12 Teilnehmende",
+    bookingFormats: [
+      {
+        name: "Ganztag (7 Stunden)",
+        modes: ["onsite", "online"],
+        durationISO: "PT7H",
+        description: "Von den Copilot-Studio-Grundlagen bis zum ersten funktionsfähigen eigenen Agenten."
+      }
+    ],
     targetAudience: [
       "Power User und Citizen Developer, die intelligente Chatbots und KI-Agenten für ihr Unternehmen bauen wollen",
       "IT-Abteilungen, die den Fachbereichen Self-Service-KI-Lösungen ermöglichen möchten",
@@ -499,6 +624,19 @@ export const trainings: Training[] = [
     tiers: ["free", "paid"],
     questionLead: "Welche KI-Schulung brauchen unsere Mitarbeiter, um den EU AI Act Artikel 4 zu erfüllen?",
     prerequisites: "Keine Vorkenntnisse erforderlich. Das Training richtet sich an alle Mitarbeitenden, die KI-Systeme wie Microsoft Copilot nutzen – unabhängig vom Kenntnisstand.",
+    format: "Inhouse vor Ort oder Live-Online",
+    level: "Alle Niveaus",
+    audienceShort: "Alle Mitarbeitenden, die KI-Systeme nutzen (Art. 4 EU AI Act)",
+    groupSize: "bis 12 Teilnehmende",
+    certificate: "Schulungsnachweis für Audits und Behördenanfragen",
+    bookingFormats: [
+      {
+        name: "Halbtag (4 Stunden)",
+        modes: ["onsite", "online"],
+        durationISO: "PT4H",
+        description: "Kompakte Pflichtschulung mit Nachweisführung für Audits und Behördenanfragen."
+      }
+    ],
     targetAudience: [
       "Compliance-Officer und Rechtsabteilungen, die die EU AI Act Anforderungen operativ umsetzen müssen",
       "Geschäftsführer, die ihre gesetzliche Pflicht zur KI-Schulung nachweisbar erfüllen wollen",

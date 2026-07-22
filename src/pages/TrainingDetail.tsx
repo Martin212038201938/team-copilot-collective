@@ -11,11 +11,12 @@ import StickyBookingCTA from "@/components/StickyBookingCTA";
 import SEOHead from "@/components/SEOHead";
 import { TrustBadge } from "@/components/TrustBadge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { getTrainingBySlug, trainings } from "@/data/trainings";
+import { getTrainingBySlug, trainings, BOOKING_MODE_LABELS } from "@/data/trainings";
 import { getWorkshopBySlug } from "@/data/workshops";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateSchemaIds, generateTrainingBreadcrumbItems } from "@/lib/schema";
 import PriceStoerer from "@/components/PriceStoerer";
+import TrainingFactBox from "@/components/TrainingFactBox";
 import { setSessionTag } from "@/lib/analytics";
 import { assignVariantIfNeeded, isAbPricingTestSlug, isPrerender, setVariant } from "@/lib/abPricing";
 
@@ -105,12 +106,24 @@ const TrainingDetail = ({ showPricing = false }: { showPricing?: boolean }) => {
     "instructor": {
       "@id": "https://copilotenschule.de/#martin-lang"
     },
-    "hasCourseInstance": {
-      "@type": "CourseInstance",
-      "courseMode": ["onsite", "online"],
-      "duration": training.durationISO || "PT7H",
-      "inLanguage": "de-DE"
-    },
+    // B7 (2026-07-22): je Buchungsvariante eine eigene CourseInstance –
+    // gespiegelt aus dem sichtbaren Abschnitt "Formate und Buchungsvarianten"
+    "hasCourseInstance": training.bookingFormats && training.bookingFormats.length > 0
+      ? training.bookingFormats.map((variant) => ({
+          "@type": "CourseInstance",
+          "name": variant.name,
+          "courseMode": variant.modes,
+          ...(variant.durationISO ? { "duration": variant.durationISO } : {}),
+          ...(variant.workload ? { "courseWorkload": variant.workload } : {}),
+          ...(variant.description ? { "description": variant.description } : {}),
+          "inLanguage": "de-DE"
+        }))
+      : {
+          "@type": "CourseInstance",
+          "courseMode": ["onsite", "online"],
+          "duration": training.durationISO || "PT7H",
+          "inLanguage": "de-DE"
+        },
     // B1 (2026-07-22): Keine Preise im Schema, solange der A/B-Test "Preise
     // auszeichnen" (ab_pricing) läuft. Structured Data darf nur abbilden, was
     // sichtbar auf der Seite steht – Preise sind aktuell bewusst unsichtbar.
@@ -125,6 +138,8 @@ const TrainingDetail = ({ showPricing = false }: { showPricing?: boolean }) => {
       : training.features.slice(0, 5).join(", "),
     // B2 (2026-07-22): Voraussetzungen je Training statt Pauschaltext
     ...(training.prerequisites ? { "coursePrerequisites": training.prerequisites } : {}),
+    // B7 (2026-07-22): sichtbares Zertifikat maschinenlesbar spiegeln
+    ...(training.certificate ? { "educationalCredentialAwarded": training.certificate } : {}),
     "educationalLevel": training.tiers.includes("free") ? "Beginner" : "Intermediate",
     "inLanguage": "de-DE",
     ...(training.targetAudience && {
@@ -259,6 +274,18 @@ const TrainingDetail = ({ showPricing = false }: { showPricing?: boolean }) => {
               <p className="text-xl text-muted-foreground leading-relaxed">
                 {training.description}
               </p>
+
+              {/* B7: "Auf einen Blick"-Faktenbox – sichtbare, extrahierbare Kernfakten
+                  (bewusst ohne Preiszeile, solange der A/B-Test ab_pricing läuft) */}
+              <TrainingFactBox
+                format={training.format}
+                duration={training.duration}
+                audience={training.audienceShort}
+                level={training.level}
+                prerequisites={training.prerequisites}
+                groupSize={training.groupSize}
+                certificate={training.certificate}
+              />
             </div>
           </div>
         </section>
@@ -396,6 +423,34 @@ const TrainingDetail = ({ showPricing = false }: { showPricing?: boolean }) => {
                       </div>
                     );
                   })}
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* B7: Formate & Buchungsvarianten – strukturierte Varianten statt Feature-Bullet */}
+        {training.bookingFormats && training.bookingFormats.length > 0 && (
+          <section className="py-16 bg-muted/30">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto">
+                <h2 className="text-3xl font-bold mb-2">Formate und Buchungsvarianten</h2>
+                <p className="text-muted-foreground mb-8">
+                  Dieses Training ist in folgenden Varianten buchbar – Inhalte und Tiefe passen wir an Format und Gruppe an.
+                </p>
+                <div className="grid md:grid-cols-2 gap-6">
+                  {training.bookingFormats.map((variant) => (
+                    <div key={variant.name} className="bg-card border rounded-xl p-6 hover:border-primary/50 transition-colors">
+                      <h3 className="text-lg font-semibold mb-1">{variant.name}</h3>
+                      <p className="text-sm text-primary font-medium mb-2">
+                        {variant.modes.map((mode) => BOOKING_MODE_LABELS[mode]).join(" · ")}
+                        {variant.workload ? ` · ${variant.workload}` : ""}
+                      </p>
+                      {variant.description && (
+                        <p className="text-muted-foreground text-sm leading-relaxed">{variant.description}</p>
+                      )}
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
