@@ -4,6 +4,8 @@
  * Hilft LLMs und Google bei der Entitätsverifikation
  */
 
+import { trainings } from "@/data/trainings";
+
 // Inhaber / Gründer
 export const founderSchema = {
   "@type": "Person",
@@ -129,32 +131,21 @@ export const organizationSchema = {
     "EU AI Act Compliance",
     "Change Management"
   ],
+  // B5 (2026-07-22): Katalog = die echten Trainings aus trainings.ts mit
+  // @id-Verweis auf die Course-Entitäten der Detailseiten – statt der früheren
+  // drei erfundenen Kursnamen. Bleibt automatisch synchron zum Angebot.
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Microsoft Copilot Trainings",
-    "itemListElement": [
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Course",
-          "name": "Microsoft 365 Copilot Grundlagen-Training"
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Course",
-          "name": "GitHub Copilot für Softwareentwickler"
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Course",
-          "name": "Copilot Studio KI-Agenten Training"
-        }
+    "itemListElement": trainings.map((training) => ({
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Course",
+        "@id": `https://copilotenschule.de/trainings/${training.slug}#course`,
+        "name": training.title,
+        "url": `https://copilotenschule.de/trainings/${training.slug}`
       }
-    ]
+    }))
   }
 };
 

@@ -14,7 +14,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getTrainingBySlug, trainings, BOOKING_MODE_LABELS } from "@/data/trainings";
 import { getWorkshopBySlug } from "@/data/workshops";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
-import { generateSchemaIds, generateTrainingBreadcrumbItems } from "@/lib/schema";
+import { generateTrainingDetailSchema } from "@/lib/schema";
 import PriceStoerer from "@/components/PriceStoerer";
 import TrainingFactBox from "@/components/TrainingFactBox";
 import { setSessionTag } from "@/lib/analytics";
@@ -88,121 +88,9 @@ const TrainingDetail = ({ showPricing = false }: { showPricing?: boolean }) => {
   // Trainer-Profil
   const trainer = getAuthor('martin-lang');
 
-  // Schema IDs automatisch generieren aus dem Slug
-  const ids = generateSchemaIds(training.slug, 'trainings');
-  const pageUrl = `https://copilotenschule.de/trainings/${training.slug}`;
-  const breadcrumbItems = generateTrainingBreadcrumbItems(training.title, pageUrl);
-
-  // Schema.org für SEO - Course mit instructor und provider
-  const courseSchema = {
-    "@type": "Course",
-    "@id": ids.article, // Nutzt #course für Trainings
-    "name": training.title,
-    "description": training.description,
-    "url": pageUrl,
-    "provider": {
-      "@id": "https://copilotenschule.de/#organization"
-    },
-    "instructor": {
-      "@id": "https://copilotenschule.de/#martin-lang"
-    },
-    // B7 (2026-07-22): je Buchungsvariante eine eigene CourseInstance –
-    // gespiegelt aus dem sichtbaren Abschnitt "Formate und Buchungsvarianten"
-    "hasCourseInstance": training.bookingFormats && training.bookingFormats.length > 0
-      ? training.bookingFormats.map((variant) => ({
-          "@type": "CourseInstance",
-          "name": variant.name,
-          "courseMode": variant.modes,
-          ...(variant.durationISO ? { "duration": variant.durationISO } : {}),
-          ...(variant.workload ? { "courseWorkload": variant.workload } : {}),
-          ...(variant.description ? { "description": variant.description } : {}),
-          "inLanguage": "de-DE"
-        }))
-      : {
-          "@type": "CourseInstance",
-          "courseMode": ["onsite", "online"],
-          "duration": training.durationISO || "PT7H",
-          "inLanguage": "de-DE"
-        },
-    // B1 (2026-07-22): Keine Preise im Schema, solange der A/B-Test "Preise
-    // auszeichnen" (ab_pricing) läuft. AUSNAHME: Trainings mit permanent
-    // sichtbarem Preis-Störer (visiblePrice) tragen den Preis auch im Schema –
-    // sichtbar und maschinenlesbar bleiben deckungsgleich.
-    "offers": {
-      "@type": "Offer",
-      "category": "Paid",
-      "url": pageUrl,
-      "availability": "https://schema.org/InStock",
-      ...(training.visiblePrice
-        ? {
-            "price": String(training.visiblePrice.perPerson),
-            "priceCurrency": "EUR",
-            "priceSpecification": {
-              "@type": "UnitPriceSpecification",
-              "price": String(training.visiblePrice.perPerson),
-              "priceCurrency": "EUR",
-              "description": `ab ${training.visiblePrice.perPerson} € ${
-                training.visiblePrice.unitLabel ?? "pro Teilnehmer"
-              }${training.visiblePrice.note ? `, ${training.visiblePrice.note}` : ""}`
-            }
-          }
-        : {})
-    },
-    "teaches": training.learningOutcomes
-      ? training.learningOutcomes.join(", ")
-      : training.features.slice(0, 5).join(", "),
-    // B2 (2026-07-22): Voraussetzungen je Training statt Pauschaltext
-    ...(training.prerequisites ? { "coursePrerequisites": training.prerequisites } : {}),
-    // B7 (2026-07-22): sichtbares Zertifikat maschinenlesbar spiegeln
-    ...(training.certificate ? { "educationalCredentialAwarded": training.certificate } : {}),
-    "educationalLevel": training.tiers.includes("free") ? "Beginner" : "Intermediate",
-    "inLanguage": "de-DE",
-    ...(training.targetAudience && {
-      "audience": {
-        "@type": "EducationalAudience",
-        "educationalRole": training.targetAudience.join(", ")
-      }
-    }),
-    ...(training.businessImpact && {
-      "competencyRequired": training.businessImpact.join(", ")
-    })
-  };
-
-  // BreadcrumbList Schema für Navigation
-  const breadcrumbSchema = {
-    "@type": "BreadcrumbList",
-    "@id": ids.breadcrumb,
-    "itemListElement": breadcrumbItems.map((item, index) => ({
-      "@type": "ListItem",
-      "position": index + 1,
-      "name": item.name,
-      "item": item.url
-    }))
-  };
-
-  // FAQPage Schema wenn FAQs vorhanden
-  const faqSchema = training.faqs && training.faqs.length > 0 ? {
-    "@type": "FAQPage",
-    "@id": ids.faq,
-    "mainEntity": training.faqs.map(faq => ({
-      "@type": "Question",
-      "name": faq.question,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": faq.answer
-      }
-    }))
-  } : null;
-
-  // Kombiniertes Schema
-  const schema = {
-    "@context": "https://schema.org",
-    "@graph": [
-      courseSchema,
-      breadcrumbSchema,
-      ...(faqSchema ? [faqSchema] : [])
-    ]
-  };
+  // B4 (2026-07-22): Schema kommt zentral aus lib/schema.ts – eine Quelle der
+  // Wahrheit statt Doppelpflege (Regeln B1/B2/B6/B7 sind dort dokumentiert).
+  const schema = generateTrainingDetailSchema(training);
 
   return (
     <div className="min-h-screen">

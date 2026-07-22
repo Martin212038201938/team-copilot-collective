@@ -61,6 +61,9 @@ export interface Training {
   audienceShort?: string; // Kurzform der Zielgruppe für die Faktenbox
   groupSize?: string;     // z.B. "bis 12 Teilnehmende"
   certificate?: string;   // sichtbarer Nachweis; geht zusätzlich als educationalCredentialAwarded ins Schema
+  // Optionales Bild fürs Course-Schema (absolute URL). Fallback: Site-Logo
+  // (DEFAULT_COURSE_IMAGE in lib/schema.ts). B6-Rest, 2026-07-22.
+  image?: string;
   // Permanent sichtbarer Preis-Störer (unabhängig vom A/B-Test ab_pricing). Der Preis
   // wird dann AUCH ins Schema (Offer.price) übernommen – sichtbar und maschinenlesbar
   // bleiben deckungsgleich. Aktuell nur eu-ai-act-pflichtschulung (2026-07-22).

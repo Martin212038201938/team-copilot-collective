@@ -10,9 +10,14 @@
  */
 
 import { FAQ } from "@/data/faqs";
+import type { Training } from "@/data/trainings";
 
 // Base URL for schema IDs
 export const BASE_URL = "https://copilotenschule.de";
+
+// Standard-Bild für Course-Schemas (B6, 2026-07-22): Site-Logo/OG-Bild,
+// solange kein individuelles Trainingsbild (Training.image) gepflegt ist.
+export const DEFAULT_COURSE_IMAGE = `${BASE_URL}/images/copilotenschule_flugzeug.png`;
 
 /**
  * Schema ID types for different page types
@@ -209,65 +214,6 @@ export const generateArticleSchema = (
 };
 
 /**
- * Course schema configuration for training pages
- */
-export interface CourseSchemaConfig {
-  title: string;
-  description: string;
-  duration: string;         // Human-readable (e.g., "Halbtag | Ganztag")
-  durationISO?: string;     // ISO 8601 (e.g., "PT4H", "PT7H", "P2D")
-  features: string[];
-  tiers: string[];
-  prerequisites?: string;   // Voraussetzungen je Training (B2, 2026-07-22)
-}
-
-/**
- * Generates Course Schema.org markup for training pages
- *
- * @param config - Course configuration object
- * @param ids - Schema IDs from generateSchemaIds()
- * @param pageUrl - Full page URL
- */
-export const generateTrainingCourseSchema = (
-  config: CourseSchemaConfig,
-  ids: SchemaIds,
-  pageUrl: string
-) => {
-  return {
-    "@type": "Course",
-    "@id": ids.article, // Uses #course for trainings
-    "name": config.title,
-    "description": config.description,
-    "url": pageUrl,
-    "provider": {
-      "@id": `${BASE_URL}/#organization`
-    },
-    "instructor": {
-      "@id": `${BASE_URL}/#martin-lang`
-    },
-    "hasCourseInstance": {
-      "@type": "CourseInstance",
-      "courseMode": ["onsite", "online"],
-      "duration": config.durationISO || "PT7H",
-      "inLanguage": "de-DE"
-    },
-    // B1 (2026-07-22): Keine Preise im Schema, solange der A/B-Test "Preise
-    // auszeichnen" (ab_pricing) läuft – Markup nur für sichtbare Inhalte.
-    "offers": {
-      "@type": "Offer",
-      "category": "Paid",
-      "url": pageUrl,
-      "availability": "https://schema.org/InStock"
-    },
-    "teaches": config.features.slice(0, 5).join(", "),
-    // B2 (2026-07-22): Voraussetzungen je Training statt Pauschaltext
-    ...(config.prerequisites ? { "coursePrerequisites": config.prerequisites } : {}),
-    "educationalLevel": config.tiers.includes("free") ? "Beginner" : "Intermediate",
-    "inLanguage": "de-DE"
-  };
-};
-
-/**
  * Generates breadcrumb items for knowledge pages
  * Always includes: Startseite > Wissen > Article Name
  */
@@ -351,28 +297,108 @@ export const generateKnowledgePageSchema = (
 };
 
 /**
- * Generates complete @graph schema for a training page
- * Includes Course, FAQPage (if FAQs exist), and BreadcrumbList with unique @ids
+ * B4 (2026-07-22): EINE Quelle der Wahrheit für das Schema der
+ * Trainings-Detailseiten. Ersetzt die frühere Doppelpflege (Inline-Logik in
+ * TrainingDetail.tsx plus verwaiste Generatoren hier). Erzeugt den kompletten
+ * @graph: Course + BreadcrumbList + FAQPage (falls FAQs vorhanden).
  *
- * @param slug - Training slug (e.g., "microsoft-365-copilot-grundlagen")
- * @param courseConfig - Course schema configuration
- * @param faqs - Optional array of FAQs with question and answer
- * @param trainingName - Display name for breadcrumb
+ * Enthaltene Regeln:
+ * - B1: Keine Preise im Schema, solange der A/B-Test "Preise auszeichnen"
+ *   (ab_pricing) läuft. AUSNAHME: Trainings mit permanent sichtbarem
+ *   Preis-Störer (visiblePrice) tragen den Preis auch im Schema –
+ *   sichtbar und maschinenlesbar bleiben deckungsgleich.
+ * - B2: coursePrerequisites nur aus dem gepflegten prerequisites-Feld.
+ * - B6: image – individuelles Trainingsbild oder DEFAULT_COURSE_IMAGE.
+ * - B7: je Buchungsvariante (bookingFormats) eine eigene CourseInstance;
+ *   sichtbares Zertifikat als educationalCredentialAwarded.
  */
-export const generateTrainingPageSchema = (
-  slug: string,
-  courseConfig: CourseSchemaConfig,
-  faqs: Array<{ question: string; answer: string }> | null,
-  trainingName: string
-) => {
-  const ids = generateSchemaIds(slug, 'trainings');
-  const pageUrl = getPageUrl(slug, 'trainings');
-  const breadcrumbItems = generateTrainingBreadcrumbItems(trainingName, pageUrl);
+export const generateTrainingDetailSchema = (training: Training) => {
+  const ids = generateSchemaIds(training.slug, "trainings");
+  const pageUrl = getPageUrl(training.slug, "trainings");
+  const breadcrumbItems = generateTrainingBreadcrumbItems(training.title, pageUrl);
 
-  const faqSchema = faqs && faqs.length > 0 ? {
+  const courseSchema = {
+    "@type": "Course",
+    "@id": ids.article, // Nutzt #course für Trainings
+    "name": training.title,
+    "description": training.description,
+    "url": pageUrl,
+    "image": training.image ?? DEFAULT_COURSE_IMAGE,
+    "provider": {
+      "@id": `${BASE_URL}/#organization`
+    },
+    "instructor": {
+      "@id": `${BASE_URL}/#martin-lang`
+    },
+    "hasCourseInstance": training.bookingFormats && training.bookingFormats.length > 0
+      ? training.bookingFormats.map((variant) => ({
+          "@type": "CourseInstance",
+          "name": variant.name,
+          "courseMode": variant.modes,
+          ...(variant.durationISO ? { "duration": variant.durationISO } : {}),
+          ...(variant.workload ? { "courseWorkload": variant.workload } : {}),
+          ...(variant.description ? { "description": variant.description } : {}),
+          "inLanguage": "de-DE"
+        }))
+      : {
+          "@type": "CourseInstance",
+          "courseMode": ["onsite", "online"],
+          "duration": training.durationISO || "PT7H",
+          "inLanguage": "de-DE"
+        },
+    "offers": {
+      "@type": "Offer",
+      "category": "Paid",
+      "url": pageUrl,
+      "availability": "https://schema.org/InStock",
+      ...(training.visiblePrice
+        ? {
+            "price": String(training.visiblePrice.perPerson),
+            "priceCurrency": "EUR",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": String(training.visiblePrice.perPerson),
+              "priceCurrency": "EUR",
+              "description": `ab ${training.visiblePrice.perPerson} € ${
+                training.visiblePrice.unitLabel ?? "pro Teilnehmer"
+              }${training.visiblePrice.note ? `, ${training.visiblePrice.note}` : ""}`
+            }
+          }
+        : {})
+    },
+    "teaches": training.learningOutcomes
+      ? training.learningOutcomes.join(", ")
+      : training.features.slice(0, 5).join(", "),
+    ...(training.prerequisites ? { "coursePrerequisites": training.prerequisites } : {}),
+    ...(training.certificate ? { "educationalCredentialAwarded": training.certificate } : {}),
+    "educationalLevel": training.tiers.includes("free") ? "Beginner" : "Intermediate",
+    "inLanguage": "de-DE",
+    ...(training.targetAudience && {
+      "audience": {
+        "@type": "EducationalAudience",
+        "educationalRole": training.targetAudience.join(", ")
+      }
+    }),
+    ...(training.businessImpact && {
+      "competencyRequired": training.businessImpact.join(", ")
+    })
+  };
+
+  const breadcrumbSchema = {
+    "@type": "BreadcrumbList",
+    "@id": ids.breadcrumb,
+    "itemListElement": breadcrumbItems.map((item, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "name": item.name,
+      "item": item.url
+    }))
+  };
+
+  const faqSchema = training.faqs && training.faqs.length > 0 ? {
     "@type": "FAQPage",
     "@id": ids.faq,
-    "mainEntity": faqs.map(faq => ({
+    "mainEntity": training.faqs.map(faq => ({
       "@type": "Question",
       "name": faq.question,
       "acceptedAnswer": {
@@ -385,17 +411,8 @@ export const generateTrainingPageSchema = (
   return {
     "@context": "https://schema.org",
     "@graph": [
-      generateTrainingCourseSchema(courseConfig, ids, pageUrl),
-      {
-        "@type": "BreadcrumbList",
-        "@id": ids.breadcrumb,
-        "itemListElement": breadcrumbItems.map((item, index) => ({
-          "@type": "ListItem",
-          "position": index + 1,
-          "name": item.name,
-          "item": item.url
-        }))
-      },
+      courseSchema,
+      breadcrumbSchema,
       ...(faqSchema ? [faqSchema] : [])
     ]
   };
