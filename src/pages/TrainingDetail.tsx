@@ -488,7 +488,9 @@ const TrainingDetail = ({ showPricing = false }: { showPricing?: boolean }) => {
                         </CardTitle>
                       </CardHeader>
                       <CardContent className="pt-0 pl-12">
-                        <p className="text-muted-foreground leading-relaxed">{faq.answer}</p>
+                        {/* Altbestand-Fix (22.07.2026): Markdown-Links in FAQ-Antworten
+                            (z.B. Train-the-Trainer) als echte Links rendern statt als Rohtext */}
+                        <p className="text-muted-foreground leading-relaxed"><RichText text={faq.answer} /></p>
                       </CardContent>
                     </Card>
                   ))}

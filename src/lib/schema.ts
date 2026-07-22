@@ -395,6 +395,11 @@ export const generateTrainingDetailSchema = (training: Training) => {
     }))
   };
 
+  // Altbestand-Fix (22.07.2026): Markdown-Link-Syntax [Text](/pfad) gehört nicht
+  // in Schema-Texte – sichtbar rendert RichText die Links, im Markup bleibt Klartext.
+  const stripMarkdownLinks = (text: string) =>
+    text.replace(/\[([^\]]+)\]\([^)]*\)/g, "$1");
+
   const faqSchema = training.faqs && training.faqs.length > 0 ? {
     "@type": "FAQPage",
     "@id": ids.faq,
@@ -403,7 +408,7 @@ export const generateTrainingDetailSchema = (training: Training) => {
       "name": faq.question,
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": faq.answer
+        "text": stripMarkdownLinks(faq.answer)
       }
     }))
   } : null;
