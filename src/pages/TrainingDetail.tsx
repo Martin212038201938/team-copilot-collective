@@ -17,6 +17,8 @@ import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateTrainingDetailSchema } from "@/lib/schema";
 import PriceStoerer from "@/components/PriceStoerer";
 import TrainingFactBox from "@/components/TrainingFactBox";
+import BookingProcess from "@/components/BookingProcess";
+import TrainingReviews from "@/components/TrainingReviews";
 import { setSessionTag } from "@/lib/analytics";
 import { assignVariantIfNeeded, isAbPricingTestSlug, isPrerender, setVariant } from "@/lib/abPricing";
 
@@ -382,6 +384,14 @@ const TrainingDetail = ({ showPricing = false }: { showPricing?: boolean }) => {
             </div>
           </section>
         )}
+
+        {/* Phase 3 (2026-07-22): So läuft die Buchung + Konditionen – sichtbarer
+            Policy-Text als GEO-Hebel, Inhalte aus Konditionen_Copilotenschule_Standard */}
+        <BookingProcess />
+
+        {/* Phase 3 (2026-07-22): Social Proof aus echten Google-Bewertungen
+            (nur Zitate ohne Namensnennung des Trainers, mit Google-Profil-Link) */}
+        <TrainingReviews />
 
         {/* CTA Section */}
         <section className="py-16 bg-background">
