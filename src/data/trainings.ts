@@ -32,9 +32,14 @@ export interface Training {
   popular?: boolean;
   // "NEU" Badge – wird auf der Übersichtskachel als auffälliger Hinweis angezeigt
   isNew?: boolean;
-  // Optionaler Preis pro Person (für schema.org Course/Offer); falls leer, greift Default
+  // Voraussetzungen je Training (Lizenz, Vorkenntnisse) – wird im Course-Schema
+  // als coursePrerequisites ausgegeben (B2, 2026-07-22)
+  prerequisites?: string;
+  // Optionaler Preis pro Person. ACHTUNG (B1, 2026-07-22): Wird derzeit NICHT
+  // ins Schema ausgegeben, solange der A/B-Test "Preise auszeichnen" läuft –
+  // Preise erst nach Testentscheid wieder maschinenlesbar machen.
   pricePerPerson?: number;
-  pricePerPersonLabel?: string; // optional: angezeigte Preisbeschreibung im Schema
+  pricePerPersonLabel?: string; // optional: Preisbeschreibung (aktuell ungenutzt, s.o.)
   // A/B-Test "Preise auszeichnen": sichtbarer "ab"-Preis-Störer NUR auf der B-Route
   // (/trainings/preis/:slug). Werte in EUR, Basis Gruppengröße 12 Teilnehmer.
   abPreisProPerson?: number;   // z.B. 133  -> "ab 133 €* pro Teilnehmer"
@@ -73,6 +78,7 @@ export const trainings: Training[] = [
     abPreisProPerson: 133,
     abPreisProGruppe: 1600,
     questionLead: "Welches Training eignet sich am besten, um Microsoft Copilot von Grund auf zu lernen – auch ohne Lizenz?",
+    prerequisites: "Keine Vorkenntnisse erforderlich. Eine Copilot-Lizenz wird nicht benötigt – der kostenlose Microsoft Copilot Chat genügt.",
     targetAudience: [
       "Büromitarbeiter, die zum ersten Mal mit KI-Assistenten arbeiten und einen strukturierten Einstieg suchen",
       "Teamleiter, die ihr Team auf die Copilot-Einführung vorbereiten wollen, bevor Lizenzen beschafft werden",
@@ -141,6 +147,7 @@ export const trainings: Training[] = [
     tiers: ["paid"],
     popular: true,
     questionLead: "Wie nutze ich Microsoft 365 Copilot in Word, Excel, PowerPoint, Outlook und Teams produktiv?",
+    prerequisites: "Microsoft 365 Copilot-Lizenz erforderlich. Sicherer Umgang mit den Office-Anwendungen wird vorausgesetzt; KI-Vorkenntnisse sind nicht nötig.",
     targetAudience: [
       "Wissensarbeiter mit bestehender Copilot-Lizenz, die das volle Potenzial der Office-Integration ausschöpfen wollen",
       "Führungskräfte, die Meetings effizienter gestalten und Entscheidungsvorlagen schneller erstellen möchten",
@@ -205,6 +212,7 @@ export const trainings: Training[] = [
     ],
     tiers: ["paid"],
     questionLead: "Gibt es eine umfassende KI-Ausbildung für Büromitarbeiter?",
+    prerequisites: "Microsoft 365 Copilot-Lizenz erforderlich. KI-Vorkenntnisse sind nicht nötig – die Ausbildung führt von den Grundlagen bis zum Expertenniveau.",
     targetAudience: [
       "Unternehmen, die eine systematische KI-Qualifizierung ihrer gesamten Belegschaft brauchen",
       "Personalentwickler, die ein nachweisbares KI-Kompetenzprogramm gemäß EU AI Act aufbauen müssen",
@@ -271,6 +279,7 @@ export const trainings: Training[] = [
     pricePerPerson: 1495,
     pricePerPersonLabel: "Ab 1.495 € pro Person für 2 Tage (2 x 7 Stunden, offenes Training, inkl. Trainings-Decks, Templates und FAQ-Sammlungen). Inhouse-Konditionen auf Anfrage.",
     questionLead: "Wir bilden Ihre internen Copilot-Multiplikatoren, Ambassadoren und AI Change Verantwortlichen in 2 x 7 Stunden aus, damit Sie Ihre Mitarbeitenden im Alltag begeistern und befähigen können.",
+    prerequisites: "Keine formalen Voraussetzungen. Empfohlen sind eigene Copilot-Praxis, gute Kommunikationsfähigkeiten und ein Grundgefühl für Prozesse im eigenen Unternehmen.",
     targetAudience: [
       "AI Change Verantwortliche und Ambassadoren, die einen Copilot-Rollout in ihrem Unternehmen orchestrieren",
       "Copilot-Multiplikatoren aus Fachabteilungen, die Kolleginnen und Kollegen im Alltag begleiten und befähigen wollen",
@@ -369,6 +378,7 @@ export const trainings: Training[] = [
     tiers: ["paid"],
     popular: true,
     questionLead: "Gibt es ein Copilot-Training, das über mehrere Wochen geht – für nachhaltigen Kompetenzaufbau statt Tagesschulung?",
+    prerequisites: "Microsoft 365 Copilot-Lizenz erforderlich. Keine Vorkenntnisse nötig – die Lernreise startet bei den Grundlagen.",
     targetAudience: [
       "Unternehmen, die nachhaltige KI-Kompetenz aufbauen wollen statt einmaliger Workshop-Events",
       "L&D-Verantwortliche, die eine begleitete Lernreise in bestehende Weiterbildungsprogramme integrieren möchten",
@@ -429,6 +439,7 @@ export const trainings: Training[] = [
     ],
     tiers: ["paid"],
     questionLead: "Wie entwickle ich einen KI-Agenten mit Microsoft Copilot Studio – und welche Geschäftsprozesse kann ich automatisieren?",
+    prerequisites: "Keine Programmierkenntnisse erforderlich – Copilot Studio ist eine Low-Code-Plattform. Sicherer Umgang mit Microsoft 365 wird vorausgesetzt; Power-Automate-Kenntnisse sind hilfreich, aber keine Bedingung.",
     targetAudience: [
       "Power User und Citizen Developer, die intelligente Chatbots und KI-Agenten für ihr Unternehmen bauen wollen",
       "IT-Abteilungen, die den Fachbereichen Self-Service-KI-Lösungen ermöglichen möchten",
@@ -487,6 +498,7 @@ export const trainings: Training[] = [
     ],
     tiers: ["free", "paid"],
     questionLead: "Welche KI-Schulung brauchen unsere Mitarbeiter, um den EU AI Act Artikel 4 zu erfüllen?",
+    prerequisites: "Keine Vorkenntnisse erforderlich. Das Training richtet sich an alle Mitarbeitenden, die KI-Systeme wie Microsoft Copilot nutzen – unabhängig vom Kenntnisstand.",
     targetAudience: [
       "Compliance-Officer und Rechtsabteilungen, die die EU AI Act Anforderungen operativ umsetzen müssen",
       "Geschäftsführer, die ihre gesetzliche Pflicht zur KI-Schulung nachweisbar erfüllen wollen",

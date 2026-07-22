@@ -225,6 +225,7 @@ export interface CourseSchemaConfig {
   durationISO?: string;     // ISO 8601 (e.g., "PT4H", "PT7H", "P2D")
   features: string[];
   tiers: string[];
+  prerequisites?: string;   // Voraussetzungen je Training (B2, 2026-07-22)
 }
 
 /**
@@ -257,22 +258,17 @@ export const generateTrainingCourseSchema = (
       "duration": config.durationISO || "PT7H",
       "inLanguage": "de-DE"
     },
+    // B1 (2026-07-22): Keine Preise im Schema, solange der A/B-Test "Preise
+    // auszeichnen" (ab_pricing) läuft – Markup nur für sichtbare Inhalte.
     "offers": {
       "@type": "Offer",
-      "price": "1800",
-      "priceCurrency": "EUR",
-      "priceSpecification": {
-        "@type": "UnitPriceSpecification",
-        "price": "1800",
-        "priceCurrency": "EUR",
-        "description": "Ab 1.800 € für Halbtag (4h), ab 2.800 € für Ganztag (7h)"
-      },
+      "category": "Paid",
       "url": pageUrl,
-      "availability": "https://schema.org/InStock",
-      "validFrom": "2025-01-01"
+      "availability": "https://schema.org/InStock"
     },
     "teaches": config.features.slice(0, 5).join(", "),
-    "coursePrerequisites": "Keine Vorkenntnisse erforderlich",
+    // B2 (2026-07-22): Voraussetzungen je Training statt Pauschaltext
+    ...(config.prerequisites ? { "coursePrerequisites": config.prerequisites } : {}),
     "educationalLevel": config.tiers.includes("free") ? "Beginner" : "Intermediate",
     "inLanguage": "de-DE"
   };

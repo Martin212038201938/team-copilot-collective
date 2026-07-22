@@ -144,18 +144,13 @@ export const generateWorkshopMainSchema = (
       "name": "Deutsch",
       "alternateName": "de",
     },
+    // B1 (2026-07-22): Keine Preise im Schema, solange der A/B-Test "Preise
+    // auszeichnen" (ab_pricing) läuft – Markup nur für sichtbare Inhalte.
     "offers": {
       "@type": "Offer",
-      "price": "1800",
-      "priceCurrency": "EUR",
-      "priceSpecification": {
-        "@type": "UnitPriceSpecification",
-        "price": "1800",
-        "priceCurrency": "EUR",
-        "description": "Ab 1.800 € für Halbtag (4h), ab 2.800 € für Ganztag (7h)"
-      },
+      "category": "Paid",
+      "url": pageUrl,
       "availability": "https://schema.org/InStock",
-      "validFrom": "2025-01-01",
       "availableDeliveryMethod": [
         "OnlineEventAttendanceMode",
         "OfflineEventAttendanceMode",

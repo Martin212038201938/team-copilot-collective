@@ -111,25 +111,20 @@ const TrainingDetail = ({ showPricing = false }: { showPricing?: boolean }) => {
       "duration": training.durationISO || "PT7H",
       "inLanguage": "de-DE"
     },
+    // B1 (2026-07-22): Keine Preise im Schema, solange der A/B-Test "Preise
+    // auszeichnen" (ab_pricing) läuft. Structured Data darf nur abbilden, was
+    // sichtbar auf der Seite steht – Preise sind aktuell bewusst unsichtbar.
     "offers": {
       "@type": "Offer",
-      "price": training.pricePerPerson ? String(training.pricePerPerson) : "1800",
-      "priceCurrency": "EUR",
-      "priceSpecification": {
-        "@type": "UnitPriceSpecification",
-        "price": training.pricePerPerson ? String(training.pricePerPerson) : "1800",
-        "priceCurrency": "EUR",
-        "description": training.pricePerPersonLabel
-          ?? "Ab 1.800 € für Halbtag (4h), ab 2.800 € für Ganztag (7h)"
-      },
+      "category": "Paid",
       "url": pageUrl,
-      "availability": "https://schema.org/InStock",
-      "validFrom": "2025-01-01"
+      "availability": "https://schema.org/InStock"
     },
     "teaches": training.learningOutcomes
       ? training.learningOutcomes.join(", ")
       : training.features.slice(0, 5).join(", "),
-    "coursePrerequisites": "Keine Vorkenntnisse erforderlich",
+    // B2 (2026-07-22): Voraussetzungen je Training statt Pauschaltext
+    ...(training.prerequisites ? { "coursePrerequisites": training.prerequisites } : {}),
     "educationalLevel": training.tiers.includes("free") ? "Beginner" : "Intermediate",
     "inLanguage": "de-DE",
     ...(training.targetAudience && {
