@@ -9,7 +9,7 @@ import Footer from "@/components/Footer";
 import StickyBookingCTA from "@/components/StickyBookingCTA";
 import Contact from "@/components/Contact";
 import SEOHead from "@/components/SEOHead";
-import { generateTrainingSchemas } from "@/lib/schema";
+import { generateTrainingsOverviewSchema } from "@/lib/schema";
 import { trainings, type Training, type CopilotTier } from "@/data/trainings";
 
 export type { CopilotTier };
@@ -24,14 +24,6 @@ const tierFilterOptions: { value: TierFilter; label: string }[] = [
   { value: "free", label: "Copilot Free" },
   { value: "paid", label: "Copilot Paid" },
 ];
-
-// Training modules data for schema generation - simplified for SEO
-const trainingModulesForSchema = modules.map(m => ({
-  title: m.title,
-  duration: m.duration,
-  description: m.description,
-  features: m.features
-}));
 
 // FAQs für die Trainings-Übersichtsseite (Entscheider-Perspektive)
 const trainingsFAQs = [
@@ -78,9 +70,17 @@ const UnsereAngebote = () => {
     ? modules
     : modules.filter(m => m.tiers.includes(tierFilter));
 
-  const schema = generateTrainingSchemas(
-    trainingModulesForSchema,
-    trainingsFAQs
+  // B3 (2026-07-22): CollectionPage + ItemList mit den echten Detailseiten-URLs
+  // statt Course-/EducationEvent-Duplikaten; Organization kommt nur noch global
+  // aus SEOHead (organizationSchema.ts) bzw. index.html.
+  const schema = generateTrainingsOverviewSchema(
+    {
+      title: "Microsoft Copilot Training & Schulung für Unternehmen",
+      description:
+        "Microsoft Copilot Training für Ihr Unternehmen: inhouse, online oder als Lernreise. Praxisnahe Formate von M365-Grundlagen bis KI-Agenten.",
+      faqs: trainingsFAQs,
+    },
+    modules
   );
 
   return (

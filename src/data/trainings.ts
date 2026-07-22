@@ -20,6 +20,7 @@ export interface BookingFormat {
   durationISO?: string; // ISO 8601 für schema.org CourseInstance.duration
   workload?: string;    // sichtbarer Umfang, z.B. "2 Stunden pro Woche über 4–6 Wochen"
   description?: string; // 1 Satz Einordnung der Variante
+  badge?: string;       // z.B. "Meistverkauft" – auffälliger Störer an der Variantenkarte
 }
 
 export interface TrainingFAQ {
@@ -60,6 +61,14 @@ export interface Training {
   audienceShort?: string; // Kurzform der Zielgruppe für die Faktenbox
   groupSize?: string;     // z.B. "bis 12 Teilnehmende"
   certificate?: string;   // sichtbarer Nachweis; geht zusätzlich als educationalCredentialAwarded ins Schema
+  // Permanent sichtbarer Preis-Störer (unabhängig vom A/B-Test ab_pricing). Der Preis
+  // wird dann AUCH ins Schema (Offer.price) übernommen – sichtbar und maschinenlesbar
+  // bleiben deckungsgleich. Aktuell nur eu-ai-act-pflichtschulung (2026-07-22).
+  visiblePrice?: {
+    perPerson: number;   // "ab"-Preis in EUR
+    unitLabel?: string;  // Default "pro Teilnehmer"
+    note?: string;       // z.B. "inkl. Zertifikat."
+  };
   bookingFormats?: BookingFormat[]; // Varianten für Abschnitt "Formate und Buchungsvarianten" + Schema
   // Optionaler Preis pro Person. ACHTUNG (B1, 2026-07-22): Wird derzeit NICHT
   // ins Schema ausgegeben, solange der A/B-Test "Preise auszeichnen" läuft –
@@ -80,7 +89,7 @@ export const trainings: Training[] = [
     slug: "copilot-grundlagen-prompt-design",
     icon: Brain,
     title: "Copilot Grundlagen: Prompt Design & KI-Kompetenz",
-    duration: "Halbtag",
+    duration: "Halbtag (4 h) | Ganztag (7 h)",
     durationISO: "PT4H",
     description: "Fundiertes Einsteiger-Training in die Arbeit mit KI-Assistenten: Sie lernen, wie Sie effektive Prompts formulieren, KI-Outputs kritisch bewerten und Microsoft Copilot Chat strategisch für Recherche, Textarbeit und kreative Aufgaben einsetzen. Dieses 4-stündige Kick-Off ist zugleich das Pflichttraining nach EU AI Act: Es erfüllt die KI-Einweisungspflicht (AI Literacy, Artikel 4), die jeder Arbeitgeber seit Februar 2025 jedem Mitarbeitenden geben muss, der mit KI arbeitet. Über die reine Pflichtunterweisung hinaus erhalten Ihre Teilnehmer eine echte, praxisnahe Einweisung in Microsoft Copilot Chat – inklusive vieler Tipps und Tricks auch für bereits erfahrene Copilot-Nutzer. Jeder Teilnehmer erhält ein Zertifikat „Schulung gemäß EU AI-Act“. Ideal für alle, die noch keine Copilot-Lizenz haben oder zunächst die Grundlagen beherrschen wollen.",
     features: [
@@ -96,7 +105,8 @@ export const trainings: Training[] = [
       "Textarbeit mit KI: Schreiben, Umformulieren, Kürzen, Übersetzen, Tonalität anpassen",
       "Kreative Anwendungen: Brainstorming, Ideengenerierung, Perspektivwechsel",
       "KI-Output kritisch bewerten: Halluzinationen erkennen, Quellen prüfen, Grenzen verstehen",
-      "Eigene Prompt-Bibliothek aufbauen: Templates für wiederkehrende Aufgaben entwickeln"
+      "Eigene Prompt-Bibliothek aufbauen: Templates für wiederkehrende Aufgaben – umgesetzt durch das Anlegen eigener Copilot Agenten",
+      "KI-unterstützte Automatisierung von Teilschritten der Arbeit durch Copilot Agenten"
     ],
     tiers: ["free"],
     popular: true,
@@ -114,7 +124,15 @@ export const trainings: Training[] = [
         name: "Halbtag (4 Stunden)",
         modes: ["onsite", "online"],
         durationISO: "PT4H",
+        badge: "Meistgebucht",
         description: "Kompaktes Kick-off für ganze Teams – erfüllt zugleich die KI-Einweisungspflicht nach EU AI Act."
+      },
+      {
+        name: "Ganztag (7 Stunden)",
+        modes: ["onsite", "online"],
+        durationISO: "PT7H",
+        badge: "Empfohlen",
+        description: "Mit viel Raum für praktische Übungen – unsere Empfehlung, wenn das Gelernte direkt in den Arbeitsalltag übergehen soll."
       }
     ],
     targetAudience: [
@@ -128,13 +146,14 @@ export const trainings: Training[] = [
       "Sie formulieren präzise Prompts mit klarer Struktur, Kontext und Beispielen – und erhalten deutlich bessere KI-Antworten",
       "Sie bewerten KI-Outputs kritisch: Halluzinationen erkennen, Fakten prüfen, Grenzen einschätzen",
       "Sie nutzen Copilot Chat produktiv für Recherche, Texterstellung, Zusammenfassungen und kreative Aufgaben",
-      "Sie entwickeln eine persönliche Prompt-Bibliothek mit Templates für Ihre wiederkehrenden Aufgaben"
+      "Sie entwickeln eine persönliche Prompt-Bibliothek mit Templates für Ihre wiederkehrenden Aufgaben",
+      "Sie automatisieren erste Teilschritte Ihrer Arbeit durch das Anlegen eigener Copilot Agenten"
     ],
     businessImpact: [
       "Recherche-Aufgaben, die bisher 30-60 Minuten dauerten, erledigen Sie in unter 10 Minuten",
       "Texterstellung (E-Mails, Berichte, Zusammenfassungen) wird 3-5x schneller bei gleichbleibender Qualität",
       "Die Hemmschwelle gegenüber KI sinkt – Mitarbeiter nutzen Copilot eigenständig im Alltag",
-      "Der spätere Umstieg auf Microsoft 365 Copilot (bezahlte Version) gelingt deutlich schneller"
+      "Der spätere Umstieg auf Microsoft 365 Copilot (bezahlte Version) gelingt deutlich schneller: Das Kickoff muss nicht wiederholt werden – die [Lernreise-Module des Praxis-Trainings](/trainings/microsoft-365-copilot-praxis) setzen direkt darauf auf und trainieren den Copilot-Umgang in den Office-Apps"
     ],
     metaTitle: "Copilot Grundlagen Training – Prompt Design & KI-Kompetenz | copilotenschule.de",
     metaDescription: "Lernen Sie effektives Prompt Engineering für Microsoft Copilot. Einsteiger-Training für KI-Assistenten: Prompts formulieren, Outputs bewerten, produktiv arbeiten.",
@@ -159,6 +178,10 @@ export const trainings: Training[] = [
       {
         question: "Funktionieren Prompt-Techniken für ChatGPT auch bei Microsoft Copilot?",
         answer: "Ja, die Grundprinzipien guten Promptings sind plattformübergreifend anwendbar – ob Copilot, ChatGPT, Claude oder Gemini. Wer einmal versteht, wie man Kontext gibt, Beispiele nutzt und iterativ verfeinert, kann diese Techniken bei allen KI-Assistenten einsetzen."
+      },
+      {
+        question: "Wir starten ohne Lizenzen – müssen wir das Training nach dem Umstieg auf Microsoft 365 Copilot wiederholen?",
+        answer: "Nein. Das Grundlagen-Kickoff vermittelt Prompt-Kompetenz, das kritische Bewerten von KI-Antworten und die EU-AI-Act-Pflichtinhalte – all das gilt unabhängig von der Lizenz und muss nicht erneut durchgeführt werden. Beim Umstieg auf Microsoft 365 Copilot setzen Ihre Teams direkt darauf auf: Die Lernreise-Module des Praxis-Trainings bringen die User aufs nächste Level, weil dort der Copilot-Umgang direkt in Word, Excel, PowerPoint, Outlook und Teams geübt und erarbeitet wird."
       }
     ]
   },
@@ -168,7 +191,7 @@ export const trainings: Training[] = [
     abPreisProGruppe: 4600,
     icon: Brain,
     title: "Microsoft 365 Copilot in der Praxis: Word, Excel, PowerPoint, Outlook & Teams",
-    duration: "Ganztag | 2-tägig | Lernreise (4× oder 6×2h online) | Präsenz-Kickoff + Lernreise",
+    duration: "Ganztag | 2-tägig | Online-Lernreise (6–8 h) | Kickoff (4 h) + Online-Lernreise (4 × 2 h)",
     durationISO: "PT7H",
     description: "Praxisorientiertes Training für Copilot-Lizenzinhaber: Sie lernen, wie Sie Microsoft 365 Copilot direkt in Ihren Office-Anwendungen einsetzen – von der Dokumenterstellung in Word über Datenanalyse in Excel bis zur Meeting-Zusammenfassung in Teams. Mit echten Arbeitsszenarien und direkt anwendbaren Workflows.",
     features: [
@@ -191,6 +214,14 @@ export const trainings: Training[] = [
     groupSize: "bis 12 Teilnehmende",
     bookingFormats: [
       {
+        name: "Kickoff (4 Stunden) + Online-Lernreise (4 × 2 Stunden)",
+        modes: ["blended", "online"],
+        durationISO: "PT12H",
+        workload: "4-Stunden-Kickoff, danach 4 Module à 2 Stunden über mehrere Wochen",
+        badge: "Meistverkauft",
+        description: "Unser meistgebuchtes Format: gemeinsamer Kickoff in Präsenz oder online, danach vier Online-Module à 2 Stunden – Momentum zum Start, nachhaltiger Transfer über mehrere Wochen."
+      },
+      {
         name: "Ganztag (7 Stunden)",
         modes: ["onsite", "online"],
         durationISO: "PT7H",
@@ -203,15 +234,10 @@ export const trainings: Training[] = [
         description: "Mehr Tiefe und mehr eigene Use Cases – ideal, wenn das Team Copilot intensiv verankern soll."
       },
       {
-        name: "Online-Lernreise (4× oder 6× 2 Stunden)",
+        name: "Online-Lernreise (6–8 Stunden, Module à 2 Stunden)",
         modes: ["online"],
-        workload: "2 Stunden pro Woche über 4–6 Wochen",
+        workload: "3–4 Sessions à 2 Stunden über mehrere Wochen",
         description: "Wöchentliche Sessions mit Praxisphasen dazwischen – für nachhaltigen Transfer in den Alltag."
-      },
-      {
-        name: "Präsenz-Kickoff + Online-Lernreise",
-        modes: ["blended"],
-        description: "Gemeinsamer Auftakt vor Ort, danach weiterführende Online-Sessions – kombiniert Momentum und Nachhaltigkeit."
       }
     ],
     targetAudience: [
@@ -229,9 +255,12 @@ export const trainings: Training[] = [
       "Sie kennen app-spezifische Prompt-Techniken und wissen, warum derselbe Prompt in Word, Excel und PowerPoint unterschiedliche Ergebnisse liefert"
     ],
     businessImpact: [
+      "Präsentationen entstehen direkt aus vorhandenen Dokumenten: Aus einem Word-Briefing oder Projektbericht wird ein präsentationsfertiges Slide-Deck – statt 4–40 Stunden Folienarbeit nur noch 30 Minuten bis 4 Stunden",
       "Dokumenterstellung wird 60-80% schneller: Berichte, Angebote und Protokolle entstehen in Minuten statt Stunden",
+      "Monats-Reports und Forecasts in Excel aktualisieren sich in 5 Minuten statt einer Stunde – [wie unser eigener Forecast-Workflow zeigt](/wissen/copilot-fuer-excel)",
       "Meeting-Nachbereitung schrumpft von 30 Minuten auf 2 Minuten durch automatische Teams-Zusammenfassungen",
       "E-Mail-Bearbeitungszeit sinkt um 30-50% durch KI-generierte Entwürfe und Thread-Zusammenfassungen",
+      "Vertriebs- und kundennahe Teams sparen mit Copilot-Workflows realistisch 3–6 Stunden pro Woche – [konkrete Use Cases aus dem Vertrieb](/wissen/copilot-vertrieb-use-cases)",
       "Die aktive Copilot-Nutzungsrate im Team steigt typischerweise um 60-80% nach dem Training – [wie das Beispiel Pernod Ricard zeigt](/wissen/copilot-chat-free-pernod-ricard)"
     ],
     metaTitle: "Microsoft 365 Copilot Training – Word, Excel, PowerPoint, Outlook, Teams | copilotenschule.de",
@@ -260,9 +289,9 @@ export const trainings: Training[] = [
     slug: "ausbildung-ki-wissensarbeiter",
     icon: GraduationCap,
     title: "Ausbildung zum KI-unterstützten Wissensarbeiter",
-    duration: "2 Tage | 4-8×2h Lernreise",
+    duration: "2 Tage | 6–10 × 2 h Lernreise",
     durationISO: "P2D",
-    description: "Umfassende Ausbildung für alle, die KI-Assistenten professionell in ihren Arbeitsalltag integrieren wollen – von den Grundlagen bis zum Expertenniveau. In diesem intensiven Programm lernen Sie nicht nur die Tools, sondern entwickeln eine neue Art zu arbeiten: schneller, präziser, kreativer. Mit über 20 praktischen Übungen und realen Use Cases aus verschiedenen Unternehmensbereichen.",
+    description: "Umfassende Ausbildung für alle, die KI-Assistenten professionell in ihren Arbeitsalltag integrieren wollen – von den Grundlagen bis zum Expertenniveau. In diesem intensiven Programm lernen Sie nicht nur die Tools, sondern entwickeln eine neue Art zu arbeiten: schneller, präziser, kreativer. Mit mindestens 30 % Zeit in praktischen Übungen und bei der begleiteten Umsetzung eigener Use Cases.",
     features: [
       "Grundlagen-Modul: KI verstehen – wie LLMs funktionieren, Möglichkeiten und Grenzen, Erwartungsmanagement",
       "Copilot Chat Mastery: Von einfachen Fragen zu komplexen Recherchen, Web-Suche, Zusammenfassungen, Faktencheck",
@@ -270,6 +299,7 @@ export const trainings: Training[] = [
       "Word, Excel, PowerPoint, Outlook, Teams: Jede App im Detail mit 3+ praktischen Übungen pro Anwendung",
       "Datenanalyse & Reporting: Komplexe Excel-Analysen, Pivot-Tabellen, Visualisierungen, automatisierte Reports",
       "Cross-App-Workflows: Dokumente aus E-Mails, Präsentationen aus Briefings, Meeting-Follow-ups automatisieren",
+      "Automatisierung mit Copilot Agenten und Copilot Studio: Teilschritte der eigenen Arbeit automatisieren – vom eigenen Agenten bis zum ersten Copilot-Studio-Workflow",
       "Kreative KI-Nutzung: Brainstorming, Ideation, Texte schreiben, Konzepte entwickeln, Perspektivwechsel",
       "Use Case Workshop: 10+ reale Anwendungsszenarien aus Vertrieb, Marketing, HR, Finance, Projektmanagement",
       "Persönliche Prompt-Bibliothek: Templates für Ihre wiederkehrenden Aufgaben entwickeln und dokumentieren",
@@ -288,10 +318,10 @@ export const trainings: Training[] = [
         name: "2 Tage intensiv (14 Stunden)",
         modes: ["onsite", "online"],
         durationISO: "P2D",
-        description: "Kompakte Intensiv-Ausbildung mit über 20 praktischen Übungen und realen Use Cases."
+        description: "Kompakte Intensiv-Ausbildung mit mindestens 30 % Praxisanteil und begleiteter Umsetzung eigener Use Cases."
       },
       {
-        name: "Lernreise (4–8 × 2 Stunden über 4–8 Wochen)",
+        name: "Lernreise (6–10 × 2 Stunden über 6–10 Wochen)",
         modes: ["online"],
         workload: "2 Stunden pro Woche plus Praxisaufgaben",
         description: "Gestreckter Kompetenzaufbau mit Praxisaufgaben zwischen den Sessions."
@@ -306,6 +336,7 @@ export const trainings: Training[] = [
     learningOutcomes: [
       "Sie beherrschen alle Microsoft 365 Copilot-Apps auf Expertenniveau – von einfachen bis zu komplexen Anwendungen",
       "Sie entwickeln Cross-App-Workflows, die mehrere Office-Anwendungen nahtlos verbinden",
+      "Sie automatisieren Teilschritte Ihrer Arbeit mit Copilot Agenten und kennen die Einsatzmöglichkeiten von Copilot Studio",
       "Sie bauen eine vollständige, dokumentierte Prompt-Bibliothek für Ihre Abteilung auf",
       "Sie können KI-Outputs kritisch bewerten, Halluzinationen erkennen und Qualitätskontrolle durchführen",
       "Sie erhalten eine Teilnahmebestätigung, die Ihre KI-Schulung für HR und Compliance-Zwecke dokumentiert"
@@ -317,7 +348,7 @@ export const trainings: Training[] = [
       "Die EU AI Act Schulungspflicht (Artikel 4) wird nachweisbar erfüllt – Audit-sicher dokumentiert"
     ],
     metaTitle: "Ausbildung KI-Wissensarbeiter – Intensivtraining Microsoft Copilot | copilotenschule.de",
-    metaDescription: "2-tägige Intensiv-Ausbildung zum KI-unterstützten Wissensarbeiter. Von Grundlagen bis Expertenniveau: 20+ Übungen, alle M365 Apps.",
+    metaDescription: "2-tägige Intensiv-Ausbildung zum KI-unterstützten Wissensarbeiter. Von Grundlagen bis Expertenniveau: min. 30 % Praxisanteil, alle M365 Apps.",
     keywords: ["KI Ausbildung", "Wissensarbeiter Training", "Copilot Intensivkurs", "KI-Kompetenz", "Microsoft Copilot Ausbildung"],
     faqs: [
       {
@@ -330,7 +361,7 @@ export const trainings: Training[] = [
       },
       {
         question: "Wie lange dauert es, bis Mitarbeiter wirklich produktiv mit KI arbeiten können?",
-        answer: "Die Grundlagen sind in einem halben Tag vermittelt. Für echte Produktivitätssteigerung im Alltag – also das sichere Beherrschen aller relevanten Apps und Workflows – sollten Sie mit 2 intensiven Tagen oder einer 8-wöchigen Lernreise rechnen. Der Vorteil der Lernreise: Zwischen den Sessions wenden Mitarbeiter das Gelernte direkt an und kommen mit echten Fragen zurück."
+        answer: "Die Grundlagen sind in einem halben Tag vermittelt. Für echte Produktivitätssteigerung im Alltag – also das sichere Beherrschen aller relevanten Apps und Workflows – sollten Sie mit 2 intensiven Tagen oder einer Lernreise über 6–10 Wochen rechnen. Der Vorteil der Lernreise: Zwischen den Sessions wenden Mitarbeiter das Gelernte direkt an und kommen mit echten Fragen zurück."
       }
     ],
     relatedWorkshops: ["bessere-entscheidungen-mit-copilot"],
@@ -346,6 +377,8 @@ export const trainings: Training[] = [
     features: [
       "Tag 1 – Von der Chatbot-Nutzung zur KI-unterstützten Arbeit: Wir leiten her, warum „einfach mal etwas in den Chat tippen” zu kurz greift, und was echte KI-unterstützte Arbeit ausmacht. Darauf folgt die eigene Praxis: Selbst erfahrene Nutzer entdecken Funktionalität, Workflows, Einstellungsmöglichkeiten und blinde Flecken im Microsoft-365- und Copilot-Ökosystem, inklusive Workflows, Use Cases, Teilautomatisierung, Agenten und Copilot Studio – verständlich für technisch interessierte Büroanwender, nicht nur für die IT. Auf Wunsch vertiefen wir zusätzlich die Admin-Einstellungen im Copilot Admin Center. Parallel reflektieren wir didaktisch, wie sich diese Inhalte vermitteln lassen. Der Tag endet mit einer kurzen Lehrprobe.",
       "Tag 2 – Rechtssichere Praxis, Adoption und Rollout: Kompakter Überblick über Datenschutz, Urheberrecht und EU AI Act im Bezug auf die Copilot-Nutzung, inklusive Datenklassifizierung und sensibler Daten. Plus realistische Stakeholder-Simulationen (Betriebsrat, Datenschutz, Fachabteilung) und Umgang mit Widerständen. Im zweiten Teil identifizieren und bewerten Teilnehmende Use Cases anhand eines festen Bewertungsschemas, entwickeln daraus Best Practices für den eigenen Rollout, definieren relevante Kennzahlen und erstellen eine erste Roadmap mit konkreten To-dos – mit echten Zahlen Ihres Unternehmens.",
+      "Agenten bauen und betreiben: Erstellung eigener Copilot Agenten und Einstieg in Copilot Studio – inklusive Policies für die Verwendung und das Teilen von Agenten und KI-unterstützten Prozessen. Wir vermitteln, wie ein sicherer und rechtskonformer Betrieb im Unternehmen umgesetzt wird.",
+      "Detaillierte Session zu Grounding, Zugriffsrechten und Datenschutzeinstellungen: Welche Daten Copilot tatsächlich sieht, wie Freigaben und Berechtigungen wirken und wie Multiplikatoren diese Themen intern souverän erklären.",
       "Verzahnt statt getrennt: Praxis, Rechtssicherheit, Adoption-Architektur und Didaktik laufen an beiden Tagen parallel – so wie Multiplikatoren später auch im Alltag zwischen einem komplexen Prompt, einer Rechtsfrage und einem Skeptiker-Argument wechseln.",
       "Lehrproben mit ehrlichem Feedback: Jede Teilnehmerin und jeder Teilnehmer übt das eigene Erklären unter Echt-Bedingungen und bekommt strukturiertes Feedback aus der Gruppe und vom Coach.",
       "Use-Case-Schema: Ein wiederverwendbares Bewertungsraster, mit dem Multiplikatoren im eigenen Haus eigenständig Use Cases identifizieren, priorisieren und in die Umsetzung bringen können – statt einer einmaligen Liste.",
@@ -391,6 +424,7 @@ export const trainings: Training[] = [
     learningOutcomes: [
       "Sie vollziehen die Herleitung von reiner Chatbot-Nutzung zu echter KI-unterstützter Arbeit nach – und können diesen gedanklichen Sprung selbst vermitteln",
       "Sie nutzen Microsoft 365 Copilot fortgeschritten und rechtssicher – inklusive Workflows, Einstellungsmöglichkeiten, Agenten, Copilot Studio und sensiblen Datenklassen; auf Wunsch inklusive Admin-Einstellungen",
+      "Sie erstellen eigene Copilot Agenten mit Copilot Studio und definieren Policies für Verwendung und Teilen von Agenten und KI-unterstützten Prozessen – inklusive Grounding, Zugriffsrechten und Datenschutzeinstellungen für den sicheren, rechtskonformen Betrieb",
       "Sie identifizieren, bewerten und priorisieren Use Cases anhand eines festen Schemas – und leiten daraus Best Practices für den eigenen Rollout ab",
       "Sie planen ein eigenes Copilot-Adoption-Programm: Rollen, Komponenten, Zeithorizont, Budget und Erfolgsmetriken – mit echten Zahlen Ihres Unternehmens",
       "Sie holen Skeptiker, Pragmatiker und Power User mit jeweils passender Argumentation und Didaktik ab und führen interne Trainings, Lernreisen und Office Hours souverän",
@@ -462,34 +496,36 @@ export const trainings: Training[] = [
     slug: "copilot-lernreise-8-wochen",
     icon: GraduationCap,
     title: "Copilot Lernreise: Von 0 auf 100 in 8 Wochen",
-    duration: "4-8 × 2 Stunden (8-16 Stunden gesamt)",
+    duration: "6–10 × 2 Stunden online",
     durationISO: "PT8H",
-    description: "Begleitete Lernreise für nachhaltigen Kompetenzaufbau: In 8 wöchentlichen Sessions à 2 Stunden lernen Sie Microsoft Copilot von Grund auf – mit Theorie, Live-Demos und jede Woche einem neuen praktischen Use Case, den Sie direkt in Ihrem Arbeitsalltag umsetzen. Ideal für Teams, die Copilot schrittweise und nachhaltig in ihre Arbeit integrieren wollen.",
+    description: "Begleitete Lernreise für nachhaltigen Kompetenzaufbau: In 6–10 wöchentlichen Online-Sessions à 2 Stunden lernen Sie Microsoft Copilot von Grund auf – mit Theorie, Live-Demos und praktischen Übungen, die sehr nahe an Ihren täglichen Szenarien sind. Jede Session bringt einen neuen Use Case, den Sie direkt in Ihrem Arbeitsalltag umsetzen. Ideal für Teams, die Copilot schrittweise und nachhaltig in ihre Arbeit integrieren wollen.",
     features: [
-      "Woche 1: Copilot Grundlagen – Interface, erste Prompts, Erwartungsmanagement + Use Case: E-Mail-Zusammenfassungen",
-      "Woche 2: Copilot in Word – Dokumente erstellen, überarbeiten, zusammenfassen + Use Case: Protokoll aus Meeting-Notizen",
-      "Woche 3: Copilot in Excel – Datenanalyse, Formeln, Visualisierungen + Use Case: Monatsbericht automatisieren",
-      "Woche 4: Copilot in PowerPoint – Präsentationen erstellen und optimieren + Use Case: Pitch-Deck aus Briefing",
-      "Woche 5: Copilot in Outlook – E-Mail-Produktivität steigern + Use Case: Wöchentliche Status-Mail automatisieren",
-      "Woche 6: Copilot in Teams – Meetings zusammenfassen, Chat nutzen + Use Case: Meeting-Follow-ups automatisieren",
-      "Woche 7: Advanced Prompting – Komplexe Anfragen, Verkettung, Custom Instructions + Use Case: Persönliche Prompt-Bibliothek",
-      "Woche 8: Integration & Workflow – Alles zusammenführen + Use Case: Individuellen End-to-End-Workflow entwickeln",
+      "Copilot Grundlagen: Interface, erste Prompts, Erwartungsmanagement – z. B. E-Mail-Zusammenfassungen",
+      "Copilot in Word: Dokumente erstellen, überarbeiten, zusammenfassen – z. B. Protokoll aus Meeting-Notizen",
+      "Copilot in Excel: Datenanalyse, Formeln, Visualisierungen – z. B. Monatsbericht automatisieren",
+      "Copilot in PowerPoint: Präsentationen erstellen und optimieren – z. B. Pitch-Deck aus einem Briefing",
+      "Copilot in Outlook: E-Mail-Produktivität steigern – z. B. wiederkehrende Status-Mails automatisieren",
+      "Copilot in Teams: Meetings zusammenfassen, Chat produktiv nutzen – z. B. Meeting-Follow-ups automatisieren",
+      "Advanced Prompting: Komplexe Anfragen, Verkettung, Custom Instructions – Aufbau der persönlichen Prompt-Bibliothek",
+      "Copilot Agenten und Copilot Studio: Eigene Agenten anlegen und Teilschritte der täglichen Arbeit automatisieren",
+      "Integration & Workflow: Alles zusammenführen – individueller End-to-End-Workflow für den eigenen Arbeitsalltag",
+      "Praktische Übungen in jeder Session – sehr nahe an den täglichen Szenarien der Teilnehmenden",
       "Zwischen den Sessions: Praxisaufgaben, Peer-Learning, Support via Teams-Kanal"
     ],
     tiers: ["paid"],
     popular: true,
     questionLead: "Gibt es ein Copilot-Training, das über mehrere Wochen geht – für nachhaltigen Kompetenzaufbau statt Tagesschulung?",
     prerequisites: "Microsoft 365 Copilot-Lizenz erforderlich. Keine Vorkenntnisse nötig – die Lernreise startet bei den Grundlagen.",
-    format: "Live-Online, auf Wunsch kombiniert mit Präsenz-Bausteinen",
+    format: "Live-Online",
     level: "Einsteiger – von 0 auf 100",
     audienceShort: "Teams, die Copilot nachhaltig im Arbeitsalltag verankern wollen",
-    groupSize: "bis 12 Teilnehmende",
+    groupSize: "maximal 12 Teilnehmende, ideal bis 8",
     bookingFormats: [
       {
-        name: "Lernreise (4–8 wöchentliche Sessions à 2 Stunden)",
-        modes: ["online", "blended"],
-        workload: "2 Stunden pro Woche plus 30–60 Minuten Praxisaufgabe",
-        description: "Jede Woche ein Schwerpunkt und ein Use Case für den eigenen Arbeitsalltag – mit Support-Kanal zwischen den Sessions."
+        name: "Lernreise (6–10 wöchentliche Online-Sessions à 2 Stunden)",
+        modes: ["online"],
+        workload: "2 Stunden pro Woche über 6–10 Wochen",
+        description: "Jede Session ein Schwerpunkt und ein Use Case für den eigenen Arbeitsalltag – mit Support-Kanal zwischen den Sessions."
       }
     ],
     targetAudience: [
@@ -499,19 +535,22 @@ export const trainings: Training[] = [
       "Führungskräfte, die messbare Verhaltensänderung statt nur Wissensvermittlung erreichen möchten"
     ],
     learningOutcomes: [
-      "Sie beherrschen nach 8 Wochen alle relevanten Copilot-Funktionen in Word, Excel, PowerPoint, Outlook und Teams",
-      "Sie haben jede Woche einen konkreten Use Case in Ihrem echten Arbeitsalltag umgesetzt und verfestigt",
+      "Sie beherrschen nach der Lernreise alle relevanten Copilot-Funktionen in Word, Excel, PowerPoint, Outlook und Teams",
+      "Sie haben in jeder Session einen konkreten Use Case aus Ihrem echten Arbeitsalltag umgesetzt und verfestigt",
       "Sie verfügen über eine persönliche Prompt-Bibliothek und einen individuellen End-to-End-Workflow",
+      "Sie legen eigene Copilot Agenten an und automatisieren mit Copilot Studio erste Teilschritte Ihrer Arbeit",
       "Sie können Kollegen eigenständig unterstützen, weil Sie die häufigsten Probleme bereits selbst gelöst haben"
     ],
     businessImpact: [
       "Nachhaltigkeit: 87% der Teilnehmer nutzen Copilot auch 3 Monate nach der Lernreise aktiv – vs. 30% bei Tagesschulungen",
-      "Jede Woche entsteht ein direkt anwendbarer Workflow – der Produktivitätsgewinn beginnt ab Woche 1",
+      "Jede Session bringt einen direkt anwendbaren Workflow – der Produktivitätsgewinn beginnt ab der ersten Woche",
+      "Praktische Übungen sehr nahe an den täglichen Szenarien – das Gelernte greift ohne Umweg im echten Arbeitsalltag",
+      "Erste eigene Copilot Agenten und Copilot-Studio-Automatisierungen entstehen bereits während der Lernreise",
       "Der Betreuungsaufwand für IT und Helpdesk sinkt, weil Teilnehmer lernen, Probleme selbst zu lösen",
-      "Die Lernreise ist mit 2,5 Stunden pro Woche minimal invasiv – kein ganzer Arbeitstag geht verloren"
+      "Die Lernreise ist mit Sessions von jeweils 2 Stunden minimal invasiv – kein ganzer Arbeitstag geht verloren"
     ],
     metaTitle: "Copilot Lernreise – 8 Wochen Kompetenzaufbau | copilotenschule.de",
-    metaDescription: "Nachhaltige Copilot-Lernreise: 8 Wochen, 8 Sessions, 8 Use Cases. Schrittweiser Kompetenzaufbau für Teams mit Praxisaufgaben.",
+    metaDescription: "Nachhaltige Copilot-Lernreise: 6–10 Online-Sessions à 2 Stunden, jede mit eigenem Use Case. Schrittweiser Kompetenzaufbau bis zu Copilot Agenten.",
     keywords: ["Copilot Lernreise", "Copilot 8 Wochen", "nachhaltiges KI-Training", "Copilot Blended Learning", "Copilot Kompetenzaufbau"],
     faqs: [
       {
@@ -520,11 +559,11 @@ export const trainings: Training[] = [
       },
       {
         question: "Gibt es Copilot-Training, das über mehrere Wochen geht statt an einem Tag?",
-        answer: "Ja, eine 8-wöchige Lernreise mit wöchentlichen 2-Stunden-Sessions ist ideal für nachhaltigen Kompetenzaufbau. Jede Woche ein neuer Schwerpunkt (Word, Excel, PowerPoint...), jede Woche ein praktischer Use Case zum Umsetzen. Zwischen den Sessions: echte Anwendung, Peer Learning, Support-Kanal für Fragen. So wird KI-Kompetenz zur dauerhaften Fähigkeit."
+        answer: "Ja, eine Lernreise über 6–10 Wochen mit wöchentlichen 2-Stunden-Sessions online ist ideal für nachhaltigen Kompetenzaufbau. Jede Session ein neuer Schwerpunkt (Word, Excel, PowerPoint bis hin zu Copilot Agenten), jede Session ein praktischer Use Case zum Umsetzen. Zwischen den Sessions: echte Anwendung, Peer Learning, Support-Kanal für Fragen. So wird KI-Kompetenz zur dauerhaften Fähigkeit."
       },
       {
         question: "Wie viel Zeit müssen meine Mitarbeiter für eine Copilot-Lernreise einplanen?",
-        answer: "2 Stunden pro Woche für die Live-Session, plus ca. 30-60 Minuten für die praktische Umsetzung des wöchentlichen Use Cases im Arbeitsalltag. Insgesamt also 2,5-3 Stunden pro Woche über 8 Wochen. Das ist überschaubar und lässt sich gut in den Arbeitsalltag integrieren – anders als ein Ganztags-Workshop, der den Kalender blockiert."
+        answer: "2 Stunden pro Woche für die Live-Session – das ist die Zeit, die im Kalender steht. Die Use Cases setzen die Teilnehmenden direkt in ihrer täglichen Arbeit um; die praktischen Übungen sind bewusst so gewählt, dass sie sehr nahe an den echten Arbeitsszenarien liegen. So lässt sich die Lernreise gut in den Arbeitsalltag integrieren – anders als ein Ganztags-Workshop, der den Kalender blockiert."
       },
       {
         question: "Was unterscheidet eine Lernreise von einem kompakten Workshop?",
@@ -563,6 +602,12 @@ export const trainings: Training[] = [
         modes: ["onsite", "online"],
         durationISO: "PT7H",
         description: "Von den Copilot-Studio-Grundlagen bis zum ersten funktionsfähigen eigenen Agenten."
+      },
+      {
+        name: "Hackathon (7 Stunden)",
+        modes: ["onsite", "online"],
+        durationISO: "PT7H",
+        description: "Ganz wenig Theorie, maximale Umsetzung: begleitetes Bauen eigener Use Cases – am Ende des Tages stehen funktionsfähige Agenten für Ihre echten Prozesse."
       }
     ],
     targetAudience: [
@@ -609,8 +654,8 @@ export const trainings: Training[] = [
     slug: "eu-ai-act-pflichtschulung",
     icon: Scale,
     title: "EU AI Act Pflichtschulung – Rechtssichere KI-Nutzung im Unternehmen",
-    duration: "4 Stunden (Halbtag)",
-    durationISO: "PT4H",
+    duration: "2–3 Stunden online",
+    durationISO: "PT3H",
     description: "Pflichtschulung zur Erfüllung der EU AI Act Anforderungen: Alle Mitarbeiter, die mit KI-Systemen arbeiten, müssen nachweislich geschult werden. Dieses Training vermittelt das erforderliche Wissen zu KI-Kompetenz, Risikobewusstsein und verantwortungsvollem Umgang mit KI-Systemen gemäß Artikel 4 EU AI Act.",
     features: [
       "EU AI Act Grundlagen: Anwendungsbereich, Risikoklassifizierung, Pflichten für Unternehmen und Mitarbeiter",
@@ -623,25 +668,27 @@ export const trainings: Training[] = [
     ],
     tiers: ["free", "paid"],
     questionLead: "Welche KI-Schulung brauchen unsere Mitarbeiter, um den EU AI Act Artikel 4 zu erfüllen?",
-    prerequisites: "Keine Vorkenntnisse erforderlich. Das Training richtet sich an alle Mitarbeitenden, die KI-Systeme wie Microsoft Copilot nutzen – unabhängig vom Kenntnisstand.",
-    format: "Inhouse vor Ort oder Live-Online",
+    prerequisites: "Keine Vorkenntnisse erforderlich. Das Training richtet sich an Mitarbeitende, die künftig mit KI-Systemen arbeiten sollen – unabhängig vom Kenntnisstand.",
+    format: "Live-Online",
     level: "Alle Niveaus",
-    audienceShort: "Alle Mitarbeitenden, die KI-Systeme nutzen (Art. 4 EU AI Act)",
+    audienceShort: "Mitarbeitende, die künftig mit KI-Systemen arbeiten sollen (Art. 4 EU AI Act)",
     groupSize: "bis 12 Teilnehmende",
+    visiblePrice: {
+      perPerson: 49,
+      unitLabel: "pro Teilnehmenden",
+      note: "inkl. Zertifikat."
+    },
     certificate: "Schulungsnachweis für Audits und Behördenanfragen",
     bookingFormats: [
       {
-        name: "Halbtag (4 Stunden)",
-        modes: ["onsite", "online"],
-        durationISO: "PT4H",
+        name: "Online-Schulung (2–3 Stunden)",
+        modes: ["online"],
+        durationISO: "PT3H",
         description: "Kompakte Pflichtschulung mit Nachweisführung für Audits und Behördenanfragen."
       }
     ],
     targetAudience: [
-      "Compliance-Officer und Rechtsabteilungen, die die EU AI Act Anforderungen operativ umsetzen müssen",
-      "Geschäftsführer, die ihre gesetzliche Pflicht zur KI-Schulung nachweisbar erfüllen wollen",
-      "Personalentwickler, die eine Pflichtschulung für alle KI-nutzenden Mitarbeiter organisieren müssen",
-      "Datenschutzbeauftragte, die KI-Kompetenz in bestehende Schulungskonzepte integrieren wollen"
+      "Mitarbeitende, die künftig mit KI-Systemen arbeiten sollen – für genau diese Gruppe ist die Weiterbildung gemäß EU AI Act konzipiert"
     ],
     learningOutcomes: [
       "Sie verstehen den EU AI Act und können die relevanten Pflichten für Ihr Unternehmen identifizieren",

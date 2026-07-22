@@ -114,13 +114,6 @@ export const generateBreadcrumbSchema = (items: BreadcrumbItem[]) => {
   };
 };
 
-export interface TrainingModule {
-  title: string;
-  duration: string;
-  description: string;
-  features: string[];
-}
-
 /**
  * Generates FAQPage Schema.org markup
  * Critical for LLM citation - enables AI assistants to quote answers directly
@@ -409,244 +402,101 @@ export const generateTrainingPageSchema = (
 };
 
 /**
- * Generates Schema.org Course markup for a training module
+ * Schema für die Trainings-Übersichtsseite /trainings (B3, 2026-07-22):
+ *  - CollectionPage + ItemList mit den echten Detailseiten-URLs
+ *  - FAQPage (sichtbare FAQs der Übersicht)
+ *  - BreadcrumbList
+ *
+ * Ersetzt die früheren Course-/EducationEvent-Duplikate und die zweite,
+ * widersprüchliche Organization-Definition. Prinzip "eine Entität, ein
+ * Zuhause": Die vollständige Course-Beschreibung liegt ausschließlich auf
+ * der jeweiligen Detailseite; die Übersicht verweist nur noch dorthin
+ * (gleiches Muster wie generateWorkshopsOverviewSchema).
  */
-export const generateCourseSchema = (module: TrainingModule, index: number) => {
-  return {
-    "@type": "Course",
-    "name": module.title,
-    "description": module.description,
-    "provider": {
-      "@type": "Organization",
-      "name": "copilotenschule.de",
-      "url": "https://copilotenschule.de",
-      "sameAs": [
-        "https://www.linkedin.com/company/yellow-boat-consulting"
-      ]
-    },
-    "courseCode": `COPILOT-${index + 1}`,
-    "hasCourseInstance": {
-      "@type": "CourseInstance",
-      "courseMode": ["online", "onsite", "blended"],
-      "duration": module.duration,
-      "inLanguage": "de-DE",
-      "location": [
-        {
-          "@type": "Place",
-          "name": "Online (bundesweit)",
-          "address": {
-            "@type": "PostalAddress",
-            "addressCountry": "DE"
-          }
-        },
-        {
-          "@type": "Place",
-          "name": "Köln",
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Köln",
-            "addressCountry": "DE"
-          }
-        },
-        {
-          "@type": "Place",
-          "name": "Inhouse (bundesweit)",
-          "address": {
-            "@type": "PostalAddress",
-            "addressCountry": "DE"
-          }
-        }
-      ]
-    },
-    "educationalLevel": "Professional Development",
-    "teaches": module.features,
-    "timeRequired": module.duration,
-    "availableLanguage": {
-      "@type": "Language",
-      "name": "Deutsch",
-      "alternateName": "de"
-    },
-    "offers": {
-      "@type": "Offer",
-      "category": "Professional Training",
-      "availability": "https://schema.org/InStock",
-      "availableDeliveryMethod": ["OnlineEventAttendanceMode", "OfflineEventAttendanceMode", "MixedEventAttendanceMode"]
-    }
-  };
-};
+export interface TrainingsOverviewSchemaConfig {
+  title: string;
+  description: string;
+  faqs: Array<{ question: string; answer: string }>;
+}
 
-/**
- * Generates Schema.org EducationEvent markup for a training module
- */
-export const generateEducationEventSchema = (module: TrainingModule) => {
-  return {
-    "@type": "EducationEvent",
-    "name": module.title,
-    "description": module.description,
-    "eventAttendanceMode": [
-      "https://schema.org/OnlineEventAttendanceMode",
-      "https://schema.org/OfflineEventAttendanceMode",
-      "https://schema.org/MixedEventAttendanceMode"
-    ],
-    "eventStatus": "https://schema.org/EventScheduled",
-    "location": [
-      {
-        "@type": "VirtualLocation",
-        "url": "https://copilotenschule.de"
-      },
-      {
-        "@type": "Place",
-        "name": "Köln und bundesweit",
-        "address": {
-          "@type": "PostalAddress",
-          "addressCountry": "DE"
-        }
-      }
-    ],
-    "organizer": {
-      "@type": "Organization",
-      "name": "copilotenschule.de",
-      "url": "https://copilotenschule.de"
-    },
-    "performer": {
-      "@type": "Organization",
-      "name": "Yellow-Boat Consulting",
-      "url": "https://copilotenschule.de"
-    },
-    "educationalLevel": "Professional Development",
+export const generateTrainingsOverviewSchema = (
+  config: TrainingsOverviewSchemaConfig,
+  trainingItems: Array<{ slug: string; title: string; description: string }>
+) => {
+  const pageUrl = `${BASE_URL}/trainings`;
+  const breadcrumbItems: BreadcrumbItem[] = [
+    { name: "Startseite", url: `${BASE_URL}/` },
+    { name: "Trainings", url: pageUrl },
+  ];
+
+  const collectionPage = {
+    "@type": "CollectionPage",
+    "@id": `${pageUrl}#collection`,
+    "name": config.title,
+    "description": config.description,
+    "url": pageUrl,
     "inLanguage": "de-DE",
-    "duration": module.duration,
-    "teaches": module.features,
-    "offers": {
-      "@type": "Offer",
-      "availability": "https://schema.org/InStock",
-      "category": "Professional Training"
-    }
+    "isPartOf": { "@id": `${BASE_URL}/#website` },
+    "about": { "@id": `${BASE_URL}/#organization` },
+    "mainEntity": { "@id": `${pageUrl}#itemlist` },
   };
-};
 
-/**
- * Generates complete Schema.org structured data for all training modules
- * Combines organization, website, course/event data, and FAQs
- * Optimized for LLM trust signals and SEO
- */
-export const generateTrainingSchemas = (modules: TrainingModule[], faqs?: FAQ[]) => {
-  const courses = modules.map((module, index) => generateCourseSchema(module, index));
-  const events = modules.map(module => generateEducationEventSchema(module));
-  const faqSchema = faqs ? generateFAQPageSchema(faqs) : null;
+  const itemList = {
+    "@type": "ItemList",
+    "@id": `${pageUrl}#itemlist`,
+    "name": "Microsoft Copilot Trainings",
+    "itemListOrder": "https://schema.org/ItemListOrderAscending",
+    "numberOfItems": trainingItems.length,
+    "itemListElement": trainingItems.map((training, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "url": `${BASE_URL}/trainings/${training.slug}`,
+      "name": training.title,
+      "description": training.description,
+    })),
+  };
+
+  const faqSchema = config.faqs.length > 0
+    ? {
+        "@type": "FAQPage",
+        "@id": `${pageUrl}#faq`,
+        "mainEntity": config.faqs.map((faq) => ({
+          "@type": "Question",
+          "name": faq.question,
+          "acceptedAnswer": { "@type": "Answer", "text": faq.answer },
+        })),
+      }
+    : null;
+
+  const breadcrumbSchema = {
+    "@type": "BreadcrumbList",
+    "@id": `${pageUrl}#breadcrumb`,
+    "itemListElement": breadcrumbItems.map((item, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "name": item.name,
+      "item": item.url,
+    })),
+  };
 
   return {
     "@context": "https://schema.org",
-    "@graph": [
-      // Organization - Primary entity for LLM trust
-      {
-        "@type": "Organization",
-        "@id": "https://copilotenschule.de/#organization",
-        "name": "copilotenschule.de",
-        "alternateName": ["Copilotenschule", "Copiloten Schule"],
-        "url": "https://copilotenschule.de",
-        "logo": "https://copilotenschule.de/og-image.jpg",
-        "description": "copilotenschule.de bietet spezialisierte Weiterbildungen für den professionellen Einsatz von Microsoft Copilot in der täglichen Büroarbeit. Wir befähigen Wissensarbeiter, Teams und Organisationen, Microsoft Copilot produktiv, sicher und wertschöpfend im Arbeitsalltag einzusetzen.",
-        "foundingDate": "2025",
-        "slogan": "Büroarbeit durch Microsoft Copilot messbar produktiver, wirksamer und menschlicher machen",
-        "knowsAbout": [
-          "Microsoft Copilot",
-          "Microsoft 365 Copilot",
-          "Microsoft Copilot Training",
-          "Microsoft Copilot Schulung",
-          "Copilot Enablement",
-          "Copilot Adoption",
-          "Copilot Rollout",
-          "GitHub Copilot",
-          "Copilot Studio",
-          "KI-Agenten",
-          "Prompt Engineering",
-          "KI-gestützte Büroarbeit",
-          "Microsoft 365 Produktivität"
-        ],
-        "areaServed": {
-          "@type": "GeoCircle",
-          "geoMidpoint": {
-            "@type": "GeoCoordinates",
-            "latitude": "50.9375",
-            "longitude": "6.9603"
-          },
-          "geoRadius": "1000 km",
-          "name": "DACH-Region"
-        },
-        "parentOrganization": {
-          "@type": "Organization",
-          "@id": "https://yellow-boat.com/#organization",
-          "name": "Yellow-Boat Consulting",
-          "url": "https://yellow-boat.com",
-          "foundingDate": "2011",
-          "description": "Yellow-Boat Consulting realisiert seit über einem Jahrzehnt Agile Trainings und Digitalisierungsprojekte in Konzernen und im Mittelstand."
-        },
-        "sameAs": [
-          "https://www.linkedin.com/company/yellow-boat-consulting",
-          "https://yellow-boat.com"
-        ],
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "contactType": "customer service",
-          "email": "info@copilotenschule.de",
-          "telephone": "+49 221 950 187 74",
-          "availableLanguage": ["de", "en"],
-          "areaServed": "DACH"
-        },
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Nussbaumerstrasse 26",
-          "addressLocality": "Köln",
-          "postalCode": "50823",
-          "addressCountry": "DE"
-        }
-      },
-      // Website
-      {
-        "@type": "WebSite",
-        "@id": "https://copilotenschule.de/#website",
-        "name": "copilotenschule.de",
-        "url": "https://copilotenschule.de",
-        "description": "Spezialisierte Weiterbildungen für Microsoft Copilot. Praxis-Trainings, Workshops, Inhouse-Enablement und Coaching für Wissensarbeiter, Teams und Organisationen.",
-        "inLanguage": "de-DE",
-        "publisher": {
-          "@id": "https://copilotenschule.de/#organization"
-        },
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": "https://copilotenschule.de/wissen?q={search_term_string}",
-          "query-input": "required name=search_term_string"
-        }
-      },
-      // Educational Organization - For training credibility
-      {
-        "@type": "EducationalOrganization",
-        "@id": "https://copilotenschule.de/#educationalOrganization",
-        "name": "copilotenschule.de",
-        "url": "https://copilotenschule.de",
-        "description": "Spezialisierte Akademie für Microsoft Copilot Trainings mit klarem Fokus auf die Nutzung von Microsoft Copilot im beruflichen Kontext. Praxisorientierter Trainingsansatz mit realen Arbeitsprozessen und direkt anwendbaren Workflows.",
-        "areaServed": "DACH",
-        "parentOrganization": {
-          "@id": "https://yellow-boat.com/#organization"
-        },
-        "teaches": [
-          "Microsoft 365 Copilot für Büroarbeit",
-          "Microsoft Copilot Grundlagen",
-          "Microsoft Copilot Advanced Training",
-          "GitHub Copilot für Entwickler",
-          "Copilot Studio und KI-Agenten",
-          "Prompt Engineering für Microsoft Copilot",
-          "Copilot Governance und Compliance",
-          "Copilot Rollout und Adoption"
-        ],
-      },
-      // All Courses
-      ...courses,
-      // All Education Events
-      ...events,
-      // FAQ Page (if provided) - Critical for LLM citation
-      ...(faqSchema ? [faqSchema] : [])
-    ]
+    "@graph": [collectionPage, itemList, breadcrumbSchema, ...(faqSchema ? [faqSchema] : [])],
+  };
+};
+
+/**
+ * Schema für die Homepage (B3, 2026-07-22): nur noch FAQPage.
+ *
+ * Ersetzt den früheren Phantom-Katalog aus 9 veralteten Course-/EducationEvent-
+ * Einträgen (Angebote, die es so nicht mehr gibt) sowie die doppelte
+ * Organization-Definition. Organization/Person/WebSite kommen global aus
+ * organizationSchema.ts (SEOHead) bzw. index.html; die echten Trainings
+ * beschreibt ausschließlich /trainings mit seinen Detailseiten.
+ */
+export const generateHomepageSchema = (faqs: FAQ[]) => {
+  return {
+    "@context": "https://schema.org",
+    "@graph": [generateFAQPageSchema(faqs)],
   };
 };

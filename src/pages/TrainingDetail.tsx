@@ -125,13 +125,28 @@ const TrainingDetail = ({ showPricing = false }: { showPricing?: boolean }) => {
           "inLanguage": "de-DE"
         },
     // B1 (2026-07-22): Keine Preise im Schema, solange der A/B-Test "Preise
-    // auszeichnen" (ab_pricing) läuft. Structured Data darf nur abbilden, was
-    // sichtbar auf der Seite steht – Preise sind aktuell bewusst unsichtbar.
+    // auszeichnen" (ab_pricing) läuft. AUSNAHME: Trainings mit permanent
+    // sichtbarem Preis-Störer (visiblePrice) tragen den Preis auch im Schema –
+    // sichtbar und maschinenlesbar bleiben deckungsgleich.
     "offers": {
       "@type": "Offer",
       "category": "Paid",
       "url": pageUrl,
-      "availability": "https://schema.org/InStock"
+      "availability": "https://schema.org/InStock",
+      ...(training.visiblePrice
+        ? {
+            "price": String(training.visiblePrice.perPerson),
+            "priceCurrency": "EUR",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": String(training.visiblePrice.perPerson),
+              "priceCurrency": "EUR",
+              "description": `ab ${training.visiblePrice.perPerson} € ${
+                training.visiblePrice.unitLabel ?? "pro Teilnehmer"
+              }${training.visiblePrice.note ? `, ${training.visiblePrice.note}` : ""}`
+            }
+          }
+        : {})
     },
     "teaches": training.learningOutcomes
       ? training.learningOutcomes.join(", ")
@@ -260,6 +275,19 @@ const TrainingDetail = ({ showPricing = false }: { showPricing?: boolean }) => {
                     <PriceStoerer
                       perPerson={training.abPreisProPerson}
                       perGroup={training.abPreisProGruppe}
+                    />
+                  </div>
+                )}
+
+                {/* Permanenter Preis-Störer unabhängig vom A/B-Test (z.B. EU-AI-Act-
+                    Pflichtschulung). Test-Trainings haben kein visiblePrice – es
+                    rendert nie beides gleichzeitig. */}
+                {training.visiblePrice && (
+                  <div className="shrink-0 md:pt-1">
+                    <PriceStoerer
+                      perPerson={training.visiblePrice.perPerson}
+                      unitLabel={training.visiblePrice.unitLabel}
+                      note={training.visiblePrice.note}
                     />
                   </div>
                 )}
@@ -440,7 +468,17 @@ const TrainingDetail = ({ showPricing = false }: { showPricing?: boolean }) => {
                 </p>
                 <div className="grid md:grid-cols-2 gap-6">
                   {training.bookingFormats.map((variant) => (
-                    <div key={variant.name} className="bg-card border rounded-xl p-6 hover:border-primary/50 transition-colors">
+                    <div
+                      key={variant.name}
+                      className={`relative bg-card border rounded-xl p-6 transition-colors ${
+                        variant.badge ? "border-accent shadow-md" : "hover:border-primary/50"
+                      }`}
+                    >
+                      {variant.badge && (
+                        <span className="absolute -top-3 right-4 -rotate-2 rounded-full bg-accent text-accent-foreground text-xs font-bold uppercase tracking-wider px-3 py-1 shadow-md">
+                          {variant.badge}
+                        </span>
+                      )}
                       <h3 className="text-lg font-semibold mb-1">{variant.name}</h3>
                       <p className="text-sm text-primary font-medium mb-2">
                         {variant.modes.map((mode) => BOOKING_MODE_LABELS[mode]).join(" · ")}
