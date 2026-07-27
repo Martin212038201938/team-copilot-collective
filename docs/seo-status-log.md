@@ -8,6 +8,38 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 
 ## Logs
 
+### 2026-07-27 — Wöchentlicher Audit (Cron)
+
+**Phase:** Phase 3 — Content-Block (aktiv, kein Wechsel), DoD 4/8
+**SSR-Audit:** ✅ 67 / 🟡 0 / 🔴 0 (von 67) — via `seo-monitoring/recheck.sh` (audit-live.sh nicht im Mount)
+- Neu in 🔴/✅: keine (stabil, DoD #2 gewahrt; Regressions-Wächter, 🔴 < 5 → keine Eskalation). Baseline-Vergleich 04.05.: Helmet-Flush 31 → 67 (Δ +36), Empty 0, Double-Desc 0.
+
+**GSC** ⚠️ **Snapshot 24.07. — kein frischer Zugriff** (Chrome-Account martin@yellow-boat.com hat weiterhin keinen Zugriff auf `sc-domain:copilotenschule.de`; live in dieser Session erneut verifiziert: „Du hast leider keinen Zugriff auf diese Property"). Werte aus Daily-Health-Check-Snapshot, rein organisch: 59/89 indexiert (**62,8 %**), Klicks **1.320/3M**, Impr. **106.000**, CTR 1,2 %, Pos. **9,1**. W/W ggü. 20.07. (1.250 / 101.000 / 9,1): **+70 Klicks (~+5,6 %), +5.000 Impr. (~+4,9 %)**, Pos. flat — stetiges Wachstum, aber Daten seit 24.07. eingefroren (kein echter W/W-Neuwert). A6-Summe nicht-indexiert: gecrawlt (**12**) + gefunden (**11**) = **23** (unverändert ggü. 20.07.; gecrawlt-nicht-indexiert +2 ggü. 13.07.). Top-Klick-Bringer-Queries: copilot in excel aktivieren (54), excel copilot aktivieren (20), copilot excel aktivieren (13), copilot cowork kosten (9), copilot kosten (8), copilot claude (7) → >5 verschiedene Cluster (DoD #5 ✅).
+
+**AlwaysData:** ⚠️ diesen Lauf nicht erfasst — Login-Seite (kein aktiver Session-Login; Zugangsdaten werden regelkonform nicht eingegeben).
+
+**Traffic-Mix (Clarity):** ⚠️ Segmentierung (cpc/email/organic) diesen Lauf **nicht möglich** — Clarity-Dashboard via Chrome nicht zugänglich (Microsoft-Konto nicht für Projekt `wxppg5394j` berechtigt: „Dieses Projekt ist nicht vorhanden, oder Sie sind nicht berechtigt"). API-3T-Referrer rein-organisch dominiert: Google 56, Direct 30, Bing 16, ChatGPT 2, Teams 2, DuckDuckGo 1.
+
+**Clarity Standard (3T, via API, 2 Calls — 1× HTTP-502-Retry):**
+- Sessions: 107 (davon 23 Bots, 133 Unique Users), 1,02 Seiten/Sitzung
+- Scrolltiefe: 43,59 %, Aktive Zeit: 102 s
+- Dead-Click: **14,95 %** | Rage-Click: 0,93 % | Quick-Back: 0 % | Excessive-Scroll: 0 %
+- Top-Browser: Chrome 41, Edge 30 (~28 %), MobileSafari 19, ChromeMobile 5, SamsungInternet 5
+- Top-3-Pages: microsoft-copilot-lizenzen (13), claude-in-microsoft-copilot (12), / (12) — dann eu-ai-act-mitarbeiter-schulung-august-2026 (11), ki-schulung-mitarbeiter-pflicht (10)
+- Top-3-Referrer: google.com (56), Direct (30), bing.com (16)
+
+**Clarity Conversion-Events (7T, via Chrome):** ⚠️ diesen Lauf **NICHT erfasst** — Clarity-Dashboard nicht zugänglich (Konto nicht berechtigt, s. o.). Custom-Tags/Smart-Events + Conversion-Rate + Defekt-Check (7e) + Zielseiten-Drift-Check (5c) diese Woche ausgesetzt. **Zweite Woche in Folge ohne 5b/5c** (Vorwoche: Extension offline; diese Woche: Konto-Berechtigung) → in Notification eskaliert.
+
+**Insights heute:** Patterns 0 | Issues 2 (Dead-Click 14,95 % weiter eskaliert; A6-Coverage stagniert >3 Wochen) | Trends 1 (Organik ~+5 % W/W) + Cross-Korrelation (2 Goldene Pages) + Methoden-Notiz (Dashboards konto-blockiert) — Details in clarity-insights.md
+**Folge-Crons angelegt:** keine (Dead-Click = bekanntes Mix-Issue mit vorliegendem Fix-Draft; A6-Draft existiert; kein Automatisierungs-Loch)
+**Goldene Pages (GSC×Clarity, präsumtiv organic):** `/wissen/microsoft-copilot-lizenzen` (GSC-Lizenz/Kosten-Cluster; Clarity #1), `/wissen/claude-in-microsoft-copilot` (GSC „copilot claude" 7; Clarity #2). Ungenutzt: `/wissen/copilot-in-excel-aktivieren` (GSC-#1-Cluster 54+20+13=87 Kl./3M, aber nicht in Clarity-Top-5).
+**Protected Pages:** alle 5/5 = HTTP 200 (roi-berechnen, training-schulung, im-unternehmen-einfuehren-leitfaden, microsoft-copilot-lizenzen, ki-schulung-mitarbeiter-pflicht).
+**Entscheidung gemäß Plan:** Phase 3 bleibt aktiv, kein Wechsel. SSR-Regressions-Wächter grün (0 🔴). **A6-Index-Coverage:** stagniert seit >3 Wochen bei ~62,8 % / Summe 23 (Ziel 90 % fern); gecrawlt-nicht-indexiert 10→12 seit 13.07. → **Issue-Eintrag** + Hinweis auf `docs/drafts/index-coverage-interne-verlinkung-2026-06-16.md` (additive Verlinkung nachschärfen; 4 Nachzügler weiter „gefunden/gecrawlt – nicht indexiert"). Indexierungs-Quote 62,8 % vs. ~64 % 7T-Schnitt = −1,2 pp → unter 5-pp-⚠️-Schwelle. Kein Push, keine `src/`-Änderung.
+**API-Calls heute:** 2/10 (1 Nutz-Call + 1 Retry nach HTTP 502)
+**Nächster Lauf:** Mo 03.08.2026, 10:00
+
+---
+
 ### 2026-07-20 — B4 Trust-Signal-Block Verifikationslauf (Cron)
 
 **Schritt 1 (Vorbedingung):** Pre-Render-Schwelle geprüft — SSR-Audit **67/67 ✅ (0 🔴)**, weit über der geforderten ≥60/71-Schwelle (Quelle: Wochenaudit 20.07., dieselbe Datei weiter unten). Vorbedingung erfüllt → weiter.

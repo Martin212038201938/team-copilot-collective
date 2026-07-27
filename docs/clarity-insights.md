@@ -2,7 +2,7 @@
 
 **Lebendes Dokument** — Cron-Jobs pflegen dieses File. Hier sammeln sich die Pattern-Erkenntnisse aus Microsoft Clarity, die wir auf andere Seiten übertragen oder gegen UX-Probleme einsetzen können.
 
-**Letzter automatischer Update:** 20. Juli 2026 (Wöchentlicher Audit — Chrome-Extension offline → Conversion-Events (5b) + Paid/Outbound-Split (5c) + AlwaysData diesen Lauf NICHT erfasst; Standard-Clarity via API OK. Dead-Click **re-eskaliert auf 13,95 % API-3T** (Vorwoche 8,62 %) — zurück über 10 %-Schwelle, 5c-Segment-Gegenprüfung mangels Chrome nicht möglich, Treiber weiter präsumtiv organisch (ArticlePopup). GSC organisch stark: Klicks 1110→1250 (+12,6 % W/W), Impr. 90,6k→101k (+11,5 %), Pos. 9,3→9,1. Goldene Pages: Lizenzen + Claude-in-Copilot + KI-Halluzinationen. Vorwoche: SEA skaliert 59→82 Sess. (+39 %), Outbound 38→36 (flat, 0 Conv.))
+**Letzter automatischer Update:** 27. Juli 2026 (Wöchentlicher Audit — **zweite Woche in Folge ohne 5b/5c/AlwaysData**: diesmal ist Chrome verbunden, aber alle drei Dashboards sind konto-blockiert (GSC: martin@yellow-boat.com ohne Property-Zugriff; AlwaysData: kein Login; Clarity-Dashboard: Konto nicht für Projekt wxppg5394j berechtigt). Standard-Clarity via API OK (2 Calls, 1× 502-Retry). Dead-Click **weiter eskaliert auf 14,95 % API-3T** (Vorwoche 13,95 %) — dritte Messung im Anstieg (8,62 → 13,95 → 14,95), Treiber präsumtiv organisch (ArticlePopup), 5c-Gegenprüfung mangels Dashboard nicht möglich. GSC (Snapshot 24.07., eingefroren): Klicks 1250→1320, Impr. 101k→106k, Pos. 9,1 flat. **A6-Coverage stagniert >3 Wochen bei 62,8 % / Summe 23** → Issue. Goldene Pages: Lizenzen + Claude-in-Copilot. Vorwoche: SEA 59→82 Sess. (+39 %), Outbound 38→36 (flat, 0 Conv.))
 
 ---
 
@@ -211,6 +211,45 @@ nach ca. 2 Wochen Laufzeit empfohlen.
 > ⚠️ **METHODEN-FIX für Schritt 5b (wichtig):** Die Conversion-Events sind **Custom Tags** (`Clarity.setTag`), NICHT Smart Events. Sie erscheinen NUR unter **Filter → „Benutzerdefinierte Filter" → „Benutzerdefinierte Kategorien" → Dropdown „Tag auswählen"** — NICHT im „Intelligente Ereignisse"-Dropdown. Frühere Läufe prüften nur Smart Events → systematische Untererfassung. **Ab sofort beide Filter prüfen.** Verfügbare Custom-Tags (Stand 26.06.): `booking_click, campaign_mail, campaign_medium, campaign_name, campaign_source, claude_verify_tag, contact_form_submit, danke_page_view, sml_landing_page_visit, visitor_type`. (`content_cta_click`, `mail_click`, `phone_click`, `pdf_download`, `trainer_application_submit` = 0 Firings → tauchen nicht auf, bis sie gefeuert werden.) Outbound-Segmentierung (5c) über `campaign_medium`/`campaign_source`.
 
 *Hinweis: Der ursprüngliche Skill-Kontext „SEA + Outbound ab KW 25" war verfrüht. Maßgeblich ist dieser Status-Block.*
+
+---
+
+### 2026-07-27 — Issue-Update: Dead-Click steigt weiter — API 3T 14,95 % (3. Messung im Anstieg)
+**Quelle:** Cron-Lauf 2026-07-27 (weekly) — Clarity API 3T (14,95 %, 107 Sess., 23 Bots, 133 Unique)
+**Symptom:** Dead-Click API 3T **14,95 %** (Vorwoche 13,95 %, davor 8,62 %) → dritte Messung mit steigendem Trend, klar über der 10 %-Schwelle (Schritt 7c). Rage-Click 0,93 % (~1 Sess., < 5-Sessions-Schwelle), Quick-Back 0 %, Excessive-Scroll 0 % — sonst ruhig. Scrolltiefe 43,59 %, aktive Zeit 102 s (beide besser als Vorwoche).
+**5c-Gegenprüfung NICHT möglich:** Das Clarity-Dashboard war diesen Lauf konto-blockiert (Microsoft-Konto nicht für Projekt wxppg5394j berechtigt) → cpc-/email-Segment-Dead-Click konnte nicht gegengeprüft werden. Treiber bleibt **präsumtiv organisch** (globales `ArticlePopup` via `ContentLayout.tsx`) — konsistent mit dem Zickzack-Muster (21,4 → 8,65 → 17 → 8,62 → 13,95 → 14,95 %), das stark von der Wochen-Mischung Wissensartikel-Traffic abhängt. Kein Code-Defekt-Indiz (ScriptError 0 %, Rage/Quick-Back ruhig).
+**Top-Page-Ableitung (PopularPages 3T):** `microsoft-copilot-lizenzen` (13), `claude-in-microsoft-copilot` (12), `/` (12), `eu-ai-act-mitarbeiter-schulung-august-2026` (11), `ki-schulung-mitarbeiter-pflicht` (10) — die Wissensseiten tragen ArticlePopup.
+**Bewertung:** Bekanntes, mix-getriebenes Grenzwert-Issue, jetzt am oberen Rand des dokumentierten Bandes. Kein neuer Cron — Fix-Draft `docs/drafts/clarity-fix-copilot-in-outlook-nutzen-tipps.md` (seit 17.06.) liegt vor, Engpass bleibt der User-Push. 5c-Bestätigung nachholen, sobald ein Konto mit Dashboard-Zugang verfügbar ist.
+**Status:** identifiziert — weiter eskaliert (Mix-Effekt), Fix-Draft wartet auf User-Push.
+
+---
+
+### 2026-07-27 — Issue (neu): A6-Index-Coverage stagniert >3 Wochen bei 62,8 %
+**Quelle:** Cron-Lauf 2026-07-27 (weekly) — GSC-Snapshot 24.07. (kein frischer Zugriff, Konto ohne Property)
+**Betroffene Ebene:** Index-Coverage gesamt (Maßnahme A6)
+**Symptom:** Indexierung **59/89 = 62,8 %** — seit Wochen im Band 62,8–64,5 %, kein Aufwärtstrend Richtung DoD-Ziel 90 %. Summe nicht-indexiert (gecrawlt 12 + gefunden 11) = **23**, praktisch unverändert (13.07. = 21). **Gecrawlt-nicht-indexiert steigt 10 → 12** seit 13.07. → Google crawlt, bewertet aber weiter als nicht indexierungswürdig (Linkgewicht). Regel Schritt 8: „stagniert > 3 Wochen → Issue-Eintrag".
+**Hypothese:** Die am 01.07. gebauten 16 additiven In-Body-Links (Commit `e5902c8`) haben 9/13 A6-Zielseiten indexiert, aber die verbleibenden Nachzügler + neu „gecrawlt-nicht-indexiert"-Seiten brauchen mehr internes Linkgewicht als bisher gesetzt.
+**Empfohlene Maßnahme:** A6-Draft `docs/drafts/index-coverage-interne-verlinkung-2026-06-16.md` nachschärfen — zusätzliche additive Links auf die 12 „gecrawlt-nicht-indexiert"-Seiten (aus Top-Performern wie microsoft-copilot-lizenzen, claude-in-microsoft-copilot), dann IndexNow-Resubmit. Rein additiv, Protected Pages ausgespart. Kein Push durch Cron.
+**Status:** identifiziert — wartet auf User-Umsetzung (Draft-Nachschärfung + Push).
+
+---
+
+### 2026-07-27 — Cross-Korrelation: Goldene Pages (GSC × Clarity, präsumtiv organic)
+**Quelle:** Cron-Lauf 2026-07-27 (weekly) — GSC Top-Klick-Bringer 3M (Snapshot 24.07.) × Clarity Top-Pages 3T (API)
+**Goldene Pages (in beiden stark):**
+- `/wissen/microsoft-copilot-lizenzen` (GSC: „copilot kosten" 8 + „copilot lizenz kosten" 4 + „copilot preise" 4 + „copilot premium kosten" 4-Cluster; Clarity Top-Page **#1**, 13 Visits)
+- `/wissen/claude-in-microsoft-copilot` (GSC „copilot claude" 7; Clarity **#2**, 12 Visits)
+→ beide ziehen organischen Such-Traffic UND werden real besucht → ideale CTA-Brücke-Kandidaten. **Neu aufsteigend in Clarity:** `eu-ai-act-mitarbeiter-schulung-august-2026` (#4, 11) + `ki-schulung-mitarbeiter-pflicht` (#5, 10) — der EU-AI-Act-Cluster gewinnt On-Site-Präsenz (zeitkritisch, Deadline 02.08.).
+**Ungenutztes Potential (unverändert):** GSC-Top-Cluster `/wissen/copilot-in-excel-aktivieren` („copilot … excel aktivieren" 54+20+13 = 87 Kl./3M) taucht **nicht** in den Clarity-Top-5 auf — hohe Such-Sichtbarkeit, geringe On-Site-Präsenz. Weiter Top-Kandidat für interne Verlinkung + CTA-Brücke.
+**Handlung:** Beim nächsten CTA-Welle-Schritt Excel-Aktivieren-Seite priorisieren; EU-AI-Act-Seite vor der 02.08.-Deadline mit CTA-Brücke bestücken.
+
+---
+
+### 2026-07-27 — Methoden-Notiz: Dashboards konto-blockiert → 5b/5c/AlwaysData 2. Woche in Folge nicht erfasst
+**Quelle:** Cron-Lauf 2026-07-27 (weekly)
+**Beobachtung:** Chrome-Extension war diesmal verbunden, aber alle drei dashboard-gebundenen Quellen sind konto-blockiert: **GSC** (martin@yellow-boat.com ohne Zugriff auf `sc-domain:copilotenschule.de` → „Du hast leider keinen Zugriff auf diese Property"), **AlwaysData** (kein aktiver Login; Zugangsdaten werden regelkonform nicht eingegeben), **Clarity-Dashboard** (Konto nicht für Projekt `wxppg5394j` berechtigt → „nicht vorhanden oder nicht berechtigt"). Der Clarity-API-Token in `website-health-check/.env` funktioniert unabhängig davon (Standard-Metriken 5a OK).
+**Konsequenz:** Conversion-Events (5b), Paid/Outbound-Split (5c), Zielseiten-Drift-Check und Defekt-Erkennung (7e) ausgesetzt — **zweite Woche in Folge** (Vorwoche: Extension offline; diese Woche: Konto-Berechtigung). Organische Kern-KPIs (SSR, Protected Pages, GSC-Snapshot, Clarity-API) unberührt.
+**Handlung:** In Notification eskaliert — dauerhafte Behebung nötig: (1) Google-Konto mit GSC-Zugriff im Chrome-Profil, (2) Clarity-Projektzugriff für das eingeloggte Microsoft-Konto (oder anderes Konto), (3) AlwaysData-Login. Ohne diese bleiben Conversion-Tracking + Kampagnen-Segmentierung blind.
 
 ---
 
