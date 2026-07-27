@@ -79,7 +79,7 @@ export const ALL_GUIDES: GuideData[] = [
     audience: "Alle, die täglich mit Excel arbeiten – Controlling, Vertrieb, Einkauf, HR, Marketing & Assistenz",
     pdfPath: "/downloads/Copilot-Excel-Praxishandbuch-2026.pdf",
     fileMeta: "PDF-Handbuch",
-    pages: 24,
+    pages: 30,
     featured: true,
     bullets: [
       "Die drei Wege, Copilot mit Excel zu nutzen – und welcher zu Ihrer Lizenz-Situation passt (Stand Juli 2026)",
@@ -91,7 +91,7 @@ export const ALL_GUIDES: GuideData[] = [
     ],
     toc: [
       "Wichtiger Hinweis / Haftungsausschluss · So nutzen Sie dieses Handbuch",
-      "1 · Drei Wege, Copilot mit Excel zu nutzen – und welcher zu Ihnen passt",
+      "1 · Drei Wege, Copilot mit Excel zu nutzen – wann Sie welchen einsetzen",
       "2 · Die Lizenz-Realität im Juli 2026: Was ist kostenlos, was kostet",
       "3 · Pre-Flight: Datenschutz in drei Regeln",
       "4 · Das GCSE-Schema: So briefen Sie Copilot richtig",
@@ -114,7 +114,7 @@ export const ALL_GUIDES: GuideData[] = [
       "19 · Use-Case-Sammlung: 21 konkrete Anwendungen nach Abteilung",
       "20 · Die Prompt-Bibliothek: 20 kopierfertige Vorlagen",
       "21 · Der Spickzettel für den Schreibtisch",
-      "22 · In 14 Tagen zur Routine – Ihr Transferplan",
+      "22 · Der Transferplan: Fünf Schritte, die in Fleisch und Blut übergehen",
       "Quellen (offizielle Microsoft-Dokumentation)",
     ],
     seo: {
