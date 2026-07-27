@@ -30,6 +30,17 @@ export interface ArticleData {
 // Alle Artikel - sortiert nach Veröffentlichungsdatum (neueste zuerst)
 export const ALL_ARTICLES: ArticleData[] = [
   {
+    id: "copilot-roi-berechnen",
+    title: "Copilot ROI berechnen: Lohnt sich die Investition?",
+    description: "Praxisnahe Methoden zur ROI-Berechnung für Microsoft Copilot. Mit konkreten Formeln, Beispielrechnungen und Benchmarks.",
+    link: "/wissen/copilot-roi-berechnen",
+    badge: "ROI",
+    icon: "💰",
+    lastUpdated: "27. Juli 2026",
+    publishDate: "2026-07-27",
+    publishTime: "09:00"
+  },
+  {
     id: "copilot-update-juni-2026",
     title: "Copilot Update Juni 2026",
     description: "Cowork wird GA, Claude kommt in den Copilot Chat, Work IQ liest Geschäftsdaten – plus Admin- & Datenschutz-Themen und die Lizenzumstellung zum 1. Juli.",
@@ -503,17 +514,6 @@ export const ALL_ARTICLES: ArticleData[] = [
     icon: "⚠️",
     lastUpdated: "14. Apr. 2026",
     publishDate: "2026-01-01",
-    publishTime: "09:00"
-  },
-  {
-    id: "copilot-roi-berechnen",
-    title: "Copilot ROI berechnen: Lohnt sich die Investition?",
-    description: "Praxisnahe Methoden zur ROI-Berechnung für Microsoft Copilot. Mit konkreten Formeln, Beispielrechnungen und Benchmarks.",
-    link: "/wissen/copilot-roi-berechnen",
-    badge: "ROI",
-    icon: "💰",
-    lastUpdated: "27. Juli 2026",
-    publishDate: "2025-12-15",
     publishTime: "09:00"
   },
   {

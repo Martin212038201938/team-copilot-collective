@@ -205,14 +205,19 @@ const CopilotRoiBerechnen = () => {
             <CardContent>
               <div className="grid md:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <p><strong>Change Management:</strong> 10-15% der Gesamtkosten</p>
-                  <p><strong>Training & Schulung:</strong> €500-1.500 pro Mitarbeiter</p>
+                  <p><strong>Change &amp; Adoption:</strong> im Rechner 12% der jährlichen Basis aus Lizenzen, Training und IT-Setup</p>
+                  <p><strong>Training &amp; Schulung:</strong> €5.000 je Gruppe im gängigen Modell – bei 12 Teilnehmenden €416,67 pro Platz</p>
                 </div>
                 <div className="space-y-2">
-                  <p><strong>IT-Setup & Integration:</strong> Einmalig €10.000-50.000</p>
-                  <p><strong>Interne Ressourcen:</strong> Project Management, Admins</p>
+                  <p><strong>IT-Setup &amp; Einführung:</strong> einmaliger Grundaufwand plus degressive Größenstaffel je Nutzer</p>
+                  <p><strong>Weiterbildung:</strong> in Jahr 2 und 3 jeweils 50% des Trainingsbudgets aus Jahr 1</p>
                 </div>
               </div>
+              <p className="text-xs text-muted-foreground mt-4">
+                Die IT-Staffel im Rechner beginnt mit €2.500 Grundaufwand. Hinzu kommen €150 je Nutzer 1–50,
+                €75 je Nutzer 51–250, €40 je Nutzer 251–1.000 und €20 je weiterem Nutzer. So steigt der
+                Gesamtaufwand mit der Größe, während die Kosten pro Nutzer durch Skaleneffekte sinken.
+              </p>
             </CardContent>
           </Card>
         </section>
@@ -234,23 +239,39 @@ const CopilotRoiBerechnen = () => {
             </CardContent>
           </Card>
 
+          <Card className="mt-6 border-green-500/40 bg-green-50 dark:bg-green-950/20">
+            <CardHeader>
+              <CardTitle className="text-lg text-green-700 dark:text-green-400">
+                Wann ist ein ROI positiv oder negativ?
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-2 text-sm">
+                <p><strong>ROI größer als 0%:</strong> Der Nutzen ist höher als die gesamten Kosten. Die Investition hat sich im betrachteten Zeitraum amortisiert und erzeugt einen Netto-Nutzen. Ein ROI von 69% bedeutet beispielsweise: Nach Abzug aller Kosten bleiben 69 Cent Netto-Nutzen je investiertem Euro.</p>
+                <p><strong>ROI gleich 0%:</strong> Nutzen und Kosten sind gleich hoch. Das ist der Break-even – es entsteht weder ein Gewinn noch ein Verlust.</p>
+                <p><strong>ROI kleiner als 0%:</strong> Der Nutzen reicht noch nicht aus, um die gesamten Kosten zu decken. Die Investition ist im betrachteten Zeitraum defizitär. Ein ROI von −20% bedeutet beispielsweise: Von jedem investierten Euro wurden erst 80 Cent durch Nutzen zurückgewonnen.</p>
+                <p><strong>ROI von 100%:</strong> Der Netto-Nutzen entspricht zusätzlich der gesamten Investition. Der gesamte Nutzen beträgt damit das Doppelte der Kosten. 100% ist also nicht die Gewinnschwelle – die liegt bereits bei 0%.</p>
+              </div>
+            </CardContent>
+          </Card>
+
           <Card className="mt-8">
             <CardHeader>
               <CardTitle>
-                Beispielrechnung: 500 Mitarbeiter
+                Beispielrechnung: 300 Mitarbeiter
               </CardTitle>
             </CardHeader>
             <CardContent>
               {/* Kosten – identisch für beide Szenarien */}
               <div className="mb-6">
-                <h4 className="font-bold text-red-600 mb-4">Kosten (Jahr 1) – identisch für beide Prognosen</h4>
+                <h4 className="font-bold text-slate-700 dark:text-slate-300 mb-4">Kosten (Jahr 1) – identisch für beide Prognosen</h4>
                 <table className="w-full text-sm">
                   <tbody>
-                    <tr className="border-b"><td className="py-2">Lizenzen (500 × €26 × 12)</td><td className="text-right">€156.000</td></tr>
-                    <tr className="border-b"><td className="py-2">Training & Schulung (500 × €1.000)</td><td className="text-right">€500.000</td></tr>
-                    <tr className="border-b"><td className="py-2">IT-Setup</td><td className="text-right">€30.000</td></tr>
-                    <tr className="border-b"><td className="py-2">Change Management</td><td className="text-right">€25.000</td></tr>
-                    <tr className="font-bold"><td className="py-2">Gesamt (zzgl. MwSt.)</td><td className="text-right text-red-600">€711.000</td></tr>
+                    <tr className="border-b"><td className="py-2">Lizenzen (300 × €26 × 12)</td><td className="text-right">€93.600</td></tr>
+                    <tr className="border-b"><td className="py-2">Training (25 Gruppen × €5.000)</td><td className="text-right">€125.000</td></tr>
+                    <tr className="border-b"><td className="py-2">IT-Setup nach Größenstaffel</td><td className="text-right">€27.000</td></tr>
+                    <tr className="border-b"><td className="py-2">Change &amp; Adoption (12% der Basis)</td><td className="text-right">€29.472</td></tr>
+                    <tr className="font-bold"><td className="py-2">Gesamt (zzgl. MwSt.)</td><td className="text-right">€275.072</td></tr>
                   </tbody>
                 </table>
               </div>
@@ -259,41 +280,95 @@ const CopilotRoiBerechnen = () => {
               <div className="grid md:grid-cols-2 gap-8">
                 <div className="border-2 border-blue-500/30 rounded-lg p-4">
                   <h4 className="font-bold text-blue-600 mb-1">Studiennah</h4>
-                  <p className="text-xs text-muted-foreground mb-4">9 Stunden monatliche Brutto-Zeitersparnis</p>
+                  <p className="text-xs text-muted-foreground mb-4">9 Stunden Zielwert; durch Lernkurve Ø 7,99 Stunden im ersten Jahr</p>
                   <table className="w-full text-sm">
                     <tbody>
-                      <tr className="border-b"><td className="py-2">Rechnerischer Kapazitätswert</td><td className="text-right">€2.700.000</td></tr>
+                      <tr className="border-b"><td className="py-2">Rechnerischer Kapazitätswert</td><td className="text-right">€1.438.513</td></tr>
                       <tr className="border-b"><td className="py-2">Wirtschaftlich realisierbar</td><td className="text-right">50%</td></tr>
-                      <tr className="font-bold"><td className="py-2">Angesetzter Nutzen</td><td className="text-right text-blue-600">€1.350.000</td></tr>
+                      <tr className="font-bold"><td className="py-2">Angesetzter Nutzen</td><td className="text-right text-blue-600">€719.257</td></tr>
                     </tbody>
                   </table>
-                  <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-950/20 rounded-lg text-center">
-                    <p className="text-xs text-muted-foreground mb-1">ROI</p>
-                    <p className="text-3xl font-bold text-blue-600">90%</p>
+                  <div className="mt-4 p-4 bg-green-50 dark:bg-green-950/20 border border-green-500/30 rounded-lg text-center">
+                    <p className="text-xs font-semibold text-green-700 dark:text-green-400 mb-1">Positiver ROI</p>
+                    <p className="text-3xl font-bold text-green-600">161%</p>
                   </div>
                 </div>
 
                 <div className="border-2 border-orange-500/30 rounded-lg p-4 bg-orange-500/5">
                   <h4 className="font-bold text-orange-600 mb-1">Realistisch</h4>
-                  <p className="text-xs text-muted-foreground mb-4">8 Stunden monatliche Brutto-Zeitersparnis</p>
+                  <p className="text-xs text-muted-foreground mb-4">8 Stunden Zielwert; durch Lernkurve Ø 7,10 Stunden im ersten Jahr</p>
                   <table className="w-full text-sm">
                     <tbody>
-                      <tr className="border-b"><td className="py-2">Rechnerischer Kapazitätswert</td><td className="text-right">€2.400.000</td></tr>
+                      <tr className="border-b"><td className="py-2">Rechnerischer Kapazitätswert</td><td className="text-right">€1.278.678</td></tr>
                       <tr className="border-b"><td className="py-2">Wirtschaftlich realisierbar</td><td className="text-right">50%</td></tr>
-                      <tr className="font-bold"><td className="py-2">Angesetzter Nutzen</td><td className="text-right text-orange-600">€1.200.000</td></tr>
+                      <tr className="font-bold"><td className="py-2">Angesetzter Nutzen</td><td className="text-right text-orange-600">€639.339</td></tr>
                     </tbody>
                   </table>
-                  <div className="mt-4 p-4 bg-orange-50 dark:bg-orange-950/20 rounded-lg text-center">
-                    <p className="text-xs text-muted-foreground mb-1">ROI</p>
-                    <p className="text-3xl font-bold text-orange-600">69%</p>
+                  <div className="mt-4 p-4 bg-green-50 dark:bg-green-950/20 border border-green-500/30 rounded-lg text-center">
+                    <p className="text-xs font-semibold text-green-700 dark:text-green-400 mb-1">Positiver ROI</p>
+                    <p className="text-3xl font-bold text-green-600">132%</p>
                   </div>
                 </div>
               </div>
 
               <p className="text-xs text-muted-foreground mt-4 text-center">
-                Annahme: 40h/Woche Vollzeit und Durchschnittsstundensatz €50. Der angesetzte Nutzen entspricht bewusst nur 50%
-                des rechnerischen Kapazitätswerts. Qualitätsgewinne, Fehlerreduktion und agentische Tätigkeiten sind nicht eingerechnet.
+                Annahmen wie im Excel-Rechner: €50 Vollkosten-Stundensatz, alle 300 geschulten Personen, monatliche Lernkurve
+                mit 60% des Zielwerts zum Start und zwei Monaten Halbwertszeit. Nur 50% des rechnerischen Kapazitätswerts
+                werden wirtschaftlich angesetzt. Qualitätsgewinne, Fehlerreduktion und agentische Tätigkeiten sind nicht eingerechnet.
               </p>
+            </CardContent>
+          </Card>
+
+          <Card className="mt-6">
+            <CardHeader>
+              <CardTitle>
+                Zweites Beispiel: 50 Mitarbeiter
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid md:grid-cols-2 gap-8">
+                <div>
+                  <h4 className="font-bold text-slate-700 dark:text-slate-300 mb-4">Kosten im ersten Jahr</h4>
+                  <table className="w-full text-sm">
+                    <tbody>
+                      <tr className="border-b"><td className="py-2">Lizenzen (50 × €26 × 12)</td><td className="text-right">€15.600</td></tr>
+                      <tr className="border-b"><td className="py-2">Training (5 Gruppen × €5.000)</td><td className="text-right">€25.000</td></tr>
+                      <tr className="border-b"><td className="py-2">IT-Setup nach Größenstaffel</td><td className="text-right">€10.000</td></tr>
+                      <tr className="border-b"><td className="py-2">Change &amp; Adoption (12% der Basis)</td><td className="text-right">€6.072</td></tr>
+                      <tr className="font-bold"><td className="py-2">Gesamtkosten</td><td className="text-right">€56.672</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div>
+                  <h4 className="font-bold text-slate-700 dark:text-slate-300 mb-4">Ergebnis im ersten Jahr</h4>
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="border-b">
+                        <th className="py-2 text-left">Szenario</th>
+                        <th className="py-2 text-right">Nutzen</th>
+                        <th className="py-2 text-right">ROI</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className="border-b">
+                        <td className="py-2 font-semibold text-orange-600">Realistisch</td>
+                        <td className="py-2 text-right">€106.557</td>
+                        <td className="py-2 text-right font-bold text-green-600">88%</td>
+                      </tr>
+                      <tr>
+                        <td className="py-2 font-semibold text-blue-600">Studiennah</td>
+                        <td className="py-2 text-right">€119.876</td>
+                        <td className="py-2 text-right font-bold text-green-600">112%</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <p className="text-xs text-muted-foreground mt-4">
+                    Das Trainingsbudget beträgt €500 pro Person, weil für 50 Personen fünf volle Gruppen kalkuliert werden.
+                    Der geringere ROI gegenüber 300 Nutzern entsteht vor allem durch den höheren IT-Grundaufwand pro Person.
+                  </p>
+                </div>
+              </div>
             </CardContent>
           </Card>
         </section>
@@ -423,13 +498,13 @@ const CopilotRoiBerechnen = () => {
                     <p className="text-xs font-semibold text-blue-600 mb-1">Microsoft-Prognose</p>
                     <p className="text-xs">30 Min/Tag × 220 Tage = 5.500h</p>
                     <p className="text-xs">Bei €80/h = €440.000</p>
-                    <p className="font-bold text-blue-700 dark:text-blue-400 mt-1">ROI: 3.760%</p>
+                    <p className="font-bold text-green-700 dark:text-green-400 mt-1">ROI: 3.760%</p>
                   </div>
                   <div className="p-3 bg-orange-50 dark:bg-orange-950/30 rounded-lg">
                     <p className="text-xs font-semibold text-orange-600 mb-1">Unsere Einschätzung</p>
                     <p className="text-xs">15 Min/Tag × 220 Tage = 2.750h</p>
                     <p className="text-xs">Bei €80/h = €220.000</p>
-                    <p className="font-bold text-orange-700 dark:text-orange-400 mt-1">ROI: 1.830%</p>
+                    <p className="font-bold text-green-700 dark:text-green-400 mt-1">ROI: 1.830%</p>
                   </div>
                 </div>
               </CardContent>
@@ -448,13 +523,13 @@ const CopilotRoiBerechnen = () => {
                     <p className="text-xs font-semibold text-blue-600 mb-1">Studiennah</p>
                     <p className="text-xs">9h/Monat ergeben €1.620.000 Kapazitätswert</p>
                     <p className="text-xs">Davon 50% angesetzt: €810.000</p>
-                    <p className="font-bold text-blue-700 dark:text-blue-400 mt-1">ROI: 106%</p>
+                    <p className="font-bold text-green-700 dark:text-green-400 mt-1">ROI: 106%</p>
                   </div>
                   <div className="p-3 bg-orange-50 dark:bg-orange-950/30 rounded-lg">
                     <p className="text-xs font-semibold text-orange-600 mb-1">Realistisch</p>
                     <p className="text-xs">8h/Monat ergeben €1.440.000 Kapazitätswert</p>
                     <p className="text-xs">Davon 50% angesetzt: €720.000</p>
-                    <p className="font-bold text-orange-700 dark:text-orange-400 mt-1">ROI: 83%</p>
+                    <p className="font-bold text-green-700 dark:text-green-400 mt-1">ROI: 83%</p>
                   </div>
                 </div>
               </CardContent>
@@ -658,7 +733,7 @@ const CopilotRoiBerechnen = () => {
                 </div>
                 <div className="p-4 bg-orange-100 dark:bg-orange-900/30 rounded-lg text-center">
                   <p className="text-sm text-muted-foreground">Planungslogik</p>
-                  <p className="text-xl font-bold text-orange-700 dark:text-orange-400">Belastbarer Base Case</p>
+                  <p className="text-xl font-bold text-orange-700 dark:text-orange-400">Realistisches Szenario</p>
                 </div>
               </CardContent>
             </Card>
@@ -735,7 +810,7 @@ const CopilotRoiBerechnen = () => {
                 <CardHeader>
                   <CardTitle className="flex justify-between items-center">
                     <span>{item.branche}</span>
-                    <span className={`text-${item.color}-600 font-bold`}>{item.roi}</span>
+                    <span className="text-green-600 font-bold">{item.roi}</span>
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -951,13 +1026,14 @@ const CopilotRoiBerechnen = () => {
             </CardContent>
           </Card>
 
-          <div className="mt-6 grid md:grid-cols-5 gap-4">
+          <div className="mt-6 grid md:grid-cols-3 lg:grid-cols-6 gap-4">
             {[
-              { nr: "1", title: "Eingaben", desc: "Unternehmensdaten & Szenarien" },
-              { nr: "2", title: "Kosten", desc: "Automatische Kalkulation" },
-              { nr: "3", title: "Nutzen", desc: "3 Szenarien berechnet" },
-              { nr: "4", title: "Dashboard", desc: "ROI & Break-even" },
-              { nr: "5", title: "Summary", desc: "Executive Summary" }
+              { nr: "1", title: "Eingaben", desc: "Nur vier Pflichtangaben" },
+              { nr: "2", title: "Summary", desc: "ROI & Entscheidung" },
+              { nr: "3", title: "3-Jahres-Verlauf", desc: "Lernkurve & Nutzen" },
+              { nr: "4", title: "Szenarien", desc: "Realistisch & studiennah" },
+              { nr: "5", title: "Berechnung", desc: "36 Monate transparent" },
+              { nr: "6", title: "Quellen", desc: "Methodik & Prüfungen" }
             ].map((tab) => (
               <div key={tab.nr} className="p-4 bg-muted/50 rounded-lg text-center">
                 <span className="inline-block w-8 h-8 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 rounded-full font-bold text-sm leading-8 mb-2">{tab.nr}</span>
