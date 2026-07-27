@@ -9,18 +9,34 @@ import { useState } from "react";
  * und wird durch Ablegen der Logo-Dateien automatisch "echt".
  *
  * Bewusst: Grayscale, keine Verlinkung (kein Backlink-Spiel), kein Overlay.
+ * Die meisten Logos sind Bild-Wortmarken (enthalten den Firmennamen bereits
+ * grafisch) — nur bei reinen Bildmarken ohne Schriftzug (aktuell: AL Group)
+ * wird der Firmenname zusätzlich als Text darunter ausgeschrieben.
  */
 
 const customers = [
-  { name: "REWE", file: "rewe.svg" },
-  { name: "Pernod Ricard", file: "pernod-ricard.svg" },
-  { name: "Lekkerland", file: "lekkerland.svg" },
-  { name: "Marriott Hotels", file: "marriott.svg" },
-  { name: "Med360Grad", file: "med360grad.svg" },
-  { name: "IHK Nord Westfalen", file: "ihk-nord-westfalen.svg" },
+  { name: "REWE", file: "rewe.png" },
+  { name: "Pernod Ricard", file: "pernod-ricard.png" },
+  { name: "Lekkerland", file: "lekkerland.png" },
+  { name: "Marriott Hotels", file: "marriott.png" },
+  { name: "Med360Grad", file: "med360grad.png" },
+  { name: "IHK Nord Westfalen", file: "ihk-nord-westfalen.png" },
+  { name: "Abbott", file: "abbott.png" },
+  { name: "Kalorimeta", file: "kalorimeta.png" },
+  { name: "medical Wundmanagement", file: "medical-wundmanagement.png" },
+  { name: "AL Group", file: "al-group.png", showLabel: true },
+  { name: "Sun Chemical", file: "sun-chemical.png" },
 ];
 
-const LogoItem = ({ name, file }: { name: string; file: string }) => {
+const LogoItem = ({
+  name,
+  file,
+  showLabel,
+}: {
+  name: string;
+  file: string;
+  showLabel?: boolean;
+}) => {
   const [imgFailed, setImgFailed] = useState(false);
 
   if (imgFailed) {
@@ -32,13 +48,20 @@ const LogoItem = ({ name, file }: { name: string; file: string }) => {
   }
 
   return (
-    <img
-      src={`/images/customer-logos/${file}`}
-      alt={`${name} Logo`}
-      loading="lazy"
-      className="h-8 md:h-10 w-auto grayscale opacity-70 hover:opacity-100 transition-opacity"
-      onError={() => setImgFailed(true)}
-    />
+    <div className="flex flex-col items-center gap-1.5">
+      <img
+        src={`/images/customer-logos/${file}`}
+        alt={`${name} Logo`}
+        loading="lazy"
+        className="h-8 md:h-10 w-auto grayscale opacity-70 hover:opacity-100 transition-opacity"
+        onError={() => setImgFailed(true)}
+      />
+      {showLabel && (
+        <span className="text-xs text-muted-foreground/70 whitespace-nowrap">
+          {name}
+        </span>
+      )}
+    </div>
   );
 };
 
@@ -50,7 +73,7 @@ const CustomerLogos = () => (
       </p>
       <div className="mt-5 flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
         {customers.map((c) => (
-          <LogoItem key={c.name} name={c.name} file={c.file} />
+          <LogoItem key={c.name} name={c.name} file={c.file} showLabel={c.showLabel} />
         ))}
       </div>
     </div>
