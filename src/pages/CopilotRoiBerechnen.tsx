@@ -729,7 +729,7 @@ const CopilotRoiBerechnen = () => {
                   <p className="text-sm"><strong>Geschulte Nutzer:</strong> Alle werden berücksichtigt</p>
                   <p className="text-sm"><strong>Ziel-Zeitersparnis:</strong> 8 Stunden/Monat</p>
                   <p className="text-sm"><strong>Wirtschaftlich realisierbar:</strong> 50%</p>
-                  <p className="text-sm"><strong>Lernkurve:</strong> schneller Start, danach abnehmende Zuwächse</p>
+                  <p className="text-sm"><strong>Kompetenzaufbau:</strong> schneller Ramp-up zur heute belegbaren Assistenz-Baseline</p>
                 </div>
                 <div className="p-4 bg-orange-100 dark:bg-orange-900/30 rounded-lg text-center">
                   <p className="text-sm text-muted-foreground">Planungslogik</p>
@@ -751,7 +751,7 @@ const CopilotRoiBerechnen = () => {
                   <p className="text-sm"><strong>Geschulte Nutzer:</strong> Alle werden berücksichtigt</p>
                   <p className="text-sm"><strong>Ziel-Zeitersparnis:</strong> 9 Stunden/Monat</p>
                   <p className="text-sm"><strong>Wirtschaftlich realisierbar:</strong> 50%</p>
-                  <p className="text-sm"><strong>Lernkurve:</strong> identisch zum realistischen Szenario</p>
+                  <p className="text-sm"><strong>Kompetenzaufbau:</strong> identisch zum realistischen Szenario</p>
                 </div>
                 <div className="p-4 bg-blue-100 dark:bg-blue-900/30 rounded-lg text-center">
                   <p className="text-sm text-muted-foreground">Planungslogik</p>
@@ -764,7 +764,10 @@ const CopilotRoiBerechnen = () => {
           <p className="text-sm text-muted-foreground mt-4">
             Die Szenarien unterscheiden sich nicht durch eine künstliche Quote aktiver Personen. Für alle geschulten Nutzer wird eine
             durchschnittliche Zeitersparnis angesetzt. Der tatsächliche wirtschaftliche Nutzen bleibt trotzdem vorsichtig, weil nur die
-            Hälfte des rechnerischen Kapazitätswerts in die ROI-Berechnung eingeht.
+            Hälfte des rechnerischen Kapazitätswerts in die ROI-Berechnung eingeht. Die 8 beziehungsweise 9 Stunden sind dabei keine
+            langfristige Obergrenze: Sie bilden nur eine heute belegbare Assistenz-Baseline. Zusätzlicher Nutzen durch leistungsfähigere
+            Modelle, neue Funktionen und Tools, tiefere Prozessintegration sowie agentische, mehrstufige Arbeitsabläufe bleibt bewusst
+            außerhalb der Formel, solange dafür keine belastbaren und allgemein übertragbaren Benchmarks vorliegen.
           </p>
         </section>
 
@@ -1030,7 +1033,7 @@ const CopilotRoiBerechnen = () => {
             {[
               { nr: "1", title: "Eingaben", desc: "Nur vier Pflichtangaben" },
               { nr: "2", title: "Summary", desc: "ROI & Entscheidung" },
-              { nr: "3", title: "3-Jahres-Verlauf", desc: "Lernkurve & Nutzen" },
+              { nr: "3", title: "3-Jahres-Verlauf", desc: "Kumulierter Nutzen" },
               { nr: "4", title: "Szenarien", desc: "Realistisch & studiennah" },
               { nr: "5", title: "Berechnung", desc: "36 Monate transparent" },
               { nr: "6", title: "Quellen", desc: "Methodik & Prüfungen" }
