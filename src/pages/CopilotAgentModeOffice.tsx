@@ -3,6 +3,7 @@ import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import AuthorBio from "@/components/AuthorBio";
+import HoneypotCTA from "@/components/HoneypotCTA";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 import { Link } from "react-router-dom";
 
@@ -155,6 +156,12 @@ const CopilotAgentModeOffice = () => {
             </p>
           </CardContent>
         </Card>
+
+        {/* Gated Download: Excel-Praxishandbuch (prominent nach der Schnellantwort) */}
+        <HoneypotCTA
+          guideId="copilot-excel-praxishandbuch"
+          intro="Agent Mode in der Praxis: Unser 24-seitiges Handbuch zeigt Copilot in Excel von der ersten Analyse bis zum mehrstufigen Agent-Auftrag – mit und ohne Lizenz, inklusive 21 Use Cases und 20 Prompt-Vorlagen."
+        />
 
         {/* Einleitung */}
         <div className="prose prose-lg max-w-none dark:prose-invert mb-6">

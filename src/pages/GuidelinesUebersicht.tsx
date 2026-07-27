@@ -16,6 +16,8 @@ const PAGE_URL = "https://copilotenschule.de/guidelines";
  */
 const GuidelinesUebersicht = () => {
   const guides = getAvailableGuides();
+  const featuredGuides = guides.filter((g) => g.featured);
+  const regularGuides = guides.filter((g) => !g.featured);
   const hasComingSoon = ALL_GUIDES.some((g) => g.status === "coming-soon");
 
   const schema = {
@@ -101,12 +103,54 @@ const GuidelinesUebersicht = () => {
           </div>
         </section>
 
+        {/* Featured-Panel */}
+        {featuredGuides.length > 0 && (
+          <section className="pt-8 bg-background">
+            <div className="container mx-auto px-4">
+              <div className="max-w-6xl mx-auto space-y-6">
+                {featuredGuides.map((guide) => (
+                  <Link key={guide.id} to={`/guidelines/${guide.id}`} className="group block">
+                    <Card className="border-2 border-primary/50 bg-gradient-to-br from-primary/5 to-accent/10 hover:shadow-xl transition-all duration-300">
+                      <CardContent className="p-6 md:p-8">
+                        <div className="flex flex-col md:flex-row md:items-center gap-6">
+                          <div className="flex-shrink-0 text-6xl" aria-hidden="true">{guide.icon}</div>
+                          <div className="flex-1 min-w-0">
+                            <div className="flex flex-wrap items-center gap-2 mb-2">
+                              <span className="px-3 py-1 bg-primary text-primary-foreground rounded-full text-xs font-bold uppercase tracking-wide">
+                                Neu
+                              </span>
+                              <span className="text-xs font-medium text-muted-foreground">
+                                PDF · {guide.pages} Seiten · kostenlos
+                              </span>
+                            </div>
+                            <h2 className="text-2xl md:text-3xl font-bold leading-tight group-hover:text-primary transition-colors mb-2">
+                              {guide.shortTitle}
+                            </h2>
+                            <p className="text-muted-foreground leading-relaxed">{guide.description}</p>
+                            <p className="mt-2 text-xs text-muted-foreground">Für: {guide.audience}</p>
+                          </div>
+                          <div className="flex-shrink-0">
+                            <Button size="lg" className="w-full md:w-auto">
+                              <Download className="w-4 h-4" />
+                              Zum Handbuch →
+                            </Button>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
         {/* Grid */}
         <section className="pt-8 pb-16 bg-background">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {guides.map((guide) => (
+                {regularGuides.map((guide) => (
                   <Link key={guide.id} to={`/guidelines/${guide.id}`} className="group">
                     <Card className="h-full hover:shadow-xl transition-all duration-300 hover:scale-105 border-2 hover:border-primary/50">
                       <CardHeader>

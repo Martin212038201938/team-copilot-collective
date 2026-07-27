@@ -2,6 +2,7 @@ import ContentLayout from "@/components/ContentLayout";
 import SEOHead from "@/components/SEOHead";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import AuthorBio from "@/components/AuthorBio";
+import HoneypotCTA from "@/components/HoneypotCTA";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 import { Zap, Linkedin, Twitter } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -141,6 +142,12 @@ const CopilotFuerExcel = () => {
             </div>
           </div>
         </section>
+
+        {/* Gated Download: Excel-Praxishandbuch (prominent nach der Schnellantwort) */}
+        <HoneypotCTA
+          guideId="copilot-excel-praxishandbuch"
+          intro="24 Seiten geballte Praxis: Excel-Analysen mit Copilot Chat (ohne Lizenz) und dem integrierten Copilot – inklusive Agent Mode, COPILOT()-Funktion, 21 Use Cases, 20 Prompt-Vorlagen und Spickzettel."
+        />
 
         {/* Persönliche Einleitung */}
         <section id="meine-vorgeschichte" className="mb-6">

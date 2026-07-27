@@ -90,6 +90,7 @@ const App = () => (
           <Route path="/wissen" element={<Wissen />} />
           {/* Kategorie "Guidelines und Checklisten" – Gated Downloads / Honeypots */}
           <Route path="/guidelines" element={<GuidelinesUebersicht />} />
+          <Route path="/guidelines/copilot-excel-praxishandbuch" element={<GuideLandingPage guideId="copilot-excel-praxishandbuch" />} />
           <Route path="/guidelines/copilot-grounding-admin-leitfaden" element={<GuideLandingPage guideId="copilot-grounding-admin-leitfaden" />} />
           <Route path="/guidelines/copilot-grounding-management-leitfaden" element={<GuideLandingPage guideId="copilot-grounding-management-leitfaden" />} />
           <Route path="/guidelines/copilot-grounding-betriebsrat-leitfaden" element={<GuideLandingPage guideId="copilot-grounding-betriebsrat-leitfaden" />} />

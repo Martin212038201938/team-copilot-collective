@@ -148,6 +148,12 @@ const CopilotInExcelAktivieren = () => {
           </CardContent>
         </Card>
 
+        {/* Gated Download: Excel-Praxishandbuch (prominent nach der Schnellantwort) */}
+        <HoneypotCTA
+          guideId="copilot-excel-praxishandbuch"
+          intro="Nach der Aktivierung kommt die Praxis: 24 Seiten Handbuch zu Copilot in Excel – mit und ohne Lizenz, von der ersten Analyse bis zum Agent Mode. Inklusive 21 Use Cases, 20 Prompt-Vorlagen und Spickzettel."
+        />
+
         {/* Kontextueller Hinweis: Trainings */}
         <div className="mb-6 p-4 bg-muted/40 border rounded-lg text-sm">
           <p className="text-muted-foreground">

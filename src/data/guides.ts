@@ -51,6 +51,8 @@ export interface GuideData {
   lastUpdated: string;   // Anzeige-Datum, z.B. "13. Juli 2026"
   /** available = live | coming-soon = angekündigt, noch ohne PDF */
   status: "available" | "coming-soon";
+  /** Hervorgehobene Platzierung auf /guidelines (großes Hero-Panel über dem Grid) */
+  featured?: boolean;
 }
 
 /**
@@ -66,6 +68,73 @@ export const CATEGORY_LABEL = "Guidelines und Checklisten";
 
 // Alle Guides – neueste zuerst
 export const ALL_GUIDES: GuideData[] = [
+  {
+    id: "copilot-excel-praxishandbuch",
+    shortTitle: "Copilot in Excel – Das Praxishandbuch 2026",
+    title: "Copilot in Excel – Das Praxishandbuch 2026 (mit und ohne Copilot-Lizenz)",
+    description:
+      "Das komplette Praxishandbuch: Excel-Analysen mit Copilot Chat (kostenlos) und dem integrierten Copilot – bis zu Agent Mode, COPILOT()-Funktion und Python. Mit 21 Use Cases, 20 Prompts und Spickzettel.",
+    badge: "Guidelines und Checklisten",
+    icon: "📊",
+    audience: "Alle, die täglich mit Excel arbeiten – Controlling, Vertrieb, Einkauf, HR, Marketing & Assistenz",
+    pdfPath: "/downloads/Copilot-Excel-Praxishandbuch-2026.pdf",
+    fileMeta: "PDF-Handbuch",
+    pages: 24,
+    featured: true,
+    bullets: [
+      "Die drei Wege, Copilot mit Excel zu nutzen – und welcher zu Ihrer Lizenz-Situation passt (Stand Juli 2026)",
+      "Teil A: Der komplette Browser-Workflow ohne Copilot-Lizenz – Datendiagnose, Frag-warum-Dialog, Pivot-Coaching und Freitext-Analyse",
+      "Teil B: Der integrierte Copilot – Formeln vorschlagen und reparieren, Agent Mode, COPILOT()-Funktion und Python-Tiefenanalysen",
+      "Automatisierung mit Copilot als Code-Autor: Power Query, LAMBDA, Office Scripts und REGEX",
+      "21 konkrete Use Cases nach Abteilung – von Vertriebs-Pipeline bis Reisekostenprüfung, jeweils mit Prompt",
+      "20 kopierfertige Prompt-Vorlagen nach dem GCSE-Schema plus Spickzettel zum Ausdrucken",
+    ],
+    toc: [
+      "Wichtiger Hinweis / Haftungsausschluss · So nutzen Sie dieses Handbuch",
+      "1 · Drei Wege, Copilot mit Excel zu nutzen – und welcher zu Ihnen passt",
+      "2 · Die Lizenz-Realität im Juli 2026: Was ist kostenlos, was kostet",
+      "3 · Pre-Flight: Datenschutz in drei Regeln",
+      "4 · Das GCSE-Schema: So briefen Sie Copilot richtig",
+      "Teil A · Copilot Chat – Excel-Analyse ohne Copilot-Lizenz",
+      "5 · Der Browser-Workflow in vier Schritten",
+      "6 · Die drei Rollen: Analyst, Pivot-Coach, Sparringspartner",
+      "7 · Use Case: Die Datendiagnose – Ihr Standard-Einstieg",
+      "8 · Use Case: Der Frag-warum-Dialog und das Validation-Pattern",
+      "9 · Use Case: Copilot als Pivot-Coach und Diagramm-Berater",
+      "10 · Use Case: Freitexte auswerten – von 140 Kommentaren zur Maßnahmenliste",
+      "11 · Grenzen des Chat-Workflows – und die Auswege",
+      "Teil B · Der integrierte Copilot – mit Microsoft-365-Copilot-Lizenz",
+      "12 · Der integrierte Copilot im Überblick: Chat, Bearbeiten, Plan Mode",
+      "13 · Formeln: vorschlagen lassen, verstehen, reparieren",
+      "14 · Analysieren und visualisieren direkt im Arbeitsblatt",
+      "15 · Agent Mode: Copilot arbeitet mehrstufig selbstständig",
+      "16 · Die COPILOT()-Funktion: KI direkt in der Zelle",
+      "17 · Python in Excel: Tiefenanalysen ohne Programmierkenntnisse",
+      "18 · Automatisierung: Power Query, LAMBDA, Office Scripts, REGEX",
+      "19 · Use-Case-Sammlung: 21 konkrete Anwendungen nach Abteilung",
+      "20 · Die Prompt-Bibliothek: 20 kopierfertige Vorlagen",
+      "21 · Der Spickzettel für den Schreibtisch",
+      "22 · In 14 Tagen zur Routine – Ihr Transferplan",
+      "Quellen (offizielle Microsoft-Dokumentation)",
+    ],
+    seo: {
+      metaTitle: "Copilot in Excel: Das Praxishandbuch 2026 (PDF) – kostenloser Download",
+      metaDescription:
+        "Kostenloses Praxishandbuch: Microsoft Copilot in Excel nutzen – mit und ohne Lizenz. Analysen, Formeln, Agent Mode, COPILOT()-Funktion, 21 Use Cases und 20 Prompt-Vorlagen.",
+      keywords: [
+        "Copilot Excel Handbuch",
+        "Copilot in Excel PDF",
+        "Excel Copilot Prompts",
+        "Copilot Excel Use Cases",
+        "Excel Agent Mode",
+        "COPILOT Funktion Excel",
+        "Copilot Excel Anleitung",
+      ],
+    },
+    publishDate: "2026-07-27",
+    lastUpdated: "27. Juli 2026",
+    status: "available",
+  },
   {
     id: "copilot-grounding-admin-leitfaden",
     shortTitle: "Grounding und Zugriffsbeschränkung für Admins",
