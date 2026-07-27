@@ -79,7 +79,7 @@ export const ALL_GUIDES: GuideData[] = [
     audience: "Alle, die täglich mit Excel arbeiten – Controlling, Vertrieb, Einkauf, HR, Marketing & Assistenz",
     pdfPath: "/downloads/Copilot-Excel-Praxishandbuch-2026.pdf",
     fileMeta: "PDF-Handbuch",
-    pages: 30,
+    pages: 24,
     featured: true,
     bullets: [
       "Die drei Wege, Copilot mit Excel zu nutzen – und welcher zu Ihrer Lizenz-Situation passt (Stand Juli 2026)",
