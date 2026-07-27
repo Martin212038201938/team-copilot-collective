@@ -25,7 +25,6 @@ const customers = [
   { name: "Kalorimeta", file: "kalorimeta.png" },
   { name: "medical Wundmanagement", file: "medical-wundmanagement.png" },
   { name: "Atlantic-Lloyd", file: "al-group.png", showLabel: true },
-  { name: "Sun Chemical", file: "sun-chemical.png" },
   { name: "Atradius", file: "atradius.png" },
   { name: "Brand KG", file: "brand-kg.png" },
   { name: "Compositiv GmbH", file: "compositiv.png" },

@@ -8,6 +8,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import StickyBookingCTA from "@/components/StickyBookingCTA";
 import Contact from "@/components/Contact";
+import CustomerLogos from "@/components/CustomerLogos";
 import SEOHead from "@/components/SEOHead";
 import { generateTrainingsOverviewSchema } from "@/lib/schema";
 import { trainings, type Training, type CopilotTier } from "@/data/trainings";
@@ -109,6 +110,8 @@ const UnsereAngebote = () => {
       <Header />
 
       <main className="pt-24">
+        <CustomerLogos />
+
         <section id="trainings" className="py-16 bg-gradient-to-b from-muted/30 to-background relative">
           <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
@@ -117,7 +120,7 @@ const UnsereAngebote = () => {
             {/* Page Header */}
             <div className="text-center mb-12">
               <h1 className="text-5xl lg:text-7xl font-semibold tracking-tight leading-[1.1]">
-                Microsoft Copilot Trainings und Schulungen
+                <span className="text-primary">Microsoft Copilot</span> Trainings und Schulungen
               </h1>
               <p className="mt-6 text-xl text-muted-foreground max-w-3xl mx-auto animate-slide-up-delayed">
                 Praxisnahe Microsoft Copilot Trainings für Unternehmen – als Inhouse-Workshop, Live-Online-Seminar oder mehrteilige Lernreise. Konsequent auf die konkreten Bedarfe Ihrer Organisation zugeschnitten.

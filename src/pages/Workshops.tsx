@@ -155,7 +155,7 @@ const Workshops = () => {
           <div className="container mx-auto px-4 relative z-10">
             <div className="text-center mb-12 max-w-4xl mx-auto">
               <h1 className="text-5xl lg:text-7xl font-semibold tracking-tight leading-[1.1]">
-                Copilot Workshops und Events
+                <span className="text-primary">Copilot</span> Workshops und Events
               </h1>
               <p className="mt-6 text-xl text-muted-foreground max-w-3xl mx-auto">
                 Formate rund um die Einführung von Microsoft Copilot: Strategie-Workshops, Hackathons, Keynotes, Launch-Events und ein begleitendes Change-Programm – für Entscheider, Change-Verantwortliche und Fachbereiche.
