@@ -10,8 +10,8 @@ import { useState } from "react";
  *
  * Bewusst: Grayscale, keine Verlinkung (kein Backlink-Spiel), kein Overlay.
  * Die meisten Logos sind Bild-Wortmarken (enthalten den Firmennamen bereits
- * grafisch) — nur bei reinen Bildmarken ohne Schriftzug (aktuell: AL Group)
- * wird der Firmenname zusätzlich als Text darunter ausgeschrieben.
+ * grafisch) — nur bei reinen Bildmarken ohne Schriftzug (aktuell: Atlantic-
+ * Lloyd) wird der Firmenname zusätzlich als Text darunter ausgeschrieben.
  */
 
 const customers = [
@@ -24,8 +24,13 @@ const customers = [
   { name: "Abbott", file: "abbott.png" },
   { name: "Kalorimeta", file: "kalorimeta.png" },
   { name: "medical Wundmanagement", file: "medical-wundmanagement.png" },
-  { name: "AL Group", file: "al-group.png", showLabel: true },
+  { name: "Atlantic-Lloyd", file: "al-group.png", showLabel: true },
   { name: "Sun Chemical", file: "sun-chemical.png" },
+  { name: "Atradius", file: "atradius.png" },
+  { name: "Brand KG", file: "brand-kg.png" },
+  { name: "Compositiv GmbH", file: "compositiv.png" },
+  { name: "Kommunales Bildungswerk", file: "kommunales-bildungswerk.png" },
+  { name: "Eckpfeiler Immobilien", file: "eckpfeiler-immobilien.png" },
 ];
 
 const LogoItem = ({
