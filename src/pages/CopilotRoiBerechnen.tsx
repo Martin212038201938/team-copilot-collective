@@ -20,8 +20,9 @@ const CopilotRoiBerechnen = () => {
     { id: "was-kostet-copilot", title: "Was kostet Microsoft Copilot?", level: 2 },
     { id: "roi-formel", title: "ROI-Berechnung: Die Formel", level: 2 },
     { id: "produktivitaetsgewinne", title: "Messbare Produktivitätsgewinne", level: 2 },
+    { id: "studienlage", title: "Was aktuelle Studien zeigen", level: 2 },
     { id: "kpis", title: "KPIs zur Erfolgsmessung", level: 2 },
-    { id: "szenarien", title: "Verschiedene ROI-Szenarien", level: 2 },
+    { id: "szenarien", title: "Zwei plausible ROI-Szenarien", level: 2 },
     { id: "branchen-roi", title: "Branchenspezifische ROI-Beispiele", level: 2 },
     { id: "erfolgsfaktoren", title: "Kritische Erfolgsfaktoren", level: 2 },
     { id: "fehler", title: "Häufige Fehler bei der ROI-Berechnung", level: 2 },
@@ -38,11 +39,11 @@ const CopilotRoiBerechnen = () => {
     },
     {
       name: "Wie berechne ich den ROI von Microsoft Copilot für unser Unternehmen realistisch?",
-      answer: "Der ROI ergibt sich aus: (Zeitersparnis × Stundensatz × Nutzerzahl) - Lizenzkosten - Implementierungskosten. Microsoft-Studien zeigen 9 Stunden Zeitersparnis pro Nutzer/Monat – wir empfehlen, diesen Wert zu halbieren (~4,5h), da die vollen Gewinne gezielte Schulung und Workflow-Änderungen voraussetzen. Die Copilotenschule unterstützt Sie mit Excel-Vorlagen, branchenspezifischen Benchmarks und begleitenden Schulungsprogrammen."
+      answer: "Der ROI ergibt sich aus: (Zeitersparnis × Stundensatz × Nutzerzahl) - Lizenzkosten - Implementierungskosten. Aktuelle Untersuchungen liegen je nach Methodik bei rund 6,9 bis 9,4 Stunden Zeitersparnis pro Nutzer und Monat. Für eine realistische Planung setzen wir 8 Stunden als Zielwert an und rechnen wirtschaftlich vorsichtig nur mit 50% des rechnerischen Kapazitätswerts. Die Copilotenschule unterstützt Sie mit Excel-Vorlagen, Benchmarks und begleitenden Schulungsprogrammen."
     },
     {
       name: "Wann amortisiert sich die Copilot-Investition typischerweise?",
-      answer: "Mit begleitender Schulung und Change Management rechnen wir mit einem Break-even nach ca. 10 Monaten. Ohne diese Maßnahmen kann sich die Amortisation auf über 24 Monate verzögern. Der Break-even liegt bei etwa 2-3 Stunden Zeitersparnis pro Nutzer und Monat – das setzt aber voraus, dass Nutzer ihre Arbeitsweise aktiv anpassen. Die Copilotenschule hilft Ihnen, realistische Szenarien für Ihre Branche zu entwickeln und die Adoption gezielt zu beschleunigen."
+      answer: "Der Break-even hängt vor allem von Nutzerzahl, Stundensatz, Lizenzkosten, Einführungsaufwand und erreichter Zeitersparnis ab. Deshalb sollte er aus den konkreten Unternehmensdaten berechnet und über mindestens drei Jahre verfolgt werden. Die Copilotenschule hilft Ihnen, ein realistisches und ein studiennahes Szenario aufzubauen und die Lernkurve durch gezielte Schulung zu beschleunigen."
     },
     {
       name: "Welche KPIs sollten wir für die Copilot-Erfolgsmessung definieren?",
@@ -67,7 +68,7 @@ const CopilotRoiBerechnen = () => {
           "@id": "https://copilotenschule.de/#organization"
         },
         "datePublished": "2025-11-07",
-        "dateModified": "2026-03-09",
+        "dateModified": "2026-07-27",
         "keywords": ["Copilot ROI","Microsoft Copilot ROI berechnen","Copilot Business Case","Copilot Kosten Nutzen","Return on Investment Copilot","Copilot Produktivitätssteigerung"],
         "articleSection": "Business",
         "mainEntityOfPage": {
@@ -109,7 +110,7 @@ const CopilotRoiBerechnen = () => {
         canonicalUrl={pageUrl}
         schema={schema}
         publishedTime="2025-11-07"
-        modifiedTime="2026-03-09"
+        modifiedTime="2026-07-27"
         author={martinLang}
       />
       <ContentLayout
@@ -121,7 +122,7 @@ const CopilotRoiBerechnen = () => {
         description="Konkrete Methoden zur ROI-Berechnung von Microsoft Copilot. Mit Excel-Vorlage, Praxisbeispielen und messbaren KPIs für Ihr Business Case."
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
-        lastUpdated="09. März 2026"
+        lastUpdated="27. Juli 2026"
         relatedContent={["wissen:copilot-roi-erfolgsgeschichten", "wissen:copilot-adoption-2026-zahlen", "wissen:ki-realitaet-beratungsfirmen-2026", "workshop:copilot-strategie-change-management", "wissen:copilot-unternehmensweit-einfuehren"]}
       >
         {/* Schnellantwort-Card */}
@@ -133,13 +134,11 @@ const CopilotRoiBerechnen = () => {
           </CardHeader>
           <CardContent>
             <p className="text-base leading-relaxed">
-              Laut Forrester TEI-Studie sparen Copilot-Nutzer durchschnittlich <strong>9 Stunden pro Monat</strong>.
-              Bei €26/Monat pro Lizenz (zzgl. MwSt.) und einem Stundensatz von €50 ergibt das €450 Nutzen vs. €26 Kosten –
-              ein ROI von <strong>1.631% pro aktivem Nutzer</strong>. <strong>Unsere realistische Einschätzung</strong> halbiert diese Werte bewusst:
-              Aus Erfahrung erreichen die meisten Unternehmen die vollen Studienwerte erst nach intensiver Schulung und konsequentem <Link to="/workshops/copilot-strategie-change-management" className="text-primary hover:underline">Change Management</Link>.
-              Ohne Training liegt die aktive Nutzung oft bei nur 5-15%.
+              Aktuelle Untersuchungen verorten die Zeitersparnis durch Microsoft 365 Copilot je nach Methodik bei ungefähr <strong>6,9 bis 9,4 Stunden pro Nutzer und Monat</strong>.
+              Für einen belastbaren Business Case rechnen wir mit einem realistischen Zielwert von <strong>8 Stunden</strong> und setzen davon nur 50% als wirtschaftlich realisierbaren Kapazitätswert an.
+              Gezielte Schulung und konsequentes <Link to="/workshops/copilot-strategie-change-management" className="text-primary hover:underline">Change Management</Link> sind nötig, damit aus technischem Zugang tatsächlich nutzbare Kompetenz entsteht.
               Echte <Link to="/wissen/copilot-roi-erfolgsgeschichten" className="text-primary hover:underline">Erfolgsgeschichten</Link> zeigen,
-              wie Unternehmen diese Zahlen konkret erreicht haben. Diese Seite liefert Ihnen alle Formeln, Szenarien und eine <strong>kostenlose Excel-Vorlage</strong> für Ihren Business Case.
+              wie Unternehmen diese Zahlen konkret erreicht haben. Diese Seite liefert Ihnen die Formeln, zwei nachvollziehbare Szenarien und eine <strong>kostenlose Excel-Vorlage</strong> für Ihren Business Case.
             </p>
           </CardContent>
         </Card>
@@ -259,44 +258,41 @@ const CopilotRoiBerechnen = () => {
               {/* Zwei Prognosen nebeneinander */}
               <div className="grid md:grid-cols-2 gap-8">
                 <div className="border-2 border-blue-500/30 rounded-lg p-4">
-                  <h4 className="font-bold text-blue-600 mb-1">Microsoft-Prognose</h4>
-                  <p className="text-xs text-muted-foreground mb-4">Basierend auf Forrester TEI Study</p>
+                  <h4 className="font-bold text-blue-600 mb-1">Studiennah</h4>
+                  <p className="text-xs text-muted-foreground mb-4">9 Stunden monatliche Brutto-Zeitersparnis</p>
                   <table className="w-full text-sm">
                     <tbody>
-                      <tr className="border-b"><td className="py-2">Zeitersparnis (9h/Monat ≈ 5,2%)</td><td className="text-right">€2.700.000</td></tr>
-                      <tr className="border-b"><td className="py-2">Fehlerreduktion</td><td className="text-right">€100.000</td></tr>
-                      <tr className="border-b"><td className="py-2">Schnelleres Onboarding</td><td className="text-right">€50.000</td></tr>
-                      <tr className="font-bold"><td className="py-2">Gesamt</td><td className="text-right text-blue-600">€2.850.000</td></tr>
+                      <tr className="border-b"><td className="py-2">Rechnerischer Kapazitätswert</td><td className="text-right">€2.700.000</td></tr>
+                      <tr className="border-b"><td className="py-2">Wirtschaftlich realisierbar</td><td className="text-right">50%</td></tr>
+                      <tr className="font-bold"><td className="py-2">Angesetzter Nutzen</td><td className="text-right text-blue-600">€1.350.000</td></tr>
                     </tbody>
                   </table>
                   <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-950/20 rounded-lg text-center">
-                    <p className="text-xs text-muted-foreground mb-1">ROI (Microsoft-Prognose)</p>
-                    <p className="text-3xl font-bold text-blue-600">301%</p>
+                    <p className="text-xs text-muted-foreground mb-1">ROI</p>
+                    <p className="text-3xl font-bold text-blue-600">90%</p>
                   </div>
                 </div>
 
                 <div className="border-2 border-orange-500/30 rounded-lg p-4 bg-orange-500/5">
-                  <h4 className="font-bold text-orange-600 mb-1">Unsere realistische Einschätzung</h4>
-                  <p className="text-xs text-muted-foreground mb-4">Halbierte Werte – basierend auf Erfahrung mit Lernkurven und Schulungsbedarf</p>
+                  <h4 className="font-bold text-orange-600 mb-1">Realistisch</h4>
+                  <p className="text-xs text-muted-foreground mb-4">8 Stunden monatliche Brutto-Zeitersparnis</p>
                   <table className="w-full text-sm">
                     <tbody>
-                      <tr className="border-b"><td className="py-2">Zeitersparnis (4,5h/Monat ≈ 2,6%)</td><td className="text-right">€1.350.000</td></tr>
-                      <tr className="border-b"><td className="py-2">Fehlerreduktion</td><td className="text-right">€50.000</td></tr>
-                      <tr className="border-b"><td className="py-2">Schnelleres Onboarding</td><td className="text-right">€25.000</td></tr>
-                      <tr className="font-bold"><td className="py-2">Gesamt</td><td className="text-right text-orange-600">€1.425.000</td></tr>
+                      <tr className="border-b"><td className="py-2">Rechnerischer Kapazitätswert</td><td className="text-right">€2.400.000</td></tr>
+                      <tr className="border-b"><td className="py-2">Wirtschaftlich realisierbar</td><td className="text-right">50%</td></tr>
+                      <tr className="font-bold"><td className="py-2">Angesetzter Nutzen</td><td className="text-right text-orange-600">€1.200.000</td></tr>
                     </tbody>
                   </table>
                   <div className="mt-4 p-4 bg-orange-50 dark:bg-orange-950/20 rounded-lg text-center">
-                    <p className="text-xs text-muted-foreground mb-1">ROI (unsere Einschätzung)</p>
-                    <p className="text-3xl font-bold text-orange-600">100%</p>
+                    <p className="text-xs text-muted-foreground mb-1">ROI</p>
+                    <p className="text-3xl font-bold text-orange-600">69%</p>
                   </div>
                 </div>
               </div>
 
               <p className="text-xs text-muted-foreground mt-4 text-center">
-                Annahme: 40h/Woche Vollzeit, Durchschnittsstundensatz €50. Unsere Einschätzung basiert auf
-                Praxiserfahrung: Die vollen Produktivitätsgewinne erfordern grundlegende Verhaltens- und Workflow-Änderungen bei den Nutzern,
-                die nur durch begleitende Schulungen und kontinuierliche Betreuung erreichbar sind.
+                Annahme: 40h/Woche Vollzeit und Durchschnittsstundensatz €50. Der angesetzte Nutzen entspricht bewusst nur 50%
+                des rechnerischen Kapazitätswerts. Qualitätsgewinne, Fehlerreduktion und agentische Tätigkeiten sind nicht eingerechnet.
               </p>
             </CardContent>
           </Card>
@@ -313,16 +309,16 @@ const CopilotRoiBerechnen = () => {
             <Card className="border-2 border-blue-500/30 bg-gradient-to-br from-blue-500/5 to-cyan-500/5">
               <CardContent className="pt-6">
                 <div className="text-center">
-                  <p className="text-xs font-semibold text-blue-600 mb-1 uppercase tracking-wider">Microsoft-Prognose</p>
+                  <p className="text-xs font-semibold text-blue-600 mb-1 uppercase tracking-wider">Studiennahes Szenario</p>
                   <p className="text-5xl font-bold text-blue-600 mb-2">9h</p>
                   <p className="text-lg font-semibold mb-1">Zeitersparnis pro Monat</p>
                   <p className="text-sm text-muted-foreground">pro aktivem Nutzer (≈ 5,2% bei 40h/Woche)</p>
                   <p className="text-xs text-muted-foreground mt-3 border-t pt-3">Quelle: Forrester TEI Study</p>
                 </div>
                 <div className="mt-4 p-3 bg-orange-50 dark:bg-orange-950/20 rounded-lg text-center">
-                  <p className="text-xs font-semibold text-orange-600 uppercase tracking-wider">Unsere Einschätzung</p>
-                  <p className="text-2xl font-bold text-orange-600">4,5h</p>
-                  <p className="text-xs text-muted-foreground">≈ 2,6% – erreichbar mit gezielter Schulung und Workflow-Anpassung</p>
+                  <p className="text-xs font-semibold text-orange-600 uppercase tracking-wider">Realistisches Szenario</p>
+                  <p className="text-2xl font-bold text-orange-600">8h</p>
+                  <p className="text-xs text-muted-foreground">Zielwert bei strukturierter Lernreise und Workflow-Anpassung</p>
                 </div>
               </CardContent>
             </Card>
@@ -345,19 +341,10 @@ const CopilotRoiBerechnen = () => {
             </Card>
           </div>
 
-          <div className="my-6">
-            <img
-              src="/images/charts/roi-microsoft-vs-realistisch.png"
-              alt="Balkendiagramm: Copilot-Produktivitätsgewinne – Microsoft-Prognose vs. realistische Einschätzung"
-              className="w-full rounded-lg"
-              loading="lazy"
-            />
-          </div>
-
           <p className="text-sm text-muted-foreground mb-8">
-            <strong>Warum halbieren wir die Microsoft-Werte?</strong> Die Studien bilden idealisierte Bedingungen ab. In der Praxis erfordern
-            Produktivitätsgewinne grundlegende Verhaltens- und Workflow-Änderungen bei den Nutzern. Ohne gezielte Schulung, begleitendes
-            Coaching und kontinuierliche Betreuung bleiben die Gewinne deutlich hinter den Studienwerten zurück.
+            <strong>Warum liegt das realistische Szenario nur knapp unter dem Studienwert?</strong> Neuere Untersuchungen mit großen Nutzergruppen
+            bestätigen eine Größenordnung nahe acht bis neun Stunden pro Monat. Vorsicht entsteht im Business Case nicht durch eine künstlich
+            niedrige Zeitersparnis, sondern dadurch, dass nur 50% des rechnerischen Kapazitätswerts als wirtschaftlich realisierbar angesetzt werden.
           </p>
 
           <div className="grid md:grid-cols-2 gap-6">
@@ -458,21 +445,119 @@ const CopilotRoiBerechnen = () => {
                 <p className="text-sm mb-4">Training: €1.000 × 300 = €300.000 → <strong>Gesamt: €393.600</strong></p>
                 <div className="grid grid-cols-2 gap-3">
                   <div className="p-3 bg-blue-50 dark:bg-blue-950/30 rounded-lg">
-                    <p className="text-xs font-semibold text-blue-600 mb-1">Microsoft-Prognose</p>
-                    <p className="text-xs">9h/Monat × 12 × 300 = 32.400h</p>
-                    <p className="text-xs">Bei €50/h = €1.620.000</p>
-                    <p className="font-bold text-blue-700 dark:text-blue-400 mt-1">ROI: 312%</p>
+                    <p className="text-xs font-semibold text-blue-600 mb-1">Studiennah</p>
+                    <p className="text-xs">9h/Monat ergeben €1.620.000 Kapazitätswert</p>
+                    <p className="text-xs">Davon 50% angesetzt: €810.000</p>
+                    <p className="font-bold text-blue-700 dark:text-blue-400 mt-1">ROI: 106%</p>
                   </div>
                   <div className="p-3 bg-orange-50 dark:bg-orange-950/30 rounded-lg">
-                    <p className="text-xs font-semibold text-orange-600 mb-1">Unsere Einschätzung</p>
-                    <p className="text-xs">4,5h/Monat × 12 × 300 = 16.200h</p>
-                    <p className="text-xs">Bei €50/h = €810.000</p>
-                    <p className="font-bold text-orange-700 dark:text-orange-400 mt-1">ROI: 106%</p>
+                    <p className="text-xs font-semibold text-orange-600 mb-1">Realistisch</p>
+                    <p className="text-xs">8h/Monat ergeben €1.440.000 Kapazitätswert</p>
+                    <p className="text-xs">Davon 50% angesetzt: €720.000</p>
+                    <p className="font-bold text-orange-700 dark:text-orange-400 mt-1">ROI: 83%</p>
                   </div>
                 </div>
               </CardContent>
             </Card>
           </div>
+        </section>
+
+        {/* Aktuelle Studienlage */}
+        <section id="studienlage">
+          <h2 id="studienlage-heading" className="text-2xl md:text-3xl font-bold mb-3">
+            Was aktuelle Studien zur Zeitersparnis zeigen
+          </h2>
+
+          <p className="text-muted-foreground mb-6">
+            Die neueren Untersuchungen liefern keinen universellen Wert für jedes Unternehmen. Sie grenzen aber eine belastbare
+            Größenordnung ein: Bei regelmäßiger Nutzung von Microsoft 365 Copilot als persönlichem Arbeitsassistenten liegen die
+            beobachteten oder berichteten Einsparungen überwiegend nahe sieben bis neun Stunden pro Monat.
+          </p>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            <Card className="border-t-4 border-t-blue-500">
+              <CardHeader>
+                <CardTitle className="text-lg">DWP-Evaluation 2026</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-3xl font-bold text-blue-600 mb-2">19 Min./Tag</p>
+                <p className="text-sm text-muted-foreground mb-3">
+                  Rund 6,9 Stunden pro Monat. Die Evaluation umfasste 3.549 Beschäftigte und arbeitete mit einer Vergleichsgruppe
+                  und Regressionsanalysen. Die Zeitangaben waren dennoch selbstberichtet; außerdem gab es keine zufällige Zuteilung
+                  und keine Messung vor Beginn des Versuchs.
+                </p>
+                <a
+                  href="https://www.gov.uk/government/publications/an-evaluation-of-dwps-microsoft-copilot-365-trial/an-evaluation-of-dwps-microsoft-365-copilot-trial"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm font-semibold text-primary hover:underline"
+                >
+                  DWP-Evaluation öffnen
+                </a>
+              </CardContent>
+            </Card>
+
+            <Card className="border-t-4 border-t-indigo-500">
+              <CardHeader>
+                <CardTitle className="text-lg">Britische Regierung 2025</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-3xl font-bold text-indigo-600 mb-2">26 Min./Tag</p>
+                <p className="text-sm text-muted-foreground mb-3">
+                  Rund 9,4 Stunden pro Monat in einem Versuch mit 20.000 Beschäftigten. Nach Rollout- und Change-Maßnahmen stieg
+                  die aktive Nutzung schnell auf 83% und stabilisierte sich bei etwa 80%. Auch hier wurde die Zeitersparnis von
+                  den Teilnehmenden selbst eingeschätzt.
+                </p>
+                <a
+                  href="https://www.gov.uk/government/publications/microsoft-365-copilot-experiment-cross-government-findings-report/microsoft-365-copilot-experiment-cross-government-findings-report-html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm font-semibold text-primary hover:underline"
+                >
+                  Regierungsstudie öffnen
+                </a>
+              </CardContent>
+            </Card>
+
+            <Card className="border-t-4 border-t-teal-500">
+              <CardHeader>
+                <CardTitle className="text-lg">OECD-Übersicht 2025</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-3xl font-bold text-teal-600 mb-2">Stark abhängig</p>
+                <p className="text-sm text-muted-foreground mb-3">
+                  Die OECD-Auswertung experimenteller Forschung zeigt: Der Effekt hängt wesentlich von Aufgabe, Erfahrung und
+                  Qualität der Zusammenarbeit zwischen Mensch und KI ab. Deshalb sollte ein Business Case mit Szenarien arbeiten
+                  und die tatsächliche Wirkung nach dem Rollout messen.
+                </p>
+                <a
+                  href="https://www.oecd.org/en/publications/the-effects-of-generative-ai-on-productivity-innovation-and-entrepreneurship_b21df222-en.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm font-semibold text-primary hover:underline"
+                >
+                  OECD-Studie öffnen
+                </a>
+              </CardContent>
+            </Card>
+          </div>
+
+          <Card className="mt-6 border-orange-500/40 bg-orange-50 dark:bg-orange-950/20">
+            <CardHeader>
+              <CardTitle className="text-lg text-orange-700 dark:text-orange-400">
+                Diese Studien messen überwiegend KI als Assistent – nicht als Agent
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm leading-relaxed">
+                Die genannten Werte entstehen vor allem beim Zusammenfassen, Formulieren, Suchen, Vorbereiten und Überarbeiten:
+                Ein Mensch gibt einzelne Aufgaben an die KI und prüft das Ergebnis. Agentische Systeme gehen weiter. Sie können
+                mehrstufige Abläufe planen, Informationen aus mehreren Quellen verarbeiten und definierte Arbeitsschritte selbstständig
+                ausführen. Dadurch ist zusätzliche Zeitersparnis möglich. Für den heutigen Business Case rechnen wir diesen möglichen
+                Mehrwert bewusst noch nicht ein, weil belastbare Langzeitdaten und unternehmensübergreifende Vergleichswerte dafür fehlen.
+            </p>
+            </CardContent>
+          </Card>
         </section>
 
         {/* KPIs */}
@@ -552,28 +637,10 @@ const CopilotRoiBerechnen = () => {
         {/* Szenarien */}
         <section id="szenarien">
           <h2 id="szenarien-heading" className="text-2xl md:text-3xl font-bold mb-3">
-            Verschiedene ROI-Szenarien
+            Zwei plausible ROI-Szenarien
           </h2>
 
-          <div className="grid md:grid-cols-3 gap-6">
-            <Card className="border-t-4 border-t-gray-400">
-              <CardHeader>
-                <CardTitle className="text-lg">Konservativ</CardTitle>
-                <p className="text-xs text-muted-foreground">Ohne begleitende Schulung</p>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-3 mb-6">
-                  <p className="text-sm"><strong>Adoption:</strong> 30%</p>
-                  <p className="text-sm"><strong>Produktivität:</strong> +8%</p>
-                  <p className="text-sm"><strong>Lernkurve:</strong> 9+ Monate</p>
-                </div>
-                <div className="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg text-center">
-                  <p className="text-sm text-muted-foreground">Break-even</p>
-                  <p className="text-2xl font-bold">24+ Monate</p>
-                </div>
-              </CardContent>
-            </Card>
-
+          <div className="grid md:grid-cols-2 gap-6">
             <Card className="border-t-4 border-t-orange-500 ring-2 ring-orange-500/20">
               <CardHeader>
                 <CardTitle className="text-lg flex items-center gap-2">
@@ -584,13 +651,14 @@ const CopilotRoiBerechnen = () => {
               </CardHeader>
               <CardContent>
                 <div className="space-y-3 mb-6">
-                  <p className="text-sm"><strong>Adoption:</strong> 60%</p>
-                  <p className="text-sm"><strong>Produktivität:</strong> +15%</p>
-                  <p className="text-sm"><strong>Lernkurve:</strong> 4 Monate</p>
+                  <p className="text-sm"><strong>Geschulte Nutzer:</strong> Alle werden berücksichtigt</p>
+                  <p className="text-sm"><strong>Ziel-Zeitersparnis:</strong> 8 Stunden/Monat</p>
+                  <p className="text-sm"><strong>Wirtschaftlich realisierbar:</strong> 50%</p>
+                  <p className="text-sm"><strong>Lernkurve:</strong> schneller Start, danach abnehmende Zuwächse</p>
                 </div>
                 <div className="p-4 bg-orange-100 dark:bg-orange-900/30 rounded-lg text-center">
-                  <p className="text-sm text-muted-foreground">Break-even</p>
-                  <p className="text-2xl font-bold text-orange-700 dark:text-orange-400">10 Monate</p>
+                  <p className="text-sm text-muted-foreground">Planungslogik</p>
+                  <p className="text-xl font-bold text-orange-700 dark:text-orange-400">Belastbarer Base Case</p>
                 </div>
               </CardContent>
             </Card>
@@ -598,38 +666,30 @@ const CopilotRoiBerechnen = () => {
             <Card className="border-t-4 border-t-blue-500">
               <CardHeader>
                 <CardTitle className="text-lg flex items-center gap-2">
-                  Optimistisch
-                  <span className="text-xs bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 px-2 py-0.5 rounded">Microsoft-Studien</span>
+                  Studiennah
+                  <span className="text-xs bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 px-2 py-0.5 rounded">Vergleichswert</span>
                 </CardTitle>
-                <p className="text-xs text-muted-foreground">Ideal: hohe Adoption + intensives Training</p>
+                <p className="text-xs text-muted-foreground">Nahe an Forrester und der britischen Regierungsstudie</p>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3 mb-6">
-                  <p className="text-sm"><strong>Adoption:</strong> 90%</p>
-                  <p className="text-sm"><strong>Produktivität:</strong> +30%</p>
-                  <p className="text-sm"><strong>Lernkurve:</strong> 1 Monat</p>
+                  <p className="text-sm"><strong>Geschulte Nutzer:</strong> Alle werden berücksichtigt</p>
+                  <p className="text-sm"><strong>Ziel-Zeitersparnis:</strong> 9 Stunden/Monat</p>
+                  <p className="text-sm"><strong>Wirtschaftlich realisierbar:</strong> 50%</p>
+                  <p className="text-sm"><strong>Lernkurve:</strong> identisch zum realistischen Szenario</p>
                 </div>
                 <div className="p-4 bg-blue-100 dark:bg-blue-900/30 rounded-lg text-center">
-                  <p className="text-sm text-muted-foreground">Break-even</p>
-                  <p className="text-2xl font-bold text-blue-700 dark:text-blue-400">4 Monate</p>
+                  <p className="text-sm text-muted-foreground">Planungslogik</p>
+                  <p className="text-xl font-bold text-blue-700 dark:text-blue-400">Studiennaher Vergleich</p>
                 </div>
               </CardContent>
             </Card>
           </div>
 
-          <div className="my-6">
-            <img
-              src="/images/charts/roi-breakeven-szenarien.png"
-              alt="Balkendiagramm: Copilot ROI Break-even nach Szenario – konservativ 24 Monate, realistisch 10 Monate, optimistisch 4 Monate"
-              className="w-full rounded-lg"
-              loading="lazy"
-            />
-          </div>
-
           <p className="text-sm text-muted-foreground mt-4">
-            Das „Konservativ"-Szenario zeigt, was passiert, wenn Copilot ohne begleitende Maßnahmen ausgerollt wird – ein häufiger Fehler.
-            Unser „Realistisch"-Szenario setzt gezielte Schulungen und Workflow-Anpassungen voraus. Die Microsoft-Werte im „Optimistisch"-Szenario
-            sind unter Idealbedingungen erreichbar, erfordern aber maximale Adoption und intensives Change Management.
+            Die Szenarien unterscheiden sich nicht durch eine künstliche Quote aktiver Personen. Für alle geschulten Nutzer wird eine
+            durchschnittliche Zeitersparnis angesetzt. Der tatsächliche wirtschaftliche Nutzen bleibt trotzdem vorsichtig, weil nur die
+            Hälfte des rechnerischen Kapazitätswerts in die ROI-Berechnung eingeht.
           </p>
         </section>
 
@@ -640,7 +700,7 @@ const CopilotRoiBerechnen = () => {
           </h2>
 
           <p className="text-sm text-muted-foreground mb-6">
-            Die folgenden Werte basieren auf Microsoft-Studien, die wir auf Basis unserer Praxiserfahrung halbiert haben.
+            Die folgenden Werte orientieren sich an veröffentlichten Studien und werden als Planungswerte eingeordnet.
             Die tatsächlichen Gewinne hängen stark von der Qualität der Einführung, der Schulung und dem Change Management ab.
           </p>
 
@@ -954,6 +1014,21 @@ const CopilotRoiBerechnen = () => {
                 href: "https://www.forrester.com/report/the-total-economic-impact-of-microsoft-365-copilot/RES181868",
                 title: "Forrester TEI Study",
                 desc: "9 Stunden Zeitersparnis pro Nutzer/Monat"
+              },
+              {
+                href: "https://www.gov.uk/government/publications/an-evaluation-of-dwps-microsoft-copilot-365-trial/an-evaluation-of-dwps-microsoft-365-copilot-trial",
+                title: "DWP Microsoft 365 Copilot Evaluation",
+                desc: "19 Minuten Zeitersparnis pro Tag bei 3.549 Beschäftigten"
+              },
+              {
+                href: "https://www.gov.uk/government/publications/microsoft-365-copilot-experiment-cross-government-findings-report/microsoft-365-copilot-experiment-cross-government-findings-report-html",
+                title: "UK Cross-Government Copilot Experiment",
+                desc: "26 Minuten täglich bei 20.000 Beschäftigten"
+              },
+              {
+                href: "https://www.oecd.org/en/publications/the-effects-of-generative-ai-on-productivity-innovation-and-entrepreneurship_b21df222-en.html",
+                title: "OECD: Generative AI und Produktivität",
+                desc: "Übersicht experimenteller Forschung und ihrer Grenzen"
               },
               {
                 href: "https://github.blog/news-insights/research/research-quantifying-github-copilots-impact-on-developer-productivity-and-happiness/",

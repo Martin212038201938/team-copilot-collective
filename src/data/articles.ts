@@ -512,7 +512,7 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/copilot-roi-berechnen",
     badge: "ROI",
     icon: "💰",
-    lastUpdated: "09. März 2026",
+    lastUpdated: "27. Juli 2026",
     publishDate: "2025-12-15",
     publishTime: "09:00"
   },
