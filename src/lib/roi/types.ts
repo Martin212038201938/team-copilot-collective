@@ -67,7 +67,6 @@ export type PresentationOptions = {
   initiativeTitle?: string;
   presenterName?: string;
   presentationDate: string;
-  logoDataUrl?: string;
 };
 
 export type RoiBusinessCase = {

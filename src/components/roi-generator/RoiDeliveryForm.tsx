@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Link } from "react-router-dom";
-import { Loader2, CheckCircle2, Image as ImageIcon, X } from "lucide-react";
+import { Loader2, CheckCircle2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { trackConversion, markConvertedSession } from "@/lib/analytics";
 import type { RoiBusinessCase } from "@/lib/roi/types";
@@ -15,8 +15,6 @@ type Props = {
   businessCase: RoiBusinessCase;
 };
 
-const MAX_LOGO_BYTES = 2 * 1024 * 1024;
-
 const RoiDeliveryForm = ({ businessCase }: Props) => {
   const { toast } = useToast();
   const renderedAtRef = useRef<number>(Date.now());
@@ -25,8 +23,6 @@ const RoiDeliveryForm = ({ businessCase }: Props) => {
   const [consent, setConsent] = useState(false);
   const [initiativeTitle, setInitiativeTitle] = useState("");
   const [presenterName, setPresenterName] = useState("");
-  const [logoDataUrl, setLogoDataUrl] = useState<string | undefined>(undefined);
-  const [logoError, setLogoError] = useState<string | null>(null);
 
   const [step, setStep] = useState<"idle" | "building" | "uploading" | "done" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -34,23 +30,6 @@ const RoiDeliveryForm = ({ businessCase }: Props) => {
   useEffect(() => {
     renderedAtRef.current = Date.now();
   }, []);
-
-  const handleLogoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    setLogoError(null);
-    if (!file) return;
-    if (!["image/png", "image/jpeg"].includes(file.type)) {
-      setLogoError("Bitte nur PNG oder JPEG hochladen.");
-      return;
-    }
-    if (file.size > MAX_LOGO_BYTES) {
-      setLogoError("Das Logo darf maximal 2 MB groß sein.");
-      return;
-    }
-    const reader = new FileReader();
-    reader.onload = () => setLogoDataUrl(reader.result as string);
-    reader.readAsDataURL(file);
-  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -76,7 +55,6 @@ const RoiDeliveryForm = ({ businessCase }: Props) => {
           initiativeTitle: initiativeTitle || undefined,
           presenterName: presenterName || undefined,
           presentationDate,
-          logoDataUrl,
         },
         copy,
       });
@@ -136,8 +114,8 @@ const RoiDeliveryForm = ({ businessCase }: Props) => {
     <div className="rounded-2xl border-2 border-primary/30 bg-gradient-to-br from-primary/5 to-primary/10 p-6 md:p-8">
       <h3 className="text-xl md:text-2xl font-bold mb-2">Editierbare PowerPoint erstellen</h3>
       <p className="text-muted-foreground mb-5">
-        Optional: passen Sie die Titelfolie an. Ihr Logo wird nicht an unseren Server übertragen — es bleibt
-        ausschließlich in Ihrem Browser und wird direkt in die PowerPoint eingebettet.
+        Optional: passen Sie die Titelfolie an. Ihr Unternehmensname aus Schritt 1 erscheint auf der Titelfolie
+        und im Footer jeder Folie.
       </p>
 
       <form onSubmit={handleSubmit} className="space-y-5">
@@ -150,23 +128,6 @@ const RoiDeliveryForm = ({ businessCase }: Props) => {
             <Label htmlFor="roi-presenterName">Name der präsentierenden Person (optional)</Label>
             <Input id="roi-presenterName" maxLength={80} value={presenterName} onChange={(e) => setPresenterName(e.target.value)} />
           </div>
-        </div>
-
-        <div className="space-y-1.5">
-          <Label htmlFor="roi-logo">Unternehmenslogo (optional, PNG/JPEG, max. 2 MB)</Label>
-          <div className="flex items-center gap-3">
-            <Input id="roi-logo" type="file" accept="image/png,image/jpeg" onChange={handleLogoChange} className="max-w-xs" />
-            {logoDataUrl && (
-              <div className="flex items-center gap-2">
-                <img src={logoDataUrl} alt="Logo-Vorschau" className="h-8 object-contain" />
-                <button type="button" onClick={() => setLogoDataUrl(undefined)} aria-label="Logo entfernen" className="text-muted-foreground hover:text-foreground">
-                  <X className="w-4 h-4" />
-                </button>
-              </div>
-            )}
-            {!logoDataUrl && <ImageIcon className="w-5 h-5 text-muted-foreground" />}
-          </div>
-          {logoError && <p className="text-sm text-destructive">{logoError}</p>}
         </div>
 
         <div className="border-t pt-4 space-y-4">

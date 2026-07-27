@@ -20,17 +20,24 @@ function roiCreateDelivery(
     $db = getDbConnection();
     if (!$db) return false;
 
+    // WICHTIG: kein Platzhalter innerhalb von INTERVAL ... DAY — mit
+    // PDO::ATTR_EMULATE_PREPARES=false (siehe db-config.php) scheitert MySQL daran
+    // regelmäßig ("INSERT ... INTERVAL ?" schlägt fehl, obwohl Spaltenzahl/Werte stimmen).
+    // $ttlDays kommt ausschließlich aus ROI_FILE_TTL_DAYS (fester Server-Konstante,
+    // keine Nutzereingabe) — direktes Einsetzen als (int) ist daher unbedenklich.
+    $ttlDaysInt = (int) $ttlDays;
+
     try {
         $stmt = $db->prepare("
             INSERT INTO roi_deliveries
                 (download_token, email, company_name, users_bucket, file_path, file_size_bytes,
                  ip_address, consent_text, ready_email_sent_at, expires_at, created_at)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP,
-                    DATE_ADD(CURRENT_TIMESTAMP, INTERVAL ? DAY), CURRENT_TIMESTAMP)
+                    DATE_ADD(CURRENT_TIMESTAMP, INTERVAL {$ttlDaysInt} DAY), CURRENT_TIMESTAMP)
         ");
         return $stmt->execute([
             $token, $email, $companyName, $usersBucket, $filePath, $fileSizeBytes,
-            $ipAddress, $consentText, $ttlDays,
+            $ipAddress, $consentText,
         ]);
     } catch (PDOException $e) {
         error_log('roiCreateDelivery failed: ' . $e->getMessage());

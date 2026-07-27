@@ -68,13 +68,15 @@ function defineMaster(pptx: PptxGenJS, bc: RoiBusinessCase, options: Presentatio
         options: { x: 0.4, y: 7.1, w: 10, h: 0.3, fontSize: 9, color: PPT_THEME.muted, fontFace: PPT_FONT.body },
       },
     },
+    // Kein Logo-Upload (bewusste Entscheidung) — der Unternehmensname erscheint stattdessen
+    // typografisch oben links auf jeder Folie.
+    {
+      text: {
+        text: bc.inputs.companyName,
+        options: { x: 0.4, y: 0.15, w: 6, h: 0.4, fontSize: 13, bold: true, color: PPT_THEME.navy, fontFace: PPT_FONT.head },
+      },
+    },
   ];
-
-  if (options.logoDataUrl) {
-    objects.unshift({
-      image: { data: options.logoDataUrl, x: 0.4, y: 0.15, w: 1.4, h: 0.5, sizing: { type: "contain", w: 1.4, h: 0.5 } },
-    });
-  }
 
   pptx.defineSlideMaster({
     title: MASTER_NAME,
