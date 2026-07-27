@@ -5,6 +5,8 @@ import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import AuthorBio from "@/components/AuthorBio";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 import { Link } from "react-router-dom";
+import RoiGeneratorTeaserBanner from "@/components/roi-generator/RoiGeneratorTeaserBanner";
+import RoiBusinessCaseGenerator from "@/components/roi-generator/RoiBusinessCaseGenerator";
 
 const SLUG = "copilot-roi-berechnen";
 const PAGE_TITLE = "Copilot ROI berechnen";
@@ -23,6 +25,7 @@ const CopilotRoiBerechnen = () => {
     { id: "studienlage", title: "Was aktuelle Studien zeigen", level: 2 },
     { id: "kpis", title: "KPIs zur Erfolgsmessung", level: 2 },
     { id: "szenarien", title: "Zwei plausible ROI-Szenarien", level: 2 },
+    { id: "business-case-generator", title: "PowerPoint-Business-Case erstellen", level: 2 },
     { id: "branchen-roi", title: "Branchenspezifische ROI-Beispiele", level: 2 },
     { id: "erfolgsfaktoren", title: "Kritische Erfolgsfaktoren", level: 2 },
     { id: "fehler", title: "Häufige Fehler bei der ROI-Berechnung", level: 2 },
@@ -142,6 +145,8 @@ const CopilotRoiBerechnen = () => {
             </p>
           </CardContent>
         </Card>
+
+        <RoiGeneratorTeaserBanner />
 
         {/* Kosten */}
         <section id="was-kostet-copilot">
@@ -769,6 +774,18 @@ const CopilotRoiBerechnen = () => {
             Modelle, neue Funktionen und Tools, tiefere Prozessintegration sowie agentische, mehrstufige Arbeitsabläufe bleibt bewusst
             außerhalb der Formel, solange dafür keine belastbaren und allgemein übertragbaren Benchmarks vorliegen.
           </p>
+        </section>
+
+        {/* PowerPoint-Business-Case-Generator */}
+        <section id="business-case-generator">
+          <h2 id="business-case-generator-heading" className="text-2xl md:text-3xl font-bold mb-2">
+            Ihren Copilot Business Case als PowerPoint erstellen
+          </h2>
+          <p className="text-sm text-muted-foreground mb-4">
+            Ihre Berechnung erfolgt lokal im Browser. Ein hochgeladenes Logo wird nicht an den Server übertragen.
+            Die Ergebnisse sind Planungswerte und kein Wirkungsversprechen.
+          </p>
+          <RoiBusinessCaseGenerator />
         </section>
 
         {/* Branchen-ROI */}
