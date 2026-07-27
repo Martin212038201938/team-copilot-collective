@@ -782,8 +782,8 @@ const CopilotRoiBerechnen = () => {
             Ihren Copilot Business Case als PowerPoint erstellen
           </h2>
           <p className="text-sm text-muted-foreground mb-4">
-            Ihre Berechnung erfolgt lokal im Browser. Ein hochgeladenes Logo wird nicht an den Server übertragen.
-            Die Ergebnisse sind Planungswerte und kein Wirkungsversprechen.
+            Ihre Berechnung erfolgt lokal im Browser. Die Ergebnisse sind Planungswerte und kein
+            Wirkungsversprechen.
           </p>
           <RoiBusinessCaseGenerator />
         </section>

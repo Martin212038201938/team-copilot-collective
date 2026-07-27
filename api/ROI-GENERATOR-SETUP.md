@@ -74,3 +74,34 @@ Download  → keine weiteren Erinnerungen; stattdessen einmalig Termin-Einladung
             ("Zahlen kurz mit Martin besprechen?", Bookings-Link)
 Ablauf    → Datei wird nach 7 Tagen automatisch gelöscht
 ```
+
+---
+
+## ⚠️ Bekannte Fehlerquelle: fehlende DB-Zugangsdaten auf dem Webspace
+
+**Symptom:** Der Generator meldet „Anfrage konnte nicht gespeichert werden“. Ebenso werden
+Newsletter-/Kontakt-Leads still nicht mehr in `newsletter_subscriptions` geschrieben
+(die Formulare melden trotzdem Erfolg, weil der DB-Schreibvorgang dort nicht blockiert).
+
+**Ursache:** `api/db-config.php` holt die Zugangsdaten entweder aus `api/db-config-local.php`
+(bewusst nicht im Repo) oder aus den Umgebungsvariablen `DB_HOST`, `DB_NAME`, `DB_USER`,
+`DB_PASS`. Das Deployment spiegelt `dist/` mit `lftp mirror -R --delete` — dabei wurde
+`api/db-config-local.php` auf dem Server bei jedem Deploy gelöscht, weil sie nicht Teil von
+`dist/` ist. Ohne gesetzte `DB_*`-Umgebungsvariablen fällt `DB_PASS` auf `''` zurück und
+jede Verbindung scheitert.
+
+**Behoben:** `.github/workflows/deploy.yml` schließt `api/db-config-local.php` jetzt vom
+Mirror aus, sodass die Datei auf dem Server erhalten bleibt.
+
+**Noch einmalig nötig (nur Martin, da Passwort):** Im AlwaysData-Adminbereich unter
+Web → Sites → `copilotenschule.de/api` → „Environment variables“ zusätzlich zu den bereits
+vorhandenen Einträgen ergänzen:
+
+```
+DB_HOST=mysql-y-b.alwaysdata.net
+DB_NAME=y-b_copilotenschule
+DB_USER=y-b
+DB_PASS=<das MySQL-Passwort>
+```
+
+Danach speichern — die Änderung greift sofort, kein Deploy nötig.

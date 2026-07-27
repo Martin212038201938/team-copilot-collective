@@ -167,7 +167,18 @@ $saved = roiCreateDelivery(
 if (!$saved) {
     @unlink($destination);
     http_response_code(500);
-    echo json_encode(['error' => 'Anfrage konnte nicht gespeichert werden']);
+    // Häufigste Ursache: Der Webspace hat keine gültigen DB-Zugangsdaten (weder
+    // api/db-config-local.php noch DB_*-Umgebungsvariablen der Site). Dann liefert
+    // getDbConnection() null und JEDER Schreibvorgang schlägt still fehl – auch für
+    // Newsletter- und Kontaktformular-Leads. Siehe api/ROI-GENERATOR-SETUP.md.
+    $dbReachable = getDbConnection() !== null;
+    error_log('roi-deliver: Speichern fehlgeschlagen. DB erreichbar: ' . ($dbReachable ? 'ja' : 'NEIN'));
+    echo json_encode([
+        'error' => $dbReachable
+            ? 'Anfrage konnte nicht gespeichert werden.'
+            : 'Die Datenbank ist derzeit nicht erreichbar. Bitte versuchen Sie es später erneut.',
+        'dbReachable' => $dbReachable,
+    ]);
     exit;
 }
 
