@@ -138,6 +138,22 @@ OPENAI_API_KEY=...
 Weitere Bremsen: 10 Recherchen pro IP und Stunde, global 200 pro Tag
 (`ROI_RESEARCH_GLOBAL_DAILY_CAP` in `api/roi-company-profile.php`).
 
+### Zeitbudget und Prefetch
+
+Die Recherche darf bis zu ~150 Sekunden laufen (`set_time_limit`), der Browser wartet
+maximal 120 Sekunden. Das ist unkritisch, weil die Präsentation ohnehin erst über den
+E-Mail-Link abgeholt wird — die Wartezeit liegt also nicht zwischen Nutzer und Ergebnis.
+
+Damit trotzdem niemand vor einem Spinner sitzt, startet der Browser die Recherche
+**vorgezogen**, sobald das E-Mail-Feld verlassen wird. Während der Nutzer die optionalen
+Angaben ausfüllt und absendet, läuft sie im Hintergrund; beim Absenden liegt das Ergebnis
+meist schon vor. Mehrfachaufrufe mit denselben Werten lösen nur eine Anfrage aus.
+
+Dank des größeren Budgets werden zusätzlich Impressum und „Über uns" ausgewertet (max. zwei
+Unterseiten, einmalig geladen und für Text und Logo gemeinsam genutzt). Das verbessert vor
+allem die Branchen- und Geschäftsfeld-Einschätzung — das Token-Budget bleibt trotzdem klein,
+weil der Text weiterhin hart gekürzt wird.
+
 ### Logo
 
 Nur PNG/JPEG/GIF ab 64 Pixel Kantenlänge werden akzeptiert, in dieser Reihenfolge:

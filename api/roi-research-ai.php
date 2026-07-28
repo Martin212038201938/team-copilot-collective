@@ -14,7 +14,7 @@
  * Ohne KI funktioniert die Recherche vollständig weiter, nur etwas gröber.
  */
 
-const ROI_RESEARCH_AI_MAX_INPUT_CHARS = 2500;
+const ROI_RESEARCH_AI_MAX_INPUT_CHARS = 6000;
 const ROI_RESEARCH_AI_MAX_OUTPUT_TOKENS = 220;
 
 function roiResearchAiEnabled(): bool {
@@ -84,7 +84,7 @@ function roiResearchWithAi(string $companyName, string $domain, string $pageText
     curl_setopt_array($ch, [
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_POST => true,
-        CURLOPT_TIMEOUT => 12,
+        CURLOPT_TIMEOUT => 60,
         CURLOPT_HTTPHEADER => [
             'Content-Type: application/json',
             'Authorization: Bearer ' . $apiKey,

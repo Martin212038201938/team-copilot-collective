@@ -42,8 +42,8 @@ function roiFetchHomepage(string $domain): ?array {
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_MAXREDIRS => 3,
-            CURLOPT_TIMEOUT => 6,
-            CURLOPT_CONNECTTIMEOUT => 3,
+            CURLOPT_TIMEOUT => 15,
+            CURLOPT_CONNECTTIMEOUT => 5,
             CURLOPT_SSL_VERIFYPEER => true,
             CURLOPT_USERAGENT => 'Mozilla/5.0 (compatible; CopilotenschuleBusinessCase/1.0; +https://copilotenschule.de)',
             CURLOPT_ACCEPT_ENCODING => '',
@@ -144,8 +144,8 @@ function roiFetchLogoDataUrl(array $candidates): ?array {
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_MAXREDIRS => 3,
-            CURLOPT_TIMEOUT => 5,
-            CURLOPT_CONNECTTIMEOUT => 3,
+            CURLOPT_TIMEOUT => 12,
+            CURLOPT_CONNECTTIMEOUT => 5,
             CURLOPT_SSL_VERIFYPEER => true,
             CURLOPT_USERAGENT => 'Mozilla/5.0 (compatible; CopilotenschuleBusinessCase/1.0; +https://copilotenschule.de)',
         ]);
@@ -171,4 +171,40 @@ function roiFetchLogoDataUrl(array $candidates): ?array {
         ];
     }
     return null;
+}
+
+/**
+ * Ergänzende Unterseiten laden. Lohnt sich erst mit dem größeren Zeitbudget: Impressum und
+ * "Über uns" beschreiben das Geschäftsfeld meist deutlich präziser als die Startseite und
+ * enthalten oft ein besseres Logo. Fehlschläge sind unkritisch und werden übersprungen.
+ */
+function roiFetchAdditionalPages(string $domain, string $baseUrl): array {
+    $paths = ['/ueber-uns', '/unternehmen', '/about', '/impressum'];
+    $pages = [];
+
+    foreach ($paths as $path) {
+        // Deckel: mehr als zwei Zusatzseiten bringen erfahrungsgemäß keinen Mehrwert.
+        if (count($pages) >= 2) break;
+
+        $url = rtrim($baseUrl, '/') . $path;
+        $ch = curl_init($url);
+        curl_setopt_array($ch, [
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_MAXREDIRS => 2,
+            CURLOPT_TIMEOUT => 10,
+            CURLOPT_CONNECTTIMEOUT => 4,
+            CURLOPT_SSL_VERIFYPEER => true,
+            CURLOPT_USERAGENT => 'Mozilla/5.0 (compatible; CopilotenschuleBusinessCase/1.0; +https://copilotenschule.de)',
+            CURLOPT_ACCEPT_ENCODING => '',
+        ]);
+        $body = curl_exec($ch);
+        $status = (int) curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
+        curl_close($ch);
+
+        if ($body !== false && $status >= 200 && $status < 300 && strlen($body) > 500) {
+            $pages[] = substr($body, 0, 200000);
+        }
+    }
+    return $pages;
 }

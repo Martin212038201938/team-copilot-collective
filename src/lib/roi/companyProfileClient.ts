@@ -1,6 +1,11 @@
 /**
  * Holt das automatisch recherchierte Unternehmensprofil vom Server.
  *
+ * Zeitbudget: Die Recherche darf großzügig lange dauern, weil die Präsentation ohnehin erst
+ * über den E-Mail-Link abgeholt wird. Damit trotzdem niemand vor einem Spinner sitzt, wird
+ * sie VORGEZOGEN gestartet, sobald die E-Mail-Adresse feststeht (prefetchCompanyProfile).
+ * Beim Absenden liegt das Ergebnis dann meist schon vor.
+ *
  * Bewusst "best effort": Schlägt der Aufruf fehl oder dauert er zu lange, wird die
  * Präsentation ohne Zusatzinfos gebaut. Es erscheint dann KEIN Platzhalter — der Nutzer
  * bemerkt nicht, dass etwas fehlt.
@@ -16,10 +21,20 @@ export type CompanyProfile = {
 
 const EMPTY_PROFILE: CompanyProfile = { found: false, industry: null, summary: null, logoDataUrl: null };
 
-/** Nach diesem Zeitfenster wird ohne Profil weitergebaut, damit niemand wartet. */
-const PROFILE_TIMEOUT_MS = 8000;
+/**
+ * Obergrenze für die gesamte Recherche. Großzügig, weil die Auslieferung asynchron per
+ * E-Mail erfolgt — der Nutzer wartet in der Regel nur die Restzeit des Prefetch ab.
+ */
+const PROFILE_TIMEOUT_MS = 120_000;
 
-export async function fetchCompanyProfile(companyName: string, email: string): Promise<CompanyProfile> {
+/** Läuft bereits eine Anfrage für diese Kombination, wird sie wiederverwendet. */
+let inFlight: { key: string; promise: Promise<CompanyProfile> } | null = null;
+
+function profileKey(companyName: string, email: string): string {
+  return `${companyName.trim().toLowerCase()}|${email.trim().toLowerCase()}`;
+}
+
+async function requestProfile(companyName: string, email: string): Promise<CompanyProfile> {
   const controller = new AbortController();
   const timer = window.setTimeout(() => controller.abort(), PROFILE_TIMEOUT_MS);
 
@@ -46,4 +61,30 @@ export async function fetchCompanyProfile(companyName: string, email: string): P
   } finally {
     window.clearTimeout(timer);
   }
+}
+
+/**
+ * Startet die Recherche im Hintergrund, ohne auf das Ergebnis zu warten.
+ * Aufrufen, sobald Unternehmensname und E-Mail bekannt sind (z. B. beim Verlassen des
+ * E-Mail-Feldes). Mehrfachaufrufe mit denselben Werten lösen nur eine Anfrage aus.
+ */
+export function prefetchCompanyProfile(companyName: string, email: string): void {
+  if (!companyName.trim() || !email.trim() || !email.includes("@")) return;
+  const key = profileKey(companyName, email);
+  if (inFlight?.key === key) return;
+  // Fehler hier bewusst verschlucken – requestProfile liefert im Zweifel ein leeres Profil.
+  inFlight = { key, promise: requestProfile(companyName, email) };
+}
+
+/**
+ * Liefert das Profil. Wurde vorher prefetchCompanyProfile() mit denselben Werten
+ * aufgerufen, wird auf die bereits laufende Anfrage gewartet statt eine neue zu starten.
+ */
+export function fetchCompanyProfile(companyName: string, email: string): Promise<CompanyProfile> {
+  const key = profileKey(companyName, email);
+  if (inFlight?.key === key) return inFlight.promise;
+
+  const promise = requestProfile(companyName, email);
+  inFlight = { key, promise };
+  return promise;
 }

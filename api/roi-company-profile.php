@@ -13,6 +13,11 @@
 
 header('Content-Type: application/json; charset=utf-8');
 
+// Grosszuegiges Laufzeitbudget: Die Praesentation wird ohnehin erst ueber den E-Mail-Link
+// abgeholt, deshalb darf die Recherche gruendlich sein. Der Browser startet sie vorgezogen
+// (Prefetch beim Verlassen des E-Mail-Feldes), sodass in der Regel niemand aktiv wartet.
+@set_time_limit(150);
+
 require_once __DIR__ . '/db-config.php';
 require_once __DIR__ . '/roi-config.php';
 require_once __DIR__ . '/roi-rate-limit.php';
@@ -89,6 +94,14 @@ if ($page === null) {
 
 $meta = roiExtractMeta($page['html']);
 $summary = null;
+// Zusatzseiten werden hoechstens EINMAL geladen und dann wiederverwendet.
+$additionalPages = null;
+$loadAdditionalPages = function () use (&$additionalPages, $domain, $page): array {
+    if ($additionalPages === null) {
+        $additionalPages = roiFetchAdditionalPages($domain, $page['url']);
+    }
+    return $additionalPages;
+};
 $industry = null;
 $source = 'website';
 $tokensIn = null;
@@ -101,7 +114,15 @@ if (!empty($meta['description']) && mb_strlen($meta['description']) >= 40) {
 
 // --- 4. Optionale KI-Stufe: nur wenn die kostenlose Stufe zu dünn war ----------
 if ($summary === null && roiResearchAiEnabled()) {
-    $pageText = roiHtmlToPlainText($page['html']);
+    // Mit dem groesseren Zeitbudget lohnt es sich, Impressum/"Ueber uns" mitzunehmen:
+    // Diese Seiten beschreiben das Geschaeftsfeld praeziser als die Startseite. Der
+    // Text wird trotzdem hart gekuerzt, das Token-Budget bleibt also klein.
+    $textParts = [roiHtmlToPlainText($page['html'])];
+    foreach ($loadAdditionalPages() as $extraHtml) {
+        $textParts[] = roiHtmlToPlainText($extraHtml);
+    }
+    $pageText = mb_substr(implode(' ', array_filter($textParts)), 0, ROI_RESEARCH_AI_MAX_INPUT_CHARS);
+
     $ai = roiResearchWithAi($companyName, $domain, $pageText, $allowedIndustries);
     if ($ai) {
         $summary = $ai['summary'];
@@ -113,7 +134,15 @@ if ($summary === null && roiResearchAiEnabled()) {
 }
 
 // --- 5. Logo (immer ohne KI) ---------------------------------------------------
+// Kandidaten der Startseite zuerst; findet sich dort nichts Brauchbares, wird zusaetzlich
+// im Impressum gesucht (dort haengt das Logo oft in besserer Aufloesung).
 $logo = roiFetchLogoDataUrl(roiExtractLogoCandidates($page['html'], $page['url']));
+if ($logo === null) {
+    foreach ($loadAdditionalPages() as $extraHtml) {
+        $logo = roiFetchLogoDataUrl(roiExtractLogoCandidates($extraHtml, $page['url']));
+        if ($logo !== null) break;
+    }
+}
 
 $found = ($summary !== null) || ($logo !== null);
 roiCacheResearch(

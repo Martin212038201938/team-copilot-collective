@@ -20,7 +20,7 @@ import {
 } from "@/lib/roi/context";
 import { buildDeterministicCopy } from "@/lib/roi/deterministicCopy";
 import { createRoiBusinessCaseDeck } from "@/lib/pptx/createRoiBusinessCaseDeck";
-import { fetchCompanyProfile } from "@/lib/roi/companyProfileClient";
+import { fetchCompanyProfile, prefetchCompanyProfile } from "@/lib/roi/companyProfileClient";
 
 type Props = {
   businessCase: RoiBusinessCase;
@@ -249,7 +249,18 @@ const RoiDeliveryForm = ({ businessCase, m365Users }: Props) => {
         <div className="space-y-4">
           <div className="space-y-1.5">
             <Label htmlFor="roi-email">E-Mail-Adresse</Label>
-            <Input id="roi-email" type="email" required autoComplete="email" placeholder="ihre.email@unternehmen.de" value={email} onChange={(e) => setEmail(e.target.value)} />
+            <Input
+              id="roi-email"
+              type="email"
+              required
+              autoComplete="email"
+              placeholder="ihre.email@unternehmen.de"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              // Recherche im Hintergrund starten, sobald die Adresse steht. Bis der Nutzer
+              // die optionalen Angaben ausgefuellt und abgeschickt hat, ist sie meist fertig.
+              onBlur={() => prefetchCompanyProfile(businessCase.inputs.companyName, email)}
+            />
           </div>
 
           {/* Honeypot: für Menschen unsichtbar, Bots füllen es häufig aus. */}
@@ -274,7 +285,7 @@ const RoiDeliveryForm = ({ businessCase, m365Users }: Props) => {
             <>
               <Loader2 className="w-5 h-5 animate-spin" />
               {step === "researching"
-                ? "Angaben werden geprüft…"
+                ? "Angaben werden aufbereitet…"
                 : step === "building"
                 ? "Präsentation wird erstellt…"
                 : "Wird übermittelt…"}
