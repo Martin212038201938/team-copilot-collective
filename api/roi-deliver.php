@@ -137,27 +137,46 @@ if ($_FILES['file']['size'] <= 0 || $_FILES['file']['size'] > ROI_MAX_UPLOAD_BYT
 // --- Echte OOXML/ZIP-Datei? ---------------------------------------------------
 
 $tmpPath = $_FILES['file']['tmp_name'];
-$handle = fopen($tmpPath, 'rb');
-$signature = $handle ? fread($handle, 4) : '';
-if ($handle) fclose($handle);
-// ZIP-Signaturen: "PK\x03\x04" (normal) oder "PK\x05\x06" (leer, sollte hier nicht vorkommen)
-if ($signature !== "PK\x03\x04") {
-    http_response_code(400);
-    echo json_encode(['error' => 'Ungültiges Dateiformat']);
-    exit;
+
+/**
+ * Prueft, ob die Datei ein echtes OOXML-Paket ist: ZIP-Signatur plus der fuer das
+ * jeweilige Format zwingende Eintrag. Verhindert, dass beliebige Dateien im
+ * Speicherordner landen.
+ */
+function roiIsValidOoxml(string $path, string $requiredEntry): bool {
+    $handle = fopen($path, 'rb');
+    $signature = $handle ? fread($handle, 4) : '';
+    if ($handle) fclose($handle);
+    if ($signature !== "PK\x03\x04") return false;
+
+    $zip = new ZipArchive();
+    if ($zip->open($path) !== true) return false;
+    $valid = $zip->locateName('[Content_Types].xml') !== false
+        && $zip->locateName($requiredEntry) !== false;
+    $zip->close();
+    return $valid;
 }
 
-$zip = new ZipArchive();
-$isValidPptx = false;
-if ($zip->open($tmpPath) === true) {
-    $isValidPptx = $zip->locateName('[Content_Types].xml') !== false
-        && $zip->locateName('ppt/presentation.xml') !== false;
-    $zip->close();
-}
-if (!$isValidPptx) {
+if (!roiIsValidOoxml($tmpPath, 'ppt/presentation.xml')) {
     http_response_code(400);
     echo json_encode(['error' => 'Ungültige PowerPoint-Datei']);
     exit;
+}
+
+// Optionale zweite Datei: die befuellte Excel. Fehlt sie, wird trotzdem ausgeliefert –
+// die Praesentation ist das Hauptdokument.
+$xlsxTmpPath = null;
+$xlsxSize = 0;
+if (!empty($_FILES['fileXlsx']) && $_FILES['fileXlsx']['error'] === UPLOAD_ERR_OK) {
+    $candidate = $_FILES['fileXlsx']['tmp_name'];
+    $candidateSize = (int) $_FILES['fileXlsx']['size'];
+    if ($candidateSize > 0 && $candidateSize <= ROI_MAX_UPLOAD_BYTES
+        && roiIsValidOoxml($candidate, 'xl/workbook.xml')) {
+        $xlsxTmpPath = $candidate;
+        $xlsxSize = $candidateSize;
+    } else {
+        error_log('roi-deliver: Excel verworfen (Groesse oder Format ungueltig)');
+    }
 }
 
 // --- Speichern -----------------------------------------------------------
@@ -177,6 +196,18 @@ if (!move_uploaded_file($tmpPath, $destination)) {
     exit;
 }
 @chmod($destination, 0600);
+
+$destinationXlsx = null;
+if ($xlsxTmpPath !== null) {
+    $candidatePath = rtrim(ROI_STORAGE_DIR, '/') . '/' . $token . '.xlsx';
+    if (move_uploaded_file($xlsxTmpPath, $candidatePath)) {
+        @chmod($candidatePath, 0600);
+        $destinationXlsx = $candidatePath;
+    } else {
+        error_log('roi-deliver: Excel konnte nicht gespeichert werden');
+        $xlsxSize = 0;
+    }
+}
 
 // --- DB-Zeile anlegen (erst jetzt existiert überhaupt eine fertige, geprüfte Datei) -----
 
@@ -202,11 +233,14 @@ $saved = roiCreateDelivery(
         'industry' => $industry,
         'goals' => $goals,
         'adoptionStage' => $adoptionStage,
+        'filePathXlsx' => $destinationXlsx,
+        'fileSizeXlsxBytes' => $xlsxSize,
     ]
 );
 
 if (!$saved) {
     @unlink($destination);
+    if ($destinationXlsx) @unlink($destinationXlsx);
     http_response_code(500);
     // Häufigste Ursache: Der Webspace hat keine gültigen DB-Zugangsdaten (weder
     // api/db-config-local.php noch DB_*-Umgebungsvariablen der Site). Dann liefert

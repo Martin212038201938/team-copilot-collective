@@ -59,9 +59,10 @@ function roiSendReadyEmail(string $email, string $downloadUrl, string $confirmat
     $greeting = $companyName ? " für {$companyName}" : "";
     $html = roiMailLayout('Ihre PowerPoint ist fertig', "
         <h2>Ihr Copilot Business Case{$greeting} ist fertig</h2>
-        <p>Ihre editierbare PowerPoint-Präsentation wurde erstellt und steht jetzt zum Download bereit.</p>
+        <p>Zwei Dateien stehen für Sie bereit: die editierbare Präsentation für die
+        Entscheidungsvorlage und die Excel mit der vollständigen, nachvollziehbaren Berechnung.</p>
         <p style='text-align:center;'>
-            <a href='{$downloadUrl}' class='button'>PowerPoint herunterladen</a>
+            <a href='{$downloadUrl}' class='button'>Präsentation und Excel herunterladen</a>
         </p>
         <p>Damit wir Sie zu diesem Thema kontaktieren dürfen, bestätigen Sie bitte einmal kurz Ihre E-Mail-Adresse:</p>
         <p style='text-align:center;'>
@@ -72,7 +73,7 @@ function roiSendReadyEmail(string $email, string $downloadUrl, string $confirmat
         <p><strong>Datenschutz:</strong> Ihre Daten werden gemäß DSGVO verarbeitet. Sie können Ihre Einwilligung jederzeit widerrufen.</p>
     ");
     $text = "Ihr Copilot Business Case{$greeting} ist fertig\n\n"
-        . "PowerPoint herunterladen: {$downloadUrl}\n"
+        . "Praesentation und Excel herunterladen: {$downloadUrl}\n"
         . "(Link ist " . ROI_FILE_TTL_DAYS . " Tage gültig)\n\n"
         . "E-Mail-Adresse bestätigen: {$confirmationUrl}\n";
 
@@ -88,7 +89,7 @@ function roiSendReminderEmail(string $email, string $downloadUrl, ?string $compa
 
     $html = roiMailLayout($subject, "
         <h2>Ihr Copilot Business Case{$greeting} wartet noch auf Sie</h2>
-        <p>Sie haben Ihre editierbare PowerPoint-Präsentation noch nicht heruntergeladen.</p>
+        <p>Präsentation und Excel-Berechnung liegen weiterhin für Sie bereit.</p>
         <p style='text-align:center;'>
             <a href='{$downloadUrl}' class='button'>Jetzt herunterladen</a>
         </p>

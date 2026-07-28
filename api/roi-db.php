@@ -37,9 +37,9 @@ function roiCreateDelivery(
             INSERT INTO roi_deliveries
                 (download_token, email, company_name, contact_name, contact_role,
                  m365_users, copilot_licenses, industry, goals, adoption_stage,
-                 users_bucket, file_path, file_size_bytes,
+                 users_bucket, file_path, file_path_xlsx, file_size_bytes, file_size_xlsx_bytes,
                  ip_address, consent_text, ready_email_sent_at, expires_at, created_at)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP,
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP,
                     DATE_ADD(CURRENT_TIMESTAMP, INTERVAL {$ttlDaysInt} DAY), CURRENT_TIMESTAMP)
         ");
         return $stmt->execute([
@@ -51,7 +51,10 @@ function roiCreateDelivery(
             $context['industry'] ?? null,
             $context['goals'] ?? null,
             $context['adoptionStage'] ?? null,
-            $usersBucket, $filePath, $fileSizeBytes,
+            $usersBucket, $filePath,
+            $context['filePathXlsx'] ?? null,
+            $fileSizeBytes,
+            $context['fileSizeXlsxBytes'] ?? null,
             $ipAddress, $consentText,
         ]);
     } catch (PDOException $e) {
@@ -195,7 +198,7 @@ function roiFindExpiredNotYetPurged(): array {
     try {
         $stmt = $db->prepare("
             SELECT * FROM roi_deliveries
-            WHERE expires_at <= CURRENT_TIMESTAMP AND file_path <> ''
+            WHERE expires_at <= CURRENT_TIMESTAMP AND (file_path <> '' OR file_path_xlsx IS NOT NULL)
         ");
         $stmt->execute();
         return $stmt->fetchAll();
@@ -209,7 +212,7 @@ function roiClearFilePath(string $token): bool {
     $db = getDbConnection();
     if (!$db) return false;
     try {
-        $stmt = $db->prepare("UPDATE roi_deliveries SET file_path = '' WHERE download_token = ?");
+        $stmt = $db->prepare("UPDATE roi_deliveries SET file_path = '', file_path_xlsx = NULL WHERE download_token = ?");
         return $stmt->execute([$token]);
     } catch (PDOException $e) {
         error_log('roiClearFilePath failed: ' . $e->getMessage());

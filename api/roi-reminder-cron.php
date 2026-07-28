@@ -59,8 +59,10 @@ foreach (roiFindDueForBookingInvite() as $delivery) {
 }
 
 foreach (roiFindExpiredNotYetPurged() as $delivery) {
-    if (!empty($delivery['file_path']) && file_exists($delivery['file_path'])) {
-        @unlink($delivery['file_path']);
+    foreach ([$delivery['file_path'] ?? '', $delivery['file_path_xlsx'] ?? ''] as $path) {
+        if (!empty($path) && file_exists($path)) {
+            @unlink($path);
+        }
     }
     roiClearFilePath($delivery['download_token']);
     $purged++;

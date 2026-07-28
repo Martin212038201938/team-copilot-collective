@@ -19,6 +19,7 @@ import {
   type RoiAdoptionStage,
 } from "@/lib/roi/context";
 import { createRoiBusinessCaseDeck } from "@/lib/pptx/createRoiBusinessCaseDeck";
+import { createRoiWorkbook } from "@/lib/xlsx/createRoiWorkbook";
 import { fetchCompanyProfile, prefetchCompanyProfile } from "@/lib/roi/companyProfileClient";
 
 type Props = {
@@ -95,6 +96,16 @@ const RoiDeliveryForm = ({ businessCase, m365Users }: Props) => {
         },
       });
 
+      // Excel aus der Vorlage befuellen. Schlaegt das fehl, wird trotzdem ausgeliefert –
+      // die PowerPoint ist das Hauptdokument, die Excel die Anlage.
+      let workbook: { blob: Blob; fileName: string } | null = null;
+      try {
+        workbook = await createRoiWorkbook(businessCase);
+      } catch (workbookError) {
+        // eslint-disable-next-line no-console
+        console.warn("Excel konnte nicht erzeugt werden, liefere nur die PowerPoint:", workbookError);
+      }
+
       setStep("uploading");
 
       const formData = new FormData();
@@ -111,6 +122,7 @@ const RoiDeliveryForm = ({ businessCase, m365Users }: Props) => {
       formData.append("renderedAt", String(renderedAtRef.current));
       formData.append("website", ""); // Honeypot – für Menschen leer lassen
       formData.append("file", blob, fileName);
+      if (workbook) formData.append("fileXlsx", workbook.blob, workbook.fileName);
 
       const response = await fetch("/api/roi-deliver.php", { method: "POST", body: formData });
       const text = await response.text();
