@@ -69,6 +69,21 @@ export type PresentationOptions = {
   contactName?: string;
   /** Rolle des Ansprechpartners (optional). */
   contactRole?: string;
+  /**
+   * Automatisch recherchiertes Logo als Data-URL. Fehlt es, erscheint KEIN Platzhalter –
+   * die Titelfolie sieht dann schlicht so aus wie ohne Logo.
+   */
+  logoDataUrl?: string;
+  /** Ein Satz aus der Unternehmensrecherche, optional. */
+  companySummary?: string;
+  /** Branche – entweder vom Nutzer gewählt oder recherchiert. */
+  industry?: string;
+  /** Hauptziele der Einführung (Mehrfachauswahl im Formular). */
+  goals?: string[];
+  /** Aktueller Stand der Copilot-Einführung. */
+  adoptionStage?: string;
+  /** Gesamtzahl Microsoft-365-Nutzer – reiner Kontext, keine Rechengröße. */
+  m365Users?: number;
 };
 
 export type RoiBusinessCase = {

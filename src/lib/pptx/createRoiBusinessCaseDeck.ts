@@ -105,6 +105,23 @@ function addTitleSlide(pptx: PptxGenJS, bc: RoiBusinessCase, options: Presentati
     x: 0.8, y: 4.0, w: 11.7, h: 0.5, fontSize: 16, color: PPT_THEME.muted, fontFace: PPT_FONT.body,
   });
 
+  // Recherchiertes Logo, falls vorhanden. Ohne Logo bleibt die Stelle einfach leer –
+  // es wird bewusst KEIN Platzhalter gezeichnet.
+  if (options.logoDataUrl) {
+    slide.addImage({
+      data: options.logoDataUrl,
+      x: 10.6, y: 0.9, w: 2.2, h: 1.1,
+      sizing: { type: "contain", w: 2.2, h: 1.1 },
+    });
+  }
+
+  if (options.companySummary) {
+    slide.addText(options.companySummary, {
+      x: 0.8, y: 5.4, w: 9.4, h: 0.8, fontSize: 12, italic: true,
+      color: PPT_THEME.muted, fontFace: PPT_FONT.body, valign: "top",
+    });
+  }
+
   const contactLine = [options.contactName, options.contactRole].filter(Boolean).join(", ");
   const metaLines = [contactLine || undefined, options.presentationDate].filter(Boolean) as string[];
   if (metaLines.length > 0) {

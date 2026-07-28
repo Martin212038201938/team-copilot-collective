@@ -72,7 +72,7 @@ const RoiInputForm = ({ onCalculated }: Props) => {
           <Label htmlFor="roi-hourlyCost">Vollkosten-Stundensatz (€)</Label>
           <Input id="roi-hourlyCost" inputMode="decimal" aria-describedby="roi-hourlyCost-help roi-hourlyCost-error" {...register("hourlyCostEur")} />
           <p id="roi-hourlyCost-help" className="text-xs text-muted-foreground">
-            Voreingestellt mit dem Durchschnitt für Dienstleistungsberufe.{" "}
+            Voreingestellt mit dem Durchschnitt für wissensintensive Dienstleistungen.{" "}
             <a
               href={HOURLY_COST_SOURCE_URL}
               target="_blank"

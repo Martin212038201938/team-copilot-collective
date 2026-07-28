@@ -105,3 +105,48 @@ DB_PASS=<das MySQL-Passwort>
 ```
 
 Danach speichern — die Änderung greift sofort, kein Deploy nötig.
+
+---
+
+## Automatische Unternehmensrecherche (Kostenmodell)
+
+Die Recherche läuft in Stufen, damit möglichst selten Geld ausgegeben wird:
+
+| Stufe | Was passiert | Kosten |
+|---|---|---|
+| 1 | Domain aus der Geschäfts-E-Mail ableiten (Freemail wird ignoriert) | 0 |
+| 2 | Startseite einmal laden, Meta-Titel/-Description und Logo auslesen | 1 HTTP-Request |
+| 3 | **Nur wenn Stufe 2 zu dünn war** und aktiviert: ein OpenAI-Aufruf auf dem bereits geladenen Text | ~1.000 Token |
+| 4 | Ergebnis pro Domain 90 Tage cachen, auch Misserfolge | 0 bei Wiederholung |
+
+Wichtig: Es findet **keine Websuche und kein Crawling** statt. Das Modell sieht nur Text,
+den wir ohnehin kostenlos geladen haben. Deshalb entfallen die teuren Such-Tools komplett.
+
+Die Domain kommt aus der E-Mail-Adresse statt aus einer Suche — das spart pro Anfrage einen
+kompletten Recherchevorgang und ist treffsicherer als ein Ratespiel über den Firmennamen.
+
+**Standardmäßig ist die KI-Stufe AUS.** Ohne sie funktioniert alles weiter, nur die
+Kurzbeschreibung stammt dann ausschließlich aus der Meta-Description der Website.
+Aktivieren über Umgebungsvariablen der `/api`-Site:
+
+```
+ROI_RESEARCH_AI_ENABLED=true
+ROI_RESEARCH_AI_MODEL=gpt-5.6-luna
+OPENAI_API_KEY=...
+```
+
+Weitere Bremsen: 10 Recherchen pro IP und Stunde, global 200 pro Tag
+(`ROI_RESEARCH_GLOBAL_DAILY_CAP` in `api/roi-company-profile.php`).
+
+### Logo
+
+Nur PNG/JPEG/GIF ab 64 Pixel Kantenlänge werden akzeptiert, in dieser Reihenfolge:
+schema.org-`logo` aus JSON-LD, dann `apple-touch-icon`, dann `og:image`.
+Favicons werden bewusst NICHT verwendet — 16×16-Pixel-Icons sehen auf einer Titelfolie
+schlecht aus. Wird nichts Sauberes gefunden, erscheint **kein Platzhalter**; die Titelfolie
+wirkt dann so, als sei nie ein Logo vorgesehen gewesen.
+
+### Migrationen
+
+`api/database-migration-roi-context.sql` und `api/database-migration-roi-research-cache.sql`
+sind auf der Live-Datenbank bereits ausgeführt.

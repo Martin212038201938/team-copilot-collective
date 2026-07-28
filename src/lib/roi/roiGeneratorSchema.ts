@@ -55,14 +55,16 @@ export function parseRoiInputForm(values: RoiInputFormValues): RoiInputFormParse
 }
 
 /**
- * Vollkosten-Stundensatz: 42,10 € entspricht den Arbeitskosten je geleisteter Stunde im
- * Bereich marktbestimmte Dienstleistungen (Wirtschaftsabschnitte G–N) laut Statistischem
- * Bundesamt für 2024 – eine belastbare Näherung für Büro-/White-Collar-Tätigkeiten.
+ * Vollkosten-Stundensatz: 60,40 € sind die Arbeitskosten je geleisteter Stunde im
+ * Wirtschaftsabschnitt "Erbringung von freiberuflichen, wissenschaftlichen und technischen
+ * Dienstleistungen" im Jahr 2025 laut Statistischem Bundesamt (Pressemitteilung Nr. 148 vom
+ * 29. April 2026) – die passendste Näherung für wissensintensive Bürotätigkeiten, in denen
+ * Copilot eingesetzt wird.
  */
-export const DEFAULT_HOURLY_COST_EUR = "42,10";
+export const DEFAULT_HOURLY_COST_EUR = "60,40";
 export const HOURLY_COST_SOURCE_URL =
-  "https://www.destatis.de/DE/Presse/Pressemitteilungen/2025/04/PD25_154_624.html";
-export const HOURLY_COST_SOURCE_LABEL = "Quelle: Statistisches Bundesamt, Arbeitskosten 2024";
+  "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/04/PD26_148_624.html";
+export const HOURLY_COST_SOURCE_LABEL = "Quelle: Statistisches Bundesamt, Arbeitskosten 2025";
 
 /** Listenpreis Microsoft 365 Copilot pro Nutzer und Monat; variiert je nach Vertrag. */
 export const DEFAULT_LICENSE_EUR = "26";

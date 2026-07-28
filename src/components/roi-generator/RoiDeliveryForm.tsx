@@ -20,6 +20,7 @@ import {
 } from "@/lib/roi/context";
 import { buildDeterministicCopy } from "@/lib/roi/deterministicCopy";
 import { createRoiBusinessCaseDeck } from "@/lib/pptx/createRoiBusinessCaseDeck";
+import { fetchCompanyProfile } from "@/lib/roi/companyProfileClient";
 
 type Props = {
   businessCase: RoiBusinessCase;
@@ -40,7 +41,7 @@ const RoiDeliveryForm = ({ businessCase, m365Users }: Props) => {
   const [goals, setGoals] = useState<RoiGoal[]>([]);
   const [adoptionStage, setAdoptionStage] = useState<RoiAdoptionStage | "">("");
 
-  const [step, setStep] = useState<"idle" | "building" | "uploading" | "done" | "error">("idle");
+  const [step, setStep] = useState<"idle" | "researching" | "building" | "uploading" | "done" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   useEffect(() => {
@@ -67,9 +68,16 @@ const RoiDeliveryForm = ({ businessCase, m365Users }: Props) => {
     }
 
     setErrorMessage(null);
-    setStep("building");
+    setStep("researching");
 
     try {
+      // Automatische Unternehmensrecherche: rein optionale Veredelung. Findet der Server
+      // nichts oder antwortet er nicht rechtzeitig, wird ohne Logo/Kurzprofil weitergebaut —
+      // ohne Platzhalter und ohne Hinweis an den Nutzer.
+      const profile = await fetchCompanyProfile(businessCase.inputs.companyName, email);
+
+      setStep("building");
+
       const copy = buildDeterministicCopy(businessCase);
       const presentationDate = new Date().toLocaleDateString("de-DE", { year: "numeric", month: "long", day: "numeric" });
 
@@ -79,6 +87,13 @@ const RoiDeliveryForm = ({ businessCase, m365Users }: Props) => {
           presentationDate,
           contactName: contactName.trim(),
           contactRole: contactRole.trim() || undefined,
+          logoDataUrl: profile.logoDataUrl ?? undefined,
+          companySummary: profile.summary ?? undefined,
+          // Selbst gewählte Branche schlägt die recherchierte.
+          industry: industry || profile.industry || undefined,
+          goals,
+          adoptionStage: adoptionStage || undefined,
+          m365Users,
         },
         copy,
       });
@@ -145,7 +160,7 @@ const RoiDeliveryForm = ({ businessCase, m365Users }: Props) => {
     );
   }
 
-  const isBusy = step === "building" || step === "uploading";
+  const isBusy = step === "researching" || step === "building" || step === "uploading";
 
   return (
     <div className="rounded-2xl border-2 border-primary/30 bg-gradient-to-br from-primary/5 to-primary/10 p-6 md:p-8">
@@ -258,7 +273,11 @@ const RoiDeliveryForm = ({ businessCase, m365Users }: Props) => {
           {isBusy ? (
             <>
               <Loader2 className="w-5 h-5 animate-spin" />
-              {step === "building" ? "Präsentation wird erstellt…" : "Wird übermittelt…"}
+              {step === "researching"
+                ? "Angaben werden geprüft…"
+                : step === "building"
+                ? "Präsentation wird erstellt…"
+                : "Wird übermittelt…"}
             </>
           ) : (
             "Editierbare PowerPoint erstellen"
