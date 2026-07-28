@@ -33,6 +33,8 @@ const customers = [
   {
     name: "Hessisches Ministerium für Familie, Senioren, Sport, Gesundheit und Pflege",
     file: "hessisches-familienministerium.png",
+    showLabel: true,
+    caption: ["Hessisches Ministerium", "für Familie, Senioren, Sport, Gesundheit und Pflege"],
   },
 ];
 
@@ -40,10 +42,12 @@ const LogoItem = ({
   name,
   file,
   showLabel,
+  caption,
 }: {
   name: string;
   file: string;
   showLabel?: boolean;
+  caption?: string[];
 }) => {
   const [imgFailed, setImgFailed] = useState(false);
 
@@ -65,8 +69,14 @@ const LogoItem = ({
         onError={() => setImgFailed(true)}
       />
       {showLabel && (
-        <span className="text-xs text-muted-foreground/70 whitespace-nowrap">
-          {name}
+        <span className="text-xs text-muted-foreground/70 text-center leading-snug max-w-[180px]">
+          {caption ? caption.map((line, i) => (
+            <span key={i} className="block">
+              {line}
+            </span>
+          )) : (
+            <span className="whitespace-nowrap">{name}</span>
+          )}
         </span>
       )}
     </div>
@@ -81,7 +91,13 @@ const CustomerLogos = () => (
       </p>
       <div className="mt-5 flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
         {customers.map((c) => (
-          <LogoItem key={c.name} name={c.name} file={c.file} showLabel={c.showLabel} />
+          <LogoItem
+            key={c.name}
+            name={c.name}
+            file={c.file}
+            showLabel={c.showLabel}
+            caption={c.caption}
+          />
         ))}
       </div>
     </div>
