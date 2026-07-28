@@ -18,7 +18,6 @@ import {
   type RoiGoal,
   type RoiAdoptionStage,
 } from "@/lib/roi/context";
-import { buildDeterministicCopy } from "@/lib/roi/deterministicCopy";
 import { createRoiBusinessCaseDeck } from "@/lib/pptx/createRoiBusinessCaseDeck";
 import { fetchCompanyProfile, prefetchCompanyProfile } from "@/lib/roi/companyProfileClient";
 
@@ -78,7 +77,6 @@ const RoiDeliveryForm = ({ businessCase, m365Users }: Props) => {
 
       setStep("building");
 
-      const copy = buildDeterministicCopy(businessCase);
       const presentationDate = new Date().toLocaleDateString("de-DE", { year: "numeric", month: "long", day: "numeric" });
 
       const { blob, fileName } = await createRoiBusinessCaseDeck({
@@ -95,7 +93,6 @@ const RoiDeliveryForm = ({ businessCase, m365Users }: Props) => {
           adoptionStage: adoptionStage || undefined,
           m365Users,
         },
-        copy,
       });
 
       setStep("uploading");

@@ -1,30 +1,29 @@
 import type PptxGenJS from "pptxgenjs";
-import type { RoiBusinessCase, PresentationCopy, PresentationOptions } from "@/lib/roi/types";
-import { formatEur, formatPercent, formatBreakEven, formatHours } from "@/lib/roi/format";
-import { ASSUMPTIONS_VERSION } from "@/lib/roi/assumptions";
+import type { RoiBusinessCase, PresentationOptions } from "@/lib/roi/types";
+import { buildDeckValues, type DeckValues } from "@/lib/roi/deckValues";
+import { PPT_THEME, PPT_FONT, px, pt, PAD, SLIDE_W, CONTENT_W } from "./theme";
 import {
-  buildTrainingCopy,
-  AGENTIC_POTENTIAL_COPY,
-  buildDominantCostBlockCopy,
-  buildBenefitLogicCopy,
-} from "@/lib/roi/deterministicCopy";
-import { PPT_THEME, PPT_FONT, roiColor } from "./theme";
-import { ROI_SOURCES, buildSourcesNotes } from "./sources";
+  paletteFor, hairline, racingStripe, eyebrow, slideTitle, lead, footer,
+  hairlineGrid, kpiRow, railStatement, card, labeledBlock, hairlineTable,
+  type Palette,
+} from "./layout";
+import { DECK_SLIDES, DECK_FOOTER_LEFT, DECK_FOOTER_DISCLAIMER, type DeckSlideContent } from "./deckContent";
 import { buildPptxFileName } from "./fileName";
 
-const MASTER_NAME = "ROI_MASTER";
-
 /**
- * Baut die vollständige, editierbare Business-Case-PowerPoint im Browser (Konzept Abschnitt 9-12).
- * Gibt einen Blob zurück (kein direkter Download hier) — der Aufrufer lädt ihn zum "echten
- * Honeypot"-Endpunkt hoch, der die Mail erst NACH erfolgreicher Speicherung verschickt.
+ * Baut die 20-seitige Entscheidungsvorlage im Copilotenschule-Design.
+ *
+ * Grundsätze aus dem Design-Handoff:
+ *  - Reihenfolge und Copy sind Teil der Argumentation und bleiben unverändert.
+ *  - Es werden KEINE Folien abhängig von den Eingaben ein- oder ausgeblendet; die
+ *    Präsentation ist immer identisch aufgebaut und wird nur mit Werten personalisiert.
+ *  - Alles bleibt editierbar: echte Textfelder, Formen und Linien, keine Bilder von Folien.
  */
 export async function createRoiBusinessCaseDeck(args: {
   businessCase: RoiBusinessCase;
   options: PresentationOptions;
-  copy: PresentationCopy;
 }): Promise<{ blob: Blob; fileName: string }> {
-  const { businessCase: bc, options, copy } = args;
+  const { businessCase: bc, options } = args;
   const { default: PptxGenJS } = await import("pptxgenjs");
   const pptx = new PptxGenJS();
 
@@ -32,395 +31,616 @@ export async function createRoiBusinessCaseDeck(args: {
   pptx.author = "Copilotenschule";
   pptx.company = "Copilotenschule";
   pptx.subject = "Microsoft 365 Copilot Business Case";
-  pptx.title = `Copilot Business Case – ${bc.inputs.companyName}`;
+  pptx.title = `Business Case Microsoft 365 Copilot – ${bc.inputs.companyName}`;
 
-  defineMaster(pptx, bc, options);
+  const ansprechpartner = [options.contactName, options.contactRole].filter(Boolean).join(", ")
+    || "Martin Lang · copilotenschule.de";
+  const v = buildDeckValues(bc, { datum: options.presentationDate, ansprechpartner });
 
-  addTitleSlide(pptx, bc, options);
-  addExecutiveSummarySlide(pptx, bc, copy);
-  addModelOverviewSlide(pptx, bc);
-  addInvestmentSlide(pptx, bc);
-  addTrainingEconomicsSlide(pptx, bc);
-  addBenefitLogicSlide(pptx, bc);
-  addScenarioComparisonSlide(pptx, bc);
-  addTimelineSlide(pptx, bc);
-  addRealizationConditionsSlide(pptx, copy);
-  addDecisionSlide(pptx, bc, copy);
-  addSourcesSlide(pptx);
+  const renderers: Record<number, (s: PptxGenJS.Slide, c: DeckSlideContent, p: Palette) => void> = {
+    1: (s, c, p) => slide01(s, c, p, v, options),
+    2: (s, c, p) => slide02(s, c, p, v),
+    3: (s, c, p) => gridSlide(s, c, p, 4),
+    4: (s, c, p) => slide04(s, c, p),
+    5: (s, c, p) => slide05(s, c, p),
+    6: (s, c, p) => gridSlide(s, c, p, 4),
+    7: (s, c, p) => gridSlide(s, c, p, 3),
+    8: (s, c, p) => tableSlide(s, c, p, ["Risiko", "Gegenmaßnahme"]),
+    9: (s, c, p) => slide09(s, c, p, v),
+    10: (s, c, p) => slide10(s, c, p, v),
+    11: (s, c, p) => slide11(s, c, p, v),
+    12: (s, c, p) => slide12(s, c, p),
+    13: (s, c, p) => slide13(s, c, p, v),
+    14: (s, c, p) => gridSlide(s, c, p, 3),
+    15: (s, c, p) => gridSlide(s, c, p, 5),
+    16: (s, c, p) => slide16(s, c, p),
+    17: (s, c, p) => slide17(s, c, p),
+    18: (s, c, p) => gridSlide(s, c, p, 4),
+    19: (s, c, p) => slide19(s, c, p, v, options),
+    20: (s, c, p) => slide20(s, c, p),
+  };
+
+  for (const content of DECK_SLIDES) {
+    const resolved = resolveContent(content, v);
+    const palette = paletteFor(resolved.bg);
+    const slide = pptx.addSlide();
+    slide.background = { color: palette.bg };
+
+    (renderers[resolved.nr] ?? ((s, c, p) => gridSlide(s, c, p, 3)))(slide, resolved, palette);
+
+    if (resolved.nr > 1) {
+      footer(slide, {
+        left: DECK_FOOTER_LEFT,
+        center: resolved.disclaimer ? DECK_FOOTER_DISCLAIMER : undefined,
+        right: v.firma,
+        palette,
+      });
+    }
+    if (resolved.notes) slide.addNotes(resolved.notes);
+  }
 
   const blob = (await pptx.write({ outputType: "blob" })) as Blob;
-  const fileName = buildPptxFileName(bc.inputs.companyName);
-  return { blob, fileName };
+  return { blob, fileName: buildPptxFileName(bc.inputs.companyName) };
 }
 
-function defineMaster(pptx: PptxGenJS, bc: RoiBusinessCase, options: PresentationOptions) {
-  const objects: PptxGenJS.SlideMasterProps["objects"] = [
-    { line: { x: 0, y: 7.42, w: "100%", h: 0, line: { color: PPT_THEME.primary, width: 1.5 } } },
-    {
-      text: {
-        text: "Copilotenschule",
-        options: { x: 11.6, y: 0.15, w: 1.6, h: 0.3, fontSize: 10, color: PPT_THEME.muted, align: "right", fontFace: PPT_FONT.body },
-      },
-    },
-    {
-      text: {
-        text: `${bc.inputs.companyName} · Planungsrechnung – kein Wirkungsversprechen · ${options.presentationDate}`,
-        options: { x: 0.4, y: 7.1, w: 10, h: 0.3, fontSize: 9, color: PPT_THEME.muted, fontFace: PPT_FONT.body },
-      },
-    },
-    // Kein Logo-Upload (bewusste Entscheidung) — der Unternehmensname erscheint stattdessen
-    // typografisch oben links auf jeder Folie.
-    {
-      text: {
-        text: bc.inputs.companyName,
-        options: { x: 0.4, y: 0.15, w: 6, h: 0.4, fontSize: 13, bold: true, color: PPT_THEME.navy, fontFace: PPT_FONT.head },
-      },
-    },
-  ];
+/** Ersetzt alle {{ platzhalter }} durch die berechneten Werte. */
+function resolveContent(c: DeckSlideContent, v: DeckValues): DeckSlideContent {
+  const fill = (text: string): string =>
+    text.replace(/\{\{\s*([a-zA-Z0-9_]+)\s*\}\}/g, (_m, key: string) => {
+      const value = (v as unknown as Record<string, unknown>)[key];
+      return typeof value === "string" || typeof value === "number" ? String(value) : "";
+    });
 
-  pptx.defineSlideMaster({
-    title: MASTER_NAME,
-    background: { color: PPT_THEME.white },
-    objects,
-    slideNumber: { x: 12.9, y: 7.1, fontSize: 9, color: PPT_THEME.muted },
-  });
+  return {
+    ...c,
+    title: c.title ? fill(c.title) : c.title,
+    items: c.items.map(fill),
+  };
 }
 
-function addSlideTitle(slide: PptxGenJS.Slide, title: string) {
-  slide.addText(title, {
-    x: 0.5, y: 0.35, w: 12.3, h: 0.8,
-    fontSize: 28, bold: true, color: PPT_THEME.navy, fontFace: PPT_FONT.head,
-  });
+/** Kopfbereich (Eyebrow + Titel + optionaler Lead) und liefert die Y-Position darunter. */
+function header(slide: PptxGenJS.Slide, c: DeckSlideContent, p: Palette, leadText?: string): number {
+  if (c.eyebrow) eyebrow(slide, c.eyebrow, p);
+  if (c.title) slideTitle(slide, c.title, p);
+  if (leadText) {
+    lead(slide, leadText, p, PAD.top + px(140));
+    return PAD.top + px(250);
+  }
+  return PAD.top + px(170);
 }
 
-function addTitleSlide(pptx: PptxGenJS, bc: RoiBusinessCase, options: PresentationOptions) {
-  const slide = pptx.addSlide({ masterName: MASTER_NAME });
-  slide.addText("Business Case für Microsoft 365 Copilot", {
-    x: 0.8, y: 2.1, w: 11.7, h: 1.2, fontSize: 40, bold: true, color: PPT_THEME.navy, fontFace: PPT_FONT.head, align: "left",
-  });
-  slide.addText(`Planungsrechnung für ${bc.inputs.companyName}`, {
-    x: 0.8, y: 3.35, w: 11.7, h: 0.6, fontSize: 22, color: PPT_THEME.text, fontFace: PPT_FONT.body,
-  });
-  const chatUsersForTitle = Math.max(bc.inputs.m365Users - bc.inputs.users, 0);
-  const scopeLine =
-    chatUsersForTitle > 0
-      ? `${bc.inputs.users} Copilot-Lizenzen · ${chatUsersForTitle} Chat-Nutzer ohne Lizenz  |  36-Monats-Betrachtung`
-      : `${bc.inputs.users} geplante Nutzer  |  36-Monats-Betrachtung`;
-  slide.addText(scopeLine, {
-    x: 0.8, y: 4.0, w: 11.7, h: 0.5, fontSize: 16, color: PPT_THEME.muted, fontFace: PPT_FONT.body,
+// ---------------------------------------------------------------- Folie 01
+
+function slide01(slide: PptxGenJS.Slide, c: DeckSlideContent, p: Palette, v: DeckValues, o: PresentationOptions): void {
+  racingStripe(slide, PAD.titleSide, PAD.titleTop);
+  slide.addText("copilotenschule.de", {
+    x: SLIDE_W - PAD.titleSide - px(500), y: PAD.titleTop - px(6), w: px(500), h: px(40),
+    fontFace: PPT_FONT.display, fontSize: pt(28), bold: true, color: PPT_THEME.onNavy, align: "right", valign: "top",
   });
 
-  // Recherchiertes Logo, falls vorhanden. Ohne Logo bleibt die Stelle einfach leer –
-  // es wird bewusst KEIN Platzhalter gezeichnet.
-  if (options.logoDataUrl) {
+  const items = c.items;
+  slide.addText(items[0] ?? "§ 00 — Entscheidungsvorlage", {
+    x: PAD.titleSide, y: PAD.titleTop + px(60), w: px(900), h: px(34),
+    fontFace: PPT_FONT.mono, fontSize: pt(24), color: PPT_THEME.onNavyTertiary, charSpacing: 2.4, valign: "top",
+  });
+
+  slide.addText("Business Case\nMicrosoft 365 Copilot", {
+    x: PAD.titleSide, y: px(300), w: px(1400), h: px(300),
+    fontFace: PPT_FONT.display, fontSize: pt(104), bold: true, color: PPT_THEME.onNavy,
+    charSpacing: -3, lineSpacingMultiple: 1.05, valign: "top",
+  });
+
+  const subs = items.filter((t) => t.length > 60).slice(0, 2);
+  subs.forEach((text, i) => {
+    slide.addText(text, {
+      x: PAD.titleSide, y: px(620 + i * 74), w: px(1300), h: px(70),
+      fontFace: PPT_FONT.body, fontSize: pt(32), color: PPT_THEME.onNavySecondary,
+      lineSpacingMultiple: 1.25, valign: "top",
+    });
+  });
+
+  // Automatisch recherchiertes Logo, dezent unten rechts. Ohne Fund: kein Platzhalter.
+  if (o.logoDataUrl) {
     slide.addImage({
-      data: options.logoDataUrl,
-      x: 10.6, y: 0.9, w: 2.2, h: 1.1,
-      sizing: { type: "contain", w: 2.2, h: 1.1 },
+      data: o.logoDataUrl,
+      x: SLIDE_W - PAD.titleSide - px(300), y: px(300), w: px(300), h: px(140),
+      sizing: { type: "contain", w: px(300), h: px(140) },
     });
   }
 
-  if (options.companySummary) {
-    slide.addText(options.companySummary, {
-      x: 0.8, y: 5.4, w: 9.4, h: 0.8, fontSize: 12, italic: true,
-      color: PPT_THEME.muted, fontFace: PPT_FONT.body, valign: "top",
+  const metaY = px(1080 - 90 - 110);
+  hairline(slide, PAD.titleSide, metaY, SLIDE_W - 2 * PAD.titleSide, PPT_THEME.onNavyHairline);
+  const metaW = (SLIDE_W - 2 * PAD.titleSide) / 3;
+  ([
+    ["Unternehmen", v.firma],
+    ["Stand", v.datum],
+    ["Ansprechpartner", v.ansprechpartner],
+  ] as const).forEach(([label, value], i) => {
+    const x = PAD.titleSide + i * metaW;
+    slide.addText(label.toUpperCase(), {
+      x, y: metaY + px(22), w: metaW - px(24), h: px(30),
+      fontFace: PPT_FONT.mono, fontSize: pt(24), color: PPT_THEME.onNavyMuted, charSpacing: 1.6, valign: "top",
+    });
+    slide.addText(value, {
+      x, y: metaY + px(58), w: metaW - px(24), h: px(44),
+      fontFace: PPT_FONT.body, fontSize: pt(30), color: PPT_THEME.onNavy, valign: "top", shrinkText: true,
+    });
+  });
+}
+
+// ---------------------------------------------------------------- Folie 02
+
+function slide02(slide: PptxGenJS.Slide, c: DeckSlideContent, p: Palette, v: DeckValues): void {
+  const y = header(slide, c, p, c.items[0]);
+
+  kpiRow(slide, {
+    x: PAD.side, y, w: CONTENT_W, h: px(190),
+    palette: p,
+    items: [
+      { label: "ROI Jahr 1", value: v.roiY1 },
+      { label: "Break-even", value: v.breakEven },
+      { label: "Investition Jahr 1", value: v.costY1 },
+      { label: "Netto-Nutzen 3 Jahre", value: v.net3 },
+    ],
+  });
+
+  const boxY = y + px(240);
+  const boxH = px(300);
+  card(slide, { x: PAD.side, y: boxY, w: CONTENT_W, h: boxH });
+
+  // Herleitung / Annahmen / Quellen – die drei Label-Text-Paare am Ende der Folie.
+  const pairs: { label: string; body: string }[] = [];
+  for (let i = 9; i + 1 < c.items.length; i += 2) {
+    pairs.push({ label: c.items[i], body: c.items[i + 1] });
+  }
+  const colW = (CONTENT_W - px(96)) / 3;
+  pairs.slice(0, 3).forEach((pair, i) => {
+    labeledBlock(slide, {
+      x: PAD.side + px(40) + i * (colW + px(8)),
+      y: boxY + px(40),
+      w: colW - px(40),
+      label: pair.label,
+      body: pair.body,
+      palette: { ...p, secondary: PPT_THEME.body },
+      bodyH: boxH - px(100),
+    });
+  });
+}
+
+// ------------------------------------------------- Generisches Hairline-Raster
+
+/**
+ * Deckt die Folien 03, 06, 07, 14, 15 und 18 ab: gleichmäßiges Raster aus
+ * Nummer/Titel/Text, darunter optional eine Aussage mit rotem Rail.
+ */
+function gridSlide(slide: PptxGenJS.Slide, c: DeckSlideContent, p: Palette, columns: number): void {
+  const items = [...c.items];
+  const leadText = items.length && items[0].length > 80 ? items.shift() : undefined;
+  const y = header(slide, c, p, leadText);
+
+  // Rail-Statements sind lange Einzeltexte am Ende ohne zugehörigen Titel.
+  const tail: string[] = [];
+  while (items.length && items[items.length - 1].length > 110 && items.length % 3 !== 0) {
+    tail.unshift(items.pop() as string);
+  }
+
+  const cols: { eyebrow?: string; title: string; body?: string }[] = [];
+  const isNumbered = /^\d{2}$/.test(items[0] ?? "");
+  const step = isNumbered ? 3 : 2;
+  for (let i = 0; i + step - 1 < items.length && cols.length < columns * 2; i += step) {
+    cols.push(
+      isNumbered
+        ? { eyebrow: items[i], title: items[i + 1], body: items[i + 2] }
+        : { title: items[i], body: items[i + 1] }
+    );
+  }
+
+  const gridH = px(300);
+  const rows = Math.ceil(cols.length / columns);
+  for (let r = 0; r < rows; r++) {
+    hairlineGrid(slide, {
+      x: PAD.side,
+      y: y + r * (gridH + px(40)),
+      w: CONTENT_W,
+      colH: gridH,
+      columns: cols.slice(r * columns, (r + 1) * columns),
+      palette: p,
+      titleSize: columns >= 5 ? 28 : 32,
     });
   }
 
-  const contactLine = [options.contactName, options.contactRole].filter(Boolean).join(", ");
-  const metaLines = [contactLine || undefined, options.presentationDate].filter(Boolean) as string[];
-  if (metaLines.length > 0) {
-    slide.addText(metaLines.join("  ·  "), {
-      x: 0.8, y: 4.7, w: 11.7, h: 0.5, fontSize: 13, color: PPT_THEME.muted, fontFace: PPT_FONT.body,
+  if (tail.length) {
+    railStatement(slide, {
+      x: PAD.side,
+      y: y + rows * (gridH + px(40)) + px(10),
+      w: CONTENT_W,
+      text: tail.join("  "),
+      palette: p,
     });
   }
 }
 
-function addExecutiveSummarySlide(pptx: PptxGenJS, bc: RoiBusinessCase, copy: PresentationCopy) {
-  const slide = pptx.addSlide({ masterName: MASTER_NAME });
-  addSlideTitle(slide, "Executive Summary");
+// --------------------------------------------------------------- Folie 04/05
 
-  const year1 = bc.realistic.years[0];
-  const kpis: Array<{ label: string; value: string; color: string }> = [
-    { label: "ROI Jahr 1", value: formatPercent(year1.roi), color: roiColor(year1.roi) },
-    { label: "Netto-Nutzen 3 Jahre", value: formatEur(bc.realistic.netBenefitEur), color: PPT_THEME.navy },
-    { label: "Break-even", value: formatBreakEven(bc.realistic.breakEvenMonth), color: PPT_THEME.navy },
-    { label: "Trainingskosten/Nutzer (J1)", value: formatEur(bc.training.actualCostPerUserYear1Eur), color: PPT_THEME.navy },
-  ];
+function slide04(slide: PptxGenJS.Slide, c: DeckSlideContent, p: Palette): void {
+  const items = [...c.items];
+  const leadText = items.length && items[0].length > 80 ? items.shift() : undefined;
+  const y = header(slide, c, p, leadText);
 
-  const boxW = 2.85;
-  kpis.forEach((kpi, i) => {
-    const x = 0.5 + i * (boxW + 0.15);
-    slide.addShape("roundRect", { x, y: 1.4, w: boxW, h: 1.5, fill: { color: PPT_THEME.lightGray }, line: { color: PPT_THEME.lightGray } });
-    slide.addText(kpi.value, { x, y: 1.55, w: boxW, h: 0.7, align: "center", fontSize: 24, bold: true, color: kpi.color, fontFace: PPT_FONT.head });
-    slide.addText(kpi.label, { x, y: 2.25, w: boxW, h: 0.5, align: "center", fontSize: 12, color: PPT_THEME.muted, fontFace: PPT_FONT.body });
-  });
-
-  slide.addText(copy.executiveSummary, {
-    x: 0.5, y: 3.3, w: 12.3, h: 2.6, fontSize: 16, color: PPT_THEME.text, fontFace: PPT_FONT.body, valign: "top",
-  });
-
-  slide.addNotes(buildSourcesNotes());
-}
-
-function addModelOverviewSlide(pptx: PptxGenJS, bc: RoiBusinessCase) {
-  const slide = pptx.addSlide({ masterName: MASTER_NAME });
-  addSlideTitle(slide, "Was in die Rechnung einfließt");
-
-  const costBlocks = ["Lizenzen", "Training und Weiterbildung", "IT-Setup und Einführung", "Change und Adoption"];
-  const benefitAssumptions = [
-    "Alle geschulten Nutzer werden berücksichtigt",
-    `${bc.realistic.targetHoursPerUserMonth} Stunden Zielwert im realistischen Szenario`,
-    "Schneller Kompetenzsprung nach Trainingsbeginn",
-    "Nur 50 % wirtschaftlich realisierter Kapazitätswert",
-  ];
-
-  slide.addText("Kostenblöcke", { x: 0.5, y: 1.3, w: 5.8, h: 0.4, fontSize: 18, bold: true, color: PPT_THEME.navy, fontFace: PPT_FONT.head });
-  slide.addText(costBlocks.map((t) => `• ${t}`).join("\n"), {
-    x: 0.5, y: 1.75, w: 5.8, h: 2.6, fontSize: 15, color: PPT_THEME.text, fontFace: PPT_FONT.body, lineSpacingMultiple: 1.4,
-  });
-
-  slide.addText("Nutzenannahmen", { x: 6.6, y: 1.3, w: 5.8, h: 0.4, fontSize: 18, bold: true, color: PPT_THEME.navy, fontFace: PPT_FONT.head });
-  slide.addText(benefitAssumptions.map((t) => `• ${t}`).join("\n"), {
-    x: 6.6, y: 1.75, w: 5.8, h: 2.6, fontSize: 15, color: PPT_THEME.text, fontFace: PPT_FONT.body, lineSpacingMultiple: 1.4,
-  });
-
-  slide.addNotes(buildSourcesNotes());
-}
-
-function addInvestmentSlide(pptx: PptxGenJS, bc: RoiBusinessCase) {
-  const slide = pptx.addSlide({ masterName: MASTER_NAME });
-  addSlideTitle(slide, "Investition über drei Jahre");
-
-  const years = bc.realistic.years;
-  const chartData: PptxGenJS.OptsChartData[] = [
-    { name: "Lizenzen", labels: ["Jahr 1", "Jahr 2", "Jahr 3"], values: years.map((y) => Math.round(y.licenseCostEur)) },
-    { name: "Training", labels: ["Jahr 1", "Jahr 2", "Jahr 3"], values: years.map((y) => Math.round(y.trainingCostEur)) },
-    { name: "IT-Setup", labels: ["Jahr 1", "Jahr 2", "Jahr 3"], values: years.map((y) => Math.round(y.itSetupCostEur)) },
-    { name: "Change & Adoption", labels: ["Jahr 1", "Jahr 2", "Jahr 3"], values: years.map((y) => Math.round(y.changeCostEur)) },
-  ];
-
-  slide.addChart("bar", chartData, {
-    x: 0.5, y: 1.3, w: 8.2, h: 5.5,
-    barGrouping: "stacked",
-    chartColors: [PPT_THEME.primary, PPT_THEME.realistic, PPT_THEME.neutral, PPT_THEME.navy],
-    showLegend: true, legendPos: "b",
-    showValAxisTitle: false,
-    valAxisLabelFormatCode: "#,##0",
-    dataLabelColor: PPT_THEME.white,
-  });
-
-  slide.addText(`Gesamtkosten Jahr 1: ${formatEur(years[0].totalCostEur)}`, {
-    x: 9.0, y: 1.5, w: 3.8, h: 0.5, fontSize: 15, bold: true, color: PPT_THEME.navy, fontFace: PPT_FONT.body,
-  });
-  slide.addText(`Gesamtkosten 3 Jahre: ${formatEur(bc.realistic.totalCostEur)}`, {
-    x: 9.0, y: 2.0, w: 3.8, h: 0.5, fontSize: 15, bold: true, color: PPT_THEME.navy, fontFace: PPT_FONT.body,
-  });
-  slide.addText(buildDominantCostBlockCopy(bc), {
-    x: 9.0, y: 2.7, w: 3.8, h: 2.5, fontSize: 13, color: PPT_THEME.text, fontFace: PPT_FONT.body, valign: "top",
-  });
-}
-
-function addTrainingEconomicsSlide(pptx: PptxGenJS, bc: RoiBusinessCase) {
-  const slide = pptx.addSlide({ masterName: MASTER_NAME });
-  addSlideTitle(slide, "Training ist pro Person überschaubar");
-
-  const hasChatUsers = bc.training.chat.users > 0;
-
-  slide.addShape("roundRect", { x: 0.5, y: 1.4, w: 5.6, h: 1.7, fill: { color: PPT_THEME.lightOrange }, line: { color: PPT_THEME.lightOrange } });
-  slide.addText("Mit Lizenz: 1.800 € Kick-off\n+ 4 × 800 € Lernreise\n= 5.000 € je Gruppe", {
-    x: 0.7, y: 1.55, w: 5.2, h: 1.5, fontSize: 15, color: PPT_THEME.text, fontFace: PPT_FONT.body, valign: "middle", align: "center",
-  });
-
-  slide.addShape("roundRect", { x: 6.3, y: 1.4, w: 5.6, h: 1.7, fill: { color: PPT_THEME.lightBlue }, line: { color: PPT_THEME.lightBlue } });
-  slide.addText("5.000 € / 12 Personen\n= 416,67 € pro Person", {
-    x: 6.5, y: 1.55, w: 5.2, h: 1.5, fontSize: 15, color: PPT_THEME.text, fontFace: PPT_FONT.body, valign: "middle", align: "center",
-  });
-
-  if (hasChatUsers) {
-    slide.addShape("roundRect", { x: 0.5, y: 3.25, w: 11.4, h: 1.0, fill: { color: PPT_THEME.lightGray }, line: { color: PPT_THEME.lightGray } });
-    slide.addText("Ohne Lizenz (nur Copilot Chat): nur 1.800 € Kick-off je Gruppe — keine Lernreise, kein Folgejahr", {
-      x: 0.7, y: 3.25, w: 11.0, h: 1.0, fontSize: 15, color: PPT_THEME.text, fontFace: PPT_FONT.body, valign: "middle", align: "center",
+  const colW = (CONTENT_W - px(80)) / 2;
+  // Links: Kette aus vier Stufen.
+  const chain = items.slice(0, 8);
+  for (let i = 0; i * 2 + 1 < chain.length && i < 4; i++) {
+    const rowY = y + i * px(96);
+    hairline(slide, PAD.side, rowY, colW, p.hairline);
+    slide.addText(chain[i * 2], {
+      x: PAD.side, y: rowY + px(20), w: colW, h: px(40),
+      fontFace: PPT_FONT.display, fontSize: pt(30), bold: true, color: p.text, valign: "top",
+    });
+    slide.addText(chain[i * 2 + 1] ?? "", {
+      x: PAD.side, y: rowY + px(58), w: colW, h: px(34),
+      fontFace: PPT_FONT.body, fontSize: pt(26), color: p.secondary, valign: "top",
     });
   }
 
-  slide.addText(buildTrainingCopy(bc), {
-    x: 0.5, y: hasChatUsers ? 4.45 : 3.9, w: 11.4, h: hasChatUsers ? 1.7 : 1.4, fontSize: 14, color: PPT_THEME.text, fontFace: PPT_FONT.body, valign: "top",
+  // Rechts: Fließtext plus abgesetzte Box.
+  const rest = items.slice(8);
+  const rightX = PAD.side + colW + px(80);
+  slide.addText(rest.slice(0, 1).join(" "), {
+    x: rightX, y, w: colW, h: px(200),
+    fontFace: PPT_FONT.body, fontSize: pt(30), color: p.secondary, lineSpacingMultiple: 1.3, valign: "top",
   });
-  slide.addText("Für Jahr 2 und 3 sind jeweils 50 % des Trainingsbudgets der Lizenz-Nutzer aus Jahr 1 als fortlaufende Weiterbildung vorgesehen. Der Kick-off für Nutzer ohne Lizenz ist ein einmaliges Ereignis ohne Folgekosten.", {
-    x: 0.5, y: hasChatUsers ? 6.15 : 5.4, w: 11.4, h: 0.9, fontSize: 12, italic: true, color: PPT_THEME.muted, fontFace: PPT_FONT.body,
+  if (rest.length > 1) {
+    const boxY = y + px(220);
+    card(slide, { x: rightX, y: boxY, w: colW, h: px(200) });
+    slide.addText(rest.slice(1).join("\n\n"), {
+      x: rightX + px(32), y: boxY + px(28), w: colW - px(64), h: px(150),
+      fontFace: PPT_FONT.body, fontSize: pt(27), color: PPT_THEME.body, lineSpacingMultiple: 1.3, valign: "top",
+    });
+  }
+}
+
+function slide05(slide: PptxGenJS.Slide, c: DeckSlideContent, p: Palette): void {
+  const items = [...c.items];
+  const leadText = items.length && items[0].length > 80 ? items.shift() : undefined;
+  const y = header(slide, c, p, leadText);
+
+  const cardW = (CONTENT_W - px(60)) / 2;
+  const cardH = px(420);
+  const half = Math.ceil(items.length / 2);
+
+  [0, 1].forEach((i) => {
+    const x = PAD.side + i * (cardW + px(60));
+    const isNavy = i === 1;
+    card(slide, {
+      x, y, w: cardW, h: cardH,
+      fill: isNavy ? PPT_THEME.navy : PPT_THEME.white,
+      border: isNavy ? PPT_THEME.navy : PPT_THEME.navy,
+    });
+    racingStripe(slide, x + px(40), y + px(40));
+
+    const chunk = items.slice(i * half, (i + 1) * half);
+    const textColor = isNavy ? PPT_THEME.onNavy : PPT_THEME.navy;
+    const bodyColor = isNavy ? PPT_THEME.onNavySecondary : PPT_THEME.body;
+    if (chunk[0]) {
+      slide.addText(chunk[0], {
+        x: x + px(40), y: y + px(80), w: cardW - px(80), h: px(60),
+        fontFace: PPT_FONT.display, fontSize: pt(40), bold: true, color: textColor, valign: "top",
+      });
+    }
+    if (chunk.length > 1) {
+      slide.addText(chunk.slice(1).join("\n\n"), {
+        x: x + px(40), y: y + px(150), w: cardW - px(80), h: cardH - px(190),
+        fontFace: PPT_FONT.body, fontSize: pt(27), color: bodyColor, lineSpacingMultiple: 1.3, valign: "top",
+      });
+    }
   });
 }
 
-function addBenefitLogicSlide(pptx: PptxGenJS, bc: RoiBusinessCase) {
-  const slide = pptx.addSlide({ masterName: MASTER_NAME });
-  addSlideTitle(slide, "Wie aus Zeitersparnis Nutzen wird");
+// ------------------------------------------------------- Generische Tabelle
 
-  slide.addText("Nutzer  ×  Zeitersparnis je Person  ×  Vollkosten-Stundensatz  ×  50 % wirtschaftliche Realisierung  =  realisierter Nutzen", {
-    x: 0.5, y: 1.5, w: 12.3, h: 0.9, fontSize: 16, bold: true, color: PPT_THEME.navy, fontFace: PPT_FONT.body, align: "center",
+function tableSlide(slide: PptxGenJS.Slide, c: DeckSlideContent, p: Palette, headerCells: string[]): void {
+  const items = [...c.items];
+  const leadText = items.length && items[0].length > 80 ? items.shift() : undefined;
+  const y = header(slide, c, p, leadText);
+
+  const rows: string[][] = [];
+  for (let i = 0; i + 1 < items.length; i += 2) rows.push([items[i], items[i + 1]]);
+
+  hairlineTable(slide, {
+    x: PAD.side, y, w: CONTENT_W, rowH: px(110),
+    header: headerCells, rows, palette: p, colRatios: [0.42, 0.58],
   });
-
-  slide.addText(buildBenefitLogicCopy(bc), {
-    x: 0.5, y: 2.7, w: 12.3, h: 1.8, fontSize: 15, color: PPT_THEME.text, fontFace: PPT_FONT.body, valign: "top",
-  });
-
-  slide.addText(AGENTIC_POTENTIAL_COPY, {
-    x: 0.5, y: 4.7, w: 12.3, h: 1.4, fontSize: 13, italic: true, color: PPT_THEME.muted, fontFace: PPT_FONT.body, valign: "top",
-  });
-
-  slide.addNotes(buildSourcesNotes());
 }
 
-function addScenarioComparisonSlide(pptx: PptxGenJS, bc: RoiBusinessCase) {
-  const slide = pptx.addSlide({ masterName: MASTER_NAME });
-  addSlideTitle(slide, "Zwei plausible Szenarien");
+// ---------------------------------------------------------------- Folie 09
 
-  const headerRow: PptxGenJS.TableRow = [
-    { text: "", options: { fill: { color: PPT_THEME.lightGray } } },
-    { text: "Realistisch", options: { bold: true, fill: { color: PPT_THEME.lightOrange }, align: "center" } },
-    { text: "Studiennah", options: { bold: true, fill: { color: PPT_THEME.lightBlue }, align: "center" } },
-  ];
+function slide09(slide: PptxGenJS.Slide, c: DeckSlideContent, p: Palette, v: DeckValues): void {
+  const y = header(slide, c, p, c.items[0]);
+  const leftW = px(900);
 
-  const dataRows: string[][] = [
-    ["Geschulte Nutzer", "alle", "alle"],
-    ["Ziel-Zeitersparnis", `${bc.realistic.targetHoursPerUserMonth} Std./Monat`, `${bc.studyNear.targetHoursPerUserMonth} Std./Monat`],
-    ["Wirtschaftlich realisierbar", "50 %", "50 %"],
-    ["Nutzen Jahr 1", formatEur(bc.realistic.years[0].realizedBenefitEur), formatEur(bc.studyNear.years[0].realizedBenefitEur)],
-    ["ROI Jahr 1", formatPercent(bc.realistic.years[0].roi), formatPercent(bc.studyNear.years[0].roi)],
-    ["ROI 3 Jahre", formatPercent(bc.realistic.roi), formatPercent(bc.studyNear.roi)],
-  ];
-
-  const rows: PptxGenJS.TableRow[] = [
-    headerRow,
-    ...dataRows.map((row, i): PptxGenJS.TableRow =>
-      row.map((cell, ci) => ({
-        text: cell,
-        options: {
-          align: ci === 0 ? "left" : "center",
-          fontSize: 14,
-          color: PPT_THEME.text,
-          fill: { color: i % 2 === 0 ? PPT_THEME.white : PPT_THEME.lightGray },
-        },
-      }))
-    ),
-  ];
-
-  slide.addTable(rows, {
-    x: 0.7, y: 1.4, w: 11.9, h: 3.6,
-    fontFace: PPT_FONT.body, border: { type: "solid", color: "DDDDDD", pt: 0.5 },
-    colW: [4.3, 3.8, 3.8],
+  hairlineTable(slide, {
+    x: PAD.side, y, w: leftW, rowH: px(92),
+    rows: [
+      ["Realisierter Nutzen Jahr 1", v.benefitY1],
+      ["Gesamtkosten Jahr 1", v.costY1],
+      ["Realisierter Nutzen 3 Jahre", v.benefit3],
+      ["Gesamtkosten 3 Jahre", v.cost3],
+      ["Netto-Nutzen 3 Jahre", v.net3],
+    ],
+    palette: p, colRatios: [0.62, 0.38],
   });
 
-  slide.addText(
-    "Die Szenarien unterscheiden sich nicht durch eine künstliche Adoption-Quote. Für alle geschulten Nutzer wird eine durchschnittliche Zeitersparnis angesetzt.",
-    { x: 0.7, y: 5.3, w: 11.9, h: 0.9, fontSize: 13, italic: true, color: PPT_THEME.muted, fontFace: PPT_FONT.body }
+  const rightX = PAD.side + leftW + px(80);
+  const rightW = CONTENT_W - leftW - px(80);
+  ([
+    ["ROI Jahr 1", v.roiY1],
+    ["ROI 3 Jahre", v.roi3],
+  ] as const).forEach(([label, value], i) => {
+    const boxY = y + i * px(200);
+    card(slide, { x: rightX, y: boxY, w: rightW, h: px(170) });
+    slide.addText(label.toUpperCase(), {
+      x: rightX + px(32), y: boxY + px(26), w: rightW - px(64), h: px(30),
+      fontFace: PPT_FONT.mono, fontSize: pt(24), color: PPT_THEME.footer, charSpacing: 1.6, valign: "top",
+    });
+    slide.addText(value, {
+      x: rightX + px(32), y: boxY + px(62), w: rightW - px(64), h: px(90),
+      fontFace: PPT_FONT.display, fontSize: pt(82), bold: true, color: PPT_THEME.navy,
+      charSpacing: -2, valign: "top", shrinkText: true,
+    });
+  });
+
+  slide.addText(v.roiHinweis, {
+    x: rightX, y: y + px(420), w: rightW, h: px(160),
+    fontFace: PPT_FONT.body, fontSize: pt(26), color: p.secondary, lineSpacingMultiple: 1.3, valign: "top",
+  });
+}
+
+// ---------------------------------------------------------------- Folie 10
+
+function slide10(slide: PptxGenJS.Slide, c: DeckSlideContent, p: Palette, v: DeckValues): void {
+  const y = header(slide, c, p, c.items[0]);
+
+  kpiRow(slide, {
+    x: PAD.side, y, w: CONTENT_W, h: px(200),
+    palette: p, valueSize: 56,
+    items: [
+      { label: "Lizenzen", value: v.blockLic, note: `${v.blockLicPct} der Gesamtkosten` },
+      { label: "Training", value: v.blockTrain, note: `${v.blockTrainPct} der Gesamtkosten` },
+      { label: "IT-Setup", value: v.blockIt, note: `${v.blockItPct} der Gesamtkosten` },
+      { label: "Change & Adoption", value: v.blockChange, note: `${v.blockChangePct} der Gesamtkosten` },
+    ],
+  });
+
+  const notes = c.items.slice(-2);
+  const colW = (CONTENT_W - px(80)) / 2;
+  notes.forEach((text, i) => {
+    slide.addText(text, {
+      x: PAD.side + i * (colW + px(80)), y: y + px(260), w: colW, h: px(180),
+      fontFace: PPT_FONT.body, fontSize: pt(27), color: p.secondary, lineSpacingMultiple: 1.3, valign: "top",
+    });
+  });
+}
+
+// ---------------------------------------------------------------- Folie 11
+
+function slide11(slide: PptxGenJS.Slide, c: DeckSlideContent, p: Palette, v: DeckValues): void {
+  const y = header(slide, c, p, c.items[0]);
+
+  // Formelleiste: Nutzer × Zeitersparnis × Stundensatz × 50 %
+  const parts = [v.nutzerText + " Nutzer", v.hoursY1 + "/Monat", v.rateText + "/Std.", "50 % Realisierung"];
+  const barW = (CONTENT_W - px(3 * 40)) / 4;
+  parts.forEach((text, i) => {
+    const x = PAD.side + i * (barW + px(40));
+    card(slide, { x, y, w: barW, h: px(120) });
+    slide.addText(text, {
+      x: x + px(20), y: y + px(34), w: barW - px(40), h: px(60),
+      fontFace: PPT_FONT.display, fontSize: pt(32), bold: true, color: PPT_THEME.navy,
+      align: "center", valign: "top", shrinkText: true,
+    });
+    if (i < parts.length - 1) {
+      slide.addText("×", {
+        x: x + barW, y: y + px(38), w: px(40), h: px(50),
+        fontFace: PPT_FONT.display, fontSize: pt(34), color: PPT_THEME.sky, align: "center", valign: "top",
+      });
+    }
+  });
+
+  const rest = c.items.slice(1);
+  const colW = (CONTENT_W - px(80)) / 2;
+  [0, 1].forEach((i) => {
+    const chunk = rest.slice(i * Math.ceil(rest.length / 2), (i + 1) * Math.ceil(rest.length / 2));
+    if (!chunk.length) return;
+    slide.addText(chunk.join("\n\n"), {
+      x: PAD.side + i * (colW + px(80)), y: y + px(180), w: colW, h: px(320),
+      fontFace: PPT_FONT.body, fontSize: pt(27), color: p.secondary, lineSpacingMultiple: 1.3, valign: "top",
+    });
+  });
+}
+
+// ---------------------------------------------------------------- Folie 12
+
+function slide12(slide: PptxGenJS.Slide, c: DeckSlideContent, p: Palette): void {
+  const items = [...c.items];
+  const leadText = items.length && items[0].length > 80 ? items.shift() : undefined;
+  const y = header(slide, c, p, leadText);
+
+  const rows: string[][] = [];
+  for (let i = 0; i + 2 < items.length; i += 3) rows.push([items[i], items[i + 1], items[i + 2]]);
+
+  hairlineTable(slide, {
+    x: PAD.side, y, w: CONTENT_W, rowH: px(96),
+    header: ["", "Realistisch", "Forrester TEI"],
+    rows, palette: p, colRatios: [0.4, 0.3, 0.3],
+  });
+}
+
+// ---------------------------------------------------------------- Folie 13
+
+/** Break-even-Diagramm: kumulierter Nutzen gegen kumulierte Kosten, als natives Liniendiagramm. */
+function slide13(slide: PptxGenJS.Slide, c: DeckSlideContent, p: Palette, v: DeckValues): void {
+  const y = header(slide, c, p, c.items[0]);
+  const labels = v.chartBenefitSeries.map((_, i) => `M${i + 1}`);
+
+  slide.addChart(
+    "line",
+    [
+      { name: "Kumulierter Nutzen", labels, values: v.chartBenefitSeries.map((n) => Math.round(n)) },
+      { name: "Kumulierte Kosten", labels, values: v.chartCostSeries.map((n) => Math.round(n)) },
+    ],
+    {
+      x: PAD.side, y, w: CONTENT_W, h: px(520),
+      chartColors: [PPT_THEME.sky, PPT_THEME.navy],
+      showLegend: true, legendPos: "b", legendFontFace: PPT_FONT.body, legendFontSize: pt(24),
+      lineSize: 3, lineDataSymbol: "none",
+      catAxisLabelFontFace: PPT_FONT.mono, catAxisLabelFontSize: pt(20),
+      valAxisLabelFontFace: PPT_FONT.mono, valAxisLabelFontSize: pt(20),
+      valAxisLabelFormatCode: "#.##0",
+      catAxisLabelFrequency: "3",
+    }
   );
 
-  slide.addNotes(buildSourcesNotes());
+  const beText = v.breakEvenMonth
+    ? `Break-even: ${v.breakEvenShort} · Maßstab bis ${v.chartMaxLabel}`
+    : `Kein Break-even innerhalb von 36 Monaten · Maßstab bis ${v.chartMaxLabel}`;
+  slide.addText(beText, {
+    x: PAD.side, y: y + px(540), w: CONTENT_W, h: px(50),
+    fontFace: PPT_FONT.mono, fontSize: pt(24), color: PPT_THEME.signal, charSpacing: 1.6, valign: "top",
+  });
 }
 
-function addTimelineSlide(pptx: PptxGenJS, bc: RoiBusinessCase) {
-  const slide = pptx.addSlide({ masterName: MASTER_NAME });
-  addSlideTitle(slide, "Wirtschaftliche Entwicklung über 36 Monate");
+// ---------------------------------------------------------------- Folie 16
 
-  const months = bc.realistic.months;
-  const labels = months.map((m) => `M${m.month}`);
-  const chartData: PptxGenJS.OptsChartData[] = [
-    { name: "Kumulierter Nutzen", labels, values: months.map((m) => Math.round(m.cumulativeBenefitEur)) },
-    { name: "Kumulierte Kosten", labels, values: months.map((m) => Math.round(m.cumulativeCostEur)) },
-    { name: "Kumulierter Netto-Nutzen", labels, values: months.map((m) => Math.round(m.cumulativeNetBenefitEur)) },
+function slide16(slide: PptxGenJS.Slide, c: DeckSlideContent, p: Palette): void {
+  const items = [...c.items];
+  const leadText = items.length && items[0].length > 80 ? items.shift() : undefined;
+  const y = header(slide, c, p, leadText);
+
+  const tiles: { title: string; body: string }[] = [];
+  for (let i = 0; i + 1 < items.length && tiles.length < 8; i += 2) {
+    tiles.push({ title: items[i], body: items[i + 1] });
+  }
+
+  const cols = 4;
+  const tileW = (CONTENT_W - px(3 * 32)) / cols;
+  const tileH = px(230);
+  tiles.forEach((tile, i) => {
+    const x = PAD.side + (i % cols) * (tileW + px(32));
+    const ty = y + Math.floor(i / cols) * (tileH + px(32));
+    card(slide, { x, y: ty, w: tileW, h: tileH });
+    slide.addText(tile.title, {
+      x: x + px(24), y: ty + px(24), w: tileW - px(48), h: px(64),
+      fontFace: PPT_FONT.display, fontSize: pt(30), bold: true, color: PPT_THEME.navy, valign: "top",
+    });
+    slide.addText(tile.body, {
+      x: x + px(24), y: ty + px(94), w: tileW - px(48), h: tileH - px(120),
+      fontFace: PPT_FONT.body, fontSize: pt(25), color: PPT_THEME.body, lineSpacingMultiple: 1.25, valign: "top",
+    });
+  });
+
+  const hint = items[items.length - 1];
+  if (hint && hint.length > 120) {
+    slide.addText(hint, {
+      x: PAD.side, y: y + 2 * (tileH + px(32)) + px(8), w: CONTENT_W, h: px(110),
+      fontFace: PPT_FONT.body, fontSize: pt(24), color: p.secondary, lineSpacingMultiple: 1.25, valign: "top",
+    });
+  }
+}
+
+// ---------------------------------------------------------------- Folie 17
+
+function slide17(slide: PptxGenJS.Slide, c: DeckSlideContent, p: Palette): void {
+  const items = [...c.items];
+  const leadText = items.length && items[0].length > 80 ? items.shift() : undefined;
+  const y = header(slide, c, p, leadText);
+
+  const kpis: { label: string; value: string }[] = [];
+  for (let i = 0; i + 1 < items.length && kpis.length < 4; i += 2) {
+    kpis.push({ value: items[i], label: items[i + 1] });
+  }
+  kpiRow(slide, { x: PAD.side, y, w: CONTENT_W, h: px(180), palette: p, items: kpis, valueSize: 56 });
+
+  const quote = items.find((t) => t.length > 120);
+  if (quote) {
+    railStatement(slide, { x: PAD.side, y: y + px(240), w: CONTENT_W, text: quote, palette: p });
+  }
+}
+
+// ---------------------------------------------------------------- Folie 19
+
+function slide19(slide: PptxGenJS.Slide, c: DeckSlideContent, p: Palette, v: DeckValues, o: PresentationOptions): void {
+  const y = header(slide, c, p, c.items[0]);
+  const colW = (CONTENT_W - px(80)) / 2;
+
+  const facts: [string, string][] = [
+    ["Beantragter Umfang", `${v.nutzerText} Nutzer · ${v.gruppenText}`],
+    ["Investition Jahr 1", v.costY1],
+    ["Aufteilung", v.investSplit],
+    ["Erwarteter Nutzen Jahr 1", v.benefitY1],
+    ["Erwarteter Break-even", v.breakEven],
   ];
-
-  slide.addChart("line", chartData, {
-    x: 0.4, y: 1.3, w: 12.5, h: 4.9,
-    chartColors: [PPT_THEME.positive, PPT_THEME.negative, PPT_THEME.navy],
-    showLegend: true, legendPos: "b",
-    lineSize: 2.5, lineDataSymbol: "none",
-    catAxisLabelRotate: 45,
-    valAxisLabelFormatCode: "#,##0",
+  facts.forEach(([label, value], i) => {
+    const rowY = y + i * px(96);
+    hairline(slide, PAD.side, rowY, colW, p.hairline);
+    slide.addText(label.toUpperCase(), {
+      x: PAD.side, y: rowY + px(18), w: colW, h: px(30),
+      fontFace: PPT_FONT.mono, fontSize: pt(24), color: PPT_THEME.onNavyMuted, charSpacing: 1.6, valign: "top",
+    });
+    slide.addText(value, {
+      x: PAD.side, y: rowY + px(52), w: colW, h: px(40),
+      fontFace: PPT_FONT.body, fontSize: pt(28), color: p.text, valign: "top", shrinkText: true,
+    });
   });
 
-  const breakEvenText = bc.realistic.breakEvenMonth
-    ? `Break-even im realistischen Szenario: Monat ${bc.realistic.breakEvenMonth}.`
-    : "Innerhalb von 36 Monaten wird im realistischen Szenario kein Break-even erreicht.";
+  const steps = c.items.filter((t) => t.length > 40).slice(-4);
+  const rightX = PAD.side + colW + px(80);
+  slide.addText("NÄCHSTE SCHRITTE", {
+    x: rightX, y, w: colW, h: px(30),
+    fontFace: PPT_FONT.mono, fontSize: pt(24), color: PPT_THEME.onNavyTertiary, charSpacing: 1.6, valign: "top",
+  });
+  steps.forEach((text, i) => {
+    slide.addText(`${String(i + 1).padStart(2, "0")}   ${text}`, {
+      x: rightX, y: y + px(56 + i * 104), w: colW, h: px(96),
+      fontFace: PPT_FONT.body, fontSize: pt(27), color: p.secondary, lineSpacingMultiple: 1.25, valign: "top",
+    });
+  });
 
-  slide.addText(
-    `${breakEvenText} Die Rechnung bildet eine heute belegbare Assistenz-Baseline ab; zusätzlicher Nutzen aus besseren Modellen, neuen Werkzeugen, tieferer Prozessintegration und agentischen Abläufen ist nicht eingepreist.`,
-    { x: 0.4, y: 6.35, w: 12.5, h: 0.8, fontSize: 11, italic: true, color: PPT_THEME.muted, fontFace: PPT_FONT.body }
-  );
-
-  slide.addNotes(buildSourcesNotes());
+  if (o.logoDataUrl) {
+    slide.addImage({
+      data: o.logoDataUrl,
+      x: SLIDE_W - PAD.side - px(220), y: PAD.top - px(10), w: px(220), h: px(90),
+      sizing: { type: "contain", w: px(220), h: px(90) },
+    });
+  }
 }
 
-function addRealizationConditionsSlide(pptx: PptxGenJS, copy: PresentationCopy) {
-  const slide = pptx.addSlide({ masterName: MASTER_NAME });
-  addSlideTitle(slide, "Voraussetzungen für die Realisierung");
+// ---------------------------------------------------------------- Folie 20
 
-  slide.addText(copy.conditions.map((c) => `• ${c}`).join("\n\n"), {
-    x: 0.5, y: 1.5, w: 12.3, h: 2.6, fontSize: 17, color: PPT_THEME.text, fontFace: PPT_FONT.body, lineSpacingMultiple: 1.3,
+function slide20(slide: PptxGenJS.Slide, c: DeckSlideContent, p: Palette): void {
+  const items = [...c.items];
+  const leadText = items.length && items[0].length > 80 ? items.shift() : undefined;
+  const y = header(slide, c, p, leadText);
+  const colW = (CONTENT_W - px(80)) / 2;
+
+  slide.addText(items.filter((t) => t.length <= 120).join("\n"), {
+    x: PAD.side, y, w: colW, h: px(300),
+    fontFace: PPT_FONT.body, fontSize: pt(30), color: p.text, lineSpacingMultiple: 1.4, valign: "top",
   });
 
-  const measures = [
-    "Aktive Nutzung und Wiederholungsnutzung",
-    "Zeitersparnis in ausgewählten Aufgaben",
-    "Qualitäts- oder Durchlaufzeitverbesserung",
-    "Teilnahme und Transfer aus den Trainings",
-  ];
-  slide.addText("Messgrößen", { x: 0.5, y: 4.4, w: 12.3, h: 0.4, fontSize: 16, bold: true, color: PPT_THEME.navy, fontFace: PPT_FONT.head });
-  slide.addText(measures.map((m) => `• ${m}`).join("\n"), {
-    x: 0.5, y: 4.85, w: 12.3, h: 1.9, fontSize: 14, color: PPT_THEME.text, fontFace: PPT_FONT.body, lineSpacingMultiple: 1.3,
+  const btnY = y + px(40);
+  const rightX = PAD.side + colW + px(80);
+  slide.addShape("rect", {
+    x: rightX, y: btnY, w: px(620), h: px(110),
+    fill: { color: PPT_THEME.navy }, line: { color: PPT_THEME.navy, width: 0 },
   });
-}
-
-function addDecisionSlide(pptx: PptxGenJS, bc: RoiBusinessCase, copy: PresentationCopy) {
-  const slide = pptx.addSlide({ masterName: MASTER_NAME });
-  addSlideTitle(slide, "Entscheidungsvorlage");
-
-  const chatUsersForDecision = Math.max(bc.inputs.m365Users - bc.inputs.users, 0);
-  const lines = [
-    chatUsersForDecision > 0
-      ? `Beantragter Umfang: ${bc.inputs.users} Copilot-Lizenzen · ${chatUsersForDecision} Chat-Nutzer ohne Lizenz`
-      : `Beantragter Umfang: ${bc.inputs.users} Nutzer`,
-    `Investition Jahr 1: ${formatEur(bc.realistic.years[0].totalCostEur)}`,
-    `Erwarteter realisierter Nutzen Jahr 1: ${formatEur(bc.realistic.years[0].realizedBenefitEur)}`,
-    `Erwarteter Break-even: ${formatBreakEven(bc.realistic.breakEvenMonth)}`,
-  ];
-  slide.addText(lines.map((l) => `• ${l}`).join("\n"), {
-    x: 0.5, y: 1.4, w: 12.3, h: 1.8, fontSize: 17, color: PPT_THEME.text, fontFace: PPT_FONT.body, lineSpacingMultiple: 1.3,
+  slide.addText("Termin vereinbaren", {
+    x: rightX, y: btnY + px(32), w: px(620), h: px(50),
+    fontFace: PPT_FONT.display, fontSize: pt(32), bold: true, color: PPT_THEME.white,
+    align: "center", valign: "top",
+    hyperlink: { url: "https://outlook.office.com/book/CopilotErstgesprch@yellow-boat.com/s/L_QescD89USYChbx2CRsNg2?ismsaljsauthenabled" },
   });
-
-  slide.addText(copy.decisionRecommendation, {
-    x: 0.5, y: 3.3, w: 12.3, h: 1.4, fontSize: 15, color: PPT_THEME.text, fontFace: PPT_FONT.body, valign: "top",
+  slide.addText("martin@yellow-boat.com · +49 221 950 187 74", {
+    x: rightX, y: btnY + px(150), w: px(620), h: px(50),
+    fontFace: PPT_FONT.mono, fontSize: pt(24), color: p.secondary, align: "center", valign: "top",
   });
-
-  slide.addText("Business Case und Einführungskonzept mit der Copilotenschule prüfen", {
-    x: 0.5, y: 5.0, w: 8.5, h: 0.6, fontSize: 16, bold: true, color: PPT_THEME.white, fill: { color: PPT_THEME.primary },
-    align: "center", valign: "middle", fontFace: PPT_FONT.body,
-    hyperlink: { url: "https://copilotenschule.de/kontakt" },
-  });
-}
-
-function addSourcesSlide(pptx: PptxGenJS) {
-  const slide = pptx.addSlide({ masterName: MASTER_NAME });
-  addSlideTitle(slide, "Methodik und Quellen");
-
-  slide.addText(
-    "Kurzformeln: realisierter Nutzen = Nutzer × Zeitersparnis × Stundensatz × 50 %. Feste Annahmen: 8/9 Std. Zielwert, 12 % Change & Adoption, degressives IT-Setup. Planungsrechnung, kein Wirkungsversprechen. Assistenz-Baseline, agentisches Zusatzpotenzial nicht eingerechnet.",
-    { x: 0.5, y: 1.3, w: 12.3, h: 1.4, fontSize: 13, color: PPT_THEME.text, fontFace: PPT_FONT.body, valign: "top" }
-  );
-
-  const rows: PptxGenJS.TableRow[] = ROI_SOURCES.map((s) => [
-    { text: s.label, options: { fontSize: 12, color: PPT_THEME.text } },
-    { text: s.url, options: { fontSize: 11, color: PPT_THEME.primary, hyperlink: { url: s.url } } },
-  ]);
-  slide.addTable(rows, {
-    x: 0.5, y: 2.9, w: 12.3, h: 3.6,
-    fontFace: PPT_FONT.body, border: { type: "solid", color: "DDDDDD", pt: 0.5 }, colW: [5.5, 6.8],
-  });
-
-  slide.addText(`Version der Annahmen: ${ASSUMPTIONS_VERSION}`, {
-    x: 0.5, y: 6.7, w: 6, h: 0.4, fontSize: 10, color: PPT_THEME.muted, fontFace: PPT_FONT.body,
-  });
-
-  slide.addNotes(buildSourcesNotes());
 }
