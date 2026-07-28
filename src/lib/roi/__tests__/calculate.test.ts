@@ -198,9 +198,15 @@ describe("Referenzfall: 50 Lizenz-Nutzer + 20 Chat-Nutzer ohne Lizenz (m365Users
     expect(round(businessCase.itSetup.totalEur)).not.toBe(round(calculateItSetup(50)));
   });
 
-  it("Nutzen (Zeitersparnis) gilt für alle 70 M365-Nutzer, nicht nur für die 50 Lizenzen", () => {
-    const expectedMonth1Benefit = 70 * timeSavingHoursForMonth(1, 8) * 50 * 0.5;
+  it("Nutzen: 50 Lizenznutzer mit 8 Std., die 20 Chat-Nutzer nur mit 2,5 Std.", () => {
+    const expectedMonth1Benefit =
+      (50 * timeSavingHoursForMonth(1, 8) + 20 * timeSavingHoursForMonth(1, 2.5)) * 50 * 0.5;
     expect(businessCase.realistic.months[0].realizedBenefitEur).toBeCloseTo(expectedMonth1Benefit, 6);
+  });
+
+  it("Chat-Nutzer werden nicht mit dem vollen Zielwert der Lizenznutzer angesetzt", () => {
+    const alsWaerenAlleLizenziert = 70 * timeSavingHoursForMonth(1, 8) * 50 * 0.5;
+    expect(businessCase.realistic.months[0].realizedBenefitEur).toBeLessThan(alsWaerenAlleLizenziert);
   });
 
   it("Lizenzkosten fallen weiterhin nur für die 50 lizenzierten Nutzer an", () => {

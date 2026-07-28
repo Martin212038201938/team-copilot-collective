@@ -85,7 +85,7 @@ describe("Deck-Werte gegen die Referenz des Design-Handoffs", () => {
 });
 
 describe("Nutzenbasis", () => {
-  it("rechnet den Nutzen über alle Microsoft-365-Nutzer, die Kosten nur über die Lizenzen", () => {
+  it("rechnet Chat-Nutzer mit eigenem, niedrigerem Zielwert statt mit dem vollen", () => {
     const breit = calculateRoiBusinessCase({
       companyName: "Muster GmbH",
       users: 300,
@@ -93,8 +93,13 @@ describe("Nutzenbasis", () => {
       hourlyCostEur: 50,
       licensePerUserMonthEur: 26,
     });
-    // Dreifache Nutzenbasis -> dreifacher Nutzen, Kosten unverändert.
-    expect(breit.realistic.years[0].realizedBenefitEur).toBeCloseTo(3 * bc.realistic.years[0].realizedBenefitEur, 2);
+    // 300 Lizenznutzer (8 Std.) + 600 Chat-Nutzer (2,5 Std.) -> der Nutzen waechst, aber
+    // deutlich unterproportional: Chat-Nutzer zaehlen nur mit 2,5/8 des Zielwerts.
+    const basis = bc.realistic.years[0].realizedBenefitEur;
+    const erwartet = basis * (1 + (600 * 2.5) / (300 * 8));
+    expect(breit.realistic.years[0].realizedBenefitEur).toBeCloseTo(erwartet, 2);
+    // Verdreifachte Kopfzahl fuehrt NICHT zu dreifachem Nutzen.
+    expect(breit.realistic.years[0].realizedBenefitEur).toBeLessThan(3 * basis);
     // Lizenzkosten unveraendert; IT-Setup skaliert allerdings mit der groesseren Gesamtbasis.
     expect(breit.realistic.years[0].licenseCostEur).toBeCloseTo(bc.realistic.years[0].licenseCostEur, 2);
   });

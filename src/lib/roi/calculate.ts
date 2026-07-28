@@ -34,16 +34,18 @@ function computeScenario(
   itSetupTotalEur: number
 ): ScenarioResult {
   const { users, m365Users, hourlyCostEur, licensePerUserMonthEur } = inputs;
-  const { horizonMonths, economicRealizationRate, changeAndAdoptionRate } = ROI_ASSUMPTIONS;
+  const { horizonMonths, economicRealizationRate, changeAndAdoptionRate, chatOnlyTargetHoursPerMonth } = ROI_ASSUMPTIONS;
 
-  // Der Nutzen (Zeitersparnis) gilt für ALLE Microsoft-365-Nutzer, nicht nur für lizenzierte
-  // Copilot-Pro-Nutzer — Chat-User ohne Lizenz werden mit demselben Zielwert angesetzt (siehe
-  // RoiInputs.m365Users). Lizenzkosten fallen dagegen ausschließlich für "users" an.
+  // Der Nutzen entsteht in ZWEI Gruppen mit unterschiedlichem Zielwert:
+  //   1. Lizenznutzer  -> voller Zielwert (8 bzw. 9 Std.), volle Lernreise
+  //   2. Chat-Nutzer   -> nur chatOnlyTargetHoursPerMonth, da ohne Lizenz, ohne Integration
+  //                       in die Office-Anwendungen und mit reduziertem Training
+  // Lizenzkosten fallen ausschließlich für die Lizenznutzer an.
   //
-  // Rückfallebene: Fehlt m365Users (ältere Aufrufer, unvollständige Payload), wird die
-  // Lizenzzahl verwendet. Ohne diesen Fallback liefert die gesamte Berechnung still NaN —
-  // inklusive der Kosten — und die Fehlerursache ist von außen nicht erkennbar.
-  const benefitUsers = Number.isFinite(m365Users) && m365Users > 0 ? m365Users : users;
+  // Rückfallebene: Fehlt m365Users, wird die Lizenzzahl verwendet (siehe
+  // calculateRoiBusinessCase). Ohne sie liefert die Berechnung still NaN.
+  const totalUsers = Number.isFinite(m365Users) && m365Users > 0 ? m365Users : users;
+  const chatUsers = Math.max(totalUsers - users, 0);
 
   const monthlyLicenseCostEur = users * licensePerUserMonthEur;
   const licensesYear1Eur = monthlyLicenseCostEur * 12;
@@ -62,7 +64,9 @@ function computeScenario(
   for (let month = 1; month <= horizonMonths; month++) {
     const year = yearForMonth(month);
     const grossHoursPerUser = timeSavingHoursForMonth(month, targetHoursPerUserMonth);
-    const realizedBenefitEur = benefitUsers * grossHoursPerUser * hourlyCostEur * economicRealizationRate;
+    const chatHoursPerUser = timeSavingHoursForMonth(month, chatOnlyTargetHoursPerMonth);
+    const realizedBenefitEur =
+      (users * grossHoursPerUser + chatUsers * chatHoursPerUser) * hourlyCostEur * economicRealizationRate;
 
     const trainingCostEur = month === 1 ? training.year1Eur : month === 13 ? training.year2Eur : month === 25 ? training.year3Eur : 0;
     const itSetupCostEur = month === 1 ? itSetupTotalEur : 0;
@@ -82,7 +86,7 @@ function computeScenario(
     months.push({
       month,
       year,
-      users: benefitUsers,
+      users: totalUsers,
       grossHoursPerUser,
       realizedBenefitEur,
       licenseCostEur,
