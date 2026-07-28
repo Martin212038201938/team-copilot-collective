@@ -2,19 +2,28 @@
 /**
  * Einfacher, dateibasierter Rate-Limiter (flock), damit parallele Requests den Zähler
  * nicht überschreiben. Ausreichend für ein Shared-Hosting-Setup ohne Redis/Memcached.
+ *
+ * WICHTIG — Trennung von Prüfen und Zählen:
+ * Gezählt wird erst NACH einer erfolgreich abgeschlossenen Lieferung (roiCountRateLimit).
+ * Würde schon der Prüfaufruf hochzählen, verbrauchten serverseitige Fehlversuche das
+ * Kontingent des Nutzers: Nach ein paar fehlgeschlagenen Anläufen (z.B. DB kurz weg)
+ * wäre die Adresse 24 Stunden gesperrt, obwohl der Nutzer nie eine Datei bekommen hat.
  */
-function roiCheckRateLimit(string $key, int $maxPerWindow, int $windowSeconds): bool {
+
+/** Interner Zugriff auf die Zählerdatei. $increment steuert, ob hochgezählt wird. */
+function roiRateLimitAccess(string $key, int $maxPerWindow, int $windowSeconds, bool $increment): bool {
     $dir = sys_get_temp_dir() . '/roi-rate-limit';
     if (!is_dir($dir)) {
         @mkdir($dir, 0700, true);
     }
-    $safeKey = preg_replace('/[^a-zA-Z0-9_\-]/', '_', $key);
+    // Prefix v2: setzt die Zähler aus der Zeit zurück, als schon das Prüfen hochzählte.
+    $safeKey = 'v2-' . preg_replace('/[^a-zA-Z0-9_\-]/', '_', $key);
     $file = $dir . '/' . $safeKey . '.json';
 
     $fp = fopen($file, 'c+');
     if (!$fp) {
         // Im Zweifel nicht blockieren, aber loggen.
-        error_log('roiCheckRateLimit: Lock-Datei konnte nicht geöffnet werden: ' . $file);
+        error_log('roiRateLimitAccess: Lock-Datei konnte nicht geöffnet werden: ' . $file);
         return true;
     }
 
@@ -28,7 +37,7 @@ function roiCheckRateLimit(string $key, int $maxPerWindow, int $windowSeconds): 
     }
 
     $allowed = $data['count'] < $maxPerWindow;
-    if ($allowed) {
+    if ($allowed && $increment) {
         $data['count']++;
     }
 
@@ -40,4 +49,14 @@ function roiCheckRateLimit(string $key, int $maxPerWindow, int $windowSeconds): 
     fclose($fp);
 
     return $allowed;
+}
+
+/** Nur prüfen, ob noch Kontingent frei ist — zählt NICHT hoch. */
+function roiCheckRateLimit(string $key, int $maxPerWindow, int $windowSeconds): bool {
+    return roiRateLimitAccess($key, $maxPerWindow, $windowSeconds, false);
+}
+
+/** Nach erfolgreicher Lieferung aufrufen: zählt den Versuch. */
+function roiCountRateLimit(string $key, int $maxPerWindow, int $windowSeconds): void {
+    roiRateLimitAccess($key, $maxPerWindow, $windowSeconds, true);
 }

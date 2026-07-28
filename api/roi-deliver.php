@@ -55,7 +55,8 @@ if ($renderedAt <= 0 || $elapsedMs < 2500) {
     exit;
 }
 
-if (!roiCheckRateLimit('ip-' . $ipAddress, 5, 3600)) {
+// Nur pruefen (zaehlt nicht hoch) — gezaehlt wird erst nach erfolgreicher Lieferung.
+if (!roiCheckRateLimit('ip-' . $ipAddress, 10, 3600)) {
     http_response_code(429);
     echo json_encode(['error' => 'Zu viele Anfragen. Bitte versuchen Sie es später erneut.']);
     exit;
@@ -76,7 +77,7 @@ if (empty($_POST['consent']) || $_POST['consent'] !== 'true') {
     exit;
 }
 
-if (!roiCheckRateLimit('email-' . strtolower($email), 5, 86400)) {
+if (!roiCheckRateLimit('email-' . strtolower($email), 10, 86400)) {
     http_response_code(429);
     echo json_encode(['error' => 'Zu viele Anfragen für diese E-Mail-Adresse.']);
     exit;
@@ -192,6 +193,10 @@ $confirmationUrl = SITE_URL . '/api/confirm-subscription.php?token=' . urlencode
 // Datei ist jetzt WIRKLICH da — erst jetzt darf die Mail raus.
 $emailSent = roiSendReadyEmail($email, $downloadUrl, $confirmationUrl, $companyName);
 roiSendLeadNotificationToMartin($email, $companyName, $usersBucket);
+
+// Erst jetzt aufs Kontingent anrechnen: nur tatsaechlich gelieferte Praesentationen zaehlen.
+roiCountRateLimit('ip-' . $ipAddress, 10, 3600);
+roiCountRateLimit('email-' . strtolower($email), 10, 86400);
 
 http_response_code(200);
 echo json_encode([
