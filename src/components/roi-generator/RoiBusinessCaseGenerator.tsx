@@ -14,6 +14,7 @@ import type { RoiInputFormParsed } from "@/lib/roi/roiGeneratorSchema";
  */
 const RoiBusinessCaseGenerator = () => {
   const [businessCase, setBusinessCase] = useState<RoiBusinessCase | null>(null);
+  const [m365Users, setM365Users] = useState(0);
 
   const handleCalculated = (values: RoiInputFormParsed) => {
     const bc = calculateRoiBusinessCase({
@@ -22,13 +23,14 @@ const RoiBusinessCaseGenerator = () => {
       hourlyCostEur: values.hourlyCostEur,
       licensePerUserMonthEur: values.licensePerUserMonthEur,
     });
+    setM365Users(values.m365Users);
     setBusinessCase(bc);
   };
 
   return (
     <div className="space-y-6">
       <p className="text-base leading-relaxed text-muted-foreground">
-        Vier Angaben genügen. Sie erhalten eine editierbare Management-Präsentation mit Kosten, Nutzen, ROI,
+        Wenige Angaben genügen. Sie erhalten eine editierbare Management-Präsentation mit Kosten, Nutzen, ROI,
         Break-even, Drei-Jahres-Verlauf und dokumentierten Annahmen.
       </p>
 
@@ -37,7 +39,7 @@ const RoiBusinessCaseGenerator = () => {
       {businessCase && (
         <>
           <RoiResultPreview businessCase={businessCase} />
-          <RoiDeliveryForm businessCase={businessCase} />
+          <RoiDeliveryForm businessCase={businessCase} m365Users={m365Users} />
         </>
       )}
     </div>

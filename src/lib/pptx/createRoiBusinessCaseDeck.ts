@@ -105,11 +105,8 @@ function addTitleSlide(pptx: PptxGenJS, bc: RoiBusinessCase, options: Presentati
     x: 0.8, y: 4.0, w: 11.7, h: 0.5, fontSize: 16, color: PPT_THEME.muted, fontFace: PPT_FONT.body,
   });
 
-  const metaLines = [
-    options.initiativeTitle,
-    options.presenterName,
-    options.presentationDate,
-  ].filter(Boolean) as string[];
+  const contactLine = [options.contactName, options.contactRole].filter(Boolean).join(", ");
+  const metaLines = [contactLine || undefined, options.presentationDate].filter(Boolean) as string[];
   if (metaLines.length > 0) {
     slide.addText(metaLines.join("  ·  "), {
       x: 0.8, y: 4.7, w: 11.7, h: 0.5, fontSize: 13, color: PPT_THEME.muted, fontFace: PPT_FONT.body,

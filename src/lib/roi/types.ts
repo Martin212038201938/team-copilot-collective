@@ -64,9 +64,11 @@ export type PresentationCopy = {
 };
 
 export type PresentationOptions = {
-  initiativeTitle?: string;
-  presenterName?: string;
   presentationDate: string;
+  /** Ansprechpartner (Pflichtangabe im Formular) – erscheint auf der Titelfolie. */
+  contactName?: string;
+  /** Rolle des Ansprechpartners (optional). */
+  contactRole?: string;
 };
 
 export type RoiBusinessCase = {

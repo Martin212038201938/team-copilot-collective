@@ -121,16 +121,36 @@ function roiSendBookingInviteEmail(string $email, ?string $companyName): bool {
     return roiSendMultipart($email, 'Zahlen gemeinsam besprechen?', $html, $text, 'Copilotenschule <info@copilotenschule.de>');
 }
 
-/** Interne Lead-Benachrichtigung an Martin — keine Finanzwerte, nur grobe Nutzerklasse (Konzept Abschnitt 16.4). */
-function roiSendLeadNotificationToMartin(string $email, ?string $companyName, string $usersBucket): bool {
+/**
+ * Interne Lead-Benachrichtigung an Martin — keine Finanzwerte, nur grobe Nutzerklasse
+ * (Konzept Abschnitt 16.4) plus die freiwilligen Kontextangaben zur Qualifizierung.
+ */
+function roiSendLeadNotificationToMartin(string $email, ?string $companyName, string $usersBucket, array $context = []): bool {
     $company = $companyName ? htmlspecialchars($companyName) : '(kein Firmenname angegeben)';
-    $html = "<html><body>
-        <h2>Neuer ROI-Business-Case-Download</h2>
-        <p><strong>E-Mail:</strong> {$email}</p>
-        <p><strong>Unternehmen:</strong> {$company}</p>
-        <p><strong>Nutzerklasse:</strong> {$usersBucket}</p>
-    </body></html>";
-    $text = "Neuer ROI-Business-Case-Download\n\nE-Mail: {$email}\nUnternehmen: {$company}\nNutzerklasse: {$usersBucket}\n";
+
+    $rows = [
+        'E-Mail' => $email,
+        'Unternehmen' => $company,
+        'Ansprechpartner' => trim(($context['contactName'] ?? '') . (!empty($context['contactRole']) ? ', ' . $context['contactRole'] : '')),
+        'Microsoft-365-Nutzer' => !empty($context['m365Users']) ? (string) $context['m365Users'] : '',
+        'Geplante Copilot-Lizenzen' => !empty($context['copilotLicenses']) ? (string) $context['copilotLicenses'] : '',
+        'Nutzerklasse' => $usersBucket,
+        'Branche' => $context['industry'] ?? '',
+        'Ziele' => !empty($context['goals']) ? str_replace('|', ', ', $context['goals']) : '',
+        'Aktueller Stand' => $context['adoptionStage'] ?? '',
+    ];
+
+    $htmlRows = '';
+    $textRows = '';
+    foreach ($rows as $label => $value) {
+        if ($value === '' || $value === null) continue;
+        $safe = htmlspecialchars((string) $value);
+        $htmlRows .= "<p><strong>{$label}:</strong> {$safe}</p>";
+        $textRows .= "{$label}: {$value}\n";
+    }
+
+    $html = "<html><body><h2>Neuer ROI-Business-Case-Download</h2>{$htmlRows}</body></html>";
+    $text = "Neuer ROI-Business-Case-Download\n\n" . $textRows;
 
     return roiSendMultipart('martin@yellow-boat.com', 'Neuer ROI-Business-Case-Download: ' . $company, $html, $text, 'Copilotenschule ROI-Generator <y-b@alwaysdata.net>');
 }

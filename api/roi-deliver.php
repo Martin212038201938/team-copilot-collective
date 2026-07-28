@@ -92,6 +92,37 @@ if ($users < 1 || $users > 100000) {
 }
 $usersBucket = roiUsersBucket($users);
 
+// --- Kontextangaben (kein Einfluss auf Berechnung oder Folienaufbau) -------------
+// Alle Auswahlfelder gegen feste Wertelisten pruefen; Freitext hart begrenzen.
+$contactName = isset($_POST['contactName']) ? trim(substr((string) $_POST['contactName'], 0, 80)) : '';
+$contactRole = isset($_POST['contactRole']) ? trim(substr((string) $_POST['contactRole'], 0, 80)) : '';
+if ($contactName === '') {
+    http_response_code(400);
+    echo json_encode(['error' => 'Bitte geben Sie Ihren Namen an.']);
+    exit;
+}
+
+$m365Users = isset($_POST['m365Users']) ? (int) $_POST['m365Users'] : 0;
+if ($m365Users < 0 || $m365Users > 1000000) {
+    $m365Users = 0;
+}
+
+$allowedIndustries = ['Industrie', 'Handel', 'Gesundheitswesen', 'Hotellerie', 'Öffentliche Verwaltung', 'Dienstleistung', 'Sonstige'];
+$allowedGoals = ['Produktivität steigern', 'Mitarbeitende entlasten', 'Qualität verbessern', 'Innovation fördern', 'KI sicher einführen', 'Agenten vorbereiten'];
+$allowedStages = ['Erste Orientierung', 'Business Case erstellen', 'Pilot geplant', 'Pilot läuft', 'Rollout geplant', 'Copilot bereits im Einsatz'];
+
+$industry = isset($_POST['industry']) && in_array($_POST['industry'], $allowedIndustries, true) ? $_POST['industry'] : null;
+$adoptionStage = isset($_POST['adoptionStage']) && in_array($_POST['adoptionStage'], $allowedStages, true) ? $_POST['adoptionStage'] : null;
+
+$goals = null;
+if (!empty($_POST['goals'])) {
+    $submitted = array_filter(explode('|', (string) $_POST['goals']));
+    $valid = array_values(array_intersect($submitted, $allowedGoals));
+    if ($valid) {
+        $goals = substr(implode('|', $valid), 0, 255);
+    }
+}
+
 if (empty($_FILES['file']) || $_FILES['file']['error'] !== UPLOAD_ERR_OK) {
     http_response_code(400);
     echo json_encode(['error' => 'Datei-Upload fehlgeschlagen']);
@@ -162,7 +193,16 @@ $saved = roiCreateDelivery(
     (int) $_FILES['file']['size'],
     $ipAddress,
     $consentText,
-    ROI_FILE_TTL_DAYS
+    ROI_FILE_TTL_DAYS,
+    [
+        'contactName' => $contactName,
+        'contactRole' => $contactRole !== '' ? $contactRole : null,
+        'm365Users' => $m365Users > 0 ? $m365Users : null,
+        'copilotLicenses' => $users,
+        'industry' => $industry,
+        'goals' => $goals,
+        'adoptionStage' => $adoptionStage,
+    ]
 );
 
 if (!$saved) {
@@ -192,7 +232,15 @@ $confirmationUrl = SITE_URL . '/api/confirm-subscription.php?token=' . urlencode
 
 // Datei ist jetzt WIRKLICH da — erst jetzt darf die Mail raus.
 $emailSent = roiSendReadyEmail($email, $downloadUrl, $confirmationUrl, $companyName);
-roiSendLeadNotificationToMartin($email, $companyName, $usersBucket);
+roiSendLeadNotificationToMartin($email, $companyName, $usersBucket, [
+    'contactName' => $contactName,
+    'contactRole' => $contactRole,
+    'm365Users' => $m365Users,
+    'copilotLicenses' => $users,
+    'industry' => $industry,
+    'goals' => $goals,
+    'adoptionStage' => $adoptionStage,
+]);
 
 // Erst jetzt aufs Kontingent anrechnen: nur tatsaechlich gelieferte Praesentationen zaehlen.
 roiCountRateLimit('ip-' . $ipAddress, 10, 3600);

@@ -6,6 +6,10 @@
 
 require_once __DIR__ . '/db-config.php';
 
+/**
+ * $context enthaelt die reinen Kontextangaben aus dem Formular (Ansprechpartner, Branche,
+ * Ziele, Stand, Nutzerzahlen). Sie beeinflussen weder die Berechnung noch den Folienaufbau.
+ */
 function roiCreateDelivery(
     string $token,
     string $email,
@@ -15,7 +19,8 @@ function roiCreateDelivery(
     int $fileSizeBytes,
     ?string $ipAddress,
     ?string $consentText,
-    int $ttlDays
+    int $ttlDays,
+    array $context = []
 ): bool {
     $db = getDbConnection();
     if (!$db) return false;
@@ -30,13 +35,23 @@ function roiCreateDelivery(
     try {
         $stmt = $db->prepare("
             INSERT INTO roi_deliveries
-                (download_token, email, company_name, users_bucket, file_path, file_size_bytes,
+                (download_token, email, company_name, contact_name, contact_role,
+                 m365_users, copilot_licenses, industry, goals, adoption_stage,
+                 users_bucket, file_path, file_size_bytes,
                  ip_address, consent_text, ready_email_sent_at, expires_at, created_at)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP,
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP,
                     DATE_ADD(CURRENT_TIMESTAMP, INTERVAL {$ttlDaysInt} DAY), CURRENT_TIMESTAMP)
         ");
         return $stmt->execute([
-            $token, $email, $companyName, $usersBucket, $filePath, $fileSizeBytes,
+            $token, $email, $companyName,
+            $context['contactName'] ?? null,
+            $context['contactRole'] ?? null,
+            $context['m365Users'] ?? null,
+            $context['copilotLicenses'] ?? null,
+            $context['industry'] ?? null,
+            $context['goals'] ?? null,
+            $context['adoptionStage'] ?? null,
+            $usersBucket, $filePath, $fileSizeBytes,
             $ipAddress, $consentText,
         ]);
     } catch (PDOException $e) {
