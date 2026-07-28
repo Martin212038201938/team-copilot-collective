@@ -39,7 +39,11 @@ function computeScenario(
   // Der Nutzen (Zeitersparnis) gilt für ALLE Microsoft-365-Nutzer, nicht nur für lizenzierte
   // Copilot-Pro-Nutzer — Chat-User ohne Lizenz werden mit demselben Zielwert angesetzt (siehe
   // RoiInputs.m365Users). Lizenzkosten fallen dagegen ausschließlich für "users" an.
-  const benefitUsers = m365Users;
+  //
+  // Rückfallebene: Fehlt m365Users (ältere Aufrufer, unvollständige Payload), wird die
+  // Lizenzzahl verwendet. Ohne diesen Fallback liefert die gesamte Berechnung still NaN —
+  // inklusive der Kosten — und die Fehlerursache ist von außen nicht erkennbar.
+  const benefitUsers = Number.isFinite(m365Users) && m365Users > 0 ? m365Users : users;
 
   const monthlyLicenseCostEur = users * licensePerUserMonthEur;
   const licensesYear1Eur = monthlyLicenseCostEur * 12;
@@ -146,26 +150,32 @@ function computeScenario(
  */
 export function calculateRoiBusinessCase(inputs: RoiInputs): RoiBusinessCase {
   const licensedUsers = inputs.users;
+  // Rückfallebene an EINER Stelle: Fehlt m365Users, gilt die Lizenzzahl als Gesamtbasis.
+  // Ohne diesen Fallback liefert die gesamte Rechnung still NaN – auch die Kosten.
+  const totalM365Users =
+    Number.isFinite(inputs.m365Users) && inputs.m365Users > 0 ? inputs.m365Users : licensedUsers;
+  const normalizedInputs: RoiInputs = { ...inputs, m365Users: totalM365Users };
+
   // Nutzer ohne Lizenz = alle M365-Nutzer abzüglich der geplanten Copilot-Lizenzen (nie negativ,
   // falls versehentlich users > m365Users eingegeben wurde — das Formular validiert dagegen).
-  const chatUsers = Math.max(inputs.m365Users - inputs.users, 0);
+  const chatUsers = Math.max(totalM365Users - licensedUsers, 0);
 
   const training = calculateTraining(licensedUsers, chatUsers);
   // IT-Setup skaliert mit der Gesamt-Kopfzahl (Tenant-Konfiguration, Security, Governance
   // betreffen alle M365-Nutzer, unabhängig vom Lizenztyp).
-  const itSetupTotalEur = calculateItSetup(inputs.m365Users);
+  const itSetupTotalEur = calculateItSetup(totalM365Users);
 
-  const realistic = computeScenario(inputs, "realistic", ROI_ASSUMPTIONS.realisticTargetHoursPerMonth, training, itSetupTotalEur);
-  const studyNear = computeScenario(inputs, "studyNear", ROI_ASSUMPTIONS.studyNearTargetHoursPerMonth, training, itSetupTotalEur);
+  const realistic = computeScenario(normalizedInputs, "realistic", ROI_ASSUMPTIONS.realisticTargetHoursPerMonth, training, itSetupTotalEur);
+  const studyNear = computeScenario(normalizedInputs, "studyNear", ROI_ASSUMPTIONS.studyNearTargetHoursPerMonth, training, itSetupTotalEur);
 
   return {
-    inputs,
+    inputs: normalizedInputs,
     assumptionsVersion: ASSUMPTIONS_VERSION,
     generatedAt: new Date().toISOString(),
     training,
     itSetup: {
       totalEur: itSetupTotalEur,
-      perUserEur: inputs.m365Users > 0 ? itSetupTotalEur / inputs.m365Users : 0,
+      perUserEur: totalM365Users > 0 ? itSetupTotalEur / totalM365Users : 0,
     },
     realistic,
     studyNear,
