@@ -127,6 +127,8 @@ const CopilotRoiBerechnen = () => {
         tableOfContents={tableOfContents}
         lastUpdated="27. Juli 2026"
         relatedContent={["wissen:copilot-roi-erfolgsgeschichten", "wissen:copilot-adoption-2026-zahlen", "wissen:ki-realitaet-beratungsfirmen-2026", "workshop:copilot-strategie-change-management", "wissen:copilot-unternehmensweit-einfuehren"]}
+        /* Popup aus: Es legt sich sonst über den Business-Case-Generator und schluckt Eingaben. */
+        disableArticlePopup
       >
         {/* Schnellantwort-Card */}
         <Card className="border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-amber-500/5">

@@ -98,6 +98,27 @@ function roiMarkBookingInviteSent(string $token): bool {
     }
 }
 
+/**
+ * Bereits abgeholte Lieferungen, bei denen die Termin-Einladung noch aussteht.
+ * Fallback, falls der mail()-Versand direkt beim Download fehlgeschlagen ist.
+ */
+function roiFindDueForBookingInvite(): array {
+    $db = getDbConnection();
+    if (!$db) return [];
+    try {
+        $stmt = $db->prepare("
+            SELECT * FROM roi_deliveries
+            WHERE downloaded_at IS NOT NULL
+              AND booking_invite_sent_at IS NULL
+        ");
+        $stmt->execute();
+        return $stmt->fetchAll();
+    } catch (PDOException $e) {
+        error_log('roiFindDueForBookingInvite failed: ' . $e->getMessage());
+        return [];
+    }
+}
+
 /** Noch nicht abgeholte, noch nicht abgelaufene Lieferungen, für die Erinnerung 1 fällig ist. */
 function roiFindDueForReminder1(int $hoursSinceReady): array {
     $db = getDbConnection();

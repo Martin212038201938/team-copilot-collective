@@ -165,6 +165,8 @@ function addModelOverviewSlide(pptx: PptxGenJS, bc: RoiBusinessCase) {
   slide.addText(benefitAssumptions.map((t) => `• ${t}`).join("\n"), {
     x: 6.6, y: 1.75, w: 5.8, h: 2.6, fontSize: 15, color: PPT_THEME.text, fontFace: PPT_FONT.body, lineSpacingMultiple: 1.4,
   });
+
+  slide.addNotes(buildSourcesNotes());
 }
 
 function addInvestmentSlide(pptx: PptxGenJS, bc: RoiBusinessCase) {
@@ -237,6 +239,8 @@ function addBenefitLogicSlide(pptx: PptxGenJS, bc: RoiBusinessCase) {
   slide.addText(AGENTIC_POTENTIAL_COPY, {
     x: 0.5, y: 4.7, w: 12.3, h: 1.4, fontSize: 13, italic: true, color: PPT_THEME.muted, fontFace: PPT_FONT.body, valign: "top",
   });
+
+  slide.addNotes(buildSourcesNotes());
 }
 
 function addScenarioComparisonSlide(pptx: PptxGenJS, bc: RoiBusinessCase) {
@@ -283,6 +287,8 @@ function addScenarioComparisonSlide(pptx: PptxGenJS, bc: RoiBusinessCase) {
     "Die Szenarien unterscheiden sich nicht durch eine künstliche Adoption-Quote. Für alle geschulten Nutzer wird eine durchschnittliche Zeitersparnis angesetzt.",
     { x: 0.7, y: 5.3, w: 11.9, h: 0.9, fontSize: 13, italic: true, color: PPT_THEME.muted, fontFace: PPT_FONT.body }
   );
+
+  slide.addNotes(buildSourcesNotes());
 }
 
 function addTimelineSlide(pptx: PptxGenJS, bc: RoiBusinessCase) {
@@ -314,6 +320,8 @@ function addTimelineSlide(pptx: PptxGenJS, bc: RoiBusinessCase) {
     `${breakEvenText} Die Rechnung bildet eine heute belegbare Assistenz-Baseline ab; zusätzlicher Nutzen aus besseren Modellen, neuen Werkzeugen, tieferer Prozessintegration und agentischen Abläufen ist nicht eingepreist.`,
     { x: 0.4, y: 6.35, w: 12.5, h: 0.8, fontSize: 11, italic: true, color: PPT_THEME.muted, fontFace: PPT_FONT.body }
   );
+
+  slide.addNotes(buildSourcesNotes());
 }
 
 function addRealizationConditionsSlide(pptx: PptxGenJS, copy: PresentationCopy) {
@@ -382,4 +390,6 @@ function addSourcesSlide(pptx: PptxGenJS) {
   slide.addText(`Version der Annahmen: ${ASSUMPTIONS_VERSION}`, {
     x: 0.5, y: 6.7, w: 6, h: 0.4, fontSize: 10, color: PPT_THEME.muted, fontFace: PPT_FONT.body,
   });
+
+  slide.addNotes(buildSourcesNotes());
 }

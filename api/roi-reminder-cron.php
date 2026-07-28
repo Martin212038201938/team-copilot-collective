@@ -49,6 +49,15 @@ foreach (roiFindDueForReminder2(ROI_REMINDER_2_HOURS) as $delivery) {
     }
 }
 
+// Nachzügler: Datei wurde abgeholt, aber die Termin-Einladung ging beim Download nicht raus.
+$sentInvites = 0;
+foreach (roiFindDueForBookingInvite() as $delivery) {
+    if (roiSendBookingInviteEmail($delivery['email'], $delivery['company_name'] ?: null)) {
+        roiMarkBookingInviteSent($delivery['download_token']);
+        $sentInvites++;
+    }
+}
+
 foreach (roiFindExpiredNotYetPurged() as $delivery) {
     if (!empty($delivery['file_path']) && file_exists($delivery['file_path'])) {
         @unlink($delivery['file_path']);
@@ -57,4 +66,4 @@ foreach (roiFindExpiredNotYetPurged() as $delivery) {
     $purged++;
 }
 
-echo "roi-reminder-cron: reminder1={$sentReminder1} reminder2={$sentReminder2} purged={$purged}\n";
+echo "roi-reminder-cron: reminder1={$sentReminder1} reminder2={$sentReminder2} invites={$sentInvites} purged={$purged}\n";

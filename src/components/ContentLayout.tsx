@@ -35,6 +35,13 @@ interface ContentLayoutProps {
    * Beispiel: ["wissen:copilot-sicherheit-datenschutz", "training:eu-ai-act-pflichtschulung"]
    */
   relatedContent?: string[];
+  /**
+   * Unterdrückt das Artikel-Popup auf dieser Seite.
+   * Nötig auf Seiten mit interaktiven Formularen (z. B. dem ROI-Business-Case-Generator):
+   * Das Popup legt sich sonst über das Formular und fängt Tastatureingaben ab.
+   * @default false
+   */
+  disableArticlePopup?: boolean;
 }
 
 const ContentLayout = ({
@@ -48,6 +55,7 @@ const ContentLayout = ({
   tableOfContents = [],
   noShell = false,
   relatedContent,
+  disableArticlePopup = false,
 }: ContentLayoutProps) => {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -236,7 +244,7 @@ const ContentLayout = ({
         {innerContent}
       </main>
       <Footer />
-      <ArticlePopup />
+      {!disableArticlePopup && <ArticlePopup />}
       <StickyBookingCTA placement="bottom" source="sticky-cta-article" />
     </div>
   );

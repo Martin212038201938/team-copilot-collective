@@ -1,5 +1,5 @@
 import type { RoiBusinessCase, PresentationCopy } from "./types";
-import { formatEur, formatEurCents, formatPercent, formatBreakEven, formatHours } from "./format";
+import { formatEur, formatEurCents, formatPercent, formatBreakEvenDative, formatHours } from "./format";
 
 /**
  * Feste, geprüfte Textbausteine (Konzept Abschnitt 12). Vollständiger Fallback, falls keine
@@ -23,7 +23,8 @@ function buildExecutiveSummary(bc: RoiBusinessCase): string {
   const roiYear1 = year1.roi;
   const roiThreeYears = realistic.roi;
 
-  const breakEven = formatBreakEven(realistic.breakEvenMonth);
+  // Dativ, weil der Wert in Saetzen wie "wird nach X erreicht" steht.
+  const breakEven = formatBreakEvenDative(realistic.breakEvenMonth);
   const netBenefit3y = formatEur(realistic.netBenefitEur);
 
   if (roiYear1 !== null && roiYear1 > 0) {
@@ -49,7 +50,7 @@ function buildValueDrivers(bc: RoiBusinessCase): [string, string, string] {
   return [
     `Alle ${bc.inputs.users} geschulten Nutzer fließen in den Nutzen ein — ohne künstlichen Adoption-Abschlag.`,
     `Nur 50 % des rechnerischen Kapazitätswerts werden wirtschaftlich als Nutzen angesetzt.`,
-    `Break-even im realistischen Szenario nach ${formatBreakEven(bc.realistic.breakEvenMonth)}.`,
+    `Break-even im realistischen Szenario nach ${formatBreakEvenDative(bc.realistic.breakEvenMonth)}.`,
   ];
 }
 

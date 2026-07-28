@@ -89,9 +89,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
 // --- POST: echter Download ---------------------------------------------------
 
+// roiMarkDownloaded() ist idempotent: true nur beim allerersten echten Download.
 $isFirstDownload = roiMarkDownloaded($token);
 if ($isFirstDownload) {
-    roiSendBookingInviteEmail($delivery['email'], $delivery['company_name'] ?: null);
+    $inviteSent = roiSendBookingInviteEmail($delivery['email'], $delivery['company_name'] ?: null);
+    if ($inviteSent) {
+        roiMarkBookingInviteSent($token);
+    } else {
+        // Nicht schlimm: Der stündliche Cron (roi-reminder-cron.php) versucht es erneut,
+        // solange booking_invite_sent_at leer ist. Der Download darf davon nie abhängen.
+        error_log('roi-download: Termin-Einladung konnte nicht versendet werden, Cron versucht es erneut.');
+    }
 }
 
 $filename = 'Copilot-Business-Case-' . preg_replace('/[^A-Za-z0-9\-]/', '', str_replace(' ', '-', (string) $delivery['company_name'])) . '.pptx';

@@ -44,8 +44,17 @@ export function formatHours(value: number): string {
   return hoursFormatter.format(value);
 }
 
-/** Break-even auf volle Monate, oder "> 36 Monate" wenn nicht erreicht. */
+/** Break-even auf volle Monate, oder "> 36 Monate" wenn nicht erreicht. Für Kennzahlen-Kacheln. */
 export function formatBreakEven(month: number | null, horizonMonths = 36): string {
   if (month === null) return `> ${horizonMonths} Monate`;
   return `${month} ${month === 1 ? "Monat" : "Monate"}`;
+}
+
+/**
+ * Dativ-Form für Fließtext, z. B. "… wird nach 7 Monaten erreicht".
+ * Ohne diese Variante entsteht der Grammatikfehler "nach 7 Monate erreicht".
+ */
+export function formatBreakEvenDative(month: number | null, horizonMonths = 36): string {
+  if (month === null) return `mehr als ${horizonMonths} Monaten`;
+  return `${month} ${month === 1 ? "Monat" : "Monaten"}`;
 }
