@@ -1,9 +1,19 @@
 // ROI Business Case – zentrale Typen
 // Einzige Quelle der Wahrheit für Website, PowerPoint und Tests (siehe CLAUDE.md / Konzept Abschnitt 6-7)
 
+import type { TrainingResult } from "./training";
+
 export type RoiInputs = {
   companyName: string;
+  /** Geplante Copilot-Lizenzen (Pro-Nutzer) — Rechengröße für Lizenzkosten und die volle Lernreise. */
   users: number;
+  /**
+   * Gesamtzahl Microsoft-365-Nutzer. Ist ab dieser Modellversion selbst eine Rechengröße:
+   * treibt den Nutzen (Zeitersparnis gilt für alle M365-Nutzer, nicht nur Lizenznehmer) und
+   * das IT-Setup (Rollout-Aufwand skaliert mit der Gesamt-Kopfzahl). "Nutzer ohne Lizenz" =
+   * m365Users − users (nur Copilot Chat, erhalten ausschließlich einen Kick-off, keine Lernreise).
+   */
+  m365Users: number;
   hourlyCostEur: number;
   licensePerUserMonthEur: number;
 };
@@ -13,6 +23,7 @@ export type ScenarioId = "realistic" | "studyNear";
 export type MonthlyProjection = {
   month: number;
   year: 1 | 2 | 3;
+  /** Nutzenbasis dieses Monats = m365Users (alle M365-Nutzer, mit und ohne Lizenz). */
   users: number;
   grossHoursPerUser: number;
   realizedBenefitEur: number;
@@ -90,15 +101,7 @@ export type RoiBusinessCase = {
   inputs: RoiInputs;
   assumptionsVersion: string;
   generatedAt: string;
-  training: {
-    groups: number;
-    fullGroupCostEur: number;
-    fullGroupCostPerSeatEur: number;
-    actualCostPerUserYear1Eur: number;
-    year1Eur: number;
-    year2Eur: number;
-    year3Eur: number;
-  };
+  training: TrainingResult;
   itSetup: {
     totalEur: number;
     perUserEur: number;

@@ -28,7 +28,7 @@ function buildExecutiveSummary(bc: RoiBusinessCase): string {
   const netBenefit3y = formatEur(realistic.netBenefitEur);
 
   if (roiYear1 !== null && roiYear1 > 0) {
-    return `Für ${company} weist die Planungsrechnung bei ${inputs.users} geplanten Nutzern bereits im ersten Jahr einen positiven ROI von ${formatPercent(roiYear1)} aus. Dem realisierten Nutzen von ${formatEur(year1.realizedBenefitEur)} stehen Gesamtkosten von ${formatEur(year1.totalCostEur)} gegenüber. Über drei Jahre entsteht ein kumulierter Netto-Nutzen von ${netBenefit3y}; der Break-even wird nach ${breakEven} erreicht.`;
+    return `Für ${company} weist die Planungsrechnung bei ${inputs.m365Users} Microsoft-365-Nutzern (davon ${inputs.users} mit Copilot-Lizenz) bereits im ersten Jahr einen positiven ROI von ${formatPercent(roiYear1)} aus. Dem realisierten Nutzen von ${formatEur(year1.realizedBenefitEur)} stehen Gesamtkosten von ${formatEur(year1.totalCostEur)} gegenüber. Über drei Jahre entsteht ein kumulierter Netto-Nutzen von ${netBenefit3y}; der Break-even wird nach ${breakEven} erreicht.`;
   }
 
   if (roiThreeYears !== null && roiThreeYears > 0) {
@@ -47,8 +47,14 @@ function buildDecisionRecommendation(bc: RoiBusinessCase): string {
 }
 
 function buildValueDrivers(bc: RoiBusinessCase): [string, string, string] {
+  const { m365Users, users } = bc.inputs;
+  const chatUsers = Math.max(m365Users - users, 0);
+  const userLine =
+    chatUsers > 0
+      ? `Alle ${m365Users} Microsoft-365-Nutzer fließen in den Nutzen ein (${users} mit Copilot-Lizenz, ${chatUsers} mit Copilot Chat ohne Lizenz) — ohne künstlichen Adoption-Abschlag.`
+      : `Alle ${m365Users} geschulten Nutzer fließen in den Nutzen ein — ohne künstlichen Adoption-Abschlag.`;
   return [
-    `Alle ${bc.inputs.users} geschulten Nutzer fließen in den Nutzen ein — ohne künstlichen Adoption-Abschlag.`,
+    userLine,
     `Nur 50 % des rechnerischen Kapazitätswerts werden wirtschaftlich als Nutzen angesetzt.`,
     `Break-even im realistischen Szenario nach ${formatBreakEvenDative(bc.realistic.breakEvenMonth)}.`,
   ];
@@ -72,8 +78,14 @@ function buildNextSteps(): [string, string, string] {
 
 /** Trainingstext (Abschnitt 12.2). */
 export function buildTrainingCopy(bc: RoiBusinessCase): string {
-  const { training, inputs } = bc;
-  return `Das Qualifizierungsmodell umfasst je Gruppe einen Kick-off für ${formatEur(1800)} und vier Lernreise-Termine zu je ${formatEur(800)}. Bei zwölf Teilnehmenden entsprechen ${formatEur(training.fullGroupCostEur)} Gruppenkosten ${formatEurCents(training.fullGroupCostPerSeatEur)} pro Person. Für die eingegebenen ${inputs.users} Nutzer werden ${training.groups} Gruppen benötigt; durch die Belegung der letzten Gruppe ergeben sich tatsächlich ${formatEurCents(training.actualCostPerUserYear1Eur)} pro eingeplanter Person.`;
+  const { training } = bc;
+  const licensedSentence = `Für die ${training.licensed.users} Nutzer mit Copilot-Lizenz werden ${training.licensed.groups} Gruppe${training.licensed.groups === 1 ? "" : "n"} mit Kick-off und vollständiger Lernreise benötigt (${formatEurCents(training.licensed.actualCostPerUserYear1Eur)} pro eingeplanter Person, Vergleichswert bei voller Zwölfergruppe: ${formatEurCents(training.licensed.fullGroupCostPerSeatEur)}).`;
+
+  if (training.chat.users === 0) {
+    return `Das Qualifizierungsmodell umfasst je Gruppe einen Kick-off für ${formatEur(1800)} und vier Lernreise-Termine zu je ${formatEur(800)}. Bei zwölf Teilnehmenden entsprechen ${formatEur(training.licensed.fullGroupCostEur)} Gruppenkosten ${formatEurCents(training.licensed.fullGroupCostPerSeatEur)} pro Person. ${licensedSentence}`;
+  }
+
+  return `Das Qualifizierungsmodell unterscheidet zwei Gruppen: Nutzer mit Copilot-Lizenz erhalten je Gruppe einen Kick-off für ${formatEur(1800)} und vier Lernreise-Termine zu je ${formatEur(800)} (${formatEur(training.licensed.fullGroupCostEur)} je voller Zwölfergruppe). Nutzer ohne Lizenz (nur Copilot Chat) erhalten ausschließlich den Kick-off, ebenfalls je Gruppe von bis zu 12 Personen, ohne Lernreise und ohne Folgejahr. ${licensedSentence} Für die ${training.chat.users} Chat-Nutzer ohne Lizenz kommen ${training.chat.groups} weitere Kick-off-Gruppe${training.chat.groups === 1 ? "" : "n"} hinzu (${formatEurCents(training.chat.actualCostPerUserYear1Eur)} pro eingeplanter Person).`;
 }
 
 /** Agentisches Potenzial (Abschnitt 12.3) — fester Hinweistext, keine Zahl. */
@@ -103,6 +115,6 @@ export function buildDominantCostBlockCopy(bc: RoiBusinessCase): string {
 export function buildBenefitLogicCopy(bc: RoiBusinessCase): string {
   const y1 = bc.realistic.years[0];
   const avgHours = formatHours(y1.averageGrossHoursPerUserMonth);
-  const perUserBenefit = bc.inputs.users > 0 ? y1.realizedBenefitEur / bc.inputs.users : 0;
+  const perUserBenefit = bc.inputs.m365Users > 0 ? y1.realizedBenefitEur / bc.inputs.m365Users : 0;
   return `Im ersten Jahr werden im realistischen Szenario durchschnittlich ${avgHours} Stunden brutto je Nutzer und Monat angesetzt. Daraus entsteht wirtschaftlich angesetzter Nutzen von ${formatEur(perUserBenefit)} pro Nutzer und Jahr. Die Rechnung unterstellt nicht, dass jede gesparte Stunde als Personalkostensenkung realisiert wird.`;
 }

@@ -29,4 +29,4 @@ export const ROI_ASSUMPTIONS = {
   changeAndAdoptionRate: 0.12,
 } as const;
 
-export const ASSUMPTIONS_VERSION = "roi-v1-2026-07";
+export const ASSUMPTIONS_VERSION = "roi-v2-2026-07";

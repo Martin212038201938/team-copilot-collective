@@ -1051,7 +1051,7 @@ const CopilotRoiBerechnen = () => {
 
           <div className="mt-6 grid md:grid-cols-3 lg:grid-cols-6 gap-4">
             {[
-              { nr: "1", title: "Eingaben", desc: "Nur vier Pflichtangaben" },
+              { nr: "1", title: "Eingaben", desc: "Nur fünf Pflichtangaben" },
               { nr: "2", title: "Summary", desc: "ROI & Entscheidung" },
               { nr: "3", title: "3-Jahres-Verlauf", desc: "Kumulierter Nutzen" },
               { nr: "4", title: "Szenarien", desc: "Realistisch & studiennah" },

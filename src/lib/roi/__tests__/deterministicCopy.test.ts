@@ -7,6 +7,7 @@ import type { RoiInputs } from "../types";
 const inputs: RoiInputs = {
   companyName: "Yellow Boat Testfirma GmbH",
   users: 50,
+  m365Users: 50,
   hourlyCostEur: 50,
   licensePerUserMonthEur: 26,
 };

@@ -20,6 +20,7 @@ const RoiBusinessCaseGenerator = () => {
     const bc = calculateRoiBusinessCase({
       companyName: values.companyName,
       users: values.users,
+      m365Users: values.m365Users,
       hourlyCostEur: values.hourlyCostEur,
       licensePerUserMonthEur: values.licensePerUserMonthEur,
     });

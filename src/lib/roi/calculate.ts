@@ -33,8 +33,13 @@ function computeScenario(
   training: ReturnType<typeof calculateTraining>,
   itSetupTotalEur: number
 ): ScenarioResult {
-  const { users, hourlyCostEur, licensePerUserMonthEur } = inputs;
+  const { users, m365Users, hourlyCostEur, licensePerUserMonthEur } = inputs;
   const { horizonMonths, economicRealizationRate, changeAndAdoptionRate } = ROI_ASSUMPTIONS;
+
+  // Der Nutzen (Zeitersparnis) gilt für ALLE Microsoft-365-Nutzer, nicht nur für lizenzierte
+  // Copilot-Pro-Nutzer — Chat-User ohne Lizenz werden mit demselben Zielwert angesetzt (siehe
+  // RoiInputs.m365Users). Lizenzkosten fallen dagegen ausschließlich für "users" an.
+  const benefitUsers = m365Users;
 
   const monthlyLicenseCostEur = users * licensePerUserMonthEur;
   const licensesYear1Eur = monthlyLicenseCostEur * 12;
@@ -53,7 +58,7 @@ function computeScenario(
   for (let month = 1; month <= horizonMonths; month++) {
     const year = yearForMonth(month);
     const grossHoursPerUser = timeSavingHoursForMonth(month, targetHoursPerUserMonth);
-    const realizedBenefitEur = users * grossHoursPerUser * hourlyCostEur * economicRealizationRate;
+    const realizedBenefitEur = benefitUsers * grossHoursPerUser * hourlyCostEur * economicRealizationRate;
 
     const trainingCostEur = month === 1 ? training.year1Eur : month === 13 ? training.year2Eur : month === 25 ? training.year3Eur : 0;
     const itSetupCostEur = month === 1 ? itSetupTotalEur : 0;
@@ -73,7 +78,7 @@ function computeScenario(
     months.push({
       month,
       year,
-      users,
+      users: benefitUsers,
       grossHoursPerUser,
       realizedBenefitEur,
       licenseCostEur,
@@ -140,8 +145,15 @@ function computeScenario(
  * aus den vier Nutzereingaben. Einzige Quelle der Wahrheit für Website, PowerPoint und Tests.
  */
 export function calculateRoiBusinessCase(inputs: RoiInputs): RoiBusinessCase {
-  const training = calculateTraining(inputs.users);
-  const itSetupTotalEur = calculateItSetup(inputs.users);
+  const licensedUsers = inputs.users;
+  // Nutzer ohne Lizenz = alle M365-Nutzer abzüglich der geplanten Copilot-Lizenzen (nie negativ,
+  // falls versehentlich users > m365Users eingegeben wurde — das Formular validiert dagegen).
+  const chatUsers = Math.max(inputs.m365Users - inputs.users, 0);
+
+  const training = calculateTraining(licensedUsers, chatUsers);
+  // IT-Setup skaliert mit der Gesamt-Kopfzahl (Tenant-Konfiguration, Security, Governance
+  // betreffen alle M365-Nutzer, unabhängig vom Lizenztyp).
+  const itSetupTotalEur = calculateItSetup(inputs.m365Users);
 
   const realistic = computeScenario(inputs, "realistic", ROI_ASSUMPTIONS.realisticTargetHoursPerMonth, training, itSetupTotalEur);
   const studyNear = computeScenario(inputs, "studyNear", ROI_ASSUMPTIONS.studyNearTargetHoursPerMonth, training, itSetupTotalEur);
@@ -150,18 +162,10 @@ export function calculateRoiBusinessCase(inputs: RoiInputs): RoiBusinessCase {
     inputs,
     assumptionsVersion: ASSUMPTIONS_VERSION,
     generatedAt: new Date().toISOString(),
-    training: {
-      groups: training.groups,
-      fullGroupCostEur: training.fullGroupCostEur,
-      fullGroupCostPerSeatEur: training.fullGroupCostPerSeatEur,
-      actualCostPerUserYear1Eur: training.actualCostPerUserYear1Eur,
-      year1Eur: training.year1Eur,
-      year2Eur: training.year2Eur,
-      year3Eur: training.year3Eur,
-    },
+    training,
     itSetup: {
       totalEur: itSetupTotalEur,
-      perUserEur: inputs.users > 0 ? itSetupTotalEur / inputs.users : 0,
+      perUserEur: inputs.m365Users > 0 ? itSetupTotalEur / inputs.m365Users : 0,
     },
     realistic,
     studyNear,

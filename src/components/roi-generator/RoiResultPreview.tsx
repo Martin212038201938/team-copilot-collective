@@ -74,12 +74,27 @@ const RoiResultPreview = ({ businessCase }: Props) => {
 
           <div className="border-t pt-4 space-y-2 text-sm">
             <p>
-              <strong>{training.groups}</strong> Trainingsgruppe{training.groups === 1 ? "" : "n"} · Trainingskosten Jahr 1:{" "}
-              <strong>{formatEur(training.year1Eur)}</strong> · davon <strong>{formatEurCents(training.actualCostPerUserYear1Eur)}</strong> je eingeplanter Person
-              (Vergleichswert bei voll belegter Zwölfergruppe: {formatEurCents(training.fullGroupCostPerSeatEur)}).
+              Trainingskosten Jahr 1 gesamt: <strong>{formatEur(training.year1Eur)}</strong> über{" "}
+              <strong>{training.groups}</strong> Gruppe{training.groups === 1 ? "" : "n"}.
             </p>
             <p>
-              IT-Setup gesamt: <strong>{formatEur(itSetup.totalEur)}</strong> ({formatEur(itSetup.perUserEur)} je Nutzer).
+              <strong>{training.licensed.users}</strong> Lizenz-Nutzer in <strong>{training.licensed.groups}</strong> Gruppe
+              {training.licensed.groups === 1 ? "" : "n"} (Kick-off + Lernreise):{" "}
+              <strong>{formatEur(training.licensed.year1Eur)}</strong> · davon{" "}
+              <strong>{formatEurCents(training.licensed.actualCostPerUserYear1Eur)}</strong> je eingeplanter Person
+              (Vergleichswert bei voll belegter Zwölfergruppe: {formatEurCents(training.licensed.fullGroupCostPerSeatEur)}).
+            </p>
+            {training.chat.users > 0 && (
+              <p>
+                <strong>{training.chat.users}</strong> Chat-Nutzer ohne Lizenz in <strong>{training.chat.groups}</strong>{" "}
+                Gruppe{training.chat.groups === 1 ? "" : "n"} (nur Kick-off, keine Lernreise, kein Folgejahr):{" "}
+                <strong>{formatEur(training.chat.year1Eur)}</strong> · davon{" "}
+                <strong>{formatEurCents(training.chat.actualCostPerUserYear1Eur)}</strong> je eingeplanter Person.
+              </p>
+            )}
+            <p>
+              IT-Setup gesamt: <strong>{formatEur(itSetup.totalEur)}</strong> ({formatEur(itSetup.perUserEur)} je Nutzer,
+              berechnet über alle {inputs.m365Users} Microsoft-365-Nutzer).
             </p>
           </div>
 

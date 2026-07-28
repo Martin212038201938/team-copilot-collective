@@ -101,7 +101,12 @@ function addTitleSlide(pptx: PptxGenJS, bc: RoiBusinessCase, options: Presentati
   slide.addText(`Planungsrechnung für ${bc.inputs.companyName}`, {
     x: 0.8, y: 3.35, w: 11.7, h: 0.6, fontSize: 22, color: PPT_THEME.text, fontFace: PPT_FONT.body,
   });
-  slide.addText(`${bc.inputs.users} geplante Nutzer  |  36-Monats-Betrachtung`, {
+  const chatUsersForTitle = Math.max(bc.inputs.m365Users - bc.inputs.users, 0);
+  const scopeLine =
+    chatUsersForTitle > 0
+      ? `${bc.inputs.users} Copilot-Lizenzen · ${chatUsersForTitle} Chat-Nutzer ohne Lizenz  |  36-Monats-Betrachtung`
+      : `${bc.inputs.users} geplante Nutzer  |  36-Monats-Betrachtung`;
+  slide.addText(scopeLine, {
     x: 0.8, y: 4.0, w: 11.7, h: 0.5, fontSize: 16, color: PPT_THEME.muted, fontFace: PPT_FONT.body,
   });
 
@@ -220,21 +225,30 @@ function addTrainingEconomicsSlide(pptx: PptxGenJS, bc: RoiBusinessCase) {
   const slide = pptx.addSlide({ masterName: MASTER_NAME });
   addSlideTitle(slide, "Training ist pro Person überschaubar");
 
-  slide.addShape("roundRect", { x: 0.5, y: 1.4, w: 5.6, h: 2.2, fill: { color: PPT_THEME.lightOrange }, line: { color: PPT_THEME.lightOrange } });
-  slide.addText("1.800 € Kick-off\n+ 4 × 800 € Lernreise\n= 5.000 € je Gruppe", {
-    x: 0.7, y: 1.6, w: 5.2, h: 1.8, fontSize: 16, color: PPT_THEME.text, fontFace: PPT_FONT.body, valign: "middle", align: "center",
+  const hasChatUsers = bc.training.chat.users > 0;
+
+  slide.addShape("roundRect", { x: 0.5, y: 1.4, w: 5.6, h: 1.7, fill: { color: PPT_THEME.lightOrange }, line: { color: PPT_THEME.lightOrange } });
+  slide.addText("Mit Lizenz: 1.800 € Kick-off\n+ 4 × 800 € Lernreise\n= 5.000 € je Gruppe", {
+    x: 0.7, y: 1.55, w: 5.2, h: 1.5, fontSize: 15, color: PPT_THEME.text, fontFace: PPT_FONT.body, valign: "middle", align: "center",
   });
 
-  slide.addShape("roundRect", { x: 6.3, y: 1.4, w: 5.6, h: 2.2, fill: { color: PPT_THEME.lightBlue }, line: { color: PPT_THEME.lightBlue } });
+  slide.addShape("roundRect", { x: 6.3, y: 1.4, w: 5.6, h: 1.7, fill: { color: PPT_THEME.lightBlue }, line: { color: PPT_THEME.lightBlue } });
   slide.addText("5.000 € / 12 Personen\n= 416,67 € pro Person", {
-    x: 6.5, y: 1.6, w: 5.2, h: 1.8, fontSize: 16, color: PPT_THEME.text, fontFace: PPT_FONT.body, valign: "middle", align: "center",
+    x: 6.5, y: 1.55, w: 5.2, h: 1.5, fontSize: 15, color: PPT_THEME.text, fontFace: PPT_FONT.body, valign: "middle", align: "center",
   });
+
+  if (hasChatUsers) {
+    slide.addShape("roundRect", { x: 0.5, y: 3.25, w: 11.4, h: 1.0, fill: { color: PPT_THEME.lightGray }, line: { color: PPT_THEME.lightGray } });
+    slide.addText("Ohne Lizenz (nur Copilot Chat): nur 1.800 € Kick-off je Gruppe — keine Lernreise, kein Folgejahr", {
+      x: 0.7, y: 3.25, w: 11.0, h: 1.0, fontSize: 15, color: PPT_THEME.text, fontFace: PPT_FONT.body, valign: "middle", align: "center",
+    });
+  }
 
   slide.addText(buildTrainingCopy(bc), {
-    x: 0.5, y: 3.9, w: 11.4, h: 1.4, fontSize: 15, color: PPT_THEME.text, fontFace: PPT_FONT.body, valign: "top",
+    x: 0.5, y: hasChatUsers ? 4.45 : 3.9, w: 11.4, h: hasChatUsers ? 1.7 : 1.4, fontSize: 14, color: PPT_THEME.text, fontFace: PPT_FONT.body, valign: "top",
   });
-  slide.addText("Für Jahr 2 und 3 sind jeweils 50 % des Trainingsbudgets aus Jahr 1 als fortlaufende Weiterbildung vorgesehen.", {
-    x: 0.5, y: 5.4, w: 11.4, h: 0.8, fontSize: 13, italic: true, color: PPT_THEME.muted, fontFace: PPT_FONT.body,
+  slide.addText("Für Jahr 2 und 3 sind jeweils 50 % des Trainingsbudgets der Lizenz-Nutzer aus Jahr 1 als fortlaufende Weiterbildung vorgesehen. Der Kick-off für Nutzer ohne Lizenz ist ein einmaliges Ereignis ohne Folgekosten.", {
+    x: 0.5, y: hasChatUsers ? 6.15 : 5.4, w: 11.4, h: 0.9, fontSize: 12, italic: true, color: PPT_THEME.muted, fontFace: PPT_FONT.body,
   });
 }
 
@@ -362,8 +376,11 @@ function addDecisionSlide(pptx: PptxGenJS, bc: RoiBusinessCase, copy: Presentati
   const slide = pptx.addSlide({ masterName: MASTER_NAME });
   addSlideTitle(slide, "Entscheidungsvorlage");
 
+  const chatUsersForDecision = Math.max(bc.inputs.m365Users - bc.inputs.users, 0);
   const lines = [
-    `Beantragter Umfang: ${bc.inputs.users} Nutzer`,
+    chatUsersForDecision > 0
+      ? `Beantragter Umfang: ${bc.inputs.users} Copilot-Lizenzen · ${chatUsersForDecision} Chat-Nutzer ohne Lizenz`
+      : `Beantragter Umfang: ${bc.inputs.users} Nutzer`,
     `Investition Jahr 1: ${formatEur(bc.realistic.years[0].totalCostEur)}`,
     `Erwarteter realisierter Nutzen Jahr 1: ${formatEur(bc.realistic.years[0].realizedBenefitEur)}`,
     `Erwarteter Break-even: ${formatBreakEven(bc.realistic.breakEvenMonth)}`,

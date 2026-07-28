@@ -19,26 +19,46 @@ function germanNumberString(min: number, max: number, label: string) {
  * Pflichtfelder: Unternehmensname, Microsoft-365-Nutzer, geplante Copilot-Lizenzen.
  * Stundensatz und Lizenzpreis sind vorbelegt und editierbar, aber keine Pflichtangabe
  * im Sinne von "leer lassen verboten" – sie haben belastbare Defaults.
+ *
+ * m365Users ist seit Modellversion mit Lizenz-/Chat-Split selbst eine Rechengröße (treibt Nutzen
+ * und IT-Setup) und muss daher >= users (geplante Lizenzen) sein — sonst wäre die Differenz
+ * ("Nutzer ohne Lizenz") negativ.
  */
-export const roiInputFormSchema = z.object({
-  companyName: z
-    .string()
-    .trim()
-    .min(2, "Bitte geben Sie den Unternehmensnamen ein (mind. 2 Zeichen).")
-    .max(80, "Unternehmensname: maximal 80 Zeichen."),
-  m365Users: germanNumberString(1, 1000000, "Anzahl Microsoft-365-Nutzer"),
-  users: germanNumberString(1, 100000, "Geplante Copilot-Lizenzen"),
-  hourlyCostEur: germanNumberString(10, 500, "Vollkosten-Stundensatz"),
-  licensePerUserMonthEur: germanNumberString(0, 500, "Lizenzpreis pro Nutzer/Monat"),
-});
+export const roiInputFormSchema = z
+  .object({
+    companyName: z
+      .string()
+      .trim()
+      .min(2, "Bitte geben Sie den Unternehmensnamen ein (mind. 2 Zeichen).")
+      .max(80, "Unternehmensname: maximal 80 Zeichen."),
+    m365Users: germanNumberString(1, 1000000, "Anzahl Microsoft-365-Nutzer"),
+    users: germanNumberString(1, 100000, "Geplante Copilot-Lizenzen"),
+    hourlyCostEur: germanNumberString(10, 500, "Vollkosten-Stundensatz"),
+    licensePerUserMonthEur: germanNumberString(0, 500, "Lizenzpreis pro Nutzer/Monat"),
+  })
+  .refine(
+    (values) => {
+      const m365 = parseGermanNumber(values.m365Users);
+      const licensed = parseGermanNumber(values.users);
+      if (m365 === null || licensed === null) return true; // wird schon je Feld gemeldet
+      return licensed <= m365;
+    },
+    {
+      message: "Geplante Copilot-Lizenzen dürfen die Gesamtzahl der Microsoft-365-Nutzer nicht überschreiten.",
+      path: ["users"],
+    }
+  );
 
 export type RoiInputFormValues = z.infer<typeof roiInputFormSchema>;
 
 export type RoiInputFormParsed = {
   companyName: string;
-  /** Geplante Copilot-Lizenzen – das ist die Rechengröße der ROI-Formeln. */
+  /** Geplante Copilot-Lizenzen (Pro-Nutzer) – Rechengröße für Lizenzkosten und volle Lernreise. */
   users: number;
-  /** Gesamtzahl Microsoft-365-Nutzer – nur Kontext, keine Rechengröße. */
+  /**
+   * Gesamtzahl Microsoft-365-Nutzer – seit dem Lizenz-/Chat-Split selbst Rechengröße für Nutzen
+   * und IT-Setup. "Nutzer ohne Lizenz" (nur Kick-off, keine Lernreise) = m365Users − users.
+   */
   m365Users: number;
   hourlyCostEur: number;
   licensePerUserMonthEur: number;

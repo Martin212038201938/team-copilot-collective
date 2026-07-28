@@ -54,7 +54,9 @@ const RoiInputForm = ({ onCalculated }: Props) => {
           <Label htmlFor="roi-m365Users">Microsoft-365-Nutzer insgesamt</Label>
           <Input id="roi-m365Users" inputMode="numeric" placeholder="z. B. 250" aria-describedby="roi-m365Users-help roi-m365Users-error" {...register("m365Users")} />
           <p id="roi-m365Users-help" className="text-xs text-muted-foreground">
-            Alle Beschäftigten mit Microsoft 365 — sie können Copilot Chat bereits nutzen.
+            Alle Beschäftigten mit Microsoft 365 — sie können Copilot Chat bereits ohne Lizenz nutzen
+            und zählen beim Nutzen und beim IT-Setup mit. Wer keine Copilot-Lizenz erhält, wird
+            automatisch mit einem einmaligen Kick-off-Workshop eingeplant (ohne Lernreise).
           </p>
           {errors.m365Users && <p id="roi-m365Users-error" className="text-sm text-destructive">{errors.m365Users.message}</p>}
         </div>
@@ -63,7 +65,8 @@ const RoiInputForm = ({ onCalculated }: Props) => {
           <Label htmlFor="roi-users">Geplante Copilot-Lizenzen</Label>
           <Input id="roi-users" inputMode="numeric" placeholder="z. B. 50" aria-describedby="roi-users-help roi-users-error" {...register("users")} />
           <p id="roi-users-help" className="text-xs text-muted-foreground">
-            Personen, die eine Microsoft-365-Copilot-Lizenz und die Qualifizierung erhalten.
+            Personen, die eine Microsoft-365-Copilot-Lizenz erhalten und die vollständige Lernreise
+            (Kick-off + 4 Termine) durchlaufen. Muss kleiner oder gleich der Gesamt-Nutzerzahl sein.
           </p>
           {errors.users && <p id="roi-users-error" className="text-sm text-destructive">{errors.users.message}</p>}
         </div>
