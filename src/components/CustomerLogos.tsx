@@ -30,6 +30,10 @@ const customers = [
   { name: "Compositiv GmbH", file: "compositiv.png" },
   { name: "Kommunales Bildungswerk", file: "kommunales-bildungswerk.png" },
   { name: "Eckpfeiler Immobilien", file: "eckpfeiler-immobilien.png" },
+  {
+    name: "Hessisches Ministerium für Familie, Senioren, Sport, Gesundheit und Pflege",
+    file: "hessisches-familienministerium.png",
+  },
 ];
 
 const LogoItem = ({
