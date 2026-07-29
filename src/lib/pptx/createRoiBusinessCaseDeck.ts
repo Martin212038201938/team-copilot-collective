@@ -614,9 +614,12 @@ function renderStructure(
     }
 
     case "chainAndColumns": {
-      const linkW = (CONTENT_W - px(24) * (structure.chain.length - 1)) / structure.chain.length;
+      // Die Vorlage verbindet die fünf Stufen sichtbar mit Pfeilen — ohne sie wirkt die
+      // Reihe wie eine beliebige Aufzählung statt wie eine Kette.
+      const arrowW = px(46);
+      const linkW = (CONTENT_W - arrowW * (structure.chain.length - 1)) / structure.chain.length;
       structure.chain.forEach((step, i) => {
-        const x = PAD.side + i * (linkW + px(24));
+        const x = PAD.side + i * (linkW + arrowW);
         hairline(slide, x, y, linkW, p.hairline);
         slide.addText(step.num ?? "", {
           x, y: y + px(20), w: linkW, h: px(30),
@@ -626,6 +629,13 @@ function renderStructure(
           x, y: y + px(58), w: linkW, h: px(76),
           fontFace: PPT_FONT.display, fontSize: pt(30), bold: true, color: p.text, valign: "top", shrinkText: true,
         });
+        if (i < structure.chain.length - 1) {
+          slide.addText("→", {
+            x: x + linkW, y: y + px(54), w: arrowW, h: px(50),
+            fontFace: PPT_FONT.display, fontSize: pt(32), color: PPT_THEME.sky,
+            align: "center", valign: "top",
+          });
+        }
       });
 
       const colY = y + px(210);
@@ -825,7 +835,16 @@ function renderStructure(
       // gedacht. Hier sind die Beschriftungen ganze Sätze und gehören unter die Zahl.
       const gap = px(40);
       const colW = (CONTENT_W - gap * (structure.numbers.length - 1)) / structure.numbers.length;
-      const blockH = px(230);
+
+      // Die Beschriftungen sind ganze Sätze und brauchen je nach Spaltenbreite zwei bis
+      // vier Zeilen. Bei fester Blockhöhe lief die letzte Zeile über die untere Haarlinie.
+      const labelLines = Math.max(
+        ...structure.numbers.map((n) => estimateLines(fill(n.label), colW / px(1), 25))
+      );
+      const blockH = Math.min(
+        available - px(200),
+        Math.max(px(230), px(126) + labelLines * px(44) + px(24))
+      );
 
       hairline(slide, PAD.side, y, CONTENT_W, p.hairline);
       structure.numbers.forEach((n, i) => {
@@ -836,7 +855,7 @@ function renderStructure(
           charSpacing: -1.6, valign: "top", shrinkText: true,
         });
         slide.addText(fill(n.label), {
-          x, y: y + px(126), w: colW, h: blockH - px(140),
+          x, y: y + px(126), w: colW, h: blockH - px(150),
           fontFace: PPT_FONT.body, fontSize: pt(25), color: p.secondary,
           lineSpacingMultiple: 1.25, valign: "top", shrinkText: true,
         });
