@@ -161,10 +161,10 @@ const RoiDeliveryForm = ({ businessCase, m365Users }: Props) => {
         <div className="flex justify-center mb-3">
           <CheckCircle2 className="w-12 h-12 text-primary" />
         </div>
-        <h3 className="text-xl font-bold mb-2">Ihre PowerPoint wird jetzt erstellt</h3>
+        <h3 className="text-xl font-bold mb-2">Ihre Dateien werden jetzt erstellt</h3>
         <p className="text-muted-foreground">
-          Sie erhalten in Kürze eine E-Mail mit dem Download-Link, sobald die Datei wirklich bereitsteht. Prüfen
-          und ergänzen Sie die Planungsannahmen vor einer Budgetentscheidung.
+          Sie erhalten in Kürze eine E-Mail mit dem Download-Link, sobald beide Dateien wirklich bereitstehen.
+          Prüfen und ergänzen Sie die Planungsannahmen vor einer Budgetentscheidung.
         </p>
       </div>
     );
@@ -174,9 +174,9 @@ const RoiDeliveryForm = ({ businessCase, m365Users }: Props) => {
 
   return (
     <div className="rounded-2xl border-2 border-primary/30 bg-gradient-to-br from-primary/5 to-primary/10 p-6 md:p-8">
-      <h3 className="text-xl md:text-2xl font-bold mb-2">Editierbare PowerPoint erstellen</h3>
+      <h3 className="text-xl md:text-2xl font-bold mb-2">Editierbare PowerPoint und Excel erstellen</h3>
       <p className="text-muted-foreground mb-6">
-        Sie erhalten Ihre Präsentation per E-Mail-Link, sobald die Datei fertig gestellt ist.
+        Sie erhalten Präsentation und Excel per E-Mail-Link, sobald beide Dateien fertig gestellt sind.
       </p>
 
       <form onSubmit={handleSubmit} className="space-y-6">
@@ -301,7 +301,7 @@ const RoiDeliveryForm = ({ businessCase, m365Users }: Props) => {
                 : "Wird übermittelt…"}
             </>
           ) : (
-            "Editierbare PowerPoint erstellen"
+            "PowerPoint und Excel erstellen"
           )}
         </Button>
 

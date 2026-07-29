@@ -57,7 +57,7 @@ function roiSendMultipart(string $to, string $subject, string $htmlBody, string 
 /** Wird NUR verschickt, nachdem die Datei tatsächlich validiert und gespeichert wurde. */
 function roiSendReadyEmail(string $email, string $downloadUrl, string $confirmationUrl, ?string $companyName): bool {
     $greeting = $companyName ? " für {$companyName}" : "";
-    $html = roiMailLayout('Ihre PowerPoint ist fertig', "
+    $html = roiMailLayout('Ihre Präsentation und Excel sind fertig', "
         <h2>Ihr Copilot Business Case{$greeting} ist fertig</h2>
         <p>Zwei Dateien stehen für Sie bereit: die editierbare Präsentation für die
         Entscheidungsvorlage und die Excel mit der vollständigen, nachvollziehbaren Berechnung.</p>
@@ -77,15 +77,15 @@ function roiSendReadyEmail(string $email, string $downloadUrl, string $confirmat
         . "(Link ist " . ROI_FILE_TTL_DAYS . " Tage gültig)\n\n"
         . "E-Mail-Adresse bestätigen: {$confirmationUrl}\n";
 
-    return roiSendMultipart($email, 'Ihre PowerPoint ist fertig', $html, $text, 'Copilotenschule <info@copilotenschule.de>');
+    return roiSendMultipart($email, 'Ihre Präsentation und Excel sind fertig', $html, $text, 'Copilotenschule <info@copilotenschule.de>');
 }
 
 function roiSendReminderEmail(string $email, string $downloadUrl, ?string $companyName, int $reminderNumber): bool {
     $greeting = $companyName ? " für {$companyName}" : "";
     $isFinal = $reminderNumber === 2;
     $subject = $isFinal
-        ? 'Letzte Erinnerung: Ihre PowerPoint wartet noch auf Sie'
-        : 'Erinnerung: Ihre PowerPoint wartet auf Sie';
+        ? 'Letzte Erinnerung: Ihre Dateien warten noch auf Sie'
+        : 'Erinnerung: Ihre Dateien warten auf Sie';
 
     $html = roiMailLayout($subject, "
         <h2>Ihr Copilot Business Case{$greeting} wartet noch auf Sie</h2>
