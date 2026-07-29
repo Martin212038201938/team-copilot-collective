@@ -44,21 +44,29 @@ describe("Kunden-Excel aus der Vorlage", () => {
     expect(zip.file("xl/workbook.xml")).not.toBeNull();
   });
 
-  it("trägt die vier Eingaben des Kunden ein", () => {
+  it("trägt die fünf Eingaben des Kunden ein", () => {
     expect(inputs).toContain("Yellow Boat Testfirma GmbH");
-    expect(inputs).toMatch(/<x:c r="B8"[^>]*><x:v>5<\/x:v>/);
-    expect(inputs).toMatch(/<x:c r="B9"[^>]*><x:v>60\.4<\/x:v>/);
-    expect(inputs).toMatch(/<x:c r="B10"[^>]*><x:v>26<\/x:v>/);
+    expect(inputs).toMatch(/<x:c r="B8"[^>]*><x:v>25<\/x:v>/);   // M365-Nutzer
+    expect(inputs).toMatch(/<x:c r="B9"[^>]*><x:v>5<\/x:v>/);    // davon lizenziert
+    expect(inputs).toMatch(/<x:c r="B10"[^>]*><x:v>60\.4<\/x:v>/);
+    expect(inputs).toMatch(/<x:c r="B11"[^>]*><x:v>26<\/x:v>/);
   });
 
-  it("ergänzt die neue Eingabezelle für die Microsoft-365-Nutzer", () => {
-    expect(inputs).toContain('<x:row r="11">');
-    expect(inputs).toMatch(/<x:c r="B11"><x:v>25<\/x:v>/);
-    expect(inputs).toContain("Microsoft-365-Nutzer gesamt");
+  it("stellt die M365-Nutzer über die Lizenznutzer", () => {
+    const posM365 = inputs.indexOf("Microsoft-365-Nutzer insgesamt");
+    const posLic = inputs.indexOf("Davon mit Microsoft-365-Copilot-Lizenz");
+    expect(posM365).toBeGreaterThan(-1);
+    expect(posLic).toBeGreaterThan(posM365);
+  });
+
+  it("zieht die Gültigkeitsprüfungen mit", () => {
+    expect(inputs).toContain('sqref="B8:B9"');
+    expect(inputs).toContain('sqref="B10:B11"');
+    expect(inputs).toContain("fünf gelben Felder");
   });
 
   it("überschreibt keine bestehenden Zeilen", () => {
-    for (const r of [1, 3, 5, 6, 7, 8, 9, 10, 12, 13, 14]) {
+    for (const r of [1, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]) {
       expect(inputs, `Zeile ${r}`).toContain(`<x:row r="${r}"`);
     }
   });
@@ -67,19 +75,26 @@ describe("Kunden-Excel aus der Vorlage", () => {
     // Alte Formel darf nicht mehr vorkommen ...
     expect(calc).not.toMatch(/<x:f>C\d+\*I\d+\*'4\. Szenarien'!D6/);
     // ... und die neue muss die Chat-Gruppe enthalten.
-    expect(calc).toContain("MAX('1. Eingaben'!$B$11-'1. Eingaben'!$B$8,0)*2.5/'4. Szenarien'!$B$6");
-    const patched = calc.match(/\(&apos;1\. Eingaben&apos;|\('1\. Eingaben'!\$B\$8\+MAX/g) ?? [];
+    // Nach der Rotation: B8 = M365 gesamt, B9 = Lizenznutzer.
+    expect(calc).toContain("MAX('1. Eingaben'!$B$8-'1. Eingaben'!$B$9,0)*2.5/'4. Szenarien'!$B$6");
+    const patched = calc.match(/\(&apos;1\. Eingaben&apos;|\('1\. Eingaben'!\$B\$9\+MAX/g) ?? [];
     expect(patched.length).toBeGreaterThanOrEqual(36);
   });
 
-  it("setzt die neue IT-Staffel mit Freigrenze ein", () => {
+  it("setzt die neue IT-Staffel mit Freigrenze ein", async () => {
     // Keine Grundpauschale mehr, Freigrenze bis 15 Personen, Basis sind alle M365-Nutzer.
-    expect(calc).toContain("MAX(MIN('1. Eingaben'!$B$11,50)-15,0)*60");
+    expect(calc).toContain("MAX(MIN('1. Eingaben'!$B$8,50)-'6. Quellen &amp; Methodik'!$B$16,0)");
     expect(calc).not.toContain("'6. Quellen &amp; Methodik'!B16+MIN(");
+
+    // Die Staffelparameter selbst müssen zum Modell passen.
+    const sources = await zip.file("xl/worksheets/sheet6.xml")!.async("string");
+    expect(sources).toMatch(/<x:c r="B16"[^>]*><x:v>15<\/x:v>/);
+    expect(sources).toMatch(/<x:c r="B17"[^>]*><x:v>60<\/x:v>/);
+    expect(sources).toMatch(/<x:c r="B20"[^>]*><x:v>6<\/x:v>/);
   });
 
   it("ergänzt Kick-off-Gruppen für die Chat-Nutzer im Trainingsbudget", () => {
-    expect(calc).toContain("'6. Quellen &amp; Methodik'!B31+INT(('1. Eingaben'!B8");
+    expect(calc).toContain("'6. Quellen &amp; Methodik'!B31+INT(('1. Eingaben'!B9");
   });
 
   it("erzwingt die Neuberechnung beim Öffnen", async () => {
@@ -87,8 +102,11 @@ describe("Kunden-Excel aus der Vorlage", () => {
     expect(workbook).toContain('fullCalcOnLoad="1"');
   });
 
-  it("entfernt zwischengespeicherte Werte der geänderten Formeln", () => {
-    expect(calc).not.toMatch(/<\/x:f><x:v>/);
+  it("entfernt zwischengespeicherte Werte in allen Rechenblättern", async () => {
+    for (const n of [2, 3, 4, 5, 6]) {
+      const xml = await zip.file(`xl/worksheets/sheet${n}.xml`)!.async("string");
+      expect(xml, `sheet${n}`).not.toMatch(/<\/x:f><x:v>/);
+    }
   });
 
   it("baut einen sicheren Dateinamen", () => {

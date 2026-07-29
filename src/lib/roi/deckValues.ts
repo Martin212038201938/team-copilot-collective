@@ -23,6 +23,13 @@ const pct = (v: number): string => `${Math.round(v * 100)} %`;
 
 export type DeckValues = {
   firma: string;
+  /** Bausteine auf Folie 16 – Listenpreise je Gruppe bzw. „auf Anfrage“. */
+  preisHinweis: string;
+  preisKickoff: string;
+  preisLernreise: string;
+  preisKeynote: string;
+  preisLaunch: string;
+  preisBr: string;
   datum: string;
   ansprechpartner: string;
   nutzerText: string;
@@ -102,6 +109,17 @@ export function buildDeckValues(
 
   return {
     firma: inputs.companyName,
+
+    // Nur die beiden Formate mit hinterlegtem Listenpreis bekommen eine Zahl. Für alles
+    // andere steht bewusst „auf Anfrage“ statt einer erfundenen Hausnummer.
+    preisHinweis:
+      "Beispielpreise je Gruppe, keine Angebotspreise. Der konkrete Zuschnitt hängt von " +
+      "Gruppengrößen, Standorten und Terminlage ab.",
+    preisKickoff: `${eur(ROI_ASSUMPTIONS.kickoffPerGroupEur)} je Gruppe`,
+    preisLernreise: `${eur(ROI_ASSUMPTIONS.learningJourneySessionPerGroupEur)} je Termin`,
+    preisKeynote: "auf Anfrage",
+    preisLaunch: "auf Anfrage",
+    preisBr: "auf Anfrage",
     datum: opts.datum,
     ansprechpartner: opts.ansprechpartner,
     nutzerText: num(users),
@@ -150,10 +168,11 @@ export function buildDeckValues(
     zielChatText: `${ROI_ASSUMPTIONS.chatOnlyTargetHoursPerMonth.toLocaleString("de-DE")} Std./Monat`,
     nutzenbasisText:
       chatUsers > 0
-        ? `${num(users)} Personen mit Copilot-Lizenz werden mit ${m.targetHoursPerUserMonth} Std./Monat angesetzt, ` +
+        // Bewusst kompakt: Der Satz erscheint auf mehreren Folien in engen Spalten.
+        ? `${num(users)} Lizenz-Nutzer mit ${m.targetHoursPerUserMonth} Std./Monat, ` +
           `${num(chatUsers)} weitere Microsoft-365-Nutzer mit ` +
-          `${ROI_ASSUMPTIONS.chatOnlyTargetHoursPerMonth.toLocaleString("de-DE")} Std./Monat — ihnen fehlen ` +
-          `Lizenz, Integration in die Office-Anwendungen und die vollständige Lernreise.`
+          `${ROI_ASSUMPTIONS.chatOnlyTargetHoursPerMonth.toLocaleString("de-DE")} Std./Monat ` +
+          `(nur Copilot Chat, ohne Lernreise).`
         : `Alle ${num(users)} Personen erhalten eine Copilot-Lizenz und die vollständige Lernreise; ` +
           `angesetzt sind ${m.targetHoursPerUserMonth} Std./Monat.`,
   };

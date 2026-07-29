@@ -32,7 +32,7 @@ $allowedIndustries = ['Industrie', 'Handel', 'Gesundheitswesen', 'Hotellerie', '
 /** Immer 200 – die Recherche ist eine Kür, kein Muss. */
 function roiProfileRespond(array $data): void {
     echo json_encode(array_merge(
-        ['found' => false, 'industry' => null, 'summary' => null, 'logoDataUrl' => null],
+        ['found' => false, 'industry' => null, 'summary' => null, 'logoDataUrl' => null, 'logoAspect' => null],
         $data
     ), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
     exit;
@@ -156,6 +156,9 @@ roiProfileRespond([
     'industry' => $industry,
     'summary' => $summary,
     'logoDataUrl' => $logo['dataUrl'] ?? null,
+    'logoAspect' => isset($logo['width'], $logo['height']) && $logo['height'] > 0
+        ? round($logo['width'] / $logo['height'], 4)
+        : null,
 ]);
 
 /** Ergebnis (auch ein negatives) für ROI_RESEARCH_CACHE_DAYS Tage merken. */

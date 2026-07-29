@@ -17,9 +17,11 @@ export type CompanyProfile = {
   summary: string | null;
   /** Logo als Data-URL, direkt in die PPTX einbettbar (kein CORS-Problem). */
   logoDataUrl: string | null;
+  /** Seitenverhältnis (Breite/Höhe) des Originalbilds — sonst wird das Logo verzerrt. */
+  logoAspect: number | null;
 };
 
-const EMPTY_PROFILE: CompanyProfile = { found: false, industry: null, summary: null, logoDataUrl: null };
+const EMPTY_PROFILE: CompanyProfile = { found: false, industry: null, summary: null, logoDataUrl: null, logoAspect: null };
 
 /**
  * Obergrenze für die gesamte Recherche. Großzügig, weil die Auslieferung asynchron per
@@ -55,6 +57,7 @@ async function requestProfile(companyName: string, email: string): Promise<Compa
       logoDataUrl: typeof data.logoDataUrl === "string" && data.logoDataUrl.startsWith("data:image/")
         ? data.logoDataUrl
         : null,
+      logoAspect: typeof data.logoAspect === "number" && data.logoAspect > 0 ? data.logoAspect : null,
     };
   } catch {
     return EMPTY_PROFILE;

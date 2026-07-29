@@ -25,11 +25,14 @@ export type DeckOverride = {
 };
 
 export const DECK_OVERRIDES: DeckOverride[] = [
+  // --- Folie 02: Blockbeschriftung ------------------------------------------
+  { slide: 2, from: "Annahmen", to: "Konservative Annahmen machen" },
+
   // --- Folie 02: Executive Summary, Block "Annahmen" ------------------------
   {
     slide: 2,
     from: "8 Std. Zielwert je Person und Monat über eine Anlaufkurve ab 60 %. Kein agentisches Zusatzpotenzial eingerechnet.",
-    to: "{{ nutzenbasisText }} Beide Gruppen folgen derselben Anlaufkurve ab 60 %. Kein agentisches Zusatzpotenzial eingerechnet.",
+    to: "{{ nutzenbasisText }} Anlaufkurve ab 60 %, kein agentisches Zusatzpotenzial.",
   },
 
   // --- Folie 12: Szenarien-Tabelle -----------------------------------------

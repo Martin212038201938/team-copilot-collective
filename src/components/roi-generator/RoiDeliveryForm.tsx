@@ -87,6 +87,7 @@ const RoiDeliveryForm = ({ businessCase, m365Users }: Props) => {
           contactName: contactName.trim(),
           contactRole: contactRole.trim() || undefined,
           logoDataUrl: profile.logoDataUrl ?? undefined,
+          logoAspect: profile.logoAspect ?? undefined,
           companySummary: profile.summary ?? undefined,
           // Selbst gewählte Branche schlägt die recherchierte.
           industry: industry || profile.industry || undefined,

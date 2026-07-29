@@ -85,6 +85,8 @@ export type PresentationOptions = {
    * die Titelfolie sieht dann schlicht so aus wie ohne Logo.
    */
   logoDataUrl?: string;
+  /** Seitenverhältnis des Logos (Breite/Höhe). Ohne diesen Wert wird nicht skaliert. */
+  logoAspect?: number;
   /** Ein Satz aus der Unternehmensrecherche, optional. */
   companySummary?: string;
   /** Branche – entweder vom Nutzer gewählt oder recherchiert. */

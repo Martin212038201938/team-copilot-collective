@@ -168,6 +168,10 @@ function roiFetchLogoDataUrl(array $candidates): ?array {
         return [
             'dataUrl' => 'data:' . $mime . ';base64,' . base64_encode($body),
             'sourceUrl' => $url,
+            // Masse mitgeben, damit das Logo in der Praesentation im richtigen
+            // Seitenverhaeltnis eingepasst werden kann statt verzerrt zu werden.
+            'width' => $width,
+            'height' => $height,
         ];
     }
     return null;

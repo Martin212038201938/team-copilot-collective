@@ -90,13 +90,33 @@ export function slideTitle(slide: PptxGenJS.Slide, text: string, palette: Palett
   });
 }
 
+/**
+ * Zeilenzahl eines Textes in einer Box abschätzen.
+ *
+ * PowerPoint bricht selbst um, verrät uns aber nicht, wie hoch das Ergebnis wird. Ohne
+ * diese Schätzung startet der nachfolgende Block auf einer festen Höhe und wird von einem
+ * zweizeiligen Absatz überschrieben — genau das ist auf Folie 04 passiert.
+ * Faustwert: bei DM Sans braucht ein Zeichen rund 0,58 × Schriftgröße an Breite.
+ * Bewusst großzügig gerechnet — eine zu niedrig geschätzte Zeilenzahl führt zu
+ * überlappenden Blöcken, eine zu hohe nur zu etwas Luft.
+ */
+export function estimateLines(text: string, boxWidthPx: number, fontSizePx: number): number {
+  const perLine = Math.max(8, Math.floor(boxWidthPx / (fontSizePx * 0.58)));
+  return text.split("\n").reduce((sum, part) => sum + Math.max(1, Math.ceil(part.length / perLine)), 0);
+}
+
+/** Höhe, die der Lead-Absatz tatsächlich einnimmt. */
+export function leadHeight(text: string, w = px(1400)): number {
+  return estimateLines(text, w / px(1), 32) * px(52);
+}
+
 /** Lead-Absatz unter dem Titel. */
 export function lead(slide: PptxGenJS.Slide, text: string, palette: Palette, y: number, w = px(1400)): void {
   slide.addText(text, {
     x: PAD.side,
     y,
     w,
-    h: px(80),
+    h: leadHeight(text, w),
     fontFace: PPT_FONT.body,
     fontSize: pt(32),
     color: palette.secondary,
@@ -120,16 +140,22 @@ export function footer(
     y: y + px(14),
     h: px(30),
     fontFace: PPT_FONT.mono,
-    fontSize: pt(24),
+    // Kleiner als die übrigen Eyebrows: "BUSINESS CASE MICROSOFT 365 COPILOT" ist lang und
+    // brach bei 24 pt auf jeder Folie in eine zweite Zeile um.
+    fontSize: pt(18),
     color: PPT_THEME.footer,
-    charSpacing: 1.6,
+    charSpacing: 1.0,
     valign: "top" as const,
   };
-  slide.addText(opts.left.toUpperCase(), { ...common, x: PAD.side, w: px(620), align: "left" });
+  // Der Kalkulationshinweis steht ÜBER der Linie und nutzt die volle Breite. Neben
+  // Deck-Titel und Firmenname bliebe für ihn nur ein Drittel — dort brach er immer um.
   if (opts.center) {
-    slide.addText(opts.center, { ...common, x: PAD.side + px(620), w: px(680), align: "center" });
+    slide.addText(opts.center, {
+      ...common, x: PAD.side, y: y - px(46), w: CONTENT_W, align: "center",
+    });
   }
-  slide.addText(opts.right, { ...common, x: SLIDE_W - PAD.side - px(620), w: px(620), align: "right" });
+  slide.addText(opts.left.toUpperCase(), { ...common, x: PAD.side, w: px(860), align: "left" });
+  slide.addText(opts.right, { ...common, x: SLIDE_W - PAD.side - px(700), w: px(700), align: "right" });
 }
 
 /**
@@ -144,10 +170,16 @@ export function hairlineGrid(
     palette: Palette;
     gap?: number;
     titleSize?: number;
+    bodySize?: number;
   }
 ): void {
   const gap = opts.gap ?? px(32);
   const colW = (opts.w - gap * (opts.columns.length - 1)) / opts.columns.length;
+
+  // Schriftgröße des Fließtextes an die längste Spalte anpassen. Ohne das laufen die
+  // ausführlichen Beschreibungen der Lernreise (Folie 15) über den Folienrand hinaus.
+  const titleSize = opts.titleSize ?? 32;
+  const bodySize = opts.bodySize ?? fitBodySize(opts.columns.map((c) => c.body ?? ""), colW, opts.colH - px(120), 27);
 
   opts.columns.forEach((col, i) => {
     const x = opts.x + i * (colW + gap);
@@ -163,17 +195,35 @@ export function hairlineGrid(
     }
     slide.addText(col.title, {
       x, y: cursor, w: colW, h: px(74),
-      fontFace: PPT_FONT.display, fontSize: pt(opts.titleSize ?? 32), bold: true,
-      color: opts.palette.text, charSpacing: -0.6, valign: "top",
+      fontFace: PPT_FONT.display, fontSize: pt(titleSize), bold: true,
+      color: opts.palette.text, charSpacing: -0.6, valign: "top", shrinkText: true,
     });
     if (col.body) {
       slide.addText(col.body, {
-        x, y: cursor + px(80), w: colW, h: opts.colH - px(120),
-        fontFace: PPT_FONT.body, fontSize: pt(27), color: opts.palette.secondary,
-        lineSpacingMultiple: 1.3, valign: "top",
+        x, y: cursor + px(80), w: colW, h: opts.colH - px(100),
+        fontFace: PPT_FONT.body, fontSize: pt(bodySize), color: opts.palette.secondary,
+        lineSpacingMultiple: 1.25, valign: "top",
       });
     }
   });
+}
+
+/**
+ * Größte Schrift, bei der der längste Text noch in die Box passt.
+ *
+ * Absichtlich konservativ: lieber eine Stufe kleiner als ein Text, der unter dem
+ * Folienrand verschwindet. Unter 18 pt wird nicht weiter verkleinert — dann stimmt
+ * die Textmenge nicht mit der Folie überein und das soll auffallen.
+ */
+export function fitBodySize(texts: string[], boxWidthPx: number, boxHeightPx: number, base: number): number {
+  const longest = texts.reduce((a, b) => (b.length > a.length ? b : a), "");
+  if (!longest) return base;
+
+  for (let size = base; size > 22; size -= 1) {
+    const lineHeight = size * 1.25 * 2; // pt → px (1 px = 0,5 pt)
+    if (estimateLines(longest, boxWidthPx / px(1), size) * lineHeight <= boxHeightPx / px(1)) return size;
+  }
+  return 22;
 }
 
 /** KPI-Zeile mit Haarlinie oben und unten (Folien 02, 10, 17). */
@@ -218,17 +268,22 @@ export function kpiRow(
 /** Aussage mit rotem Rail links (Folien 03, 06, 17). */
 export function railStatement(
   slide: PptxGenJS.Slide,
-  opts: { x: number; y: number; w: number; text: string; palette: Palette; size?: number }
+  opts: { x: number; y: number; w: number; text: string; palette: Palette; size?: number; maxH?: number }
 ): void {
   const railW = px(6);
-  const h = px(120);
+  const size = opts.size ?? 34;
+  // Höhe aus dem Text ableiten: Die Schlussaussagen der Vorlage sind zwischen einer und
+  // vier Zeilen lang; bei fester Höhe lief die vierte Zeile in die Fußzeile (Folie 06).
+  const textW = opts.w - railW - px(28);
+  const lines = estimateLines(opts.text, textW / px(1), size);
+  const h = Math.min(opts.maxH ?? Number.POSITIVE_INFINITY, Math.max(px(120), lines * size * 2.5));
   slide.addShape("rect", {
     x: opts.x, y: opts.y, w: railW, h,
     fill: { color: PPT_THEME.signal }, line: { color: PPT_THEME.signal, width: 0 },
   });
   slide.addText(opts.text, {
-    x: opts.x + railW + px(28), y: opts.y, w: opts.w - railW - px(28), h,
-    fontFace: PPT_FONT.display, fontSize: pt(opts.size ?? 34), color: opts.palette.text,
+    x: opts.x + railW + px(28), y: opts.y, w: textW, h,
+    fontFace: PPT_FONT.display, fontSize: pt(size), color: opts.palette.text,
     lineSpacingMultiple: 1.25, valign: "top",
   });
 }
@@ -248,20 +303,34 @@ export function card(
 /** Beschriftetes Textblock-Paar (Überschrift + Fließtext) innerhalb einer Karte. */
 export function labeledBlock(
   slide: PptxGenJS.Slide,
-  opts: { x: number; y: number; w: number; label: string; body: string; palette: Palette; bodyH?: number }
+  opts: {
+    x: number; y: number; w: number; label: string; body: string; palette: Palette;
+    bodyH?: number; bodySize?: number;
+  }
 ): void {
+  // Mehrzeilige Beschriftungen sind erlaubt ("Konservative Annahmen machen"), dürfen aber
+  // nicht in den Fließtext hineinragen — deshalb wird die Höhe geschätzt statt gesetzt.
+  const labelH = estimateLines(opts.label.toUpperCase(), opts.w / px(1), 24) * px(34);
+  const bodyH = opts.bodyH ?? px(160);
+
   slide.addText(opts.label.toUpperCase(), {
-    x: opts.x, y: opts.y, w: opts.w, h: px(30),
+    x: opts.x, y: opts.y, w: opts.w, h: labelH,
     fontFace: PPT_FONT.mono, fontSize: pt(24), color: PPT_THEME.footer, charSpacing: 1.6, valign: "top",
   });
   slide.addText(opts.body, {
-    x: opts.x, y: opts.y + px(40), w: opts.w, h: opts.bodyH ?? px(160),
-    fontFace: PPT_FONT.body, fontSize: pt(27), color: opts.palette.secondary,
-    lineSpacingMultiple: 1.3, valign: "top",
+    x: opts.x, y: opts.y + labelH + px(12), w: opts.w, h: bodyH - labelH - px(12),
+    fontFace: PPT_FONT.body,
+    fontSize: pt(opts.bodySize ?? 27),
+    color: opts.palette.secondary,
+    lineSpacingMultiple: 1.25, valign: "top",
   });
 }
 
 /** Zweispaltige Tabelle mit Haarlinien (Folien 08, 12). */
+/**
+ * Tabelle mit Haarlinien. Die Zeilenhöhe wächst mit dem längsten Text der Zeile —
+ * sonst laufen lange Formulierungen über die nächste Linie (Folie 08).
+ */
 export function hairlineTable(
   slide: PptxGenJS.Slide,
   opts: {
@@ -270,33 +339,52 @@ export function hairlineTable(
     rows: string[][];
     palette: Palette;
     colRatios?: number[];
+    /** Maximale Gesamthöhe; die Zeilen werden notfalls gestaucht. */
+    maxH?: number;
   }
 ): void {
   const cols = opts.rows[0]?.length ?? 2;
   const ratios = opts.colRatios ?? Array(cols).fill(1 / cols);
   let y = opts.y;
 
-  const drawRow = (cells: string[], isHeader: boolean) => {
+  // Zeilenhöhe je Zeile aus der Textmenge ableiten: rund 42 Zeichen passen bei 28 px
+  // Schrift in eine Spaltenzeile. Damit bleibt der Text sicher zwischen den Linien.
+  const heightFor = (cells: string[]): number => {
+    const lines = Math.max(
+      1,
+      ...cells.map((cell, i) => Math.ceil(cell.length / Math.max(18, (ratios[i] * opts.w) / px(15))))
+    );
+    return Math.max(opts.rowH, px(34) + lines * px(40));
+  };
+
+  const headerH = opts.header ? opts.rowH : 0;
+  const bodyHeights = opts.rows.map(heightFor);
+  const totalH = headerH + bodyHeights.reduce((a, b) => a + b, 0);
+  // Bei Platzmangel gleichmäßig stauchen statt über den Folienrand zu laufen.
+  const scale = opts.maxH && totalH > opts.maxH ? opts.maxH / totalH : 1;
+
+  const drawRow = (cells: string[], isHeader: boolean, rowHeight: number) => {
     hairline(slide, opts.x, y, opts.w, opts.palette.hairline);
     let x = opts.x;
     cells.forEach((cell, i) => {
       const cw = opts.w * ratios[i];
       slide.addText(cell, {
-        x, y: y + px(18), w: cw - px(24), h: opts.rowH - px(24),
+        x, y: y + px(16), w: cw - px(28), h: rowHeight - px(28),
         fontFace: isHeader ? PPT_FONT.mono : PPT_FONT.body,
         fontSize: pt(isHeader ? 24 : 28),
         bold: isHeader,
         color: isHeader ? PPT_THEME.footer : opts.palette.text,
         charSpacing: isHeader ? 1.6 : 0,
-        lineSpacingMultiple: 1.2,
+        lineSpacingMultiple: 1.15,
         valign: "top",
+        shrinkText: true,
       });
       x += cw;
     });
-    y += opts.rowH;
+    y += rowHeight;
   };
 
-  if (opts.header) drawRow(opts.header.map((h) => h.toUpperCase()), true);
-  opts.rows.forEach((r) => drawRow(r, false));
+  if (opts.header) drawRow(opts.header.map((h) => h.toUpperCase()), true, headerH * scale);
+  opts.rows.forEach((r, i) => drawRow(r, false, bodyHeights[i] * scale));
   hairline(slide, opts.x, y, opts.w, opts.palette.hairline);
 }

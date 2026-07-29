@@ -4,12 +4,18 @@ import { buildDeckValues, type DeckValues } from "@/lib/roi/deckValues";
 import { PPT_THEME, PPT_FONT, px, pt, PAD, SLIDE_W, CONTENT_W } from "./theme";
 import {
   paletteFor, hairline, racingStripe, eyebrow, slideTitle, lead, footer,
-  hairlineGrid, kpiRow, railStatement, card, labeledBlock, hairlineTable,
+  hairlineGrid, kpiRow, railStatement, card, labeledBlock, hairlineTable, leadHeight, fitBodySize,
+  estimateLines,
   type Palette,
 } from "./layout";
 import { DECK_SLIDES, DECK_FOOTER_LEFT, DECK_FOOTER_DISCLAIMER, type DeckSlideContent } from "./deckContent";
 import { applyOverrides } from "./deckContentOverrides";
+import { structureFor, type SlideStructure, type Step } from "./deckStructure";
 import { buildPptxFileName } from "./fileName";
+
+/** Buchungslink für das Erstgespräch – auf Folie 20 hinterlegt. */
+const BOOKING_URL =
+  "https://outlook.office.com/book/CopilotErstgesprch@yellow-boat.com/s/L_QescD89USYChbx2CRsNg2?ismsaljsauthenabled";
 
 /**
  * Baut die 20-seitige Entscheidungsvorlage im Copilotenschule-Design.
@@ -41,24 +47,11 @@ export async function createRoiBusinessCaseDeck(args: {
   const renderers: Record<number, (s: PptxGenJS.Slide, c: DeckSlideContent, p: Palette) => void> = {
     1: (s, c, p) => slide01(s, c, p, v, options),
     2: (s, c, p) => slide02(s, c, p, v),
-    3: (s, c, p) => gridSlide(s, c, p, 4),
-    4: (s, c, p) => slide04(s, c, p),
-    5: (s, c, p) => slide05(s, c, p),
-    6: (s, c, p) => gridSlide(s, c, p, 4),
-    7: (s, c, p) => gridSlide(s, c, p, 3),
-    8: (s, c, p) => tableSlide(s, c, p, ["Risiko", "Gegenmaßnahme"]),
     9: (s, c, p) => slide09(s, c, p, v),
     10: (s, c, p) => slide10(s, c, p, v),
-    11: (s, c, p) => slide11(s, c, p, v),
-    12: (s, c, p) => slide12(s, c, p),
     13: (s, c, p) => slide13(s, c, p, v),
-    14: (s, c, p) => gridSlide(s, c, p, 3),
-    15: (s, c, p) => gridSlide(s, c, p, 5),
-    16: (s, c, p) => slide16(s, c, p),
-    17: (s, c, p) => slide17(s, c, p),
-    18: (s, c, p) => gridSlide(s, c, p, 4),
     19: (s, c, p) => slide19(s, c, p, v, options),
-    20: (s, c, p) => slide20(s, c, p),
+    20: (s, c, p) => slide20(s, c, p, v),
   };
 
   for (const content of DECK_SLIDES) {
@@ -68,7 +61,13 @@ export async function createRoiBusinessCaseDeck(args: {
     const slide = pptx.addSlide();
     slide.background = { color: palette.bg };
 
-    (renderers[resolved.nr] ?? ((s, c, p) => gridSlide(s, c, p, 3)))(slide, resolved, palette);
+    const renderer = renderers[resolved.nr];
+    if (renderer) {
+      renderer(slide, resolved, palette);
+    } else {
+      // Alle übrigen Folien werden aus ihrer expliziten Struktur gezeichnet.
+      renderStructure(slide, resolved, palette, structureFor(content), v);
+    }
 
     if (resolved.nr > 1) {
       footer(slide, {
@@ -100,13 +99,40 @@ function resolveContent(c: DeckSlideContent, v: DeckValues): DeckSlideContent {
   };
 }
 
+
+/**
+ * Passt ein Logo in einen Rahmen ein, ohne es zu verzerren.
+ *
+ * pptxgenjs beschneidet bei sizing:"contain" das Bild (srcRect) statt es einzupassen —
+ * ein quadratisches Logo in einem 300×140-Rahmen wurde dadurch sichtbar verzogen.
+ * Deshalb rechnen wir die Zielmaße selbst aus und zentrieren das Bild im Rahmen.
+ * Ohne bekanntes Seitenverhältnis wird ein quadratisches angenommen: lieber etwas
+ * kleiner als verzerrt.
+ */
+function fitLogo(
+  box: { x: number; y: number; w: number; h: number },
+  aspect: number | undefined
+): { x: number; y: number; w: number; h: number } {
+  const ratio = aspect && aspect > 0 ? aspect : 1;
+  let w = box.w;
+  let h = w / ratio;
+  if (h > box.h) {
+    h = box.h;
+    w = h * ratio;
+  }
+  return { x: box.x + (box.w - w) / 2, y: box.y + (box.h - h) / 2, w, h };
+}
+
 /** Kopfbereich (Eyebrow + Titel + optionaler Lead) und liefert die Y-Position darunter. */
 function header(slide: PptxGenJS.Slide, c: DeckSlideContent, p: Palette, leadText?: string): number {
   if (c.eyebrow) eyebrow(slide, c.eyebrow, p);
   if (c.title) slideTitle(slide, c.title, p);
   if (leadText) {
-    lead(slide, leadText, p, PAD.top + px(140));
-    return PAD.top + px(250);
+    const leadY = PAD.top + px(140);
+    lead(slide, leadText, p, leadY);
+    // Der Folgeblock beginnt unter dem tatsächlich gesetzten Lead – bei zweizeiligen
+    // Absätzen lag er vorher darunter und wurde überschrieben (Folie 04).
+    return leadY + leadHeight(leadText) + px(56);
   }
   return PAD.top + px(170);
 }
@@ -132,22 +158,26 @@ function slide01(slide: PptxGenJS.Slide, c: DeckSlideContent, p: Palette, v: Dec
     charSpacing: -3, lineSpacingMultiple: 1.05, valign: "top",
   });
 
-  const subs = items.filter((t) => t.length > 60).slice(0, 2);
-  subs.forEach((text, i) => {
+  // Die beiden Untertitel dürfen jeweils zwei Zeilen brauchen; der zweite rutscht dann
+  // nach unten, statt in den ersten hineinzulaufen.
+  let subY = px(620);
+  items.filter((t) => t.length > 60).slice(0, 2).forEach((text) => {
+    const h = estimateLines(text, 1300, 32) * px(52);
     slide.addText(text, {
-      x: PAD.titleSide, y: px(620 + i * 74), w: px(1300), h: px(70),
+      x: PAD.titleSide, y: subY, w: px(1300), h,
       fontFace: PPT_FONT.body, fontSize: pt(32), color: PPT_THEME.onNavySecondary,
       lineSpacingMultiple: 1.25, valign: "top",
     });
+    subY += h + px(18);
   });
 
   // Automatisch recherchiertes Logo, dezent unten rechts. Ohne Fund: kein Platzhalter.
   if (o.logoDataUrl) {
-    slide.addImage({
-      data: o.logoDataUrl,
-      x: SLIDE_W - PAD.titleSide - px(300), y: px(300), w: px(300), h: px(140),
-      sizing: { type: "contain", w: px(300), h: px(140) },
-    });
+    const box = fitLogo(
+      { x: SLIDE_W - PAD.titleSide - px(320), y: px(290), w: px(320), h: px(200) },
+      o.logoAspect
+    );
+    slide.addImage({ data: o.logoDataUrl, ...box });
   }
 
   const metaY = px(1080 - 90 - 110);
@@ -186,8 +216,10 @@ function slide02(slide: PptxGenJS.Slide, c: DeckSlideContent, p: Palette, v: Dec
     ],
   });
 
-  const boxY = y + px(240);
-  const boxH = px(300);
+  const boxY = y + px(230);
+  // Die Karte reicht bis kurz über die Fußzeile — der Annahmenblock ist im
+  // Zwei-Gruppen-Modell deutlich länger geworden und lief vorher unten heraus.
+  const boxH = px(1080 - 80 - 60) - boxY - px(20);
   card(slide, { x: PAD.side, y: boxY, w: CONTENT_W, h: boxH });
 
   // Herleitung / Annahmen / Quellen – die drei Label-Text-Paare am Ende der Folie.
@@ -196,6 +228,7 @@ function slide02(slide: PptxGenJS.Slide, c: DeckSlideContent, p: Palette, v: Dec
     pairs.push({ label: c.items[i], body: c.items[i + 1] });
   }
   const colW = (CONTENT_W - px(96)) / 3;
+  const bodySize = fitBodySize(pairs.slice(0, 3).map((pair) => pair.body), colW - px(40), boxH - px(150), 27);
   pairs.slice(0, 3).forEach((pair, i) => {
     labeledBlock(slide, {
       x: PAD.side + px(40) + i * (colW + px(8)),
@@ -204,156 +237,13 @@ function slide02(slide: PptxGenJS.Slide, c: DeckSlideContent, p: Palette, v: Dec
       label: pair.label,
       body: pair.body,
       palette: { ...p, secondary: PPT_THEME.body },
-      bodyH: boxH - px(100),
+      bodyH: boxH - px(80),
+      bodySize,
     });
   });
 }
 
-// ------------------------------------------------- Generisches Hairline-Raster
 
-/**
- * Deckt die Folien 03, 06, 07, 14, 15 und 18 ab: gleichmäßiges Raster aus
- * Nummer/Titel/Text, darunter optional eine Aussage mit rotem Rail.
- */
-function gridSlide(slide: PptxGenJS.Slide, c: DeckSlideContent, p: Palette, columns: number): void {
-  const items = [...c.items];
-  const leadText = items.length && items[0].length > 80 ? items.shift() : undefined;
-  const y = header(slide, c, p, leadText);
-
-  // Rail-Statements sind lange Einzeltexte am Ende ohne zugehörigen Titel.
-  const tail: string[] = [];
-  while (items.length && items[items.length - 1].length > 110 && items.length % 3 !== 0) {
-    tail.unshift(items.pop() as string);
-  }
-
-  const cols: { eyebrow?: string; title: string; body?: string }[] = [];
-  const isNumbered = /^\d{2}$/.test(items[0] ?? "");
-  const step = isNumbered ? 3 : 2;
-  for (let i = 0; i + step - 1 < items.length && cols.length < columns * 2; i += step) {
-    cols.push(
-      isNumbered
-        ? { eyebrow: items[i], title: items[i + 1], body: items[i + 2] }
-        : { title: items[i], body: items[i + 1] }
-    );
-  }
-
-  const gridH = px(300);
-  const rows = Math.ceil(cols.length / columns);
-  for (let r = 0; r < rows; r++) {
-    hairlineGrid(slide, {
-      x: PAD.side,
-      y: y + r * (gridH + px(40)),
-      w: CONTENT_W,
-      colH: gridH,
-      columns: cols.slice(r * columns, (r + 1) * columns),
-      palette: p,
-      titleSize: columns >= 5 ? 28 : 32,
-    });
-  }
-
-  if (tail.length) {
-    railStatement(slide, {
-      x: PAD.side,
-      y: y + rows * (gridH + px(40)) + px(10),
-      w: CONTENT_W,
-      text: tail.join("  "),
-      palette: p,
-    });
-  }
-}
-
-// --------------------------------------------------------------- Folie 04/05
-
-function slide04(slide: PptxGenJS.Slide, c: DeckSlideContent, p: Palette): void {
-  const items = [...c.items];
-  const leadText = items.length && items[0].length > 80 ? items.shift() : undefined;
-  const y = header(slide, c, p, leadText);
-
-  const colW = (CONTENT_W - px(80)) / 2;
-  // Links: Kette aus vier Stufen.
-  const chain = items.slice(0, 8);
-  for (let i = 0; i * 2 + 1 < chain.length && i < 4; i++) {
-    const rowY = y + i * px(96);
-    hairline(slide, PAD.side, rowY, colW, p.hairline);
-    slide.addText(chain[i * 2], {
-      x: PAD.side, y: rowY + px(20), w: colW, h: px(40),
-      fontFace: PPT_FONT.display, fontSize: pt(30), bold: true, color: p.text, valign: "top",
-    });
-    slide.addText(chain[i * 2 + 1] ?? "", {
-      x: PAD.side, y: rowY + px(58), w: colW, h: px(34),
-      fontFace: PPT_FONT.body, fontSize: pt(26), color: p.secondary, valign: "top",
-    });
-  }
-
-  // Rechts: Fließtext plus abgesetzte Box.
-  const rest = items.slice(8);
-  const rightX = PAD.side + colW + px(80);
-  slide.addText(rest.slice(0, 1).join(" "), {
-    x: rightX, y, w: colW, h: px(200),
-    fontFace: PPT_FONT.body, fontSize: pt(30), color: p.secondary, lineSpacingMultiple: 1.3, valign: "top",
-  });
-  if (rest.length > 1) {
-    const boxY = y + px(220);
-    card(slide, { x: rightX, y: boxY, w: colW, h: px(200) });
-    slide.addText(rest.slice(1).join("\n\n"), {
-      x: rightX + px(32), y: boxY + px(28), w: colW - px(64), h: px(150),
-      fontFace: PPT_FONT.body, fontSize: pt(27), color: PPT_THEME.body, lineSpacingMultiple: 1.3, valign: "top",
-    });
-  }
-}
-
-function slide05(slide: PptxGenJS.Slide, c: DeckSlideContent, p: Palette): void {
-  const items = [...c.items];
-  const leadText = items.length && items[0].length > 80 ? items.shift() : undefined;
-  const y = header(slide, c, p, leadText);
-
-  const cardW = (CONTENT_W - px(60)) / 2;
-  const cardH = px(420);
-  const half = Math.ceil(items.length / 2);
-
-  [0, 1].forEach((i) => {
-    const x = PAD.side + i * (cardW + px(60));
-    const isNavy = i === 1;
-    card(slide, {
-      x, y, w: cardW, h: cardH,
-      fill: isNavy ? PPT_THEME.navy : PPT_THEME.white,
-      border: isNavy ? PPT_THEME.navy : PPT_THEME.navy,
-    });
-    racingStripe(slide, x + px(40), y + px(40));
-
-    const chunk = items.slice(i * half, (i + 1) * half);
-    const textColor = isNavy ? PPT_THEME.onNavy : PPT_THEME.navy;
-    const bodyColor = isNavy ? PPT_THEME.onNavySecondary : PPT_THEME.body;
-    if (chunk[0]) {
-      slide.addText(chunk[0], {
-        x: x + px(40), y: y + px(80), w: cardW - px(80), h: px(60),
-        fontFace: PPT_FONT.display, fontSize: pt(40), bold: true, color: textColor, valign: "top",
-      });
-    }
-    if (chunk.length > 1) {
-      slide.addText(chunk.slice(1).join("\n\n"), {
-        x: x + px(40), y: y + px(150), w: cardW - px(80), h: cardH - px(190),
-        fontFace: PPT_FONT.body, fontSize: pt(27), color: bodyColor, lineSpacingMultiple: 1.3, valign: "top",
-      });
-    }
-  });
-}
-
-// ------------------------------------------------------- Generische Tabelle
-
-function tableSlide(slide: PptxGenJS.Slide, c: DeckSlideContent, p: Palette, headerCells: string[]): void {
-  const items = [...c.items];
-  const leadText = items.length && items[0].length > 80 ? items.shift() : undefined;
-  const y = header(slide, c, p, leadText);
-
-  const rows: string[][] = [];
-  for (let i = 0; i + 1 < items.length; i += 2) rows.push([items[i], items[i + 1]]);
-
-  hairlineTable(slide, {
-    x: PAD.side, y, w: CONTENT_W, rowH: px(110),
-    header: headerCells, rows, palette: p, colRatios: [0.42, 0.58],
-  });
-}
 
 // ---------------------------------------------------------------- Folie 09
 
@@ -392,9 +282,14 @@ function slide09(slide: PptxGenJS.Slide, c: DeckSlideContent, p: Palette, v: Dec
     });
   });
 
+  // Der Hinweis füllt den Rest der rechten Spalte und verkleinert sich, statt in den
+  // Kalkulationshinweis über der Fußzeile zu laufen.
+  const hintY = y + px(410);
+  const hintH = px(1080 - 80 - 105) - hintY;
   slide.addText(v.roiHinweis, {
-    x: rightX, y: y + px(420), w: rightW, h: px(160),
-    fontFace: PPT_FONT.body, fontSize: pt(26), color: p.secondary, lineSpacingMultiple: 1.3, valign: "top",
+    x: rightX, y: hintY, w: rightW, h: hintH,
+    fontFace: PPT_FONT.body, fontSize: pt(fitBodySize([v.roiHinweis], rightW, hintH, 26)),
+    color: p.secondary, lineSpacingMultiple: 1.25, valign: "top",
   });
 }
 
@@ -424,58 +319,7 @@ function slide10(slide: PptxGenJS.Slide, c: DeckSlideContent, p: Palette, v: Dec
   });
 }
 
-// ---------------------------------------------------------------- Folie 11
 
-function slide11(slide: PptxGenJS.Slide, c: DeckSlideContent, p: Palette, v: DeckValues): void {
-  const y = header(slide, c, p, c.items[0]);
-
-  // Formelleiste: Nutzer × Zeitersparnis × Stundensatz × 50 %
-  const parts = [v.nutzerText + " Nutzer", v.hoursY1 + "/Monat", v.rateText + "/Std.", "50 % Realisierung"];
-  const barW = (CONTENT_W - px(3 * 40)) / 4;
-  parts.forEach((text, i) => {
-    const x = PAD.side + i * (barW + px(40));
-    card(slide, { x, y, w: barW, h: px(120) });
-    slide.addText(text, {
-      x: x + px(20), y: y + px(34), w: barW - px(40), h: px(60),
-      fontFace: PPT_FONT.display, fontSize: pt(32), bold: true, color: PPT_THEME.navy,
-      align: "center", valign: "top", shrinkText: true,
-    });
-    if (i < parts.length - 1) {
-      slide.addText("×", {
-        x: x + barW, y: y + px(38), w: px(40), h: px(50),
-        fontFace: PPT_FONT.display, fontSize: pt(34), color: PPT_THEME.sky, align: "center", valign: "top",
-      });
-    }
-  });
-
-  const rest = c.items.slice(1);
-  const colW = (CONTENT_W - px(80)) / 2;
-  [0, 1].forEach((i) => {
-    const chunk = rest.slice(i * Math.ceil(rest.length / 2), (i + 1) * Math.ceil(rest.length / 2));
-    if (!chunk.length) return;
-    slide.addText(chunk.join("\n\n"), {
-      x: PAD.side + i * (colW + px(80)), y: y + px(180), w: colW, h: px(320),
-      fontFace: PPT_FONT.body, fontSize: pt(27), color: p.secondary, lineSpacingMultiple: 1.3, valign: "top",
-    });
-  });
-}
-
-// ---------------------------------------------------------------- Folie 12
-
-function slide12(slide: PptxGenJS.Slide, c: DeckSlideContent, p: Palette): void {
-  const items = [...c.items];
-  const leadText = items.length && items[0].length > 80 ? items.shift() : undefined;
-  const y = header(slide, c, p, leadText);
-
-  const rows: string[][] = [];
-  for (let i = 0; i + 2 < items.length; i += 3) rows.push([items[i], items[i + 1], items[i + 2]]);
-
-  hairlineTable(slide, {
-    x: PAD.side, y, w: CONTENT_W, rowH: px(96),
-    header: ["", "Realistisch", "Forrester TEI"],
-    rows, palette: p, colRatios: [0.4, 0.3, 0.3],
-  });
-}
 
 // ---------------------------------------------------------------- Folie 13
 
@@ -491,13 +335,13 @@ function slide13(slide: PptxGenJS.Slide, c: DeckSlideContent, p: Palette, v: Dec
       { name: "Kumulierte Kosten", labels, values: v.chartCostSeries.map((n) => Math.round(n)) },
     ],
     {
-      x: PAD.side, y, w: CONTENT_W, h: px(520),
+      x: PAD.side, y, w: CONTENT_W, h: px(460),
       chartColors: [PPT_THEME.sky, PPT_THEME.navy],
       showLegend: true, legendPos: "b", legendFontFace: PPT_FONT.body, legendFontSize: pt(24),
       lineSize: 3, lineDataSymbol: "none",
       catAxisLabelFontFace: PPT_FONT.mono, catAxisLabelFontSize: pt(20),
       valAxisLabelFontFace: PPT_FONT.mono, valAxisLabelFontSize: pt(20),
-      valAxisLabelFormatCode: "#.##0",
+      valAxisLabelFormatCode: "#,##0",
       catAxisLabelFrequency: "3",
     }
   );
@@ -506,72 +350,19 @@ function slide13(slide: PptxGenJS.Slide, c: DeckSlideContent, p: Palette, v: Dec
     ? `Break-even: ${v.breakEvenShort} · Maßstab bis ${v.chartMaxLabel}`
     : `Kein Break-even innerhalb von 36 Monaten · Maßstab bis ${v.chartMaxLabel}`;
   slide.addText(beText, {
-    x: PAD.side, y: y + px(540), w: CONTENT_W, h: px(50),
+    x: PAD.side, y: y + px(480), w: CONTENT_W, h: px(50),
     fontFace: PPT_FONT.mono, fontSize: pt(24), color: PPT_THEME.signal, charSpacing: 1.6, valign: "top",
   });
 }
 
-// ---------------------------------------------------------------- Folie 16
 
-function slide16(slide: PptxGenJS.Slide, c: DeckSlideContent, p: Palette): void {
-  const items = [...c.items];
-  const leadText = items.length && items[0].length > 80 ? items.shift() : undefined;
-  const y = header(slide, c, p, leadText);
-
-  const tiles: { title: string; body: string }[] = [];
-  for (let i = 0; i + 1 < items.length && tiles.length < 8; i += 2) {
-    tiles.push({ title: items[i], body: items[i + 1] });
-  }
-
-  const cols = 4;
-  const tileW = (CONTENT_W - px(3 * 32)) / cols;
-  const tileH = px(230);
-  tiles.forEach((tile, i) => {
-    const x = PAD.side + (i % cols) * (tileW + px(32));
-    const ty = y + Math.floor(i / cols) * (tileH + px(32));
-    card(slide, { x, y: ty, w: tileW, h: tileH });
-    slide.addText(tile.title, {
-      x: x + px(24), y: ty + px(24), w: tileW - px(48), h: px(64),
-      fontFace: PPT_FONT.display, fontSize: pt(30), bold: true, color: PPT_THEME.navy, valign: "top",
-    });
-    slide.addText(tile.body, {
-      x: x + px(24), y: ty + px(94), w: tileW - px(48), h: tileH - px(120),
-      fontFace: PPT_FONT.body, fontSize: pt(25), color: PPT_THEME.body, lineSpacingMultiple: 1.25, valign: "top",
-    });
-  });
-
-  const hint = items[items.length - 1];
-  if (hint && hint.length > 120) {
-    slide.addText(hint, {
-      x: PAD.side, y: y + 2 * (tileH + px(32)) + px(8), w: CONTENT_W, h: px(110),
-      fontFace: PPT_FONT.body, fontSize: pt(24), color: p.secondary, lineSpacingMultiple: 1.25, valign: "top",
-    });
-  }
-}
-
-// ---------------------------------------------------------------- Folie 17
-
-function slide17(slide: PptxGenJS.Slide, c: DeckSlideContent, p: Palette): void {
-  const items = [...c.items];
-  const leadText = items.length && items[0].length > 80 ? items.shift() : undefined;
-  const y = header(slide, c, p, leadText);
-
-  const kpis: { label: string; value: string }[] = [];
-  for (let i = 0; i + 1 < items.length && kpis.length < 4; i += 2) {
-    kpis.push({ value: items[i], label: items[i + 1] });
-  }
-  kpiRow(slide, { x: PAD.side, y, w: CONTENT_W, h: px(180), palette: p, items: kpis, valueSize: 56 });
-
-  const quote = items.find((t) => t.length > 120);
-  if (quote) {
-    railStatement(slide, { x: PAD.side, y: y + px(240), w: CONTENT_W, text: quote, palette: p });
-  }
-}
 
 // ---------------------------------------------------------------- Folie 19
 
 function slide19(slide: PptxGenJS.Slide, c: DeckSlideContent, p: Palette, v: DeckValues, o: PresentationOptions): void {
-  const y = header(slide, c, p, c.items[0]);
+  // Kein Lead: Der erste Eintrag der Vorlage ist das Wort "Beantragt" — die Beschriftung
+  // des linken Blocks, kein Einleitungssatz.
+  const y = header(slide, c, p);
   const colW = (CONTENT_W - px(80)) / 2;
 
   const facts: [string, string][] = [
@@ -594,7 +385,13 @@ function slide19(slide: PptxGenJS.Slide, c: DeckSlideContent, p: Palette, v: Dec
     });
   });
 
-  const steps = c.items.filter((t) => t.length > 40).slice(-4);
+  // Die vier Schritte stehen in der Vorlage hinter den Nummern 01–04; der Schlusssatz
+  // danach ist der Disclaimer und gehört nicht in die Liste.
+  const numbered = c.items
+    .map((t, i) => ({ t, prev: c.items[i - 1] }))
+    .filter((e) => /^0\d$/.test(e.prev ?? ""))
+    .map((e) => e.t);
+  const steps = numbered.slice(0, 4);
   const rightX = PAD.side + colW + px(80);
   slide.addText("NÄCHSTE SCHRITTE", {
     x: rightX, y, w: colW, h: px(30),
@@ -608,41 +405,435 @@ function slide19(slide: PptxGenJS.Slide, c: DeckSlideContent, p: Palette, v: Dec
   });
 
   if (o.logoDataUrl) {
-    slide.addImage({
-      data: o.logoDataUrl,
-      x: SLIDE_W - PAD.side - px(220), y: PAD.top - px(10), w: px(220), h: px(90),
-      sizing: { type: "contain", w: px(220), h: px(90) },
-    });
+    const box = fitLogo(
+      { x: SLIDE_W - PAD.side - px(220), y: PAD.top - px(16), w: px(220), h: px(110) },
+      o.logoAspect
+    );
+    slide.addImage({ data: o.logoDataUrl, ...box });
   }
 }
 
 // ---------------------------------------------------------------- Folie 20
 
-function slide20(slide: PptxGenJS.Slide, c: DeckSlideContent, p: Palette): void {
-  const items = [...c.items];
-  const leadText = items.length && items[0].length > 80 ? items.shift() : undefined;
-  const y = header(slide, c, p, leadText);
-  const colW = (CONTENT_W - px(80)) / 2;
+function slide20(slide: PptxGenJS.Slide, c: DeckSlideContent, p: Palette, v: DeckValues): void {
+  const items = c.items;
+  // Reihenfolge in der Vorlage: Einladung · Begründung · Label · Name · Rolle · E-Mail ·
+  // Button-Titel · Button-Text · Button-Label · Telefon · Markenzeile · Telefon.
+  const [invitation, reason, contactLabel, name, role, email, bookingTitle, bookingText, bookingCta, phoneAlt, brandLine] = items;
 
-  slide.addText(items.filter((t) => t.length <= 120).join("\n"), {
-    x: PAD.side, y, w: colW, h: px(300),
-    fontFace: PPT_FONT.body, fontSize: pt(30), color: p.text, lineSpacingMultiple: 1.4, valign: "top",
+  const y = header(slide, c, p, reason);
+  const colW = (CONTENT_W - px(100)) / 2;
+
+  // --- links: Einladung und Ansprechpartner ---------------------------------
+  slide.addText(invitation, {
+    x: PAD.side, y, w: colW, h: px(110),
+    fontFace: PPT_FONT.display, fontSize: pt(42), bold: true, color: p.text,
+    lineSpacingMultiple: 1.15, valign: "top", shrinkText: true,
   });
 
-  const btnY = y + px(40);
-  const rightX = PAD.side + colW + px(80);
+  const cardY = y + px(140);
+  const cardH = px(310);
+  card(slide, { x: PAD.side, y: cardY, w: colW, h: cardH });
+  racingStripe(slide, PAD.side + px(40), cardY + px(36));
+
+  slide.addText((contactLabel ?? "Ihr Ansprechpartner").toUpperCase(), {
+    x: PAD.side + px(40), y: cardY + px(74), w: colW - px(80), h: px(30),
+    fontFace: PPT_FONT.mono, fontSize: pt(22), color: PPT_THEME.footer, charSpacing: 1.6, valign: "top",
+  });
+  slide.addText(name ?? "", {
+    x: PAD.side + px(40), y: cardY + px(114), w: colW - px(80), h: px(60),
+    fontFace: PPT_FONT.display, fontSize: pt(40), bold: true, color: PPT_THEME.navy, valign: "top", shrinkText: true,
+  });
+  slide.addText([role, email, phoneAlt?.replace(/^Alternativ:\s*/, "")].filter(Boolean).join("\n"), {
+    x: PAD.side + px(40), y: cardY + px(180), w: colW - px(80), h: px(90),
+    fontFace: PPT_FONT.body, fontSize: pt(25), color: PPT_THEME.body, lineSpacingMultiple: 1.3, valign: "top",
+  });
+
+  // --- rechts: Terminbuchung ------------------------------------------------
+  const rightX = PAD.side + colW + px(100);
+  slide.addText((bookingTitle ?? "Termin direkt buchen").toUpperCase(), {
+    x: rightX, y, w: colW, h: px(30),
+    fontFace: PPT_FONT.mono, fontSize: pt(22), color: PPT_THEME.signal, charSpacing: 1.6, valign: "top",
+  });
+  slide.addText(bookingText ?? "", {
+    x: rightX, y: y + px(50), w: colW, h: px(110),
+    fontFace: PPT_FONT.body, fontSize: pt(28), color: p.secondary, lineSpacingMultiple: 1.3, valign: "top",
+  });
+
+  const btnY = y + px(180);
   slide.addShape("rect", {
-    x: rightX, y: btnY, w: px(620), h: px(110),
+    x: rightX, y: btnY, w: colW, h: px(110),
     fill: { color: PPT_THEME.navy }, line: { color: PPT_THEME.navy, width: 0 },
   });
-  slide.addText("Termin vereinbaren", {
-    x: rightX, y: btnY + px(32), w: px(620), h: px(50),
+  slide.addText(bookingCta ?? "Termin wählen →", {
+    x: rightX, y: btnY + px(30), w: colW, h: px(56),
     fontFace: PPT_FONT.display, fontSize: pt(32), bold: true, color: PPT_THEME.white,
     align: "center", valign: "top",
-    hyperlink: { url: "https://outlook.office.com/book/CopilotErstgesprch@yellow-boat.com/s/L_QescD89USYChbx2CRsNg2?ismsaljsauthenabled" },
+    hyperlink: { url: BOOKING_URL },
   });
-  slide.addText("martin@yellow-boat.com · +49 221 950 187 74", {
-    x: rightX, y: btnY + px(150), w: px(620), h: px(50),
-    fontFace: PPT_FONT.mono, fontSize: pt(24), color: p.secondary, align: "center", valign: "top",
+  slide.addText(`${email} · ${(phoneAlt ?? "").replace(/^Alternativ:\s*/, "")}`, {
+    x: rightX, y: btnY + px(132), w: colW, h: px(44),
+    fontFace: PPT_FONT.mono, fontSize: pt(22), color: p.secondary, align: "center", valign: "top",
   });
+
+  // --- Markenzeile über der Fußzeile ---------------------------------------
+  const brandY = px(1080 - 80 - 34) - px(84);
+  slide.addText(`${brandLine ?? ""} · Business Case für ${v.firma}`, {
+    x: PAD.side, y: brandY, w: CONTENT_W, h: px(40),
+    fontFace: PPT_FONT.body, fontSize: pt(24), color: p.secondary, valign: "top",
+  });
+}
+
+// ------------------------------------------------- Strukturbasierte Folien
+
+/**
+ * Zeichnet eine Folie aus ihrer expliziten Struktur (siehe deckStructure.ts).
+ * Ersetzt die frühere Heuristik, die Titel und Texte aus der Reihenfolge der
+ * Textbausteine erraten hat und bei Pfeilen, Zwischenlabels oder Preisen zerbrach.
+ */
+function renderStructure(
+  slide: PptxGenJS.Slide,
+  c: DeckSlideContent,
+  p: Palette,
+  structure: SlideStructure,
+  v: DeckValues
+): void {
+  const fill = (t: string): string =>
+    t.replace(/\{\{\s*([a-zA-Z0-9_]+)\s*\}\}/g, (_m, key: string) => {
+      const value = (v as unknown as Record<string, unknown>)[key];
+      return typeof value === "string" || typeof value === "number" ? String(value) : "";
+    });
+
+  const y = header(slide, c, p, structure.kind !== "raw" ? structure.lead && fill(structure.lead) : undefined);
+  // Oberhalb der Fußzeile UND des mittigen Kalkulationshinweises, der auf den
+  // Rechenfolien direkt über der Fußlinie steht.
+  const bottom = px(1080 - 80 - 105);
+  const available = bottom - y;
+
+  switch (structure.kind) {
+    case "steps": {
+      const cols = structure.columns;
+      const rows = Math.ceil(structure.steps.length / cols);
+      // Platz für die Schlussaussage reservieren – sie kann bis zu vier Zeilen lang sein.
+      const statementH = structure.statement
+        ? Math.max(px(150), estimateLines(fill(structure.statement), CONTENT_W / px(1), 30) * px(48) + px(40))
+        : 0;
+      const gridH = Math.max(px(220), (available - statementH - px(40) * (rows - 1)) / rows);
+
+      // Eine gemeinsame Schriftgröße für alle Reihen: sonst steht Reihe 1 in 18 pt und
+      // Reihe 2 in 27 pt, weil dort zufällig kürzere Texte stehen.
+      const colW = (CONTENT_W - px(32) * (cols - 1)) / cols;
+      const bodySize = fitBodySize(
+        structure.steps.map((step) => (step.body ? fill(step.body) : "")),
+        colW,
+        gridH - px(120),
+        27
+      );
+
+      for (let r = 0; r < rows; r++) {
+        hairlineGrid(slide, {
+          x: PAD.side,
+          y: y + r * (gridH + px(40)),
+          w: CONTENT_W,
+          colH: gridH,
+          columns: structure.steps.slice(r * cols, (r + 1) * cols).map((step) => ({
+            eyebrow: step.num,
+            title: fill(step.title),
+            body: step.body ? fill(step.body) : undefined,
+          })),
+          palette: p,
+          titleSize: cols >= 5 ? 26 : cols === 4 ? 30 : 32,
+          bodySize,
+        });
+      }
+
+      if (structure.statement) {
+        const statementY = bottom - statementH + px(20);
+        railStatement(slide, {
+          x: PAD.side,
+          y: statementY,
+          w: CONTENT_W,
+          text: fill(structure.statement),
+          palette: p,
+          size: 30,
+          maxH: bottom - statementY,
+        });
+      }
+      return;
+    }
+
+    case "chain": {
+      const colW = (CONTENT_W - px(90)) / 2;
+      const stepH = Math.min(px(110), available / Math.max(structure.steps.length, 1));
+
+      const labelY = y;
+      const bodyY = y + (structure.leftLabel || structure.rightLabel ? px(50) : 0);
+      if (structure.leftLabel) {
+        slide.addText(structure.leftLabel.toUpperCase(), {
+          x: PAD.side, y: labelY, w: colW, h: px(30),
+          fontFace: PPT_FONT.mono, fontSize: pt(24), color: PPT_THEME.sky, charSpacing: 1.6, valign: "top",
+        });
+      }
+      structure.steps.forEach((step, i) => {
+        const rowY = bodyY + i * stepH;
+        hairline(slide, PAD.side, rowY, colW, p.hairline);
+        slide.addText(step.num ?? "", {
+          x: PAD.side, y: rowY + px(20), w: px(70), h: px(34),
+          fontFace: PPT_FONT.mono, fontSize: pt(24), color: PPT_THEME.sky, valign: "top",
+        });
+        slide.addText(fill(step.title), {
+          x: PAD.side + px(80), y: rowY + px(16), w: colW - px(80), h: stepH - px(30),
+          fontFace: PPT_FONT.display, fontSize: pt(30), bold: true, color: p.text, valign: "top", shrinkText: true,
+        });
+      });
+
+      const rightX = PAD.side + colW + px(90);
+      if (structure.rightLabel) {
+        slide.addText(structure.rightLabel.toUpperCase(), {
+          x: rightX, y: labelY, w: colW, h: px(30),
+          fontFace: PPT_FONT.mono, fontSize: pt(24), color: PPT_THEME.signal, charSpacing: 1.6, valign: "top",
+        });
+      }
+      let cursor = bodyY;
+      structure.text.forEach((text) => {
+        slide.addText(fill(text), {
+          x: rightX, y: cursor, w: colW, h: px(200),
+          fontFace: PPT_FONT.body, fontSize: pt(28), color: p.secondary, lineSpacingMultiple: 1.3, valign: "top",
+        });
+        cursor += px(220);
+      });
+      (structure.boxed ?? []).forEach((text) => {
+        card(slide, { x: rightX, y: cursor, w: colW, h: px(160) });
+        slide.addText(fill(text), {
+          x: rightX + px(28), y: cursor + px(24), w: colW - px(56), h: px(112),
+          fontFace: PPT_FONT.body, fontSize: pt(27), color: PPT_THEME.body, lineSpacingMultiple: 1.3, valign: "top",
+        });
+        cursor += px(190);
+      });
+      return;
+    }
+
+    case "chainAndColumns": {
+      const linkW = (CONTENT_W - px(24) * (structure.chain.length - 1)) / structure.chain.length;
+      structure.chain.forEach((step, i) => {
+        const x = PAD.side + i * (linkW + px(24));
+        hairline(slide, x, y, linkW, p.hairline);
+        slide.addText(step.num ?? "", {
+          x, y: y + px(20), w: linkW, h: px(30),
+          fontFace: PPT_FONT.mono, fontSize: pt(24), color: PPT_THEME.sky, valign: "top",
+        });
+        slide.addText(fill(step.title), {
+          x, y: y + px(58), w: linkW, h: px(60),
+          fontFace: PPT_FONT.display, fontSize: pt(30), bold: true, color: p.text, valign: "top", shrinkText: true,
+        });
+      });
+
+      const colY = y + px(190);
+      hairlineGrid(slide, {
+        x: PAD.side, y: colY, w: CONTENT_W, colH: Math.max(px(200), bottom - colY),
+        columns: structure.columns.map((col) => ({ title: fill(col.title), body: col.body ? fill(col.body) : undefined })),
+        palette: p,
+      });
+      return;
+    }
+
+    case "cards": {
+      const cardW = (CONTENT_W - px(60)) / structure.cards.length;
+      const cardH = Math.min(px(540), available);
+      structure.cards.forEach((item, i) => {
+        const x = PAD.side + i * (cardW + px(60));
+        const isNavy = i === 1;
+        card(slide, {
+          x, y, w: cardW, h: cardH,
+          fill: isNavy ? PPT_THEME.navy : PPT_THEME.white,
+          border: PPT_THEME.navy,
+        });
+        racingStripe(slide, x + px(40), y + px(36));
+        const textColor = isNavy ? PPT_THEME.onNavy : PPT_THEME.navy;
+        const bodyColor = isNavy ? PPT_THEME.onNavySecondary : PPT_THEME.body;
+
+        slide.addText(item.eyebrow.toUpperCase(), {
+          x: x + px(40), y: y + px(74), w: cardW - px(80), h: px(30),
+          fontFace: PPT_FONT.mono, fontSize: pt(24), color: isNavy ? PPT_THEME.onNavyTertiary : PPT_THEME.sky,
+          charSpacing: 1.6, valign: "top",
+        });
+        slide.addText(fill(item.title), {
+          x: x + px(40), y: y + px(112), w: cardW - px(80), h: px(64),
+          fontFace: PPT_FONT.display, fontSize: pt(38), bold: true, color: textColor, valign: "top", shrinkText: true,
+        });
+        slide.addText(fill(item.body), {
+          x: x + px(40), y: y + px(190), w: cardW - px(80), h: cardH - px(300),
+          fontFace: PPT_FONT.body, fontSize: pt(27), color: bodyColor, lineSpacingMultiple: 1.3, valign: "top",
+        });
+        if (item.note) {
+          slide.addText(fill(item.note), {
+            x: x + px(40), y: y + cardH - px(96), w: cardW - px(80), h: px(70),
+            fontFace: PPT_FONT.body, fontSize: pt(25), italic: true, color: bodyColor, valign: "top",
+          });
+        }
+      });
+      return;
+    }
+
+    case "table": {
+      // estimateLines rechnet in Bildpunkten, CONTENT_W liegt in Zoll vor.
+      const footH = structure.footnote
+        ? Math.min(
+            available * 0.4,
+            estimateLines(fill(structure.footnote), CONTENT_W / px(1), 25) * px(40) + px(30)
+          )
+        : 0;
+      hairlineTable(slide, {
+        x: PAD.side, y, w: CONTENT_W, rowH: px(96),
+        header: structure.header,
+        rows: structure.rows.map((row) => row.map(fill)),
+        palette: p,
+        colRatios: structure.rows[0]?.length === 3 ? [0.4, 0.3, 0.3] : [0.42, 0.58],
+        maxH: available - footH,
+      });
+      if (structure.footnote) {
+        slide.addText(fill(structure.footnote), {
+          x: PAD.side, y: bottom - footH + px(20), w: CONTENT_W, h: footH,
+          fontFace: PPT_FONT.body, fontSize: pt(25), italic: true, color: p.secondary,
+          lineSpacingMultiple: 1.25, valign: "top",
+        });
+      }
+      return;
+    }
+
+    case "formula": {
+      const count = structure.factors.length;
+      const gap = px(52);
+      const boxW = (CONTENT_W - gap * (count - 1)) / count;
+      structure.factors.forEach((factor, i) => {
+        const x = PAD.side + i * (boxW + gap);
+        card(slide, { x, y, w: boxW, h: px(180) });
+        slide.addText(factor.label.toUpperCase(), {
+          x: x + px(20), y: y + px(22), w: boxW - px(40), h: px(64),
+          fontFace: PPT_FONT.mono, fontSize: pt(22), color: PPT_THEME.footer,
+          charSpacing: 1.4, align: "center", valign: "top",
+        });
+        slide.addText(fill(factor.value), {
+          x: x + px(16), y: y + px(96), w: boxW - px(32), h: px(70),
+          fontFace: PPT_FONT.display, fontSize: pt(36), bold: true, color: PPT_THEME.navy,
+          align: "center", valign: "top", shrinkText: true,
+        });
+        if (i < count - 1) {
+          slide.addText("×", {
+            x: x + boxW, y: y + px(66), w: gap, h: px(56),
+            fontFace: PPT_FONT.display, fontSize: pt(34), color: PPT_THEME.sky, align: "center", valign: "top",
+          });
+        }
+      });
+
+      const resY = y + px(230);
+      hairline(slide, PAD.side, resY, CONTENT_W, p.hairline);
+      slide.addText(structure.result.label.toUpperCase(), {
+        x: PAD.side, y: resY + px(22), w: CONTENT_W, h: px(30),
+        fontFace: PPT_FONT.mono, fontSize: pt(24), color: PPT_THEME.footer, charSpacing: 1.6, valign: "top",
+      });
+      slide.addText(fill(structure.result.value), {
+        x: PAD.side, y: resY + px(58), w: CONTENT_W, h: px(90),
+        fontFace: PPT_FONT.display, fontSize: pt(66), bold: true, color: PPT_THEME.navy,
+        charSpacing: -1.6, valign: "top", shrinkText: true,
+      });
+
+      const notesY = resY + px(180);
+      const noteW = (CONTENT_W - px(60)) / Math.max(structure.notes.length, 1);
+      structure.notes.forEach((note, i) => {
+        slide.addText(fill(note), {
+          x: PAD.side + i * (noteW + px(30)), y: notesY, w: noteW, h: bottom - notesY,
+          fontFace: PPT_FONT.body,
+          fontSize: pt(fitBodySize(structure.notes.map(fill), noteW, bottom - notesY, 25)),
+          color: p.secondary, lineSpacingMultiple: 1.25, valign: "top",
+        });
+      });
+      return;
+    }
+
+    case "tiles": {
+      const cols = structure.columns;
+      const rows = Math.ceil(structure.tiles.length / cols);
+      const footH = structure.footnote ? px(120) : 0;
+      const gap = px(28);
+      const tileW = (CONTENT_W - gap * (cols - 1)) / cols;
+      const tileH = Math.max(px(150), (available - footH - gap * (rows - 1)) / rows);
+
+      structure.tiles.forEach((tile, i) => {
+        const x = PAD.side + (i % cols) * (tileW + gap);
+        const ty = y + Math.floor(i / cols) * (tileH + gap);
+        card(slide, { x, y: ty, w: tileW, h: tileH });
+
+        // Kacheln ohne Beschreibung sind Wortmarken (Folie 18) und stehen mittig.
+        const isWordmark = !tile.body && !tile.note;
+        slide.addText(fill(tile.title), {
+          x: x + px(28), y: ty + (isWordmark ? tileH / 2 - px(34) : px(24)), w: tileW - px(56), h: px(68),
+          fontFace: PPT_FONT.display, fontSize: pt(isWordmark ? 30 : 28), bold: true, color: PPT_THEME.navy,
+          valign: "top", shrinkText: true,
+        });
+        if (tile.note) {
+          // Der Preis ist die Kernaussage der Kachel und steht direkt unter dem Titel.
+          slide.addText(fill(tile.note), {
+            x: x + px(28), y: ty + px(92), w: tileW - px(56), h: px(52),
+            fontFace: PPT_FONT.display, fontSize: pt(34), bold: true, color: PPT_THEME.signal,
+            valign: "top", shrinkText: true,
+          });
+        }
+        if (tile.body) {
+          slide.addText(fill(tile.body), {
+            x: x + px(28), y: ty + px(154), w: tileW - px(56), h: tileH - px(180),
+            fontFace: PPT_FONT.body, fontSize: pt(23), color: PPT_THEME.body,
+            lineSpacingMultiple: 1.2, valign: "top",
+          });
+        }
+      });
+
+      if (structure.footnote) {
+        slide.addText(fill(structure.footnote), {
+          x: PAD.side, y: bottom - footH + px(16), w: CONTENT_W, h: footH - px(20),
+          fontFace: PPT_FONT.body, fontSize: pt(24), color: p.secondary, lineSpacingMultiple: 1.25, valign: "top",
+        });
+      }
+      return;
+    }
+
+    case "numbers": {
+      // Bewusst nicht kpiRow: dort steht das Label ÜBER der Zahl und ist einzeilig
+      // gedacht. Hier sind die Beschriftungen ganze Sätze und gehören unter die Zahl.
+      const gap = px(40);
+      const colW = (CONTENT_W - gap * (structure.numbers.length - 1)) / structure.numbers.length;
+      const blockH = px(230);
+
+      hairline(slide, PAD.side, y, CONTENT_W, p.hairline);
+      structure.numbers.forEach((n, i) => {
+        const x = PAD.side + i * (colW + gap);
+        slide.addText(fill(n.value), {
+          x, y: y + px(30), w: colW, h: px(84),
+          fontFace: PPT_FONT.display, fontSize: pt(58), bold: true, color: p.text,
+          charSpacing: -1.6, valign: "top", shrinkText: true,
+        });
+        slide.addText(fill(n.label), {
+          x, y: y + px(126), w: colW, h: blockH - px(140),
+          fontFace: PPT_FONT.body, fontSize: pt(25), color: p.secondary,
+          lineSpacingMultiple: 1.25, valign: "top",
+        });
+      });
+      hairline(slide, PAD.side, y + blockH, CONTENT_W, p.hairline);
+
+      if (structure.quote) {
+        railStatement(slide, {
+          x: PAD.side, y: y + blockH + px(70), w: CONTENT_W, text: fill(structure.quote), palette: p, size: 32,
+        });
+      }
+      return;
+    }
+
+    default: {
+      // Sollte nicht vorkommen — sichtbar machen statt still eine leere Folie liefern.
+      slide.addText(structure.kind === "raw" ? structure.items.map(fill).join("\n") : "", {
+        x: PAD.side, y, w: CONTENT_W, h: available,
+        fontFace: PPT_FONT.body, fontSize: pt(26), color: p.secondary, lineSpacingMultiple: 1.3, valign: "top",
+      });
+    }
+  }
 }

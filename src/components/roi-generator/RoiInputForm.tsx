@@ -62,7 +62,7 @@ const RoiInputForm = ({ onCalculated }: Props) => {
         </div>
 
         <div className="space-y-1.5">
-          <Label htmlFor="roi-users">Geplante Copilot-Lizenzen</Label>
+          <Label htmlFor="roi-users">Davon mit Microsoft-365-Copilot-Lizenz</Label>
           <Input id="roi-users" inputMode="numeric" placeholder="z. B. 50" aria-describedby="roi-users-help roi-users-error" {...register("users")} />
           <p id="roi-users-help" className="text-xs text-muted-foreground">
             Personen, die eine Microsoft-365-Copilot-Lizenz erhalten und die vollständige Lernreise

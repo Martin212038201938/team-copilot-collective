@@ -216,14 +216,17 @@ const CopilotRoiBerechnen = () => {
                   <p><strong>Training &amp; Schulung:</strong> €5.000 je Gruppe im gängigen Modell – bei 12 Teilnehmenden €416,67 pro Platz</p>
                 </div>
                 <div className="space-y-2">
-                  <p><strong>IT-Setup &amp; Einführung:</strong> einmaliger Grundaufwand plus degressive Größenstaffel je Nutzer</p>
+                  <p><strong>IT-Setup &amp; Einführung:</strong> ab 16 Microsoft-365-Nutzern, degressive Größenstaffel je Nutzer</p>
                   <p><strong>Weiterbildung:</strong> in Jahr 2 und 3 jeweils 50% des Trainingsbudgets aus Jahr 1</p>
                 </div>
               </div>
               <p className="text-xs text-muted-foreground mt-4">
-                Die IT-Staffel im Rechner beginnt mit €2.500 Grundaufwand. Hinzu kommen €150 je Nutzer 1–50,
-                €75 je Nutzer 51–250, €40 je Nutzer 251–1.000 und €20 je weiterem Nutzer. So steigt der
-                Gesamtaufwand mit der Größe, während die Kosten pro Nutzer durch Skaleneffekte sinken.
+                Bis einschließlich 15 Microsoft-365-Nutzern setzt der Rechner kein IT-Setup an – in dieser
+                Größenordnung erledigt die IT die Tenant-Readiness nebenher. Darüber gilt eine degressive
+                Staffel: €60 je Nutzer 16–50, €25 je Nutzer 51–250, €12 je Nutzer 251–1.000 und €6 je
+                weiterem Nutzer. Die Beträge sind in Beratungstagen zu rund €800 gedacht und liegen damit am
+                unteren Rand der Marktspanne. So steigt der Gesamtaufwand mit der Größe des Tenants, während
+                die Kosten pro Nutzer durch Skaleneffekte sinken.
               </p>
             </CardContent>
           </Card>
@@ -276,9 +279,9 @@ const CopilotRoiBerechnen = () => {
                   <tbody>
                     <tr className="border-b"><td className="py-2">Lizenzen (300 × €26 × 12)</td><td className="text-right">€93.600</td></tr>
                     <tr className="border-b"><td className="py-2">Training (25 Gruppen × €5.000)</td><td className="text-right">€125.000</td></tr>
-                    <tr className="border-b"><td className="py-2">IT-Setup nach Größenstaffel</td><td className="text-right">€27.000</td></tr>
-                    <tr className="border-b"><td className="py-2">Change &amp; Adoption (12% der Basis)</td><td className="text-right">€29.472</td></tr>
-                    <tr className="font-bold"><td className="py-2">Gesamt (zzgl. MwSt.)</td><td className="text-right">€275.072</td></tr>
+                    <tr className="border-b"><td className="py-2">IT-Setup nach Größenstaffel</td><td className="text-right">€7.700</td></tr>
+                    <tr className="border-b"><td className="py-2">Change &amp; Adoption (12% der Basis)</td><td className="text-right">€27.156</td></tr>
+                    <tr className="font-bold"><td className="py-2">Gesamt (zzgl. MwSt.)</td><td className="text-right">€253.456</td></tr>
                   </tbody>
                 </table>
               </div>
@@ -297,7 +300,7 @@ const CopilotRoiBerechnen = () => {
                   </table>
                   <div className="mt-4 p-4 bg-green-50 dark:bg-green-950/20 border border-green-500/30 rounded-lg text-center">
                     <p className="text-xs font-semibold text-green-700 dark:text-green-400 mb-1">Positiver ROI</p>
-                    <p className="text-3xl font-bold text-green-600">161%</p>
+                    <p className="text-3xl font-bold text-green-600">184%</p>
                   </div>
                 </div>
 
@@ -313,13 +316,13 @@ const CopilotRoiBerechnen = () => {
                   </table>
                   <div className="mt-4 p-4 bg-green-50 dark:bg-green-950/20 border border-green-500/30 rounded-lg text-center">
                     <p className="text-xs font-semibold text-green-700 dark:text-green-400 mb-1">Positiver ROI</p>
-                    <p className="text-3xl font-bold text-green-600">132%</p>
+                    <p className="text-3xl font-bold text-green-600">152%</p>
                   </div>
                 </div>
               </div>
 
               <p className="text-xs text-muted-foreground mt-4 text-center">
-                Annahmen wie im Excel-Rechner: €50 Vollkosten-Stundensatz, alle 300 geschulten Personen, monatliche Lernkurve
+                Annahmen wie im Excel-Rechner: €50 Vollkosten-Stundensatz, 300 Copilot-Lizenznutzer, monatliche Lernkurve
                 mit 60% des Zielwerts zum Start und zwei Monaten Halbwertszeit. Nur 50% des rechnerischen Kapazitätswerts
                 werden wirtschaftlich angesetzt. Qualitätsgewinne, Fehlerreduktion und agentische Tätigkeiten sind nicht eingerechnet.
               </p>
@@ -340,9 +343,9 @@ const CopilotRoiBerechnen = () => {
                     <tbody>
                       <tr className="border-b"><td className="py-2">Lizenzen (50 × €26 × 12)</td><td className="text-right">€15.600</td></tr>
                       <tr className="border-b"><td className="py-2">Training (5 Gruppen × €5.000)</td><td className="text-right">€25.000</td></tr>
-                      <tr className="border-b"><td className="py-2">IT-Setup nach Größenstaffel</td><td className="text-right">€10.000</td></tr>
-                      <tr className="border-b"><td className="py-2">Change &amp; Adoption (12% der Basis)</td><td className="text-right">€6.072</td></tr>
-                      <tr className="font-bold"><td className="py-2">Gesamtkosten</td><td className="text-right">€56.672</td></tr>
+                      <tr className="border-b"><td className="py-2">IT-Setup nach Größenstaffel</td><td className="text-right">€2.100</td></tr>
+                      <tr className="border-b"><td className="py-2">Change &amp; Adoption (12% der Basis)</td><td className="text-right">€5.124</td></tr>
+                      <tr className="font-bold"><td className="py-2">Gesamtkosten</td><td className="text-right">€47.824</td></tr>
                     </tbody>
                   </table>
                 </div>
@@ -361,18 +364,18 @@ const CopilotRoiBerechnen = () => {
                       <tr className="border-b">
                         <td className="py-2 font-semibold text-orange-600">Realistisch</td>
                         <td className="py-2 text-right">€106.557</td>
-                        <td className="py-2 text-right font-bold text-green-600">88%</td>
+                        <td className="py-2 text-right font-bold text-green-600">123%</td>
                       </tr>
                       <tr>
                         <td className="py-2 font-semibold text-blue-600">Forrester TEI</td>
                         <td className="py-2 text-right">€119.876</td>
-                        <td className="py-2 text-right font-bold text-green-600">112%</td>
+                        <td className="py-2 text-right font-bold text-green-600">151%</td>
                       </tr>
                     </tbody>
                   </table>
                   <p className="text-xs text-muted-foreground mt-4">
                     Das Trainingsbudget beträgt €500 pro Person, weil für 50 Personen fünf volle Gruppen kalkuliert werden.
-                    Der geringere ROI gegenüber 300 Nutzern entsteht vor allem durch den höheren IT-Grundaufwand pro Person.
+                    Der geringere ROI gegenüber 300 Nutzern entsteht vor allem daraus, dass sich die Trainingskosten auf weniger Personen verteilen.
                   </p>
                 </div>
               </div>
@@ -733,8 +736,8 @@ const CopilotRoiBerechnen = () => {
               </CardHeader>
               <CardContent>
                 <div className="space-y-3 mb-6">
-                  <p className="text-sm"><strong>Geschulte Nutzer:</strong> Alle werden berücksichtigt</p>
-                  <p className="text-sm"><strong>Ziel-Zeitersparnis:</strong> 8 Stunden/Monat</p>
+                  <p className="text-sm"><strong>Nutzer mit Copilot-Lizenz:</strong> 8 Stunden/Monat</p>
+                  <p className="text-sm"><strong>Übrige Microsoft-365-Nutzer:</strong> 2,5 Stunden/Monat aus Copilot Chat</p>
                   <p className="text-sm"><strong>Wirtschaftlich realisierbar:</strong> 50%</p>
                   <p className="text-sm"><strong>Kompetenzaufbau:</strong> schneller Ramp-up zur heute belegbaren Assistenz-Baseline</p>
                 </div>
@@ -755,8 +758,8 @@ const CopilotRoiBerechnen = () => {
               </CardHeader>
               <CardContent>
                 <div className="space-y-3 mb-6">
-                  <p className="text-sm"><strong>Geschulte Nutzer:</strong> Alle werden berücksichtigt</p>
-                  <p className="text-sm"><strong>Ziel-Zeitersparnis:</strong> 9 Stunden/Monat</p>
+                  <p className="text-sm"><strong>Nutzer mit Copilot-Lizenz:</strong> 9 Stunden/Monat</p>
+                  <p className="text-sm"><strong>Übrige Microsoft-365-Nutzer:</strong> 2,5 Stunden/Monat aus Copilot Chat</p>
                   <p className="text-sm"><strong>Wirtschaftlich realisierbar:</strong> 50%</p>
                   <p className="text-sm"><strong>Kompetenzaufbau:</strong> identisch zum realistischen Szenario</p>
                 </div>
@@ -769,8 +772,10 @@ const CopilotRoiBerechnen = () => {
           </div>
 
           <p className="text-sm text-muted-foreground mt-4">
-            Die Szenarien unterscheiden sich nicht durch eine künstliche Quote aktiver Personen. Für alle geschulten Nutzer wird eine
-            durchschnittliche Zeitersparnis angesetzt. Der tatsächliche wirtschaftliche Nutzen bleibt trotzdem vorsichtig, weil nur die
+            Die Szenarien unterscheiden sich nicht durch eine künstliche Quote aktiver Personen, sondern allein in der Zeitersparnis
+            der lizenzierten Nutzer. Beschäftigte ohne Copilot-Lizenz zählen mit 2,5 Stunden pro Monat mit: Sie arbeiten mit Copilot
+            Chat, ohne Integration in Word, Excel und Outlook, ohne Zugriff auf Unternehmensdaten und ohne die vollständige Lernreise.
+            Der tatsächliche wirtschaftliche Nutzen bleibt trotzdem vorsichtig, weil nur die
             Hälfte des rechnerischen Kapazitätswerts in die ROI-Berechnung eingeht. Die 8 beziehungsweise 9 Stunden sind dabei keine
             langfristige Obergrenze: Sie bilden nur eine heute belegbare Assistenz-Baseline. Zusätzlicher Nutzen durch leistungsfähigere
             Modelle, neue Funktionen und Tools, tiefere Prozessintegration sowie agentische, mehrstufige Arbeitsabläufe bleibt bewusst
