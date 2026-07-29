@@ -151,10 +151,19 @@ function patchCalcSheet(xml: string): string {
       `*'4. Szenarien'!D7*'1. Eingaben'!B9</x:f>`
   );
 
-  // --- IT-Setup: skaliert über alle M365-Nutzer -------------------------------
+  // --- IT-Setup: neue Staffel mit Freigrenze, Basis sind alle M365-Nutzer ------
+  // Die Vorlage rechnete Grundpauschale + Staffel ab der ersten Person. Jetzt gilt eine
+  // Freigrenze — kleine Tenants erledigen die Readiness nebenher — und keine Pauschale.
+  const a = ROI_ASSUMPTIONS;
+  const itFormula =
+    `MAX(MIN(${total},${a.itTier1MaxUsers})-${a.itFreeUpToUsers},0)*${a.itTier1PerUserEur}` +
+    `+MAX(MIN(${total}-${a.itTier1MaxUsers},${a.itTier2MaxUsers - a.itTier1MaxUsers}),0)*${a.itTier2PerUserEur}` +
+    `+MAX(MIN(${total}-${a.itTier2MaxUsers},${a.itTier3MaxUsers - a.itTier2MaxUsers}),0)*${a.itTier3PerUserEur}` +
+    `+MAX(${total}-${a.itTier3MaxUsers},0)*${a.itTier4PerUserEur}`;
+
   out = out.replace(
-    /(<x:f>IF\(A(\d+)=1,'6\. Quellen &amp; Methodik'!B16\+MIN\()C\2(,50\).*?<\/x:f>)/g,
-    (match) => match.replace(/\bC\d+\b/g, total)
+    /<x:f>IF\(A(\d+)=1,'6\. Quellen &amp; Methodik'!B16\+MIN\(C\1,50\).*?<\/x:f>/g,
+    (_m, row: string) => `<x:f>IF(A${row}=1,${itFormula},0)</x:f>`
   );
 
   // --- Training: zusätzliche Kick-off-Gruppen für Chat-Nutzer ------------------

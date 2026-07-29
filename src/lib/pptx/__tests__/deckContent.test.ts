@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { DECK_SLIDES } from "../deckContent";
+import { applyOverrides } from "../deckContentOverrides";
 import { calculateRoiBusinessCase } from "@/lib/roi/calculate";
 import { buildDeckValues } from "@/lib/roi/deckValues";
 
@@ -38,7 +39,9 @@ describe("Designvorlage: Folieninhalte", () => {
   });
 
   it("ersetzt ALLE Platzhalter – kein {{ }} bleibt stehen", () => {
-    for (const slide of DECK_SLIDES) {
+    for (const original of DECK_SLIDES) {
+      // Genau wie im Deck-Builder: erst Overrides, dann Werte einsetzen.
+      const slide = applyOverrides(original);
       const texts = [slide.title ?? "", ...slide.items].map(fill);
       for (const text of texts) {
         expect(text, `Folie ${slide.nr} (${slide.label})`).not.toMatch(/\{\{|\}\}/);
@@ -47,7 +50,7 @@ describe("Designvorlage: Folieninhalte", () => {
   });
 
   it("erzeugt keine leeren oder kaputten Werte in den Texten", () => {
-    const all = DECK_SLIDES.flatMap((s) => [s.title ?? "", ...s.items]).map(fill).join(" ");
+    const all = DECK_SLIDES.map(applyOverrides).flatMap((s) => [s.title ?? "", ...s.items]).map(fill).join(" ");
     expect(all).not.toMatch(/undefined|NaN|null/);
   });
 
@@ -58,7 +61,7 @@ describe("Designvorlage: Folieninhalte", () => {
   });
 
   it("setzt die Kundenwerte tatsächlich ein", () => {
-    const exec = DECK_SLIDES.find((s) => s.nr === 2)!;
+    const exec = applyOverrides(DECK_SLIDES.find((s) => s.nr === 2)!);
     const filled = exec.items.map(fill).join(" ");
     expect(filled).toContain("Yellow Boat Testfirma GmbH");
     expect(filled).toContain(v.roiY1);

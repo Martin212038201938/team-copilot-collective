@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Lock } from "lucide-react";
 import type { RoiBusinessCase } from "@/lib/roi/types";
-import { formatEur, formatEurCents, formatPercent, formatBreakEven } from "@/lib/roi/format";
+import { formatEur, formatPercent, formatBreakEven } from "@/lib/roi/format";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -21,16 +22,22 @@ function roiStatusLabel(roi: number | null): string {
   return "Break-even";
 }
 
+/**
+ * Ergebnisvorschau nach der Berechnung.
+ *
+ * Bewusst nur die Eckwerte: ROI, Break-even und die beiden Summen. Die vollständige
+ * Aufschlüsselung nach Kostenblöcken, Trainingsgruppen und IT-Setup steckt in den beiden
+ * Dateien und ist damit dem Download vorbehalten — genau dafür gibt der Interessent seine
+ * E-Mail-Adresse und die Einwilligung.
+ */
 const RoiResultPreview = ({ businessCase }: Props) => {
-  const { inputs, realistic, studyNear, training, itSetup } = businessCase;
+  const { inputs, realistic } = businessCase;
   const year1 = realistic.years[0];
 
   const kpis = [
-    { label: "Gesamtkosten Jahr 1", value: formatEur(year1.totalCostEur) },
+    { label: "Investition Jahr 1", value: formatEur(year1.totalCostEur) },
     { label: "Realisierter Nutzen Jahr 1", value: formatEur(year1.realizedBenefitEur) },
     { label: "Break-even", value: formatBreakEven(realistic.breakEvenMonth) },
-    { label: "Gesamtkosten 3 Jahre", value: formatEur(realistic.totalCostEur) },
-    { label: "Netto-Nutzen 3 Jahre", value: formatEur(realistic.netBenefitEur) },
   ];
 
   return (
@@ -57,7 +64,7 @@ const RoiResultPreview = ({ businessCase }: Props) => {
             </div>
           </div>
 
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
+          <div className="grid sm:grid-cols-3 gap-3">
             {kpis.map((kpi) => (
               <div key={kpi.label} className="p-3 rounded border">
                 <p className="text-xs text-muted-foreground">{kpi.label}</p>
@@ -72,39 +79,18 @@ const RoiResultPreview = ({ businessCase }: Props) => {
             <strong>ROI &lt; 0 %:</strong> Der realisierte Nutzen deckt die Kosten im betrachteten Zeitraum noch nicht.
           </p>
 
-          <div className="border-t pt-4 space-y-2 text-sm">
-            <p>
-              Trainingskosten Jahr 1 gesamt: <strong>{formatEur(training.year1Eur)}</strong> über{" "}
-              <strong>{training.groups}</strong> Gruppe{training.groups === 1 ? "" : "n"}.
+          {/* Was hinter der Schwelle liegt – transparent benannt, ohne die Werte zu zeigen. */}
+          <div className="rounded-lg border border-dashed bg-muted/30 p-4">
+            <p className="flex items-center gap-2 text-sm font-medium">
+              <Lock className="w-4 h-4 text-muted-foreground" aria-hidden="true" />
+              In den Dateien: die vollständige Aufschlüsselung
             </p>
-            <p>
-              <strong>{training.licensed.users}</strong> Lizenz-Nutzer in <strong>{training.licensed.groups}</strong> Gruppe
-              {training.licensed.groups === 1 ? "" : "n"} (Kick-off + Lernreise):{" "}
-              <strong>{formatEur(training.licensed.year1Eur)}</strong> · davon{" "}
-              <strong>{formatEurCents(training.licensed.actualCostPerUserYear1Eur)}</strong> je eingeplanter Person
-              (Vergleichswert bei voll belegter Zwölfergruppe: {formatEurCents(training.licensed.fullGroupCostPerSeatEur)}).
-            </p>
-            {training.chat.users > 0 && (
-              <p>
-                <strong>{training.chat.users}</strong> Chat-Nutzer ohne Lizenz in <strong>{training.chat.groups}</strong>{" "}
-                Gruppe{training.chat.groups === 1 ? "" : "n"} (nur Kick-off, keine Lernreise, kein Folgejahr):{" "}
-                <strong>{formatEur(training.chat.year1Eur)}</strong> · davon{" "}
-                <strong>{formatEurCents(training.chat.actualCostPerUserYear1Eur)}</strong> je eingeplanter Person.
-              </p>
-            )}
-            <p>
-              IT-Setup gesamt: <strong>{formatEur(itSetup.totalEur)}</strong> ({formatEur(itSetup.perUserEur)} je Nutzer,
-              berechnet über alle {inputs.m365Users} Microsoft-365-Nutzer).
-            </p>
-          </div>
-
-          <div className="border-t pt-4">
-            <p className="text-sm text-muted-foreground mb-1">Vergleich: studiennahes Szenario (9 Std./Monat Zielwert)</p>
-            <p className="text-sm">
-              Nutzen Jahr 1: <strong>{formatEur(studyNear.years[0].realizedBenefitEur)}</strong> · ROI Jahr 1:{" "}
-              <strong className={roiTextColorClass(studyNear.years[0].roi)}>{formatPercent(studyNear.years[0].roi)}</strong> · ROI 3 Jahre:{" "}
-              <strong className={roiTextColorClass(studyNear.roi)}>{formatPercent(studyNear.roi)}</strong>
-            </p>
+            <ul className="mt-2 grid sm:grid-cols-2 gap-x-6 gap-y-1 text-sm text-muted-foreground">
+              <li>Kosten nach Lizenzen, Training, IT-Setup und Change</li>
+              <li>Trainingsgruppen und Kosten je Person</li>
+              <li>Monat-für-Monat-Verlauf über 36 Monate</li>
+              <li>Vergleich mit dem Forrester-TEI-Szenario</li>
+            </ul>
           </div>
         </CardContent>
       </Card>

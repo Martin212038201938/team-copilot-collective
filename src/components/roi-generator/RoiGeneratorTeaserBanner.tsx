@@ -1,10 +1,10 @@
-import { FileSpreadsheet, ArrowDown } from "lucide-react";
+import { FileSpreadsheet, Presentation, ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 /**
- * Prominenter Teaser ganz oben im Artikel (Platzierung laut Nutzerentscheidung).
- * Die vollständige Eingabemaske (RoiBusinessCaseGenerator) bleibt an der im Konzept
- * vorgesehenen Stelle nach den zwei ROI-Szenarien — dieser Banner springt per Anchor dorthin.
+ * Prominenter Einstieg weit oben im Artikel — analog zum Kontaktformular, das ebenfalls
+ * an mehreren Stellen auftaucht. Die vollständige Eingabemaske bleibt zusätzlich an der
+ * im Konzept vorgesehenen Stelle nach den ROI-Szenarien; dieser Block springt dorthin.
  */
 const RoiGeneratorTeaserBanner = () => {
   const scrollToGenerator = () => {
@@ -12,17 +12,34 @@ const RoiGeneratorTeaserBanner = () => {
   };
 
   return (
-    <div className="rounded-2xl border-2 border-primary/40 bg-gradient-to-br from-primary/10 to-orange-500/10 p-5 md:p-6 flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
-      <div className="flex-shrink-0 hidden sm:flex items-center justify-center w-12 h-12 rounded-full bg-primary/15">
-        <FileSpreadsheet className="w-6 h-6 text-primary" />
+    <div className="rounded-2xl border-2 border-primary/40 bg-gradient-to-br from-primary/10 to-orange-500/10 p-6 md:p-8">
+      <p className="text-lg md:text-xl font-bold mb-2">
+        Editierbare PowerPoint und Excel für Ihr Unternehmen erstellen
+      </p>
+      <p className="text-sm md:text-base text-muted-foreground mb-5">
+        Wenige Angaben genügen — Sie erhalten beide Dateien per E-Mail-Link.
+      </p>
+
+      <div className="grid sm:grid-cols-2 gap-4 mb-6">
+        <div className="flex gap-3">
+          <Presentation className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" aria-hidden="true" />
+          <p className="text-sm text-muted-foreground">
+            <strong className="text-foreground">Die Präsentation</strong> ist als Entscheidungsvorlage
+            angelegt: Sie führt Geschäftsführung, Budgetverantwortliche und Steering Committee durch
+            Kosten, Nutzen und Annahmen — und lässt sich frei bearbeiten.
+          </p>
+        </div>
+        <div className="flex gap-3">
+          <FileSpreadsheet className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" aria-hidden="true" />
+          <p className="text-sm text-muted-foreground">
+            <strong className="text-foreground">Die Excel</strong> enthält das vollständige Rechenmodell.
+            Sie können Nutzerzahlen, Stundensatz und Lizenzpreis selbst variieren und sehen sofort,
+            wie sich ROI und Break-even verändern.
+          </p>
+        </div>
       </div>
-      <div className="flex-1">
-        <p className="font-bold text-lg">Ihren eigenen Copilot Business Case als PowerPoint erstellen</p>
-        <p className="text-sm text-muted-foreground">
-          Vier Angaben genügen — Sie erhalten eine editierbare Management-Präsentation mit Kosten, Nutzen, ROI und Break-even.
-        </p>
-      </div>
-      <Button onClick={scrollToGenerator} size="lg" className="whitespace-nowrap">
+
+      <Button onClick={scrollToGenerator} size="lg" className="w-full sm:w-auto">
         Jetzt berechnen
         <ArrowDown className="w-4 h-4" />
       </Button>

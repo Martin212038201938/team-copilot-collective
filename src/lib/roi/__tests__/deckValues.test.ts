@@ -3,9 +3,12 @@ import { calculateRoiBusinessCase } from "../calculate";
 import { buildDeckValues } from "../deckValues";
 
 /**
- * Gegenprobe mit den Referenzwerten aus dem Design-Handoff
- * (README.md, Abschnitt "Referenzwerte zum Gegentesten"):
- * nutzer = 300, stundensatz = 50, lizenzpreis = 26, Szenario realistisch.
+ * Gegenprobe mit dem Referenzfall des Design-Handoffs
+ * (nutzer = 300, stundensatz = 50, lizenzpreis = 26, Szenario realistisch).
+ *
+ * Nutzen und Trainingskosten entsprechen weiterhin exakt dem Handoff. Kosten und ROI
+ * weichen bewusst ab, seit das IT-Setup ohne Grundpauschale und mit Freigrenze bis
+ * 15 Personen gerechnet wird (siehe ROI_ASSUMPTIONS).
  */
 // Die Referenzwerte des Handoffs gelten für den Fall, dass die Nutzenbasis der Lizenzzahl
 // entspricht (m365Users = users). Bei größerer Chat-Basis steigt der Nutzen entsprechend —
@@ -21,16 +24,16 @@ const v = buildDeckValues(bc, { datum: "Juli 2026", ansprechpartner: "Martin Lan
 
 describe("Deck-Werte gegen die Referenz des Design-Handoffs", () => {
   it("Kosten und Nutzen", () => {
-    expect(v.costY1).toBe("275.072 €");
-    expect(v.cost3).toBe("624.736 €");
+    expect(v.costY1).toBe("253.456 €");
+    expect(v.cost3).toBe("603.120 €");
     expect(v.benefitY1).toBe("639.339 €");
     expect(v.benefit3).toBe("2.078.059 €");
-    expect(v.net3).toBe("1.453.323 €");
+    expect(v.net3).toBe("1.474.939 €");
   });
 
   it("ROI und Break-even", () => {
-    expect(v.roiY1).toBe("132 %");
-    expect(v.roi3).toBe("233 %");
+    expect(v.roiY1).toBe("152 %");
+    expect(v.roi3).toBe("245 %");
     expect(v.breakEven).toBe("5 Monate");
     expect(v.breakEvenShort).toBe("MONAT 5");
   });
@@ -41,12 +44,12 @@ describe("Deck-Werte gegen die Referenz des Design-Handoffs", () => {
 
   it("Kostenblöcke über drei Jahre mit Anteilen", () => {
     expect(v.blockLic).toBe("280.800 €");
-    expect(v.blockLicPct).toBe("45 %");
+    expect(v.blockLicPct).toBe("47 %");
     expect(v.blockTrain).toBe("250.000 €");
-    expect(v.blockTrainPct).toBe("40 %");
-    expect(v.blockIt).toBe("27.000 €");
-    expect(v.blockItPct).toBe("4 %");
-    expect(v.blockChange).toBe("66.936 €");
+    expect(v.blockTrainPct).toBe("41 %");
+    expect(v.blockIt).toBe("7.700 €");
+    expect(v.blockItPct).toBe("1 %");
+    expect(v.blockChange).toBe("64.620 €");
     expect(v.blockChangePct).toBe("11 %");
   });
 
@@ -69,10 +72,10 @@ describe("Deck-Werte gegen die Referenz des Design-Handoffs", () => {
 
   it("weist immer das realistische Szenario aus, Forrester nur als Vergleich", () => {
     expect(v.szenarioText).toBe("realistisches");
-    expect(v.realRoiY1).toBe("132 %");
-    expect(v.studyRoiY1).toBe("161 %");
-    expect(v.realRoi3).toBe("233 %");
-    expect(v.studyRoi3).toBe("274 %");
+    expect(v.realRoiY1).toBe("152 %");
+    expect(v.studyRoiY1).toBe("184 %");
+    expect(v.realRoi3).toBe("245 %");
+    expect(v.studyRoi3).toBe("288 %");
   });
 
   it("erzeugt keine Platzhalter oder NaN", () => {

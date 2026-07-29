@@ -1,18 +1,26 @@
 import { ROI_ASSUMPTIONS } from "./assumptions";
 
 /**
- * Degressiv skalierendes IT-Setup (Konzept Abschnitt 6.4).
- * Fällt nur in Jahr 1 an.
+ * IT-Setup und Einführung (Tenant-Readiness). Fällt nur in Jahr 1 an.
  *
- * Kontrollwerte laut Konzept:
- *  10 Nutzer  ->  4.000 € (400 €/Nutzer)
- *  50 Nutzer  -> 10.000 € (200 €/Nutzer)
- * 300 Nutzer  -> 27.000 €  (90 €/Nutzer)
- * 1.000 Nutzer -> 55.000 € (55 €/Nutzer)
- * 5.000 Nutzer -> 135.000 € (27 €/Nutzer)
+ * Bis einschließlich ROI_ASSUMPTIONS.itFreeUpToUsers Personen entsteht kein eigener
+ * Posten — das erledigt die IT in dieser Größenordnung nebenher. Erst darüber wird
+ * gestaffelt gerechnet, degressiv, weil der Aufwand mit der Komplexität des Tenants
+ * wächst und nicht linear mit der Kopfzahl.
+ *
+ * Herleitung und Quellen der Beträge: siehe ROI_ASSUMPTIONS.
+ *
+ * Kontrollwerte:
+ *     15 Personen ->      0 €
+ *     25 Personen ->    600 €
+ *     50 Personen ->  2.100 €
+ *    250 Personen ->  7.100 €
+ *  1.000 Personen -> 16.100 €
+ *  5.000 Personen -> 40.100 €
  */
 export function calculateItSetup(users: number): number {
   const {
+    itFreeUpToUsers,
     itBaseEur,
     itTier1MaxUsers,
     itTier1PerUserEur,
@@ -23,11 +31,19 @@ export function calculateItSetup(users: number): number {
     itTier4PerUserEur,
   } = ROI_ASSUMPTIONS;
 
+  if (users <= itFreeUpToUsers) return 0;
+
+  // Die erste Stufe zählt erst ab der Freigrenze, alle weiteren wie gehabt.
+  const tier1 = Math.max(Math.min(users, itTier1MaxUsers) - itFreeUpToUsers, 0);
+  const tier2 = Math.max(Math.min(users - itTier1MaxUsers, itTier2MaxUsers - itTier1MaxUsers), 0);
+  const tier3 = Math.max(Math.min(users - itTier2MaxUsers, itTier3MaxUsers - itTier2MaxUsers), 0);
+  const tier4 = Math.max(users - itTier3MaxUsers, 0);
+
   return (
     itBaseEur +
-    Math.min(users, itTier1MaxUsers) * itTier1PerUserEur +
-    Math.max(Math.min(users - itTier1MaxUsers, itTier2MaxUsers - itTier1MaxUsers), 0) * itTier2PerUserEur +
-    Math.max(Math.min(users - itTier2MaxUsers, itTier3MaxUsers - itTier2MaxUsers), 0) * itTier3PerUserEur +
-    Math.max(users - itTier3MaxUsers, 0) * itTier4PerUserEur
+    tier1 * itTier1PerUserEur +
+    tier2 * itTier2PerUserEur +
+    tier3 * itTier3PerUserEur +
+    tier4 * itTier4PerUserEur
   );
 }

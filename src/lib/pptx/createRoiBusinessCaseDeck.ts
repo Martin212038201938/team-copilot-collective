@@ -8,6 +8,7 @@ import {
   type Palette,
 } from "./layout";
 import { DECK_SLIDES, DECK_FOOTER_LEFT, DECK_FOOTER_DISCLAIMER, type DeckSlideContent } from "./deckContent";
+import { applyOverrides } from "./deckContentOverrides";
 import { buildPptxFileName } from "./fileName";
 
 /**
@@ -61,7 +62,8 @@ export async function createRoiBusinessCaseDeck(args: {
   };
 
   for (const content of DECK_SLIDES) {
-    const resolved = resolveContent(content, v);
+    // Erst die sprachlichen Anpassungen, dann die Werte einsetzen.
+    const resolved = resolveContent(applyOverrides(content), v);
     const palette = paletteFor(resolved.bg);
     const slide = pptx.addSlide();
     slide.background = { color: palette.bg };

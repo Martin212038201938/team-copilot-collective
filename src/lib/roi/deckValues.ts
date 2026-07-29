@@ -1,3 +1,4 @@
+import { ROI_ASSUMPTIONS } from "./assumptions";
 import type { RoiBusinessCase } from "./types";
 
 /**
@@ -54,6 +55,14 @@ export type DeckValues = {
   chartCostSeries: number[];
   chartMaxLabel: string;
   breakEvenMonth: number | null;
+  /** Zwei-Gruppen-Modell: lizenzierte Nutzer und Nutzer mit Copilot Chat ohne Lizenz. */
+  lizenzNutzerText: string;
+  chatNutzerText: string;
+  hatChatNutzer: boolean;
+  zielLizenzText: string;
+  zielChatText: string;
+  /** Ein Satz, der die Nutzenbasis beschreibt — je nachdem, ob es Chat-Nutzer gibt. */
+  nutzenbasisText: string;
 };
 
 export function buildDeckValues(
@@ -68,6 +77,7 @@ export function buildDeckValues(
   const m = realistic;
   const year1 = m.years[0];
 
+  const chatUsers = Math.max((inputs.m365Users ?? users) - users, 0);
   const licY = users * inputs.licensePerUserMonthEur * 12;
   const trainY23 = training.year2Eur;
   const changeY23 = m.years[1].changeCostEur;
@@ -133,5 +143,18 @@ export function buildDeckValues(
     chartCostSeries,
     chartMaxLabel: kEur(max),
     breakEvenMonth: m.breakEvenMonth,
+    lizenzNutzerText: num(users),
+    chatNutzerText: num(chatUsers),
+    hatChatNutzer: chatUsers > 0,
+    zielLizenzText: `${m.targetHoursPerUserMonth} Std./Monat`,
+    zielChatText: `${ROI_ASSUMPTIONS.chatOnlyTargetHoursPerMonth.toLocaleString("de-DE")} Std./Monat`,
+    nutzenbasisText:
+      chatUsers > 0
+        ? `${num(users)} Personen mit Copilot-Lizenz werden mit ${m.targetHoursPerUserMonth} Std./Monat angesetzt, ` +
+          `${num(chatUsers)} weitere Microsoft-365-Nutzer mit ` +
+          `${ROI_ASSUMPTIONS.chatOnlyTargetHoursPerMonth.toLocaleString("de-DE")} Std./Monat — ihnen fehlen ` +
+          `Lizenz, Integration in die Office-Anwendungen und die vollständige Lernreise.`
+        : `Alle ${num(users)} Personen erhalten eine Copilot-Lizenz und die vollständige Lernreise; ` +
+          `angesetzt sind ${m.targetHoursPerUserMonth} Std./Monat.`,
   };
 }

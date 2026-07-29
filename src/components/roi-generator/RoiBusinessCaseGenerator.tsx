@@ -31,8 +31,9 @@ const RoiBusinessCaseGenerator = () => {
   return (
     <div className="space-y-6">
       <p className="text-base leading-relaxed text-muted-foreground">
-        Wenige Angaben genügen. Sie erhalten eine editierbare Management-Präsentation mit Kosten, Nutzen, ROI,
-        Break-even, Drei-Jahres-Verlauf und dokumentierten Annahmen.
+        Wenige Angaben genügen. Sie erhalten zwei Dateien: eine editierbare Präsentation als
+        Entscheidungsvorlage für Ihr Unternehmen und die Excel mit dem vollständigen Rechenmodell,
+        in der Sie alle Parameter selbst variieren können.
       </p>
 
       <RoiInputForm onCalculated={handleCalculated} />

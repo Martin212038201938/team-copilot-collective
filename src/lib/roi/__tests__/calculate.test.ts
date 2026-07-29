@@ -16,13 +16,39 @@ function round(value: number): number {
 
 describe("calculateItSetup — Staffelgrenzen", () => {
   it.each([
-    [10, 4000],
-    [50, 10000],
-    [300, 27000],
-    [1000, 55000],
-    [5000, 135000],
+    [10, 0],
+    [15, 0],
+    [16, 60],
+    [25, 600],
+    [50, 2100],
+    [250, 7100],
+    [300, 7700],
+    [1000, 16100],
+    [5000, 40100],
   ])("users=%i -> %i €", (users, expected) => {
     expect(round(calculateItSetup(users))).toBe(expected);
+  });
+
+  it("bleibt bis zur Freigrenze bei null — kleine Tenants erledigen das nebenher", () => {
+    for (let n = 1; n <= 15; n++) {
+      expect(calculateItSetup(n), `users=${n}`).toBe(0);
+    }
+    expect(calculateItSetup(16)).toBeGreaterThan(0);
+  });
+
+  it("wächst monoton und ist ab der ersten vollen Stufe degressiv", () => {
+    // Unterhalb bzw. knapp oberhalb der Freigrenze ist "je Person" naturgemäß klein,
+    // weil die ersten 15 Personen nicht zählen. Degression gilt ab der ersten vollen Stufe.
+    let previous = calculateItSetup(20);
+    let previousPerUser = Infinity;
+    for (const n of [50, 100, 250, 500, 1000, 5000]) {
+      const total = calculateItSetup(n);
+      expect(total, `users=${n}`).toBeGreaterThan(previous);
+      const perUser = total / n;
+      expect(perUser, `je Person bei ${n}`).toBeLessThan(previousPerUser);
+      previous = total;
+      previousPerUser = perUser;
+    }
   });
 });
 
@@ -109,6 +135,9 @@ describe("timeSavingHoursForMonth — Lernkurve", () => {
   });
 });
 
+// Hinweis: Die Referenzwerte des Design-Handoffs (56.672 € / 275.072 €) galten für die
+// alte IT-Staffel mit 2.500 € Grundpauschale. Nutzen und Training sind unverändert;
+// abweichend sind ausschließlich IT-Setup, die davon abhängigen Change-Kosten und der ROI.
 describe("Referenzfall: 50 Nutzer, 50 €/Std., 26 €/Monat (keine Chat-Nutzer)", () => {
   const inputs: RoiInputs = { ...baseInputs, users: 50, m365Users: 50 };
   const businessCase = calculateRoiBusinessCase(inputs);
@@ -116,32 +145,32 @@ describe("Referenzfall: 50 Nutzer, 50 €/Std., 26 €/Monat (keine Chat-Nutzer)
   it("Training und IT-Setup", () => {
     expect(businessCase.training.groups).toBe(5);
     expect(round(businessCase.training.year1Eur)).toBe(25000);
-    expect(round(businessCase.itSetup.totalEur)).toBe(10000);
+    expect(round(businessCase.itSetup.totalEur)).toBe(2100);
   });
 
   it("realistisches Szenario Jahr 1", () => {
     const { years, breakEvenMonth } = businessCase.realistic;
-    expect(round(years[0].totalCostEur)).toBe(56672);
+    expect(round(years[0].totalCostEur)).toBe(47824);
     expect(round(years[0].realizedBenefitEur)).toBe(106557);
-    expect(round((years[0].realizedBenefitEur - years[0].totalCostEur) / years[0].totalCostEur * 100)).toBe(88);
-    expect(breakEvenMonth).toBe(7);
+    expect(round((years[0].realizedBenefitEur - years[0].totalCostEur) / years[0].totalCostEur * 100)).toBe(123);
+    expect(breakEvenMonth).toBe(5);
   });
 
   it("realistisches Szenario 3 Jahre", () => {
     const r = businessCase.realistic;
-    expect(round(r.totalCostEur)).toBe(119616);
+    expect(round(r.totalCostEur)).toBe(110768);
     expect(round(r.totalBenefitEur)).toBe(346343);
-    expect(round(r.netBenefitEur)).toBe(226727);
-    expect(round(r.roi! * 100)).toBe(190);
+    expect(round(r.netBenefitEur)).toBe(235575);
+    expect(round(r.roi! * 100)).toBe(213);
   });
 
   it("studiennahes Szenario", () => {
     const s = businessCase.studyNear;
     expect(round(s.years[0].realizedBenefitEur)).toBe(119876);
-    expect(round(s.years[0].realizedBenefitEur / s.years[0].totalCostEur * 100 - 100)).toBe(112); // ROI Jahr 1 laut Konzept: 112 %
-    expect(s.breakEvenMonth).toBe(6);
+    expect(round((s.years[0].realizedBenefitEur - s.years[0].totalCostEur) / s.years[0].totalCostEur * 100)).toBe(151);
+    expect(s.breakEvenMonth).toBe(5);
     expect(round(s.totalBenefitEur)).toBe(389636);
-    expect(round(s.roi! * 100)).toBe(226);
+    expect(round(s.roi! * 100)).toBe(252);
   });
 });
 
@@ -152,30 +181,30 @@ describe("Referenzfall: 300 Nutzer, 50 €/Std., 26 €/Monat (keine Chat-Nutzer
   it("Training und IT-Setup", () => {
     expect(businessCase.training.groups).toBe(25);
     expect(round(businessCase.training.year1Eur)).toBe(125000);
-    expect(round(businessCase.itSetup.totalEur)).toBe(27000);
+    expect(round(businessCase.itSetup.totalEur)).toBe(7700);
   });
 
   it("realistisches Szenario Jahr 1", () => {
     const { years, breakEvenMonth } = businessCase.realistic;
-    expect(round(years[0].totalCostEur)).toBe(275072);
+    expect(round(years[0].totalCostEur)).toBe(253456);
     expect(round(years[0].realizedBenefitEur)).toBe(639339);
     expect(breakEvenMonth).toBe(5);
   });
 
   it("realistisches Szenario 3 Jahre", () => {
     const r = businessCase.realistic;
-    expect(round(r.totalCostEur)).toBe(624736);
+    expect(round(r.totalCostEur)).toBe(603120);
     expect(round(r.totalBenefitEur)).toBe(2078059);
-    expect(round(r.netBenefitEur)).toBe(1453323);
-    expect(round(r.roi! * 100)).toBe(233);
+    expect(round(r.netBenefitEur)).toBe(1474939);
+    expect(round(r.roi! * 100)).toBe(245);
   });
 
   it("studiennahes Szenario", () => {
     const s = businessCase.studyNear;
     expect(round(s.years[0].realizedBenefitEur)).toBe(719257);
-    expect(s.breakEvenMonth).toBe(5);
+    expect(s.breakEvenMonth).toBe(4);
     expect(round(s.totalBenefitEur)).toBe(2337817);
-    expect(round(s.roi! * 100)).toBe(274);
+    expect(round(s.roi! * 100)).toBe(288);
   });
 });
 

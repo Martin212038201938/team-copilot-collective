@@ -72,8 +72,10 @@ describe("Kunden-Excel aus der Vorlage", () => {
     expect(patched.length).toBeGreaterThanOrEqual(36);
   });
 
-  it("skaliert das IT-Setup über alle Microsoft-365-Nutzer", () => {
-    expect(calc).toContain("MIN('1. Eingaben'!$B$11,50)");
+  it("setzt die neue IT-Staffel mit Freigrenze ein", () => {
+    // Keine Grundpauschale mehr, Freigrenze bis 15 Personen, Basis sind alle M365-Nutzer.
+    expect(calc).toContain("MAX(MIN('1. Eingaben'!$B$11,50)-15,0)*60");
+    expect(calc).not.toContain("'6. Quellen &amp; Methodik'!B16+MIN(");
   });
 
   it("ergänzt Kick-off-Gruppen für die Chat-Nutzer im Trainingsbudget", () => {

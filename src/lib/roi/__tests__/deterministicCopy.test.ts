@@ -30,7 +30,7 @@ describe("buildDeterministicCopy", () => {
   const copy = buildDeterministicCopy(bc);
 
   it("Executive Summary ist grammatikalisch korrekt (nicht 'nach 7 Monate')", () => {
-    expect(copy.executiveSummary).toContain("nach 7 Monaten erreicht");
+    expect(copy.executiveSummary).toContain("nach 5 Monaten erreicht");
     expect(copy.executiveSummary).not.toMatch(/nach \d+ Monate erreicht/);
   });
 
@@ -38,8 +38,8 @@ describe("buildDeterministicCopy", () => {
     // Intl.NumberFormat("de-DE") setzt vor % und € ein geschütztes Leerzeichen (U+00A0).
     const normalized = copy.executiveSummary.replace(/ /g, " ");
     expect(normalized).toContain("Yellow Boat Testfirma GmbH");
-    expect(normalized).toContain("88 %");
-    expect(normalized).toContain("226.727 €");
+    expect(normalized).toContain("123 %");
+    expect(normalized).toContain("235.575 €");
   });
 
   it("erzeugt keine Platzhalter", () => {

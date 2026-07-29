@@ -25,7 +25,7 @@ const CopilotRoiBerechnen = () => {
     { id: "studienlage", title: "Was aktuelle Studien zeigen", level: 2 },
     { id: "kpis", title: "KPIs zur Erfolgsmessung", level: 2 },
     { id: "szenarien", title: "Zwei plausible ROI-Szenarien", level: 2 },
-    { id: "business-case-generator", title: "PowerPoint-Business-Case erstellen", level: 2 },
+    { id: "business-case-generator", title: "PowerPoint und Excel erstellen", level: 2 },
     { id: "branchen-roi", title: "Branchenspezifische ROI-Beispiele", level: 2 },
     { id: "erfolgsfaktoren", title: "Kritische Erfolgsfaktoren", level: 2 },
     { id: "fehler", title: "Häufige Fehler bei der ROI-Berechnung", level: 2 },
@@ -46,7 +46,7 @@ const CopilotRoiBerechnen = () => {
     },
     {
       name: "Wann amortisiert sich die Copilot-Investition typischerweise?",
-      answer: "Der Break-even hängt vor allem von Nutzerzahl, Stundensatz, Lizenzkosten, Einführungsaufwand und erreichter Zeitersparnis ab. Deshalb sollte er aus den konkreten Unternehmensdaten berechnet und über mindestens drei Jahre verfolgt werden. Die Copilotenschule hilft Ihnen, ein realistisches und ein studiennahes Szenario aufzubauen und die Lernkurve durch gezielte Schulung zu beschleunigen."
+      answer: "Der Break-even hängt vor allem von Nutzerzahl, Stundensatz, Lizenzkosten, Einführungsaufwand und erreichter Zeitersparnis ab. Deshalb sollte er aus den konkreten Unternehmensdaten berechnet und über mindestens drei Jahre verfolgt werden. Die Copilotenschule hilft Ihnen, ein realistisches Szenario und einen Vergleich mit der Forrester-TEI-Studie aufzubauen und die Lernkurve durch gezielte Schulung zu beschleunigen."
     },
     {
       name: "Welche KPIs sollten wir für die Copilot-Erfolgsmessung definieren?",
@@ -286,7 +286,7 @@ const CopilotRoiBerechnen = () => {
               {/* Zwei Prognosen nebeneinander */}
               <div className="grid md:grid-cols-2 gap-8">
                 <div className="border-2 border-blue-500/30 rounded-lg p-4">
-                  <h4 className="font-bold text-blue-600 mb-1">Studiennah</h4>
+                  <h4 className="font-bold text-blue-600 mb-1">Forrester TEI</h4>
                   <p className="text-xs text-muted-foreground mb-4">9 Stunden Zielwert; durch Lernkurve Ø 7,99 Stunden im ersten Jahr</p>
                   <table className="w-full text-sm">
                     <tbody>
@@ -364,7 +364,7 @@ const CopilotRoiBerechnen = () => {
                         <td className="py-2 text-right font-bold text-green-600">88%</td>
                       </tr>
                       <tr>
-                        <td className="py-2 font-semibold text-blue-600">Studiennah</td>
+                        <td className="py-2 font-semibold text-blue-600">Forrester TEI</td>
                         <td className="py-2 text-right">€119.876</td>
                         <td className="py-2 text-right font-bold text-green-600">112%</td>
                       </tr>
@@ -391,7 +391,7 @@ const CopilotRoiBerechnen = () => {
             <Card className="border-2 border-blue-500/30 bg-gradient-to-br from-blue-500/5 to-cyan-500/5">
               <CardContent className="pt-6">
                 <div className="text-center">
-                  <p className="text-xs font-semibold text-blue-600 mb-1 uppercase tracking-wider">Studiennahes Szenario</p>
+                  <p className="text-xs font-semibold text-blue-600 mb-1 uppercase tracking-wider">Vergleich: Forrester TEI</p>
                   <p className="text-5xl font-bold text-blue-600 mb-2">9h</p>
                   <p className="text-lg font-semibold mb-1">Zeitersparnis pro Monat</p>
                   <p className="text-sm text-muted-foreground">pro aktivem Nutzer (≈ 5,2% bei 40h/Woche)</p>
@@ -527,7 +527,7 @@ const CopilotRoiBerechnen = () => {
                 <p className="text-sm mb-4">Training: €1.000 × 300 = €300.000 → <strong>Gesamt: €393.600</strong></p>
                 <div className="grid grid-cols-2 gap-3">
                   <div className="p-3 bg-blue-50 dark:bg-blue-950/30 rounded-lg">
-                    <p className="text-xs font-semibold text-blue-600 mb-1">Studiennah</p>
+                    <p className="text-xs font-semibold text-blue-600 mb-1">Forrester TEI</p>
                     <p className="text-xs">9h/Monat ergeben €1.620.000 Kapazitätswert</p>
                     <p className="text-xs">Davon 50% angesetzt: €810.000</p>
                     <p className="font-bold text-green-700 dark:text-green-400 mt-1">ROI: 106%</p>
@@ -748,10 +748,10 @@ const CopilotRoiBerechnen = () => {
             <Card className="border-t-4 border-t-blue-500">
               <CardHeader>
                 <CardTitle className="text-lg flex items-center gap-2">
-                  Studiennah
+                  Forrester TEI
                   <span className="text-xs bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 px-2 py-0.5 rounded">Vergleichswert</span>
                 </CardTitle>
-                <p className="text-xs text-muted-foreground">Nahe an Forrester und der britischen Regierungsstudie</p>
+                <p className="text-xs text-muted-foreground">Modellwert der Forrester-Studie „Total Economic Impact of Microsoft 365 Copilot“</p>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3 mb-6">
@@ -762,7 +762,7 @@ const CopilotRoiBerechnen = () => {
                 </div>
                 <div className="p-4 bg-blue-100 dark:bg-blue-900/30 rounded-lg text-center">
                   <p className="text-sm text-muted-foreground">Planungslogik</p>
-                  <p className="text-xl font-bold text-blue-700 dark:text-blue-400">Studiennaher Vergleich</p>
+                  <p className="text-xl font-bold text-blue-700 dark:text-blue-400">Vergleich mit Forrester TEI</p>
                 </div>
               </CardContent>
             </Card>
@@ -781,7 +781,7 @@ const CopilotRoiBerechnen = () => {
         {/* PowerPoint-Business-Case-Generator */}
         <section id="business-case-generator">
           <h2 id="business-case-generator-heading" className="text-2xl md:text-3xl font-bold mb-2">
-            Ihren Copilot Business Case als PowerPoint erstellen
+            Editierbare PowerPoint und Excel für Ihr Unternehmen erstellen
           </h2>
           <p className="text-sm text-muted-foreground mb-4">
             Ihre Berechnung erfolgt lokal im Browser. Für die Titelfolie rufen wir einmalig
@@ -1054,7 +1054,7 @@ const CopilotRoiBerechnen = () => {
               { nr: "1", title: "Eingaben", desc: "Nur fünf Pflichtangaben" },
               { nr: "2", title: "Summary", desc: "ROI & Entscheidung" },
               { nr: "3", title: "3-Jahres-Verlauf", desc: "Kumulierter Nutzen" },
-              { nr: "4", title: "Szenarien", desc: "Realistisch & studiennah" },
+              { nr: "4", title: "Szenarien", desc: "Realistisch & Forrester TEI" },
               { nr: "5", title: "Berechnung", desc: "36 Monate transparent" },
               { nr: "6", title: "Quellen", desc: "Methodik & Prüfungen" }
             ].map((tab) => (
