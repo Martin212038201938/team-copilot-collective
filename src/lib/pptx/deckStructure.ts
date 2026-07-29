@@ -23,7 +23,7 @@ export type SlideStructure =
   | { kind: "table"; lead?: string; header?: string[]; rows: string[][]; footnote?: string }
   | { kind: "formula"; lead?: string; factors: Pair[]; result: Pair; notes: string[] }
   | { kind: "tiles"; lead?: string; columns: number; tiles: Tile[]; footnote?: string }
-  | { kind: "numbers"; lead?: string; numbers: Pair[]; quote?: string }
+  | { kind: "numbers"; lead?: string; numbers: Pair[]; quote?: string; quoteAuthor?: string }
   | { kind: "chainAndColumns"; lead?: string; chain: Step[]; columns: Step[] };
 
 /** Erster Eintrag ist ein Lead, wenn er lang ist und keine Überschrift sein kann. */
@@ -178,11 +178,13 @@ export function structureFor(slide: DeckSlideContent): SlideStructure {
       // kürzer als der einleitende Absatz und wäre über eine Längenregel nicht zu fassen.
       const quoteIndex = rest.findIndex((t) => t.trimStart().startsWith("„"));
       const cells = quoteIndex >= 0 ? rest.slice(0, quoteIndex) : rest;
-      const quote = quoteIndex >= 0 ? rest.slice(quoteIndex).join("  ") : undefined;
+      // Zitat und Zitatgeber bleiben getrennt: Das Zitat wird kursiv gesetzt, der Name nicht.
+      const quote = quoteIndex >= 0 ? rest[quoteIndex] : undefined;
+      const quoteAuthor = quoteIndex >= 0 ? rest.slice(quoteIndex + 1).join(" · ") || undefined : undefined;
 
       const numbers: Pair[] = [];
       for (let i = 0; i + 1 < cells.length; i += 2) numbers.push({ value: cells[i], label: cells[i + 1] });
-      return { kind: "numbers", lead, numbers, quote };
+      return { kind: "numbers", lead, numbers, quote, quoteAuthor };
     }
 
     // 18 — Referenzkunden als Wortmarken. Der erste Eintrag ist die Einordnung und

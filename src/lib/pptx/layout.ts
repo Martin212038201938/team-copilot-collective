@@ -203,6 +203,9 @@ export function hairlineGrid(
         x, y: cursor + px(80), w: colW, h: opts.colH - px(100),
         fontFace: PPT_FONT.body, fontSize: pt(bodySize), color: opts.palette.secondary,
         lineSpacingMultiple: 1.25, valign: "top",
+        // PowerPoint bricht enger um als unsere Schätzung. Autofit ist die Rückversicherung,
+        // damit Text nie über die Haarlinie der nächsten Zeile hinausläuft.
+        shrinkText: true,
       });
     }
   });
@@ -268,7 +271,12 @@ export function kpiRow(
 /** Aussage mit rotem Rail links (Folien 03, 06, 17). */
 export function railStatement(
   slide: PptxGenJS.Slide,
-  opts: { x: number; y: number; w: number; text: string; palette: Palette; size?: number; maxH?: number }
+  opts: {
+    x: number; y: number; w: number; text: string; palette: Palette; size?: number; maxH?: number;
+    /** Zitatgeber – steht eine Zeile darunter und bleibt bewusst aufrecht. */
+    attribution?: string;
+    italic?: boolean;
+  }
 ): void {
   const railW = px(6);
   const size = opts.size ?? 34;
@@ -276,7 +284,13 @@ export function railStatement(
   // vier Zeilen lang; bei fester Höhe lief die vierte Zeile in die Fußzeile (Folie 06).
   const textW = opts.w - railW - px(28);
   const lines = estimateLines(opts.text, textW / px(1), size);
-  const h = Math.min(opts.maxH ?? Number.POSITIVE_INFINITY, Math.max(px(120), lines * size * 2.5));
+  const attributionH = opts.attribution ? px(56) : 0;
+  // px() umrechnen: size ist in Punkt, die Layoutmaße sind Zoll. Ohne die Umrechnung
+  // wären es Zoll statt Bildpunkte — der Block läge weit außerhalb der Folie.
+  const h = Math.min(
+    opts.maxH ?? Number.POSITIVE_INFINITY,
+    Math.max(px(120), px(lines * size * 2.5)) + attributionH
+  );
   slide.addShape("rect", {
     x: opts.x, y: opts.y, w: railW, h,
     fill: { color: PPT_THEME.signal }, line: { color: PPT_THEME.signal, width: 0 },
@@ -284,8 +298,16 @@ export function railStatement(
   slide.addText(opts.text, {
     x: opts.x + railW + px(28), y: opts.y, w: textW, h,
     fontFace: PPT_FONT.display, fontSize: pt(size), color: opts.palette.text,
+    italic: opts.italic ?? false,
     lineSpacingMultiple: 1.25, valign: "top",
   });
+
+  if (opts.attribution) {
+    slide.addText(opts.attribution, {
+      x: opts.x + railW + px(28), y: opts.y + h - attributionH + px(4), w: textW, h: attributionH - px(8),
+      fontFace: PPT_FONT.body, fontSize: pt(26), color: opts.palette.secondary, valign: "top",
+    });
+  }
 }
 
 /** Weiße Karte auf Paper bzw. abgesetzte Fläche auf Navy. */

@@ -25,6 +25,9 @@ export type DeckOverride = {
 };
 
 export const DECK_OVERRIDES: DeckOverride[] = [
+  // --- Folie 17: Zitatgeber ------------------------------------------------
+  { slide: 17, from: "Dirk Schöbel · General Manager, Marriott Hotel", to: "Dirk Schöbel, General Manager Marriott Köln" },
+
   // --- Folie 02: Blockbeschriftung ------------------------------------------
   { slide: 2, from: "Annahmen", to: "Konservative Annahmen machen" },
 

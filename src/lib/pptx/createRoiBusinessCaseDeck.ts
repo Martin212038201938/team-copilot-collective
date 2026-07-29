@@ -623,12 +623,12 @@ function renderStructure(
           fontFace: PPT_FONT.mono, fontSize: pt(24), color: PPT_THEME.sky, valign: "top",
         });
         slide.addText(fill(step.title), {
-          x, y: y + px(58), w: linkW, h: px(60),
+          x, y: y + px(58), w: linkW, h: px(76),
           fontFace: PPT_FONT.display, fontSize: pt(30), bold: true, color: p.text, valign: "top", shrinkText: true,
         });
       });
 
-      const colY = y + px(190);
+      const colY = y + px(210);
       hairlineGrid(slide, {
         x: PAD.side, y: colY, w: CONTENT_W, colH: Math.max(px(200), bottom - colY),
         columns: structure.columns.map((col) => ({ title: fill(col.title), body: col.body ? fill(col.body) : undefined })),
@@ -663,7 +663,8 @@ function renderStructure(
         });
         slide.addText(fill(item.body), {
           x: x + px(40), y: y + px(190), w: cardW - px(80), h: cardH - px(300),
-          fontFace: PPT_FONT.body, fontSize: pt(27), color: bodyColor, lineSpacingMultiple: 1.3, valign: "top",
+          fontFace: PPT_FONT.body, fontSize: pt(27), color: bodyColor,
+          lineSpacingMultiple: 1.3, valign: "top", shrinkText: true,
         });
         if (item.note) {
           slide.addText(fill(item.note), {
@@ -759,6 +760,27 @@ function renderStructure(
       const tileW = (CONTENT_W - gap * (cols - 1)) / cols;
       const tileH = Math.max(px(150), (available - footH - gap * (rows - 1)) / rows);
 
+      const padX = px(28);
+      const innerW = tileW - 2 * padX;
+
+      // Die Kacheln sind unterschiedlich beschriftet: manche Titel brauchen zwei Zeilen,
+      // manche Beschreibungen drei. Deshalb wird der Block je Kachel von oben nach unten
+      // aufgebaut und der Fließtext bekommt genau den Rest — vorher war die Höhe fest und
+      // längere Leistungsbeschreibungen liefen unten aus der Kachel heraus.
+      const titleLines = Math.max(
+        ...structure.tiles.map((t) => estimateLines(fill(t.title), innerW / px(1), 28))
+      );
+      const titleH = px(24) + titleLines * px(42);
+      const noteH = structure.tiles.some((t) => t.note) ? px(58) : 0;
+      const bodyY = titleH + noteH + px(12);
+      const bodyH = tileH - bodyY - px(20);
+      const bodySize = fitBodySize(
+        structure.tiles.map((t) => (t.body ? fill(t.body) : "")),
+        innerW,
+        bodyH,
+        23
+      );
+
       structure.tiles.forEach((tile, i) => {
         const x = PAD.side + (i % cols) * (tileW + gap);
         const ty = y + Math.floor(i / cols) * (tileH + gap);
@@ -767,23 +789,24 @@ function renderStructure(
         // Kacheln ohne Beschreibung sind Wortmarken (Folie 18) und stehen mittig.
         const isWordmark = !tile.body && !tile.note;
         slide.addText(fill(tile.title), {
-          x: x + px(28), y: ty + (isWordmark ? tileH / 2 - px(34) : px(24)), w: tileW - px(56), h: px(68),
+          x: x + padX, y: ty + (isWordmark ? tileH / 2 - px(34) : px(24)), w: innerW,
+          h: isWordmark ? px(68) : titleH - px(24),
           fontFace: PPT_FONT.display, fontSize: pt(isWordmark ? 30 : 28), bold: true, color: PPT_THEME.navy,
           valign: "top", shrinkText: true,
         });
         if (tile.note) {
           // Der Preis ist die Kernaussage der Kachel und steht direkt unter dem Titel.
           slide.addText(fill(tile.note), {
-            x: x + px(28), y: ty + px(92), w: tileW - px(56), h: px(52),
-            fontFace: PPT_FONT.display, fontSize: pt(34), bold: true, color: PPT_THEME.signal,
+            x: x + padX, y: ty + titleH, w: innerW, h: noteH - px(6),
+            fontFace: PPT_FONT.display, fontSize: pt(32), bold: true, color: PPT_THEME.signal,
             valign: "top", shrinkText: true,
           });
         }
         if (tile.body) {
           slide.addText(fill(tile.body), {
-            x: x + px(28), y: ty + px(154), w: tileW - px(56), h: tileH - px(180),
-            fontFace: PPT_FONT.body, fontSize: pt(23), color: PPT_THEME.body,
-            lineSpacingMultiple: 1.2, valign: "top",
+            x: x + padX, y: ty + bodyY, w: innerW, h: bodyH,
+            fontFace: PPT_FONT.body, fontSize: pt(bodySize), color: PPT_THEME.body,
+            lineSpacingMultiple: 1.2, valign: "top", shrinkText: true,
           });
         }
       });
@@ -815,14 +838,16 @@ function renderStructure(
         slide.addText(fill(n.label), {
           x, y: y + px(126), w: colW, h: blockH - px(140),
           fontFace: PPT_FONT.body, fontSize: pt(25), color: p.secondary,
-          lineSpacingMultiple: 1.25, valign: "top",
+          lineSpacingMultiple: 1.25, valign: "top", shrinkText: true,
         });
       });
       hairline(slide, PAD.side, y + blockH, CONTENT_W, p.hairline);
 
       if (structure.quote) {
         railStatement(slide, {
-          x: PAD.side, y: y + blockH + px(70), w: CONTENT_W, text: fill(structure.quote), palette: p, size: 32,
+          x: PAD.side, y: y + blockH + px(70), w: CONTENT_W, text: fill(structure.quote),
+          palette: p, size: 32, italic: true,
+          attribution: structure.quoteAuthor ? fill(structure.quoteAuthor) : undefined,
         });
       }
       return;
