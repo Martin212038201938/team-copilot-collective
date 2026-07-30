@@ -155,6 +155,34 @@
 
   <body>
     <div id="root"></div>
+
+    <!--
+      Eingaben retten, die vor dem Start der App gemacht werden.
+
+      Die Seiten sind vorgerendert: Formularfelder sind sichtbar und bedienbar, bevor React
+      übernimmt. Wer in dieser Lücke tippt, verliert die Eingabe, weil React die Felder mit
+      ihrem Anfangszustand neu aufbaut. Dieses Skript läuft als erstes im Dokument, schreibt
+      jede Eingabe unter der Feld-ID mit, und die Formulare holen sie beim Mount wieder ab
+      (siehe src/hooks/use-early-input.ts).
+
+      Bewusst ohne Abhängigkeiten und in einfachem ES5, damit es garantiert vor dem Bundle
+      ausgeführt wird. Die Werte bleiben ausschließlich im Speicher des Tabs.
+    -->
+    <script>
+      window.__earlyInput = {};
+      document.addEventListener(
+        "input",
+        function (event) {
+          var el = event.target;
+          if (!el || !el.id) return;
+          if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
+            window.__earlyInput[el.id] = el.value;
+          }
+        },
+        true
+      );
+    </script>
+
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

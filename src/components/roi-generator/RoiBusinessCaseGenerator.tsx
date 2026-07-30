@@ -1,12 +1,10 @@
 import { useState } from "react";
 import RoiInputForm from "./RoiInputForm";
-import RoiInputFormSkeleton from "./RoiInputFormSkeleton";
 import RoiResultPreview from "./RoiResultPreview";
 import RoiDeliveryForm from "./RoiDeliveryForm";
 import { calculateRoiBusinessCase } from "@/lib/roi/calculate";
 import type { RoiBusinessCase } from "@/lib/roi/types";
 import type { RoiInputFormParsed } from "@/lib/roi/roiGeneratorSchema";
-import { useHydrated } from "@/hooks/use-hydrated";
 
 /**
  * Orchestriert den ROI-Business-Case-Generator: Eingabe → sofortige, ungegatete
@@ -17,9 +15,6 @@ import { useHydrated } from "@/hooks/use-hydrated";
 const RoiBusinessCaseGenerator = () => {
   const [businessCase, setBusinessCase] = useState<RoiBusinessCase | null>(null);
   const [m365Users, setM365Users] = useState(0);
-  // Die Eingabemaske erscheint erst, wenn React die vorgerenderte Seite übernommen hat.
-  // Vorher stünde dort ein Feld, das Eingaben annimmt und sie beim Hydratisieren verliert.
-  const hydrated = useHydrated();
 
   const handleCalculated = (values: RoiInputFormParsed) => {
     const bc = calculateRoiBusinessCase({
@@ -41,7 +36,7 @@ const RoiBusinessCaseGenerator = () => {
         in der Sie alle Parameter selbst variieren können.
       </p>
 
-      {hydrated ? <RoiInputForm onCalculated={handleCalculated} /> : <RoiInputFormSkeleton />}
+      <RoiInputForm onCalculated={handleCalculated} />
 
       {businessCase && (
         <>

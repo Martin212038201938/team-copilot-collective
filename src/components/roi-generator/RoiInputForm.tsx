@@ -13,6 +13,7 @@ import {
   HOURLY_COST_SOURCE_URL,
   HOURLY_COST_SOURCE_LABEL,
 } from "@/lib/roi/roiGeneratorSchema";
+import { useEarlyInput } from "@/hooks/use-early-input";
 
 type Props = {
   onCalculated: (values: RoiInputFormParsed) => void;
@@ -22,12 +23,26 @@ const RoiInputForm = ({ onCalculated }: Props) => {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<RoiInputFormValues>({
     resolver: zodResolver(roiInputFormSchema),
     mode: "onBlur",
     defaultValues: ROI_INPUT_DEFAULTS,
   });
+
+  // Wer sofort nach dem Seitenaufruf tippt, war schneller als das JavaScript. Die Werte
+  // stehen dann im Zwischenspeicher aus index.html und werden hier übernommen.
+  useEarlyInput(
+    {
+      "roi-companyName": "companyName",
+      "roi-m365Users": "m365Users",
+      "roi-users": "users",
+      "roi-hourlyCost": "hourlyCostEur",
+      "roi-license": "licensePerUserMonthEur",
+    } as const,
+    (field, value) => setValue(field, value, { shouldValidate: false })
+  );
 
   const onSubmit = (values: RoiInputFormValues) => {
     onCalculated(parseRoiInputForm(values));
