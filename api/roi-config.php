@@ -11,8 +11,12 @@ define('ROI_BOOKING_URL', 'https://outlook.office.com/book/CopilotErstgesprch@ye
 define('ROI_FILE_TTL_DAYS', 7);
 
 // Erinnerungs-Kadenz, jeweils ab ready_email_sent_at gerechnet.
-define('ROI_REMINDER_1_HOURS', 24);
-define('ROI_REMINDER_2_HOURS', 48);
+//
+// ACHTUNG — VORÜBERGEHEND AUF 0 GESETZT (30.07.2026, Verifikation des Erinnerungs-Crons).
+// Mit 0 Stunden verschickt der nächste stündliche Lauf beide Erinnerungen an jeden noch
+// nicht abgeholten Business Case. Unmittelbar nach der Prüfung zurückstellen auf 24 / 48.
+define('ROI_REMINDER_1_HOURS', 0);
+define('ROI_REMINDER_2_HOURS', 0);
 
 // Maximale Upload-Größe der fertigen PPTX (Konzept: <3 MB ohne Logo, <5 MB mit Logo → Puffer).
 define('ROI_MAX_UPLOAD_BYTES', 8 * 1024 * 1024);
