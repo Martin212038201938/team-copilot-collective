@@ -29,6 +29,21 @@ require_once __DIR__ . '/roi-config.php';
 require_once __DIR__ . '/roi-db.php';
 require_once __DIR__ . '/roi-mailer.php';
 
+/**
+ * Erst prüfen, ob überhaupt eine Datenbankverbindung steht.
+ *
+ * Ohne diese Zeile sieht ein Lauf ohne Datenbank exakt so aus wie ein Lauf ohne fällige
+ * Erinnerungen: überall Null, exit code 0. Genau das hat die Fehlersuche am 30.07.2026
+ * unnötig lang gemacht. Die Zugangsdaten kommen entweder aus api/db-config-local.php oder
+ * aus Umgebungsvariablen — letztere stehen einem Cron-Prozess nicht automatisch zur
+ * Verfügung, auch wenn die Website sie hat.
+ */
+$dbOk = getDbConnection() !== null;
+if (!$dbOk) {
+    echo "roi-reminder-cron: FEHLER — keine Datenbankverbindung. Erinnerungen wurden NICHT geprüft.\n";
+    exit(1);
+}
+
 $sentReminder1 = 0;
 $sentReminder2 = 0;
 $purged = 0;
@@ -68,4 +83,10 @@ foreach (roiFindExpiredNotYetPurged() as $delivery) {
     $purged++;
 }
 
-echo "roi-reminder-cron: reminder1={$sentReminder1} reminder2={$sentReminder2} invites={$sentInvites} purged={$purged}\n";
+// Offene Fälle mitzählen: So ist im Log unterscheidbar, ob nichts zu tun war oder ob
+// etwas zu tun gewesen wäre und nicht getan wurde.
+$offen = count(roiFindDueForReminder1(ROI_REMINDER_1_HOURS));
+
+echo "roi-reminder-cron: db=ok reminder1={$sentReminder1} reminder2={$sentReminder2}"
+    . " invites={$sentInvites} purged={$purged} nochOffen={$offen}"
+    . " schwellen={" . ROI_REMINDER_1_HOURS . "h/" . ROI_REMINDER_2_HOURS . "h}\n";
