@@ -107,8 +107,8 @@ const CopilotTraining = () => {
   return (
     <>
       <SEOHead
-        title="Copilot-Weiterbildung für Mitarbeitende: produktiv nutzen"
-        description="Welche Copilot-Weiterbildungen machen Mitarbeitende wirklich produktiv? Praxisnahe deutschsprachige Formate im Überblick – von Grundlagen bis Lernreise."
+        title="Copilot Training für Unternehmen: Formate, Ablauf & Kosten 2026"
+        description="Welches Copilot Training macht Mitarbeitende wirklich produktiv? Inhouse-Training, Workshop & Lernreise im Vergleich – mit Preisen, Ablauf und Anbieter-Empfehlung."
         keywords={[
           "Microsoft Copilot Training",
           "Copilot Schulung",

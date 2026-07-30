@@ -6,6 +6,8 @@ import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import AuthorBio from "@/components/AuthorBio";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 import { Link } from "react-router-dom";
+import RoiGeneratorTeaserBanner from "@/components/roi-generator/RoiGeneratorTeaserBanner";
+import RoiBusinessCaseGenerator from "@/components/roi-generator/RoiBusinessCaseGenerator";
 
 const SLUG = "microsoft-copilot-lizenzen";
 const PAGE_TITLE = "Microsoft Copilot Lizenzen";
@@ -27,6 +29,7 @@ const CopilotLicenses = () => {
     { id: "kosten-unternehmen", title: "Kosten für Unternehmen", level: 2 },
     { id: "comparison", title: "Lizenzvergleich", level: 2 },
     { id: "recommendations", title: "Welche Lizenz brauche ich?", level: 2 },
+    { id: "business-case-generator", title: "ROI berechnen: Excel & PowerPoint", level: 2 },
     { id: "faq", title: "Häufig gestellte Fragen", level: 2 },
     { id: "quellen", title: "Quellen und Links", level: 2 }
   ];
@@ -103,8 +106,8 @@ const CopilotLicenses = () => {
   return (
     <>
       <SEOHead
-        title="Microsoft 365 Copilot Preis 2026: ab 15,60 € – alle Lizenzen"
-        description="Copilot-Preise 2026 für Deutschland: M365 Business ab 15,60 €/User (Aktionspreis bis Sept. 2026), Enterprise ab 26 €. Vergleich mit GitHub Copilot & Copilot Studio – Stand Juli 2026."
+        title="Copilot Kosten & Lizenzen 2026: ab 15,60 €/Nutzer – Vergleich"
+        description="Microsoft Copilot Kosten 2026: Business ab 15,60 €, Enterprise 26 €. Lizenzvergleich, ROI-Rechner und Empfehlung für Ihr Unternehmen – Stand Juli 2026."
         keywords={[
           "Microsoft Copilot Lizenz",
           "Microsoft 365 Copilot Preis",
@@ -191,6 +194,11 @@ const CopilotLicenses = () => {
             </CardContent>
           </Card>
         </section>
+
+        {/* ROI-Generator Teaser: scrollt zu #roi-generator weiter unten */}
+        <div className="mb-6 mt-2">
+          <RoiGeneratorTeaserBanner />
+        </div>
 
         {/* Kontextueller Hinweis: Trainings */}
         <div className="mb-6 p-4 bg-muted/40 border rounded-lg text-sm">
@@ -777,6 +785,20 @@ const CopilotLicenses = () => {
               </CardContent>
             </Card>
           </div>
+        </section>
+
+        {/* ROI-Generator */}
+        <section id="business-case-generator" className="mt-12 mb-4">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">ROI berechnen: Editierbare Excel & PowerPoint für Ihr Unternehmen</h2>
+          <p className="text-muted-foreground mb-6">
+            Lizenzkosten allein entscheiden nicht über den Business Case — die Zeitersparnis Ihrer Mitarbeitenden schon.
+            Tragen Sie Ihre Unternehmensdaten ein und erhalten Sie eine fertige Entscheidungsvorlage (PowerPoint) und ein
+            editierbares Rechenmodell (Excel) direkt per E-Mail.{" "}
+            <Link to="/wissen/copilot-roi-berechnen" className="text-primary hover:underline font-medium">
+              Mehr zur ROI-Methodik und den Berechnungsgrundlagen →
+            </Link>
+          </p>
+          <RoiBusinessCaseGenerator />
         </section>
 
         <section id="faq" className="mt-12 mb-12">
