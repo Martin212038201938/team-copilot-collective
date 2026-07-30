@@ -123,7 +123,12 @@ if ($isFirstDownload) {
     }
 }
 
-$slug = preg_replace('/[^A-Za-z0-9\-]/', '', str_replace(' ', '-', (string) $delivery['company_name']));
+// Umlaute umschreiben, bevor alles Nicht-ASCII entfernt wird: aus "Frühtipper AG" wurde
+// sonst "Frhtipper-AG" im Dateinamen.
+$slug = strtr((string) $delivery['company_name'], [
+    'ä' => 'ae', 'ö' => 'oe', 'ü' => 'ue', 'Ä' => 'Ae', 'Ö' => 'Oe', 'Ü' => 'Ue', 'ß' => 'ss',
+]);
+$slug = preg_replace('/[^A-Za-z0-9\-]/', '', str_replace(' ', '-', $slug));
 $slug = $slug !== '' ? '-' . $slug : '';
 
 if ($type === 'xlsx') {
