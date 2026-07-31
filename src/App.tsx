@@ -51,6 +51,7 @@ import CopilotChatPernodRicard from "./pages/CopilotChatPernodRicard";
 import CopilotAgentDigitalesGedaechtnis from "./pages/CopilotAgentDigitalesGedaechtnis";
 import CopilotFuerExcel from "./pages/CopilotFuerExcel";
 import KiSchulungMitarbeiterPflicht from "./pages/KiSchulungMitarbeiterPflicht";
+import KiKennzeichnungspflicht from "./pages/KiKennzeichnungspflicht";
 import Microsoft365E7FrontierSuite from "./pages/Microsoft365E7FrontierSuite";
 import CopilotClaudeIntegration from "./pages/CopilotClaudeIntegration";
 import CopilotCoworkAbrechnungCredits from "./pages/CopilotCoworkAbrechnungCredits";
@@ -130,6 +131,7 @@ const App = () => (
           <Route path="/wissen/copilot-agent-digitales-gedaechtnis" element={<CopilotAgentDigitalesGedaechtnis />} />
           <Route path="/wissen/copilot-fuer-excel" element={<CopilotFuerExcel />} />
           <Route path="/wissen/ki-schulung-mitarbeiter-pflicht" element={<KiSchulungMitarbeiterPflicht />} />
+          <Route path="/wissen/ki-kennzeichnungspflicht-eu-ai-act" element={<KiKennzeichnungspflicht />} />
           <Route path="/wissen/microsoft-365-e7-frontier-suite" element={<Microsoft365E7FrontierSuite />} />
           <Route path="/wissen/claude-in-microsoft-copilot" element={<CopilotClaudeIntegration />} />
           <Route path="/wissen/copilot-cowork-abrechnung-copilot-credits" element={<CopilotCoworkAbrechnungCredits />} />

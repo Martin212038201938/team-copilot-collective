@@ -30,6 +30,17 @@ export interface ArticleData {
 // Alle Artikel - sortiert nach Veröffentlichungsdatum (neueste zuerst)
 export const ALL_ARTICLES: ArticleData[] = [
   {
+    id: "ki-kennzeichnungspflicht-eu-ai-act",
+    title: "KI-Kennzeichnungspflicht: Was ab 2. August 2026 gilt",
+    description: "Artikel 50 EU AI Act wird am 2. August 2026 anwendbar. Entscheidungsbaum für Text und Bild, Anbieter- vs. Betreiberpflichten, Fristen und Bußgelder.",
+    link: "/wissen/ki-kennzeichnungspflicht-eu-ai-act",
+    badge: "Recht & Compliance",
+    icon: "§",
+    lastUpdated: "31. Juli 2026",
+    publishDate: "2026-07-31",
+    publishTime: "09:00"
+  },
+  {
     id: "copilot-roi-berechnen",
     title: "Copilot ROI berechnen: Lohnt sich die Investition?",
     description: "Praxisnahe Methoden zur ROI-Berechnung für Microsoft Copilot. Mit konkreten Formeln, Beispielrechnungen und Benchmarks.",

@@ -174,7 +174,7 @@ const knowledgeSlugs = [
   'warum-verteiltes-lernen-bei-copilot-trainings-funktioniert', 'copilot-adhs-produktiver-arbeiten',
   'copilot-vertrieb-use-cases', 'copilot-hr-use-cases', 'ki-halluzinationen-vermeiden',
   'copilot-chat-free-pernod-ricard', 'copilot-agent-digitales-gedaechtnis', 'copilot-fuer-excel',
-  'ki-schulung-mitarbeiter-pflicht', 'microsoft-365-e7-frontier-suite', 'claude-in-microsoft-copilot',
+  'ki-schulung-mitarbeiter-pflicht', 'ki-kennzeichnungspflicht-eu-ai-act', 'microsoft-365-e7-frontier-suite', 'claude-in-microsoft-copilot',
   'copilot-in-teams-zeit-gewinnen', 'copilot-in-outlook-nutzen-tipps', 'microsoft-copilot-schulung-online',
   'copilot-betriebsrat', 'copilot-in-excel-aktivieren', 'copilot-flex-routing-eu-verarbeitung',
   'copilot-im-unternehmen-einfuehren-leitfaden', 'bessere-entscheidungen-mit-ki',
