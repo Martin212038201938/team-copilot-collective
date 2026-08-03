@@ -2,7 +2,13 @@
 
 **Lebendes Dokument** — Cron-Jobs pflegen dieses File. Hier sammeln sich die Pattern-Erkenntnisse aus Microsoft Clarity, die wir auf andere Seiten übertragen oder gegen UX-Probleme einsetzen können.
 
-**Letzter automatischer Update:** 27. Juli 2026 (Wöchentlicher Audit — **zweite Woche in Folge ohne 5b/5c/AlwaysData**: diesmal ist Chrome verbunden, aber alle drei Dashboards sind konto-blockiert (GSC: martin@yellow-boat.com ohne Property-Zugriff; AlwaysData: kein Login; Clarity-Dashboard: Konto nicht für Projekt wxppg5394j berechtigt). Standard-Clarity via API OK (2 Calls, 1× 502-Retry). Dead-Click **weiter eskaliert auf 14,95 % API-3T** (Vorwoche 13,95 %) — dritte Messung im Anstieg (8,62 → 13,95 → 14,95), Treiber präsumtiv organisch (ArticlePopup), 5c-Gegenprüfung mangels Dashboard nicht möglich. GSC (Snapshot 24.07., eingefroren): Klicks 1250→1320, Impr. 101k→106k, Pos. 9,1 flat. **A6-Coverage stagniert >3 Wochen bei 62,8 % / Summe 23** → Issue. Goldene Pages: Lizenzen + Claude-in-Copilot. Vorwoche: SEA 59→82 Sess. (+39 %), Outbound 38→36 (flat, 0 Conv.))
+**Letzter automatischer Update:** 3. August 2026 (Wöchentlicher Audit — **alle Dashboards nach 2 Wochen wieder zugänglich** (Chrome + GSC-/AlwaysData-/Clarity-Konten): GSC frisch (Klicks 1.320→**1.520/3M** +15,2 %, Impr. 106k→**122k**, Pos. 9,1→**8,9**; Indexierung **72/109 = 66,1 %**, bestes im Band, aber Summe nicht-indexiert 23→**25**, gefunden-nicht-indexiert 11→15). Dead-Click **entspannt: API 3T 9,52 %** (von 14,95 %, erstmals seit 3 Wochen unter 10 %; cpc 2,08 %/email 0 % → Treiber organisch). Kontakt-Conversions **wieder sichtbar** (Formular absenden 6 + weitere → ~1,4 % Conversion-Rate vs. 0,42 %). Traffic-Mix 7T: Organic ~591 / SEA 48 / Outbound 8. Outbound-LP weiter 0 Conv. >5 Wochen. Goldene Pages: Lizenzen + Copilot-Cowork-Abrechnung. Vorwoche 27.07.: Dashboards konto-blockiert, Dead-Click 14,95 %, A6 62,8 %.)
+
+<details><summary>Ältere Kopfzeile (27.07.)</summary>
+
+**27. Juli 2026 (Wöchentlicher Audit — **zweite Woche in Folge ohne 5b/5c/AlwaysData**: diesmal ist Chrome verbunden, aber alle drei Dashboards sind konto-blockiert (GSC: martin@yellow-boat.com ohne Property-Zugriff; AlwaysData: kein Login; Clarity-Dashboard: Konto nicht für Projekt wxppg5394j berechtigt). Standard-Clarity via API OK (2 Calls, 1× 502-Retry). Dead-Click **weiter eskaliert auf 14,95 % API-3T** (Vorwoche 13,95 %) — dritte Messung im Anstieg (8,62 → 13,95 → 14,95), Treiber präsumtiv organisch (ArticlePopup), 5c-Gegenprüfung mangels Dashboard nicht möglich. GSC (Snapshot 24.07., eingefroren): Klicks 1250→1320, Impr. 101k→106k, Pos. 9,1 flat. **A6-Coverage stagniert >3 Wochen bei 62,8 % / Summe 23** → Issue. Goldene Pages: Lizenzen + Claude-in-Copilot. Vorwoche: SEA 59→82 Sess. (+39 %), Outbound 38→36 (flat, 0 Conv.))
+
+</details>
 
 ---
 
@@ -199,6 +205,61 @@ nach ca. 2 Wochen Laufzeit empfohlen.
 ## Logs (neueste oben — automatisch von Cron-Jobs gepflegt)
 
 <!-- ab hier ergänzen Cron-Jobs ihre Befunde -->
+
+---
+
+### 2026-08-03 — Methoden-Notiz (positiv): Dashboards nach 2 Wochen wieder vollständig zugänglich
+**Quelle:** Cron-Lauf 2026-08-03 (weekly)
+**Beobachtung:** Chrome-Extension verbunden UND alle drei zuvor blockierten Quellen wieder offen: **GSC** (martin@yellow-boat.com hat wieder Property-Zugriff, Leistung 3M frisch vor 4,5 h aktualisiert), **AlwaysData** (Login aktiv), **Clarity-Dashboard** (Konto für Projekt `wxppg5394j` berechtigt — Smart Events + Medium-Segmentierung wieder abrufbar). Damit sind 5b (Conversion-Events), 5c (cpc/email-Split) und Schritt 4 (AlwaysData) erstmals seit 13.07. wieder vollständig erfasst.
+**Konsequenz:** Die in den Läufen 20.07. + 27.07. ausgesetzten Segmente sind nachgeholt. Conversion-Tracking + Kampagnen-Segmentierung wieder funktionsfähig.
+**Handlung:** Keine Eskalation nötig. Falls die Blockade wiederkehrt: Ursache war wechselnd (Extension offline bzw. Konto-Berechtigung) → beim nächsten Ausfall erneut Chrome-Login + Clarity-/GSC-Kontozuordnung prüfen.
+
+---
+
+### 2026-08-03 — Trend (positiv): Dead-Click entspannt — API 3T 9,52 % (erstmals seit 3 Wochen unter Schwelle)
+**Beobachtungs-Zeitraum:** 27.07. – 03.08.2026 (Clarity API 3T, 168 Sess.) + Dashboard 7T (10,66 %, 69 Sess.)
+**Event:** Dead-Click-Rate (Tote Klicks)
+**Trend:** API 3T **9,52 %** (Vorwoche 14,95 %, davor 13,95 %) → deutlicher Rückgang, **unter der 10 %-Schwelle** (Schritt 7c). Dashboard 7T 10,66 % (knapp über 10 %, aber stark gefallen). Rage 0 %, Quick-Back 0 %, Excessive-Scroll 0 %, Übermäßige Klicks 0,15 % — sonst ruhig. Scrolltiefe 44,8 %, aktive Zeit 67 s.
+**5c-Gegenprüfung (wieder möglich):** cpc-Segment Dead-Click **2,08 %** (1 Sess.), email 0 % → Treiber bleibt eindeutig **organisch** (globales `ArticlePopup` via `ContentLayout.tsx`), NICHT Kampagne. Bestätigt das dokumentierte Zickzack-Mix-Muster (21,4 → 8,65 → 17 → 8,62 → 13,95 → 14,95 → **9,52 %**), das von der Wochen-Mischung Wissensartikel-Traffic abhängt.
+**Bewertung:** Keine Eskalation (Leitwert API-3T unter Schwelle). Kein neuer Cron. Fix-Draft `docs/drafts/clarity-fix-copilot-in-outlook-nutzen-tipps.md` (seit 17.06.) bleibt als optionale strukturelle Absicherung liegen, ist aber nicht dringlich.
+**Status:** identifiziert — entspannt, weiter grenzwertig im 7T-Fenster; Fix-Draft optional.
+
+---
+
+### 2026-08-03 — Trend (positiv): Organik +15 % W/W — GSC 3M Klicks 1.320 → 1.520
+**Beobachtungs-Zeitraum:** 27.07. – 03.08.2026 (GSC 3M, rein organisch, frisch aktualisiert vor 4,5 h)
+**Event:** Organischer Suchtraffic (GSC, kampagnen-unberührt)
+**Trend:** GSC 3M Klicks **1.320 → 1.520 (+15,2 %)**, Impr. **106.000 → 122.000 (+15,1 %)**, Pos. **9,1 → 8,9** (verbessert). Stärkste W/W-Bewegung seit Wochen, knapp unter der +25 %-„Verstärken"-Schwelle. Clarity-3T-Referrer bestätigen organische Dominanz: Direct 76, Google 69, Bing 3, Ecosia/Teams-CDN im Rest. Traffic-Mix 7T: Organic ~591 (91 %), cpc 48, email 8.
+**Handlung:** Beobachten/Verstärken — organischer Kern gesund, GEO-/Content-Sog hält an. Excel-Aktivieren-Cluster bleibt stärkster Query-Bringer (copilot in excel aktivieren 61 Kl./3M).
+
+---
+
+### 2026-08-03 — Beobachtung (positiv): Kontakt-Conversions wieder sichtbar — Conversion-Rate ~1,4 %
+**Quelle:** Cron-Lauf 2026-08-03 (weekly) — Clarity Smart Events 7T (Dashboard wieder zugänglich)
+**Beobachtung:** Nach 2 Wochen ohne Dashboard-Zugang sind die Kontakt-Conversions wieder messbar und **klar positiv**: Formular absenden **6**, Kontaktieren Sie uns 1, Zitat anfordern 1, Bestellung erfolgreich 1, lead 4, roi_generator_ppt_success 2, pdf_download 2, Herunterladen 3, Ausgehender Klick 2, sml_landing_page_visit 4. Direkte Kontakt-Conversions ≈ **9** / 647 Sess. → **~1,4 %** (bzw. ~2,0 % inkl. lead) — deutlich über den ~0,42 % von Mitte Juli. **Defekt-Check 7e:** kein Event von ≥3 auf 0 gefallen → kein Code-Defekt.
+**Aber:** Funnel „Lead-Reise SEO→Angebot→Kontakt" weiter 0 % E2E — die Content→Angebot-Brücke (Stufe 1→2) bleibt der Bruch. Outbound-Segment nur **8 Sess./7T** (Vorwochen 36), `sml_landing_page_visit` feuert 4×, weiter **0** `sml_booking_click`/`sml_contact_click` → Outbound-LP `/sml/hr-tipps_2026` konvertiert kumuliert >5 Wochen bei 0 (überfällige manuelle Überarbeitung).
+**Handlung:** Positiv verbuchen (Kontakt-Tracking intakt & konvertiert). Hebel bleiben: (1) CTA-Brücke Content→Angebot ausbauen, (2) Outbound-LP above-the-fold überarbeiten.
+**Status:** identifiziert — Conversion-Basis gesund, Funnel-Brücke + Outbound-LP offen (user-gebunden).
+
+---
+
+### 2026-08-03 — Issue-Update: A6-Index-Coverage — Quote 66,1 % (bestes im Band), Summe nicht-indexiert 25
+**Quelle:** Cron-Lauf 2026-08-03 (weekly) — GSC frischer Property-Zugriff
+**Betroffene Ebene:** Index-Coverage gesamt (Maßnahme A6)
+**Symptom:** Indexierung **72/109 = 66,1 %** — bestes im dokumentierten Band (62,8–66,1 %), +3,3 pp ggü. 27.07. Aber Summe nicht-indexiert (gecrawlt **10** + gefunden **15**) = **25** (vs. 23 am 27.07., +2, unter der 3-W/W-Eskalationsschwelle). Auffällig: **gefunden-nicht-indexiert springt 11 → 15** (neu entdeckte URLs noch nicht gecrawlt), gecrawlt-nicht-indexiert sinkt 12 → 10. Weit vom DoD-Ziel 90 %. Regel Schritt 8: „stagniert > 3 Wochen → Issue" greift weiter.
+**Hypothese:** Neue Sitemap-URLs werden entdeckt, aber nicht zeitnah gecrawlt/indexiert — internes Linkgewicht auf die Nachzügler weiter zu dünn. Die 01.07. gebauten 16 additiven Links wirken (9/13 Zielseiten indexiert, Quote steigt), reichen aber für die „gefunden"-Neuzugänge nicht.
+**Empfohlene Maßnahme:** A6-Draft `docs/drafts/index-coverage-interne-verlinkung-2026-06-16.md` nachschärfen — zusätzliche additive Links auf die 15 „gefunden-nicht-indexiert"-Seiten aus Top-Performern (claude-in-microsoft-copilot 248 Kl., copilot-in-excel-aktivieren 201 Kl.), dann IndexNow-Resubmit. Rein additiv, Protected Pages ausgespart. Kein Push durch Cron.
+**Status:** identifiziert — Quote verbessert, Summe stagniert; wartet auf User-Umsetzung (Draft-Nachschärfung + Push).
+
+---
+
+### 2026-08-03 — Cross-Korrelation: Goldene Pages (GSC × Clarity, präsumtiv organic)
+**Quelle:** Cron-Lauf 2026-08-03 (weekly) — GSC Top-Klick-Bringer-Seiten 3M (frisch) × Clarity Top-Pages 3T (API)
+**Goldene Pages (in beiden stark):**
+- `/wissen/microsoft-copilot-lizenzen` (GSC 160 Kl./3M, Lizenz/Kosten-Cluster; Clarity 13 Visits)
+- `/wissen/copilot-cowork-abrechnung-copilot-credits` (GSC 123 Kl./3M + Query „copilot cowork kosten" 10; Clarity **#3**, 13 Visits) — **neu aufgestiegen**, zieht organischen Such-Traffic UND wird real besucht → idealer CTA-Brücke-Kandidat.
+**Ungenutztes Potential:** Die GSC-**#1-Seite** `/wissen/claude-in-microsoft-copilot` (**248 Kl./3M**) taucht diese Woche **nicht** in den Clarity-Top-5 auf — hohe Such-Sichtbarkeit, geringe On-Site-Präsenz. Ebenso `/wissen/copilot-in-excel-aktivieren` (201 Kl., Excel-Cluster 102 Kl./3M) — unveränderte Dauer-Lücke.
+**Handlung:** Beim nächsten CTA-Welle-Schritt claude-in-microsoft-copilot + Excel-Aktivieren-Seite priorisieren (interne Verlinkung + CTA-Brücke), um den Such-Traffic On-Site zu aktivieren.
 
 ---
 

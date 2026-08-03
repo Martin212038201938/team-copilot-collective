@@ -8,6 +8,44 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 
 ## Logs
 
+### 2026-08-03 — Wöchentlicher Audit (Cron)
+
+**Phase:** Phase 3 — Content-Block (aktiv, kein Wechsel), DoD 4/8
+**SSR-Audit:** ✅ 67 / 🟡 0 / 🔴 0 (von 67) — via `seo-monitoring/recheck.sh` (audit-live.sh weiterhin nicht im Mount)
+- Neu in 🔴/✅: keine (stabil, DoD #2 gewahrt; Regressions-Wächter, 🔴 < 5 → keine Eskalation). Baseline-Vergleich 04.05.: Helmet-Flush 31 → 67 (Δ +36), Empty 0, Double-Desc 0.
+
+**GSC** ✅ **wieder frischer Zugriff** (Chrome-Account martin@yellow-boat.com hat diese Woche Property-Zugriff — nach 2 Wochen Blockade). Indexierung: **72 indexiert / 37 nicht indexiert = 109 gesamt → 66,1 %** (Index-Report Stand 24.07.). Leistung 3M **frisch (vor 4,5 h aktualisiert)**: Klicks **1.520/3M**, Impr. **122.000**, CTR 1,2 %, Pos. **8,9**. W/W ggü. 27.07.-Werten (1.320 / 106.000 / 9,1): **+200 Klicks (+15,2 %), +16.000 Impr. (+15,1 %), Pos. 9,1 → 8,9 (verbessert)** — stärkste W/W-Bewegung seit Wochen, unter +25 %-„Verstärken"-Schwelle. A6-Summe nicht-indexiert: gecrawlt (**10**) + gefunden (**15**) = **25** (vs. 23 am 27.07., +2; gefunden-nicht-indexiert 11→15, gecrawlt 12→10). Weitere Gründe: Weiterleitung 9, alternative kanonische Seite 2, robots.txt 1. Top-Klick-Bringer-Queries: copilot in excel aktivieren (61), excel copilot aktivieren (25), copilot excel aktivieren (16), copilot cowork kosten (10), copilot kosten (9), copilot claude (7), copilot lizenz kosten (6) → >5 verschiedene Cluster (DoD #5 ✅). Top-Klick-Bringer-Seiten: claude-in-microsoft-copilot (248 Kl.), copilot-in-excel-aktivieren (201), ki-halluzinationen-vermeiden (180), microsoft-copilot-lizenzen (160), copilot-cowork-abrechnung-copilot-credits (123), copilot-in-outlook-nutzen-tipps (105).
+
+**AlwaysData:** ✅ **wieder erfasst** (Login aktiv). Visits 24h: **400**. Aktueller Monat August (3 Tage): **974** (MTD, −95,67 % ggü. Juli-Gesamt erwartungsgemäß, da Monatsanfang). Juli final: **22.503** (+70,14 % M/M ggü. Juni 13.226) — Rekordmonat inkl. Paid/Outbound. Gesamt 2026 YTD: 68.312.
+
+**Traffic-Mix (Clarity 7T):** Gesamt **647** | Organic/Direct/Rest **~591 (91 %)** | SEA (cpc) **48 (7,4 %)** | Outbound (email) **8 (1,2 %)**. — Alle Segmente diese Woche sauber messbar (Dashboard wieder zugänglich).
+
+**Clarity Standard (3T, via API, 1 Call):**
+- Sessions: 168 (davon 23 Bots, 195 Unique Users), 1,00 Seiten/Sitzung
+- Scrolltiefe: 44,8 %, Aktive Zeit: 67 s
+- Dead-Click: **9,52 %** (↓ von 14,95 %, erstmals seit 3 Wochen wieder unter 10 %) | Rage-Click: 0 % | Quick-Back: 0 % | Excessive-Scroll: 0 %
+- Top-Browser: Chrome 73 (~46 %), Edge 29 (~18 %), MobileSafari 25, Firefox 19, Safari 11
+- Top-3-Pages: / (23), /wissen (14), copilot-cowork-abrechnung-copilot-credits (13) — dann microsoft-copilot-lizenzen (13), /trainings (13)
+- Top-3-Referrer: Direct (76), google.com (69), Teams-CDN (6)
+
+**Clarity Conversion-Events (7T, via Chrome — Smart Events, wieder zugänglich):**
+- contact_form_submit (Formular absenden) **6** / trainer_application_submit **0** / konfigurator_submit **0** / mail_click **0** / phone_click **0** / pdf_download **2**
+- Weitere Conversion-Smart-Events: lead 4, sml_landing_page_visit 4, Herunterladen 3, Ausgehender Klick 2, roi_generator_ppt_success 2, Bestellung erfolgreich 1, Kontaktieren Sie uns 1, Zitat anfordern 1
+- Direkte Kontakt-Conversions (Formular absenden 6 + Kontaktieren Sie uns 1 + Zitat anfordern 1 + Bestellung erfolgreich 1) = **9** → **Conversion-Rate ~1,4 %** (bzw. ~2,0 % inkl. lead) — deutlich über den ~0,42 % der Vorwochen. **7e-Defekt-Check:** kein Event von ≥3 auf 0 gefallen; Kontakt-Events sind erstmals seit Wochen wieder positiv sichtbar → kein Defekt.
+- Funnel „Lead-Reise SEO→Angebot→Kontakt": Konversionsrate 0 %, Stufe 1 (Wissens-Artikel) 347/647 Sess. (53,6 %) — Funnel-Bruch Content→Angebot unverändert.
+- **5c-Zielseiten-Check:** cpc-Segment Dead-Click nur **2,08 %** (1 Sess.), email 0 % → Dead-Click-Treiber eindeutig **organisch** (ArticlePopup), NICHT Kampagne. Keine /wissen/-Drift-Auffälligkeit im cpc-Segment (Top-Nutzer Germany, 1,02 Seiten/Sitzung, 22 s).
+
+**Insights heute:** Patterns 0 | Issues 2 (A6-Coverage stagniert >3 Wochen; Outbound-LP 0 Conv. >5 Wochen) | Trends 2 (Organik +15 % W/W; Dead-Click entspannt 14,95→9,52 %) + Cross-Korrelation (2 Goldene Pages) + Methoden-Notiz (Dashboards nach 2 Wochen wieder zugänglich) — Details in clarity-insights.md
+**Folge-Crons angelegt:** keine (kein Automatisierungs-Loch; A6-Draft + Dead-Click-Fix-Draft + Outbound-LP-Überarbeitung sind user-gebundene Backlog-Items)
+**Goldene Pages (GSC×Clarity, präsumtiv organic):** `/wissen/microsoft-copilot-lizenzen` (GSC 160 Kl./3M; Clarity 13 Visits) und `/wissen/copilot-cowork-abrechnung-copilot-credits` (GSC 123 Kl. + Query „copilot cowork kosten" 10; Clarity #3, 13 Visits — neu aufgestiegen). Ungenutzt: `/wissen/claude-in-microsoft-copilot` (GSC-**#1-Seite** 248 Kl./3M, nicht in Clarity-Top-5) und `/wissen/copilot-in-excel-aktivieren` (GSC 201 Kl., Excel-Cluster 102 Kl./3M, weiter nicht in Clarity-Top-5).
+**Protected Pages:** alle 5/5 = HTTP 200 (roi-berechnen, training-schulung, im-unternehmen-einfuehren-leitfaden, microsoft-copilot-lizenzen, ki-schulung-mitarbeiter-pflicht).
+**Entscheidung gemäß Plan:** Phase 3 bleibt aktiv, kein Wechsel. SSR-Regressions-Wächter grün (0 🔴). **A6-Index-Coverage:** Quote 62,8 % → **66,1 %** (+3,3 pp, bestes im Band), aber Summe nicht-indexiert 23 → 25 (+2, unter 3-W/W-Schwelle) und weiter weit vom 90-%-Ziel → **Issue bleibt offen** (stagniert >3 Wochen); Hinweis auf `docs/drafts/index-coverage-interne-verlinkung-2026-06-16.md` (additive Verlinkung nachschärfen, v. a. gefunden-nicht-indexiert 15). Indexierungs-Quote 66,1 % über 7T-Schnitt → kein ⚠️. Kein Push, keine `src/`-Änderung.
+**API-Calls heute:** 1/10
+**Teams-Post:** ⚠️ fehlgeschlagen — HTTP 401 `DirectApiAuthorizationRequired` (Workflow-Webhook verlangt jetzt OAuth-Auth). Webhook-URL ist in `.env` hinterlegt, aber der Power-Automate-/Workflows-Endpoint wurde offenbar auf Auth umgestellt oder ist abgelaufen. → User-Aktion: Teams-Workflow „Beim Empfang einer Webhook-Anfrage in einem Kanal posten" für Kanal „Marketing und SEA" neu anlegen/re-authentifizieren und neue URL als `TEAMS_WEBHOOK_MARKETING_SEA=` eintragen. Audit-Reporting selbst lief vollständig durch.
+**Nächster Lauf:** Mo 10.08.2026, 10:00
+
+---
+
 ### 2026-07-27 — Wöchentlicher Audit (Cron)
 
 **Phase:** Phase 3 — Content-Block (aktiv, kein Wechsel), DoD 4/8
