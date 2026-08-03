@@ -24,7 +24,7 @@
  *  5. HR-Artikel      →  trackConversion("sml_article_click")
  */
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { trackConversion, setSessionTag, markConvertedSession } from "@/lib/analytics";
@@ -78,6 +78,14 @@ function handleJumpToPaidClick(): void {
   if (typeof document !== "undefined") {
     document
       .getElementById("vollizenz-tipps")
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+}
+function handleViewWorkflowsClick(): void {
+  trackConversion("sml_view_workflows_click");
+  if (typeof document !== "undefined") {
+    document
+      .getElementById("workflows")
       ?.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 }
@@ -251,10 +259,26 @@ const TIPS_LIZENZ: LizenzCase[] = [
   },
 ];
 
+// ─── Hero-Inhaltsübersicht (Sofort-Beweis) ────────────────────────────────
+const HERO_TOC_FREE = [
+  ...TIPS_CHAT.map((t) => ({ nr: t.nr, title: t.title })),
+  { nr: "05", title: "Was Sie mit KI in der Bewerberauswahl NICHT tun dürfen (EU AI Act)" },
+];
+
 // ─── Komponente ───────────────────────────────────────────────────────────
 const SmlHrTipps2026 = () => {
+  const [showStickyBar, setShowStickyBar] = useState(false);
+
   useEffect(() => {
     tagClarityFromUTM();
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const onScroll = () => setShowStickyBar(window.scrollY > 600);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
@@ -273,51 +297,114 @@ const SmlHrTipps2026 = () => {
       <div className="min-h-screen bg-white text-slate-800">
 
         {/* ── HEADER / HERO ─────────────────────────────────────────────── */}
-        <header className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white py-16 px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-block bg-white/10 border border-white/15 text-slate-200 text-sm font-medium px-3 py-1 rounded-full mb-6">
-              Für Personalverantwortliche
-            </div>
-            <h1 className="text-3xl md:text-5xl font-bold mb-5 leading-tight">
-              Zehn Copilot-Workflows für HR,<br className="hidden md:block" /> auf die man nicht in zwei Minuten selbst kommt
-            </h1>
-            <p className="text-lg md:text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
-              Fünf laufen sofort mit dem kostenlosen Copilot Chat, fünf zeigen, wohin die Reise mit
-              Vollizenz geht. Jeweils mit dem vollständigen Prompt, dem Datei-Upload und den Web-Quellen –
-              nicht nur der Idee dahinter.
+        <header className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white py-14 px-4">
+          <div className="max-w-3xl mx-auto">
+
+            {/* Mail-Bezug: schließt die Erwartungslücke aus der Kalt-Mail */}
+            <p className="text-center text-sm text-slate-400 mb-4">
+              Schön, dass Sie da sind – Sie kommen aus unserer E-Mail zu HR-Copilot-Tipps. Hier sind sie, vollständig.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <a
-                href={BOOKING_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={handleBookingClick}
-                className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-500 text-white font-semibold px-6 py-3 rounded-lg transition-colors"
-              >
-                Kostenloses Erstgespräch buchen
-              </a>
-              <Link
-                to="/trainings"
-                onClick={handleOffersClick}
-                className="inline-flex items-center justify-center bg-white/10 hover:bg-white/20 border border-white/20 text-white font-medium px-6 py-3 rounded-lg transition-colors"
-              >
-                Unsere Trainings ansehen
-              </Link>
+
+            <div className="text-center">
+              <div className="inline-block bg-white/10 border border-white/15 text-slate-200 text-sm font-medium px-3 py-1 rounded-full mb-5">
+                Für Personalverantwortliche
+              </div>
+              <h1 className="text-3xl md:text-5xl font-bold mb-4 leading-tight">
+                Zehn Copilot-Workflows für HR,<br className="hidden md:block" /> auf die man nicht in zwei Minuten selbst kommt
+              </h1>
+              <p className="text-lg text-slate-300 mb-5 max-w-2xl mx-auto">
+                Fünf laufen sofort mit dem kostenlosen Copilot Chat, fünf zeigen, wohin die Reise mit
+                Vollizenz geht – jeweils mit dem vollständigen Prompt, dem Datei-Upload und den Web-Quellen,
+                nicht nur der Idee dahinter.
+              </p>
+
+              {/* Trust-Zeile above the fold */}
+              <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-slate-300 mb-8">
+                <span className="inline-flex items-center gap-1.5">
+                  <span className="text-amber-400 font-bold">2.000+</span> ausgebildete Wissensarbeiter
+                </span>
+                <span className="hidden sm:inline text-slate-600" aria-hidden="true">·</span>
+                <span>Martin Lang · copilotenschule.de</span>
+              </div>
+
+              {/* CTAs: primär = Value-Sprung, sekundär dezent = Termin */}
+              <div className="flex flex-col sm:flex-row gap-3 justify-center mb-10">
+                <button
+                  type="button"
+                  onClick={handleViewWorkflowsClick}
+                  className="group inline-flex items-center justify-center gap-2 bg-amber-400 hover:bg-amber-300 text-slate-900 font-semibold px-7 py-3.5 rounded-lg text-base shadow-lg shadow-amber-500/20 transition-colors"
+                >
+                  Die 10 HR-Workflows ansehen
+                  <span className="transition-transform group-hover:translate-y-0.5" aria-hidden="true">↓</span>
+                </button>
+                <a
+                  href={BOOKING_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={handleBookingClick}
+                  className="inline-flex items-center justify-center text-slate-300 hover:text-white font-medium px-6 py-3.5 rounded-lg border border-white/20 hover:border-white/40 transition-colors"
+                >
+                  Oder: kostenloses Erstgespräch (15 Min.)
+                </a>
+              </div>
             </div>
 
-            {/* ── Shortcut für Lizenz-Inhaber: springt zu Teil 2 ── */}
-            <button
-              type="button"
-              onClick={handleJumpToPaidClick}
-              className="group mt-6 w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-amber-400 hover:bg-amber-300 text-slate-900 font-semibold px-7 py-4 rounded-xl text-base md:text-lg shadow-lg shadow-amber-500/20 transition-colors"
-            >
-              Sie haben bereits die Copilot-Lizenz? Hier geht&rsquo;s zu den Tipps
-              <span className="transition-transform group-hover:translate-y-0.5" aria-hidden="true">↓</span>
-            </button>
+            {/* Sofort-Beweis: anklickbare Übersicht aller 10 Workflows */}
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-5 md:p-6">
+              <p className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4">
+                Was drin ist – direkt zu jedem Workflow
+              </p>
+              <div className="grid md:grid-cols-2 gap-x-8 gap-y-5">
+                <div>
+                  <a
+                    href="#workflows"
+                    onClick={handleViewWorkflowsClick}
+                    className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2.5 hover:text-white"
+                  >
+                    Teil 1 · ohne Lizenz
+                  </a>
+                  <ul className="space-y-2">
+                    {HERO_TOC_FREE.map((t) => (
+                      <li key={t.nr}>
+                        <a
+                          href={`#tip-${t.nr}`}
+                          className="group flex gap-2 text-sm text-slate-300 hover:text-white"
+                        >
+                          <span className="tabular-nums text-slate-500 group-hover:text-amber-400">{t.nr}</span>
+                          <span className="underline-offset-2 group-hover:underline">{t.title}</span>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <a
+                    href="#vollizenz-tipps"
+                    onClick={handleJumpToPaidClick}
+                    className="block text-xs font-semibold uppercase tracking-wider text-blue-300 mb-2.5 hover:text-white"
+                  >
+                    Teil 2 · mit Vollizenz
+                  </a>
+                  <ul className="space-y-2">
+                    {TIPS_LIZENZ.map((t) => (
+                      <li key={t.nr}>
+                        <a
+                          href={`#tip-${t.nr}`}
+                          className="group flex gap-2 text-sm text-slate-300 hover:text-white"
+                        >
+                          <span className="tabular-nums text-slate-500 group-hover:text-blue-300">{t.nr}</span>
+                          <span className="underline-offset-2 group-hover:underline">{t.title}</span>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
         </header>
 
-        <main className="max-w-3xl mx-auto px-4 py-12">
+        <main className="max-w-3xl mx-auto px-4 pt-12 pb-28">
 
           {/* ── DATENSCHUTZ-HINWEIS (vor dem ersten Upload) ───────────── */}
           <div className="border-l-4 border-slate-400 bg-slate-50 rounded-r-lg p-5 mb-12">
@@ -336,7 +423,7 @@ const SmlHrTipps2026 = () => {
           </div>
 
           {/* ── SECTION A: KOSTENLOSE WORKFLOWS ──────────────────────── */}
-          <section className="mb-12">
+          <section id="workflows" className="mb-12 scroll-mt-6">
             <div className="mb-2">
               <span className="bg-slate-100 text-slate-600 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full">
                 Teil 1 von 2 · ohne Lizenz
@@ -363,7 +450,7 @@ const SmlHrTipps2026 = () => {
 
             <div className="space-y-8">
               {TIPS_CHAT.map((tip) => (
-                <article key={tip.nr} className="border border-slate-200 rounded-xl p-6">
+                <article key={tip.nr} id={`tip-${tip.nr}`} className="border border-slate-200 rounded-xl p-6 scroll-mt-24">
                   <div className="flex items-baseline gap-3 mb-3">
                     <span className="text-2xl font-bold text-slate-300 tabular-nums">{tip.nr}</span>
                     <h3 className="text-lg md:text-xl font-bold text-slate-900">{tip.title}</h3>
@@ -406,7 +493,7 @@ const SmlHrTipps2026 = () => {
               ))}
 
               {/* ── WARNFALL: Was man NICHT tun darf (EU AI Act) ── */}
-              <article className="border-2 border-red-300 bg-red-50/40 rounded-xl p-6">
+              <article id="tip-05" className="border-2 border-red-300 bg-red-50/40 rounded-xl p-6 scroll-mt-24">
                 <div className="flex items-baseline gap-3 mb-3">
                   <span className="text-2xl font-bold text-red-300 tabular-nums">05</span>
                   <h3 className="text-lg md:text-xl font-bold text-slate-900">
@@ -496,7 +583,7 @@ const SmlHrTipps2026 = () => {
 
             <div className="space-y-8">
               {TIPS_LIZENZ.map((tip) => (
-                <article key={tip.nr} className="border border-slate-200 rounded-xl p-6">
+                <article key={tip.nr} id={`tip-${tip.nr}`} className="border border-slate-200 rounded-xl p-6 scroll-mt-24">
                   <div className="flex items-baseline gap-3 mb-1">
                     <span className="text-2xl font-bold text-blue-200 tabular-nums">{tip.nr}</span>
                     <h3 className="text-lg md:text-xl font-bold text-slate-900">{tip.title}</h3>
@@ -639,6 +726,26 @@ const SmlHrTipps2026 = () => {
 
         </main>
       </div>
+
+      {/* ── STICKY-CTA-LEISTE (erscheint beim Scrollen) ───────────────── */}
+      {showStickyBar && (
+        <div className="fixed bottom-0 inset-x-0 z-50 bg-white/95 backdrop-blur border-t border-slate-200 shadow-[0_-4px_20px_rgba(0,0,0,0.08)] px-4 py-3">
+          <div className="max-w-3xl mx-auto flex items-center justify-between gap-3">
+            <span className="hidden sm:block text-sm text-slate-600">
+              Lohnt sich Copilot für Ihr HR-Team? 15 Minuten, ehrlich geklärt.
+            </span>
+            <a
+              href={BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={handleBookingClick}
+              className="w-full sm:w-auto inline-flex items-center justify-center bg-blue-600 hover:bg-blue-500 text-white font-semibold px-5 py-2.5 rounded-lg text-sm transition-colors"
+            >
+              Kostenloses Erstgespräch buchen
+            </a>
+          </div>
+        </div>
+      )}
     </>
   );
 };
