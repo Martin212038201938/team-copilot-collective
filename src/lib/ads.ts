@@ -1,5 +1,6 @@
 /**
- * Google-Ads-Conversion-Tracking mit Consent Mode v2 für copilotenschule.de
+ * Google-Ads-Conversion-Tracking + Google-Analytics-4 (GA4) mit Consent Mode v2
+ * für copilotenschule.de.
  *
  * Aktiv NUR wenn Build-Env VITE_GOOGLE_ADS_ID gesetzt ist (GitHub Actions
  * Secret, Format "AW-XXXXXXXXX"). Ohne ID: kompletter No-Op — sicher in
@@ -7,9 +8,9 @@
  *
  * Consent Mode v2 (Advanced): gtag lädt mit allen Signalen auf "denied".
  * Erst die Einwilligung über den ConsentBanner setzt ad_storage /
- * ad_user_data / ad_personalization auf "granted". Bei Ablehnung sendet
- * gtag nur cookielose Pings — Google modelliert Conversions, setzt aber
- * keine Cookies.
+ * ad_user_data / ad_personalization / analytics_storage auf "granted". Bei
+ * Ablehnung sendet gtag nur cookielose Pings — Google modelliert Conversions
+ * und Analytics, setzt aber keine Cookies.
  *
  * Conversion-Labels kommen aus Build-Envs (in Google Ads unter
  * Conversions → Tag-Details ablesbar):
@@ -25,6 +26,12 @@
 // einem Env-/GitHub-Secret gelesen, damit kein veraltetes Secret (altes
 // Google-Ads-Konto) versehentlich greift. Single Source of Truth = diese Datei.
 const ADS_ID = "AW-18244137495";
+// Google-Tag-ID (Umbrella-Tag "Copilotenschule" aus Google Ads → Tools →
+// Conversions → Google-Tag-Details). Hierüber wird — sofern im Google-Ads-
+// bzw. Analytics-Konto eine GA4-Property mit diesem Tag verknüpft ist — auch
+// Google Analytics 4 versorgt. Bislang war NUR AW- im Code, GA4 bekam daher
+// nie Daten. Ebenfalls kein Geheimnis (steht im Seitenquelltext).
+const GA_TAG_ID = "GT-WRFMDNVV";
 // Conversion-Labels weiterhin aus Build-Env — sie kommen aus Google Ads, sobald
 // die jeweilige Conversion-Aktion angelegt ist. Ohne Label feuert kein Event.
 // Label der Lead-Conversion-Aktion aus Google Ads (kein Geheimnis). Fest
@@ -101,12 +108,15 @@ export function initGoogleAds(): void {
       applyConsentGranted();
     }
 
+    // Ein einziges Skript reicht — geladen über die Google-Tag-ID (Umbrella-Tag
+    // "Copilotenschule"), darunter werden Ads UND GA4 konfiguriert.
     const script = document.createElement("script");
     script.async = true;
-    script.src = `https://www.googletagmanager.com/gtag/js?id=${ADS_ID}`;
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_TAG_ID}`;
     document.head.appendChild(script);
 
     window.gtag("js", new Date());
+    window.gtag("config", GA_TAG_ID);
     window.gtag("config", ADS_ID);
   } catch (err) {
     console.debug("[ads] Init-Fehler (ignoriert):", err);
@@ -118,6 +128,7 @@ function applyConsentGranted(): void {
     ad_storage: "granted",
     ad_user_data: "granted",
     ad_personalization: "granted",
+    analytics_storage: "granted",
   });
 }
 
@@ -136,6 +147,7 @@ export function setAdsConsent(granted: boolean): void {
         ad_storage: "denied",
         ad_user_data: "denied",
         ad_personalization: "denied",
+        analytics_storage: "denied",
       });
     }
   } catch (err) {
