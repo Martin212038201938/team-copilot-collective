@@ -8,10 +8,13 @@ import SEOHead from "@/components/SEOHead";
  * Pflichtangaben gem. § 5 TMG / § 2 DDG sind im Impressum (Impressum.tsx).
  * Diese Seite behandelt ausschließlich Datenschutz.
  *
- * Letzter Stand: 27.05.2026
+ * Letzter Stand: 03.08.2026
  * Wichtig: Diese Erklärung wurde nach bestem Wissen erstellt, ersetzt aber
  * keine anwaltliche Prüfung. Bei rechtlich kritischen Anwendungsfällen bitte
  * von Datenschutzanwalt/-anwältin gegenchecken lassen.
+ *
+ * 03.08.2026: Abschnitt 6b (Google Analytics 4) ergänzt — GA4 wurde über
+ * den bestehenden Google-Tag (GT-WRFMDNVV, Consent Mode v2) aktiviert.
  */
 
 const SLUG = "datenschutz";
@@ -31,7 +34,7 @@ const Datenschutz = () => {
           <h1 className="text-5xl lg:text-7xl font-semibold tracking-tight leading-[1.1] mb-4">
             Datenschutzerklärung
           </h1>
-          <p className="text-muted-foreground mb-12">Stand: 27. Mai 2026</p>
+          <p className="text-muted-foreground mb-12">Stand: 3. August 2026</p>
 
           <div className="prose prose-slate max-w-none space-y-10">
             {/* ====================================================== */}
@@ -264,6 +267,57 @@ const Datenschutz = () => {
 
             {/* ====================================================== */}
             <section>
+              <h2 className="text-2xl font-bold mb-3">6b. Google Analytics 4 (einwilligungsbasiert)</h2>
+              <p>
+                Zusätzlich zum Conversion-Tracking (Abschnitt 6a) nutzen wir{" "}
+                <strong>Google Analytics 4 (GA4)</strong>, einen Webanalysedienst der Google Ireland
+                Limited, Gordon House, Barrow Street, Dublin 4, Irland. Beide Dienste laufen über
+                denselben Google-Tag und denselben Cookie-Banner — es gibt keine separate
+                Einwilligung für Analytics.
+              </p>
+              <p>
+                <strong>Ohne Ihre Einwilligung</strong> wird GA4 nicht aktiv: Es werden keine
+                Analyse-Cookies gesetzt und keine Nutzungsdaten an Google übermittelt (Consent
+                Mode v2, Signal <code>analytics_storage: denied</code>).
+              </p>
+              <p>
+                <strong>Mit Ihrer Einwilligung</strong> (über den Cookie-Banner) setzt GA4 Cookies
+                und erhebt pseudonymisierte Nutzungsdaten (z. B. besuchte Seiten, Verweildauer,
+                grobe Standort- und Geräteinformationen, Herkunft des Zugriffs), um zu verstehen,
+                wie unsere Website genutzt wird. GA4 speichert die IP-Adresse konzeptionell nicht:
+                Sie wird von Google nur kurzzeitig zur groben Standortbestimmung verwendet und
+                anschließend verworfen, bevor Daten protokolliert werden. Rechtsgrundlage ist Ihre
+                Einwilligung nach Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;a DSGVO sowie §&nbsp;25 Abs.&nbsp;1
+                TDDDG. Dabei kann eine Übermittlung von Daten in die USA stattfinden; Google ist
+                unter dem EU-US Data Privacy Framework zertifiziert.
+              </p>
+              <p>
+                In den GA4-Kontoeinstellungen sollten die Aufbewahrungsdauer der Nutzungsdaten auf
+                das datenschutzfreundliche Minimum begrenzt und Google Signals (Verknüpfung mit
+                personenbezogenen Google-Konten) deaktiviert bleiben. <em>Hinweis: Diese Einstellungen
+                werden im Google-Analytics-Konto vorgenommen, nicht im Website-Code — bitte im
+                GA4-Adminbereich prüfen/bestätigen.</em>
+              </p>
+              <p>
+                <strong>Widerruf:</strong> wie in Abschnitt 6a beschrieben — Ihre Entscheidung gilt
+                gemeinsam für Google Ads und GA4 und wird lokal in Ihrem Browser gespeichert
+                (Schlüssel <code>consent-ads-v1</code>), nicht auf unseren Servern.
+              </p>
+              <p>
+                Weitere Informationen: {" "}
+                <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary">
+                  Google-Datenschutzerklärung
+                </a>
+                {" "}sowie{" "}
+                <a href="https://support.google.com/analytics/answer/12017362" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary">
+                  Hinweise zu Google Analytics 4 und Datenschutz
+                </a>
+                .
+              </p>
+            </section>
+
+            {/* ====================================================== */}
+            <section>
               <h2 className="text-2xl font-bold mb-3">7. Kontaktformulare</h2>
               <p>
                 Auf dieser Website befinden sich mehrere Kontaktformulare (Hauptkontakt,
@@ -335,6 +389,11 @@ const Datenschutz = () => {
                 <li>
                   <strong>Microsoft Clarity</strong> (siehe Abschnitt 5) kann Cookies und ähnliche
                   Geräte-Erkennungs-Mechanismen einsetzen.
+                </li>
+                <li>
+                  <strong>Google Ads und Google Analytics 4</strong> (siehe Abschnitte 6a und 6b)
+                  setzen Cookies ausschließlich nach Ihrer Einwilligung über den Cookie-Banner.
+                  Rechtsgrundlage: Art. 6 Abs. 1 lit. a DSGVO, § 25 Abs. 1 TDDDG.
                 </li>
               </ul>
               <p>
