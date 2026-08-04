@@ -467,7 +467,7 @@ const Datenschutz = () => {
             <section>
               <h2 className="text-2xl font-bold mb-3">13. Aktualität und Änderungen dieser Datenschutzerklärung</h2>
               <p>
-                Diese Datenschutzerklärung hat den Stand vom <strong>27. Mai 2026</strong>.
+                Diese Datenschutzerklärung hat den Stand vom <strong>3. August 2026</strong>.
                 Durch die Weiterentwicklung unserer Website oder aufgrund geänderter gesetzlicher
                 bzw. behördlicher Vorgaben kann es notwendig werden, diese Datenschutzerklärung zu
                 ändern. Die jeweils aktuelle Version ist stets unter{" "}
