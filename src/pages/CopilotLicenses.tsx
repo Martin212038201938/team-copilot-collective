@@ -54,7 +54,7 @@ const CopilotLicenses = () => {
     },
     {
       name: "Was kostet Microsoft Copilot für ein Unternehmen insgesamt?",
-      answer: "Für die Gesamtkosten pro Mitarbeiter zählen Sie drei Posten zusammen: die Microsoft 365-Grundlizenz, das Copilot-Add-on und die Einführungskosten. Beispiel (Stand Juli 2026, zzgl. MwSt.): Ein KMU mit Microsoft 365 Business Standard (ca. 12,13 €) plus Microsoft 365 Copilot Business (15,60 € Aktionspreis bis 30. September 2026, regulär 18,20 €) liegt bei rund 27–31 € pro Nutzer und Monat. Ein Enterprise-Arbeitsplatz mit Microsoft 365 E3 (ca. 37,78 €) plus Microsoft 365 Copilot (26,00 €) kostet rund 64 € pro Nutzer und Monat. Hinzu kommen Schulung und Governance, die bis zu 50 % der Gesamtinvestition ausmachen können. Die Copilotenschule hilft Ihnen, die Microsoft Copilot Kosten für Ihr Unternehmen realistisch zu planen und über gezieltes Training in messbaren ROI zu überführen."
+      answer: "Für die Gesamtkosten pro Mitarbeiter zählen Sie drei Posten zusammen: die Microsoft 365-Grundlizenz, das Copilot-Add-on und die Einführungskosten. Beispiel (Stand August 2026, zzgl. MwSt.): Ein KMU mit Microsoft 365 Business Standard (ca. 12,13 €) plus Microsoft 365 Copilot Business (15,60 € Aktionspreis bis 30. September 2026, regulär 18,20 €) liegt bei rund 27–31 € pro Nutzer und Monat. Ein Enterprise-Arbeitsplatz mit Microsoft 365 E3 (ca. 37,78 €) plus Microsoft 365 Copilot (26,00 €) kostet rund 64 € pro Nutzer und Monat. Hinzu kommen Schulung und Governance, die bis zu 50 % der Gesamtinvestition ausmachen können. Die Copilotenschule hilft Ihnen, die Microsoft Copilot Kosten für Ihr Unternehmen realistisch zu planen und über gezieltes Training in messbaren ROI zu überführen."
     }
   ];
 
@@ -72,7 +72,7 @@ const CopilotLicenses = () => {
           "@id": "https://copilotenschule.de/#organization"
         },
         "datePublished": "2025-01-06",
-        "dateModified": "2026-07-01T09:00:00+02:00",
+        "dateModified": "2026-08-04T09:00:00+02:00",
         "mainEntityOfPage": {
           "@type": "WebPage",
           "@id": pageUrl
@@ -127,7 +127,7 @@ const CopilotLicenses = () => {
         schema={schema}
         author={martinLang}
         publishedTime="2025-01-06T09:00:00+01:00"
-        modifiedTime="2026-07-01T09:00:00+02:00"
+        modifiedTime="2026-08-04T09:00:00+02:00"
       />
 
       <ContentLayout
@@ -137,15 +137,15 @@ const CopilotLicenses = () => {
         ]}
         title="Microsoft Copilot Lizenzen: Preisvergleich 2026"
         description="Welche Copilot-Lizenz lohnt sich? M365 Copilot, GitHub Copilot und Copilot Studio im direkten Vergleich – mit allen Infos für Ihre Entscheidung."
-        lastUpdated="1. Juli 2026"
+        lastUpdated="4. August 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
         relatedContent={["wissen:microsoft-365-e7-frontier-suite", "wissen:claude-in-microsoft-copilot", "wissen:copilot-roi-berechnen", "wissen:copilot-studio", "wissen:github-copilot"]}
       >
-        {/* Stand Juni 2026 Sticker */}
+        {/* Stand August 2026 Sticker */}
         <div className="flex justify-end mb-2">
           <span className="inline-flex items-center gap-1.5 bg-orange-500 text-white text-sm font-bold px-3 py-1.5 rounded-full shadow-md">
-            ✓ Stand Juli 2026
+            ✓ Stand August 2026
           </span>
         </div>
 
@@ -340,7 +340,7 @@ const CopilotLicenses = () => {
         <section id="github-copilot" className="mt-12">
           <h2 className="text-2xl md:text-3xl font-bold mb-3">GitHub Copilot</h2>
           <p className="mb-3">
-            GitHub Copilot ist 2026 in mehreren Editionen verfügbar – vom kostenlosen Einstiegs-Tier bis Enterprise. Für Unternehmen sind weiterhin die Pläne Business und Enterprise relevant. Seit dem 1. Juni 2026 ist die Umstellung von festen „Premium-Requests" auf ein monatliches Budget aus GitHub AI Credits aktiv; die unten genannten Request-Kontingente entsprechen dem bisherigen Modell und werden schrittweise in Credit-Budgets überführt. Neu ist zudem der Plan Copilot Max (nur als Upgrade für bestehende Abos) – Neuanmeldungen für Pro, Pro+ und Max sind seit dem 20. April 2026 vorübergehend pausiert.
+            GitHub Copilot ist 2026 in mehreren Editionen verfügbar – vom kostenlosen Einstiegs-Tier bis Enterprise. Für Unternehmen sind weiterhin die Pläne Business und Enterprise relevant. Seit dem 1. Juni 2026 ist die Umstellung von festen „Premium-Requests" auf ein monatliches Budget aus GitHub AI Credits vollständig abgeschlossen. Neu ist zudem der Plan Copilot Max. Neuanmeldungen für Pro, Pro+ und Max werden von GitHub seit einigen Monaten schrittweise (gestaffelter Rollout) freigeschaltet – bei hoher Nachfrage kann die Anmeldung zeitweise verzögert sein.
           </p>
 
           <div className="grid md:grid-cols-2 gap-6 my-6">
@@ -598,7 +598,7 @@ const CopilotLicenses = () => {
         <section id="kosten-unternehmen" className="mt-12">
           <h2 className="text-2xl md:text-3xl font-bold mb-3">Microsoft Copilot Kosten für Unternehmen: Was zahlt man wirklich?</h2>
           <p className="mb-4">
-            Die Lizenzgebühr ist nur ein Teil der Microsoft Copilot Kosten für Unternehmen. Wer ein Budget seriös plant, rechnet pro Mitarbeiter mit drei Bausteinen: der <strong>Microsoft 365-Grundlizenz</strong>, dem <strong>Copilot-Add-on</strong> und den laufenden <strong>Einführungskosten</strong> für Schulung und Governance. Die folgende Übersicht zeigt, welche Gesamtkosten pro Nutzer und Monat tatsächlich anfallen – Stand Juli 2026, alle Preise zzgl. MwSt.
+            Die Lizenzgebühr ist nur ein Teil der Microsoft Copilot Kosten für Unternehmen. Wer ein Budget seriös plant, rechnet pro Mitarbeiter mit drei Bausteinen: der <strong>Microsoft 365-Grundlizenz</strong>, dem <strong>Copilot-Add-on</strong> und den laufenden <strong>Einführungskosten</strong> für Schulung und Governance. Die folgende Übersicht zeigt, welche Gesamtkosten pro Nutzer und Monat tatsächlich anfallen – Stand August 2026, alle Preise zzgl. MwSt.
           </p>
 
           <div className="overflow-x-auto my-6">
