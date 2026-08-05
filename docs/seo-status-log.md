@@ -8,6 +8,65 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 
 ## Logs
 
+### 2026-08-05 — Phase-Conductor-Lauf (Cron)
+**Aktive Phase:** Phase 3 — Content-Block (aktiv seit 01.06.2026, kein Wechsel). Phase 4 (Off-Page) läuft seit 25.06. parallel.
+**Nächste Maßnahme:** kleinste offene Code-Nr. = **A6 Index-Coverage** (⏳). Danach B3b/B3c-Hub-Review, C4-Schema-Push, C1-PageSpeed-Setup — alle user-gebunden.
+**Definition of Done:** **4 von 8** erfüllt (fest: #2 SSR 🔴=0 ✅, #4 GEO 82 ✅; wahrscheinlich: #5 ≥5 Klick-Cluster ✅ (Excel/Kosten/Claude usw.), #6 B2-Hub #1). Offen: #1 Indexierung **66,1 %** (Ziel 90 %), #3 SEO-Score 42 (Ziel 75), #7 Listicle-Erwähnung (Drafts da, nicht versendet), #8 ProvenExpert (Profil nicht angelegt). Weit unter 7/8 → Conductor bleibt aktiv, keine Selbst-Deaktivierung.
+**Risiko-Status:** 🟡 gelb — Organik weiter stark (GSC 04.08.: Klicks **1.540/3M**, Impr. **124.000**, Pos. **9,0**; SSR 67/67 ✅ 0 🔴; Protected Pages 5/5 = 200). Gelbe Dauerpunkte: (a) Dead-Click 12,92 % wieder >10 % — bekanntes organisches Mix-Issue (ArticlePopup via ContentLayout.tsx), Fix-Draft seit 17.06. vorhanden, user-gebunden; (b) A6-Coverage stagniert seit >3 Wochen bei ~62,8–66,1 % / Summe nicht-indexiert 25; (c) **NEU operativ: Teams-Reporting-Webhook „Marketing und SEA" seit 03.08. HTTP 401** (`DirectApiAuthorizationRequired`) → Weekly-Audit-Post scheitert, Audit selbst läuft vollständig (additiver Fehler). Kein roter Flag.
+**Aktion in diesem Lauf:** **keine** (kein neuer Cron) + Housekeeping am Plan (B3b/B3c-Tabellenstatus 🔵→⏳ korrigiert, siehe unten). Begründung gegen einen A6-Recheck-Cron: A6-Links sind **gebaut + gepusht + live** (Commit `e5902c8`); die einzige Restarbeit ist das **passive Indexieren der 4 sauberen Nachzügler durch Google** — das kann kein Cron erzwingen. Der **Weekly-Audit** trackt die A6-Coverage bereits jede Woche und führt die Stagnation seit dem 27.07. als Issue → ein separater Recheck-Cron wäre reine Redundanz (Cron-Inflation vermeiden, Conductor-Doktrin). Der reale Engpass ist unverändert **kein Automatisierungs-Loch, sondern ein Backlog user-gebundener Aktionen** (C4-Schema-Push, D2/D3/D4-Outreach-Versand, B3b/B3c-Review+Freigaben, D1-ProvenExpert-Account, C1-API-Key, Teams-Webhook-Reauth) — der Conductor darf diese regelkonform nicht selbst pushen/versenden.
+
+**5 Status-Fragen:**
+1. **Aktive Phase:** Phase 3 (Content). Phase 1/2/2b historisch abgeschlossen (DoD #2 live verifiziert) — nicht wieder öffnen. Phase 4 parallel offen.
+2. **Nächste konkrete Maßnahme:** A6 (⏳, 9/13 indexiert, nicht 13/13). Danach die user-gebundenen Content-/Off-Page-Items.
+3. **Cron für A6 vorhanden?** Nein — `copilotenschule-seo-index-coverage-recheck` ist nach dem Lauf 15.07. one-time self-disabled (enabled:false, lastRunAt 2026-07-15). Bewusst **kein Ersatz-Cron**: A6-Monitoring läuft über den Weekly-Audit (misst gecrawlt+gefunden jede Woche), separater Recheck wäre redundant.
+4. **Vorbedingung A6 erfüllt?** Ja — Links gebaut + gepusht (01.07.), IndexNow-Ping HTTP 202/200, GSC-Requests gestellt; 9/13 indexiert. Die 4 Nachzügler sind technisch sauber (HTTP 200, Self-Canonical, in sitemap.xml) und **keiner >3 Wochen „gecrawlt-nicht-indexiert"** → keine inhaltliche Aufwertung nötig. Rest = Google-Indexierungslatenz.
+5. **🔵 offen > 14 Tage ohne Cron?** Kein vergessenes, cron-loses Item mit erfüllter Vorbedingung, das der Conductor autonom vorantreiben könnte. B3b/B3c: **Drafts existieren seit 06.07.** (`copilot-schulung-foerderung-qcg-2026.tsx.md`, `copilot-inhouse-schulung-buchen.tsx.md`) → Tabellenstatus war fälschlich 🔵, in diesem Lauf auf ⏳ korrigiert; Rest user-gebunden (AZAV-Klärung B3b, Preis-/Kunden-Case-Freigabe B3c, Pflicht-Checkliste). C4/C1: ⏳ Drafts, user-gebunden (Push/API-Key). D1: user-gebunden (Captcha), kein autonomer Cron sinnvoll. D2/D3/D4: Outreach-Drafts existieren (`docs/outreach/`), warten auf Versand. D5: bewusst ohne Draft-Cron (Outreach-Stau nicht aufblähen).
+
+**Risiko-Check (> 7 Tage ungelöst):** Kein roter Flag. Dead-Click = bekanntes Mix-Issue (Fix-Draft vorhanden). A6-Stagnation = benigne Indexierungslatenz, vom Weekly-Audit getrackt. Teams-Webhook-401 erst seit 03.08. (< 7 Tage), vom Weekly-Audit bereits mit User-Handlungsanweisung eskaliert — nur gespiegelt, keine Doppel-Eskalation.
+
+**Grund-Muster (unverändert):** Engpass = Backlog fertiger, user-gebundener Aktionen, nicht fehlende Automatisierung. Wert dieses Laufs = Stau sichtbar halten, Plan-Tabelle auf Ist-Stand bringen (B3b/B3c), Bestand bewahren, keine Cron-Inflation.
+**Nächster Conductor-Lauf:** Mi 19.08.2026, 11:00.
+
+---
+
+### 2026-08-04 — Wöchentlicher Audit (Cron)
+
+**Hinweis:** Dieser Lauf fiel auf Di 04.08., nur **1 Tag** nach dem regulären Montags-Audit (03.08.). W/W-Deltas entsprechen daher praktisch Tag-über-Tag-Rauschen; strukturell keine neue Lage.
+
+**Phase:** Phase 3 — Content-Block (aktiv, kein Wechsel), DoD 4/8
+**SSR-Audit:** ✅ 67 / 🟡 0 / 🔴 0 (von 67) — via `seo-monitoring/recheck.sh` (audit-live.sh weiterhin nicht im Mount; parallelisierter Recheck, 45-s-Cap). Baseline-Vergleich 04.05.: Helmet-Flush 31 → 67, Empty 0, Double-Desc 0.
+- Neu in 🔴/✅: keine (stabil, DoD #2 gewahrt; Regressions-Wächter, 🔴 < 5 → keine Eskalation).
+
+**GSC** ✅ frischer Zugriff (Property martin@yellow-boat.com, Leistung 3M vor 4 h aktualisiert). Indexierung: **72 indexiert / 37 nicht indexiert = 109 gesamt → 66,1 %** (unverändert ggü. 03.08.). Leistung 3M: Klicks **1.540/3M**, Impr. **124.000**, CTR 1,2 %, Pos. **9,0**. W/W ggü. 03.08. (1.520 / 122.000 / 8,9): +20 Klicks (+1,3 %), +2.000 Impr. (+1,6 %), Pos. 8,9 → 9,0 (−0,1, marginal) — 1-Tages-Rauschen. A6-Summe nicht-indexiert: gecrawlt (**10**) + gefunden (**15**) = **25** (unverändert ggü. 03.08.). Weitere Gründe: Weiterleitung 9, alternative kanonische Seite 2, robots.txt 1. Top-Klick-Bringer-Queries: copilot in excel aktivieren (62), excel copilot aktivieren (25), copilot excel aktivieren (16), copilot cowork kosten (10), copilot kosten (9) → >5 Cluster (DoD #5 ✅). Top-Klick-Bringer-Seiten: claude-in-microsoft-copilot (249 Kl.), copilot-in-excel-aktivieren (202), ki-halluzinationen-vermeiden (181), microsoft-copilot-lizenzen (161), copilot-cowork-abrechnung-copilot-credits (123), copilot-in-outlook-nutzen-tipps (105).
+
+**AlwaysData:** ✅ erfasst (Login aktiv). Visits 24h: **811**. Rollierende 30 Tage (04.07.–04.08.): **10.965** (inkl. Paid/Outbound). *(Hinweis: 1m-Ansicht liefert rollierendes 30-T-Fenster, nicht Kalender-MTD — daher nicht 1:1 mit dem 03.08.-MTD-Wert 974 vergleichbar.)*
+
+**Traffic-Mix (Clarity 7T):** Gesamt **657** | Organic/Direct/Rest **~603 (92 %)** | SEA (cpc) **47 (7,2 %)** | Outbound (email) **7 (1,1 %)** — alle Segmente sauber messbar.
+
+**Clarity Standard (3T, via API, 2 Calls — 1× 502-Retry):**
+- Sessions: 209 (davon 30 Bots, 242 Unique Users)
+- Scrolltiefe: 42,41 %, Aktive Zeit: 81 s
+- Dead-Click: **12,92 %** (↑ von 9,52 % am 03.08., wieder über 10 %-Schwelle) | Rage-Click: 0 % | Quick-Back: 0,96 % | Excessive-Scroll: 0 % | ScriptError: 0 %
+- Top-Browser: Edge 89 (~42 %), Chrome 58 (~27 %), MobileSafari 25 (~11 %), Firefox 16 (~7 %), ChromeMobile 10 (~4 %)
+- Top-3-Pages: / (40), copilot-in-outlook-nutzen-tipps (19), copilot-tipps-tricks-produktivitaet (19) — dann /trainings (18), microsoft-copilot-lizenzen (18), claude-in-microsoft-copilot (15)
+- Top-3-Referrer: google.com (75), Direct (71), bing.com (31)
+
+**Clarity Conversion-Events (7T, via Chrome — Smart Events):**
+- contact_form_submit (Formular absenden) **6** / trainer_application_submit **0** / konfigurator_submit **2** / mail_click **0** / phone_click **0** / pdf_download **2**
+- Weitere Conversion-Smart-Events: Kontaktieren Sie uns 6, Ausgehender Klick 6, Bestellung erfolgreich 4, Herunterladen 3, sml_landing_page_visit 3, Zitat anfordern 2, booking_click 1
+- Direkte Kontakt-/Lead-Conversions (Formular absenden 6 + Kontaktieren Sie uns 6 + Zitat anfordern 2 + Bestellung erfolgreich 4 + konfigurator_submit 2 + booking_click 1) = **21** → **Conversion-Rate ~3,2 %** (kontakt-only form+contact+quote+order 18 → ~2,7 %) — deutlich über 03.08. (~1,4 %). **7e-Defekt-Check:** kein Event von ≥3 auf 0 gefallen (Formular absenden stabil 6) → kein Defekt.
+- Funnel „Lead-Reise SEO→Angebot→Kontakt": Konversionsrate 0 %, Stufe 1 (Wissens-Artikel) 352/657 Sess. (53,6 %) — Funnel-Bruch Content→Angebot unverändert.
+- **5c-Segment-Gegenprüfung:** cpc-Dead-Click **2,13 %** (1 Sess.), email ~0 % → Dead-Click-Treiber eindeutig **organisch** (ArticlePopup via ContentLayout.tsx), NICHT Kampagne. cpc-Zielseiten-Check: Lead-Reise Stufe 1 (/wissen/) = **0 % von 47** → SEA landet korrekt NICHT auf Wissensartikeln, **keine Drift**. Neu: cpc-Segment liefert erstmals **1 „Kontaktieren Sie uns"-Conversion** (bislang stets 0). Outbound (email) 7 Sess., 6,43 % Scroll, 8 s aktiv — LP `/sml/hr-tipps_2026` weiter 0 Buchung/Kontakt.
+
+**Insights heute:** Patterns 0 | Issues 2 (A6-Coverage stagniert; Dead-Click wieder >10 %) | Trends 1 (Organik ~flat, 1-Tages-Fenster) + Cross-Korrelation (Goldene Pages) — Details in clarity-insights.md
+**Folge-Crons angelegt:** keine (kein Automatisierungs-Loch; A6-Draft-Nachschärfung, Dead-Click-Fix-Draft, Outbound-LP-Überarbeitung sind user-gebundene Backlog-Items, bereits eskaliert)
+**Goldene Pages (GSC×Clarity, präsumtiv organic):** `/wissen/microsoft-copilot-lizenzen` (GSC 161 Kl./3M; Clarity 18 Visits), `/wissen/claude-in-microsoft-copilot` (GSC-**#1** 249 Kl.; Clarity 15 — wieder in Top-6), `/wissen/copilot-in-outlook-nutzen-tipps` (GSC 105; Clarity 19), `/wissen/copilot-tipps-tricks-produktivitaet` (GSC 57; Clarity 19). Ungenutzt: `/wissen/copilot-in-excel-aktivieren` (GSC-#2 202 Kl., Excel-Cluster, weiter nicht in Clarity-Top) und `/wissen/ki-halluzinationen-vermeiden` (GSC 181, nicht in Clarity-Top).
+**Protected Pages:** alle 5/5 = HTTP 200 (copilot-roi-berechnen, copilot-training-schulung, copilot-im-unternehmen-einfuehren-leitfaden, microsoft-copilot-lizenzen, ki-schulung-mitarbeiter-pflicht).
+**Entscheidung gemäß Plan:** Phase 3 bleibt aktiv, DoD 4/8. Kein Push, keine src/-Änderung. SSR-Regressions-Wächter grün (0 🔴). A6 66,1 % im dokumentierten Band (62,8–66,1 %), Summe 25 flat → kein Indexierungs-Risiko-Flag (nicht ≥5 pp unter 7-T-Schnitt). Dead-Click ≥10 % = bekanntes mix-getriebenes Organik-Issue (Fix-Draft seit 17.06. vorhanden), keine Eskalation/kein neuer Cron.
+**API-Calls heute:** 2/10 (Clarity)
+**Teams-Post:** ❌ HTTP 401 (`DirectApiAuthorizationRequired`) — der Workflows-Webhook „Marketing und SEA" verlangt jetzt OAuth-Auth, die hinterlegte URL nimmt keine anonymen POSTs mehr an. Bericht liegt in `/tmp/seo-teams-report.md`, Audit lief vollständig (Reporting-Fehler ist additiv, nicht blockierend). **User-Handlung nötig:** Teams → Workflows-App → Flow des Kanals „Marketing und SEA" öffnen → Trigger „Beim Empfang einer Webhook-Anfrage" auf anonyme Auslösung stellen (bzw. neue URL erzeugen) → neue URL als `TEAMS_WEBHOOK_MARKETING_SEA=` in `~/Documents/Cowork Bereich/website-health-check/.env` eintragen.
+**Nächster Lauf:** Mo 10.08.2026, 10:00
+
 ### 2026-08-03 — Wöchentlicher Audit (Cron)
 
 **Phase:** Phase 3 — Content-Block (aktiv, kein Wechsel), DoD 4/8
