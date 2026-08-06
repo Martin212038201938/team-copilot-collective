@@ -25,7 +25,10 @@
 // (sie steht im Seitenquelltext ohnehin öffentlich). Bewusst NICHT mehr aus
 // einem Env-/GitHub-Secret gelesen, damit kein veraltetes Secret (altes
 // Google-Ads-Konto) versehentlich greift. Single Source of Truth = diese Datei.
-const ADS_ID = "AW-18244137495";
+// Seit 06.08.2026: Yellow-Boat-Consulting-Konto (748-342-2182). Das alte
+// Copilotenschule-Konto (AW-18244137495 / 480-547-8290) ist verwaist und
+// schaltet keine Anzeigen mehr — Conversions liefen bis dahin ins Leere.
+const ADS_ID = "AW-18271163908";
 // Google-Tag-ID (Umbrella-Tag "Copilotenschule" aus Google Ads → Tools →
 // Conversions → Google-Tag-Details). Hierüber wird — sofern im Google-Ads-
 // bzw. Analytics-Konto eine GA4-Property mit diesem Tag verknüpft ist — auch
@@ -36,7 +39,11 @@ const GA_TAG_ID = "GT-WRFMDNVV";
 // die jeweilige Conversion-Aktion angelegt ist. Ohne Label feuert kein Event.
 // Label der Lead-Conversion-Aktion aus Google Ads (kein Geheimnis). Fest
 // verdrahtet als Fallback, Env-Override bleibt möglich.
-const LABEL_LEAD = (import.meta.env.VITE_ADS_LABEL_LEAD as string | undefined) || "Eat5CMXjm8AcEJfkvftD";
+// Neue Conversion-Aktion "Lead Kontaktformular" im Yellow-Boat-Konto, angelegt
+// am 06.08.2026 nach Vorlage der alten Copilotenschule-Aktion "Lead-Formular
+// senden (1)" (gleiche Einstellungen: Website/manuelles Ereignis, Kategorie
+// Lead, Zählung "Eine", 90 Tage Klickfenster, kein fester Wert/1€-Platzhalter).
+const LABEL_LEAD = (import.meta.env.VITE_ADS_LABEL_LEAD as string | undefined) || "wVvaCNqgj90cEISsr4hE";
 const LABEL_CONTACT = import.meta.env.VITE_ADS_LABEL_CONTACT as string | undefined;
 
 export const CONSENT_STORAGE_KEY = "consent-ads-v1";
