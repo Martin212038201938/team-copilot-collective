@@ -30,6 +30,17 @@ export interface ArticleData {
 // Alle Artikel - sortiert nach Veröffentlichungsdatum (neueste zuerst)
 export const ALL_ARTICLES: ArticleData[] = [
   {
+    id: "copilot-update-juli-2026",
+    title: "Copilot Update Juli 2026",
+    description: "GPT-5.6 wird bevorzugtes Modell, Claude Opus 5 kommt in die Office-Apps, Vision teilt Bildschirm und Kamera – plus alle Admin- und Datenschutz-Themen.",
+    link: "/wissen/copilot-update-juli-2026",
+    badge: "Copilot News",
+    icon: "§",
+    lastUpdated: "10. August 2026",
+    publishDate: "2026-08-10",
+    publishTime: "09:00"
+  },
+  {
     id: "ki-kennzeichnungspflicht-eu-ai-act",
     title: "KI-Kennzeichnungspflicht: Was ab 2. August 2026 gilt",
     description: "Artikel 50 EU AI Act wird am 2. August 2026 anwendbar. Entscheidungsbaum für Text und Bild, Anbieter- vs. Betreiberpflichten, Fristen und Bußgelder.",

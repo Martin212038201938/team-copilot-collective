@@ -13,30 +13,36 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 **Phase:** Phase 3 — Content-Block (aktiv seit 01.06., kein Wechsel)
 **SSR-Audit:** ✅ 67 / 🟡 0 / 🔴 0 (von 67)
 - Neu in 🔴/✅: keine (stabil 67/67, DoD #2 gewahrt)
+- Hinweis: Chrome zu Lauf-Beginn offline, nach User-Meldung online → GSC/AlwaysData/5b/5c vollständig nachgeholt
 
-**GSC:** ⚠️ diesen Lauf nicht zugänglich (Chrome-Extension offline) — Werte eingefroren vom 04.08.: 72/109 indexiert (66,1 %), Klicks 1.540/3M, Impr. 124.000, Pos. 9,0. Top-Klick-Bringer (Stand 04.08.): claude-in-microsoft-copilot (#1, 249), copilot-in-excel-aktivieren (202), ki-halluzinationen-vermeiden (181), microsoft-copilot-lizenzen (161)
+**GSC:** 72/111 indexiert (**64,9 %**, 04.08. 66,1 %), Klicks **1.660**/3M (+7,8 % W/W), Impr. **133.000** (+7,3 %), CTR 1,2 %, Pos. **8,8** (von 9,0). Top-Queries: copilot in excel aktivieren (67, Pos 3,0), excel copilot aktivieren (25), copilot excel aktivieren (17), copilot kosten (11), copilot cowork kosten (10). **A6:** Summe nicht-indexiert **28** (gecrawlt 12 + gefunden 16), +3 W/W (von 25)
 
-**AlwaysData:** ⚠️ nicht erfasst (Chrome offline)
+**AlwaysData:** 24h **399**, August MTD **4.981** (10 Tage, Pace ~15k; Juli 22.503)
 
-**Traffic-Mix (Clarity):** ⚠️ cpc/email-Split nicht erfasst (Chrome offline). Referrer-Proxy (API 3T): Google 55 | Bing 19 | ChatGPT 2 | Ecosia 2 | Direct/leer 23 → organisch dominiert
+**Traffic-Mix (Clarity 7T):** Organic/Direct ~471 | SEA (cpc) **17** | Outbound (email) **3** (von 491 Sess.). Referrer (API 3T): Google 55, Bing 19, ChatGPT 2, Ecosia 2, Direct 23 → organisch dominiert
 
-**Clarity Standard (3T, via API, 2/10 Calls):**
-- Sessions: 109 (davon 29 Bots, 134 Unique Users)
-- Scrolltiefe: 35,72 %, Aktive Zeit: 108 s
-- Dead-Click: 15,6 % | Rage-Click: 0 % | Quick-Back: 1,83 % | Excessive-Scroll: 0 %
+**Clarity Standard (API 3T, 2/10 Calls; Dashboard 7T):**
+- Sessions: 109 (3T, 29 Bots, 134 Unique) / 491 (7T, 62 Bots, 468 Unique)
+- Scrolltiefe: 35,7 % (3T) / 39,3 % (7T), Aktive Zeit: 108 s (3T) / 1,6 Min (7T)
+- Dead-Click: **15,6 % (API 3T) / 13,03 % (7T)** | Rage 0–0,2 % | Quick-Back 1,83 %/1,22 % | Excessive-Scroll 0 %
 - Top-Browser: Edge 44, MobileSafari 21, Chrome 15, ChromeMobile 11
 - Top-3-Pages: microsoft-copilot-lizenzen (23), copilot-tipps-tricks-produktivitaet (15), trainings (13)
 - Top-3-Referrer: Google (55), Direct/leer (23), Bing (19)
 
-**Clarity Conversion-Events (7T, via Chrome):** ⚠️ nicht erfasst (Chrome offline) → Defekt-Check 7e diesen Lauf ausgesetzt. Letzter Stand (04.08.): Formular absenden 6, Kontaktieren Sie uns 6, Conversion-Rate ~2,7–3,2 %
+**Clarity Conversion-Events (7T):**
+- contact_form_submit (Formular absenden) 4 / trainer_application_submit 0 / konfigurator_submit 2 / mail_click 0 / phone_click 0 / pdf_download 1
+- Zusätzlich: Kontaktieren Sie uns 3, Zitat anfordern 3, Bestellung erfolgreich 2, lead 2, Ausgehender Klick 5
+- Conversion-Rate gesamt (direkte Kontakt-/Lead-Conv.): ≈16/491 = **~3,3 %**. 7e-Defekt-Check: kein Event ≥3→0 → kein Defekt
+- **5c cpc-Gegenprüfung:** cpc Dead-Click **0 %** (17 Sess.) → Dead-Click-Treiber organisch bestätigt. cpc-Zielseiten: keine /wissen/-Drift beobachtet
+- Funnel „Lead-Reise": Stufe 1 66,4 % → Stufe 2 0,92 % → **0 % E2E** (Content→Angebot-Brücke bleibt Bruch)
 
-**Insights heute:** Patterns 0 | Issues 2 (Dead-Click 15,6 %; A6 eingefroren 66,1 %) | Trends 0 + 1 Methoden-Notiz (Chrome offline) + 1 Goldene-Pages-Korrelation (Details in clarity-insights.md)
+**Insights heute:** Patterns 0 | Issues 2 (Dead-Click 15,6 %/organisch; A6 Summe 28, +3 W/W) | Beobachtung 1 (Conversion ~3,3 %) + 1 Methoden-Notiz + 1 Goldene-Pages-Korrelation (Details in clarity-insights.md)
 **Folge-Crons angelegt:** keine
-**Goldene Pages (Clarity × letzte GSC-Klick-Bringer):** microsoft-copilot-lizenzen, copilot-tipps-tricks-produktivitaet, copilot-roi-berechnen, /trainings
+**Goldene Pages (GSC × Clarity, organic):** microsoft-copilot-lizenzen, copilot-tipps-tricks-produktivitaet, copilot-roi-berechnen, /trainings
 **Protected Pages:** alle OK (5/5 = HTTP 200: copilot-roi-berechnen, copilot-training-schulung, copilot-im-unternehmen-einfuehren-leitfaden, microsoft-copilot-lizenzen, ki-schulung-mitarbeiter-pflicht)
-**Entscheidung gemäß Plan:** Phase 3 bleibt aktiv, DoD 4/8. SSR-Regressions-Wächter grün (0 🔴, weit unter Eskalationsschwelle 5). A6 ohne frische GSC-Zahl → kein Trend-Flag, Stagnations-Issue bleibt offen. Dead-Click 15,6 % = bekanntes organisches Mix-Issue, kein neuer Cron. Kein Push, keine src/-Änderung.
+**Entscheidung gemäß Plan:** Phase 3 bleibt aktiv, DoD 4/8. SSR-Regressions-Wächter grün (0 🔴, weit unter Eskalationsschwelle 5). A6-Summe +3 W/W → Issue-Eintrag (nicht ≥5 pp Quote-Drop → kein Risiko-Flag). Dead-Click 15,6 % = organisches Mix-Issue (5c-bestätigt cpc 0 %), kein neuer Cron. Kein Push, keine src/-Änderung.
 **API-Calls heute:** 2/10 (Clarity)
-**Teams-Report:** ❌ nicht gepostet — `post-report-to-teams.sh` Exit 2 (`TEAMS_WEBHOOK_MARKETING_SEA` fehlt in `website-health-check/.env`). Bericht vollständig erstellt (`/tmp/seo-teams-report.md`), nur Versand offen. Audit NICHT fehlgeschlagen. (Kontext: Webhook seit 03.08. defekt — damals HTTP 401, jetzt URL nicht mehr hinterlegt → Workflow muss neu angelegt werden)
+**Teams-Report:** ❌ nicht gepostet — `post-report-to-teams.sh` Exit 2 (`TEAMS_WEBHOOK_MARKETING_SEA` fehlt in `website-health-check/.env`). Bericht vollständig erstellt, nur Versand offen. Audit NICHT fehlgeschlagen. (Kontext: Webhook seit 03.08. defekt — damals HTTP 401, jetzt URL nicht mehr hinterlegt → Workflow muss neu angelegt werden)
 **Nächster Lauf:** Mo 17.08.2026, 10:00
 
 ---
