@@ -2,7 +2,13 @@
 
 **Lebendes Dokument** — Cron-Jobs pflegen dieses File. Hier sammeln sich die Pattern-Erkenntnisse aus Microsoft Clarity, die wir auf andere Seiten übertragen oder gegen UX-Probleme einsetzen können.
 
-**Letzter automatischer Update:** 4. August 2026 (Wöchentlicher Audit — **Di-Nachlauf, nur 1 Tag nach dem Montags-Audit 03.08.**, W/W ≈ Tag-über-Tag-Rauschen. Alle Quellen zugänglich. GSC: Klicks 1.520→**1.540/3M** (+1,3 %), Impr. 122k→**124k**, Pos. 8,9→**9,0**; Indexierung **72/109 = 66,1 %** (unverändert), Summe nicht-indexiert **25** (unverändert; gecrawlt 10 / gefunden 15). **Dead-Click zurück über Schwelle: API 3T 12,92 %** (von 9,52 %; Dashboard 7T 11,26 %) — cpc 2,13 % / email ~0 % → Treiber weiter **organisch** (ArticlePopup), bekanntes Zickzack-Muster. Conversions **weiter gesund**: Formular absenden 6, Kontaktieren Sie uns 6 u. a. → Conversion-Rate ~2,7–3,2 %. Traffic-Mix 7T: Organic ~603 / SEA 47 / Outbound 7; SEA erstmals **1 cpc-Conversion**, 0/47 auf /wissen/ (keine Drift). Outbound-LP weiter ~0 Conv. Goldene Pages: Lizenzen, claude-in-microsoft-copilot, Outlook-Tipps, Produktivitäts-Tipps. Vorwoche 03.08.: Dead-Click 9,52 %, A6 66,1 %/Summe 25.)
+**Letzter automatischer Update:** 10. August 2026 (Wöchentlicher Audit — Montags-Lauf. **Chrome-Extension offline** → GSC (Schritt 3), AlwaysData (4), Clarity-Conversion-Events (5b) und Paid/Outbound-Split (5c) diesen Lauf NICHT erfasst; Clarity-Standard-API (5a, 2/10 Calls), SSR und Protected-Pages liefen vollständig. **SSR 67/67 ✅** (0 🟡/🔴). Clarity API 3T: Sessions 109 (29 Bots, 134 Unique), **Dead-Click 15,6 %** (Vorlauf 04.08. 12,92 %) → oberes Ende des dokumentierten Zickzack-Bandes, 5c-Gegenprüfung mangels Dashboard nicht möglich, Treiber präsumtiv organisch (ArticlePopup); Rage 0 %, Quick-Back 1,83 %, Excessive-Scroll 0 %, Scrolltiefe 35,7 %, aktive Zeit 108 s. Top-Pages: microsoft-copilot-lizenzen 23 / copilot-tipps-tricks-produktivitaet 15 / trainings 13 / copilot-roi-berechnen 9. Referrer organisch dominiert (Google 55, Direct 23, Bing 19, ChatGPT 2, Ecosia 2). GSC/A6 mangels Zugriff auf letztem Stand eingefroren (04.08.: Klicks 1.540/3M, Pos. 9,0; Indexierung 72/109 = 66,1 %, Summe nicht-indexiert 25). Protected Pages 5/5 = 200. Phase 3 aktiv, DoD 4/8, kein Push.)
+
+<details><summary>Ältere Kopfzeile (04.08.)</summary>
+
+**4. August 2026 (Wöchentlicher Audit — **Di-Nachlauf, nur 1 Tag nach dem Montags-Audit 03.08.**, W/W ≈ Tag-über-Tag-Rauschen. Alle Quellen zugänglich. GSC: Klicks 1.520→**1.540/3M** (+1,3 %), Impr. 122k→**124k**, Pos. 8,9→**9,0**; Indexierung **72/109 = 66,1 %** (unverändert), Summe nicht-indexiert **25** (unverändert; gecrawlt 10 / gefunden 15). **Dead-Click zurück über Schwelle: API 3T 12,92 %** (von 9,52 %; Dashboard 7T 11,26 %) — cpc 2,13 % / email ~0 % → Treiber weiter **organisch** (ArticlePopup), bekanntes Zickzack-Muster. Conversions **weiter gesund**: Formular absenden 6, Kontaktieren Sie uns 6 u. a. → Conversion-Rate ~2,7–3,2 %. Traffic-Mix 7T: Organic ~603 / SEA 47 / Outbound 7; SEA erstmals **1 cpc-Conversion**, 0/47 auf /wissen/ (keine Drift). Outbound-LP weiter ~0 Conv. Goldene Pages: Lizenzen, claude-in-microsoft-copilot, Outlook-Tipps, Produktivitäts-Tipps. Vorwoche 03.08.: Dead-Click 9,52 %, A6 66,1 %/Summe 25.)
+
+</details>
 
 <details><summary>Ältere Kopfzeile (03.08.)</summary>
 
@@ -211,6 +217,45 @@ nach ca. 2 Wochen Laufzeit empfohlen.
 ## Logs (neueste oben — automatisch von Cron-Jobs gepflegt)
 
 <!-- ab hier ergänzen Cron-Jobs ihre Befunde -->
+
+---
+
+### 2026-08-10 — Methoden-Notiz: Chrome-Extension offline → 5b/5c/GSC/AlwaysData nicht erfasst
+**Quelle:** Cron-Lauf 2026-08-10 (weekly)
+**Beobachtung:** Die Claude-in-Chrome-Extension war diesen Lauf nicht verbunden (mehrere Retries erfolglos). Dadurch nicht abrufbar: **GSC** (Schritt 3, Indexierung + Leistung), **AlwaysData** (Schritt 4, Visits), **Clarity-Conversion-Events** (Schritt 5b, Smart/Custom-Events), **Paid/Outbound-Split** (Schritt 5c, cpc/email-Segmentierung + Zielseiten-Drift-Check). Der Clarity-API-Token (5a) funktioniert unabhängig → Standard-Metriken vollständig erfasst (2/10 Calls). SSR-Audit (recheck.sh) + Protected-Pages-curl (organische Kern-KPIs) unberührt.
+**Konsequenz:** Conversion-Tracking (5b), Kampagnen-Segmentierung (5c) und die Defekt-Erkennung (7e) diesen Lauf ausgesetzt — konsistent mit dem sporadischen Muster (Extension offline 20.07., Konto-Block 27.07.). GSC/A6-Zahlen auf letztem Stand (04.08.) eingefroren.
+**Handlung:** Kein Eskalationsgrund an sich (transienter Extension-Ausfall). Falls der Ausfall persistiert: beim nächsten interaktiven Lauf Chrome-Extension prüfen/neu verbinden + im selben Chrome-Profil bei GSC/Clarity/AlwaysData eingeloggt bleiben. In Notification gespiegelt.
+
+---
+
+### 2026-08-10 — Issue-Update: Dead-Click 15,6 % (API 3T) — oberes Bandende, 5c nicht gegenprüfbar
+**Quelle:** Cron-Lauf 2026-08-10 (weekly) — Clarity API 3T (15,6 %, 109 Sess., 29 Bots, 134 Unique)
+**Symptom:** Dead-Click API 3T **15,6 %** (Vorlauf 04.08. 12,92 %, 03.08. 9,52 %) → klar über der 10 %-Schwelle (Schritt 7c) und am oberen Ende des dokumentierten Zickzack-Bandes. Rage 0 %, Quick-Back 1,83 %, Excessive-Scroll 0 % — sonst ruhig. Scrolltiefe 35,72 %, aktive Zeit 108 s.
+**5c-Gegenprüfung NICHT möglich:** Chrome-Extension offline → cpc-/email-Segment-Dead-Click nicht gegenprüfbar. Treiber bleibt **präsumtiv organisch** (globales `ArticlePopup` via `ContentLayout.tsx`), konsistent mit dem Muster (…8,62 → 13,95 → 14,95 → 9,52 → 12,92 → **15,6 %**), das von der Wochen-Mischung Wissensartikel-Traffic abhängt. Kein Code-Defekt-Indiz (Rage/Quick-Back ruhig, keine JS-Fehler-Metrik auffällig).
+**Top-Page-Ableitung (PopularPages 3T):** `microsoft-copilot-lizenzen` (23), `/` (15), `copilot-tipps-tricks-produktivitaet` (15), `trainings` (13), `copilot-roi-berechnen` (9) — die Wissensseiten tragen ArticlePopup.
+**Bewertung:** Bekanntes mix-getriebenes Grenzwert-Issue, jetzt am oberen Rand. Kein neuer Cron. Fix-Draft `docs/drafts/clarity-fix-copilot-in-outlook-nutzen-tipps.md` (seit 17.06.) liegt als optionale strukturelle Absicherung vor, Engpass bleibt der User-Push. 5c-Bestätigung im nächsten Lauf mit funktionierender Extension nachholen.
+**Status:** identifiziert — eskaliert im Mix, 5c-Gegenprüfung offen, Fix-Draft optional/user-gebunden.
+
+---
+
+### 2026-08-10 — Issue-Update: A6-Index-Coverage eingefroren bei 66,1 % / Summe 25 (GSC-Snapshot)
+**Quelle:** Cron-Lauf 2026-08-10 (weekly) — GSC diesen Lauf nicht zugänglich (Chrome offline), Werte vom 04.08.
+**Betroffene Ebene:** Index-Coverage gesamt (Maßnahme A6)
+**Symptom:** Kein frischer GSC-Zugriff → Indexierung auf letztem Stand **72/109 = 66,1 %**, Summe nicht-indexiert (gecrawlt 10 + gefunden 15) = **25** (eingefroren 04.08.). Weiter deutlich unter DoD-Ziel 90 %. Ohne frische Zahl kein neuer Trend messbar; nicht ≥3 W/W steigend, nicht ≥5 pp unter 7-T-Schnitt → kein Indexierungs-Risiko-Flag. Stagnations-Issue (seit 27.07.) bleibt offen.
+**Empfohlene Maßnahme:** unverändert — A6-Draft `docs/drafts/index-coverage-interne-verlinkung-2026-06-16.md` nachschärfen (zusätzliche additive Links auf die „gefunden-nicht-indexiert"-Seiten aus Top-Performern), dann IndexNow-Resubmit. Rein additiv, Protected Pages ausgespart. Kein Push durch Cron.
+**Status:** identifiziert — GSC-Zahl eingefroren, wartet auf User-Umsetzung (Draft-Nachschärfung + Push) + frischen GSC-Zugriff.
+
+---
+
+### 2026-08-10 — Cross-Korrelation: Goldene Pages (Clarity-API × letzte GSC-Top-Klick-Bringer)
+**Quelle:** Cron-Lauf 2026-08-10 (weekly) — Clarity Top-Pages 3T (API) × GSC Top-Klick-Bringer 3M (Stand 04.08., eingefroren)
+**Goldene Pages (in beiden stark):**
+- `/wissen/microsoft-copilot-lizenzen` (GSC 161 Kl./3M; Clarity-**#1**, 23 Visits) — Dauergewinner
+- `/wissen/copilot-tipps-tricks-produktivitaet` (GSC 57 Kl.; Clarity 15 Visits)
+- `/wissen/copilot-roi-berechnen` (Protected Page; Clarity 9 Visits) — zieht On-Site-Traffic
+- `/trainings` (Clarity 13 Visits) — Angebots-Seite direkt in Top-Pages, gutes Funnel-Signal
+**Ungenutztes Potential (unverändert):** GSC-Top-Cluster `/wissen/copilot-in-excel-aktivieren` (202 Kl./3M) + `/wissen/claude-in-microsoft-copilot` (GSC-#1 249 Kl./3M) tauchen **weiter nicht** in den Clarity-Top-5 auf — Dauer-Lücke. Hinweis eingeschränkt, da GSC-Zahlen diesen Lauf nicht frisch.
+**Handlung:** Beim nächsten CTA-Welle-/Verlinkungsschritt Excel-Aktivieren- + claude-in-microsoft-copilot-Seite priorisieren (Such-Traffic On-Site aktivieren).
 
 ---
 

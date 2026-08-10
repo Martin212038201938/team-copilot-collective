@@ -8,6 +8,39 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 
 ## Logs
 
+### 2026-08-10 — Wöchentlicher Audit (Cron)
+
+**Phase:** Phase 3 — Content-Block (aktiv seit 01.06., kein Wechsel)
+**SSR-Audit:** ✅ 67 / 🟡 0 / 🔴 0 (von 67)
+- Neu in 🔴/✅: keine (stabil 67/67, DoD #2 gewahrt)
+
+**GSC:** ⚠️ diesen Lauf nicht zugänglich (Chrome-Extension offline) — Werte eingefroren vom 04.08.: 72/109 indexiert (66,1 %), Klicks 1.540/3M, Impr. 124.000, Pos. 9,0. Top-Klick-Bringer (Stand 04.08.): claude-in-microsoft-copilot (#1, 249), copilot-in-excel-aktivieren (202), ki-halluzinationen-vermeiden (181), microsoft-copilot-lizenzen (161)
+
+**AlwaysData:** ⚠️ nicht erfasst (Chrome offline)
+
+**Traffic-Mix (Clarity):** ⚠️ cpc/email-Split nicht erfasst (Chrome offline). Referrer-Proxy (API 3T): Google 55 | Bing 19 | ChatGPT 2 | Ecosia 2 | Direct/leer 23 → organisch dominiert
+
+**Clarity Standard (3T, via API, 2/10 Calls):**
+- Sessions: 109 (davon 29 Bots, 134 Unique Users)
+- Scrolltiefe: 35,72 %, Aktive Zeit: 108 s
+- Dead-Click: 15,6 % | Rage-Click: 0 % | Quick-Back: 1,83 % | Excessive-Scroll: 0 %
+- Top-Browser: Edge 44, MobileSafari 21, Chrome 15, ChromeMobile 11
+- Top-3-Pages: microsoft-copilot-lizenzen (23), copilot-tipps-tricks-produktivitaet (15), trainings (13)
+- Top-3-Referrer: Google (55), Direct/leer (23), Bing (19)
+
+**Clarity Conversion-Events (7T, via Chrome):** ⚠️ nicht erfasst (Chrome offline) → Defekt-Check 7e diesen Lauf ausgesetzt. Letzter Stand (04.08.): Formular absenden 6, Kontaktieren Sie uns 6, Conversion-Rate ~2,7–3,2 %
+
+**Insights heute:** Patterns 0 | Issues 2 (Dead-Click 15,6 %; A6 eingefroren 66,1 %) | Trends 0 + 1 Methoden-Notiz (Chrome offline) + 1 Goldene-Pages-Korrelation (Details in clarity-insights.md)
+**Folge-Crons angelegt:** keine
+**Goldene Pages (Clarity × letzte GSC-Klick-Bringer):** microsoft-copilot-lizenzen, copilot-tipps-tricks-produktivitaet, copilot-roi-berechnen, /trainings
+**Protected Pages:** alle OK (5/5 = HTTP 200: copilot-roi-berechnen, copilot-training-schulung, copilot-im-unternehmen-einfuehren-leitfaden, microsoft-copilot-lizenzen, ki-schulung-mitarbeiter-pflicht)
+**Entscheidung gemäß Plan:** Phase 3 bleibt aktiv, DoD 4/8. SSR-Regressions-Wächter grün (0 🔴, weit unter Eskalationsschwelle 5). A6 ohne frische GSC-Zahl → kein Trend-Flag, Stagnations-Issue bleibt offen. Dead-Click 15,6 % = bekanntes organisches Mix-Issue, kein neuer Cron. Kein Push, keine src/-Änderung.
+**API-Calls heute:** 2/10 (Clarity)
+**Teams-Report:** ❌ nicht gepostet — `post-report-to-teams.sh` Exit 2 (`TEAMS_WEBHOOK_MARKETING_SEA` fehlt in `website-health-check/.env`). Bericht vollständig erstellt (`/tmp/seo-teams-report.md`), nur Versand offen. Audit NICHT fehlgeschlagen. (Kontext: Webhook seit 03.08. defekt — damals HTTP 401, jetzt URL nicht mehr hinterlegt → Workflow muss neu angelegt werden)
+**Nächster Lauf:** Mo 17.08.2026, 10:00
+
+---
+
 ### 2026-08-05 — Phase-Conductor-Lauf (Cron)
 **Aktive Phase:** Phase 3 — Content-Block (aktiv seit 01.06.2026, kein Wechsel). Phase 4 (Off-Page) läuft seit 25.06. parallel.
 **Nächste Maßnahme:** kleinste offene Code-Nr. = **A6 Index-Coverage** (⏳). Danach B3b/B3c-Hub-Review, C4-Schema-Push, C1-PageSpeed-Setup — alle user-gebunden.
