@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Check, X, Info, ExternalLink, Zap } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import AuthorBio from "@/components/AuthorBio";
+import HoneypotCTA from "@/components/HoneypotCTA";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 import { Link } from "react-router-dom";
 import RoiGeneratorTeaserBanner from "@/components/roi-generator/RoiGeneratorTeaserBanner";
@@ -922,6 +923,8 @@ const CopilotLicenses = () => {
             Jetzt Beratung anfragen
           </a>
         </div>
+              <HoneypotCTA guideId="copilot-excel-praxishandbuch" />
+
               <AuthorBio author={martinLang} />
       </ContentLayout>
     </>

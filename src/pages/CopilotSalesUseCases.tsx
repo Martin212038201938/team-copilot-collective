@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import AuthorBio from "@/components/AuthorBio";
+import HoneypotCTA from "@/components/HoneypotCTA";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 
 const SLUG = "copilot-vertrieb-use-cases";
@@ -558,6 +559,8 @@ const CopilotSalesUseCases = () => {
             ))}
           </div>
         </section>
+
+              <HoneypotCTA guideId="copilot-excel-praxishandbuch" />
 
               <AuthorBio author={martinLang} />
       </ContentLayout>

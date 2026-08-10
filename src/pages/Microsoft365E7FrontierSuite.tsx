@@ -4,6 +4,7 @@ import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import AuthorBio from "@/components/AuthorBio";
+import HoneypotCTA from "@/components/HoneypotCTA";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 
 const SLUG = "microsoft-365-e7-frontier-suite";
@@ -435,6 +436,14 @@ const Microsoft365E7FrontierSuite = () => {
             </li>
           </ul>
         </section>
+
+              <HoneypotCTA
+                guideIds={[
+                  "copilot-einfuehren-admin-leitfaden",
+                  "copilot-grounding-management-leitfaden",
+                ]}
+                heading="Passende Leitfäden zum kostenlosen Download"
+              />
 
               <AuthorBio author={martinLang} />
       </ContentLayout>

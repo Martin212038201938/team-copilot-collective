@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import AuthorBio from "@/components/AuthorBio";
+import HoneypotCTA from "@/components/HoneypotCTA";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 
 const SLUG = "copilot-lernreise-vs-tagesschulung";
@@ -836,6 +837,8 @@ const CopilotLernreisen = () => {
             ))}
           </div>
         </section>
+
+        <HoneypotCTA guideId="copilot-einfuehren-management-leitfaden" />
 
         <AuthorBio author={martinLang} />
 

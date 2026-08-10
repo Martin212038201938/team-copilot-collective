@@ -3,6 +3,7 @@ import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import AuthorBio from "@/components/AuthorBio";
+import HoneypotCTA from "@/components/HoneypotCTA";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 import { Link } from "react-router-dom";
 import RoiGeneratorTeaserBanner from "@/components/roi-generator/RoiGeneratorTeaserBanner";
@@ -1158,6 +1159,8 @@ const CopilotRoiBerechnen = () => {
             ))}
           </div>
         </section>
+              <HoneypotCTA guideId="copilot-einfuehren-management-leitfaden" />
+
               <AuthorBio author={martinLang} />
       </ContentLayout>
     </>

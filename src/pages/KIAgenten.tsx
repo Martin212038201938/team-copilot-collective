@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Zap, Bot, Network, Workflow, Shield, ExternalLink } from "lucide-react";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import AuthorBio from "@/components/AuthorBio";
+import HoneypotCTA from "@/components/HoneypotCTA";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 import { Link } from "react-router-dom";
 
@@ -836,6 +837,8 @@ const KIAgenten = () => {
             Projekt besprechen
           </a>
         </div>
+
+              <HoneypotCTA guideId="copilot-grounding-admin-leitfaden" />
 
               <AuthorBio author={martinLang} />
       </ContentLayout>

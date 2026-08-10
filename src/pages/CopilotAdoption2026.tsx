@@ -3,6 +3,7 @@ import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import AuthorBio from "@/components/AuthorBio";
+import HoneypotCTA from "@/components/HoneypotCTA";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 import { Link } from "react-router-dom";
 
@@ -574,6 +575,8 @@ const CopilotAdoption2026 = () => {
             <li>• Microsoft Work Trend Index, 2025</li>
           </ul>
         </section>
+
+              <HoneypotCTA guideId="copilot-einfuehren-management-leitfaden" />
 
               <AuthorBio author={martinLang} />
       </ContentLayout>

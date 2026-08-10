@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import CustomerLogos from "@/components/CustomerLogos";
 import TrustBadges from "@/components/TrustBadges";
+import GuidesTeaser from "@/components/GuidesTeaser";
 import TrainingModules from "@/components/TrainingModules";
 import Benefits from "@/components/Benefits";
 import CustomerReviews from "@/components/CustomerReviews";
@@ -57,6 +58,7 @@ const Index = () => {
         <CustomerLogos />
         <Benefits />
         <TrainingModules />
+        <GuidesTeaser />
         <TrustBadges />
         <CustomerReviews />
         <Contact />
