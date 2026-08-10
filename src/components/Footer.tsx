@@ -36,6 +36,8 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4">Unternehmen</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
+              <li><Link to="/wissen" className="hover:text-primary transition-colors">Wissen &amp; Fachartikel</Link></li>
+              <li><Link to="/guidelines" className="hover:text-primary transition-colors">Kostenlose Leitfäden</Link></li>
               <li><Link to="/ueber-uns" className="hover:text-primary transition-colors">Über uns</Link></li>
               <li><a href="#benefits" className="hover:text-primary transition-colors">Vorteile</a></li>
               <li><Link to="/kontakt" className="hover:text-primary transition-colors">Kontakt</Link></li>

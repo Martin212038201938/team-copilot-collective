@@ -15,7 +15,10 @@
 
 set -euo pipefail
 
-ENV_FILE="${TEAMS_ENV_FILE:-$HOME/Documents/Cowork Bereich/website-health-check/.env}"
+# Verzeichnis dieses Scripts robust auflösen (für script-relative .env-Suche).
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+ENV_FILE="${TEAMS_ENV_FILE:-}"
 TITLE="SEO-Audit copilotenschule.de"
 BODY_FILE=""
 
@@ -28,14 +31,34 @@ while [ $# -gt 0 ]; do
   esac
 done
 
-# Webhook-URL laden
+# .env-Kandidaten in Reihenfolge prüfen. website-health-check ist in JEDER
+# Umgebung ein Geschwister-Ordner von team-copilot-collective (auf dem Rechner
+# unter ~/Documents/Cowork Bereich/, in der Sandbox unter /sessions/*/mnt/) —
+# daher ist der script-relative Pfad die robusteste Quelle. Der frühere feste
+# $HOME/Documents-Pfad scheiterte, sobald das Script außerhalb des User-HOME lief
+# (z. B. im Cron-Sandbox), obwohl die Variable in der .env stand.
+ENV_CANDIDATES=()
+[ -n "$ENV_FILE" ] && ENV_CANDIDATES+=("$ENV_FILE")
+ENV_CANDIDATES+=(
+  "$SCRIPT_DIR/../../website-health-check/.env"
+  "$HOME/Documents/Cowork Bereich/website-health-check/.env"
+)
+
+# Webhook-URL aus erstem Kandidaten laden, der die Variable enthält.
 WEBHOOK=""
-if [ -f "$ENV_FILE" ]; then
-  WEBHOOK="$(grep -E '^TEAMS_WEBHOOK_MARKETING_SEA=' "$ENV_FILE" | head -1 | cut -d= -f2- | tr -d '"'"'"' \r')"
-fi
+FOUND_ENV=""
+for cand in "${ENV_CANDIDATES[@]}"; do
+  [ -f "$cand" ] || continue
+  val="$(grep -E '^TEAMS_WEBHOOK_MARKETING_SEA=' "$cand" | head -1 | cut -d= -f2- | tr -d '"'"'"' \r')"
+  if [ -n "$val" ]; then
+    WEBHOOK="$val"; FOUND_ENV="$cand"; break
+  fi
+done
+
 if [ -z "$WEBHOOK" ]; then
-  echo "FEHLER: TEAMS_WEBHOOK_MARKETING_SEA nicht in $ENV_FILE gefunden." >&2
-  echo "→ Workflow-URL dort als TEAMS_WEBHOOK_MARKETING_SEA=... hinterlegen." >&2
+  echo "FEHLER: TEAMS_WEBHOOK_MARKETING_SEA in keiner .env gefunden. Geprüft:" >&2
+  for cand in "${ENV_CANDIDATES[@]}"; do echo "  - $cand" >&2; done
+  echo "→ Workflow-URL als TEAMS_WEBHOOK_MARKETING_SEA=... hinterlegen." >&2
   exit 2
 fi
 
