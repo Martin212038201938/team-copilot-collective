@@ -55,3 +55,7 @@ vite.config.*.timestamp-*.mjs
 
 # Cowork / Claude Local-Settings
 .claude/settings.local.json
+
+# Cowork device_bash Bridge: FUSE-Mount kann Dateien nicht unlinken, nur verschieben.
+# Stray-Lockfiles landen hier und sollen NIE versioniert werden.
+_to_delete/
