@@ -63,7 +63,7 @@ const CopilotClaudeIntegration = () => {
           "@id": "https://copilotenschule.de/#organization"
         },
         "datePublished": "2026-03-13",
-        "dateModified": "2026-06-10",
+        "dateModified": "2026-08-11",
         "mainEntityOfPage": {
           "@type": "WebPage",
           "@id": pageUrl
@@ -126,7 +126,7 @@ const CopilotClaudeIntegration = () => {
         schema={schema}
         author={martinLang}
         publishedTime="2026-03-13T11:00:00+01:00"
-        modifiedTime="2026-06-10T09:00:00+02:00"
+        modifiedTime="2026-08-11T10:00:00+02:00"
       />
 
       <ContentLayout
@@ -136,10 +136,12 @@ const CopilotClaudeIntegration = () => {
         ]}
         title={PAGE_TITLE}
         description="Microsoft integriert Anthropics Claude-KI in Copilot – inklusive Copilot Cowork für agentenbasierte Aufgaben. Was das für Unternehmen bedeutet."
-        lastUpdated="10. Juni 2026"
+        lastUpdated="11. August 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
         relatedContent={[
+          "wissen:copilot-update-juli-2026",
+          "wissen:copilot-cowork-abrechnung-copilot-credits",
           "wissen:microsoft-365-e7-frontier-suite",
           "wissen:microsoft-copilot-lizenzen",
           "wissen:copilot-sicherheit-datenschutz",
@@ -162,6 +164,33 @@ const CopilotClaudeIntegration = () => {
               chatten. Für europäische Unternehmen gibt es allerdings einen DSGVO-Haken: Anthropic ist nicht im
               EU Data Boundary enthalten. Dieser Artikel ordnet ein, was die Integration kann, wo sie Grenzen
               hat und was IT-Verantwortliche jetzt tun sollten.
+            </p>
+          </CardContent>
+        </Card>
+
+        {/* Update-Hinweis */}
+        <Card className="mb-8 border-l-4 border-l-blue-500 bg-blue-50/50 dark:bg-blue-950/20">
+          <CardContent className="pt-6">
+            <p className="text-sm font-semibold uppercase tracking-wide text-blue-700 dark:text-blue-400 mb-2">
+              Update vom 11. August 2026
+            </p>
+            <p className="text-base leading-relaxed">
+              Die Integration ist inzwischen deutlich weiter, als dieser Artikel ursprünglich beschrieb:
+              Copilot Cowork ist seit dem 16. Juni 2026 allgemein verfügbar (GA) und wird über
+              Copilot Credits abgerechnet – die „Research Preview" ist damit Geschichte. Claude kam
+              zudem als benanntes Modell in die Office-Apps: Claude Sonnet 5 seit 2. Juli in Cowork,
+              PowerPoint und Word, Claude Opus 5 seit 25. Juli zusätzlich in Excel, Copilot Chat und
+              Copilot Studio. Gleichzeitig hat Microsoft mit GPT-5.6 (seit 9. Juli) ein neues bevorzugtes
+              Standardmodell gesetzt – die Modellwahl ist damit fester Alltagsbestandteil geworden, nicht
+              mehr nur ein Cowork-Detail. Den vollständigen Monatsüberblick finden Sie im{" "}
+              <Link to="/wissen/copilot-update-juli-2026" className="text-primary hover:underline">
+                Copilot Update Juli 2026
+              </Link>
+              , die Abrechnungslogik für Cowork im Beitrag zu{" "}
+              <Link to="/wissen/copilot-cowork-abrechnung-copilot-credits" className="text-primary hover:underline">
+                Copilot Cowork und den Copilot-Credits
+              </Link>
+              .
             </p>
           </CardContent>
         </Card>
@@ -395,23 +424,30 @@ const CopilotClaudeIntegration = () => {
             <p>
               Für den einzelnen Wissensarbeiter ändert sich im Alltag zunächst wenig. Copilot in Word,
               Excel, PowerPoint und Outlook funktioniert wie bisher. Microsoft routet im Hintergrund
-              Anfragen an das jeweils passende Modell – Nutzer merken das nicht und müssen sich nicht
-              aktiv für ein Modell entscheiden. Wer den Researcher in Copilot Chat nutzt, kann dort
-              allerdings explizit Claude als Modell auswählen, was sich bei Rechercheaufgaben mit langen
-              Dokumenten lohnt. Einen Überblick, welche Ausprägungen es überhaupt gibt und wie sie sich unterscheiden, liefert der Artikel zu den{" "}
+              Anfragen an das jeweils passende Modell – GPT-5.6 ist seit Juli 2026 die Grundeinstellung
+              für die meisten Aufgaben. Wer den Researcher oder Copilot Chat nutzt, kann dort allerdings
+              explizit ein Claude-Modell auswählen – seit Ende Juli namentlich Claude Sonnet 5 oder Claude
+              Opus 5 –, was sich bei Rechercheaufgaben mit langen Dokumenten und mehrstufigen
+              Erstellungsaufgaben lohnt. Einen Überblick, welche Ausprägungen es überhaupt gibt und wie sie sich unterscheiden, liefert der Artikel zu den{" "}
               <Link to="/wissen/microsoft-copilot-varianten-unterschiede" className="text-primary hover:underline">
                 Unterschieden der Copilot-Varianten
               </Link>.
             </p>
             <p>
-              Die eigentliche Veränderung liegt in Copilot Cowork – und das ist derzeit noch im „Research
-              Preview" mit einer begrenzten Zahl von Kunden. Microsoft plant die breitere Verfügbarkeit
-              über das Frontier-Programm für Ende März 2026. Unternehmen, die auf der{" "}
+              Die eigentliche Veränderung liegt in Copilot Cowork – ursprünglich im „Research Preview"
+              mit einer begrenzten Zahl von Kunden, inzwischen aber seit dem 16. Juni 2026 allgemein
+              verfügbar (GA) und über{" "}
+              <Link to="/wissen/copilot-cowork-abrechnung-copilot-credits" className="text-primary hover:underline">
+                Copilot Credits abgerechnet
+              </Link>
+              . Unternehmen, die auf der{" "}
               <Link to="/wissen/microsoft-365-e7-frontier-suite" className="text-primary hover:underline">
                 neuen E7-Lizenzstufe
               </Link>{" "}
-              (99 Euro/Nutzer/Monat) sind, bekommen Cowork automatisch. Wer eine bestehende
-              Copilot-Lizenz für 30 Euro hat, erhält Zugang über das Frontier-Programm.
+              (99 Euro/Nutzer/Monat) sind, haben weiterhin den breitesten Zugang. Wer eine bestehende
+              Copilot-Lizenz für 30 Euro hat, nutzt Cowork über das Credits-Modell – seit Juli mit Claude
+              Sonnet 5 als Standardmodell für die Aufgabenbearbeitung und Claude Opus 5 für längere,
+              komplexere Aufträge.
             </p>
             <p>
               Was sich dagegen sehr wohl ändert – und zwar sofort – ist die Anforderung an die
