@@ -35,7 +35,7 @@ export const ALL_ARTICLES: ArticleData[] = [
     description: "GPT-5.6 wird bevorzugtes Modell, Claude Opus 5 kommt in die Office-Apps, Vision teilt Bildschirm und Kamera – plus alle Admin- und Datenschutz-Themen.",
     link: "/wissen/copilot-update-juli-2026",
     badge: "Copilot News",
-    icon: "§",
+    icon: "🔄",
     lastUpdated: "10. August 2026",
     publishDate: "2026-08-10",
     publishTime: "09:00"
@@ -68,7 +68,7 @@ export const ALL_ARTICLES: ArticleData[] = [
     description: "Cowork wird GA, Claude kommt in den Copilot Chat, Work IQ liest Geschäftsdaten – plus Admin- & Datenschutz-Themen und die Lizenzumstellung zum 1. Juli.",
     link: "/wissen/copilot-update-juni-2026",
     badge: "Copilot News",
-    icon: "§",
+    icon: "🔄",
     lastUpdated: "13. Juli 2026",
     publishDate: "2026-07-13",
     publishTime: "09:00"
