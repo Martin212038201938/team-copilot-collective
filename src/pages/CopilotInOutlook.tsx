@@ -6,6 +6,7 @@ import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import AuthorBio from "@/components/AuthorBio";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 import TrainingCTA from "@/components/TrainingCTA";
+import AngebotsBruecke from "@/components/AngebotsBruecke";
 
 const SLUG = "copilot-in-outlook-nutzen-tipps";
 const PAGE_TITLE = "Copilot in Outlook nutzen: Tipps und Use Cases für Mail und Kalender";
@@ -239,6 +240,20 @@ const CopilotInOutlook = () => {
             </p>
           </div>
         </section>
+
+        <AngebotsBruecke
+          eyebrow="Passendes Training"
+          headline="Voraussetzungen geklärt – bleibt die Frage, wer im Team es tatsächlich so nutzt."
+          text="Die Arbeitsweise aus diesem Artikel (fragen statt suchen, Entwürfe mit Kontext, vorbereitete Termine) setzt sich nicht durch Rundmail durch. Im Praxis-Training üben Ihre Leute das an ihrem eigenen Postfach – mit ihren echten Mails, ihrem echten Kalender."
+          points={[
+            "1 Tag, inhouse oder online",
+            "Outlook, Teams und die Office-Apps",
+            "Auch als Lernreise über 8 Wochen",
+          ]}
+          trainingSlug="microsoft-365-copilot-praxis"
+          trainingLabel="Praxis-Training ansehen"
+          source="copilot-in-outlook-nutzen-tipps"
+        />
 
         {/* Wo finde ich Copilot in Outlook? */}
         <section id="wo-finde-ich-copilot" className="mb-2 mt-1">

@@ -8,6 +8,32 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 
 ## Logs
 
+### 2026-08-12 — Monatsreview (Cron)
+
+**Bericht:** docs/seo-monatsreview-2026-08.md
+**Phase:** Phase 3 — Content-Block (aktiv seit 01.06., kein Wechsel)
+**Definition-of-Done-Score:** 4 von 8 erfüllt (fest: #2 SSR 🔴=0 ✅, #4 GEO 82 ✅ + jetzt durch LLM-Traffic untermauert; wahrscheinlich: #5 ≥5 Klick-Seiten ✅ (10 Seiten), #6 B2-Hub #1). Offen: #1 Indexierung 64,9 % (Ziel 90 %), #3 SEO-Score 42/veraltet (C1-Blocker), #7 Listicle (Drafts da, nicht versendet), #8 ProvenExpert (nicht angelegt).
+
+**Top-Zahlen:**
+- AlwaysData: 24h 676 | rollierend 30T 10.229 (inkl. Paid/Outbound) | Juli final 22.503 (+70 % M/M)
+- GSC (frisch, vor 5 h): 72/111 indexiert (64,9 %) | Klicks 1.660/3M (+7,8 % W/W, +311 % seit Juni-Review) | Impr. 134.000 | Pos. 8,8 (beste je) | 28T: 667 Kl./53.866 Impr./Pos. 8,0
+- A6-Summe nicht-indexiert: gecrawlt 12 + gefunden 16 = 28 (+3 M/M, leicht negativ)
+- Traffic-Mix 30T (Clarity-Kanal): OrganicSearch 1.542 | Other 817 | PaidSearch/cpc 134 | Referral 114 | Direct 91 | Email/Outbound 67 | AIPlatform/LLM 61
+- Clarity Sessions/30T: 2.811 (358 Bots, 2.773 Unique) | Dead-Click 12,56 % (3T API 9,39 %) | Scroll 40,38 % | aktive Zeit 1,5 Min
+- Conv-Rate 30T: ~2,2 % direkte Kontakt-/Angebots-Conv. (63/2.811), ~3,2 % inkl. Lead/PDF — deutlich über den ~0,42 % der Vorwochen. 7e-Defekt-Check: kein Event ≥3→0 → kein Defekt
+- SSR: ✅ 67/67 (0 🔴), DoD #2 gewahrt
+
+**Goldene Pages:** microsoft-copilot-lizenzen, copilot-in-outlook-nutzen-tipps, copilot-tipps-tricks-produktivitaet, claude-in-microsoft-copilot
+**Bremsen:** microsoft-copilot-lizenzen (34.542 Impr. → CTR 0,6 %), copilot-in-excel-aktivieren (Traffic verpufft informational)
+**Funnel „Lead-Reise" (30T):** Stufe 1 Wissens-Artikel 1.621 (57,67 %) → Stufe 2 Angebot **3 (0,19 %)** → **0 % E2E** — Content→Angebot-Bruch unverändert seit Juni
+**Hauptbefund:** Organik auf Rekordniveau (1.660 Kl./3M, Pos. 8,8) und LLM-Traffic erstmals als eigener Kanal messbar (AIPlatform 61) — aber der Rekord-Traffic wird kommerziell nicht abgeschöpft (Funnel-Bruch), und die Indexierung stagniert bei ~65 %.
+**Empfehlung:** Angebots-CTA-Brücke auf den 4 Goldenen Pages (Funnel-Fix) + Snippet-/CTR-Entstauung von microsoft-copilot-lizenzen (Kosten-Cluster). Beide additiv, kein Protected-Page-Eingriff.
+**Folge-Crons angelegt:** `copilotenschule-clarity-fix-microsoft-copilot-lizenzen` (19.08., Anti-Pattern-Fix-Draft) + `copilotenschule-pattern-transfer-2026-08-26` (26.08., Best-Practice-Transfer-Draft) — Anlage beim ersten Versuch durch User unterbrochen, im Nachlauf erneut angelegt (siehe Notification).
+**API-Calls heute:** 2/10 (Clarity)
+**Nächster Monatsreview:** Mi 09.09.2026, 10:30
+
+---
+
 ### 2026-08-10 — Wöchentlicher Audit (Cron)
 
 **Phase:** Phase 3 — Content-Block (aktiv seit 01.06., kein Wechsel)

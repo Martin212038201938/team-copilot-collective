@@ -2,7 +2,13 @@
 
 **Lebendes Dokument** — Cron-Jobs pflegen dieses File. Hier sammeln sich die Pattern-Erkenntnisse aus Microsoft Clarity, die wir auf andere Seiten übertragen oder gegen UX-Probleme einsetzen können.
 
-**Letzter automatischer Update:** 10. August 2026 (Wöchentlicher Audit — Montags-Lauf. Chrome-Extension war zunächst offline (5a/SSR/Protected zuerst API-/curl-basiert erfasst), kam dann **nach User-Meldung online** → GSC, AlwaysData, Conversion-Events (5b) und cpc/email-Split (5c) vollständig nachgeholt. **SSR 67/67 ✅** (0 🟡/🔴), Protected Pages 5/5 = 200. **GSC (frisch, 07.08./vor 4,5 h):** Indexierung **72/111 = 64,9 %** (04.08. 72/109 = 66,1 %); A6-Summe nicht-indexiert **28** (gecrawlt 12 + gefunden 16) — von 25, **+3 W/W → Issue-Schwelle erreicht**. Leistung 3M: **Klicks 1.660** (+7,8 % vs 1.540), Impr. **133.000** (+7,3 %), CTR 1,2 %, **Pos. 8,8** (von 9,0, verbessert); Top-Query „copilot in excel aktivieren" 67 Kl./Pos 3,0. **AlwaysData:** 24h **399**, August MTD **4.981** (10 Tage, Pace ~15k, Juli war 22.503). **Clarity 7T (Dashboard):** 491 Sess. (62 Bots, 468 Unique), Dead-Click **13,03 %**, Scroll 39,32 %, aktive Zeit 1,6 Min, Rage 0,2 %, Quick-Back 1,22 %. API 3T Dead-Click 15,6 % (oberes Bandende). **5c:** cpc **17 Sess.** (Dead-Click **0 %** → Treiber Dead-Click eindeutig organisch, ArticlePopup), email **3 Sess.** (0 s aktive Zeit, 0 Conv.), Rest organic/direct ~471. **Conversions 7T:** Formular absenden 4, Kontaktieren Sie uns 3, Zitat anfordern 3, Bestellung erfolgreich 2, lead 2, konfigurator_submit 2, pdf_download 1, Ausgehender Klick 5 → direkte Kontakt-/Lead-Conv. ≈16/491 = **~3,3 %**; 7e-Defekt-Check: kein Event ≥3→0, kein Defekt. Funnel „Lead-Reise" weiter **0 % E2E** (Stufe 1 66,4 %, Stufe 2 nur 0,92 %). Phase 3 aktiv, DoD 4/8, kein Push.)
+**Letzter automatischer Update:** 12. August 2026 (Monatsreview 08/2026 — Bericht `docs/seo-monatsreview-2026-08.md`. Clarity 30T: Sessions **2.811** (358 Bots, 2.773 Unique), Seiten/Sitzung 1,04, Scroll 40,38 %, aktive Zeit 1,5 Min, Dead-Click **12,56 %** (3T API 9,39 %), Rage 0,25 %, Quick-Back 0,43 %. **Traffic-Mix (Kanal 30T):** OrganicSearch 1.542 · Other 817 · PaidSearch/cpc 134 · Referral 114 · Direct 91 · Email/Outbound 67 · **AIPlatform/LLM 61** (erstmals als eigener Kanal quantifiziert). **Conversion-Events 30T:** Formular absenden 25, Kontaktieren Sie uns 18, pdf_download 14, lead 13, Bestellung erfolgreich 8, Zitat anfordern 6, konfigurator_submit 5, sml_landing_page_visit 28, sml_jump_paid_click 8 → direkte Kontakt-/Angebots-Conv. ~63/2.811 = **~2,2 %**, kein 7e-Defekt. **Funnel „Lead-Reise":** Stufe 1 1.621 (57,67 %) → Stufe 2 nur 3 (0,19 %) → **0 % E2E** (Content→Angebot-Bruch unverändert). GSC 3M Rekord: 1.660 Kl./134.000 Impr./Pos. 8,8. Neue Einträge des Monats unten: 1 Pattern (Goldene Pages CTA-Transfer), 1 Issue (Bremse microsoft-copilot-lizenzen), 2 Trends (AIPlatform-LLM-Traffic, Kosten/Preis-Schläfer). Phase 3 aktiv, DoD 4/8, kein Push.)
+
+<details><summary>Ältere Kopfzeile (10.08.)</summary>
+
+**10. August 2026 (Wöchentlicher Audit — Montags-Lauf. Chrome-Extension war zunächst offline (5a/SSR/Protected zuerst API-/curl-basiert erfasst), kam dann **nach User-Meldung online** → GSC, AlwaysData, Conversion-Events (5b) und cpc/email-Split (5c) vollständig nachgeholt. **SSR 67/67 ✅** (0 🟡/🔴), Protected Pages 5/5 = 200. **GSC (frisch, 07.08./vor 4,5 h):** Indexierung **72/111 = 64,9 %** (04.08. 72/109 = 66,1 %); A6-Summe nicht-indexiert **28** (gecrawlt 12 + gefunden 16) — von 25, **+3 W/W → Issue-Schwelle erreicht**. Leistung 3M: **Klicks 1.660** (+7,8 % vs 1.540), Impr. **133.000** (+7,3 %), CTR 1,2 %, **Pos. 8,8** (von 9,0, verbessert); Top-Query „copilot in excel aktivieren" 67 Kl./Pos 3,0. **AlwaysData:** 24h **399**, August MTD **4.981** (10 Tage, Pace ~15k, Juli war 22.503). **Clarity 7T (Dashboard):** 491 Sess. (62 Bots, 468 Unique), Dead-Click **13,03 %**, Scroll 39,32 %, aktive Zeit 1,6 Min, Rage 0,2 %, Quick-Back 1,22 %. API 3T Dead-Click 15,6 % (oberes Bandende). **5c:** cpc **17 Sess.** (Dead-Click **0 %** → Treiber Dead-Click eindeutig organisch, ArticlePopup), email **3 Sess.** (0 s aktive Zeit, 0 Conv.), Rest organic/direct ~471. **Conversions 7T:** Formular absenden 4, Kontaktieren Sie uns 3, Zitat anfordern 3, Bestellung erfolgreich 2, lead 2, konfigurator_submit 2, pdf_download 1, Ausgehender Klick 5 → direkte Kontakt-/Lead-Conv. ≈16/491 = **~3,3 %**; 7e-Defekt-Check: kein Event ≥3→0, kein Defekt. Funnel „Lead-Reise" weiter **0 % E2E** (Stufe 1 66,4 %, Stufe 2 nur 0,92 %). Phase 3 aktiv, DoD 4/8, kein Push.)
+
+</details>
 
 <details><summary>Ältere Kopfzeile (04.08.)</summary>
 
@@ -727,3 +733,34 @@ nach ca. 2 Wochen Laufzeit empfohlen.
 DuckDuckGo liefert 2,2× mehr Traffic als Google im gemessenen Zeitraum.
 **Ursache (vermutet):** DuckDuckGo nutzt Bing-Index. IndexNow (bereits im Deploy aktiv per A5) hat Bing schneller gecrawlt als Google. Zielgruppe (B2B, IT-affin, datenschutzbewusst) bevorzugt möglicherweise DuckDuckGo/Edge. EdgeMobile mit 47 % ist dominanter Browser — passt zu Microsoft-Unternehmensumgebung.
 **Handlung:** Verstärken — IndexNow-Pings weiterhin nach jedem Deploy. Bing Webmaster Tools beobachten. Google Indexierung bleibt strategisch wichtig (GSC Maßnahmen weiterführen).
+
+---
+
+### 2026-08-12 — Pattern: Angebots-CTA-Brücke auf Goldenen Pages fehlt
+**Quelle:** Monatsreview 12.08.2026 (monthly)
+**Beobachtete Pages:** /wissen/microsoft-copilot-lizenzen, /wissen/claude-in-microsoft-copilot, /wissen/copilot-in-outlook-nutzen-tipps, /wissen/copilot-tipps-tricks-produktivitaet (GSC-Top × Clarity-Traffic, organic — die vier „Goldenen Pages")
+**Pattern:** Diese vier Seiten tragen gemeinsam den organischen Kern-Traffic UND das beste Engagement (Scroll/aktive Zeit). Was ihnen fehlt: eine prominente, kontextuelle Angebots-Brücke (CTA zu Trainings/Konfigurator) im Body nach dem ersten Sinnabschnitt — aktuell nur Footer-CTA. Der Clarity-Funnel belegt die Folge: Stufe 1 (Wissens-Artikel) 1.621 Sess. → Stufe 2 (Angebot) nur 3 (0,19 %).
+**Empfehlung:** Wiederverwendbare, additive CTA-Brücken-Komponente (content_cta_click ist bereits als Event vorhanden) auf allen vier Goldenen Pages einbauen. microsoft-copilot-lizenzen ist Protected Page → nur additiv, PR-Regel beachten. Übertragung danach auf weitere Top-Wissensartikel.
+**Status:** identifiziert → Folge-Cron `copilotenschule-pattern-transfer-2026-08-26` legt Code-Diff-Draft an
+
+### 2026-08-12 — Issue: Bremse microsoft-copilot-lizenzen (CTR 0,6 %)
+**Quelle:** Monatsreview 12.08.2026 (monthly)
+**Betroffene Page:** /wissen/microsoft-copilot-lizenzen
+**Symptom:** 34.542 Impressionen/3M, aber nur 204 Klicks = CTR **0,6 %** (Site-Schnitt 1,2 %). Gleichzeitig ist es Clarity-Top-2-Page (36 Visits/30T) und Goldene Page — der Traffic ist da, aber sowohl die SERP-CTR als auch die Weiterleitung ins Angebot (Funnel-Stufe 2 ~0) sind schwach. Größtes ungehobenes Volumen im kaufnahen Kosten-/Lizenz-/Preis-Cluster (Schläfer „copilot kosten" 1.414 Impr., „copilot lizenz" 1.305).
+**Hypothese:** SERP-Snippet (Title/Meta) trifft die kaufnahen Kosten/Preis-Queries nicht scharf genug; oben fehlt eine klare Kosten-Antwortbox; kein kontextueller Angebots-CTA.
+**Empfohlene Maßnahme:** (a) Title/Meta auf Kosten/Preis-Schläfer schärfen + Kosten-Antwortbox oben; (b) additiver Angebots-CTA. PROTECTED PAGE → jede Snippet-Änderung als Diff dokumentieren, reversibel testen, H1/Canonical/erste 100 Wörter unberührt.
+**Status:** identifiziert → Folge-Cron `copilotenschule-clarity-fix-microsoft-copilot-lizenzen` (19.08.) legt Fix-Draft an
+
+### 2026-08-12 — Trend: LLM-Traffic (AIPlatform) erstmals als eigener Kanal messbar
+**Beobachtungs-Zeitraum:** 12.07.–12.08.2026
+**Event:** Kanal „AIPlatform" (Clarity) + ChatGPT/Perplexity/Gemini-Referrer
+**Trend:** AIPlatform 61 Sessions/30T, ChatGPT-Referrer 39–42, dazu Gemini/Perplexity vereinzelt. Erster Monat, in dem LLM-getriebener Traffic als eigenständiger, quantifizierbarer Kanal auftritt. Deckt sich mit dem Wettbewerbs-/LLM-Check: copilotenschule.de wird von ChatGPT/Perplexity/Suche durchgängig als erster spezialisierter Anbieter genannt (B2-Hub).
+**Ursache (vermutet):** GEO-Strategie (Hub-Artikel + Zitierbarkeit) greift; B2-Hub rankt #1 für die Strategie-Abfrage.
+**Handlung:** Verstärken — GEO-Content-Linie beibehalten, Zitierbarkeit der Hub-Artikel weiter ausbauen. Sobald Clarity „AI-Sichtbarkeit"-BETA im Projekt aktiviert ist: Citation-/Bot-Activity-Report als Primärquelle nutzen.
+
+### 2026-08-12 — Trend: Kosten/Preis-Cluster als kaufnaher GSC-Schläfer
+**Beobachtungs-Zeitraum:** 12.07.–12.08.2026
+**Event:** GSC-Queries copilot kosten / copilot lizenz / copilot lizenz kosten / copilot preise / copilot training
+**Trend:** Hohe Impressionen bei schwacher CTR/Position — „copilot kosten" 12 Kl./1.414 Impr., „copilot lizenz" 6/1.305, „copilot training" 5/1.324 (transaktional!). 28T-Bestätigung: „copilot preise" 4/293 neu aufgetaucht. SEA-korreliert (Kosten-Keywords konvertieren im cpc-Segment).
+**Ursache (vermutet):** kaufnahe Intention, aber Seiten ranken (noch) nicht stark genug / Snippet trifft nicht.
+**Handlung:** Verstärken — organisch bespielen (Snippet-/Content-Optimierung auf microsoft-copilot-lizenzen, siehe Issue oben), SEA-Daten als SEO-Recherchequelle nutzen. Verknüpfung mit laufendem A/B-Test „Preise auszeichnen" (Cron ab-test-preise-weekly-report).

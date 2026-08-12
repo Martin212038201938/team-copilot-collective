@@ -3,6 +3,7 @@ import SEOHead from "@/components/SEOHead";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import AuthorBio from "@/components/AuthorBio";
 import HoneypotCTA from "@/components/HoneypotCTA";
+import AngebotsBruecke from "@/components/AngebotsBruecke";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 import { Zap, FileText, Table2, Presentation, Mail, Users, AlertTriangle, CheckCircle2, ExternalLink } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -241,6 +242,20 @@ const CopilotTippsTricks = () => {
             <p className="text-sm"><strong>Fazit zu den Game-Changers:</strong> Diese 5 Tipps haben gemeinsam, dass sie nicht nur Zeit sparen, sondern deine Arbeitspraxis <strong>strukturieren</strong>. Sie sind nicht „schneller klicken", sondern „anders denken". Wenn du diese 5 konsequent umsetzt, sparst du nach meiner Erfahrung <strong>5-8 Stunden pro Woche</strong> – messbar durch Tracking von Aufgaben-Dauer und verbessertem Fokus.</p>
           </div>
         </section>
+
+        <AngebotsBruecke
+          eyebrow="Passendes Training"
+          headline="Tipps lesen ist einfach. Sie im Alltag durchzuhalten ist das Problem."
+          text="Erfahrungsgemäß hängen genau diese fünf Punkte nach zwei Wochen wieder am Haken der alten Gewohnheiten. Im Grundlagen-Training bauen wir das Fundament, auf dem sie kleben bleiben: Prompt-Logik verstehen, statt Prompts abzuschreiben."
+          points={[
+            "1 Tag, inhouse oder online",
+            "Prompt-Design und KI-Kompetenz",
+            "Ohne Vorwissen, für alle Rollen",
+          ]}
+          trainingSlug="copilot-grundlagen-prompt-design"
+          trainingLabel="Grundlagen-Training ansehen"
+          source="copilot-tipps-tricks-produktivitaet"
+        />
 
         {/* Word Tipps Section */}
         <section id="word-tipps">

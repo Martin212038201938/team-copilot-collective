@@ -7,6 +7,7 @@ import AuthorBio from "@/components/AuthorBio";
 import HoneypotCTA from "@/components/HoneypotCTA";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 import TrainingCTA from "@/components/TrainingCTA";
+import AngebotsBruecke from "@/components/AngebotsBruecke";
 
 const SLUG = "claude-in-microsoft-copilot";
 const PAGE_TITLE = "Claude in Microsoft Copilot: Was Anthropics KI im Copilot-Ökosystem verändert";
@@ -257,6 +258,20 @@ const CopilotClaudeIntegration = () => {
             </figcaption>
           </figure>
         </section>
+
+        <AngebotsBruecke
+          eyebrow="Passendes Training"
+          headline="Welches Modell antwortet, entscheidet Microsoft. Wie gut Sie fragen, entscheiden Sie."
+          text="Claude, GPT oder das nächste Modell – die Grundfähigkeit bleibt dieselbe: Aufgaben so formulieren, dass brauchbare Ergebnisse herauskommen, und erkennen, wann man einer Antwort nicht trauen darf. Genau das ist Inhalt des Grundlagen-Trainings."
+          points={[
+            "1 Tag, inhouse oder online",
+            "Prompt-Design und KI-Kompetenz",
+            "Für Teams ab 6 Personen",
+          ]}
+          trainingSlug="copilot-grundlagen-prompt-design"
+          trainingLabel="Grundlagen-Training ansehen"
+          source="claude-in-microsoft-copilot"
+        />
 
         {/* Copilot Cowork */}
         <section id="copilot-cowork" className="mb-6">
