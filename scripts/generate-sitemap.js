@@ -33,7 +33,9 @@ const TODAY = new Date().toISOString().split('T')[0];
 // Konservatives Fallback-Datum für Seiten, deren Update-Zeitpunkt nicht ermittelbar ist
 const SITE_BASELINE_DATE = '2026-01-15';
 
-// Hardcoded Fallback-lastmod, falls git history nicht verfügbar ist (Shallow Clone in CI).
+// Hardcoded Fallback-lastmod, falls git history GAR NICHT verfügbar ist (git fehlt,
+// Datei nicht getrackt, Shallow Clone ohne fetch-depth:0). Im Normalfall (voller Clone,
+// s.u.) wird diese Map praktisch nie mehr gebraucht — sie ist der allerletzte Notnagel.
 // Diese Daten sollten manuell aktualisiert werden, wenn die jeweilige Datei
 // strukturell überarbeitet wird. Stand: ermittelt aus `git log` am 2026-05-27.
 const FALLBACK_LASTMOD = {
@@ -51,6 +53,23 @@ const FALLBACK_LASTMOD = {
   'src/pages/Datenschutz.tsx':        '2026-05-27',
 };
 
+// Erkennt EINMALIG, ob dies ein Shallow Clone ist (z.B. `actions/checkout` ohne
+// fetch-depth:0). Nur DANN ist `git log` pro Datei unzuverlässig — es liefert dort für
+// jede Datei das HEAD-Commit-Datum zurück (= heute), egal wann die Datei wirklich zuletzt
+// geändert wurde, weil ältere Commits lokal gar nicht vorhanden sind. In einem vollen
+// Clone (lokal, und im CI-Workflow dieses Repos via fetch-depth:0, siehe deploy.yml) gibt
+// es dieses Problem nicht — dort ist jedes von git gelieferte Datum korrekt, auch wenn es
+// zufällig heute ist (das bedeutet dann einfach: die Datei wurde heute wirklich geändert).
+let IS_SHALLOW_CLONE = true;
+try {
+  IS_SHALLOW_CLONE = execSync('git rev-parse --is-shallow-repository', {
+    cwd: ROOT, encoding: 'utf-8', stdio: ['ignore', 'pipe', 'ignore'],
+  }).trim() === 'true';
+} catch {
+  // git nicht verfügbar → konservativ von "nicht vertrauenswürdig" ausgehen
+  IS_SHALLOW_CLONE = true;
+}
+
 // ──────────────────────────────────────────────────────────────
 // Hilfsfunktionen für individuelles lastmod
 // ──────────────────────────────────────────────────────────────
@@ -59,16 +78,16 @@ const FALLBACK_LASTMOD = {
  * Holt das letzte git-commit-Datum einer Datei (ISO YYYY-MM-DD).
  *
  * Vorrang-Reihenfolge:
- *   1. `git log` mit echtem Datum (wenn != TODAY und git history vorhanden)
- *   2. Hardcoded FALLBACK_LASTMOD-Map (für Shallow-Clone-Umgebungen wie GitHub Actions)
+ *   1. `git log` mit echtem Datum (in einem Shallow Clone nur, wenn != TODAY)
+ *   2. Hardcoded FALLBACK_LASTMOD-Map (git fehlt / Datei ungetrackt / Shallow Clone + TODAY)
  *   3. SITE_BASELINE_DATE als letzter Notnagel
  *
- * Warum die Sonderbehandlung für TODAY?
- * Wenn `git log` in einem Shallow Clone aufgerufen wird, liefert es für jede Datei
- * das HEAD-Commit-Datum (= heute) zurück, weil ältere Commits nicht im lokalen
- * .git-Repo sind. Wenn wir das blind übernehmen, deklariert die Sitemap alle URLs
- * als "heute geändert" — Massen-Update-Signal an Google. Stattdessen erkennen wir
- * dieses Muster und fallen auf die hardcoded Map zurück.
+ * Warum die Sonderbehandlung für TODAY nur im Shallow Clone?
+ * Nur dort kann ein von git geliefertes "heute" ein Artefakt sein (siehe IS_SHALLOW_CLONE
+ * oben) statt eine echte Änderung. Im vollen Clone wäre das blinde Verwerfen von "heute"
+ * selbst der Bug: Eine Datei, die tatsächlich heute committet wurde (der ganz normale
+ * Fall bei Push-am-selben-Tag-wie-Deploy), bekäme dann fälschlich ein tagealtes
+ * Fallback-Datum statt ihres echten, aktuellen Änderungsdatums.
  */
 function gitLastModified(relPath) {
   let gitDate = null;
@@ -84,8 +103,9 @@ function gitLastModified(relPath) {
     // git nicht verfügbar oder Fehler
   }
 
-  // Wenn git ein Datum liefert, das != TODAY ist, ist es vertrauenswürdig
-  if (gitDate && gitDate !== TODAY) return gitDate;
+  // Vertrauenswürdig, wenn: (a) volle History vorhanden UND git ein Datum lieferte, ODER
+  // (b) Shallow Clone, aber das Datum ist nachweislich NICHT das verdächtige "heute".
+  if (gitDate && (!IS_SHALLOW_CLONE || gitDate !== TODAY)) return gitDate;
 
   // Sonst: hardcoded Fallback verwenden
   return FALLBACK_LASTMOD[relPath] || SITE_BASELINE_DATE;
