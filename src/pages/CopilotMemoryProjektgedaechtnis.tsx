@@ -265,9 +265,9 @@ const CopilotMemoryProjektgedaechtnis = () => {
 
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
-              Wichtig für die Einordnung: Dieses Modell beschreibt, wo Wissen dauerhaft abgelegt wird.
-              Davon zu unterscheiden ist die Fähigkeit von Copilot, Ihre vorhandenen Microsoft-365-Daten
-              zu durchsuchen – E-Mails, Chats, Dokumente. Die funktioniert auch ohne jede
+              Dieses Modell beschreibt, wo Wissen dauerhaft abgelegt wird. Davon zu unterscheiden ist
+              die Fähigkeit von Copilot, Ihre vorhandenen Microsoft-365-Daten zu durchsuchen – E-Mails,
+              Chats, Dokumente. Die funktioniert auch ohne jede
               Gedächtnis-Struktur und ist in unserem Artikel{" "}
               <Link to="/wissen/copilot-digitales-gedaechtnis" className={LINK}>
                 Digitales Gedächtnis mit Microsoft Copilot
@@ -310,9 +310,9 @@ const CopilotMemoryProjektgedaechtnis = () => {
               Anweisung steuert das Verhalten, eine Erinnerung liefert Wissen über Sie.
             </p>
             <p>
-              Zum Datenschutz in Kürze: Alle Erinnerungen liegen in einem versteckten Ordner im
-              Exchange-Postfach des jeweiligen Nutzers und unterliegen damit denselben Compliance- und
-              Verschlüsselungsregeln wie E-Mails; niemand sonst sieht sie. Administratoren steuern die
+              Alle Erinnerungen liegen in einem versteckten Ordner im Exchange-Postfach des jeweiligen
+              Nutzers und unterliegen damit denselben Compliance- und Verschlüsselungsregeln wie
+              E-Mails; niemand sonst sieht sie. Administratoren steuern die
               Funktion zentral über das Enhanced-Personalization-Steuerelement. Welche Daten Copilot
               insgesamt sehen kann, haben wir im Artikel{" "}
               <Link to="/wissen/welche-daten-sieht-microsoft-365-copilot" className={LINK}>
@@ -421,9 +421,9 @@ const CopilotMemoryProjektgedaechtnis = () => {
               sich in Microsoft 365 bauen lässt.
             </p>
             <p>
-              Eine Grenze gehört ehrlich benannt: Die Qualität steht und fällt mit der Zuordnung.
-              Landet das Transkript des Vertriebsmeetings im Notebook des HR-Projekts, beantwortet
-              Copilot dort künftig Fragen mit fremdem Kontext – selbstbewusst und falsch. Die
+              Die Qualität steht und fällt allerdings mit der Zuordnung. Landet das Transkript des
+              Vertriebsmeetings im Notebook des HR-Projekts, beantwortet Copilot dort künftig Fragen
+              mit fremdem Kontext – selbstbewusst und falsch. Die
               Titel-Konvention ist deshalb keine Formalie, sondern das Rückgrat des Systems.
             </p>
           </div>
@@ -453,14 +453,14 @@ const CopilotMemoryProjektgedaechtnis = () => {
               startet mit vollständigem Kontext, egal ob morgen oder in drei Monaten.
             </p>
             <p>
-              Die unbequeme Wahrheit dazu: Ein Gedächtnis, das sich vollständig selbst pflegt, gibt es
-              in Copilot nicht. Werkzeuge wie Claude schreiben ihre Projekt-Gedächtnisdateien
-              inzwischen eigenständig fort; Copilot braucht dafür entweder Ihren Prompt oder einen
-              selbst gebauten Agenten. Wer die zwei Minuten am Sitzungsende nicht investiert, hat nach
-              vier Wochen ein veraltetes Log – und ein veraltetes Gedächtnis ist schlimmer als keines,
-              weil es falsche Sicherheit erzeugt. Dafür ist der Lohn der Disziplin beträchtlich: Das
-              System ist transparent, überlebt jede Umbenennung von Microsoft-Features und funktioniert
-              notfalls sogar werkzeugunabhängig, weil es aus normalen Dateien besteht.
+              Ein Gedächtnis, das sich vollständig selbst pflegt, gibt es in Copilot nicht. Werkzeuge
+              wie Claude schreiben ihre Projekt-Gedächtnisdateien inzwischen eigenständig fort; Copilot
+              braucht dafür entweder Ihren Prompt oder einen selbst gebauten Agenten. Wer die zwei
+              Minuten am Sitzungsende nicht investiert, hat nach vier Wochen ein veraltetes Log – und
+              ein veraltetes Gedächtnis ist schlimmer als keines, weil es falsche Sicherheit erzeugt.
+              Der Lohn der Disziplin ist dafür beträchtlich: Das System ist transparent, überlebt jede
+              Umbenennung von Microsoft-Features und funktioniert notfalls sogar werkzeugunabhängig,
+              weil es aus normalen Dateien besteht.
             </p>
           </div>
         </section>
