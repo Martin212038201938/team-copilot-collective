@@ -184,6 +184,7 @@ const knowledgeSlugs = [
   'copilot-cowork-abrechnung-copilot-credits', 'welche-daten-sieht-microsoft-365-copilot',
   'copilot-update-juni-2026',
   'copilot-update-juli-2026',
+  'copilot-memory-projektgedaechtnis',
 ];
 
 const knowledgePages = knowledgeSlugs.map(slug => ({

@@ -30,6 +30,17 @@ export interface ArticleData {
 // Alle Artikel - sortiert nach Veröffentlichungsdatum (neueste zuerst)
 export const ALL_ARTICLES: ArticleData[] = [
   {
+    id: "copilot-memory-projektgedaechtnis",
+    title: "Copilot Memory verstehen und nutzen: Vom Allgemeingedächtnis zum Projektgedächtnis",
+    description: "Copilot Memory, Notebooks und eigene Gedächtnis-Dateien: So bauen Sie ein dauerhaftes Gedächtnis in Microsoft 365 Copilot auf – mit Teams-Transkripten.",
+    link: "/wissen/copilot-memory-projektgedaechtnis",
+    badge: "Praxisguide",
+    icon: "🗂️",
+    lastUpdated: "13. Aug. 2026",
+    publishDate: "2026-08-13",
+    publishTime: "09:00"
+  },
+  {
     id: "copilot-update-juli-2026",
     title: "Copilot Update Juli 2026",
     description: "GPT-5.6 wird bevorzugtes Modell, Claude Opus 5 kommt in die Office-Apps, Vision teilt Bildschirm und Kamera – plus alle Admin- und Datenschutz-Themen.",
@@ -303,7 +314,7 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/copilot-agent-digitales-gedaechtnis",
     badge: "Automatisierung",
     icon: "🤖",
-    lastUpdated: "28. Feb. 2026",
+    lastUpdated: "13. Aug. 2026",
     publishDate: "2026-02-28",
     publishTime: "09:00"
   },
@@ -436,7 +447,7 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/copilot-digitales-gedaechtnis",
     badge: "Praxisguide",
     icon: "🧠",
-    lastUpdated: "19. Apr. 2026",
+    lastUpdated: "13. Aug. 2026",
     publishDate: "2026-02-03",
     publishTime: "06:00"
   },

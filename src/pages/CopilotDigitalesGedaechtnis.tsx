@@ -75,7 +75,7 @@ const CopilotDigitalesGedaechtnis = () => {
           "@id": "https://copilotenschule.de/#organization"
         },
         "datePublished": "2026-02-03",
-        "dateModified": "2026-04-19",
+        "dateModified": "2026-08-13",
         "keywords": ["Microsoft Copilot Gedächtnis", "Copilot Transkription", "Meeting-Zusammenfassung", "Copilot E-Mail Suche", "Copilot OneNote", "Digitales Gedächtnis"],
         "articleSection": "Praxisguide",
         "mainEntityOfPage": {
@@ -117,7 +117,7 @@ const CopilotDigitalesGedaechtnis = () => {
         canonicalUrl={pageUrl}
         author={author}
         publishedTime="2026-02-03"
-        modifiedTime="2026-04-19T10:00:00+01:00"
+        modifiedTime="2026-08-13T09:00:00+02:00"
         schema={schema}
       />
       <ContentLayout
@@ -127,10 +127,10 @@ const CopilotDigitalesGedaechtnis = () => {
         ]}
         title="Digitales Gedächtnis mit Microsoft Copilot"
         description="Wie Copilot mir hilft, trotz ADHS, Multitasking und 20 parallelen Projekten nichts Wichtiges zu vergessen."
-        lastUpdated="19. April 2026"
+        lastUpdated="13. August 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
-        relatedContent={["wissen:copilot-agent-digitales-gedaechtnis", "wissen:copilot-in-outlook-nutzen-tipps", "wissen:copilot-adhs", "training:microsoft-365-copilot-praxis", "wissen:copilot-tipps-tricks-produktivitaet"]}
+        relatedContent={["wissen:copilot-memory-projektgedaechtnis", "wissen:copilot-agent-digitales-gedaechtnis", "wissen:copilot-in-outlook-nutzen-tipps", "wissen:copilot-adhs", "training:microsoft-365-copilot-praxis", "wissen:copilot-tipps-tricks-produktivitaet"]}
       >
         {/* Schnellantwort */}
         <Card className="border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-amber-500/5">
@@ -149,6 +149,28 @@ const CopilotDigitalesGedaechtnis = () => {
             </p>
           </CardContent>
         </Card>
+
+        {/* Update-Hinweis August 2026 */}
+        <div className="my-6 p-5 rounded-xl border-2 border-blue-300 dark:border-blue-800 bg-blue-50 dark:bg-blue-950/20">
+          <p className="text-xs font-semibold uppercase tracking-wider text-blue-700 dark:text-blue-300 mb-2">
+            Update vom 13. August 2026
+          </p>
+          <p className="leading-relaxed text-blue-900 dark:text-blue-100">
+            Microsoft hat Copilot seit der Erstveröffentlichung dieses Artikels ein echtes Gedächtnis
+            nachgerüstet: <strong>Copilot Memory</strong> (gespeicherte Erinnerungen und
+            benutzerdefinierte Anweisungen) ist inzwischen allgemein ausgerollt, und{" "}
+            <strong>Copilot Notebooks</strong> sind seit Juli 2026 fester Bestandteil der
+            Microsoft-365-Copilot-App – seit Mai 2026 lassen sich dort auch Teams-Meetings samt
+            Transkript, Meeting-Chat und geteilten Dateien als Wissensquelle einfügen. Dieser Artikel
+            beschreibt weiterhin gültig, wie Copilot Ihre vorhandenen Microsoft-365-Daten durchsucht.
+            Wie Sie darauf aufbauend ein strukturiertes Gedächtnis mit Memory, Notebooks und eigenen
+            Gedächtnis-Dateien anlegen, zeigt unser neuer Leitfaden{" "}
+            <Link to="/wissen/copilot-memory-projektgedaechtnis" className="font-semibold underline hover:no-underline">
+              Copilot Memory verstehen und nutzen
+            </Link>
+            .
+          </p>
+        </div>
 
         {/* Persönliche Einleitung */}
         <div className="my-8 p-6 bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-xl border border-blue-200 dark:border-blue-800">

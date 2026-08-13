@@ -63,7 +63,7 @@ const CopilotAgentDigitalesGedaechtnis = () => {
           "@id": "https://copilotenschule.de/#organization"
         },
         "datePublished": "2026-02-28",
-        "dateModified": "2026-02-28",
+        "dateModified": "2026-08-13",
         "mainEntityOfPage": {
           "@type": "WebPage",
           "@id": pageUrl
@@ -115,7 +115,7 @@ const CopilotAgentDigitalesGedaechtnis = () => {
         schema={schema}
         author={martinLang}
         publishedTime="2026-02-28T09:00:00+01:00"
-        modifiedTime="2026-02-28T09:00:00+01:00"
+        modifiedTime="2026-08-13T09:00:00+02:00"
       />
 
       <ContentLayout
@@ -125,10 +125,10 @@ const CopilotAgentDigitalesGedaechtnis = () => {
         ]}
         title={PAGE_TITLE}
         description="Schritt-für-Schritt: So bauen Sie sich einen Copilot-Agenten, der Ihre Meeting-Transkripte automatisch protokolliert und durchsuchbar macht – ohne technische Vorkenntnisse."
-        lastUpdated="28. Februar 2026"
+        lastUpdated="13. August 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
-        relatedContent={["wissen:copilot-digitales-gedaechtnis", "wissen:copilot-studio", "workshop:chatbot-workshop", "training:copilot-studio-ki-agenten", "wissen:ki-agenten"]}
+        relatedContent={["wissen:copilot-memory-projektgedaechtnis", "wissen:copilot-digitales-gedaechtnis", "wissen:copilot-studio", "workshop:chatbot-workshop", "training:copilot-studio-ki-agenten", "wissen:ki-agenten"]}
       >
         {/* Schnellantwort */}
         <Card className="mb-8 border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-red-500/5">
@@ -148,6 +148,27 @@ const CopilotAgentDigitalesGedaechtnis = () => {
             </p>
           </CardContent>
         </Card>
+
+        {/* Update-Hinweis August 2026 */}
+        <div className="my-6 p-5 rounded-xl border-2 border-blue-300 dark:border-blue-800 bg-blue-50 dark:bg-blue-950/20">
+          <p className="text-xs font-semibold uppercase tracking-wider text-blue-700 dark:text-blue-300 mb-2">
+            Update vom 13. August 2026
+          </p>
+          <p className="leading-relaxed text-blue-900 dark:text-blue-100">
+            Seit der Erstveröffentlichung hat Microsoft eine Alternative nachgeliefert: Teams-Meetings
+            lassen sich seit Mai 2026 samt Transkript, Meeting-Chat und geteilten Dateien direkt als
+            Quelle in <strong>Copilot Notebooks</strong> einfügen, die seit Juli 2026 fester
+            Bestandteil der Microsoft-365-Copilot-App sind. Für einzelne Projekte ist das der
+            schnellste Weg ohne eigenen Agenten. Der hier beschriebene Agent bleibt die richtige Wahl,
+            wenn Protokolle in einem festen Format entstehen und zentral durchsuchbar sein sollen –
+            am stärksten ist die Kombination: Agent-Protokolle im Projektordner, Notebook darüber.
+            Die Einordnung aller Gedächtnis-Ebenen liefert unser neuer Leitfaden{" "}
+            <Link to="/wissen/copilot-memory-projektgedaechtnis" className="font-semibold underline hover:no-underline">
+              Copilot Memory verstehen und nutzen
+            </Link>
+            .
+          </p>
+        </div>
 
         {/* Einleitung */}
         <div className="prose prose-lg max-w-none dark:prose-invert mb-8">

@@ -360,6 +360,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://copilotenschule.de/wissen/copilot-memory-projektgedaechtnis</loc>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://copilotenschule.de/trainings/copilot-grundlagen-prompt-design</loc>
     <lastmod>2026-07-22</lastmod>
     <changefreq>monthly</changefreq>

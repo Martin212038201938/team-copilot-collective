@@ -49,6 +49,7 @@ import CopilotHRUseCases from "./pages/CopilotHRUseCases";
 import KiHalluzinationenVermeiden from "./pages/KiHalluzinationenVermeiden";
 import CopilotChatPernodRicard from "./pages/CopilotChatPernodRicard";
 import CopilotAgentDigitalesGedaechtnis from "./pages/CopilotAgentDigitalesGedaechtnis";
+import CopilotMemoryProjektgedaechtnis from "./pages/CopilotMemoryProjektgedaechtnis";
 import CopilotFuerExcel from "./pages/CopilotFuerExcel";
 import KiSchulungMitarbeiterPflicht from "./pages/KiSchulungMitarbeiterPflicht";
 import KiKennzeichnungspflicht from "./pages/KiKennzeichnungspflicht";
@@ -131,6 +132,7 @@ const App = () => (
           <Route path="/wissen/ki-halluzinationen-vermeiden" element={<KiHalluzinationenVermeiden />} />
           <Route path="/wissen/copilot-chat-free-pernod-ricard" element={<CopilotChatPernodRicard />} />
           <Route path="/wissen/copilot-agent-digitales-gedaechtnis" element={<CopilotAgentDigitalesGedaechtnis />} />
+          <Route path="/wissen/copilot-memory-projektgedaechtnis" element={<CopilotMemoryProjektgedaechtnis />} />
           <Route path="/wissen/copilot-fuer-excel" element={<CopilotFuerExcel />} />
           <Route path="/wissen/ki-schulung-mitarbeiter-pflicht" element={<KiSchulungMitarbeiterPflicht />} />
           <Route path="/wissen/ki-kennzeichnungspflicht-eu-ai-act" element={<KiKennzeichnungspflicht />} />
