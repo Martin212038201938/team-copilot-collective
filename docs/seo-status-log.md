@@ -8,6 +8,40 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 
 ## Logs
 
+### 2026-08-17 — Wöchentlicher Audit (Cron)
+
+**Phase:** Phase 3 — Content-Block (aktiv seit 01.06., kein Wechsel)
+**SSR-Audit:** ✅ 67 / 🟡 0 / 🔴 0 (von 67)
+- Neu in 🔴/✅: keine (stabil 67/67, DoD #2 gewahrt). Regressions-Wächter: 0 🔴 < 5 → keine Eskalation.
+- Datenlage-Hinweis: **Claude-in-Chrome-Extension diesen Lauf durchgehend offline** (2× Retry erfolglos, `list_connected_browsers` = []). GSC-Live, AlwaysData und die Clarity-Conversion-/5c-Dashboards daher nicht direkt abrufbar. Fallback genutzt: der **tägliche Health-Check von heute (08-17, ebenfalls Chrome-offline)** mit GSC-Snapshot Stand **14.08.** + GA4-Traffic-Mix. Clarity-Standard (5a) via API, SSR + Protected via curl liefen normal durch.
+
+**GSC (Snapshot 14.08., kein Live-Zugang):** 72/111 indexiert (**64,9 %**, flat vs. 10.08.). Leistung 3M: Klicks **1.740** (+80 / +4,8 % vs. 1.660 am 10.08.), Impr. **140.000** (+5,3 %), CTR 1,2 %, Pos. **8,7** (von 8,8, minimal verbessert). 7T: 156 Kl. Top-Klick-Bringer: „copilot in excel aktivieren" 72 (Pos 2,8), „excel copilot aktivieren" 25, „copilot excel aktivieren" 19, „copilot kosten" 12, „copilot lizenz" 9, „copilot claude" 8. **A6:** Indexierung flat bei 72; keine frische gecrawlt/gefunden-Aufschlüsselung im Snapshot → Summe nicht-indexiert **~28 (eingefroren, Stand 10.08.)**. Nicht ≥3 W/W steigend, nicht ≥5 pp unter 7T-Schnitt → kein Indexierungs-Risiko-Flag; Stagnations-Issue bleibt offen.
+
+**AlwaysData:** ⚠️ nicht abrufbar (Chrome offline, kein Snapshot-Fallback im Tages-Report). Kein 24h/MTD-Wert diesen Lauf.
+
+**Traffic-Mix (Proxy, kein Clarity-Dashboard/5c):** GA4 28T (bis 15.08.): Google organic 75 | Direct 37 | Bing organic 32 | **Google CPC 28** | ChatGPT 4 → SEA (cpc) läuft weiter, LLM messbar. Clarity-Referrer (API 3T): Google 65, Bing 34, Direct/leer 28, DuckDuckGo 4, Ecosia 3 → organisch klar dominant. Saubere cpc/email-Segment-Trennung diesen Lauf nicht möglich (Dashboard-gebunden).
+
+**Clarity Standard (API 3T, 2/10 Calls):**
+- Sessions: 144 (37 Bots, 181 Unique)
+- Scrolltiefe: 40,35 %, Aktive Zeit: 96 s
+- Dead-Click: **20,83 %** | Rage: 0 % | Quick-Back: 2,78 % | Excessive-Scroll: 0 %
+- Top-Browser: Edge 79, Chrome 26, MobileSafari 15, ChromeMobile 7, Firefox 6 (Edge 55 % → B2B-Signal)
+- Top-3-Pages: / (31), /trainings (16), microsoft-copilot-lizenzen (14) [+ copilot-tipps-tricks-produktivitaet 14, training-konfigurator 13]
+- Top-3-Referrer: Google (65), Bing (34), Direct/leer (28)
+
+**Clarity Conversion-Events (7T):** ⚠️ nicht abrufbar (Custom-Tags nur via Dashboard, Chrome offline). Fallback 0. GA4 „Schlüsselereignisse" 28T = 0 (bekannter GA4-Consent-Tracking-Gap, ~10× Lücke ggü. Clarity). **7e-Defekt-Check diesen Lauf nicht durchführbar** — kein Anhaltspunkt für Defekt aus den verfügbaren Quellen (Kontakt-Conv. in den 3 Vorwochen stabil positiv).
+
+**Insights heute:** Patterns 0 | Issues 1 (Dead-Click 20,83 % — oberes Bandende) | Trends 1 (Organik +4,8 % W/W, positiv). Details in clarity-insights.md.
+**Folge-Crons angelegt:** keine (Dead-Click = bekanntes organisches ArticlePopup-Muster, Fix-Draft seit 17.06. + Anti-Pattern-Cron `copilotenschule-clarity-fix-microsoft-copilot-lizenzen` feuert bereits 19.08.; kein neuer Cron nötig).
+**Goldene Pages (GSC×Clarity):** `/wissen/microsoft-copilot-lizenzen` (GSC-Kosten/Lizenz-Cluster × Clarity 14 Visits) — Dauergewinner. Ungenutztes Potential: `/wissen/copilot-in-excel-aktivieren` (GSC-**#1** „excel aktivieren"-Cluster 72+25+19 = 116 Kl./3M) weiter schwach in Clarity-Top → Dauer-Lücke.
+**Protected Pages:** alle 5 OK (copilot-roi-berechnen, copilot-training-schulung, copilot-im-unternehmen-einfuehren-leitfaden, microsoft-copilot-lizenzen, ki-schulung-mitarbeiter-pflicht → je HTTP 200).
+**Entscheidung gemäß Plan:** Phase 3 bleibt aktiv, DoD 4/8, kein Wechsel. Kein Push, keine src/-Änderung.
+**API-Calls heute:** 2/10 (Clarity)
+**Nächster Lauf:** Mo 24.08.2026, 10:00
+**Teams-Post:** ❌ HTTP 401 (`DirectApiAuthorizationRequired`) — Webhook seit 03.08. defekt (abgelaufene/ungültige Workflows-URL in `website-health-check/.env`). Bericht liegt in `/tmp/seo-teams-report.md`, Audit lief vollständig durch (Posten ist additiv). In Notification an User gespiegelt.
+
+---
+
 ### 2026-08-12 — Monatsreview (Cron)
 
 **Bericht:** docs/seo-monatsreview-2026-08.md

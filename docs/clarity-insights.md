@@ -226,6 +226,31 @@ nach ca. 2 Wochen Laufzeit empfohlen.
 
 ---
 
+### 2026-08-17 — Methoden-Notiz: Chrome durchgehend offline — Fallback über Tages-Health-Check
+**Quelle:** Cron-Lauf 2026-08-17 (weekly)
+**Beobachtung:** Claude-in-Chrome-Extension diesen Lauf **nicht verbunden** (2× Retry, `list_connected_browsers` = []). Dashboard-gebundene Schritte (GSC-Live, AlwaysData, Clarity-Conversion-Events 5b, cpc/email-Split 5c) daher nicht direkt abrufbar. Fallback: der **tägliche Health-Check von heute** (`website-health-check/reports/2026-08-17.md`, selbst Chrome-offline) mit GSC-Snapshot Stand 14.08. + GA4-Traffic-Mix 28T. Direkt gelaufen: Clarity-Standard via API (5a, 2/10 Calls), SSR-Audit + Protected-Pages via curl.
+**Konsequenz:** Audit inhaltlich vollständig für SSR/Clarity-Standard/Protected/GSC-Trend; **Lücke bei AlwaysData-24h und Clarity-Conversion-Events (5b/5c)** diesen Lauf. Die Chrome-Verbindung bleibt der Single Point of Failure (wiederkehrend: 27.07. blockiert, 10.08. zeitweise, 17.08. offline) → in Notification an User gespiegelt.
+
+---
+
+### 2026-08-17 — Issue-Update: Dead-Click 20,83 % (API 3T) — oberes Ende des Zickzack-Bandes
+**Quelle:** Cron-Lauf 2026-08-17 (weekly) — Clarity API 3T (20,83 %, 144 Sess., 37 Bots, 181 Unique)
+**Symptom:** Dead-Click **API 3T 20,83 %** (Vorlauf 10.08. API 15,6 %) → über der 10 %-Schwelle (Schritt 7c) und **höchster Wert des dokumentierten Bandes** (…9,52 → 12,92 → 15,6 → **20,83 %**). Der Tages-Health-Check misst konsistent 19,9 % (3T-Fenster). Rage 0 %, Quick-Back 2,78 %, Excessive-Scroll 0 % — sonst ruhig. Scrolltiefe 40,35 %, aktive Zeit 96 s.
+**5c-Gegenprüfung:** diesen Lauf **nicht möglich** (Clarity-Dashboard-Segmentierung Chrome-gebunden, Extension offline). Aus Muster + Vorwochen (cpc-Segment stets 0–2 % Dead-Click) und Top-Pages (microsoft-copilot-lizenzen, copilot-tipps-tricks-produktivitaet — Wissensseiten mit globalem `ArticlePopup`) präsumtiv weiter **organisch** getrieben, kein Code-Defekt-Indiz. Der leichte Aufwärtsschub passt zur Wochen-Mischung (mehr Wissensartikel-Traffic).
+**Bewertung:** Bekanntes mix-getriebenes Grenzwert-Issue am oberen Bandende. Kein neuer Cron — Anti-Pattern-Fix-Cron `copilotenschule-clarity-fix-microsoft-copilot-lizenzen` feuert bereits 19.08., Fix-Draft `docs/drafts/clarity-fix-copilot-in-outlook-nutzen-tipps.md` (seit 17.06.) bleibt optionale strukturelle Absicherung (user-gebunden). Beim nächsten Lauf mit Dashboard: 5c-Gegenprüfung nachholen, ob organisch bestätigt.
+**Status:** identifiziert — erhöht (Bandhoch), Treiber präsumtiv organisch, 5c-Verifikation offen bis Dashboard-Zugang.
+
+---
+
+### 2026-08-17 — Trend (positiv): Organik +4,8 % W/W — GSC 3M Klicks 1.660 → 1.740
+**Beobachtungs-Zeitraum:** 10.08. – 17.08.2026 (GSC 3M, Snapshot 14.08., rein organisch)
+**Event:** Organischer Suchtraffic (GSC, kampagnen-unberührt)
+**Trend:** GSC 3M Klicks **1.660 → 1.740 (+4,8 %)**, Impr. **133.000 → 140.000 (+5,3 %)**, Pos. **8,8 → 8,7** (minimal verbessert). Unter der +25 %-„Verstärken"-Schwelle, aber weiter stetig aufwärts — organischer Kern gesund. Excel-Aktivieren-Cluster bleibt stärkster Query-Bringer („copilot in excel aktivieren" 72 Kl./Pos 2,8).
+**Ursache (vermutet):** Anhaltender Content-/GEO-Sog, keine Einzelmaßnahme. Indexierung stagniert parallel bei 64,9 % (Deckel für weiteres Wachstum).
+**Handlung:** Beobachten. Hebel unverändert: (1) A6-Index-Coverage nachschärfen (Deckel lösen), (2) Excel-Aktivieren-Cluster On-Site aktivieren (GSC-#1, Clarity-schwach).
+
+---
+
 ### 2026-08-10 — Methoden-Notiz: Chrome zunächst offline, nach User-Meldung nachgeholt
 **Quelle:** Cron-Lauf 2026-08-10 (weekly)
 **Beobachtung:** Zu Lauf-Beginn war die Claude-in-Chrome-Extension nicht verbunden → GSC (3), AlwaysData (4), Conversion-Events (5b) und cpc/email-Split (5c) zunächst nicht abrufbar; 5a (Clarity-API, 2/10 Calls), SSR und Protected-Pages liefen sofort durch. Nach User-Meldung „Chrome ist online" wurden alle vier dashboard-gebundenen Schritte **vollständig nachgeholt** — kein Datenverlust in diesem Lauf.
