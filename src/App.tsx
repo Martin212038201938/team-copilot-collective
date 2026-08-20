@@ -4,7 +4,6 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
-import AbPricingTagger from "./components/AbPricingTagger";
 import ConsentBanner from "./components/ConsentBanner";
 import Index from "./pages/Index";
 import BecomeTrainer from "./pages/BecomeTrainer";
@@ -86,7 +85,6 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <ScrollToTop />
-        <AbPricingTagger />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/trainer-werden" element={<BecomeTrainer />} />
@@ -189,7 +187,6 @@ const App = () => (
 
           <Route path="/trainings/:slug" element={<TrainingDetail />} />
           {/* A/B-Test "Preise auszeichnen": B-Variante mit Preis-Störer (noindex, nicht im Menü/Sitemap) */}
-          <Route path="/trainings/preis/:slug" element={<TrainingDetail showPricing />} />
           <Route path="/trainer/:id" element={<TrainerProfil />} />
           <Route path="/training-konfigurator" element={<TrainingKonfigurator />} />
           <Route path="/admin" element={<Admin />} />

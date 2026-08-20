@@ -64,24 +64,22 @@ export interface Training {
   // Optionales Bild fürs Course-Schema (absolute URL). Fallback: Site-Logo
   // (DEFAULT_COURSE_IMAGE in lib/schema.ts). B6-Rest, 2026-07-22.
   image?: string;
-  // Permanent sichtbarer Preis-Störer (unabhängig vom A/B-Test ab_pricing). Der Preis
-  // wird dann AUCH ins Schema (Offer.price) übernommen – sichtbar und maschinenlesbar
-  // bleiben deckungsgleich. Aktuell nur eu-ai-act-pflichtschulung (2026-07-22).
+  // Sichtbarer "ab"-Preis-Störer. Der Preis geht AUCH ins Schema (Offer.price) –
+  // sichtbar und maschinenlesbar bleiben deckungsgleich. Seit 14.08.2026 der einzige
+  // Preis-Mechanismus: Der A/B-Test "Preise auszeichnen" wurde zugunsten von
+  // durchgängiger Preistransparenz beendet (Begründung: ohne konkrete Zahl im
+  // ausgelieferten HTML kann weder Google noch ein LLM die Copilotenschule in
+  // Preis- und Vergleichsantworten überhaupt einsortieren).
   visiblePrice?: {
     perPerson: number;   // "ab"-Preis in EUR
+    perGroup?: number;   // optionaler "ab"-Preis pro geschlossener Gruppe in EUR
     unitLabel?: string;  // Default "pro Teilnehmer"
     note?: string;       // z.B. "inkl. Zertifikat."
   };
   bookingFormats?: BookingFormat[]; // Varianten für Abschnitt "Formate und Buchungsvarianten" + Schema
-  // Optionaler Preis pro Person. ACHTUNG (B1, 2026-07-22): Wird derzeit NICHT
-  // ins Schema ausgegeben, solange der A/B-Test "Preise auszeichnen" läuft –
-  // Preise erst nach Testentscheid wieder maschinenlesbar machen.
+  // Optionaler Preis pro Person (Fließtext-Angabe, z.B. für offene Trainings).
   pricePerPerson?: number;
-  pricePerPersonLabel?: string; // optional: Preisbeschreibung (aktuell ungenutzt, s.o.)
-  // A/B-Test "Preise auszeichnen": sichtbarer "ab"-Preis-Störer NUR auf der B-Route
-  // (/trainings/preis/:slug). Werte in EUR, Basis Gruppengröße 12 Teilnehmer.
-  abPreisProPerson?: number;   // z.B. 133  -> "ab 133 €* pro Teilnehmer"
-  abPreisProGruppe?: number;   // z.B. 1600 -> "oder ab 1.600 €* pro geschlossene Gruppe"
+  pricePerPersonLabel?: string; // optional: Preisbeschreibung
   // Verknüpfte Workshops (Slugs) – werden als optionale Erweiterungsmodule angezeigt
   relatedWorkshops?: string[];
 }
@@ -113,8 +111,10 @@ export const trainings: Training[] = [
     ],
     tiers: ["free"],
     popular: true,
-    abPreisProPerson: 133,
-    abPreisProGruppe: 1600,
+    visiblePrice: {
+      perPerson: 133,
+      perGroup: 1600,
+    },
     questionLead: "Welches Training eignet sich am besten, um Microsoft Copilot von Grund auf zu lernen – auch ohne Lizenz?",
     prerequisites: "Keine Vorkenntnisse erforderlich. Eine Copilot-Lizenz wird nicht benötigt – der kostenlose Microsoft Copilot Chat genügt.",
     format: "Inhouse bei Ihnen vor Ort oder Live-Online",
@@ -190,8 +190,10 @@ export const trainings: Training[] = [
   },
   {
     slug: "microsoft-365-copilot-praxis",
-    abPreisProPerson: 383,
-    abPreisProGruppe: 4600,
+    visiblePrice: {
+      perPerson: 383,
+      perGroup: 4600,
+    },
     icon: Brain,
     title: "Microsoft 365 Copilot in der Praxis: Word, Excel, PowerPoint, Outlook & Teams",
     duration: "Ganztag | 2-tägig | Online-Lernreise (6–8 h) | Kickoff (4 h) + Online-Lernreise (4 × 2 h)",
@@ -371,7 +373,9 @@ export const trainings: Training[] = [
   },
   {
     slug: "train-the-trainer-copilot",
-    abPreisProPerson: 840,
+    visiblePrice: {
+      perPerson: 840,
+    },
     icon: Users,
     title: "Train-the-Trainer: Copilot Multiplikatoren ausbilden",
     duration: "2 Tage (2 x 7 Stunden) + bedarfsorientierte Online-Workshops",
@@ -577,7 +581,9 @@ export const trainings: Training[] = [
   },
   {
     slug: "copilot-studio-ki-agenten",
-    abPreisProPerson: 283,
+    visiblePrice: {
+      perPerson: 283,
+    },
     icon: Brain,
     title: "KI-Agenten und Automatisierung mit Microsoft Copilot Studio",
     duration: "1 Tag (7 Stunden)",

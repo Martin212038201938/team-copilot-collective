@@ -52,6 +52,12 @@ RewriteRule ^favicon\.ico$ - [L,NC]
 # /slug/ direkt zum Ziel geht (1 Hop statt 2)
 # ============================================
 
+# A/B-Test "Preise auszeichnen" (21.07.–14.08.2026) beendet: die B-Routen
+# /trainings/preis/<slug> gibt es nicht mehr, Preise stehen jetzt dauerhaft auf
+# der regulären Trainingsseite. Alte Links und Bot-Aufrufe sauber zurückführen.
+RewriteRule ^trainings/preis/([^/]+)/?$ /trainings/$1 [R=301,L]
+RewriteRule ^trainings/preis/?$ /trainings [R=301,L]
+
 RewriteRule ^betreute-it-leistungen/?$ /trainings [R=301,L]
 RewriteRule ^unsere-angebote/?$ /trainings [R=301,L]
 RewriteRule ^agb/?$ /impressum [R=301,L]

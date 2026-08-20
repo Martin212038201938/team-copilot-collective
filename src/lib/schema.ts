@@ -303,10 +303,10 @@ export const generateKnowledgePageSchema = (
  * @graph: Course + BreadcrumbList + FAQPage (falls FAQs vorhanden).
  *
  * Enthaltene Regeln:
- * - B1: Keine Preise im Schema, solange der A/B-Test "Preise auszeichnen"
- *   (ab_pricing) läuft. AUSNAHME: Trainings mit permanent sichtbarem
- *   Preis-Störer (visiblePrice) tragen den Preis auch im Schema –
- *   sichtbar und maschinenlesbar bleiben deckungsgleich.
+ * - B1 (aktualisiert 14.08.2026): Jedes Training mit gepflegtem visiblePrice trägt
+ *   den Preis auch im Schema (Offer.price) – sichtbar und maschinenlesbar bleiben
+ *   deckungsgleich. Der A/B-Test "Preise auszeichnen" ist beendet; die frühere
+ *   Regel "keine Preise im Schema während des Tests" gilt nicht mehr.
  * - B2: coursePrerequisites nur aus dem gepflegten prerequisites-Feld.
  * - B6: image – individuelles Trainingsbild oder DEFAULT_COURSE_IMAGE.
  * - B7: je Buchungsvariante (bookingFormats) eine eigene CourseInstance;
@@ -361,6 +361,10 @@ export const generateTrainingDetailSchema = (training: Training) => {
               "priceCurrency": "EUR",
               "description": `ab ${training.visiblePrice.perPerson} € ${
                 training.visiblePrice.unitLabel ?? "pro Teilnehmer"
+              }${
+                training.visiblePrice.perGroup
+                  ? ` bei einer Gruppengröße von 12 Teilnehmern, oder ab ${training.visiblePrice.perGroup} € pro geschlossener Gruppe`
+                  : ""
               }${training.visiblePrice.note ? `, ${training.visiblePrice.note}` : ""}`
             }
           }

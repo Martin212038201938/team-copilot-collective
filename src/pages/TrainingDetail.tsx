@@ -1,6 +1,4 @@
-import { useEffect } from "react";
-import { useParams, Link, Navigate, useNavigate } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import { useParams, Link, Navigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Clock, ArrowLeft, CheckCircle2, ArrowRight, Linkedin, Mail, HelpCircle, Users, GraduationCap, TrendingUp } from "lucide-react";
@@ -19,8 +17,6 @@ import PriceStoerer from "@/components/PriceStoerer";
 import TrainingFactBox from "@/components/TrainingFactBox";
 import BookingProcess from "@/components/BookingProcess";
 import TrainingReviews from "@/components/TrainingReviews";
-import { setSessionTag } from "@/lib/analytics";
-import { assignVariantIfNeeded, isAbPricingTestSlug, isPrerender, setVariant } from "@/lib/abPricing";
 
 /** Renders a string that may contain markdown-style links [text](/path) as React Router Links */
 const RichText = ({ text }: { text: string }) => {
@@ -42,33 +38,9 @@ const RichText = ({ text }: { text: string }) => {
   );
 };
 
-const TrainingDetail = ({ showPricing = false }: { showPricing?: boolean }) => {
+const TrainingDetail = () => {
   const { slug } = useParams<{ slug: string }>();
-  const navigate = useNavigate();
   const training = slug ? getTrainingBySlug(slug) : undefined;
-
-  // A/B-Test "Preise auszeichnen": Bucket-Zuweisung, Journey-Redirect und
-  // Clarity-Messpunkte. Nur clientseitig (nie im react-snap-Prerender), nur für
-  // die 4 Testtrainings. Muss VOR dem Early-Return stehen (Rules of Hooks).
-  useEffect(() => {
-    if (isPrerender() || !slug || !isAbPricingTestSlug(slug)) return;
-
-    if (showPricing) {
-      // B-Route: Nutzer ist (bzw. wird) Variante B; Session taggen.
-      setVariant("B");
-      setSessionTag("ab_pricing", "B");
-      setSessionTag("ab_pricing_product", slug);
-    } else {
-      // A-Route: beim ersten Kontakt 50/50 zuweisen, Session taggen.
-      const variant = assignVariantIfNeeded();
-      setSessionTag("ab_pricing", variant);
-      setSessionTag("ab_pricing_product", slug);
-      // B-User dauerhaft auf die Preis-Route ihrer Journey umleiten.
-      if (variant === "B") {
-        navigate(`/trainings/preis/${slug}`, { replace: true });
-      }
-    }
-  }, [slug, showPricing, navigate]);
 
   // 404 wenn Training nicht gefunden
   if (!training) {
@@ -90,6 +62,19 @@ const TrainingDetail = ({ showPricing = false }: { showPricing?: boolean }) => {
   // Trainer-Profil
   const trainer = getAuthor('martin-lang');
 
+  // Sichtbare Preiszeile für die Faktenbox – exakt deckungsgleich mit dem
+  // Preis-Störer und mit Offer.price im Schema (eine Zahl, drei Orte).
+  const eur = (n: number) => n.toLocaleString("de-DE");
+  const priceLine = training.visiblePrice
+    ? `ab ${eur(training.visiblePrice.perPerson)} € ${
+        training.visiblePrice.unitLabel ?? "pro Teilnehmer"
+      }${
+        training.visiblePrice.perGroup
+          ? ` bei einer Gruppengröße von 12 Teilnehmern, oder ab ${eur(training.visiblePrice.perGroup)} € pro geschlossener Gruppe`
+          : ""
+      }${training.visiblePrice.note ? `, ${training.visiblePrice.note}` : ""}`
+    : undefined;
+
   // B4 (2026-07-22): Schema kommt zentral aus lib/schema.ts – eine Quelle der
   // Wahrheit statt Doppelpflege (Regeln B1/B2/B6/B7 sind dort dokumentiert).
   const schema = generateTrainingDetailSchema(training);
@@ -103,12 +88,6 @@ const TrainingDetail = ({ showPricing = false }: { showPricing?: boolean }) => {
         canonicalUrl={`https://copilotenschule.de/trainings/${training.slug}`}
         schema={schema}
       />
-      {/* B-Variante (Preis-Route) nicht indexieren; Canonical zeigt bereits auf die A-URL */}
-      {showPricing && (
-        <Helmet>
-          <meta name="robots" content="noindex" />
-        </Helmet>
-      )}
       <Header />
 
       <main className="pt-24">
@@ -159,23 +138,15 @@ const TrainingDetail = ({ showPricing = false }: { showPricing?: boolean }) => {
                   </div>
                 </div>
 
-                {/* Preis-Störer nur in der B-Variante des A/B-Tests */}
-                {showPricing && typeof training.abPreisProPerson === "number" && (
-                  <div className="shrink-0 md:pt-1">
-                    <PriceStoerer
-                      perPerson={training.abPreisProPerson}
-                      perGroup={training.abPreisProGruppe}
-                    />
-                  </div>
-                )}
-
-                {/* Permanenter Preis-Störer unabhängig vom A/B-Test (z.B. EU-AI-Act-
-                    Pflichtschulung). Test-Trainings haben kein visiblePrice – es
-                    rendert nie beides gleichzeitig. */}
+                {/* Sichtbarer "ab"-Preis. Seit 14.08.2026 dauerhaft für alle Trainings
+                    mit gepflegtem visiblePrice – der A/B-Test "Preise auszeichnen"
+                    wurde zugunsten von Preistransparenz beendet. Der Preis ist damit
+                    sichtbar UND maschinenlesbar (Offer.price, siehe lib/schema.ts). */}
                 {training.visiblePrice && (
                   <div className="shrink-0 md:pt-1">
                     <PriceStoerer
                       perPerson={training.visiblePrice.perPerson}
+                      perGroup={training.visiblePrice.perGroup}
                       unitLabel={training.visiblePrice.unitLabel}
                       note={training.visiblePrice.note}
                     />
@@ -193,8 +164,8 @@ const TrainingDetail = ({ showPricing = false }: { showPricing?: boolean }) => {
                 {training.description}
               </p>
 
-              {/* B7: "Auf einen Blick"-Faktenbox – sichtbare, extrahierbare Kernfakten
-                  (bewusst ohne Preiszeile, solange der A/B-Test ab_pricing läuft) */}
+              {/* B7: "Auf einen Blick"-Faktenbox – sichtbare, extrahierbare Kernfakten,
+                  seit 14.08.2026 inkl. Preiszeile (siehe TrainingFactBox) */}
               <TrainingFactBox
                 format={training.format}
                 duration={training.duration}
@@ -203,6 +174,7 @@ const TrainingDetail = ({ showPricing = false }: { showPricing?: boolean }) => {
                 prerequisites={training.prerequisites}
                 groupSize={training.groupSize}
                 certificate={training.certificate}
+                priceLine={priceLine}
               />
             </div>
           </div>

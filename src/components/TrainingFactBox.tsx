@@ -6,9 +6,11 @@
  * Box stellt die Kernfakten (Format, Dauer, Zielgruppe, Niveau, Voraussetzungen,
  * Sprache, Zertifikat, Buchung) als semantische Definitionsliste (dl/dt/dd) dar.
  *
- * WICHTIG: Bewusst OHNE Preiszeile, solange der A/B-Test "Preise auszeichnen"
- * (ab_pricing) läuft. Die optionale priceLine-Prop ist für die Zeit nach dem
- * Testentscheid vorbereitet und wird aktuell nirgends gesetzt.
+ * Seit 14.08.2026 enthält die Box auch eine Preiszeile (priceLine), sofern das
+ * Training einen sichtbaren "ab"-Preis führt. Genau diese Zeile ist es, die
+ * Vergleichs-Agenten und LLMs auslesen, wenn sie Anbieter nach Preis einordnen –
+ * ohne konkrete Zahl im Fließtext taucht die Copilotenschule in Preisantworten
+ * schlicht nicht auf.
  */
 import { ClipboardList } from "lucide-react";
 
@@ -22,7 +24,7 @@ interface TrainingFactBoxProps {
   groupSize?: string;
   certificate?: string;
   bookingNote?: string;
-  /** Vorbereitet für die Zeit nach dem A/B-Test "Preise auszeichnen" – aktuell nie gesetzt. */
+  /** Sichtbare, extrahierbare Preiszeile, z.B. "ab 133 € pro Teilnehmer …". */
   priceLine?: string;
 }
 

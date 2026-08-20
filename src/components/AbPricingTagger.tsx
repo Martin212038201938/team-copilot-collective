@@ -1,27 +1,9 @@
-import { useEffect } from "react";
-import { readVariant, isPrerender } from "@/lib/abPricing";
-import { setSessionTag } from "@/lib/analytics";
-
 /**
- * Setzt das Clarity-Session-Tag `ab_pricing` in JEDER Session eines bereits
- * zugewiesenen Nutzers (Wert kommt aus localStorage). So sind auch Conversions
- * attribuierbar, die in einer Session passieren, in der der Nutzer keine der
- * Testseiten erneut öffnet (z.B. direkte Buchung über die Startseite beim
- * zweiten Besuch).
+ * AbPricingTagger — ENTFERNT am 14.08.2026.
  *
- * Weist selbst KEINE Variante zu – das passiert bewusst nur beim ersten Öffnen
- * einer Testseite (siehe abPricing.ts / TrainingDetail). Rendert nichts.
+ * Setzte das Clarity-Session-Tag `ab_pricing` für Nutzer des A/B-Tests
+ * "Preise auszeichnen". Der Test ist beendet (siehe src/lib/abPricing.ts),
+ * die Komponente wird nicht mehr in App.tsx eingebunden.
  */
-const AbPricingTagger = () => {
-  useEffect(() => {
-    if (isPrerender()) return;
-    const variant = readVariant();
-    if (variant) {
-      setSessionTag("ab_pricing", variant);
-    }
-  }, []);
 
-  return null;
-};
-
-export default AbPricingTagger;
+export {};
