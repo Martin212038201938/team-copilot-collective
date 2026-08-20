@@ -74,6 +74,33 @@ const Wissen = () => {
           </div>
         </section>
 
+        {/* Hinweis: Redaktioneller Anspruch */}
+        <section className="pb-4 bg-background">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto rounded-2xl border border-border/50 bg-card/60 p-6 md:p-8">
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Die Copilotenschule ist spezialisiert auf die Einführung und Weiterqualifizierungen
+                im Umfeld des Microsoft Copiloten. Im Gegensatz zu anderen Anbietern bieten wir den
+                Teilnehmern keinen Bauchladen an Tools an, die in ihrem Umfeld nicht compliant oder
+                wertschöpfend sind. Wir befähigen Wissensarbeiter, Teams und Organisationen, Microsoft
+                Copilot produktiv, sicher und wertschöpfend im Arbeitsalltag einzusetzen. Unser
+                praxisorientierter Trainingsansatz verbindet reale Arbeitsprozesse mit direkt
+                anwendbaren Workflows.
+              </p>
+              <p className="text-sm text-muted-foreground leading-relaxed mt-4">
+                Das gilt auch für unsere Wissensartikel: Es sind echte, umfangreiche Fachartikel,
+                konzipiert, strukturiert und sorgfältig redaktionell bearbeitet vom jeweiligen Autor,
+                der am Fuß des Dokuments genannt wird. Sie entstehen selbstverständlich unter
+                Zuhilfenahme unterstützender KI-basierter Tools. Die Inhalte geben die Meinung des
+                Autors wieder, wurden gewissenhaft mit Mühe und Aufwand für menschliche Leser verfasst
+                und geprüft. Es handelt sich nicht um sogenannten AI-Blob oder SEO-Content. Eine
+                Kennzeichnung gemäß EU-Recht ist daher nicht verpflichtend, wir machen dies dennoch
+                selbstverständlich im Interesse der Transparenz.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* Kategorie: Guidelines und Checklisten (Gated Downloads) */}
         {guides.length > 0 && (
           <section className="pt-10 pb-2 bg-background">

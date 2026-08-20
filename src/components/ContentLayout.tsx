@@ -178,10 +178,14 @@ const ContentLayout = ({
                 {authorName && (
                   <div className="relative bg-card/80 backdrop-blur-md border border-border/50 rounded-2xl p-5 shadow-md">
                     <p className="text-xs text-muted-foreground leading-relaxed">
-                      Echter Fachartikel, verfasst von <span className="font-medium text-foreground">{authorName}</span> unter
-                      Zuhilfenahme unterstützender KI-basierter Tools. Die Inhalte geben die Meinung des Autors wieder,
+                      Dies ist ein echter, umfangreicher Fachartikel, konzipiert, strukturiert und sorgfältig
+                      redaktionell bearbeitet von <span className="font-medium text-foreground">{authorName}</span>,
+                      der am Fuß des Dokuments genannt wird. Er entstand selbstverständlich unter Zuhilfenahme
+                      unterstützender KI-basierter Tools. Die Inhalte geben die Meinung des Autors wieder,
                       wurden gewissenhaft mit Mühe und Aufwand für menschliche Leser verfasst und geprüft.
-                      Es handelt sich nicht um sogenannten AI-Blob oder SEO Content.
+                      Es handelt sich nicht um sogenannten AI-Blob oder SEO Content. Eine Kennzeichnung gemäß
+                      EU Recht ist daher nicht verpflichtend, wir machen dies dennoch selbstverständlich im
+                      Interesse der Transparenz.
                     </p>
                   </div>
                 )}

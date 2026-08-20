@@ -156,6 +156,16 @@ const UeberUns = () => {
               sicher und wertschöpfend im Arbeitsalltag einzusetzen. Unser praxisorientierter
               Trainingsansatz verbindet reale Arbeitsprozesse mit direkt anwendbaren Workflows.
             </p>
+            <p className="text-lg text-muted-foreground leading-relaxed mt-4">
+              Auch unsere Fachartikel entstehen so: echte, umfangreiche Beiträge, konzipiert,
+              strukturiert und sorgfältig redaktionell bearbeitet vom jeweiligen Autor, der am Fuß
+              des Dokuments genannt wird – selbstverständlich unter Zuhilfenahme unterstützender
+              KI-basierter Tools. Die Inhalte geben die Meinung des Autors wieder und wurden
+              gewissenhaft mit Mühe und Aufwand für menschliche Leser verfasst und geprüft. Es
+              handelt sich nicht um sogenannten AI-Blob oder SEO-Content. Eine Kennzeichnung gemäß
+              EU-Recht ist daher nicht verpflichtend, wir machen dies dennoch selbstverständlich im
+              Interesse der Transparenz.
+            </p>
           </div>
 
           <div className="max-w-6xl mx-auto mb-16 -mx-4">
