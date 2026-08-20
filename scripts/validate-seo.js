@@ -251,10 +251,16 @@ function checkTrainerProfiles() {
 }
 
 function checkStaticPages() {
-  // Pflichtseiten, die in reactSnap und Sitemap sein MÜSSEN
+  // Pflichtseiten, die in reactSnap und Sitemap sein MÜSSEN.
+  //
+  // HINWEIS (20.08.2026): '/unsere-angebote' wurde hier entfernt. Die Route ist in
+  // App.tsx nur noch ein <Navigate to="/trainings"> und wird zusätzlich per 301 in
+  // public/.htaccess weitergeleitet – es gibt keine Seite mehr, die pre-gerendert
+  // oder indexiert werden könnte. '/kontakt' ist dafür neu aufgenommen: eine echte
+  // Seite, die bislang in keiner der beiden Listen zuverlässig geführt wurde.
   const staticRoutes = [
     '/', '/trainings', '/workshops', '/wissen',
-    '/unsere-angebote', '/ueber-uns', '/trainer-werden',
+    '/ueber-uns', '/trainer-werden', '/kontakt',
     '/training-konfigurator', '/impressum', '/datenschutz'
   ];
   for (const route of staticRoutes) {

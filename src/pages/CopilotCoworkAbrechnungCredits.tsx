@@ -350,7 +350,7 @@ const CopilotCoworkAbrechnungCredits = () => {
         <TrainingCTA
           topic="Copilot Cowork sauber im Unternehmen einführen"
           benefit="Von Lizenzlogik über Kostensteuerung bis zu den ersten produktiven Anwendungsfällen: Wir begleiten Ihre Einführung, damit aus dem neuen Feature messbarer Nutzen wird."
-          href="/unsere-angebote"
+          href="/trainings"
           label="Zu unseren Angeboten"
         />
 

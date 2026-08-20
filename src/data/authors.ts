@@ -106,7 +106,6 @@ export const authors: Record<string, Author> = {
     sameAs: [
       'https://www.linkedin.com/in/martin-lang-a95b1010',
       'https://www.springest.de/u/martin-lang#bewertungen',
-      'https://agilescrumgroup.de/uber-uns/team/',
       'https://www.yellow-boat.com'
     ]
   }

@@ -610,7 +610,7 @@ const KiKennzeichnungspflicht = () => {
               dauert zwei bis drei Stunden, setzt kein Vorwissen voraus und schließt mit einem Zertifikat
               ab, das Sie bei Audits und Behördenanfragen vorlegen können. Wer breiter aufstellen will,
               findet in{" "}
-              <Link to="/unsere-angebote" className="text-primary hover:underline">
+              <Link to="/trainings" className="text-primary hover:underline">
                 unseren Angeboten
               </Link>{" "}
               die passenden Formate für Führungskreise und Fachabteilungen.
