@@ -175,8 +175,10 @@ const staticPages = [
   { loc: '/trainings',              lastmod: TRAININGS_LASTMOD,                                     changefreq: 'weekly',  priority: 0.9 },
   { loc: '/workshops',              lastmod: WORKSHOPS_LASTMOD,                                     changefreq: 'weekly',  priority: 0.9 },
   { loc: '/wissen',                 lastmod: gitLastModified('src/data/articles.ts'),               changefreq: 'weekly',  priority: 0.9 },
-  { loc: '/unsere-angebote',        lastmod: gitLastModified('src/pages/UnsereAngebote.tsx'),       changefreq: 'weekly',  priority: 0.85 },
+  // /unsere-angebote entfernt (20.08.2026): leitet per 301 auf /trainings weiter,
+  // gehört damit nicht in die Sitemap. Siehe Redirect-Guard unten.
   { loc: '/ueber-uns',              lastmod: gitLastModified('src/pages/UeberUns.tsx'),             changefreq: 'monthly', priority: 0.7 },
+  { loc: '/kontakt',                lastmod: gitLastModified('src/pages/Kontakt.tsx'),              changefreq: 'monthly', priority: 0.7 },
   { loc: '/trainer-werden',         lastmod: gitLastModified('src/pages/BecomeTrainer.tsx'),        changefreq: 'monthly', priority: 0.6 },
   { loc: '/training-konfigurator',  lastmod: gitLastModified('src/pages/TrainingKonfigurator.tsx'), changefreq: 'monthly', priority: 0.8 },
   { loc: '/impressum',              lastmod: gitLastModified('src/pages/Impressum.tsx'),            changefreq: 'yearly',  priority: 0.3 },
@@ -215,11 +217,15 @@ const knowledgePages = knowledgeSlugs.map(slug => ({
 }));
 
 // Trainings — lastmod aus dem letzten Update der trainings.ts (konsistent für alle)
+// HINWEIS (20.08.2026): Vier eingestellte Trainings wurden entfernt, weil sie per 301
+// auf /trainings weiterleiten und in trainings.ts nicht mehr existieren:
+// github-copilot-entwickler, copilot-compliance-datenschutz, low-code-power-platform,
+// individuelle-copilot-schulung. Sie standen mit frischem lastmod in der Sitemap und
+// haben Google damit wiederholt auf Weiterleitungen geschickt.
 const trainingsSlugs = [
   'copilot-grundlagen-prompt-design', 'microsoft-365-copilot-praxis', 'ausbildung-ki-wissensarbeiter',
-  'train-the-trainer-copilot', 'github-copilot-entwickler', 'copilot-compliance-datenschutz',
-  'copilot-studio-ki-agenten', 'low-code-power-platform', 'eu-ai-act-pflichtschulung',
-  'copilot-lernreise-8-wochen', 'individuelle-copilot-schulung',
+  'train-the-trainer-copilot', 'copilot-studio-ki-agenten', 'eu-ai-act-pflichtschulung',
+  'copilot-lernreise-8-wochen',
 ];
 
 const trainingPages = trainingsSlugs.map(slug => ({
@@ -280,6 +286,67 @@ const allPages = [
   ...guidelinePages,
 ];
 
+// ──────────────────────────────────────────────────────────────
+// Redirect-Guard: keine weiterleitenden URLs in die Sitemap
+// ──────────────────────────────────────────────────────────────
+// Hintergrund (Tiefenanalyse 14.08.2026): In der Sitemap standen 5 URLs, die per
+// 301 weiterleiten – vier davon mit frischem lastmod. Die Sitemap sagte Google
+// damit "frisch geändert, bitte crawlen" und lieferte dann eine Weiterleitung.
+// Das kostet Crawl-Budget und hielt die Gruppe "Seite mit Weiterleitung" dauerhaft
+// bei 8 URLs. Dieser Guard liest die RewriteRules aus public/.htaccess und bricht
+// den Build ab, sobald eine Sitemap-URL auf eine Redirect-Regel passt.
+function readRedirectMatchers() {
+  const htaccessPath = path.join(ROOT, 'public', '.htaccess');
+  if (!fs.existsSync(htaccessPath)) return [];
+
+  const matchers = [];
+  for (const rawLine of fs.readFileSync(htaccessPath, 'utf-8').split('\n')) {
+    const line = rawLine.trim();
+    if (!line.startsWith('RewriteRule') || !/\[R=301/.test(line)) continue;
+
+    // RewriteRule ^muster$ /ziel [R=301,L]  →  Muster extrahieren
+    const parts = line.split(/\s+/);
+    const pattern = parts[1];
+    const target = parts[2];
+    if (!pattern || !pattern.startsWith('^')) continue;
+    // Reine Protokoll-/Host-Weiterleitungen (HTTPS, www) betreffen keine Pfade
+    if (pattern === '^' || /%\{/.test(target || '')) continue;
+
+    try {
+      matchers.push({ regex: new RegExp(pattern), source: line });
+    } catch {
+      // Unparsbares Muster überspringen statt den Build zu blockieren
+    }
+  }
+  return matchers;
+}
+
+function assertNoRedirectedUrls(entries) {
+  const matchers = readRedirectMatchers();
+  if (matchers.length === 0) return;
+
+  const offenders = [];
+  for (const entry of entries) {
+    const pathWithoutSlash = entry.loc.replace(/^\//, '');
+    const hit = matchers.find(m => m.regex.test(pathWithoutSlash));
+    if (hit) offenders.push({ loc: entry.loc, rule: hit.source });
+  }
+
+  if (offenders.length > 0) {
+    console.error('\n❌ Sitemap enthält URLs, die per 301 weiterleiten:\n');
+    for (const o of offenders) {
+      console.error(`   ${o.loc}`);
+      console.error(`     → passt auf: ${o.rule}`);
+    }
+    console.error('\n   Entweder die URL aus dem Sitemap-Generator entfernen oder die');
+    console.error('   Redirect-Regel in public/.htaccess streichen. Eine weiterleitende');
+    console.error('   URL in der Sitemap verschwendet Crawl-Budget.\n');
+    process.exit(1);
+  }
+
+  console.log(`   Redirect-Guard: ${matchers.length} 301-Regeln geprüft, keine Kollision`);
+}
+
 // XML generieren
 function generateSitemapXML(entries) {
   const urlEntries = entries.map(entry => `  <url>
@@ -303,6 +370,8 @@ ${urlEntries}
 
 // Hauptfunktion
 function main() {
+  assertNoRedirectedUrls(allPages);
+
   const sitemap = generateSitemapXML(allPages);
 
   // Schreibe in public/ für den Build
