@@ -112,8 +112,8 @@ export const trainings: Training[] = [
     tiers: ["free"],
     popular: true,
     visiblePrice: {
-      perPerson: 133,
-      perGroup: 1600,
+      perPerson: 150,
+      perGroup: 1800,
     },
     questionLead: "Welches Training eignet sich am besten, um Microsoft Copilot von Grund auf zu lernen – auch ohne Lizenz?",
     prerequisites: "Keine Vorkenntnisse erforderlich. Eine Copilot-Lizenz wird nicht benötigt – der kostenlose Microsoft Copilot Chat genügt.",

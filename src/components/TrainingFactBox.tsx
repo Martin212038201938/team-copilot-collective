@@ -24,7 +24,7 @@ interface TrainingFactBoxProps {
   groupSize?: string;
   certificate?: string;
   bookingNote?: string;
-  /** Sichtbare, extrahierbare Preiszeile, z.B. "ab 133 € pro Teilnehmer …". */
+  /** Sichtbare, extrahierbare Preiszeile, z.B. "ab 150 € pro Teilnehmer …". */
   priceLine?: string;
 }
 
