@@ -21,7 +21,7 @@
 
 Diese 8 Messwerte gelten als „erfüllt" für den Block aus dem ursprünglichen Maßnahmenkatalog:
 
-1. Indexierungsquote (GSC) ≥ **90 %** (Stand 27.05.: 44 %)
+1. Indexierungsquote (GSC) ≥ **90 %** — **neue Messbasis seit 20.08.2026, siehe unten** (Stand 20.08.: 83,9 %)
 2. SSR-Audit „vollständig kaputt" 🔴 ≤ **5** URLs (Stand 27.05.: 38 → **0 🔴 am 15.+16.06., live verifiziert → ✅ ERFÜLLT**)
 3. SEO-Score laut Health Check ≥ **75 / 100** (Stand: 42)
 4. GEO-Score stabil ≥ **80 / 100** (Stand: 82 — gewahrt)
@@ -29,6 +29,43 @@ Diese 8 Messwerte gelten als „erfüllt" für den Block aus dem ursprünglichen
 6. „Microsoft Copilot Training Empfehlung beste Anbieter Deutschland 2026" in Top 3 (Hub-Artikel B2 live + pre-gerendert, rankt lt. Monatsreview 10.06. #1 → **wahrscheinlich erfüllt**, GSC-Bestätigung ausstehend)
 7. Externer Listicle-Erwähnung (mod-education / ki-trainingszentrum / cmt) ≥ **1**
 8. ProvenExpert-Profil mit ≥ **15 Bewertungen**
+
+### Messvorschrift DoD #1 — Indexierungsquote (gültig ab 20.08.2026)
+
+Bis August 2026 wurde die Quote über **„Alle bekannten Seiten"** gemessen. Diese Basis
+ist unbrauchbar als Steuerungsgröße: Sie enthält Weiterleitungs-URLs, kanonische
+Alternativen, robots-blockierte Seiten und jede Alt-URL, die Google je gesehen hat.
+Der Nenner wächst also durch Dinge, die gar nicht indexiert werden *sollen* — die Quote
+sank im Juli/August, obwohl die Zahl indexierter Seiten stieg.
+
+**Verbindliche Messung ab sofort:**
+
+```
+GSC → Indexierung → Seiten → Filter "Alle eingereichten Seiten"
+
+Indexierungsquote = Indexiert / (Indexiert + Nicht indexiert − Gated-PDF-Assets)
+```
+
+- **Basis** ist ausschließlich die eingereichte Sitemap — also die URLs, die indexiert
+  werden sollen. Redirects, kanonische Alternativen und robots-Blocks stehen dort
+  ohnehin nicht mehr drin (Redirect-Guard in `scripts/generate-sitemap.js`, seit 20.08.).
+- **Abgezogen** werden die 6 gated PDF-Leitfäden unter `/downloads/`. Sie stehen bewusst
+  in der Sitemap, damit LLMs den Inhalt crawlen dürfen, sind aber keine Ranking-Zielseiten.
+- **Nicht** abgezogen wird irgendetwas anderes. Wer den Nenner weiter schrumpft,
+  schönt die Zahl.
+
+**Referenzwert bei Umstellung (20.08.2026, GSC-Stand 17.08.):**
+
+| Basis | Indexiert | Nicht indexiert | Quote |
+|---|---|---|---|
+| Alle bekannten Seiten (alt) | 75 | 38 | 66,4 % |
+| Alle eingereichten Seiten | 73 | 20 | 78,5 % |
+| **Eingereicht ohne PDFs (gültig)** | **73** | **14** | **83,9 %** |
+
+Die 20 nicht indexierten eingereichten Seiten sind ausschließlich „Gefunden – zurzeit
+nicht indexiert" (14, davon 6 PDFs) und „Gecrawlt – zurzeit nicht indexiert" (6).
+Damit ist der verbleibende Rückstand auf 90 % rein inhaltlich begründet, nicht technisch —
+er wird über Content-Qualität und Autorität geschlossen, nicht über Sitemap-Kosmetik.
 
 ---
 
