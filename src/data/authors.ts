@@ -11,6 +11,10 @@ export interface Author {
   expertise: string[];
   qualifications: string[];
   bio: string;
+  /** Kurze Meta-Description (~150 Zeichen) für die Trainer-Profilseite. Fällt sonst auf bio zurück. */
+  metaDescription?: string;
+  /** Eigenständiger Profiltext (nur auf /trainer/:id sichtbar, bewusst NICHT identisch mit bio, um Duplicate Content mit den Autor-Boxen zu vermeiden). */
+  profileText?: string[];
   image: string;
   linkedin?: string;
   twitter?: string;
@@ -47,6 +51,7 @@ export const authors: Record<string, Author> = {
       'Autorin des Trainings zur Entscheidungspsychologie'
     ],
     bio: 'Saskia Kaden ist Agile Coach, systemische Beraterin und Lead Trainerin Online bei der copilotenschule.de. In dieser Rolle entwickelt sie die Online-Kurse und -Formate der Copilotenschule konzeptionell weiter. Ihr inhaltlicher Schwerpunkt liegt auf Entscheidungsqualität, kognitiven Verzerrungen und der Frage, wie Teams mit KI nicht nur schneller, sondern nachweislich besser entscheiden. Sie bringt über acht Jahre Erfahrung in der Begleitung von Organisationen und Führungsteams mit und hat ein eigenständiges Training zur Entscheidungspsychologie entwickelt – fundiert in der Verhaltensökonomie (Kahneman, Thaler) und der Noise-Forschung. Saskia war zuvor Trainerin, Beraterin und Ausbilderin für agile Methoden, Transformation und Führungskräfte-Entwicklung.',
+    metaDescription: 'Saskia Kaden, Lead Trainerin Online der copilotenschule.de: Agile Coach und Expertin für Entscheidungsqualität mit KI. Profil, Qualifikationen und Schwerpunkte.',
     image: '/images/authors/saskia-kaden.jpg',
     linkedin: 'https://www.linkedin.com/in/saskia-kaden',
     sameAs: [
@@ -79,6 +84,12 @@ export const authors: Record<string, Author> = {
       'Certified Scrum Master und Agile Coach'
     ],
     bio: 'Martin Lang ist Gründer der copilotenschule.de, dem im deutschsprachigen Raum führenden Spezialanbieter für Microsoft-Copilot-Anwenderschulungen. Mit einem Team aus Trainern, Coaches und Beratern hat die Copilotenschule unter seiner Leitung bislang über 2.000 Wissensarbeiter, Führungskräfte und IT-Verantwortliche im produktiven Einsatz von Microsoft Copilot ausgebildet. Zu den Kunden zählen REWE, Pernod Ricard, Lekkerland, Marriott Hotels, Med360Grad und die IHK Nord Westfalen. Die Copilotenschule entstand 2025 aus Yellow-Boat Consulting heraus, der von Martin Lang 2011 gegründeten Beratung für Digitalisierung und agile Transformation in Konzernen und Mittelstand. Der inhaltliche Schwerpunkt seiner heutigen Arbeit liegt auf der strategischen Verankerung, dem sicheren Betrieb und der breitenwirksamen Adoption von Microsoft Copilot in mittelständischen und großen Organisationen der DACH-Region.',
+    metaDescription: 'Martin Lang, Gründer der copilotenschule.de: Microsoft-Copilot-Trainer mit über 2.000 geschulten Anwendern. Profil, Qualifikationen, Trainings und Fachartikel.',
+    profileText: [
+      'Martin Lang gründete 2011 Yellow-Boat Consulting und begleitete von dort aus mehr als ein Jahrzehnt lang Digitalisierungs- und Transformationsprojekte in Konzernen und im Mittelstand – unter anderem für REWE, Lekkerland und Pernod Ricard. Aus dieser Arbeit entstand 2025 die copilotenschule.de: ein Spezialanbieter, der sich ausschließlich auf Anwenderschulungen rund um Microsoft Copilot konzentriert.',
+      'Sein Trainingsansatz ist konsequent praxisnah: Geschult wird am echten Arbeitsalltag der Teilnehmer – in Word, Excel, Outlook, PowerPoint und Teams – statt an Folien mit Feature-Listen. Die Formate reichen vom Präsenztraining im Kölner Trainingsraum über mehrwöchige Online-Lernreisen bis zu unternehmensweiten Rollout-Programmen in Deutschland, Österreich und der Schweiz.',
+      'Die Fachartikel im Wissensbereich der Copilotenschule schreibt Martin selbst – auf Basis der Fragen, die in seinen Trainings tatsächlich gestellt werden. Eine Auswahl seiner Artikel finden Sie unten auf dieser Seite.'
+    ],
     image: '/images/authors/martin-lang.png',
     linkedin: 'https://www.linkedin.com/in/martin-lang-a95b1010',
     email: 'martin@yellow-boat.com',

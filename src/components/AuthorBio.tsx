@@ -1,4 +1,5 @@
-import { Linkedin, Mail } from "lucide-react";
+import { Linkedin, Mail, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import type { Author } from "@/data/authors";
 
 interface AuthorBioProps {
@@ -45,7 +46,15 @@ const AuthorBio = ({ author, heading }: AuthorBioProps) => {
 
         {/* Text */}
         <div className="flex-1">
-          <h3 className="text-xl font-bold leading-tight">{author.name}</h3>
+          <h3 className="text-xl font-bold leading-tight">
+            <Link
+              to={`/trainer/${author.id}`}
+              className="hover:text-primary transition-colors"
+              aria-label={`Trainerprofil von ${author.name} ansehen`}
+            >
+              {author.name}
+            </Link>
+          </h3>
           <p className="text-sm text-muted-foreground font-medium mb-3">{author.role}</p>
 
           {/* Bio – kann mehrere Absätze enthalten, getrennt durch Doppel-Newline */}
@@ -57,6 +66,13 @@ const AuthorBio = ({ author, heading }: AuthorBioProps) => {
 
           {/* Kontakt- und Verifikations-Links */}
           <div className="flex flex-wrap items-center gap-4 text-sm">
+            <Link
+              to={`/trainer/${author.id}`}
+              className="inline-flex items-center gap-1.5 text-primary hover:underline font-medium"
+            >
+              Profil & Qualifikationen
+              <ArrowRight className="w-4 h-4" />
+            </Link>
             {author.linkedin && (
               <a
                 href={author.linkedin}

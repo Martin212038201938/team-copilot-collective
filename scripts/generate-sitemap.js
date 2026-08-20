@@ -246,6 +246,7 @@ const workshopPages = workshopsSlugs.map(slug => ({
 // Trainer-Profile — lastmod aus authors.ts
 const trainerProfiles = [
   { loc: '/trainer/martin-lang', lastmod: AUTHORS_LASTMOD, changefreq: 'monthly', priority: 0.7 },
+  { loc: '/trainer/saskia-kaden', lastmod: AUTHORS_LASTMOD, changefreq: 'monthly', priority: 0.7 },
 ];
 
 // Guidelines und Checklisten (Gated Downloads / Honeypots) — /guidelines/<slug>

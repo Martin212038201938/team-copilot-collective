@@ -9,6 +9,10 @@ import Contact from "@/components/Contact";
 import SEOHead from "@/components/SEOHead";
 import { getAuthor, getAuthorSchemaMarkup, authors } from "@/data/authors";
 import { trainings } from "@/data/trainings";
+import { ALL_ARTICLES } from "@/data/articles";
+
+// Artikel, die NICHT von Martin stammen (aktuell nur Saskias Entscheidungs-Artikel)
+const SASKIA_ARTICLE_LINKS = ["/wissen/bessere-entscheidungen-mit-ki"];
 
 const TrainerProfil = () => {
   const { id } = useParams<{ id: string }>();
@@ -27,11 +31,18 @@ const TrainerProfil = () => {
   // Trainings die dieser Trainer durchführt
   const trainerCourses = trainings.slice(0, 6);
 
+  // Fachartikel dieses Trainers (interne Verlinkung Profil ↔ Artikel, E-E-A-T)
+  const trainerArticles = (
+    trainer.id === "saskia-kaden"
+      ? ALL_ARTICLES.filter((a) => SASKIA_ARTICLE_LINKS.includes(a.link))
+      : ALL_ARTICLES.filter((a) => !a.isDraft && !SASKIA_ARTICLE_LINKS.includes(a.link))
+  ).slice(0, 8);
+
   return (
     <div className="min-h-screen">
       <SEOHead
         title={`${trainer.name} – ${trainer.role}`}
-        description={trainer.bio}
+        description={trainer.metaDescription ?? trainer.bio}
         keywords={trainer.expertise}
         canonicalUrl={`https://copilotenschule.de/trainer/${trainer.id}`}
         schema={personSchema}
@@ -102,6 +113,22 @@ const TrainerProfil = () => {
             </div>
           </div>
         </section>
+
+        {/* Werdegang – eigenständiger Profiltext (nicht identisch mit den Autor-Boxen) */}
+        {trainer.profileText && trainer.profileText.length > 0 && (
+          <section className="py-16 bg-background">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto">
+                <h2 className="text-3xl font-bold mb-6">Werdegang & Arbeitsweise</h2>
+                <div className="space-y-4 text-lg text-muted-foreground leading-relaxed">
+                  {trainer.profileText.map((paragraph, idx) => (
+                    <p key={idx}>{paragraph}</p>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* Qualifikationen */}
         <section className="py-16 bg-background">
@@ -192,6 +219,40 @@ const TrainerProfil = () => {
             </div>
           </div>
         </section>
+
+        {/* Fachartikel */}
+        {trainerArticles.length > 0 && (
+          <section className="py-16 bg-muted/30">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto">
+                <h2 className="text-3xl font-bold mb-8">
+                  Fachartikel von {trainer.name.split(" ")[0]}
+                </h2>
+                <div className="grid md:grid-cols-2 gap-4">
+                  {trainerArticles.map((article) => (
+                    <Link
+                      key={article.id}
+                      to={article.link}
+                      className="group block p-4 bg-card border rounded-lg hover:border-primary/50 hover:shadow-md transition-all"
+                    >
+                      <h3 className="font-semibold group-hover:text-primary transition-colors line-clamp-2 mb-2">
+                        {article.title}
+                      </h3>
+                      <p className="text-sm text-muted-foreground">
+                        Aktualisiert: {article.lastUpdated}
+                      </p>
+                    </Link>
+                  ))}
+                </div>
+                <div className="text-center mt-8">
+                  <Button asChild variant="outline">
+                    <Link to="/wissen">Alle Fachartikel ansehen</Link>
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* Kontakt */}
         <Contact />
