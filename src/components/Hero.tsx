@@ -44,7 +44,7 @@ const Hero = () => {
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           <div className="space-y-6 sm:space-y-8">
             <p className="text-base sm:text-xl text-muted-foreground leading-relaxed mb-4 animate-fade-in-delayed">
-              Die copilotenschule.de ist die spezialisierte Weiterbildung für Organisationen, die Microsoft Copilot
+              Die Copilotenschule ist spezialisiert auf praxisorientierte Weiterbildungen für Organisationen, die Microsoft Copilot
               wirksam und kontrolliert in der täglichen Büroarbeit einsetzen wollen. Wir befähigen Führungskräfte,
               Teams und Wissensarbeiter, Copilot produktiv, sicher und wertschöpfend im Arbeitsalltag zu nutzen –
               mit klarem Fokus auf Adoption, Wirkung und reale Geschäftsprozesse.

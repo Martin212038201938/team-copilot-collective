@@ -8,6 +8,48 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 
 ## Logs
 
+### 2026-08-24 — Wöchentlicher Audit (Cron)
+
+**Phase:** Phase 3 — Content-Block (DoD 4/8, Risiko 🟡)
+**SSR-Audit:** ✅ 67 / 🟡 0 / 🔴 0 (von 67)
+- Neu in 🔴/✅: keine. Regressions-Wächter grün (🔴=0, weit unter Eskalationsschwelle 5).
+
+**GSC Indexierung (Basis: eingereichte Seiten ohne 6 Gated-PDFs, Stand 21.08.):** 74/87 (**85,1 %**)
+- Nicht indexiert (submitted): gefunden 14 | gecrawlt 5 (A6-Summe **19**, Δ zur 20.08.-Referenz **−1** → A6 wirkt)
+- Quote-Trend: 83,9 % (20.08.) → 85,1 % (**+1,2 pp**, Richtung Ziel 90 %)
+- Kontext „Alle bekannten Seiten" (KEIN KPI): 77 indexiert / 37 nicht (gecrawlt 12, Weiterleitung 10 stabil, robots 1)
+
+**GSC Leistung 3M (REKORD):** Klicks 1.940 (+16,9 % W/W), Impr. 155.000 (+16,5 %), CTR 1,2 %, Pos. 8,5 (von 8,8). Top-Klick-Bringer-URLs: microsoft-copilot-lizenzen (287), claude-in-microsoft-copilot (280), copilot-in-excel-aktivieren (246), ki-halluzinationen-vermeiden (193), copilot-cowork-abrechnung-copilot-credits (141), copilot-in-outlook-nutzen-tipps (130). Top-Queries: copilot in excel aktivieren (77), excel copilot aktivieren (25), copilot excel aktivieren (20), copilot kosten (15), copilot lizenz (10).
+
+**AlwaysData:** 24h 454, August MTD 13.148 (Tag 24, Pace ~16,9k; −41,57 % ggü. Juli ist MTD-Artefakt, Monat unvollständig; Juli 22.503)
+
+**Traffic-Mix (Clarity Kanal 7T):** Organic 370 | SEA (cpc) 46 | Outbound (email) 2 | Direct/Rest 233 (Other 178, Referral 25, Direct 23, AIPlatform/LLM 7)
+
+**Clarity Standard (3T, via API, 1 Call):**
+- Sessions: 175 (davon 27 Bots, 199 Unique Users)
+- Scrolltiefe: 38,75 %, Aktive Zeit: 91 s
+- Dead-Click: 12,57 % (7T Dashboard 13,69 %/88 Sess.) | Rage-Click: 0 % | Quick-Back: 0,57 % | Excessive-Scroll: 0 %
+- Top-Browser: Chrome 72 / Edge 53 (30 %, B2B-Signal) / MobileSafari 22 / ChromeMobile 12
+- Top-3-Pages: Homepage 31, copilot-in-outlook-nutzen-tipps 22, /trainings 14
+- Top-3-Referrer: google.com 84, direct/null 56, bing.com 24
+
+**Clarity Conversion-Events (7T, via Chrome Smart Events):**
+- contact_form_submit / trainer_application_submit / konfigurator_submit / mail_click / phone_click / pdf_download: 0 / 0 / 0 / 0 / 0 / 3
+- Reale Kontakt-Conv. über Smart Events: Formular absenden 7, Kontaktieren Sie uns 4, lead 4, Bestellung erfolgreich 3, danke_page_view 3
+- content_cta_click (angebot_bruecke_click) / sml_*: 1 / sml_landing_page_visit 2 (Outbound quasi eingeschlafen)
+- Conversion-Rate gesamt: ≈18/643 = **~2,8 %** (kein 7e-Defekt, kein Event ≥3→0)
+
+**Insights heute:** Patterns 0 | Issues 0 neu (Dead-Click 12,57 % = wiederkehrendes organisches ArticlePopup-Thema, Fix-Draft seit 17.06. unverpusst, keine Neu-Eskalation) | Trends 1 (GSC-Organik-Rekord, +16,9 % W/W → verstärken)
+**Folge-Crons angelegt:** keine (kein Page ≥50 Sess. für Pattern, kein Page ≥100 Sess. für Anti-Pattern)
+**Goldene Pages (GSC×Clarity, organic):** microsoft-copilot-lizenzen, copilot-in-outlook-nutzen-tipps. Ungenutztes Potential (GSC-Top-Klicks, aber nicht in Clarity-PopularPages): claude-in-microsoft-copilot, copilot-in-excel-aktivieren, ki-halluzinationen-vermeiden, copilot-cowork-abrechnung-copilot-credits.
+**Protected Pages:** alle 5/5 = 200 OK
+**Entscheidung gemäß Plan:** Phase 3 bleibt aktiv, kein Wechsel. A6 wirkt (Summe −1). Indexierung +1,2 pp Richtung 90 %. SSR-Regressions-Wächter grün. Kein Push, keine src/-Änderung. Funnel Content→Angebot weiter 0 % E2E — Pattern-Transfer-Cron `copilotenschule-pattern-transfer-2026-08-26` feuert in 2 Tagen.
+**API-Calls heute:** 1/10
+**Teams-Report:** ✗ nicht gepostet — Webhook „Marketing und SEA" liefert weiter HTTP 401 (`DirectApiAuthorizationRequired`), unverändert seit 03.08. Bericht liegt unter `/tmp/seo-teams-report.md`. Audit selbst vollständig durchgelaufen; nur Versand fehlt. **User-Handlung:** Teams → Workflows-App → Vorlage „Beim Empfang einer Webhook-Anfrage in einem Kanal posten" für Kanal „Marketing und SEA" neu anlegen → erzeugte URL als `TEAMS_WEBHOOK_MARKETING_SEA=` in `~/Documents/Cowork Bereich/website-health-check/.env` eintragen.
+**Nächster Lauf:** Mo 31.08.2026, 10:00
+
+---
+
 ### 2026-08-19 — Phase-Conductor-Lauf (Cron)
 **Aktive Phase:** Phase 3 — Content-Block (aktiv seit 01.06.2026, kein Wechsel). Phase 4 (Off-Page) läuft seit 25.06. parallel.
 **Nächste Maßnahme:** kleinste offene Code-Nr. = **A6 Index-Coverage** (⏳). Danach B3b/B3c-Hub-Review, C4-Schema-Push, C1-PageSpeed-Setup, Funnel-Fixes — alle user-gebunden.
