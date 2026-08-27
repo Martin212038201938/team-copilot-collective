@@ -98,13 +98,14 @@ const ArticlePopup = () => {
   return (
     <div
       className={`fixed inset-0 z-50 flex items-center justify-center p-4 transition-opacity duration-300 ${
-        isClosing ? "opacity-0" : "opacity-100"
+        isClosing ? "opacity-0 pointer-events-none" : "opacity-100"
       }`}
     >
       {/* Backdrop */}
       <div
-        className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+        className="absolute inset-0 bg-black/60 backdrop-blur-sm cursor-pointer"
         onClick={handleClose}
+        aria-hidden="true"
       />
 
       {/* Modal */}
@@ -116,10 +117,10 @@ const ArticlePopup = () => {
         {/* Close Button */}
         <button
           onClick={handleClose}
-          className="absolute top-4 right-4 p-1.5 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors z-10"
-          aria-label="Schließen"
+          className="absolute top-2.5 right-2.5 inline-flex items-center justify-center w-11 h-11 rounded-full text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:hover:bg-gray-800 transition-colors z-10"
+          aria-label="Popup schließen"
         >
-          <X className="w-5 h-5 text-gray-500" />
+          <X className="w-5 h-5 pointer-events-none" />
         </button>
 
         {/* Header */}

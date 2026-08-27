@@ -2,7 +2,13 @@
 
 **Lebendes Dokument** — Cron-Jobs pflegen dieses File. Hier sammeln sich die Pattern-Erkenntnisse aus Microsoft Clarity, die wir auf andere Seiten übertragen oder gegen UX-Probleme einsetzen können.
 
-**Letzter automatischer Update:** 24. August 2026 (Wöchentlicher Audit — Montags-Lauf, alle Quellen zugänglich (Chrome + Clarity-API). **SSR 67/67 ✅** (0 🟡/🔴), Protected Pages 5/5 = 200. **GSC (Stand 21.08.):** Indexierung auf **verbindlicher Basis „eingereichte Seiten"** = **74 / 87** (bereinigt, ohne 6 Gated-PDFs) = **85,1 %** (20.08.-Referenz 83,9 % → **+1,2 pp**, Richtung Ziel 90 %). A6-Summe nicht-indexiert (submitted-Basis) **gecrawlt 5 + gefunden 14 = 19** (20.08.-Ref. 20 → **−1, A6 wirkt**). Kontext „alle bekannten Seiten" (KEIN KPI): 77 indexiert / 37 nicht; „Seite mit Weiterleitung" 10 (stabil, kein Alarm). **Leistung 3M REKORD:** Klicks **1.940** (+16,9 % vs 1.660), Impr. **155.000** (+16,5 %), CTR 1,2 %, **Pos. 8,5** (von 8,8). Top-Query „copilot in excel aktivieren" 77 Kl. **AlwaysData:** 24h **454**, August MTD **13.148** (Tag 24, Pace ~16,9k; −41,57 % ist MTD-Artefakt, Monat unvollständig; Juli 22.503). **Clarity 3T (API, 1 Call):** Sessions **175** (27 Bots, 199 Unique), Scroll 38,75 %, aktive Zeit 91 s, **Dead-Click 12,57 %** (7T Dashboard 13,69 %/88 Sess.), Rage 0 %, Quick-Back 0,57 %, Excessive-Scroll 0 %. Top-Browser Chrome 72 / **Edge 53 (30 %, B2B-Signal)** / MobileSafari 22. **Traffic-Mix (Kanal 7T):** Organic 370 · Other 178 · **SEA/cpc 46** · Referral 25 · Direct 23 · **AIPlatform/LLM 7** · **Email/Outbound 2** (Outbound quasi eingeschlafen). **Conversion-Events 7T (Chrome Smart Events):** Formular absenden 7, Ausgehender Klick 7, Kontaktieren Sie uns 4, lead 4, Bestellung erfolgreich 3, Herunterladen 3, pdf_download 3, danke_page_view 3, sml_landing_page_visit 2, booking_click 1, roi_generator_ppt_success 1, **angebot_bruecke_click 1** (CTA-Brücke feuert). Custom-Tags contact_form_submit/trainer_application_submit/konfigurator_submit/mail_click/phone_click = 0 (nicht separat gefeuert), pdf_download 3 → direkte Kontakt-/Lead-/Order-Conv. ≈18/643 = **~2,8 %**, kein 7e-Defekt (kein Event ≥3→0). **Funnel „Lead-Reise" weiter 0 % E2E:** Stufe 1 434 (67,5 %) → Stufe 2 nur 1 (0,23 %) → Stufe 3 0. Goldene Pages (GSC×Clarity, organic): microsoft-copilot-lizenzen, copilot-in-outlook-nutzen-tipps. Phase 3 aktiv, DoD 4/8, kein Push.)
+**Letzter automatischer Update:** 26. August 2026 (Monatsreview-Zusatzlauf 08/2026 — Bericht `docs/seo-monatsreview-2026-08-26.md`. **Clarity 30T (Chrome):** Sessions **2.823** (436 Bots, 2.728 Unique), Seiten/Sitzung 1,10, Scroll 39,16 %, aktive Zeit 1,5 Min, **Dead-Click 13,46 %** (380 Sess; API 3T 15,64 %), Rage 0,25 %, Quick-Back 0,89 %, Excessive-Scroll 0 %, **Käufe 0,43 %**. **Traffic-Mix (Kanal 30T):** OrganicSearch **1.623** · Other 716 · **PaidSearch/cpc 186 (+39 % M/M)** · Referral 156 (+37 %) · Direct 89 · **AIPlatform/LLM 60 (gehalten)** · **Email/Outbound 20 (−70 % M/M, eingebrochen)**. **Conversion-Events 30T (Smart Events):** Formular absenden 23, Ausgehender Klick 23, Kontaktieren Sie uns 21, sml_landing_page_visit 14, Bestellung erfolgreich 12, lead 11, Herunterladen 11 → direkte Kontakt-/Lead-/Order-Conv. ≈67/2.823 = **~2,4 %**, kein 7e-Defekt. **Funnel „Lead-Reise" weiter 0 % E2E:** Stufe 1 1.738 (61,57 %) → Stufe 2 nur 5 (0,29 %) → Stufe 3 0. **Neu:** CTA-Brücke live auf allen 4 Goldenen Pages (Commit 002098a) + feuert (1×/7T) — Wirkung auf Stufe-2 noch nicht in 30T sichtbar. **GSC 3M REKORD:** 1.960 Kl. / 156.000 Impr. / Pos. 8,5. **SSR 84/84 ✅** (curl-Vollprüfung). Goldene Pages: microsoft-copilot-lizenzen, copilot-tipps-tricks-produktivitaet, claude-in-microsoft-copilot. Neue Monats-Einträge unten: 1 Trend (SEA-Skalierung + Kosten/Lizenz-Schläfer-Synergie), 1 Issue (Outbound-Einbruch), 1 Pattern-Verifikation (CTA-Brücke live). Phase 3 aktiv, DoD 4/8, kein Push.)
+
+<details><summary>Ältere Kopfzeile (24.08.)</summary>
+
+**24. August 2026 (Wöchentlicher Audit — Montags-Lauf, alle Quellen zugänglich (Chrome + Clarity-API). **SSR 67/67 ✅** (0 🟡/🔴), Protected Pages 5/5 = 200. **GSC (Stand 21.08.):** Indexierung auf **verbindlicher Basis „eingereichte Seiten"** = **74 / 87** (bereinigt, ohne 6 Gated-PDFs) = **85,1 %** (20.08.-Referenz 83,9 % → **+1,2 pp**, Richtung Ziel 90 %). A6-Summe nicht-indexiert (submitted-Basis) **gecrawlt 5 + gefunden 14 = 19** (20.08.-Ref. 20 → **−1, A6 wirkt**). Kontext „alle bekannten Seiten" (KEIN KPI): 77 indexiert / 37 nicht; „Seite mit Weiterleitung" 10 (stabil, kein Alarm). **Leistung 3M REKORD:** Klicks **1.940** (+16,9 % vs 1.660), Impr. **155.000** (+16,5 %), CTR 1,2 %, **Pos. 8,5** (von 8,8). Top-Query „copilot in excel aktivieren" 77 Kl. **AlwaysData:** 24h **454**, August MTD **13.148** (Tag 24, Pace ~16,9k; −41,57 % ist MTD-Artefakt, Monat unvollständig; Juli 22.503). **Clarity 3T (API, 1 Call):** Sessions **175** (27 Bots, 199 Unique), Scroll 38,75 %, aktive Zeit 91 s, **Dead-Click 12,57 %** (7T Dashboard 13,69 %/88 Sess.), Rage 0 %, Quick-Back 0,57 %, Excessive-Scroll 0 %. Top-Browser Chrome 72 / **Edge 53 (30 %, B2B-Signal)** / MobileSafari 22. **Traffic-Mix (Kanal 7T):** Organic 370 · Other 178 · **SEA/cpc 46** · Referral 25 · Direct 23 · **AIPlatform/LLM 7** · **Email/Outbound 2** (Outbound quasi eingeschlafen). **Conversion-Events 7T (Chrome Smart Events):** Formular absenden 7, Ausgehender Klick 7, Kontaktieren Sie uns 4, lead 4, Bestellung erfolgreich 3, Herunterladen 3, pdf_download 3, danke_page_view 3, sml_landing_page_visit 2, booking_click 1, roi_generator_ppt_success 1, **angebot_bruecke_click 1** (CTA-Brücke feuert). Custom-Tags contact_form_submit/trainer_application_submit/konfigurator_submit/mail_click/phone_click = 0 (nicht separat gefeuert), pdf_download 3 → direkte Kontakt-/Lead-/Order-Conv. ≈18/643 = **~2,8 %**, kein 7e-Defekt (kein Event ≥3→0). **Funnel „Lead-Reise" weiter 0 % E2E:** Stufe 1 434 (67,5 %) → Stufe 2 nur 1 (0,23 %) → Stufe 3 0. Goldene Pages (GSC×Clarity, organic): microsoft-copilot-lizenzen, copilot-in-outlook-nutzen-tipps. Phase 3 aktiv, DoD 4/8, kein Push.)
+
+</details>
 
 <details><summary>Ältere Kopfzeile (12.08.)</summary>
 
@@ -229,6 +235,37 @@ nach ca. 2 Wochen Laufzeit empfohlen.
 ## Logs (neueste oben — automatisch von Cron-Jobs gepflegt)
 
 <!-- ab hier ergänzen Cron-Jobs ihre Befunde -->
+
+---
+
+### 2026-08-26 — Trend (Verstärken): SEA-Skalierung × Kosten/Lizenz-Schläfer-Synergie
+**Quelle:** Cron-Lauf 2026-08-26 (monthly)
+**Beobachtung:** cpc-Kanal 134→186 Sessions/30T (+39 % M/M), Zielseiten sauber (0 auf /wissen/). Die SEA-Kern-Keywords (kosten, lizenz, training) erscheinen parallel in GSC als organische Schläfer mit hohen Impressionen (kosten 1.819, training 1.532, lizenz 1.439) und schwacher CTR.
+**Ableitung:** Die bezahlte Nachfrage bestätigt organisches Potenzial, das die SERP-CTR nicht abschöpft. Snippet-/Title-Entstauung auf dem Kosten-/Lizenz-Cluster (Draft `protected-page-diff-microsoft-copilot-lizenzen-2026-08-12.md`) ist der naheliegendste Content-Hebel — SEA-Daten als SEO-Recherchequelle.
+**Status:** identifiziert (Draft vorhanden, wartet auf User-Push)
+
+### 2026-08-26 — Issue (neu): Outbound-Segment eingebrochen (Email 67→20/30T, −70 %)
+**Quelle:** Cron-Lauf 2026-08-26 (monthly)
+**Betroffen:** Outbound-LP `/sml/hr-tipps_2026`
+**Symptom:** Email-Kanal von 67 auf 20 Sessions/30T gefallen, weiter 0 Conversions; sml_landing_page_visit 14, übrige sml_*-Events minimal.
+**Hypothese:** Versandvolumen gedrosselt und/oder LP-Wirkung erschöpft.
+**Empfohlene Maßnahme:** LP-Copy überarbeiten (klarer Nutzen + Form-Kürzung) oder Kampagne sauber deaktivieren, damit der Kanal-Mix nicht verzerrt wird. User-Entscheidung.
+
+### 2026-08-26 — Pattern-Verifikation: Angebots-CTA-Brücke live + feuert (Wirkungsmessung läuft)
+**Quelle:** Cron-Lauf 2026-08-26 (monthly)
+**Beobachtete Pages:** alle 4 Goldenen Pages (Commit 002098a, 12.08.)
+**Pattern:** Additive `<aside>`-CTA-Brücke nach dem 1. Sinnabschnitt; erster `angebot_bruecke_click` im Weekly 24.08. gemessen (1×/7T).
+**Empfehlung:** Keine erneute Übertragung nötig (bereits überall live). Stufe-2-Rate (0,29 %) über 4 Wochen im Weekly-Audit tracken; bei Stagnation zweiten Touchpoint (TrainingCTA vor FAQ) in `CopilotLicenses.tsx` + `CopilotTippsTricks.tsx` ausrollen.
+**Status:** übertragen (live), Wirkung in Beobachtung
+
+---
+
+### 2026-08-26 — Pattern-Update: Angebots-CTA-Brücke bereits auf allen 4 Goldenen Pages live — Lücke war der 2. Touchpoint, nicht die Brücke selbst
+**Quelle:** Cron-Lauf 2026-08-26 (`copilotenschule-pattern-transfer-2026-08-26`)
+**Beobachtete Pages:** `/wissen/microsoft-copilot-lizenzen` (Protected), `/wissen/claude-in-microsoft-copilot`, `/wissen/copilot-in-outlook-nutzen-tipps`, `/wissen/copilot-tipps-tricks-produktivitaet`
+**Pattern:** `AngebotsBruecke.tsx` (additive `<aside>`-Komponente, Event `angebot_bruecke_click`) wurde bereits am 12.08. (Commit `002098a`) in alle 4 Pages nach dem jeweils ersten Inhaltsabschnitt eingebaut und ist live auf `main`/`origin/main`. Erste Klick-Daten liegen vor (1× im 7T-Fenster des 24.08.-Audits). Der ursprünglich für diesen Cron erwartete Auftrag war damit bereits erledigt — Stand im Monatsreview/Skill-Kontext war zum Zeitpunkt der Cron-Anlage (12.08.) veraltet.
+**Empfehlung:** Zwei der vier Seiten (`microsoft-copilot-lizenzen`, `copilot-tipps-tricks-produktivitaet`) haben nur den ersten Touchpoint, nicht den zweiten (kurz vor FAQ), den die anderen beiden Seiten bereits haben. Diff-Entwurf für den fehlenden zweiten `<TrainingCTA>` liegt in `docs/drafts/pattern-transfer-goldene-pages-2026-08-26.md` (Protected-Page-Sorgfaltspflicht für `microsoft-copilot-lizenzen` dort dokumentiert). Nächster Schritt: User-Review + Einbau + Push, danach `angebot_bruecke_click` vs. `content_cta_click` je Seite vergleichen, um zu sehen, ob der zweite Touchpoint zusätzlich zieht oder kannibalisiert.
+**Status:** identifiziert — Kern-Pattern übertragen (bereits vor diesem Cron), Rest-Lücke (2. Touchpoint auf 2 Seiten) als Draft dokumentiert, wartet auf User-Umsetzung.
 
 ---
 

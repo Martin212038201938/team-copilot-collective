@@ -8,6 +8,69 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 
 ## Logs
 
+### 2026-08-26 — Phase-Conductor-Lauf (Cron)
+**Aktive Phase:** Phase 3 — Content-Block (aktiv seit 01.06.2026, kein Wechsel). Phase 4 (Off-Page) läuft seit 25.06. parallel.
+**Nächste Maßnahme:** kleinste offene Code-Nr. = **A6 Index-Coverage** (⏳, 9/13 Zielseiten indexiert). Danach die user-gebundenen Items: B3b/B3c-Hub-Review, C4-Schema-Push, C1-PageSpeed-Setup, D1–D5, Funnel-Fixes.
+**Definition of Done:** **4 von 8** erfüllt (fest: #2 SSR 🔴=0 ✅, #4 GEO 82 ✅ + LLM-Traffic; wahrscheinlich: #5 ≥5 Klick-URLs ✅, #6 B2-Hub #1). Offen: #1 Indexierung **85,1 %** (Ziel 90 %, Restweg rein inhaltlich), #3 SEO-Score 42 (C1-Blocker), #7 Listicle (Drafts, nicht versendet), #8 ProvenExpert (nicht angelegt). Weit unter 7/8 → Conductor bleibt aktiv.
+**Risiko-Status:** 🟡 gelb — Organik-Rekord (heutiger Monatsreview: GSC 3M **1.960 Klicks / 156.000 Impr. / Pos. 8,5**; SSR 84/84 ✅ 0 🔴; Protected 5/5 = 200). Gelbe Dauerpunkte: (a) **Teams-Reporting-Webhook „Marketing und SEA" seit 03.08. HTTP 401** (23 Tage) — additiv, Audit läuft vollständig durch, user-gebunden, vom Weekly-Audit mehrfach eskaliert; (b) Dead-Click 13,46 % — bekanntes organisches ArticlePopup-Muster, Fix-Draft seit 17.06.; (c) Funnel-Bruch Content→Angebot unverändert 0 % E2E, CTA-Brücke aber jetzt live+feuernd (Wirkungsmessung läuft).
+**Aktion in diesem Lauf:** **keine (kein neuer Cron).**
+
+**5 Status-Fragen:**
+1. **Aktive Phase:** Phase 3. Phase 1/2/2b historisch abgeschlossen (DoD #2 live verifiziert) — nicht wieder öffnen. Phase 4 parallel offen.
+2. **Nächste konkrete Maßnahme:** A6 (⏳, 9/13 indexiert). Danach user-gebundene Content-/Off-Page-Items.
+3. **Cron für A6 vorhanden?** Nein — bewusst keiner (Doktrin 05.08./19.08.): A6-Links sind gebaut+gepusht+live (Commit `e5902c8`), Rest = passives Google-Indexieren der 4 sauberen Nachzügler; **Weekly-Audit trackt A6-Coverage wöchentlich**. Separater Cron = Redundanz.
+4. **Vorbedingung A6 erfüllt?** Ja — Links live, IndexNow-Ping + GSC-Requests gestellt. A6-Summe nicht-indexiert (submitted) heute **19 (−1 seit 20.08.)** → A6 wirkt messbar, Indexierung +1,2 pp auf 85,1 %. Rest = Indexierungslatenz.
+5. **🔵 offen > 14 Tage ohne Cron?** Kein vergessenes, cron-loses Item mit erfüllter Vorbedingung, das der Conductor autonom vorantreiben könnte. Der Monatsreview von heute hat bereits verifiziert: **keine neuen Crons** (Pattern-Transfer-Draft heute erzeugt, Brücke bereits live → Redundanz vermeiden). Zweiter Funnel-Cron `copilotenschule-pattern-transfer-2026-08-26` heute planmäßig gelaufen + selbst-deaktiviert (`enabled:false`). Alle D-/C-/B3-Items user-gebunden (Push, Versand, Account, Freigaben) — kein Automatisierungs-Loch.
+
+**Risiko-Check (> 7 Tage ungelöst):** Ein Dauerpunkt überschreitet die 7-Tage-Schwelle: **Teams-Webhook-401 seit 03.08. (23 Tage)**. Kein technischer SEO-Blocker (Reporting additiv, Audit läuft), Fix nur in Power Automate/Teams-UI durch User — vom Weekly-Audit bereits mit Handlungsanweisung eskaliert, hier nur gespiegelt (keine Doppel-Eskalation). Dead-Click = bekanntes Mix-Issue mit Fix-Draft. A6-Stagnation aufgelöst — Summe sinkt, Quote steigt.
+
+**Grund-Muster (unverändert):** Engpass = Backlog fertiger, user-gebundener Aktionen (C4-Schema-Push, C1-API-Key, D1-ProvenExpert-Account, D2/D3/D4-Outreach-Versand, B3b/B3c-Review+Freigaben, Protected-Page-CTR-Push, Teams-Webhook-Reauth), nicht fehlende Automatisierung. Der Conductor kann diese regelkonform nicht selbst pushen/versenden. Wert dieses Laufs = Bestand bewahrt, keine Cron-Inflation, A6-Wirkung bestätigt.
+**Nächster Conductor-Lauf:** Mi 02.09.2026, 11:00.
+
+---
+
+### 2026-08-26 — Monatsreview (Cron, Zusatzlauf 4. Mi)
+
+**Bericht:** docs/seo-monatsreview-2026-08-26.md (eigenes Datum, um den 12.08.-Review nicht zu überschreiben)
+**Phase:** Phase 3 — Content-Block (aktiv seit 01.06., kein Wechsel). Phase 4 parallel.
+**Definition-of-Done-Score:** 4 von 8 erfüllt (fest: #2 SSR 🔴=0 ✅, #4 GEO 82 ✅ + LLM-Traffic untermauert; wahrscheinlich: #5 ≥5 Klick-URLs ✅, #6 B2-Hub #1). Offen: #1 Indexierung 85,1 % (Ziel 90 %), #3 SEO-Score 42 (C1-Blocker), #7 Listicle (Drafts, nicht versendet), #8 ProvenExpert (nicht angelegt).
+
+**Top-Zahlen:**
+- AlwaysData Monat: August MTD 14.521 (Tag 26, Pace ~16,7k; −35,5 % ggü. Juli = MTD-Artefakt, Monat unvollständig; Juli 22.503). YTD 81.859.
+- GSC Indexierung (Basis: eingereichte Seiten ohne 6 Gated-PDFs, Stand 21.08.): 74/87 = **85,1 %** (20.08.-Ref. 83,9 % → +1,2 pp; A6-Summe submitted 19, −1)
+  - Kontext „Alle bekannten Seiten" (KEIN KPI): 77 indexiert / 37 nicht
+- GSC Leistung: **1.960 Klicks/3M** (+18 % vs 12.08.), Impr. 156.000, CTR 1,2 %, Pos. **8,5** (Rekord). 28T: 719 Kl./58.100 Impr./Pos. 8,2.
+- Traffic-Mix 30T (Clarity-Kanal): Organic 1.623 | cpc 186 (+39 % M/M) | Referral 156 | Direct 89 | AIPlatform/LLM 60 | Email/Outbound **20 (−70 % M/M)** | Other 716
+- Clarity Sessions/30T: 2.823 (436 Bots, 2.728 Unique) | Dead-Click 13,46 % (3T API 15,64 %) | Scroll 39,16 % | aktive Zeit 1,5 Min | Rage 0,25 % | Käufe 0,43 %
+- Conv-Rate: ~2,4 % (direkte Kontakt-/Lead-/Order-Conv., 67/2.823) — kein 7e-Defekt
+- SSR: ✅ 84/84 (0 🔴) — curl-Vollprüfung aller Nicht-PDF-Sitemap-URLs; DoD #2 gewahrt
+
+**Goldene Pages:** microsoft-copilot-lizenzen, copilot-tipps-tricks-produktivitaet, claude-in-microsoft-copilot
+**Bremsen:** microsoft-copilot-lizenzen (Kosten-Cluster CTR ~0,6 %), copilot-in-excel-aktivieren (informational, kein Angebots-Anschluss)
+**Funnel „Lead-Reise" 30T:** Stufe 1 1.738 (61,57 %) → Stufe 2 5 (0,29 %) → **0 % E2E** — CTA-Brücke jetzt live auf allen 4 Goldenen Pages (Commit 002098a) + feuert erstmals (1×/7T), Wirkung noch nicht in 30T-Zahlen
+**Hauptbefund:** Organik-Rekord (1.960 Kl./3M, Pos. 8,5) und Indexierung bester Wert je (85,1 %), aber Funnel-Bruch Content→Angebot unverändert + Outbound-Segment eingebrochen (−70 %). DoD 4/8 stabil.
+**Empfehlung:** Lizenz-Snippet-Draft pushen (CTR-Entstauung, SEA-Synergie) + CTA-Brücke-Wirkung 4 Wochen tracken + Outbound-Entscheidung (Überarbeiten/Stopp).
+**Folge-Crons angelegt:** **keine.** Begründung: Der Pattern-Transfer (Angebots-CTA-Brücke → Goldene Pages) hat heute via Cron `copilotenschule-pattern-transfer-2026-08-26` seinen Draft erzeugt (`docs/drafts/pattern-transfer-goldene-pages-2026-08-26.md`) und dabei festgestellt, dass die Brücke bereits gebaut+live+feuernd ist → kein Folge-Transfer-Cron (Redundanz/Cron-Inflation vermeiden, Conductor-Doktrin). Anti-Pattern Dead-Click = bekanntes organisches ArticlePopup-Muster mit Fix-Draft seit 17.06. (user-gebunden). Funnel-Wirkung wird vom Weekly-Audit wöchentlich getrackt. Engpass unverändert = Backlog user-gebundener Aktionen, kein Automatisierungs-Loch.
+**API-Calls heute:** 1/10 (Clarity)
+**Teams-Report:** ✗ nicht gepostet — Webhook „Marketing und SEA" weiter HTTP 401 seit 03.08. (unverändert, user-gebunden; hier nur gespiegelt, keine Doppel-Eskalation).
+**Nächster Monatsreview:** Mi 09.09.2026, 10:30 (regulärer 2.-Mi-Lauf). Nächster Conductor: Mi 02.09.2026.
+
+---
+
+### 2026-08-26 — Pattern-Transfer Goldene Pages (Cron)
+
+**Auftrag:** Angebots-CTA-Brücke nach dem ersten Sinnabschnitt in die 4 Goldenen Pages einbauen (microsoft-copilot-lizenzen [Protected], claude-in-microsoft-copilot, copilot-in-outlook-nutzen-tipps, copilot-tipps-tricks-produktivitaet).
+
+**Kernbefund:** Auftrag war bei Cron-Start bereits erledigt. Repo-Check zeigt: `AngebotsBruecke.tsx` (genau die geforderte additive, kontextuelle CTA-Komponente) wurde bereits am 12.08. (Commit `002098a` „cta brücken") in **alle 4** Goldenen Pages eingebaut, jeweils direkt nach dem ersten Inhaltsabschnitt, als `<aside>` ohne Eingriff in H1/Title/Meta/Canonical. Commit ist Bestandteil von `main` = `origin/main` — **live**, kein Push-Stau. Weekly-Audit 24.08. zählt bereits 1× `angebot_bruecke_click`/7T — die Brücke feuert.
+
+**Tatsächliche Lücke gefunden:** 2 der 4 Seiten (`CopilotLicenses.tsx`, `CopilotTippsTricks.tsx`) haben nur den ersten Touchpoint (AngebotsBruecke), nicht den laut ursprünglicher Pattern-Doku vorgesehenen zweiten Touchpoint kurz vor dem FAQ-Block. Die anderen beiden Seiten (Claude-Integration, Outlook) haben bereits beide Touchpoints. Diff-Entwurf für den fehlenden zweiten `<TrainingCTA>` (additiv, Protected-Page-Regel dokumentiert) in `docs/drafts/pattern-transfer-goldene-pages-2026-08-26.md`.
+
+**Koordination:** Mit dem parallelen Draft `docs/drafts/protected-page-diff-microsoft-copilot-lizenzen-2026-08-12.md` (Title/Meta/Kosten-Sektion derselben Seite, bereits live) abgeglichen — keine Überlappung, dieser Draft betrifft nur den zweiten CTA-Touchpoint vor dem FAQ.
+
+**Kein Push, keine Live-Änderung.** Nur Draft-Datei angelegt. Review/Einbau/Push bleibt User-Aufgabe.
+
+---
+
 ### 2026-08-24 — Wöchentlicher Audit (Cron)
 
 **Phase:** Phase 3 — Content-Block (DoD 4/8, Risiko 🟡)
