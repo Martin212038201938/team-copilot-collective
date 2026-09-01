@@ -8,6 +8,27 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 
 ## Logs
 
+### 2026-09-01 — Phase-Conductor-Lauf (Cron)
+**Aktive Phase:** Phase 3 — Content-Block (aktiv seit 01.06.2026, kein Wechsel). Phase 4 (Off-Page) läuft seit 25.06. parallel.
+**Nächste Maßnahme:** kleinste offene Code-Nr. = **A6 Index-Coverage** (⏳, 9/13 Zielseiten indexiert, Summe nicht-indexiert submitted 19). Danach die user-gebundenen Items: B3b/B3c-Hub-Review, C4-Schema-Push, C1-PageSpeed-Setup, D1–D5, Funnel-CTA-Push.
+**Definition of Done:** **4 von 8** erfüllt (fest: #2 SSR 🔴=0 ✅, #4 GEO 82 ✅ + LLM-Traffic; wahrscheinlich: #5 ≥5 Klick-URLs ✅, #6 B2-Hub #1). Offen: #1 Indexierung **85,1 %** (Ziel 90 %, Restweg rein inhaltlich), #3 SEO-Score 42 (C1-Blocker), #7 Listicle (Drafts, nicht versendet), #8 ProvenExpert (nicht angelegt). Weit unter 7/8 → Conductor bleibt aktiv.
+**Risiko-Status:** 🟡 gelb — Organik-Rekord unverändert (letzter Monatsreview 26.08.: GSC 3M 1.960 Klicks / 156.000 Impr. / Pos. 8,5; Weekly-Audit 24.08.: SSR 84/84 ✅ 0 🔴, Protected 5/5 = 200). Gelbe Dauerpunkte: (a) **Teams-Reporting-Webhook „Marketing und SEA" seit 03.08. HTTP 401** (jetzt 29 Tage) — additiv, Audit läuft vollständig durch, user-gebunden, vom Weekly-Audit mehrfach eskaliert; (b) Dead-Click ~13 % — bekanntes organisches ArticlePopup-Muster, Fix-Draft seit 17.06.; (c) Funnel-Bruch Content→Angebot ~0 % E2E, CTA-Brücke aber live+feuernd (Wirkungsmessung läuft).
+**Aktion in diesem Lauf:** **keine (kein neuer Cron).**
+
+**5 Status-Fragen:**
+1. **Aktive Phase:** Phase 3. Phase 1/2/2b historisch abgeschlossen (DoD #2 live verifiziert) — nicht wieder öffnen. Phase 4 parallel offen.
+2. **Nächste konkrete Maßnahme:** A6 (⏳, 9/13 indexiert). Danach user-gebundene Content-/Off-Page-Items.
+3. **Cron für A6 vorhanden?** Nein — bewusst keiner (Doktrin 05.08./19.08./26.08.): A6-Links sind gebaut+gepusht+live (Commit `e5902c8`), Rest = passives Google-Indexieren der 4 sauberen Nachzügler; **Weekly-Audit trackt A6-Coverage wöchentlich**. Separater Cron = Redundanz.
+4. **Vorbedingung A6 erfüllt?** Ja — Links live, IndexNow-Ping + GSC-Requests gestellt. A6-Summe nicht-indexiert (submitted) zuletzt **19 (−1 seit 20.08.)**, Indexierung +1,2 pp auf 85,1 % → A6 wirkt messbar. Rest = Indexierungslatenz.
+5. **🔵 offen > 14 Tage ohne Cron?** Kein vergessenes, cron-loses Item mit erfüllter Vorbedingung, das der Conductor autonom vorantreiben könnte. Scheduler-Check bestätigt: aktive SEO-Crons = Weekly-Audit (Mo), Monthly-Review (2. Mi, nächster 09.09.) und dieser Conductor; die Funnel-/Pattern-Crons (`copilotenschule-pattern-transfer-2026-08-26`) sind planmäßig gelaufen und selbst-deaktiviert (`enabled:false`). Alle D-/C-/B3-Items user-gebunden (Push, Versand, Account, Freigaben) — kein Automatisierungs-Loch.
+
+**Risiko-Check (> 7 Tage ungelöst):** Ein Dauerpunkt überschreitet die 7-Tage-Schwelle: **Teams-Webhook-401 seit 03.08. (29 Tage)**. Kein technischer SEO-Blocker (Reporting additiv, Audit läuft), Fix nur in Power Automate/Teams-UI durch User — vom Weekly-Audit bereits mit Handlungsanweisung eskaliert, hier nur gespiegelt (keine Doppel-Eskalation). Dead-Click = bekanntes Mix-Issue mit Fix-Draft. A6-Stagnation aufgelöst — Summe sinkt, Quote steigt.
+
+**Grund-Muster (unverändert):** Engpass = Backlog fertiger, user-gebundener Aktionen (C4-Schema-Push, C1-API-Key, D1-ProvenExpert-Account, D2/D3/D4-Outreach-Versand, B3b/B3c-Review+Freigaben, Protected-Page-CTR-Push, Teams-Webhook-Reauth), nicht fehlende Automatisierung. Der Conductor kann diese regelkonform nicht selbst pushen/versenden. Wert dieses Laufs = Bestand bewahrt, keine Cron-Inflation, A6-Wirkung bestätigt.
+**Nächster Conductor-Lauf:** Mi 16.09.2026, 11:00.
+
+---
+
 ### 2026-08-26 — Phase-Conductor-Lauf (Cron)
 **Aktive Phase:** Phase 3 — Content-Block (aktiv seit 01.06.2026, kein Wechsel). Phase 4 (Off-Page) läuft seit 25.06. parallel.
 **Nächste Maßnahme:** kleinste offene Code-Nr. = **A6 Index-Coverage** (⏳, 9/13 Zielseiten indexiert). Danach die user-gebundenen Items: B3b/B3c-Hub-Review, C4-Schema-Push, C1-PageSpeed-Setup, D1–D5, Funnel-Fixes.
