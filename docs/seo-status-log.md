@@ -8,6 +8,97 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 
 ## Logs
 
+### 2026-09-02 — Phase-Conductor-Lauf (Cron)
+**Aktive Phase:** Phase 3 — Content-Block (aktiv seit 01.06.2026, kein Wechsel). Phase 4 (Off-Page) läuft seit 25.06. parallel.
+**Nächste Maßnahme:** kleinste offene Code-Nr. = **A6 Index-Coverage** (⏳). Danach die user-gebundenen Items: B3b/B3c-Hub-Review, C4-Schema-Push, C1-PageSpeed-Setup, D1–D5, Funnel-CTA-Push.
+**Definition of Done:** **4 von 8** erfüllt (fest: #2 SSR 🔴=0 ✅, #4 GEO 82 ✅ + LLM-Traffic; wahrscheinlich: #5 ≥5 Klick-URLs ✅, #6 B2-Hub #1). Offen: #1 Indexierung **89,3 %** (75/84, an der 90-%-Schwelle, Restweg ≈ 1 Seite — GSC-Bestätigung des Schwellwerts ausstehend), #3 SEO-Score 42 (C1-Blocker), #7 Listicle (Drafts, nicht versendet), #8 ProvenExpert (nicht angelegt). Weit unter 7/8 → Conductor bleibt aktiv.
+**Risiko-Status:** 🟡 gelb — Organik-Allzeithoch (heutiger Monatsreview + Weekly-Audit: GSC 3M **2.070 Klicks / 169.000 Impr. / Pos. 8,4**, beste je; SSR 67/67 ✅ 0 🔴; Protected 5/5 = 200). Gelbe Dauerpunkte: (a) **Teams-Reporting-Webhook „Marketing und SEA" seit 03.08. HTTP 401** (jetzt 30 Tage) — additiv, Audit läuft vollständig durch, user-gebunden, vom Weekly-Audit mehrfach eskaliert; (b) Dead-Click 14,33 % — bekanntes organisches ArticlePopup-Muster, Fix-Draft seit 17.06.; (c) Funnel-Bruch Content→Angebot ~0 % E2E, CTA-Brücke aber live + feuernd (2×/7T, Wirkungsmessung läuft).
+**Aktion in diesem Lauf:** **keine (kein neuer Cron).**
+
+**5 Status-Fragen:**
+1. **Aktive Phase:** Phase 3. Phase 1/2/2b historisch abgeschlossen (DoD #2 live verifiziert) — nicht wieder öffnen. Phase 4 parallel offen.
+2. **Nächste konkrete Maßnahme:** A6 (⏳). Indexierung heute **89,3 %** (+4,2 pp seit 24.08.), A6-Summe nicht-indexiert submitted **15** (−4). Danach user-gebundene Content-/Off-Page-Items.
+3. **Cron für A6 vorhanden?** Nein — bewusst keiner (Doktrin 05.08./19.08./26.08./01.09.): A6-Links sind gebaut+gepusht+live (Commit `e5902c8`), Rest = passives Google-Indexieren der Nachzügler; **Weekly-Audit trackt A6-Coverage wöchentlich**. Separater Cron = Redundanz.
+4. **Vorbedingung A6 erfüllt?** Ja — Links live, IndexNow-Ping + GSC-Requests gestellt. A6-Summe sinkt weiter (19 → **15**), Quote steigt (85,1 % → 89,3 %) → A6 wirkt messbar, Ziel 90 % praktisch erreicht. Rest = Indexierungslatenz.
+5. **🔵 offen > 14 Tage ohne Cron?** Kein vergessenes, cron-loses Item mit erfüllter Vorbedingung, das der Conductor autonom vorantreiben könnte. Scheduler-Check bestätigt: aktive SEO-Crons = Weekly-Audit (Mo), Monthly-Review (2. Mi, nächster 08.09.) und dieser Conductor; der Funnel-Cron `copilotenschule-pattern-transfer-2026-08-26` ist gelaufen und selbst-deaktiviert (`enabled:false`). Alle D-/C-/B3-Items user-gebunden (Push, Versand, Account, Freigaben) — kein Automatisierungs-Loch.
+
+**Risiko-Check (> 7 Tage ungelöst):** Ein Dauerpunkt überschreitet die 7-Tage-Schwelle: **Teams-Webhook-401 seit 03.08. (30 Tage)**. Kein technischer SEO-Blocker (Reporting additiv, Audit läuft), Fix nur in Power Automate/Teams-UI durch User — vom Weekly-Audit bereits mit Handlungsanweisung eskaliert, hier nur gespiegelt (keine Doppel-Eskalation). Dead-Click = bekanntes Mix-Issue mit Fix-Draft. A6-Stagnation aufgelöst — Summe sinkt, Quote steigt Richtung Ziel.
+
+**Beobachtung (nicht-blockierend):** Der Conductor-Cron `copilotenschule-seo-phase-conductor` (`0 11 1-7,15-21 * 3`) feuert wegen der Cron-DoM-∨-DoW-Semantik häufiger als die intendierten „1. + 3. Mittwoch" (letzter Lauf 01.09., heute 02.09.). Kein Schaden dank „keine Aktion"-Doktrin, aber Kandidat für eine Cron-Korrektur (reiner DoW-Ausdruck mit Wochen-Guard). Bestand bewahrt — keine eigenmächtige Cron-Änderung in diesem Lauf.
+
+**Grund-Muster (unverändert):** Engpass = Backlog fertiger, user-gebundener Aktionen (C4-Schema-Push, C1-API-Key, D1-ProvenExpert-Account, D2/D3/D4-Outreach-Versand, B3b/B3c-Review+Freigaben, Protected-Page-CTR-Push, Teams-Webhook-Reauth), nicht fehlende Automatisierung. Der Conductor kann diese regelkonform nicht selbst pushen/versenden. Wert dieses Laufs = Bestand bewahrt, keine Cron-Inflation, A6-Wirkung + 90-%-Schwelle bestätigt.
+**Nächster Conductor-Lauf:** Mi 16.09.2026, 11:00 (3. Mittwoch).
+
+---
+
+### 2026-09-02 — Monatsreview (Cron)
+
+**Bericht:** docs/seo-monatsreview-2026-09.md
+**Phase:** Phase 3 — Content-Block (aktiv seit 01.06., kein Wechsel). Phase 4 (Off-Page) parallel offen.
+**Definition-of-Done-Score:** 4 von 8 erfüllt (fest: #2 SSR 🔴=0 ✅, #4 GEO 82 ✅ + LLM-Traffic; wahrscheinlich: #5 ≥5 Klick-URLs ✅, #6 Wettbewerbs-Platz-1). Offen: **#1 Indexierung 89,3 % — erstmals an der 90-%-Schwelle** (Restweg ≈ 1 Seite), #3 SEO-Score 42 (C1-Blocker), #7 Listicle (Drafts, nicht versendet), #8 ProvenExpert (nicht angelegt).
+
+**Top-Zahlen:**
+- AlwaysData Monat: August final **18.142** (−19,38 % vs Juli 22.503 = Paid/Outbound-Pullback, nicht Organik). September MTD 1.019 (Tag 2). YTD Jan–Aug ≈ **86.454**.
+- GSC Indexierung (Basis: eingereichte Seiten ohne 6 Gated-PDFs, GSC-Stand 28.08.): **75/84 = 89,3 %** (+4,2 pp seit 24.08.; A6-Summe eingereicht 15, −4)
+  - Kontext „Alle bekannten Seiten" (KEIN KPI): 76 indexiert / 35 nicht (Weiterleitung 10 stabil, robots 1)
+- GSC Leistung 3M (REKORD): Klicks **2.070** (+6,7 %), Impr. 169.000 (+9,0 %), CTR 1,2 %, Pos. **8,4** (beste je)
+- Traffic-Mix 7T (Clarity-Kanal): Organic **313** | cpc **50** | email **~0** (eingeschlafen) | Direct/Rest ~176 (davon AIPlatform/LLM **17**, +143 % W/W). 30T-Split dashboard-gebunden, nicht abgegriffen.
+- Clarity Sessions/3T (API, Call 3/10): 314 (53 Bots, 359 Unique) | Dead-Click 14,33 % | Scroll 37,0 % | aktive Zeit 76 s | Edge ~46 % (B2B)
+- Conv-Rate: **~2,7 %** (≈14/525, kein 7e-Defekt)
+- SSR: ✅ 67/67 (0 🔴) — recheck.sh-Workaround (audit-live.sh nicht im Mount); DoD #2 gewahrt
+
+**Goldene Pages:** microsoft-copilot-lizenzen, claude-in-microsoft-copilot, copilot-in-outlook-nutzen-tipps
+**Bremsen:** microsoft-copilot-lizenzen (Kosten-Cluster-CTR ~0,6 %, Snippet-Fix-Draft seit 12.08. unverpusst), copilot-in-excel-aktivieren (GSC-#1-Klick-Bringer, aber schwache On-Site-Bindung, kein Angebots-Anschluss)
+**Hauptbefund:** Organik-Allzeithoch + Indexierung an der 90-%-Schwelle, aber Funnel Content→Angebot weiter ~0 % E2E und Outbound eingeschlafen (0 Conv.). DoD 4/8, #1 kippbereit.
+**Empfehlung:** Lizenz-Snippet-Draft + 2. CTA-Touchpoint pushen (CTR-Entstauung + Funnel + SEA-Synergie), Outbound-Entscheidung (Überarbeiten/Stopp), LLM-Preis-Zitierbarkeit in llms.txt.
+**Folge-Crons angelegt:** **keine.** Begründung: Die drei anschlussfähigen Deliverables existieren bereits als Drafts (Snippet-Fix `protected-page-diff-microsoft-copilot-lizenzen-2026-08-12.md`, 2. CTA-Touchpoint `pattern-transfer-goldene-pages-2026-08-26.md`, Dead-Click-Fix seit 17.06.) — Rest ist user-gebundener Push. Ein neuer Cron wäre Redundanz/Cron-Inflation (Conductor-Doktrin 05.08./19.08./26.08./01.09.). Funnel-Wirkung wird vom Weekly-Audit getrackt. Engpass unverändert = Backlog user-gebundener Aktionen, kein Automatisierungs-Loch.
+**API-Calls heute:** 1/10 (Clarity, Call 3/10 des Tages inkl. Weekly-Audit)
+**Teams-Report:** ✗ nicht gepostet — Webhook „Marketing und SEA" weiter HTTP 401 seit 03.08. (30 Tage, unverändert; hier nur gespiegelt, keine Doppel-Eskalation).
+**Nächster Monatsreview:** Mi 14.10.2026, 10:30. Nächster Conductor: Mi 16.09.2026.
+
+---
+
+### 2026-09-02 — Wöchentlicher Audit (Cron)
+
+**Phase:** Phase 3 — Content-Block (aktiv, kein Wechsel). Phase 4 (Off-Page) parallel offen.
+**SSR-Audit:** ✅ 67 / 🟡 0 / 🔴 0 (von 67) — via Workaround `seo-monitoring/recheck.sh` (audit-live.sh nicht im Mount). Regressions-Wächter: 0 🔴, keine Eskalation.
+- Neu in 🔴/✅: keine
+
+**GSC Indexierung (Basis: eingereichte Seiten ohne 6 Gated-PDFs, GSC-Stand 28.08.):** 75 / 84 (**89,3 %**)
+- Nicht indexiert: gefunden 11 | gecrawlt 4 (A6-Summe submitted **15**, Δ zur Vorwoche **−4** vs 19 am 24.08.) → A6 wirkt weiter, Quote **+4,2 pp** (85,1 % → 89,3 %), Ziel 90 % praktisch erreicht (Restweg 1 Seite).
+- Kontext „Alle bekannten Seiten" (KEIN KPI): 76 indexiert / 35 nicht — „Seite mit Weiterleitung" 10 (stabil, kein Alarm), robots-blockiert 1.
+
+**GSC Leistung 3M (REKORD):** Klicks **2.070** (+6,7 % vs 1.940), Impr. **169.000** (+9,0 %), CTR 1,2 %, Pos. **8,4** (von 8,5, beste je). Top-Klick-Bringer (Query): copilot in excel aktivieren 86 / excel copilot aktivieren 28 / copilot excel aktivieren 20 / copilot kosten 16 / copilot lizenz 11.
+
+**AlwaysData:** 24h **791**, August final **18.142** (−19,38 % vs Juli 22.503), September MTD **1.019** (Tag 2, unvollständig).
+
+**Traffic-Mix (Clarity Kanal 7T):** Organic **313** | SEA (cpc) **50** | Outbound (email) **~0** (weiter eingeschlafen) | Direct/Rest (Other 111 + Referral 30 + Direct 18 + AIPlatform/LLM **17**) ≈ 176. LLM/AIPlatform 7 → 17 (+143 % W/W).
+
+**Clarity Standard (3T, via API, 1 Call):**
+- Sessions: 314 (davon 54 Bots, 359 Unique Users)
+- Scrolltiefe: 37,01 %, Aktive Zeit: 75 s
+- Dead-Click: 14,33 % | Rage-Click: 0,32 % | Quick-Back: 1,59 % | Excessive-Scroll: 0 %
+- Top-Browser: **Edge 146 (~46 %, starkes B2B-Signal)** | Chrome 78 | MobileSafari 34 | ChromeMobile 27 | Firefox 11 (7T-Dashboard: Edge 43,62 % / Chrome 28,76 %)
+- Top-3-Pages: microsoft-copilot-lizenzen 61 | / (Home) 56 | claude-in-microsoft-copilot 37
+- Top-3-Referrer: google.com 171 | (direct) 75 | bing.com 41
+
+**Clarity Conversion-Events (7T, via Chrome Smart Events):**
+- contact_form_submit / trainer_application_submit / konfigurator_submit / mail_click / phone_click / pdf_download: **1 / 0 / 1 / 0 / 1 / 1**
+- angebot_bruecke_click (CTA-Brücke) 2 (↑ von 1) / sml_* 0
+- Kontakt-Smart-Events: danke_page_view 6, Formular absenden 3, Kontaktieren Sie uns 3, Herunterladen 3, Ausgehender Klick 3, lead 1, Zitat anfordern 1, Bestellung erfolgreich 1, booking_click 1
+- Conversion-Rate gesamt: ≈ 14 / 525 = **~2,7 %** (kein 7e-Defekt: kein Event ≥3 → 0; Formular absenden 7 → 3, nicht 0)
+
+**Insights heute:** Patterns 0 | Issues 1 (Dead-Click 14,33 % > 10 %, bekanntes organisches ArticlePopup-Muster, Fix-Draft seit 17.06. unverpusst — kein neuer Cron) | Trends 1 (AIPlatform/LLM +143 % W/W + Edge-Browser-Anteil ~30 % → ~44 %, B2B-Signal) — Details in clarity-insights.md
+**Folge-Crons angelegt:** keine (Anti-Pattern-Schwelle „≥100 Sess/3T & <0,5 %" auf keiner Einzelseite erreicht; Funnel-Bruch bereits über CTA-Brücke adressiert)
+**Goldene Pages (GSC×Clarity, organic):** microsoft-copilot-lizenzen, claude-in-microsoft-copilot, copilot-in-outlook-nutzen-tipps. **Ungenutztes SEO-Potential:** copilot-in-excel-aktivieren (GSC-Top-Klick-Bringer 86 Kl./3M, fehlt in Clarity-PopularPages).
+**Protected Pages:** alle OK (5/5 = HTTP 200: copilot-roi-berechnen, copilot-im-unternehmen-einfuehren-leitfaden, microsoft-copilot-lizenzen, ki-schulung-mitarbeiter-pflicht, copilot-training-schulung)
+**Entscheidung gemäß Plan:** Phase 3 bleibt aktiv, DoD 4/8 (— #1 Indexierung 89,3 % ~ Ziel 90 % erreicht, GSC-Bestätigung des 90-%-Schwellwerts nächster Lauf). Kein Push, kein neuer Cron. Engpass unverändert = Backlog user-gebundener Aktionen.
+**API-Calls heute:** 1/10
+**Teams-Report:** ✗ nicht gepostet — Webhook `TEAMS_WEBHOOK_MARKETING_SEA` liefert weiter **HTTP 401** (`DirectApiAuthorizationRequired`, seit 03.08. = 30 Tage). Reporting-Text erzeugt, nur Versand fehlt → Audit NICHT fehlgeschlagen. User-Handlung nötig: Workflow in Teams neu anlegen (Workflows-App → Vorlage „Beim Empfang einer Webhook-Anfrage in einem Kanal posten" für Kanal „Marketing und SEA") und neue URL in `website-health-check/.env` eintragen.
+**Nächster Lauf:** Mo 07.09.2026, 10:00
+
+---
+
 ### 2026-09-01 — Phase-Conductor-Lauf (Cron)
 **Aktive Phase:** Phase 3 — Content-Block (aktiv seit 01.06.2026, kein Wechsel). Phase 4 (Off-Page) läuft seit 25.06. parallel.
 **Nächste Maßnahme:** kleinste offene Code-Nr. = **A6 Index-Coverage** (⏳, 9/13 Zielseiten indexiert, Summe nicht-indexiert submitted 19). Danach die user-gebundenen Items: B3b/B3c-Hub-Review, C4-Schema-Push, C1-PageSpeed-Setup, D1–D5, Funnel-CTA-Push.

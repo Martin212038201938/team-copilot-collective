@@ -238,6 +238,22 @@ nach ca. 2 Wochen Laufzeit empfohlen.
 
 ---
 
+### 2026-09-02 — Trend (Verstärken): LLM/AIPlatform-Traffic + Edge-Browser-Anteil steigen (B2B-Signal)
+**Beobachtungs-Zeitraum:** 2026-08-24 bis 2026-09-02 (7T-Kanal + 3T-Browser)
+**Event:** Kanal AIPlatform (LLM) + Browser-Mix
+**Trend:** AIPlatform/LLM-Sessions 7 (24.08.) → **17** (+143 % W/W). Edge-Browser-Anteil ~30 % (24.08.) → **~44 %** (7T-Dashboard 43,62 %; 3T-API 146/314). Beides zeigt in dieselbe Richtung: mehr Entscheider-/Firmen-Traffic (Edge = Unternehmens-Standardbrowser) und wachsende GEO-Sichtbarkeit (LLM-Referrals).
+**Ursache (vermutet):** GEO zahlt weiter (DoD #4), Firmen-Zielgruppe wird stärker erreicht. Kein Kampagnen-Artefakt (Organic dominiert, SEA cpc nur 50, Outbound ~0).
+**Handlung:** Verstärken — GEO-freundliche, zitierbare Antwortblöcke auf den Goldenen Pages beibehalten/ausbauen; Edge-/B2B-Signal als Argument für Entscheider-Content dokumentieren.
+**Status:** identifiziert
+
+### 2026-09-02 — Issue-Update: Dead-Click 14,33 % (API 3T) — bekanntes organisches ArticlePopup-Muster
+**Quelle:** Cron-Lauf 2026-09-02 (weekly)
+**Betroffene Page:** global (ArticlePopup-Komponente), Top-Page microsoft-copilot-lizenzen
+**Symptom:** Dead-Click-Rate 14,33 % (API 3T) / 13,14 % (7T-Dashboard, 69 Sessions) — über 10 %-Schwelle, im bekannten Zickzack-Band (10.08. 15,6 % → 24.08. 12,57 % → heute 14,33 %). Rage 0,32 %, keine Häufung.
+**Hypothese:** Treiber unverändert organisch (globales ArticlePopup, nicht Kampagne) — 5c-Gegenprüfung historisch cpc ≈ 0 %.
+**Empfohlene Maßnahme:** Fix-Draft ArticlePopup existiert seit 17.06., wartet auf User-Push. Kein neuer Cron (Draft fertig, user-gebunden).
+**Status:** beobachten
+
 ### 2026-08-26 — Trend (Verstärken): SEA-Skalierung × Kosten/Lizenz-Schläfer-Synergie
 **Quelle:** Cron-Lauf 2026-08-26 (monthly)
 **Beobachtung:** cpc-Kanal 134→186 Sessions/30T (+39 % M/M), Zielseiten sauber (0 auf /wissen/). Die SEA-Kern-Keywords (kosten, lizenz, training) erscheinen parallel in GSC als organische Schläfer mit hohen Impressionen (kosten 1.819, training 1.532, lizenz 1.439) und schwacher CTR.
