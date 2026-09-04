@@ -8,6 +8,29 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 
 ## Logs
 
+### 2026-09-04 — Phase-Conductor-Lauf (Cron)
+**Aktive Phase:** Phase 3 — Content-Block (aktiv seit 01.06.2026, kein Wechsel). Phase 4 (Off-Page) läuft seit 25.06. parallel.
+**Nächste Maßnahme:** kleinste offene Code-Nr. = **A6 Index-Coverage** (⏳). Danach die user-gebundenen Items: B3b/B3c-Hub-Review, C4-Schema-Push, C1-PageSpeed-Setup, D1–D5, Funnel-CTA-Push.
+**Definition of Done:** **4 von 8** erfüllt (fest: #2 SSR 🔴=0 ✅, #4 GEO 82 ✅ + LLM-Traffic; wahrscheinlich: #5 ≥5 Klick-URLs ✅, #6 B2-Hub #1). Offen: #1 Indexierung **89,3 %** (75/84, an der 90-%-Schwelle, Restweg ≈ 1 Seite), #3 SEO-Score 42 (C1-Blocker), #7 Listicle (Drafts, nicht versendet), #8 ProvenExpert (nicht angelegt). Weit unter 7/8 → Conductor bleibt aktiv.
+**Risiko-Status:** 🟡 gelb — unverändert seit Weekly-Audit + Monatsreview 02.09. (GSC 3M **2.070 Klicks / 169.000 Impr. / Pos. 8,4**, Allzeithoch; SSR 67/67 ✅ 0 🔴; Protected 5/5 = 200). Gelbe Dauerpunkte: (a) **Teams-Reporting-Webhook „Marketing und SEA" seit 03.08. HTTP 401** (jetzt 32 Tage) — additiv, user-gebunden, vom Weekly-Audit mehrfach eskaliert; (b) Dead-Click 14,33 % — bekanntes organisches ArticlePopup-Muster, Fix-Draft seit 17.06.; (c) Funnel-Bruch Content→Angebot ~0 % E2E, CTA-Brücke aber live + feuernd (2×/7T).
+**Aktion in diesem Lauf:** **keine (kein neuer Cron).**
+
+**5 Status-Fragen:**
+1. **Aktive Phase:** Phase 3. Phase 1/2/2b historisch abgeschlossen (DoD #2 live verifiziert) — nicht wieder öffnen. Phase 4 parallel offen.
+2. **Nächste konkrete Maßnahme:** A6 (⏳). Indexierung **89,3 %** (Stand Weekly-Audit 02.09.), A6-Summe nicht-indexiert submitted 15. Danach user-gebundene Content-/Off-Page-Items.
+3. **Cron für A6 vorhanden?** Nein — bewusst keiner (Doktrin 05.08.–03.09.): A6-Links gebaut+gepusht+live (Commit `e5902c8`), Rest = passives Google-Indexieren der Nachzügler; **Weekly-Audit trackt A6-Coverage wöchentlich**. Separater Cron = Redundanz.
+4. **Vorbedingung A6 erfüllt?** Ja — Links live, IndexNow-Ping + GSC-Requests gestellt, Summe sinkt (19 → 15), Quote steigt (85,1 % → 89,3 %). Rest = Indexierungslatenz.
+5. **🔵 offen > 14 Tage ohne Cron?** Kein vergessenes, cron-loses Item mit erfüllter Vorbedingung, das der Conductor autonom vorantreiben könnte. Scheduler-Check (list_scheduled_tasks) bestätigt: aktive SEO-Crons = Weekly-Audit (`0 10 * * 1`, nächster 07.09.), Monthly-Review (`30 10 8-14 * 3`, nächster **08.09.**) und dieser Conductor. Der Funnel-Cron `copilotenschule-pattern-transfer-2026-08-26` ist gelaufen und selbst-deaktiviert (`enabled:false`). Alle D-/C-/B3-Items user-gebunden.
+
+**Risiko-Check (> 7 Tage ungelöst):** Ein Dauerpunkt überschreitet die 7-Tage-Schwelle: **Teams-Webhook-401 seit 03.08. (32 Tage)**. Kein technischer SEO-Blocker (Reporting additiv, Audit läuft), Fix nur in Power Automate/Teams-UI durch User — vom Weekly-Audit bereits mit Handlungsanweisung eskaliert, hier nur gespiegelt (keine Doppel-Eskalation). Dead-Click = bekanntes Mix-Issue mit Fix-Draft.
+
+**Beobachtung (nicht-blockierend, unverändert):** Der Conductor-Cron `copilotenschule-seo-phase-conductor` (`0 11 1-7,15-21 * 3`) feuert wegen der Cron-DoM-∨-DoW-Semantik täglich innerhalb der Tagesfenster statt an „1. + 3. Mittwoch" — heutiger Lauf ist Fr 04.09. (Tag 4 ∈ 1–7). Kein Schaden dank „keine Aktion"-Doktrin, aber wachsender Log-Rauschanteil. Saubere Korrektur = reiner DoW-Ausdruck `0 11 * * 3` + Wochen-Guard im Prompt (nur 1./3. Mi ausführen, sonst früh beenden); erfordert Prompt-Edit + Cron-Änderung an der eigenen Task. In diesem unbeaufsichtigten Lauf bewusst **nicht** eigenmächtig geändert (Regel „Bestand erhalten, nicht voreilig handeln") — Kandidat für einen betreuten User-Lauf.
+
+**Grund-Muster (unverändert):** Engpass = Backlog fertiger, user-gebundener Aktionen (C4-Schema-Push, C1-API-Key, D1-ProvenExpert-Account, D2/D3/D4-Outreach-Versand, B3b/B3c-Review+Freigaben, Protected-Page-CTR-Push, Teams-Webhook-Reauth), nicht fehlende Automatisierung. Wert dieses Laufs = Bestand bewahrt, keine Cron-Inflation.
+**Nächster intendierter Conductor-Lauf:** Mi 17.09.2026, 11:00 (3. Mittwoch; faktisch feuert der Cron jedoch weiter täglich im Fenster 15.–21.09.).
+
+---
+
 ### 2026-09-03 — Phase-Conductor-Lauf (Cron)
 **Aktive Phase:** Phase 3 — Content-Block (aktiv seit 01.06.2026, kein Wechsel). Phase 4 (Off-Page) läuft seit 25.06. parallel.
 **Nächste Maßnahme:** kleinste offene Code-Nr. = **A6 Index-Coverage** (⏳). Danach die user-gebundenen Items: B3b/B3c-Hub-Review, C4-Schema-Push, C1-PageSpeed-Setup, D1–D5, Funnel-CTA-Push.
