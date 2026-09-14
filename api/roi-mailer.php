@@ -51,7 +51,14 @@ function roiSendMultipart(string $to, string $subject, string $htmlBody, string 
     $body .= $htmlBody . "\r\n\r\n";
     $body .= "--{$boundary}--";
 
-    return mail($to, mailHeaderSafe($subject), $body, implode("\r\n", $headers));
+    // Envelope-Absender (Return-Path) aus dem From-Header ableiten, damit SPF zur
+    // From-Domain passt ("alignment") und DMARC nicht an der SPF-Prüfung scheitert.
+    $envelopeParam = '';
+    if (preg_match('/<([^>]+)>/', $fromHeader, $m) || preg_match('/([^\s<>]+@[^\s<>]+)/', $fromHeader, $m)) {
+        $envelopeParam = '-f' . mailHeaderSafe($m[1]);
+    }
+
+    return mail($to, mailHeaderSafe($subject), $body, implode("\r\n", $headers), $envelopeParam);
 }
 
 /** Wird NUR verschickt, nachdem die Datei tatsächlich validiert und gespeichert wurde. */

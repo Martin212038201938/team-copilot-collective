@@ -230,7 +230,8 @@ $customerBody .= "Content-Transfer-Encoding: 7bit\r\n\r\n";
 $customerBody .= $customerHtmlBody . "\r\n\r\n";
 $customerBody .= "--{$boundary2}--";
 
-$confirmationSent = mail($email, $customerSubject, $customerBody, implode("\r\n", $customerHeaders));
+// Envelope-Absender auf die From-Domain setzen, damit SPF/DMARC "aligned" sind.
+$confirmationSent = mail($email, $customerSubject, $customerBody, implode("\r\n", $customerHeaders), '-finfo@copilotenschule.de');
 
 // Response
 if ($notificationSent && $confirmationSent) {

@@ -212,7 +212,10 @@ $customerBody .= "Content-Transfer-Encoding: 7bit\r\n\r\n";
 $customerBody .= $customerHtmlBody . "\r\n\r\n";
 $customerBody .= "--{$boundary2}--";
 
-$confirmationSent = mail($email, $customerSubject, $customerBody, implode("\r\n", $customerHeaders));
+// 5. Parameter setzt den Envelope-Absender (Return-Path) auf dieselbe Domain wie
+// der From-Header. Ohne das läuft SPF gegen y-b@alwaysdata.net und ist damit
+// nicht zu copilotenschule.de "aligned" — DMARC würde auf SPF-Seite scheitern.
+$confirmationSent = mail($email, $customerSubject, $customerBody, implode("\r\n", $customerHeaders), '-finfo@copilotenschule.de');
 
 // ============================================
 // Antwort — Frontend zeigt den Download bei success sofort
