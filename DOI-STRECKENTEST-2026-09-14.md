@@ -1,5 +1,8 @@
 # Double-Opt-In-Streckentest — 14.09.2026
 
+> **Nachtrag 14.09.2026:** Deploy #574 erfolgreich (9m 9s), Code ist live.
+> Domain-weiter Auth-Status aller Domains siehe Abschnitt „Mail-Authentifizierung über alle Domains" am Ende.
+
 **Testfall:** Guide „Copilot einführen: Leitfaden für Betriebsräte" (`guide-copilot-einfuehren-betriebsrat-leitfaden`), Adresse `martin@yellow-boat.com`, echtes Live-Formular auf copilotenschule.de.
 
 ## Ergebnis in einem Satz
@@ -191,3 +194,97 @@ opt_in_status = IF(
 - `source` wird weiterhin nicht aktualisiert — der Kern des Reporting-Problems.
 - `created_at` wird bei jedem Wiedereintrag überschrieben, das Ersterfassungsdatum geht verloren.
 - `consent_text` wird überschrieben, der ursprüngliche Einwilligungstext ist damit als DSGVO-Nachweis weg.
+
+---
+
+# Mail-Authentifizierung über alle Domains — Stand 14.09.2026
+
+Geprüft per `dig` gegen 8.8.8.8. DKIM-Selektoren getestet: `alwaysdata`, `selector1`, `selector2`, `default`, `google`.
+
+| Domain | Mailserver | SPF | DKIM | DMARC | Status |
+|---|---|---|---|---|---|
+| copilotenschule.de | AlwaysData | ✅ | ✅ | ✅ `p=none`, mit rua | **fertig** |
+| no-vibes.dev | AlwaysData | ✅ | ✅ | ✅ `p=none`, mit rua | **fertig** |
+| yellow-plane.com | AlwaysData | ✅ | ✅ | ⚠️ `p=none`, **ohne rua** | fast fertig |
+| **yellow-boat.com** | **Microsoft 365** | ✅ `-all` | ❌ **fehlt** | ❌ **fehlt** | **wichtigste Lücke** |
+| **yellow-boat.org** | AlwaysData | ❌ **falscher Include** | ❌ fehlt | ❌ fehlt | **aktiv kaputt** |
+| ki-entwickler-kurse.de | IONOS + AlwaysData | ✅ | ❌ fehlt | ⚠️ IONOS-Managed, ohne rua | offen |
+| chatgpt-trainings.de | IONOS | ✅ | ❌ fehlt | ⚠️ IONOS-Managed, ohne rua | offen |
+| no-vibes.de | IONOS | ✅ | ❌ fehlt | ⚠️ IONOS-Managed, ohne rua | offen |
+
+---
+
+## 🔴 Priorität 1: yellow-boat.org — SPF zeigt auf den falschen Include
+
+**Ist-Zustand:**
+```
+v=spf1 include:alwaysdata.com -all
+```
+
+`alwaysdata.com` ist die **Firmendomain** von AlwaysData, nicht die Freigabe für Kundenversand. Ihr SPF listet Gandi-Ranges plus `ip4:188.72.70.45` und `ip4:188.72.70.96`. Der reale Versand-Relay für Kundenmails ist aber ein anderer — im mail-tester-Lauf war es **188.72.70.5**, und `a:ad.alwaysdata.net` löst auf 185.31.40.185 auf. Die tatsächliche Versand-IP ist also **nicht abgedeckt**.
+
+Kombiniert mit `-all` (Hard Fail) heißt das: Mail von `@yellow-boat.org` über AlwaysData wird von strengen Empfängern **abgelehnt**, nicht nur markiert.
+
+**Fix:** Include korrigieren.
+```
+v=spf1 include:_spf.alwaysdata.com ~all
+```
+Der Unterstrich vor `spf` ist der ganze Unterschied. Zusätzlich `-all` auf `~all` ziehen, bis DMARC-Reports zeigen, dass alles sauber läuft.
+
+---
+
+## 🔴 Priorität 2: yellow-boat.com — deine Hauptadresse hat kein DKIM
+
+Das ist die Domain, unter der deine gesamte Kundenkommunikation rausgeht. SPF ist sauber (`-all`, Outlook-Include), aber **DKIM und DMARC fehlen komplett**.
+
+SPF allein bricht, sobald eine Mail weitergeleitet wird — der weiterleitende Server ist dann nicht im SPF, und ohne DKIM gibt es kein zweites Standbein. Genau das passiert bei Verteilern, Weiterleitungen und Mailinglisten.
+
+**Vorgehen (zwei Systeme, Reihenfolge zwingend):**
+
+1. **Microsoft 365 Defender-Portal** → `security.microsoft.com` → E-Mail-Authentifizierungseinstellungen → DKIM → yellow-boat.com auswählen. Microsoft zeigt dort **zwei CNAME-Ziele** an (`selector1._domainkey` und `selector2._domainkey`, Ziele enden auf `.onmicrosoft.com`). Die Werte sind tenant-spezifisch — abschreiben, nicht raten.
+2. **DNS bei All-Inkl** (yellow-boat.com liegt auf `ns5/ns6.kasserver.com`, nicht bei IONOS) → beide CNAMEs eintragen.
+3. Zurück ins Defender-Portal → DKIM **aktivieren**. Das geht erst, wenn die CNAMEs aufgelöst werden.
+4. Danach DMARC als TXT auf `_dmarc.yellow-boat.com`:
+   ```
+   v=DMARC1; p=none; rua=mailto:dmarc@copilotenschule.de; fo=1
+   ```
+   Da die rua-Adresse auf einer **anderen** Domain liegt, verlangt der Standard eine Freigabe auf der Empfängerseite. Zusätzlich bei IONOS eintragen:
+   ```
+   Name:  yellow-boat.com._report._dmarc.copilotenschule.de
+   Typ:   TXT
+   Wert:  v=DMARC1
+   ```
+   Ohne diesen Record verwerfen Google und Microsoft die Reports stillschweigend. Alternative ohne Zusatzrecord: `rua=mailto:martin@yellow-boat.com` verwenden.
+
+---
+
+## 🟡 Priorität 3: Die drei IONOS-Domains
+
+`ki-entwickler-kurse.de`, `chatgpt-trainings.de`, `no-vibes.de` haben alle einen DMARC-Record, der per CNAME auf `dmarc.ionos.de` zeigt und dort zu `v=DMARC1; p=none;` auflöst — **ohne rua**. Das ist DMARC als Dekoration: Es misst nichts, meldet nichts, schützt nichts. Der Record existiert nur, damit einer existiert.
+
+DKIM fehlt bei allen dreien.
+
+Relevanz nach Domain:
+- **ki-entwickler-kurse.de** versendet aktiv (steht mit AlwaysData-Include im SPF, Kontaktformular-Mails liegen im Ausgangs-Log) → **sollte DKIM bekommen**.
+- **chatgpt-trainings.de** hat aktive Postfächer (info/martin/noreply, alle Weiterleitungen) → mittlere Priorität.
+- **no-vibes.de** hat keine Postfächer → niedrig, aber ein DMARC-Record mit `p=reject` wäre hier sinnvoll, gerade weil nicht gesendet wird: Das verhindert Spoofing unter dem Namen.
+
+Für Domains, die über AlwaysData senden, ist der Weg derselbe wie bei copilotenschule.de: In AlwaysData unter Domains → Details → Konfiguration den DKIM-Schlüssel erzeugen bzw. auslesen, dann als TXT auf `alwaysdata._domainkey.<domain>` bei IONOS eintragen.
+
+---
+
+## 🟢 Priorität 4: yellow-plane.com
+
+SPF, DKIM und DMARC sind da, dem DMARC fehlt nur die `rua`. Ein-Zeilen-Fix, damit auch hier Reports ankommen.
+
+---
+
+## Grundregel für alle Domains
+
+Drei Dinge gehören zusammen, und die Reihenfolge ist nicht beliebig:
+
+1. **SPF** deckt ab, welche Server senden dürfen. Startwert immer `~all`, nie sofort `-all`.
+2. **DKIM** signiert die Mail. Ohne DKIM überlebt keine Authentifizierung eine Weiterleitung.
+3. **DMARC** verknüpft beides mit einer Regel — und liefert über `rua` überhaupt erst die Daten, um zu sehen, ob es funktioniert. **Ein DMARC-Record ohne rua ist wertlos.**
+
+Nie mit `p=reject` oder `-all` anfangen. Erst vier Wochen mit `p=none` messen, dann `quarantine`, dann ggf. `reject`.
