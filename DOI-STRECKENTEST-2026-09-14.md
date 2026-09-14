@@ -156,7 +156,38 @@ Wöchentlicher Scheduled Task `mail-auth-check-copilotenschule` (montags 08:00) 
 1. ~~SPF + DKIM setzen (Befund 2)~~ — **erledigt, siehe oben.**
 2. **Code-Änderungen deployen** (Envelope-Absender) — commit + push via GitHub Desktop.
 3. **`source` im ON-DUPLICATE-Update fixen** (Befund 1) — sonst bleibt das Reporting dauerhaft falsch.
-4. **`opt_in_status` beim Update nicht auf `pending` zurücksetzen**, wenn schon `confirmed`.
+4. ~~`opt_in_status` beim Update nicht auf `pending` zurücksetzen~~ — **erledigt, siehe unten.**
 5. **Mail-Button aufs PDF zeigen lassen** (Befund 3).
 6. Zwei Testzeilen in `newsletter_subscriptions` aufräumen.
 7. In vier Wochen: DMARC-Reports auswerten und über `p=quarantine` entscheiden (macht der wöchentliche Task).
+
+---
+
+## ✅ ERLEDIGT am 14.09.2026: Opt-In-Reset abgestellt
+
+In `db-config.php` → `saveNewsletterSubscription()` wurde `opt_in_status` bisher bei jedem Wiedereintrag bedingungslos auf `'pending'` gesetzt. Jetzt:
+
+```sql
+opt_in_status = IF(
+    newsletter_subscriptions.opt_in_status IN ('confirmed', 'unsubscribed'),
+    newsletter_subscriptions.opt_in_status,
+    'pending'
+),
+```
+
+**Verhalten pro Ausgangszustand**
+
+| vorher | nachher | warum |
+|---|---|---|
+| `confirmed` | `confirmed` | Ein erteiltes Opt-In wird durch einen weiteren Download nicht entwertet. |
+| `unsubscribed` | `unsubscribed` | Ein Widerruf soll nicht durch ein Formular still aufgehoben werden. `confirmSubscription()` behandelt den Zustand ohnehin als final — ohne diesen Zweig hätte ein Formular-Eintrag die Sperre umgehen können. |
+| `pending` | `pending` | unverändert; der neue Token macht die Bestätigung möglich. |
+
+**Warum die qualifizierte Schreibweise.** Laut MySQL-Handbuch ist `ON DUPLICATE KEY UPDATE` ein UPDATE der alten Zeile — `c=c+1` verhält sich wie `UPDATE ... SET c=c+1`. Der mit dem Tabellennamen qualifizierte Spaltenname rechts vom `=` liefert damit den bisherigen Wert; für den einzufügenden bräuchte es `VALUES(col)`. Die Qualifizierung ist bewusst gewählt, damit die Logik nicht von der Auswertungsreihenfolge der Zuweisungen abhängt.
+
+**Grenze der Prüfung:** Im Sandbox war kein MySQL installierbar, die Anweisung wurde also **nicht live ausgeführt**, sondern gegen die MySQL-8.0-Dokumentation verifiziert. Nach dem Deployment einmal gegenprüfen: bestätigte Adresse nehmen, zweiten Guide anfordern, `opt_in_status` in phpMyAdmin kontrollieren — muss `confirmed` bleiben.
+
+**Noch offen in derselben Funktion** (bewusst nicht angefasst, gehört zu Befund 1):
+- `source` wird weiterhin nicht aktualisiert — der Kern des Reporting-Problems.
+- `created_at` wird bei jedem Wiedereintrag überschrieben, das Ersterfassungsdatum geht verloren.
+- `consent_text` wird überschrieben, der ursprüngliche Einwilligungstext ist damit als DSGVO-Nachweis weg.

@@ -79,11 +79,13 @@ function saveNewsletterSubscription($email, $name, $source, $token, $ipAddress =
     }
 
     try {
-        // Hinweis zur Semantik: In ON DUPLICATE KEY UPDATE liefert der blanke
-        // Spaltenname rechts vom "=" den ALTEN Wert der Zeile, solange die Spalte
-        // in derselben Anweisung noch nicht zugewiesen wurde. Zuweisungen werden
-        // von links nach rechts ausgewertet — opt_in_status steht hier vor seiner
-        // eigenen Zuweisung, liest also zuverlässig den bisherigen Stand.
+        // Hinweis zur Semantik: Laut MySQL-Handbuch ist ON DUPLICATE KEY UPDATE
+        // ein UPDATE der ALTEN Zeile ("c=c+1" verhält sich wie "UPDATE ... SET
+        // c=c+1"). Ein mit dem Tabellennamen qualifizierter Spaltenname rechts
+        // vom "=" liefert also den bisherigen Wert — nicht den einzufügenden.
+        // Für den neuen Wert wäre VALUES(col) nötig, das hier bewusst NICHT steht.
+        // Die Qualifizierung ist Absicht: so hängt die Logik nicht an der
+        // Auswertungsreihenfolge der Zuweisungen.
         $stmt = $db->prepare("
             INSERT INTO newsletter_subscriptions
             (email, name, source, confirmation_token, ip_address, user_agent, consent_text, form_submitted_at, opt_in_status)
