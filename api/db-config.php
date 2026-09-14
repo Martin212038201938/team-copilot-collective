@@ -58,6 +58,19 @@ function mailHeaderSafe($value) {
 
 /**
  * Save newsletter subscription to database
+ *
+ * WICHTIG — opt_in_status bei bestehenden Adressen:
+ * email ist UNIQUE, ein zweiter Eintrag derselben Adresse läuft also in das
+ * ON DUPLICATE KEY UPDATE. Früher wurde der Status dabei bedingungslos auf
+ * 'pending' zurückgesetzt. Folge: Wer bereits bestätigt hatte und später einen
+ * weiteren Leitfaden anforderte, verlor sein Opt-In — und tauchte in der
+ * Auswertung als unbestätigt auf, obwohl er längst eingewilligt hatte.
+ *
+ * Jetzt bleiben zwei Endzustände erhalten:
+ *   - 'confirmed'    → einmal erteiltes Opt-In wird nicht wieder entwertet
+ *   - 'unsubscribed' → ein Widerruf wird nicht stillschweigend überschrieben;
+ *                      confirmSubscription() behandelt ihn ohnehin als final
+ * Nur 'pending' bleibt 'pending' (der neue Token macht die Bestätigung möglich).
  */
 function saveNewsletterSubscription($email, $name, $source, $token, $ipAddress = null, $userAgent = null, $consentText = null) {
     $db = getDbConnection();
@@ -66,6 +79,11 @@ function saveNewsletterSubscription($email, $name, $source, $token, $ipAddress =
     }
 
     try {
+        // Hinweis zur Semantik: In ON DUPLICATE KEY UPDATE liefert der blanke
+        // Spaltenname rechts vom "=" den ALTEN Wert der Zeile, solange die Spalte
+        // in derselben Anweisung noch nicht zugewiesen wurde. Zuweisungen werden
+        // von links nach rechts ausgewertet — opt_in_status steht hier vor seiner
+        // eigenen Zuweisung, liest also zuverlässig den bisherigen Stand.
         $stmt = $db->prepare("
             INSERT INTO newsletter_subscriptions
             (email, name, source, confirmation_token, ip_address, user_agent, consent_text, form_submitted_at, opt_in_status)
@@ -75,7 +93,11 @@ function saveNewsletterSubscription($email, $name, $source, $token, $ipAddress =
                 confirmation_token = VALUES(confirmation_token),
                 consent_text = VALUES(consent_text),
                 form_submitted_at = CURRENT_TIMESTAMP,
-                opt_in_status = 'pending',
+                opt_in_status = IF(
+                    newsletter_subscriptions.opt_in_status IN ('confirmed', 'unsubscribed'),
+                    newsletter_subscriptions.opt_in_status,
+                    'pending'
+                ),
                 created_at = CURRENT_TIMESTAMP
         ");
 
