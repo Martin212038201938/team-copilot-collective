@@ -8,6 +8,31 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 
 ## Logs
 
+### 2026-09-16 — Phase-Conductor-Lauf (Cron)
+
+**Schritt-0-Guard:** Heute = Tag 16, Mittwoch (Wochentag 3) → **3. Mittwoch** (Fenster 15.–21.). Guard bestanden, Conductor regulär gelaufen. (Conductor-Cron `0 11 * * 3` feuert jeden Mittwoch; die 1.-+-3.-Mittwoch-Beschränkung liegt jetzt sauber im Prompt-Guard, nicht mehr im Cron-Ausdruck.)
+
+**Aktive Phase:** Phase 3 — Content-Block (aktiv seit 01.06., kein Wechsel; Phase 4 Off-Page parallel offen)
+**Nächste Maßnahme:** A6 Index-Coverage — bewusst cron-los (Links live seit `e5902c8`, Weekly-Audit trackt Coverage wöchentlich). Indexierung zuletzt **88,1 %** (74/84, Stand 04.09., Weekly-Audit 14.09.), weiter an der 90-%-Schwelle; Restweg rein inhaltlich (~1 Seite). Danach in der Tabelle folgend: B3b/B3c (⏳ Entwurf, user-gebunden), C1/C4 (⏳, user-gebunden), D1–D5 (🔵 offen, user-gebunden).
+**Definition of Done:** **4 von 8** erfüllt (unverändert) — fest: #2 SSR 🔴=0, #4 GEO 82 + LLM-Traffic; wahrscheinlich: #5 ≥5 Klick-URLs, #6 Wettbewerbs-Platz-1. Offen: #1 Indexierung ~88,1 % (an Schwelle), #3 SEO-Score 42 (C1-Blocker), #7 Listicle (Drafts, nicht versendet), #8 ProvenExpert (nicht angelegt).
+**Risiko-Status:** **gelb** (unverändert)
+**Aktion in diesem Lauf:** **keine** (kein neuer Cron)
+
+**5 Status-Fragen:**
+1. **Aktive Phase:** Phase 3 (Content-Block), Phase 4 parallel offen — passt zum Plan.
+2. **Nächste konkrete Maßnahme:** A6 (kleinste offene Code-Nummer), wirkt weiter messbar über die interne Verlinkung.
+3. **Aktiver Cron für A6?** Nein — bewusst cron-los. Weekly-Audit trackt A6-Coverage wöchentlich; Links sind gebaut+gepusht+live. Ein Ersatz-Cron wäre Redundanz (Doktrin seit 05.08./26.08./02.09.).
+4. **Vorbedingung A6 erfüllt?** Ja — Links live seit `e5902c8`; Restarbeit = passives Google-Indexieren der letzten ~1 technisch sauberen Seite (kein Cron erzwingt das) + user-gebundener Backlog.
+5. **>14 Tage „🔵 offen" ohne Cron:** D1–D5 (ProvenExpert, DACH-Verzeichnisse, Listicle-Outreach, IHK, Yellow-Boat-Gastartikel). Alle **user-gebunden/off-repo** (Account-Anlage mit Captcha, Outreach-Versand, externe Verzeichnis-Einreichung). Kein Automatisierungs-Loch → kein Sicherheitsnetz-Cron; ein Draft-Cron würde nur den bestehenden, unbearbeiteten Backlog aufblähen (D2/D3/D4-Drafts existieren bereits).
+
+**Risiko-Check (Schritt 4):** Keine neuen roten Flags. Fortbestehend & >7 Tage, aber allesamt user-gebunden und bereits vom Weekly-Audit eskaliert (hier nur gespiegelt, keine Doppel-Eskalation): Teams-Webhook „Marketing und SEA" HTTP 401 seit 03.08. (= **44 Tage**), Dead-Click am oberen Rand des bekannten organischen ArticlePopup-Zickzacks (14.09.: 18,1 % API-3T / 13,87 % Dashboard-7T — kleines Fenster, kein neuer Issue), Lizenz-Snippet-Fix-Draft (seit 12.08.) + ArticlePopup-Fix-Draft (seit 17.06.) unverpusst. Kein ⚠️ im Conductor-Verantwortungsbereich (nur Doku/Drafts, kein Push).
+
+**Engpass (unverändert):** Kein Cron-/Automatisierungs-Loch, sondern ein **Backlog user-gebundener Aktionen** — C4/C1-Push+Setup, D1–D4-Outreach/Account, B3b/B3c-Freigaben (AZAV-Klärung, Kunden-Case-/Preis-Freigabe), Protected-Page-CTR-/Snippet-Push, Teams-Webhook-Reauth. Der Conductor kann diese regelkonform nicht selbst ausführen. Alle bereits in Weekly-Audit/Monatsreview gespiegelt → keine separate Notification (Schritt-6-Regel: Antwort auf „Brauche ich etwas vom User?" = nein → keine Notification).
+
+**Nächster Conductor-Lauf (regulär):** Mi 07.10.2026 (1. Mittwoch). Der 23.09. (4. Mittwoch) und 30.09. (5. Mittwoch) werden vom Schritt-0-Guard abgebrochen.
+
+---
+
 ### 2026-09-14 — Wöchentlicher Audit (Cron)
 
 **Phase:** Phase 3 — Content-Block (aktiv seit 01.06., kein Wechsel). Phase 4 (Off-Page) parallel offen.
