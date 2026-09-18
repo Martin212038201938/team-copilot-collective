@@ -8,13 +8,14 @@ import SEOHead from "@/components/SEOHead";
  * Pflichtangaben gem. § 5 TMG / § 2 DDG sind im Impressum (Impressum.tsx).
  * Diese Seite behandelt ausschließlich Datenschutz.
  *
- * Letzter Stand: 03.08.2026
+ * Letzter Stand: 18.09.2026
  * Wichtig: Diese Erklärung wurde nach bestem Wissen erstellt, ersetzt aber
  * keine anwaltliche Prüfung. Bei rechtlich kritischen Anwendungsfällen bitte
  * von Datenschutzanwalt/-anwältin gegenchecken lassen.
  *
  * 03.08.2026: Abschnitt 6b (Google Analytics 4) ergänzt — GA4 wurde über
  * den bestehenden Google-Tag (GT-WRFMDNVV, Consent Mode v2) aktiviert.
+ * 18.09.2026: Abschnitt 6c (Microsoft Advertising UET) ergänzt.
  */
 
 const SLUG = "datenschutz";
@@ -318,6 +319,47 @@ const Datenschutz = () => {
 
             {/* ====================================================== */}
             <section>
+              <h2 className="text-2xl font-bold mb-3">6c. Microsoft Advertising Conversion-Tracking (einwilligungsbasiert)</h2>
+              <p>
+                Wir schalten Werbeanzeigen über Microsoft Advertising (Microsoft Ireland Operations
+                Limited, One Microsoft Place, South County Business Park, Leopardstown, Dublin 18,
+                Irland). Um zu messen, ob unsere Anzeigen zu Anfragen führen, setzen wir das
+                Conversion-Tracking <strong>Universal Event Tracking (UET)</strong> mit dem
+                Einwilligungsmodus von Microsoft ein. Der Dienst läuft über denselben Cookie-Banner
+                wie Google Ads und Google Analytics.
+              </p>
+              <p>
+                <strong>Ohne Ihre Einwilligung</strong> gilt das Signal{" "}
+                <code>ad_storage: denied</code>. Microsoft speichert dann keine Werbe-Kennungen auf
+                Ihrem Gerät; technisch können lediglich Cookies mit Platzhalterwerten ohne
+                Kennung angelegt werden. Übermittelt werden eingeschränkte Signale (z.&nbsp;B.
+                aufgerufene Seite), die Microsoft nicht zur Wiedererkennung einzelner Nutzer verwendet.
+              </p>
+              <p>
+                <strong>Mit Ihrer Einwilligung</strong> setzt Microsoft Cookies (u.&nbsp;a.{" "}
+                <code>_uetsid</code>, <code>_uetvid</code>), um Anzeigenklicks mit Aktionen auf
+                unserer Website (z.&nbsp;B. dem Aufruf der Bestätigungsseite nach einer Anfrage) zu
+                verknüpfen. Rechtsgrundlage ist Ihre Einwilligung nach Art.&nbsp;6 Abs.&nbsp;1
+                lit.&nbsp;a DSGVO sowie §&nbsp;25 Abs.&nbsp;1 TDDDG. Dabei kann eine Übermittlung von
+                Daten in die USA stattfinden; Microsoft ist unter dem EU-US Data Privacy Framework
+                zertifiziert.
+              </p>
+              <p>
+                <strong>Widerruf:</strong> wie in Abschnitt 6a beschrieben — Ihre Entscheidung gilt
+                gemeinsam für Google Ads, Google Analytics 4 und Microsoft Advertising und wird lokal
+                in Ihrem Browser gespeichert (Schlüssel <code>consent-ads-v1</code>).
+              </p>
+              <p>
+                Weitere Informationen: {" "}
+                <a href="https://privacy.microsoft.com/de-de/privacystatement" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary">
+                  Microsoft-Datenschutzerklärung
+                </a>
+                .
+              </p>
+            </section>
+
+            {/* ====================================================== */}
+            <section>
               <h2 className="text-2xl font-bold mb-3">7. Kontaktformulare</h2>
               <p>
                 Auf dieser Website befinden sich mehrere Kontaktformulare (Hauptkontakt,
@@ -391,8 +433,9 @@ const Datenschutz = () => {
                   Geräte-Erkennungs-Mechanismen einsetzen.
                 </li>
                 <li>
-                  <strong>Google Ads und Google Analytics 4</strong> (siehe Abschnitte 6a und 6b)
-                  setzen Cookies ausschließlich nach Ihrer Einwilligung über den Cookie-Banner.
+                  <strong>Google Ads, Google Analytics 4 und Microsoft Advertising</strong> (siehe
+                  Abschnitte 6a bis 6c) setzen Werbe- und Analyse-Cookies mit Kennung ausschließlich
+                  nach Ihrer Einwilligung über den Cookie-Banner.
                   Rechtsgrundlage: Art. 6 Abs. 1 lit. a DSGVO, § 25 Abs. 1 TDDDG.
                 </li>
               </ul>
@@ -467,7 +510,7 @@ const Datenschutz = () => {
             <section>
               <h2 className="text-2xl font-bold mb-3">13. Aktualität und Änderungen dieser Datenschutzerklärung</h2>
               <p>
-                Diese Datenschutzerklärung hat den Stand vom <strong>3. August 2026</strong>.
+                Diese Datenschutzerklärung hat den Stand vom <strong>18. September 2026</strong>.
                 Durch die Weiterentwicklung unserer Website oder aufgrund geänderter gesetzlicher
                 bzw. behördlicher Vorgaben kann es notwendig werden, diese Datenschutzerklärung zu
                 ändern. Die jeweils aktuelle Version ist stets unter{" "}

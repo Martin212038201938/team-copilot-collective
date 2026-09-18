@@ -1,6 +1,6 @@
 /**
  * Google-Ads-Conversion-Tracking + Google-Analytics-4 (GA4) mit Consent Mode v2
- * für copilotenschule.de.
+ * sowie Microsoft Advertising UET (Consent Mode, ad_storage) für copilotenschule.de.
  *
  * Aktiv NUR wenn Build-Env VITE_GOOGLE_ADS_ID gesetzt ist (GitHub Actions
  * Secret, Format "AW-XXXXXXXXX"). Ohne ID: kompletter No-Op — sicher in
@@ -35,6 +35,14 @@ const ADS_ID = "AW-18271163908";
 // Google Analytics 4 versorgt. Bislang war NUR AW- im Code, GA4 bekam daher
 // nie Daten. Ebenfalls kein Geheimnis (steht im Seitenquelltext).
 const GA_TAG_ID = "GT-WRFMDNVV";
+// Microsoft Advertising UET-Tag (Universal Event Tracking), seit 18.09.2026.
+// Kein Geheimnis (steht im Seitenquelltext). Conversions laufen über ein
+// URL-Ziel "/danke" in Microsoft Ads — enableAutoSpaTracking meldet die
+// React-Router-Navigation dorthin automatisch als Seitenaufruf, daher kein
+// eigenes Conversion-Event im Code nötig.
+// Consent: gleicher Banner/Storage-Key wie Google (consent-ads-v1). Default
+// ad_storage "denied" wird VOR dem Laden von bat.js in die uetq-Queue gelegt.
+const UET_TAG_ID = "343273228";
 // Conversion-Labels weiterhin aus Build-Env — sie kommen aus Google Ads, sobald
 // die jeweilige Conversion-Aktion angelegt ist. Ohne Label feuert kein Event.
 // Label der Lead-Conversion-Aktion aus Google Ads (kein Geheimnis). Fest
@@ -65,6 +73,8 @@ declare global {
   interface Window {
     dataLayer?: unknown[];
     gtag?: (...args: unknown[]) => void;
+    uetq?: unknown[];
+    UET?: new (o: Record<string, unknown>) => unknown[];
   }
 }
 
@@ -128,6 +138,56 @@ export function initGoogleAds(): void {
   } catch (err) {
     console.debug("[ads] Init-Fehler (ignoriert):", err);
   }
+
+  initMicrosoftUet();
+}
+
+/**
+ * Microsoft Advertising UET-Tag mit Consent Mode. Entspricht dem offiziellen
+ * Snippet aus Microsoft Ads, nur als Modul statt Inline-Script (react-snap-
+ * sicher, gleiche Host-/ReactSnap-Guards wie Google, da aus initGoogleAds()).
+ */
+function initMicrosoftUet(): void {
+  if (!UET_TAG_ID) return;
+  try {
+    window.uetq = window.uetq || [];
+    // Consent-Default VOR dem Tag-Load
+    window.uetq.push("consent", "default", { ad_storage: "denied" });
+    if (getStoredAdsConsent() === "granted") {
+      window.uetq.push("consent", "update", { ad_storage: "granted" });
+    }
+
+    const o: Record<string, unknown> = {
+      ti: UET_TAG_ID,
+      enableAutoSpaTracking: true,
+      ts: new Date().getTime(),
+    };
+    const script = document.createElement("script");
+    script.src = `https://bat.bing.net/bat.js?ti=${UET_TAG_ID}`;
+    script.async = true;
+    script.onload = () => {
+      try {
+        if (!window.UET) return;
+        o.q = window.uetq;
+        window.uetq = new window.UET(o);
+        window.uetq.push("pageLoad");
+      } catch (err) {
+        console.debug("[uet] Onload-Fehler (ignoriert):", err);
+      }
+    };
+    document.head.appendChild(script);
+  } catch (err) {
+    console.debug("[uet] Init-Fehler (ignoriert):", err);
+  }
+}
+
+function pushUetConsent(state: "granted" | "denied"): void {
+  try {
+    window.uetq = window.uetq || [];
+    window.uetq.push("consent", "update", { ad_storage: state });
+  } catch (err) {
+    console.debug("[uet] Consent-Update-Fehler (ignoriert):", err);
+  }
 }
 
 function applyConsentGranted(): void {
@@ -137,6 +197,7 @@ function applyConsentGranted(): void {
     ad_personalization: "granted",
     analytics_storage: "granted",
   });
+  if (window.uetq) pushUetConsent("granted");
 }
 
 /** Speichert die Entscheidung und aktualisiert die Consent-Signale. */
@@ -156,6 +217,7 @@ export function setAdsConsent(granted: boolean): void {
         ad_personalization: "denied",
         analytics_storage: "denied",
       });
+      if (window.uetq) pushUetConsent("denied");
     }
   } catch (err) {
     console.debug("[ads] Consent-Update-Fehler (ignoriert):", err);

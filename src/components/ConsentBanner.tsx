@@ -36,7 +36,7 @@ const ConsentBanner = () => {
       <p className="text-sm font-semibold mb-1">Cookie-Einstellungen</p>
       <p className="text-xs text-muted-foreground mb-3">
         Wir verwenden Cookies, um die Wirksamkeit unserer Werbung zu messen und die Nutzung
-        unserer Website zu analysieren (Google Analytics). Diese Cookies werden nur mit Ihrer
+        unserer Website zu analysieren (Google Ads, Google Analytics, Microsoft Advertising). Diese Cookies werden nur mit Ihrer
         Einwilligung gesetzt. Weitere Informationen finden Sie in unserer{" "}
         <a href="/datenschutz" className="underline hover:text-primary">Datenschutzerklärung</a>,
         dort können Sie Ihre Auswahl jederzeit ändern.
