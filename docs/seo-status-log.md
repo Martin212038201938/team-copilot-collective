@@ -8,6 +8,34 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 
 ## Logs
 
+### 2026-09-17 — Monatsreview (Zusatzlauf, User-angefordert „mach trotzdem heute")
+
+**Bericht:** docs/seo-monatsreview-2026-09-17.md
+**Kontext:** Regulärer 2.-Mittwoch-Guard hätte heute (Do 17.09.) abgebrochen; User hat den vollen Review explizit angefordert. **Erstmals seit dem 02.09.-Original wieder alle Kernquellen vollständig frisch** — GSC + AlwaysData + Clarity-Dashboard 30T live via Chrome-Login erhoben (nichts aus Baseline übernommen). Der integrierte Browser-Pane war bei GSC/Clarity nicht eingeloggt → auf User-Hinweis über Claude-in-Chrome (dortige Logins) gezogen.
+**Phase:** Phase 3 — Content-Block (aktiv seit 01.06., kein Wechsel). Phase 4 (Off-Page) parallel offen.
+**Definition-of-Done-Score:** **4 von 8** (unverändert). Fest: #2 SSR 🔴=0 ✅, #4 GEO 82 ✅ + LLM-Traffic (143/30T). Wahrscheinlich: #5 ≥5 Klick-URLs ✅, #6 Wettbewerbs-Platz-1 ✅. Offen: #1 Indexierung 88,1 % (an Schwelle), #3 SEO-Score 42 (C1-Blocker), #7 Listicle (Drafts, nicht versendet), #8 ProvenExpert (nicht angelegt).
+
+**Top-Zahlen (alle frisch 17.09.):**
+- GSC Indexierung (Basis: eingereichte Seiten ohne 6 Gated-PDFs): **74/84 = 88,1 %** (Nicht indexiert 16 = Gefunden 10 + Gecrawlt 6; GSC-Bericht seit 04.09. nicht neu gecrawlt, daher flat)
+  - Kontext „Alle bekannten Seiten" (KEIN KPI): 75 indexiert / 32 nicht (Gecrawlt 11, Weiterleitung 10 stabil, robots 1, Gefunden 10)
+- GSC Leistung 3M: **2.240 Klicks / 187.000 Impr. / CTR 1,2 % / Pos. 8,3** (Allzeithoch gehalten, beste Position je). Schläfer: copilot kosten (2.498 Impr./0,7 % CTR/Pos. 4,6), copilot lizenz (1.634/0,7 %/4,2), copilot preise (1.067/1,0 %/5,8).
+- AlwaysData: September MTD (Tag 17) **11.870** → Pace ~21k; August final 18.142; **YTD Jan–Sep 97.350**; 24h 829.
+- Traffic-Mix 30T (Clarity-Referrer): Organic **~1.888** (Google 1.315 + Bing 451 + DDG 56 + Ecosia 42 + google.de 13 + Yahoo 11) | LLM **~143** (teams.onecdn 88 + ChatGPT 33 + copilot.ms 13 + claude.ai 9) | Referral ~168 (intern 146 + yellow-boat 22) | **cpc ~0 (SEA eingeschlafen)** | **email ~0 (Outbound eingeschlafen)** | Direct/Rest.
+- Clarity 30T: Sessions **3.032** (500 Bots), Unique 2.850, Seiten/Sitzung 1,22, Scroll 39,87 %, aktive Zeit 1,7/4,1 Min. Dead-Click **13,85 %** (420), Rage 0,36 %, Quick-Back 1,78 %. Edge **47,5 %** (B2B). CWV-Score 83/100 (LCP 2,2 s gut, INP 220 ms gelb, CLS 0 gut).
+- Clarity 3T (API-Refresh): Sessions 452 (84 Bots), Dead-Click 13,72 %, Edge ~48 %, DACH ~83 %+. API-Calls heute: 1/10.
+- Conv-Rate: Funnel „Lead-Reise" **0 % E2E** (Stufe 1 1.814 = 59,83 % → Stufe 2 11 = 0,61 % → Stufe 3 0). Kontakt-Signale gesamt: Formular absenden 24 + Kontaktieren Sie uns 20 + lead 13 → Proxy ~1,9 % (konservativ ~0,8 % nur Formular-Submits). Praktisch rein organisch (SEA/Outbound schlafen).
+- SSR: ✅ **67/67** (0 🔴) — live via recheck.sh, Snapshot 2026-09-17.
+
+**Goldene Pages:** microsoft-copilot-lizenzen, claude-in-microsoft-copilot, copilot-in-outlook-nutzen-tipps
+**Bremsen:** microsoft-copilot-lizenzen (Kosten-Cluster Pos. 4–6, CTR <1 %, Snippet-Draft seit 12.08. unverpusst), copilot-in-excel-aktivieren (GSC-#1-Klick-Bringer, schwache On-Site-Weiterreise)
+**Hauptbefund:** Datenkern deckt sich mit 02.–14.09., jetzt aber vollständig live belegt. Organik-Allzeithoch, Indexierung eingefroren an 90-%-Schwelle, Funnel Content→Angebot 0 % E2E (CTA-Brücke feuert nur 4×/30T = Platzierungsproblem), SEA+Outbound eingeschlafen, GEO-Preislücke besteht fort.
+**Empfehlung (unverändert, 5 user-gebundene S/M-Punkte):** (1) Lizenz-Snippet-Draft + 2. CTA-Touchpoint pushen · (2) Angebots-CTA-Brücke prominenter auf Goldenen Pages · (3) Outbound-Entscheidung (überarbeiten/stoppen) · (4) Trainingspreis LLM-zitierbar (llms.txt) · (5) ArticlePopup-Dead-Click-Fix pushen. Seit 02.09. kein Deliverable umgesetzt.
+**Folge-Crons angelegt:** **keine** (Redundanz-Vermeidung; alle Deliverables existieren als Drafts/Entscheidungen, Rest = user-gebundener Push; Weekly-Audit trackt).
+**Teams-Report:** n/a (interaktiver User-Lauf, kein Cron-Post). Webhook „Marketing und SEA" weiterhin HTTP 401 seit 03.08. (45 Tage) — User-Fix offen.
+**Nächster intendierter voller Monatsreview:** Mi 14.10.2026, 10:30.
+
+---
+
 ### 2026-09-16 — Phase-Conductor-Lauf (Cron)
 
 **Schritt-0-Guard:** Heute = Tag 16, Mittwoch (Wochentag 3) → **3. Mittwoch** (Fenster 15.–21.). Guard bestanden, Conductor regulär gelaufen. (Conductor-Cron `0 11 * * 3` feuert jeden Mittwoch; die 1.-+-3.-Mittwoch-Beschränkung liegt jetzt sauber im Prompt-Guard, nicht mehr im Cron-Ausdruck.)

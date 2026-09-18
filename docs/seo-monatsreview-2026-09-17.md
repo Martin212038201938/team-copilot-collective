@@ -1,7 +1,6 @@
 # SEO-Monatsreview September 2026 (Zusatzlauf 17.09., User-angefordert)
 
 **Erstellt:** 17. September 2026
-**Auslöser:** Manuell durch User angefordert („mach trotzdem heute") — der reguläre 2.-Mittwoch-Guard hätte heute (Do 17.09.) abgebrochen. Voller Review dennoch durchgeführt.
 **Datenqualität:** Diesmal **alle** Kernquellen frisch erhoben — GSC (Chrome/Login), AlwaysData (Login), Clarity-Dashboard 30T inkl. Conversion-Events + Funnel + Traffic-Mix (Chrome/Login), Clarity-API 3T, SSR live, Wettbewerb/LLM via Websuche. Nichts aus Baseline übernommen. Das ist der erste vollständig frisch belegte September-Review seit dem 02.09.-Original.
 
 ---
