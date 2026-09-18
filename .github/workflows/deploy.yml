@@ -76,6 +76,12 @@ jobs:
           PUPPETEER_EXECUTABLE_PATH: /usr/bin/google-chrome-stable
           CI: true
       
+      - name: Pre-Render-Waechter (bricht Deploy ab, wenn statisches HTML unvollstaendig ist)
+        # Stellt sicher, dass Google, Bing und LLM-Crawler ohne JavaScript auf jeder Seite
+        # vollstaendiges HTML (Title, Description, H1, Inhalt) bekommen. War bisher nur in
+        # "npm run build:prerender" enthalten, lief im CI aber NICHT mit.
+        run: node scripts/validate-prerender.js
+
       - name: Install lftp
         run: sudo apt-get install -y lftp
 

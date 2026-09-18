@@ -75,6 +75,27 @@ for (const { route, expectSuffix } of KEY_PAGES) {
   if (failures === 0 || !html) { /* noop */ }
 }
 
+// Zusätzlich (seit 18.09.2026): ALLE Routen aus package.json reactSnap.include
+// müssen als statisches HTML mit Title, H1 und Substanz vorliegen. Grund: Die App
+// rendert im Browser per createRoot (kein Hydrate) — Crawler ohne JS (Bing/Copilot,
+// viele LLM-Bots) sehen ausschließlich dieses vorgerenderte HTML.
+const pkg = JSON.parse(readFileSync(resolve(__dirname, "..", "package.json"), "utf8"));
+const includeRoutes = (pkg.reactSnap && pkg.reactSnap.include) || [];
+let checked = 0;
+for (const route of includeRoutes) {
+  const file = fileFor(route);
+  if (!existsSync(file)) {
+    fail(route, `vorgerenderte Datei fehlt (${file})`);
+    continue;
+  }
+  const html = readFileSync(file, "utf8");
+  if (!pick(html, /<title[^>]*>([^<]*)<\/title>/i)) fail(route, "kein <title> im vorgerenderten HTML");
+  if (!/<h1[\s>]/i.test(html)) fail(route, "kein <h1> im HTML (Hinweis auf Skelett-Render)");
+  if (html.length < 8000) fail(route, `HTML verdächtig klein (${html.length} Bytes)`);
+  checked++;
+}
+console.log(`Pre-Render-Grundprüfung: ${checked}/${includeRoutes.length} Include-Routen geprüft.`);
+
 if (failures > 0) {
   console.error(`\n❌ Pre-Render-Wächter: ${failures} Problem(e) gefunden. Build wird abgebrochen, um kaputtes HTML nicht zu deployen.`);
   process.exit(1);
