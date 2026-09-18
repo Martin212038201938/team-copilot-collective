@@ -15,24 +15,24 @@ import { useState } from "react";
  */
 
 const customers = [
-  { name: "REWE", file: "rewe.png" },
-  { name: "Pernod Ricard", file: "pernod-ricard.png" },
-  { name: "Lekkerland", file: "lekkerland.png" },
-  { name: "Marriott Hotels", file: "marriott.png" },
-  { name: "Med360Grad", file: "med360grad.png" },
-  { name: "IHK Nord Westfalen", file: "ihk-nord-westfalen.png" },
-  { name: "Abbott", file: "abbott.png" },
-  { name: "Kalorimeta", file: "kalorimeta.png" },
-  { name: "medical Wundmanagement", file: "medical-wundmanagement.png" },
-  { name: "Atlantic-Lloyd", file: "al-group.png", showLabel: true },
-  { name: "Atradius", file: "atradius.png" },
-  { name: "Brand KG", file: "brand-kg.png" },
-  { name: "Compositiv GmbH", file: "compositiv.png" },
-  { name: "Kommunales Bildungswerk", file: "kommunales-bildungswerk.png" },
-  { name: "Eckpfeiler Immobilien", file: "eckpfeiler-immobilien.png" },
+  { name: "REWE", file: "rewe.png", w: 460 },
+  { name: "Pernod Ricard", file: "pernod-ricard.png", w: 434 },
+  { name: "Lekkerland", file: "lekkerland.png", w: 511 },
+  { name: "Marriott Hotels", file: "marriott.png", w: 203 },
+  { name: "Med360Grad", file: "med360grad.png", w: 785 },
+  { name: "IHK Nord Westfalen", file: "ihk-nord-westfalen.png", w: 802 },
+  { name: "Abbott", file: "abbott.png", w: 637 },
+  { name: "Kalorimeta", file: "kalorimeta.png", w: 411 },
+  { name: "medical Wundmanagement", file: "medical-wundmanagement.png", w: 656 },
+  { name: "Atlantic-Lloyd", file: "al-group.png", w: 152, showLabel: true },
+  { name: "Atradius", file: "atradius.png", w: 652 },
+  { name: "Brand KG", file: "brand-kg.png", w: 628 },
+  { name: "Compositiv GmbH", file: "compositiv.png", w: 640 },
+  { name: "Kommunales Bildungswerk", file: "kommunales-bildungswerk.png", w: 434 },
+  { name: "Eckpfeiler Immobilien", file: "eckpfeiler-immobilien.png", w: 512 },
   {
     name: "Hessisches Ministerium für Familie, Senioren, Sport, Gesundheit und Pflege",
-    file: "hessisches-familienministerium.png",
+    file: "hessisches-familienministerium.png", w: 133,
     showLabel: true,
     caption: ["Hessisches Ministerium", "für Familie, Senioren, Sport, Gesundheit und Pflege"],
   },
@@ -41,11 +41,14 @@ const customers = [
 const LogoItem = ({
   name,
   file,
+  w,
   showLabel,
   caption,
 }: {
   name: string;
   file: string;
+  /** Pixelbreite der PNG (alle Logos sind 160px hoch) — reserviert den Platz vor dem Laden, verhindert Layout-Shift (CLS). */
+  w: number;
   showLabel?: boolean;
   caption?: string[];
 }) => {
@@ -64,6 +67,8 @@ const LogoItem = ({
       <img
         src={`/images/customer-logos/${file}`}
         alt={`${name} Logo`}
+        width={w}
+        height={160}
         loading="lazy"
         className="h-8 md:h-10 w-auto grayscale opacity-70 hover:opacity-100 transition-opacity"
         onError={() => setImgFailed(true)}
@@ -95,6 +100,7 @@ const CustomerLogos = () => (
             key={c.name}
             name={c.name}
             file={c.file}
+            w={c.w}
             showLabel={c.showLabel}
             caption={c.caption}
           />

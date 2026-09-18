@@ -1,4 +1,4 @@
-import { createRoot, hydrateRoot } from "react-dom/client";
+import { createRoot } from "react-dom/client";
 import { HelmetProvider } from "react-helmet-async";
 import Clarity from "@microsoft/clarity";
 import App from "./App.tsx";
@@ -29,9 +29,10 @@ const app = (
   </HelmetProvider>
 );
 
-// react-snap hydration support: use hydrateRoot if pre-rendered, createRoot otherwise
-if (container.hasChildNodes()) {
-  hydrateRoot(container, app);
-} else {
-  createRoot(container).render(app);
-}
+// Bewusst KEIN hydrateRoot (Fix 18.09.2026): react-snap speichert den DOM eines
+// Client-Renders. Dabei verschmelzen benachbarte Textknoten (z. B. "PDF · {pages} Seiten"),
+// außerdem weichen Inline-Styles (0s vs. 0ms) und Header-States ab. hydrateRoot warf
+// deshalb auf jeder Seite React-Fehler #418/#423/#425 und verwarf das vorgerenderte HTML
+// ohnehin komplett. createRoot ersetzt den Pre-Render direkt — gleiche Optik, keine
+// Fehler, keine doppelte Arbeit. Das vorgerenderte HTML bleibt für Crawler/LLMs erhalten.
+createRoot(container).render(app);

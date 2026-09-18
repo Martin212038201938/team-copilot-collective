@@ -90,8 +90,17 @@ jobs:
         # DB-Zugangsdaten, liegt bewusst NICHT im Repo (.gitignore) und existiert nur auf
         # dem Server. Ohne diesen Ausschluss löscht "mirror --delete" sie bei jedem Deploy –
         # dann schlagen alle DB-Schreibvorgänge still fehl (Leads, Newsletter, ROI-Generator).
+        #
+        # ZWEI PHASEN (seit 18.09.2026): Vorher lud mirror die HTML-Seiten teils VOR den
+        # neuen JS/CSS-Dateien hoch. In diesem Fenster verwiesen die Seiten auf ein noch
+        # nicht vorhandenes Bundle → Seite kaputt (Server liefert HTML statt JS).
+        #   Phase 1: alles AUSSER *.html hochladen, nichts löschen (neue Assets liegen bereit,
+        #            alte HTML-Seiten funktionieren weiter mit den alten Assets).
+        #   Phase 2: vollständiger mirror mit --delete (HTML umschalten, alte Assets aufräumen).
+        # Die Excludes gelten in BEIDEN Phasen — sonst würde Phase 1 die Live-Dashboard-Daten
+        # überschreiben.
         run: |
-          lftp -e "set ssl:verify-certificate no; set ftp:ssl-allow yes; set ftp:ssl-protect-data yes; mirror -R --delete --exclude 'dashboard/(data|history|llm-visibility)\.json$' --exclude 'api/db-config-local\.php$' dist/ /www/copilotenschule.de/ ; quit" -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}
+          lftp -e "set ssl:verify-certificate no; set ftp:ssl-allow yes; set ftp:ssl-protect-data yes; mirror -R --exclude-glob '*.html' --exclude 'dashboard/(data|history|llm-visibility)\.json$' --exclude 'api/db-config-local\.php$' dist/ /www/copilotenschule.de/ ; mirror -R --delete --exclude 'dashboard/(data|history|llm-visibility)\.json$' --exclude 'api/db-config-local\.php$' dist/ /www/copilotenschule.de/ ; quit" -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}
 
 
       - name: Notify Bing IndexNow about updated pages
