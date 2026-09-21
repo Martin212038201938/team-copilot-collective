@@ -8,6 +8,43 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 
 ## Logs
 
+### 2026-09-21 — Wöchentlicher Audit (Cron)
+
+**Phase:** Phase 3 — Content-Block (aktiv seit 01.06., kein Wechsel). DoD 4/8 unverändert. Risiko 🟡.
+**SSR-Audit:** ✅ 67 / 🟡 0 / 🔴 0 (von 67) — live via `recheck.sh` (audit-live.sh weiter nicht im Mount), Snapshot 2026-09-21. Regressions-Wächter: 0 🔴, keine Eskalation.
+- Neu in 🔴/✅: keine
+
+**GSC Indexierung (Basis: eingereichte Seiten ohne 6 Gated-PDFs):** ⚠️ **login-blockiert diesen Lauf** → letzter bekannter Stand (14.09.) übernommen: **74/84 = 88,1 %**
+- Nicht indexiert: gefunden 11 | gecrawlt 5 (A6-Summe 16, Δ zur Vorwoche 0 — GSC-Bericht seit 04.09. eingefroren, kein frischer Crawl)
+- Kontext „Alle bekannten Seiten" (KEIN KPI, Stand Daily-Check 21.09.): 75 indexiert / 34 nicht; „Seite mit Weiterleitung" 10 (stabil, kein Alarm)
+- **Ursache Login-Block:** integrierter Browser-Pane bei search.google.com als `thenewworkacademy@gmail.com` angemeldet (kein Property-Zugriff) statt `martin@yellow-boat.com`. Identisch mit Daily-Health-Check-Befund (GSC 7. Tag stale). Kein autonomer Login möglich → User-Handlung nötig.
+
+**GSC Leistung:** ⚠️ stale (14.09.): Klicks 2.220 /3M, Impressionen 185.000, CTR 1,2 %, Pos. 8,3 (Allzeithoch gehalten). Top-Klick-Bringer: copilot in excel aktivieren, claude (in) (microsoft) copilot, copilot datenschutz.
+
+**AlwaysData:** 24h **430**, September MTD (Tag 21) **14.179** (Pace ~19,8k; −21,84 % vs. Aug ist MTD-Artefakt, Monat unvollständig). August final 18.142. YTD Jan–Sep **99.659**.
+
+**Traffic-Mix (Clarity API-Referrer 3T, Dashboard-Segmentierung login-blockiert):** Organic ~146 (Google 119 + Bing 19 + DDG 5 + Ecosia 3) | **SEA/cpc ~5** (ui.ads.microsoft.com) | **Email/Outbound ~0** (eingeschlafen) | Direct/null 54. Voll-Segmentierung (Medium=cpc/email) nicht möglich.
+
+**Clarity Standard (3T, via API, 1 Call):**
+- Sessions: **209** (davon 46 Bots, 259 Unique Users)
+- Scrolltiefe: 40,3 %, Aktive Zeit: 72 s
+- **Dead-Click: 7,66 %** | Rage-Click: 0 % | Quick-Back: 1,44 % | Excessive-Scroll: 0 %
+- ⭐ Dead-Click **erstmals seit Wochen wieder unter der 10-%-Schwelle** (14.09. API 18,1 % → heute 7,66 %) — keine UX-Eskalation (7c) diesen Lauf. Rage 0 %.
+- Top-Browser: Chrome 85 / **Edge 58 (27,8 % — B2B-Signal)** / MobileSafari 40 / ChromeMobile 8 / Firefox 8
+- Top-3-Pages: / (51) · /trainings (47) · /wissen/microsoft-copilot-lizenzen (21)
+- Top-3-Referrer: google.com (119) · (direct/null) (54) · bing.com (19)
+
+**Clarity Conversion-Events (7T, via Chrome):** ⚠️ **Dashboard login-blockiert** („Sitzung abgelaufen, bitte erneut anmelden") → Conversion-Events (5b) + Paid/Outbound-Split (5c) diesen Lauf nicht abrufbar. Fallback 0/letzter Stand. 7e-Defekt-Check (Event ≥3→0) mangels Daten nicht möglich — kein Defekt-Indiz aus API. Letzter bekannter Conv.-Proxy (14.09.): ~2,4 %, Funnel 0 % E2E.
+
+**Insights heute:** Patterns 0 | Issues 0 | Trends 0 (Dead-Click erholt → Issue-Beobachtung entspannt; keine neuen Cron-Trigger, kein Push)
+**Folge-Crons angelegt:** keine
+**Goldene Pages (GSC×Clarity, organic):** microsoft-copilot-lizenzen, claude-in-microsoft-copilot; ungenutztes Potential: copilot-in-excel-aktivieren (GSC-#1-Klick-Bringer, nicht in Clarity-Top-Pages)
+**Protected Pages:** alle OK (5/5 = 200: copilot-roi-berechnen, copilot-im-unternehmen-einfuehren-leitfaden, microsoft-copilot-lizenzen, ki-schulung-mitarbeiter-pflicht, copilot-training-schulung)
+**Entscheidung gemäß Plan:** Phase 3 bleibt aktiv, DoD 4/8, kein Wechsel. SSR 0 🔴 → kein Regressions-Alarm. A6 GSC-eingefroren → keine Änderung. Kein Push, keine src/-Änderung.
+**API-Calls heute:** 1/10
+**Offene User-Handlung:** (1) GSC-Browser-Account auf `martin@yellow-boat.com` wechseln (7. Tag stale). (2) Clarity einmalig im Browser-Pane einloggen (Conversion-Events/Segmentierung fehlen sonst wöchentlich). Beides bereits vom Daily-Health-Check eskaliert.
+**Nächster Lauf:** Mo 28.09.2026, 10:00
+
 ### 2026-09-17 — Monatsreview (Zusatzlauf, User-angefordert „mach trotzdem heute")
 
 **Bericht:** docs/seo-monatsreview-2026-09-17.md
