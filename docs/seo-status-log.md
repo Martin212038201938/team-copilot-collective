@@ -8,6 +8,37 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 
 ## Logs
 
+### 2026-09-22 — Monatsreview (Zusatzlauf, User-angefordert „kompletter Analyse-Run" + Erstaufnahme Bing Ads)
+
+**Bericht:** docs/seo-monatsreview-2026-09-22.md
+**Kontext:** User-angefordert. **Bing Ads (Microsoft Advertising) erstmals ins Reporting genommen.** Neue Browser-Regel: login-gebundene Quellen im internen Browser, sofern nicht in Chrome eingeloggt. Heute im internen Browser gezogen (eingeloggt): **Bing Ads, AlwaysData, Clarity-Dashboard 30T, GSC** — alle vier live. Clarity + GSC wurden mitten im Lauf nachgeloggt; GSC braucht im internen Browser `authuser=1` (das Standard-Google-Konto `thenewworkacademy@gmail.com` hat keinen Property-Zugriff, das berechtigte Konto liegt auf authuser=1). **Review vollständig frisch belegt, nichts übernommen.**
+**Phase:** Phase 3 — Content-Block (aktiv seit 01.06., kein Wechsel). Phase 4 (Off-Page) parallel offen.
+**Definition-of-Done-Score:** **4 von 8** (unverändert). Offen: #1 Indexierung 88,1 %, #3 SEO-Score 42, #7 Listicle, #8 ProvenExpert.
+
+**Bing Ads (NEU, Microsoft Advertising, MTD = Gesamtlaufzeit — Kampagne erst im September gestartet):**
+- Kampagne „Website traffic-Search-1" (Suche, 15 €/Tag, Auto max. Klicks): **28,16 € Ausgaben / 8 Klicks / 282 Impr. / CTR 2,84 % / Ø-CPC 3,52 € / 0 Conversions**.
+- ⚠️ Konto meldet **UET-Conversion-Tracking-Defekt** („keine Conversions in 7 Tagen") → vor Bewertung/Skalierung fixen. Datenquelle: interner Browser `ui.ads.microsoft.com`.
+
+**Top-Zahlen (frisch 22.09., außer GSC):**
+- GSC Indexierung (live 22.09.): **74/84 = 88,1 %** (seit 04.09. eingefroren, live bestätigt). GSC Leistung 3M: **2.240 Kl. / 191.000 Impr. / Pos. 8,2** (neue Bestposition).
+- AlwaysData: Sep MTD (Tag 22) **14.966** (Pace ~20,4k), Aug final 18.142, **YTD 100.446 (>100k)**, 24h 767.
+- Traffic-Mix 30T: Organic ~1.919 (Google 1.328 + Bing 475 + DDG 62 + Ecosia 33 + google.de 11 + Yahoo 10) | LLM ~149 (teams.onecdn 90 + ChatGPT 36 + copilot.ms 12 + **Gemini 11 NEU**) | Google-cpc ~0 (eingeschlafen) | **Bing-Ads 8 Kl./28,16 € (Pilot)** | email ~0 (eingeschlafen) | Referral 181 | Direct/Rest.
+- Clarity 30T (frisch): Sessions **3.099** (585 Bots), Unique 2.918, Dead-Click **13,46 %**, Rage 0,39 %, Quick-Back 1,87 %, Edge **48,56 %** (B2B), CWV-Score 83/100 (INP 220 ms gelb). Clarity 3T (API): 236 Sess., Dead-Click 13,56 %.
+- Conv-Rate: Funnel „Lead-Reise" **0 % E2E** (1.767 → 11 = 0,62 % → 0). Proxy ~1,9 % (Formular absenden 27 + Kontaktieren Sie uns 20 + lead 13 = 60/3.099).
+- SSR: ✅ **67/67** (0 🔴), live 22.09.
+
+**Goldene Pages:** microsoft-copilot-lizenzen, claude-in-microsoft-copilot, copilot-in-outlook-nutzen-tipps.
+**Bremsen:** microsoft-copilot-lizenzen (Kosten-Cluster CTR <1 %), copilot-in-excel-aktivieren (schwache On-Site-Weiterreise).
+**Hauptbefund:** **Alle drei Push-Kanäle schwach** — Google Ads + Outbound eingeschlafen, Bing Ads im Pilot ohne Conversion-Tracking. Organik trägt praktisch allein (Allzeithoch gehalten, YTD >100k). Funnel Content→Angebot weiter 0 % E2E. Neuer AI-Referrer Gemini.
+**Empfehlung:** (1) Bing-Ads-UET-Tracking fixen + Zielseiten-Drift-Check; (2) Lizenz-Snippet + 2. CTA-Touchpoint pushen; (3) CTA-Brücke prominenter; (4) Paid-Strategie-Entscheidung gesamt; (5) Trainingspreis LLM-zitierbar.
+**Dauerhafte Änderungen:** Kampagnen-Status-Block in `seo-projektplan.md` um Bing Ads erweitert; **Weekly- + Monthly-Cron-Prompts** um Bing-Ads-Schritt (interner Browser) + Browser-Regel ergänzt.
+**Folge-Crons angelegt:** keine.
+**Wettbewerb:** copilotenschule.de #1-Empfehlung gehalten; neuer sichtbarer Player PC-COLLEGE (Bildungs-Award 2025/26).
+**API-Calls heute:** 2/10 (Clarity).
+**Nächster regulärer voller Monatsreview:** Mi 14.10.2026.
+
+---
+
 ### 2026-09-21 — Wöchentlicher Audit (Cron)
 
 **Phase:** Phase 3 — Content-Block (aktiv seit 01.06., kein Wechsel). DoD 4/8 unverändert. Risiko 🟡.
