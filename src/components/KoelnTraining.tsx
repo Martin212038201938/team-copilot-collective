@@ -9,10 +9,11 @@ import {
 } from "@/components/ui/carousel";
 import { MapPin } from "lucide-react";
 import { useEffect, useState } from "react";
-import raumChill from "@/assets/raum-chill.jpg";
-import raumVibes from "@/assets/raum-vibes.jpg";
-import raumMeeting from "@/assets/raum-meeting.jpg";
-import raumOffice from "@/assets/raum-office.jpg";
+import NichtKiGeneriert from "@/components/NichtKiGeneriert";
+import raumChill from "@/assets/koeln-trainingsraum-lounge.webp";
+import raumVibes from "@/assets/koeln-trainingsraum-pausenbereich.webp";
+import raumMeeting from "@/assets/koeln-trainingsraum-schulungstisch.webp";
+import raumOffice from "@/assets/koeln-trainingsraum-office.webp";
 
 const roomImages = [
   {
@@ -61,7 +62,7 @@ const KoelnTraining = () => {
           </div>
 
           <Carousel
-            className="w-full max-w-4xl mx-auto"
+            className="w-full max-w-3xl mx-auto"
             setApi={setApi}
             opts={{
               loop: true,
@@ -71,13 +72,16 @@ const KoelnTraining = () => {
               {roomImages.map((image, index) => (
                 <CarouselItem key={index}>
                   <div className="p-1">
-                    <Card>
-                      <CardContent className="p-0">
+                    <Card className="overflow-hidden">
+                      <CardContent className="relative p-0">
                         <img
                           src={image.src}
                           alt={image.alt}
-                          className="w-full h-[400px] md:h-[500px] object-contain rounded-lg bg-muted/50"
+                          width={1600}
+                          height={1200}
+                          className="block w-full aspect-[4/3] object-cover"
                         />
+                        <NichtKiGeneriert />
                       </CardContent>
                     </Card>
                   </div>

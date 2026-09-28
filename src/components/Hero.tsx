@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import heroImage from "@/assets/trainingsraum-nippes.png";
+import NichtKiGeneriert from "@/components/NichtKiGeneriert";
+import heroImage from "@/assets/copilot-training-koeln-nippes.webp";
 
 const Hero = () => {
   const scrollToContact = () => {
@@ -84,10 +85,13 @@ const Hero = () => {
             >
               <img
                 src={heroImage}
-                alt="Microsoft Copilot Training Team"
+                alt="Microsoft Copilot Training im Trainingsraum der Copilotenschule in Köln-Nippes: Trainerin im Gespräch mit fünf Teilnehmenden am Schulungstisch"
+                width={1600}
+                height={900}
                 className="w-full h-auto transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/30 via-transparent to-transparent group-hover:from-primary/40 transition-all duration-500" />
+              <NichtKiGeneriert />
             </Link>
 
             {/* Decorative elements - versteckt auf sehr kleinen Screens */}

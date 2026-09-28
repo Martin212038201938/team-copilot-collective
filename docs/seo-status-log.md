@@ -8,6 +8,50 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 
 ## Logs
 
+### 2026-09-28 — Wöchentlicher Audit (Cron)
+
+**Phase:** Phase 3 — Content-Block (aktiv, kein Wechsel). Phase 4 (Off-Page) parallel offen.
+**SSR-Audit:** ✅ 67 / 🟡 0 / 🔴 0 (von 67), via recheck.sh (audit-live.sh weiter nicht im Mount)
+- Neu in 🔴/✅: keine (alle 67 seit Wochen grün, Regressions-Wächter still)
+
+**GSC Indexierung (Basis: eingereichte Seiten ohne 6 Gated-PDFs):** 74/84 = **88,1 %** (unverändert ggü. 14.09.)
+- Nicht indexiert: gefunden 10 | gecrawlt 6 (A6-Summe 16, Δ zur Vorwoche 0)
+- Kontext „Alle bekannten Seiten" (KEIN KPI): 74 indexiert / 32 nicht (Gecrawlt 11, Weiterleitung **10 stabil**, robots 1, Gefunden 10) → keine neue Redirect-Quelle
+
+**GSC Leistung:** Klicks **2.270**/3M (+50, +2,3 % W/W), Impressionen **196.000** (+11k, +5,9 %), CTR 1,2 %, Pos. **8,1** (von 8,3 → **neue Bestposition je**). Top-Klick-Bringer: copilot in excel aktivieren 90, excel copilot aktivieren 28, copilot kosten 19, copilot excel aktivieren 18, copilotenschule 14.
+
+**AlwaysData:** 24h **470**, Sep MTD **18.598** (+2,51 % vs. Aug 18.142), **YTD 104.078**
+
+**Traffic-Mix (Clarity, Kanal 7T):** OrganicSearch **382** | SEA/PaidSearch (cpc) **57** | Bing-Ads <Dashboard nicht refreshbar, s. u.> | Outbound (email) **~0** (kein sml_*) | LLM ~4 (gemini 2, chatgpt 1, copilot.ms 1) + teams 12 | Other 170 | Referral 26 | Direct 17
+- ⚠️ **PaidSearch 57 — SEA wieder aktiv** (Vorwochen „eingeschlafen"). Google/Bing-Split aus Clarity nicht trennbar. Zielseiten-Drift-Check pro Segment diese Woche nicht ziehbar (keine saubere cpc-Segmentierung im Dashboard-Referrer); Top-Pages weiterhin Startseite + /wissen dominiert.
+
+**Bing Ads (MTD, Microsoft Advertising):** **[ÜBERNOMMEN aus 22.09]** 28,16 € / 8 Kl. / 282 Impr. / CTR 2,84 % / CPC 3,52 € / 0 Conv. (UET-Status: **defekt**). Interner Browser **nicht mehr eingeloggt** (Google-Account-Chooser statt Session) → in einem non-interaktiven Cron-Lauf keine OAuth-Anmeldung; Werte übernommen.
+
+**Clarity Standard (3T, via API, 1 Call):**
+- Sessions: **163** (davon 38 Bots, 206 Unique Users)
+- Scrolltiefe: 41,86 %, Aktive Zeit: 113 s
+- Dead-Click: **7,36 %** (7T-Dashboard 10,65 %/69 Sess.) | Rage-Click: 0 % | Quick-Back: 0 % (7T 1,08 %) | Excessive-Scroll: 0 %
+- Top-Browser (3T): Edge 65 | Chrome 42 | MobileSafari 25 | ChromeMobile 18 | Firefox 10 — (7T-Dashboard: **Edge 54,32 %** / Chrome 28,55 % / MobileSafari 6,79 % → B2B-Signal bestätigt)
+- Top-3-Pages: Startseite | /wissen/microsoft-copilot-lizenzen | /wissen/copilot-tipps-tricks-produktivitaet
+- Top-3-Referrer: google.com 64 | (direct) 56 | bing.com 26
+
+**Clarity Conversion-Events (7T, via Dashboard):**
+- contact_form_submit / trainer_application_submit / konfigurator_submit / mail_click / phone_click / pdf_download: **0 / 1 / 0 / 0 / 0 / 7**
+- Smart-Events gesamt: Formular absenden 8, pdf_download 7, Kontaktieren Sie uns 6, lead 6, Herunterladen 6, Ausgehender Klick 4, Zitat anfordern 1, danke_page_view 1, trainer_application_submit 1
+- content_cta_click / angebot_bruecke_click: **0/7T** (CTA-Brücke feuert diese Woche nicht — Funnel-Bremse hält an) | sml_*: 0 (Outbound aus)
+- Conversion-Rate gesamt: direkte Kontakt-/Lead-Conv. ≈ (Formular 8 + Kontaktieren 6 + lead 6 + danke 1 + trainer 1) ≈ 21/648 = **~3,2 %** — kein 7e-Defekt (kein Event ≥3→0; Formular 10→8, Kontaktieren 3→6, lead 4→6 alle gesund)
+- **Funnel „Lead-Reise" weiter 0 % E2E:** Stufe 1 348 → Stufe 2 Angebot 1 (0,29 %) → Stufe 3 0
+
+**Insights heute:** Patterns 0 | Issues 0 | Trends 0 (keine Schwelle überschritten: keine Page ≥5 % Conv/≥50 Sess für Pattern; keine Page ≥100 Sess/3T mit <0,5 % für Anti-Pattern; Dead-Click 3T 7,36 % < 10 %)
+**Folge-Crons angelegt:** keine
+**Goldene Pages (GSC×Clarity, organic):** microsoft-copilot-lizenzen, copilot-in-excel-aktivieren (GSC-Top-Query 90 Kl. + jetzt in Clarity-Top-Pages 30 → nicht mehr „ungenutztes Potential"), claude-in-microsoft-copilot
+**Protected Pages:** alle OK (5/5 = 200)
+**Entscheidung gemäß Plan:** Phase 3 aktiv, DoD **4/8** unverändert. SSR-Regressions-Wächter still (0 🔴). A6 stabil (Summe 16, Δ 0) — Quote 88,1 % an 90-%-Schwelle, Restweg inhaltlich, kein Issue. Kein Push, keine src/-Änderung.
+**API-Calls heute:** 2/10 (Clarity)
+**Nächster Lauf:** Mo 05.10.2026, 10:00
+
+---
+
 ### 2026-09-22 — Monatsreview (Zusatzlauf, User-angefordert „kompletter Analyse-Run" + Erstaufnahme Bing Ads)
 
 **Bericht:** docs/seo-monatsreview-2026-09-22.md

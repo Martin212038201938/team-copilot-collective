@@ -7,7 +7,6 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Users, Building, Award, ArrowRight, ExternalLink } from "lucide-react";
-import ueberUns from "@/assets/ueber-uns.png";
 
 const UeberUns = () => {
   const organizationSchema = {
@@ -199,18 +198,6 @@ const UeberUns = () => {
                 Ergebnisse statt Marketing-Versprechen.
               </p>
             </Card>
-          </div>
-
-          {/* Team Bild */}
-          <div className="max-w-4xl mx-auto mb-16">
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-              <img
-                src={ueberUns}
-                alt="Das Team der Copilotenschule"
-                className="w-full h-auto"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/20 via-transparent to-transparent" />
-            </div>
           </div>
 
           {/* Vision Detail Block */}
