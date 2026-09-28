@@ -16,7 +16,7 @@ interface SEOHeadProps {
 
 const SITE_URL = "https://copilotenschule.de";
 const SITE_SUFFIX = " | copilotenschule.de";
-const DEFAULT_OG_IMAGE = "/images/copilotenschule_flugzeug.png";
+const DEFAULT_OG_IMAGE = "/og-image.jpg";
 
 /**
  * Hängt den Site-Suffix " | copilotenschule.de" defensiv an einen Titel an —

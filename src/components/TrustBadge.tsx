@@ -34,13 +34,14 @@ export const TrustBadge = ({ variant = 'full' }: TrustBadgeProps) => {
         <CardContent className="pt-6">
           <div className="flex flex-col md:flex-row gap-6">
             <div className="flex-shrink-0">
-              <div className="w-32 h-32 rounded-full bg-gradient-to-br from-primary/20 to-orange-500/20 flex items-center justify-center border-4 border-primary/20">
-                <img
-                  src="/images/copilotenschule_flugzeug.png"
-                  alt="Copilotenschule Logo"
-                  className="w-20 h-20 object-contain"
-                />
-              </div>
+              <img
+                src="/images/copilotenschule-signet.svg"
+                alt="Copilotenschule"
+                width={128}
+                height={128}
+                loading="lazy"
+                className="w-32 h-32"
+              />
             </div>
             <div className="flex-1">
               <h3 className="text-xl font-bold mb-2">Über die Copilotenschule</h3>

@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           <div>
             <div className="mb-4">
-              <img src="/images/copilotenschule_flugzeug.png" alt="Copilotenschule Logo" className="h-16 w-auto object-contain" />
+              <img src="/images/copilotenschule-logo.svg" alt="Copilotenschule" width={167} height={56} loading="lazy" className="h-14 w-auto" />
             </div>
             <p className="text-muted-foreground text-sm mb-3">
               Spezialisierte Weiterbildungen für Microsoft Copilot.

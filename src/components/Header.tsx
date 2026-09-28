@@ -208,15 +208,14 @@ const Header = () => {
       <div className="container mx-auto px-4">
         <nav className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2 flex-shrink-0">
+          <Link to="/" className="flex items-center flex-shrink-0" aria-label="Copilotenschule – zur Startseite">
             <img
-              src="/images/copilotenschule_flugzeug.png"
-              alt="Copilotenschule Logo"
-              className="h-10 sm:h-12 w-auto object-contain"
+              src="/images/copilotenschule-logo.svg"
+              alt="Copilotenschule"
+              width={134}
+              height={45}
+              className="h-11 lg:h-12 w-auto"
             />
-            <span className="text-lg sm:text-xl font-bold text-foreground hidden xs:inline">
-              Copilotenschule.de
-            </span>
           </Link>
 
           {/* Desktop Navigation */}

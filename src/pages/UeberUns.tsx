@@ -18,7 +18,7 @@ const UeberUns = () => {
         "name": "copilotenschule.de",
         "alternateName": "Copilotenschule",
         "url": "https://copilotenschule.de",
-        "logo": "https://copilotenschule.de/og-image.jpg",
+        "logo": "https://copilotenschule.de/images/copilotenschule-logo.png",
         "description": "Die Copilotenschule ist spezialisiert auf die Einführung und Weiterqualifizierungen im Umfeld des Microsoft Copiloten. Im Gegensatz zu anderen Anbietern bieten wir den Teilnehmern keinen Bauchladen an Tools an, die in ihrem Umfeld nicht compliant oder wertschöpfend sind.",
         "foundingDate": "2025",
         "founder": {

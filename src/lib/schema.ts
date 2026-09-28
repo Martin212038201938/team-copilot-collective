@@ -17,7 +17,7 @@ export const BASE_URL = "https://copilotenschule.de";
 
 // Standard-Bild für Course-Schemas (B6, 2026-07-22): Site-Logo/OG-Bild,
 // solange kein individuelles Trainingsbild (Training.image) gepflegt ist.
-export const DEFAULT_COURSE_IMAGE = `${BASE_URL}/images/copilotenschule_flugzeug.png`;
+export const DEFAULT_COURSE_IMAGE = `${BASE_URL}/og-image.jpg`;
 
 /**
  * Schema ID types for different page types
