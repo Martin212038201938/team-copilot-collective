@@ -6,7 +6,7 @@ import KoelnTraining from "@/components/KoelnTraining";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Users, Building, Award, ArrowRight, ExternalLink } from "lucide-react";
+import { Building, Award, ArrowRight, ExternalLink } from "lucide-react";
 
 const UeberUns = () => {
   const organizationSchema = {
@@ -273,45 +273,6 @@ const UeberUns = () => {
                   Individuelle Begleitung von <strong>Führungskräften, Produkt- und Transformationsteams</strong> zur Etablierung nachhaltiger, Copilot-gestützter Arbeitsweisen.
                 </p>
               </Card>
-            </div>
-          </div>
-
-          {/* Zielgruppe */}
-          <div className="bg-gradient-to-br from-primary/5 to-accent/5 rounded-2xl p-8 md:p-12 max-w-4xl mx-auto mb-16">
-            <div className="flex items-start gap-4 mb-6">
-              <div className="w-14 h-14 bg-gradient-to-br from-primary/20 to-accent/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                <Users className="w-7 h-7 text-primary" />
-              </div>
-              <div>
-                <h2 className="text-2xl font-bold mb-2">Ideales Kundenprofil</h2>
-                <p className="text-muted-foreground">Für wen wir arbeiten</p>
-              </div>
-            </div>
-            <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-              Unser ideales Kundenprofil sind <strong>wissensintensive Organisationen und Unternehmen
-              mit 20–5.000 Mitarbeitenden</strong> im deutschsprachigen Raum (DACH).
-            </p>
-            <div className="grid md:grid-cols-2 gap-4">
-              <div>
-                <h4 className="font-semibold mb-2">Primäre Ansprechpartner:</h4>
-                <ul className="text-muted-foreground space-y-1">
-                  <li>• Geschäftsführung</li>
-                  <li>• CIOs / Head of IT</li>
-                  <li>• Head of HR</li>
-                  <li>• Head of Learning & Development</li>
-                  <li>• Agile Coaches & Transformation Leads</li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-semibold mb-2">Teilnehmer unserer Trainings:</h4>
-                <ul className="text-muted-foreground space-y-1">
-                  <li>• Büroangestellte & Wissensarbeiter</li>
-                  <li>• Teams & Abteilungen</li>
-                  <li>• Führungskräfte</li>
-                  <li>• IT-Teams & Administratoren</li>
-                  <li>• Softwareentwickler</li>
-                </ul>
-              </div>
             </div>
           </div>
 

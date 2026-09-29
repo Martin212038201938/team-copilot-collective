@@ -36,6 +36,9 @@ const customers = [
     showLabel: true,
     caption: ["Hessisches Ministerium", "für Familie, Senioren, Sport, Gesundheit und Pflege"],
   },
+  { name: "Dyson", file: "dyson.png", w: 420 },
+  { name: "Audi", file: "audi.png", w: 259 },
+  { name: "Apogepha", file: "apogepha.png", w: 576 },
 ];
 
 const LogoItem = ({
