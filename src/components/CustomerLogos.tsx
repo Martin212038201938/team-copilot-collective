@@ -39,6 +39,9 @@ const customers = [
   { name: "Dyson", file: "dyson.png", w: 420 },
   { name: "Audi", file: "audi.png", w: 259 },
   { name: "Apogepha", file: "apogepha.png", w: 576 },
+  { name: "Denys", file: "denys.png", w: 646 },
+  { name: "go.Rheinland", file: "go-rheinland.png", w: 541 },
+  { name: "MGH Gutes aus Hessen", file: "gutes-aus-hessen.png", w: 144 },
 ];
 
 const LogoItem = ({
