@@ -303,10 +303,13 @@ export const generateKnowledgePageSchema = (
  * @graph: Course + BreadcrumbList + FAQPage (falls FAQs vorhanden).
  *
  * Enthaltene Regeln:
- * - B1 (aktualisiert 14.08.2026): Jedes Training mit gepflegtem visiblePrice trägt
- *   den Preis auch im Schema (Offer.price) – sichtbar und maschinenlesbar bleiben
- *   deckungsgleich. Der A/B-Test "Preise auszeichnen" ist beendet; die frühere
- *   Regel "keine Preise im Schema während des Tests" gilt nicht mehr.
+ * - B1 (aktualisiert 30.09.2026): Offer.price ist NICHT mehr der Preis pro
+ *   Teilnehmer, sondern – falls gepflegt – der Gruppenpreis (visiblePrice.perGroup).
+ *   Grund: Ein sichtbarer Preis pro Teilnehmer hat Kunden zur Fehlannahme
+ *   verleitet, es gäbe buchbare Einzelplätze. Ausnahme: Train-the-Trainer, das
+ *   zusätzlich als offenes Seminar mit echten Einzelplätzen läuft – dort bleibt
+ *   pricePerPerson die Quelle. Ohne Gruppenpreis und ohne pricePerPerson taucht
+ *   gar kein Preis im Schema auf.
  * - B2: coursePrerequisites nur aus dem gepflegten prerequisites-Feld.
  * - B6: image – individuelles Trainingsbild oder DEFAULT_COURSE_IMAGE.
  * - B7: je Buchungsvariante (bookingFormats) eine eigene CourseInstance;
@@ -316,6 +319,23 @@ export const generateTrainingDetailSchema = (training: Training) => {
   const ids = generateSchemaIds(training.slug, "trainings");
   const pageUrl = getPageUrl(training.slug, "trainings");
   const breadcrumbItems = generateTrainingBreadcrumbItems(training.title, pageUrl);
+
+  // Preis fürs Schema: Gruppenpreis, falls gepflegt – sonst (nur Train-the-Trainer)
+  // der echte Preis pro Person für das offene Seminar. Kein Preis pro Teilnehmer
+  // wird mehr als Offer.price verwendet.
+  const schemaPrice = training.visiblePrice?.perGroup
+    ? {
+        amount: training.visiblePrice.perGroup,
+        description: `ab ${training.visiblePrice.perGroup} € pro geschlossener Gruppe (bis 12 Teilnehmende)${
+          training.visiblePrice.note ? `, ${training.visiblePrice.note}` : ""
+        }`
+      }
+    : training.pricePerPerson
+      ? {
+          amount: training.pricePerPerson,
+          description: training.pricePerPersonLabel ?? `ab ${training.pricePerPerson} € pro Person (offenes Training)`
+        }
+      : undefined;
 
   const courseSchema = {
     "@type": "Course",
@@ -351,21 +371,15 @@ export const generateTrainingDetailSchema = (training: Training) => {
       "category": "Paid",
       "url": pageUrl,
       "availability": "https://schema.org/InStock",
-      ...(training.visiblePrice
+      ...(schemaPrice
         ? {
-            "price": String(training.visiblePrice.perPerson),
+            "price": String(schemaPrice.amount),
             "priceCurrency": "EUR",
             "priceSpecification": {
               "@type": "UnitPriceSpecification",
-              "price": String(training.visiblePrice.perPerson),
+              "price": String(schemaPrice.amount),
               "priceCurrency": "EUR",
-              "description": `ab ${training.visiblePrice.perPerson} € ${
-                training.visiblePrice.unitLabel ?? "pro Teilnehmer"
-              }${
-                training.visiblePrice.perGroup
-                  ? ` bei einer Gruppengröße von 12 Teilnehmern, oder ab ${training.visiblePrice.perGroup} € pro geschlossener Gruppe`
-                  : ""
-              }${training.visiblePrice.note ? `, ${training.visiblePrice.note}` : ""}`
+              "description": schemaPrice.description
             }
           }
         : {})

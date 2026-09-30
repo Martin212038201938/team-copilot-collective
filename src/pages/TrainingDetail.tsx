@@ -13,7 +13,6 @@ import { getTrainingBySlug, trainings, BOOKING_MODE_LABELS } from "@/data/traini
 import { getWorkshopBySlug } from "@/data/workshops";
 import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import { generateTrainingDetailSchema } from "@/lib/schema";
-import PriceStoerer from "@/components/PriceStoerer";
 import TrainingFactBox from "@/components/TrainingFactBox";
 import BookingProcess from "@/components/BookingProcess";
 import TrainingReviews from "@/components/TrainingReviews";
@@ -62,18 +61,11 @@ const TrainingDetail = () => {
   // Trainer-Profil
   const trainer = getAuthor('martin-lang');
 
-  // Sichtbare Preiszeile für die Faktenbox – exakt deckungsgleich mit dem
-  // Preis-Störer und mit Offer.price im Schema (eine Zahl, drei Orte).
-  const eur = (n: number) => n.toLocaleString("de-DE");
-  const priceLine = training.visiblePrice
-    ? `ab ${eur(training.visiblePrice.perPerson)} € ${
-        training.visiblePrice.unitLabel ?? "pro Teilnehmer"
-      }${
-        training.visiblePrice.perGroup
-          ? ` bei einer Gruppengröße von 12 Teilnehmern, oder ab ${eur(training.visiblePrice.perGroup)} € pro geschlossener Gruppe`
-          : ""
-      }${training.visiblePrice.note ? `, ${training.visiblePrice.note}` : ""}`
-    : undefined;
+  // Seit 30.09.2026: kein Preis pro Teilnehmer mehr sichtbar (verwirrte Kunden,
+  // die daraus buchbare Einzelplätze ableiteten). Einzige Ausnahme: Train-the-Trainer,
+  // das zusätzlich als offenes Seminar mit echten Einzelplätzen läuft – dort zeigen
+  // wir den echten Preis pro Person (pricePerPersonLabel) in der Faktenbox.
+  const priceLine = training.pricePerPersonLabel;
 
   // B4 (2026-07-22): Schema kommt zentral aus lib/schema.ts – eine Quelle der
   // Wahrheit statt Doppelpflege (Regeln B1/B2/B6/B7 sind dort dokumentiert).
@@ -138,20 +130,6 @@ const TrainingDetail = () => {
                   </div>
                 </div>
 
-                {/* Sichtbarer "ab"-Preis. Seit 14.08.2026 dauerhaft für alle Trainings
-                    mit gepflegtem visiblePrice – der A/B-Test "Preise auszeichnen"
-                    wurde zugunsten von Preistransparenz beendet. Der Preis ist damit
-                    sichtbar UND maschinenlesbar (Offer.price, siehe lib/schema.ts). */}
-                {training.visiblePrice && (
-                  <div className="shrink-0 md:pt-1">
-                    <PriceStoerer
-                      perPerson={training.visiblePrice.perPerson}
-                      perGroup={training.visiblePrice.perGroup}
-                      unitLabel={training.visiblePrice.unitLabel}
-                      note={training.visiblePrice.note}
-                    />
-                  </div>
-                )}
               </div>
 
               {/* Kursive LLM-Frage als Teaser */}

@@ -48,7 +48,7 @@ const CopilotTraining = () => {
     },
     {
       name: "Was kostet es, wenn wir auf Copilot-Training verzichten?",
-      answer: "Bei 100 Lizenzen à 30€/Monat und nur 20% aktiver Nutzung verschwenden Sie jährlich 28.800€ für ungenutzte Lizenzen. Laut Microsoft Work Trend Index berichten 77% der geschulten Nutzer höhere Produktivität, und Forrester beziffert die Zeitersparnis auf 9 Stunden pro Monat. Training kostet einmalig ca. 150-300€ pro Person – das amortisiert sich laut Forrester TEI Study in wenigen Wochen."
+      answer: "Bei 100 Lizenzen à 30€/Monat und nur 20% aktiver Nutzung verschwenden Sie jährlich 28.800€ für ungenutzte Lizenzen. Laut Microsoft Work Trend Index berichten 77% der geschulten Nutzer höhere Produktivität, und Forrester beziffert die Zeitersparnis auf 9 Stunden pro Monat. Ein einmaliges Inhouse-Gruppentraining amortisiert sich dadurch laut Forrester TEI Study in wenigen Wochen."
     },
     {
       name: "Wie lange dauert ein vollständiges Copilot-Trainingsprogramm?",

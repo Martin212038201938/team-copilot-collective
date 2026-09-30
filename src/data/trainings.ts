@@ -64,22 +64,25 @@ export interface Training {
   // Optionales Bild fürs Course-Schema (absolute URL). Fallback: Site-Logo
   // (DEFAULT_COURSE_IMAGE in lib/schema.ts). B6-Rest, 2026-07-22.
   image?: string;
-  // Sichtbarer "ab"-Preis-Störer. Der Preis geht AUCH ins Schema (Offer.price) –
-  // sichtbar und maschinenlesbar bleiben deckungsgleich. Seit 14.08.2026 der einzige
-  // Preis-Mechanismus: Der A/B-Test "Preise auszeichnen" wurde zugunsten von
-  // durchgängiger Preistransparenz beendet (Begründung: ohne konkrete Zahl im
-  // ausgelieferten HTML kann weder Google noch ein LLM die Copilotenschule in
-  // Preis- und Vergleichsantworten überhaupt einsortieren).
+  // Seit 30.09.2026: KEIN sichtbarer Preis-pro-Teilnehmer mehr auf der Seite
+  // (führte bei Kunden zur Fehlannahme, es gäbe buchbare Einzelplätze). Nur noch
+  // für Trainings mit gepflegtem perGroup wird der Gruppenpreis maschinenlesbar
+  // ins Schema (Offer.price) übernommen – rein für Google-/LLM-Sichtbarkeit,
+  // nicht mehr auf der Seite selbst gerendert (siehe TrainingDetail.tsx).
+  // Einzige Ausnahme: Train-the-Trainer, das zusätzlich als offenes Seminar mit
+  // echten Einzelplätzen angeboten wird (siehe pricePerPerson unten).
   visiblePrice?: {
-    perPerson: number;   // "ab"-Preis in EUR
-    perGroup?: number;   // optionaler "ab"-Preis pro geschlossener Gruppe in EUR
+    perPerson: number;   // nur noch als Rechengrundlage, wird NICHT mehr angezeigt
+    perGroup?: number;   // "ab"-Gruppenpreis in EUR – einziger Preis, der noch (nur im Schema) auftaucht
     unitLabel?: string;  // Default "pro Teilnehmer"
     note?: string;       // z.B. "inkl. Zertifikat."
   };
   bookingFormats?: BookingFormat[]; // Varianten für Abschnitt "Formate und Buchungsvarianten" + Schema
-  // Optionaler Preis pro Person (Fließtext-Angabe, z.B. für offene Trainings).
+  // Echter Preis pro Person für Trainings, die (auch) als offenes Seminar mit
+  // buchbaren Einzelplätzen laufen – aktuell nur Train-the-Trainer. Wird als
+  // einzige Ausnahme von der "kein Preis pro Teilnehmer"-Regel angezeigt.
   pricePerPerson?: number;
-  pricePerPersonLabel?: string; // optional: Preisbeschreibung
+  pricePerPersonLabel?: string; // Fließtext-Preisbeschreibung, wird direkt angezeigt
   // Verknüpfte Workshops (Slugs) – werden als optionale Erweiterungsmodule angezeigt
   relatedWorkshops?: string[];
 }
@@ -373,9 +376,6 @@ export const trainings: Training[] = [
   },
   {
     slug: "train-the-trainer-copilot",
-    visiblePrice: {
-      perPerson: 840,
-    },
     icon: Users,
     title: "Train-the-Trainer: Copilot Multiplikatoren ausbilden",
     duration: "2 Tage (2 x 7 Stunden) + bedarfsorientierte Online-Workshops",
@@ -581,9 +581,6 @@ export const trainings: Training[] = [
   },
   {
     slug: "copilot-studio-ki-agenten",
-    visiblePrice: {
-      perPerson: 283,
-    },
     icon: Brain,
     title: "KI-Agenten und Automatisierung mit Microsoft Copilot Studio",
     duration: "1 Tag (7 Stunden)",
@@ -682,11 +679,6 @@ export const trainings: Training[] = [
     level: "Alle Niveaus",
     audienceShort: "Mitarbeitende, die künftig mit KI-Systemen arbeiten sollen (Art. 4 EU AI Act)",
     groupSize: "bis 12 Teilnehmende",
-    visiblePrice: {
-      perPerson: 49,
-      unitLabel: "pro Teilnehmenden",
-      note: "inkl. Zertifikat."
-    },
     certificate: "Schulungsnachweis für Audits und Behördenanfragen",
     bookingFormats: [
       {
