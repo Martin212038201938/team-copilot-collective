@@ -79,8 +79,8 @@ const Hero = () => {
 
           <div className="relative animate-fade-in-delayed-2 mt-8 lg:mt-0">
             <Link
-              to="/trainings"
-              aria-label="Zu unseren Trainings"
+              to="/training-konfigurator"
+              aria-label="Training konfigurieren"
               className="block relative rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 group hover:scale-[1.02]"
             >
               <img
