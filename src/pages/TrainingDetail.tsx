@@ -258,6 +258,27 @@ const TrainingDetail = () => {
           </section>
         )}
 
+        {/* Fachlicher Hintergrund – unpersönlicher Expertise-Text (optional, ohne Namensnennung) */}
+        {training.backgroundExpertise && (
+          <section className="py-16 bg-background">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl">
+                <div className="flex items-center gap-3 mb-8">
+                  <div className="p-2 bg-primary/10 rounded-lg">
+                    <GraduationCap className="w-6 h-6 text-primary" />
+                  </div>
+                  <h2 className="text-3xl font-bold">
+                    Fachlicher Hintergrund
+                  </h2>
+                </div>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  {training.backgroundExpertise}
+                </p>
+              </div>
+            </div>
+          </section>
+        )}
+
         {/* Optionale Erweiterungsmodule (verknüpfte Workshops) */}
         {relatedWorkshops.length > 0 && (
           <section className="py-16 bg-muted/30">

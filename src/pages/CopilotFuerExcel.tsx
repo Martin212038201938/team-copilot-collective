@@ -7,6 +7,7 @@ import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 import { Zap, Linkedin, Twitter } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
+import TrainingCTA from "@/components/TrainingCTA";
 
 const SLUG = "copilot-fuer-excel";
 const PAGE_TITLE = "Microsoft Copilot für Excel: Was die KI in Tabellen wirklich kann";
@@ -520,6 +521,13 @@ const CopilotFuerExcel = () => {
             </CardContent>
           </Card>
         </section>
+
+        <TrainingCTA
+          topic="Copilot in Excel für Rechnungswesen & Controlling"
+          benefit="Arbeiten Sie im Rechnungswesen oder Controlling? Im spezialisierten Workshop geht es direkt um Kontenabstimmung, Soll-Ist-Vergleiche und Berichtswesen – mit echten Finance-Daten."
+          href="/trainings/copilot-excel-rechnungswesen-controlling"
+          label="Zum Finance-Workshop"
+        />
 
         {/* Prompt-Sammlung */}
         <section id="prompt-sammlung" className="mb-6">

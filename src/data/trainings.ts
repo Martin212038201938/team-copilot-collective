@@ -1,4 +1,4 @@
-import { Brain, Shield, Laptop, Zap, Scale, GraduationCap, Wrench, Users } from "lucide-react";
+import { Brain, Shield, Laptop, Zap, Scale, GraduationCap, Wrench, Users, Calculator } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 export type CopilotTier = "free" | "paid";
@@ -21,6 +21,7 @@ export interface BookingFormat {
   workload?: string;    // sichtbarer Umfang, z.B. "2 Stunden pro Woche über 4–6 Wochen"
   description?: string; // 1 Satz Einordnung der Variante
   badge?: string;       // z.B. "Meistverkauft" – auffälliger Störer an der Variantenkarte
+  price?: number;       // Gruppenpreis dieser Variante in EUR – maschinenlesbar als eigenes Offer je CourseInstance (optional, nur wo gepflegt)
 }
 
 export interface TrainingFAQ {
@@ -85,6 +86,12 @@ export interface Training {
   pricePerPersonLabel?: string; // Fließtext-Preisbeschreibung, wird direkt angezeigt
   // Verknüpfte Workshops (Slugs) – werden als optionale Erweiterungsmodule angezeigt
   relatedWorkshops?: string[];
+  // Optionaler fachlicher Hintergrund-Text (bewusst unpersönlich, ohne Namensnennung) –
+  // wird als eigener Abschnitt "Fachlicher Hintergrund" in TrainingDetail gerendert.
+  backgroundExpertise?: string;
+  // Optionale Trainer-Person NUR für strukturierte Daten (schema.org Course.instructor).
+  // Erscheint nicht im sichtbaren Seitentext; überschreibt den Default-Instructor (#martin-lang).
+  instructorPerson?: { name: string; sameAs?: string[] };
 }
 
 // Alle Trainingsmodule mit SEO-optimierten Slugs
@@ -722,6 +729,103 @@ export const trainings: Training[] = [
       {
         question: "Wie dokumentiere ich die KI-Schulung meiner Mitarbeiter für Audits?",
         answer: "Für die Nachweisführung brauchen Sie: Teilnahmebestätigungen pro Mitarbeiter, Dokumentation der Schulungsinhalte (welche KI-Kompetenzen wurden vermittelt), Datum und Dauer der Schulung, und idealerweise eine Anwesenheitsliste. Ein professioneller Schulungsnachweis mit konkreten Lerninhalten erfüllt die Anforderungen und gibt Sicherheit bei Behördenanfragen."
+      }
+    ]
+  },
+  {
+    slug: "copilot-excel-rechnungswesen-controlling",
+    icon: Calculator,
+    isNew: true,
+    title: "Copilot in Excel für Rechnungswesen & Controlling",
+    duration: "Ganztag (8 Stunden)",
+    durationISO: "PT8H",
+    description: "Ein Praxistag für Mitarbeitende aus Rechnungswesen und Controlling, die mit Microsoft 365 Copilot ihre tägliche Arbeit in Excel und im Berichtswesen beschleunigen wollen. Der Workshop bleibt nah an den tatsächlichen Copilot-Funktionen: Formeln und Datenanalyse in Excel, Aufbereitung wiederkehrender Berichte sowie ein erstes eigenes Agenten-Konzept für eine wiederkehrende Aufgabe aus dem Arbeitsalltag. Kein Buchhaltungs- oder Controlling-Grundlagentraining – vorausgesetzt werden die fachlichen Kenntnisse der Teilnehmenden, vermittelt wird der sichere und wirksame Umgang mit Copilot in diesem Umfeld. Unabhängig vom eingesetzten Buchhaltungs- oder ERP-System – ob DATEV, SAP, Lexware, Lexoffice, ABAS, Sage oder ein anderes System: Der Workshop setzt an Excel an, nicht am jeweiligen Vorsystem. Im Kern geht es um Finanzprozesse, die sich mit Microsoft 365 Copilot über mehrere Apps hinweg gestalten lassen – mit Excel als Dreh- und Angelpunkt. Das Schulungskonzept ist modular aufgebaut: Schwerpunkt bleibt Copilot in Excel, auf Wunsch lässt sich ein Modul zum Berichtswesen mit Power BI als regulärer Baustein des Ganztags einbinden, ohne Aufpreis.",
+    features: [
+      "Formeln aus natürlicher Sprache generieren – z. B. für Kontenabstimmung oder Soll-Ist-Vergleiche",
+      "Datenanalyse: Trends und Auffälligkeiten in Buchungs- und Planungsdaten erkennen",
+      "Pivot-Tabellen automatisch erstellen und anpassen",
+      "Die COPILOT()-Funktion: KI-gestützte Auswertung direkt in der Zelle, die sich bei neuen Daten automatisch aktualisiert",
+      "Wiederkehrende Reports (Monats-/Quartalsberichte) mit Copilot vorbereiten",
+      "Soll-Ist-Vergleiche und Abweichungsanalysen aufbereiten",
+      "Diagramme und kurze Management-Zusammenfassungen aus Zahlen erzeugen",
+      "Agent Builder in Microsoft 365 Copilot – No-Code-Einstieg für Fachanwender",
+      "Konzept für einen eigenen Agenten zu einer wiederkehrenden Aufgabe (z. B. Checkliste Monatsabschluss, Erinnerung bei offenen Posten) – Umsetzung optional im Nachgang"
+    ],
+    tiers: ["paid"],
+    questionLead: "Wie nutze ich Microsoft 365 Copilot in Excel und im Berichtswesen für Rechnungswesen und Controlling?",
+    prerequisites: "Microsoft 365 Copilot-Lizenz (Business/Enterprise) für alle Teilnehmenden. Grundkenntnisse in Excel sowie fachliche Kenntnisse in Rechnungswesen/Controlling werden vorausgesetzt und nicht vermittelt.",
+    format: "Live-Online (Microsoft Teams), vor Ort beim Kunden oder bei uns in Köln-Nippes",
+    level: "Fortgeschrittene (mit Lizenz, fachliche Vorkenntnisse vorausgesetzt)",
+    audienceShort: "Mitarbeitende aus Rechnungswesen und Controlling",
+    groupSize: "bis 12 Teilnehmende",
+    certificate: "Personalisiertes Teilnahmezertifikat auf Wunsch",
+    targetAudience: [
+      "Mitarbeitende aus Finanzbuchhaltung, Rechnungswesen und Controlling",
+      "Arbeiten regelmäßig in Excel mit Buchungs-, Planungs- oder Reportingdaten",
+      "Verfügen über eine Microsoft 365 Copilot Lizenz (Business oder Enterprise)"
+    ],
+    learningOutcomes: [
+      "Copilot sicher und compliant mit sensiblen Finanzdaten einsetzen",
+      "Excel-Formeln, Datenanalysen und Pivot-Tabellen per Copilot erstellen und prüfen",
+      "Wiederkehrende Reports und Soll-Ist-Vergleiche mit Copilot vorbereiten",
+      "Das Konzept für einen eigenen Agenten zu einer wiederkehrenden Aufgabe entwickeln"
+    ],
+    backgroundExpertise: "In dieses Training fließt Praxiserfahrung aus Finanzbuchhaltung, Controlling-nahen Aufgaben und eigener Entwicklung von KI-Schulungsinhalten ein: IHK-geprüfte Finanzbuchhalter-Qualifikation und staatlich geprüfte Bilanzbuchhalter-Qualifikation, ingenieurwissenschaftliche und informatische Ausbildung (Diplom-Ingenieurwesen sowie Bachelor in Informatik & Mathematik). Mehrjährige Praxis in der Finanzbuchhaltung mehrerer Unternehmen und Steuerberatungsgesellschaften – unter anderem mit DATEV, SAP, ABAS und weiteren Buchhaltungssystemen, inklusive vorbereitender Jahresabschlussarbeiten, Kontenabstimmung und Mandantenbetreuung. Dazu mehrjährige Erfahrung in Controlling-nahen Aufgaben: Budgetkontrolle, Mittelabstimmung und Unterstützung der Jahresplanung sowie, aus einer früheren Tätigkeit im Einzelhandel, operative Controlling- und Prozesskoordination. Ergänzt durch eine Weiterbildung zur KI-Spezialistin (AI-Engineering mit Python und SQL) und Erfahrung mit Automatisierungswerkzeugen wie Power BI, Zapier und Make. Dieser Hintergrund ist zugleich Grundlage eines vollständigen IHK-Lehrplans zu digitalen und KI-gestützten Büro- und Finanzprozessen – mit eigens erarbeiteten Lektionen zu Microsoft Copilot in Excel, Prompting, Datenschutz, EU AI Act und der Qualitätskontrolle von KI-Ergebnissen.",
+    instructorPerson: {
+      name: "Natalia Fratz",
+      sameAs: ["https://www.linkedin.com/in/natalia-fratz-491b11354/"]
+    },
+    visiblePrice: {
+      perPerson: 267,
+      perGroup: 3200,
+      unitLabel: "pro Teilnehmer",
+      note: "zzgl. Reisekostenpauschale 350 € bei Präsenz beim Kunden"
+    },
+    bookingFormats: [
+      {
+        name: "Ganztag Live-Online (8 Stunden)",
+        modes: ["online"],
+        durationISO: "PT8H",
+        price: 3200,
+        description: "Alle vier Module. Über Microsoft Teams, bis 12 Teilnehmende."
+      },
+      {
+        name: "Ganztag vor Ort beim Kunden (8 Stunden)",
+        modes: ["onsite"],
+        durationISO: "PT8H",
+        price: 3200,
+        description: "Alle vier Module. Inhouse beim Kunden, bis 12 Teilnehmende, zzgl. Reisekostenpauschale."
+      },
+      {
+        name: "Ganztag bei uns in Köln-Nippes (8 Stunden)",
+        modes: ["onsite"],
+        durationISO: "PT8H",
+        price: 3200,
+        description: "Alle vier Module. In unseren eigenen Räumen in Köln-Nippes, bis 12 Teilnehmende."
+      },
+      {
+        name: "Halbtag (4 Stunden)",
+        modes: ["onsite", "online"],
+        durationISO: "PT4H",
+        price: 1950,
+        description: "Kompakte Variante ohne Grundlagenmodul und ohne Agenten-Konzept – nur Copilot in Excel und Berichtswesen. Live-Online, beim Kunden oder bei uns in Köln-Nippes."
+      }
+    ],
+    metaTitle: "Copilot in Excel für Rechnungswesen & Controlling | copilotenschule.de",
+    metaDescription: "Ganztagesworkshop: Microsoft 365 Copilot in Excel für Rechnungswesen & Controlling. Formeln, Datenanalyse, Berichtswesen, eigene Agenten. Online, beim Kunden oder in Köln-Nippes.",
+    keywords: ["Copilot in Excel", "Copilot Excel Schulung", "Copilot Rechnungswesen", "Copilot Controlling", "Microsoft 365 Copilot Buchhaltung", "Copilot DATEV", "Copilot Lexoffice", "Copilot SAP"],
+    faqs: [
+      {
+        question: "Vermittelt der Workshop Buchhaltungs- oder Controlling-Grundlagen?",
+        answer: "Nein. Vorausgesetzt werden die fachlichen Kenntnisse der Teilnehmenden aus Rechnungswesen und Controlling. Vermittelt wird ausschließlich der sichere und wirksame Umgang mit Microsoft 365 Copilot in diesem Arbeitsumfeld."
+      },
+      {
+        question: "Baut der Workshop auf Power BI auf?",
+        answer: "Grundsätzlich nicht – der Schwerpunkt liegt bewusst auf Copilot in Excel: Pivot-Tabellen, Power Query und die Copilot-Funktionen direkt in der Tabelle. Das Schulungskonzept ist aber modular aufgebaut, sodass wir Power BI auf Wunsch gerne als eigenes Modul zum Berichtswesen mit reinnehmen – als Teil des Ganztags, ohne Aufpreis."
+      },
+      {
+        question: "Bauen wir im Workshop einen fertigen, einsatzbereiten Agenten?",
+        answer: "Im Workshop entsteht das Konzept für einen eigenen Agenten zu einer wiederkehrenden Aufgabe aus dem Arbeitsalltag der Teilnehmenden. Die technische Umsetzung erfolgt im Nachgang; eine freiwillige Follow-up-Session für Vorstellung und offene Fragen kann optional ergänzt werden."
       }
     ]
   },

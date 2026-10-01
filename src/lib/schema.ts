@@ -347,9 +347,17 @@ export const generateTrainingDetailSchema = (training: Training) => {
     "provider": {
       "@id": `${BASE_URL}/#organization`
     },
-    "instructor": {
-      "@id": `${BASE_URL}/#martin-lang`
-    },
+    "instructor": training.instructorPerson
+      ? {
+          "@type": "Person",
+          "name": training.instructorPerson.name,
+          ...(training.instructorPerson.sameAs && training.instructorPerson.sameAs.length > 0
+            ? { "sameAs": training.instructorPerson.sameAs }
+            : {})
+        }
+      : {
+          "@id": `${BASE_URL}/#martin-lang`
+        },
     "hasCourseInstance": training.bookingFormats && training.bookingFormats.length > 0
       ? training.bookingFormats.map((variant) => ({
           "@type": "CourseInstance",
@@ -358,6 +366,18 @@ export const generateTrainingDetailSchema = (training: Training) => {
           ...(variant.durationISO ? { "duration": variant.durationISO } : {}),
           ...(variant.workload ? { "courseWorkload": variant.workload } : {}),
           ...(variant.description ? { "description": variant.description } : {}),
+          ...(variant.price
+            ? {
+                "offers": {
+                  "@type": "Offer",
+                  "category": "Paid",
+                  "price": String(variant.price),
+                  "priceCurrency": "EUR",
+                  "availability": "https://schema.org/InStock",
+                  "url": pageUrl
+                }
+              }
+            : {}),
           "inLanguage": "de-DE"
         }))
       : {

@@ -199,6 +199,13 @@ const CopilotInExcelAktivieren = () => {
           </div>
         </section>
 
+        <TrainingCTA
+          topic="Copilot in Excel für Rechnungswesen & Controlling"
+          benefit="Arbeiten Sie im Rechnungswesen oder Controlling? Im spezialisierten Workshop geht es direkt um Kontenabstimmung, Soll-Ist-Vergleiche und Berichtswesen – mit echten Finance-Daten."
+          href="/trainings/copilot-excel-rechnungswesen-controlling"
+          label="Zum Finance-Workshop"
+        />
+
         {/* Schritt-für-Schritt */}
         <section id="schritt-fuer-schritt" className="mb-6 mt-2">
           <h2 className="text-2xl md:text-3xl font-bold mb-3">
