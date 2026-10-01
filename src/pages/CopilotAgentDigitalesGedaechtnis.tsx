@@ -7,6 +7,7 @@ import { getAuthor, getAuthorSchemaMarkup } from "@/data/authors";
 import AuthorBio from "@/components/AuthorBio";
 import HoneypotCTA from "@/components/HoneypotCTA";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
+import TrainingCTA from "@/components/TrainingCTA";
 
 const SLUG = "copilot-agent-digitales-gedaechtnis";
 const PAGE_TITLE = "Copilot Agent für Ihr digitales Gedächtnis: Meeting-Protokolle automatisch erstellen und durchsuchbar machen";
@@ -876,6 +877,13 @@ Ablage:
             ))}
           </div>
         </section>
+
+        <TrainingCTA
+          topic="Eigene Copilot Agenten entwickeln"
+          benefit="Meeting-Protokolle sind nur ein Use Case – im Workshop bauen Sie Copilot-Studio-Agenten für beliebige wiederkehrende Aufgaben in Ihrem Unternehmen."
+          href="/trainings/copilot-studio-ki-agenten"
+          label="Zum Workshop"
+        />
 
               <HoneypotCTA guideId="copilot-grounding-admin-leitfaden" />
 

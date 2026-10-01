@@ -592,7 +592,7 @@ export const trainings: Training[] = [
     title: "KI-Agenten und Automatisierung mit Microsoft Copilot Studio",
     duration: "1 Tag (7 Stunden)",
     durationISO: "PT7H",
-    description: "Fortgeschrittenes Training zur Entwicklung intelligenter KI-Agenten und Automatisierungs-Workflows mit Microsoft Copilot Studio. Sie lernen, wie Sie benutzerdefinierte Copilot-Agenten für spezifische Geschäftsprozesse erstellen, diese mit Unternehmensdaten verbinden und in Microsoft Teams sowie andere Anwendungen integrieren.",
+    description: "Fortgeschrittenes Training zur Entwicklung intelligenter KI-Agenten und Automatisierungs-Workflows mit Microsoft Copilot Studio. Sie lernen, wie Sie benutzerdefinierte Copilot-Agenten für spezifische Geschäftsprozesse erstellen, diese mit Unternehmensdaten verbinden und über Power Automate sowie eigene API-Anbindungen in bestehende Systeme integrieren. Der Workshop geht bewusst über reine Low-Code-Klicks hinaus: Wo Copilot Studio an seine Grenzen stößt, zeigen wir, wie sich Agenten sauber mit externen Schnittstellen, Datenbanken und bestehender Unternehmenssoftware verbinden lassen.",
     features: [
       "Copilot Studio Grundlagen: Plattform-Überblick, Architektur verstehen, Entwicklungsumgebung einrichten",
       "Custom Agents für Microsoft Teams erstellen: Conversational AI entwickeln, Natural Language Processing nutzen",
@@ -600,7 +600,9 @@ export const trainings: Training[] = [
       "Workflow-Automatisierung mit Power Automate: Geschäftsprozesse digitalisieren, Genehmigungsprozesse abbilden",
       "Prompt Engineering für Agenten: Systemanweisungen optimieren, Kontext-Management, Guardrails implementieren",
       "Testing und Deployment: Agenten testen, Performance optimieren, Rollout planen, Monitoring einrichten",
-      "Use Cases aus der Praxis: HR-Assistent, IT-Helpdesk-Agent, Sales-Support-Bot, Onboarding-Assistent"
+      "Use Cases aus der Praxis: HR-Assistent, IT-Helpdesk-Agent, Sales-Support-Bot, Onboarding-Assistent",
+      "Eigene APIs und Schnittstellen anbinden: wo Copilot Studio an Grenzen stößt und wie sich Agenten sauber mit bestehender Unternehmenssoftware verbinden lassen",
+      "Datengetriebene Agenten: Auswertungen und Kennzahlen aus Power BI bzw. strukturierten Daten als Kontext für Agenten nutzen"
     ],
     tiers: ["paid"],
     questionLead: "Wie entwickle ich einen KI-Agenten mit Microsoft Copilot Studio – und welche Geschäftsprozesse kann ich automatisieren?",
@@ -633,7 +635,8 @@ export const trainings: Training[] = [
       "Sie erstellen funktionsfähige Custom Agents mit Microsoft Copilot Studio – von der Konzeption bis zum Deployment",
       "Sie verbinden KI-Agenten mit Ihren Unternehmensdaten: SharePoint, Dataverse, externe APIs",
       "Sie implementieren Guardrails und Testing-Routinen, damit Ihre Agenten zuverlässig und sicher antworten",
-      "Sie beherrschen Workflow-Automatisierung mit Power Automate für komplexe Geschäftsprozesse"
+      "Sie beherrschen Workflow-Automatisierung mit Power Automate für komplexe Geschäftsprozesse",
+      "Sie verstehen, wie sich Copilot-Agenten technisch sauber mit eigenen APIs, Datenbanken und bestehender Unternehmenssoftware verbinden lassen – nicht nur über Standard-Konnektoren"
     ],
     businessImpact: [
       "First-Level-Support wird um 40-60% entlastet durch KI-Agenten, die Standardfragen selbstständig beantworten",
@@ -641,9 +644,14 @@ export const trainings: Training[] = [
       "Wiederkehrende Prozesse (Urlaubsanträge, Onboarding-Fragen, IT-Tickets) laufen automatisiert ab",
       "Die Time-to-Value für neue Automatisierungsprojekte sinkt von Monaten auf Wochen"
     ],
+    backgroundExpertise: "In dieses Training fließt eine Kombination ein, die am Markt selten in einer Person zusammenkommt: tiefe Software-Entwicklungspraxis und offizielle Microsoft-Trainings-Qualifikation. Über sieben Jahre Erfahrung als Full-Stack-Softwareentwickler, unter anderem mit Vue.js, PHP/Symfony und Node.js, bilden das technische Fundament, um Copilot-Studio-Agenten und Power-Automate-Workflows nicht nur zu bedienen, sondern ihre Funktionsweise wirklich zu verstehen. Dazu kommen die offizielle Microsoft-Trainerzulassung (Microsoft Certified Trainer), eine IHK-geprüfte Ausbildereignung (AEVO) für methodisch fundierte Vermittlung sowie eine Zertifizierung als Microsoft Power BI Data Analyst, die zusätzliche analytische Tiefe im Umgang mit Daten und Automatisierungen mitbringt. Ergänzt durch eine Agile-Scrum-Zertifizierung und praktische Projekterfahrung – hilfreich, wenn Automatisierungsvorhaben im Team eingeführt werden sollen. Diese Kombination aus Entwickler-Perspektive und Trainer-Erfahrung erlaubt es, im Training nicht nur zu zeigen, wie man klickt, sondern zu erklären, was im Hintergrund passiert – und wo typische Stolperfallen bei Agenten und Automatisierungen liegen.",
+    instructorPerson: {
+      name: "Jerish George",
+      sameAs: ["https://jerishgeorge.de/"]
+    },
     metaTitle: "Copilot Studio Training – KI-Agenten entwickeln | copilotenschule.de",
     metaDescription: "Entwickeln Sie KI-Agenten mit Microsoft Copilot Studio: Custom Agents, Teams-Integration, Power Automate. Praxis-Training für Unternehmen.",
-    keywords: ["Copilot Studio Training", "KI-Agenten entwickeln", "Microsoft Copilot Agents", "Copilot Automatisierung", "Custom Copilot"],
+    keywords: ["Copilot Studio Training", "KI-Agenten entwickeln", "Microsoft Copilot Agents", "Copilot Automatisierung", "Custom Copilot", "Copilot Agent erstellen", "Power Automate Schulung"],
     faqs: [
       {
         question: "Kann ich einen KI-Assistenten bauen, der auf unsere Firmendaten zugreift?",
@@ -660,6 +668,10 @@ export const trainings: Training[] = [
       {
         question: "Wie stelle ich sicher, dass mein KI-Agent keine falschen Informationen liefert?",
         answer: "Drei Hebel: 1) Gute Datenbasis – der Agent ist nur so gut wie seine Quellen, 2) Guardrails – klare Grenzen setzen, bei welchen Themen der Agent antwortet und wann er an Menschen eskaliert, 3) Testing – systematisch Fragen durchspielen, Edge Cases identifizieren, und kontinuierlich verbessern. Ein gut konfigurierter Agent gibt bei Unsicherheit zu, dass er die Antwort nicht weiß."
+      },
+      {
+        question: "Was unterscheidet diesen Workshop von einem reinen No-Code/Low-Code-Einstieg?",
+        answer: "Copilot Studio ist zwar Low-Code, aber bei komplexeren Integrationen – eigene APIs, Datenbanken, bestehende Unternehmenssoftware – braucht es echtes technisches Verständnis. Der Workshop wird von einem Trainer mit über sieben Jahren eigener Softwareentwicklungserfahrung geleitet und geht deshalb dort in die Tiefe, wo reine Low-Code-Formate an Grenzen stoßen."
       }
     ]
   },

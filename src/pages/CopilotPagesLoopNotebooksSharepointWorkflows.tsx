@@ -6,6 +6,7 @@ import AuthorBio from "@/components/AuthorBio";
 import HoneypotCTA from "@/components/HoneypotCTA";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 import { Link } from "react-router-dom";
+import TrainingCTA from "@/components/TrainingCTA";
 
 const SLUG = "copilot-pages-loop-notebooks-sharepoint-workflows";
 const PAGE_TITLE = "Copilot Pages, Loop, Notebooks, SharePoint: Warum Ihre Workflows ein Update brauchen";
@@ -296,6 +297,13 @@ const CopilotPagesLoopNotebooksSharepointWorkflows = () => {
             ))}
           </div>
         </section>
+        <TrainingCTA
+          topic="Workflows mit Copilot Studio automatisieren"
+          benefit="Pages, Loop und Notebooks organisieren Ihre Arbeit – im Workshop automatisieren Sie ganze Prozesse mit eigenen Copilot-Studio-Agenten und Power Automate."
+          href="/trainings/copilot-studio-ki-agenten"
+          label="Zum Workshop"
+        />
+
               <HoneypotCTA
                 guideIds={[
                   "copilot-grounding-admin-leitfaden",

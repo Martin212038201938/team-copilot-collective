@@ -6,6 +6,7 @@ import AuthorBio from "@/components/AuthorBio";
 import HoneypotCTA from "@/components/HoneypotCTA";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 import { Link } from "react-router-dom";
+import TrainingCTA from "@/components/TrainingCTA";
 
 const SLUG = "copilot-agent-mode-word-excel-powerpoint";
 const PAGE_TITLE = "Copilot Agent Mode in Word, Excel und PowerPoint: Was sich wirklich verändert hat";
@@ -566,6 +567,13 @@ const CopilotAgentModeOffice = () => {
             </ul>
           </div>
         </section>
+
+        <TrainingCTA
+          topic="Vom Agent Mode zum eigenen Copilot Agenten"
+          benefit="Agent Mode zeigt, was in Word, Excel und PowerPoint möglich ist – im Workshop bauen Sie mit Copilot Studio eigene Agenten für Ihre Geschäftsprozesse."
+          href="/trainings/copilot-studio-ki-agenten"
+          label="Zum Workshop"
+        />
 
         {/* Autor */}
         <AuthorBio author={martinLang} />

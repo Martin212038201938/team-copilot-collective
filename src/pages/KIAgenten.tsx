@@ -7,6 +7,7 @@ import AuthorBio from "@/components/AuthorBio";
 import HoneypotCTA from "@/components/HoneypotCTA";
 import { generateSchemaIds, generateWissenBreadcrumbItems } from "@/lib/schema";
 import { Link } from "react-router-dom";
+import TrainingCTA from "@/components/TrainingCTA";
 
 const SLUG = "ki-agenten";
 const PAGE_TITLE = "KI-Agenten";
@@ -824,6 +825,13 @@ const KIAgenten = () => {
             </a>
           </div>
         </section>
+
+        <TrainingCTA
+          topic="KI-Agenten mit Microsoft Copilot Studio bauen"
+          benefit="Vom Konzept zum funktionsfähigen Agenten: Im Praxis-Workshop entwickeln Sie eigene Copilot-Studio-Agenten für echte Geschäftsprozesse."
+          href="/trainings/copilot-studio-ki-agenten"
+          label="Zum Workshop"
+        />
 
         <div className="bg-gradient-to-r from-primary/10 to-accent/10 rounded-xl p-8 text-center my-12">
           <h3 className="text-2xl font-bold mb-4">KI-Agenten für Ihr Unternehmen</h3>
