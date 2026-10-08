@@ -258,7 +258,7 @@ const trainerProfiles = [
 // Guidelines und Checklisten (Gated Downloads / Honeypots) — /guidelines/<slug>
 // lastmod = publishDate des jeweiligen Leitfadens (siehe src/data/guides.ts)
 const guidelinePages = [
-  { loc: '/guidelines',                                        lastmod: '2026-07-27', changefreq: 'monthly', priority: 0.7 },
+  { loc: '/guidelines',                                        lastmod: '2026-10-08', changefreq: 'monthly', priority: 0.7 },
   { loc: '/guidelines/copilot-excel-praxishandbuch',           lastmod: '2026-07-27', changefreq: 'monthly', priority: 0.8 },
   { loc: '/guidelines/copilot-grounding-admin-leitfaden',      lastmod: '2026-07-13', changefreq: 'monthly', priority: 0.8 },
   { loc: '/guidelines/copilot-grounding-management-leitfaden', lastmod: '2026-07-13', changefreq: 'monthly', priority: 0.8 },
@@ -266,6 +266,7 @@ const guidelinePages = [
   { loc: '/guidelines/copilot-einfuehren-management-leitfaden',  lastmod: '2026-07-14', changefreq: 'monthly', priority: 0.8 },
   { loc: '/guidelines/copilot-einfuehren-betriebsrat-leitfaden', lastmod: '2026-07-14', changefreq: 'monthly', priority: 0.8 },
   { loc: '/guidelines/copilot-einfuehren-admin-leitfaden',       lastmod: '2026-07-14', changefreq: 'monthly', priority: 0.8 },
+  { loc: '/guidelines/copilot-datenschutz-bafin-leitfaden',     lastmod: '2026-10-08', changefreq: 'monthly', priority: 0.8 },
   // PDF-Volltexte: bewusst in der Sitemap, damit Suchmaschinen/LLMs den Inhalt crawlen dürfen.
   // Für menschliche Nutzer bleiben sie hinter dem E-Mail-Formular (kein sichtbarer Link vor Absenden).
   { loc: '/downloads/Copilot-Grounding-Admin-Leitfaden.pdf',      lastmod: '2026-07-13', changefreq: 'yearly', priority: 0.5 },
@@ -274,6 +275,7 @@ const guidelinePages = [
   { loc: '/downloads/Copilot-Einfuehrung-Management-Leitfaden.pdf', lastmod: '2026-07-14', changefreq: 'yearly', priority: 0.5 },
   { loc: '/downloads/Copilot-Einfuehrung-Betriebsrat-Leitfaden.pdf', lastmod: '2026-07-14', changefreq: 'yearly', priority: 0.5 },
   { loc: '/downloads/Copilot-Einfuehrung-Admin-Leitfaden.pdf', lastmod: '2026-07-14', changefreq: 'yearly', priority: 0.5 },
+  { loc: '/downloads/Copilot-Datenschutz-BaFin-DSB-Leitfaden.pdf', lastmod: '2026-10-08', changefreq: 'yearly', priority: 0.5 },
 ];
 
 // Alle Seiten zusammenführen

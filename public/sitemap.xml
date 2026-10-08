@@ -3,8 +3,8 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-  <!-- Automatisch generiert am 2026-10-01 -->
-  <!-- 91 URLs insgesamt | lastmod aus echten Update-Daten (articles.ts publishDate, git log) -->
+  <!-- Automatisch generiert am 2026-10-08 -->
+  <!-- 93 URLs insgesamt | lastmod aus echten Update-Daten (articles.ts publishDate, git log) -->
   <url>
     <loc>https://copilotenschule.de/</loc>
     <lastmod>2026-08-10</lastmod>
@@ -13,7 +13,7 @@
   </url>
   <url>
     <loc>https://copilotenschule.de/trainings</loc>
-    <lastmod>2026-09-30</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -367,49 +367,49 @@
   </url>
   <url>
     <loc>https://copilotenschule.de/trainings/copilot-grundlagen-prompt-design</loc>
-    <lastmod>2026-09-30</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://copilotenschule.de/trainings/microsoft-365-copilot-praxis</loc>
-    <lastmod>2026-09-30</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://copilotenschule.de/trainings/ausbildung-ki-wissensarbeiter</loc>
-    <lastmod>2026-09-30</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://copilotenschule.de/trainings/train-the-trainer-copilot</loc>
-    <lastmod>2026-09-30</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://copilotenschule.de/trainings/copilot-studio-ki-agenten</loc>
-    <lastmod>2026-09-30</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://copilotenschule.de/trainings/eu-ai-act-pflichtschulung</loc>
-    <lastmod>2026-09-30</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://copilotenschule.de/trainings/copilot-lernreise-8-wochen</loc>
-    <lastmod>2026-09-30</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://copilotenschule.de/trainings/copilot-excel-rechnungswesen-controlling</loc>
-    <lastmod>2026-09-30</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -469,7 +469,7 @@
   </url>
   <url>
     <loc>https://copilotenschule.de/guidelines</loc>
-    <lastmod>2026-07-27</lastmod>
+    <lastmod>2026-10-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -516,6 +516,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://copilotenschule.de/guidelines/copilot-datenschutz-bafin-leitfaden</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://copilotenschule.de/downloads/Copilot-Grounding-Admin-Leitfaden.pdf</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>yearly</changefreq>
@@ -548,6 +554,12 @@
   <url>
     <loc>https://copilotenschule.de/downloads/Copilot-Einfuehrung-Admin-Leitfaden.pdf</loc>
     <lastmod>2026-07-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://copilotenschule.de/downloads/Copilot-Datenschutz-BaFin-DSB-Leitfaden.pdf</loc>
+    <lastmod>2026-10-08</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
