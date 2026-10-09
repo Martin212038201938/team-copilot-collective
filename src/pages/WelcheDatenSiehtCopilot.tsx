@@ -923,6 +923,7 @@ const WelcheDatenSiehtCopilot = () => {
 
         <HoneypotCTA
           guideIds={[
+            "copilot-datenschutz-leitfaden",
             "copilot-grounding-admin-leitfaden",
             "copilot-grounding-management-leitfaden",
             "copilot-grounding-betriebsrat-leitfaden",

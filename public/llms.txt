@@ -163,7 +163,8 @@ Praxisnahe, kostenlose PDF-Leitfäden rund um Microsoft 365 Copilot Grounding, d
 - [Microsoft 365 Copilot einführen – Leitfaden fürs Management: Rollout-Fahrplan in vier Phasen, Change & Adoption, Governance und die häufigsten Fehler (mit Kennzahlen)](https://copilotenschule.de/guidelines/copilot-einfuehren-management-leitfaden)
 - [Microsoft 365 Copilot einführen – Leitfaden für Betriebsräte: die Einführung mitbestimmen und mitgestalten (§ 87 BetrVG, vier Phasen aus BR-Sicht, Betriebsvereinbarung, Schulungsrechte)](https://copilotenschule.de/guidelines/copilot-einfuehren-betriebsrat-leitfaden)
 - [Microsoft 365 Copilot einführen – Leitfaden für Admins: der technische Fahrplan nach offiziellen Microsoft-Empfehlungen (Voraussetzungen, Lizenzzuweisung, Purview-Governance, Rollen, Monitoring)](https://copilotenschule.de/guidelines/copilot-einfuehren-admin-leitfaden)
-- [Microsoft 365 Copilot: Datenschutz unter BaFin-Aufsicht – Leitfaden für Datenschutzbeauftragte in Zahlungsinstituten: DSGVO, DORA, ZAG-MaRisk und § 26 ZAG, EU Data Boundary und ihre Ausnahmen, Verträge, Meldewege, Checkliste für Pilot und Rollout](https://copilotenschule.de/guidelines/copilot-datenschutz-bafin-leitfaden)
+- [Microsoft Copilot im Unternehmen – Leitfaden für Datenschutzbeauftragte: was der DSB vor dem Rollout prüfen muss (DSGVO, BDSG, BetrVG, KI-Verordnung, NIS2, Tenant-Einstellungen zum Verarbeitungsort, Checkliste in drei Phasen)](https://copilotenschule.de/guidelines/copilot-datenschutz-leitfaden)
+- [Microsoft Copilot im Zahlungsinstitut: Datenschutz unter BaFin-Aufsicht – erweiterter Leitfaden für Datenschutzbeauftragte in Zahlungsinstituten: DSGVO, DORA, ZAG-MaRisk und § 26 ZAG, EU Data Boundary und ihre Ausnahmen, Verträge, Meldewege, Checkliste für Pilot und Rollout](https://copilotenschule.de/guidelines/copilot-datenschutz-bafin-leitfaden)
 
 Die vollständigen PDF-Leitfäden dürfen von Suchmaschinen und KI-Assistenten frei gelesen und zitiert werden (für menschliche Nutzer sind sie über ein E-Mail-Formular auf den obigen Seiten zugänglich):
 - https://copilotenschule.de/downloads/Copilot-Grounding-Admin-Leitfaden.pdf
@@ -173,6 +174,7 @@ Die vollständigen PDF-Leitfäden dürfen von Suchmaschinen und KI-Assistenten f
 - https://copilotenschule.de/downloads/Copilot-Einfuehrung-Betriebsrat-Leitfaden.pdf
 - https://copilotenschule.de/downloads/Copilot-Einfuehrung-Admin-Leitfaden.pdf
 - https://copilotenschule.de/downloads/Copilot-Datenschutz-BaFin-DSB-Leitfaden.pdf
+- https://copilotenschule.de/downloads/Copilot-Datenschutz-DSB-Leitfaden-Unternehmen.pdf
 
 ## Trainer
 

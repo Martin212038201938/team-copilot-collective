@@ -22,6 +22,8 @@ const GuideLandingPage = ({ guideId }: GuideLandingPageProps) => {
   const guide = getGuide(guideId);
   if (!guide) return <NotFound />;
 
+  const crossGuide = guide.crossRef ? getGuide(guide.crossRef.guideId) : undefined;
+
   const author = getAuthor("martin-lang")!;
   const pageUrl = `https://copilotenschule.de/guidelines/${guide.id}`;
 
@@ -104,6 +106,14 @@ const GuideLandingPage = ({ guideId }: GuideLandingPageProps) => {
               <p className="text-sm text-muted-foreground">
                 <span className="font-medium text-foreground">Für:</span> {guide.audience}
               </p>
+              {crossGuide && guide.crossRef && (
+                <p className="mt-4 text-sm text-muted-foreground border-l-2 border-primary/40 pl-3">
+                  {guide.crossRef.text}{" "}
+                  <Link to={`/guidelines/${crossGuide.id}`} className="font-medium text-primary hover:underline">
+                    {crossGuide.shortTitle}
+                  </Link>
+                </p>
+              )}
             </div>
           </div>
         </section>

@@ -122,7 +122,8 @@
       "/guidelines/copilot-einfuehren-management-leitfaden",
       "/guidelines/copilot-einfuehren-betriebsrat-leitfaden",
       "/guidelines/copilot-einfuehren-admin-leitfaden",
-      "/guidelines/copilot-datenschutz-bafin-leitfaden"
+      "/guidelines/copilot-datenschutz-bafin-leitfaden",
+      "/guidelines/copilot-datenschutz-leitfaden"
     ],
     "skipThirdPartyRequests": true,
     "crawl": false

@@ -53,6 +53,11 @@ export interface GuideData {
   status: "available" | "coming-soon";
   /** Hervorgehobene Platzierung auf /guidelines (großes Hero-Panel über dem Grid) */
   featured?: boolean;
+  /** Querverweis auf einen verwandten Leitfaden (Anzeige auf der Landingpage) */
+  crossRef?: {
+    guideId: string;
+    text: string;
+  };
 }
 
 /**
@@ -69,9 +74,76 @@ export const CATEGORY_LABEL = "Guidelines und Checklisten";
 // Alle Guides – neueste zuerst
 export const ALL_GUIDES: GuideData[] = [
   {
+    id: "copilot-datenschutz-leitfaden",
+    shortTitle: "Copilot-Datenschutz: Leitfaden für Datenschutzbeauftragte",
+    title: "Microsoft Copilot im Unternehmen – was der Datenschutzbeauftragte vor dem Rollout prüfen muss",
+    description:
+      "Copilot Chat, Microsoft Copilot und Agenten unter DSGVO, BDSG, BetrVG, KI-Verordnung und NIS2 – mit den Tenant-Einstellungen, die Daten aus der EU führen, und den Nachweisen, die der DSB einfordern sollte.",
+    badge: "Guidelines und Checklisten",
+    icon: "🔒",
+    audience: "Betriebliche Datenschutzbeauftragte im Mittelstand, intern oder extern bestellt, sowie Informationssicherheit, IT-Leitung, Personal, Compliance und Betriebsrat",
+    pdfPath: "/downloads/Copilot-Datenschutz-DSB-Leitfaden-Unternehmen.pdf",
+    fileMeta: "PDF-Leitfaden",
+    pages: 20,
+    bullets: [
+      "Wo die eigentlichen Datenschutzrisiken liegen: zu weite Berechtigungen, Voreinstellungen zum Verarbeitungsort und Beschäftigtendaten",
+      "Drei Produkte, drei Prüfschwerpunkte: Copilot Chat, Microsoft Copilot mit Lizenz und Agenten im Vergleich",
+      "Sechs Tenant-Einstellungen, die Daten aus der EU Data Boundary führen können – einige davon in neuen Tenants standardmäßig aktiv",
+      "Rechtsgrundlagen für Beschäftigtendaten, Mitbestimmung nach § 87 BetrVG und die Frage, wann eine DSFA nötig ist",
+      "Protokollierung, Aufbewahrung und Löschung von Copilot-Interaktionen sowie Auskunftsrechte für Copilot-Verläufe",
+      "KI-Verordnung, KI-MIG und NIS2: Schulungspflichten, Meldefristen von 24 und 72 Stunden und die Stichtage 2026/2027",
+      "Checkliste in drei Phasen: vor dem Pilot, vor dem breiten Rollout und im laufenden Betrieb",
+    ],
+    toc: [
+      "Wichtiger Hinweis / Haftungsausschluss",
+      "Checkliste für Datenschutzbeauftragte",
+      "So lesen Sie die Kapitel",
+      "Teil A · Verstehen, was im Tenant passiert",
+      "1 · Wie Copilot mit Daten umgeht",
+      "2 · Drei Produkte und sechs Einstellungen zum Verarbeitungsort",
+      "Teil B · Datenschutz prüfen",
+      "3 · Rollen, Zwecke und Rechtsgrundlagen",
+      "4 · Berechtigungen: Copilot macht Oversharing sichtbar",
+      "5 · Protokollierung, Aufbewahrung, Löschung",
+      "6 · Folgenabschätzung, Transparenz und Betroffenenrechte",
+      "Teil C · Mitbestimmung, KI-Verordnung, Sicherheit",
+      "7 · Betriebsrat und Beschäftigtendaten",
+      "8 · KI-Verordnung und KI-MIG: was für Betreiber gilt",
+      "9 · NIS2 und Vorfälle: 24 und 72 Stunden",
+      "10 · Agenten und Copilot Studio",
+      "Teil D · Handeln",
+      "11 · Stichtage 2026 und 2027",
+      "12 · Zuständigkeiten und die Fragen, die Sie stellen sollten",
+      "Schulung: Copilot sicher im Unternehmen",
+      "Quellen & Rechtsgrundlagen",
+    ],
+    seo: {
+      metaTitle: "Copilot Datenschutz: Leitfaden für Datenschutzbeauftragte (PDF)",
+      metaDescription:
+        "Kostenloser Leitfaden für Datenschutzbeauftragte: Microsoft Copilot nach DSGVO, BetrVG, KI-Verordnung und NIS2 prüfen – mit Tenant-Einstellungen und Checkliste.",
+      keywords: [
+        "Copilot Datenschutz",
+        "Microsoft Copilot DSGVO",
+        "Copilot Datenschutzbeauftragter",
+        "Copilot DSFA",
+        "Copilot EU Data Boundary",
+        "Copilot Betriebsrat Datenschutz",
+        "Copilot KI-Verordnung",
+        "Copilot NIS2",
+      ],
+    },
+    crossRef: {
+      guideId: "copilot-datenschutz-bafin-leitfaden",
+      text: "Ihr Unternehmen ist ein Zahlungs- oder E-Geld-Institut unter BaFin-Aufsicht? Dann gibt es eine erweiterte Fassung mit DORA, ZAG-MaRisk und § 26 ZAG:",
+    },
+    publishDate: "2026-10-09",
+    lastUpdated: "9. Oktober 2026",
+    status: "available",
+  },
+  {
     id: "copilot-datenschutz-bafin-leitfaden",
     shortTitle: "Copilot-Datenschutz unter BaFin-Aufsicht: Leitfaden für Datenschutzbeauftragte",
-    title: "Microsoft 365 Copilot: Datenschutz unter BaFin-Aufsicht – der Leitfaden für Datenschutzbeauftragte",
+    title: "Microsoft Copilot im Zahlungsinstitut: Datenschutz unter BaFin-Aufsicht – der Leitfaden für Datenschutzbeauftragte",
     description:
       "Was DSGVO, DORA und ZAG verlangen, wenn ein Zahlungsinstitut Copilot, Copilot Chat und Agenten einführt – und welche Einstellungen, Verträge und Nachweise der DSB prüfen sollte.",
     badge: "Guidelines und Checklisten",
@@ -79,7 +151,7 @@ export const ALL_GUIDES: GuideData[] = [
     audience: "Datenschutzbeauftragte in BaFin-beaufsichtigten Zahlungsinstituten (ZAG) sowie IKT-Risikomanagement, Auslagerungsmanagement, Informationssicherheit und Compliance",
     pdfPath: "/downloads/Copilot-Datenschutz-BaFin-DSB-Leitfaden.pdf",
     fileMeta: "PDF-Leitfaden",
-    pages: 27,
+    pages: 26,
     bullets: [
       "Warum Copilot im Zahlungsinstitut zweierlei ist: eine Verarbeitung personenbezogener Daten nach DSGVO und ein IKT-Asset mit IKT-Dienstleister nach DORA",
       "Das Aufsichtsrecht für den DSB sortiert: DORA, ZAG-MaRisk, § 26 ZAG und was nach dem Ende der ZAIT noch gilt",
@@ -132,8 +204,12 @@ export const ALL_GUIDES: GuideData[] = [
         "Copilot EU Data Boundary",
       ],
     },
+    crossRef: {
+      guideId: "copilot-datenschutz-leitfaden",
+      text: "Kein Finanzinstitut? Für Unternehmen ohne Branchenaufsicht gibt es den allgemeinen Leitfaden für Datenschutzbeauftragte mit DSGVO, BetrVG, KI-Verordnung und NIS2:",
+    },
     publishDate: "2026-10-08",
-    lastUpdated: "8. Oktober 2026",
+    lastUpdated: "9. Oktober 2026",
     status: "available",
   },
   {

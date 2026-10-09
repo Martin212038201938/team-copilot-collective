@@ -418,6 +418,7 @@ const CopilotSicherheit = () => {
 
               <HoneypotCTA
                 guideIds={[
+                  "copilot-datenschutz-leitfaden",
                   "copilot-grounding-admin-leitfaden",
                   "copilot-einfuehren-admin-leitfaden",
                   "copilot-grounding-management-leitfaden",
