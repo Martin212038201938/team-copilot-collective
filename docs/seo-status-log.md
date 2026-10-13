@@ -8,6 +8,54 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 
 ## Logs
 
+### 2026-10-12 — Wöchentlicher Audit (Cron)
+
+**Phase:** Phase 3 — Content-Block (aktiv, kein Wechsel). Phase 4 (Off-Page) parallel offen.
+**SSR-Audit:** ✅ 67 / 🟡 0 / 🔴 0 (von 67), via recheck.sh (audit-live.sh weiter nicht im Mount), Snapshot 2026-10-12
+- Neu in 🔴/✅: keine (alle 67 seit Wochen grün, Regressions-Wächter still)
+
+**GSC Indexierung (Basis: eingereichte Seiten ohne 6 Gated-PDFs):** 75/85 = **88,2 %** (+0,1 pp ggü. 05.10. 74/84; indexiert 74→75 = +1)
+- Nicht indexiert: gefunden 10 | gecrawlt 6 (A6-Summe 16, Δ zur Vorwoche 0)
+- Kontext „Alle bekannten Seiten" (KEIN KPI): 75 indexiert / 30 nicht (Gecrawlt 9, Weiterleitung **10 stabil**, robots 1, Gefunden 10, kanonisch 0) → keine neue Redirect-Quelle
+- GSC live via internem Browser (`authuser=1`); Index-Bericht-Crawlachse bis ~24.09.
+
+**GSC Leistung:** Klicks **2.240**/3M (−20, flat W/W), Impressionen **198.000** (+2.000), CTR 1,1 %, Pos. **7,9** (von 8,0 → **neue Bestposition je**). Top-Klick-Bringer: copilot in excel aktivieren 89, excel copilot aktivieren 27, copilotenschule 21, copilot excel aktivieren 19, copilot kosten 15.
+
+**AlwaysData:** Okt MTD (Tag 12) **7.614** (−62,98 % vs. Sep = MTD-Artefakt; Pace ~19,7k). **September final 20.570**. **YTD 113.664**. (24h-Einzelwert diesen Lauf n.v. — AlwaysData-Analytics nur Monatsansicht erreichbar.)
+
+**Traffic-Mix (Clarity, Kanal 7T):** OrganicSearch **400** (+21 % vs. 330 W/W) | PaidSearch **43** (Google-cpc + Bing-Ads kombiniert, in Clarity ohne gclid/msclkid nicht trennbar; Vorwoche 71) | Outbound (email) **~0** (kein sml_*/email-Kanal) | AIPlatform/LLM **3** | Direct 50 | Referral 42 | Other 199
+- ⚠️ Ads-Dashboards diesen Lauf nicht zugänglich (Microsoft-Advertising-Login abgelaufen) → PaidSearch 43 nicht nach Google/Bing auflösbar; **Geld fließt (43 Sess./7T), Spend/Conv. nicht lesbar**. Zielseiten-Drift pro Paid-Segment nicht sauber segmentierbar; Top-Pages gesamt Startseite + /trainings + /wissen-Cluster.
+
+**Bing Ads (MTD, Microsoft Advertising):** **[ÜBERNOMMEN aus 22.09.]** 28,16 € / 8 Kl. / 282 Impr. / CTR 2,84 % / CPC 3,52 € / 0 Conv. (UET-Status: **defekt**). Interner Browser nicht eingeloggt (Google-Account-Chooser, alle Konten abgemeldet) → Werte übernommen.
+
+**Clarity Standard (3T, via API, 1 Call):**
+- Sessions: **142** (davon 90 Bots, 133 Unique Users) — kleines 3-Tage-Fenster, hoher Bot-Anteil = Rauschen
+- Scrolltiefe: 40,53 %, Aktive Zeit: 135 s
+- **Dead-Click: 9,86 %** (unter 10-%-Schwelle; 7T-Dashboard 13,18 %/95 Sess.) | Rage-Click: 0,7 % | Quick-Back: 2,82 % | Excessive-Scroll: 0 %
+- Top-Browser (3T): Edge 71 | Chrome 24 | MobileSafari 22 | Firefox 13 — (7T-Dashboard: **Edge 46,88 %** / Chrome 30,93 % / MobileSafari 8,46 % → B2B-Signal bestätigt)
+- Top-3-Pages (3T): Startseite | /trainings | /wissen/copilot-tipps-tricks-produktivitaet
+- Top-3-Referrer (3T): google.com 62 | bing.com 28 | copilotenschule.de 7
+
+**Clarity Conversion-Events (7T, via Dashboard):**
+- contact_form_submit / trainer_application_submit / konfigurator_submit / mail_click / phone_click / pdf_download: **0 / 2 / 2 / 0 / 1 / 15**
+- Smart-Events gesamt: Formular absenden 17, pdf_download 15, Herunterladen 14, lead 13, Ausgehender Klick 8, danke_page_view 6, Kontaktieren Sie uns 4, Zitat anfordern 2, booking_click 2, konfigurator_submit 2, trainer_application_submit 2, phone_click 1, **angebot_bruecke_click 1** (CTA-Brücke feuert)
+- content_cta_click: 0/7T | sml_*: 0 (Outbound aus)
+- Conversion-Rate gesamt: direkte Kontakt-/Lead-Conv. ≈ (Formular 17 + Kontaktieren 4 + lead 13 + danke 6) = 40/721 = **~5,5 %** — deutlich über Vorwoche (~3,5 %); **kein 7e-Defekt** (kein Event ≥3→0; Formular 5→17, lead 3→13, pdf_download 3→15 alle gestiegen)
+- **Funnel „Lead-Reise" weiter 0 % E2E:** Stufe 1 330 (45,77 %) → Stufe 2 Angebot 3 (0,91 %) → Stufe 3 0
+- CWV (7T-Dashboard): Score **86/100**, LCP 2,4 s gut, **INP 190 ms gut** (von 220 ms gelb → verbessert), CLS 0 gut
+
+**Insights heute:** Patterns 0 | Issues 1 (Dead-Click 7T-Dashboard 13,18 % ≥ 10 % — bekanntes organisches ArticlePopup-Zickzack, API-3T 9,86 % unter Schwelle, Rage niedrig, Fix-Draft seit 17.06. unverpusst) | Trends 0 (Organik +21 % W/W unter 25-%-Schwelle; Conv-Rate-Sprung ~3,5 %→~5,5 % positiv, aber 1-Wochen-Fenster → beobachten)
+**Folge-Crons angelegt:** keine
+**Goldene Pages (GSC×Clarity, organic):** microsoft-copilot-lizenzen, copilot-in-excel-aktivieren, claude-in-microsoft-copilot
+**Protected Pages:** alle OK (5/5 = 200: copilot-roi-berechnen, copilot-training-schulung, copilot-im-unternehmen-einfuehren-leitfaden, microsoft-copilot-lizenzen, ki-schulung-mitarbeiter-pflicht)
+**Entscheidung gemäß Plan:** Phase 3 aktiv, DoD **4/8** unverändert. SSR-Regressions-Wächter still (0 🔴). A6 Summe 16 flat, indexiert +1 → leichter Fortschritt, Quote 88,2 % weiter an 90-%-Schwelle (Restweg inhaltlich; Draft `index-coverage-interne-verlinkung-2026-06-16.md` bleibt Hebel). Dead-Click bekannter organischer Flag, kein Push/Cron. Conversion-Sprung positiv, nicht aktionspflichtig. Engpass unverändert = Backlog user-gebundener Aktionen.
+**API-Calls heute:** 1/10 dieser Lauf (Clarity-Script-Tageszähler stand bei 5/10)
+**Teams-Post:** ✗ HTTP 401 (`DirectApiAuthorizationRequired` — „The OAuth authorization scheme is required"). Webhook-URL ist jetzt in `.env` gesetzt, aber vom abgekündigten Office-365-Connector-Typ → Microsoft verlangt die **Workflows-App-Variante** („Beim Empfang einer Webhook-Anfrage in einem Kanal posten"). Reporting-Versand weiter blockiert (seit 03.08. = **70 Tage**). Audit vollständig durchgelaufen, nur Versand fehlt.
+**Offene User-Handlung:** (1) **Bing-Ads-UET-Conversion-Tracking fixen** (defekt seit 22.09. → „0 Conv." nicht interpretierbar). (2) **Microsoft-Advertising-Login im internen Browser erneuern** (Session abgelaufen → Spend/Klicks/Conv. nicht lesbar, Clarity zeigt aber PaidSearch 43/7T = aktives Paid-Budget blind). (3) **Teams-Webhook als Workflows-Webhook neu anlegen** (gesetzte URL ist falscher Connector-Typ → 401).
+**Nächster Lauf:** Mo 19.10.2026, 10:00
+
+---
+
 ### 2026-10-07 — Phase-Conductor-Lauf (Cron)
 
 **Schritt-0-Guard:** Heute = Tag 07, Mittwoch (Wochentag 3) → **1. Mittwoch** (Fenster 01.–07.). Guard bestanden, Conductor regulär gelaufen. (Cron `0 11 * * 3` feuert jeden Mittwoch; 1.-+-3.-Mittwoch-Beschränkung liegt im Prompt-Guard. 14.10. wäre 2. Mittwoch, 21.10. 3. Mittwoch → nächster Conductor regulär 21.10.)

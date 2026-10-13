@@ -7,6 +7,7 @@ import { Upload, FileText, Linkedin, Globe, X, Calendar } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { trackConversion, markConvertedSession } from "@/lib/analytics";
+import { FESTANSTELLUNG_AKTIV } from "@/data/featureFlags";
 
 const TrainerContactForm = () => {
   const { toast } = useToast();
@@ -168,7 +169,9 @@ const TrainerContactForm = () => {
               <option value="">Bitte wählen...</option>
               <option value="praktiker">KI-Praktiker ohne Trainer-Erfahrung</option>
               <option value="trainer">Erfahrener KI-Trainer (Freelance)</option>
-              <option value="festanstellung">Festanstellung als KI-Trainer</option>
+              {FESTANSTELLUNG_AKTIV && (
+                <option value="festanstellung">Festanstellung als KI-Trainer</option>
+              )}
             </select>
           </div>
 

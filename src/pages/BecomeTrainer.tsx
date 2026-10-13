@@ -6,8 +6,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { GraduationCap, Briefcase, Building2, Check, ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
+import { FESTANSTELLUNG_AKTIV } from "@/data/featureFlags";
 
-const trainerPaths = [
+const allTrainerPaths = [
   {
     id: "praktiker",
     icon: GraduationCap,
@@ -61,6 +62,10 @@ const trainerPaths = [
   }
 ];
 
+const trainerPaths = allTrainerPaths.filter(
+  (path) => FESTANSTELLUNG_AKTIV || path.id !== "festanstellung"
+);
+
 const BecomeTrainer = () => {
   const [showJobDescription, setShowJobDescription] = useState(false);
 
@@ -73,7 +78,7 @@ const BecomeTrainer = () => {
     <div className="min-h-screen">
       <SEOHead
         title="Trainer werden bei der Copilotenschule"
-        description="Werden Sie Teil unseres Trainer-Netzwerks für Microsoft Copilot Schulungen. Drei Wege zum Trainer: KI-Praktiker, erfahrene Trainer oder Unternehmen."
+        description="Werden Sie Copilot-Trainer bei der Copilotenschule: als KI-Praktiker mit kostenfreier Ausbildung oder als erfahrener Freelance-Trainer."
         canonicalUrl="https://copilotenschule.de/trainer-werden"
       />
       <Header />
@@ -104,14 +109,14 @@ const BecomeTrainer = () => {
           <div className="container mx-auto px-4 relative z-10">
             <div className="text-center mb-16 animate-fade-in">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Drei Wege zu uns
+                {FESTANSTELLUNG_AKTIV ? "Drei Wege zu uns" : "Zwei Wege zu uns"}
               </h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
                 Wählen Sie den Weg, der zu Ihrer aktuellen Situation und Ihren Zielen passt
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-8 mb-16">
+            <div className={`grid gap-8 mb-16 ${FESTANSTELLUNG_AKTIV ? "md:grid-cols-3" : "md:grid-cols-2 max-w-5xl mx-auto"}`}>
               {trainerPaths.map((path, index) => {
                 const Icon = path.icon;
                 return (
@@ -252,7 +257,7 @@ const BecomeTrainer = () => {
         </section>
 
         {/* Job Description Section for Festanstellung - Collapsible */}
-        {showJobDescription && (
+        {FESTANSTELLUNG_AKTIV && showJobDescription && (
           <section className="py-20 bg-muted/30">
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto">
