@@ -8,6 +8,81 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 
 ## Logs
 
+### 2026-10-21 — Phase-Conductor-Lauf (Cron)
+
+**Schritt-0-Guard:** Heute = Tag 21, Mittwoch (Wochentag 3) → **3. Mittwoch** (Fenster 15.–21.). Guard bestanden, Conductor regulär gelaufen. (07.10. war der 1. Mittwoch; 14.10. = 2. Mittwoch vom Guard abgebrochen, Monatsreview lief separat; 28.10. = 4. Mittwoch wird abgebrochen → nächster Conductor regulär Mi 04.11.)
+
+**Aktive Phase:** Phase 3 — Content-Block (aktiv seit 01.06., kein Wechsel; Phase 4 Off-Page parallel offen)
+**Nächste Maßnahme:** A6 Index-Coverage — bewusst cron-los (Links live seit `e5902c8`, Weekly-Audit trackt Coverage wöchentlich). Indexierung zuletzt **88,2 %** (75/85, A6-Summe nicht-indexiert 16, Δ 0 — Weekly-Audit 19.10.), weiter an der 90-%-Schwelle; Restweg rein inhaltlich (~1 Seite). Danach in der Tabelle folgend: B3b/B3c (⏳ Entwurf, user-gebunden), C1/C4 (⏳, user-gebunden), D1–D5 (🔵 offen, user-gebunden).
+**Definition of Done:** **4 von 8** erfüllt (unverändert) — fest: #2 SSR 🔴=0, #4 GEO 82 + LLM-Traffic; wahrscheinlich: #5 ≥5 Klick-URLs, #6 Wettbewerbs-Platz-1. Offen: #1 Indexierung ~88,2 % (an Schwelle), #3 SEO-Score 42 (C1-Blocker), #7 Listicle (Drafts, nicht versendet), #8 ProvenExpert (nicht angelegt).
+**Risiko-Status:** **gelb** (unverändert)
+**Aktion in diesem Lauf:** **keine** (kein neuer Cron)
+
+**5 Status-Fragen:**
+1. **Aktive Phase:** Phase 3 (Content-Block), Phase 4 parallel offen — passt zum Plan. Kein Phasen-Wechsel: Exit-Kriterium „B3a+B3b+B3c live" nicht erfüllt (B3a live, B3b/B3c = Drafts, user-gebunden) → Plan-Regel „B3a live, B3b/B3c offen → Tempo OK, weiter".
+2. **Nächste konkrete Maßnahme:** A6 (kleinste offene Code-Nummer), wirkt weiter messbar über die interne Verlinkung.
+3. **Aktiver Cron für A6?** Nein — bewusst cron-los. Weekly-Audit trackt A6-Coverage wöchentlich; Links sind gebaut+gepusht+live. Ein Ersatz-Cron wäre Redundanz (Doktrin seit 05.08./26.08./02.09./16.09./07.10.).
+4. **Vorbedingung A6 erfüllt?** Ja — Links live seit `e5902c8`; Restarbeit = passives Google-Indexieren der letzten ~1 technisch sauberen Seite (kein Cron erzwingt das) + user-gebundener Backlog.
+5. **>14 Tage „🔵 offen" ohne Cron:** D1–D5 (ProvenExpert, DACH-Verzeichnisse, Listicle-Outreach, IHK, Yellow-Boat-Gastartikel). Alle **user-gebunden/off-repo** (Account-Anlage mit Captcha, Outreach-Versand, externe Verzeichnis-Einreichung). Kein Automatisierungs-Loch → kein Sicherheitsnetz-Cron; ein Draft-Cron würde nur den bestehenden, unbearbeiteten Backlog aufblähen (D2/D3/D4-Drafts existieren bereits, D5 ohne Draft bleibt Kandidat, solange Backlog nicht abgearbeitet ist).
+
+**Risiko-Check (Schritt 4):** Keine neuen roten Flags. Fortbestehend & >7 Tage, aber allesamt user-gebunden und bereits vom Weekly-Audit/Monatsreview eskaliert (hier nur gespiegelt, keine Doppel-Eskalation): Teams-Webhook „Marketing und SEA" HTTP 401 seit 03.08. (= **79 Tage**, gesetzte URL ist falscher Connector-Typ → Workflows-Webhook nötig), Bing-Ads-UET-Conversion-Tracking defekt seit 22.09. (= 29 Tage) + Microsoft-Advertising-Login im internen Browser abgelaufen (PaidSearch 27/7T = aktives Paid-Budget blind, Werte wöchentlich übernommen), Dead-Click am oberen Rand des bekannten organischen ArticlePopup-Zickzacks (19.10.: 13,14 % 7T-Dashboard / 10,92 % API-3T — Rage 0, kein neuer Treiber/Issue), A6-Summe nicht-indexiert stagniert >3 Wochen bei 16 (Weekly-Audit-Issue + Draft-Hinweis), Lizenz-Snippet-Fix-Draft (seit 12.08.) + ArticlePopup-Fix-Draft (seit 17.06.) unverpusst. Kein ⚠️ im Conductor-Verantwortungsbereich (nur Doku/Drafts, kein Push).
+
+**Engpass (unverändert):** Kein Cron-/Automatisierungs-Loch, sondern ein **Backlog user-gebundener Aktionen** — Bing-Ads-UET-Fix + Microsoft-Advertising-Login, C4/C1-Push+Setup, D1–D4-Outreach/Account, B3b/B3c-Freigaben (AZAV-Klärung, Kunden-Case-/Preis-Freigabe), Protected-Page-CTR-/Snippet-Push, Teams-Webhook-Reauth. Der Conductor kann diese regelkonform nicht selbst ausführen. Alle bereits in Weekly-Audit/Monatsreview gespiegelt → keine separate Notification (Schritt-6-Regel: Antwort auf „Brauche ich etwas vom User?" = nein → keine Notification).
+
+**Scheduler-Check:** Aktive SEO-Crons bestätigt enabled: Weekly-Audit (Mo 10:00, letzter Lauf 19.10. ✅), Monthly-Review (Mi 10:30 / 2.-Mi-Guard, ✅), Phase-Conductor (Mi 11:00 / 1.+3.-Mi-Guard, dieser Lauf), Daily-Health-Check (tgl. 09:45, letzter Lauf 21.10. ✅). Keine verwaisten Maßnahmen-Crons (A6-Recheck + Draft-Crons planmäßig gelaufen + selbst-deaktiviert, in der Trigger-Liste als fired/hidden). Kein Sicherheitsnetz-Cron nötig.
+
+**Nächster Conductor-Lauf (regulär):** Mi 04.11.2026 (1. Mittwoch). Der 28.10. (4. Mittwoch) wird vom Schritt-0-Guard abgebrochen.
+
+---
+
+### 2026-10-19 — Wöchentlicher Audit (Cron)
+
+**Phase:** Phase 3 — Content-Block (aktiv, kein Wechsel). Phase 4 (Off-Page) parallel offen.
+**SSR-Audit:** ✅ 67 / 🟡 0 / 🔴 0 (von 67), via recheck.sh (audit-live.sh weiter nicht im Mount), Snapshot 2026-10-19
+- Neu in 🔴/✅: keine (alle 67 seit Wochen grün, Regressions-Wächter still)
+
+**GSC Indexierung (Basis: eingereichte Seiten ohne 6 Gated-PDFs):** 75/85 = **88,2 %** (unverändert ggü. 12.10.; indexiert 75, A6-Summe 16)
+- Nicht indexiert: gefunden 10 | gecrawlt 6 (A6-Summe 16, Δ zur Vorwoche 0)
+- Kontext „Alle bekannten Seiten" (KEIN KPI): 75 indexiert / 30 nicht (Gecrawlt 9, Weiterleitung **10 stabil**, robots 1, Gefunden 10, kanonisch 0) → keine neue Redirect-Quelle
+- GSC live via internem Browser (`authuser=1`); Index-Bericht-Crawlachse bis ~28.09.
+
+**GSC Leistung:** Klicks **2.270**/3M (+30, flat W/W), Impressionen **202.000** (+4.000), CTR 1,1 %, Pos. **7,9** (Bestposition je gehalten). Top-Klick-Bringer: copilot in excel aktivieren 88, excel copilot aktivieren 29, copilotenschule 24, copilot excel aktivieren 19, copilot kosten 15.
+
+**AlwaysData:** Okt MTD (Tag 19) **12.268** (−40,36 % vs. Sep = MTD-Artefakt; Pace ~20,0k). **September final 20.570**. **YTD 118.318**. (24h-Einzelwert n.v. — AlwaysData-Analytics nur Monatsansicht erreichbar.)
+
+**Traffic-Mix (Clarity, Kanal 7T):** OrganicSearch **392** (−2 % vs. 400 W/W) | PaidSearch **27** (Google-cpc + Bing-Ads kombiniert, in Clarity ohne gclid/msclkid nicht trennbar; Vorwoche 43) | Outbound (email) **~0** (kein sml_*/email-Kanal) | AIPlatform/LLM **6** | Direct 27 | Referral 33 | Other 131
+- ⚠️ Microsoft-Advertising-Login im internen Browser abgelaufen (Google-Account-Chooser, alle Konten abgemeldet) → PaidSearch 27 nicht nach Google/Bing auflösbar; **Budget fließt (27 Sess./7T), Spend/Conv. nicht lesbar**. Zielseiten-Drift pro Paid-Segment nicht sauber segmentierbar; Top-Pages gesamt Startseite + /trainings + /wissen-Cluster.
+
+**Bing Ads (MTD, Microsoft Advertising):** **[ÜBERNOMMEN aus 22.09.]** 28,16 € / 8 Kl. / 282 Impr. / CTR 2,84 % / CPC 3,52 € / 0 Conv. (UET-Status: **defekt**). Interner Browser nicht eingeloggt (Google-Account-Chooser, alle Konten abgemeldet) → Werte übernommen.
+
+**Clarity Standard (3T, via API, 1 Call):**
+- Sessions: **119** (davon 43 Bots, 115 Unique Users) — kleines 3-Tage-Fenster, hoher Bot-Anteil = Rauschen
+- Scrolltiefe: 36,08 %, Aktive Zeit: 103 s
+- **Dead-Click: 10,92 %** (über 10-%-Schwelle; 7T-Dashboard **13,14 %/80 Sess.**) | Rage-Click: 0 % | Quick-Back: 1,68 % | Excessive-Scroll: 0 %
+- Top-Browser (3T): Chrome 39 | Edge 37 | MobileSafari 13 | Safari 9 | ChromeMobile 8 | Firefox 6 — (7T-Dashboard: **Edge 42,86 %** / Chrome 33,66 % / MobileSafari 8,05 % → B2B-Signal bestätigt)
+- Top-3-Pages (3T): /wissen/microsoft-copilot-lizenzen 19 | Startseite 16 | /wissen/claude-in-microsoft-copilot 12
+- Top-3-Referrer (3T): google.com 78 | bing.com 8 | duckduckgo 1
+- CWV: diesen Lauf nicht separat gezogen (zuletzt 12.10.: Score 86/100, LCP 2,4 s gut, INP 190 ms gut)
+
+**Clarity Conversion-Events (7T, via Dashboard):**
+- contact_form_submit / trainer_application_submit / konfigurator_submit / mail_click / phone_click / pdf_download: **2 / 1 / 2 / 0 / 1 / 5**
+- Smart-Events gesamt: danke_page_view 12, Kontaktieren Sie uns 10, Formular absenden 9, Ausgehender Klick 8, Herunterladen 5, pdf_download 5, booking_click 5, lead 3, Zitat anfordern 2, konfigurator_submit 2, contact_form_submit 2, phone_click 1, trainer_application_submit 1
+- content_cta_click / angebot_bruecke_click: **0/7T** (CTA-Brücke feuert diese Woche nicht — Funnel-Bremse hält an) | sml_*: 0 (Outbound aus)
+- Conversion-Rate gesamt: direkte Kontakt-/Lead-Conv. ≈ (Formular 9 + Kontaktieren 10 + lead 3 + danke 12) = 34/609 = **~5,6 %** — stabil hoch (Vorwoche ~5,5 %); **kein 7e-Defekt** (kein Event ≥3→0; contact_form_submit 0→2 gestiegen)
+- **Funnel „Lead-Reise" weiter 0 % E2E:** Stufe 1 349 (57,31 %) → Stufe 2 Angebot 3 (0,86 %) → Stufe 3 0
+
+**Insights heute:** Patterns 0 | Issues 2 (1. Dead-Click 7T-Dashboard 13,14 % / API-3T 10,92 % ≥ 10 % — bekanntes organisches ArticlePopup-Zickzack, Rage 0, Fix-Draft seit 17.06. unverpusst; 2. **A6-Summe nicht-indexiert stagniert >3 Wochen bei 16** → Hinweis auf `docs/drafts/index-coverage-interne-verlinkung-2026-06-16.md`, additive Verlinkung nachschärfen, kein Push) | Trends 0 (Organic 400→392 flat; Edge 46,9 %→42,9 % −4 pp, unter 20-pp-Schwelle)
+**Folge-Crons angelegt:** keine (7a: keine Page ≥5 % Conv/≥50 Sess 3T; 7b: keine Page ≥100 Sess/3T mit <0,5 %; Dead-Click- + A6-Draft existieren bereits → Conductor-Doktrin gegen Redundanz)
+**Goldene Pages (GSC×Clarity, organic):** microsoft-copilot-lizenzen, claude-in-microsoft-copilot — ungenutztes Potential: copilot-in-excel-aktivieren (GSC-Top-Query 88 Kl., diese Woche nicht in Clarity-Top-3T-Pages)
+**Protected Pages:** alle OK (5/5 = 200: copilot-roi-berechnen, copilot-training-schulung, copilot-im-unternehmen-einfuehren-leitfaden, microsoft-copilot-lizenzen, ki-schulung-mitarbeiter-pflicht)
+**Entscheidung gemäß Plan:** Phase 3 aktiv, DoD **4/8** unverändert. SSR-Regressions-Wächter still (0 🔴). A6 Quote 88,2 % weiter an 90-%-Schwelle, Summe 16 stagniert >3 Wochen → Issue + Draft-Hinweis (additiv, kein Push, kein neuer Cron — Draft existiert). Dead-Click bekannter organischer Flag. Organik-Bestposition 7,9 + Conv-Rate ~5,6 % gesund → nicht aktionspflichtig. Engpass unverändert = Backlog user-gebundener Aktionen.
+**API-Calls heute:** 1/10 dieser Lauf (Clarity-Script-Tageszähler stand bei 1/10)
+**Teams-Post:** ✗ HTTP 401 (`DirectApiAuthorizationRequired` — „The OAuth authorization scheme is required"). Gesetzte Webhook-URL ist vom abgekündigten Office-365-Connector-Typ → Microsoft verlangt die **Workflows-App-Variante** („Beim Empfang einer Webhook-Anfrage in einem Kanal posten"). Reporting-Versand weiter blockiert (seit 03.08. = **77 Tage**). Audit vollständig durchgelaufen, nur Versand fehlt.
+**Offene User-Handlung:** (1) **Bing-Ads-UET-Conversion-Tracking fixen** (defekt seit 22.09. → „0 Conv." nicht interpretierbar). (2) **Microsoft-Advertising-Login im internen Browser erneuern** (Session abgelaufen → Spend/Klicks/Conv. nicht lesbar, Clarity zeigt PaidSearch 27/7T = aktives Paid-Budget blind). (3) **Teams-Webhook als Workflows-Webhook neu anlegen** (gesetzte URL ist falscher Connector-Typ → 401, seit 03.08. = 77 Tage).
+**Nächster Lauf:** Mo 26.10.2026, 10:00
+
+---
+
 ### 2026-10-12 — Wöchentlicher Audit (Cron)
 
 **Phase:** Phase 3 — Content-Block (aktiv, kein Wechsel). Phase 4 (Off-Page) parallel offen.
