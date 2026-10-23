@@ -26,16 +26,13 @@ import {
   CheckCircle2,
   ArrowRight,
   Users,
-  GraduationCap,
   TrendingUp,
   Package,
   Layers,
-  HelpCircle,
   Calendar as CalendarIcon,
   MessageSquare,
   Sparkles,
   Linkedin,
-  Award,
 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -80,7 +77,6 @@ const WorkshopDetail = () => {
     return <Navigate to="/workshops" replace />;
   }
 
-  const Icon = workshop.icon;
   const typeLabel = WORKSHOP_TYPE_LABELS[workshop.type];
   const ctaLabel = TYPE_CTA_LABEL[workshop.type];
 
@@ -157,14 +153,9 @@ const WorkshopDetail = () => {
               </div>
 
               {/* H1 */}
-              <div className="flex items-start gap-4 mb-4">
-                <div className="hidden md:flex p-3 bg-primary/10 rounded-xl flex-shrink-0">
-                  <Icon className="w-8 h-8 text-primary" />
-                </div>
-                <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
-                  {workshop.title}
-                </h1>
-              </div>
+              <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
+                {workshop.title}
+              </h1>
 
               {/* Claim / Subtitle */}
               {workshop.subtitle && (
@@ -212,14 +203,9 @@ const WorkshopDetail = () => {
           <section className="py-16 bg-background">
             <div className="container mx-auto px-4">
               <div className="max-w-4xl">
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="p-2 bg-primary/10 rounded-lg">
-                    <Layers className="w-6 h-6 text-primary" />
-                  </div>
-                  <h2 className="text-3xl font-bold">
-                    Methodik und Ablauf
-                  </h2>
-                </div>
+                <h2 className="text-3xl font-bold mb-2">
+                  Methodik und Ablauf
+                </h2>
                 <p className="text-lg text-muted-foreground mb-8 ml-1">
                   Wir arbeiten nach dem{" "}
                   <strong className="text-foreground">
@@ -272,14 +258,9 @@ const WorkshopDetail = () => {
           <section className="py-16 bg-background">
             <div className="container mx-auto px-4">
               <div className="max-w-4xl">
-                <div className="flex items-center gap-3 mb-8">
-                  <div className="p-2 bg-primary/10 rounded-lg">
-                    <Users className="w-6 h-6 text-primary" />
-                  </div>
-                  <h2 className="text-3xl font-bold">
-                    Für wen ist dieses Format?
-                  </h2>
-                </div>
+                <h2 className="text-3xl font-bold mb-8">
+                  Für wen ist dieses Format?
+                </h2>
                 <ul className="space-y-4">
                   {workshop.targetAudience.map((audience, index) => (
                     <li key={index} className="flex items-start gap-3">
@@ -300,18 +281,13 @@ const WorkshopDetail = () => {
           <section className="py-16 bg-muted/30">
             <div className="container mx-auto px-4">
               <div className="max-w-4xl">
-                <div className="flex items-center gap-3 mb-8">
-                  <div className="p-2 bg-primary/10 rounded-lg">
-                    <GraduationCap className="w-6 h-6 text-primary" />
-                  </div>
-                  <h2 className="text-3xl font-bold">
-                    {workshop.type === "change-program"
-                      ? "Was nimmt Ihre Organisation mit?"
-                      : workshop.type === "keynote"
-                      ? "Was nehmen Zuhörende mit?"
-                      : "Was nehmen Teilnehmende mit?"}
-                  </h2>
-                </div>
+                <h2 className="text-3xl font-bold mb-8">
+                  {workshop.type === "change-program"
+                    ? "Was nimmt Ihre Organisation mit?"
+                    : workshop.type === "keynote"
+                    ? "Was nehmen Zuhörende mit?"
+                    : "Was nehmen Teilnehmende mit?"}
+                </h2>
                 <ul className="space-y-4">
                   {workshop.learningOutcomes.map((outcome, index) => (
                     <li key={index} className="flex items-start gap-3">
@@ -332,14 +308,9 @@ const WorkshopDetail = () => {
           <section className="py-16 bg-background">
             <div className="container mx-auto px-4">
               <div className="max-w-4xl">
-                <div className="flex items-center gap-3 mb-8">
-                  <div className="p-2 bg-primary/10 rounded-lg">
-                    <Package className="w-6 h-6 text-primary" />
-                  </div>
-                  <h2 className="text-3xl font-bold">
-                    Das bekommen Sie schwarz auf weiß
-                  </h2>
-                </div>
+                <h2 className="text-3xl font-bold mb-8">
+                  Das bekommen Sie schwarz auf weiß
+                </h2>
                 <div className="grid md:grid-cols-2 gap-4">
                   {workshop.deliverables.map((deliverable, index) => (
                     <div
@@ -365,14 +336,9 @@ const WorkshopDetail = () => {
           <section className="py-16 bg-muted/30">
             <div className="container mx-auto px-4">
               <div className="max-w-4xl">
-                <div className="flex items-center gap-3 mb-8">
-                  <div className="p-2 bg-primary/10 rounded-lg">
-                    <TrendingUp className="w-6 h-6 text-primary" />
-                  </div>
-                  <h2 className="text-3xl font-bold">
-                    Erwartbare Wirkung im Unternehmen
-                  </h2>
-                </div>
+                <h2 className="text-3xl font-bold mb-8">
+                  Erwartbare Wirkung im Unternehmen
+                </h2>
                 <ul className="space-y-4">
                   {workshop.businessImpact.map((impact, index) => (
                     <li key={index} className="flex items-start gap-3">
@@ -393,14 +359,9 @@ const WorkshopDetail = () => {
           <section className="py-16 bg-background">
             <div className="container mx-auto px-4">
               <div className="max-w-4xl">
-                <div className="flex items-center gap-3 mb-8">
-                  <div className="p-2 bg-primary/10 rounded-lg">
-                    <Award className="w-6 h-6 text-primary" />
-                  </div>
-                  <h2 className="text-3xl font-bold">
-                    Über die Dozentin
-                  </h2>
-                </div>
+                <h2 className="text-3xl font-bold mb-8">
+                  Über die Dozentin
+                </h2>
 
                 <div className="flex flex-col md:flex-row gap-8 items-start p-8 bg-card border rounded-2xl shadow-sm">
                   {/* Profilbild */}
@@ -622,9 +583,6 @@ const WorkshopDetail = () => {
           <section className="py-16 bg-muted/30">
             <div className="container mx-auto px-4">
               <div className="text-center mb-8">
-                <div className="inline-flex items-center gap-2 text-primary mb-2">
-                  <GraduationCap className="w-6 h-6" />
-                </div>
                 <h2 className="text-3xl font-bold mb-3">
                   Passende Trainings für Ihre Teams
                 </h2>
@@ -715,12 +673,11 @@ const WorkshopDetail = () => {
                       className="border-l-4 border-l-primary/50 hover:border-l-primary transition-colors"
                     >
                       <CardHeader className="pb-2">
-                        <CardTitle className="text-lg flex items-start gap-3">
-                          <HelpCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                          <span>{faq.question}</span>
+                        <CardTitle className="text-lg">
+                          {faq.question}
                         </CardTitle>
                       </CardHeader>
-                      <CardContent className="pt-0 pl-12">
+                      <CardContent className="pt-0">
                         <p className="text-muted-foreground leading-relaxed">
                           {faq.answer}
                         </p>
