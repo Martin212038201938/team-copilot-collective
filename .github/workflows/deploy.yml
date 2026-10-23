@@ -24,10 +24,17 @@ jobs:
 
       - name: Install Google Chrome
         run: |
-          wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo gpg --dearmor -o /usr/share/keyrings/google-chrome.gpg
-          echo "deb [arch=amd64 signed-by=/usr/share/keyrings/google-chrome.gpg] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
-          sudo apt-get update
-          sudo apt-get install -y google-chrome-stable
+          # GitHub-Runner liefern Chrome i.d.R. vorinstalliert unter /usr/bin/google-chrome-stable.
+          # apt-key/Custom-Repo wurde mit dem Ubuntu-Runner-Update entfernt -> nur noch bei Bedarf
+          # direkt aus dem offiziellen .deb installieren (kein apt-key, kein signed-by-Repo noetig).
+          if ! command -v google-chrome-stable >/dev/null 2>&1; then
+            echo "Chrome nicht vorhanden - installiere aus offiziellem .deb..."
+            wget -q -O /tmp/google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+            sudo apt-get update || true
+            sudo apt-get install -y /tmp/google-chrome.deb
+          fi
+          google-chrome-stable --version
+          which google-chrome-stable
 
       - name: Clean build artifacts
         run: |
