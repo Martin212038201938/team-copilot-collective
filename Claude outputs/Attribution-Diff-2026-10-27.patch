@@ -1,329 +1,36 @@
-diff --git a/api/send-contact-email.php b/api/send-contact-email.php
-index 6f2876e..3dac52b 100644
---- a/api/send-contact-email.php
-+++ b/api/send-contact-email.php
-@@ -41,6 +41,74 @@ $message = htmlspecialchars($data['message']);
- $trainingSource = !empty($data['trainingSource']) ? htmlspecialchars($data['trainingSource']) : null;
- $customSubject = !empty($data['subject']) ? htmlspecialchars($data['subject']) : null;
- 
-+// ============================================
-+// Klick-Attribution (Google Ads / Microsoft Advertising)
-+// Wird nur ausgewertet, wenn der Nutzer im Browser eingewilligt hat
-+// (consent === 'granted'). Alle Werte werden von HTML befreit, auf erlaubte
-+// Zeichen reduziert und in der Länge begrenzt. CR/LF sind nie erlaubt.
-+// ============================================
-+function attrClean($value, $maxLen, $disallowedPattern) {
-+    if (!is_string($value)) {
-+        return '';
-+    }
-+    $value = trim(strip_tags($value));
-+    $value = preg_replace($disallowedPattern, '', $value);
-+    if ($value === null) {
-+        return '';
-+    }
-+    return mb_substr($value, 0, $maxLen, 'UTF-8');
-+}
-+
-+function buildAttributionLines($data) {
-+    if (!isset($data['consent']) || $data['consent'] !== 'granted') {
-+        return array();
-+    }
-+
-+    $idPattern   = '/[^A-Za-z0-9_\-]/';
-+    $textPattern = '/[^\p{L}\p{N} _\-.+:\/%~,|()]/u';
-+    $pathPattern = '/[^A-Za-z0-9_\-.\/~%]/';
-+    $hostPattern = '/[^a-z0-9.\-]/';
-+
-+    $channels = array('google', 'microsoft', 'organisch', 'empfehlung', 'direkt', 'outbound');
-+    $channel = (isset($data['channel']) && is_string($data['channel']) && in_array($data['channel'], $channels, true))
-+        ? $data['channel'] : '';
-+
-+    // Pro Anfrage nur eine Klick-ID, Reihenfolge: gclid, gbraid, wbraid, msclkid
-+    $clickId = '';
-+    foreach (array('gclid', 'gbraid', 'wbraid', 'msclkid') as $key) {
-+        $value = attrClean($data[$key] ?? '', 200, $idPattern);
-+        if ($value !== '') {
-+            $clickId = $key . '=' . $value;
-+            break;
-+        }
-+    }
-+
-+    $landing = attrClean($data['landing_page'] ?? '', 200, $pathPattern);
-+    if ($landing !== '' && $landing[0] !== '/') {
-+        $landing = '';
-+    }
-+
-+    $fields = array(
-+        'Kanal'                   => $channel,
-+        'Klick-ID'                => $clickId,
-+        'Kampagne'                => attrClean($data['utm_campaign'] ?? '', 200, $textPattern),
-+        'Anzeigengruppe/Anzeige'  => attrClean($data['utm_content'] ?? '', 200, $textPattern),
-+        'Suchbegriff'             => attrClean($data['utm_term'] ?? '', 200, $textPattern),
-+        'Landingpage'             => $landing,
-+        'Referrer'                => attrClean(is_string($data['referrer'] ?? null) ? strtolower($data['referrer']) : '', 100, $hostPattern),
-+    );
-+
-+    $lines = array();
-+    foreach ($fields as $label => $value) {
-+        if ($value !== '') {
-+            $lines[] = $label . ': ' . $value;
-+        }
-+    }
-+    return $lines;
-+}
-+
-+$attributionLines = buildAttributionLines($data);
-+
- // Validate email
- if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-     http_response_code(400);
-@@ -122,6 +190,16 @@ Nachricht:
- {$message}
- ";
- 
-+// Attribution ans Ende des Textkörpers (eine Zeile je Feld, leere Felder entfallen)
-+if (!empty($attributionLines)) {
-+    $textBody .= "\n" . implode("\n", $attributionLines) . "\n";
-+    $htmlBody = str_replace(
-+        "</body>",
-+        "<p>" . implode("<br>", array_map('htmlspecialchars', $attributionLines)) . "</p>\n</body>",
-+        $htmlBody
-+    );
-+}
-+
- $boundary = md5(time() . 'notification');
- $headers = array();
- $headers[] = 'MIME-Version: 1.0';
-diff --git a/src/components/ArticlePopup.tsx b/src/components/ArticlePopup.tsx
-index edd21f4..5ccd568 100644
---- a/src/components/ArticlePopup.tsx
-+++ b/src/components/ArticlePopup.tsx
-@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
- import { X, GraduationCap, Users, Headphones, Calendar } from "lucide-react";
- import { useToast } from "@/hooks/use-toast";
- import { bookingClickToThankYou } from "@/lib/booking";
-+import { getAttribution } from "@/lib/attribution";
- 
- const POPUP_DELAY_MS = 20_000;
- 
-@@ -54,6 +55,7 @@ const ArticlePopup = () => {
-           phone: formData.phone,
-           message: `[Popup-Anfrage von ${currentPath}] Interesse an Copilot-Training & Projektbegleitung.`,
-           trainingSource: currentPath,
-+          ...getAttribution(),
-         }),
-       });
- 
-diff --git a/src/components/ConsentBanner.tsx b/src/components/ConsentBanner.tsx
-index 423a790..7d61a97 100644
---- a/src/components/ConsentBanner.tsx
-+++ b/src/components/ConsentBanner.tsx
-@@ -1,5 +1,6 @@
- import { useEffect, useState } from "react";
- import { getStoredAdsConsent, isAdsConfigured, setAdsConsent } from "@/lib/ads";
-+import { captureAttribution } from "@/lib/attribution";
- 
- /**
-  * Schlanker Consent-Banner für Google-Ads-Conversion-Tracking (Consent Mode v2).
-@@ -24,6 +25,8 @@ const ConsentBanner = () => {
- 
-   const decide = (granted: boolean) => {
-     setAdsConsent(granted);
-+    // Einwilligung: Parameter des Einstiegs nachträglich erfassen. Ablehnung: Eintrag löschen.
-+    captureAttribution();
-     setVisible(false);
-   };
- 
-diff --git a/src/components/Contact.tsx b/src/components/Contact.tsx
-index 718a48f..21f5d8e 100644
---- a/src/components/Contact.tsx
-+++ b/src/components/Contact.tsx
-@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
- import { useToast } from "@/hooks/use-toast";
- import { trackConversion, markConvertedSession } from "@/lib/analytics";
- import { bookingClickToThankYou } from "@/lib/booking";
-+import { getAttribution } from "@/lib/attribution";
- 
- const Contact = () => {
-   const { toast } = useToast();
-@@ -60,7 +61,8 @@ const Contact = () => {
-           company: formData.company,
-           phone: formData.phone,
-           message: formData.message,
--          trainingSource: trainingSource
-+          trainingSource: trainingSource,
-+          ...getAttribution(),
-         }),
-       });
- 
-diff --git a/src/lib/booking.ts b/src/lib/booking.ts
-index d89066d..e716c3b 100644
---- a/src/lib/booking.ts
-+++ b/src/lib/booking.ts
-@@ -12,6 +12,7 @@
-  */
- 
- import { trackConversion, markConvertedSession } from "@/lib/analytics";
-+import { trackBookingClickEvent } from "@/lib/attribution";
- 
- const DANKE_URL = "/danke";
- 
-@@ -31,6 +32,7 @@ const DANKE_URL = "/danke";
-  */
- export function bookingClickToThankYou(source?: string): void {
-   trackConversion("booking_click", source);
-+  trackBookingClickEvent(source);
-   markConvertedSession("booking");
-   // Kurzer Delay, damit der neue Tab (Default-Link-Aktion) sicher geöffnet ist.
-   window.setTimeout(() => {
-diff --git a/src/main.tsx b/src/main.tsx
-index 217005b..ef5945c 100644
---- a/src/main.tsx
-+++ b/src/main.tsx
-@@ -3,6 +3,7 @@ import { HelmetProvider } from "react-helmet-async";
- import Clarity from "@microsoft/clarity";
- import App from "./App.tsx";
- import { initGoogleAds } from "./lib/ads";
-+import { captureAttribution } from "./lib/attribution";
- import "./index.css";
- 
- // Microsoft Clarity initialisieren — Heatmaps, Session-Recordings, Conversion-Events.
-@@ -22,6 +23,9 @@ if (clarityId && typeof navigator !== "undefined" && !/ReactSnap/i.test(navigato
- // Eigener ReactSnap-Guard in initGoogleAds().
- initGoogleAds();
- 
-+// Klick-IDs und Kampagnenparameter (gclid, msclkid, utm_*) erfassen, nur mit Einwilligung.
-+captureAttribution();
-+
- const container = document.getElementById("root")!;
- const app = (
-   <HelmetProvider>
-diff --git a/src/pages/Datenschutz.tsx b/src/pages/Datenschutz.tsx
-index 80c205b..b68c6c6 100644
---- a/src/pages/Datenschutz.tsx
-+++ b/src/pages/Datenschutz.tsx
-@@ -8,7 +8,7 @@ import SEOHead from "@/components/SEOHead";
-  * Pflichtangaben gem. § 5 TMG / § 2 DDG sind im Impressum (Impressum.tsx).
-  * Diese Seite behandelt ausschließlich Datenschutz.
-  *
-- * Letzter Stand: 18.09.2026
-+ * Letzter Stand: 27.10.2026
-  * Wichtig: Diese Erklärung wurde nach bestem Wissen erstellt, ersetzt aber
-  * keine anwaltliche Prüfung. Bei rechtlich kritischen Anwendungsfällen bitte
-  * von Datenschutzanwalt/-anwältin gegenchecken lassen.
-@@ -16,6 +16,7 @@ import SEOHead from "@/components/SEOHead";
-  * 03.08.2026: Abschnitt 6b (Google Analytics 4) ergänzt — GA4 wurde über
-  * den bestehenden Google-Tag (GT-WRFMDNVV, Consent Mode v2) aktiviert.
-  * 18.09.2026: Abschnitt 6c (Microsoft Advertising UET) ergänzt.
-+ * 27.10.2026: Abschnitt 6d (Werbe-Klick-Kennungen und Kampagnenparameter) ergänzt.
-  */
- 
- const SLUG = "datenschutz";
-@@ -35,7 +36,7 @@ const Datenschutz = () => {
-           <h1 className="text-5xl lg:text-7xl font-semibold tracking-tight leading-[1.1] mb-4">
-             Datenschutzerklärung
-           </h1>
--          <p className="text-muted-foreground mb-12">Stand: 3. August 2026</p>
-+          <p className="text-muted-foreground mb-12">Stand: 27. Oktober 2026</p>
- 
-           <div className="prose prose-slate max-w-none space-y-10">
-             {/* ====================================================== */}
-@@ -358,6 +359,46 @@ const Datenschutz = () => {
-               </p>
-             </section>
- 
-+            {/* ====================================================== */}
-+            <section>
-+              <h2 className="text-2xl font-bold mb-3">6d. Werbe-Klick-Kennungen und Kampagnenparameter (einwilligungsbasiert)</h2>
-+              <p>
-+                Wenn Sie über eine Anzeige bei Google Ads oder Microsoft Advertising auf unsere
-+                Website gelangen, enthält die aufgerufene Adresse in der Regel eine Klick-Kennung
-+                (bei Google <code>gclid</code>, <code>gbraid</code> oder <code>wbraid</code>, bei
-+                Microsoft <code>msclkid</code>) und Kampagnenparameter (<code>utm_source</code>,{" "}
-+                <code>utm_medium</code>, <code>utm_campaign</code>, <code>utm_term</code>,{" "}
-+                <code>utm_content</code>). Zusätzlich halten wir fest, welche Seite unserer Website
-+                Sie zuerst aufgerufen haben und von welcher Domain Sie gekommen sind.
-+              </p>
-+              <p>
-+                <strong>Nur mit Ihrer Einwilligung</strong> (über den Cookie-Banner) speichern wir
-+                diese Angaben für 90 Tage in Ihrem Browser (localStorage, Schlüssel{" "}
-+                <code>attribution-v1</code>). Ohne Einwilligung wird nichts gespeichert; ein
-+                vorhandener Eintrag wird gelöscht. Wenn Sie die Website-Daten dieser Domain in
-+                Ihrem Browser entfernen, ist auch dieser Eintrag weg.
-+              </p>
-+              <p>
-+                Wenn Sie ein Kontaktformular absenden, übermitteln wir die gespeicherten Angaben
-+                zusammen mit Ihrer Anfrage an unseren Server und hängen sie an die interne
-+                Benachrichtigung an. Klicken Sie auf „Erstgespräch vereinbaren“, senden wir sie als
-+                Ereignis an Google Analytics 4. Zweck ist die Erfolgsmessung unserer Werbung: Wir
-+                sehen, welche Anzeige zu einer Anfrage oder Buchung geführt hat, und können diesen
-+                Erfolg über die Klick-Kennung an Google bzw. Microsoft zurückmelden
-+                (Offline-Conversion).
-+              </p>
-+              <p>
-+                Rechtsgrundlage ist Ihre Einwilligung nach Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;a DSGVO
-+                sowie §&nbsp;25 Abs.&nbsp;1 TDDDG. Ihre Eingaben im Formular verarbeiten wir wie in
-+                Abschnitt 7 beschrieben.
-+              </p>
-+              <p>
-+                <strong>Widerruf:</strong> wie in Abschnitt 6a beschrieben. Ihre Entscheidung gilt
-+                gemeinsam für alle Werbe- und Analysedienste und wird lokal in Ihrem Browser
-+                gespeichert (Schlüssel <code>consent-ads-v1</code>).
-+              </p>
-+            </section>
-+
-             {/* ====================================================== */}
-             <section>
-               <h2 className="text-2xl font-bold mb-3">7. Kontaktformulare</h2>
-@@ -510,7 +551,7 @@ const Datenschutz = () => {
-             <section>
-               <h2 className="text-2xl font-bold mb-3">13. Aktualität und Änderungen dieser Datenschutzerklärung</h2>
-               <p>
--                Diese Datenschutzerklärung hat den Stand vom <strong>18. September 2026</strong>.
-+                Diese Datenschutzerklärung hat den Stand vom <strong>27. Oktober 2026</strong>.
-                 Durch die Weiterentwicklung unserer Website oder aufgrund geänderter gesetzlicher
-                 bzw. behördlicher Vorgaben kann es notwendig werden, diese Datenschutzerklärung zu
-                 ändern. Die jeweils aktuelle Version ist stets unter{" "}
-diff --git a/src/pages/SmlHrTipps2026.tsx b/src/pages/SmlHrTipps2026.tsx
-index 996beff..e6c0e7c 100644
---- a/src/pages/SmlHrTipps2026.tsx
-+++ b/src/pages/SmlHrTipps2026.tsx
-@@ -37,6 +37,7 @@
- import { useEffect } from "react";
- import { Helmet } from "react-helmet-async";
- import { trackConversion, setSessionTag, markConvertedSession } from "@/lib/analytics";
-+import { trackBookingClickEvent } from "@/lib/attribution";
- 
- // ─── Kampagnen-Konstanten ──────────────────────────────────────────────────
- const BOOKING_URL =
-@@ -71,6 +72,7 @@ function tagClarityFromUTM(): void {
- // auf dieser Seite komplett, dadurch blieb jede Buchung für GA4/Ads unsichtbar.
- function handleBookingClick(source: string): void {
-   trackConversion("sml_booking_click", source);
-+  trackBookingClickEvent(source);
-   markConvertedSession("sml_booking_intent");
-   if (typeof window !== "undefined") {
-     window.setTimeout(() => {
 diff --git a/src/pages/TrainingKonfigurator.tsx b/src/pages/TrainingKonfigurator.tsx
-index 53820d9..f2266d7 100644
+index f2266d7..26815a5 100644
 --- a/src/pages/TrainingKonfigurator.tsx
 +++ b/src/pages/TrainingKonfigurator.tsx
-@@ -12,6 +12,7 @@ import Footer from "@/components/Footer";
+@@ -12,7 +12,7 @@ import Footer from "@/components/Footer";
  import SEOHead from "@/components/SEOHead";
  import { useToast } from "@/hooks/use-toast";
  import { trackConversion, markConvertedSession } from "@/lib/analytics";
-+import { trackBookingClickEvent } from "@/lib/attribution";
+-import { trackBookingClickEvent } from "@/lib/attribution";
++import { trackBookingClickEvent, getAttribution } from "@/lib/attribution";
  
  // Kategorien für die Module
  interface ModuleCategory {
-@@ -276,6 +277,7 @@ const TrainingKonfigurator = () => {
-     setIsBookingSubmitting(true);
-     // Conversion-Tracking (Clarity) für den Buchungs-Klick
-     trackConversion("booking_click", "konfigurator");
-+    trackBookingClickEvent("konfigurator");
-     markConvertedSession("booking");
+@@ -330,7 +330,8 @@ ${formData.additionalInfo ? `---\nINFORMATIONEN UND WEITERE BENÖTIGTE INHALTE:\
+         company: formData.company,
+         phone: formData.phone,
+         message: messageWithModules,
+-        subject: `Konfiguration für Kunde (${formData.company}, ${formData.firstName}, ${formData.lastName})`
++        subject: `Konfiguration für Kunde (${formData.company}, ${formData.firstName}, ${formData.lastName})`,
++        ...getAttribution(),
+       }),
+     }).catch((error) => {
+       console.error('Konfigurator E-Mail Fehler:', error);
+@@ -393,7 +394,8 @@ ${formData.additionalInfo ? `---\nINFORMATIONEN UND WEITERE BENÖTIGTE INHALTE:\
+           company: formData.company,
+           phone: formData.phone,
+           message: messageWithModules,
+-          subject: `Training-Anfrage: ${totalModuleCount} Module ausgewählt${customModules.length > 0 ? ` (inkl. ${customModules.length} eigene Wünsche)` : ''}`
++          subject: `Training-Anfrage: ${totalModuleCount} Module ausgewählt${customModules.length > 0 ? ` (inkl. ${customModules.length} eigene Wünsche)` : ''}`,
++          ...getAttribution(),
+         }),
+       });
  
-     // Buchung im neuen Tab öffnen. Falls ein Popup-Blocker das verhindert,
 diff --git a/src/lib/attribution.ts b/src/lib/attribution.ts
 new file mode 100644
 index 0000000..67f1a5d

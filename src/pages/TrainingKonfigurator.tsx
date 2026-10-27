@@ -12,7 +12,7 @@ import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import { useToast } from "@/hooks/use-toast";
 import { trackConversion, markConvertedSession } from "@/lib/analytics";
-import { trackBookingClickEvent } from "@/lib/attribution";
+import { trackBookingClickEvent, getAttribution } from "@/lib/attribution";
 
 // Kategorien für die Module
 interface ModuleCategory {
@@ -330,7 +330,8 @@ ${formData.additionalInfo ? `---\nINFORMATIONEN UND WEITERE BENÖTIGTE INHALTE:\
         company: formData.company,
         phone: formData.phone,
         message: messageWithModules,
-        subject: `Konfiguration für Kunde (${formData.company}, ${formData.firstName}, ${formData.lastName})`
+        subject: `Konfiguration für Kunde (${formData.company}, ${formData.firstName}, ${formData.lastName})`,
+        ...getAttribution(),
       }),
     }).catch((error) => {
       console.error('Konfigurator E-Mail Fehler:', error);
@@ -393,7 +394,8 @@ ${formData.additionalInfo ? `---\nINFORMATIONEN UND WEITERE BENÖTIGTE INHALTE:\
           company: formData.company,
           phone: formData.phone,
           message: messageWithModules,
-          subject: `Training-Anfrage: ${totalModuleCount} Module ausgewählt${customModules.length > 0 ? ` (inkl. ${customModules.length} eigene Wünsche)` : ''}`
+          subject: `Training-Anfrage: ${totalModuleCount} Module ausgewählt${customModules.length > 0 ? ` (inkl. ${customModules.length} eigene Wünsche)` : ''}`,
+          ...getAttribution(),
         }),
       });
 
