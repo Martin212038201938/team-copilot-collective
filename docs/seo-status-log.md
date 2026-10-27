@@ -8,6 +8,56 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 
 ## Logs
 
+### 2026-10-26 — Wöchentlicher Audit (Cron)
+
+**Phase:** Phase 3 — Content-Block (aktiv, kein Wechsel). Phase 4 (Off-Page) parallel offen.
+**SSR-Audit:** ✅ 67 / 🟡 0 / 🔴 0 (von 67), via recheck.sh (audit-live.sh weiter nicht im Mount), Snapshot 2026-10-26
+- Neu in 🔴/✅: keine (alle 67 grün, Regressions-Wächter still)
+
+**GSC Indexierung (Basis: eingereichte Seiten ohne Gated-PDFs):** 74/89 = **83,1 %** (literal −6-Konstante) bzw. **85,1 %** (74/87, bereinigt um die tatsächlichen **8** Gated-PDFs) — Vorwoche 88,2 % (75/85)
+- Nicht indexiert (submitted): gefunden 14 | gecrawlt 7 (A6-Summe **21**, Δ zur Vorwoche **+5**)
+- ⚠️ **Sitemap von 91 → 95 eingereichte URLs gewachsen** (+4): +2 Inhaltsseiten + **+2 neue Gated-PDFs unter /downloads/ (jetzt 8 statt 6)**. Indexiert 75→74 (−1, Rauschen) — **kein De-Indexing**; der Quoten-Rückgang ist überwiegend Nenner-Artefakt frisch eingereichter, noch nicht gecrawlter Seiten.
+- **Messvorschrift-Konstante veraltet:** DoD #1 zieht −6 PDFs ab, live sind es **8** → die literale −6-Rechnung unterschätzt die Quote um ~2 pp und löst die ⚠️-Schwelle künstlich aus. **User-Entscheidung nötig:** Konstante auf −8 aktualisieren + 2 neue Inhaltsseiten bestätigen.
+- Kontext „Alle bekannten Seiten" (KEIN KPI): 74 indexiert / 36 nicht (Gecrawlt 11, **Weiterleitung 10 stabil**, robots 1, Gefunden 14, kanonisch 0) → keine neue Redirect-Quelle, Sitemap-Redirect-Guard hält
+- GSC live via internem Browser (`authuser=1`); Index-Bericht-Crawlachse bis ~05.10. (seit Vorwoche aktualisiert)
+
+**GSC Leistung:** Klicks **2.330**/3M (+60, +2,6 % W/W), Impressionen **209.000** (+7.000), CTR 1,1 %, Pos. **7,8** (Bestposition je gehalten). Top-Klick-Bringer: copilot in excel aktivieren 92, excel copilot aktivieren 26, copilotenschule 26, copilot kosten 16, copilot excel aktivieren 16.
+
+**AlwaysData:** 24h **651**, Okt MTD (Tag 26) **17.200** (−16,38 % vs. Sep = MTD-Artefakt, 5 Tage Rest; Pace ~20,5k, auf Höhe Sep). **September final 20.570**. **YTD 123.250**.
+
+**Traffic-Mix (Clarity, Kanal 7T):** OrganicSearch **372** (−5 % vs. 392 W/W) | PaidSearch **41** (Google-cpc + Bing-Ads kombiniert, ohne gclid/msclkid nicht trennbar; Vorwoche 27) | Outbound (email) **~0** (kein sml_*/email-Kanal) | AIPlatform/LLM **12** (von 6, +100 %) | Direct 22 | Referral 54 | Other 180
+- ⚠️ Microsoft-Advertising-Login im internen Browser abgelaufen (sessionexpired-Redirect) → PaidSearch 41 nicht nach Google/Bing auflösbar; Budget fließt, Spend/Conv. nicht lesbar.
+
+**Bing Ads (MTD, Microsoft Advertising):** **[ÜBERNOMMEN aus 22.09.]** 28,16 € / 8 Kl. / 282 Impr. / CTR 2,84 % / CPC 3,52 € / 0 Conv. (UET-Status: **defekt**). Interner Browser nicht eingeloggt (sessionexpired-Redirect) → Werte übernommen.
+
+**Clarity Standard (3T, via API, 1 Call):**
+- Sessions: **126** (davon 24 Bots, 120 Unique Users) — kleines 3-Tage-Fenster
+- Scrolltiefe: 38,03 %, Aktive Zeit: 124 s
+- **Dead-Click: 16,67 %** (über 10-%-Schwelle; 7T-Dashboard **12,97 %/87 Sess.**) | Rage-Click: 0 % | Quick-Back: 2,38 % | Excessive-Scroll: 0 %
+- Top-Browser (3T): Chrome 34 | Edge 32 | MobileSafari 25 | Safari 14 — (7T-Dashboard: **Edge 41,43 %** / Chrome 35,47 % / MobileSafari 9,39 % → B2B-Signal)
+- Top-3-Pages (3T): /wissen/copilot-in-excel-aktivieren 17 | Startseite 16 | /wissen/microsoft-copilot-lizenzen 15
+- Top-3-Referrer (3T): google.com 74 | bing.com 16 | teams.public.onecdn 5
+- CWV (7T-Dashboard): Score **84/100**, **LCP 3,2 s (muss verbessert werden**, von 2,4 s), INP 170 ms gut, CLS 0 gut
+
+**Clarity Conversion-Events (7T, via Dashboard):**
+- contact_form_submit / trainer_application_submit / konfigurator_submit / mail_click / phone_click / pdf_download: **0 / 0 / 2 / 0 / 0 / 16**
+- Smart-Events gesamt: Herunterladen 18, Formular absenden 17, pdf_download 16, lead 15, Ausgehender Klick 9, Kontaktieren Sie uns 4, danke_page_view 3, Zitat anfordern 2, booking_click 2, konfigurator_submit 2, **angebot_bruecke_click 1** (CTA-Brücke feuert)
+- content_cta_click: 0/7T | sml_*: 0 (Outbound aus)
+- Conversion-Rate gesamt: direkte Kontakt-/Lead-Conv. ≈ (Formular 17 + Kontaktieren 4 + lead 15 + danke 3) = 39/671 = **~5,8 %** — stabil hoch; **kein 7e-Defekt** (kein Event ≥3→0)
+- **Funnel „Lead-Reise" weiter 0 % E2E:** Stufe 1 345 (51,42 %) → Stufe 2 Angebot 2 (0,58 %) → Stufe 3 0
+
+**Insights heute:** Patterns 0 | Issues 2 (1. Dead-Click 16,67 % API-3T / 12,97 % 7T ≥ 10 % — bekanntes organisches ArticlePopup-Zickzack, Rage 0, Fix-Draft seit 17.06. unverpusst; 2. **A6-Summe nicht-indexiert +5 W/W auf 21** — getrieben von 4 frisch eingereichten URLs (2 Inhalt + 2 PDF), nicht Verschlechterung der Stagnation; Hinweis auf `docs/drafts/index-coverage-interne-verlinkung-2026-06-16.md`) | Trends 0 (Organic 392→372 −5 %, unter 25-%-Schwelle; LLM 6→12 positiv, kleines Fenster → beobachten)
+**Folge-Crons angelegt:** keine (7a: keine Page ≥5 % Conv/≥50 Sess 3T; 7b: keine Page ≥100 Sess/3T mit <0,5 %; Dead-Click- + A6-Draft existieren → Conductor-Doktrin)
+**Goldene Pages (GSC×Clarity, organic):** microsoft-copilot-lizenzen, copilot-in-excel-aktivieren, claude-in-microsoft-copilot — ungenutztes Potential: copilot-tipps-tricks-produktivitaet (Clarity 55/7T, als GSC-Klickbringer unterrepräsentiert)
+**Protected Pages:** alle OK (5/5 = 200: copilot-roi-berechnen, copilot-training-schulung, copilot-im-unternehmen-einfuehren-leitfaden, microsoft-copilot-lizenzen, ki-schulung-mitarbeiter-pflicht)
+**Entscheidung gemäß Plan:** Phase 3 aktiv, DoD **4/8** unverändert. SSR-Regressions-Wächter still (0 🔴). **Indexierungs-Risiko-Schwelle (Quote ≥5 pp unter 7T-Schnitt) literal ausgelöst** (83,1 % vs. ~88,2 %), bereinigt um die tatsächlichen 8 PDFs aber nur 85,1 % (−3,1 pp, unter Schwelle) → Ursache = veraltete −6-Konstante + 4 frische Sitemap-URLs, **kein echtes De-Indexing** (indexiert 75→74). A6-Draft bleibt Hebel. Dead-Click bekannter organischer Flag. Organik-Bestposition 7,8 + Conv-Rate ~5,8 % gesund. Kein Push, kein neuer Cron. **User-Handlung angestoßen** (s. u.).
+**API-Calls heute:** 2/10 (Clarity)
+**Teams-Post:** ✗ HTTP 401 (`DirectApiAuthorizationRequired`) — gesetzte Webhook-URL weiter falscher Connector-Typ (abgekündigter Office-365-Connector statt Workflows-Webhook). Reporting-Versand blockiert seit 03.08. = **84 Tage**. Audit vollständig durchgelaufen, nur Versand fehlt.
+**Offene User-Handlung:** (1) **Messvorschrift DoD #1 aktualisieren:** Gated-PDFs live = 8 (nicht 6), Konstante anpassen + 2 neue Inhaltsseiten im Sitemap bestätigen. (2) **Bing-Ads-UET-Conversion-Tracking fixen** (defekt seit 22.09.). (3) **Microsoft-Advertising-Login im internen Browser erneuern** (Session abgelaufen). (4) **Teams-Webhook als Workflows-Webhook neu anlegen** (401 seit 03.08. = 84 Tage).
+**Nächster Lauf:** Mo 02.11.2026, 10:00
+
+---
+
 ### 2026-10-21 — Phase-Conductor-Lauf (Cron)
 
 **Schritt-0-Guard:** Heute = Tag 21, Mittwoch (Wochentag 3) → **3. Mittwoch** (Fenster 15.–21.). Guard bestanden, Conductor regulär gelaufen. (07.10. war der 1. Mittwoch; 14.10. = 2. Mittwoch vom Guard abgebrochen, Monatsreview lief separat; 28.10. = 4. Mittwoch wird abgebrochen → nächster Conductor regulär Mi 04.11.)

@@ -1,0 +1,258 @@
+/**
+ * Klick-Attribution für Kontaktanfragen (Google Ads, Microsoft Advertising).
+ *
+ * Zweck: Klick-IDs (gclid, gbraid, wbraid, msclkid) und Kampagnenparameter beim
+ * ersten Seitenaufruf erfassen, 90 Tage im Browser halten und mit Kontaktanfragen
+ * mitsenden. Damit lassen sich Leads später als Offline-Conversions an Google Ads
+ * und Microsoft Advertising zurückmelden.
+ *
+ * Consent: Gespeichert wird NUR, wenn "consent-ads-v1" === "granted". Ohne
+ * Einwilligung (auch "noch keine Entscheidung") wird nichts geschrieben und ein
+ * vorhandener Eintrag gelöscht. getAttribution() liefert dann nur leere Werte.
+ *
+ * Zuordnungslogik:
+ *  - Erster erfasster Besuch legt den Eintrag an (First Click: Landingpage,
+ *    Referrer, Kampagnenparameter).
+ *  - Ein Besuch mit NEUER Klick-ID ersetzt den kompletten Eintrag, damit
+ *    Klick-ID und Kampagne zusammenpassen (Last Paid Click). Der 90-Tage-Zähler
+ *    beginnt dann neu, passend zum Klickfenster der Werbeplattformen.
+ *  - Jeder andere Besuch überschreibt nichts. Er füllt höchstens leere
+ *    Kampagnenfelder, solange der Eintrag noch keine Kampagnendaten hat.
+ *
+ * Alle Zugriffe sind defensiv: Fehler (z. B. blockierter Storage) werden still
+ * geschluckt und dürfen nie die Seite oder ein Formular stören.
+ */
+
+import { getStoredAdsConsent } from "@/lib/ads";
+
+const STORAGE_KEY = "attribution-v1";
+const MAX_AGE_MS = 90 * 24 * 60 * 60 * 1000;
+const MAX_LEN = 200;
+
+const CLICK_ID_KEYS = ["gclid", "gbraid", "wbraid", "msclkid"] as const;
+const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"] as const;
+
+export type AttributionChannel =
+  | "google"
+  | "microsoft"
+  | "organisch"
+  | "empfehlung"
+  | "direkt"
+  | "outbound";
+
+export interface AttributionData {
+  gclid: string;
+  gbraid: string;
+  wbraid: string;
+  msclkid: string;
+  utm_source: string;
+  utm_medium: string;
+  utm_campaign: string;
+  utm_term: string;
+  utm_content: string;
+  landing_page: string;
+  referrer: string;
+}
+
+/** Felder, die ein Formular im JSON-Body mitschickt. */
+export interface AttributionPayload extends AttributionData {
+  channel: AttributionChannel | "";
+  consent: "granted" | "denied";
+}
+
+interface StoredAttribution extends AttributionData {
+  ts: number;
+}
+
+function emptyData(): AttributionData {
+  return {
+    gclid: "",
+    gbraid: "",
+    wbraid: "",
+    msclkid: "",
+    utm_source: "",
+    utm_medium: "",
+    utm_campaign: "",
+    utm_term: "",
+    utm_content: "",
+    landing_page: "",
+    referrer: "",
+  };
+}
+
+/** Besuch der aktuellen Seite, so wie er beim App-Start vorlag (nur im Speicher). */
+let initialVisit: AttributionData | null = null;
+
+function clean(value: string | null | undefined): string {
+  return (value ?? "").trim().slice(0, MAX_LEN);
+}
+
+/** Hostname des Referrers ohne "www.", leer bei fehlendem oder internem Referrer. */
+function externalReferrerHost(): string {
+  try {
+    if (!document.referrer) return "";
+    const host = new URL(document.referrer).hostname.toLowerCase().replace(/^www\./, "");
+    const own = window.location.hostname.toLowerCase().replace(/^www\./, "");
+    if (!host || host === own) return "";
+    if (host === "copilotenschule.de" || host.endsWith(".copilotenschule.de")) return "";
+    return host;
+  } catch {
+    return "";
+  }
+}
+
+function readVisit(): AttributionData {
+  const visit = emptyData();
+  try {
+    const params = new URLSearchParams(window.location.search);
+    for (const key of [...CLICK_ID_KEYS, ...UTM_KEYS]) {
+      visit[key] = clean(params.get(key));
+    }
+    visit.landing_page = clean(window.location.pathname);
+    visit.referrer = clean(externalReferrerHost());
+  } catch {
+    /* ignorieren */
+  }
+  return visit;
+}
+
+function readStored(): StoredAttribution | null {
+  try {
+    const raw = window.localStorage.getItem(STORAGE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as Partial<StoredAttribution>;
+    if (!parsed || typeof parsed.ts !== "number" || Date.now() - parsed.ts > MAX_AGE_MS) {
+      window.localStorage.removeItem(STORAGE_KEY);
+      return null;
+    }
+    return { ...emptyData(), ...parsed, ts: parsed.ts } as StoredAttribution;
+  } catch {
+    return null;
+  }
+}
+
+function writeStored(entry: StoredAttribution): void {
+  try {
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(entry));
+  } catch {
+    /* Storage blockiert: getAttribution() fällt auf den Besuch im Speicher zurück */
+  }
+}
+
+/** Löscht den Attribution-Eintrag (z. B. wenn die Einwilligung fehlt oder entzogen wurde). */
+export function clearAttribution(): void {
+  try {
+    window.localStorage.removeItem(STORAGE_KEY);
+  } catch {
+    /* ignorieren */
+  }
+}
+
+function hasCampaignData(d: AttributionData): boolean {
+  return [...CLICK_ID_KEYS, ...UTM_KEYS].some((k) => Boolean(d[k]));
+}
+
+/** Entscheidet, ob und wie der Besuch in den vorhandenen Eintrag einfließt. */
+function mergeVisit(stored: StoredAttribution | null, visit: AttributionData): StoredAttribution | null {
+  if (!stored) return { ts: Date.now(), ...visit };
+
+  // Neue Klick-ID: Last Paid Click, kompletter Eintrag wird ersetzt.
+  if (CLICK_ID_KEYS.some((k) => visit[k] && visit[k] !== stored[k])) {
+    return { ts: Date.now(), ...visit };
+  }
+
+  // Sonst bleibt der erste Klick erhalten. Leere Kampagnenfelder dürfen gefüllt
+  // werden, aber nur, solange der Eintrag noch keine Kampagnendaten enthält.
+  if (!hasCampaignData(stored) && UTM_KEYS.some((k) => visit[k])) {
+    const next: StoredAttribution = { ...stored };
+    for (const k of UTM_KEYS) next[k] = visit[k];
+    return next;
+  }
+  return null;
+}
+
+/**
+ * Beim App-Start aufrufen (main.tsx) und nach jeder Consent-Entscheidung
+ * (ConsentBanner). Erfasst die Parameter des Seitenaufrufs, wenn die Einwilligung
+ * vorliegt, und löscht den Eintrag, wenn nicht.
+ */
+export function captureAttribution(): void {
+  try {
+    if (typeof window === "undefined") return;
+    if (/ReactSnap/i.test(navigator.userAgent)) return;
+
+    // Der Besuch wird einmal beim App-Start festgehalten, damit auch eine später
+    // erteilte Einwilligung noch die Parameter des Einstiegs erfasst (die URL kann
+    // sich bis dahin durch Navigation im Router geändert haben).
+    if (!initialVisit) initialVisit = readVisit();
+
+    if (getStoredAdsConsent() !== "granted") {
+      clearAttribution();
+      return;
+    }
+
+    const next = mergeVisit(readStored(), initialVisit);
+    if (next) writeStored(next);
+  } catch (err) {
+    console.debug("[attribution] Erfassung fehlgeschlagen (ignoriert):", err);
+  }
+}
+
+function isPaidMedium(medium: string): boolean {
+  return ["cpc", "ppc", "paid", "paidsearch", "paid_search"].includes(medium.toLowerCase());
+}
+
+function isSearchEngineHost(host: string): boolean {
+  return /^google\.[a-z]{2,3}(\.[a-z]{2})?$/.test(host) || host === "bing.com" || host === "duckduckgo.com";
+}
+
+function deriveChannel(d: AttributionData): AttributionChannel {
+  const source = d.utm_source.toLowerCase();
+  if (source === "outbound") return "outbound";
+  if (d.gclid || d.gbraid || d.wbraid) return "google";
+  if (source === "google" && isPaidMedium(d.utm_medium)) return "google";
+  if (d.msclkid) return "microsoft";
+  if ((source === "bing" || source === "microsoft") && isPaidMedium(d.utm_medium)) return "microsoft";
+  if (d.referrer && isSearchEngineHost(d.referrer)) return "organisch";
+  if (d.referrer) return "empfehlung";
+  return "direkt";
+}
+
+/**
+ * Attribution für Formulare. Ohne Einwilligung kommen nur leere Strings und
+ * consent "denied" zurück. Das Ergebnis lässt sich direkt in den JSON-Body spreaden.
+ */
+export function getAttribution(): AttributionPayload {
+  const empty: AttributionPayload = { ...emptyData(), channel: "", consent: "denied" };
+  try {
+    if (typeof window === "undefined" || getStoredAdsConsent() !== "granted") return empty;
+    const source: AttributionData | null = readStored() ?? initialVisit;
+    if (!source) return { ...empty, consent: "granted" };
+    const data = { ...emptyData() };
+    for (const k of Object.keys(data) as (keyof AttributionData)[]) data[k] = source[k] ?? "";
+    return { ...data, channel: deriveChannel(data), consent: "granted" };
+  } catch {
+    return empty;
+  }
+}
+
+/**
+ * gtag-Event "booking_click" mit den Attributionsdaten als Parametern.
+ * Nur bei Einwilligung. Outlook Bookings übernimmt keine Parameter, die
+ * Zuordnung der Buchung läuft später über die E-Mail-Adresse.
+ */
+export function trackBookingClickEvent(source?: string): void {
+  try {
+    if (typeof window === "undefined" || !window.gtag) return;
+    if (getStoredAdsConsent() !== "granted") return;
+    const { consent: _consent, ...attribution } = getAttribution();
+    const params: Record<string, string> = {};
+    if (source) params.booking_source = source;
+    for (const [key, value] of Object.entries(attribution)) {
+      if (value) params[key] = String(value).slice(0, 100);
+    }
+    window.gtag("event", "booking_click", params);
+  } catch (err) {
+    console.debug("[attribution] booking_click-Event fehlgeschlagen (ignoriert):", err);
+  }
+}

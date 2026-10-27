@@ -37,6 +37,7 @@
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { trackConversion, setSessionTag, markConvertedSession } from "@/lib/analytics";
+import { trackBookingClickEvent } from "@/lib/attribution";
 
 // ─── Kampagnen-Konstanten ──────────────────────────────────────────────────
 const BOOKING_URL =
@@ -71,6 +72,7 @@ function tagClarityFromUTM(): void {
 // auf dieser Seite komplett, dadurch blieb jede Buchung für GA4/Ads unsichtbar.
 function handleBookingClick(source: string): void {
   trackConversion("sml_booking_click", source);
+  trackBookingClickEvent(source);
   markConvertedSession("sml_booking_intent");
   if (typeof window !== "undefined") {
     window.setTimeout(() => {

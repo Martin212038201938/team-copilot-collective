@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { trackConversion, markConvertedSession } from "@/lib/analytics";
 import { bookingClickToThankYou } from "@/lib/booking";
+import { getAttribution } from "@/lib/attribution";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -60,7 +61,8 @@ const Contact = () => {
           company: formData.company,
           phone: formData.phone,
           message: formData.message,
-          trainingSource: trainingSource
+          trainingSource: trainingSource,
+          ...getAttribution(),
         }),
       });
 

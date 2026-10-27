@@ -12,6 +12,7 @@ import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import { useToast } from "@/hooks/use-toast";
 import { trackConversion, markConvertedSession } from "@/lib/analytics";
+import { trackBookingClickEvent } from "@/lib/attribution";
 
 // Kategorien für die Module
 interface ModuleCategory {
@@ -276,6 +277,7 @@ const TrainingKonfigurator = () => {
     setIsBookingSubmitting(true);
     // Conversion-Tracking (Clarity) für den Buchungs-Klick
     trackConversion("booking_click", "konfigurator");
+    trackBookingClickEvent("konfigurator");
     markConvertedSession("booking");
 
     // Buchung im neuen Tab öffnen. Falls ein Popup-Blocker das verhindert,

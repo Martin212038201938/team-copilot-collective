@@ -1,0 +1,73 @@
+Beispiel der vollstaendigen Benachrichtigungsmail (Rohformat inkl. Header, Testfall mit ?gclid=TEST123 und Consent granted).
+Empfaenger: martin@yellow-boat.com, Betreff: Neue Kontaktanfrage von Anna Beispiel
+
+To: martin@yellow-boat.com
+Subject: Neue Kontaktanfrage von Anna Beispiel
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="48f41446bb5903093a9d8cd5e83daba5"
+From: Copilotenschule Kontaktformular <y-b@alwaysdata.net>
+Reply-To: Anna Beispiel <anna.beispiel@example.com>
+X-Mailer: PHP/8.3.6
+X-Originating-IP: 127.0.0.1
+X-Contact-Form: copilotenschule.de
+
+--48f41446bb5903093a9d8cd5e83daba5
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+Neue Kontaktanfrage
+
+Anfrage von Trainings-Seite: https://copilotenschule.de/copilot-schulung
+
+Vorname: Anna
+Nachname: Beispiel
+E-Mail: anna.beispiel@example.com
+Unternehmen: Beispiel GmbH
+
+Telefon: 0221 1234567
+
+Nachricht:
+Wir suchen eine Copilot-Schulung für 12 Personen.
+
+Kanal: google
+Klick-ID: gclid=TEST123
+Kampagne: test
+Anzeigengruppe/Anzeige: ag1_anzeige2
+Suchbegriff: copilot schulung koeln
+Landingpage: /copilot-schulung
+Referrer: google.com
+
+
+--48f41446bb5903093a9d8cd5e83daba5
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+<html>
+<head>
+    <meta charset='UTF-8'>
+</head>
+<body>
+    <h2>Neue Kontaktanfrage</h2>
+    
+    <div style='background-color: #e8f4f8; padding: 12px; border-left: 4px solid #0066cc; margin-bottom: 16px;'>
+        <p style='margin: 0;'><strong>📍 Anfrage von Trainings-Seite:</strong></p>
+        <p style='margin: 4px 0 0 0;'><a href='https://copilotenschule.de/copilot-schulung' style='color: #0066cc;'>https://copilotenschule.de/copilot-schulung</a></p>
+    </div>
+    <p><strong>Vorname:</strong> Anna</p><p><strong>Nachname:</strong> Beispiel</p>
+    <p><strong>E-Mail:</strong> anna.beispiel@example.com</p>
+    <p><strong>Unternehmen:</strong> Beispiel GmbH</p>
+    <p><strong>Telefon:</strong> 0221 1234567</p>
+    <p><strong>Nachricht:</strong></p>
+    <p>Wir suchen eine Copilot-Schulung für 12 Personen.</p>
+    <hr>
+    <p style='color: #666; font-size: 12px;'>
+        Newsletter-Status: In Datenbank gespeichert (Bestätigung ausstehend)
+    </p>
+<p>Kanal: google<br>Klick-ID: gclid=TEST123<br>Kampagne: test<br>Anzeigengruppe/Anzeige: ag1_anzeige2<br>Suchbegriff: copilot schulung koeln<br>Landingpage: /copilot-schulung<br>Referrer: google.com</p>
+</body>
+</html>
+
+
+--48f41446bb5903093a9d8cd5e83daba5--

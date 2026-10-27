@@ -12,6 +12,7 @@
  */
 
 import { trackConversion, markConvertedSession } from "@/lib/analytics";
+import { trackBookingClickEvent } from "@/lib/attribution";
 
 const DANKE_URL = "/danke";
 
@@ -31,6 +32,7 @@ const DANKE_URL = "/danke";
  */
 export function bookingClickToThankYou(source?: string): void {
   trackConversion("booking_click", source);
+  trackBookingClickEvent(source);
   markConvertedSession("booking");
   // Kurzer Delay, damit der neue Tab (Default-Link-Aktion) sicher geöffnet ist.
   window.setTimeout(() => {

@@ -41,6 +41,74 @@ $message = htmlspecialchars($data['message']);
 $trainingSource = !empty($data['trainingSource']) ? htmlspecialchars($data['trainingSource']) : null;
 $customSubject = !empty($data['subject']) ? htmlspecialchars($data['subject']) : null;
 
+// ============================================
+// Klick-Attribution (Google Ads / Microsoft Advertising)
+// Wird nur ausgewertet, wenn der Nutzer im Browser eingewilligt hat
+// (consent === 'granted'). Alle Werte werden von HTML befreit, auf erlaubte
+// Zeichen reduziert und in der Länge begrenzt. CR/LF sind nie erlaubt.
+// ============================================
+function attrClean($value, $maxLen, $disallowedPattern) {
+    if (!is_string($value)) {
+        return '';
+    }
+    $value = trim(strip_tags($value));
+    $value = preg_replace($disallowedPattern, '', $value);
+    if ($value === null) {
+        return '';
+    }
+    return mb_substr($value, 0, $maxLen, 'UTF-8');
+}
+
+function buildAttributionLines($data) {
+    if (!isset($data['consent']) || $data['consent'] !== 'granted') {
+        return array();
+    }
+
+    $idPattern   = '/[^A-Za-z0-9_\-]/';
+    $textPattern = '/[^\p{L}\p{N} _\-.+:\/%~,|()]/u';
+    $pathPattern = '/[^A-Za-z0-9_\-.\/~%]/';
+    $hostPattern = '/[^a-z0-9.\-]/';
+
+    $channels = array('google', 'microsoft', 'organisch', 'empfehlung', 'direkt', 'outbound');
+    $channel = (isset($data['channel']) && is_string($data['channel']) && in_array($data['channel'], $channels, true))
+        ? $data['channel'] : '';
+
+    // Pro Anfrage nur eine Klick-ID, Reihenfolge: gclid, gbraid, wbraid, msclkid
+    $clickId = '';
+    foreach (array('gclid', 'gbraid', 'wbraid', 'msclkid') as $key) {
+        $value = attrClean($data[$key] ?? '', 200, $idPattern);
+        if ($value !== '') {
+            $clickId = $key . '=' . $value;
+            break;
+        }
+    }
+
+    $landing = attrClean($data['landing_page'] ?? '', 200, $pathPattern);
+    if ($landing !== '' && $landing[0] !== '/') {
+        $landing = '';
+    }
+
+    $fields = array(
+        'Kanal'                   => $channel,
+        'Klick-ID'                => $clickId,
+        'Kampagne'                => attrClean($data['utm_campaign'] ?? '', 200, $textPattern),
+        'Anzeigengruppe/Anzeige'  => attrClean($data['utm_content'] ?? '', 200, $textPattern),
+        'Suchbegriff'             => attrClean($data['utm_term'] ?? '', 200, $textPattern),
+        'Landingpage'             => $landing,
+        'Referrer'                => attrClean(is_string($data['referrer'] ?? null) ? strtolower($data['referrer']) : '', 100, $hostPattern),
+    );
+
+    $lines = array();
+    foreach ($fields as $label => $value) {
+        if ($value !== '') {
+            $lines[] = $label . ': ' . $value;
+        }
+    }
+    return $lines;
+}
+
+$attributionLines = buildAttributionLines($data);
+
 // Validate email
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     http_response_code(400);
@@ -121,6 +189,16 @@ E-Mail: {$email}
 Nachricht:
 {$message}
 ";
+
+// Attribution ans Ende des Textkörpers (eine Zeile je Feld, leere Felder entfallen)
+if (!empty($attributionLines)) {
+    $textBody .= "\n" . implode("\n", $attributionLines) . "\n";
+    $htmlBody = str_replace(
+        "</body>",
+        "<p>" . implode("<br>", array_map('htmlspecialchars', $attributionLines)) . "</p>\n</body>",
+        $htmlBody
+    );
+}
 
 $boundary = md5(time() . 'notification');
 $headers = array();

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getStoredAdsConsent, isAdsConfigured, setAdsConsent } from "@/lib/ads";
+import { captureAttribution } from "@/lib/attribution";
 
 /**
  * Schlanker Consent-Banner für Google-Ads-Conversion-Tracking (Consent Mode v2).
@@ -24,6 +25,8 @@ const ConsentBanner = () => {
 
   const decide = (granted: boolean) => {
     setAdsConsent(granted);
+    // Einwilligung: Parameter des Einstiegs nachträglich erfassen. Ablehnung: Eintrag löschen.
+    captureAttribution();
     setVisible(false);
   };
 

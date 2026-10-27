@@ -3,6 +3,7 @@ import { HelmetProvider } from "react-helmet-async";
 import Clarity from "@microsoft/clarity";
 import App from "./App.tsx";
 import { initGoogleAds } from "./lib/ads";
+import { captureAttribution } from "./lib/attribution";
 import "./index.css";
 
 // Microsoft Clarity initialisieren — Heatmaps, Session-Recordings, Conversion-Events.
@@ -21,6 +22,9 @@ if (clarityId && typeof navigator !== "undefined" && !/ReactSnap/i.test(navigato
 // Google Ads (Conversion-Tracking, Consent Mode v2) — No-Op ohne VITE_GOOGLE_ADS_ID.
 // Eigener ReactSnap-Guard in initGoogleAds().
 initGoogleAds();
+
+// Klick-IDs und Kampagnenparameter (gclid, msclkid, utm_*) erfassen, nur mit Einwilligung.
+captureAttribution();
 
 const container = document.getElementById("root")!;
 const app = (

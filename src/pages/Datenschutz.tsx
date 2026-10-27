@@ -8,7 +8,7 @@ import SEOHead from "@/components/SEOHead";
  * Pflichtangaben gem. § 5 TMG / § 2 DDG sind im Impressum (Impressum.tsx).
  * Diese Seite behandelt ausschließlich Datenschutz.
  *
- * Letzter Stand: 18.09.2026
+ * Letzter Stand: 27.10.2026
  * Wichtig: Diese Erklärung wurde nach bestem Wissen erstellt, ersetzt aber
  * keine anwaltliche Prüfung. Bei rechtlich kritischen Anwendungsfällen bitte
  * von Datenschutzanwalt/-anwältin gegenchecken lassen.
@@ -16,6 +16,7 @@ import SEOHead from "@/components/SEOHead";
  * 03.08.2026: Abschnitt 6b (Google Analytics 4) ergänzt — GA4 wurde über
  * den bestehenden Google-Tag (GT-WRFMDNVV, Consent Mode v2) aktiviert.
  * 18.09.2026: Abschnitt 6c (Microsoft Advertising UET) ergänzt.
+ * 27.10.2026: Abschnitt 6d (Werbe-Klick-Kennungen und Kampagnenparameter) ergänzt.
  */
 
 const SLUG = "datenschutz";
@@ -35,7 +36,7 @@ const Datenschutz = () => {
           <h1 className="text-5xl lg:text-7xl font-semibold tracking-tight leading-[1.1] mb-4">
             Datenschutzerklärung
           </h1>
-          <p className="text-muted-foreground mb-12">Stand: 3. August 2026</p>
+          <p className="text-muted-foreground mb-12">Stand: 27. Oktober 2026</p>
 
           <div className="prose prose-slate max-w-none space-y-10">
             {/* ====================================================== */}
@@ -360,6 +361,46 @@ const Datenschutz = () => {
 
             {/* ====================================================== */}
             <section>
+              <h2 className="text-2xl font-bold mb-3">6d. Werbe-Klick-Kennungen und Kampagnenparameter (einwilligungsbasiert)</h2>
+              <p>
+                Wenn Sie über eine Anzeige bei Google Ads oder Microsoft Advertising auf unsere
+                Website gelangen, enthält die aufgerufene Adresse in der Regel eine Klick-Kennung
+                (bei Google <code>gclid</code>, <code>gbraid</code> oder <code>wbraid</code>, bei
+                Microsoft <code>msclkid</code>) und Kampagnenparameter (<code>utm_source</code>,{" "}
+                <code>utm_medium</code>, <code>utm_campaign</code>, <code>utm_term</code>,{" "}
+                <code>utm_content</code>). Zusätzlich halten wir fest, welche Seite unserer Website
+                Sie zuerst aufgerufen haben und von welcher Domain Sie gekommen sind.
+              </p>
+              <p>
+                <strong>Nur mit Ihrer Einwilligung</strong> (über den Cookie-Banner) speichern wir
+                diese Angaben für 90 Tage in Ihrem Browser (localStorage, Schlüssel{" "}
+                <code>attribution-v1</code>). Ohne Einwilligung wird nichts gespeichert; ein
+                vorhandener Eintrag wird gelöscht. Wenn Sie die Website-Daten dieser Domain in
+                Ihrem Browser entfernen, ist auch dieser Eintrag weg.
+              </p>
+              <p>
+                Wenn Sie ein Kontaktformular absenden, übermitteln wir die gespeicherten Angaben
+                zusammen mit Ihrer Anfrage an unseren Server und hängen sie an die interne
+                Benachrichtigung an. Klicken Sie auf „Erstgespräch vereinbaren“, senden wir sie als
+                Ereignis an Google Analytics 4. Zweck ist die Erfolgsmessung unserer Werbung: Wir
+                sehen, welche Anzeige zu einer Anfrage oder Buchung geführt hat, und können diesen
+                Erfolg über die Klick-Kennung an Google bzw. Microsoft zurückmelden
+                (Offline-Conversion).
+              </p>
+              <p>
+                Rechtsgrundlage ist Ihre Einwilligung nach Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;a DSGVO
+                sowie §&nbsp;25 Abs.&nbsp;1 TDDDG. Ihre Eingaben im Formular verarbeiten wir wie in
+                Abschnitt 7 beschrieben.
+              </p>
+              <p>
+                <strong>Widerruf:</strong> wie in Abschnitt 6a beschrieben. Ihre Entscheidung gilt
+                gemeinsam für alle Werbe- und Analysedienste und wird lokal in Ihrem Browser
+                gespeichert (Schlüssel <code>consent-ads-v1</code>).
+              </p>
+            </section>
+
+            {/* ====================================================== */}
+            <section>
               <h2 className="text-2xl font-bold mb-3">7. Kontaktformulare</h2>
               <p>
                 Auf dieser Website befinden sich mehrere Kontaktformulare (Hauptkontakt,
@@ -510,7 +551,7 @@ const Datenschutz = () => {
             <section>
               <h2 className="text-2xl font-bold mb-3">13. Aktualität und Änderungen dieser Datenschutzerklärung</h2>
               <p>
-                Diese Datenschutzerklärung hat den Stand vom <strong>18. September 2026</strong>.
+                Diese Datenschutzerklärung hat den Stand vom <strong>27. Oktober 2026</strong>.
                 Durch die Weiterentwicklung unserer Website oder aufgrund geänderter gesetzlicher
                 bzw. behördlicher Vorgaben kann es notwendig werden, diese Datenschutzerklärung zu
                 ändern. Die jeweils aktuelle Version ist stets unter{" "}

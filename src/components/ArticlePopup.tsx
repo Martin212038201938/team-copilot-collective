@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { X, GraduationCap, Users, Headphones, Calendar } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { bookingClickToThankYou } from "@/lib/booking";
+import { getAttribution } from "@/lib/attribution";
 
 const POPUP_DELAY_MS = 20_000;
 
@@ -54,6 +55,7 @@ const ArticlePopup = () => {
           phone: formData.phone,
           message: `[Popup-Anfrage von ${currentPath}] Interesse an Copilot-Training & Projektbegleitung.`,
           trainingSource: currentPath,
+          ...getAttribution(),
         }),
       });
 
