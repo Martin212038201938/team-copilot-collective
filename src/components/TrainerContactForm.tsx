@@ -338,7 +338,7 @@ const TrainerContactForm = () => {
           </div>
 
           <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
-            {isSubmitting ? "Wird gesendet..." : "Lasst uns sprechen"}
+            {isSubmitting ? "Wird gesendet..." : "Lass uns sprechen"}
           </Button>
 
           <p className="text-sm text-gray-600 text-center leading-relaxed">
