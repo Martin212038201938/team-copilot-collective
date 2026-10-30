@@ -13,6 +13,8 @@ import SEOHead from "@/components/SEOHead";
 import { useToast } from "@/hooks/use-toast";
 import { trackConversion, markConvertedSession } from "@/lib/analytics";
 import { trackBookingClickEvent, getAttribution } from "@/lib/attribution";
+import FoundViaSelect from "@/components/FoundViaSelect";
+import type { FoundVia } from "@/lib/foundVia";
 
 // Kategorien für die Module
 interface ModuleCategory {
@@ -184,6 +186,7 @@ interface FormData {
   email: string;
   company: string;
   phone: string;
+  foundVia: FoundVia;
   licenseType: string;
   employeeCount: string;
   trainingCount: string;
@@ -210,6 +213,7 @@ const TrainingKonfigurator = () => {
     email: "",
     company: "",
     phone: "",
+    foundVia: "",
     licenseType: "",
     employeeCount: "",
     trainingCount: "",
@@ -301,6 +305,7 @@ Nachname: ${formData.lastName}
 Unternehmen: ${formData.company}
 E-Mail: ${formData.email}
 Telefon: ${formData.phone}
+Gefunden über: ${formData.foundVia}
 
 ---
 ZUSÄTZLICHE ANGABEN:
@@ -329,6 +334,7 @@ ${formData.additionalInfo ? `---\nINFORMATIONEN UND WEITERE BENÖTIGTE INHALTE:\
         email: formData.email,
         company: formData.company,
         phone: formData.phone,
+        foundVia: formData.foundVia,
         message: messageWithModules,
         subject: `Konfiguration für Kunde (${formData.company}, ${formData.firstName}, ${formData.lastName})`,
         ...getAttribution(),
@@ -347,10 +353,10 @@ ${formData.additionalInfo ? `---\nINFORMATIONEN UND WEITERE BENÖTIGTE INHALTE:\
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!formData.firstName || !formData.lastName || !formData.email || !formData.company || !formData.phone) {
+    if (!formData.firstName || !formData.lastName || !formData.email || !formData.company || !formData.phone || !formData.foundVia) {
       toast({
         title: "Fehlende Angaben",
-        description: "Bitte füllen Sie alle Pflichtfelder aus (Vorname, Nachname, E-Mail, Unternehmen, Telefon).",
+        description: "Bitte füllen Sie alle Pflichtfelder aus (Vorname, Nachname, E-Mail, Unternehmen, Telefon, Wie haben Sie uns gefunden?).",
         variant: "destructive"
       });
       return;
@@ -393,6 +399,7 @@ ${formData.additionalInfo ? `---\nINFORMATIONEN UND WEITERE BENÖTIGTE INHALTE:\
           email: formData.email,
           company: formData.company,
           phone: formData.phone,
+          foundVia: formData.foundVia,
           message: messageWithModules,
           subject: `Training-Anfrage: ${totalModuleCount} Module ausgewählt${customModules.length > 0 ? ` (inkl. ${customModules.length} eigene Wünsche)` : ''}`,
           ...getAttribution(),
@@ -852,6 +859,15 @@ ${formData.additionalInfo ? `---\nINFORMATIONEN UND WEITERE BENÖTIGTE INHALTE:\
                           required
                         />
                       </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="konfigurator-foundVia">Wie haben Sie uns gefunden? *</Label>
+                        <FoundViaSelect
+                          id="konfigurator-foundVia"
+                          value={formData.foundVia}
+                          onChange={(value) => setFormData(prev => ({ ...prev, foundVia: value }))}
+                          required
+                        />
+                      </div>
                     </div>
 
                     {/* Optional fields section */}
@@ -1025,7 +1041,7 @@ ${formData.additionalInfo ? `---\nINFORMATIONEN UND WEITERE BENÖTIGTE INHALTE:\
                               variant="default"
                               className="gap-2"
                               onClick={handleBookingClick}
-                              disabled={isBookingSubmitting || !formData.firstName || !formData.lastName || !formData.email || !formData.company || !formData.phone}
+                              disabled={isBookingSubmitting || !formData.firstName || !formData.lastName || !formData.email || !formData.company || !formData.phone || !formData.foundVia}
                             >
                               {isBookingSubmitting ? (
                                 <>

@@ -109,6 +109,24 @@ function buildAttributionLines($data) {
 
 $attributionLines = buildAttributionLines($data);
 
+// Selbstauskunft „Wie haben Sie uns gefunden?“ (src/lib/foundVia.ts). Keine Einwilligung nötig,
+// nur Werte aus der festen Liste werden übernommen. Steht immer vor den Attributionszeilen.
+$foundViaOptions = array(
+    'Google-Suche',
+    'Bing-Suche',
+    'ChatGPT, Copilot oder andere KI',
+    'LinkedIn',
+    'Empfehlung',
+    'Veranstaltung oder Vortrag',
+    'Wir kennen uns bereits',
+    'Sonstiges',
+);
+$foundVia = (isset($data['foundVia']) && is_string($data['foundVia']) && in_array($data['foundVia'], $foundViaOptions, true))
+    ? $data['foundVia'] : '';
+if ($foundVia !== '') {
+    array_unshift($attributionLines, 'Gefunden über: ' . $foundVia);
+}
+
 // Validate email
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     http_response_code(400);
