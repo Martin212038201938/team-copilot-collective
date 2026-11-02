@@ -52,7 +52,7 @@ const CopilotVariantenUnterschiede = () => {
     },
     {
       name: "Wir würden gern das agentische Claude-Modell nutzen, dürfen es aber aus Datenschutzgründen nicht aktivieren. Was jetzt?",
-      answer: "Damit sind Sie nicht allein – für Tenants in der EU, im EWR und in Großbritannien ist die Anthropic-Integration standardmäßig deaktiviert, weil die Verarbeitung derzeit außerhalb der EU-Datengrenze stattfindet. Sinnvoll ist trotzdem, jetzt mit der vorhandenen, OpenAI-gestützten Copilot-Lizenz die Grundlagen aufzubauen: agentische Workflows funktionieren im Kern gleich, egal welches Modell dahinterläuft. So sind Ihre Teams vorbereitet, wenn die EU-konforme Aktivierung kommt. Den datenschutzrechtlichen Hintergrund haben wir im Detail aufgeschrieben, und wir begleiten die Einführung gemeinsam mit Ihren IT- und Datenschutzverantwortlichen."
+      answer: "Damit sind Sie nicht allein. Anthropic ist weiterhin nicht in Microsofts EU-Datengrenze eingebunden, deshalb steht der zentrale Anthropic-Schalter für Tenants in der EU, der EFTA und Großbritannien standardmäßig auf „Keine Benutzer“. Prüfen Sie trotzdem die separate Einstellung für Claude in Word, Excel und PowerPoint: Bei Tenants, die nach dem 25. März 2026 angelegt wurden, ist sie ab Werk eingeschaltet. Für die Praxis gilt: Mit den GPT-Modellen, die innerhalb der EU-Datengrenze laufen, lassen sich agentische Workflows schon heute aufbauen – auch Copilot Cowork funktioniert in der EU inzwischen ohne Claude. Die Arbeitsweise bleibt dieselbe, egal welches Modell dahinterläuft. Den datenschutzrechtlichen Hintergrund haben wir im Detail aufgeschrieben, und wir begleiten die Einführung gemeinsam mit Ihren IT- und Datenschutzverantwortlichen."
     },
     {
       name: "Lohnt es sich, alle Mitarbeiter gemeinsam zu schulen, egal welche Variante sie haben?",
@@ -77,7 +77,7 @@ const CopilotVariantenUnterschiede = () => {
           "@id": "https://copilotenschule.de/#organization"
         },
         "datePublished": "2026-06-01",
-        "dateModified": "2026-06-01",
+        "dateModified": "2026-11-02",
         "mainEntityOfPage": {
           "@type": "WebPage",
           "@id": pageUrl
@@ -145,7 +145,7 @@ const CopilotVariantenUnterschiede = () => {
         ]}
         title={PAGE_TITLE}
         description="Warum die meisten gar nicht wissen, welche Copilot-Variante sie nutzen – und was Copilot Chat, die 365-Lizenz und die Claude-Modelle praktisch voneinander unterscheidet."
-        lastUpdated="1. Juni 2026"
+        lastUpdated="2. November 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
         relatedContent={[
@@ -504,12 +504,15 @@ const CopilotVariantenUnterschiede = () => {
               An dieser Stelle muss ich die Begeisterung dämpfen, und zwar genau für die Leser, die jetzt am
               liebsten die Claude-Modelle ausprobieren würden. Für sehr viele Unternehmen in Deutschland, Österreich
               und der Schweiz ist Claude in Copilot derzeit schlicht nicht aktiviert – und das ist kein Versehen,
-              sondern Microsofts Voreinstellung. Für Tenants in der EU, im EWR und in Großbritannien ist die
-              Anthropic-Integration standardmäßig ausgeschaltet.
+              sondern Microsofts Voreinstellung. Für Tenants in der EU, der EFTA und Großbritannien ist der
+              zentrale Anthropic-Schalter standardmäßig ausgeschaltet. Seit April 2026 gibt es allerdings eine
+              getrennte Einstellung, die Claude in Word, Excel und PowerPoint zum Standardmodell macht und bei
+              europäischen Tenants, die nach dem 25. März 2026 angelegt wurden, ab Werk aktiv ist. Ein Blick ins
+              Admin Center lohnt also auch dann, wenn niemand bewusst etwas freigeschaltet hat.
             </p>
             <p>
-              Der Grund liegt in der Datenverarbeitung. Anthropic ist bisher nicht in Microsofts EU-Datengrenze
-              eingebunden. Werden die Claude-Modelle in Copilot genutzt, kann die Verarbeitung außerhalb des
+              Der Grund liegt in der Datenverarbeitung. Anthropic ist auch im November 2026 nicht in Microsofts
+              EU-Datengrenze eingebunden. Werden die Claude-Modelle in Copilot genutzt, kann die Verarbeitung außerhalb des
               europäischen Rechtsraums stattfinden, auf Infrastruktur in den USA. Microsoft sichert für diese
               Modelle also noch nicht zu, dass die Verarbeitung innerhalb der europäischen Datengrenze und der
               gewohnten Azure-Umgebung des Unternehmens bleibt. Solange das so ist, bleibt für viele
@@ -523,7 +526,9 @@ const CopilotVariantenUnterschiede = () => {
               Meine Einschätzung nach allem, was bislang sichtbar ist: Diese Einschränkung wird wahrscheinlich nicht
               von Dauer sein. Microsoft und Anthropic haben ihre Zusammenarbeit mit einem milliardenschweren
               Azure-Abkommen unterlegt, und der Druck, Anthropics Modelle auch innerhalb der EU-Datengrenze
-              anzubieten, ist erheblich. Es spricht einiges dafür, dass die europäische Aktivierung kommt – ein
+              anzubieten, ist erheblich. Dass der Weg grundsätzlich gangbar ist, hat Microsoft im Juli 2026
+              gezeigt: Die von OpenAI selbst betriebenen Modelle, die Microsoft seither als Unterauftragsverarbeiter
+              einbindet, liegen innerhalb der EU-Datengrenze. Es spricht einiges dafür, dass die europäische Aktivierung kommt – ein
               festes Datum nennt Microsoft bislang aber nicht, und darauf sollte man keine Einführungspläne bauen.
               Die kluge Vorbereitung besteht darin, agentische Arbeitsweisen schon jetzt mit den verfügbaren,
               OpenAI-gestützten Funktionen einzuüben. Die zugrunde liegende Logik ändert sich nicht, wenn später das

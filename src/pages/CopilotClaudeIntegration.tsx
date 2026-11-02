@@ -35,7 +35,7 @@ const CopilotClaudeIntegration = () => {
     },
     {
       name: "Ist Claude in Copilot DSGVO-konform nutzbar?",
-      answer: "Für Unternehmen in der EU, im EWR und in Großbritannien ist die Anthropic-Integration standardmäßig deaktiviert. Der Grund: Anthropic ist nicht in Microsofts EU Data Boundary eingebunden, die Datenverarbeitung erfolgt in den USA. Admins können Claude manuell aktivieren, sollten aber vorher mit ihrem Datenschutzbeauftragten klären, ob ein Transfer Impact Assessment vorliegt und ob die Rechtsgrundlage nach Art. 28 DSGVO sauber dokumentiert ist. Die Copilotenschule berät bei der datenschutzkonformen Einführung von Copilot-Features."
+      answer: "Nur mit einer bewussten Entscheidung. Anthropic ist weiterhin nicht in Microsofts EU Data Boundary eingebunden, die Verarbeitung findet außerhalb der EU statt. Der zentrale Anthropic-Schalter steht für Tenants in der EU, der EFTA und Großbritannien deshalb standardmäßig auf „Keine Benutzer“. Seit April 2026 gibt es aber eine separate Einstellung für Claude in Word, Excel und PowerPoint, die bei Tenants, die nach dem 25. März 2026 angelegt wurden, ab Werk eingeschaltet ist. Admins sollten beide Einstellungen prüfen und vor einer Freigabe mit dem Datenschutzbeauftragten klären, ob ein Transfer Impact Assessment vorliegt und die Auftragsverarbeitung nach Art. 28 DSGVO sauber dokumentiert ist. Die Copilotenschule berät bei der datenschutzkonformen Einführung von Copilot-Features."
     },
     {
       name: "Wie überzeuge ich die Geschäftsführung, dass wir in Copilot-Schulungen investieren sollten, obwohl sich die Technologie so schnell ändert?",
@@ -43,7 +43,7 @@ const CopilotClaudeIntegration = () => {
     },
     {
       name: "Was ist der Unterschied zwischen Claude Cowork und Copilot Cowork?",
-      answer: "Claude Cowork von Anthropic läuft lokal auf dem Rechner des Nutzers und arbeitet mit Dateien und Programmen auf dem Gerät. Copilot Cowork dagegen läuft in der Microsoft-Cloud, innerhalb des M365-Tenants. Es greift auf Outlook-Mails, Teams-Chats, SharePoint-Dateien und Excel-Arbeitsmappen zu – also auf das gesamte Unternehmenswissen, das in Microsoft 365 liegt. Der Vorteil für Unternehmen: alles unter einer Governance-Schicht, mit den gleichen Sicherheits- und Compliance-Richtlinien wie der Rest von M365."
+      answer: "Claude Cowork ist ein eigenständiges Produkt von Anthropic, mit eigenem Vertrag und eigener Datenverarbeitung außerhalb Ihres Microsoft-365-Tenants. Copilot Cowork dagegen läuft in der Microsoft-Cloud innerhalb des M365-Tenants, unter Microsofts Produktbedingungen. Es greift auf Outlook-Mails, Teams-Chats, SharePoint-Dateien und Excel-Arbeitsmappen zu, und zwar nur mit den Berechtigungen, die der jeweilige Nutzer ohnehin hat. Der Vorteil für Unternehmen: alles unter einer Governance-Schicht, mit Vertraulichkeitsbezeichnungen, Admin-Einstellungen und Compliance-Richtlinien wie im Rest von M365. Für die Entscheidung zählt deshalb weniger das Modell als die Frage, unter welchem Vertrag und in welcher Umgebung Ihre Daten verarbeitet werden. Die Copilotenschule hilft bei dieser Einordnung und bei der Einführung von Copilot Cowork."
     },
     {
       name: "Unsere Mitarbeiter nutzen Copilot kaum – bringt die Claude-Integration da überhaupt etwas?",
@@ -64,7 +64,7 @@ const CopilotClaudeIntegration = () => {
           "@id": "https://copilotenschule.de/#organization"
         },
         "datePublished": "2026-03-13",
-        "dateModified": "2026-08-11",
+        "dateModified": "2026-11-02",
         "mainEntityOfPage": {
           "@type": "WebPage",
           "@id": pageUrl
@@ -137,7 +137,7 @@ const CopilotClaudeIntegration = () => {
         ]}
         title={PAGE_TITLE}
         description="Microsoft integriert Anthropics Claude-KI in Copilot – inklusive Copilot Cowork für agentenbasierte Aufgaben. Was das für Unternehmen bedeutet."
-        lastUpdated="11. August 2026"
+        lastUpdated="2. November 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
         relatedContent={[
@@ -298,13 +298,16 @@ const CopilotClaudeIntegration = () => {
             </p>
             <p>
               Und hier liegt ein entscheidender Unterschied zu Anthropics eigenem Claude Cowork, den viele übersehen:
-              Claude Cowork läuft lokal auf dem Rechner des Nutzers und arbeitet mit lokalen Dateien und
-              Anwendungen. Copilot Cowork läuft in der Cloud, im Microsoft-365-Tenant des Unternehmens. Microsoft
+              Claude Cowork ist ein eigenständiges Anthropic-Produkt mit eigenem Vertrag, das außerhalb des
+              Microsoft-365-Tenants arbeitet. Copilot Cowork läuft in der Cloud, im Microsoft-365-Tenant des
+              Unternehmens, unter Microsofts Produktbedingungen und mit denselben Berechtigungen,
+              Vertraulichkeitsbezeichnungen und Admin-Einstellungen wie der Rest von Microsoft 365. Microsoft
               selbst betont, dass das „ein Feature ist, kein Bug" – weil so die Enterprise-Governance greifen kann.
-              Aber es bedeutet eben auch: Copilot Cowork hat keinen Zugriff auf lokale Dateien, keine nativen
-              Integrationen mit Drittanbieter-Tools außerhalb des Microsoft-Ökosystems, und keine Möglichkeit,
-              Anwendungen auf dem Desktop fernzusteuern. Gartner hat diese Einschränkung in einer ersten Analyse
-              bereits kritisch angemerkt.
+              Die Grenzen haben sich seit dem Start allerdings verschoben: Nutzer können inzwischen Dateien vom
+              eigenen Gerät hochladen, und über Plugins aus dem Microsoft 365 App Store kommen Skills und
+              Connectors zu Systemen wie Dynamics 365 hinzu. Was bleibt: Copilot Cowork arbeitet in der Cloud und
+              steuert keine Anwendungen auf dem Desktop fern. Gartner hatte die ursprünglichen Einschränkungen in
+              einer ersten Analyse kritisch angemerkt.
             </p>
           </div>
         </section>
@@ -402,12 +405,29 @@ const CopilotClaudeIntegration = () => {
               irgendjemand den Toggle im Admin Center vorschnell aktiviert.
             </p>
             <p>
-              Anthropic ist nicht Teil von Microsofts EU Data Boundary. Das bedeutet konkret: Wenn Claude
-              in Copilot genutzt wird, verlassen Daten den europäischen Rechtsraum. Die Verarbeitung
-              erfolgt auf Anthropics Infrastruktur in den USA. Microsoft hat das transparent kommuniziert –
-              für Tenants in der EU, im EWR und in Großbritannien ist der Anthropic-Toggle im Admin Center
-              standardmäßig auf „Aus" gesetzt. In allen anderen Regionen war er seit Dezember 2025 auf
+              Anthropic ist nicht Teil von Microsofts EU Data Boundary, und daran hat sich bis heute
+              (Stand November 2026) nichts geändert. Das bedeutet konkret: Wenn Claude in Copilot genutzt
+              wird, verlassen Daten den europäischen Rechtsraum. Microsoft nimmt die Anthropic-Modelle
+              ausdrücklich auch von den Zusagen zur Verarbeitung im eigenen Land aus. Für Tenants in der EU,
+              der EFTA und Großbritannien steht der zentrale Anthropic-Schalter im Admin Center deshalb
+              standardmäßig auf „Keine Benutzer". In allen anderen Regionen ist er seit Anfang 2026 auf
               „An" – was bei einigen Datenschutzbeauftragten, die ich kenne, für erhöhten Puls gesorgt hat.
+            </p>
+            <p>
+              Ganz so eindeutig ist das „Aus" in Europa allerdings nicht mehr. Seit April 2026 gibt es im
+              Admin Center eine zweite, davon getrennte Einstellung: „Copilot in Microsoft 365 apps with
+              Anthropic models". Sie macht Claude zum Standardmodell für Copilot in Word, Excel und
+              PowerPoint und ist bei europäischen Tenants, die nach dem 25. März 2026 angelegt wurden, ab
+              Werk eingeschaltet. Für ältere Tenants nennt Microsoft den Default im jeweiligen
+              Message-Center-Post. Wer sich nur auf den zentralen Schalter verlässt, übersieht diese
+              Einstellung leicht.
+            </p>
+            <p>
+              Zwei weitere Änderungen betreffen die Administration. Die frühere Freigabe unter Anthropics
+              eigenen Vertragsbedingungen hat Microsoft zum 1. Mai 2026 abgeschaltet; wer Claude damals so
+              aktiviert hatte, muss über den Subprozessor-Weg neu zustimmen. Und die Freigabe muss nicht mehr
+              für alle gelten: AI-Administratoren oder globale Administratoren können sie auf einzelne
+              Benutzer oder Sicherheitsgruppen beschränken.
             </p>
             <p>
               Formal agiert Anthropic als Unterauftragsverarbeiter unter Microsofts Produktbedingungen und
@@ -419,13 +439,22 @@ const CopilotClaudeIntegration = () => {
               aktualisiert wird.
             </p>
             <p>
+              Ein Sonderfall verdient eigene Aufmerksamkeit: Besonders leistungsfähige Modelle wie Claude
+              Fable 5.0 führt Microsoft als „Anthropic models with Data Retention". Hier ist Anthropic nicht
+              Unterauftragsverarbeiter, sondern eigenständiger Verarbeiter. Es gelten Anthropics eigene
+              Bedingungen, und Anthropic speichert Ein- und Ausgaben bis zu 30 Tage. Diese Modelle sind
+              überall standardmäßig aus und brauchen eine eigene Freigabe. Für die Datenschutzbewertung ist
+              das ein anderer Fall als die regulären Claude-Modelle.
+            </p>
+            <p>
               Mein Rat an die IT-Leiter und Datenschutzbeauftragten, mit denen ich arbeite: Nicht panisch
               werden, aber auch nicht im Autopilot-Modus aktivieren. Führen Sie das Gespräch mit Ihrem DSB,
               dokumentieren Sie die Entscheidung, und stellen Sie sicher, dass Sie erklären können, warum
               Sie Claude aktivieren – oder eben nicht. Für die meisten deutschen Unternehmen, die ich
-              begleite, wird die pragmatische Lösung sein: Claude für Copilot Cowork gezielt für bestimmte
-              Use Cases freigeben und die reguläre Copilot-Chat-Nutzung zunächst bei den bisherigen Modellen
-              belassen.
+              begleite, wird die pragmatische Lösung sein: Claude über eine Sicherheitsgruppe gezielt für
+              bestimmte Use Cases und Personen freigeben und die breite Nutzung zunächst bei den Modellen
+              belassen, die innerhalb der EU-Datengrenze laufen. Copilot Cowork funktioniert inzwischen auch
+              ohne Claude: Innerhalb der EU Data Boundary unterstützt Microsoft dort nur die GPT-Modelle.
             </p>
           </div>
         </section>
@@ -462,11 +491,14 @@ const CopilotClaudeIntegration = () => {
               (99 Euro/Nutzer/Monat) sind, haben weiterhin den breitesten Zugang. Wer eine bestehende
               Copilot-Lizenz für 30 Euro hat, nutzt Cowork über das Credits-Modell – seit Juli mit Claude
               Sonnet 5 als Standardmodell für die Aufgabenbearbeitung und Claude Opus 5 für längere,
-              komplexere Aufträge.
+              komplexere Aufträge. In Tenants innerhalb der EU-Datengrenze stehen in Cowork allerdings nur
+              die GPT-Modelle zur Verfügung.
             </p>
             <p>
               Was sich dagegen sehr wohl ändert – und zwar sofort – ist die Anforderung an die
-              IT-Administration. Der Anthropic-Toggle im Admin Center will bewusst gesteuert werden.
+              IT-Administration. Die beiden Anthropic-Einstellungen im Admin Center – der zentrale
+              Subprozessor-Schalter und die separate Einstellung für Word, Excel und PowerPoint – wollen
+              bewusst gesteuert werden.
               Die Governance für KI-Agenten, die mit Agent 365 (ab Mai 2026 für 15 Euro/Nutzer/Monat)
               verfügbar wird, muss geplant werden. Und die Mitarbeiter brauchen ein Verständnis dafür,
               dass Copilot nicht mehr nur ein Chat ist, sondern ein Agent, der eigenständig handelt –

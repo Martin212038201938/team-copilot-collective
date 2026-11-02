@@ -80,7 +80,7 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/copilot-update-juni-2026",
     badge: "Copilot News",
     icon: "🔄",
-    lastUpdated: "13. Juli 2026",
+    lastUpdated: "2. Nov. 2026",
     publishDate: "2026-07-13",
     publishTime: "09:00"
   },
@@ -113,7 +113,7 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/copilot-cowork-abrechnung-copilot-credits",
     badge: "Lizenzen & Kosten",
     icon: "€",
-    lastUpdated: "17. Juni 2026",
+    lastUpdated: "2. Nov. 2026",
     publishDate: "2026-06-17",
     publishTime: "09:00"
   },
@@ -124,7 +124,7 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/microsoft-copilot-varianten-unterschiede",
     badge: "Grundlagen & Vergleich",
     icon: "≠",
-    lastUpdated: "1. Juni 2026",
+    lastUpdated: "2. Nov. 2026",
     publishDate: "2026-06-01",
     publishTime: "09:00"
   },
@@ -223,7 +223,7 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/copilot-in-excel-aktivieren",
     badge: "Microsoft 365 Copilot",
     icon: "⚡",
-    lastUpdated: "08. April 2026",
+    lastUpdated: "2. Nov. 2026",
     publishDate: "2026-04-08",
     publishTime: "09:00"
   },
@@ -234,7 +234,7 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/copilot-betriebsrat",
     badge: "Betriebsrat & KI",
     icon: "§",
-    lastUpdated: "02. April 2026",
+    lastUpdated: "2. Nov. 2026",
     publishDate: "2026-04-02",
     publishTime: "09:00"
   },
@@ -267,7 +267,7 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/claude-in-microsoft-copilot",
     badge: "Microsoft 365 Copilot",
     icon: "§",
-    lastUpdated: "11. August 2026",
+    lastUpdated: "2. Nov. 2026",
     publishDate: "2026-03-13",
     publishTime: "11:00",
     isDraft: false
@@ -486,11 +486,11 @@ export const ALL_ARTICLES: ArticleData[] = [
   {
     id: "microsoft-copilot-lizenzen",
     title: "Microsoft Copilot Lizenzen 2026: Preise & Vergleich",
-    description: "Welche Copilot-Lizenz lohnt sich? M365 Copilot Business (ab 15,60 €/User) und Enterprise (26 €), GitHub Copilot & Copilot Studio im Vergleich – Stand Okt. 2026.",
+    description: "Welche Copilot-Lizenz lohnt sich? M365 Copilot Business (ab 15,60 €/User) und Enterprise (26 €), GitHub Copilot & Copilot Studio im Vergleich – Stand Nov. 2026.",
     link: "/wissen/microsoft-copilot-lizenzen",
     badge: "Lizenzierung",
     icon: "📋",
-    lastUpdated: "1. Okt. 2026",
+    lastUpdated: "1. Nov. 2026",
     publishDate: "2026-01-15",
     publishTime: "09:00"
   },
@@ -556,7 +556,7 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/copilot-fuer-word",
     badge: "Anwendung",
     icon: "📝",
-    lastUpdated: "02. Feb. 2026",
+    lastUpdated: "2. Nov. 2026",
     publishDate: "2025-12-10",
     publishTime: "09:00"
   },
@@ -567,7 +567,7 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/copilot-sicherheit-datenschutz",
     badge: "Compliance",
     icon: "🔒",
-    lastUpdated: "28. Feb. 2026",
+    lastUpdated: "2. Nov. 2026",
     publishDate: "2025-12-05",
     publishTime: "09:00"
   },

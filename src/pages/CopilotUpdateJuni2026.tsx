@@ -39,12 +39,12 @@ const CopilotUpdateJuni2026 = () => {
     {
       name: "Ist Cowork in unserem Copilot-Abo enthalten?",
       answer:
-        "Cowork ist für alle Microsoft-365-Copilot-Tenants allgemein verfügbar, aber es rechnet verbrauchsbasiert über Copilot Credits ab und setzt die Aktivierung von Anthropic als Subprozessor voraus. Es ist also kein einfacher Schalter, sondern braucht eine bewusste Einführung mit Kostensteuerung.",
+        "Cowork ist für alle Microsoft-365-Copilot-Tenants allgemein verfügbar, aber es rechnet verbrauchsbasiert über Copilot Credits ab und setzte zum Start die Aktivierung von Anthropic als Subprozessor voraus. Nachtrag November 2026: Inzwischen ist Anthropic für Cowork optional, innerhalb der EU-Datengrenze unterstützt Cowork nur GPT-Modelle. Es ist also kein einfacher Schalter, sondern braucht eine bewusste Einführung mit Kostensteuerung.",
     },
     {
       name: "Was müssen wir als Admin oder Datenschutzbeauftragte vor dem Rollout prüfen?",
       answer:
-        "Ob generierte Dateien die richtigen Vertraulichkeitsbezeichnungen erben, ob die Wasserzeichen-Policy zu Ihren Vorgaben passt, ob Anthropic als Subprozessor bewusst freigegeben ist und wie Sie Federated Connectors während der siebentägigen Prüfphase bewerten.",
+        "Ob generierte Dateien die richtigen Vertraulichkeitsbezeichnungen erben, ob die Wasserzeichen-Policy zu Ihren Vorgaben passt, ob Anthropic als Subprozessor bewusst freigegeben oder bewusst ausgeschaltet ist und wie Sie Federated Connectors während der siebentägigen Prüfphase bewerten.",
     },
     {
       name: "Können wir Copilot ohne die kostenpflichtige Lizenz sinnvoll nutzen?",
@@ -72,7 +72,7 @@ const CopilotUpdateJuni2026 = () => {
           "@id": "https://copilotenschule.de/#organization",
         },
         "datePublished": "2026-07-13",
-        "dateModified": "2026-07-13",
+        "dateModified": "2026-11-02",
         "keywords": [
           "Copilot Update Juni 2026",
           "Microsoft 365 Copilot News",
@@ -135,7 +135,7 @@ const CopilotUpdateJuni2026 = () => {
         ]}
         title={PAGE_TITLE}
         description="Der kuratierte Monatsüberblick: Was ist neu in der Copilot-Welt? Die wenigen wirklich relevanten Neuerungen aus der Juni-Ausgabe – mit Quelle, Einordnung und konkretem Nutzen."
-        lastUpdated="13. Juli 2026"
+        lastUpdated="2. November 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
       >
@@ -170,7 +170,7 @@ const CopilotUpdateJuni2026 = () => {
                 führt sie über mehrere Microsoft-365-Dienste hinweg aus und liefert am Ende ein
                 fertiges Ergebnis statt eines Entwurfs – Mails, Termine, Dokumente, Teams-Posts,
                 Recherchen. Sensible Aktionen bestätigen Sie vorher per Freigabedialog. Der Haken:
-                Cowork nutzt Anthropic-Modelle als Subprozessor, rechnet verbrauchsbasiert über
+                Cowork nutzt Anthropic-Modelle als Subprozessor (inzwischen optional), rechnet verbrauchsbasiert über
                 Copilot Credits ab und ist zunächst auf Englisch optimiert. Starten Sie mit einem
                 klar abgegrenzten Anwendungsfall statt „irgendetwas Großes" auszuprobieren. Was die
                 Abrechnung konkret bedeutet, steht in unserem Beitrag zur{" "}
@@ -505,7 +505,8 @@ const CopilotUpdateJuni2026 = () => {
               </li>
               <li>
                 <strong>Cowork sauber einführen – vor der Freigabe.</strong> GA heißt nicht
-                „automatisch an". Vor dem Start braucht es: Anthropic als Subprozessor aktiviert,
+                „automatisch an". Vor dem Start brauchte es zum GA-Termin: Anthropic als Subprozessor aktiviert
+                (Nachtrag November 2026: nicht mehr nötig, in der EU läuft Cowork mit GPT-Modellen),
                 verbrauchsbasierte Abrechnung/Copilot Credits eingerichtet, Agent-Verfügbarkeit im
                 Admin Center gesetzt und eine Vorstellung von der Kostensteuerung. Cowork kann keine
                 lokalen Dateien lesen und keine OneDrive/SharePoint-Dateien löschen – das begrenzt das

@@ -88,7 +88,7 @@ const CopilotBetriebsrat = () => {
           "@id": "https://copilotenschule.de/#organization"
         },
         "datePublished": "2026-04-02",
-        "dateModified": "2026-04-02",
+        "dateModified": "2026-11-02",
         "mainEntityOfPage": {
           "@type": "WebPage",
           "@id": pageUrl
@@ -152,7 +152,7 @@ const CopilotBetriebsrat = () => {
         ]}
         title={PAGE_TITLE}
         description="Mitbestimmungsrechte kennen, Betriebsvereinbarung gestalten, Rollout aktiv begleiten – ein praxisnaher Leitfaden für Arbeitnehmervertreter."
-        lastUpdated="02. April 2026"
+        lastUpdated="2. November 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
         relatedContent={[
@@ -305,6 +305,11 @@ const CopilotBetriebsrat = () => {
               des eigenen M365-Mandanten nicht. Microsoft hat vertraglich und durch die
               EU Data Boundary zugesichert, dass Unternehmensdaten innerhalb der EU
               verarbeitet werden und nicht zum Training von KI-Modellen verwendet werden.
+              Zwei Ausnahmen gehören allerdings in jede Betriebsvereinbarung: die Claude-Modelle
+              von Anthropic, die Microsoft ausdrücklich von der EU Data Boundary ausnimmt, und
+              das optionale Flex Routing, bei dem die KI-Verarbeitung bei Lastspitzen in die
+              USA, nach Kanada oder Australien ausweichen kann. Beides ist im Admin Center
+              steuerbar und sollte vor dem Rollout bewusst entschieden werden.
             </p>
             <p className="leading-relaxed">
               Was Copilot allerdings sichtbar macht: bestehende Schwachstellen in der

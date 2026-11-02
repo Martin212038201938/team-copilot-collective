@@ -117,7 +117,7 @@ const CopilotFuerWord = () => {
           "@id": "https://copilotenschule.de/#organization"
         },
         "datePublished": "2025-01-05",
-        "dateModified": "2026-02-03",
+        "dateModified": "2026-11-02",
         "keywords": ["Copilot für Word","Microsoft Copilot Word","Word KI Assistent","Dokumente mit KI erstellen","Word Produktivität","Microsoft 365 Copilot"],
         "articleSection": "Microsoft 365",
         "mainEntityOfPage": {
@@ -172,7 +172,8 @@ const CopilotFuerWord = () => {
         tableOfContents={tableOfContents}
         author={author}
         publishDate="2025-01-05"
-        modifiedDate="2026-02-03"
+        modifiedDate="2026-11-02"
+        lastUpdated="2. November 2026"
         relatedContent={["wissen:copilot-fuer-excel", "wissen:copilot-tipps-tricks-produktivitaet", "wissen:copilot-in-outlook-nutzen-tipps", "training:microsoft-365-copilot-praxis", "wissen:prompt-engineering"]}
       >
         {/* Schnellantwort Card */}
@@ -1159,7 +1160,7 @@ Format: Markdown mit klarer Hierarchie, Emojis für Kategorien."`}</code></pre>
             <li>Copilot nutzt nur Daten, auf die Sie Zugriff haben</li>
             <li>Keine Daten verlassen Ihr Microsoft 365 Tenant</li>
             <li>Prompts und Outputs sind nicht für LLM-Training</li>
-            <li>EU-Data Residency verfügbar</li>
+            <li>EU Data Boundary für die GPT-Modelle; nutzt Copilot in Word die Claude-Modelle von Anthropic, findet die Verarbeitung außerhalb der EU statt (bei EU-Tenants, die nach dem 25. März 2026 angelegt wurden, ab Werk aktiv)</li>
           </ul>
           <p className="mb-4 text-gray-700 leading-relaxed"><strong>Best Practices:</strong></p>
           <ul className="list-disc list-inside space-y-2 mb-4">

@@ -39,8 +39,8 @@ const CopilotCoworkAbrechnungCredits = () => {
       answer: "Microsoft hat dafür mehrere Hebel eingebaut: Limits pro Nutzer und Gruppe, Budgets mit Warnungen, harte Obergrenzen und ein Cost-Management-Dashboard im Microsoft 365 Admin Center. Zusätzlich gibt es ein Prepaid-Modell (den Copilot Credit Pre-Purchase Plan), mit dem Sie Kontingente im Voraus einkaufen und zu rabattierten Konditionen kalkulieren können. Eine Kostenexplosion ist also kein Naturgesetz, sondern eine Frage der Konfiguration. Wir helfen dabei, diese Leitplanken so zu setzen, dass produktive Nutzung möglich bleibt, ohne dass das Budget aus dem Ruder läuft."
     },
     {
-      name: "Dürfen wir Copilot Cowork in Deutschland überhaupt nutzen, wenn es auf Anthropic-Modellen läuft?",
-      answer: "Technisch ja, aber nicht im Autopilot. In der EU, im EWR und in Großbritannien sind die Anthropic-Modelle in Copilot standardmäßig deaktiviert, weil Anthropic nicht in Microsofts EU Data Boundary eingebunden ist. Cowork läuft im Kern auf diesen Modellen, also muss ein globaler Administrator Anthropic bewusst freischalten. Vorher gehört das Gespräch mit dem Datenschutzbeauftragten geführt: Transfer Impact Assessment, Rechtsgrundlage nach Artikel 28 DSGVO, Verzeichnis der Verarbeitungstätigkeiten. Die Copilotenschule begleitet diese datenschutzkonforme Einführung."
+      name: "Dürfen wir Copilot Cowork in Deutschland überhaupt nutzen, obwohl Microsoft dafür Anthropic-Modelle einsetzt?",
+      answer: "Ja, und inzwischen auch ohne Anthropic. In der Frontier-Vorschau lief Cowork ausschließlich auf Claude-Modellen, das hat Microsoft geändert: Anthropic ist für Cowork optional, und innerhalb der EU Data Boundary unterstützt Cowork laut Microsoft nur die GPT-Modelle. Prompts und Antworten speichert Microsoft für Tenants mit Standort Deutschland im Land. Wer Claude in Cowork trotzdem nutzen will, verlässt mit der Freigabe die EU-Datengrenze, denn Anthropic ist dort weiterhin nicht eingebunden. Dann gehört das Gespräch mit dem Datenschutzbeauftragten vorher geführt: Transfer Impact Assessment, Auftragsverarbeitung nach Artikel 28 DSGVO, Verzeichnis der Verarbeitungstätigkeiten. Die Copilotenschule begleitet diese datenschutzkonforme Einführung."
     },
     {
       name: "Lohnt sich die Investition, wenn Microsoft mit Cowork 1 schon ein eigenes Modell ankündigt?",
@@ -65,7 +65,7 @@ const CopilotCoworkAbrechnungCredits = () => {
           "@id": "https://copilotenschule.de/#organization"
         },
         "datePublished": "2026-06-17",
-        "dateModified": "2026-06-17",
+        "dateModified": "2026-11-02",
         "mainEntityOfPage": {
           "@type": "WebPage",
           "@id": pageUrl
@@ -137,7 +137,7 @@ const CopilotCoworkAbrechnungCredits = () => {
         ]}
         title={PAGE_TITLE}
         description="Copilot Cowork ist allgemein verfügbar – und wird ab sofort über Copilot Credits abgerechnet. Eine Einordnung aus der Praxis: Kosten, Lizenzpflicht und was DACH-Unternehmen jetzt tun sollten."
-        lastUpdated="17. Juni 2026"
+        lastUpdated="2. November 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
         relatedContent={[
@@ -313,14 +313,22 @@ const CopilotCoworkAbrechnungCredits = () => {
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
               Ein Detail, das im Abrechnungs-Trubel leicht untergeht, ist für deutsche, österreichische und
-              Schweizer Unternehmen das eigentlich entscheidende: Cowork läuft im Kern auf Anthropic-Modellen,
-              und die sind in der EU, im EWR und in Großbritannien standardmäßig deaktiviert. Der Grund ist
-              bekannt – Anthropic ist nicht Teil von Microsofts EU Data Boundary, die Verarbeitung findet außerhalb
-              des europäischen Rechtsraums statt. Ein globaler Administrator muss Anthropic also bewusst
-              freischalten, sonst bleibt Cowork in diesen Regionen schlicht stumm.
+              Schweizer Unternehmen das eigentlich entscheidende: Welches Modell verarbeitet die Daten? Als dieser
+              Artikel im Juni erschien, lief Cowork im Kern auf Anthropic-Modellen, und ohne Anthropic-Freigabe
+              blieb es in Europa stumm. Das hat Microsoft inzwischen geändert (Stand November 2026). Anthropic ist
+              für Cowork optional, und für Tenants innerhalb der EU Data Boundary unterstützt Cowork nur die
+              GPT-Modelle. Der Anthropic-Schalter im Admin Center entscheidet also nicht mehr darüber, ob Cowork
+              überhaupt funktioniert, sondern nur noch darüber, welche Modelle zur Wahl stehen.
             </p>
             <p>
-              Dieser Schritt gehört nicht ins Tagesgeschäft, sondern auf den Tisch des Datenschutzbeauftragten.
+              Auch bei der Speicherung hat Microsoft nachgelegt: Für Tenants mit Standort Deutschland, Schweiz,
+              Frankreich, Schweden oder Norwegen sagt Microsoft zu, Prompts und Antworten aus Cowork im jeweiligen
+              Land zu speichern. Arbeitsdateien und eigene Skills liegen in OneDrive beziehungsweise SharePoint
+              Embedded und folgen deren Datenresidenz-Zusagen.
+            </p>
+            <p>
+              Wer Claude in Cowork dennoch nutzen will, verlässt damit die EU-Datengrenze, denn Anthropic ist dort
+              weiterhin nicht eingebunden. Dieser Schritt gehört nicht ins Tagesgeschäft, sondern auf den Tisch des Datenschutzbeauftragten.
               Bevor der Toggle umgelegt wird, brauchen Unternehmen ein Transfer Impact Assessment für den
               Datentransfer, eine dokumentierte Rechtsgrundlage nach Artikel 28 DSGVO und einen aktualisierten
               Eintrag im Verzeichnis der Verarbeitungstätigkeiten. Die{" "}

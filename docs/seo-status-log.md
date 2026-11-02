@@ -8,6 +8,55 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 
 ## Logs
 
+### 2026-11-02 — Wöchentlicher Audit (Cron)
+
+**Phase:** Phase 3 — Content-Block (aktiv, kein Wechsel). Phase 4 (Off-Page) parallel offen.
+**SSR-Audit:** ✅ 67 / 🟡 0 / 🔴 0 (von 67), via recheck.sh (audit-live.sh weiter nicht im Mount), Snapshot 2026-11-02
+- Neu in 🔴/✅: keine (alle 67 grün, Regressions-Wächter still — 0 🔴 < 5, keine Eskalation)
+
+**GSC Indexierung (Basis: eingereichte Seiten):** Indexiert **74**, Nicht indexiert **21** → 74/89 = **83,1 %** (literale −6-Konstante) bzw. **85,1 %** (74/87, bereinigt um die tatsächlichen **8** Gated-PDFs) — **unverändert ggü. Vorwoche 26.10.** (indexiert 74, A6-Summe 21)
+- Nicht indexiert (submitted): gefunden 14 | gecrawlt 7 (A6-Summe **21**, Δ zur Vorwoche **0** — stabil, kein weiteres De-Indexing nach dem +5-Sprung am 26.10. durch frisch eingereichte Sitemap-URLs)
+- **Messvorschrift-Konstante weiter veraltet:** DoD #1 zieht −6 PDFs ab, live sind es **8** → die literale −6-Rechnung unterschätzt die Quote um ~2 pp. **User-Entscheidung weiter offen:** Konstante auf −8 aktualisieren.
+- Kontext „Alle bekannten Seiten" (KEIN KPI): 74 indexiert / 37 nicht (Gecrawlt 12, **Weiterleitung 10 stabil**, robots 1, Gefunden 14, kanonisch 0) → keine neue Redirect-Quelle, Sitemap-Redirect-Guard hält
+- GSC live via internem Browser (`authuser=1`); Index-Bericht-Crawlachse bis ~09.10.
+
+**GSC Leistung:** Klicks **2.420**/3M (+90, **+3,9 % W/W**), Impressionen **215.000** (+6.000), CTR 1,1 %, Pos. **7,7** (**neue Bestposition je**, von 7,8). Top-Klick-Bringer: copilot in excel aktivieren 92, copilotenschule 28, excel copilot aktivieren 26, copilot excel aktivieren 18, copilot kosten 17 (+ Kosten-Cluster: premium kosten 14, preise 13, pro kosten 13). **Organik-Allzeithoch gehalten, unberührt von Paid/Outbound.**
+
+**AlwaysData:** 24h **661**, **Oktober final 21.591 (+4,96 % vs. Sep 20.570)** — sauberer M/M-Zuwachs. Nov MTD (Tag 2) 786 (−96,36 % = MTD-Artefakt). **YTD 128.427.**
+
+**Traffic-Mix (Clarity, Kanal 7T):** OrganicSearch **452** (**+21,5 % vs. 372 W/W**, unter 25-%-Verstärken-Schwelle) | PaidSearch **38** (Google-cpc + Bing-Ads kombiniert, ohne gclid/msclkid nicht trennbar; Vorwoche 41) | Outbound (email) **~0** (kein sml_*/email-Kanal, eingeschlafen) | AIPlatform/LLM **12** (flat) | Direct 24 | Referral 72 | Other 118
+- ⚠️ Microsoft-Advertising-Login im internen Browser **erneut abgelaufen** (sessionexpired-Redirect) → PaidSearch 38 nicht nach Google/Bing auflösbar; Supermetrics-Fallback (Microsoft Advertising) NOT_AUTHENTICATED + Trial abgelaufen. Budget fließt, Spend/Conv. nicht lesbar. cpc-Zielseiten-Drift mangels Segment-Login nicht separat geprüft (Volumen moderat, historisch driftfrei).
+
+**Bing Ads (MTD, Microsoft Advertising):** **[ÜBERNOMMEN aus 22.09.]** 28,16 € / 8 Kl. / 282 Impr. / CTR 2,84 % / CPC 3,52 € / 0 Conv. (UET-Status: **defekt**). Interner Browser nicht eingeloggt (sessionexpired) → Werte übernommen. **5. Folgewoche ohne frische Bing-Ads-Zahlen.**
+
+**Clarity Standard (3T, via API, 1 Call):**
+- Sessions: **150** (davon 46 Bots, 149 Unique Users) — kleines 3-Tage-Fenster
+- Scrolltiefe: 34,37 %, Aktive Zeit: 68 s
+- **Dead-Click: 11,33 %** (über 10-%-Schwelle; 7T-Dashboard **11,28 %/80 Sess.**) | Rage-Click: 0,67 % (1 Sess., < 5) | Quick-Back: 0,67 % | Excessive-Scroll: 0 % — **Dead-Click entspannt ggü. 26.10. (16,67 %/12,97 %)**, bekanntes organisches ArticlePopup-Zickzack
+- Top-Browser (3T): Chrome 51 | Edge 35 | MobileSafari 27 | ChromeMobile 18 — (7T-Dashboard: **Edge 45,28 %/321 Sess.** / Chrome 25,25 % / MobileSafari 8,89 % → B2B-Signal, Edge-Anteil gestiegen)
+- Top-3-Pages (3T): copilot-tipps-tricks-produktivitaet 20 | Startseite 16 | /trainings 12
+- Top-3-Referrer (3T): google.com 85 | yahoo 20 | bing.com 12 — (7T-Dashboard: google 346 | bing 115 | hmgmbhcom.sharepoint.com 51 | teams.onecdn = LLM/Copilot)
+- DACH-Anteil: DE 129 + CH 6 + AT 5 = **93 %** | Clarity-Leistungsscore **85/100** (7T, 181 Seitenansichten)
+
+**Clarity Conversion-Events (7T, via Dashboard):**
+- contact_form_submit / trainer_application_submit / konfigurator_submit / mail_click / phone_click / pdf_download: **1 / 2 / 0 / 0 / 0 / 3**
+- Smart-Events gesamt: Formular absenden 6, Kontaktieren Sie uns 4, Ausgehender Klick 4, lead 3, Herunterladen 3, pdf_download 3, danke_page_view 2, trainer_application_submit 2, booking_click 1, contact_form_submit 1
+- content_cta_click / angebot_bruecke_click: **0/7T** (CTA-Brücke feuert diese Woche nicht — Funnel-Bremse hält an) | sml_*: 0 (Outbound aus)
+- Conversion-Rate gesamt: direkte Kontakt-/Lead-Conv. ≈ (Formular 6 + Kontaktieren 4 + lead 3 + danke 2) = 15/709 = **~2,1 %** — **W/W runter von ~5,8 %** (39/671 am 26.10.), getrieben von niedrigerem Formular absenden (17→6) + lead (15→3); **kein 7e-Defekt** (kein Event ≥3→0), wahrscheinlich Wochen-Varianz → beobachten
+- **Funnel „Lead-Reise" weiter 0 % E2E:** Stufe 1 410 (57,83 %) → Stufe 2 Angebot 1 (0,24 %) → Stufe 3 0
+
+**Insights heute:** Patterns 0 | Issues 2 (1. Dead-Click 11,33 % API-3T / 11,28 % 7T ≥ 10 % — bekanntes organisches ArticlePopup-Zickzack, entspannt vs. 26.10., Rage 1 Sess., Fix-Draft seit 17.06. unverpusst; 2. **A6-Summe nicht-indexiert stabil bei 21** — kein weiterer Anstieg, Hinweis auf `docs/drafts/index-coverage-interne-verlinkung-2026-06-16.md`) | Trends 0 (Organic 372→452 +21,5 %, unter 25-%-Schwelle, positiv; LLM 12 flat; Edge-Anteil 41→45 %, kein >20pp-Shift)
+**Folge-Crons angelegt:** keine (7a: keine Page ≥5 % Conv/≥50 Sess 3T; 7b: keine Page ≥100 Sess/3T mit <0,5 %; Dead-Click- + A6-Draft existieren → Conductor-Doktrin)
+**Goldene Pages (GSC×Clarity, organic):** copilot-in-excel-aktivieren (GSC-Top-Query 92 Kl. × Clarity 9), copilot-tipps-tricks-produktivitaet (Clarity-Top 20 × GSC 16), microsoft-copilot-lizenzen (Kosten-Cluster) — ungenutztes Potential: Kosten/Preise-Queries stark in GSC (kosten 17 + premium 14 + preise 13 + pro 13), microsoft-copilot-lizenzen diese Woche niedrigere Clarity-Visits
+**Protected Pages:** alle OK (5/5 = 200: copilot-roi-berechnen, copilot-training-schulung, copilot-im-unternehmen-einfuehren-leitfaden, microsoft-copilot-lizenzen, ki-schulung-mitarbeiter-pflicht)
+**Entscheidung gemäß Plan:** Phase 3 aktiv, DoD **4/8** unverändert. SSR-Regressions-Wächter still (0 🔴). Index-Coverage **stabil** (A6-Summe 21 Δ0, kein De-Indexing), literale 83,1 % weiter −6-Konstanten-Artefakt (bereinigt 85,1 %). Dead-Click bekannter organischer Flag, entspannt. **Organik-Allzeithoch (Klicks 2.420, Pos. 7,7)** + Protected 5/5 gesund. Conv-Rate ~2,1 % (W/W-Varianz, kein Defekt). Kein Push, kein neuer Cron.
+**API-Calls heute:** 2/10 (Clarity, 1 Call)
+**Teams-Post:** ✗ HTTP 401 (`DirectApiAuthorizationRequired`) — gesetzte Webhook-URL weiter falscher Connector-Typ (abgekündigter Office-365-Connector statt Workflows-Webhook). Reporting-Versand blockiert seit 03.08. = **91 Tage**. Audit vollständig durchgelaufen, nur Versand fehlt. Bericht liegt unter `/tmp/seo-teams-report.md`.
+**Offene User-Handlung (unverändert seit 26.10., keine neue Eskalation):** (1) **Messvorschrift DoD #1 aktualisieren** (Gated-PDFs live = 8, Konstante −6 → −8). (2) **Bing-Ads-UET-Conversion-Tracking fixen** (defekt seit 22.09. = 41 Tage). (3) **Microsoft-Advertising-Login im internen Browser erneuern** (Session seit Wochen abgelaufen, 5. Folgewoche ohne Bing-Ads-Zahlen). (4) **Teams-Webhook „Marketing und SEA" neu anlegen** (Workflows-Webhook).
+**Nächster Lauf:** Mo 09.11.2026, 10:00
+
+---
+
 ### 2026-10-26 — Wöchentlicher Audit (Cron)
 
 **Phase:** Phase 3 — Content-Block (aktiv, kein Wechsel). Phase 4 (Off-Page) parallel offen.

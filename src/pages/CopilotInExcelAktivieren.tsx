@@ -32,7 +32,7 @@ const CopilotInExcelAktivieren = () => {
     },
     {
       name: "Wie stellen wir sicher, dass Copilot keine sensiblen Unternehmensdaten nach außen gibt?",
-      answer: "Microsoft verarbeitet Ihre Prompts und Antworten im Rahmen des EU Data Boundary Commitments innerhalb Europas und gibt diese nicht zum Training von KI-Modellen weiter. Zusätzlich sollten Unternehmen im Microsoft 365 Admin Center die Connected Experiences und optionale telemetriedaten-Einstellungen prüfen. Für höhere Sicherheitsanforderungen empfiehlt sich Copilot in Kombination mit Microsoft Purview für Data Loss Prevention. Die Copilotenschule unterstützt Sie dabei, die richtigen Datenschutzkonfigurationen für Ihre Organisation zu wählen."
+      answer: "Microsoft verarbeitet Ihre Prompts und Antworten grundsätzlich im Rahmen der EU Data Boundary innerhalb Europas und nutzt sie nicht zum Training von KI-Modellen. Zwei Ausnahmen sollten Sie kennen: Ist Flex Routing aktiv, kann die Verarbeitung bei Lastspitzen in den USA, Kanada oder Australien stattfinden. Und nutzt Copilot in Excel die Claude-Modelle von Anthropic, findet die Verarbeitung ebenfalls außerhalb der EU-Datengrenze statt; bei Tenants, die nach dem 25. März 2026 angelegt wurden, ist diese Einstellung ab Werk aktiv. Prüfen Sie beide Einstellungen im Microsoft 365 Admin Center, ebenso die Connected Experiences und die optionalen Telemetrie-Einstellungen. Für höhere Sicherheitsanforderungen empfiehlt sich Copilot in Kombination mit Microsoft Purview für Data Loss Prevention. Die Copilotenschule unterstützt Sie dabei, die richtigen Datenschutzkonfigurationen für Ihre Organisation zu wählen."
     },
     {
       name: "Unsere IT sagt, die Aktivierung von Copilot in Excel dauert Wochen – stimmt das?",
@@ -65,7 +65,7 @@ const CopilotInExcelAktivieren = () => {
           "@id": "https://copilotenschule.de/#organization",
         },
         "datePublished": "2026-04-08",
-        "dateModified": "2026-04-08",
+        "dateModified": "2026-11-02",
         "mainEntityOfPage": {
           "@type": "WebPage",
           "@id": pageUrl,
@@ -123,7 +123,7 @@ const CopilotInExcelAktivieren = () => {
         ]}
         title={PAGE_TITLE}
         description="Voraussetzungen, Aktivierung, Datenschutz und typische Stolperstellen beim Unternehmens-Rollout"
-        lastUpdated="08. April 2026"
+        lastUpdated="2. November 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
         relatedContent={[
@@ -280,8 +280,12 @@ const CopilotInExcelAktivieren = () => {
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p>
-              Microsoft verarbeitet Copilot-Daten im Rahmen des <strong>EU Data Boundary</strong>-Commitments: Prompts, Antworten und verarbeitete Inhalte bleiben innerhalb der EU und werden nicht für das Training öffentlicher KI-Modelle genutzt. Das gilt für alle kommerziellen Microsoft 365 Copilot-Lizenzen.
+              Microsoft verarbeitet Copilot-Daten im Rahmen des <strong>EU Data Boundary</strong>-Commitments: Prompts, Antworten und verarbeitete Inhalte werden grundsätzlich innerhalb der EU gespeichert und verarbeitet und nicht für das Training öffentlicher KI-Modelle genutzt. Das gilt für alle kommerziellen Microsoft 365 Copilot-Lizenzen – mit zwei Ausnahmen, die Admins kennen sollten (Stand November 2026):
             </p>
+            <ul>
+              <li><strong>Claude-Modelle in Excel:</strong> Seit April 2026 kann Copilot in Word, Excel und PowerPoint die Claude-Modelle von Anthropic als Standard nutzen. Anthropic ist nicht Teil der EU Data Boundary, die Verarbeitung findet dann außerhalb der EU statt. Bei europäischen Tenants, die nach dem 25. März 2026 angelegt wurden, ist die Einstellung „Copilot in Microsoft 365 apps with Anthropic models" ab Werk eingeschaltet, für ältere Tenants steht der Default im Message Center. Hintergründe im Artikel zu <Link to="/wissen/claude-in-microsoft-copilot" className="text-primary hover:underline">Claude in Microsoft Copilot</Link>.</li>
+              <li><strong>Flex Routing:</strong> Ist die Einstellung aktiv, kann die KI-Verarbeitung bei Lastspitzen in die USA, nach Kanada oder Australien ausweichen. Details im Artikel zum <Link to="/wissen/copilot-flex-routing-eu-verarbeitung" className="text-primary hover:underline">Flex Routing</Link>.</li>
+            </ul>
 
             <p>
               Darüber hinaus stehen Unternehmen folgende Konfigurationsoptionen zur Verfügung:

@@ -61,7 +61,7 @@ const CopilotSicherheit = () => {
           "@id": "https://copilotenschule.de/#organization"
         },
         "datePublished": "2025-11-11",
-        "dateModified": "2026-02-28",
+        "dateModified": "2026-11-02",
         "mainEntityOfPage": {
           "@type": "WebPage",
           "@id": pageUrl
@@ -123,7 +123,7 @@ const CopilotSicherheit = () => {
         ]}
         title={PAGE_TITLE}
         description="Ehrliche Antworten auf die häufigsten Datenschutz-Fragen rund um Microsoft 365 Copilot – für Endanwender und Entscheider."
-        lastUpdated="28. Februar 2026"
+        lastUpdated="2. November 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
         relatedContent={["wissen:copilot-flex-routing-eu-verarbeitung", "wissen:copilot-betriebsrat", "training:eu-ai-act-pflichtschulung", "wissen:ki-schulung-mitarbeiter-pflicht", "wissen:copilot-unternehmensweit-einfuehren"]}
@@ -138,8 +138,9 @@ const CopilotSicherheit = () => {
           <CardContent>
             <p className="text-base leading-relaxed">
               <strong>Nein, Copilot kann nicht „alles sehen".</strong> Er hat exakt die gleichen Zugriffsrechte wie
-              Sie selbst – nicht mehr, nicht weniger. Ihre Daten werden nicht zum KI-Training verwendet und seit
-              der EU Data Boundary in der EU verarbeitet. Microsoft kann Ihre Inhalte nicht lesen. Ihre Kollegen
+              Sie selbst – nicht mehr, nicht weniger. Ihre Daten werden nicht zum KI-Training verwendet und dank
+              der EU Data Boundary grundsätzlich in der EU verarbeitet – Ausnahmen sind die Claude-Modelle von
+              Anthropic und das optionale Flex Routing. Microsoft kann Ihre Inhalte nicht lesen. Ihre Kollegen
               sehen durch Copilot nichts, was sie nicht auch ohne Copilot sehen könnten. Allerdings macht Copilot
               bestehende Berechtigungsprobleme sichtbarer – und genau deshalb sollten Organisationen vor dem
               Rollout ihre Hausaufgaben machen.
@@ -237,11 +238,29 @@ const CopilotSicherheit = () => {
               eben auch Copilot.
             </p>
             <p>
-              <strong>Eine Einschränkung gibt es:</strong> Wenn Sie in Copilot die Web-Suche aktiviert haben
+              <strong>Eine erste Einschränkung:</strong> Wenn Sie in Copilot die Web-Suche aktiviert haben
               (Bing-Integration), können Suchanfragen die EU verlassen. Für die meisten Unternehmens-Use-Cases
               ist die Web-Suche ohnehin nicht relevant – Copilot arbeitet primär mit Ihren internen Daten.
               Falls Ihre Organisation auf Nummer sicher gehen will, kann die Bing-Integration durch den
               IT-Administrator deaktiviert werden.
+            </p>
+            <p>
+              <strong>Zwei weitere Ausnahmen sind 2026 dazugekommen.</strong> Microsoft bindet in Copilot auch
+              die Claude-Modelle von Anthropic ein, und Anthropic ist ausdrücklich nicht Teil der EU Data
+              Boundary. Wer Claude nutzt, lässt eine Verarbeitung außerhalb der EU zu. Der zentrale Schalter
+              steht für europäische Tenants standardmäßig aus, eine separate Einstellung für Claude in Word,
+              Excel und PowerPoint ist bei Tenants, die nach dem 25. März 2026 angelegt wurden, aber ab Werk
+              aktiv. Die zweite Ausnahme heißt{" "}
+              <Link to="/wissen/copilot-flex-routing-eu-verarbeitung" className="text-primary hover:underline">
+                Flex Routing
+              </Link>
+              : Bei Lastspitzen darf die KI-Verarbeitung dann in die USA, nach Kanada oder Australien
+              ausweichen. Beides lässt sich im Microsoft 365 Admin Center abschalten, man muss nur davon wissen.
+              Mehr dazu im Artikel zu{" "}
+              <Link to="/wissen/claude-in-microsoft-copilot" className="text-primary hover:underline">
+                Claude in Microsoft Copilot
+              </Link>
+              .
             </p>
           </div>
         </section>
