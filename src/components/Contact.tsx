@@ -8,11 +8,14 @@ import { useToast } from "@/hooks/use-toast";
 import { trackConversion, markConvertedSession } from "@/lib/analytics";
 import { bookingClickToThankYou } from "@/lib/booking";
 import { getAttribution } from "@/lib/attribution";
+import FoundViaSelect from "@/components/FoundViaSelect";
+import type { FoundVia } from "@/lib/foundVia";
 
 const Contact = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [trainingSource, setTrainingSource] = useState<string | null>(null);
+  const [foundVia, setFoundVia] = useState<FoundVia>("");
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -62,6 +65,7 @@ const Contact = () => {
           phone: formData.phone,
           message: formData.message,
           trainingSource: trainingSource,
+          foundVia,
           ...getAttribution(),
         }),
       });
@@ -91,6 +95,7 @@ const Contact = () => {
       trackConversion("contact_form_submit", trainingSource || "direct");
       markConvertedSession("contact_form");
       setFormData({ firstName: "", lastName: "", email: "", company: "", phone: "", message: "" });
+      setFoundVia("");
       // Weiterleitung auf die zentrale Danke-Seite (Google-Ads-Conversion-Ziel).
       // Full-Page-Load, damit das Google-Tag einen frischen page_view für /danke auslöst.
       window.location.href = "/danke";
@@ -195,6 +200,13 @@ const Contact = () => {
                     onChange={handleChange}
                     placeholder="+49 ..."
                   />
+                </div>
+
+                <div>
+                  <label htmlFor="contact-foundVia" className="block text-sm font-medium mb-2">
+                    Wie haben Sie uns gefunden? *
+                  </label>
+                  <FoundViaSelect id="contact-foundVia" value={foundVia} onChange={setFoundVia} required />
                 </div>
 
                 <div>
