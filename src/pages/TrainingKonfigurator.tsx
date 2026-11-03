@@ -119,20 +119,32 @@ const moduleCategories: ModuleCategory[] = [
     ]
   },
   {
+    id: "fuehrungskraefte",
+    title: "Copilot für Führungskräfte",
+    description: "Zweistufig: Führungskräfte-Briefing (2 Stunden) oder Ganztagstraining (7 Stunden)",
+    modules: [
+      { id: "fk-briefing", title: "Führungskräfte-Briefing (2 Stunden): Orientierung vor dem Rollout, ohne eigenes Hands-on", tiers: ["free", "paid"], category: "fuehrungskraefte" },
+      { id: "fk-veraenderung", title: "Was sich verändert: Wie KI und Agenten die Arbeit im Team verschieben", tiers: ["free", "paid"], category: "fuehrungskraefte" },
+      { id: "fk-fragen-team", title: "Die Fragen des Teams: Job-Sorgen, Nutzungsregeln, Erwartungen", tiers: ["free", "paid"], category: "fuehrungskraefte" },
+      { id: "fk-fuehrungsalltag", title: "Copilot im Führungsalltag: Gespräche vorbereiten, Unterlagen verdichten, Entscheidungsvorlagen", tiers: ["free", "paid"], category: "fuehrungskraefte" },
+      { id: "fk-anwendungsfaelle", title: "Anwendungsfälle mit vier Prüffragen bewerten und 30-Tage-Plan für das Team", tiers: ["free", "paid"], category: "fuehrungskraefte" },
+    ]
+  },
+  {
     id: "train-the-trainer",
     title: "Train-the-Trainer: Multiplikatoren ausbilden",
-    description: "Zweitägiges Curriculum (2 x 7 Stunden), um interne Multiplikatoren und Ambassadoren auszubilden",
+    description: "Für interne Multiplikatoren und Ambassadoren – als Tag (7 Stunden), über zwei Tage (2 x 7 Stunden) oder in vier Halbtagen (4 x 4 Stunden)",
     modules: [
-      { id: "tt-chatbot-zu-ki-arbeit", title: "Herleitung: Von Chatbot-Nutzung zu echter KI-unterstützter Arbeit", tiers: ["free", "paid"], category: "train-the-trainer" },
-      { id: "tt-fortgeschrittene-praxis", title: "Fortgeschrittene Copilot-Praxis: Funktionalität, Workflows, Einstellungsmöglichkeiten", tiers: ["free", "paid"], category: "train-the-trainer" },
-      { id: "tt-agenten-automatisierung", title: "Agenten, Copilot Studio und Teilautomatisierung von Prozessen", tiers: ["free", "paid"], category: "train-the-trainer" },
-      { id: "tt-admin-einstellungen", title: "Admin-Einstellungen im Copilot Admin Center (optionales Zusatzmodul)", tiers: ["paid"], category: "train-the-trainer" },
-      { id: "tt-didaktik-lehrprobe", title: "Didaktische Reflexion und Lehrprobe mit strukturiertem Feedback", tiers: ["free", "paid"], category: "train-the-trainer" },
-      { id: "tt-recht", title: "Datenschutz, Urheberrecht und EU AI Act im Bezug auf die Copilot-Nutzung", tiers: ["free", "paid"], category: "train-the-trainer" },
-      { id: "tt-stakeholder", title: "Stakeholder-Simulationen: Betriebsrat, Datenschutz, Fachabteilung", tiers: ["free", "paid"], category: "train-the-trainer" },
-      { id: "tt-use-case-schema", title: "Use-Case-Identifikation und -Bewertung anhand eines festen Schemas", tiers: ["free", "paid"], category: "train-the-trainer" },
-      { id: "tt-adoption-programm", title: "Adoption-Programm entwickeln: Kennzahlen und Roadmap", tiers: ["free", "paid"], category: "train-the-trainer" },
-      { id: "tt-materialbibliothek", title: "Materialbibliothek: Trainings-Decks, Templates, FAQ-Sammlungen, Schulungsunterlagen", tiers: ["free", "paid"], category: "train-the-trainer" },
+      { id: "tt-chatbot-zu-ki-arbeit", title: "Transfer begleiten: Von „mal den Chatbot nutzen“ zu KI-unterstützter Arbeit", tiers: ["free", "paid"], category: "train-the-trainer" },
+      { id: "tt-recht", title: "Datenschutz, Urheberrecht und EU AI Act in Bezug auf die Copilot-Nutzung", tiers: ["free", "paid"], category: "train-the-trainer" },
+      { id: "tt-copilot-chat", title: "Copilot Chat in der Tiefe: Einstellungen, Custom Instructions, Kontext, Arbeitsbereiche, Pages, Agents", tiers: ["free", "paid"], category: "train-the-trainer" },
+      { id: "tt-prompt-formel", title: "Prompting nach fester Formel: Ziel, Kontext, Quelle, Erwartung", tiers: ["free", "paid"], category: "train-the-trainer" },
+      { id: "tt-mindset", title: "AI Mindset und ehrliche Einwandbearbeitung", tiers: ["free", "paid"], category: "train-the-trainer" },
+      { id: "tt-365-apps", title: "Agentische Arbeitsweisen mit den Copiloten in den 365-Apps, Grounding, Agent Builder und Workflows", tiers: ["paid"], category: "train-the-trainer" },
+      { id: "tt-use-case-schema", title: "Use Cases identifizieren, bewerten und umsetzen anhand eines festen Schemas", tiers: ["free", "paid"], category: "train-the-trainer" },
+      { id: "tt-didaktik", title: "Didaktik und Praxisübungen", tiers: ["free", "paid"], category: "train-the-trainer" },
+      { id: "tt-einwaende-rollout", title: "Einwandbehandlung für den Rollout", tiers: ["free", "paid"], category: "train-the-trainer" },
+      { id: "tt-trainings-deck", title: "Standard-Trainings-Deck für die ersten eigenen Schulungen", tiers: ["free", "paid"], category: "train-the-trainer" },
     ]
   },
   {

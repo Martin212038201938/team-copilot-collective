@@ -50,6 +50,7 @@ import { getTrainingBySlug } from "@/data/trainings";
 import { getAuthor } from "@/data/authors";
 import { generateWorkshopPageSchema } from "@/lib/workshopSchema";
 import { bookingClickToThankYou } from "@/lib/booking";
+import TrainingFactBox from "@/components/TrainingFactBox";
 
 // Typ-spezifische Farb-/Badge-Darstellung
 const TYPE_BADGE_CLASS: Record<WorkshopType, string> = {
@@ -135,6 +136,16 @@ const WorkshopDetail = () => {
                 >
                   {typeLabel}
                 </Badge>
+                {workshop.tiers?.includes("free") && (
+                  <Badge className="bg-emerald-100 text-emerald-700 border-emerald-200 hover:bg-emerald-100 text-xs px-2.5 py-0.5 font-medium">
+                    Copilot Free
+                  </Badge>
+                )}
+                {workshop.tiers?.includes("paid") && (
+                  <Badge className="bg-blue-100 text-blue-700 border-blue-200 hover:bg-blue-100 text-xs px-2.5 py-0.5 font-medium">
+                    Copilot Paid
+                  </Badge>
+                )}
                 {workshop.isNew && (
                   <Badge className="bg-emerald-100 text-emerald-800 border-emerald-300 hover:bg-emerald-100 text-xs px-2.5 py-0.5 font-semibold">
                     NEU
@@ -192,6 +203,17 @@ const WorkshopDetail = () => {
               <p className="text-lg text-muted-foreground leading-relaxed">
                 {workshop.description}
               </p>
+
+              {/* Faktenbox (optional, seit 03.11.2026) – Preis nie sichtbar, nur "Preis auf Anfrage" */}
+              {(workshop.prerequisites || workshop.priceOnRequest) && (
+                <TrainingFactBox
+                  format={workshop.format}
+                  duration={workshop.duration}
+                  prerequisites={workshop.prerequisites}
+                  groupSize={workshop.participants}
+                  priceLine={workshop.priceOnRequest ? "Preis auf Anfrage" : undefined}
+                />
+              )}
             </div>
           </div>
         </section>
@@ -237,7 +259,7 @@ const WorkshopDetail = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl">
               <h2 className="text-3xl font-bold mb-8">
-                Das ist enthalten
+                {workshop.featuresTitle ?? "Das ist enthalten"}
               </h2>
               <ul className="space-y-4">
                 {workshop.features.map((feature, index) => (
@@ -650,6 +672,27 @@ const WorkshopDetail = () => {
 
         {/* Trust Section */}
         <TrustBadge />
+
+        {/* -----------------------------------------------------------
+         *  HINWEISBLOCK (optional) – oberhalb der FAQ
+         * ----------------------------------------------------------- */}
+        {workshop.upsell && (
+          <section className="py-12 bg-background">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto">
+                <div className="rounded-2xl border-2 border-primary/30 bg-gradient-to-br from-primary/5 to-primary/10 p-8">
+                  <h2 className="text-2xl md:text-3xl font-bold mb-3">{workshop.upsell.title}</h2>
+                  <p className="text-lg text-muted-foreground leading-relaxed mb-6">{workshop.upsell.text}</p>
+                  <Button size="lg" asChild>
+                    <Link to={workshop.upsell.href}>
+                      {workshop.upsell.buttonLabel} <ArrowRight className="w-4 h-4 ml-2" />
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* -----------------------------------------------------------
          *  FAQ-SEKTION

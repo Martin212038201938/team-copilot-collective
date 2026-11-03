@@ -1,4 +1,4 @@
-import { Brain, Shield, Laptop, Zap, Scale, GraduationCap, Wrench, Users, Calculator } from "lucide-react";
+import { Brain, Shield, Laptop, Zap, Scale, GraduationCap, Wrench, Users, Calculator, Briefcase } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 export type CopilotTier = "free" | "paid";
@@ -92,6 +92,21 @@ export interface Training {
   // Optionale Trainer-Person NUR für strukturierte Daten (schema.org Course.instructor).
   // Erscheint nicht im sichtbaren Seitentext; überschreibt den Default-Instructor (#martin-lang).
   instructorPerson?: { name: string; sameAs?: string[] };
+  // --- Optionale Felder ab 03.11.2026 (Führungskräfte-Angebot) ---
+  // Alle Felder sind optional; bestehende Trainings rendern unverändert.
+  subtitle?: string;               // Untertitel unter dem H1
+  featuresTitle?: string;          // Abweichende Überschrift für den Inhalte-Abschnitt (Default "Inhalte und Lernziele")
+  featuresBoldLead?: boolean;      // "Titel: Text" in features → Titel fett
+  learningOutcomesTitle?: string;  // Abweichende Überschrift für learningOutcomes
+  services?: string[];             // Abschnitt "Leistungen"
+  priceOnRequest?: boolean;        // Faktenbox zeigt "Preis auf Anfrage" (Preis bleibt nur im Schema)
+  // Vergleichsblock zwischen zwei Stufen eines Angebots (z. B. Briefing vs. Training)
+  comparison?: {
+    title: string;
+    items: { name: string; duration: string; text: string; href?: string; current?: boolean }[];
+  };
+  // Querverweise auf weitere Formate (Titel/Dauer kommen aus den Datenquellen)
+  crossLinks?: { workshops?: string[]; trainings?: string[] };
 }
 
 // Alle Trainingsmodule mit SEO-optimierten Slugs
@@ -512,6 +527,79 @@ export const trainings: Training[] = [
       }
     ],
     relatedWorkshops: ["copilot-strategie-change-management", "copilot-launch-eventtag"],
+  },
+  {
+    slug: "copilot-fuehrungskraefte",
+    icon: Briefcase,
+    title: "Copilot für Führungskräfte",
+    subtitle: "Die Einführung im Team begleiten und Copilot selbst als Führungswerkzeug nutzen",
+    duration: "Ganztag (7 Stunden)",
+    durationISO: "PT7H",
+    description: "Wenn Copilot ins Unternehmen kommt, fragen die Mitarbeitenden zuerst ihre Führungskraft. Dieses Training bereitet Führungskräfte auf genau diese Rolle vor und macht Copilot zugleich zu ihrem eigenen Werkzeug. Denn wer es selbst benutzt, muss weniger überzeugen.",
+    featuresTitle: "Inhalte",
+    featuresBoldLead: true,
+    features: [
+      "Was sich verändert: Wie KI und Agenten die Arbeit im Team verschieben und welche neuen Aufgaben daraus für Führung entstehen.",
+      "Die Fragen des Teams: Ehrliche Antworten auf Job-Sorgen, Nutzungsregeln und Erwartungen, und Klarheit, was an IT, Datenschutz oder Betriebsrat gehört.",
+      "Copilot im Führungsalltag: Gespräche vorbereiten, Unterlagen verdichten, Entscheidungsvorlagen erstellen und Teamkommunikation entwerfen, mit eigener Praxis am Gerät.",
+      "Anwendungsfälle und nächste Schritte: Fälle aus dem eigenen Bereich mit vier Prüffragen bewerten und einen Plan für die ersten 30 Tage im Team entwickeln."
+    ],
+    learningOutcomesTitle: "Das nehmen die Teilnehmenden mit",
+    learningOutcomes: [
+      "Sicherheit im Gespräch mit dem Team über die Einführung",
+      "Eigene Routinen mit Copilot für typische Führungsaufgaben",
+      "Bewertete Anwendungsfälle und einen 30-Tage-Plan für das eigene Team"
+    ],
+    services: [
+      "Vorgespräch zu den Regeln im Haus",
+      "Trainingsunterlagen",
+      "Prompt-Sammlung für Führungsaufgaben",
+      "Teilnahmebestätigung"
+    ],
+    tiers: ["free", "paid"],
+    isNew: true,
+    prerequisites: "Microsoft 365 Copilot empfohlen, Durchführung mit Copilot Chat möglich.",
+    format: "Inhouse vor Ort oder online",
+    groupSize: "bis 12 Teilnehmende",
+    // Preis nur maschinenlesbar (JSON-LD Offer.price), NICHT sichtbar – sichtbar "Preis auf Anfrage".
+    // perPerson ist Pflichtfeld des Typs, wird nicht gerendert (3.400 € / 12 TN).
+    visiblePrice: { perPerson: 283, perGroup: 3400 },
+    priceOnRequest: true,
+    comparison: {
+      title: "Briefing oder Training?",
+      items: [
+        { name: "Führungskräfte-Briefing", duration: "2 Stunden", text: "Orientierung vor dem Rollout, ohne eigenes Hands-on.", href: "/workshops/fuehrungskraefte-briefing-copilot" },
+        { name: "Copilot für Führungskräfte", duration: "Ganztag", text: "Vertiefung mit Übungen und Copilot im eigenen Führungsalltag.", current: true }
+      ]
+    },
+    crossLinks: {
+      workshops: ["fuehrungskraefte-briefing-copilot", "copilot-strategie-change-management"],
+      trainings: ["eu-ai-act-pflichtschulung"]
+    },
+    metaTitle: "Copilot Training für Führungskräfte | copilotenschule.de",
+    metaDescription: "Ganztagstraining für Führungskräfte: auf die Fragen des Teams zur Copilot-Einführung vorbereiten und Copilot selbst als Führungswerkzeug nutzen.",
+    keywords: [
+      "Copilot Schulung Führungskräfte",
+      "KI Training Führungskräfte",
+      "Microsoft 365 Copilot für Führungskräfte",
+      "Copilot Training Führungskräfte",
+      "Copilot Einführung Führungskräfte",
+      "KI Schulung Führungskräfte"
+    ],
+    faqs: [
+      {
+        question: "Brauchen die Teilnehmenden eine Copilot-Lizenz?",
+        answer: "Empfohlen, nicht zwingend. Mit Microsoft 365 Copilot arbeiten die Übungen im eigenen Postfach und in Teams, mit Copilot Chat anhand eingefügter Unterlagen."
+      },
+      {
+        question: "Was ist der Unterschied zum Führungskräfte-Briefing?",
+        answer: "Das [Führungskräfte-Briefing](/workshops/fuehrungskraefte-briefing-copilot) gibt in zwei Stunden Orientierung. Das Training übt die Gespräche mit dem Team und macht Copilot zum eigenen Werkzeug."
+      },
+      {
+        question: "Wann ist der richtige Zeitpunkt?",
+        answer: "Vor den Schulungen der Mitarbeitenden, denn das Team fragt die Führungskraft zuerst."
+      }
+    ],
   },
   {
     slug: "copilot-lernreise-8-wochen",

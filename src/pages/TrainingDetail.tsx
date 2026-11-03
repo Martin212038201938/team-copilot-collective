@@ -65,7 +65,33 @@ const TrainingDetail = () => {
   // die daraus buchbare Einzelplätze ableiteten). Einzige Ausnahme: Train-the-Trainer,
   // das zusätzlich als offenes Seminar mit echten Einzelplätzen läuft – dort zeigen
   // wir den echten Preis pro Person (pricePerPersonLabel) in der Faktenbox.
-  const priceLine = training.pricePerPersonLabel;
+  // Seit 03.11.2026: priceOnRequest → sichtbar nur "Preis auf Anfrage"; ein gepflegter
+  // Gruppenpreis (visiblePrice.perGroup) bleibt ausschließlich im JSON-LD.
+  const priceLine = training.pricePerPersonLabel ?? (training.priceOnRequest ? "Preis auf Anfrage" : undefined);
+
+  // Querverweise (Titel/Dauer aus den Datenquellen, keine Doppelpflege)
+  const crossLinkItems = [
+    ...(training.crossLinks?.workshops ?? []).map((s) => {
+      const w = getWorkshopBySlug(s);
+      return w ? { href: `/workshops/${w.slug}`, title: w.title, duration: w.duration, kind: "Workshop" } : null;
+    }),
+    ...(training.crossLinks?.trainings ?? []).map((s) => {
+      const t = getTrainingBySlug(s);
+      return t ? { href: `/trainings/${t.slug}`, title: t.title, duration: t.duration, kind: "Training" } : null;
+    }),
+  ].filter((x): x is { href: string; title: string; duration: string; kind: string } => Boolean(x));
+
+  // "Titel: Text" → Titel fett (nur wenn featuresBoldLead gesetzt)
+  const renderFeature = (feature: string) => {
+    if (!training.featuresBoldLead) return feature;
+    const idx = feature.indexOf(": ");
+    if (idx <= 0 || idx > 60) return feature;
+    return (
+      <>
+        <strong className="font-semibold">{feature.slice(0, idx)}:</strong> {feature.slice(idx + 2)}
+      </>
+    );
+  };
 
   // B4 (2026-07-22): Schema kommt zentral aus lib/schema.ts – eine Quelle der
   // Wahrheit statt Doppelpflege (Regeln B1/B2/B6/B7 sind dort dokumentiert).
@@ -116,12 +142,23 @@ const TrainingDetail = () => {
                         Copilot Paid
                       </Badge>
                     )}
+                    {training.isNew && (
+                      <Badge className="bg-emerald-100 text-emerald-800 border-emerald-300 hover:bg-emerald-100 font-semibold">
+                        NEU
+                      </Badge>
+                    )}
                   </div>
 
                   {/* h1 - Hauptüberschrift */}
-                  <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
+                  <h1 className={`text-4xl md:text-5xl font-bold tracking-tight ${training.subtitle ? "mb-4" : "mb-6"}`}>
                     {training.title}
                   </h1>
+
+                  {training.subtitle && (
+                    <p className="text-xl text-foreground/80 mb-6 leading-relaxed">
+                      {training.subtitle}
+                    </p>
+                  )}
 
                   {/* Dauer */}
                   <div className="flex items-center gap-2 text-lg text-muted-foreground mb-8">
@@ -158,13 +195,45 @@ const TrainingDetail = () => {
           </div>
         </section>
 
+        {/* Vergleichsblock zweier Angebotsstufen (optional, z. B. Briefing vs. Training) */}
+        {training.comparison && (
+          <section className="py-12 bg-muted/30" aria-labelledby="vergleich-heading">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl">
+                <h2 id="vergleich-heading" className="text-3xl font-bold mb-6">
+                  {training.comparison.title}
+                </h2>
+                <div className="grid md:grid-cols-2 gap-6">
+                  {training.comparison.items.map((item) => (
+                    <div
+                      key={item.name}
+                      className={`bg-card border rounded-xl p-6 ${item.current ? "border-primary shadow-md" : "hover:border-primary/50 transition-colors"}`}
+                    >
+                      <p className="text-sm text-primary font-medium mb-1">
+                        {item.duration}{item.current ? " · diese Seite" : ""}
+                      </p>
+                      <h3 className="text-xl font-semibold mb-2">{item.name}</h3>
+                      <p className="text-muted-foreground leading-relaxed mb-4">{item.text}</p>
+                      {item.href && !item.current && (
+                        <Link to={item.href} className="inline-flex items-center gap-2 text-primary font-medium hover:underline">
+                          Zum {item.name} <ArrowRight className="w-4 h-4" />
+                        </Link>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+
         {/* Inhalte Section */}
         <section className="py-16 bg-background">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl">
               {/* h2 - Unterüberschrift */}
               <h2 className="text-3xl font-bold mb-8">
-                Inhalte und Lernziele
+                {training.featuresTitle ?? "Inhalte und Lernziele"}
               </h2>
 
               {/* Features Liste - ohne JavaScript sichtbar */}
@@ -172,7 +241,7 @@ const TrainingDetail = () => {
                 {training.features.map((feature, index) => (
                   <li key={index} className="flex items-start gap-3">
                     <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-lg">{feature}</span>
+                    <span className="text-lg">{renderFeature(feature)}</span>
                   </li>
                 ))}
               </ul>
@@ -216,7 +285,7 @@ const TrainingDetail = () => {
                     <GraduationCap className="w-6 h-6 text-primary" />
                   </div>
                   <h2 className="text-3xl font-bold">
-                    Was lernen die Teilnehmer?
+                    {training.learningOutcomesTitle ?? "Was lernen die Teilnehmer?"}
                   </h2>
                 </div>
                 <ul className="space-y-4">
@@ -227,6 +296,52 @@ const TrainingDetail = () => {
                     </li>
                   ))}
                 </ul>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Leistungen (optional) */}
+        {training.services && training.services.length > 0 && (
+          <section className="py-16 bg-muted/30">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl">
+                <h2 className="text-3xl font-bold mb-8">Leistungen</h2>
+                <ul className="space-y-4">
+                  {training.services.map((service, index) => (
+                    <li key={index} className="flex items-start gap-3">
+                      <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-0.5" />
+                      <span className="text-lg">{service}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Querverweise auf passende Formate (optional) */}
+        {crossLinkItems.length > 0 && (
+          <section className="py-16 bg-background">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl">
+                <h2 className="text-3xl font-bold mb-8">Passende Formate</h2>
+                <div className="grid md:grid-cols-3 gap-6">
+                  {crossLinkItems.map((item) => (
+                    <Link
+                      key={item.href}
+                      to={item.href}
+                      className="group block p-6 bg-card border rounded-xl hover:border-primary/50 hover:shadow-lg transition-all"
+                    >
+                      <p className="text-xs uppercase tracking-wide text-muted-foreground mb-2">{item.kind}</p>
+                      <h3 className="font-semibold text-lg group-hover:text-primary transition-colors mb-2">{item.title}</h3>
+                      <p className="text-sm text-muted-foreground flex items-center gap-1">
+                        <Clock className="w-3 h-3" />
+                        {item.duration}
+                      </p>
+                    </Link>
+                  ))}
+                </div>
               </div>
             </div>
           </section>

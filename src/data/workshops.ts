@@ -1,5 +1,6 @@
-import { Brain, Users, TrendingUp, Shield, Clock, Laptop, Zap, Scale, Lightbulb, Mic, GraduationCap, PartyPopper, Wrench, Megaphone, Rocket, Calendar, Sparkles, Gauge } from "lucide-react";
+import { Brain, Users, TrendingUp, Shield, Clock, Laptop, Zap, Scale, Lightbulb, Mic, GraduationCap, PartyPopper, Wrench, Megaphone, Rocket, Calendar, Sparkles, Gauge, Compass } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import type { CopilotTier } from "./trainings";
 
 // Workshop-Typ: differenziert die Art der Veranstaltung für Schema.org und UI
 export type WorkshopType = "workshop" | "keynote" | "event" | "change-program";
@@ -52,6 +53,16 @@ export interface Workshop {
   popular?: boolean;
   isNew?: boolean;           // "NEU"-Badge in Übersicht und auf der Detailseite
   featured?: boolean;        // auf Landingpage oben hervorgehoben
+
+  // --- Optionale Felder ab 03.11.2026 (Führungskräfte-Briefing) ---
+  tiers?: CopilotTier[];     // Copilot Free/Paid-Badges im Hero
+  durationISO?: string;      // ISO 8601 für CourseInstance.duration
+  courseModes?: ("onsite" | "online" | "blended")[]; // Default onsite/online/blended
+  prerequisites?: string;    // sichtbar in der Faktenbox + coursePrerequisites
+  featuresTitle?: string;    // abweichende Überschrift statt "Das ist enthalten"
+  priceOnRequest?: boolean;  // Faktenbox zeigt "Preis auf Anfrage"
+  price?: number;            // Netto-Preis in EUR – NUR im JSON-LD (Offer.price), nie sichtbar
+  upsell?: { title: string; text: string; buttonLabel: string; href: string }; // Hinweisblock oberhalb der FAQ
 }
 
 export const workshops: Workshop[] = [
@@ -610,6 +621,71 @@ export const workshops: Workshop[] = [
       {
         question: "Wie viele Mitarbeitende können an einem Launch-Eventtag teilnehmen?",
         answer: "Das Format ist skalierbar: von 50 bis mehrere Hundert Teilnehmende. An einem Eventtag kommen Mitarbeitende flexibel über den Tag verteilt, bleiben so lange, wie sie möchten, und nehmen mit, was sie interessiert. Kein fester Zeitrahmen, keine Frontalschulung, sondern ein lebendiger Marktplatz der Möglichkeiten. Für größere Standorte kann das Event auch über mehrere Tage oder mehrere Orte laufen.",
+      },
+    ],
+  },
+
+  // -----------------------------------------------------------------
+  // FÜHRUNGSKRÄFTE-BRIEFING COPILOT-EINFÜHRUNG (NEU, 03.11.2026)
+  // -----------------------------------------------------------------
+  {
+    slug: "fuehrungskraefte-briefing-copilot",
+    type: "workshop",
+    icon: Compass,
+    isNew: true,
+    title: "Führungskräfte-Briefing: Copilot-Einführung",
+    subtitle: "Zwei Stunden Orientierung, bevor das Team fragt",
+    duration: "2 Stunden",
+    durationISO: "PT2H",
+    participants: "bis 30 Teilnehmende",
+    format: "Inhouse vor Ort oder online",
+    courseModes: ["onsite", "online"],
+    tiers: ["free", "paid"],
+    description: "Die Mitarbeitenden fragen ihre Führungskraft, bevor sie selbst geschult sind. Das Briefing gibt Führungskräften in zwei Stunden, was sie für die ersten Wochen der Einführung brauchen: eine Einordnung, belastbare Antworten auf die Fragen aus dem Team und ein einfaches Raster, um Anwendungsfälle zu bewerten.",
+    questionLead: "",
+    featuresTitle: "Inhalte",
+    features: [
+      "Was sich durch KI und Agenten für Führung verändert",
+      "Welche Fragen das Team stellen wird und welche Antworten tragen",
+      "Wie man Anwendungsfälle mit vier Prüffragen bewertet",
+      "Welche Rolle Führungskräfte im Fahrplan der Einführung haben",
+    ],
+    targetAudience: [],
+    learningOutcomes: [],
+    businessImpact: [],
+    prerequisites: "Keine, auch ohne eigene Copilot-Erfahrung.",
+    priceOnRequest: true,
+    price: 1200,
+    upsell: {
+      title: "Mehr Zeit für die Praxis?",
+      text: "Das Ganztagstraining Copilot für Führungskräfte vertieft die Inhalte des Briefings mit Übungen und macht Copilot zum eigenen Werkzeug im Führungsalltag.",
+      buttonLabel: "Zum Führungskräfte-Training",
+      href: "/trainings/copilot-fuehrungskraefte",
+    },
+    relatedTrainings: [
+      "copilot-fuehrungskraefte",
+      "eu-ai-act-pflichtschulung",
+    ],
+    relatedWorkshops: [
+      "copilot-strategie-change-management",
+    ],
+    metaTitle: "Führungskräfte-Briefing Copilot-Einführung | copilotenschule.de",
+    metaDescription: "Briefing für Führungskräfte in 2 Stunden: Einordnung, belastbare Antworten auf die Fragen des Teams und ein Raster, um Copilot-Anwendungsfälle zu bewerten.",
+    keywords: [
+      "Führungskräfte Briefing Copilot",
+      "Copilot Schulung Führungskräfte",
+      "KI Training Führungskräfte",
+      "Microsoft 365 Copilot für Führungskräfte",
+      "Copilot Einführung Führungskräfte",
+    ],
+    faqs: [
+      {
+        question: "Brauchen die Teilnehmenden eine Copilot-Lizenz?",
+        answer: "Nein, das Briefing kommt ohne eigenes Hands-on aus.",
+      },
+      {
+        question: "Gibt es eine ausführlichere Variante?",
+        answer: "Ja, das Ganztagstraining Copilot für Führungskräfte.",
       },
     ],
   },

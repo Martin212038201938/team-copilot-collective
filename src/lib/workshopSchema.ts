@@ -127,13 +127,15 @@ export const generateWorkshopMainSchema = (
   return {
     ...base,
     "@type": "Course",
-    "teaches": workshop.learningOutcomes.join(" | "),
-    "coursePrerequisites": "Keine Programmierkenntnisse erforderlich",
+    "teaches": workshop.learningOutcomes.length > 0
+      ? workshop.learningOutcomes.join(" | ")
+      : workshop.features.join(" | "),
+    "coursePrerequisites": workshop.prerequisites ?? "Keine Programmierkenntnisse erforderlich",
     "educationalLevel": "Professional Development",
     "hasCourseInstance": {
       "@type": "CourseInstance",
-      "courseMode": ["onsite", "online", "blended"],
-      "duration": (workshop as any).durationISO || "PT7H",
+      "courseMode": workshop.courseModes ?? ["onsite", "online", "blended"],
+      "duration": workshop.durationISO || "PT7H",
       "inLanguage": "de-DE",
       "instructor": {
         "@id": instructorId,
@@ -156,6 +158,20 @@ export const generateWorkshopMainSchema = (
         "OfflineEventAttendanceMode",
         "MixedEventAttendanceMode",
       ],
+      // Seit 03.11.2026: optionaler Netto-Preis nur maschinenlesbar (nie sichtbar gerendert)
+      ...(workshop.price
+        ? {
+            "price": String(workshop.price),
+            "priceCurrency": "EUR",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": String(workshop.price),
+              "priceCurrency": "EUR",
+              "valueAddedTaxIncluded": false,
+              "description": `${workshop.price} € netto pro Termin (geschlossene Gruppe)`,
+            },
+          }
+        : {}),
     },
   };
 };

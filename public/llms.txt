@@ -87,6 +87,10 @@ strukturierte Daten (schema.org Course/Offer): https://copilotenschule.de/traini
 - Chatbot-Workshop
 - Low-Code Power Platform
 
+### Für Führungskräfte (zweistufig)
+- Führungskräfte-Briefing: Copilot-Einführung (2 Stunden, Workshop, Orientierung vor dem Rollout, ohne eigenes Hands-on): https://copilotenschule.de/workshops/fuehrungskraefte-briefing-copilot
+- Copilot für Führungskräfte (Ganztag, 7 Stunden, Vertiefung mit Übungen und Copilot im eigenen Führungsalltag): https://copilotenschule.de/trainings/copilot-fuehrungskraefte
+
 ### Compliance & Strategie
 - Copilot Compliance & Datenschutz
 - EU AI Act Pflichtschulung
