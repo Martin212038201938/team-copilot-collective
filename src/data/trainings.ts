@@ -520,10 +520,6 @@ export const trainings: Training[] = [
       {
         question: "Welche Voraussetzungen brauchen unsere Teilnehmer und wen schicken wir am besten?",
         answer: "Keine formalen Voraussetzungen. Wirksam sind Mitarbeitende mit guten Kommunikationsskills, die geduldig zuhören und erklären können, im Alltag ansprechbar und präsent sind (nicht die gestresstesten High Performer), Copilot bereits aus eigener Motivation länger nutzen und ein Grundgefühl für Prozesse haben. Wichtig: Schicken Sie nicht nur Führungskräfte – die wirksamsten Multiplikatoren sind oft eine Ebene tiefer, mit Akzeptanz und Vertrauen im Kollegium. Eine bewusst gemischte Gruppe aus Fach- und Führungsebene wirkt erfahrungsgemäß am stärksten."
-      },
-      {
-        question: "Wie überzeuge ich die Geschäftsleitung, in eine Train-the-Trainer-Ausbildung zu investieren?",
-        answer: "Das stärkste Argument ist Skalierung: Wenn Sie 1.000 Mitarbeitende zu Copilot-Profis machen wollen, sind externe Schulungen für jeden schlicht zu teuer und zu zähflüssig. Mit zwei bis fünf intern ausgebildeten Multiplikatoren können Sie den Großteil der Trainings selbst stemmen – und behalten Use-Case-Pflege und Anwender-Support im Haus. Verhaltensänderung gelingt mit vertrauten Gesichtern aus dem eigenen Unternehmen messbar besser als mit Externen, gerade in der entscheidenden Phase nach dem Training. Da schon ein einzelner Tag reicht, um zu starten, sinkt zusätzlich die Hürde, gute Multiplikatoren aus dem Tagesgeschäft freizustellen."
       }
     ],
     relatedWorkshops: ["copilot-strategie-change-management", "copilot-launch-eventtag"],
