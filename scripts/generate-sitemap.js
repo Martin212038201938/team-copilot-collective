@@ -10,7 +10,8 @@
  * Wird im Build-Prozess ausgeführt: npm run generate-sitemap
  *
  * Lastmod-Strategie (wichtig für SEO!):
- * - Wissens-Artikel: publishDate aus src/data/articles.ts (echtes Veröffentlichungsdatum)
+ * - Wissens-Artikel: jüngeres Datum aus publishDate (src/data/articles.ts) und letztem
+ *   Git-Commit der Artikel-TSX – damit inhaltliche Updates in der Sitemap ankommen
  * - Trainings/Workshops/Trainer/Static: letzte Änderung der entsprechenden Quelldatei
  *   (ermittelt via `git log -1 --pretty=format:%ai`)
  * - Fallback (falls git fehlt oder unbekannt): SITE_BASELINE_DATE als evergreen-Marker
@@ -131,23 +132,36 @@ function readArticlePublishDates() {
 
 /**
  * Gibt einen lastmod-Wert für eine /wissen/-URL zurück:
- * Erst aus articles.ts publishDate, sonst aus git log auf die TSX-Datei,
- * sonst SITE_BASELINE_DATE.
+ * Das jüngere Datum aus (a) publishDate in articles.ts und (b) letztem Git-Commit
+ * der zugehörigen TSX-Datei. So landen inhaltliche Updates eines Artikels in der
+ * Sitemap, ohne dass unveränderte Artikel ein künstlich neues Datum bekommen.
+ * Fallback ohne beides: SITE_BASELINE_DATE.
  */
-function wissenLastmod(slug, articleDates) {
-  if (articleDates.has(slug)) return articleDates.get(slug);
-  // Fallback: TSX-Datei finden (heuristisch über slug-Match)
-  const pagesDir = path.join(ROOT, 'src', 'pages');
-  if (fs.existsSync(pagesDir)) {
-    const files = fs.readdirSync(pagesDir).filter(f => f.endsWith('.tsx'));
-    for (const f of files) {
-      const c = fs.readFileSync(path.join(pagesDir, f), 'utf-8');
-      if (c.includes(`const SLUG = "${slug}"`) || c.includes(`const SLUG = '${slug}'`)) {
-        return gitLastModified(`src/pages/${f}`);
+let SLUG_TO_TSX = null;
+function tsxForSlug(slug) {
+  if (!SLUG_TO_TSX) {
+    SLUG_TO_TSX = new Map();
+    const pagesDir = path.join(ROOT, 'src', 'pages');
+    if (fs.existsSync(pagesDir)) {
+      for (const f of fs.readdirSync(pagesDir).filter(f => f.endsWith('.tsx'))) {
+        const c = fs.readFileSync(path.join(pagesDir, f), 'utf-8');
+        const m = c.match(/const SLUG = ["']([^"']+)["']/);
+        if (m && !SLUG_TO_TSX.has(m[1])) SLUG_TO_TSX.set(m[1], `src/pages/${f}`);
       }
     }
   }
-  return SITE_BASELINE_DATE;
+  return SLUG_TO_TSX.get(slug) || null;
+}
+
+function wissenLastmod(slug, articleDates) {
+  const publish = articleDates.get(slug) || null;
+  const tsx = tsxForSlug(slug);
+  const modified = tsx ? gitLastModified(tsx) : null;
+  // gitLastModified liefert im Fehlerfall SITE_BASELINE_DATE/Fallback – nur werten,
+  // wenn es jünger als das Veröffentlichungsdatum ist (ISO-Strings sind lexikografisch vergleichbar).
+  const candidates = [publish, modified].filter(Boolean);
+  if (candidates.length === 0) return SITE_BASELINE_DATE;
+  return candidates.sort().pop();
 }
 
 // ──────────────────────────────────────────────────────────────
@@ -185,7 +199,7 @@ const staticPages = [
   { loc: '/datenschutz',            lastmod: gitLastModified('src/pages/Datenschutz.tsx'),          changefreq: 'yearly',  priority: 0.3 },
 ];
 
-// Wissensseiten — lastmod aus articles.ts publishDate (echtes Veröffentlichungsdatum)
+// Wissensseiten — lastmod = jüngeres Datum aus publishDate (articles.ts) und letztem Git-Commit der TSX
 const knowledgeSlugs = [
   'github-copilot', 'copilot-studio', 'prompt-engineering', 'copilot-fehler-vermeiden',
   'ki-agenten', 'microsoft-copilot-lizenzen', 'copilot-roi-berechnen', 'copilot-fuer-word',

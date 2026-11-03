@@ -389,7 +389,7 @@ const CopilotLaunchKampagne = () => {
                 beschreibung: "Dranbleiben, vertiefen, Hürden abbauen. Hier passiert die echte Verhaltensänderung.",
                 aktivitaeten: [
                   "Wöchentliche 'Prompt der Woche' per Newsletter",
-                  "Lernreise: 8×2h über 8 Wochen (keine Einmal-Schulung!)",
+                  "Lernreise: 6×2h über 6 Wochen (keine Einmal-Schulung!)",
                   "Abteilungsspezifische Vertiefungen",
                   "Sprechstunden & FAQ-Sessions",
                   "Success Stories sammeln und teilen"
@@ -596,7 +596,7 @@ const CopilotLaunchKampagne = () => {
                   </li>
                   <li className="flex items-center gap-2">
                     <ArrowRight className="w-4 h-4 text-blue-500" />
-                    <strong><Link to="/trainings/copilot-lernreise-8-wochen" className="text-primary hover:underline">Lernreise 8 Wochen</Link></strong>: Nachhaltige Verhaltensänderung
+                    <strong><Link to="/trainings/copilot-lernreise-8-wochen" className="text-primary hover:underline">Lernreise 6 Wochen</Link></strong>: Nachhaltige Verhaltensänderung
                   </li>
                   <li className="flex items-center gap-2">
                     <ArrowRight className="w-4 h-4 text-blue-500" />
@@ -768,7 +768,7 @@ const CopilotLaunchKampagne = () => {
           <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
             Wir begleiten Sie von der Strategie bis zum Go-Live – mit Trainings, Events und
             einem starken Netzwerk an Internal-Comms- und Event-Profis. Ob Keynote, Eventtag
-            oder 8-Wochen-Lernreise: Gemeinsam machen wir Ihre Copilot-Einführung zum Erfolg.
+            oder 6-Wochen-Lernreise: Gemeinsam machen wir Ihre Copilot-Einführung zum Erfolg.
           </p>
           <a
             href="/trainings"

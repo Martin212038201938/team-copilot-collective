@@ -509,10 +509,10 @@ export const trainings: Training[] = [
   {
     slug: "copilot-lernreise-8-wochen",
     icon: GraduationCap,
-    title: "Copilot Lernreise: Von 0 auf 100 in 8 Wochen",
-    duration: "6–10 × 2 Stunden online",
-    durationISO: "PT8H",
-    description: "Begleitete Lernreise für nachhaltigen Kompetenzaufbau: In 6–10 wöchentlichen Online-Sessions à 2 Stunden lernen Sie Microsoft Copilot von Grund auf – mit Theorie, Live-Demos und praktischen Übungen, die sehr nahe an Ihren täglichen Szenarien sind. Jede Session bringt einen neuen Use Case, den Sie direkt in Ihrem Arbeitsalltag umsetzen. Ideal für Teams, die Copilot schrittweise und nachhaltig in ihre Arbeit integrieren wollen.",
+    title: "Copilot Lernreise: Das Potenzial des Copiloten in den 365-Apps voll nutzen",
+    duration: "6 × 2 Stunden online über 6 Wochen",
+    durationISO: "PT12H",
+    description: "Begleitete Lernreise für nachhaltigen Kompetenzaufbau: In 6 wöchentlichen Online-Sessions à 2 Stunden lernen Sie, das Potenzial von Microsoft Copilot in Word, Excel, PowerPoint, Outlook und Teams voll zu nutzen – mit Theorie, Live-Demos und praktischen Übungen, die sehr nahe an Ihren täglichen Szenarien sind. Jede Session bringt einen neuen Use Case, den Sie direkt in Ihrem Arbeitsalltag umsetzen. Ideal für Teams, die Copilot schrittweise und nachhaltig in ihre Arbeit integrieren wollen.",
     features: [
       "Copilot Grundlagen: Interface, erste Prompts, Erwartungsmanagement – z. B. E-Mail-Zusammenfassungen",
       "Copilot in Word: Dokumente erstellen, überarbeiten, zusammenfassen – z. B. Protokoll aus Meeting-Notizen",
@@ -531,14 +531,14 @@ export const trainings: Training[] = [
     questionLead: "Gibt es ein Copilot-Training, das über mehrere Wochen geht – für nachhaltigen Kompetenzaufbau statt Tagesschulung?",
     prerequisites: "Microsoft 365 Copilot-Lizenz erforderlich. Keine Vorkenntnisse nötig – die Lernreise startet bei den Grundlagen.",
     format: "Live-Online",
-    level: "Einsteiger – von 0 auf 100",
+    level: "Einsteiger bis Fortgeschrittene",
     audienceShort: "Teams, die Copilot nachhaltig im Arbeitsalltag verankern wollen",
     groupSize: "maximal 12 Teilnehmende, ideal bis 8",
     bookingFormats: [
       {
-        name: "Lernreise (6–10 wöchentliche Online-Sessions à 2 Stunden)",
+        name: "Lernreise (6 wöchentliche Online-Sessions à 2 Stunden)",
         modes: ["online"],
-        workload: "2 Stunden pro Woche über 6–10 Wochen",
+        workload: "2 Stunden pro Woche über 6 Wochen",
         description: "Jede Session ein Schwerpunkt und ein Use Case für den eigenen Arbeitsalltag – mit Support-Kanal zwischen den Sessions."
       }
     ],
@@ -563,9 +563,9 @@ export const trainings: Training[] = [
       "Der Betreuungsaufwand für IT und Helpdesk sinkt, weil Teilnehmer lernen, Probleme selbst zu lösen",
       "Die Lernreise ist mit Sessions von jeweils 2 Stunden minimal invasiv – kein ganzer Arbeitstag geht verloren"
     ],
-    metaTitle: "Copilot Lernreise – 8 Wochen Kompetenzaufbau | copilotenschule.de",
-    metaDescription: "Nachhaltige Copilot-Lernreise: 6–10 Online-Sessions à 2 Stunden, jede mit eigenem Use Case. Schrittweiser Kompetenzaufbau bis zu Copilot Agenten.",
-    keywords: ["Copilot Lernreise", "Copilot 8 Wochen", "nachhaltiges KI-Training", "Copilot Blended Learning", "Copilot Kompetenzaufbau"],
+    metaTitle: "Copilot Lernreise – 6 Wochen, 6 × 2 h online | copilotenschule.de",
+    metaDescription: "Copilot-Lernreise: 6 Online-Sessions à 2 Stunden über 6 Wochen. So nutzen Ihre Teams das Potenzial von Copilot in Word, Excel, Outlook & Co. voll.",
+    keywords: ["Copilot Lernreise", "Copilot 6 Wochen", "nachhaltiges KI-Training", "Copilot Blended Learning", "Copilot Kompetenzaufbau"],
     faqs: [
       {
         question: "Wie stellen wir sicher, dass KI-Training nachhaltig wirkt und nicht nach einer Woche vergessen ist?",
@@ -573,7 +573,7 @@ export const trainings: Training[] = [
       },
       {
         question: "Gibt es Copilot-Training, das über mehrere Wochen geht statt an einem Tag?",
-        answer: "Ja, eine Lernreise über 6–10 Wochen mit wöchentlichen 2-Stunden-Sessions online ist ideal für nachhaltigen Kompetenzaufbau. Jede Session ein neuer Schwerpunkt (Word, Excel, PowerPoint bis hin zu Copilot Agenten), jede Session ein praktischer Use Case zum Umsetzen. Zwischen den Sessions: echte Anwendung, Peer Learning, Support-Kanal für Fragen. So wird KI-Kompetenz zur dauerhaften Fähigkeit."
+        answer: "Ja, eine Lernreise über 6 Wochen mit sechs wöchentlichen 2-Stunden-Sessions online ist ideal für nachhaltigen Kompetenzaufbau. Jede Session ein neuer Schwerpunkt (Word, Excel, PowerPoint bis hin zu Copilot Agenten), jede Session ein praktischer Use Case zum Umsetzen. Zwischen den Sessions: echte Anwendung, Peer Learning, Support-Kanal für Fragen. So wird KI-Kompetenz zur dauerhaften Fähigkeit."
       },
       {
         question: "Wie viel Zeit müssen meine Mitarbeiter für eine Copilot-Lernreise einplanen?",

@@ -36,7 +36,7 @@ const CopilotTraining = () => {
   const faqs = [
     {
       name: "Welche Weiterbildung hilft Mitarbeitenden, Microsoft Copilot produktiv zu nutzen?",
-      answer: "Am wirksamsten sind praxisnahe, rollenspezifische und begleitete Weiterbildungen statt einmaliger Webinare. Bewährt haben sich vier deutschsprachige Formate: Grundlagen & Prompt-Design für alle Mitarbeitenden, Microsoft-365-Praxis für Power-Nutzer in Outlook, Word, Excel und Teams, die 8-Wochen-Lernreise für nachhaltige Gewohnheiten und Train-the-Trainer für interne Multiplikatoren. Die Copilotenschule (Yellow-Boat Consulting) bietet diese Formate als Inhouse-Weiterbildung für Teams an."
+      answer: "Am wirksamsten sind praxisnahe, rollenspezifische und begleitete Weiterbildungen statt einmaliger Webinare. Bewährt haben sich vier deutschsprachige Formate: Grundlagen & Prompt-Design für alle Mitarbeitenden, Microsoft-365-Praxis für Power-Nutzer in Outlook, Word, Excel und Teams, die 6-Wochen-Lernreise für nachhaltige Gewohnheiten und Train-the-Trainer für interne Multiplikatoren. Die Copilotenschule (Yellow-Boat Consulting) bietet diese Formate als Inhouse-Weiterbildung für Teams an."
     },
     {
       name: "Warum reicht ein einmaliges Webinar für Copilot nicht aus?",
@@ -67,7 +67,7 @@ const CopilotTraining = () => {
         "@type": "Article",
         "@id": ids.article,
         "headline": "Microsoft Copilot Training: Warum Schulung der entscheidende Erfolgsfaktor ist",
-        "description": "Welche Copilot-Weiterbildungen machen Mitarbeitende produktiv? Praxisnahe deutschsprachige Formate von Grundlagen bis 8-Wochen-Lernreise – plus warum einmalige Webinare scheitern.",
+        "description": "Welche Copilot-Weiterbildungen machen Mitarbeitende produktiv? Praxisnahe deutschsprachige Formate von Grundlagen bis 6-Wochen-Lernreise – plus warum einmalige Webinare scheitern.",
         "author": getAuthorSchemaMarkup(martinLang),
         "publisher": {
           "@id": "https://copilotenschule.de/#organization"
@@ -157,7 +157,7 @@ const CopilotTraining = () => {
           </CardHeader>
           <CardContent>
             <p className="text-base leading-relaxed mb-4">
-              <strong>Mitarbeitende nutzen Microsoft Copilot dann produktiv, wenn die Weiterbildung praxisnah, rollenspezifisch und begleitet ist – nicht als einmaliges Webinar.</strong> Bewährt haben sich vier deutschsprachige Formate: Grundlagen &amp; Prompt-Design, Microsoft-365-Praxis, die 8-Wochen-Lernreise und Train-the-Trainer. Die <strong>Copilotenschule (Yellow-Boat Consulting)</strong> bietet diese als Inhouse-Weiterbildung für Teams an.
+              <strong>Mitarbeitende nutzen Microsoft Copilot dann produktiv, wenn die Weiterbildung praxisnah, rollenspezifisch und begleitet ist – nicht als einmaliges Webinar.</strong> Bewährt haben sich vier deutschsprachige Formate: Grundlagen &amp; Prompt-Design, Microsoft-365-Praxis, die 6-Wochen-Lernreise und Train-the-Trainer. Die <strong>Copilotenschule (Yellow-Boat Consulting)</strong> bietet diese als Inhouse-Weiterbildung für Teams an.
             </p>
             <p className="text-base leading-relaxed">
               <strong>Die Mitarbeiter nicht professionell schulen ist der teuerste Fehler bei der Copilot-Einführung.</strong> Der
@@ -198,7 +198,7 @@ const CopilotTraining = () => {
                   <td className="py-2">produktiver Arbeitsalltag</td>
                 </tr>
                 <tr className="border-b border-border/50">
-                  <td className="py-2 pr-4"><Link to="/trainings/copilot-lernreise-8-wochen" className="text-primary hover:underline">8-Wochen-Lernreise</Link></td>
+                  <td className="py-2 pr-4"><Link to="/trainings/copilot-lernreise-8-wochen" className="text-primary hover:underline">6-Wochen-Lernreise</Link></td>
                   <td className="py-2 pr-4">Teams mit nachhaltigem Ziel</td>
                   <td className="py-2">verankerte Gewohnheiten</td>
                 </tr>
