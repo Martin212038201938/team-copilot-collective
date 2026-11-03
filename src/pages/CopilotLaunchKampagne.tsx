@@ -604,7 +604,7 @@ const CopilotLaunchKampagne = () => {
                   </li>
                   <li className="flex items-center gap-2">
                     <ArrowRight className="w-4 h-4 text-blue-500" />
-                    <strong><Link to="/trainings/train-the-trainer-copilot" className="text-primary hover:underline">Train-the-Trainer</Link></strong>: Eigene Multiplikator:innen ausbilden – inkl. aller Trainingsunterlagen
+                    <strong><Link to="/trainings/train-the-trainer-copilot" className="text-primary hover:underline">Train-the-Trainer</Link></strong>: Eigene Multiplikator:innen ausbilden – inkl. Standard-Trainings-Deck
                   </li>
                 </ul>
               </CardContent>

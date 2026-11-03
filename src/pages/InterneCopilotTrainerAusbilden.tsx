@@ -324,7 +324,7 @@ const InterneCopilotTrainerAusbilden = () => {
             <CardContent className="pt-6">
               <h3 className="text-xl font-bold mb-3">Train-the-Trainer Copilot: Multiplikator:innen mit Tiefe ausbilden</h3>
               <p className="text-base leading-relaxed mb-4">
-                Zwei Tage (2 x 7 Stunden), drei verzahnte Dimensionen, komplette Materialbibliothek zur internen Nutzung – ergänzt durch fortlaufende Begleitung.
+                Ein Tag, zwei Tage oder vier Halbtage: Copilot Chat in der Tiefe, die Copiloten in den 365-Apps, Use-Case-Schema, Didaktik und Einwandbehandlung – mit Standard-Trainings-Deck für die ersten eigenen Schulungen.
               </p>
               <Link
                 to="/trainings/train-the-trainer-copilot"

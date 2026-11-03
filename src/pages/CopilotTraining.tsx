@@ -949,7 +949,7 @@ const CopilotTraining = () => {
             </CardHeader>
             <CardContent>
               <p className="text-sm">
-                Champions brauchen mehr als Copilot-Praxis – sie müssen auch Adoption-Programme planen und unterschiedliche Zielgruppen didaktisch abholen können. Genau dafür haben wir unsere <Link to="/trainings/train-the-trainer-copilot" className="text-primary font-semibold hover:underline">Train-the-Trainer Ausbildung</Link> aufgesetzt: zwei Tage (2 x 7 Stunden), drei Dimensionen (eigene Praxis, Adoption-Architektur, Didaktik) und das vollständige Material-Kit zur freien internen Nutzung. Buchbar als geschlossene Inhouse-Gruppe oder als offenes Training mit Multiplikator:innen aus anderen Firmen.
+                Champions brauchen mehr als Copilot-Praxis – sie müssen Use Cases bewerten, Einwände ehrlich beantworten und unterschiedliche Zielgruppen didaktisch abholen können. Genau dafür haben wir unsere <Link to="/trainings/train-the-trainer-copilot" className="text-primary font-semibold hover:underline">Train-the-Trainer Ausbildung</Link> aufgesetzt: Copilot Chat in der Tiefe, die Copiloten in den 365-Apps, ein festes Use-Case-Schema, Didaktik und ein Standard-Trainings-Deck. Buchbar inhouse als Tag, über zwei Tage oder in vier Halbtagen – oder als offenes Training in Köln mit Multiplikator:innen aus anderen Firmen.
               </p>
             </CardContent>
           </Card>

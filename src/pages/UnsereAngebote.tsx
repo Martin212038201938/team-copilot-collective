@@ -8,7 +8,6 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import StickyBookingCTA from "@/components/StickyBookingCTA";
 import Contact from "@/components/Contact";
-import CustomerLogos from "@/components/CustomerLogos";
 import SEOHead from "@/components/SEOHead";
 import { generateTrainingsOverviewSchema } from "@/lib/schema";
 import { trainings, type Training, type CopilotTier } from "@/data/trainings";
@@ -110,9 +109,7 @@ const UnsereAngebote = () => {
       <Header />
 
       <main className="pt-24">
-        <CustomerLogos />
-
-        <section id="trainings" className="py-16 bg-gradient-to-b from-muted/30 to-background relative">
+        <section id="trainings" className="pt-8 pb-16 bg-gradient-to-b from-muted/30 to-background relative">
           <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
 
