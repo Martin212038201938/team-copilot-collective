@@ -26,13 +26,13 @@ const products = [
   {
     title: "Copilot Grundlagen und KI-Kompetenz",
     href: "/trainings/copilot-grundlagen-prompt-design",
-    text: "Gute Prompts für alle Mitarbeitenden. Der Halbtag erfüllt zugleich die Schulungspflicht nach EU AI Act.",
-    meta: "Halbtag oder Ganztag · auch ohne Copilot-Lizenz",
+    text: "Besser prompten, Copilot Chat sicher bedienen. Erfüllt die Schulungspflicht nach EU AI Act.",
+    meta: "Halbtag oder Ganztag · auch ohne Microsoft 365 Copilot Volllizenz",
   },
   {
     title: "Microsoft 365 Copilot Training",
     href: "/trainings/microsoft-365-copilot-praxis",
-    text: "Copilot in Word, Excel, PowerPoint, Outlook und Teams, geübt an Ihren eigenen Arbeitsabläufen.",
+    text: "Word, Excel, PowerPoint, Outlook und Teams im Alltag wirklich nutzen, dazu persönliche Agenten bauen.",
     meta: "Ganztag oder 2 Tage · mit Copilot-Lizenz",
   },
   {
@@ -48,15 +48,15 @@ const products = [
     meta: "6 × 2 Stunden live online",
   },
   {
-    title: "Copilot in Excel für Controlling",
+    title: "Copilot in Excel für Controlling und Buchhaltung",
     href: "/trainings/copilot-excel-rechnungswesen-controlling",
-    text: "Auswertungen, Soll-Ist-Vergleiche und Reporting im Rechnungswesen mit Copilot in Excel.",
+    text: "Formeln per Sprache, Auffälligkeiten in Buchungsdaten finden, Monatsberichte vorbereiten.",
     meta: "Ganztag · inhouse, online oder in Köln",
   },
   {
     title: "Train-the-Trainer für Copilot",
     href: "/trainings/train-the-trainer-copilot",
-    text: "Interne Trainer und Key User ausbilden, die Copilot-Schulungen im eigenen Haus durchführen.",
+    text: "Key User ausbilden, die Ihre Belegschaft beim Copilot-Rollout und in der Transformation begleiten.",
     meta: "1 oder 2 Tage · inhouse oder in Köln",
   },
 ];
@@ -102,15 +102,7 @@ const TrainingProducts = () => (
         ))}
       </div>
 
-      <p className="mt-4 mb-0 text-center text-sm md:text-base">
-        Für Führungskräfte gibt es einen eigenen{" "}
-        <Link to="/trainings/copilot-fuehrungskraefte" className={linkClass}>
-          Workshop zur Copilot-Einführung
-        </Link>
-        .
-      </p>
-
-      <div className="mt-3 flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-sm md:text-base">
+      <div className="mt-4 flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-sm md:text-base">
         <Link to="/trainings" className={linkClass}>
           Alle Trainings ansehen
         </Link>
