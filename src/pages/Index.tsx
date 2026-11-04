@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import CustomerLogos from "@/components/CustomerLogos";
+import TrainingProducts from "@/components/TrainingProducts";
 import TrustBadges from "@/components/TrustBadges";
 import GuidesTeaser from "@/components/GuidesTeaser";
 import TrainingModules from "@/components/TrainingModules";
@@ -18,6 +19,7 @@ import { homepageFAQs } from "@/data/faqs";
  *
  * Main entry point for the website. Displays:
  * - Hero section with value proposition
+ * - Compact product section (six training tiles, 11/2026)
  * - CTA to training offerings and configurator
  * - Benefits of our training approach
  * - Trust badges and customer reviews
@@ -56,6 +58,7 @@ const Index = () => {
       <main>
         <Hero />
         <CustomerLogos />
+        <TrainingProducts />
         <Benefits />
         <TrainingModules />
         <GuidesTeaser />

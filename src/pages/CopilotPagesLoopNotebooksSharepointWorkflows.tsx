@@ -265,7 +265,7 @@ const CopilotPagesLoopNotebooksSharepointWorkflows = () => {
             </p>
             <p>
               Genau an diesem Punkt setzen die Trainings der Copilotenschule an. Wir reden in den Sessions wenig über die Oberflächen und viel über die Frage, welcher Workflow zu welchem Anlass passt – und wie Sie Ihre Teams dorthin bekommen, dass die neuen Reflexe nicht nur im Schulungsraum funktionieren, sondern in der nächsten Projektsitzung. Wer die Umstellung strukturiert angehen will, findet in unserer{" "}
-              <Link to="/trainings/copilot-lernreise-8-wochen" className="text-primary hover:underline font-medium">
+              <Link to="/trainings/copilot-lernreise" className="text-primary hover:underline font-medium">
                 Copilot-Lernreise
               </Link>{" "}
               das passende Format dafür.

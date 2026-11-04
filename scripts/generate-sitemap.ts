@@ -71,7 +71,7 @@ const trainingsSlugs = [
   'eu-ai-act-pflichtschulung',
   'copilot-hackathon',
   'keynote-copilot-arbeitswelt',
-  'copilot-lernreise-8-wochen',
+  'copilot-lernreise',
   'copilot-launch-eventtag',
   'individuelle-copilot-schulung',
 ];

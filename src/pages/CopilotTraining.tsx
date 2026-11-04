@@ -145,7 +145,7 @@ const CopilotTraining = () => {
         lastUpdated="02. Juli 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
-        relatedContent={["wissen:microsoft-copilot-schulung-online", "wissen:copilot-lernreise-vs-tagesschulung", "wissen:warum-verteiltes-lernen", "training:copilot-lernreise-8-wochen", "training:train-the-trainer-copilot"]}
+        relatedContent={["wissen:microsoft-copilot-schulung-online", "wissen:copilot-lernreise-vs-tagesschulung", "wissen:warum-verteiltes-lernen", "training:copilot-lernreise", "training:train-the-trainer-copilot"]}
       >
         {/* Schnellantwort */}
         <Card className="mb-8 border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-amber-500/5">
@@ -198,7 +198,7 @@ const CopilotTraining = () => {
                   <td className="py-2">produktiver Arbeitsalltag</td>
                 </tr>
                 <tr className="border-b border-border/50">
-                  <td className="py-2 pr-4"><Link to="/trainings/copilot-lernreise-8-wochen" className="text-primary hover:underline">6-Wochen-Lernreise</Link></td>
+                  <td className="py-2 pr-4"><Link to="/trainings/copilot-lernreise" className="text-primary hover:underline">6-Wochen-Lernreise</Link></td>
                   <td className="py-2 pr-4">Teams mit nachhaltigem Ziel</td>
                   <td className="py-2">verankerte Gewohnheiten</td>
                 </tr>

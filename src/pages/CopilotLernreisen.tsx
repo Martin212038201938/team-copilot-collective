@@ -54,7 +54,7 @@ const CopilotLernreisen = () => {
     },
     {
       name: "Welche Copilot-Trainings bietet die copilotenschule.de als Lernreise an?",
-      answer: "Alle unsere Basic-Trainings – von Microsoft 365 Copilot Grundlagen bis zu den App-spezifischen Trainings für Word, Excel, PowerPoint, Outlook und Teams – sind als Lernreise buchbar. Das Format umfasst typischerweise 4×2 Stunden über 4 Wochen, für tiefere Inhalte auch 8×2 Stunden über 8 Wochen. Jede Session baut auf der vorherigen auf und enthält konkrete Praxisaufträge für die Zeit dazwischen."
+      answer: "Alle unsere Basic-Trainings – von Microsoft 365 Copilot Grundlagen bis zu den App-spezifischen Trainings für Word, Excel, PowerPoint, Outlook und Teams – sind als Lernreise buchbar. Das Format umfasst typischerweise 4×2 Stunden über 4 Wochen, für tiefere Inhalte 6×2 Stunden über 6 Wochen. Jede Session baut auf der vorherigen auf und enthält konkrete Praxisaufträge für die Zeit dazwischen."
     }
   ];
 
@@ -140,7 +140,7 @@ const CopilotLernreisen = () => {
         lastUpdated="04. Februar 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
-        relatedContent={["wissen:warum-verteiltes-lernen", "training:copilot-lernreise-8-wochen", "wissen:microsoft-copilot-schulung-online", "wissen:copilot-training-schulung", "wissen:copilot-launch-kampagne"]}
+        relatedContent={["wissen:warum-verteiltes-lernen", "training:copilot-lernreise", "wissen:microsoft-copilot-schulung-online", "wissen:copilot-training-schulung", "wissen:copilot-launch-kampagne"]}
       >
         {/* Schnellantwort-Card */}
         <Card className="mb-8 border-2 border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-amber-500/5">

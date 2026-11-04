@@ -135,7 +135,7 @@ export const workshops: Workshop[] = [
       "copilot-grundlagen-prompt-design",
       "microsoft-365-copilot-praxis",
       "ausbildung-ki-wissensarbeiter",
-      "copilot-lernreise-8-wochen",
+      "copilot-lernreise",
     ],
     relatedWorkshops: [
       "copilot-strategie-change-management",
@@ -588,7 +588,7 @@ export const workshops: Workshop[] = [
     relatedTrainings: [
       "copilot-grundlagen-prompt-design",
       "microsoft-365-copilot-praxis",
-      "copilot-lernreise-8-wochen",
+      "copilot-lernreise",
     ],
     relatedWorkshops: [
       "keynote-copilot-arbeitswelt",
@@ -742,7 +742,7 @@ export const workshops: Workshop[] = [
       "Das Modul hebt die Copilot-Nutzung von Automatisierung auf strategische Entscheidungsunterstützung.",
     ],
     relatedTrainings: [
-      "copilot-lernreise-8-wochen",
+      "copilot-lernreise",
       "ausbildung-ki-wissensarbeiter",
       "microsoft-365-copilot-praxis",
     ],

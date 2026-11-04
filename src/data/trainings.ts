@@ -598,7 +598,7 @@ export const trainings: Training[] = [
     ],
   },
   {
-    slug: "copilot-lernreise-8-wochen",
+    slug: "copilot-lernreise",
     icon: GraduationCap,
     title: "Copilot Lernreise: Das Potenzial des Copiloten in den 365-Apps voll nutzen",
     duration: "6 × 2 Stunden online über 6 Wochen",

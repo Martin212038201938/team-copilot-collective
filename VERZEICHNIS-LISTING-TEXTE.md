@@ -21,7 +21,7 @@ Unser Angebot umfasst:
 • Copilot Studio & KI-Agenten
 • Prompt Engineering & Design
 • Copilot Strategie & Change Management
-• Mehrstufige Lernreisen (8 Wochen) für nachhaltige Adoption
+• Mehrstufige Lernreisen (6 × 2 Stunden über 6 Wochen) für nachhaltige Adoption
 • Individuelle Copilot-Schulungen und Hackathons
 
 Unsere Trainings sind praxisnah, auf den Unternehmensalltag zugeschnitten und von zertifizierten Experten durchgeführt. Wir arbeiten mit Unternehmen aller Größen – vom Mittelstand bis zum Konzern.
@@ -61,11 +61,11 @@ Website: https://copilotenschule.de
 - Zielgruppe: Anwender mit Grundkenntnissen
 - Link: https://copilotenschule.de/trainings/microsoft-365-copilot-praxis
 
-### 3. Copilot Lernreise (8 Wochen)
-- Dauer: 8 Wochen (verteilt)
-- Format: Blended Learning
+### 3. Copilot Lernreise (6 Wochen)
+- Dauer: 6 × 2 Stunden über 6 Wochen
+- Format: Live-Online
 - Zielgruppe: Teams, Abteilungen
-- Link: https://copilotenschule.de/trainings/copilot-lernreise-8-wochen
+- Link: https://copilotenschule.de/trainings/copilot-lernreise
 
 ### 4. GitHub Copilot für Entwickler
 - Dauer: 1 Tag

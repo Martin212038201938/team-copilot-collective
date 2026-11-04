@@ -596,7 +596,7 @@ const CopilotLaunchKampagne = () => {
                   </li>
                   <li className="flex items-center gap-2">
                     <ArrowRight className="w-4 h-4 text-blue-500" />
-                    <strong><Link to="/trainings/copilot-lernreise-8-wochen" className="text-primary hover:underline">Lernreise 6 Wochen</Link></strong>: Nachhaltige Verhaltensänderung
+                    <strong><Link to="/trainings/copilot-lernreise" className="text-primary hover:underline">Lernreise 6 Wochen</Link></strong>: Nachhaltige Verhaltensänderung
                   </li>
                   <li className="flex items-center gap-2">
                     <ArrowRight className="w-4 h-4 text-blue-500" />

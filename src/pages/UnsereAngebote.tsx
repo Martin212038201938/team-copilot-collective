@@ -37,7 +37,7 @@ const trainingsFAQs = [
   },
   {
     question: "Wie laufen die Copilot Schulungen ab – Inhouse, online oder beides?",
-    answer: "Alle Schulungen der Copilotenschule sind als Inhouse-Workshop bei Ihnen vor Ort, als Live-Online-Training via Microsoft Teams oder Zoom sowie als Lernreise über mehrere Wochen verfügbar. Sie wählen das Format, das zu Ihrer Organisation passt. Inhouse-Workshops eignen sich besonders, wenn Sie teamübergreifend schulen wollen. Online-Trainings sind ideal für verteilte Teams. Die 8-Wochen-Lernreise kombiniert beide Formate für nachhaltigen Lerntransfer."
+    answer: "Alle Schulungen der Copilotenschule sind als Inhouse-Workshop bei Ihnen vor Ort, als Live-Online-Training via Microsoft Teams oder Zoom sowie als Lernreise über mehrere Wochen verfügbar. Sie wählen das Format, das zu Ihrer Organisation passt. Inhouse-Workshops eignen sich besonders, wenn Sie teamübergreifend schulen wollen. Online-Trainings sind ideal für verteilte Teams. Die 6-Wochen-Lernreise mit sechs Online-Sessions à 2 Stunden sorgt für nachhaltigen Lerntransfer."
   },
   {
     question: "Wie überzeuge ich die Geschäftsführung, in Copilot Schulungen zu investieren?",
@@ -49,11 +49,11 @@ const trainingsFAQs = [
   },
   {
     question: "Was kostet ein Microsoft Copilot Training für Unternehmen?",
-    answer: "Die Kosten hängen von Format, Dauer und Gruppengröße ab: Inhouse-Gruppentrainings werden pauschal pro Gruppe kalkuliert, nicht pro Person – dadurch sinken die Kosten pro Teilnehmendem deutlich gegenüber offenen Seminaren. Ein Halbtagestraining ist die günstigste Einstiegsvariante, Lernreisen über 8 Wochen verteilen die Investition über mehrere Monate. Zur Einordnung: Laut Forrester amortisiert sich professionelles Copilot-Training in wenigen Wochen, weil geschulte Nutzer rund 9 Stunden pro Monat einsparen. Die Copilotenschule erstellt Ihnen nach einem kurzen Gespräch ein konkretes Angebot – über den Training-Konfigurator oder das Kontaktformular auf dieser Seite."
+    answer: "Die Kosten hängen von Format, Dauer und Gruppengröße ab: Inhouse-Gruppentrainings werden pauschal pro Gruppe kalkuliert, nicht pro Person – dadurch sinken die Kosten pro Teilnehmendem deutlich gegenüber offenen Seminaren. Ein Halbtagestraining ist die günstigste Einstiegsvariante, die 6-Wochen-Lernreise verteilt Aufwand und Investition über sechs Wochen. Zur Einordnung: Laut Forrester amortisiert sich professionelles Copilot-Training in wenigen Wochen, weil geschulte Nutzer rund 9 Stunden pro Monat einsparen. Die Copilotenschule erstellt Ihnen nach einem kurzen Gespräch ein konkretes Angebot – über den Training-Konfigurator oder das Kontaktformular auf dieser Seite."
   },
   {
     question: "Unsere Mitarbeitenden nutzen Copilot kaum, obwohl Lizenzen vorhanden sind – was können wir tun?",
-    answer: "Das ist das häufigste Problem bei Copilot-Einführungen: Lizenzen werden verteilt, aber ohne strukturiertes Enablement bleibt die Nutzung bei 15–25 %. Die Ursache ist selten mangelndes Interesse, sondern fehlende rollenspezifische Use Cases und schlechte erste Erfahrungen mit unpräzisen Prompts. Wirksam ist eine Kombination aus praxisnahem Training mit echten Arbeitsszenarien, internen Champions und begleiteter Praxisphase. Die Copilotenschule hat dafür die 8-Wochen-Lernreise und das Train-the-Trainer-Programm entwickelt – beide zielen genau auf nachhaltige Adoption statt einmaliger Wissensvermittlung."
+    answer: "Das ist das häufigste Problem bei Copilot-Einführungen: Lizenzen werden verteilt, aber ohne strukturiertes Enablement bleibt die Nutzung bei 15–25 %. Die Ursache ist selten mangelndes Interesse, sondern fehlende rollenspezifische Use Cases und schlechte erste Erfahrungen mit unpräzisen Prompts. Wirksam ist eine Kombination aus praxisnahem Training mit echten Arbeitsszenarien, internen Champions und begleiteter Praxisphase. Die Copilotenschule hat dafür die 6-Wochen-Lernreise und das Train-the-Trainer-Programm entwickelt – beide zielen genau auf nachhaltige Adoption statt einmaliger Wissensvermittlung."
   },
   {
     question: "Wie messen wir, ob sich die Copilot-Schulung gelohnt hat?",

@@ -129,7 +129,7 @@ const CopilotSchulungOnline = () => {
         relatedContent={[
           "wissen:copilot-lernreise-vs-tagesschulung",
           "wissen:warum-verteiltes-lernen",
-          "training:copilot-lernreise-8-wochen",
+          "training:copilot-lernreise",
           "wissen:copilot-training-schulung",
           "training:microsoft-365-copilot-praxis"
         ]}

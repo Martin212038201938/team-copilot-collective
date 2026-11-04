@@ -187,6 +187,12 @@ const App = () => (
             element={<Navigate to="/workshops/betriebsrat-ki-workshop" replace />}
           />
 
+          {/* Redirect: Lernreise-URL ohne Dauer im Slug (11/2026), serverseitig per .htaccess 301 */}
+          <Route
+            path="/trainings/copilot-lernreise-8-wochen"
+            element={<Navigate to="/trainings/copilot-lernreise" replace />}
+          />
+
           <Route path="/trainings/:slug" element={<TrainingDetail />} />
           {/* A/B-Test "Preise auszeichnen": B-Variante mit Preis-Störer (noindex, nicht im Menü/Sitemap) */}
           <Route path="/trainer/:id" element={<TrainerProfil />} />

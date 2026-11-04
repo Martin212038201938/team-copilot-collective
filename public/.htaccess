@@ -129,9 +129,9 @@ RewriteRule ^trainings/hackathon/?$ /trainings/copilot-hackathon [R=301,L]
 RewriteRule ^trainings/keynote/?$ /trainings/keynote-copilot-arbeitswelt [R=301,L]
 RewriteRule ^trainings/copilot-keynote/?$ /trainings/keynote-copilot-arbeitswelt [R=301,L]
 
-# Copilot Lernreise 8 Wochen
-RewriteRule ^trainings/copilot-lernreise/?$ /trainings/copilot-lernreise-8-wochen [R=301,L]
-RewriteRule ^trainings/lernreise-8-wochen/?$ /trainings/copilot-lernreise-8-wochen [R=301,L]
+# Copilot Lernreise (6 Wochen) – URL-Wechsel 11/2026: alte 8-Wochen-URL dauerhaft auf die neue URL umleiten
+RewriteRule ^trainings/copilot-lernreise-8-wochen/?$ /trainings/copilot-lernreise [R=301,L]
+RewriteRule ^trainings/lernreise-8-wochen/?$ /trainings/copilot-lernreise [R=301,L]
 
 # Copilot Launch Eventtag
 RewriteRule ^trainings/copilot-launch-event/?$ /trainings/copilot-launch-eventtag [R=301,L]

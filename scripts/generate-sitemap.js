@@ -239,7 +239,7 @@ const knowledgePages = knowledgeSlugs.map(slug => ({
 const trainingsSlugs = [
   'copilot-grundlagen-prompt-design', 'microsoft-365-copilot-praxis', 'ausbildung-ki-wissensarbeiter',
   'train-the-trainer-copilot', 'copilot-studio-ki-agenten', 'eu-ai-act-pflichtschulung',
-  'copilot-lernreise-8-wochen', 'copilot-excel-rechnungswesen-controlling',
+  'copilot-lernreise', 'copilot-excel-rechnungswesen-controlling',
   'copilot-fuehrungskraefte',
 ];
 

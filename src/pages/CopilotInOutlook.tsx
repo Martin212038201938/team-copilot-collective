@@ -248,7 +248,7 @@ const CopilotInOutlook = () => {
           points={[
             "1 Tag, inhouse oder online",
             "Outlook, Teams und die Office-Apps",
-            "Auch als Lernreise über 8 Wochen",
+            "Auch als Online-Lernreise buchbar",
           ]}
           trainingSlug="microsoft-365-copilot-praxis"
           trainingLabel="Praxis-Training ansehen"
