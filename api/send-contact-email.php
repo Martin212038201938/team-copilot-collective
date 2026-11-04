@@ -109,6 +109,19 @@ function buildAttributionLines($data) {
 
 $attributionLines = buildAttributionLines($data);
 
+// Pflichtangabe „Welche Copilot-Version soll geschult werden?“ (src/lib/copilotLicense.ts).
+// Nur Werte aus der festen Liste werden übernommen. Steht direkt unter „Gefunden über“.
+$copilotLicenseOptions = array(
+    'Copilot Chat (kostenlos in Microsoft 365)',
+    'Microsoft 365 Copilot (kostenpflichtige Lizenz pro Nutzer)',
+    'Gemischt oder noch unklar',
+);
+$copilotLicense = (isset($data['copilotLicense']) && is_string($data['copilotLicense']) && in_array($data['copilotLicense'], $copilotLicenseOptions, true))
+    ? $data['copilotLicense'] : '';
+if ($copilotLicense !== '') {
+    array_unshift($attributionLines, 'Copilot-Lizenz: ' . $copilotLicense);
+}
+
 // Selbstauskunft „Wie haben Sie uns gefunden?“ (src/lib/foundVia.ts). Keine Einwilligung nötig,
 // nur Werte aus der festen Liste werden übernommen. Steht immer vor den Attributionszeilen.
 $foundViaOptions = array(

@@ -8,6 +8,33 @@ Zugriffsregel: Cron-Jobs schreiben einen neuen Eintrag am ANFANG der Logs-Sektio
 
 ## Logs
 
+### 2026-11-04 — Phase-Conductor-Lauf (Cron)
+
+**Schritt-0-Guard:** Heute = Tag 04, Mittwoch (Wochentag 3) → **1. Mittwoch** (Fenster 01.–07.). Guard bestanden, Conductor regulär gelaufen. (21.10. war der 3. Mittwoch; 28.10. = 4. Mittwoch vom Guard abgebrochen; der nächste Conductor regulär Mi 18.11. = 3. Mittwoch, der 11.11. = 2. Mittwoch wird abgebrochen und der Monatsreview läuft separat.)
+
+**Aktive Phase:** Phase 3 — Content-Block (aktiv seit 01.06., kein Wechsel; Phase 4 Off-Page parallel offen)
+**Nächste Maßnahme:** A6 Index-Coverage — bewusst cron-los (Links live seit `e5902c8`, Weekly-Audit trackt Coverage wöchentlich). Indexierung zuletzt **85,1 %** bereinigt (74/87, literal 83,1 % wegen veralteter −6-Konstante; A6-Summe nicht-indexiert **21**, Δ0 — Weekly-Audit 02.11.), weiter an der 90-%-Schwelle; Restweg rein inhaltlich. Danach in der Tabelle folgend: B3b/B3c (⏳ Entwurf, user-gebunden), C1/C4 (⏳, user-gebunden), D1–D5 (🔵 offen, user-gebunden).
+**Definition of Done:** **4 von 8** erfüllt (unverändert) — fest: #2 SSR 🔴=0, #4 GEO 82 + LLM-Traffic; wahrscheinlich: #5 ≥5 Klick-URLs, #6 Wettbewerbs-Platz-1. Offen: #1 Indexierung ~85,1 % (an Schwelle), #3 SEO-Score 42 (C1-Blocker), #7 Listicle (Drafts, nicht versendet), #8 ProvenExpert (nicht angelegt).
+**Risiko-Status:** **gelb** (unverändert)
+**Aktion in diesem Lauf:** **keine** (kein neuer Cron)
+
+**5 Status-Fragen:**
+1. **Aktive Phase:** Phase 3 (Content-Block), Phase 4 parallel offen — passt zum Plan. Kein Phasen-Wechsel: Exit-Kriterium „B3a+B3b+B3c live" nicht erfüllt (B3a live, B3b/B3c = Drafts, user-gebunden) → Plan-Regel „B3a live, B3b/B3c offen → Tempo OK, weiter".
+2. **Nächste konkrete Maßnahme:** A6 (kleinste offene Code-Nummer), wirkt weiter messbar über die interne Verlinkung.
+3. **Aktiver Cron für A6?** Nein — bewusst cron-los. Weekly-Audit trackt A6-Coverage wöchentlich; Links sind gebaut+gepusht+live. Ein Ersatz-Cron wäre Redundanz (Doktrin seit 05.08./26.08./02.09./16.09./07.10./21.10.).
+4. **Vorbedingung A6 erfüllt?** Ja — Links live seit `e5902c8`; Restarbeit = passives Google-Indexieren der letzten ~1 technisch sauberen Seite (kein Cron erzwingt das) + user-gebundener Backlog.
+5. **>14 Tage „🔵 offen" ohne Cron:** D1–D5 (ProvenExpert, DACH-Verzeichnisse, Listicle-Outreach, IHK, Yellow-Boat-Gastartikel). Alle **user-gebunden/off-repo** (Account-Anlage mit Captcha, Outreach-Versand, externe Verzeichnis-Einreichung). Kein Automatisierungs-Loch → kein Sicherheitsnetz-Cron; ein Draft-Cron würde nur den bestehenden, unbearbeiteten Backlog aufblähen (D2/D3/D4-Drafts existieren bereits, D5 ohne Draft bleibt Kandidat, solange Backlog nicht abgearbeitet ist).
+
+**Risiko-Check (Schritt 4):** Keine neuen roten Flags. Fortbestehend & >7 Tage, aber allesamt user-gebunden und bereits vom Weekly-Audit 02.11. eskaliert (hier nur gespiegelt, keine Doppel-Eskalation): Teams-Webhook „Marketing und SEA" HTTP 401 seit 03.08. (= **93 Tage**, gesetzte URL ist falscher Connector-Typ → Workflows-Webhook nötig), Bing-Ads-UET-Conversion-Tracking defekt seit 22.09. (= 43 Tage) + Microsoft-Advertising-Login im internen Browser abgelaufen (5. Folgewoche ohne frische Bing-Ads-Zahlen, PaidSearch 38/7T = aktives Paid-Budget blind, Werte wöchentlich übernommen), veraltete Messvorschrift-Konstante DoD #1 (−6 statt live 8 Gated-PDFs, unterschätzt Quote um ~2 pp — User-Entscheidung offen), Dead-Click am oberen Rand des bekannten organischen ArticlePopup-Zickzacks (02.11.: 11,33 % API-3T / 11,28 % 7T — Rage 1 Sess., entspannt vs. 26.10., kein neuer Treiber/Issue), A6-Summe nicht-indexiert stabil bei 21 (Weekly-Audit-Issue + Draft-Hinweis), Lizenz-Snippet-Fix-Draft (seit 12.08.) + ArticlePopup-Fix-Draft (seit 17.06.) unverpusst. Kein ⚠️ im Conductor-Verantwortungsbereich (nur Doku/Drafts, kein Push).
+
+**Engpass (unverändert):** Kein Cron-/Automatisierungs-Loch, sondern ein **Backlog user-gebundener Aktionen** — Bing-Ads-UET-Fix + Microsoft-Advertising-Login, Messvorschrift-Konstante aktualisieren, C4/C1-Push+Setup, D1–D4-Outreach/Account, B3b/B3c-Freigaben (AZAV-Klärung, Kunden-Case-/Preis-Freigabe), Protected-Page-CTR-/Snippet-Push, Teams-Webhook-Reauth. Der Conductor kann diese regelkonform nicht selbst ausführen. Alle bereits in Weekly-Audit/Monatsreview gespiegelt → keine separate Notification (Schritt-6-Regel: Antwort auf „Brauche ich etwas vom User?" = nein → keine Notification).
+
+**Scheduler-Check:** Aktive SEO-Crons bestätigt enabled (via list_triggers): Weekly-Audit (`trig_015C5VqAomT3KVXpyDawUEbX`, Mo, letzter Lauf 02.11. ✅, nächster 09.11.), Monthly-Review (`trig_01HoWYZwKKwCxEAsJN71HBSE`, Mi / 2.-Mi-Guard, feuerte heute 04.11. und wurde korrekt guard-abgebrochen — heute ist 1. Mi, nicht 2. Mi; nächster 11.11.), Phase-Conductor (Mi / 1.+3.-Mi-Guard, dieser Lauf). Keine verwaisten Maßnahmen-Crons (A6-Recheck + Draft-Crons planmäßig gelaufen + selbst-deaktiviert). Kein Sicherheitsnetz-Cron nötig.
+
+**Nächster Conductor-Lauf (regulär):** Mi 18.11.2026 (3. Mittwoch). Der 11.11. (2. Mittwoch) wird vom Schritt-0-Guard abgebrochen (Monatsreview läuft dann separat).
+
+---
+
 ### 2026-11-02 — Wöchentlicher Audit (Cron)
 
 **Phase:** Phase 3 — Content-Block (aktiv, kein Wechsel). Phase 4 (Off-Page) parallel offen.

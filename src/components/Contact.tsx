@@ -3,19 +3,26 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
 import { Mail, Phone, MapPin, Calendar, MessageSquare } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { trackConversion, markConvertedSession } from "@/lib/analytics";
 import { bookingClickToThankYou } from "@/lib/booking";
 import { getAttribution } from "@/lib/attribution";
 import FoundViaSelect from "@/components/FoundViaSelect";
 import type { FoundVia } from "@/lib/foundVia";
+import CopilotLicenseSelect from "@/components/CopilotLicenseSelect";
+import type { CopilotLicense } from "@/lib/copilotLicense";
 
 const Contact = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [trainingSource, setTrainingSource] = useState<string | null>(null);
   const [foundVia, setFoundVia] = useState<FoundVia>("");
+  const [copilotLicense, setCopilotLicense] = useState<CopilotLicense>("");
+  // Markiert „Copilot-Version“ und „Wie haben Sie uns gefunden?“, wenn sie beim Absenden fehlten
+  const [showSoftFieldErrors, setShowSoftFieldErrors] = useState(false);
+  // Letzte unvollständig verschickte Anfrage, damit Mehrfachklicks keine identischen Mails erzeugen
+  const lastIncompleteLeadRef = useRef<string | null>(null);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -48,6 +55,48 @@ const Contact = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // „Copilot-Version“ und „Wie haben Sie uns gefunden?“ sind nur optisch Pflicht:
+    // Fehlen sie, geht die Anfrage trotzdem raus (Betreff mit Hinweis), damit kein Lead verloren geht.
+    // Das Formular bleibt stehen und bittet um Ergänzung. Ergänzt der Nutzer und sendet erneut,
+    // kommt die Anfrage ein zweites Mal vollständig an. Das ist gewollt.
+    if (!foundVia || !copilotLicense) {
+      setShowSoftFieldErrors(true);
+      const name = `${formData.firstName} ${formData.lastName}`;
+      const fingerprint = JSON.stringify({
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        name,
+        email: formData.email,
+        company: formData.company,
+        phone: formData.phone,
+        message: formData.message,
+        trainingSource: trainingSource,
+        foundVia,
+        copilotLicense,
+        subject: `Neue Kontaktanfrage von ${name} (Angaben unvollständig)`,
+        ...getAttribution(),
+      });
+      if (lastIncompleteLeadRef.current !== fingerprint) {
+        lastIncompleteLeadRef.current = fingerprint;
+        fetch('/api/send-contact-email.php', {
+          method: 'POST',
+          keepalive: true,
+          headers: { 'Content-Type': 'application/json' },
+          body: fingerprint,
+        }).catch((error) => {
+          console.error('Kontaktformular Fehler (unvollständig):', error);
+        });
+      }
+      toast({
+        title: "Bitte noch ergänzen",
+        description: "Bitte wählen Sie noch aus, welche Copilot-Version geschult werden soll und wie Sie uns gefunden haben.",
+        variant: "destructive",
+      });
+      document.getElementById(!copilotLicense ? "contact-copilotLicense" : "contact-foundVia")?.focus();
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
@@ -66,6 +115,7 @@ const Contact = () => {
           message: formData.message,
           trainingSource: trainingSource,
           foundVia,
+          copilotLicense,
           ...getAttribution(),
         }),
       });
@@ -96,6 +146,8 @@ const Contact = () => {
       markConvertedSession("contact_form");
       setFormData({ firstName: "", lastName: "", email: "", company: "", phone: "", message: "" });
       setFoundVia("");
+      setCopilotLicense("");
+      setShowSoftFieldErrors(false);
       // Weiterleitung auf die zentrale Danke-Seite (Google-Ads-Conversion-Ziel).
       // Full-Page-Load, damit das Google-Tag einen frischen page_view für /danke auslöst.
       window.location.href = "/danke";
@@ -203,10 +255,33 @@ const Contact = () => {
                 </div>
 
                 <div>
+                  <label htmlFor="contact-copilotLicense" className="block text-sm font-medium mb-2">
+                    Welche Copilot-Version soll geschult werden? *
+                  </label>
+                  <CopilotLicenseSelect
+                    id="contact-copilotLicense"
+                    value={copilotLicense}
+                    onChange={setCopilotLicense}
+                    className={showSoftFieldErrors && !copilotLicense ? "!border-destructive" : ""}
+                  />
+                  {showSoftFieldErrors && !copilotLicense && (
+                    <p className="text-sm text-destructive mt-1">Bitte wählen Sie eine Option aus.</p>
+                  )}
+                </div>
+
+                <div>
                   <label htmlFor="contact-foundVia" className="block text-sm font-medium mb-2">
                     Wie haben Sie uns gefunden? *
                   </label>
-                  <FoundViaSelect id="contact-foundVia" value={foundVia} onChange={setFoundVia} required />
+                  <FoundViaSelect
+                    id="contact-foundVia"
+                    value={foundVia}
+                    onChange={setFoundVia}
+                    className={showSoftFieldErrors && !foundVia ? "!border-destructive" : ""}
+                  />
+                  {showSoftFieldErrors && !foundVia && (
+                    <p className="text-sm text-destructive mt-1">Bitte wählen Sie eine Option aus.</p>
+                  )}
                 </div>
 
                 <div>

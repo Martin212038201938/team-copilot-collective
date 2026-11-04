@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -15,6 +15,8 @@ import { trackConversion, markConvertedSession } from "@/lib/analytics";
 import { trackBookingClickEvent, getAttribution } from "@/lib/attribution";
 import FoundViaSelect from "@/components/FoundViaSelect";
 import type { FoundVia } from "@/lib/foundVia";
+import CopilotLicenseSelect from "@/components/CopilotLicenseSelect";
+import type { CopilotLicense } from "@/lib/copilotLicense";
 
 // Kategorien für die Module
 interface ModuleCategory {
@@ -199,7 +201,7 @@ interface FormData {
   company: string;
   phone: string;
   foundVia: FoundVia;
-  licenseType: string;
+  licenseType: CopilotLicense;
   employeeCount: string;
   trainingCount: string;
   locationType: string;
@@ -217,6 +219,10 @@ const TrainingKonfigurator = () => {
   const [isBookingSubmitting, setIsBookingSubmitting] = useState(false);
   const [customModules, setCustomModules] = useState<string[]>([]);
   const [customModuleInput, setCustomModuleInput] = useState("");
+  // Markiert „Copilot-Version“ und „Wie haben Sie uns gefunden?“, wenn sie beim Absenden fehlten
+  const [showSoftFieldErrors, setShowSoftFieldErrors] = useState(false);
+  // Letzte unvollständig verschickte Anfrage, damit Mehrfachklicks keine identischen Mails erzeugen
+  const lastIncompleteLeadRef = useRef<string | null>(null);
   const { toast } = useToast();
 
   const [formData, setFormData] = useState<FormData>({
@@ -288,8 +294,78 @@ const TrainingKonfigurator = () => {
   // Prüfen ob Module ausgewählt sind
   const hasAnySelection = selectedModules.length > 0 || customModules.length > 0;
 
+  // Nachricht für die normale Anfrage (Absenden-Button)
+  const buildRequestMessage = () => {
+    return `
+AUSGEWÄHLTE TRAININGSMODULE (${selectedModuleTitles.length} Module):
+${selectedModuleTitles.map(t => `• ${t}`).join('\n')}
+${customModules.length > 0 ? `
+---
+EIGENE MODULWÜNSCHE (${customModules.length}):
+${customModules.map(t => `★ ${t}`).join('\n')}` : ''}
+
+---
+ZUSÄTZLICHE ANGABEN:
+${formData.employeeCount ? `Unternehmensgröße: ${formData.employeeCount} Mitarbeiter` : ''}
+${formData.trainingCount ? `Zu schulende Mitarbeiter: ${formData.trainingCount}` : ''}
+${formData.locationType ? `Durchführungsart: ${formData.locationType}` : ''}
+${formData.trainingLocation ? `Standort: ${formData.trainingLocation}` : ''}
+${formData.groupCount ? `Anzahl Gruppen: ${formData.groupCount}` : ''}
+
+${formData.additionalInfo ? `---\nINFORMATIONEN UND WEITERE BENÖTIGTE INHALTE:\n${formData.additionalInfo}` : ''}
+    `.trim();
+  };
+
+  // „Copilot-Version“ und „Wie haben Sie uns gefunden?“ sind nur optisch Pflicht:
+  // Fehlen sie, geht die Anfrage trotzdem raus (Betreff mit Hinweis), damit kein Lead verloren geht.
+  // Das Formular bleibt stehen und bittet um Ergänzung. Ergänzt der Nutzer und sendet erneut,
+  // kommt die Anfrage ein zweites Mal vollständig an. Das ist gewollt.
+  const softFieldsMissing = () => !formData.foundVia || !formData.licenseType;
+
+  const handleSoftFieldsMissing = () => {
+    setShowSoftFieldErrors(true);
+
+    const totalModuleCount = selectedModuleTitles.length + customModules.length;
+    const body = {
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      name: `${formData.firstName} ${formData.lastName}`,
+      email: formData.email,
+      company: formData.company,
+      phone: formData.phone,
+      foundVia: formData.foundVia,
+      copilotLicense: formData.licenseType,
+      message: buildRequestMessage(),
+      subject: `Training-Anfrage: ${totalModuleCount} Module ausgewählt (Angaben unvollständig, ${formData.company}, ${formData.firstName} ${formData.lastName})`,
+      ...getAttribution(),
+    };
+    const fingerprint = JSON.stringify(body);
+    if (lastIncompleteLeadRef.current !== fingerprint) {
+      lastIncompleteLeadRef.current = fingerprint;
+      fetch('/api/send-contact-email.php', {
+        method: 'POST',
+        keepalive: true,
+        headers: { 'Content-Type': 'application/json' },
+        body: fingerprint,
+      }).catch((error) => {
+        console.error('Konfigurator E-Mail Fehler (unvollständig):', error);
+      });
+    }
+
+    toast({
+      title: "Bitte noch ergänzen",
+      description: "Bitte wählen Sie noch aus, welche Copilot-Version geschult werden soll und wie Sie uns gefunden haben.",
+      variant: "destructive"
+    });
+    document.getElementById(!formData.licenseType ? "konfigurator-copilotLicense" : "konfigurator-foundVia")?.focus();
+  };
+
   // E-Mail beim Termin buchen senden und Bookings öffnen
   const handleBookingClick = () => {
+    if (softFieldsMissing()) {
+      handleSoftFieldsMissing();
+      return;
+    }
     setIsBookingSubmitting(true);
     // Conversion-Tracking (Clarity) für den Buchungs-Klick
     trackConversion("booking_click", "konfigurator");
@@ -321,7 +397,6 @@ Gefunden über: ${formData.foundVia}
 
 ---
 ZUSÄTZLICHE ANGABEN:
-${formData.licenseType ? `Lizenztyp: ${formData.licenseType}` : ''}
 ${formData.employeeCount ? `Unternehmensgröße: ${formData.employeeCount} Mitarbeiter` : ''}
 ${formData.trainingCount ? `Zu schulende Mitarbeiter: ${formData.trainingCount}` : ''}
 ${formData.locationType ? `Durchführungsart: ${formData.locationType}` : ''}
@@ -347,6 +422,7 @@ ${formData.additionalInfo ? `---\nINFORMATIONEN UND WEITERE BENÖTIGTE INHALTE:\
         company: formData.company,
         phone: formData.phone,
         foundVia: formData.foundVia,
+        copilotLicense: formData.licenseType,
         message: messageWithModules,
         subject: `Konfiguration für Kunde (${formData.company}, ${formData.firstName}, ${formData.lastName})`,
         ...getAttribution(),
@@ -365,36 +441,23 @@ ${formData.additionalInfo ? `---\nINFORMATIONEN UND WEITERE BENÖTIGTE INHALTE:\
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!formData.firstName || !formData.lastName || !formData.email || !formData.company || !formData.phone || !formData.foundVia) {
+    if (!formData.firstName || !formData.lastName || !formData.email || !formData.company || !formData.phone) {
       toast({
         title: "Fehlende Angaben",
-        description: "Bitte füllen Sie alle Pflichtfelder aus (Vorname, Nachname, E-Mail, Unternehmen, Telefon, Wie haben Sie uns gefunden?).",
+        description: "Bitte füllen Sie alle Pflichtfelder aus (Vorname, Nachname, E-Mail, Unternehmen, Telefon, Copilot-Version, Wie haben Sie uns gefunden?).",
         variant: "destructive"
       });
       return;
     }
 
+    if (softFieldsMissing()) {
+      handleSoftFieldsMissing();
+      return;
+    }
+
     setIsSubmitting(true);
 
-    const messageWithModules = `
-AUSGEWÄHLTE TRAININGSMODULE (${selectedModuleTitles.length} Module):
-${selectedModuleTitles.map(t => `• ${t}`).join('\n')}
-${customModules.length > 0 ? `
----
-EIGENE MODULWÜNSCHE (${customModules.length}):
-${customModules.map(t => `★ ${t}`).join('\n')}` : ''}
-
----
-ZUSÄTZLICHE ANGABEN:
-${formData.licenseType ? `Lizenztyp: ${formData.licenseType}` : ''}
-${formData.employeeCount ? `Unternehmensgröße: ${formData.employeeCount} Mitarbeiter` : ''}
-${formData.trainingCount ? `Zu schulende Mitarbeiter: ${formData.trainingCount}` : ''}
-${formData.locationType ? `Durchführungsart: ${formData.locationType}` : ''}
-${formData.trainingLocation ? `Standort: ${formData.trainingLocation}` : ''}
-${formData.groupCount ? `Anzahl Gruppen: ${formData.groupCount}` : ''}
-
-${formData.additionalInfo ? `---\nINFORMATIONEN UND WEITERE BENÖTIGTE INHALTE:\n${formData.additionalInfo}` : ''}
-    `.trim();
+    const messageWithModules = buildRequestMessage();
 
     const totalModuleCount = selectedModuleTitles.length + customModules.length;
 
@@ -412,6 +475,7 @@ ${formData.additionalInfo ? `---\nINFORMATIONEN UND WEITERE BENÖTIGTE INHALTE:\
           company: formData.company,
           phone: formData.phone,
           foundVia: formData.foundVia,
+          copilotLicense: formData.licenseType,
           message: messageWithModules,
           subject: `Training-Anfrage: ${totalModuleCount} Module ausgewählt${customModules.length > 0 ? ` (inkl. ${customModules.length} eigene Wünsche)` : ''}`,
           ...getAttribution(),
@@ -872,13 +936,28 @@ ${formData.additionalInfo ? `---\nINFORMATIONEN UND WEITERE BENÖTIGTE INHALTE:\
                         />
                       </div>
                       <div className="space-y-2">
+                        <Label htmlFor="konfigurator-copilotLicense">Welche Copilot-Version soll geschult werden? *</Label>
+                        <CopilotLicenseSelect
+                          id="konfigurator-copilotLicense"
+                          value={formData.licenseType}
+                          onChange={(value) => setFormData(prev => ({ ...prev, licenseType: value }))}
+                          className={showSoftFieldErrors && !formData.licenseType ? "!border-destructive" : ""}
+                        />
+                        {showSoftFieldErrors && !formData.licenseType && (
+                          <p className="text-sm text-destructive">Bitte wählen Sie eine Option aus.</p>
+                        )}
+                      </div>
+                      <div className="space-y-2">
                         <Label htmlFor="konfigurator-foundVia">Wie haben Sie uns gefunden? *</Label>
                         <FoundViaSelect
                           id="konfigurator-foundVia"
                           value={formData.foundVia}
                           onChange={(value) => setFormData(prev => ({ ...prev, foundVia: value }))}
-                          required
+                          className={showSoftFieldErrors && !formData.foundVia ? "!border-destructive" : ""}
                         />
+                        {showSoftFieldErrors && !formData.foundVia && (
+                          <p className="text-sm text-destructive">Bitte wählen Sie eine Option aus.</p>
+                        )}
                       </div>
                     </div>
 
@@ -889,24 +968,6 @@ ${formData.additionalInfo ? `---\nINFORMATIONEN UND WEITERE BENÖTIGTE INHALTE:\
                       </h3>
 
                       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        <div className="space-y-2">
-                          <Label htmlFor="licenseType">Copilot Lizenztyp</Label>
-                          <Select
-                            value={formData.licenseType}
-                            onValueChange={(value) => handleInputChange('licenseType', value)}
-                          >
-                            <SelectTrigger>
-                              <SelectValue placeholder="Bitte wählen" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="free">Copilot Free</SelectItem>
-                              <SelectItem value="paid">Copilot mit Lizenz</SelectItem>
-                              <SelectItem value="mixed">Gemischt (beides)</SelectItem>
-                              <SelectItem value="unsure">Noch nicht bekannt</SelectItem>
-                            </SelectContent>
-                          </Select>
-                        </div>
-
                         <div className="space-y-2">
                           <Label htmlFor="employeeCount">Mitarbeiteranzahl</Label>
                           <Select
@@ -1053,7 +1114,7 @@ ${formData.additionalInfo ? `---\nINFORMATIONEN UND WEITERE BENÖTIGTE INHALTE:\
                               variant="default"
                               className="gap-2"
                               onClick={handleBookingClick}
-                              disabled={isBookingSubmitting || !formData.firstName || !formData.lastName || !formData.email || !formData.company || !formData.phone || !formData.foundVia}
+                              disabled={isBookingSubmitting || !formData.firstName || !formData.lastName || !formData.email || !formData.company || !formData.phone}
                             >
                               {isBookingSubmitting ? (
                                 <>
