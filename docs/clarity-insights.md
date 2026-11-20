@@ -240,6 +240,30 @@ nach ca. 2 Wochen Laufzeit empfohlen.
 
 ## Logs (neueste oben — automatisch von Cron-Jobs gepflegt)
 
+### 2026-11-11 — Pattern: Guideline-Download ist die einzige funktionierende Brücke aus dem Ratgeber
+**Quelle:** Monatsreview 11.11.2026 (monthly), Clarity-Seitenfilter 30T
+**Beobachtete Pages:** /guidelines (150 Sess., Formular 31, lead 30, ~20 %) vs. /wissen/copilot-in-outlook-nutzen-tipps (331, 0 Events), /wissen/copilot-tipps-tricks-produktivitaet (335, ~1), /wissen/microsoft-copilot-lizenzen (289, 0), /wissen/copilot-in-excel-aktivieren (243, 0)
+**Pattern:** Ratgeber-Leser nehmen keinen Angebots-CTA (Brücke 2×/30T), aber ein kostenloses, themenpassendes PDF. Die vorhandenen Guideline-Links stehen nur am Rand und werden nicht geklickt.
+**Empfehlung:** Themenpassende Downloadbox im Fließtext (nach Schnellantwort + vor FAQ). Lizenzen = Protected Page, nur additiv.
+**Status:** identifiziert → Folge-Crons (18.11./25.11.) vorgesehen, Anlage vom Scheduler abgelehnt, User-Freigabe nötig
+
+### 2026-11-11 — Trend (Korrektur): „Leads +115 %" war Download-Wachstum
+**Beobachtungs-Zeitraum:** 12.10.–11.11.2026
+**Event:** lead / Formular absenden
+**Trend:** 31 von 46 Formular-Absendungen und 30 von 30 lead-Events entstehen in Sitzungen mit /guidelines. Echte Trainingsanfragen (contact_form_submit + konfigurator_submit) = 12 Sess./30T (0,33 %).
+**Handlung:** Reporting trennen: Download-Leads vs. Trainingsanfragen.
+
+### 2026-11-11 — Pattern (Kanal): Paid erstmals trennbar, schlechteste Conversion
+**Beobachtungs-Zeitraum:** 12.10.–11.11.2026
+**Trend:** PaidSearch 195 Sess. = Google ~175 / Bing ~10 (Referrer im Segment). 189 landen auf der Startseite, 31 s aktive Zeit, 1× Kontaktieren, 0 Formulare (~0,5 %). Other/Direkt 775 Sess. mit 5,3 % am besten, Organic 2,4 %.
+**Handlung:** Google Ads auf Anbieter-Begriffe + /trainings als Zielseite testen; Bing pausieren bis UET repariert.
+
+### 2026-11-11 — Trend (verstärken): Sichtbarkeit in Googles KI-Funktionen
+**Quelle:** neuer GSC-Bericht „Auf generativer KI basierende Funktionen" (Beta)
+**Trend:** 72.498 Impr./3M (≈32 % aller Google-Impressionen), Tageswert ~600 → >1.500 seit August. Lizenzen 34.591, Excel 13.946, Claude 4.489. Keine Trainingsseite in den Top 10.
+**Handlung:** GSC-KI-Bericht als GEO-Primärquelle in Weekly/Monthly aufnehmen.
+
+
 <!-- ab hier ergänzen Cron-Jobs ihre Befunde -->
 
 ---

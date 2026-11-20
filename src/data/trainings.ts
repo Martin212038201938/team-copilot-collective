@@ -840,8 +840,8 @@ export const trainings: Training[] = [
     icon: Calculator,
     isNew: true,
     title: "Copilot in Excel für Rechnungswesen & Controlling",
-    duration: "Ganztag (8 Stunden)",
-    durationISO: "PT8H",
+    duration: "Ganztag (7 Stunden)",
+    durationISO: "PT7H",
     description: "Ein Praxistag für Mitarbeitende aus Rechnungswesen und Controlling, die mit Microsoft 365 Copilot ihre tägliche Arbeit in Excel und im Berichtswesen beschleunigen wollen. Der Workshop bleibt nah an den tatsächlichen Copilot-Funktionen: Formeln und Datenanalyse in Excel, Aufbereitung wiederkehrender Berichte sowie ein erstes eigenes Agenten-Konzept für eine wiederkehrende Aufgabe aus dem Arbeitsalltag. Kein Buchhaltungs- oder Controlling-Grundlagentraining – vorausgesetzt werden die fachlichen Kenntnisse der Teilnehmenden, vermittelt wird der sichere und wirksame Umgang mit Copilot in diesem Umfeld. Unabhängig vom eingesetzten Buchhaltungs- oder ERP-System – ob DATEV, SAP, Lexware, Lexoffice, ABAS, Sage oder ein anderes System: Der Workshop setzt an Excel an, nicht am jeweiligen Vorsystem. Im Kern geht es um Finanzprozesse, die sich mit Microsoft 365 Copilot über mehrere Apps hinweg gestalten lassen – mit Excel als Dreh- und Angelpunkt. Das Schulungskonzept ist modular aufgebaut: Schwerpunkt bleibt Copilot in Excel, auf Wunsch lässt sich ein Modul zum Berichtswesen mit Power BI als regulärer Baustein des Ganztags einbinden, ohne Aufpreis.",
     features: [
       "Formeln aus natürlicher Sprache generieren – z. B. für Kontenabstimmung oder Soll-Ist-Vergleiche",
@@ -886,23 +886,23 @@ export const trainings: Training[] = [
     },
     bookingFormats: [
       {
-        name: "Ganztag Live-Online (8 Stunden)",
+        name: "Ganztag Live-Online (7 Stunden)",
         modes: ["online"],
-        durationISO: "PT8H",
+        durationISO: "PT7H",
         price: 3200,
         description: "Alle vier Module. Über Microsoft Teams, bis 12 Teilnehmende."
       },
       {
-        name: "Ganztag vor Ort beim Kunden (8 Stunden)",
+        name: "Ganztag vor Ort beim Kunden (7 Stunden)",
         modes: ["onsite"],
-        durationISO: "PT8H",
+        durationISO: "PT7H",
         price: 3200,
         description: "Alle vier Module. Inhouse beim Kunden, bis 12 Teilnehmende, zzgl. Reisekostenpauschale."
       },
       {
-        name: "Ganztag bei uns in Köln-Nippes (8 Stunden)",
+        name: "Ganztag bei uns in Köln-Nippes (7 Stunden)",
         modes: ["onsite"],
-        durationISO: "PT8H",
+        durationISO: "PT7H",
         price: 3200,
         description: "Alle vier Module. In unseren eigenen Räumen in Köln-Nippes, bis 12 Teilnehmende."
       },
