@@ -117,7 +117,7 @@ const CopilotFuerWord = () => {
           "@id": "https://copilotenschule.de/#organization"
         },
         "datePublished": "2025-01-05",
-        "dateModified": "2026-11-02",
+        "dateModified": "2026-11-24",
         "keywords": ["Copilot für Word","Microsoft Copilot Word","Word KI Assistent","Dokumente mit KI erstellen","Word Produktivität","Microsoft 365 Copilot"],
         "articleSection": "Microsoft 365",
         "mainEntityOfPage": {
@@ -159,7 +159,7 @@ const CopilotFuerWord = () => {
         canonicalUrl={pageUrl}
         schema={schema}
         publishedTime="2025-01-05"
-        modifiedTime="2026-02-03"
+        modifiedTime="2026-11-24T09:00:00+01:00"
       />
       <ContentLayout
         breadcrumbs={[
@@ -172,8 +172,8 @@ const CopilotFuerWord = () => {
         tableOfContents={tableOfContents}
         author={author}
         publishDate="2025-01-05"
-        modifiedDate="2026-11-02"
-        lastUpdated="2. November 2026"
+        modifiedDate="2026-11-24"
+        lastUpdated="24. November 2026"
         relatedContent={["wissen:copilot-fuer-excel", "wissen:copilot-tipps-tricks-produktivitaet", "wissen:copilot-in-outlook-nutzen-tipps", "training:microsoft-365-copilot-praxis", "wissen:prompt-engineering"]}
       >
         {/* Schnellantwort Card */}
@@ -186,6 +186,29 @@ const CopilotFuerWord = () => {
             </div>
           </div>
         </section>
+
+        {/* Update-Hinweis November 2026 */}
+        <Card className="mb-8 border-l-4 border-l-blue-500 bg-blue-50/50 dark:bg-blue-950/20">
+          <CardContent className="pt-6">
+            <p className="text-sm font-semibold uppercase tracking-wide text-blue-700 dark:text-blue-400 mb-2">
+              Update im November 2026
+            </p>
+            <p className="text-base leading-relaxed">
+              Microsoft kündigt an, dass die Anthropic-Modelle (Claude) in Copilot ab Anfang Dezember 2026 innerhalb
+              der EU-Datengrenze verarbeitet werden, Copilot Cowork eingeschlossen. Am 9. Dezember 2026 schaltet
+              Microsoft Claude für berechtigte Tenants in der EU und der EFTA standardmäßig für alle Nutzer ein, wenn
+              der Tenant bis dahin keine eigene Auswahl getroffen hat (Message Center MC1546438). Wer Claude bewusst
+              auf „Keine Benutzer“ gesetzt hat, behält diese Einstellung. Tenants, die Claude bisher nur in den
+              Microsoft-365-Apps zugelassen haben, werden auf „Alle Benutzer“ umgestellt. Die Hinweise zur
+              EU-Datengrenze im folgenden Text beschreiben den Stand vor dieser Umstellung. Was das für die Arbeit mit
+              Cowork bedeutet, steht im{" "}
+              <Link to="/wissen/copilot-cowork-praxisleitfaden" className="text-primary hover:underline">
+                Praxisleitfaden zu Copilot Cowork
+              </Link>
+              .
+            </p>
+          </CardContent>
+        </Card>
 
         {/* Kontextueller Hinweis: Trainings */}
         <div className="mb-6 p-4 bg-muted/40 border rounded-lg text-sm">

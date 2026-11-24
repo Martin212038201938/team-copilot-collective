@@ -77,7 +77,7 @@ const KIAgenten = () => {
           "@id": "https://copilotenschule.de/#organization"
         },
         "datePublished": "2025-11-07",
-        "dateModified": "2026-05-21",
+        "dateModified": "2026-11-24",
         "mainEntityOfPage": {
           "@type": "WebPage",
           "@id": pageUrl
@@ -126,7 +126,7 @@ const KIAgenten = () => {
         schema={schema}
         author={martinLang}
         publishedTime="2025-11-07T10:00:00+01:00"
-        modifiedTime="2026-04-17T10:00:00+01:00"
+        modifiedTime="2026-11-24T09:00:00+01:00"
       />
 
       <ContentLayout
@@ -136,7 +136,7 @@ const KIAgenten = () => {
         ]}
         title="KI-Agenten entwickeln: Autonome Workflows mit Microsoft Copilot"
         description="KI-Agenten Tutorial: Autonome Workflows und Automatisierungen mit Microsoft Copilot und Copilot Studio erstellen. Vom Konzept zur Implementierung."
-        lastUpdated="17. April 2026"
+        lastUpdated="24. November 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
         relatedContent={["wissen:copilot-studio", "wissen:copilot-agent-digitales-gedaechtnis", "training:copilot-studio-ki-agenten", "workshop:chatbot-workshop", "wissen:microsoft-365-e7-frontier-suite"]}
@@ -395,6 +395,12 @@ const KIAgenten = () => {
 
           <p className="mb-6 text-muted-foreground">
             Diese Tabelle hilft, schnell zu entscheiden, ob ein KI-Agent die richtige Lösung ist oder ob ein anderer Ansatz besser passt.
+            Für persönliche, mehrstufige Aufgaben in Microsoft 365 ist oft Copilot Cowork die bessere Wahl als ein eigener Agent,
+            wie unser{" "}
+            <Link to="/wissen/copilot-cowork-praxisleitfaden" className="text-primary hover:underline">
+              Praxisleitfaden zu Copilot Cowork
+            </Link>{" "}
+            zeigt.
           </p>
 
           <div className="overflow-x-auto mb-6">

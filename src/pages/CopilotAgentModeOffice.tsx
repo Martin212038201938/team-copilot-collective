@@ -69,7 +69,7 @@ const CopilotAgentModeOffice = () => {
           "@id": "https://copilotenschule.de/#organization",
         },
         "datePublished": "2026-05-21",
-        "dateModified": "2026-05-21",
+        "dateModified": "2026-11-24",
         "keywords": [
           "Copilot Agent Mode",
           "Copilot Word",
@@ -125,7 +125,7 @@ const CopilotAgentModeOffice = () => {
         schema={schema}
         author={martinLang}
         publishedTime="2026-05-21T09:00:00+01:00"
-        modifiedTime="2026-05-21T09:00:00+01:00"
+        modifiedTime="2026-11-24T09:00:00+01:00"
       />
       <ContentLayout
         breadcrumbs={[
@@ -134,7 +134,7 @@ const CopilotAgentModeOffice = () => {
         ]}
         title={PAGE_TITLE}
         description="Was der GA-Release vom 22. April 2026 wirklich bedeutet – und warum agentische Büroarbeit jetzt konkret wird"
-        lastUpdated="21. Mai 2026"
+        lastUpdated="24. November 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
       >
@@ -404,7 +404,13 @@ const CopilotAgentModeOffice = () => {
               Einstiegspunkte: Welche Aufgaben eignen sich für Agent Mode in meiner Abteilung?
               Wie formuliere ich eine Aufgabe so, dass das Ergebnis verwendbar ist? Und wie
               überprüfe ich, was Copilot gemacht hat? Das sind keine Trivialfragen – und sie
-              beantworten sich nicht aus einem YouTube-Tutorial heraus.
+              beantworten sich nicht aus einem YouTube-Tutorial heraus. Sobald eine Aufgabe über ein
+              einzelnes Dokument hinausgeht, ist Copilot Cowork das passende Werkzeug. Die Abgrenzung erklärt
+              unser{" "}
+              <Link to="/wissen/copilot-cowork-praxisleitfaden" className="text-primary hover:underline">
+                Praxisleitfaden zu Copilot Cowork
+              </Link>
+              .
             </p>
             <p>
               Die Frage nach dem Wettbewerb mit Claude stellt sich für Unternehmen übrigens

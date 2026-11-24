@@ -77,7 +77,7 @@ const CopilotVariantenUnterschiede = () => {
           "@id": "https://copilotenschule.de/#organization"
         },
         "datePublished": "2026-06-01",
-        "dateModified": "2026-11-02",
+        "dateModified": "2026-11-24",
         "mainEntityOfPage": {
           "@type": "WebPage",
           "@id": pageUrl
@@ -135,7 +135,7 @@ const CopilotVariantenUnterschiede = () => {
         schema={schema}
         author={martinLang}
         publishedTime="2026-06-01T09:00:00+02:00"
-        modifiedTime="2026-06-01T09:00:00+02:00"
+        modifiedTime="2026-11-24T09:00:00+01:00"
       />
 
       <ContentLayout
@@ -145,7 +145,7 @@ const CopilotVariantenUnterschiede = () => {
         ]}
         title={PAGE_TITLE}
         description="Warum die meisten gar nicht wissen, welche Copilot-Variante sie nutzen – und was Copilot Chat, die 365-Lizenz und die Claude-Modelle praktisch voneinander unterscheidet."
-        lastUpdated="2. November 2026"
+        lastUpdated="24. November 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
         relatedContent={[
@@ -173,6 +173,29 @@ const CopilotVariantenUnterschiede = () => {
               mit Copilot Studio lassen sich daraus eigene, wiederkehrende Agenten bauen. Wer wissen will, welche
               Stufe er hat, fragt den Chat nach seinen heutigen Terminen: Kommt keine Antwort, ist es der kostenlose
               Chat.
+            </p>
+          </CardContent>
+        </Card>
+
+        {/* Update-Hinweis November 2026 */}
+        <Card className="mb-8 border-l-4 border-l-blue-500 bg-blue-50/50 dark:bg-blue-950/20">
+          <CardContent className="pt-6">
+            <p className="text-sm font-semibold uppercase tracking-wide text-blue-700 dark:text-blue-400 mb-2">
+              Update im November 2026
+            </p>
+            <p className="text-base leading-relaxed">
+              Microsoft kündigt an, dass die Anthropic-Modelle (Claude) in Copilot ab Anfang Dezember 2026 innerhalb
+              der EU-Datengrenze verarbeitet werden, Copilot Cowork eingeschlossen. Am 9. Dezember 2026 schaltet
+              Microsoft Claude für berechtigte Tenants in der EU und der EFTA standardmäßig für alle Nutzer ein, wenn
+              der Tenant bis dahin keine eigene Auswahl getroffen hat (Message Center MC1546438). Wer Claude bewusst
+              auf „Keine Benutzer“ gesetzt hat, behält diese Einstellung. Tenants, die Claude bisher nur in den
+              Microsoft-365-Apps zugelassen haben, werden auf „Alle Benutzer“ umgestellt. Die Hinweise zur
+              EU-Datengrenze im folgenden Text beschreiben den Stand vor dieser Umstellung. Was das für die Arbeit mit
+              Cowork bedeutet, steht im{" "}
+              <Link to="/wissen/copilot-cowork-praxisleitfaden" className="text-primary hover:underline">
+                Praxisleitfaden zu Copilot Cowork
+              </Link>
+              .
             </p>
           </CardContent>
         </Card>

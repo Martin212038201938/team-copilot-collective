@@ -221,6 +221,7 @@ const knowledgeSlugs = [
   'copilot-update-juni-2026',
   'copilot-update-juli-2026',
   'copilot-memory-projektgedaechtnis',
+  'copilot-cowork-praxisleitfaden',
 ];
 
 const knowledgePages = knowledgeSlugs.map(slug => ({

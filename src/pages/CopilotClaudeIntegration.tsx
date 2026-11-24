@@ -64,7 +64,7 @@ const CopilotClaudeIntegration = () => {
           "@id": "https://copilotenschule.de/#organization"
         },
         "datePublished": "2026-03-13",
-        "dateModified": "2026-11-02",
+        "dateModified": "2026-11-24",
         "mainEntityOfPage": {
           "@type": "WebPage",
           "@id": pageUrl
@@ -127,7 +127,7 @@ const CopilotClaudeIntegration = () => {
         schema={schema}
         author={martinLang}
         publishedTime="2026-03-13T11:00:00+01:00"
-        modifiedTime="2026-08-11T10:00:00+02:00"
+        modifiedTime="2026-11-24T09:00:00+01:00"
       />
 
       <ContentLayout
@@ -137,7 +137,7 @@ const CopilotClaudeIntegration = () => {
         ]}
         title={PAGE_TITLE}
         description="Microsoft integriert Anthropics Claude-KI in Copilot – inklusive Copilot Cowork für agentenbasierte Aufgaben. Was das für Unternehmen bedeutet."
-        lastUpdated="2. November 2026"
+        lastUpdated="24. November 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
         relatedContent={[
@@ -165,6 +165,29 @@ const CopilotClaudeIntegration = () => {
               chatten. Für europäische Unternehmen gibt es allerdings einen DSGVO-Haken: Anthropic ist nicht im
               EU Data Boundary enthalten. Dieser Artikel ordnet ein, was die Integration kann, wo sie Grenzen
               hat und was IT-Verantwortliche jetzt tun sollten.
+            </p>
+          </CardContent>
+        </Card>
+
+        {/* Update-Hinweis November 2026 */}
+        <Card className="mb-8 border-l-4 border-l-blue-500 bg-blue-50/50 dark:bg-blue-950/20">
+          <CardContent className="pt-6">
+            <p className="text-sm font-semibold uppercase tracking-wide text-blue-700 dark:text-blue-400 mb-2">
+              Update im November 2026
+            </p>
+            <p className="text-base leading-relaxed">
+              Microsoft kündigt an, dass die Anthropic-Modelle (Claude) in Copilot ab Anfang Dezember 2026 innerhalb
+              der EU-Datengrenze verarbeitet werden, Copilot Cowork eingeschlossen. Am 9. Dezember 2026 schaltet
+              Microsoft Claude für berechtigte Tenants in der EU und der EFTA standardmäßig für alle Nutzer ein, wenn
+              der Tenant bis dahin keine eigene Auswahl getroffen hat (Message Center MC1546438). Wer Claude bewusst
+              auf „Keine Benutzer“ gesetzt hat, behält diese Einstellung. Tenants, die Claude bisher nur in den
+              Microsoft-365-Apps zugelassen haben, werden auf „Alle Benutzer“ umgestellt. Die Hinweise zur
+              EU-Datengrenze im folgenden Text beschreiben den Stand vor dieser Umstellung. Was das für die Arbeit mit
+              Cowork bedeutet, steht im{" "}
+              <Link to="/wissen/copilot-cowork-praxisleitfaden" className="text-primary hover:underline">
+                Praxisleitfaden zu Copilot Cowork
+              </Link>
+              .
             </p>
           </CardContent>
         </Card>
@@ -350,7 +373,12 @@ const CopilotClaudeIntegration = () => {
               Alltag liegen oft Welten. Was mich vorsichtig optimistisch stimmt, ist die Tatsache, dass
               Anthropic mit Claude Cowork bereits bewiesen hat, dass agentenbasierte Workflows funktionieren
               können – und dass Microsoft die Technologie nicht selbst gebaut, sondern übernommen hat. Das
-              reduziert das technische Risiko.
+              reduziert das technische Risiko. Wie die Arbeit mit Cowork im Alltag aussieht und welche Aufträge
+              funktionieren, beschreibe ich im{" "}
+              <Link to="/wissen/copilot-cowork-praxisleitfaden" className="text-primary hover:underline">
+                Praxisleitfaden zu Copilot Cowork
+              </Link>
+              .
             </p>
           </div>
         </section>

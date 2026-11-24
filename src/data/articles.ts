@@ -30,6 +30,17 @@ export interface ArticleData {
 // Alle Artikel - sortiert nach Veröffentlichungsdatum (neueste zuerst)
 export const ALL_ARTICLES: ArticleData[] = [
   {
+    id: "copilot-cowork-praxisleitfaden",
+    title: "Copilot Cowork: Die Zukunft der Arbeit beginnt JETZT",
+    description: "Copilot Cowork ist eine völlig neue Art zu arbeiten: Aufträge statt Prompts, Use Cases, Abgrenzung zu Agent Mode und Agenten, Fachkompetenz bewahren.",
+    link: "/wissen/copilot-cowork-praxisleitfaden",
+    badge: "Praxisguide",
+    icon: "§",
+    lastUpdated: "26. Nov. 2026",
+    publishDate: "2026-11-26",
+    publishTime: "09:00"
+  },
+  {
     id: "copilot-memory-projektgedaechtnis",
     title: "Copilot Memory verstehen und nutzen: Vom Allgemeingedächtnis zum Projektgedächtnis",
     description: "Copilot Memory, Notebooks und eigene Gedächtnis-Dateien: So bauen Sie ein dauerhaftes Gedächtnis in Microsoft 365 Copilot auf – mit Teams-Transkripten.",
@@ -80,7 +91,7 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/copilot-update-juni-2026",
     badge: "Copilot News",
     icon: "🔄",
-    lastUpdated: "2. Nov. 2026",
+    lastUpdated: "24. Nov. 2026",
     publishDate: "2026-07-13",
     publishTime: "09:00"
   },
@@ -113,7 +124,7 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/copilot-cowork-abrechnung-copilot-credits",
     badge: "Lizenzen & Kosten",
     icon: "€",
-    lastUpdated: "2. Nov. 2026",
+    lastUpdated: "24. Nov. 2026",
     publishDate: "2026-06-17",
     publishTime: "09:00"
   },
@@ -124,7 +135,7 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/microsoft-copilot-varianten-unterschiede",
     badge: "Grundlagen & Vergleich",
     icon: "≠",
-    lastUpdated: "2. Nov. 2026",
+    lastUpdated: "24. Nov. 2026",
     publishDate: "2026-06-01",
     publishTime: "09:00"
   },
@@ -146,7 +157,7 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/copilot-agent-mode-word-excel-powerpoint",
     badge: "Microsoft 365 Copilot",
     icon: "⚙",
-    lastUpdated: "21. Mai 2026",
+    lastUpdated: "24. Nov. 2026",
     publishDate: "2026-05-21",
     publishTime: "09:00"
   },
@@ -223,7 +234,7 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/copilot-in-excel-aktivieren",
     badge: "Microsoft 365 Copilot",
     icon: "⚡",
-    lastUpdated: "2. Nov. 2026",
+    lastUpdated: "24. Nov. 2026",
     publishDate: "2026-04-08",
     publishTime: "09:00"
   },
@@ -234,7 +245,7 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/copilot-betriebsrat",
     badge: "Betriebsrat & KI",
     icon: "§",
-    lastUpdated: "2. Nov. 2026",
+    lastUpdated: "24. Nov. 2026",
     publishDate: "2026-04-02",
     publishTime: "09:00"
   },
@@ -267,7 +278,7 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/claude-in-microsoft-copilot",
     badge: "Microsoft 365 Copilot",
     icon: "§",
-    lastUpdated: "2. Nov. 2026",
+    lastUpdated: "24. Nov. 2026",
     publishDate: "2026-03-13",
     publishTime: "11:00",
     isDraft: false
@@ -534,7 +545,7 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/ki-agenten",
     badge: "Fortgeschritten",
     icon: "🧠",
-    lastUpdated: "17. Apr. 2026",
+    lastUpdated: "24. Nov. 2026",
     publishDate: "2026-01-03",
     publishTime: "09:00"
   },
@@ -556,7 +567,7 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/copilot-fuer-word",
     badge: "Anwendung",
     icon: "📝",
-    lastUpdated: "2. Nov. 2026",
+    lastUpdated: "24. Nov. 2026",
     publishDate: "2025-12-10",
     publishTime: "09:00"
   },
@@ -567,7 +578,7 @@ export const ALL_ARTICLES: ArticleData[] = [
     link: "/wissen/copilot-sicherheit-datenschutz",
     badge: "Compliance",
     icon: "🔒",
-    lastUpdated: "2. Nov. 2026",
+    lastUpdated: "24. Nov. 2026",
     publishDate: "2025-12-05",
     publishTime: "09:00"
   },

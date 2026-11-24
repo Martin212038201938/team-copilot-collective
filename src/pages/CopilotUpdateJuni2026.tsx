@@ -72,7 +72,7 @@ const CopilotUpdateJuni2026 = () => {
           "@id": "https://copilotenschule.de/#organization",
         },
         "datePublished": "2026-07-13",
-        "dateModified": "2026-11-02",
+        "dateModified": "2026-11-24",
         "keywords": [
           "Copilot Update Juni 2026",
           "Microsoft 365 Copilot News",
@@ -126,7 +126,7 @@ const CopilotUpdateJuni2026 = () => {
         schema={schema}
         author={martinLang}
         publishedTime="2026-07-13T09:00:00+01:00"
-        modifiedTime="2026-07-13T09:00:00+01:00"
+        modifiedTime="2026-11-24T09:00:00+01:00"
       />
       <ContentLayout
         breadcrumbs={[
@@ -135,7 +135,7 @@ const CopilotUpdateJuni2026 = () => {
         ]}
         title={PAGE_TITLE}
         description="Der kuratierte Monatsüberblick: Was ist neu in der Copilot-Welt? Die wenigen wirklich relevanten Neuerungen aus der Juni-Ausgabe – mit Quelle, Einordnung und konkretem Nutzen."
-        lastUpdated="2. November 2026"
+        lastUpdated="24. November 2026"
         authorName="Martin Lang"
         tableOfContents={tableOfContents}
       >
@@ -157,6 +157,29 @@ const CopilotUpdateJuni2026 = () => {
               und Paket-Update. Eine ehrliche Einordnung vorweg – Cowork ist stark, läuft aber über
               verbrauchsbasierte Abrechnung und muss erst eingerichtet werden; „Häkchen setzen und
               los" ist es nicht.
+            </p>
+          </CardContent>
+        </Card>
+
+        {/* Update-Hinweis November 2026 */}
+        <Card className="mb-8 border-l-4 border-l-blue-500 bg-blue-50/50 dark:bg-blue-950/20">
+          <CardContent className="pt-6">
+            <p className="text-sm font-semibold uppercase tracking-wide text-blue-700 dark:text-blue-400 mb-2">
+              Update im November 2026
+            </p>
+            <p className="text-base leading-relaxed">
+              Microsoft kündigt an, dass die Anthropic-Modelle (Claude) in Copilot ab Anfang Dezember 2026 innerhalb
+              der EU-Datengrenze verarbeitet werden, Copilot Cowork eingeschlossen. Am 9. Dezember 2026 schaltet
+              Microsoft Claude für berechtigte Tenants in der EU und der EFTA standardmäßig für alle Nutzer ein, wenn
+              der Tenant bis dahin keine eigene Auswahl getroffen hat (Message Center MC1546438). Wer Claude bewusst
+              auf „Keine Benutzer“ gesetzt hat, behält diese Einstellung. Tenants, die Claude bisher nur in den
+              Microsoft-365-Apps zugelassen haben, werden auf „Alle Benutzer“ umgestellt. Die Hinweise zur
+              EU-Datengrenze im folgenden Text beschreiben den Stand vor dieser Umstellung. Was das für die Arbeit mit
+              Cowork bedeutet, steht im{" "}
+              <Link to="/wissen/copilot-cowork-praxisleitfaden" className="text-primary hover:underline">
+                Praxisleitfaden zu Copilot Cowork
+              </Link>
+              .
             </p>
           </CardContent>
         </Card>
