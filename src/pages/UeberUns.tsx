@@ -155,20 +155,6 @@ const UeberUns = () => {
               sicher und wertschöpfend im Arbeitsalltag einzusetzen. Unser praxisorientierter
               Trainingsansatz verbindet reale Arbeitsprozesse mit direkt anwendbaren Workflows.
             </p>
-            <p className="text-lg text-muted-foreground leading-relaxed mt-4">
-              Auch unsere Fachartikel entstehen so: echte, umfangreiche Beiträge, konzipiert,
-              strukturiert und sorgfältig redaktionell bearbeitet vom jeweiligen Autor, der am Fuß
-              des Dokuments genannt wird – selbstverständlich unter Zuhilfenahme unterstützender
-              KI-basierter Tools. Die Inhalte geben die Meinung des Autors wieder und wurden
-              gewissenhaft mit Mühe und Aufwand für menschliche Leser verfasst und geprüft. Es
-              handelt sich nicht um sogenannten AI-Blob oder SEO-Content. Eine Kennzeichnung gemäß
-              EU-Recht ist daher nicht verpflichtend, wir machen dies dennoch selbstverständlich im
-              Interesse der Transparenz.
-            </p>
-          </div>
-
-          <div className="max-w-6xl mx-auto mb-16 -mx-4">
-            <CustomerLogos />
           </div>
 
           {/* Mission, Vision, Werte */}
@@ -394,27 +380,9 @@ const UeberUns = () => {
             </div>
           </div>
 
-          {/* Fakten */}
-          <div className="max-w-4xl mx-auto mb-16">
-            <h2 className="text-3xl font-bold text-center mb-8">Zahlen, Daten, Fakten</h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              <div className="text-center p-6 bg-card rounded-xl border border-border/50">
-                <div className="text-3xl font-bold text-primary mb-2">2011</div>
-                <div className="text-sm text-muted-foreground">Gründung Yellow-Boat</div>
-              </div>
-              <div className="text-center p-6 bg-card rounded-xl border border-border/50">
-                <div className="text-3xl font-bold text-primary mb-2">2025</div>
-                <div className="text-sm text-muted-foreground">Gründung copilotenschule.de</div>
-              </div>
-              <div className="text-center p-6 bg-card rounded-xl border border-border/50">
-                <div className="text-3xl font-bold text-primary mb-2">DACH</div>
-                <div className="text-sm text-muted-foreground">Region</div>
-              </div>
-              <div className="text-center p-6 bg-card rounded-xl border border-border/50">
-                <div className="text-3xl font-bold text-primary mb-2">Köln</div>
-                <div className="text-sm text-muted-foreground">Standort</div>
-              </div>
-            </div>
+          {/* Kundenreferenzen */}
+          <div className="max-w-6xl mx-auto mb-16 -mx-4">
+            <CustomerLogos />
           </div>
 
           {/* Köln Training Location */}

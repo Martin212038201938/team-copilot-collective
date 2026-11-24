@@ -36,7 +36,7 @@ const Hero = () => {
                 Trainings
               </span>
             </h1>
-            <p className="mt-4 sm:mt-6 text-base sm:text-xl lg:text-2xl text-muted-foreground font-normal animate-slide-up-delayed">
+            <p className="mt-4 sm:mt-6 text-base sm:text-xl lg:text-2xl text-black dark:text-white font-normal animate-slide-up-delayed">
               Für messbar produktivere Büroarbeit
             </p>
           </div>

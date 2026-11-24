@@ -12,6 +12,21 @@ import { useRef } from "react";
 
 const reviews = [
   {
+    name: "Chris",
+    rating: 5,
+    text: "War alles top, super Training und gut strukturiert. Wird bestimmt viel zur Anwendung kommen und wir freuen uns auch schon auf die zusätzlichen Lernreisen.",
+  },
+  {
+    name: "Rene Friedrichs",
+    rating: 5,
+    text: "Sehr gut strukturiertes Training mit praxisnahen Fallbeispielen.",
+  },
+  {
+    name: "Malte Schulte-Trux",
+    rating: 5,
+    text: "Gute Schulung, die mE alle wichtigen Punkte eines Einstiegs abgebildet hat.",
+  },
+  {
     name: "Kai Opladen",
     rating: 5,
     text: "Das Training zu den Basic von Copilot im Arbeitsalltag war super! Ich dachte ich wüsste schon viel rund um das Thema KI und Anwedungen, aber tatsächlich wurde ich von Copilot überzeugt und werde zukünftig weniger mit ChatGPT arbeiten. Sondern eher mit Copilot.",
@@ -47,7 +62,7 @@ const reviews = [
     text: "Tolles KI-Training bei Yellow-Boat Consulting! Mit viel Expertise und toller didaktischer Aufbereitung führt Martin das Training. Durch seine sympathische, offene Art gelingt es ihm, in angenehmer Atmosphäre nicht nur fundiertes Wissen zu vermitteln, sondern seine Leidenschaft für das Thema auch weiterzugeben. Ich freu mich auf weitere Kurse, vielen Dank!",
   },
   {
-    name: "Simon Korn",
+    name: "Simon K.",
     rating: 5,
     text: "Ich habe an einem ausgezeichneten KI-Training bei Martin teilgenommen und kann ihn sowohl fachlich als auch menschlich wärmstens empfehlen. Mit seiner sympathischen und zugleich sehr kompetenten Art gelang es ihm, eine angenehme Lernatmosphäre zu schaffen, in der sich alle Teilnehmenden abgeholt und motiviert fühlten. Das Training war inhaltlich fundiert und praxisnah sowie didaktisch hervorragend aufgebaut. Im Vorfeld wurden die individuellen Bedürfnisse und Vorkenntnisse abgefragt, darauf aufbauend setzte Martin sein Training mit anschaulichen Beispielen und praxisrelevanten Übungen um. Eine rundum gelungene Schulung!",
   },
