@@ -30,8 +30,6 @@ const zertifizierungen = [
   { name: "PCEP – Certified Entry-Level Python Programmer", aussteller: "Python Institute" },
   { name: "Certified JavaScript Developer", aussteller: "Webmasters Europe" },
   { name: "Ausbildereignung nach AEVO", aussteller: "IHK Bremen" },
-  { name: "Fachkraft Rechnungswesen (IHK) inkl. DATEV", aussteller: "IHK" },
-  { name: "Staatlich geprüfte Bilanzbuchhalterin", aussteller: "Universität St. Petersburg" },
 ];
 
 const UeberUns = () => {
