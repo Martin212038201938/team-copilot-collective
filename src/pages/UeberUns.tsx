@@ -8,6 +8,32 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Building, Award, ArrowRight, ExternalLink } from "lucide-react";
 
+// Auswahl aus den Zertifizierungen des Trainerteams (Quelle: Zertifizierungs-Excel, Spalte
+// "Relevant f. CS?" = Ja, Stand 24.11.2026). Bewusst ohne Personennamen im sichtbaren Text.
+const zertifizierungen = [
+  { name: "Microsoft Certified Trainer (MCT)", aussteller: "Microsoft" },
+  { name: "Microsoft Certified: Power BI Data Analyst Associate (PL-300)", aussteller: "Microsoft" },
+  { name: "Microsoft Certified: Fabric Analytics Engineer Associate (DP-600)", aussteller: "Microsoft" },
+  { name: "Microsoft Certified: AI Business Professional", aussteller: "Microsoft" },
+  { name: "Microsoft Technology Associate: Database Administration Fundamentals", aussteller: "Microsoft" },
+  { name: "Claude Certified Architect – Professional", aussteller: "Anthropic" },
+  { name: "Claude Certified Architect – Foundations", aussteller: "Anthropic" },
+  { name: "Claude Academy: Teaching AI Fluency", aussteller: "Anthropic" },
+  { name: "Claude Academy: Building Effective Human-Agent Teams", aussteller: "Anthropic" },
+  { name: "AI Adoption Consultant", aussteller: "A-Leecon" },
+  { name: "KI Leadership und Transformation", aussteller: "Section AI" },
+  { name: "AI in Performance Marketing", aussteller: "SMD" },
+  { name: "AI-Engineerin mit Python und SQL", aussteller: "alfatraining Bildungszentrum" },
+  { name: "Data Analyst mit Python", aussteller: "BBQ Akademie Berlin" },
+  { name: "Datamanager (IHK-zertifiziert)", aussteller: "IHK" },
+  { name: "PCAP – Certified Associate in Python Programming", aussteller: "Python Institute" },
+  { name: "PCEP – Certified Entry-Level Python Programmer", aussteller: "Python Institute" },
+  { name: "Certified JavaScript Developer", aussteller: "Webmasters Europe" },
+  { name: "Ausbildereignung nach AEVO", aussteller: "IHK Bremen" },
+  { name: "Fachkraft Rechnungswesen (IHK) inkl. DATEV", aussteller: "IHK" },
+  { name: "Staatlich geprüfte Bilanzbuchhalterin", aussteller: "Universität St. Petersburg" },
+];
+
 const UeberUns = () => {
   const organizationSchema = {
     "@context": "https://schema.org",
@@ -378,6 +404,19 @@ const UeberUns = () => {
                 </p>
               </div>
             </div>
+          </div>
+
+          {/* Zertifizierungen */}
+          <div className="max-w-4xl mx-auto mb-16">
+            <h2 className="text-3xl font-bold text-center mb-8">Auswahl aus unseren Zertifizierungen</h2>
+            <ul className="grid md:grid-cols-2 gap-x-10 gap-y-3">
+              {zertifizierungen.map((z) => (
+                <li key={z.name} className="border-b border-border/50 pb-3">
+                  <span className="font-medium">{z.name}</span>
+                  <span className="block text-sm text-muted-foreground">{z.aussteller}</span>
+                </li>
+              ))}
+            </ul>
           </div>
 
           {/* Kundenreferenzen */}
